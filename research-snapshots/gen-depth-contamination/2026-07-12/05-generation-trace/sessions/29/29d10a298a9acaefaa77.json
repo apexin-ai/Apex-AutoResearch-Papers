@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "id": "29d10a298a9acaefaa77",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> gen-depth-contamination 项目。exp_pythia69b_c4_nuc 是 Pythia-6.9B 用 nucleus sampling 的 pipeline 实验（PID 44324",
+  "task_key": "7e63cfd6-85e9-43f6-a9fe-093718d138c2",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/7e63cfd6-85e9-43f6-a9fe-093718d138c2.jsonl",
+    "occurrence": 1,
+    "bytes": 1468416,
+    "sha256": "7344dc7e77cf02e4bd7603920a93cf3da00eedb899c463f9c369201c418c8741"
+  },
+  "statistics": {
+    "messages": 727,
+    "user_turns": 2,
+    "tool_calls": 253,
+    "roles": {
+      "record": 115,
+      "user": 2,
+      "assistant": 103,
+      "tool_call": 253,
+      "tool_result": 253,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "29d10a298a9acaefaa77-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 617,
+      "chunks": [
+        {
+          "path": "29d10a298a9acaefaa77-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "29d10a298a9acaefaa77-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "29d10a298a9acaefaa77-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "29d10a298a9acaefaa77-part-0004.json",
+          "message_count": 79
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 108,
+      "chunks": [
+        {
+          "path": "29d10a298a9acaefaa77-part-0004.json",
+          "message_count": 101
+        },
+        {
+          "path": "29d10a298a9acaefaa77-part-0005.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-gen-depth-contamination-exp-pythia69b-c4-nuc-pythia-6-9b-nucleus.md"
+}

@@ -1,0 +1,1456 @@
+{
+  "schema_version": "1.0",
+  "id": "6767caf15e7fe0c57965",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search across the paper files in /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/p",
+  "task_key": "agent-a8ac91885028ee045",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a8ac91885028ee045.jsonl",
+    "occurrence": 1,
+    "bytes": 75205,
+    "sha256": "ee179cf8fe2b80db813972085004b52cf0d0168c3a9fd1959049b34c697726f8"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 1,
+    "tool_calls": 11,
+    "roles": {
+      "user": 1,
+      "assistant": 6,
+      "tool_call": 11,
+      "tool_result": 11
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T10:12:17.943Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search across the paper files in /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/ for references to \"Krishna\", \"Sadasivan\", and \"Wei Hao\" (or \"Hao 2025\"). Also check references.bib for these entries. I need to know if these 3 citations already exist in the bibliography or are genuinely missing. Report the exact bib keys if found, or confirm they are absent."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "44c21223-413f-4250-b24e-c80a5feb1f36",
+            "agentId": "a8ac91885028ee045",
+            "type": "user",
+            "uuid": "9dd4c6af-7cb4-4bae-81f1-c51b40b0c133",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T10:12:19.414Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search the paper files and bibliography for those author references."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9dd4c6af-7cb4-4bae-81f1-c51b40b0c133",
+            "isSidechain": true,
+            "agentId": "a8ac91885028ee045",
+            "requestId": "req_011Cb4B8y2pQFG4jT8KuauM8",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "88b620e2-fe95-4b06-bf65-720c24579c55",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0132hrn7yGJSNwPPi9rsKG9W",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 20718,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 20718,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T10:12:19.771Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SUnXqFzpBQiB2mirDS2xG6",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/**/*"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "88b620e2-fe95-4b06-bf65-720c24579c55",
+            "isSidechain": true,
+            "agentId": "a8ac91885028ee045",
+            "requestId": "req_011Cb4B8y2pQFG4jT8KuauM8",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "35e33aa2-6fa9-422f-acce-7e881a46fdce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0132hrn7yGJSNwPPi9rsKG9W",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 20718,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 171,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 20718
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 171,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 20718,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 20718,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T10:12:19.778Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TZW1hudRAxt9KLmiSYAqHk",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "35e33aa2-6fa9-422f-acce-7e881a46fdce",
+            "isSidechain": true,
+            "agentId": "a8ac91885028ee045",
+            "requestId": "req_011Cb4B8y2pQFG4jT8KuauM8",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cd503391-6ec7-4d76-8390-0e5ec0555585",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0132hrn7yGJSNwPPi9rsKG9W",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 20718,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 171,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 20718
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 171,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 20718,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 20718,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T10:12:19.793Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SUnXqFzpBQiB2mirDS2xG6",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig3_transfer_heatmap.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig3_transfer_heatmap.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig_s1_auc_decay_ci.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/acl.sty\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/acl_natbib.bst\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.fls\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.fdb_latexmk\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/pipeline.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/pipeline.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p2.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p3.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p4.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.blg\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.bbl\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p7.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p8.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p9.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p10.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p11.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p12.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_filtering_main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_alpha_sweep.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.aux\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.out\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.log\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p5.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p6.png"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "35e33aa2-6fa9-422f-acce-7e881a46fdce",
+            "isSidechain": true,
+            "promptId": "44c21223-413f-4250-b24e-c80a5feb1f36",
+            "agentId": "a8ac91885028ee045",
+            "type": "user",
+            "uuid": "555ab71a-0658-41b4-9772-bc1c6a415f1c",
+            "sourceToolAssistantUUID": "35e33aa2-6fa9-422f-acce-7e881a46fdce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T10:12:19.799Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TZW1hudRAxt9KLmiSYAqHk",
+              "type": "tool_result",
+              "content": "1\t% === References for gen-depth-contamination ===\n2\t% Source: literature_map.yaml — verified 2026-05-14\n3\t\n4\t% === Must-Cite ===\n5\t\n6\t@inproceedings{drayson2025,\n7\t  title={Machine-Generated Text Detection Prevents Language Model Collapse},\n8\t  author={Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n9\t  booktitle={Proceedings of EMNLP},\n10\t  year={2025},\n11\t  url={https://arxiv.org/abs/2502.15654}\n12\t}\n13\t\n14\t@inproceedings{schaeffer2025position,\n15\t  title={Position: Model Collapse Does Not Mean What You Think},\n16\t  author={Schaeffer, Rylan and Kazdan, Joshua and Arulandu, Anirudh and Koyejo, Sanmi},\n17\t  booktitle={Proceedings of ICML},\n18\t  year={2025},\n19\t  url={https://arxiv.org/abs/2503.03150}\n20\t}\n21\t\n22\t@inproceedings{kazdan2025collapse,\n23\t  title={Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World},\n24\t  author={Kazdan, Joshua and Schaeffer, Rylan and Dey, Apratim and Gerstgrasser, Matthias and Rafailov, Rafael and Donoho, David and Koyejo, Sanmi},\n25\t  booktitle={Proceedings of ICML},\n26\t  year={2025},\n27\t  url={https://arxiv.org/abs/2410.16713}\n28\t}\n29\t\n30\t@inproceedings{shi2025generalization,\n31\t  title={A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective},\n32\t  author={Shi, Lianghe and Wu, Meng and Zhang, Huijie and Zhang, Zekai and Tao, Molei and Qu, Qing},\n33\t  booktitle={Advances in NeurIPS},\n34\t  year={2025},\n35\t  url={https://arxiv.org/abs/2509.16499}\n36\t}\n37\t\n38\t@inproceedings{mitchell2023detectgpt,\n39\t  title={{DetectGPT}: Zero-Shot Machine-Generated Text Detection using Probability Curvature},\n40\t  author={Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n41\t  booktitle={Proceedings of ICML},\n42\t  year={2023}\n43\t}\n44\t\n45\t% === Should-Cite ===\n46\t\n47\t@article{basani2026diveye,\n48\t  title={{DivEye}: Diversity Boosts {AI}-Generated Text Detection},\n49\t  author={Basani, Advik Raj and Chen, Pin-Yu},\n50\t  journal={Transactions on Machine Learning Research},\n51\t  year={2026},\n52\t  url={https://arxiv.org/abs/2509.18880}\n53\t}\n54\t\n55\t@inproceedings{amin2025escaping,\n56\t  title={Escaping Collapse: The Strength of Weak Data for Large Language Model Training},\n57\t  author={Amin, Kareem and Babakniya, Sara and Bie, Alex and Kong, Weiwei and Syed, Umar and Vassilvitskii, Sergei},\n58\t  booktitle={Advances in NeurIPS},\n59\t  year={2025},\n60\t  url={https://arxiv.org/abs/2502.08924}\n61\t}\n62\t\n63\t@inproceedings{zawalski2026codec,\n64\t  title={{CoDeC}: Detecting Data Contamination in {LLM}s via In-Context Learning},\n65\t  author={Zawalski, Micha{\\l} and Boubdir, Meriem and Ba{\\l}azy, Klaudia and Nushi, Besmira and Ribalta, Pablo},\n66\t  booktitle={Proceedings of ICLR},\n67\t  year={2026},\n68\t  url={https://arxiv.org/abs/2510.27055}\n69\t}\n70\t\n71\t@article{gambetta2025surplexity,\n72\t  title={Learning by Surprise: Surplexity for Mitigating Model Collapse},\n73\t  author={Gambetta, Daniele and Gezici, Gizem and Giannotti, Fosca and Pedreschi, Dino and Knott, Alistair and Pappalardo, Luca},\n74\t  journal={arXiv preprint arXiv:2410.12341},\n75\t  year={2025},\n76\t  url={https://arxiv.org/abs/2410.12341}\n77\t}\n78\t\n79\t@inproceedings{zhang2024minkpp,\n80\t  title={Min-{K}\\%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models},\n81\t  author={Zhang, Jingyang and Zheng, Jingwei and Gao, Jing and Miao, Chunyan},\n82\t  booktitle={Proceedings of EMNLP},\n83\t  year={2024}\n84\t}\n85\t\n86\t@article{shumailov2024collapse,\n87\t  title={{AI} Models Collapse When Trained on Recursively Generated Data},\n88\t  author={Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n89\t  journal={Nature},\n90\t  volume={631},\n91\t  pages={755--759},\n92\t  year={2024}\n93\t}\n94\t\n95\t@inproceedings{alemohammad2024selfconsuming,\n96\t  title={Self-Consuming Generative Models Go {MAD}},\n97\t  author={Alemohammad, Sina and Casco-Rodriguez, Josue and Luber, Lorenzo and Babaei, Ahmed Imtiaz and Letizia, Daniel and Bastani, Osbert and Baraniuk, Richard},\n98\t  booktitle={Proceedings of ICLR},\n99\t  year={2024}\n100\t}\n101\t\n102\t@article{kaplan2020scaling,\n103\t  title={Scaling Laws for Neural Language Models},\n104\t  author={Kaplan, Jared and McCandlish, Sam and Henighan, Tom and Brown, Tom B. and Chess, Benjamin and Child, Rewon and Gray, Scott and Radford, Alec and Wu, Jeffrey and Amodei, Dario},\n105\t  journal={arXiv preprint arXiv:2001.08361},\n106\t  year={2020}\n107\t}\n108\t\n109\t@inproceedings{dohmatob2024model,\n110\t  title={A Tale of Tails: Model Collapse as a Change of Scaling Laws},\n111\t  author={Dohmatob, Elvis and Feng, Yunzhen and Yang, Pin-Yu and Charton, Francois and Kempe, Julia},\n112\t  booktitle={Proceedings of ICML},\n113\t  year={2024}\n114\t}\n115\t\n116\t@inproceedings{xie2023dsir,\n117\t  title={Data Selection with Importance Resampling},\n118\t  author={Xie, Sang Michael and Santurkar, Shibani and Ma, Tengyu and Liang, Percy},\n119\t  booktitle={Proceedings of ICML},\n120\t  year={2023}\n121\t}\n122\t\n123\t@inproceedings{tirumala2023d4,\n124\t  title={{D4}: Improving {LLM} Pretraining via Document De-Duplication and Diversification},\n125\t  author={Tirumala, Kushal and Markosyan, Aram and Zettlemoyer, Luke and Aghajanyan, Armen},\n126\t  booktitle={Advances in NeurIPS},\n127\t  year={2023}\n128\t}\n129\t\n130\t@inproceedings{xie2023doremi,\n131\t  title={{DoReMi}: Optimizing Data Mixtures Speeds Up Language Model Pretraining},\n132\t  author={Xie, Sang Michael and Pham, Hieu and Dong, Xuanyi and Du, Nan and Liu, Hanxiao and Lu, Yifeng and Liang, Percy and Le, Quoc V. and Ma, Tengyu and Yu, Adams Wei},\n133\t  booktitle={Advances in NeurIPS},\n134\t  year={2023}\n135\t}\n136\t\n137\t@inproceedings{kirchenbauer2023watermark,\n138\t  title={A Watermark for Large Language Models},\n139\t  author={Kirchenbauer, John and Geiping, Jonas and Wen, Yuxin and Katz, Jonathan and Miers, Ian and Goldstein, Tom},\n140\t  booktitle={Proceedings of ICML},\n141\t  year={2023}\n142\t}\n143\t\n144\t@inproceedings{gehrmann2019gltr,\n145\t  title={{GLTR}: Statistical Detection and Visualization of Generated Text},\n146\t  author={Gehrmann, Sebastian and Strobelt, Hendrik and Rush, Alexander M.},\n147\t  booktitle={Proceedings of ACL: System Demonstrations},\n148\t  year={2019}\n149\t}\n150\t\n151\t@inproceedings{hans2024binoculars,\n152\t  title={Spotting {LLMs} With Binoculars},\n153\t  author={Hans, Abhimanyu and Schwarzschild, Avi and Cherepanova, Valeriia and Kazemi, Hamid and Saha, Aniruddha and Goldblum, Micah and Geiping, Jonas and Goldstein, Tom},\n154\t  booktitle={Proceedings of ICML},\n155\t  year={2024}\n156\t}\n157\t\n158\t@article{cao2020coral,\n159\t  title={Rank consistent ordinal regression for neural networks with application to age estimation},\n160\t  author={Cao, Wenzhi and Mirjalili, Vahid and Raschka, Sebastian},\n161\t  journal={Pattern Recognition Letters},\n162\t  volume={140},\n163\t  pages={325--331},\n164\t  year={2020}\n165\t}\n166\t\n167\t@inproceedings{zellers2019grover,\n168\t  title={Defending Against Neural Fake News},\n169\t  author={Zellers, Rowan and Holtzman, Ari and Rashkin, Hannah and Bisk, Yonatan and Farhadi, Ali and Roesner, Franziska and Choi, Yejin},\n170\t  booktitle={Advances in NeurIPS},\n171\t  year={2019}\n172\t}\n173\t\n174\t@inproceedings{ippolito2020detection,\n175\t  title={Automatic Detection of Generated Text is Easiest when Humans are Fooled},\n176\t  author={Ippolito, Daphne and Duckworth, Daniel and Callison-Burch, Chris and Eck, Douglas},\n177\t  booktitle={Proceedings of ACL},\n178\t  year={2020}\n179\t}\n180\t\n181\t% === Probing Classifiers ===\n182\t\n183\t@inproceedings{alain2017understanding,\n184\t  title={Understanding Intermediate Layers Using Linear Classifier Probes},\n185\t  author={Alain, Guillaume and Bengio, Yoshua},\n186\t  booktitle={ICLR Workshop},\n187\t  year={2017}\n188\t}\n189\t\n190\t@inproceedings{conneau2018probing,\n191\t  title={What You Can Cram into a Single \\$\\&!\\#* Vector: Probing Sentence Embeddings for Linguistic Properties},\n192\t  author={Conneau, Alexis and Kruszewski, German and Lample, Guillaume and Barrault, Lo{\\\"\\i}c and Baroni, Marco},\n193\t  booktitle={Proceedings of ACL},\n194\t  year={2018}\n195\t}\n196\t\n197\t@article{belinkov2022probing,\n198\t  title={Probing Classifiers: Promises, Shortcomings, and Advances},\n199\t  author={Belinkov, Yonatan},\n200\t  journal={Computational Linguistics},\n201\t  volume={48},\n202\t  number={1},\n203\t  pages={207--219},\n204\t  year={2022}\n205\t}\n206\t\n207\t% === Model Collapse Avoidability ===\n208\t\n209\t@article{gerstgrasser2024inevitable,\n210\t  title={Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data},\n211\t  author={Gerstgrasser, Matthias and Schaeffer, Rylan and Dey, Apratim and Rafailov, Rafael and Sleight, Henry and Hughes, John and Korbak, Tomasz and Agrawal, Rajashree and Pai, Dhruv and Gromov, Andrey and Roberts, Daniel A. and Yang, Diyi and Donoho, David L. and Koyejo, Sanmi},\n212\t  journal={arXiv preprint arXiv:2404.01413},\n213\t  year={2024},\n214\t  url={https://arxiv.org/abs/2404.01413}\n215\t}\n216\t\n217\t% === Ordinal Classification (additional) ===\n218\t\n219\t@inproceedings{dohmatob2025strong,\n220\t  title={Strong Model Collapse},\n221\t  author={Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n222\t  booktitle={Proceedings of ICLR},\n223\t  year={2025},\n224\t  url={https://arxiv.org/abs/2410.04840}\n225\t}\n226\t\n227\t@inproceedings{feng2025beyond,\n228\t  title={Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification},\n229\t  author={Feng, Yunzhen and Dohmatob, Elvis and Yang, Pu and Charton, Francois and Kempe, Julia},\n230\t  booktitle={Proceedings of ICLR},\n231\t  year={2025},\n232\t  url={https://arxiv.org/abs/2406.07515}\n233\t}\n234\t\n235\t@inproceedings{bao2024fast,\n236\t  title={{Fast-DetectGPT}: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature},\n237\t  author={Bao, Guangsheng and Zhao, Yanbin and Teng, Zhiyang and Yang, Linyi and Zhang, Yue},\n238\t  booktitle={Proceedings of ICLR},\n239\t  year={2024},\n240\t  url={https://arxiv.org/abs/2310.05130}\n241\t}\n242\t\n243\t@inproceedings{frank2001ordinal,\n244\t  title={A Simple Approach to Ordinal Classification},\n245\t  author={Frank, Eibe and Hall, Mark},\n246\t  booktitle={Proceedings of ECML},\n247\t  pages={145--156},\n248\t  year={2001}\n249\t}\n250\t\n251\t% === New entries (added 2026-05-14) ===\n252\t\n253\t@inproceedings{cheng2025beyond,\n254\t  title={Beyond Binary: Towards Fine-Grained {LLM}-Generated Text Detection via Role Recognition and Involvement Measurement},\n255\t  author={Cheng, Zihao and Zhou, Li and Jiang, Feng and Wang, Benyou and Li, Haizhou},\n256\t  booktitle={Proceedings of the ACM Web Conference (WWW)},\n257\t  year={2025},\n258\t  url={https://arxiv.org/abs/2410.14259}\n259\t}\n260\t\n261\t@article{yi2025escaping,\n262\t  title={Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence},\n263\t  author={Yi, Bingji and Liu, Qiyuan and Cheng, Yuwei and Xu, Haifeng},\n264\t  journal={arXiv preprint arXiv:2510.16657},\n265\t  year={2025},\n266\t  url={https://arxiv.org/abs/2510.16657}\n267\t}\n268\t\n269\t@article{mehta2025beyond,\n270\t  title={Beyond Surface-Level Similarity: Hierarchical Contamination Detection for Synthetic Training Data in Foundation Models},\n271\t  author={Mehta, Sushant},\n272\t  journal={arXiv preprint arXiv:2511.17602},\n273\t  year={2025},\n274\t  url={https://arxiv.org/abs/2511.17602}\n275\t}\n276\t\n277\t% === AI-Generated Content Prevalence ===\n278\t\n279\t@inproceedings{sun2025aigt,\n280\t  title={Are We in the {AI}-Generated Text World Already? Quantifying and Monitoring {AIGT} on Social Media},\n281\t  author={Sun, Zhen and Zhang, Zongmin and Shen, Xinyue and Zhang, Ziyi and Liu, Yule and Backes, Michael and Zhang, Yang and He, Xinlei},\n282\t  booktitle={Proceedings of ACL},\n283\t  year={2025},\n284\t  url={https://arxiv.org/abs/2412.18148}\n285\t}\n286\t\n287\t@article{spennemann2025quantifying,\n288\t  title={Delving into: the Quantification of {AI}-Generated Content on the Internet (Synthetic Data)},\n289\t  author={Spennemann, Dirk H. R.},\n290\t  journal={arXiv preprint arXiv:2504.08755},\n291\t  year={2025},\n292\t  url={https://arxiv.org/abs/2504.08755}\n293\t}\n294\t\n295\t% === Continual Pretraining ===\n296\t\n297\t@inproceedings{gupta2023continual,\n298\t  title={Continual Pre-Training of Large Language Models: How to (re)warm your model?},\n299\t  author={Gupta, Kshitij and Th{\\'e}rien, Benjamin and Ibrahim, Adam and Richter, Mats L. and Anthony, Quentin and Belilovsky, Eugene and Rish, Irina and Lesort, Timoth{\\'e}e},\n300\t  booktitle={Proceedings of ICML},\n301\t  year={2023},\n302\t  url={https://arxiv.org/abs/2308.04014}\n303\t}\n304\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cd503391-6ec7-4d76-8390-0e5ec0555585",
+            "isSidechain": true,
+            "promptId": "44c21223-413f-4250-b24e-c80a5feb1f36",
+            "agentId": "a8ac91885028ee045",
+            "type": "user",
+            "uuid": "3528cd87-3446-4d9e-a3f6-bed07936f858",
+            "sourceToolAssistantUUID": "cd503391-6ec7-4d76-8390-0e5ec0555585",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T10:12:21.328Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for these author names in the paper .tex files:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3528cd87-3446-4d9e-a3f6-bed07936f858",
+            "isSidechain": true,
+            "agentId": "a8ac91885028ee045",
+            "requestId": "req_011Cb4B96yosADW4LresnBxC",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "afd48563-ac57-4ad6-a90f-a1e8bc3f32bd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015ySCofBE6xjU8mZd6TPyig",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 7707,
+                "cache_read_input_tokens": 20718,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7707,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T10:12:22.443Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CRYE5d72QCnJww9QFNVVex",
+              "name": "Grep",
+              "input": {
+                "pattern": "Krishna|Sadasivan|Wei Hao|Hao 2025",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "afd48563-ac57-4ad6-a90f-a1e8bc3f32bd",
+            "isSidechain": true,
+            "agentId": "a8ac91885028ee045",
+            "requestId": "req_011Cb4B96yosADW4LresnBxC",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a417ad36-fc98-4de4-87c1-318788bed416",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015ySCofBE6xjU8mZd6TPyig",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 7707,
+                "cache_read_input_tokens": 20718,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7707,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T10:12:22.536Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CRYE5d72QCnJww9QFNVVex",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a417ad36-fc98-4de4-87c1-318788bed416",
+            "isSidechain": true,
+            "promptId": "44c21223-413f-4250-b24e-c80a5feb1f36",
+            "agentId": "a8ac91885028ee045",
+            "type": "user",
+            "uuid": "29aa3f99-4780-45dc-a417-ddf96e93b131",
+            "sourceToolAssistantUUID": "a417ad36-fc98-4de4-87c1-318788bed416",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T10:12:22.833Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014aGkTzaK1JZFTCm6kKi6EN",
+              "name": "Grep",
+              "input": {
+                "pattern": "krishna|sadasivan|wei.hao|hao2025",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "29aa3f99-4780-45dc-a417-ddf96e93b131",
+            "isSidechain": true,
+            "agentId": "a8ac91885028ee045",
+            "requestId": "req_011Cb4B96yosADW4LresnBxC",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ce5de130-bf65-49a7-8800-9119e1417d02",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015ySCofBE6xjU8mZd6TPyig",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 7707,
+                "cache_read_input_tokens": 20718,
+                "output_tokens": 274,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 7707
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 274,
+                    "cache_read_input_tokens": 20718,
+                    "cache_creation_input_tokens": 7707,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 7707,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T10:12:22.852Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014aGkTzaK1JZFTCm6kKi6EN",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ce5de130-bf65-49a7-8800-9119e1417d02",
+            "isSidechain": true,
+            "promptId": "44c21223-413f-4250-b24e-c80a5feb1f36",
+            "agentId": "a8ac91885028ee045",
+            "type": "user",
+            "uuid": "4a3cef7d-7d7a-4f0d-aec6-6636d18577ea",
+            "sourceToolAssistantUUID": "ce5de130-bf65-49a7-8800-9119e1417d02",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T10:12:24.128Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me search the main .tex files individually to check all content sections:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4a3cef7d-7d7a-4f0d-aec6-6636d18577ea",
+            "isSidechain": true,
+            "agentId": "a8ac91885028ee045",
+            "requestId": "req_011Cb4B9L4cWeFkvYmWmw5Jy",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "706ada34-3415-4c74-a734-11628e54a6b1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01V5S6twnrsWWCL2dPmGHN3Y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 341,
+                "cache_read_input_tokens": 28425,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 341,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T10:12:24.373Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SFKPt9RLDZftwhud55iPiH",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "706ada34-3415-4c74-a734-11628e54a6b1",
+            "isSidechain": true,
+            "agentId": "a8ac91885028ee045",
+            "requestId": "req_011Cb4B9L4cWeFkvYmWmw5Jy",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1bc3e941-230b-43d3-8285-b51e6b740bcb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01V5S6twnrsWWCL2dPmGHN3Y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 341,
+                "cache_read_input_tokens": 28425,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 341,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T10:12:24.381Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SFKPt9RLDZftwhud55iPiH",
+              "type": "tool_result",
+              "content": "1\t% EMNLP 2026 Main — ARR May 2026\n2\t% Generational Depth Contamination\n3\t\\documentclass[11pt]{article}\n4\t\\usepackage[review]{acl}\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{amsmath}\n12\t\\usepackage{amssymb}\n13\t\\usepackage{booktabs}\n14\t\\usepackage{multirow}\n15\t\\usepackage{enumitem}\n16\t\\usepackage{subcaption}\n17\t\n18\t\\newcommand{\\Kstar}{{K^*}}\n19\t\\newcommand{\\Kempirical}{{K^*_{\\text{empirical}}}}\n20\t\\newcommand{\\Ktheory}{{K^*_{\\text{theory}}}}\n21\t\\newcommand{\\auc}{\\text{AUC}}\n22\t\\newcommand{\\jsd}{\\text{JSD}}\n23\t\n24\t\\title{Generational Depth Estimation of Recursive Synthetic Text:\\\\Measuring the Discrimination Boundary}\n25\t\n26\t\\author{Anonymous}\n27\t\n28\t\\begin{document}\n29\t\\maketitle\n30\t\n31\t% === Abstract ===\n32\t\\begin{abstract}\n33\t% D025: web contamination prevalence context\n34\tWeb-scale text corpora are increasingly contaminated by recursive synthetic content---text recursively generated across multiple generations, with recent estimates suggesting that 10--40\\% of content on some platforms is machine-generated~\\cite{sun2025aigt, spennemann2025quantifying}. Information degrades monotonically per the Data Processing Inequality with each generation, yet no method estimates a document's generational depth. We introduce the first systematic framework for generational depth estimation. Our approach extracts 15 statistical features and classifies depth via Ordinal Binary Decomposition (OBD) with LightGBM, preserving ordinal structure. We empirically measure the discrimination boundary $\\Kempirical$, the maximum depth at which adjacent generations remain statistically distinguishable. Across 4 model-mode configurations and 4 decoding strategies (8 conditions total) at the $\\leq$1.5B parameter scale, we find $\\Kempirical=2$ is consistent: bootstrap 95\\% CI lower bounds for 1-vs-2 across the four model-mode configurations all exceed $\\theta=0.60$ while all 2-vs-3 CI upper bounds fall below it; decoding strategies likewise yield $\\auc$ above $\\theta$ at 1-vs-2 and below at 2-vs-3. Cross-model transfer shows classifiers retain 80--92\\% accuracy across continuation-mode generators, with binary (0-vs-1) $\\auc$ exceeding 0.96, indicating depth features are largely text-intrinsic. Neural probing yields $\\Kempirical^{\\text{neural}}=3$ for Qwen-continuation but $\\Kempirical^{\\text{neural}}=2$ for Pythia and OLMo, confirming $\\Kempirical=2$ as a representation-independent lower bound while revealing model-dependent additional discriminability. Frontier LLMs achieve ${\\sim}88\\%$ binary detection but only ${\\sim}33\\%$ five-class depth accuracy---below our OBD classifier's 38.6\\%---confirming depth estimation as a non-trivial task requiring specialized features. % D025: C3 adjusted from independent claim to supporting validation\n35\tOur findings motivate a three-tier taxonomy (human / generation-1 / generation-2+) for depth-aware data curation; $\\Kempirical=2$ correctly predicts that graduated refinement beyond the binary boundary provides no additional benefit---binary filtering at the $\\Kempirical$ boundary ($0.5941$ MMLU) outperforms both graduated depth weighting and surprisal-based selection ($0.5894$), establishing $\\Kempirical$ as an actionable curation guideline.\n36\t\\end{abstract}\n37\t\n38\t% === Section 1: Introduction ===\n39\t\\input{introduction}\n40\t\n41\t% === Section 2: Related Work ===\n42\t\\input{related_work}\n43\t\n44\t% === Section 3: Method ===\n45\t\\input{method}\n46\t\n47\t% === Section 4: Experiments ===\n48\t\\input{experiments_c1}\n49\t\n50\t% === Section 5: K*-Aware Data Filtering ===\n51\t\\input{experiments_c3}\n52\t\n53\t% === Section 6: Discussion ===\n54\t\\input{discussion}\n55\t\n56\t% === Section 7: Conclusion ===\n57\t\\input{conclusion}\n58\t\n59\t\\bibliography{references}\n60\t\n61\t\\input{appendix}\n62\t\\input{appendix_extended}\n63\t\n64\t\\end{document}\n65\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1bc3e941-230b-43d3-8285-b51e6b740bcb",
+            "isSidechain": true,
+            "promptId": "44c21223-413f-4250-b24e-c80a5feb1f36",
+            "agentId": "a8ac91885028ee045",
+            "type": "user",
+            "uuid": "dfaf24a9-5f1f-4270-9990-623bdbb77680",
+            "sourceToolAssistantUUID": "1bc3e941-230b-43d3-8285-b51e6b740bcb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T10:12:24.913Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FgcVWfKcavAGTNh47gJ3h5",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dfaf24a9-5f1f-4270-9990-623bdbb77680",
+            "isSidechain": true,
+            "agentId": "a8ac91885028ee045",
+            "requestId": "req_011Cb4B9L4cWeFkvYmWmw5Jy",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fcaed080-245e-4949-81dc-f3bd051e00ce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01V5S6twnrsWWCL2dPmGHN3Y",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 341,
+                "cache_read_input_tokens": 28425,
+                "output_tokens": 248,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 341
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 248,
+                    "cache_read_input_tokens": 28425,
+                    "cache_creation_input_tokens": 341,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 341,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T10:12:24.921Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FgcVWfKcavAGTNh47gJ3h5",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tWeb-scale text corpora are increasingly contaminated by synthetic content that has itself been generated from earlier synthetic content.\n5\tEstimates suggest that a substantial fraction of online text is machine-generated~\\cite{sun2025aigt, spennemann2025quantifying}, and this share continues to rise.\n6\tWhen models train on the outputs of earlier models, the resulting multi-generational synthetic text degrades with each iteration: tail modes vanish, lexical diversity contracts, and surprisal distributions flatten~\\cite{shumailov2024collapse, dohmatob2024model}.\n7\tYet the dominant paradigm treats all machine-generated text identically, discarding the generational depth dimension.\n8\t\n9\tThe gap cuts across three communities.\n10\tBinary detection methods~\\cite{basani2026diveye, zhang2024minkpp, zawalski2026codec} produce no depth estimate.\n11\tThe model collapse literature~\\cite{shumailov2024collapse, alemohammad2024selfconsuming, schaeffer2025position} characterizes recursive degradation at the macro level but provides no per-text depth estimation tool.\n12\tData selection methods~\\cite{xie2023dsir, tirumala2023d4, drayson2025} ignore recursive depth.\n13\tNo existing method estimates how many rounds of recursive generation a text has undergone, nor quantifies the boundary beyond which such estimation becomes infeasible.\n14\t\n15\tThe Data Processing Inequality guarantees that information degrades monotonically across generations, motivating a finite discrimination boundary $\\Kstar$.\n16\tWe empirically measure $\\Kempirical$---the maximum depth at which a classifier reliably distinguishes adjacent generations---using 15 statistical features and an Ordinal Binary Decomposition (OBD) LightGBM classifier.\n17\tWe operationalize $\\Kempirical$ as the deepest $k$ where the bootstrap 95\\% CI for pairwise $\\auc_{k,k+1}$ exceeds $\\theta = 0.60$.\n18\t\n19\tOur primary contribution is a systematic empirical characterization of $\\Kempirical$:\n20\t\\begin{enumerate}[label=(\\alph*),nosep]\n21\t  \\item \\textbf{$\\Kempirical = 2$} across 4 model-mode configurations and 4 decoding strategies (8 conditions), with all 1v2 CI lower bounds exceeding $\\theta$ and all 2v3 CI upper bounds below $\\theta$ (permutation $p \\leq 0.002$).\n22\t  \\item \\textbf{Cross-model transfer}: 80--92\\% accuracy retention across continuation-mode generators; 0v1 $\\auc > 0.96$ across all pairs.\n23\t  \\item \\textbf{Feature degradation consistency}: Spearman $\\rho \\geq 0.85$ on single-feature rankings across continuation-mode models, with surprisal-variance features dominating.\n24\t  \\item \\textbf{Generation mode}: rewrite yields higher 1v2 $\\auc$ ($+$8.4\\,pp) but transfers poorly (61--63\\% vs.\\ 80--92\\%).\n25\t\\end{enumerate}\n26\t\n27\t\\noindent As a secondary contribution, $\\Kempirical = 2$ correctly predicts that graduated refinement beyond the binary boundary provides no additional benefit: graduated filtering at its best ($\\alpha{=}0.9$, MMLU $0.5892$) still falls short of binary-ours ($0.5941$), and surprisal-based selection ($0.5894$) likewise fails to improve (Section~\\ref{sec:filtering}).\n28\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fcaed080-245e-4949-81dc-f3bd051e00ce",
+            "isSidechain": true,
+            "promptId": "44c21223-413f-4250-b24e-c80a5feb1f36",
+            "agentId": "a8ac91885028ee045",
+            "type": "user",
+            "uuid": "7dfbdc6e-64c1-4f1e-93a5-09f44beb966a",
+            "sourceToolAssistantUUID": "fcaed080-245e-4949-81dc-f3bd051e00ce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T10:12:24.936Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SbRRkKCDakbqJukriTJhLV",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7dfbdc6e-64c1-4f1e-93a5-09f44beb966a",
+            "isSidechain": true,
+            "agentId": "a8ac91885028ee045",
+            "requestId": "req_011Cb4B9L4cWeFkvYmWmw5Jy",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e768a25f-e03b-437c-9bf3-ed673aa1cac7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01V5S6twnrsWWCL2dPmGHN3Y",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 341,
+                "cache_read_input_tokens": 28425,
+                "output_tokens": 248,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 341
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 248,
+                    "cache_read_input_tokens": 28425,
+                    "cache_creation_input_tokens": 341,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 341,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T10:12:24.943Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SbRRkKCDakbqJukriTJhLV",
+              "type": "tool_result",
+              "content": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Model Collapse.}\n5\tShumailov et al.~\\cite{shumailov2024collapse} showed that iterative training on model outputs causes irreversible tail-distribution degradation.\n6\tAlemohammad et al.~\\cite{alemohammad2024selfconsuming} proved convergence to a fixed point, and Dohmatob et al.~\\cite{dohmatob2024model} derived scaling laws for tail probability loss.\n7\tSchaeffer et al.~\\cite{schaeffer2025position} organized the literature into eight definitions; our $\\Kstar$ aligns with their Family~B (D4: collapsing variance, D6: mode entanglement).\n8\tKazdan et al.~\\cite{kazdan2025collapse} distinguished replace and accumulate regimes; our prompt-chain operates in the replace regime, making $\\Kempirical = 2$ a conservative lower bound.\n9\tThese works characterize macro dynamics but provide no per-text depth estimation tools.\n10\t\n11\t\\paragraph{Binary Synthetic Text Detection.}\n12\tDetection methods---DetectGPT~\\cite{mitchell2023detectgpt}, Fast-DetectGPT~\\citep{bao2024fast}, Binoculars~\\cite{hans2024binoculars}, DivEye~\\cite{basani2026diveye}, Min-K\\%++~\\cite{zhang2024minkpp}, CoDeC~\\cite{zawalski2026codec}---achieve strong human-vs.-machine separation but produce no depth estimate.\n13\tDivEye's surprisal diversity features overlap with our \\texttt{surp\\_*} subset, but optimize for binary detection rather than ordinal depth discrimination.\n14\tRecent work moves beyond binary labels along other axes: collaboration degree~\\cite{cheng2025beyond} and contamination type hierarchies~\\cite{mehta2025beyond}, but neither addresses recursive generation depth.\n15\t\n16\t\\paragraph{Data Selection.}\n17\tDSIR~\\cite{xie2023dsir}, D4~\\cite{tirumala2023d4}, and DoReMi~\\cite{xie2023doremi} improve corpus quality through distribution matching but ignore recursive depth.\n18\tDrayson et al.~\\cite{drayson2025} combined binary detection with stratified importance resampling---a special case of our framework when $\\Kstar = 1$.\n19\tFeng et al.~\\cite{feng2025beyond} showed external verification can prevent collapse; our $\\Kstar$ can inform such verifiers by delineating the depth frontier below which quality discrimination remains feasible.\n20\t\n21\t\\paragraph{Ordinal Classification and Probing.}\n22\tOrdinal regression~\\cite{frank2001ordinal, cao2020coral} exploits label ordering but has not been applied to synthetic text depth.\n23\tOur OBD head follows Frank \\& Hall's binary decomposition principle.\n24\tProbing classifiers~\\cite{alain2017understanding, conneau2018probing, belinkov2022probing} analyze pretrained representations; our neural probe follows this protocol with a controlled-capacity MLP on frozen embeddings.\n25\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e768a25f-e03b-437c-9bf3-ed673aa1cac7",
+            "isSidechain": true,
+            "promptId": "44c21223-413f-4250-b24e-c80a5feb1f36",
+            "agentId": "a8ac91885028ee045",
+            "type": "user",
+            "uuid": "b8b6a6b9-26e7-4cb9-aa45-7f68fa43940b",
+            "sourceToolAssistantUUID": "e768a25f-e03b-437c-9bf3-ed673aa1cac7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T10:12:26.193Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the other section files as well:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b8b6a6b9-26e7-4cb9-aa45-7f68fa43940b",
+            "isSidechain": true,
+            "agentId": "a8ac91885028ee045",
+            "requestId": "req_011Cb4B9V1sUcoJ1E5RU4nTU",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "12c27a5f-443a-47a3-a2c7-a6d54f90dc16",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0158MPpAhTayQarag32Cs8wL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3391,
+                "cache_read_input_tokens": 28766,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3391,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T10:12:26.978Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014eUbpwmuht56w6wmLc7WSE",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "12c27a5f-443a-47a3-a2c7-a6d54f90dc16",
+            "isSidechain": true,
+            "agentId": "a8ac91885028ee045",
+            "requestId": "req_011Cb4B9V1sUcoJ1E5RU4nTU",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "54518f71-7fed-46d9-a0de-7673a047bbf4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0158MPpAhTayQarag32Cs8wL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3391,
+                "cache_read_input_tokens": 28766,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3391,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T10:12:26.984Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014eUbpwmuht56w6wmLc7WSE",
+              "type": "tool_result",
+              "content": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\begin{figure*}[t]\n5\t\\centering\n6\t\\includegraphics[width=\\textwidth]{figures/pipeline.pdf}\n7\t\\caption{Generational depth estimation pipeline. Seed documents are recursively passed through a generation operator $G_\\delta$ to produce a depth chain. Statistical features are fed to the OBD-LightGBM classifier for depth prediction.}\n8\t\\label{fig:pipeline}\n9\t\\end{figure*}\n10\t\n11\t\\subsection{Problem Formulation}\n12\t\\label{sec:formulation}\n13\t\n14\tA generation operator $G_\\delta$ (LLM + decoding strategy $\\delta$) produces successive generations $X \\to Y_1 \\to \\cdots \\to Y_K$, where $Y_k = G_\\delta(Y_{k-1})$ and $Y_0 \\triangleq X$ (Figure~\\ref{fig:pipeline}).\n15\tThis sequence forms a Markov chain.\n16\tBy the Data Processing Inequality, $I(X; Y_1) \\geq I(X; Y_2) \\geq \\cdots \\geq 0$: the original signal degrades monotonically.\n17\tTogether with Markov chain convergence, this guarantees a finite $\\Ktheory$ beyond which adjacent generations are indistinguishable.\n18\t\n19\tWe define the operational lower bound:\n20\t\\begin{equation}\n21\t  \\Kempirical = \\max\\{k : \\text{CI}_{\\text{lower}}^{95\\%}(\\auc_{k,k+1}) > \\theta\\},\n22\t  \\label{eq:kstar}\n23\t\\end{equation}\n24\twhere $\\theta = 0.60$ is justified by the permutation null distribution (95th percentile $< 0.55$ across all configurations; bootstrap: 1{,}000 resamples).\n25\t\n26\t\\subsection{Features and Classifier}\n27\t\\label{sec:features}\n28\t\n29\tEach document is characterized by a 15-dimensional feature vector spanning four groups: \\emph{surprisal moments} (mean, std, skewness, kurtosis; 4~dims), \\emph{surprisal derivatives} (mean and std of first- and second-order differences, plus first-order skewness; 5~dims), \\emph{vocabulary diversity} (type-token ratio, hapax legomena ratio, self-BLEU; 3~dims), and \\emph{frequency tail statistics} (frequency kurtosis, entropy, rare token fraction; 3~dims).\n30\tAll features are computed from token-level surprisal values via an external scorer model (full definitions in Table~\\ref{tab:s5_features}, Appendix).\n31\tHand-crafted features enable cross-generator transfer without retraining and permit attribution of discriminative power to specific text properties.\n32\t\n33\tWe use \\emph{Ordinal Binary Decomposition} (OBD), decomposing the $(K{+}1)$-class problem into $K$ cumulative binary sub-classifiers, each estimating $P(\\text{depth} > k \\mid \\mathbf{x})$ via LightGBM (hyperparameters in Table~\\ref{tab:s6_lgbm_params}).\n34\tOBD achieves lower MAE than multiclass LightGBM (e.g., 0.984 vs.\\ 1.016 on Qwen-rewrite) while maintaining superior pairwise $\\auc$ (mean 0.6095 vs.\\ 0.4883 for ordinal logistic regression).\n35\t\n36\t\\subsection{Experimental Setup}\n37\t\\label{sec:experimental_setup}\n38\t\n39\tWe evaluate four configurations spanning three model families (Table~\\ref{tab:setup}): Qwen2.5-1.5B-Instruct (rewrite and continuation modes), Pythia-1.4B and OLMo-1B (continuation).\n40\tEach uses 5{,}000 C4 seeds truncated to 256 tokens, recursively generated for $K{=}5$ iterations (30{,}000 documents per configuration).\n41\tDefault decoding: nucleus $p{=}0.95$, $T{=}1.0$; decoding ablation covers greedy, $T{=}0.7$, and $T{=}1.2$.\n42\tContinuation mode truncates seeds to 128 tokens and extends to 256; rewrite mode paraphrases the full text.\n43\tEvaluation: 5-fold GroupKFold cross-validation grouped by seed document; pairwise $\\auc$ as primary metric.\n44\t\n45\t\\begin{table}[t]\n46\t\\centering\n47\t\\small\n48\t\\caption{Experimental configurations.}\n49\t\\label{tab:setup}\n50\t\\begin{tabular}{llcc}\n51\t\\toprule\n52\t\\textbf{Config} & \\textbf{Model} & \\textbf{Mode} & $N$ \\\\\n53\t\\midrule\n54\tQwen-rw   & Qwen2.5-1.5B-Instruct & Rewrite & 5{,}000 \\\\\n55\tQwen-cont & Qwen2.5-1.5B-Instruct & Continuation & 5{,}000 \\\\\n56\tPythia    & Pythia-1.4B            & Continuation & 5{,}000 \\\\\n57\tOLMo      & OLMo-1B               & Continuation & 5{,}000 \\\\\n58\t\\bottomrule\n59\t\\end{tabular}\n60\t\\end{table}\n61\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "54518f71-7fed-46d9-a0de-7673a047bbf4",
+            "isSidechain": true,
+            "promptId": "44c21223-413f-4250-b24e-c80a5feb1f36",
+            "agentId": "a8ac91885028ee045",
+            "type": "user",
+            "uuid": "bf4ab3bc-8ab2-4784-937c-dedcc3e919f9",
+            "sourceToolAssistantUUID": "54518f71-7fed-46d9-a0de-7673a047bbf4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T10:12:27.116Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GQEKHFC5Z7d5QuHPTGATUg",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bf4ab3bc-8ab2-4784-937c-dedcc3e919f9",
+            "isSidechain": true,
+            "agentId": "a8ac91885028ee045",
+            "requestId": "req_011Cb4B9V1sUcoJ1E5RU4nTU",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "79e5716f-7622-45d1-bb7f-2e3d2f2cef59",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0158MPpAhTayQarag32Cs8wL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3391,
+                "cache_read_input_tokens": 28766,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3391,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T10:12:27.130Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GQEKHFC5Z7d5QuHPTGATUg",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Interpretation.}\n5\tThe consistency of $\\Kempirical = 2$ across all 8 tested configurations indicates that the two-step information bottleneck is a structural feature of autoregressive generation at the $\\leq$1.5B scale.\n6\tThe feature degradation analysis provides mechanistic evidence: surprisal-variance features degrade in a shared order across model families (Spearman $\\rho \\geq 0.85$), suggesting that each generation step smooths the token-level surprisal landscape in a model-independent fashion.\n7\tCross-model neural probing reveals that $\\Kempirical^{\\text{neural}} = 3$ for Qwen-continuation but $\\Kempirical^{\\text{neural}} = 2$ for Pythia and OLMo; the Qwen elevation likely reflects self-familiarity artifacts in instruction-tuned embeddings rather than a universal signal, so $\\Ktheory \\geq 3$ can only be claimed for Qwen representations (Appendix~\\ref{sec:extended_neural_probe}).\n8\tExtended theoretical discussion, including connections to model collapse theory and scale considerations, appears in Appendix~\\ref{sec:extended_discussion}.\n9\t\n10\t\\paragraph{Practical implications.}\n11\tThe implied three-tier taxonomy (human / generation-1 / generation-2+) requires no per-model or per-decoding-strategy calibration.\n12\tCross-model transfer (80--92\\% accuracy retention; Section~\\ref{sec:transfer}) enables deployment without generator-specific retraining.\n13\tOur filtering experiments (Section~\\ref{sec:filtering}) show that binary filtering at the $\\Kempirical{=}2$ boundary is the most effective strategy among those tested; graduated strategies offer no additional benefit.\n14\tFrontier LLMs achieve ${\\sim}88\\%$ binary detection but only ${\\sim}33\\%$ five-class depth accuracy (below OBD's 38.6\\%), confirming that depth estimation requires specialized features (Appendix~\\ref{sec:extended_llm}).\n15\t\n16\t\\paragraph{Limitations.}\n17\tOur findings are bounded by (1)~model scale ($\\leq$1.5B), (2)~prompt-chain rather than retrain-chain protocols (our $\\Kempirical$ is a conservative upper bound on retrain-chain $\\Kstar$ under monotonic-degradation assumptions), (3)~English C4 text only, (4)~four decoding strategies, (5)~threshold sensitivity ($\\Kempirical$ shifts from 3 at $\\theta{=}0.55$ to 1 at $\\theta{=}0.70$; our conclusions are conditioned on $\\theta{=}0.60$), (6)~marginal boundary (Qwen-continuation 1v2 CI lower bound exceeds $\\theta$ by only 0.15\\,pp), (7)~the 15D feature set yields an operational lower bound ($\\Ktheory$ may be strictly higher), and (8)~the neural probe boundary is model-dependent ($\\Kempirical^{\\text{neural}}{=}3$ for Qwen only; $2$ for Pythia/OLMo), likely reflecting self-familiarity rather than a universal signal.\n18\tDetailed limitation analysis appears in Appendix~\\ref{sec:extended_limitations}.\n19\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "79e5716f-7622-45d1-bb7f-2e3d2f2cef59",
+            "isSidechain": true,
+            "promptId": "44c21223-413f-4250-b24e-c80a5feb1f36",
+            "agentId": "a8ac91885028ee045",
+            "type": "user",
+            "uuid": "f4abca60-fe4e-4354-a32c-4194fea93183",
+            "sourceToolAssistantUUID": "79e5716f-7622-45d1-bb7f-2e3d2f2cef59",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T10:12:27.413Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G72FPerzsy96ATfiPDMDXX",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex",
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f4abca60-fe4e-4354-a32c-4194fea93183",
+            "isSidechain": true,
+            "agentId": "a8ac91885028ee045",
+            "requestId": "req_011Cb4B9V1sUcoJ1E5RU4nTU",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5fdc1cbd-249e-424a-adc5-45ce9191a3e2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0158MPpAhTayQarag32Cs8wL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3391,
+                "cache_read_input_tokens": 28766,
+                "output_tokens": 259,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3391
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 259,
+                    "cache_read_input_tokens": 28766,
+                    "cache_creation_input_tokens": 3391,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3391,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T10:12:27.423Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G72FPerzsy96ATfiPDMDXX",
+              "type": "tool_result",
+              "content": "1\t\\appendix\n2\t\\section{Supplementary Figures}\n3\t\n4\t\\begin{figure}[t]\n5\t  \\centering\n6\t  \\includegraphics[width=\\columnwidth]{figures/fig_s1_auc_decay_ci.pdf}\n7\t  \\caption{Pairwise $\\auc$ decay curves for four model-mode configurations with bootstrap 95\\% confidence intervals. Error bars computed from 1{,}000 bootstrap resamples. The shaded region marks the $\\Kempirical=2$ boundary where $\\auc$ drops below $\\theta=0.60$. This figure complements Figure~\\ref{fig:auc_decay} in the main text by showing statistical uncertainty for each measurement point.}\n8\t  \\label{fig:s1_auc_decay_ci}\n9\t\\end{figure}\n10\t\n11\t\\section{Supplementary Tables}\n12\t\n13\t%%% Table S1: Cross-Transfer Confusion Matrix (exp-013)\n14\t\\begin{table*}[t]\n15\t  \\centering\n16\t  \\caption{Cross-model transfer accuracy matrix. Each cell reports the six-class depth classification accuracy of a detector trained on one model's outputs (row) and evaluated on another model's outputs (column). Diagonal entries (\\textbf{bold}) indicate within-model performance. Transfer retention is computed as the ratio of off-diagonal accuracy to the geometric mean of the two corresponding diagonal entries.}\n17\t  \\label{tab:s1_transfer}\n18\t  \\begin{tabular}{lcccc}\n19\t    \\toprule\n20\t    \\multirow{2}{*}{\\textbf{Train Model}} & \\multicolumn{4}{c}{\\textbf{Test Model}} \\\\\n21\t    \\cmidrule(lr){2-5}\n22\t    & Qwen-rw & Pythia & OLMo & Qwen-cont \\\\\n23\t    \\midrule\n24\t    Qwen-rw   & \\textbf{0.4229} & 0.2590 & 0.2653 & 0.3466 \\\\\n25\t    Pythia    & 0.2718 & \\textbf{0.3856} & 0.3531 & 0.3287 \\\\\n26\t    OLMo      & 0.2768 & 0.3450 & \\textbf{0.3822} & 0.3244 \\\\\n27\t    Qwen-cont & 0.3440 & 0.3284 & 0.3112 & \\textbf{0.3875} \\\\\n28\t    \\bottomrule\n29\t  \\end{tabular}\n30\t  \\vspace{4pt}\n31\t\n32\t  \\footnotesize\n33\t  \\textit{Transfer retention} between models $A$ and $B$ is defined as $\\frac{1}{2}\\bigl(\\frac{\\mathrm{acc}(A \\to B)}{\\sqrt{\\mathrm{acc}(A \\to A) \\cdot \\mathrm{acc}(B \\to B)}} + \\frac{\\mathrm{acc}(B \\to A)}{\\sqrt{\\mathrm{acc}(A \\to A) \\cdot \\mathrm{acc}(B \\to B)}}\\bigr)$.\n34\t  Notable pairs: Pythia$\\leftrightarrow$OLMo 91--92\\%, Qwen-cont$\\leftrightarrow$Pythia 83--85\\%, Qwen-cont$\\leftrightarrow$OLMo 80--85\\%, Qwen-rw$\\to$Pythia/OLMo 61--63\\%.\n35\t\\end{table*}\n36\t\n37\t%%% Table S2: Decoding Ablation AUC (exp-003)\n38\t\\begin{table*}[t]\n39\t  \\centering\n40\t  \\caption{Pairwise AUC across depth pairs for four decoding configurations. The horizontal rule between depth pairs 1\\,vs.\\,2 and 2\\,vs.\\,3 marks the empirical detectability boundary $\\Kempirical=2$: pairs above this line are reliably separable ($\\auc > 0.60$), while those below approach chance. Bottom rows report cross-configuration Spearman $\\rho$ on per-feature discriminative-power rankings across decoding configurations.}\n41\t  \\label{tab:s2_decoding}\n42\t  \\begin{tabular}{lcccc}\n43\t    \\toprule\n44\t    \\textbf{Depth Pair} & \\textbf{Greedy} & \\textbf{Nuc $p{=}0.9$, $T{=}1.0$} & \\textbf{Nuc $p{=}0.95$, $T{=}0.7$} & \\textbf{Nuc $p{=}0.95$, $T{=}1.2$} \\\\\n45\t    \\midrule\n46\t    0 vs.\\ 1 & 0.9797 & 0.9946 & 0.9878 & 0.9982 \\\\\n47\t    1 vs.\\ 2 & 0.6893 & 0.6866 & 0.6887 & 0.7039 \\\\\n48\t    \\cmidrule(lr){1-5}\n49\t    2 vs.\\ 3 & 0.5613 & 0.5917 & 0.5902 & 0.5823 \\\\\n50\t    3 vs.\\ 4 & 0.5404 & 0.5466 & 0.5393 & 0.5293 \\\\\n51\t    4 vs.\\ 5 & 0.5139 & 0.5068 & 0.5349 & 0.5237 \\\\\n52\t    \\midrule\n53\t    \\multicolumn{5}{l}{\\textbf{Cross-config feature Spearman $\\rho$}} \\\\\n54\t    \\midrule\n55\t    \\multicolumn{2}{l}{Greedy vs.\\ Nuc $p{=}0.9$} & 0.600 &\n56\t    \\multicolumn{1}{l}{Nuc $p{=}0.9$ vs.\\ $T{=}0.7$} & 0.782 \\\\\n57\t    \\multicolumn{2}{l}{Greedy vs.\\ $T{=}0.7$} & 0.914 &\n58\t    \\multicolumn{1}{l}{Nuc $p{=}0.9$ vs.\\ $T{=}1.2$} & 0.893 \\\\\n59\t    \\multicolumn{2}{l}{Greedy vs.\\ $T{=}1.2$} & 0.532 &\n60\t    \\multicolumn{1}{l}{$T{=}0.7$ vs.\\ $T{=}1.2$} & 0.668 \\\\\n61\t    \\bottomrule\n62\t  \\end{tabular}\n63\t\\end{table*}\n64\t\n65\t%%% Table S3: LLM Zero-Shot Confusion Matrices (exp-011)\n66\t\\begin{table*}[t]\n67\t  \\centering\n68\t  \\caption{LLM zero-shot depth classification: $5{\\times}5$ confusion matrices\n69\t    (Exp-011). Both frontier LLMs achieve high binary detection accuracy\n70\t    (GPT-5.5: 0.8780; Claude Opus~4.6: 0.8818) but near-chance 5-class\n71\t    accuracy (${\\sim}0.33$ vs.\\ OBD-LightGBM baseline 0.386, evaluated on the full test set $N{=}5{,}000$). GPT-5.5\n72\t    strongly identifies depth-0 text (recall${=}0.7700$) but collapses on\n73\t    depth-4 (recall${=}0.0800$), misclassifying 50/100 depth-4 samples as\n74\t    depth-2. Claude Opus~4.6 shows more uniform errors across depths 1--4,\n75\t    with depth-4 recall (0.3700) substantially exceeding GPT-5.5.}\n76\t  \\label{tab:s3_llm_zeroshot}\n77\t\n78\t  \\vspace{0.5em}\n79\t  \\begin{subtable}{0.48\\textwidth}\n80\t    \\centering\n81\t    \\caption{GPT-5.5 ($N{=}500$, acc${=}0.332$, MAE${=}1.102$)}\n82\t    \\label{tab:s3a_gpt55}\n83\t    \\small\n84\t    \\begin{tabular}{lcccccc}\n85\t      \\toprule\n86\t      & \\multicolumn{5}{c}{Predicted Depth} & \\\\\n87\t      \\cmidrule(lr){2-6}\n88\t      True & 0 & 1 & 2 & 3 & 4 & Rec. \\\\\n89\t      \\midrule\n90\t      0 & \\textbf{77} & 18 &  4 &  0 &  1 & .770 \\\\\n91\t      1 &  9 & \\textbf{19} & 36 & 24 & 12 & .190 \\\\\n92\t      2 &  8 & 10 & \\textbf{38} & 35 &  9 & .380 \\\\\n93\t      3 & 10 & 16 & 35 & \\textbf{24} & 15 & .240 \\\\\n94\t      4 & 11 & 13 & 50 & 18 &  \\textbf{8} & .080 \\\\\n95\t      \\bottomrule\n96\t    \\end{tabular}\n97\t  \\end{subtable}\n98\t  \\hfill\n99\t  \\begin{subtable}{0.48\\textwidth}\n100\t    \\centering"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5fdc1cbd-249e-424a-adc5-45ce9191a3e2",
+            "isSidechain": true,
+            "promptId": "44c21223-413f-4250-b24e-c80a5feb1f36",
+            "agentId": "a8ac91885028ee045",
+            "type": "user",
+            "uuid": "fb8deb47-950b-4752-878f-b8bb6cf8280a",
+            "sourceToolAssistantUUID": "5fdc1cbd-249e-424a-adc5-45ce9191a3e2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T10:12:31.236Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me do a comprehensive search in the bibliography file for variations:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fb8deb47-950b-4752-878f-b8bb6cf8280a",
+            "isSidechain": true,
+            "agentId": "a8ac91885028ee045",
+            "requestId": "req_011Cb4B9fg4uTADpawvsysv9",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ce5a315d-4ec4-4176-84c7-ea9526a2cfec",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Lm97qFzYXgriNNykS9oQ6i",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 5177,
+                "cache_read_input_tokens": 32157,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5177,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T10:12:32.176Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NXxALpgbb2DWs94jZpJpij",
+              "name": "Grep",
+              "input": {
+                "pattern": "@\\w+\\{",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ce5a315d-4ec4-4176-84c7-ea9526a2cfec",
+            "isSidechain": true,
+            "agentId": "a8ac91885028ee045",
+            "requestId": "req_011Cb4B9fg4uTADpawvsysv9",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "52fe58de-69a3-4f7c-8551-b8cb8cdfc33f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Lm97qFzYXgriNNykS9oQ6i",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 5177,
+                "cache_read_input_tokens": 32157,
+                "output_tokens": 144,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 5177
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 144,
+                    "cache_read_input_tokens": 32157,
+                    "cache_creation_input_tokens": 5177,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 5177,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T10:12:32.194Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NXxALpgbb2DWs94jZpJpij",
+              "type": "tool_result",
+              "content": "6:@inproceedings{drayson2025,\n14:@inproceedings{schaeffer2025position,\n22:@inproceedings{kazdan2025collapse,\n30:@inproceedings{shi2025generalization,\n38:@inproceedings{mitchell2023detectgpt,\n47:@article{basani2026diveye,\n55:@inproceedings{amin2025escaping,\n63:@inproceedings{zawalski2026codec,\n71:@article{gambetta2025surplexity,\n79:@inproceedings{zhang2024minkpp,\n86:@article{shumailov2024collapse,\n95:@inproceedings{alemohammad2024selfconsuming,\n102:@article{kaplan2020scaling,\n109:@inproceedings{dohmatob2024model,\n116:@inproceedings{xie2023dsir,\n123:@inproceedings{tirumala2023d4,\n130:@inproceedings{xie2023doremi,\n137:@inproceedings{kirchenbauer2023watermark,\n144:@inproceedings{gehrmann2019gltr,\n151:@inproceedings{hans2024binoculars,\n158:@article{cao2020coral,\n167:@inproceedings{zellers2019grover,\n174:@inproceedings{ippolito2020detection,\n183:@inproceedings{alain2017understanding,\n190:@inproceedings{conneau2018probing,\n197:@article{belinkov2022probing,\n209:@article{gerstgrasser2024inevitable,\n219:@inproceedings{dohmatob2025strong,\n227:@inproceedings{feng2025beyond,\n235:@inproceedings{bao2024fast,\n243:@inproceedings{frank2001ordinal,\n253:@inproceedings{cheng2025beyond,\n261:@article{yi2025escaping,\n269:@article{mehta2025beyond,\n279:@inproceedings{sun2025aigt,\n287:@article{spennemann2025quantifying,\n297:@inproceedings{gupta2023continual,"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "52fe58de-69a3-4f7c-8551-b8cb8cdfc33f",
+            "isSidechain": true,
+            "promptId": "44c21223-413f-4250-b24e-c80a5feb1f36",
+            "agentId": "a8ac91885028ee045",
+            "type": "user",
+            "uuid": "edbf7d19-442d-42a6-848b-8098fca6d9bd",
+            "sourceToolAssistantUUID": "52fe58de-69a3-4f7c-8551-b8cb8cdfc33f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T10:12:37.781Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on my comprehensive search across the paper files and bibliography, here are my findings:\n\n## Summary of Citation Search Results\n\nI searched all paper files (introduction.tex, related_work.tex, method.tex, discussion.tex, appendix.tex, and main.tex) plus the complete references.bib file for the three authors/citations you specified:\n\n**Status: All three citations are ABSENT from the bibliography and the paper files.**\n\n1. **Krishna** - No matches found in any paper section or in references.bib\n2. **Sadasivan** - No matches found in any paper section or in references.bib\n3. **Wei Hao** or **Hao 2025** - No matches found in any paper section or in references.bib\n\nThe references.bib file contains 37 entries total (ranging from 2017-2026), with key citations like:\n- drayson2025\n- schaeffer2025position\n- kazdan2025collapse\n- shi2025generalization\n- mitchell2023detectgpt\n- basani2026diveye\n- And 31 others\n\nNone of these bib keys correspond to authors Krishna, Sadasivan, or Wei Hao. Therefore, these three citations are **genuinely missing** from the bibliography and are not currently referenced anywhere in the paper."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "edbf7d19-442d-42a6-848b-8098fca6d9bd",
+            "isSidechain": true,
+            "agentId": "a8ac91885028ee045",
+            "requestId": "req_011Cb4BA22RzgJqpFetnjgtQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c315dc26-770c-480a-9338-021945e4f851",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+            "sessionId": "92a9857b-9182-409f-acb8-dd1f4819436d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "memoized-stirring-shamir",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Y3R1DMERWAPV5ZPhnjVdpW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 719,
+                "cache_read_input_tokens": 37334,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 719,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-across-the-paper-files-in-home-ubuntu-agent-ml-research-idea-gen-0509-7.md"
+}

@@ -1,0 +1,3679 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-11 (UTC).** Your job: indep
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 55
+- **Recorded user turns:** 1
+- **Tool calls:** 12
+- **Original source:** `logs/chats/exported-trajectories/account-3/6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5.jsonl`
+- **Structured JSON:** [`f87cc95f5e9290e698c6.json`](../../sessions/f8/f87cc95f5e9290e698c6.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-11T23:30:33.650Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-11T23:30:33.650Z",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-11 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: LLM Agents.\n\nDirection: LLM Agents — planning algorithms, memory architectures, tool use, multi-agent coordination, agent training (SFT/RL), self-correction in agentic loops, environment feedback exploitation.\n\nContribution type: METHOD ONLY. Must propose a concrete new algorithm, training procedure, or inference-time mechanism. Reject pure benchmark / dataset / analysis ideas. Method + analysis OK if analysis validates the method.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total (baselines + method + ablations). Show the math.\n2. Time: ≤16 days. Build on existing OSS agent codebases (AutoGen, LangGraph, OpenManus, etc.) — no from-scratch systems.\n3. Eval: existing benchmarks only — AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, ALFWorld, Mind2Web, τ-bench.\n\nAvoid: generic ReAct variants, plain tool retrieval, naive memory summarization. Look for: agent training with minimal RL budget, structured planning beyond flat CoT, multi-agent communication protocols, agent self-verification mechanisms.\n\nTag: direction=agent, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-11?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 2/10)\n{\n  \"title\": \"When to Simulate? Routing LLM Agents Between Internal Reasoning and World Model Lookahead\",\n  \"core_problem\": \"Recent step-level compute allocation methods (CogRouter, ARES, Learning When to Plan) optimize the depth or effort of an agent's internal reasoning per step, but treat external world model simulation as an all-or-nothing resource. When simulation is available, agents either always invoke it (ITP, WebDreamer) or never invoke it (CogRouter, ARES), missing the complementary value that grounded, deterministic external simulation provides over hallucination-prone internal reasoning. On ALFWorld, CogRouter achieves 92.5% with internal reasoning alone—but its 7.5% failure cases often involve multi-step consequence prediction where an external simulator could provide exact state transitions. Meanwhile, forced unconditional simulation degrades performance by up to 5% (Qian et al., 2026) because simulation is wasteful on simple, pattern-matching steps. The gap: no method learns to route per-step between internal reasoning modalities and external world model invocation as complementary computation types with distinct cost-accuracy profiles.\",\n  \"opportunity\": \"CogRouter (Feb 2026) achieves SOTA on ALFWorld (92.5%) and ScienceWorld (72.0%) via four-level internal cognitive depth adaptation trained with CoPO, but never consults an external simulator — its highest level (L4: strategic planning) is still LLM-internal and subject to hallucinated state predictions. ARES (March 2026) routes reasoning effort {low, mid, high} with a lightweight Qwen3-1.7B SFT-trained router, reducing reasoning tokens by 52.7% on WebArena — but similarly only modulates internal computation. MTRouter (ACL 2026) routes between different LLMs per turn for cost savings but does not route between computation types. Learning When to Plan (Paglieri et al., 2025) trains dynamic internal planning decisions with SFT+RL but only in Crafter and only for internal reasoning. Meanwhile, the world model side — ITP, WebDreamer, WebWorld — always simulates unconditionally, and AVIC gates visual imagination with heuristics rather than a learned router. The opportunity is a lightweight learned router that treats internal reasoning and external simulation as complementary modalities, selecting per-step based on predicted value-of-computation, filling the gap between the 'always-internal' line (CogRouter/ARES) and the 'always-simulate' line (ITP/WebDreamer).\",\n  \"landscape\": \"CogRouter ('Think Fast and Slow', arXiv 2602.12662, Feb 2026) defines four hierarchical cognitive levels (instinctive → situational → experiential → strategic) and trains step-level depth adaptation with CoSFT + CoPO on Qwen2.5-7B, achieving 92.5% ALFWorld / 72.0% ScienceWorld with 62% token reduction. Code at github.com/rhyang2021/CogRouter. ARES (arXiv 2603.07915, March 2026) trains a Qwen3-1.7B router via SFT to select {low, mid, high} reasoning effort per step, achieving 52.7% reasoning token reduction on WebArena/TAU-Bench/BrowseComp-Plus with minimal accuracy loss. Code at github.com/UCSB-NLP-Chang/Ares. MTRouter (arXiv 2604.23530, ACL 2026) routes between LLMs per turn using history-model joint embeddings, surpassing GPT-5 on ScienceWorld at 58.7% cost reduction. Learning When to Plan (Paglieri et al., arXiv 2509.03581, 2025) uses SFT+RL to teach dynamic internal planning decisions in Crafter. Rational Metareasoning (De Sabbata et al., 2024) applies Value of Computation to gate internal chain-of-thought. On the world model side: ITP (2026) always simulates but adapts depth with ITP-R; WebDreamer/Dreamer-7B (TMLR 2025) provides open-weight web world models applied unconditionally; WebWorld (2026) offers trained 8B/14B/32B world models without selective invocation; AVIC (Yu et al., Feb 2026) gates visual imagination with heuristic sufficiency checks in visual spatial reasoning only. Budget-aware inference literature — BAVT (arXiv 2603.12634), BudgetThinker (arXiv 2508.17196), Inference-Time Budget Control (arXiv 2605.05701) — addresses cost-aware step-level decisions but for internal reasoning, not external simulation invocation. The Agentic World Modeling survey (arXiv 2604.22748, April 2026) defines Predictor→Simulator→Evolver capability levels but all assume unconditional world model use. No existing work learns per-step routing between internal reasoning modalities and external world model invocation as complementary computation types.\",\n  \"approach\": \"We propose SimGate, a hybrid routing framework that learns per-step whether an LLM agent should rely on internal reasoning or invoke an external world model for lookahead simulation. The framework has three components: (1) Agent backbone: Qwen2.5-7B (matching CogRouter for fair comparison) orchestrated via a LangGraph state graph with conditional edges for routing decisions. (2) External world model: ALFWorld's built-in TextWorld simulator for deterministic state-transition lookahead (CPU-only, negligible compute cost), enabling 1-3 step lookahead rollouts that return exact next-state descriptions. (3) Lightweight router: a Qwen3-1.7B model (following ARES's architecture) fine-tuned via SFT to predict the best computation modality per step from {fast-internal, deep-internal, external-simulation}, based on interaction history. Training proceeds in two phases, both offline — no online RL needed: Phase 1 (trajectory collection): Run the Qwen2.5-7B agent on ALFWorld's 134 task instances across ~500 episodes. At each decision step, execute all three modalities in parallel and record which produced the action leading to highest eventual task success. Phase 2 (router SFT): Fine-tune Qwen3-1.7B on the labeled (history, best-modality) pairs with cross-entropy loss, following ARES's rationale-augmented training pipeline. We evaluate on ALFWorld (primary, 134 tasks) and ScienceWorld (secondary, if time permits), comparing against: (a) CogRouter (4-level internal adaptation, using their released code/checkpoints), (b) ARES (reasoning effort routing), (c) always-simulate, (d) never-simulate/ReAct, (e) random routing, (f) confidence-threshold heuristic gating. Key metrics: task success rate, total LLM tokens consumed, simulation invocation ratio, and net compute cost. The core hypothesis is that external simulation provides complementary foresight to internal reasoning — particularly on multi-step consequence prediction where CogRouter's internal L4 planning may hallucinate state transitions — enabling comparable or better performance with fewer total LLM tokens.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~180h H100 80GB (50h trajectory collection with all modalities on ALFWorld, 10h router SFT training, 40h CogRouter baseline reproduction, 30h other baselines + evaluation, 30h ScienceWorld secondary experiments, 20h buffer for ablations)\",\n      \"gpu_utilization\": \"~50% effective utilization; ~50% idle from analysis, debugging, and writing between runs\",\n      \"timeline\": \"16 days\",\n      \"team\": \"1 researcher\",\n      \"estimated_gpu_cost\": \"$360-540 at $2.00-3.00/hr H100 80GB\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~150h H100 80GB (agent automates trajectory collection scheduling and result parsing; human focuses on router training decisions and paper writing)\",\n      \"gpu_utilization\": \"~70% effective utilization\",\n      \"timeline\": \"12-14 days\",\n      \"team\": \"1 researcher, ~45min/day for reviewing routing patterns and training curves\",\n      \"claude_api_cost\": \"$40-70 (~400-700 Opus turns for code generation, data pipeline setup, result analysis)\",\n      \"estimated_gpu_cost\": \"$300-450 at $2.00-3.00/hr\",\n      \"risk_note\": \"Main risk is CogRouter baseline reproduction — if their checkpoints are not released, reproducing CoSFT+CoPO training adds ~40 H100-hours; mitigated by using their reported numbers with reproduced evaluation\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~200h H100 80GB (broader ablation sweep over routing modalities, lookahead depths 1-3, router sizes, plus ScienceWorld experiments)\",\n      \"gpu_utilization\": \">90% utilization; agent pipelines trajectory collection → labeling → training → evaluation continuously\",\n      \"timeline\": \"8-12 days with 2+ H100 GPUs\",\n      \"team\": \"0 (initial 2h setup for environment + API keys)\",\n      \"claude_api_cost\": \"$100-180 (~1000-1800 Opus turns for implementation, experimentation, analysis, and paper drafting)\",\n      \"estimated_gpu_cost\": \"$400-600 at $2.00-3.00/hr\",\n      \"speed_bottleneck\": \"TextWorld simulation is CPU-bound — parallel episode collection across CPU cores accelerates trajectory gathering; GPU bottleneck is Qwen2.5-7B inference for ~500 ALFWorld episodes × 3 modalities × ~20 steps = ~30K inference calls\",\n      \"risk_note\": \"Without human judgment on what constitutes 'complementary' simulation value, agent may over-attribute success to simulation; mitigated by strict counterfactual labeling (same-step comparison with vs. without simulation)\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR submission deadline: May 25, 2026, short paper)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Think Fast and Slow: Step-Level Cognitive Depth Adaptation for LLM Agents [CogRouter] (arXiv 2602.12662, Feb 2026)\",\n    \"ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents (arXiv 2603.07915, March 2026)\",\n    \"MTRouter: Cost-Aware Multi-Turn LLM Routing with History-Model Joint Embeddings (arXiv 2604.23530, ACL 2026)\",\n    \"Learning When to Plan: Efficiently Allocating Test-Time Compute for LLM Agents (arXiv 2509.03581, 2025)\",\n    \"Current Agents Fail to Leverage World Model as Tool for Foresight (arXiv 2026)\",\n    \"Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models (arXiv 2026)\",\n    \"When and How Much to Imagine: Adaptive Test-Time Scaling with World Models for Visual Spatial Reasoning [AVIC] (arXiv 2026)\",\n    \"BAVT: Spend Less, Reason Better: Budget-Aware Value Tree Search for LLM Agents (arXiv 2603.12634, 2026)\",\n    \"Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond (arXiv 2604.22748, April 2026)\",\n    \"Rational Metareasoning for Large Language Models (arXiv 2024)\",\n    \"Adaptive Thinking: Large Language Models Know When to Think in Latent Space (ICLR 2026)\"\n  ],\n  \"description\": \"We propose SimGate, a hybrid routing framework that learns per-step whether an LLM agent should use internal reasoning or invoke an external world model for lookahead simulation. While recent work — CogRouter (92.5% ALFWorld via 4-level internal depth adaptation), ARES (52.7% reasoning token reduction via effort routing), and MTRouter (ACL 2026, cost-aware model routing) — optimizes internal computation allocation, none routes between internal reasoning and external simulation as complementary modalities. SimGate trains a lightweight Qwen3-1.7B router via SFT to select per step from {fast-internal, deep-internal, external-simulation}, using ALFWorld's TextWorld simulator for deterministic lookahead. The key insight is that external simulation provides grounded, hallucination-free state predictions that complement the agent's internal reasoning, particularly for multi-step consequence evaluation where internal planning may hallucinate. Built on LangGraph for agent orchestration with Qwen2.5-7B as backbone, the system uses only SFT training on pre-collected trajectory data (no online RL), keeping total compute under 200 H100-hours. We evaluate on ALFWorld against CogRouter, ARES, always-simulate, and heuristic baselines, measuring both task success rate and token efficiency. Targeting EMNLP 2026 short paper (ARR deadline May 25, 2026). Estimated cost: 150-200 H100-hours ($300-600).\",\n  \"project_name\": \"sim_gate_cost_aware_plan\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL CONSTRAINT VIOLATION: User specified target venue EMNLP 2026 (ARR deadline May 25, 2026), but idea targets AAAI 2027 and ICLR 2027. This completely mismatches the user's submission plan.\", \"CRITICAL CONSTRAINT VIOLATION: User specified ≤200 H100-hours total compute budget. Idea estimates 400-1000 A100 GPU hours (~300-700 H100-equivalent hours), exceeding the budget by 1.5-3.5x.\", \"CRITICAL CONSTRAINT VIOLATION: User specified ≤16-day timeline. Even the auto_research mode estimates 1-3 weeks; manual mode estimates 3-5 months.\", \"CRITICAL MISSING COMPETING WORK: CogRouter ('Think Fast and Slow', arXiv 2602.12662, Feb 2026) trains step-level cognitive depth adaptation using RL (CoPO) on ALFWorld and ScienceWorld — the EXACT same benchmarks. Achieves 92.5% ALFWorld, 72.0% ScienceWorld with Qwen2.5-7B. Code available at github.com/rhyang2021/CogRouter. This is the single most important competing baseline and is entirely unacknowledged.\", \"CRITICAL MISSING COMPETING WORK: ARES (arXiv 2603.07915, March 2026) trains a lightweight per-step router for adaptive reasoning effort allocation in LLM agents, evaluated on WebArena. 52.7% reasoning token reduction. Nearly identical mechanism (lightweight router on hidden states) for the same abstract goal (step-level compute-aware decisions).\", \"MISSING RELATED WORK: Budget-aware inference literature from early 2026 (BAVT for LLM agents, BudgetThinker, Inference-Time Budget Control for LLM Search Agents) addresses cost-aware step-level decisions in agents — adjacent and relevant.\", \"MARGINAL NOVELTY: After accounting for CogRouter (step-level gating + RL in agent trajectories), ARES (lightweight router for per-step effort), and Rational Metareasoning (VOC-based per-step reasoning gating), the remaining novelty is narrow: 'apply the same gating concept to external world model invocation instead of internal reasoning.' This is an application-level contribution, not a methodological one.\", \"BASELINE INSUFFICIENCY: CogRouter achieves 92.5% on ALFWorld without any world model. SimGate must demonstrate that adding world model simulation + a learned gate exceeds this strong baseline, which is not guaranteed and adds significant complexity.\", \"DOES NOT BUILD ON SPECIFIED OSS CODEBASES: User required building on AutoGen, LangGraph, OpenManus, etc. The idea proposes building from scratch with Qwen3-14B + WebWorld-8B.\", \"RESOURCE ESTIMATE INCONSISTENCY: Manual mode claims ~40% GPU utilization but 400h A100 — if effective utilization is 40%, real GPU booking is ~1000h. The estimates across modes are not internally consistent.\"]\nFeedback: This idea needs fundamental restructuring to meet the user's requirements. Specific actions needed:\n\n1. **RETARGET TO EMNLP 2026**: Redesign the entire scope to fit the EMNLP 2026 ARR deadline (May 25, 2026, 14 days from today). This means drastically simplifying the approach.\n\n2. **FIT WITHIN 200 H100-HOURS**: The current design (Qwen3-14B backbone + WebWorld-8B world model + GRPO training + 3 benchmarks + 5 baselines) is far too expensive. Consider: (a) using a smaller backbone (7B instead of 14B), (b) reducing to 1-2 benchmarks, (c) replacing GRPO with simpler SFT-only training of the gating head, (d) using frozen world model predictions from precomputed rollouts rather than online generation.\n\n3. **COMPLETE IN 16 DAYS**: Use existing OSS agent codebases (AutoGen, LangGraph) as required. Precompute world model rollouts offline, then train the gate head as a simple binary classifier on pre-collected trajectory data. This avoids the expensive online RL loop.\n\n4. **ADDRESS CogRouter AND ARES**: These are the two closest competing works and MUST be cited, compared against, and differentiated from. CogRouter evaluates on the same benchmarks and achieves strong results (92.5% ALFWorld) without world models — you need to argue convincingly why adding world model gating improves over this. Consider using CogRouter as a baseline.\n\n5. **SHARPEN NOVELTY CLAIM**: The distinction 'gate external simulator rather than internal reasoning' is real but thin. To strengthen it, consider: (a) theoretical analysis of when external simulation has higher value of computation than internal reasoning, (b) empirical comparison showing that world model predictions provide complementary signal to internal reasoning, (c) hybrid approach combining CogRouter-style internal depth adaptation with SimGate-style external simulation gating.\n\n6. **SIMPLIFY SCOPE**: For a 16-day project with 200 H100-hours, focus on one benchmark (ALFWorld has the most mature world model support via TextWorld), one backbone, and a clean comparison showing that learned world model gating outperforms heuristic gating, always-simulate, and never-simulate baselines. Save the multi-benchmark story for a follow-up.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-11T23:30:33.656Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-11T23:30:33.656Z",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5"
+}
+```
+
+---
+
+## Round 1
+
+53 recorded events
+
+### User
+
+_source line 3 · 2026-05-11T23:30:33.690Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-11 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: LLM Agents.
+
+Direction: LLM Agents — planning algorithms, memory architectures, tool use, multi-agent coordination, agent training (SFT/RL), self-correction in agentic loops, environment feedback exploitation.
+
+Contribution type: METHOD ONLY. Must propose a concrete new algorithm, training procedure, or inference-time mechanism. Reject pure benchmark / dataset / analysis ideas. Method + analysis OK if analysis validates the method.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total (baselines + method + ablations). Show the math.
+2. Time: ≤16 days. Build on existing OSS agent codebases (AutoGen, LangGraph, OpenManus, etc.) — no from-scratch systems.
+3. Eval: existing benchmarks only — AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, ALFWorld, Mind2Web, τ-bench.
+
+Avoid: generic ReAct variants, plain tool retrieval, naive memory summarization. Look for: agent training with minimal RL budget, structured planning beyond flat CoT, multi-agent communication protocols, agent self-verification mechanisms.
+
+Tag: direction=agent, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-11?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 2/10)
+{
+  "title": "When to Simulate? Routing LLM Agents Between Internal Reasoning and World Model Lookahead",
+  "core_problem": "Recent step-level compute allocation methods (CogRouter, ARES, Learning When to Plan) optimize the depth or effort of an agent's internal reasoning per step, but treat external world model simulation as an all-or-nothing resource. When simulation is available, agents either always invoke it (ITP, WebDreamer) or never invoke it (CogRouter, ARES), missing the complementary value that grounded, deterministic external simulation provides over hallucination-prone internal reasoning. On ALFWorld, CogRouter achieves 92.5% with internal reasoning alone—but its 7.5% failure cases often involve multi-step consequence prediction where an external simulator could provide exact state transitions. Meanwhile, forced unconditional simulation degrades performance by up to 5% (Qian et al., 2026) because simulation is wasteful on simple, pattern-matching steps. The gap: no method learns to route per-step between internal reasoning modalities and external world model invocation as complementary computation types with distinct cost-accuracy profiles.",
+  "opportunity": "CogRouter (Feb 2026) achieves SOTA on ALFWorld (92.5%) and ScienceWorld (72.0%) via four-level internal cognitive depth adaptation trained with CoPO, but never consults an external simulator — its highest level (L4: strategic planning) is still LLM-internal and subject to hallucinated state predictions. ARES (March 2026) routes reasoning effort {low, mid, high} with a lightweight Qwen3-1.7B SFT-trained router, reducing reasoning tokens by 52.7% on WebArena — but similarly only modulates internal computation. MTRouter (ACL 2026) routes between different LLMs per turn for cost savings but does not route between computation types. Learning When to Plan (Paglieri et al., 2025) trains dynamic internal planning decisions with SFT+RL but only in Crafter and only for internal reasoning. Meanwhile, the world model side — ITP, WebDreamer, WebWorld — always simulates unconditionally, and AVIC gates visual imagination with heuristics rather than a learned router. The opportunity is a lightweight learned router that treats internal reasoning and external simulation as complementary modalities, selecting per-step based on predicted value-of-computation, filling the gap between the 'always-internal' line (CogRouter/ARES) and the 'always-simulate' line (ITP/WebDreamer).",
+  "landscape": "CogRouter ('Think Fast and Slow', arXiv 2602.12662, Feb 2026) defines four hierarchical cognitive levels (instinctive → situational → experiential → strategic) and trains step-level depth adaptation with CoSFT + CoPO on Qwen2.5-7B, achieving 92.5% ALFWorld / 72.0% ScienceWorld with 62% token reduction. Code at github.com/rhyang2021/CogRouter. ARES (arXiv 2603.07915, March 2026) trains a Qwen3-1.7B router via SFT to select {low, mid, high} reasoning effort per step, achieving 52.7% reasoning token reduction on WebArena/TAU-Bench/BrowseComp-Plus with minimal accuracy loss. Code at github.com/UCSB-NLP-Chang/Ares. MTRouter (arXiv 2604.23530, ACL 2026) routes between LLMs per turn using history-model joint embeddings, surpassing GPT-5 on ScienceWorld at 58.7% cost reduction. Learning When to Plan (Paglieri et al., arXiv 2509.03581, 2025) uses SFT+RL to teach dynamic internal planning decisions in Crafter. Rational Metareasoning (De Sabbata et al., 2024) applies Value of Computation to gate internal chain-of-thought. On the world model side: ITP (2026) always simulates but adapts depth with ITP-R; WebDreamer/Dreamer-7B (TMLR 2025) provides open-weight web world models applied unconditionally; WebWorld (2026) offers trained 8B/14B/32B world models without selective invocation; AVIC (Yu et al., Feb 2026) gates visual imagination with heuristic sufficiency checks in visual spatial reasoning only. Budget-aware inference literature — BAVT (arXiv 2603.12634), BudgetThinker (arXiv 2508.17196), Inference-Time Budget Control (arXiv 2605.05701) — addresses cost-aware step-level decisions but for internal reasoning, not external simulation invocation. The Agentic World Modeling survey (arXiv 2604.22748, April 2026) defines Predictor→Simulator→Evolver capability levels but all assume unconditional world model use. No existing work learns per-step routing between internal reasoning modalities and external world model invocation as complementary computation types.",
+  "approach": "We propose SimGate, a hybrid routing framework that learns per-step whether an LLM agent should rely on internal reasoning or invoke an external world model for lookahead simulation. The framework has three components: (1) Agent backbone: Qwen2.5-7B (matching CogRouter for fair comparison) orchestrated via a LangGraph state graph with conditional edges for routing decisions. (2) External world model: ALFWorld's built-in TextWorld simulator for deterministic state-transition lookahead (CPU-only, negligible compute cost), enabling 1-3 step lookahead rollouts that return exact next-state descriptions. (3) Lightweight router: a Qwen3-1.7B model (following ARES's architecture) fine-tuned via SFT to predict the best computation modality per step from {fast-internal, deep-internal, external-simulation}, based on interaction history. Training proceeds in two phases, both offline — no online RL needed: Phase 1 (trajectory collection): Run the Qwen2.5-7B agent on ALFWorld's 134 task instances across ~500 episodes. At each decision step, execute all three modalities in parallel and record which produced the action leading to highest eventual task success. Phase 2 (router SFT): Fine-tune Qwen3-1.7B on the labeled (history, best-modality) pairs with cross-entropy loss, following ARES's rationale-augmented training pipeline. We evaluate on ALFWorld (primary, 134 tasks) and ScienceWorld (secondary, if time permits), comparing against: (a) CogRouter (4-level internal adaptation, using their released code/checkpoints), (b) ARES (reasoning effort routing), (c) always-simulate, (d) never-simulate/ReAct, (e) random routing, (f) confidence-threshold heuristic gating. Key metrics: task success rate, total LLM tokens consumed, simulation invocation ratio, and net compute cost. The core hypothesis is that external simulation provides complementary foresight to internal reasoning — particularly on multi-step consequence prediction where CogRouter's internal L4 planning may hallucinate state transitions — enabling comparable or better performance with fewer total LLM tokens.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~180h H100 80GB (50h trajectory collection with all modalities on ALFWorld, 10h router SFT training, 40h CogRouter baseline reproduction, 30h other baselines + evaluation, 30h ScienceWorld secondary experiments, 20h buffer for ablations)",
+      "gpu_utilization": "~50% effective utilization; ~50% idle from analysis, debugging, and writing between runs",
+      "timeline": "16 days",
+      "team": "1 researcher",
+      "estimated_gpu_cost": "$360-540 at $2.00-3.00/hr H100 80GB"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~150h H100 80GB (agent automates trajectory collection scheduling and result parsing; human focuses on router training decisions and paper writing)",
+      "gpu_utilization": "~70% effective utilization",
+      "timeline": "12-14 days",
+      "team": "1 researcher, ~45min/day for reviewing routing patterns and training curves",
+      "claude_api_cost": "$40-70 (~400-700 Opus turns for code generation, data pipeline setup, result analysis)",
+      "estimated_gpu_cost": "$300-450 at $2.00-3.00/hr",
+      "risk_note": "Main risk is CogRouter baseline reproduction — if their checkpoints are not released, reproducing CoSFT+CoPO training adds ~40 H100-hours; mitigated by using their reported numbers with reproduced evaluation"
+    },
+    "auto_research": {
+      "gpu_hours": "~200h H100 80GB (broader ablation sweep over routing modalities, lookahead depths 1-3, router sizes, plus ScienceWorld experiments)",
+      "gpu_utilization": ">90% utilization; agent pipelines trajectory collection → labeling → training → evaluation continuously",
+      "timeline": "8-12 days with 2+ H100 GPUs",
+      "team": "0 (initial 2h setup for environment + API keys)",
+      "claude_api_cost": "$100-180 (~1000-1800 Opus turns for implementation, experimentation, analysis, and paper drafting)",
+      "estimated_gpu_cost": "$400-600 at $2.00-3.00/hr",
+      "speed_bottleneck": "TextWorld simulation is CPU-bound — parallel episode collection across CPU cores accelerates trajectory gathering; GPU bottleneck is Qwen2.5-7B inference for ~500 ALFWorld episodes × 3 modalities × ~20 steps = ~30K inference calls",
+      "risk_note": "Without human judgment on what constitutes 'complementary' simulation value, agent may over-attribute success to simulation; mitigated by strict counterfactual labeling (same-step comparison with vs. without simulation)"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline: May 25, 2026, short paper)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Think Fast and Slow: Step-Level Cognitive Depth Adaptation for LLM Agents [CogRouter] (arXiv 2602.12662, Feb 2026)",
+    "ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents (arXiv 2603.07915, March 2026)",
+    "MTRouter: Cost-Aware Multi-Turn LLM Routing with History-Model Joint Embeddings (arXiv 2604.23530, ACL 2026)",
+    "Learning When to Plan: Efficiently Allocating Test-Time Compute for LLM Agents (arXiv 2509.03581, 2025)",
+    "Current Agents Fail to Leverage World Model as Tool for Foresight (arXiv 2026)",
+    "Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models (arXiv 2026)",
+    "When and How Much to Imagine: Adaptive Test-Time Scaling with World Models for Visual Spatial Reasoning [AVIC] (arXiv 2026)",
+    "BAVT: Spend Less, Reason Better: Budget-Aware Value Tree Search for LLM Agents (arXiv 2603.12634, 2026)",
+    "Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond (arXiv 2604.22748, April 2026)",
+    "Rational Metareasoning for Large Language Models (arXiv 2024)",
+    "Adaptive Thinking: Large Language Models Know When to Think in Latent Space (ICLR 2026)"
+  ],
+  "description": "We propose SimGate, a hybrid routing framework that learns per-step whether an LLM agent should use internal reasoning or invoke an external world model for lookahead simulation. While recent work — CogRouter (92.5% ALFWorld via 4-level internal depth adaptation), ARES (52.7% reasoning token reduction via effort routing), and MTRouter (ACL 2026, cost-aware model routing) — optimizes internal computation allocation, none routes between internal reasoning and external simulation as complementary modalities. SimGate trains a lightweight Qwen3-1.7B router via SFT to select per step from {fast-internal, deep-internal, external-simulation}, using ALFWorld's TextWorld simulator for deterministic lookahead. The key insight is that external simulation provides grounded, hallucination-free state predictions that complement the agent's internal reasoning, particularly for multi-step consequence evaluation where internal planning may hallucinate. Built on LangGraph for agent orchestration with Qwen2.5-7B as backbone, the system uses only SFT training on pre-collected trajectory data (no online RL), keeping total compute under 200 H100-hours. We evaluate on ALFWorld against CogRouter, ARES, always-simulate, and heuristic baselines, measuring both task success rate and token efficiency. Targeting EMNLP 2026 short paper (ARR deadline May 25, 2026). Estimated cost: 150-200 H100-hours ($300-600).",
+  "project_name": "sim_gate_cost_aware_plan",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL CONSTRAINT VIOLATION: User specified target venue EMNLP 2026 (ARR deadline May 25, 2026), but idea targets AAAI 2027 and ICLR 2027. This completely mismatches the user's submission plan.", "CRITICAL CONSTRAINT VIOLATION: User specified ≤200 H100-hours total compute budget. Idea estimates 400-1000 A100 GPU hours (~300-700 H100-equivalent hours), exceeding the budget by 1.5-3.5x.", "CRITICAL CONSTRAINT VIOLATION: User specified ≤16-day timeline. Even the auto_research mode estimates 1-3 weeks; manual mode estimates 3-5 months.", "CRITICAL MISSING COMPETING WORK: CogRouter ('Think Fast and Slow', arXiv 2602.12662, Feb 2026) trains step-level cognitive depth adaptation using RL (CoPO) on ALFWorld and ScienceWorld — the EXACT same benchmarks. Achieves 92.5% ALFWorld, 72.0% ScienceWorld with Qwen2.5-7B. Code available at github.com/rhyang2021/CogRouter. This is the single most important competing baseline and is entirely unacknowledged.", "CRITICAL MISSING COMPETING WORK: ARES (arXiv 2603.07915, March 2026) trains a lightweight per-step router for adaptive reasoning effort allocation in LLM agents, evaluated on WebArena. 52.7% reasoning token reduction. Nearly identical mechanism (lightweight router on hidden states) for the same abstract goal (step-level compute-aware decisions).", "MISSING RELATED WORK: Budget-aware inference literature from early 2026 (BAVT for LLM agents, BudgetThinker, Inference-Time Budget Control for LLM Search Agents) addresses cost-aware step-level decisions in agents — adjacent and relevant.", "MARGINAL NOVELTY: After accounting for CogRouter (step-level gating + RL in agent trajectories), ARES (lightweight router for per-step effort), and Rational Metareasoning (VOC-based per-step reasoning gating), the remaining novelty is narrow: 'apply the same gating concept to external world model invocation instead of internal reasoning.' This is an application-level contribution, not a methodological one.", "BASELINE INSUFFICIENCY: CogRouter achieves 92.5% on ALFWorld without any world model. SimGate must demonstrate that adding world model simulation + a learned gate exceeds this strong baseline, which is not guaranteed and adds significant complexity.", "DOES NOT BUILD ON SPECIFIED OSS CODEBASES: User required building on AutoGen, LangGraph, OpenManus, etc. The idea proposes building from scratch with Qwen3-14B + WebWorld-8B.", "RESOURCE ESTIMATE INCONSISTENCY: Manual mode claims ~40% GPU utilization but 400h A100 — if effective utilization is 40%, real GPU booking is ~1000h. The estimates across modes are not internally consistent."]
+Feedback: This idea needs fundamental restructuring to meet the user's requirements. Specific actions needed:
+
+1. **RETARGET TO EMNLP 2026**: Redesign the entire scope to fit the EMNLP 2026 ARR deadline (May 25, 2026, 14 days from today). This means drastically simplifying the approach.
+
+2. **FIT WITHIN 200 H100-HOURS**: The current design (Qwen3-14B backbone + WebWorld-8B world model + GRPO training + 3 benchmarks + 5 baselines) is far too expensive. Consider: (a) using a smaller backbone (7B instead of 14B), (b) reducing to 1-2 benchmarks, (c) replacing GRPO with simpler SFT-only training of the gating head, (d) using frozen world model predictions from precomputed rollouts rather than online generation.
+
+3. **COMPLETE IN 16 DAYS**: Use existing OSS agent codebases (AutoGen, LangGraph) as required. Precompute world model rollouts offline, then train the gate head as a simple binary classifier on pre-collected trajectory data. This avoids the expensive online RL loop.
+
+4. **ADDRESS CogRouter AND ARES**: These are the two closest competing works and MUST be cited, compared against, and differentiated from. CogRouter evaluates on the same benchmarks and achieves strong results (92.5% ALFWorld) without world models — you need to argue convincingly why adding world model gating improves over this. Consider using CogRouter as a baseline.
+
+5. **SHARPEN NOVELTY CLAIM**: The distinction 'gate external simulator rather than internal reasoning' is real but thin. To strengthen it, consider: (a) theoretical analysis of when external simulation has higher value of computation than internal reasoning, (b) empirical comparison showing that world model predictions provide complementary signal to internal reasoning, (c) hybrid approach combining CogRouter-style internal depth adaptation with SimGate-style external simulation gating.
+
+6. **SIMPLIFY SCOPE**: For a 16-day project with 200 H100-hours, focus on one benchmark (ALFWorld has the most mature world model support via TextWorld), one backbone, and a clean comparison showing that learned world model gating outperforms heuristic gating, always-simulate, and never-simulate baselines. Save the multi-benchmark story for a follow-up.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "6bfca2c9-504d-4aa5-bfc1-591fd7535b04",
+  "type": "user",
+  "uuid": "765cd6eb-ae0c-4f94-9e56-96e05a7efa35",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-11T23:30:33.688Z_
+
+```json
+{
+  "parentUuid": "765cd6eb-ae0c-4f94-9e56-96e05a7efa35",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "0c943261-d426-4970-8378-36960f57a9dd",
+  "timestamp": "2026-05-11T23:30:33.688Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-11T23:30:33.688Z_
+
+```json
+{
+  "parentUuid": "0c943261-d426-4970-8378-36960f57a9dd",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "b634f36f-5e73-4525-9a79-4a24eac03f61",
+  "timestamp": "2026-05-11T23:30:33.688Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "b634f36f-5e73-4525-9a79-4a24eac03f61",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify SimGate routing framework for LLM agents",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-11T23:30:43.368Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to conduct a thorough adversarial review of the "SimGate" idea (round 2/10). Let me carefully analyze this revised proposal and independently verify its claims.
+
+Let me start by searching for the key competing works and verifying the claims made.
+
+Key things to verify:
+1. CogRouter - does it exist, what are its actual results?
+2. ARES - does it exist, what are its actual results?
+3. MTRouter - verify existence and claims
+4. Whether the gap claim is valid (no work routes between internal reasoning and external simulation)
+5. ALFWorld TextWorld simulator availability
+
+
+6. Qwen3-1.7B availability and whether it's actually released
+7. Whether the resource estimates and timeline are realistic given the scope
+8. EMNLP 2026 ARR deadline and submission requirements
+
+Let me search systematically to verify these claims.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b634f36f-5e73-4525-9a79-4a24eac03f61",
+  "isSidechain": false,
+  "requestId": "req_011CawemvBZr5rPBPGGUe842",
+  "type": "assistant",
+  "uuid": "fab42cf2-a799-43df-a413-d597b3158795",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RQgfAxrBDRGXcQcQa5Ju4k",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13680,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 527,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13680,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 527,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13680,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13680
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-11T23:30:43.370Z_
+
+I'll conduct an independent adversarial review of this revised SimGate proposal. Let me verify the key claims systematically.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fab42cf2-a799-43df-a413-d597b3158795",
+  "isSidechain": false,
+  "requestId": "req_011CawemvBZr5rPBPGGUe842",
+  "type": "assistant",
+  "uuid": "9e472682-2f8b-45ea-8028-4882f618ef5c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RQgfAxrBDRGXcQcQa5Ju4k",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13680,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 527,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13680,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 527,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13680,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13680
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-11T23:30:49.775Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01CytxWk9wZXzW672sjcuUuP`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify CogRouter paper claims",
+  "prompt": "Search the web to verify the following claims about a paper called \"CogRouter\" or \"Think Fast and Slow: Step-Level Cognitive Depth Adaptation for LLM Agents\" (arXiv 2602.12662, Feb 2026):\n\n1. Does this paper exist on arXiv with that ID?\n2. Does it achieve 92.5% on ALFWorld and 72.0% on ScienceWorld?\n3. Does it use Qwen2.5-7B as backbone?\n4. Does it use CoSFT + CoPO training?\n5. Is code available at github.com/rhyang2021/CogRouter?\n\nUse WebSearch to find the paper, then use WebFetch to read the actual arXiv abstract and any details. Report exactly what you find - do not fabricate information. If you can't verify something, say so explicitly."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9e472682-2f8b-45ea-8028-4882f618ef5c",
+  "isSidechain": false,
+  "requestId": "req_011CawemvBZr5rPBPGGUe842",
+  "type": "assistant",
+  "uuid": "fd627cd1-b5b6-4db4-a8ae-bb6ebd5ab133",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RQgfAxrBDRGXcQcQa5Ju4k",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13680,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 527,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13680,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 527,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13680,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13680
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-11T23:31:35.159Z_
+
+<details><summary>↩ Tool result · `toolu_01CytxWk9wZXzW672sjcuUuP`</summary>
+
+```text
+I now have all the information needed to verify each claim. Here is my report:
+
+---
+
+## Verification Results for arXiv 2602.12662 ("CogRouter")
+
+### Claim 1: Does this paper exist on arXiv with ID 2602.12662?
+**VERIFIED -- YES.** The paper titled "Think Fast and Slow: Step-Level Cognitive Depth Adaptation for LLM Agents" exists at arXiv ID 2602.12662, submitted February 13, 2026. The authors include Ruihan Yang, Fanghua Ye, Xiang We, Ruoqing Zhao, and others (13 authors total).
+
+### Claim 2: Does it achieve 92.5% on ALFWorld and 72.0% on ScienceWorld?
+**VERIFIED -- YES.** The full paper reports exactly these numbers with the Qwen2.5-7B backbone:
+- **ALFWorld: 92.5%** success rate
+- **ScienceWorld: 72.0%** success rate
+- Average: 82.3% success rate
+
+(The search snippet only showed the 82.3% average, but the full HTML version of the paper confirms the individual benchmark scores.)
+
+### Claim 3: Does it use Qwen2.5-7B as backbone?
+**VERIFIED -- YES.** The primary backbone is Qwen2.5-7B. The paper also evaluates with Llama3.1-8B as a second backbone (achieving 91.5% on ALFWorld and 70.5% on ScienceWorld), but the headline results use Qwen2.5-7B.
+
+### Claim 4: Does it use CoSFT + CoPO training?
+**VERIFIED -- YES.** The paper uses a two-stage training approach:
+1. **Cognition-aware Supervised Fine-tuning (CoSFT)** -- to instill stable level-specific cognitive patterns
+2. **Cognition-aware Policy Optimization (CoPO)** -- for step-level credit assignment via confidence-aware advantage reweighting
+
+### Claim 5: Is code available at github.com/rhyang2021/CogRouter?
+**VERIFIED -- YES.** The GitHub repository exists and contains the official implementation. It has 22 stars and 4 forks, is primarily written in Python (53.6%), includes training code, environment support for ALFWorld and ScienceWorld, and the paper itself lists this URL as its project page.
+
+---
+
+**Summary: All five claims are verified as accurate.**
+
+Sources:
+- [arXiv Abstract: 2602.12662](https://arxiv.org/abs/2602.12662)
+- [arXiv Full Paper HTML: 2602.12662](https://arxiv.org/html/2602.12662)
+- [GitHub: rhyang2021/CogRouter](https://github.com/rhyang2021/CogRouter)
+
+agentId: a95745bb3e7b3b1a9 (use SendMessage with to: 'a95745bb3e7b3b1a9' to continue this agent)
+&lt;usage>total_tokens: 14775
+tool_uses: 6
+duration_ms: 45378&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fd627cd1-b5b6-4db4-a8ae-bb6ebd5ab133",
+  "isSidechain": false,
+  "promptId": "6bfca2c9-504d-4aa5-bfc1-591fd7535b04",
+  "type": "user",
+  "uuid": "d21d5513-e2d7-47a3-b187-b450d73da063",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search the web to verify the following claims about a paper called \"CogRouter\" or \"Think Fast and Slow: Step-Level Cognitive Depth Adaptation for LLM Agents\" (arXiv 2602.12662, Feb 2026):\n\n1. Does this paper exist on arXiv with that ID?\n2. Does it achieve 92.5% on ALFWorld and 72.0% on ScienceWorld?\n3. Does it use Qwen2.5-7B as backbone?\n4. Does it use CoSFT + CoPO training?\n5. Is code available at github.com/rhyang2021/CogRouter?\n\nUse WebSearch to find the paper, then use WebFetch to read the actual arXiv abstract and any details. Report exactly what you find - do not fabricate information. If you can't verify something, say so explicitly.",
+    "agentId": "a95745bb3e7b3b1a9",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have all the information needed to verify each claim. Here is my report:\n\n---\n\n## Verification Results for arXiv 2602.12662 (\"CogRouter\")\n\n### Claim 1: Does this paper exist on arXiv with ID 2602.12662?\n**VERIFIED -- YES.** The paper titled \"Think Fast and Slow: Step-Level Cognitive Depth Adaptation for LLM Agents\" exists at arXiv ID 2602.12662, submitted February 13, 2026. The authors include Ruihan Yang, Fanghua Ye, Xiang We, Ruoqing Zhao, and others (13 authors total).\n\n### Claim 2: Does it achieve 92.5% on ALFWorld and 72.0% on ScienceWorld?\n**VERIFIED -- YES.** The full paper reports exactly these numbers with the Qwen2.5-7B backbone:\n- **ALFWorld: 92.5%** success rate\n- **ScienceWorld: 72.0%** success rate\n- Average: 82.3% success rate\n\n(The search snippet only showed the 82.3% average, but the full HTML version of the paper confirms the individual benchmark scores.)\n\n### Claim 3: Does it use Qwen2.5-7B as backbone?\n**VERIFIED -- YES.** The primary backbone is Qwen2.5-7B. The paper also evaluates with Llama3.1-8B as a second backbone (achieving 91.5% on ALFWorld and 70.5% on ScienceWorld), but the headline results use Qwen2.5-7B.\n\n### Claim 4: Does it use CoSFT + CoPO training?\n**VERIFIED -- YES.** The paper uses a two-stage training approach:\n1. **Cognition-aware Supervised Fine-tuning (CoSFT)** -- to instill stable level-specific cognitive patterns\n2. **Cognition-aware Policy Optimization (CoPO)** -- for step-level credit assignment via confidence-aware advantage reweighting\n\n### Claim 5: Is code available at github.com/rhyang2021/CogRouter?\n**VERIFIED -- YES.** The GitHub repository exists and contains the official implementation. It has 22 stars and 4 forks, is primarily written in Python (53.6%), includes training code, environment support for ALFWorld and ScienceWorld, and the paper itself lists this URL as its project page.\n\n---\n\n**Summary: All five claims are verified as accurate.**\n\nSources:\n- [arXiv Abstract: 2602.12662](https://arxiv.org/abs/2602.12662)\n- [arXiv Full Paper HTML: 2602.12662](https://arxiv.org/html/2602.12662)\n- [GitHub: rhyang2021/CogRouter](https://github.com/rhyang2021/CogRouter)"
+      }
+    ],
+    "totalDurationMs": 45378,
+    "totalTokens": 14775,
+    "totalToolUseCount": 6,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 912,
+      "cache_read_input_tokens": 13168,
+      "output_tokens": 694,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 912
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 694,
+          "cache_read_input_tokens": 13168,
+          "cache_creation_input_tokens": 912,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 912,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 6
+    }
+  },
+  "sourceToolAssistantUUID": "fd627cd1-b5b6-4db4-a8ae-bb6ebd5ab133",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-11T23:31:41.325Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01PZ8u47VWL1FykYU4kx7kqk`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify ARES paper claims",
+  "prompt": "Search the web to verify the following claims about a paper called \"ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents\" (arXiv 2603.07915, March 2026):\n\n1. Does this paper exist on arXiv with that ID?\n2. Does it use a Qwen3-1.7B router trained via SFT?\n3. Does it achieve 52.7% reasoning token reduction?\n4. Is it evaluated on WebArena/TAU-Bench?\n5. Is code available at github.com/UCSB-NLP-Chang/Ares?\n\nUse WebSearch and WebFetch to verify. Report exactly what you find. If something cannot be verified, say so."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d21d5513-e2d7-47a3-b187-b450d73da063",
+  "isSidechain": false,
+  "requestId": "req_011CawerSJAi6ynpZseWThjr",
+  "type": "assistant",
+  "uuid": "af997dd8-8ac3-4db2-a28e-7d3dfe1c9067",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BiZ5Q7TmXzx6xDfwEpFuu5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1306,
+      "cache_read_input_tokens": 25521,
+      "output_tokens": 265,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1306,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 265,
+          "cache_read_input_tokens": 25521,
+          "cache_creation_input_tokens": 1306,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1306
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-11T23:32:35.960Z_
+
+<details><summary>↩ Tool result · `toolu_01PZ8u47VWL1FykYU4kx7kqk`</summary>
+
+```text
+I now have comprehensive information to verify all five claims. Here is my report:
+
+---
+
+## Verification Results for "ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents"
+
+### 1. Does this paper exist on arXiv with ID 2603.07915?
+
+**VERIFIED - YES.** The paper exists at [arxiv.org/abs/2603.07915](https://arxiv.org/abs/2603.07915). It was submitted on March 9, 2026, by authors Jingbo Yang, Bairu Hou, Wei Wei, Yujia Bao, and Shiyu Chang.
+
+### 2. Does it use a Qwen3-1.7B router trained via SFT?
+
+**VERIFIED - YES.** The paper explicitly states they "fine-tune a lightweight Qwen3-1.7B model as the reasoning-effort router in Ares." The training method is Supervised Fine-tuning (SFT), minimizing next-token prediction loss. The paper also explores a second stage using reinforcement learning (GRPO), but SFT is the primary training method.
+
+### 3. Does it achieve 52.7% reasoning token reduction?
+
+**VERIFIED - YES.** The paper reports "Ares reduces reasoning token usage by up to 52.7% compared to fixed high-effort reasoning." This peak reduction is achieved on TAU-Bench. Other benchmarks show lower but still significant reductions (35.2% on TAU-Bench Retail, 41.8% on BrowseComp-Plus, 45.3% on WebArena).
+
+### 4. Is it evaluated on WebArena/TAU-Bench?
+
+**VERIFIED - YES.** The paper evaluates on three benchmarks:
+- TAU-Bench (tool-use agents)
+- WebArena (web navigation agents)
+- BrowseComp-Plus (deep-research agents)
+
+### 5. Is code available at github.com/UCSB-NLP-Chang/Ares?
+
+**VERIFIED - YES.** The repository exists at [github.com/UCSB-NLP-Chang/Ares](https://github.com/UCSB-NLP-Chang/Ares) and is described as the "Official implementation for Ares: Adaptive Reasoning Effort Selection for Efficient LLM Agents." However, the repository appears to be in an early/minimal state (0 stars, 0 forks, 1 commit at time of check), and the README contains only a title and brief description without detailed documentation or usage instructions.
+
+---
+
+**Summary:** All five claims are verified as accurate based on web search and direct page fetches from arXiv and GitHub.
+
+Sources:
+- [arXiv Abstract Page](https://arxiv.org/abs/2603.07915)
+- [arXiv HTML Full Paper](https://arxiv.org/html/2603.07915)
+- [GitHub Repository](https://github.com/UCSB-NLP-Chang/Ares)
+- [AI Models Paper Summary](https://www.aimodels.fyi/papers/arxiv/ares-adaptive-reasoning-effort-selection-efficient-llm)
+
+agentId: aecf91e0f3be11219 (use SendMessage with to: 'aecf91e0f3be11219' to continue this agent)
+&lt;usage>total_tokens: 16408
+tool_uses: 8
+duration_ms: 54629&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "af997dd8-8ac3-4db2-a28e-7d3dfe1c9067",
+  "isSidechain": false,
+  "promptId": "6bfca2c9-504d-4aa5-bfc1-591fd7535b04",
+  "type": "user",
+  "uuid": "e5b34b8f-f461-48c5-adf0-0bb5d1620915",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Search the web to verify the following claims about a paper called \"ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents\" (arXiv 2603.07915, March 2026):\n\n1. Does this paper exist on arXiv with that ID?\n2. Does it use a Qwen3-1.7B router trained via SFT?\n3. Does it achieve 52.7% reasoning token reduction?\n4. Is it evaluated on WebArena/TAU-Bench?\n5. Is code available at github.com/UCSB-NLP-Chang/Ares?\n\nUse WebSearch and WebFetch to verify. Report exactly what you find. If something cannot be verified, say so.",
+    "agentId": "aecf91e0f3be11219",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have comprehensive information to verify all five claims. Here is my report:\n\n---\n\n## Verification Results for \"ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents\"\n\n### 1. Does this paper exist on arXiv with ID 2603.07915?\n\n**VERIFIED - YES.** The paper exists at [arxiv.org/abs/2603.07915](https://arxiv.org/abs/2603.07915). It was submitted on March 9, 2026, by authors Jingbo Yang, Bairu Hou, Wei Wei, Yujia Bao, and Shiyu Chang.\n\n### 2. Does it use a Qwen3-1.7B router trained via SFT?\n\n**VERIFIED - YES.** The paper explicitly states they \"fine-tune a lightweight Qwen3-1.7B model as the reasoning-effort router in Ares.\" The training method is Supervised Fine-tuning (SFT), minimizing next-token prediction loss. The paper also explores a second stage using reinforcement learning (GRPO), but SFT is the primary training method.\n\n### 3. Does it achieve 52.7% reasoning token reduction?\n\n**VERIFIED - YES.** The paper reports \"Ares reduces reasoning token usage by up to 52.7% compared to fixed high-effort reasoning.\" This peak reduction is achieved on TAU-Bench. Other benchmarks show lower but still significant reductions (35.2% on TAU-Bench Retail, 41.8% on BrowseComp-Plus, 45.3% on WebArena).\n\n### 4. Is it evaluated on WebArena/TAU-Bench?\n\n**VERIFIED - YES.** The paper evaluates on three benchmarks:\n- TAU-Bench (tool-use agents)\n- WebArena (web navigation agents)\n- BrowseComp-Plus (deep-research agents)\n\n### 5. Is code available at github.com/UCSB-NLP-Chang/Ares?\n\n**VERIFIED - YES.** The repository exists at [github.com/UCSB-NLP-Chang/Ares](https://github.com/UCSB-NLP-Chang/Ares) and is described as the \"Official implementation for Ares: Adaptive Reasoning Effort Selection for Efficient LLM Agents.\" However, the repository appears to be in an early/minimal state (0 stars, 0 forks, 1 commit at time of check), and the README contains only a title and brief description without detailed documentation or usage instructions.\n\n---\n\n**Summary:** All five claims are verified as accurate based on web search and direct page fetches from arXiv and GitHub.\n\nSources:\n- [arXiv Abstract Page](https://arxiv.org/abs/2603.07915)\n- [arXiv HTML Full Paper](https://arxiv.org/html/2603.07915)\n- [GitHub Repository](https://github.com/UCSB-NLP-Chang/Ares)\n- [AI Models Paper Summary](https://www.aimodels.fyi/papers/arxiv/ares-adaptive-reasoning-effort-selection-efficient-llm)"
+      }
+    ],
+    "totalDurationMs": 54629,
+    "totalTokens": 16408,
+    "totalToolUseCount": 8,
+    "usage": {
+      "input_tokens": 228,
+      "cache_creation_input_tokens": 1086,
+      "cache_read_input_tokens": 14335,
+      "output_tokens": 759,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1086
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 228,
+          "output_tokens": 759,
+          "cache_read_input_tokens": 14335,
+          "cache_creation_input_tokens": 1086,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1086,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 8
+    }
+  },
+  "sourceToolAssistantUUID": "af997dd8-8ac3-4db2-a28e-7d3dfe1c9067",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-11T23:32:49.199Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01XEcsy9Z6GQkZh2vgiLUUBm`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search for competing/concurrent work on simulation gating",
+  "prompt": "I need to find papers from 2025-2026 that learn to selectively invoke external world model simulation in LLM agent settings. This is for an adversarial review of a paper idea called \"SimGate\" which proposes routing between internal reasoning and external simulator invocation.\n\nPlease search for:\n1. \"world model\" \"agent\" \"selective\" OR \"gating\" OR \"routing\" 2025 2026 on arXiv\n2. \"when to simulate\" OR \"selective simulation\" LLM agent\n3. \"imagination gating\" OR \"imagination routing\" language model\n4. AVIC paper (arXiv 2026) - \"When and How Much to Imagine\" by Yu et al. - verify it exists and what it does\n5. \"Imagine-then-Plan\" (ITP) paper 2026 - verify existence\n6. Any paper that combines learned routing with external world model invocation for agents\n\nAlso search for:\n7. \"WebDreamer\" or \"Dreamer-7B\" paper - is it a TMLR 2025 paper?\n8. \"WebWorld\" world model paper 2026\n\nUse WebSearch and WebFetch. Report what you find with exact titles, venues, and what each paper does. I need to know if there's any existing work that ALREADY does what SimGate proposes (learned per-step routing between internal reasoning and external simulation)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e5b34b8f-f461-48c5-adf0-0bb5d1620915",
+  "isSidechain": false,
+  "requestId": "req_011CawevvHXR6z2UEzqsBDMp",
+  "type": "assistant",
+  "uuid": "06f9cdcf-eedd-49dc-ab2f-8df15fb67fdf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GDi4iKJANFWJQhbx9f9PX4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1103,
+      "cache_read_input_tokens": 26827,
+      "output_tokens": 904,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1103,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 904,
+          "cache_read_input_tokens": 26827,
+          "cache_creation_input_tokens": 1103,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1103
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-11T23:32:57.725Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01GGbDbKZxuwwKgA1CAAoVj4`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify MTRouter and resource feasibility",
+  "prompt": "I need to verify several things for a paper review:\n\n1. **MTRouter paper**: Search for \"MTRouter: Cost-Aware Multi-Turn LLM Routing with History-Model Joint Embeddings\" (arXiv 2604.23530, ACL 2026). Does it exist? What does it do? Does it really surpass GPT-5 on ScienceWorld?\n\n2. **Qwen3-1.7B model availability**: Search for whether Qwen3-1.7B exists and is publicly available on HuggingFace. When was it released?\n\n3. **ALFWorld TextWorld simulator**: Search for whether ALFWorld provides a deterministic text-based simulator that can be used for state-transition lookahead. Can you invoke it step-by-step to get next states without completing the full episode?\n\n4. **LangGraph availability**: Verify that LangGraph (from LangChain) exists and supports conditional routing/state graphs for agent orchestration.\n\n5. **EMNLP 2026 ARR deadline**: Search for \"ARR submission deadline May 2026\" or \"EMNLP 2026 submission deadline\". Is May 25, 2026 a plausible ARR deadline?\n\n6. **SFT training cost for 1.7B model**: How many H100-hours would it realistically take to SFT fine-tune a 1.7B parameter model on ~30K labeled examples? Is 10h H100 reasonable?\n\nUse WebSearch and WebFetch as needed. Report findings precisely.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "06f9cdcf-eedd-49dc-ab2f-8df15fb67fdf",
+  "isSidechain": false,
+  "requestId": "req_011CawevvHXR6z2UEzqsBDMp",
+  "type": "assistant",
+  "uuid": "6a394b96-23e7-404e-8994-791609094f51",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GDi4iKJANFWJQhbx9f9PX4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1103,
+      "cache_read_input_tokens": 26827,
+      "output_tokens": 904,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1103,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 904,
+          "cache_read_input_tokens": 26827,
+          "cache_creation_input_tokens": 1103,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1103
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-11T23:32:57.730Z_
+
+<details><summary>↩ Tool result · `toolu_01GGbDbKZxuwwKgA1CAAoVj4`</summary>
+
+```text
+Async agent launched successfully.
+agentId: a73df684292118460 (internal ID - do not mention to user. Use SendMessage with to: 'a73df684292118460' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-/6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5/tasks/a73df684292118460.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6a394b96-23e7-404e-8994-791609094f51",
+  "isSidechain": false,
+  "promptId": "6bfca2c9-504d-4aa5-bfc1-591fd7535b04",
+  "type": "user",
+  "uuid": "212725d3-7cb7-496a-b35d-33e383d4a349",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "a73df684292118460",
+    "description": "Verify MTRouter and resource feasibility",
+    "prompt": "I need to verify several things for a paper review:\n\n1. **MTRouter paper**: Search for \"MTRouter: Cost-Aware Multi-Turn LLM Routing with History-Model Joint Embeddings\" (arXiv 2604.23530, ACL 2026). Does it exist? What does it do? Does it really surpass GPT-5 on ScienceWorld?\n\n2. **Qwen3-1.7B model availability**: Search for whether Qwen3-1.7B exists and is publicly available on HuggingFace. When was it released?\n\n3. **ALFWorld TextWorld simulator**: Search for whether ALFWorld provides a deterministic text-based simulator that can be used for state-transition lookahead. Can you invoke it step-by-step to get next states without completing the full episode?\n\n4. **LangGraph availability**: Verify that LangGraph (from LangChain) exists and supports conditional routing/state graphs for agent orchestration.\n\n5. **EMNLP 2026 ARR deadline**: Search for \"ARR submission deadline May 2026\" or \"EMNLP 2026 submission deadline\". Is May 25, 2026 a plausible ARR deadline?\n\n6. **SFT training cost for 1.7B model**: How many H100-hours would it realistically take to SFT fine-tune a 1.7B parameter model on ~30K labeled examples? Is 10h H100 reasonable?\n\nUse WebSearch and WebFetch as needed. Report findings precisely.",
+    "outputFile": "/tmp/claude-1000/-/6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5/tasks/a73df684292118460.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "6a394b96-23e7-404e-8994-791609094f51",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 17 · 2026-05-11T23:34:41.790Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-11T23:34:41.790Z",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "content": "&lt;task-notification>\n&lt;task-id>a73df684292118460&lt;/task-id>\n&lt;tool-use-id>toolu_01GGbDbKZxuwwKgA1CAAoVj4&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5/tasks/a73df684292118460.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Verify MTRouter and resource feasibility\" completed&lt;/summary>\n&lt;result>I now have comprehensive information to provide a thorough report. Here are my findings:\n\n---\n\n## Findings\n\n### 1. MTRouter Paper (arXiv 2604.23530)\n\n**Status: EXISTS.** The paper \"MTRouter: Cost-Aware Multi-Turn LLM Routing with History-Model Joint Embeddings\" is real and accessible at [arXiv 2604.23530](https://arxiv.org/abs/2604.23530). It was submitted April 26, 2026, and claims acceptance at ACL 2026 Main Conference. There is also an official [GitHub repo](https://github.com/ZhangYiqun018/MTRouter).\n\n**What it does:** It addresses cost-aware multi-turn LLM routing -- selecting which model to invoke at each turn from a model pool given a fixed cost budget. It encodes interaction history and candidate models into joint history-model embeddings and trains an outcome estimator from logged trajectories to predict turn-level model utility.\n\n**GPT-5 on ScienceWorld claim:** Yes, the abstract explicitly claims that MTRouter \"surpasses GPT-5 while reducing total cost by 58.7%\" on ScienceWorld. The paper also reports competitive accuracy on Humanity's Last Exam (HLE) with 43.4% cost reduction relative to GPT-5. Note: \"surpasses GPT-5\" here means surpasses GPT-5's score when using a *routing strategy* over multiple cheaper/expensive models, not that a single small model beats GPT-5 directly.\n\n---\n\n### 2. Qwen3-1.7B Model Availability\n\n**Status: EXISTS and is publicly available.** The model is hosted at [huggingface.co/Qwen/Qwen3-1.7B](https://huggingface.co/Qwen/Qwen3-1.7B) under Apache 2.0 license.\n\n**Release date:** Qwen3 family was released on **April 28-29, 2025** (announcement April 28, full open-weight release April 29, 2025). The technical report (arXiv 2505.09388) was published May 14, 2025.\n\n**Specs:** 1.7B parameters (1.4B non-embedding), 28 layers, 16 Q-heads / 8 KV-heads, 32K context length. Supports thinking/non-thinking mode switching.\n\n---\n\n### 3. ALFWorld TextWorld Simulator\n\n**Status: YES, it provides a deterministic text-based simulator with step-by-step interaction.**\n\nALFWorld's TextWorld component operates on PDDL-defined actions applied deterministically. The environment exposes an `env.step(actions)` API that returns `(obs, scores, dones, infos)` per turn. You can invoke it one action at a time and receive the next state observation without completing the full episode.\n\n**Regarding state-transition lookahead:** The environment is deterministic (given an action, the next state is fully determined). However, there is **no documented built-in fork/clone mechanism** for branching environment states for tree-search style lookahead. That said, because the underlying state is PDDL-based, it would be feasible to save/restore state or re-instantiate environments from a known state. Several papers (e.g., RAP using MCTS) have used ALFWorld-like environments for lookahead planning by leveraging this determinism. The environment's deterministic and lightweight nature makes it suitable for such approaches, though explicit state-forking may require custom implementation.\n\n---\n\n### 4. LangGraph Availability\n\n**Status: EXISTS and actively maintained.** LangGraph is LangChain's framework for building stateful, multi-actor LLM applications as directed graphs.\n\nIt explicitly supports:\n- **StateGraph** abstraction for defining state schemas\n- **Conditional routing** via `add_conditional_edges(source, path, path_map)` -- a callable receives current state and returns routing decisions at runtime\n- **State graphs** for agent orchestration with checkpointing (in-memory, SQLite, Postgres)\n- Multi-turn conversations, human-in-the-loop workflows, pause/resume/replay\n\nDocumentation is at [docs.langchain.com/oss/python/langgraph/graph-api](https://docs.langchain.com/oss/python/langgraph/graph-api).\n\n---\n\n### 5. EMNLP 2026 ARR Deadline\n\n**Status: May 25, 2026 is CONFIRMED as the correct ARR submission deadline for EMNLP 2026.**\n\nThis is verified by the [EMNLP 2026 official CFP](https://2026.emnlp.org/calls/main_conference_papers/) and the [EMNLP 2026 Twitter/X announcement](https://x.com/emnlpmeeting/status/2029508292637061462). Additional details:\n- Author registration form due: May 27, 2026 (EoD AoE)\n- Commitment deadline: August 2, 2026\n- Notification: August 20, 2026\n- Note: The May 2026 ARR cycle is shared between EMNLP and AACL; authors must declare target conference at submission time (binding choice).\n\n---\n\n### 6. SFT Training Cost for 1.7B Model on ~30K Examples\n\n**Status: 10 H100-hours is REASONABLE, possibly even conservative.**\n\nEstimation logic:\n- Fine-tuning Llama 3.1 **8B** with QLoRA on 10-15K examples takes 3-5 hours on a single A100 80GB (3 epochs).\n- A 1.7B model is roughly **4-5x smaller** than an 8B model, so full-parameter SFT (not just LoRA) on a 1.7B model would be comparable in compute to QLoRA on an 8B model per token processed.\n- With 30K examples (2-3x more data than the 10-15K reference), and assuming 2-3 epochs with average sequence lengths of ~512-1024 tokens, you'd expect approximately **4-10 hours on a single H100** for full SFT.\n- The H100 offers 2-3x throughput improvement over A100 for Transformer training.\n\n**Verdict:** 10 H100-hours for full SFT of a 1.7B model on ~30K examples is a plausible and realistic estimate. It could be somewhat less (6-8h) with efficient implementation (large batch sizes, bf16, Flash Attention) or somewhat more (12-15h) with long sequences or conservative hyperparameters. The claim is credible.\n\n---\n\nSources:\n- [MTRouter arXiv page](https://arxiv.org/abs/2604.23530)\n- [MTRouter GitHub](https://github.com/ZhangYiqun018/MTRouter)\n- [Qwen3-1.7B on HuggingFace](https://huggingface.co/Qwen/Qwen3-1.7B)\n- [Qwen3 Blog Post](https://qwenlm.github.io/blog/qwen3/)\n- [ALFWorld GitHub](https://github.com/alfworld/alfworld)\n- [LangGraph Documentation](https://docs.langchain.com/oss/python/langgraph/graph-api)\n- [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/)\n- [ARR Dates](http://aclrollingreview.org/dates)\n- [TechCrunch: Qwen3 Release](https://techcrunch.com/2025/04/28/alibaba-unveils-qwen-3-a-family-of-hybrid-ai-reasoning-models/)\n- [DigitalOcean GPU Fine-tuning Guide](https://www.digitalocean.com/resources/articles/gpu-options-finetuning)\n- [Spheron Fine-tuning Costs 2026](https://www.spheron.network/blog/how-to-fine-tune-llm-2026/)&lt;/result>\n&lt;usage>&lt;total_tokens>20506&lt;/total_tokens>&lt;tool_uses>13&lt;/tool_uses>&lt;duration_ms>104064&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "212725d3-7cb7-496a-b35d-33e383d4a349",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify SimGate routing framework for LLM agents",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5"
+}
+```
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-11T23:37:24.144Z_
+
+<details><summary>↩ Tool result · `toolu_01XEcsy9Z6GQkZh2vgiLUUBm`</summary>
+
+```text
+Now I have comprehensive findings. Here is my complete report.
+
+---
+
+## Complete Literature Search Report: Selective World Model Invocation for LLM Agents
+
+### 1. THE MOST DIRECTLY RELEVANT PAPER: Imagine-then-Plan (ITP)
+
+**Title:** "Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models"
+**Authors:** Youwei Liu, Jian Wang, Hanlin Wang, Beichen Guo, Wenjie Li
+**Date:** January 13, 2026 (revised March 16, 2026)
+**arXiv:** [2601.08955](https://arxiv.org/abs/2601.08955)
+**Code:** [github.com/loyiv/ITP](https://github.com/loyiv/ITP)
+
+**This is the strongest prior work overlap with SimGate.** ITP introduces a learned mechanism that decides, at each step, whether and how much to invoke a world model. The adaptive horizon K_t ranges from {0, 1, ..., K_max}, where **K=0 means the agent skips imagination entirely** and acts directly. ITP has two variants:
+- **ITP-I (inference-time):** Uses prompting to decide the horizon at each step -- no parameter updates.
+- **ITP-R (trained):** Trains a lightweight "K-head predictor" on top of the backbone LLM that learns step-specific horizon values. Pseudo-labels are derived by balancing improved action likelihood against lookahead cost.
+
+This is essentially a **learned per-step router between internal reasoning (K=0) and external world-model simulation (K>0)**, which is conceptually very close to what SimGate proposes. An adversarial reviewer could argue ITP already does per-step gating between "act directly" and "invoke world model simulation," with an additional dimension of controlling simulation depth.
+
+---
+
+### 2. AVIC: "When and How Much to Imagine"
+
+**Title:** "When and How Much to Imagine: Adaptive Test-Time Scaling with World Models for Visual Spatial Reasoning"
+**Authors:** Shoubin Yu, Yue Zhang, Zun Wang, Jaehong Yoon, Huaxiu Yao, Mingyu Ding, Mohit Bansal
+**Date:** February 9, 2026
+**arXiv:** [2602.08236](https://arxiv.org/abs/2602.08236)
+**Project page:** [adaptive-visual-tts.github.io](https://adaptive-visual-tts.github.io/)
+
+AVIC uses a **policy model that outputs a binary decision: `skip` or `call_wm` (call world model)**. It reasons about the sufficiency of available visual evidence and conditionally decides whether to invoke the world model. If invoked, it also decides how much imagination to perform (dynamic action plan length). The gating decision uses majority voting over M policy samples.
+
+**Key caveat for SimGate comparison:** AVIC targets visual spatial reasoning with multimodal LLMs (embodied navigation, R2R), not text-based LLM agent tasks. However, the core idea -- a learned policy that gates world model invocation per-instance -- is essentially the same mechanism. The paper title literally asks "When and How Much to Imagine."
+
+**Note:** I could NOT verify the "AVIC" acronym expansion. The paper does not appear to use "AVIC" as its acronym in the title/abstract. It may be referenced this way informally. The first author is indeed "Yu" as you mentioned.
+
+---
+
+### 3. WebDreamer / Dreamer-7B
+
+**Title:** "Is Your LLM Secretly a World Model of the Internet? Model-Based Planning for Web Agents"
+**Authors:** Yu Gu, Kai Zhang, Yuting Ning, Boyuan Zheng, Boyu Gou, Tianci Xue, Cheng Chang, Sanjari Srivastava, Yanan Xie, Peng Qi, Huan Sun, Yu Su
+**Venue:** **TMLR 2025** (confirmed)
+**arXiv:** [2411.06559](https://arxiv.org/abs/2411.06559)
+**Code:** [github.com/OSU-NLP-Group/WebDreamer](https://github.com/OSU-NLP-Group/WebDreamer)
+
+WebDreamer uses LLMs as world models to simulate outcomes of candidate actions for web navigation. At each step, it: (1) samples top-k candidate actions, (2) uses the LLM to simulate 2-step trajectories for each, (3) scores the imagined outcomes, and (4) executes the highest-scoring action.
+
+**Critical distinction from SimGate:** WebDreamer does NOT have a learned gating mechanism to decide when to simulate. It **always simulates all candidate actions at every step**. There is no routing between "act directly" and "simulate first." It also uses the LLM itself as the world model (not an external simulator). Dreamer-7B is a 7B model fine-tuned specifically for web state prediction.
+
+---
+
+### 4. WebWorld
+
+**Title:** "WebWorld: A Large-Scale World Model for Web Agent Training"
+**Authors:** Zikai Xiao, Jianhong Tu, Chuhang Zou, Yuxin Zuo, Zhi Li, Peng Wang, Bowen Yu, Fei Huang, Junyang Lin, Zuozhu Liu
+**Date:** February 16, 2026
+**arXiv:** [2602.14721](https://arxiv.org/abs/2602.14721)
+**Models:** Qwen/WebWorld-8B, 14B, 32B on HuggingFace
+
+WebWorld is the first open-web simulator trained at scale (1M+ trajectories, 30+ step simulation). It serves two purposes: (a) training data synthesis for web agents, and (b) inference-time lookahead search. It does NOT have a selective invocation mechanism -- it is a world model infrastructure, not a routing system. However, agents built on top of it could benefit from a SimGate-like mechanism.
+
+---
+
+### 5. "When to Trust Imagination" (FFDC)
+
+**Title:** "When to Trust Imagination: Adaptive Action Execution for World Action Models"
+**Authors:** Rui Wang, Yue Zhang, Jiehong Lin, Kuncheng Luo, Jianan Wang, Zhongrui Wang, Xiaojuan Qi
+**Date:** May 7, 2026
+**arXiv:** [2605.06222](https://arxiv.org/abs/2605.06222)
+
+FFDC is a lightweight verifier (Future Forward Dynamics Causal Attention) that compares world-model-predicted visual dynamics with real observations during execution to decide whether the remaining imagined action sequence can still be trusted. When predictions diverge from reality, it triggers replanning.
+
+**Key distinction:** This is for robotic manipulation (not LLM agents), and the gating happens during execution (trust/distrust an already-generated plan) rather than deciding whether to invoke the world model in the first place.
+
+---
+
+### 6. World-Model-Augmented Web Agents with Action Correction (WAC)
+
+**Title:** "World-Model-Augmented Web Agents with Action Correction"
+**Authors:** Zhouzhou Shen, Xueyu Hu, Xiyun Li, Tianqing Fang, Juncheng Li, Shengyu Zhang
+**Date:** February 17, 2026
+**arXiv:** [2602.15384](https://arxiv.org/abs/2602.15384)
+
+WAC integrates an action model that consults a world model for strategic guidance and simulates action outcomes. The available information does NOT indicate a selective gating mechanism -- it appears to always consult the world model.
+
+---
+
+### 7. Key Related Work on Selective Reasoning/Computation
+
+**"Think or Not? Selective Reasoning via Reinforcement Learning for Vision-Language Models" (TON)**
+- Authors: Jiaqi Wang, Kevin Qinghong Lin, James Cheng, Mike Zheng Shou
+- Venue: **NeurIPS 2025**
+- arXiv: [2505.16854](https://arxiv.org/abs/2505.16854)
+- Learns via GRPO when to engage chain-of-thought vs. answer directly. Reduces token usage by up to 90%. However, this is about **internal reasoning** (CoT vs. direct answer), not external world model invocation.
+
+**"To Call or Not to Call: A Framework to Assess and Optimize LLM Tool Calling"**
+- Authors: Qinyuan Wu et al.
+- Date: May 1, 2026
+- arXiv: [2605.00737](https://arxiv.org/abs/2605.00737)
+- Decision-theoretic framework for when LLMs should invoke external tools (web search). Uses lightweight estimators trained on hidden states. Conceptually adjacent to SimGate but for tool calls generally, not world model simulation specifically.
+
+**"Budget-Aware Tool-Use Enables Effective Agent Scaling"**
+- arXiv: [2511.17006](https://arxiv.org/abs/2511.17006)
+- Teaches agents budget awareness for tool calls. Related but not about world model gating specifically.
+
+---
+
+### 8. Historical Precursor
+
+**"Metacontrol for Adaptive Imagination-Based Optimization"**
+- Authors: Jessica Hamrick et al. (DeepMind)
+- Venue: **ICLR 2017**
+- arXiv: [1705.02670](https://arxiv.org/abs/1705.02670)
+- A metacontroller learns (via model-free RL) both which expert world models to consult AND when to stop imagining and act. This is the intellectual ancestor of the SimGate idea, applied to classical RL rather than LLMs.
+
+**"Imagination-Augmented Agents for Deep Reinforcement Learning" (I2A)**
+- DeepMind, NeurIPS 2017
+- arXiv: [1707.06203](https://arxiv.org/abs/1707.06203)
+- Combines model-free and model-based paths. The policy learns to weight imagination-based vs. model-free information, but does not have an explicit binary gate.
+
+---
+
+## BOTTOM LINE FOR ADVERSARIAL REVIEW
+
+**The most threatening prior work for SimGate is ITP (Imagine-then-Plan, January 2026).** ITP already implements a learned per-step mechanism (K-head predictor) that decides whether to invoke the world model (K=0 = skip, K>0 = simulate), and additionally controls simulation depth. This is trained via pseudo-labeling that balances action improvement against rollout cost. The key differences a SimGate author would need to articulate:
+
+1. **ITP controls horizon depth** (how many steps to imagine); SimGate presumably routes between two distinct computation paths (internal reasoning vs. external simulator).
+2. **ITP uses the same LLM as world model**; SimGate may propose routing to an architecturally separate external simulator.
+3. **Training signal**: ITP uses pseudo-labels from action likelihood; SimGate may use a different training objective.
+
+**AVIC (February 2026)** is also very close -- it literally has a binary skip/call_wm gating decision, though in the vision domain rather than text-based agent tasks.
+
+**Hamrick et al. 2017** is the classical RL precursor that should be cited and differentiated from.
+
+**WebDreamer, WebWorld, and WAC** do NOT have selective gating -- they always use the world model. These are infrastructure papers, not routing papers.
+
+agentId: a509d3ffbb0c96029 (use SendMessage with to: 'a509d3ffbb0c96029' to continue this agent)
+&lt;usage>total_tokens: 45146
+tool_uses: 41
+duration_ms: 274941&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "06f9cdcf-eedd-49dc-ab2f-8df15fb67fdf",
+  "isSidechain": false,
+  "promptId": "6bfca2c9-504d-4aa5-bfc1-591fd7535b04",
+  "type": "user",
+  "uuid": "328c3086-b32e-4256-bd7e-ea6da21ec839",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to find papers from 2025-2026 that learn to selectively invoke external world model simulation in LLM agent settings. This is for an adversarial review of a paper idea called \"SimGate\" which proposes routing between internal reasoning and external simulator invocation.\n\nPlease search for:\n1. \"world model\" \"agent\" \"selective\" OR \"gating\" OR \"routing\" 2025 2026 on arXiv\n2. \"when to simulate\" OR \"selective simulation\" LLM agent\n3. \"imagination gating\" OR \"imagination routing\" language model\n4. AVIC paper (arXiv 2026) - \"When and How Much to Imagine\" by Yu et al. - verify it exists and what it does\n5. \"Imagine-then-Plan\" (ITP) paper 2026 - verify existence\n6. Any paper that combines learned routing with external world model invocation for agents\n\nAlso search for:\n7. \"WebDreamer\" or \"Dreamer-7B\" paper - is it a TMLR 2025 paper?\n8. \"WebWorld\" world model paper 2026\n\nUse WebSearch and WebFetch. Report what you find with exact titles, venues, and what each paper does. I need to know if there's any existing work that ALREADY does what SimGate proposes (learned per-step routing between internal reasoning and external simulation).",
+    "agentId": "a509d3ffbb0c96029",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have comprehensive findings. Here is my complete report.\n\n---\n\n## Complete Literature Search Report: Selective World Model Invocation for LLM Agents\n\n### 1. THE MOST DIRECTLY RELEVANT PAPER: Imagine-then-Plan (ITP)\n\n**Title:** \"Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models\"\n**Authors:** Youwei Liu, Jian Wang, Hanlin Wang, Beichen Guo, Wenjie Li\n**Date:** January 13, 2026 (revised March 16, 2026)\n**arXiv:** [2601.08955](https://arxiv.org/abs/2601.08955)\n**Code:** [github.com/loyiv/ITP](https://github.com/loyiv/ITP)\n\n**This is the strongest prior work overlap with SimGate.** ITP introduces a learned mechanism that decides, at each step, whether and how much to invoke a world model. The adaptive horizon K_t ranges from {0, 1, ..., K_max}, where **K=0 means the agent skips imagination entirely** and acts directly. ITP has two variants:\n- **ITP-I (inference-time):** Uses prompting to decide the horizon at each step -- no parameter updates.\n- **ITP-R (trained):** Trains a lightweight \"K-head predictor\" on top of the backbone LLM that learns step-specific horizon values. Pseudo-labels are derived by balancing improved action likelihood against lookahead cost.\n\nThis is essentially a **learned per-step router between internal reasoning (K=0) and external world-model simulation (K>0)**, which is conceptually very close to what SimGate proposes. An adversarial reviewer could argue ITP already does per-step gating between \"act directly\" and \"invoke world model simulation,\" with an additional dimension of controlling simulation depth.\n\n---\n\n### 2. AVIC: \"When and How Much to Imagine\"\n\n**Title:** \"When and How Much to Imagine: Adaptive Test-Time Scaling with World Models for Visual Spatial Reasoning\"\n**Authors:** Shoubin Yu, Yue Zhang, Zun Wang, Jaehong Yoon, Huaxiu Yao, Mingyu Ding, Mohit Bansal\n**Date:** February 9, 2026\n**arXiv:** [2602.08236](https://arxiv.org/abs/2602.08236)\n**Project page:** [adaptive-visual-tts.github.io](https://adaptive-visual-tts.github.io/)\n\nAVIC uses a **policy model that outputs a binary decision: `skip` or `call_wm` (call world model)**. It reasons about the sufficiency of available visual evidence and conditionally decides whether to invoke the world model. If invoked, it also decides how much imagination to perform (dynamic action plan length). The gating decision uses majority voting over M policy samples.\n\n**Key caveat for SimGate comparison:** AVIC targets visual spatial reasoning with multimodal LLMs (embodied navigation, R2R), not text-based LLM agent tasks. However, the core idea -- a learned policy that gates world model invocation per-instance -- is essentially the same mechanism. The paper title literally asks \"When and How Much to Imagine.\"\n\n**Note:** I could NOT verify the \"AVIC\" acronym expansion. The paper does not appear to use \"AVIC\" as its acronym in the title/abstract. It may be referenced this way informally. The first author is indeed \"Yu\" as you mentioned.\n\n---\n\n### 3. WebDreamer / Dreamer-7B\n\n**Title:** \"Is Your LLM Secretly a World Model of the Internet? Model-Based Planning for Web Agents\"\n**Authors:** Yu Gu, Kai Zhang, Yuting Ning, Boyuan Zheng, Boyu Gou, Tianci Xue, Cheng Chang, Sanjari Srivastava, Yanan Xie, Peng Qi, Huan Sun, Yu Su\n**Venue:** **TMLR 2025** (confirmed)\n**arXiv:** [2411.06559](https://arxiv.org/abs/2411.06559)\n**Code:** [github.com/OSU-NLP-Group/WebDreamer](https://github.com/OSU-NLP-Group/WebDreamer)\n\nWebDreamer uses LLMs as world models to simulate outcomes of candidate actions for web navigation. At each step, it: (1) samples top-k candidate actions, (2) uses the LLM to simulate 2-step trajectories for each, (3) scores the imagined outcomes, and (4) executes the highest-scoring action.\n\n**Critical distinction from SimGate:** WebDreamer does NOT have a learned gating mechanism to decide when to simulate. It **always simulates all candidate actions at every step**. There is no routing between \"act directly\" and \"simulate first.\" It also uses the LLM itself as the world model (not an external simulator). Dreamer-7B is a 7B model fine-tuned specifically for web state prediction.\n\n---\n\n### 4. WebWorld\n\n**Title:** \"WebWorld: A Large-Scale World Model for Web Agent Training\"\n**Authors:** Zikai Xiao, Jianhong Tu, Chuhang Zou, Yuxin Zuo, Zhi Li, Peng Wang, Bowen Yu, Fei Huang, Junyang Lin, Zuozhu Liu\n**Date:** February 16, 2026\n**arXiv:** [2602.14721](https://arxiv.org/abs/2602.14721)\n**Models:** Qwen/WebWorld-8B, 14B, 32B on HuggingFace\n\nWebWorld is the first open-web simulator trained at scale (1M+ trajectories, 30+ step simulation). It serves two purposes: (a) training data synthesis for web agents, and (b) inference-time lookahead search. It does NOT have a selective invocation mechanism -- it is a world model infrastructure, not a routing system. However, agents built on top of it could benefit from a SimGate-like mechanism.\n\n---\n\n### 5. \"When to Trust Imagination\" (FFDC)\n\n**Title:** \"When to Trust Imagination: Adaptive Action Execution for World Action Models\"\n**Authors:** Rui Wang, Yue Zhang, Jiehong Lin, Kuncheng Luo, Jianan Wang, Zhongrui Wang, Xiaojuan Qi\n**Date:** May 7, 2026\n**arXiv:** [2605.06222](https://arxiv.org/abs/2605.06222)\n\nFFDC is a lightweight verifier (Future Forward Dynamics Causal Attention) that compares world-model-predicted visual dynamics with real observations during execution to decide whether the remaining imagined action sequence can still be trusted. When predictions diverge from reality, it triggers replanning.\n\n**Key distinction:** This is for robotic manipulation (not LLM agents), and the gating happens during execution (trust/distrust an already-generated plan) rather than deciding whether to invoke the world model in the first place.\n\n---\n\n### 6. World-Model-Augmented Web Agents with Action Correction (WAC)\n\n**Title:** \"World-Model-Augmented Web Agents with Action Correction\"\n**Authors:** Zhouzhou Shen, Xueyu Hu, Xiyun Li, Tianqing Fang, Juncheng Li, Shengyu Zhang\n**Date:** February 17, 2026\n**arXiv:** [2602.15384](https://arxiv.org/abs/2602.15384)\n\nWAC integrates an action model that consults a world model for strategic guidance and simulates action outcomes. The available information does NOT indicate a selective gating mechanism -- it appears to always consult the world model.\n\n---\n\n### 7. Key Related Work on Selective Reasoning/Computation\n\n**\"Think or Not? Selective Reasoning via Reinforcement Learning for Vision-Language Models\" (TON)**\n- Authors: Jiaqi Wang, Kevin Qinghong Lin, James Cheng, Mike Zheng Shou\n- Venue: **NeurIPS 2025**\n- arXiv: [2505.16854](https://arxiv.org/abs/2505.16854)\n- Learns via GRPO when to engage chain-of-thought vs. answer directly. Reduces token usage by up to 90%. However, this is about **internal reasoning** (CoT vs. direct answer), not external world model invocation.\n\n**\"To Call or Not to Call: A Framework to Assess and Optimize LLM Tool Calling\"**\n- Authors: Qinyuan Wu et al.\n- Date: May 1, 2026\n- arXiv: [2605.00737](https://arxiv.org/abs/2605.00737)\n- Decision-theoretic framework for when LLMs should invoke external tools (web search). Uses lightweight estimators trained on hidden states. Conceptually adjacent to SimGate but for tool calls generally, not world model simulation specifically.\n\n**\"Budget-Aware Tool-Use Enables Effective Agent Scaling\"**\n- arXiv: [2511.17006](https://arxiv.org/abs/2511.17006)\n- Teaches agents budget awareness for tool calls. Related but not about world model gating specifically.\n\n---\n\n### 8. Historical Precursor\n\n**\"Metacontrol for Adaptive Imagination-Based Optimization\"**\n- Authors: Jessica Hamrick et al. (DeepMind)\n- Venue: **ICLR 2017**\n- arXiv: [1705.02670](https://arxiv.org/abs/1705.02670)\n- A metacontroller learns (via model-free RL) both which expert world models to consult AND when to stop imagining and act. This is the intellectual ancestor of the SimGate idea, applied to classical RL rather than LLMs.\n\n**\"Imagination-Augmented Agents for Deep Reinforcement Learning\" (I2A)**\n- DeepMind, NeurIPS 2017\n- arXiv: [1707.06203](https://arxiv.org/abs/1707.06203)\n- Combines model-free and model-based paths. The policy learns to weight imagination-based vs. model-free information, but does not have an explicit binary gate.\n\n---\n\n## BOTTOM LINE FOR ADVERSARIAL REVIEW\n\n**The most threatening prior work for SimGate is ITP (Imagine-then-Plan, January 2026).** ITP already implements a learned per-step mechanism (K-head predictor) that decides whether to invoke the world model (K=0 = skip, K>0 = simulate), and additionally controls simulation depth. This is trained via pseudo-labeling that balances action improvement against rollout cost. The key differences a SimGate author would need to articulate:\n\n1. **ITP controls horizon depth** (how many steps to imagine); SimGate presumably routes between two distinct computation paths (internal reasoning vs. external simulator).\n2. **ITP uses the same LLM as world model**; SimGate may propose routing to an architecturally separate external simulator.\n3. **Training signal**: ITP uses pseudo-labels from action likelihood; SimGate may use a different training objective.\n\n**AVIC (February 2026)** is also very close -- it literally has a binary skip/call_wm gating decision, though in the vision domain rather than text-based agent tasks.\n\n**Hamrick et al. 2017** is the classical RL precursor that should be cited and differentiated from.\n\n**WebDreamer, WebWorld, and WAC** do NOT have selective gating -- they always use the world model. These are infrastructure papers, not routing papers."
+      }
+    ],
+    "totalDurationMs": 274941,
+    "totalTokens": 45146,
+    "totalToolUseCount": 41,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2364,
+      "cache_read_input_tokens": 39971,
+      "output_tokens": 2810,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2364
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2810,
+          "cache_read_input_tokens": 39971,
+          "cache_creation_input_tokens": 2364,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2364,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 41
+    }
+  },
+  "sourceToolAssistantUUID": "06f9cdcf-eedd-49dc-ab2f-8df15fb67fdf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21 · 2026-05-11T23:37:24.153Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "remove",
+  "timestamp": "2026-05-11T23:37:24.153Z",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22 · 2026-05-11T23:37:24.153Z_
+
+```json
+{
+  "parentUuid": "328c3086-b32e-4256-bd7e-ea6da21ec839",
+  "isSidechain": false,
+  "attachment": {
+    "type": "queued_command",
+    "prompt": "&lt;task-notification>\n&lt;task-id>a73df684292118460&lt;/task-id>\n&lt;tool-use-id>toolu_01GGbDbKZxuwwKgA1CAAoVj4&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-/6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5/tasks/a73df684292118460.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Verify MTRouter and resource feasibility\" completed&lt;/summary>\n&lt;result>I now have comprehensive information to provide a thorough report. Here are my findings:\n\n---\n\n## Findings\n\n### 1. MTRouter Paper (arXiv 2604.23530)\n\n**Status: EXISTS.** The paper \"MTRouter: Cost-Aware Multi-Turn LLM Routing with History-Model Joint Embeddings\" is real and accessible at [arXiv 2604.23530](https://arxiv.org/abs/2604.23530). It was submitted April 26, 2026, and claims acceptance at ACL 2026 Main Conference. There is also an official [GitHub repo](https://github.com/ZhangYiqun018/MTRouter).\n\n**What it does:** It addresses cost-aware multi-turn LLM routing -- selecting which model to invoke at each turn from a model pool given a fixed cost budget. It encodes interaction history and candidate models into joint history-model embeddings and trains an outcome estimator from logged trajectories to predict turn-level model utility.\n\n**GPT-5 on ScienceWorld claim:** Yes, the abstract explicitly claims that MTRouter \"surpasses GPT-5 while reducing total cost by 58.7%\" on ScienceWorld. The paper also reports competitive accuracy on Humanity's Last Exam (HLE) with 43.4% cost reduction relative to GPT-5. Note: \"surpasses GPT-5\" here means surpasses GPT-5's score when using a *routing strategy* over multiple cheaper/expensive models, not that a single small model beats GPT-5 directly.\n\n---\n\n### 2. Qwen3-1.7B Model Availability\n\n**Status: EXISTS and is publicly available.** The model is hosted at [huggingface.co/Qwen/Qwen3-1.7B](https://huggingface.co/Qwen/Qwen3-1.7B) under Apache 2.0 license.\n\n**Release date:** Qwen3 family was released on **April 28-29, 2025** (announcement April 28, full open-weight release April 29, 2025). The technical report (arXiv 2505.09388) was published May 14, 2025.\n\n**Specs:** 1.7B parameters (1.4B non-embedding), 28 layers, 16 Q-heads / 8 KV-heads, 32K context length. Supports thinking/non-thinking mode switching.\n\n---\n\n### 3. ALFWorld TextWorld Simulator\n\n**Status: YES, it provides a deterministic text-based simulator with step-by-step interaction.**\n\nALFWorld's TextWorld component operates on PDDL-defined actions applied deterministically. The environment exposes an `env.step(actions)` API that returns `(obs, scores, dones, infos)` per turn. You can invoke it one action at a time and receive the next state observation without completing the full episode.\n\n**Regarding state-transition lookahead:** The environment is deterministic (given an action, the next state is fully determined). However, there is **no documented built-in fork/clone mechanism** for branching environment states for tree-search style lookahead. That said, because the underlying state is PDDL-based, it would be feasible to save/restore state or re-instantiate environments from a known state. Several papers (e.g., RAP using MCTS) have used ALFWorld-like environments for lookahead planning by leveraging this determinism. The environment's deterministic and lightweight nature makes it suitable for such approaches, though explicit state-forking may require custom implementation.\n\n---\n\n### 4. LangGraph Availability\n\n**Status: EXISTS and actively maintained.** LangGraph is LangChain's framework for building stateful, multi-actor LLM applications as directed graphs.\n\nIt explicitly supports:\n- **StateGraph** abstraction for defining state schemas\n- **Conditional routing** via `add_conditional_edges(source, path, path_map)` -- a callable receives current state and returns routing decisions at runtime\n- **State graphs** for agent orchestration with checkpointing (in-memory, SQLite, Postgres)\n- Multi-turn conversations, human-in-the-loop workflows, pause/resume/replay\n\nDocumentation is at [docs.langchain.com/oss/python/langgraph/graph-api](https://docs.langchain.com/oss/python/langgraph/graph-api).\n\n---\n\n### 5. EMNLP 2026 ARR Deadline\n\n**Status: May 25, 2026 is CONFIRMED as the correct ARR submission deadline for EMNLP 2026.**\n\nThis is verified by the [EMNLP 2026 official CFP](https://2026.emnlp.org/calls/main_conference_papers/) and the [EMNLP 2026 Twitter/X announcement](https://x.com/emnlpmeeting/status/2029508292637061462). Additional details:\n- Author registration form due: May 27, 2026 (EoD AoE)\n- Commitment deadline: August 2, 2026\n- Notification: August 20, 2026\n- Note: The May 2026 ARR cycle is shared between EMNLP and AACL; authors must declare target conference at submission time (binding choice).\n\n---\n\n### 6. SFT Training Cost for 1.7B Model on ~30K Examples\n\n**Status: 10 H100-hours is REASONABLE, possibly even conservative.**\n\nEstimation logic:\n- Fine-tuning Llama 3.1 **8B** with QLoRA on 10-15K examples takes 3-5 hours on a single A100 80GB (3 epochs).\n- A 1.7B model is roughly **4-5x smaller** than an 8B model, so full-parameter SFT (not just LoRA) on a 1.7B model would be comparable in compute to QLoRA on an 8B model per token processed.\n- With 30K examples (2-3x more data than the 10-15K reference), and assuming 2-3 epochs with average sequence lengths of ~512-1024 tokens, you'd expect approximately **4-10 hours on a single H100** for full SFT.\n- The H100 offers 2-3x throughput improvement over A100 for Transformer training.\n\n**Verdict:** 10 H100-hours for full SFT of a 1.7B model on ~30K examples is a plausible and realistic estimate. It could be somewhat less (6-8h) with efficient implementation (large batch sizes, bf16, Flash Attention) or somewhat more (12-15h) with long sequences or conservative hyperparameters. The claim is credible.\n\n---\n\nSources:\n- [MTRouter arXiv page](https://arxiv.org/abs/2604.23530)\n- [MTRouter GitHub](https://github.com/ZhangYiqun018/MTRouter)\n- [Qwen3-1.7B on HuggingFace](https://huggingface.co/Qwen/Qwen3-1.7B)\n- [Qwen3 Blog Post](https://qwenlm.github.io/blog/qwen3/)\n- [ALFWorld GitHub](https://github.com/alfworld/alfworld)\n- [LangGraph Documentation](https://docs.langchain.com/oss/python/langgraph/graph-api)\n- [EMNLP 2026 Call for Papers](https://2026.emnlp.org/calls/main_conference_papers/)\n- [ARR Dates](http://aclrollingreview.org/dates)\n- [TechCrunch: Qwen3 Release](https://techcrunch.com/2025/04/28/alibaba-unveils-qwen-3-a-family-of-hybrid-ai-reasoning-models/)\n- [DigitalOcean GPU Fine-tuning Guide](https://www.digitalocean.com/resources/articles/gpu-options-finetuning)\n- [Spheron Fine-tuning Costs 2026](https://www.spheron.network/blog/how-to-fine-tune-llm-2026/)&lt;/result>\n&lt;usage>&lt;total_tokens>20506&lt;/total_tokens>&lt;tool_uses>13&lt;/tool_uses>&lt;duration_ms>104064&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>",
+    "commandMode": "task-notification"
+  },
+  "type": "attachment",
+  "uuid": "0092418a-d2e9-427f-8e35-5f6c60d52592",
+  "timestamp": "2026-05-11T23:37:24.153Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-11T23:38:16.467Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have comprehensive verification results. Let me analyze the key findings:
+
+## Key Findings
+
+### Verified Claims:
+1. **CogRouter** - All claims verified (92.5% ALFWorld, 72.0% ScienceWorld, Qwen2.5-7B, CoSFT+CoPO, code available)
+2. **ARES** - All claims verified (Qwen3-1.7B router, SFT, 52.7% token reduction, WebArena/TAU-Bench, code available)
+3. **MTRouter** - Verified (arXiv 2604.23530, ACL 2026, surpasses GPT-5 on ScienceWorld)
+
+
+4. **Qwen3-1.7B** - Available on HuggingFace under Apache 2.0 license
+5. **ALFWorld TextWorld** - Deterministic simulator with step-by-step API, though it lacks built-in fork/clone functionality for lookahead operations
+6. **LangGraph** - Available with conditional routing support
+7. **EMNLP 2026 ARR** - Deadline confirmed for May 25, 2026
+8. **SFT cost** - Training a 1.7B model on 30K examples requires about 10 H100-hours, which is reasonable
+
+### Critical Issues Found:
+
+#### 1. ITP (Imagine-then-Plan) - MAJOR NOVELTY THREAT
+
+ITP from January 2026 (arXiv 2601.08955) already implements exactly what SimGate proposes—a learned per-step mechanism using a K-head predictor that decides whether to invoke the world model, where K=0 skips imagination entirely and K>0 simulates for that many steps. The ITP-R variant trains this predictor via pseudo-labeling to learn when skipping simulation is optimal. The proposal mischaracterizes ITP as "always simulates but adapts depth," when in fact ITP explicitly supports skipping simulation altogether through its K=0 option—this is a fundamental misrepresentation of the prior work.
+
+#### 2. AVIC - Also a threat
+
+AVIC from February 2026 implements a binary gating decision between skipping and calling the world model, which is conceptually identical to SimGate's mechanism despite operating in the visual domain.
+
+#### 3. ALFWorld Simulator Lookahead - Technical Issue
+
+The proposal assumes clean 1-3 step lookahead rollouts returning exact next-state descriptions, but ALFWorld lacks built-in fork/clone mechanisms for branching environment states, requiring custom state save/restore logic that adds significant engineering complexity not addressed in the proposal.
+
+#### 4. Trajectory Collection Cost
+
+The math works out to roughly 30K inference calls across 500 episodes with three modalities and ~20 steps each, which at 50 hours of H100 time translates to about 600 calls per hour—but the actual cost per inference call for a 7B model could range from 10-30 seconds depending on various factors.
+
+Actually, reconsidering the numbers: with a single H100 and assuming 2-5 second inference times for shorter contexts, 30K calls would take somewhere between 17-42 hours, so the 50-hour estimate is plausible when accounting for environment interaction overhead and other inefficiencies.
+
+#### 5. The "gap" claim is WRONG
+
+SimGate claims no existing method learns per-step routing between internal reasoning and external world model invocation, but ITP-R already does this—it learns whether to skip imagination entirely or invoke the world model at each step, so the stated gap doesn't actually exist.
+
+#### 6. Short Paper Scope
+
+This targets EMNLP 2026's 4-page short paper format, which is reasonable for the contribution scope if the novelty holds up. But the novelty is deeply problematic. The core claim that no existing work learns per-step routing between internal and external reasoning is demonstrably false—ITP-R from January 2026 does exactly this with a trained K-head predictor, and AVIC implements binary gating in the visual domain. SimGate's actual novelty would only be the three-way routing scheme and using a separate lightweight router model, which is a much narrower contribution than claimed.
+
+The remaining distinctions—three-way routing versus ITP's binary approach, applying a smaller router model instead of K-head prediction, targeting ALFWorld with TextWorld simulation rather than using the same LLM as the world model, and relying on SFT-only training—are all incremental refinements. The three-way routing is the most interesting piece, but it's essentially layering CogRouter's internal depth levels onto ITP's imagination gating mechanism.
+
+Feasibility looks mostly solid after the revision, though the 200 H100-hour budget is tight and the 16-day timeline is aggressive. The real bottleneck is engineering the ALFWorld simulator lookahead. On impact, ALFWorld is a relatively simple benchmark where CogRouter already hits 92.5%, so even marginal gains to 94-95% on a single task won't be particularly compelling.
+
+The proposal reads clearly and responds to the R1 feedback, but there's a significant mischaracterization of ITP as always simulating when ITP-R explicitly supports K=0 for no simulation. Looking at the scores: novelty is weak because the core gap claim doesn't hold—ITP-R already does learned per-step routing between reasoning and world model calls. Feasibility is borderline due to the ALFWorld simulator engineering and reproducing the CogRouter baseline. Clarity suffers from that critical misrepresentation of ITP. Impact is limited to a single benchmark with only marginal improvements expected.
+
+Averaging these scores puts the paper at 2.875, which points toward a revise verdict since the fundamental novelty issue needs addressing and SimGate must be clearly differentiated from ITP-R rather than claiming to fill a gap that doesn't exist.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0092418a-d2e9-427f-8e35-5f6c60d52592",
+  "isSidechain": false,
+  "requestId": "req_011CawfJAQR76mjpdn4fP4g7",
+  "type": "assistant",
+  "uuid": "cd6aa79a-4a8c-47d0-ae11-d4c8f433a13e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EW8MdkFoSA2AC4KPYXeKED",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6261,
+      "cache_read_input_tokens": 27930,
+      "output_tokens": 1798,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6261,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1798,
+          "cache_read_input_tokens": 27930,
+          "cache_creation_input_tokens": 6261,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6261
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-11T23:38:16.541Z_
+
+Now let me do one more targeted search on the most critical novelty threat — the ITP paper's adaptive mechanism.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd6aa79a-4a8c-47d0-ae11-d4c8f433a13e",
+  "isSidechain": false,
+  "requestId": "req_011CawfJAQR76mjpdn4fP4g7",
+  "type": "assistant",
+  "uuid": "583b62cb-5c5e-4213-9936-b19539a77d9c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EW8MdkFoSA2AC4KPYXeKED",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6261,
+      "cache_read_input_tokens": 27930,
+      "output_tokens": 1798,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6261,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1798,
+          "cache_read_input_tokens": 27930,
+          "cache_creation_input_tokens": 6261,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6261
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-11T23:38:16.761Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01JqweXcxVqZKTKJL38BBw1t`</summary>
+
+```json
+{
+  "query": "select:WebFetch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "583b62cb-5c5e-4213-9936-b19539a77d9c",
+  "isSidechain": false,
+  "requestId": "req_011CawfJAQR76mjpdn4fP4g7",
+  "type": "assistant",
+  "uuid": "ff0fad54-de9c-4351-93ec-5e987f1c9917",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EW8MdkFoSA2AC4KPYXeKED",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 6261,
+      "cache_read_input_tokens": 27930,
+      "output_tokens": 1798,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6261,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1798,
+          "cache_read_input_tokens": 27930,
+          "cache_creation_input_tokens": 6261,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6261
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-11T23:38:16.769Z_
+
+<details><summary>↩ Tool result · `toolu_01JqweXcxVqZKTKJL38BBw1t`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ff0fad54-de9c-4351-93ec-5e987f1c9917",
+  "isSidechain": false,
+  "promptId": "6bfca2c9-504d-4aa5-bfc1-591fd7535b04",
+  "type": "user",
+  "uuid": "ac842bd9-fc29-4184-9056-07bfb8dfc9e0",
+  "toolUseResult": {
+    "matches": [
+      "WebFetch"
+    ],
+    "query": "select:WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "ff0fad54-de9c-4351-93ec-5e987f1c9917",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "ac842bd9-fc29-4184-9056-07bfb8dfc9e0",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify SimGate routing framework for LLM agents",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5"
+}
+```
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-11T23:38:23.643Z_
+
+Let me read the ITP paper directly to verify whether it truly does learned per-step gating between "no simulation" and "simulation" — this is the critical novelty threat.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac842bd9-fc29-4184-9056-07bfb8dfc9e0",
+  "isSidechain": false,
+  "requestId": "req_011CawfN3iSuc1JpZ3LWodyY",
+  "type": "assistant",
+  "uuid": "47f54518-941f-4da3-8405-b8804a5f3b13",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MffoVmuBLAXaQccGNjAbSv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2315,
+      "cache_read_input_tokens": 34191,
+      "output_tokens": 279,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2315,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 279,
+          "cache_read_input_tokens": 34191,
+          "cache_creation_input_tokens": 2315,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2315
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-11T23:38:26.945Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01NiEtbtjarKb9fdPDEDGpiC`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2601.08955",
+  "prompt": "Extract the full abstract and key method details for \"Imagine-then-Plan\". Specifically: 1) Does the method have a K=0 option that skips imagination/simulation entirely? 2) Does ITP-R train a learned predictor that decides per-step whether and how much to simulate? 3) What training signal does ITP-R use? 4) What benchmarks is it evaluated on? 5) What are the main results?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "47f54518-941f-4da3-8405-b8804a5f3b13",
+  "isSidechain": false,
+  "requestId": "req_011CawfN3iSuc1JpZ3LWodyY",
+  "type": "assistant",
+  "uuid": "cc0eaa5a-2eb6-412f-86a4-461956009c07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MffoVmuBLAXaQccGNjAbSv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2315,
+      "cache_read_input_tokens": 34191,
+      "output_tokens": 279,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2315,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 279,
+          "cache_read_input_tokens": 34191,
+          "cache_creation_input_tokens": 2315,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2315
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-11T23:38:27.186Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01QNHvng3vuaSkSG7o1ET7r7`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cc0eaa5a-2eb6-412f-86a4-461956009c07",
+  "isSidechain": false,
+  "requestId": "req_011CawfN3iSuc1JpZ3LWodyY",
+  "type": "assistant",
+  "uuid": "58adee6e-dac6-4c8f-b9ae-f1f1a72d1d9f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MffoVmuBLAXaQccGNjAbSv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2315,
+      "cache_read_input_tokens": 34191,
+      "output_tokens": 279,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2315,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 279,
+          "cache_read_input_tokens": 34191,
+          "cache_creation_input_tokens": 2315,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2315
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-11T23:38:27.188Z_
+
+<details><summary>↩ Tool result · `toolu_01QNHvng3vuaSkSG7o1ET7r7`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "58adee6e-dac6-4c8f-b9ae-f1f1a72d1d9f",
+  "isSidechain": false,
+  "promptId": "6bfca2c9-504d-4aa5-bfc1-591fd7535b04",
+  "type": "user",
+  "uuid": "78452463-a49f-40dc-8bd2-2f8c986cb633",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "58adee6e-dac6-4c8f-b9ae-f1f1a72d1d9f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-11T23:38:30.966Z_
+
+<details><summary>↩ Tool result · `toolu_01NiEtbtjarKb9fdPDEDGpiC`</summary>
+
+```text
+# Imagine-then-Plan: Key Details
+
+Based on the arXiv page content provided, here's what can be determined:
+
+## Abstract Summary
+The paper proposes ITP, a framework where agents learn by interacting with world models to generate multi-step imagined trajectories. It features an "adaptive lookahead mechanism" that adjusts imagination horizons based on task demands and progress.
+
+## Specific Method Questions
+
+**1) K=0 option (skip imagination)?**
+Not addressed in the provided content.
+
+**2) Learned predictor for per-step simulation decisions?**
+Not detailed in the available excerpt.
+
+**3) ITP-R training signal?**
+The page mentions "training-free and reinforcement-trained variants" but doesn't specify the exact training signals used.
+
+**4) Benchmarks evaluated?**
+The abstract states experiments were conducted "across representative agent benchmarks" but specific benchmark names aren't listed in this excerpt.
+
+**5) Main results?**
+The abstract reports that "ITP significantly outperforms competitive baselines" and that "adaptive lookahead largely enhances agents' reasoning capability."
+
+## Limitation
+The arXiv abstract page provided doesn't contain sufficient technical depth to answer questions 1-3 comprehensively. The full PDF would be necessary for complete method details regarding simulation strategies, training procedures, and architectural choices.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cc0eaa5a-2eb6-412f-86a4-461956009c07",
+  "isSidechain": false,
+  "promptId": "6bfca2c9-504d-4aa5-bfc1-591fd7535b04",
+  "type": "user",
+  "uuid": "60cd87a6-021c-4d46-ba0c-5e5ab22040a9",
+  "toolUseResult": {
+    "bytes": 47432,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Imagine-then-Plan: Key Details\n\nBased on the arXiv page content provided, here's what can be determined:\n\n## Abstract Summary\nThe paper proposes ITP, a framework where agents learn by interacting with world models to generate multi-step imagined trajectories. It features an \"adaptive lookahead mechanism\" that adjusts imagination horizons based on task demands and progress.\n\n## Specific Method Questions\n\n**1) K=0 option (skip imagination)?**\nNot addressed in the provided content.\n\n**2) Learned predictor for per-step simulation decisions?**\nNot detailed in the available excerpt.\n\n**3) ITP-R training signal?**\nThe page mentions \"training-free and reinforcement-trained variants\" but doesn't specify the exact training signals used.\n\n**4) Benchmarks evaluated?**\nThe abstract states experiments were conducted \"across representative agent benchmarks\" but specific benchmark names aren't listed in this excerpt.\n\n**5) Main results?**\nThe abstract reports that \"ITP significantly outperforms competitive baselines\" and that \"adaptive lookahead largely enhances agents' reasoning capability.\"\n\n## Limitation\nThe arXiv abstract page provided doesn't contain sufficient technical depth to answer questions 1-3 comprehensively. The full PDF would be necessary for complete method details regarding simulation strategies, training procedures, and architectural choices.",
+    "durationMs": 4019,
+    "url": "https://arxiv.org/abs/2601.08955"
+  },
+  "sourceToolAssistantUUID": "cc0eaa5a-2eb6-412f-86a4-461956009c07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34 · 2026-05-11T23:38:30.969Z_
+
+```json
+{
+  "parentUuid": "60cd87a6-021c-4d46-ba0c-5e5ab22040a9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "6c0e5004-be24-47a6-aa43-2b57e07680d6",
+  "timestamp": "2026-05-11T23:38:30.969Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-11T23:38:33.629Z_
+
+Let me get the full paper details from the HTML version.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6c0e5004-be24-47a6-aa43-2b57e07680d6",
+  "isSidechain": false,
+  "requestId": "req_011CawfP63dCMw6hBN7j3k9N",
+  "type": "assistant",
+  "uuid": "e3eccd64-21e9-4d57-89dc-5574a727fe05",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BDw6m5sQFKvD5syqvJ1oRZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1248,
+      "cache_read_input_tokens": 36506,
+      "output_tokens": 360,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1248,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 360,
+          "cache_read_input_tokens": 36506,
+          "cache_creation_input_tokens": 1248,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1248
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-11T23:38:40.021Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01YHxWa2mWm8QTxsd7zQ8M6T`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2601.08955",
+  "prompt": "I need detailed information about the ITP (Imagine-then-Plan) method. Specifically:\n\n1. Does ITP have a K=0 or horizon=0 option where the agent SKIPS imagination/simulation entirely and acts from internal reasoning only?\n2. Does ITP-R (the reinforcement-trained variant) train a learned predictor that decides per-step the imagination horizon K? How exactly is K selected per step?\n3. What is the training signal for ITP-R? Pseudo-labels? RL reward?\n4. What benchmarks is it evaluated on? ALFWorld? ScienceWorld? Others?\n5. What are the quantitative results on each benchmark?\n6. Does ITP use the LLM itself as the world model, or an external simulator?\n7. Is there an explicit \"routing\" between internal reasoning and external simulation, or is it more about controlling simulation depth?\n\nExtract exact quotes where possible."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e3eccd64-21e9-4d57-89dc-5574a727fe05",
+  "isSidechain": false,
+  "requestId": "req_011CawfP63dCMw6hBN7j3k9N",
+  "type": "assistant",
+  "uuid": "14adc0e3-8bbf-4aff-bdf9-44bba4ca858a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BDw6m5sQFKvD5syqvJ1oRZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1248,
+      "cache_read_input_tokens": 36506,
+      "output_tokens": 360,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1248,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 360,
+          "cache_read_input_tokens": 36506,
+          "cache_creation_input_tokens": 1248,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1248
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-11T23:38:40.430Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01195mK69KwWZfqhJPLE7xpC`</summary>
+
+```json
+{
+  "query": "\"Imagine-then-Plan\" ITP agent world model adaptive lookahead ALFWorld 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "14adc0e3-8bbf-4aff-bdf9-44bba4ca858a",
+  "isSidechain": false,
+  "requestId": "req_011CawfP63dCMw6hBN7j3k9N",
+  "type": "assistant",
+  "uuid": "c19179ce-5aad-4c62-8e56-ece88b79e925",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BDw6m5sQFKvD5syqvJ1oRZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1248,
+      "cache_read_input_tokens": 36506,
+      "output_tokens": 360,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1248,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 360,
+          "cache_read_input_tokens": 36506,
+          "cache_creation_input_tokens": 1248,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1248
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-11T23:38:45.741Z_
+
+<details><summary>↩ Tool result · `toolu_01195mK69KwWZfqhJPLE7xpC`</summary>
+
+```text
+Web search results for query: ""Imagine-then-Plan" ITP agent world model adaptive lookahead ALFWorld 2026"
+
+Links: [{"title":"Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models","url":"https://arxiv.org/html/2601.08955v2"},{"title":"[2601.08955] Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models","url":"https://arxiv.org/abs/2601.08955"},{"title":"Paper page - Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models","url":"https://huggingface.co/papers/2601.08955"},{"title":"GitHub - loyiv/ITP: Code of Paper: Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models · GitHub","url":"https://github.com/loyiv/ITP"},{"title":"Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models | Takara TLDR","url":"https://tldr.takara.ai/p/2601.08955"},{"title":"(PDF) Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models","url":"https://www.researchgate.net/publication/399777126_Imagine-then-Plan_Agent_Learning_from_Adaptive_Lookahead_with_World_Models"},{"title":"Top arXiv papers","url":"https://scirate.com/?date=2026-01-15&page=18&range=3"},{"title":"Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/arxiv/2601.08955"},{"title":"ai-agent-papers/capability-papers/environment.md at main · masamasa59/ai-agent-papers","url":"https://github.com/masamasa59/ai-agent-papers/blob/main/capability-papers/environment.md"},{"title":"‪Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models‬","url":"https://scholar.google.com/citations?view_op=view_citation&hl=en&user=REIjUH0AAAAJ&citation_for_view=REIjUH0AAAAJ%3AYsMSGLbcyi4C"}]
+
+I found comprehensive information about the Imagine-then-Plan (ITP) agent framework. Here's what the search revealed:
+
+## Overview
+
+Imagine-then-Plan (ITP) is a unified framework for agent learning via lookahead imagination, where an agent's policy model interacts with the learned world model, yielding multi-step "imagined" trajectories. Since the imagination horizon may vary by tasks and stages, it introduces a novel adaptive lookahead mechanism by trading off the ultimate goal and task progress.
+
+## Problem It Addresses
+
+Recent advances in world models have shown promise for modeling future dynamics of environmental states, enabling agents to reason and act without accessing real environments. However, current methods mainly perform single-step or fixed-horizon rollouts, leaving their potential for complex task planning under-exploited.
+
+## Key Innovation
+
+ITP addresses this by introducing a learned textual world model and an adaptive lookahead mechanism, enabling the agent to "mentally rehearse" possible futures before committing actions in the real environment.
+
+## Implementation Variants
+
+ITP is instantiated with both training-free and reinforcement-trained variants.
+
+## Performance
+
+The framework was evaluated across ALFWorld, ScienceWorld, and WebShop benchmarks. Extensive experiments across representative agent benchmarks demonstrate that ITP significantly outperforms competitive baselines, and further analyses validate that the adaptive lookahead largely enhances agents' reasoning capability, providing valuable insights into addressing broader, complex tasks.
+
+The paper was published on arXiv in January 2026, with code available on GitHub.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c19179ce-5aad-4c62-8e56-ece88b79e925",
+  "isSidechain": false,
+  "promptId": "6bfca2c9-504d-4aa5-bfc1-591fd7535b04",
+  "type": "user",
+  "uuid": "69cc7a86-63ca-49de-838d-3123c2263fdd",
+  "toolUseResult": {
+    "query": "\"Imagine-then-Plan\" ITP agent world model adaptive lookahead ALFWorld 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0138c24W7gF5CXKmLzmcUJi5",
+        "content": [
+          {
+            "title": "Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models",
+            "url": "https://arxiv.org/html/2601.08955v2"
+          },
+          {
+            "title": "[2601.08955] Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models",
+            "url": "https://arxiv.org/abs/2601.08955"
+          },
+          {
+            "title": "Paper page - Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models",
+            "url": "https://huggingface.co/papers/2601.08955"
+          },
+          {
+            "title": "GitHub - loyiv/ITP: Code of Paper: Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models · GitHub",
+            "url": "https://github.com/loyiv/ITP"
+          },
+          {
+            "title": "Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models | Takara TLDR",
+            "url": "https://tldr.takara.ai/p/2601.08955"
+          },
+          {
+            "title": "(PDF) Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models",
+            "url": "https://www.researchgate.net/publication/399777126_Imagine-then-Plan_Agent_Learning_from_Adaptive_Lookahead_with_World_Models"
+          },
+          {
+            "title": "Top arXiv papers",
+            "url": "https://scirate.com/?date=2026-01-15&page=18&range=3"
+          },
+          {
+            "title": "Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/arxiv/2601.08955"
+          },
+          {
+            "title": "ai-agent-papers/capability-papers/environment.md at main · masamasa59/ai-agent-papers",
+            "url": "https://github.com/masamasa59/ai-agent-papers/blob/main/capability-papers/environment.md"
+          },
+          {
+            "title": "‪Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models‬",
+            "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=REIjUH0AAAAJ&citation_for_view=REIjUH0AAAAJ%3AYsMSGLbcyi4C"
+          }
+        ]
+      },
+      "I found comprehensive information about the Imagine-then-Plan (ITP) agent framework. Here's what the search revealed:\n\n## Overview\n\nImagine-then-Plan (ITP) is a unified framework for agent learning via lookahead imagination, where an agent's policy model interacts with the learned world model, yielding multi-step \"imagined\" trajectories. Since the imagination horizon may vary by tasks and stages, it introduces a novel adaptive lookahead mechanism by trading off the ultimate goal and task progress.\n\n## Problem It Addresses\n\nRecent advances in world models have shown promise for modeling future dynamics of environmental states, enabling agents to reason and act without accessing real environments. However, current methods mainly perform single-step or fixed-horizon rollouts, leaving their potential for complex task planning under-exploited.\n\n## Key Innovation\n\nITP addresses this by introducing a learned textual world model and an adaptive lookahead mechanism, enabling the agent to \"mentally rehearse\" possible futures before committing actions in the real environment.\n\n## Implementation Variants\n\nITP is instantiated with both training-free and reinforcement-trained variants.\n\n## Performance\n\nThe framework was evaluated across ALFWorld, ScienceWorld, and WebShop benchmarks. Extensive experiments across representative agent benchmarks demonstrate that ITP significantly outperforms competitive baselines, and further analyses validate that the adaptive lookahead largely enhances agents' reasoning capability, providing valuable insights into addressing broader, complex tasks.\n\nThe paper was published on arXiv in January 2026, with code available on GitHub."
+    ],
+    "durationSeconds": 5.306580653000041
+  },
+  "sourceToolAssistantUUID": "c19179ce-5aad-4c62-8e56-ece88b79e925",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-11T23:38:48.917Z_
+
+<details><summary>↩ Tool result · `toolu_01YHxWa2mWm8QTxsd7zQ8M6T`</summary>
+
+```text
+# ITP (Imagine-then-Plan) Method: Detailed Analysis
+
+## 1. K=0 (No Imagination) Option
+**Yes.** The method explicitly supports zero lookahead. As stated: "the agent policy is optimized over...K_t ∈ {0,1,…,K_max}" with K=0 enabling pure internal reasoning without world-model rollouts.
+
+## 2. K Selection Mechanism in ITP-R
+**Per-step learned prediction.** ITP-R trains a lightweight K-head predictor: "a linear layer built on top of a backbone LLM that predicts distributions over imagination horizons" via P_θ(K_t|s_t). At inference, "the agent samples a lookahead step K_t from the K-head predictor."
+
+## 3. Training Signal for ITP-R
+**Three-stage hybrid approach:**
+- **Stage 1:** Pseudo-labeling using the world model to score candidate horizons
+- **Stage 2:** Supervised warm-up training on pseudo-labeled pairs
+- **Stage 3:** Actor-critic RL optimization with environment rewards minus lookahead costs
+
+Quote: "we train the K-head predictor to estimate the pseudo label K̃_t, with a similar negative log-likelihood loss"
+
+## 4. Benchmarks Evaluated
+Four domains tested:
+- ALFWorld (household embodied tasks)
+- ScienceWorld (simulated science experiments)
+- WebShop (web shopping navigation)
+- StableToolBench (multi-turn tool use)
+
+## 5. Quantitative Results Summary
+
+| Benchmark | Method | Result |
+|-----------|--------|--------|
+| **ALFWorld** | ITP-R (Qwen3-8B) | 88.57% success rate |
+| **ScienceWorld** (seen) | ITP-R (Qwen3-8B) | 61.85% success rate |
+| **WebShop** | ITP-R (Qwen3-8B) | 56.95% success rate |
+| **StableToolBench** | ITP-R (Qwen3) | 68% SoPR, 54% SoWR |
+
+ITP-I (training-free variant) achieved 41.43% on AlFWorld vs. 28.57% for ReAct baseline.
+
+## 6. World Model Source
+**LLM-based.** The paper treats "textual observations as state representations" and "LLMs can be interpreted as world models" by fine-tuning on transition data: "we learn a LLM-based world model M_φ that approximates the environment dynamics."
+
+## 7. Routing Mechanism
+**Depth control, not explicit switching.** The framework enables "agents to condition decisions on both the observable present and imagined future trajectories" with adaptive depth selection rather than binary routing. The agent reasons from both concrete observations and variable-depth simulations simultaneously.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "14adc0e3-8bbf-4aff-bdf9-44bba4ca858a",
+  "isSidechain": false,
+  "promptId": "6bfca2c9-504d-4aa5-bfc1-591fd7535b04",
+  "type": "user",
+  "uuid": "8588c8c5-f91e-4a82-806d-b722353d33cd",
+  "toolUseResult": {
+    "bytes": 367208,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ITP (Imagine-then-Plan) Method: Detailed Analysis\n\n## 1. K=0 (No Imagination) Option\n**Yes.** The method explicitly supports zero lookahead. As stated: \"the agent policy is optimized over...K_t ∈ {0,1,…,K_max}\" with K=0 enabling pure internal reasoning without world-model rollouts.\n\n## 2. K Selection Mechanism in ITP-R\n**Per-step learned prediction.** ITP-R trains a lightweight K-head predictor: \"a linear layer built on top of a backbone LLM that predicts distributions over imagination horizons\" via P_θ(K_t|s_t). At inference, \"the agent samples a lookahead step K_t from the K-head predictor.\"\n\n## 3. Training Signal for ITP-R\n**Three-stage hybrid approach:**\n- **Stage 1:** Pseudo-labeling using the world model to score candidate horizons\n- **Stage 2:** Supervised warm-up training on pseudo-labeled pairs\n- **Stage 3:** Actor-critic RL optimization with environment rewards minus lookahead costs\n\nQuote: \"we train the K-head predictor to estimate the pseudo label K̃_t, with a similar negative log-likelihood loss\"\n\n## 4. Benchmarks Evaluated\nFour domains tested:\n- ALFWorld (household embodied tasks)\n- ScienceWorld (simulated science experiments)\n- WebShop (web shopping navigation)\n- StableToolBench (multi-turn tool use)\n\n## 5. Quantitative Results Summary\n\n| Benchmark | Method | Result |\n|-----------|--------|--------|\n| **ALFWorld** | ITP-R (Qwen3-8B) | 88.57% success rate |\n| **ScienceWorld** (seen) | ITP-R (Qwen3-8B) | 61.85% success rate |\n| **WebShop** | ITP-R (Qwen3-8B) | 56.95% success rate |\n| **StableToolBench** | ITP-R (Qwen3) | 68% SoPR, 54% SoWR |\n\nITP-I (training-free variant) achieved 41.43% on AlFWorld vs. 28.57% for ReAct baseline.\n\n## 6. World Model Source\n**LLM-based.** The paper treats \"textual observations as state representations\" and \"LLMs can be interpreted as world models\" by fine-tuning on transition data: \"we learn a LLM-based world model M_φ that approximates the environment dynamics.\"\n\n## 7. Routing Mechanism\n**Depth control, not explicit switching.** The framework enables \"agents to condition decisions on both the observable present and imagined future trajectories\" with adaptive depth selection rather than binary routing. The agent reasons from both concrete observations and variable-depth simulations simultaneously.",
+    "durationMs": 8892,
+    "url": "https://arxiv.org/html/2601.08955"
+  },
+  "sourceToolAssistantUUID": "14adc0e3-8bbf-4aff-bdf9-44bba4ca858a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-11T23:39:49.402Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent. Now I have the critical information about ITP. Let me summarize what I've found:
+
+**ITP (Imagine-then-Plan):**
+- Has K=0 option (skip imagination, act from internal reasoning only)
+- ITP-R trains a K-head predictor (linear layer on backbone LLM) to predict per-step imagination horizon K_t ∈ {0, 1, ..., K_max}
+- Training: pseudo-labeling → SFT warm-up → Actor-critic RL
+- Evaluated on ALFWorld (88.57%), ScienceWorld (61.85%), WebShop (56.95%), StableToolBench
+
+
+- Uses an LLM-based world model rather than an external simulator, with a depth control mechanism that's more nuanced than binary routing
+
+This is highly relevant to SimGate—while both approaches can skip simulation entirely, ITP-R uses a learned world model and continuous depth selection, whereas SimGate routes between fast internal reasoning, deeper internal reasoning, and external simulation.
+
+Looking at the performance comparison, SimGate targets over 92.5% on ALFWorld compared to ITP-R's 88.57%, and it achieves this with a smaller backbone (Qwen2.5-7B vs Qwen3-8B) using only supervised fine-tuning rather than the pseudo-labeling and reinforcement learning pipeline that ITP-R requires.
+
+The proposal mischaracterizes ITP-R by claiming it always simulates with adaptive depth, but that's inaccurate—ITP-R explicitly includes K=0 as an option for no simulation.
+
+The real architectural difference is that ITP relies on an LLM-based world model prone to hallucination, while SimGate proposes using ALFWorld's deterministic TextWorld simulator for exact state transitions. Since ITP only achieves 88.57% on ALFWorld compared to CogRouter's 92.5%, there's a legitimate argument that SimGate's deterministic simulator could outperform ITP's learned world model by avoiding hallucinations—but the proposal needs to frame this contribution more clearly rather than misrepresenting ITP's capabilities.
+
+The key insight is that using the actual environment simulator for lookahead is fundamentally different from using a learned approximation: one provides exact dynamics while the other can hallucinate. The novelty hinges on whether routing between internal reasoning and a deterministic external simulator (rather than an LLM-based world model) constitutes a meaningful contribution.
+
+However, there's a practical limitation here. Using the real environment for lookahead is essentially tree search with true dynamics, which is well-established in RL through MCTS. The value of exact simulation is fairly predictable, so the novelty of learning when to invoke it becomes more incremental. Plus, this approach assumes access to a perfect simulator—something rarely available in real-world deployment scenarios, which raises questions about generalizability beyond controlled benchmarks like ALFWorld.
+
+Now I'm working through the compute requirements more carefully, particularly the trajectory collection phase and what those numbers actually mean for feasibility. Looking at the 16-day timeline, I'm mapping out the work across setup, data collection, model training, baseline comparisons, and writing — it's tight for one person but feasible. The bigger concern is that ITP-R already does learned routing between no simulation and full simulation, so the core novelty of routing to an external simulator versus the baseline's internal approach is narrower than the proposal suggests.
+
+Scoring this out: novelty drops to 2.5/5 because the gap claim doesn't hold up against ITP-R's existing per-step routing, though the deterministic simulator routing and three-way decision do add something incremental. Feasibility sits at 3.5/5 — the compute budget works and the timeline is aggressive but doable, though reproducing CogRouter might hit snags if checkpoints aren't available. Clarity is also 3.5/5 since the proposal is well-organized but the mischaracterization of ITP's capabilities damages credibility.
+
+Impact is the real concern at 2.5/5 — testing on just ALFWorld with marginal gains over 92.5% baseline, and the contribution is more about swapping in a deterministic simulator than introducing new methodology. The approach doesn't generalize well since most real tasks don't have perfect simulators available.
+
+That averages to 3.0 overall, so this needs revision. The core problems are the ITP mischaracterization, the narrower novelty gap than claimed, and the limited scope of evaluation. I need to write a complete review that addresses these issues directly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8588c8c5-f91e-4a82-806d-b722353d33cd",
+  "isSidechain": false,
+  "requestId": "req_011CawfQQpWTmPgTYseZXKr8",
+  "type": "assistant",
+  "uuid": "8e714a45-82a2-40c1-a596-9b7e21f8f063",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013pZJ6LMG8wzFJcRmczZQGN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 968,
+      "cache_creation_input_tokens": 1077,
+      "cache_read_input_tokens": 37754,
+      "output_tokens": 2328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1077,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 968,
+          "output_tokens": 2328,
+          "cache_read_input_tokens": 37754,
+          "cache_creation_input_tokens": 1077,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1077
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-11T23:39:49.405Z_
+
+Now I have comprehensive evidence. Let me do one final search to check for any very recent concurrent work (last 3 months) that might further threaten novelty.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8e714a45-82a2-40c1-a596-9b7e21f8f063",
+  "isSidechain": false,
+  "requestId": "req_011CawfQQpWTmPgTYseZXKr8",
+  "type": "assistant",
+  "uuid": "b4eb3576-697c-4620-8a2b-12fa21be185c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013pZJ6LMG8wzFJcRmczZQGN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 968,
+      "cache_creation_input_tokens": 1077,
+      "cache_read_input_tokens": 37754,
+      "output_tokens": 2328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1077,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 968,
+          "output_tokens": 2328,
+          "cache_read_input_tokens": 37754,
+          "cache_creation_input_tokens": 1077,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1077
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-11T23:39:49.407Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019EvnNXR3TBiudXF8pNjN8C`</summary>
+
+```json
+{
+  "query": "selective world model invocation agent routing internal reasoning external simulation 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b4eb3576-697c-4620-8a2b-12fa21be185c",
+  "isSidechain": false,
+  "requestId": "req_011CawfQQpWTmPgTYseZXKr8",
+  "type": "assistant",
+  "uuid": "b1ff9e4f-e60d-4142-a687-a6945a051848",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013pZJ6LMG8wzFJcRmczZQGN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 968,
+      "cache_creation_input_tokens": 1077,
+      "cache_read_input_tokens": 37754,
+      "output_tokens": 2328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1077,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 968,
+          "output_tokens": 2328,
+          "cache_read_input_tokens": 37754,
+          "cache_creation_input_tokens": 1077,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1077
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-11T23:39:49.835Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016516gY9gJGYskcshDWwN6h`</summary>
+
+```json
+{
+  "query": "\"value of simulation\" OR \"when to simulate\" LLM agent planning 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b1ff9e4f-e60d-4142-a687-a6945a051848",
+  "isSidechain": false,
+  "requestId": "req_011CawfQQpWTmPgTYseZXKr8",
+  "type": "assistant",
+  "uuid": "e8bfb65c-2f6a-4c98-9dba-6a0d604b4bcf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013pZJ6LMG8wzFJcRmczZQGN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 968,
+      "cache_creation_input_tokens": 1077,
+      "cache_read_input_tokens": 37754,
+      "output_tokens": 2328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1077,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 968,
+          "output_tokens": 2328,
+          "cache_read_input_tokens": 37754,
+          "cache_creation_input_tokens": 1077,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1077
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "e8bfb65c-2f6a-4c98-9dba-6a0d604b4bcf",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify SimGate routing framework for LLM agents",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5"
+}
+```
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-11T23:39:58.490Z_
+
+<details><summary>↩ Tool result · `toolu_016516gY9gJGYskcshDWwN6h`</summary>
+
+```text
+Web search results for query: ""value of simulation" OR "when to simulate" LLM agent planning 2026"
+
+Links: [{"title":"PoliSim@CHI 2026: LLM Agent Simulation for Policy | Proceedings of the Extended Abstracts of the 2026 CHI Conference on Human Factors in Computing Systems","url":"https://dl.acm.org/doi/full/10.1145/3772363.3778738"},{"title":"Large language models empowered agent-based modeling and simulation: a survey and perspectives | Humanities and Social Sciences Communications","url":"https://www.nature.com/articles/s41599-024-03611-3"},{"title":"[2603.06064] Agentic LLM Planning via Step-Wise PDDL Simulation: An Empirical Characterisation","url":"https://arxiv.org/abs/2603.06064"},{"title":"A self-correcting multi-agent LLM framework for language-based physics simulation and explanation | npj Artificial Intelligence","url":"https://www.nature.com/articles/s44387-025-00057-z"},{"title":"Leveraging LLM-based multi-agent simulations to boost participatory design education: An experimental exploration in residential area design - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S2210670725006353"},{"title":"LLMs: the new frontier in generative agent-based simulation | Amazon Web Services","url":"https://aws.amazon.com/blogs/hpc/llms-the-new-frontier-in-generative-agent-based-simulation/"},{"title":"[2509.21868] What Makes LLM Agent Simulations Useful for Policy Practice? An Iterative Design Study in Emergency Preparedness","url":"https://arxiv.org/abs/2509.21868"},{"title":"Boosting Offline MARL under Imbalanced Datasets via ...","url":"https://www.lamda.nju.edu.cn/lilh/file/codi.pdf"},{"title":"We Need Strong Preconditions For Using Simulations In Policy","url":"https://arxiv.org/html/2604.07838v1"},{"title":"Large Language Models Empowered Agent-based Modeling and Simulation: A Survey and Perspectives","url":"https://arxiv.org/html/2312.11970v1"}]
+
+I've completed the web search for "value of simulation" OR "when to simulate" LLM agent planning 2026. Here are the key findings:
+
+## Value of LLM Agent Simulations
+
+LLM agent simulations can embed institutional realities and local knowledge while representing heterogeneous agents with diverse reasoning and communication styles, making them promising testbeds for policy that offer ways to stress-test interventions and anticipate unintended consequences.
+
+LLMs show promise in enhancing agent-based simulations by enabling more nuanced and realistic representations of agents' decision-making processes, communication, and adaptation within simulated environments.
+
+## Key Capabilities for Planning
+
+Large language model-empowered agents exhibit heightened reasoning capabilities, enabling them to make more informed decisions, and can autonomously take actions and make plans for given goals without explicit programming or predefined rules.
+
+Simulating actions in LLM-empowered agent-based systems requires planning, memory, and reflection, with agents undertaking comprehensive analysis of tasks and breaking them into manageable subtasks, which leverages the LLM's training corpus to efficiently apply relevant knowledge and recognize patterns.
+
+## When to Simulate (Policy Practice)
+
+Policymakers must often act under conditions of deep uncertainty, such as emergency response, where predicting specific policy impacts apriori is implausible, and LLM agent simulations have been proposed as tools to support policymakers under these conditions.
+
+Rather than producing predictive forecasts, simulations can support policy practice by shaping volunteer training, evacuation procedures, and infrastructure planning.
+
+## Important Caveats
+
+Simulations can be powerful only when we can trust them to reflect reality; there are struggles in ensuring simulated agents exhibit realistic behaviors rather than stereotypes, scaling simulations to capture emergent population-level dynamics, and deciding when to trust simulated outcomes to inform real decisions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e8bfb65c-2f6a-4c98-9dba-6a0d604b4bcf",
+  "isSidechain": false,
+  "promptId": "6bfca2c9-504d-4aa5-bfc1-591fd7535b04",
+  "type": "user",
+  "uuid": "529a97ee-af8a-4bb3-96dd-07d4cc2b16c3",
+  "toolUseResult": {
+    "query": "\"value of simulation\" OR \"when to simulate\" LLM agent planning 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AM7JDSU9X4JbFi587r71Bs",
+        "content": [
+          {
+            "title": "PoliSim@CHI 2026: LLM Agent Simulation for Policy | Proceedings of the Extended Abstracts of the 2026 CHI Conference on Human Factors in Computing Systems",
+            "url": "https://dl.acm.org/doi/full/10.1145/3772363.3778738"
+          },
+          {
+            "title": "Large language models empowered agent-based modeling and simulation: a survey and perspectives | Humanities and Social Sciences Communications",
+            "url": "https://www.nature.com/articles/s41599-024-03611-3"
+          },
+          {
+            "title": "[2603.06064] Agentic LLM Planning via Step-Wise PDDL Simulation: An Empirical Characterisation",
+            "url": "https://arxiv.org/abs/2603.06064"
+          },
+          {
+            "title": "A self-correcting multi-agent LLM framework for language-based physics simulation and explanation | npj Artificial Intelligence",
+            "url": "https://www.nature.com/articles/s44387-025-00057-z"
+          },
+          {
+            "title": "Leveraging LLM-based multi-agent simulations to boost participatory design education: An experimental exploration in residential area design - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S2210670725006353"
+          },
+          {
+            "title": "LLMs: the new frontier in generative agent-based simulation | Amazon Web Services",
+            "url": "https://aws.amazon.com/blogs/hpc/llms-the-new-frontier-in-generative-agent-based-simulation/"
+          },
+          {
+            "title": "[2509.21868] What Makes LLM Agent Simulations Useful for Policy Practice? An Iterative Design Study in Emergency Preparedness",
+            "url": "https://arxiv.org/abs/2509.21868"
+          },
+          {
+            "title": "Boosting Offline MARL under Imbalanced Datasets via ...",
+            "url": "https://www.lamda.nju.edu.cn/lilh/file/codi.pdf"
+          },
+          {
+            "title": "We Need Strong Preconditions For Using Simulations In Policy",
+            "url": "https://arxiv.org/html/2604.07838v1"
+          },
+          {
+            "title": "Large Language Models Empowered Agent-based Modeling and Simulation: A Survey and Perspectives",
+            "url": "https://arxiv.org/html/2312.11970v1"
+          }
+        ]
+      },
+      "I've completed the web search for \"value of simulation\" OR \"when to simulate\" LLM agent planning 2026. Here are the key findings:\n\n## Value of LLM Agent Simulations\n\nLLM agent simulations can embed institutional realities and local knowledge while representing heterogeneous agents with diverse reasoning and communication styles, making them promising testbeds for policy that offer ways to stress-test interventions and anticipate unintended consequences.\n\nLLMs show promise in enhancing agent-based simulations by enabling more nuanced and realistic representations of agents' decision-making processes, communication, and adaptation within simulated environments.\n\n## Key Capabilities for Planning\n\nLarge language model-empowered agents exhibit heightened reasoning capabilities, enabling them to make more informed decisions, and can autonomously take actions and make plans for given goals without explicit programming or predefined rules.\n\nSimulating actions in LLM-empowered agent-based systems requires planning, memory, and reflection, with agents undertaking comprehensive analysis of tasks and breaking them into manageable subtasks, which leverages the LLM's training corpus to efficiently apply relevant knowledge and recognize patterns.\n\n## When to Simulate (Policy Practice)\n\nPolicymakers must often act under conditions of deep uncertainty, such as emergency response, where predicting specific policy impacts apriori is implausible, and LLM agent simulations have been proposed as tools to support policymakers under these conditions.\n\nRather than producing predictive forecasts, simulations can support policy practice by shaping volunteer training, evacuation procedures, and infrastructure planning.\n\n## Important Caveats\n\nSimulations can be powerful only when we can trust them to reflect reality; there are struggles in ensuring simulated agents exhibit realistic behaviors rather than stereotypes, scaling simulations to capture emergent population-level dynamics, and deciding when to trust simulated outcomes to inform real decisions."
+    ],
+    "durationSeconds": 8.652020554000046
+  },
+  "sourceToolAssistantUUID": "e8bfb65c-2f6a-4c98-9dba-6a0d604b4bcf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-11T23:39:59.894Z_
+
+<details><summary>↩ Tool result · `toolu_019EvnNXR3TBiudXF8pNjN8C`</summary>
+
+```text
+Web search results for query: "selective world model invocation agent routing internal reasoning external simulation 2026 arXiv"
+
+Links: [{"title":"AgentSim: A Platform for Verifiable Agent-Trace Simulation","url":"https://arxiv.org/html/2604.26653"},{"title":"Current Agents Fail to Leverage World Model as Tool for Foresight","url":"https://arxiv.org/html/2601.03905"},{"title":"GitHub - Ed1sonChen/DailyArxiv · GitHub","url":"https://github.com/Ed1sonChen/DailyArxiv"},{"title":"Preprint. Accepted at the ICLR 2026 LIT Workshop","url":"https://arxiv.org/pdf/2602.09924"},{"title":"Agent models: Internalizing Chain-of-Action Generation into Reasoning models","url":"https://arxiv.org/html/2503.06580v1"},{"title":"AI Agent Systems: Architectures, Applications, and Evaluation","url":"https://arxiv.org/html/2601.01743v1"},{"title":"Agent World Model: Infinity Synthetic Environments for Agentic Reinforcement Learning","url":"https://arxiv.org/html/2602.10090v1"},{"title":"GitHub - VoltAgent/awesome-ai-agent-papers: A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, and autonomous systems. · GitHub","url":"https://github.com/VoltAgent/awesome-ai-agent-papers"},{"title":"Agentic Services Computing","url":"https://arxiv.org/html/2509.24380v2"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2512.20745"}]
+
+I found several relevant research papers from 2026 and recent arXiv submissions related to your search query. Here are the key findings:
+
+## Highly Relevant Paper
+
+A paper on "Current Agents Fail to Leverage World Model as Tool for Foresight" discusses dedicated mechanisms that enforce a structured interaction loop between reasoning and foresight, including a Decider that determines whether to invoke the world model or execute a real action, a Reflector that evaluates observations from real execution or simulation, and a Memory component that maintains task objectives. The work notes that without fine-tuning it is difficult to reshape an agent's default behavior through prompting alone, and training is necessary to improve world model invocation.
+
+## Related Research Areas
+
+Another paper on agent models discusses incorporating an internal world model to enable agents to simulate the environment, with a framework that enables progressive capability injection—from step-level action triggering to trajectory-level optimization, and from simulated exploration to real environment interaction.
+
+A comprehensive survey on AI Agent Systems organizes prior work into a unified taxonomy spanning agent components including policy/LLM core, memory, world models, planners, tool routers, and critics.
+
+Recent work on Agent World Models discusses how as agentic RL grows, the need for diverse and executable environments becomes more urgent, with environment synthesis largely following two directions: LLM-based simulation and programming-based synthesis.
+
+These papers collectively address selective invocation of world models, agent routing through internal reasoning versus external simulation, and the challenge of training agents to make appropriate decisions about when and how to use simulation capabilities.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b1ff9e4f-e60d-4142-a687-a6945a051848",
+  "isSidechain": false,
+  "promptId": "6bfca2c9-504d-4aa5-bfc1-591fd7535b04",
+  "type": "user",
+  "uuid": "55c4a87d-b686-4665-acb0-b3e0d56910cc",
+  "toolUseResult": {
+    "query": "selective world model invocation agent routing internal reasoning external simulation 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DhYaysJvrQ8jKThfGjLuB8",
+        "content": [
+          {
+            "title": "AgentSim: A Platform for Verifiable Agent-Trace Simulation",
+            "url": "https://arxiv.org/html/2604.26653"
+          },
+          {
+            "title": "Current Agents Fail to Leverage World Model as Tool for Foresight",
+            "url": "https://arxiv.org/html/2601.03905"
+          },
+          {
+            "title": "GitHub - Ed1sonChen/DailyArxiv · GitHub",
+            "url": "https://github.com/Ed1sonChen/DailyArxiv"
+          },
+          {
+            "title": "Preprint. Accepted at the ICLR 2026 LIT Workshop",
+            "url": "https://arxiv.org/pdf/2602.09924"
+          },
+          {
+            "title": "Agent models: Internalizing Chain-of-Action Generation into Reasoning models",
+            "url": "https://arxiv.org/html/2503.06580v1"
+          },
+          {
+            "title": "AI Agent Systems: Architectures, Applications, and Evaluation",
+            "url": "https://arxiv.org/html/2601.01743v1"
+          },
+          {
+            "title": "Agent World Model: Infinity Synthetic Environments for Agentic Reinforcement Learning",
+            "url": "https://arxiv.org/html/2602.10090v1"
+          },
+          {
+            "title": "GitHub - VoltAgent/awesome-ai-agent-papers: A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, and autonomous systems. · GitHub",
+            "url": "https://github.com/VoltAgent/awesome-ai-agent-papers"
+          },
+          {
+            "title": "Agentic Services Computing",
+            "url": "https://arxiv.org/html/2509.24380v2"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2512.20745"
+          }
+        ]
+      },
+      "I found several relevant research papers from 2026 and recent arXiv submissions related to your search query. Here are the key findings:\n\n## Highly Relevant Paper\n\nA paper on \"Current Agents Fail to Leverage World Model as Tool for Foresight\" discusses dedicated mechanisms that enforce a structured interaction loop between reasoning and foresight, including a Decider that determines whether to invoke the world model or execute a real action, a Reflector that evaluates observations from real execution or simulation, and a Memory component that maintains task objectives. The work notes that without fine-tuning it is difficult to reshape an agent's default behavior through prompting alone, and training is necessary to improve world model invocation.\n\n## Related Research Areas\n\nAnother paper on agent models discusses incorporating an internal world model to enable agents to simulate the environment, with a framework that enables progressive capability injection—from step-level action triggering to trajectory-level optimization, and from simulated exploration to real environment interaction.\n\nA comprehensive survey on AI Agent Systems organizes prior work into a unified taxonomy spanning agent components including policy/LLM core, memory, world models, planners, tool routers, and critics.\n\nRecent work on Agent World Models discusses how as agentic RL grows, the need for diverse and executable environments becomes more urgent, with environment synthesis largely following two directions: LLM-based simulation and programming-based synthesis.\n\nThese papers collectively address selective invocation of world models, agent routing through internal reasoning versus external simulation, and the challenge of training agents to make appropriate decisions about when and how to use simulation capabilities."
+    ],
+    "durationSeconds": 10.48044009300007
+  },
+  "sourceToolAssistantUUID": "b1ff9e4f-e60d-4142-a687-a6945a051848",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-11T23:40:07.886Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01FrsvJKMo6sxRYR4xJ7ja7V`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2601.03905",
+  "prompt": "Extract the full abstract, key claims, and method of this paper \"Current Agents Fail to Leverage World Model as Tool for Foresight\". Specifically: 1) What is the core finding? 2) Does it propose a method for selective/conditional world model invocation? 3) Does it train a \"Decider\" that learns when to invoke the world model vs act directly? 4) What benchmarks are used? 5) What are the results? 6) Is there a learned routing mechanism?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "55c4a87d-b686-4665-acb0-b3e0d56910cc",
+  "isSidechain": false,
+  "requestId": "req_011CawfVeLVbEq3shYDCTRXs",
+  "type": "assistant",
+  "uuid": "a16da521-0496-4896-a80e-0ddc5115e919",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GQ8seJ5wdDFsvfTo6sh1qV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1032,
+      "cache_creation_input_tokens": 4119,
+      "cache_read_input_tokens": 38831,
+      "output_tokens": 194,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4119,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1032,
+          "output_tokens": 194,
+          "cache_read_input_tokens": 38831,
+          "cache_creation_input_tokens": 4119,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4119
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-11T23:40:11.994Z_
+
+<details><summary>↩ Tool result · `toolu_01FrsvJKMo6sxRYR4xJ7ja7V`</summary>
+
+```text
+# Analysis of "Current Agents Fail to Leverage World Model as Tool for Foresight"
+
+## 1. Core Finding
+The research demonstrates that contemporary agents built on vision-language models struggle to effectively utilize generative world models as external simulation tools. Key observations include:
+- Agents invoke simulation less than 1% of the time
+- Approximately 15% frequency of misusing predicted rollouts
+- Performance degradation up to 5% when simulation is enforced or available
+
+## 2. Selective/Conditional Invocation Method
+The abstract does not explicitly describe a proposed method for selective world model invocation. Instead, it identifies this as a critical bottleneck: "the primary bottleneck lies in the agents' capacity to decide when to simulate."
+
+## 3. "Decider" Component
+Based on the provided content, there is no mention of training a learned "Decider" module or similar routing mechanism that distinguishes between invoking the world model versus acting directly.
+
+## 4. Benchmarks
+The paper evaluates performance across "diverse agentic and visual question answering tasks," but specific benchmark names are not detailed in this excerpt.
+
+## 5. Results
+The findings underscore three critical failures: deciding when simulation is appropriate, interpreting predicted outcomes, and integrating foresight into subsequent reasoning steps.
+
+## 6. Learned Routing Mechanism
+No learned routing mechanism is described in the provided abstract or metadata.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a16da521-0496-4896-a80e-0ddc5115e919",
+  "isSidechain": false,
+  "promptId": "6bfca2c9-504d-4aa5-bfc1-591fd7535b04",
+  "type": "user",
+  "uuid": "53b269f4-a19a-4d37-b6b6-d4f681f67abf",
+  "toolUseResult": {
+    "bytes": 47154,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of \"Current Agents Fail to Leverage World Model as Tool for Foresight\"\n\n## 1. Core Finding\nThe research demonstrates that contemporary agents built on vision-language models struggle to effectively utilize generative world models as external simulation tools. Key observations include:\n- Agents invoke simulation less than 1% of the time\n- Approximately 15% frequency of misusing predicted rollouts\n- Performance degradation up to 5% when simulation is enforced or available\n\n## 2. Selective/Conditional Invocation Method\nThe abstract does not explicitly describe a proposed method for selective world model invocation. Instead, it identifies this as a critical bottleneck: \"the primary bottleneck lies in the agents' capacity to decide when to simulate.\"\n\n## 3. \"Decider\" Component\nBased on the provided content, there is no mention of training a learned \"Decider\" module or similar routing mechanism that distinguishes between invoking the world model versus acting directly.\n\n## 4. Benchmarks\nThe paper evaluates performance across \"diverse agentic and visual question answering tasks,\" but specific benchmark names are not detailed in this excerpt.\n\n## 5. Results\nThe findings underscore three critical failures: deciding when simulation is appropriate, interpreting predicted outcomes, and integrating foresight into subsequent reasoning steps.\n\n## 6. Learned Routing Mechanism\nNo learned routing mechanism is described in the provided abstract or metadata.",
+    "durationMs": 4107,
+    "url": "https://arxiv.org/abs/2601.03905"
+  },
+  "sourceToolAssistantUUID": "a16da521-0496-4896-a80e-0ddc5115e919",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-11T23:41:06.608Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is very interesting. The paper "Current Agents Fail to Leverage World Model as Tool for Foresight" (Qian et al., 2026) identifies exactly the problem SimGate is trying to solve — agents can't decide when to simulate — and documents the performance degradation of up to 5% when simulation is enforced. This is actually cited by SimGate ("forced unconditional simulation degrades performance by up to 5% (Qian et al., 2026)").
+
+But importantly, this paper identifies the problem WITHOUT proposing a learned solution. 
+
+The paper pinpoints that "the primary bottleneck lies in the agents' capacity to decide when to simulate," which directly validates SimGate's core motivation. Now I'm compiling the verified claims across all these papers to finalize my assessment.
+
+I've confirmed the key metrics: CogRouter hits 92.5% on ALFWorld and 72.0% on ScienceWorld, ARES achieves 52.7% token reduction with Qwen3-1.7B, and MTRouter surpasses GPT-5 on ScienceWorld at ACL 2026. The EMNLP 2026 deadline is May 25, Qwen3-1.7B is available, LangGraph supports conditional routing, and the SFT cost of 10 hours on H100 for 1.7B models on 30K examples checks out. Qian et al. 2026 confirms that forced unconditional simulation degrades performance by up to 5%.
+
+But there's a critical mischaracterization I need to flag: SimGate claims ITP always simulates and only adapts depth through ITP-R, but that's inaccurate. ITP-R's K-head predictor actually learns per-step whether to skip imagination entirely (K=0) or simulate with a specific horizon (K>0)—it's a learned router, not just a depth adapter.
+
+The real distinctions between ITP and SimGate are more nuanced: ITP relies on an LLM-based world model that's learned but approximate, while SimGate uses a deterministic TextWorld simulator that's exact and hallucination-free. ITP's routing decides on simulation depth across a continuous range, whereas SimGate chooses between modalities like fast-internal, deep-internal, or external simulation. ITP's router is a linear layer on the backbone versus SimGate's separate Qwen3-1.7B model, and ITP combines SFT with RL training while SimGate uses SFT alone. Performance-wise, ITP achieves 88.57% on ALFWorld with Qwen3-8B, but CogRouter surpasses that at 92.5%.
+
+The lower performance of ITP's LLM-based imagination actually validates SimGate's core argument—that deterministic external simulation might outperform learned world models. So while the original novelty claim doesn't hold up, there's a narrower genuine contribution: routing between internal reasoning and a deterministic external simulator as complementary modalities using a lightweight separate router trained with SFT only. The insight that deterministic simulation provides value where ITP's LLM-based approach doesn't is real, though it's more of an application-level novelty—adapting the routing concept to a different type of world model rather than a fundamental breakthrough.
+
+Now I'm seeing some practical limitations that weaken the work. ALFWorld is already saturated with CogRouter at 92.5%, so marginal improvements won't be that compelling without additional benchmarks to demonstrate broader impact. The bigger issue is that deterministic simulators like TextWorld are rare—most real-world agent tasks don't have them, which severely limits how far this approach can generalize. There's also the engineering challenge of implementing state save and restore for lookahead in TextWorld since it doesn't have built-in state forking. On the positive side, CogRouter's code is available and reasonably well-maintained, so reproducing the baseline should be feasible.
+
+The core novelty claim is actually problematic—ITP-R already does learned per-step routing including K=0 cases, so that gap doesn't hold up. What remains is genuine but incremental: routing to a deterministic simulator instead of an LLM world model, three-way modality selection, and a lightweight router. This feels more like an application-level contribution than a methodological advance. Feasibility sits at a moderate level—the compute budget is tight but realistic at 180 hours on H100s, and the timeline is aggressive though achievable with existing code. The main risks are the state save/restore implementation for lookahead and whether the training checkpoints will be released, since reproducing CoSFT and CoPO training from scratch would be prohibitively expensive.
+
+The proposal is well-structured and responds to earlier feedback, but that fundamental mischaracterization of ITP as "always simulating" when it actually does learned routing undermines the entire gap argument and makes the novelty case misleading. On impact, we're looking at a single benchmark with only marginal expected improvements over the 92.5% CogRouter baseline, and the approach has limited generalizability since most tasks don't have deterministic simulators available. The short paper format also constrains how deep the contribution can go, though the underlying insight about when external deterministic simulation helps versus internal reasoning is interesting in principle, just too narrow in scope.
+
+The core fixes are clear: correct the ITP characterization to acknowledge its K=0 support and learned predictor, reframe the novelty as routing to deterministic external simulation versus ITP's LLM-based world model, add ITP-R as a direct baseline since it achieves 88.57% on ALFWorld, and tackle the generalizability concern head-on. The real question is whether these fixes are sufficient or if the novelty problem is more fundamental. I think it's actually fixable—the generator can position SimGate around this deterministic simulation routing distinction, but I need to verify whether that positioning is strong enough to justify publication even after revision.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "53b269f4-a19a-4d37-b6b6-d4f681f67abf",
+  "isSidechain": false,
+  "requestId": "req_011CawfWXyY3J81DMPuQsCGJ",
+  "type": "assistant",
+  "uuid": "b1a085f7-bc66-4e26-924a-4f06c8f5eebe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NTuHtCEU5AMowiZt7F4MRB",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1549,
+      "cache_read_input_tokens": 42950,
+      "output_tokens": 4108,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1549,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4108,
+          "cache_read_input_tokens": 42950,
+          "cache_creation_input_tokens": 1549,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1549
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-11T23:41:54.743Z_
+
+Now I have all the evidence I need. Let me synthesize my findings into the final review.
+
+---
+
+**Critical finding: ITP-R (Imagine-then-Plan, arXiv 2601.08955) directly contradicts the proposal's gap claim.** ITP-R trains a K-head predictor that selects per-step imagination horizon K_t ∈ {0, 1, ..., K_max}, where **K=0 explicitly means skip simulation and act from internal reasoning only**. This IS learned per-step routing between internal reasoning and world model invocation. The proposal's claim that "ITP (2026) always simulates but adapts depth with ITP-R" is factually incorrect.
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {
+      "score": 2,
+      "rationale": "The core gap claim — 'no method learns per-step routing between internal reasoning and external world model invocation' — is invalid. ITP-R (arXiv 2601.08955, Jan 2026) trains a K-head predictor with K∈{0,...,K_max} where K=0 = skip simulation entirely, which IS learned per-step routing. The proposal mischaracterizes ITP as 'always simulates.' Remaining novelty (deterministic external simulator vs LLM world model, three-way modality selection, separate Qwen3-1.7B router) is genuine but incremental — an application-level configuration change, not a new methodology."
+    },
+    "feasibility": {
+      "score": 4,
+      "rationale": "The revision successfully addresses R1's constraint violations: 180h H100 within 200h budget, EMNLP 2026 ARR deadline verified (May 25), SFT-only training is realistic (~10h for 1.7B on 30K examples). All components verified available (Qwen3-1.7B, LangGraph, CogRouter code, ALFWorld TextWorld). Main risk: ALFWorld lacks built-in state forking for lookahead, requiring custom save/restore implementation."
+    },
+    "clarity": {
+      "score": 3,
+      "rationale": "Well-structured proposal that comprehensively addresses R1 feedback. However, the critical mischaracterization of ITP undermines the entire gap argument and makes the novelty claim misleading. The landscape section is thorough but this factual error damages credibility — a reviewer familiar with ITP would immediately flag this."
+    },
+    "impact": {
+      "score": 2,
+      "rationale": "Limited to a single primary benchmark (ALFWorld) where CogRouter already achieves 92.5%. Marginal gains on a near-saturated benchmark are unlikely to excite reviewers. The deterministic-simulator assumption severely limits generalizability — most real-world agent tasks lack perfect simulators, so the method's practical applicability is narrow. ITP-R achieves only 88.57% on ALFWorld, suggesting LLM-based world models already underperform pure internal reasoning (CogRouter), which weakens the motivation for any world-model routing approach on this benchmark."
+    }
+  },
+  "issues": [
+    "CRITICAL MISCHARACTERIZATION: The proposal states 'ITP (2026) always simulates but adapts depth with ITP-R.' This is factually wrong. ITP-R's K-head predictor selects K_t ∈ {0,1,...,K_max} per step, where K=0 explicitly means NO simulation — the agent acts from internal reasoning alone. ITP-R IS a learned per-step router between 'no simulation' and 'simulation at various depths.' The proposal's core gap claim ('no existing work learns per-step routing between internal reasoning and external world model invocation') is therefore invalid.",
+    "CRITICAL MISSING BASELINE: ITP-R (arXiv 2601.08955) achieves 88.57% on ALFWorld with Qwen3-8B using learned per-step simulation gating. This is the single most important baseline for SimGate's claimed contribution and must be included in experiments. Its lower performance vs CogRouter (88.57% vs 92.5%) actually raises a concerning question: if learned simulation routing (ITP-R) already underperforms pure internal adaptation (CogRouter) on ALFWorld, what evidence suggests SimGate's deterministic-simulator variant will reverse this trend?",
+    "NOVELTY GAP NARROWER THAN CLAIMED: After accounting for ITP-R (learned K=0/K>0 routing), the remaining novelty reduces to: (a) routing to a deterministic external simulator vs LLM world model, (b) three-way modality selection vs depth selection, (c) separate router model vs backbone K-head. These are configuration-level differences, not methodological contributions. A short paper could possibly carry this, but only with an honest framing.",
+    "GENERALIZABILITY CONCERN: The approach fundamentally depends on having access to a deterministic external simulator (ALFWorld's TextWorld). Most real-world agent tasks (web navigation, coding, API interaction) lack such simulators. The paper needs to address: under what conditions does this approach transfer? Without this discussion, reviewers will question practical relevance.",
+    "AVIC (Yu et al., Feb 2026) NOT ADEQUATELY DIFFERENTIATED: AVIC implements a binary skip/call_wm gating policy for world model invocation in visual spatial reasoning. While the domain differs (vision vs text), the mechanism (learned binary gate for world model invocation) is conceptually identical. The proposal should explicitly differentiate.",
+    "BENCHMARK SATURATION RISK: ALFWorld success rates are approaching ceiling (CogRouter 92.5%). Demonstrating statistically significant improvements above 92.5% on only 134 task instances requires careful analysis — the margin of improvement is thin and the evaluation set is small, making results potentially noisy.",
+    "TEXTWORLD LOOKAHEAD ENGINEERING UNDERESTIMATED: ALFWorld's TextWorld has no built-in state-forking/cloning API for branching lookahead. Implementing 1-3 step lookahead with state save/restore requires custom engineering on top of the PDDL backend. This is doable but adds unaccounted complexity to the 16-day timeline."
+  ],
+  "feedback": "The revision successfully fixed R1's constraint violations (venue, compute, timeline) — good work. But a serious novelty problem has emerged: ITP-R already does learned per-step routing between 'skip simulation' (K=0) and 'simulate' (K>0). You MUST not mischaracterize ITP. Here is how to salvage the idea:\n\n1. **CORRECT ITP CHARACTERIZATION**: Acknowledge that ITP-R does per-step simulation gating. Then differentiate on the TYPE of simulation: ITP routes to an LLM-based (approximate, hallucination-prone) world model; SimGate routes to a deterministic external simulator providing exact state transitions. Frame this as: 'ITP asks when to imagine; SimGate asks when to consult ground truth.'\n\n2. **ADD ITP-R AS PRIMARY BASELINE**: Include ITP-R (88.57% ALFWorld) alongside CogRouter (92.5%) as the two key baselines. Your hypothesis becomes: 'Deterministic external simulation, when selectively invoked, outperforms both LLM-based simulation routing (ITP-R) and pure internal depth adaptation (CogRouter).' This is testable and interesting.\n\n3. **REFRAME NOVELTY HONESTLY**: The contribution is NOT 'first to learn simulation gating' — it's 'first to learn routing between internal reasoning and a deterministic external simulator as complementary modalities, showing that grounded simulation provides value that LLM-based world models cannot.' This narrower claim is defensible for a short paper.\n\n4. **ADDRESS THE ELEPHANT IN THE ROOM**: ITP-R (88.57%) UNDERPERFORMS CogRouter (92.5%) on ALFWorld, suggesting LLM-based world model routing may actually hurt on this benchmark. You need a convincing argument for why DETERMINISTIC simulation routing will succeed where LLM-based simulation routing failed. The argument should be: 'ITP's LLM world model adds noise through hallucinated state transitions; a deterministic simulator provides exact dynamics, making the router's job easier — it only needs to identify WHEN exact foresight helps, not whether the foresight is accurate.'\n\n5. **ADD GENERALIZABILITY DISCUSSION**: Explicitly acknowledge the deterministic simulator limitation. Propose how the framework extends to tasks with approximate/learned world models (connecting back to ITP/WebDreamer). This turns a weakness into a research direction.\n\n6. **DIFFERENTIATE FROM AVIC**: Add explicit comparison — AVIC gates visual imagination with heuristic sufficiency checks in vision tasks; SimGate trains a separate router model for text-based agent tasks with SFT on counterfactual trajectory data.",
+  "reason": "Core gap claim is invalid — ITP-R already does learned per-step simulation gating with K=0 option. The remaining novelty (deterministic simulator routing) is genuine but narrower than claimed and requires honest reframing."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b1a085f7-bc66-4e26-924a-4f06c8f5eebe",
+  "isSidechain": false,
+  "requestId": "req_011CawfWXyY3J81DMPuQsCGJ",
+  "type": "assistant",
+  "uuid": "ca079e5f-3e5f-4814-bce0-9509e0aef77a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NTuHtCEU5AMowiZt7F4MRB",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1549,
+      "cache_read_input_tokens": 42950,
+      "output_tokens": 4108,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1549,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4108,
+          "cache_read_input_tokens": 42950,
+          "cache_creation_input_tokens": 1549,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1549
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 52_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "ca079e5f-3e5f-4814-bce0-9509e0aef77a",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify SimGate routing framework for LLM agents",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "ca079e5f-3e5f-4814-bce0-9509e0aef77a",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify SimGate routing framework for LLM agents",
+  "sessionId": "6f8fc318-c0c6-4f9a-a2b9-50e9e2b4edd5"
+}
+```
+
+---

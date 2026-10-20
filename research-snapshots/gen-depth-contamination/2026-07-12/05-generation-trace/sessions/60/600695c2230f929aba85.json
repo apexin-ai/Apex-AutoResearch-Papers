@@ -1,0 +1,1475 @@
+{
+  "schema_version": "1.0",
+  "id": "600695c2230f929aba85",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to read several files in the project /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamina",
+  "task_key": "agent-a9b17499a9915dbf4",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a9b17499a9915dbf4.jsonl",
+    "occurrence": 1,
+    "bytes": 113536,
+    "sha256": "7ee152f1c4149dcbff0f872f361a86561573619b43fb060a2f01f4f6ca392c38"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 1,
+    "tool_calls": 12,
+    "roles": {
+      "user": 1,
+      "assistant": 6,
+      "tool_call": 12,
+      "tool_result": 12
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T07:58:31.040Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to read several files in the project /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/ to understand the writing style and LaTeX commands used.\n\n1. Find and read any .tex files related to experiments_c3, conclusion, discussion sections\n2. Find the file where LaTeX commands like \\Kempirical, \\auc are defined (likely a preamble or macros file)\n3. Read any existing artifacts to understand the tone\n\nSearch in these directories:\n- /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/\n- /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/\n\nLook for .tex files, especially conclusion.tex, discussion.tex, experiments_c3.tex, macros.tex, preamble.tex, commands.tex, or similar."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "b3f2cc73-d95e-485f-a36b-88268a78f805",
+            "agentId": "a9b17499a9915dbf4",
+            "type": "user",
+            "uuid": "d61c2f3e-ed9f-4b19-8df9-660c5520e6bf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T07:58:32.888Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you explore the project structure and read the relevant files. Let me start by searching for LaTeX files and understanding the project layout."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d61c2f3e-ed9f-4b19-8df9-660c5520e6bf",
+            "isSidechain": true,
+            "agentId": "a9b17499a9915dbf4",
+            "requestId": "req_011Cb278MgqjNokfb3esYRS4",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b2fb9d9a-f8b2-4f3d-bead-f8bd40b559e8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01M84tQ1p6aThLtX1fVgTyBG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18579,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18579,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T07:58:33.116Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013iBcsdaoYsfV1W9Pu1d37H",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/**/*.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b2fb9d9a-f8b2-4f3d-bead-f8bd40b559e8",
+            "isSidechain": true,
+            "agentId": "a9b17499a9915dbf4",
+            "requestId": "req_011Cb278MgqjNokfb3esYRS4",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cfdeec35-45b6-4e6a-990f-e2d0079d5861",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01M84tQ1p6aThLtX1fVgTyBG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18579,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18579,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T07:58:33.155Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013iBcsdaoYsfV1W9Pu1d37H",
+              "type": "tool_result",
+              "content": "artifacts/dream_reports/dream_20260512T200328/best/paper.tex\nartifacts/dream_reports/dream_20260512T200328/median/paper.tex\nartifacts/dream_reports/dream_20260512T200328/worst/paper.tex\nartifacts/dream_reports/dream_20260513T080728/best/paper.tex\nartifacts/dream_reports/dream_20260513T080728/median/paper.tex\nartifacts/dream_reports/dream_20260513T080728/worst/paper.tex\nartifacts/_project/paper/method.tex\nartifacts/_project/paper/experiments_c1.tex\nartifacts/exp_015_neural_probe/paper/neural_probe_analysis.tex\ndocs/paper/related_work.tex\nartifacts/drafts/neural_probe_analysis.tex\ndocs/paper/experiments_c3.tex\ndocs/paper/main.tex\ndocs/paper/appendix.tex\ndocs/paper/introduction.tex\ndocs/paper/experiments_c1.tex\ndocs/paper/method.tex\ndocs/paper/conclusion.tex\ndocs/paper/discussion.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cfdeec35-45b6-4e6a-990f-e2d0079d5861",
+            "isSidechain": true,
+            "promptId": "b3f2cc73-d95e-485f-a36b-88268a78f805",
+            "agentId": "a9b17499a9915dbf4",
+            "type": "user",
+            "uuid": "7ae1337a-c8c8-4ecb-8d3d-e7792665ac0a",
+            "sourceToolAssistantUUID": "cfdeec35-45b6-4e6a-990f-e2d0079d5861",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T07:58:33.423Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SVCanQJdHPYHjJtLD2hVuq",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/**"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7ae1337a-c8c8-4ecb-8d3d-e7792665ac0a",
+            "isSidechain": true,
+            "agentId": "a9b17499a9915dbf4",
+            "requestId": "req_011Cb278MgqjNokfb3esYRS4",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fafc5e93-f7d2-4220-88fd-d23c076571e2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01M84tQ1p6aThLtX1fVgTyBG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18579,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18579,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T07:58:33.452Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SVCanQJdHPYHjJtLD2hVuq",
+              "type": "tool_result",
+              "content": "artifacts/_project/report/related_work_structure.md\nartifacts/_project/report/gpu_optimization_report.txt\nartifacts/gpu_optimization_report.txt\nartifacts/_project/report/claim_routes.md\nartifacts/_project/report/theory_framework.md\nartifacts/_project/report/full_study_plan.md\nartifacts/_project/report/methodology_draft.md\nartifacts/_project/report/figure_plan.md\nartifacts/dream_reports/dream_20260512T200328/logs/phase1_attempt0.log\nartifacts/dream_reports/dream_20260512T200328/logs/phase2_best_attempt0.log\nartifacts/dream_reports/dream_20260512T200328/logs/phase2_median_attempt0.log\nartifacts/dream_reports/dream_20260512T200328/logs/phase2_worst_attempt0.log\nartifacts/dream_reports/dream_20260512T200328/best/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260512T200328/best/experiment_data.json\nartifacts/dream_reports/dream_20260512T200328/best/paper.tex\nartifacts/dream_reports/dream_20260512T200328/best/paper.aux\nartifacts/dream_reports/dream_20260512T200328/best/paper.out\nartifacts/dream_reports/dream_20260512T200328/best/paper.pdf\nartifacts/dream_reports/dream_20260512T200328/best/paper.log\nartifacts/dream_reports/dream_20260512T200328/logs/paper_agent_best.log\nartifacts/dream_reports/dream_20260512T200328/median/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260512T200328/median/experiment_data.json\nartifacts/dream_reports/dream_20260512T200328/median/paper.tex\nartifacts/dream_reports/dream_20260512T200328/median/paper.aux\nartifacts/dream_reports/dream_20260512T200328/median/paper.out\nartifacts/dream_reports/dream_20260512T200328/median/paper.pdf\nartifacts/dream_reports/dream_20260512T200328/median/paper.log\nartifacts/dream_reports/dream_20260512T200328/logs/paper_agent_median.log\nartifacts/dream_reports/dream_20260512T200328/worst/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260512T200328/worst/experiment_data.json\nartifacts/dream_reports/dream_20260512T200328/worst/paper.tex\nartifacts/dream_reports/dream_20260512T200328/worst/paper.aux\nartifacts/dream_reports/dream_20260512T200328/worst/paper.out\nartifacts/dream_reports/dream_20260512T200328/worst/paper.pdf\nartifacts/dream_reports/dream_20260512T200328/worst/paper.log\nartifacts/dream_reports/dream_20260512T200328/logs/paper_agent_worst.log\nartifacts/dream_reports/dream_20260512T200328/logs/orchestrator.log\nartifacts/dream_reports/dream_20260512T200328/best/review_report.md\nartifacts/dream_reports/dream_20260512T200328/logs/review_best.log\nartifacts/dream_reports/dream_20260512T200328/median/review_report.md\nartifacts/dream_reports/dream_20260512T200328/logs/review_median.log\nartifacts/dream_reports/dream_20260512T200328/worst/review_report.md\nartifacts/dream_reports/dream_20260512T200328/logs/review_worst.log\nartifacts/dream_reports/dream_20260512T200328/meta.yaml\nartifacts/_project/report/literature_scan_2025_2026.md\nartifacts/literature_scan_2025_2026.md\nartifacts/_project/report/literature_positioning_notes.md\nartifacts/_project/report/literature_positioning_notes_d23bf4.md\nartifacts/literature_positioning_notes.md\nartifacts/_project/chart/auc_heatmap.pdf\nartifacts/figures/auc_heatmap.pdf\nartifacts/_project/chart/feature_importance.pdf\nartifacts/figures/feature_importance.pdf\nartifacts/_project/chart/jsd_decay.pdf\nartifacts/figures/jsd_decay.pdf\nartifacts/exp005_4model_tau_matrix.json\nartifacts/exp-005/data/exp005_4model_tau_matrix.json\nartifacts/bootstrap_ci_4model.json\nartifacts/exp-013/data/cross_transfer_matrix.csv\nartifacts/exp-013/data/cross_transfer_matrix.json\nartifacts/exp006_filtering_strategies.py\nartifacts/exp006_continued_pretraining.py\nartifacts/exp006_evaluate.py\nartifacts/run_exp006.sh\nartifacts/exp006_analyze.py\nartifacts/dream_reports/dream_20260513T080728/logs/orchestrator.log\nartifacts/dream_reports/dream_20260513T080728/logs/phase1_attempt0.log\nartifacts/dream_reports/dream_20260513T080728/logs/phase2_best_attempt0.log\nartifacts/dream_reports/dream_20260513T080728/logs/phase2_median_attempt0.log\nartifacts/dream_reports/dream_20260513T080728/logs/phase2_worst_attempt0.log\nartifacts/dream_reports/dream_20260513T080728/best/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260513T080728/best/experiment_data.json\nartifacts/dream_reports/dream_20260513T080728/best/paper_framing.md\nartifacts/dream_reports/dream_20260513T080728/best/paper.tex\nartifacts/dream_reports/dream_20260513T080728/best/paper.aux\nartifacts/dream_reports/dream_20260513T080728/best/paper.out\nartifacts/dream_reports/dream_20260513T080728/best/paper.pdf\nartifacts/dream_reports/dream_20260513T080728/best/paper.log\nartifacts/dream_reports/dream_20260513T080728/logs/paper_agent_best.log\nartifacts/dream_reports/dream_20260513T080728/median/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260513T080728/median/experiment_data.json\nartifacts/dream_reports/dream_20260513T080728/median/paper_framing.md\nartifacts/dream_reports/dream_20260513T080728/median/paper.tex\nartifacts/dream_reports/dream_20260513T080728/median/paper.aux\nartifacts/dream_reports/dream_20260513T080728/median/paper.out\nartifacts/dream_reports/dream_20260513T080728/median/paper.pdf\nartifacts/dream_reports/dream_20260513T080728/median/paper.log\nartifacts/dream_reports/dream_20260513T080728/logs/paper_agent_median.log\nartifacts/dream_reports/dream_20260513T080728/worst/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260513T080728/worst/experiment_data.json\nartifacts/dream_reports/dream_20260513T080728/worst/paper_framing.md\nartifacts/dream_reports/dream_20260513T080728/worst/paper.tex\nartifacts/dream_reports/dream_20260513T080728/worst/paper.aux\nartifacts/dream_reports/dream_20260513T080728/worst/paper.out\nartifacts/dream_reports/dream_20260513T080728/worst/paper.pdf\nartifacts/dream_reports/dream_20260513T080728/worst/paper.log\nartifacts/dream_reports/dream_20260513T080728/logs/paper_agent_worst.log\nartifacts/dream_reports/dream_20260513T080728/best/review_context.yaml\nartifacts/dream_reports/dream_20260513T080728/best/review_report.md\nartifacts/dream_reports/dream_20260513T080728/logs/review_best.log\n(Results are truncated. Consider using a more specific path or pattern.)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fafc5e93-f7d2-4220-88fd-d23c076571e2",
+            "isSidechain": true,
+            "promptId": "b3f2cc73-d95e-485f-a36b-88268a78f805",
+            "agentId": "a9b17499a9915dbf4",
+            "type": "user",
+            "uuid": "0306e279-4a95-4bbd-9447-2e24258ac21e",
+            "sourceToolAssistantUUID": "fafc5e93-f7d2-4220-88fd-d23c076571e2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T07:58:33.680Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DDkrLCj621eYHLsTZKbs5o",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination -type f -name \"*macro*\" -o -name \"*preamble*\" -o -name \"*command*\" 2>/dev/null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0306e279-4a95-4bbd-9447-2e24258ac21e",
+            "isSidechain": true,
+            "agentId": "a9b17499a9915dbf4",
+            "requestId": "req_011Cb278MgqjNokfb3esYRS4",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "eb875db7-aac9-4996-a126-a8a1e13837e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01M84tQ1p6aThLtX1fVgTyBG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18579,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 273,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 18579
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 273,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 18579,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 18579,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T07:58:33.886Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DDkrLCj621eYHLsTZKbs5o",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.venv/lib/python3.14/site-packages/pip/_internal/cli/req_command.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.venv/lib/python3.14/site-packages/pip/_internal/cli/__pycache__/req_command.cpython-314.pyc\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.venv/lib/python3.14/site-packages/pip/_internal/cli/__pycache__/index_command.cpython-314.pyc\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.venv/lib/python3.14/site-packages/pip/_internal/cli/__pycache__/command_context.cpython-314.pyc\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.venv/lib/python3.14/site-packages/pip/_internal/cli/__pycache__/base_command.cpython-314.pyc\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.venv/lib/python3.14/site-packages/pip/_internal/cli/base_command.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.venv/lib/python3.14/site-packages/pip/_internal/cli/command_context.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.venv/lib/python3.14/site-packages/pip/_internal/cli/index_command.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.venv/lib/python3.14/site-packages/pip/_internal/commands",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eb875db7-aac9-4996-a126-a8a1e13837e3",
+            "isSidechain": true,
+            "promptId": "b3f2cc73-d95e-485f-a36b-88268a78f805",
+            "agentId": "a9b17499a9915dbf4",
+            "type": "user",
+            "uuid": "8478b3c8-e2c3-46e3-8412-b58ded534725",
+            "sourceToolAssistantUUID": "eb875db7-aac9-4996-a126-a8a1e13837e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T07:58:35.093Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for macro definitions and read the key files:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8478b3c8-e2c3-46e3-8412-b58ded534725",
+            "isSidechain": true,
+            "agentId": "a9b17499a9915dbf4",
+            "requestId": "req_011Cb278ZeRSeFh9rJLvAmoG",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6dc3e9b3-4678-4681-938a-3c7590491960",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CUmiN2D8TMSaUDjzeTF44m",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3992,
+                "cache_read_input_tokens": 18579,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3992,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T07:58:35.579Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011ZMjDz4LXSYtxRxoYvrNze",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6dc3e9b3-4678-4681-938a-3c7590491960",
+            "isSidechain": true,
+            "agentId": "a9b17499a9915dbf4",
+            "requestId": "req_011Cb278ZeRSeFh9rJLvAmoG",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ca9fc75a-ca85-42a1-8e79-fc9b87794d61",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CUmiN2D8TMSaUDjzeTF44m",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3992,
+                "cache_read_input_tokens": 18579,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3992,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T07:58:35.592Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011ZMjDz4LXSYtxRxoYvrNze",
+              "type": "tool_result",
+              "content": "1\t% EMNLP 2026 Main — ARR May 2026\n2\t% Generational Depth Contamination\n3\t% Template: standard article class (swap to acl.sty for final submission)\n4\t\\documentclass[11pt,a4paper]{article}\n5\t\\usepackage[margin=1in]{geometry}\n6\t\\usepackage{times}\n7\t\\usepackage{graphicx}\n8\t\\usepackage{amsmath}\n9\t\\usepackage{amssymb}\n10\t\\usepackage{amsthm}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{multirow}\n13\t\\usepackage{xcolor}\n14\t\\usepackage{hyperref}\n15\t\\usepackage[numbers]{natbib}\n16\t\\usepackage{enumitem}\n17\t\\usepackage{subcaption}\n18\t\n19\t\\newcommand{\\Kstar}{K^*}\n20\t\\newcommand{\\Kempirical}{K^*_{\\text{empirical}}}\n21\t\\newcommand{\\Ktheory}{K^*_{\\text{theory}}}\n22\t\\newcommand{\\auc}{\\text{AUC}}\n23\t\\newcommand{\\jsd}{\\text{JSD}}\n24\t\n25\t\\title{Generational Depth Estimation of Recursive Synthetic Text:\\\\Measuring the Discrimination Boundary}\n26\t\n27\t\\author{Anonymous}\n28\t\n29\t\\begin{document}\n30\t\\maketitle\n31\t\n32\t% === Abstract ===\n33\t\\begin{abstract}\n34\tWeb-scale text corpora are increasingly contaminated by recursive synthetic content---text recursively generated across multiple generations. Information degrades monotonically per the Data Processing Inequality with each generation, yet no method estimates a document's generational depth. We introduce the first systematic framework for generational depth estimation. Our approach extracts 15 statistical features and classifies depth via Ordinal Binary Decomposition (OBD) with LightGBM, preserving ordinal structure. We empirically measure the discrimination boundary $\\Kempirical$, the maximum depth at which adjacent generations remain statistically distinguishable. Across 4 model-mode configurations and 4 decoding strategies (8 conditions total) at the $\\leq$1.5B parameter scale, we find $\\Kempirical=2$ is consistent: bootstrap 95\\% CI lower bounds for 1-vs-2 across the four model-mode configurations all exceed $\\theta=0.60$ while all 2-vs-3 CI upper bounds fall below it; decoding strategies likewise yield $\\auc$ above $\\theta$ at 1-vs-2 and below at 2-vs-3. Cross-model transfer shows classifiers retain 80--92\\% accuracy across continuation-mode generators, with binary (0-vs-1) $\\auc$ exceeding 0.96, indicating depth features are largely text-intrinsic. Preliminary neural probing on one dataset yields $\\Kempirical^{\\text{neural}}=3$, suggesting our 15-feature $\\Kempirical=2$ is a representation-dependent lower bound. Frontier LLMs achieve ${\\sim}88\\%$ binary detection but only ${\\sim}33\\%$ five-class depth accuracy---below our OBD classifier's 38.6\\%---confirming depth estimation as a non-trivial task requiring specialized features. Our findings motivate a three-tier taxonomy (human / generation-1 / generation-2+) for depth-aware data curation; we investigate whether this coarse ordinal signal enables graduated filtering that outperforms binary approaches discarding all synthetic content indiscriminately.\n35\t\\end{abstract}\n36\t\n37\t% === Section 1: Introduction ===\n38\t\\input{introduction}\n39\t\n40\t% === Section 2: Related Work ===\n41\t\\input{related_work}\n42\t\n43\t% === Section 3: Method ===\n44\t\\input{method}\n45\t\n46\t% === Section 4: Experiments ===\n47\t\\input{experiments_c1}\n48\t\n49\t% === Section 4.x: Graduated Filtering (DEFERRED) ===\n50\t% \\input{experiments_c3}\n51\t\n52\t% === Section 5: Discussion ===\n53\t\\input{discussion}\n54\t\n55\t% === Section 6: Conclusion ===\n56\t\\input{conclusion}\n57\t\n58\t\\bibliographystyle{plainnat}\n59\t\\bibliography{references}\n60\t\n61\t\\input{appendix}\n62\t\n63\t\\end{document}\n64\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca9fc75a-ca85-42a1-8e79-fc9b87794d61",
+            "isSidechain": true,
+            "promptId": "b3f2cc73-d95e-485f-a36b-88268a78f805",
+            "agentId": "a9b17499a9915dbf4",
+            "type": "user",
+            "uuid": "e120a57c-65c5-4484-a692-53efaa2df23c",
+            "sourceToolAssistantUUID": "ca9fc75a-ca85-42a1-8e79-fc9b87794d61",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T07:58:35.759Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GbCkPYpVtMVVxDKZaTarDP",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/conclusion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e120a57c-65c5-4484-a692-53efaa2df23c",
+            "isSidechain": true,
+            "agentId": "a9b17499a9915dbf4",
+            "requestId": "req_011Cb278ZeRSeFh9rJLvAmoG",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "af12896b-30e5-4a87-8b7b-ff22f2680194",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CUmiN2D8TMSaUDjzeTF44m",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3992,
+                "cache_read_input_tokens": 18579,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3992,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T07:58:35.771Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GbCkPYpVtMVVxDKZaTarDP",
+              "type": "tool_result",
+              "content": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\t% === Contribution 1: K*=2 consistent boundary ===\n5\t% Sources: exp_007 (bootstrap CI + permutation), exp_001/exp_002/exp_017/mvp_pilot (model-mode), exp_003 (decoding ablation)\n6\tWe presented the first systematic measurement of the generational depth\n7\tdiscrimination boundary $\\Kempirical$ for recursive synthetic text.\n8\tAcross three model architectures in four model-mode configurations\n9\t(Pythia-1.4B and OLMo-1B in continuation mode; Qwen2.5-1.5B-Instruct in both\n10\tcontinuation and rewrite modes) and 4 decoding strategies---totaling 8\n11\tconditions---we establish $\\Kempirical = 2$ as a consistent boundary:\n12\tclassifiers reliably distinguish adjacent generations up to depth~2, but all\n13\tdeeper pairs fall below the operational threshold $\\theta = 0.60$.\n14\tFor the four model-mode configurations, bootstrap 95\\% confidence intervals\n15\tand permutation tests confirm statistical significance at the 1v2 boundary\n16\t($p \\leq 0.002$ for all four); the most marginal case, Qwen-continuation,\n17\tyields a CI lower bound of 0.6015, exceeding $\\theta$ by only 0.15\\,pp.\n18\tAll four decoding configurations (greedy, nucleus, $T{=}0.70$, $T{=}1.2$)\n19\tlikewise yield 1v2 point-estimate $\\auc$ above $\\theta$.\n20\tThe 0v1 boundary is near-perfectly separable ($\\auc > 0.99$), followed by a\n21\tsharp ${\\sim}$30\\,pp drop at 1v2 ($\\auc$: 0.6112--0.7039 across all\n22\tconditions), while all 2v3 pairs fall below~$\\theta$.\n23\tRecursive generation thus acts as a severely lossy channel whose discriminable\n24\tstatistical fingerprint is exhausted within two steps.\n25\t\n26\t% === Contribution 2: Ordinal depth estimation framework ===\n27\t% Sources: exp_010 (OBD vs baselines), exp_013 (cross-model transfer), exp_005 (feature degradation), exp_011 (LLM zero-shot)\n28\tTo operationalize depth estimation, we introduced an ordinal binary\n29\tdecomposition (OBD) framework pairing 15 hand-crafted statistical features\n30\twith LightGBM classifiers.\n31\tCross-model transfer experiments demonstrate 80--92\\% accuracy retention\n32\tacross continuation-mode model pairs, with\n33\tPythia$\\leftrightarrow$OLMo achieving 90--92\\% and 0v1 transfer $\\auc$\n34\texceeding 0.96 across all tested model pairs---indicating that depth signals are largely\n35\ttext-intrinsic rather than generator-specific.\n36\tFeature degradation orderings are consistent across architectures\n37\t(Spearman $\\rho \\geq 0.85$), with surprisal-variance features dominating\n38\tuniformly, suggesting that the two-step information loss is governed by the\n39\tautoregressive mechanism itself.\n40\tAs a reference point, frontier LLMs (GPT-5.5, Claude Opus~4.6) achieve\n41\t${\\sim}$88\\% binary human-vs.-synthetic accuracy but only ${\\sim}$33\\% on\n42\t5-class depth estimation, below OBD-LightGBM's 38.6\\%---confirming that\n43\tfine-grained depth discrimination requires specialized statistical features\n44\trather than general language understanding.\n45\tA preliminary neural probing experiment suggests that this operational bound is not tight: a frozen Qwen2.5-1.5B encoder paired with an MLP classifier achieves $\\Kempirical^{\\text{neural}} = 3$ on the Qwen-continuation dataset (2v3 $\\auc = 0.6195$ versus 0.5609 with hand-crafted features), indicating that learned representations recover depth signal beyond the 15-dimensional feature set.\n46\tThis result, pending cross-model validation, provides initial evidence that $\\Ktheory \\geq 3$.\n47\t\n48\t% === Contribution 3: Graduated filtering (C3) ===\n49\t% Source: exp_006 (RUNNING — results pending)\n50\tThe $\\Kempirical = 2$ boundary implies a natural trichotomy---human (depth~0), first-generation synthetic (depth~1), and deeper synthetic (depth~$\\geq 2$)---that can be exploited for depth-aware data curation.\n51\t% TODO: exp-006 graduated filtering 具体结果填充。\n52\t% 预留内容：graduated filtering 利用三级分类法在 MMLU/HellaSwag 上的表现，\n53\t% 与 binary filtering 和 no-filter baseline 的对比。\n54\t\n55\t% === Limitations + Future Work ===\n56\tOur findings are bounded by the scale of models tested ($\\leq$1.5B parameters), restriction to English C4 text, and the use of prompt-chain rather than retrain-chain protocols; $\\Kempirical$ depends on the threshold $\\theta$ and shifts with generation mode (continuation-mode configurations drop to $\\Kempirical{=}1$ at $\\theta{=}0.65$, while rewrite mode retains $\\Kempirical{=}2$; Section~\\ref{sec:limitations}); the 15-dimensional feature set yields $\\Kempirical$ as an operational lower bound, and $\\Ktheory$ may be strictly higher.\n57\tSeveral directions merit investigation: scaling to larger models (7B+) to test whether increased generation fidelity shifts the boundary; extending to multilingual and multi-domain corpora; establishing the relationship between prompt-chain and retrain-chain $\\Kstar$ values, which would connect our measurements to the model collapse setting; incorporating few-shot or chain-of-thought prompting for LLM-based depth estimation; and extending the neural probe approach---which has yielded preliminary evidence of $\\Kempirical^{\\text{neural}} = 3$ on one dataset---through cross-model validation (Pythia, OLMo), bootstrap confidence intervals, multi-layer probing beyond the last hidden state, and comparison with fine-tuned (non-frozen) encoders to further narrow the gap between $\\Kempirical$ and $\\Ktheory$.\n58\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "af12896b-30e5-4a87-8b7b-ff22f2680194",
+            "isSidechain": true,
+            "promptId": "b3f2cc73-d95e-485f-a36b-88268a78f805",
+            "agentId": "a9b17499a9915dbf4",
+            "type": "user",
+            "uuid": "e172a302-e2e4-48a5-a10c-e99e0153a740",
+            "sourceToolAssistantUUID": "af12896b-30e5-4a87-8b7b-ff22f2680194",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T07:58:35.901Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MUnRWChC5kY2G3SovPTptd",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e172a302-e2e4-48a5-a10c-e99e0153a740",
+            "isSidechain": true,
+            "agentId": "a9b17499a9915dbf4",
+            "requestId": "req_011Cb278ZeRSeFh9rJLvAmoG",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7e5610ef-944f-43c9-be6d-897ef037527d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CUmiN2D8TMSaUDjzeTF44m",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3992,
+                "cache_read_input_tokens": 18579,
+                "output_tokens": 244,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3992
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 244,
+                    "cache_read_input_tokens": 18579,
+                    "cache_creation_input_tokens": 3992,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3992,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T07:58:35.910Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MUnRWChC5kY2G3SovPTptd",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\subsection{Theoretical Implications of $\\Kempirical = 2$}\n5\t\\label{sec:discuss_kstar}\n6\t\n7\tThe Data Processing Inequality guarantees the existence of a finite $\\Ktheory$ beyond which adjacent generations become indistinguishable (Section~\\ref{sec:formulation}).\n8\tOur empirical result---$\\Kempirical = 2$ consistently across all 8 tested configurations (4 model-mode combinations and 4 decoding strategies; Section~\\ref{sec:kstar_boundary}, Figure~\\ref{fig:auc_decay})---establishes that this boundary is not only finite but remarkably shallow at the $\\leq$1.5B parameter scale.\n9\t\n10\tThe shallowness of $\\Kempirical$ is explained by the rate of information loss across generations.\n11\tThe 0v1 boundary is near-trivially separable ($\\auc > 0.99$ across all configurations; Table~\\ref{tab:kstar_ci}), reflecting the large distributional gap between human text and first-generation synthetic text.\n12\tAt the 1v2 boundary, $\\auc$ drops by approximately 30 percentage points ($\\auc$ range: 0.6112--0.7039 across all eight model$\\times$decoding conditions; Table~\\ref{tab:kstar_ci}, Figure~\\ref{fig:auc_decay}; see also Figure~\\ref{fig:s1_auc_decay_ci} in the Appendix), indicating that the majority of the discriminative signal is consumed in the first generation step.\n13\tBy the 2v3 boundary, $\\auc$ falls to 0.5496--0.5917 across all eight model$\\times$decoding conditions (upper bound from nucleus $p{=}0.9$ decoding; Figure~\\ref{fig:auc_decay})---below the operational threshold $\\theta = 0.60$---and deeper pairs converge toward chance.\n14\tRecursive generation thus acts as a severely lossy channel whose information bottleneck is traversed within two steps.\n15\t\n16\tThe feature degradation analysis (Section~\\ref{sec:feature_degradation}) provides mechanistic evidence for this rapid collapse.\n17\tThe most discriminative features---surprisal variance (\\texttt{surp\\_d1\\_std}, \\texttt{surp\\_std}) and its derivatives---all capture the heterogeneity of token-level predictability.\n18\tHuman text exhibits high surprisal variance reflecting diverse syntactic structures and unpredictable discourse patterns.\n19\tThe first generation step smooths this variance substantially, replacing high-surprisal tokens and atypical constructions with more predictable alternatives; the second step reduces the remaining variance to near-floor levels, leaving insufficient statistical fingerprint for reliable adjacent-depth discrimination.\n20\tCrucially, this degradation ordering is consistent across model families (Spearman $\\rho \\geq 0.85$ for all continuation-mode pairs; Table~\\ref{tab:top_features}), suggesting that the two-step information loss is governed by the autoregressive generation mechanism itself rather than by model-specific biases.\n21\t\n22\tThis pattern aligns with findings from the model collapse literature.\n23\tShumailov et al.~\\cite{shumailov2024collapse} observed that tail-distribution degradation is most acute in the earliest generations, with minority modes vanishing before the output distribution stabilizes.\n24\tDohmatob et al.~\\cite{dohmatob2024model} derived scaling laws demonstrating that tail probability mass is lost at rates predictable from model and data scale.\n25\tOur $\\Kempirical = 2$ provides a complementary, classifier-based measurement of this phenomenon: the information-theoretic discrimination boundary is reached after just two generation steps.\n26\tAlemohammad et al.~\\cite{alemohammad2024selfconsuming} proved convergence to a fixed point for self-consuming generative models; $\\Kempirical = 2$ indicates that, operationally, the approach to this fixed point is rapid enough that adjacent-generation distinctions collapse within two steps.\n27\t\n28\tImportantly, $\\Kempirical = 2$ is an \\emph{operational} lower bound conditioned on the 15-dimensional hand-crafted feature set; the \\emph{theoretical} boundary $\\Ktheory$ may be strictly higher.\n29\tPreliminary evidence from a neural probing experiment supports this distinction.\n30\tA frozen Qwen2.5-1.5B encoder (1536-dimensional last-layer representations) paired with a lightweight MLP classifier (Table~\\ref{tab:s7_neural_probe}) achieves 2v3 $\\auc = 0.6195$ ($\\text{std} = 0.0094$) on the Qwen-continuation dataset, exceeding the $\\theta = 0.60$ threshold that the same dataset's LightGBM classifier fails to cross ($\\auc = 0.5609$; Section~\\ref{sec:kstar_boundary}).\n31\tThis yields $\\Kempirical^{\\text{neural}} = 3$: the learned representation recovers one additional discriminable boundary that the hand-crafted features miss.\n32\tThe improvement is concentrated at the 2v3 pair ($+$5.86\\,pp over LightGBM); at the already-separable 1v2 boundary the neural probe achieves 0.6983 versus 0.6112, a substantial gain but one that does not alter the boundary determination.\n33\tAt 3v4, the neural probe reaches $\\auc = 0.5930$---below $\\theta$ but closer to the threshold than any hand-crafted configuration---suggesting that a still richer representation might push the boundary further.\n34\tThe lossy-channel narrative remains intact: even with 1536-dimensional frozen representations, the discrimination boundary extends to only three steps, confirming that the information bottleneck of recursive generation is shallow even with substantially richer representations.\n35\tThese results are preliminary: they cover a single model-dataset pair (Qwen-continuation) and lack bootstrap confidence intervals; cross-model validation on Pythia and OLMo is pending.\n36\t\n37\tThe invariance of $\\Kempirical = 2$ across decoding strategies merits emphasis.\n38\tGreedy decoding, nucleus sampling ($p{=}0.9$), $T{=}0.7$, and $T{=}1.2$ all yield $\\Kempirical = 2$ (Figure~\\ref{fig:auc_decay}; Table~\\ref{tab:s2_decoding}), with 1v2 $\\auc$ spanning a narrow range of [0.6866, 0.7039].\n39\tHigher decoding entropy modestly increases signal strength ($\\auc_{1,2}$: 0.69 greedy $\\to$ 0.70 at $T{=}1.2$) but does not shift the boundary.\n40\tThis robustness suggests that $\\Kempirical$ is governed by the fundamental information bottleneck of the generation process rather than by surface-level properties of the sampling algorithm.\n41\t\n42\t\\subsection{Implications of Cross-Model Transfer}\n43\t\\label{sec:discuss_transfer}\n44\t\n45\tThe cross-model transfer results (Section~\\ref{sec:transfer}) indicate that depth signals are largely encoded in text-level statistical properties rather than generator-specific artifacts.\n46\tClassifiers trained on Pythia-1.4B and evaluated on OLMo-1B retain 90--92\\% of within-model accuracy, and the broader continuation-mode transfer matrix shows 80--92\\% retention across all model pairs (Table~\\ref{tab:transfer_matrix}; see Table~\\ref{tab:s1_transfer} for the full matrix).\n47\tAt the 0v1 boundary, cross-model $\\auc$ exceeds 0.96 across all tested model pairs, confirming that binary contamination detection is fully transferable across the tested generators.\n48\t\n49\tThe practical implication is direct: a single depth classifier trained on one model's outputs can be deployed to estimate generational depth for texts produced by other models, without model-specific retraining.\n50\tThis transferability extends the utility of depth estimation to open-web settings where the generating model is unknown---precisely the scenario where depth-aware data curation is most needed.\n51\t\n52\tTwo caveats bound this conclusion.\n53\tFirst, the text-intrinsic component dominates, as evidenced by high cross-model transfer retention (80--92\\% across continuation-mode pairs), yet a nontrivial model-specific residual persists.\n54\tThe Pythia$\\leftrightarrow$OLMo pair, which spans different architectures and training corpora, achieves the highest cross-family retention (90--92\\%), consistent with the depth signal being largely architecture-agnostic within continuation mode.\n55\tSecond, Qwen-continuation$\\leftrightarrow$OLMo retention (80--85\\%) is lower than Pythia$\\leftrightarrow$OLMo (90--92\\%), indicating that model family similarity modulates transfer even among continuation-mode configurations.\n56\t\n57\t\\subsection{Feature Importance Across Decoding Strategies}\n58\t\\label{sec:discuss_features}\n59\t\n60\tWhile $\\Kempirical = 2$ is invariant to decoding strategy (4/4 configurations), the feature importance ordering is not uniformly consistent.\n61\tGreedy decoding and $T{=}0.7$ share highly correlated feature rankings (Spearman $\\rho = 0.914$), with top features dominated by vocabulary diversity measures: \\texttt{self\\_bleu}, \\texttt{hapax\\_ratio}, and \\texttt{ttr}.\n62\tIn contrast, greedy versus $T{=}1.2$ yields a lower correlation ($\\rho = 0.53$, $p = 0.041$; suggestive but nonsignificant after Bonferroni correction for 6 pairwise comparisons), with $T{=}1.2$ promoting \\texttt{hapax\\_ratio}, \\texttt{ttr}, and \\texttt{surp\\_skew} to the top ranks.\n63\tNotably, \\texttt{freq\\_entropy} rises from rank~10 under greedy ($\\auc = 0.5139$) to rank~5 under $T{=}1.2$ ($\\auc = 0.5905$), illustrating how high-entropy decoding amplifies frequency-distribution artifacts.\n64\t\n65\tThis dissociation reveals an important distinction: the \\emph{existence} of the depth boundary is robust, but the \\emph{optimal feature subset} for detecting it depends on the sampling strategy.\n66\tHigh-entropy decoding amplifies frequency-distribution artifacts while attenuating vocabulary-diversity signals, shifting which text properties carry the most discriminative power without altering whether adjacent generations can be distinguished.\n67\tFor practitioners, this implies that a general-purpose depth classifier should incorporate features from multiple groups---surprisal moments, vocabulary diversity, and frequency tail statistics---to maintain performance across unknown decoding conditions.\n68\t\n69\tThe cross-model feature ordering (Section~\\ref{sec:feature_degradation}) provides a complementary perspective: among continuation-mode models, single-feature $\\auc$ rankings are highly consistent (Spearman $\\rho \\geq 0.85$), with surprisal-variance features---\\texttt{surp\\_d1\\_std}, \\texttt{surp\\_std}, \\texttt{surp\\_d2\\_std}---dominating uniformly.\n70\tA genuine limitation, however, is that depth-pair-level agreement weakens to $\\tau \\approx 0.37$ at the 1v2 boundary (Section~\\ref{sec:feature_degradation}), indicating that the relative contribution of individual features at the discrimination boundary varies across models even when the aggregate ordering is shared.\n71\t\n72\t\\subsection{Scale Considerations}\n73\t\\label{sec:discuss_scale}\n74\t\n75\tOur experiments establish $\\Kempirical = 2$ at the $\\leq$1.5B parameter scale, providing the first empirical measurement of the generational depth boundary for language models.\n76\tThis result constitutes a \\emph{methodological lower bound}: the framework itself---15-dimensional token-level features, OBD-optimized classification, bootstrap confidence intervals, and permutation testing---is model-scale agnostic by construction.\n77\tAll 15 features are computed from surface-level token statistics (surprisal moments, vocabulary diversity, frequency tail measures) without access to model internals, and the cross-model transfer results (80--92\\% retention across architecturally distinct model families; Section~\\ref{sec:transfer}) already demonstrate that the methodology generalizes across different architectures and training corpora at the tested scale.\n78\t\n79\tScaling to larger models presents two possible outcomes, both of which reinforce rather than diminish the contribution.\n80\tIf $\\Kempirical > 2$ at 7B+ scales---as suggested by scaling laws showing that larger models exhibit slower tail-distribution degradation rates~\\cite{dohmatob2024model, kaplan2020scaling}---then depth contamination becomes \\emph{more} insidious: higher-fidelity generations would produce weaker depth signatures, making fine-grained detection more critical and the systematic framework we introduce more necessary.\n81\tConversely, if $\\Kempirical = 2$ persists at larger scales, our conclusions generalize directly.\n82\tIn either case, the measurement methodology established here---the feature taxonomy, the $\\Kstar$ estimation protocol, and the cross-model validation framework---provides the requisite infrastructure for characterizing depth boundaries at any scale.\n83\tThe model collapse literature supports the expectation that depth-related phenomena are scale-persistent: Shumailov et al.~\\cite{shumailov2024collapse} observed tail-mode collapse across model sizes, and Alemohammad et al.~\\cite{alemohammad2024selfconsuming} proved fixed-point convergence for self-consuming generators without scale-dependent assumptions.\n84\t\n85\tWe identify 7B-scale cross-scale validation as the immediate next step.\n86\tThe experimental pipeline---data generation, feature extraction, and classifier evaluation---is fully implemented and directly applicable to larger models; only computational budget constrains this extension.\n87\tCritically, this limitation does not affect the validity of the $\\Kempirical = 2$ result at $\\leq$1.5B, which stands as the first empirical characterization of generational depth boundaries in language model outputs.\n88\t\n89\t\\subsection{LLM Zero-Shot Baseline}\n90\t\\label{sec:discuss_llm}\n91\t\n92\tFrontier LLMs provide a natural baseline for depth estimation.\n93\tOn a 500-sample test set with 5 depth classes (depths 0--4), excluding depth~5 from the 6-class range used in the main feature-based experiments since depths $\\geq 3$ are mutually indistinguishable ($\\Kempirical = 2$), GPT-5.5 achieves 33.2\\% accuracy (MAE = 1.10) and Claude Opus~4.6 achieves 33.1\\% accuracy (MAE = 1.15)---both below the OBD-LightGBM baseline of 38.6\\% (MAE = 1.11; see Table~\\ref{tab:s3_llm_zeroshot} for per-depth confusion matrices).\n94\tSimultaneously, both models achieve approximately 88\\% binary accuracy on the human-vs.-synthetic distinction (GPT-5.5: 87.8\\%, Claude: 88.2\\%).\n95\t\n96\tThis gap between binary detection and depth estimation is informative.\n97\tFrontier LLMs can reliably determine \\emph{whether} a text is machine-generated but cannot estimate \\emph{how many generations of recursive processing} it has undergone.\n98\tDepth estimation requires sensitivity to subtle distributional shifts between adjacent generations---shifts orders of magnitude smaller than the human-vs.-machine gap.\n99\tThe 15-dimensional statistical feature pipeline, despite its simplicity, captures these fine-grained shifts more effectively than frontier LLMs in a zero-shot setting.\n100\tThis motivates the dedicated feature-engineering approach: the task demands specialized statistical sensitivity rather than general language understanding.\n101\tWe evaluate only zero-shot prompting; few-shot or chain-of-thought strategies may narrow the gap and warrant future investigation.\n102\t\n103\t\\subsection{Limitations}\n104\t\\label{sec:limitations}\n105\t\n106\tWe identify seven limitations that bound the generalizability of our findings.\n107\t\n108\t\\emph{Model scale.}\n109\tAll experiments use models at or below 1.5B parameters (Pythia-1.4B, OLMo-1B, Qwen2.5-1.5B-Instruct).\n110\tLarger models may produce higher-fidelity text with weaker depth signatures, potentially shifting $\\Kempirical$ beyond~2.\n111\t\n112\t\\emph{Prompt-chain versus retrain-chain.}\n113\tOur recursive generation protocol is a prompt-chain: the same fixed model repeatedly generates from the previous output.\n114\tReal-world model collapse involves retrain-chains, where models are retrained on data from earlier generations~\\cite{shumailov2024collapse}.\n115\tRetrain-chains introduce additional degradation through training dynamics, potentially producing different $\\Kstar$ values.\n116\t\n117\t\\emph{Language and domain.}\n118\tAll experiments use English text from the C4 corpus.\n119\tDepth dynamics may differ across languages, domains (e.g., code, scientific text), and source corpora with different distributional properties.\n120\t\n121\t\\emph{Decoding coverage.}\n122\tWe test four decoding strategies (greedy, nucleus $p{=}0.9$, $T{=}0.7$, $T{=}1.2$).\n123\tOther strategies---top-$k$ sampling, beam search, contrastive decoding---remain untested and may yield different feature importance patterns or boundary behavior.\n124\t\n125\t\\emph{Threshold sensitivity.}\n126\t$\\Kempirical$ depends on the operational threshold $\\theta$.\n127\t$\\Kempirical \\geq 2$ across $\\theta \\in \\{0.55, 0.60, 0.65\\}$ for all four decoding strategies, rising to $\\Kempirical = 3$ at $\\theta = 0.55$ (all four 2v3 $\\auc$ values exceed 0.55) and returning to $\\Kempirical = 2$ at $\\theta \\in \\{0.60, 0.65\\}$.\n128\tAt $\\theta = 0.70$, three of four decoding configurations collapse to $\\Kempirical = 1$; only the high-temperature setting ($T{=}1.2$) retains $\\Kempirical = 2$, consistent with its elevated 1v2 $\\auc$ (0.7039).\n129\tBeyond decoding parameters, the threshold sensitivity extends to generation mode: at $\\theta{=}0.70$, $\\Kempirical{=}1$ for all four model-mode configurations; at $\\theta{=}0.65$, continuation-mode configurations already drop to $\\Kempirical{=}1$, while rewrite mode retains $\\Kempirical{=}2$.\n130\tOur current analysis primarily covers the decoding configuration axis.\n131\tThe boundary is robust within a practical range but not invariant to threshold choice; our conclusions are conditioned on $\\theta = 0.60$.\n132\t\n133\t\\emph{Boundary marginality.}\n134\tThe $\\Kempirical = 2$ determination is statistically significant but numerically marginal at both ends.\n135\tOn the lower side, Qwen-continuation's 1v2 CI lower bound (0.6015) exceeds $\\theta = 0.60$ by only $+$0.15\\,pp.\n136\tOn the upper side, Qwen-rewrite's 2v3 CI upper bound (0.5991) falls below $\\theta$ by only $-$0.09\\,pp.\n137\tThis narrow margin means that small changes in the feature set or classifier could shift the boundary---as the neural probe results confirm, where a richer representation pushes the 2v3 pair above $\\theta$ on the Qwen-continuation dataset (Section~\\ref{sec:discuss_kstar}).\n138\tImportantly, all eight boundary comparisons (four 1v2 and four 2v3) yield permutation $p < 0.01$, confirming that the statistical significance of the distinction is not in doubt---only its proximity to the operational threshold.\n139\t\n140\t\\emph{Operational versus theoretical boundary.}\n141\t$\\Kempirical$ is an operational lower bound that depends on the specific feature set and classifier.\n142\t$\\Ktheory$ may be strictly greater; a more expressive classifier or richer feature representation could push $\\Kempirical$ higher.\n143\tPreliminary neural probing results provide direct evidence for this gap: on the Qwen-continuation dataset, a frozen-encoder MLP achieves $\\Kempirical^{\\text{neural}} = 3$ (2v3 $\\auc = 0.6195$) compared to $\\Kempirical = 2$ with 15-dimensional hand-crafted features (2v3 $\\auc = 0.5609$; Section~\\ref{sec:kstar_boundary}).\n144\tThis confirms that the 15D feature set does not saturate the available depth signal and that $\\Ktheory \\geq 3$.\n145\tHowever, the neural probe result rests on a single dataset and awaits cross-model validation and bootstrap confidence intervals before a firm revision of the headline $\\Kempirical$ can be claimed.\n146\t\n147\t\\emph{Feature representation.}\n148\tThe 15-dimensional hand-crafted feature set, while interpretable and transferable, is not optimal.\n149\tA preliminary neural probing experiment demonstrates that frozen LLM embeddings (1536 dimensions) paired with a lightweight MLP push $\\Kempirical$ from~2 to~3 on the Qwen-continuation dataset (Section~\\ref{sec:discuss_kstar}), confirming that learned representations capture depth-discriminative patterns that statistical features miss.\n150\tThe magnitude of the gain---2v3 $\\auc$ rising from 0.5609 to 0.6195---indicates meaningful recoverable signal beyond what hand-crafted features extract.\n151\tFull characterization of this gap, including cross-model generalization and bootstrap uncertainty quantification, remains future work.\n152\t\n153\t\\paragraph{Graduated Filtering.}\n154\tResults for graduated filtering will be added upon completion of ongoing experiments.\n155\t\n156\t\\subsection{Broader Impact}\n157\t\\label{sec:broader_impact}\n158\t\n159\tThe $\\Kempirical = 2$ boundary has implications beyond the immediate scope of depth classification.\n160\t\n161\t\\paragraph{Synthetic data curation.}\n162\tThe practical consequence of $\\Kempirical = 2$ is a three-tier taxonomy of text quality: human-authored (depth~0), first-generation synthetic (depth~1), and deeper synthetic (depth~$\\geq 2$).\n163\tTexts at depth~$\\geq 2$ are mutually indistinguishable and can be treated as a single category for curation purposes.\n164\tFor practitioners filtering training data, this implies that a single round of synthetic rewriting suffices to make text statistically indistinguishable from text that has undergone multiple rounds of recycling---a form of one-wash laundering that limits the granularity of quality-based filtering.\n165\tThis underscores the urgency of deploying depth-aware curation mechanisms before the first generation step, rather than relying on post-hoc detection.\n166\tGraduated filtering strategies that exploit this trichotomy may outperform binary human/synthetic filters, as the coarse ordinal signal (human / shallow / deep) captures the dominant axis of quality variation.\n167\t\n168\t\\paragraph{Relation to model collapse.}\n169\tShumailov et al.~\\cite{shumailov2024collapse} and Alemohammad et al.~\\cite{alemohammad2024selfconsuming} study model collapse under \\emph{retrain-chains}, where models are iteratively trained on their own outputs.\n170\tOur prompt-chain protocol measures an adjacent but distinct phenomenon: the degradation of statistical distinguishability under recursive generation by a fixed model.\n171\tThe rapid convergence we observe ($\\Kempirical = 2$) is consistent with the theoretical prediction of convergence to a fixed point, but the precise relationship between prompt-chain $\\Kempirical$ and retrain-chain convergence rates remains an open question.\n172\tIf prompt-chain depth signals serve as an observable proxy for early-stage model collapse, depth estimation could provide a lightweight diagnostic for data curation pipelines without requiring expensive retraining experiments.\n173\t\n174\t\\paragraph{AI text detection.}\n175\tCurrent AI text detection is predominantly binary: human versus machine.\n176\tOur results suggest that \\emph{depth-aware} detection provides a strictly more informative signal.\n177\tThe near-perfect 0v1 separability ($\\auc > 0.99$) confirms that binary detection is reliable at this scale, but the 1v2 boundary ($\\auc$: 0.61--0.70) reveals that first-generation text retains measurable statistical distance from deeper synthetic text.\n178\tThis additional dimension---how many generations of processing a text has undergone---may prove valuable for provenance tracking and corpus quality assessment, where the binary human/AI label elides important distinctions between lightly and heavily recycled content.\n179\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7e5610ef-944f-43c9-be6d-897ef037527d",
+            "isSidechain": true,
+            "promptId": "b3f2cc73-d95e-485f-a36b-88268a78f805",
+            "agentId": "a9b17499a9915dbf4",
+            "type": "user",
+            "uuid": "d212469a-88f7-4531-9d93-f51adb367072",
+            "sourceToolAssistantUUID": "7e5610ef-944f-43c9-be6d-897ef037527d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T07:58:38.001Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read the experiments_c3 file and check the method section to understand more about the style:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d212469a-88f7-4531-9d93-f51adb367072",
+            "isSidechain": true,
+            "agentId": "a9b17499a9915dbf4",
+            "requestId": "req_011Cb278iTzgrkZVvWk52Ksw",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a38eea0d-eb05-4e6f-b131-8dee688fa5ef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019SKziTbZd5tyn5Q1znzmhb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 9303,
+                "cache_read_input_tokens": 22571,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9303,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T07:58:38.727Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FdYiraPh4jWfEjxdhLPnL9",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a38eea0d-eb05-4e6f-b131-8dee688fa5ef",
+            "isSidechain": true,
+            "agentId": "a9b17499a9915dbf4",
+            "requestId": "req_011Cb278iTzgrkZVvWk52Ksw",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1197ed90-5b94-4501-aa88-ed37aea9b7d7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019SKziTbZd5tyn5Q1znzmhb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 9303,
+                "cache_read_input_tokens": 22571,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9303,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T07:58:38.743Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FdYiraPh4jWfEjxdhLPnL9",
+              "type": "tool_result",
+              "content": "1\t\\subsection{Graduated Filtering for Depth-Aware Data Curation}\n2\t\\label{sec:graduated-filtering}\n3\t\n4\tThe $\\Kempirical = 2$ boundary establishes a three-tier taxonomy: human (depth~0), first-generation synthetic (depth~1), and deeper synthetic (depth~$\\geq 2$).\n5\tBinary filtering discards all synthetic content indiscriminately, sacrificing depth-1 text that retains most of the original signal.\n6\tWe ask whether exploiting the coarse ordinal structure---weighting samples by predicted depth rather than applying a hard human/synthetic threshold---improves downstream language model quality.\n7\t\n8\t\\paragraph{Filtering strategies.}\n9\tWe compare six data curation strategies applied to a corpus of 30{,}000 documents (5{,}000 per depth level, depths 0--5) produced by the generational depth pipeline:\n10\t\n11\t\\begin{enumerate}[label=(\\roman*)]\n12\t  \\item \\textbf{No-filter}: all documents receive uniform weight (baseline).\n13\t\n14\t  \\item \\textbf{Binary-ours}: a LightGBM classifier trained on the 15-dimensional feature set distinguishes human (depth~0) from synthetic (depth~$\\geq 1$).\n15\t  Each document receives weight $w = 1 - P(\\text{synthetic})$.\n16\t  This represents the natural binary extension of our depth estimation framework.\n17\t\n18\t  \\item \\textbf{Binary-Drayson}: stratified importance resampling following Drayson et al.~\\cite{drayson2025}, with $w_j = (1 - q(x_j))^b / Z$, $b = 1.5$, and oversampling factor $k = 1.5$.\n19\t  This is the strongest existing baseline for contamination-aware data curation.\n20\t\n21\t  \\item \\textbf{Graduated}: our proposed depth-aware strategy.\n22\t  The OBD-LightGBM classifier (Section~\\ref{sec:classifier}) predicts a full depth distribution $P(d \\mid \\mathbf{x})$ for each document, from which we compute the expected depth $\\hat{d} = \\sum_d d \\cdot P(d \\mid \\mathbf{x})$.\n23\t  Sample weights follow an exponential decay: $w = \\exp(-\\alpha \\cdot \\hat{d})$, where $\\alpha$ controls the penalty for predicted depth.\n24\t  Low $\\alpha$ values retain more synthetic content with gentle down-weighting; high $\\alpha$ values approximate hard filtering.\n25\t  We sweep $\\alpha \\in \\{0.1, 0.3, 0.5, 0.7, 0.9\\}$.\n26\t\n27\t  \\item \\textbf{Surprisal}: a feature-based heuristic that retains documents whose mean surprisal exceeds the corpus median, exploiting the observation that deeper generations exhibit lower surprisal variance (Section~\\ref{sec:feature_degradation}).\n28\t\n29\t  \\item \\textbf{DSIR}: Data Selection via Importance Resampling~\\cite{xie2023dsir}, using bigram feature hashing with the depth-0 subcorpus as the reference distribution.\n30\t  This represents the state-of-the-art domain-matching baseline that is agnostic to generational depth.\n31\t\\end{enumerate}\n32\t\n33\t\\paragraph{Training setup.}\n34\tWe fine-tune Qwen2.5-1.5B-Instruct via LoRA (rank~8, $\\alpha_{\\text{LoRA}} = 16$, target modules: \\texttt{q\\_proj}, \\texttt{v\\_proj}, dropout 0.05) on the filtered corpus for 3 epochs with learning rate $2 \\times 10^{-5}$, batch size 4 with gradient accumulation 8, warmup ratio 0.1, and bfloat16 precision.\n35\tDocuments are truncated to 512 tokens.\n36\tFor strategies that produce continuous weights (graduated, binary-ours, binary-Drayson, DSIR), zero-weight samples are removed and the remaining samples are drawn via weighted random sampling; for binary strategies (surprisal), excluded samples are dropped outright.\n37\tEach strategy is evaluated across 5 random seeds (42, 123, 456, 789, 1024); the graduated strategy is further crossed with 5 $\\alpha$ values, yielding 25 additional runs.\n38\tA base model baseline (no fine-tuning) is included for reference.\n39\tThe total experimental budget is approximately 50 runs.\n40\t\n41\t\\paragraph{Evaluation.}\n42\tWe evaluate on two standard benchmarks via lm-eval-harness: MMLU (14{,}042 test examples, 0-shot) and HellaSwag (10{,}042 validation examples, 0-shot).\n43\tWe report mean accuracy $\\pm$ standard deviation across seeds.\n44\t\n45\t%% ====================================================================\n46\t\\paragraph{Results.}\n47\t\n48\t\\begin{table}[t]\n49\t\\centering\n50\t\\small\n51\t\\caption{Downstream evaluation of filtering strategies.\n52\tMMLU and HellaSwag accuracy (0-shot) after LoRA continued pretraining on Qwen2.5-1.5B-Instruct with each strategy's filtered corpus.\n53\tMean $\\pm$ std over 5 seeds.\n54\tBest per-column result in bold; second-best underlined.\n55\tGraduated results use the best $\\alpha$ from Table~\\ref{tab:alpha_sweep}.}\n56\t\\label{tab:filtering_main}\n57\t\\begin{tabular}{lcc}\n58\t\\toprule\n59\t\\textbf{Strategy} & \\textbf{MMLU} & \\textbf{HellaSwag} \\\\\n60\t\\midrule\n61\tBase model (no fine-tuning)\n62\t  & \\textit{XX.X}\n63\t  & \\textit{XX.X} \\\\\n64\t\\midrule\n65\tNo-filter\n66\t  & XX.X $\\pm$ X.X\n67\t  & XX.X $\\pm$ X.X \\\\\n68\tBinary-ours\n69\t  & XX.X $\\pm$ X.X\n70\t  & XX.X $\\pm$ X.X \\\\\n71\tBinary-Drayson\n72\t  & XX.X $\\pm$ X.X\n73\t  & XX.X $\\pm$ X.X \\\\\n74\tGraduated ($\\alpha^*$)\n75\t  & \\textbf{XX.X} $\\pm$ X.X\n76\t  & \\textbf{XX.X} $\\pm$ X.X \\\\\n77\tSurprisal\n78\t  & XX.X $\\pm$ X.X\n79\t  & XX.X $\\pm$ X.X \\\\\n80\tDSIR\n81\t  & XX.X $\\pm$ X.X\n82\t  & XX.X $\\pm$ X.X \\\\\n83\t\\bottomrule\n84\t\\end{tabular}\n85\t\\end{table}\n86\t\n87\tTable~\\ref{tab:filtering_main} compares the six strategies on downstream benchmark accuracy.\n88\t% TODO: fill results and update narrative once exp-006 completes.\n89\t% Expected narrative structure:\n90\t% 1. No-filter baseline establishes the cost of training on contaminated data.\n91\t% 2. Binary strategies (ours + Drayson) improve over no-filter by removing synthetic content.\n92\t% 3. Graduated filtering outperforms binary by preserving depth-1 signal.\n93\t% 4. DSIR and surprisal provide reference points for non-depth-aware curation.\n94\t\n95\t%% ====================================================================\n96\t\\paragraph{$\\alpha$ sensitivity.}\n97\t\n98\t\\begin{table}[t]\n99\t\\centering\n100\t\\small\n101\t\\caption{Graduated filtering $\\alpha$ sweep.\n102\tMean accuracy $\\pm$ std (5 seeds) for each decay parameter $\\alpha$.\n103\tLower $\\alpha$ retains more synthetic content; higher $\\alpha$ approximates hard filtering.}\n104\t\\label{tab:alpha_sweep}\n105\t\\begin{tabular}{ccc}\n106\t\\toprule\n107\t$\\alpha$ & \\textbf{MMLU} & \\textbf{HellaSwag} \\\\\n108\t\\midrule\n109\t0.1 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n110\t0.3 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n111\t0.5 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n112\t0.7 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n113\t0.9 & XX.X $\\pm$ X.X & XX.X $\\pm$ X.X \\\\\n114\t\\bottomrule\n115\t\\end{tabular}\n116\t\\end{table}\n117\t\n118\tTable~\\ref{tab:alpha_sweep} shows the effect of the decay parameter $\\alpha$ on downstream performance.\n119\t% TODO: fill results.\n120\t% Expected narrative:\n121\t% - Characterize the Pareto frontier: low alpha retains data volume but includes\n122\t%   more noise; high alpha is more selective but discards useful signal.\n123\t% - Identify optimal alpha and discuss whether the optimum is stable across seeds.\n124\t% - Connect to the K*=2 trichotomy: the graduated scheme effectively implements\n125\t%   a soft version of the human / gen-1 / gen-2+ partition, with alpha controlling\n126\t%   how aggressively deeper content is penalized.\n127\t\n128\t%% ====================================================================\n129\t\\paragraph{Analysis.}\n130\t\n131\t% TODO: fill once results are available.\n132\t% Planned analysis points:\n133\t% (1) Does graduated filtering outperform binary? If so, this validates the\n134\t%     practical utility of the K*=2 trichotomy for data curation.\n135\t% (2) How does the optimal alpha relate to the discrimination boundary?\n136\t%     At alpha -> infinity, graduated degenerates to binary-ours (hard cutoff);\n137\t%     at alpha = 0, it degenerates to no-filter. The optimal alpha should\n138\t%     lie in between, reflecting the value of soft depth-aware weighting.\n139\t% (3) Which strategy benefits most from the seed averaging? If graduated\n140\t%     shows lower variance across seeds, it suggests the ordinal signal\n141\t%     provides a more stable curation criterion than binary classification.\n142\t% (4) Do the results differ between MMLU (knowledge-intensive) and\n143\t%     HellaSwag (commonsense reasoning)? Different tasks may exhibit\n144\t%     different sensitivity to data contamination depth.\n145\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1197ed90-5b94-4501-aa88-ed37aea9b7d7",
+            "isSidechain": true,
+            "promptId": "b3f2cc73-d95e-485f-a36b-88268a78f805",
+            "agentId": "a9b17499a9915dbf4",
+            "type": "user",
+            "uuid": "a3891ab1-2ce6-4f16-9853-654947817286",
+            "sourceToolAssistantUUID": "1197ed90-5b94-4501-aa88-ed37aea9b7d7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T07:58:38.868Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01M98LHyCb3jLjcAuc6s4NrS",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a3891ab1-2ce6-4f16-9853-654947817286",
+            "isSidechain": true,
+            "agentId": "a9b17499a9915dbf4",
+            "requestId": "req_011Cb278iTzgrkZVvWk52Ksw",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e971f76d-79f0-4418-9ffc-64bc8ee1155f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019SKziTbZd5tyn5Q1znzmhb",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 9303,
+                "cache_read_input_tokens": 22571,
+                "output_tokens": 186,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 9303
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 186,
+                    "cache_read_input_tokens": 22571,
+                    "cache_creation_input_tokens": 9303,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 9303,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T07:58:38.909Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01M98LHyCb3jLjcAuc6s4NrS",
+              "type": "tool_result",
+              "content": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t% === Pipeline figure placeholder ===\n5\t% \\begin{figure}[t]\n6\t% \\centering\n7\t% \\includegraphics[width=\\columnwidth]{figures/pipeline.pdf}\n8\t% \\caption{Overview of the generational depth estimation pipeline. Seed documents from C4 are recursively passed through a generation operator $G_\\delta$ to produce a depth chain $X \\to Y_1 \\to \\cdots \\to Y_K$. Statistical features extracted by an external scorer model are fed to the OBD-LightGBM classifier for depth prediction.}\n9\t% \\label{fig:pipeline}\n10\t% \\end{figure}\n11\t\n12\t\\subsection{Problem Formulation}\n13\t\\label{sec:formulation}\n14\t\n15\tRecursive text generation naturally forms an iterated lossy channel.\n16\tLet $X$ denote an original human-written document drawn from a source distribution $\\mathcal{D}$.\n17\tA generation operator $G_\\delta = \\text{LLM} + \\delta$, parameterized by a decoding strategy $\\delta$ (e.g., nucleus sampling with top-$p$ and temperature $T$), produces successive generations:\n18\t\\begin{equation}\n19\t  X \\to Y_1 \\to Y_2 \\to \\cdots \\to Y_K, \\quad Y_k = G_\\delta(Y_{k-1}),\n20\t  \\label{eq:markov}\n21\t\\end{equation}\n22\twhere $Y_0 \\triangleq X$.\n23\tThe sequence $\\{Y_k\\}_{k=0}^K$ forms a Markov chain, since each generation depends only on its immediate predecessor.\n24\t\n25\tBy the Data Processing Inequality (DPI), mutual information between the original document and successive generations is monotonically non-increasing:\n26\t\\begin{equation}\n27\t  I(X; Y_1) \\geq I(X; Y_2) \\geq \\cdots \\geq 0.\n28\t  \\label{eq:dpi}\n29\t\\end{equation}\n30\tSince mutual information is bounded below by zero, this monotone sequence converges: the original signal degrades monotonically across generations.\n31\tMoreover, when the generation operator defines a finite-state Markov chain, the marginal distributions of adjacent generations converge to a shared stationary distribution, so that any classifier's ability to distinguish depth $k$ from depth $k{+}1$ must eventually degrade to chance.\n32\tTogether, these arguments guarantee the existence of a finite $\\Ktheory$ beyond which adjacent generations are indistinguishable---the \\emph{information-theoretic discrimination boundary}.\n33\t\n34\tMotivated by this theoretical guarantee, we set out to \\emph{empirically measure} the discrimination boundary.\n35\tWe define an operational lower bound $\\Kempirical$ via a classifier's ability to distinguish adjacent generations:\n36\t\\begin{equation}\n37\t  \\Kempirical = \\max\\{k : \\text{CI}_{\\text{lower}}^{95\\%}(\\auc_{k,k+1}) > \\theta\\},\n38\t  \\label{eq:kstar}\n39\t\\end{equation}\n40\twhere $\\auc_{k,k+1}$ is the pairwise area under the ROC curve for distinguishing depth $k$ from $k{+}1$, $\\text{CI}_{\\text{lower}}^{95\\%}$ denotes the lower bound of a bootstrap 95\\% confidence interval (1{,}000 resamples), and $\\theta$ is an operational threshold justified in \\S\\ref{sec:kstar_operational}.\n41\tSince any specific classifier can only recover a subset of the information-theoretically available signal, $\\Kempirical \\leq \\Ktheory$ by construction.\n42\t\n43\t\\subsection{Feature Extraction}\n44\t\\label{sec:features}\n45\t\n46\tWe characterize each document with a 15-dimensional statistical feature vector, organized into four groups (Table~\\ref{tab:features}).\n47\tAll features are computed from token-level surprisal values and frequency statistics obtained via an external scorer model on the tokenized text.\n48\t\n49\t\\begin{table}[t]\n50\t\\centering\n51\t\\small\n52\t\\caption{The 15-dimensional feature set for generational depth estimation.}\n53\t\\label{tab:features}\n54\t\\begin{tabular}{lll}\n55\t\\toprule\n56\t\\textbf{Group} & \\textbf{Feature} & \\textbf{Description} \\\\\n57\t\\midrule\n58\t\\multirow{4}{*}{\\parbox{2.2cm}{Surprisal\\\\moments}}\n59\t  & \\texttt{surp\\_mean}      & Mean token surprisal \\\\\n60\t  & \\texttt{surp\\_std}       & Std.\\ dev.\\ of token surprisal \\\\\n61\t  & \\texttt{surp\\_skew}      & Skewness of surprisal dist. \\\\\n62\t  & \\texttt{surp\\_kurt}      & Kurtosis of surprisal dist. \\\\\n63\t\\midrule\n64\t\\multirow{5}{*}{\\parbox{2.2cm}{Surprisal\\\\derivatives}}\n65\t  & \\texttt{surp\\_d1\\_mean}  & Mean 1st-order surprisal diff. \\\\\n66\t  & \\texttt{surp\\_d1\\_std}   & Std.\\ dev.\\ of 1st-order diff. \\\\\n67\t  & \\texttt{surp\\_d1\\_skew}  & Skewness of 1st-order diff. \\\\\n68\t  & \\texttt{surp\\_d2\\_mean}  & Mean 2nd-order surprisal diff. \\\\\n69\t  & \\texttt{surp\\_d2\\_std}   & Std.\\ dev.\\ of 2nd-order diff. \\\\\n70\t\\midrule\n71\t\\multirow{3}{*}{\\parbox{2.2cm}{Vocabulary\\\\diversity}}\n72\t  & \\texttt{ttr}             & Type-token ratio \\\\\n73\t  & \\texttt{hapax\\_ratio}    & Hapax legomena / unique tokens \\\\\n74\t  & \\texttt{self\\_bleu}      & 4-gram self-BLEU (within-document) \\\\\n75\t\\midrule\n76\t\\multirow{3}{*}{\\parbox{2.2cm}{Frequency\\\\tail}}\n77\t  & \\texttt{freq\\_kurtosis}  & Kurtosis of token frequencies \\\\\n78\t  & \\texttt{freq\\_entropy}   & Token frequency entropy \\\\\n79\t  & \\texttt{low\\_freq\\_ratio} & Fraction of rare tokens (freq $\\leq 2$) \\\\\n80\t\\bottomrule\n81\t\\end{tabular}\n82\t\\end{table}\n83\t\n84\tThe first two groups capture the distribution and dynamics of token-level surprisal: moments summarize the shape of the surprisal distribution, while derivatives measure its local variability across token positions.\n85\tVocabulary diversity features quantify lexical richness and repetitiveness: type-token ratio and hapax proportion reflect vocabulary breadth, while self-BLEU detects the increased intra-document $n$-gram overlap characteristic of deeper generations.\n86\tFrequency tail features characterize the token frequency distribution, capturing the well-documented phenomenon whereby recursive generation concentrates probability mass on high-frequency tokens and reduces the fraction of rare tokens \\cite{shumailov2024collapse, dohmatob2024model}.\n87\t\n88\tWe use hand-crafted statistical features rather than learned representations for three reasons: (1) they are directly interpretable, enabling degradation ordering analysis across model families; (2) they transfer across generators without retraining the feature extractor; and (3) they permit attribution of discriminative power to specific text properties, which is essential for understanding \\emph{how} the depth signal degrades (full feature definitions in Table~\\ref{tab:s5_features}).\n89\t\n90\t\\subsection{Ordinal Binary Decomposition Classifier}\n91\t\\label{sec:classifier}\n92\t\n93\tGenerational depth is inherently ordinal: depth~1 is closer to depth~0 than depth~3 is.\n94\tWe exploit this structure via \\emph{Ordinal Binary Decomposition} (OBD), which decomposes a $(K{+}1)$-class ordinal classification problem into $K$ cumulative binary sub-classifiers.\n95\tThe $k$-th sub-classifier estimates the exceedance probability:\n96\t\\begin{equation}\n97\t  P(\\text{depth} > k \\mid \\mathbf{x}), \\quad k = 0, 1, \\ldots, K{-}1,\n98\t\\end{equation}\n99\twhere $\\mathbf{x} \\in \\mathbb{R}^{15}$ is the feature vector.\n100\tEach sub-classifier is an independent LightGBM model (hyperparameters in Table~\\ref{tab:s6_lgbm_params}).\n101\tClass probabilities are recovered via the decomposition $P(Y{=}0) = 1 - P(Y{>}0)$ and $P(Y{=}k) = P(Y{>}k{-}1) - P(Y{>}k)$ for $k \\geq 1$.\n102\tThe predicted depth is:\n103\t\\begin{equation}\n104\t  \\hat{d}(\\mathbf{x}) = \\operatorname*{arg\\,max}_{k} \\; P(Y{=}k \\mid \\mathbf{x}).\n105\t\\end{equation}\n106\t\n107\tWe compared OBD-LightGBM against two alternatives: standard (unordered) multiclass LightGBM and ordinal logistic regression (LogisticAT).\n108\tOBD-LightGBM achieves lower mean absolute error (MAE) than multiclass LightGBM across all three model families (Qwen-rewrite: 0.984 vs.\\ 1.016; Pythia: 1.107 vs.\\ 1.140; OLMo: 1.147 vs.\\ 1.181).\n109\tOrdinal logistic regression yields the lowest MAE overall (e.g., 0.911 on Qwen-rewrite) but at the cost of substantially degraded pairwise discrimination: mean pairwise $\\auc$ of 0.4883 versus 0.6095 for OBD-LightGBM, averaged across the three families.\n110\tThe low MAE of ordinal logistic regression stems from collapsing predictions toward central depths rather than improved discrimination---a pathology that renders it unsuitable when pairwise depth discriminability is the primary objective.\n111\t\n112\t\\subsection{Operationalizing $\\Kstar$}\n113\t\\label{sec:kstar_operational}\n114\t\n115\tWe set the operational threshold at $\\theta = 0.60$.\n116\tThis choice is grounded in the permutation test null distribution: across all model configurations, the 95th percentile of the null $\\auc$ (obtained from 500 random label permutations) falls below 0.55.\n117\tA threshold of $\\theta = 0.60$ therefore requires classification performance that is statistically significantly above chance at the $\\alpha = 0.05$ level.\n118\t\n119\tUncertainty is quantified via bootstrap resampling (1{,}000 resamples) of $\\auc_{k,k+1}$ for each adjacent depth pair.\n120\t$\\Kempirical$ is defined as the maximum depth $k$ for which $\\text{CI}_{\\text{lower}}^{95\\%}(\\auc_{k,k+1}) > \\theta$ (Eq.~\\ref{eq:kstar}).\n121\t\n122\tWe examine threshold sensitivity at $\\theta \\in \\{0.55, 0.60, 0.65, 0.70\\}$.\n123\tAt $\\theta = 0.60$, $\\Kempirical = 2$ holds across all four model configurations, with all permutation $p$-values for depth pair $1$ vs.\\ $2$ at $p = 0.002$.\n124\tAt the more lenient $\\theta = 0.55$, $\\Kempirical = 3$ uniformly across all four configurations.\n125\tAt the stricter $\\theta = 0.65$, only the rewrite configuration retains $\\Kempirical = 2$; continuation-mode configurations yield $\\Kempirical = 1$.\n126\tAt $\\theta = 0.70$, $\\Kempirical = 1$ across all configurations.\n127\tThis sensitivity profile confirms that $\\Kempirical = 2$ is robust at our chosen threshold while remaining appropriately responsive to more stringent criteria.\n128\t\n129\t\\subsection{Experimental Setup}\n130\t\\label{sec:experimental_setup}\n131\t\n132\tWe evaluate four model configurations spanning three model families and two generation modes (Table~\\ref{tab:setup}).\n133\t\n134\t\\begin{table}[t]\n135\t\\centering\n136\t\\small\n137\t\\caption{Experimental configurations. All use the same seed corpus and evaluation protocol (5-fold group cross-validation grouped by seed document, $\\auc$ as primary metric).}\n138\t\\label{tab:setup}\n139\t\\begin{tabular}{llcccc}\n140\t\\toprule\n141\t\\textbf{Config} & \\textbf{Model} & \\textbf{Mode} & \\textbf{Decoding} & $N$ & \\textbf{Depth} \\\\\n142\t\\midrule\n143\tQwen-rw   & Qwen2.5-1.5B-Instruct & Rewrite      & $p{=}0.95$, $T{=}1.0$ & 5{,}000 & 0--5 \\\\\n144\tQwen-cont & Qwen2.5-1.5B-Instruct & Continuation & $p{=}0.95$, $T{=}1.0$ & 5{,}000 & 0--5 \\\\\n145\tPythia    & Pythia-1.4B            & Continuation & $p{=}0.95$, $T{=}1.0$ & 5{,}000 & 0--5 \\\\\n146\tOLMo      & OLMo-1B               & Continuation & $p{=}0.95$, $T{=}1.0$ & 5{,}000 & 0--5 \\\\\n147\t\\bottomrule\n148\t\\end{tabular}\n149\t\\end{table}\n150\t\n151\t\\paragraph{Seed corpus.}\n152\tWe sample 5{,}000 documents from the C4 validation split, each truncated to 256 tokens, providing a controlled and reproducible starting point.\n153\t\n154\t\\paragraph{Depth chain.}\n155\tEach seed document is recursively passed through the generation operator for $K = 5$ iterations, producing depths 0 (original) through 5.\n156\tThis yields 30{,}000 documents per configuration (5{,}000 seeds $\\times$ 6 depth levels).\n157\t\n158\t\\paragraph{Decoding.}\n159\tAll configurations use nucleus sampling with $p = 0.95$ and temperature $T = 1.0$, which we treat as the standard decoding condition.\n160\tThe effect of alternative decoding strategies (greedy, lower temperature, different $p$) on $\\Kempirical$ is examined in a separate ablation (\\S\\ref{sec:experiments}).\n161\t\n162\t\\paragraph{Evaluation.}\n163\tWe report pairwise $\\auc$ for each adjacent depth pair $(k, k{+}1)$ under 5-fold group cross-validation (grouped by seed document to prevent cross-depth leakage), with bootstrap 95\\% confidence intervals.\n164\tOrdinal MAE and Kendall's $\\tau_b$ are reported as secondary metrics.\n165\tDataset statistics are provided in Table~\\ref{tab:s4_dataset_stats}; per-fold bootstrap results in Table~\\ref{tab:s8_cv_folds}.\n166\t\n167\t\\subsection{Generation Mode Control}\n168\t\\label{sec:generation_mode_method}\n169\t\n170\tWe investigate two generation modes that capture distinct recursive contamination scenarios:\n171\t\n172\t\\paragraph{Continuation.}\n173\tThe seed document is truncated to its first 128 tokens, and the LLM generates a continuation to 256 tokens.\n174\tThis simulates scenarios where partial human text is extended by a model, a common pattern in collaborative writing and web content generation.\n175\t\n176\t\\paragraph{Rewrite.}\n177\tThe LLM receives the instruction ``Rewrite the following text while preserving its meaning'' and generates a full paraphrase.\n178\tThis simulates content rewriting pipelines where existing text is rephrased at scale.\n179\t\n180\tWe designate continuation as the \\emph{canonical condition} for cross-model comparisons, based on three empirical findings from the cross-model transfer analysis.\n181\tFirst, classifiers trained on continuation-mode data retain 80--92\\% accuracy when transferred across model families, versus only 61--63\\% for rewrite-mode classifiers.\n182\tSecond, the higher pairwise $\\auc$ observed in rewrite mode ($\\auc_{1,2} = 0.6955$ vs.\\ $0.6112$ for continuation on Qwen) reflects instruction-following style artifacts rather than a stronger intrinsic depth signal, as evidenced by the poor cross-model transfer.\n183\tThird, the asymmetric transfer---continuation${\\to}$rewrite retains 89\\% performance versus rewrite${\\to}$continuation at 82\\%---indicates that continuation-mode features form a generalizable subset of what rewrite-mode classifiers exploit.\n184\tWe therefore report continuation-mode results as primary and treat rewrite-mode results as an upper-bound ablation that quantifies the effect of mode-specific signal amplification.\n185\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e971f76d-79f0-4418-9ffc-64bc8ee1155f",
+            "isSidechain": true,
+            "promptId": "b3f2cc73-d95e-485f-a36b-88268a78f805",
+            "agentId": "a9b17499a9915dbf4",
+            "type": "user",
+            "uuid": "9cc28921-992d-4eef-85f9-9d35022f731b",
+            "sourceToolAssistantUUID": "e971f76d-79f0-4418-9ffc-64bc8ee1155f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T07:58:40.217Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check for any related artifacts that might demonstrate the writing style further:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9cc28921-992d-4eef-85f9-9d35022f731b",
+            "isSidechain": true,
+            "agentId": "a9b17499a9915dbf4",
+            "requestId": "req_011Cb278wJfn7GuAvJzFiPoy",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2086c74a-93e8-456c-89f4-18de666baad8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XwweC1Am9KXMVageRZWb3s",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 7598,
+                "cache_read_input_tokens": 31874,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7598,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T07:58:41.089Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SsnSAGzEVDF9j6nQni411o",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/introduction.tex",
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2086c74a-93e8-456c-89f4-18de666baad8",
+            "isSidechain": true,
+            "agentId": "a9b17499a9915dbf4",
+            "requestId": "req_011Cb278wJfn7GuAvJzFiPoy",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1d82699c-8f02-4864-bb5c-589190011c08",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XwweC1Am9KXMVageRZWb3s",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 7598,
+                "cache_read_input_tokens": 31874,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7598,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T07:58:41.100Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SsnSAGzEVDF9j6nQni411o",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tWeb-scale text corpora are increasingly contaminated by synthetic content that has itself been generated from earlier synthetic content.\n5\tEach pass through a language model constitutes a lossy channel: first-generation synthetic text retains much of the information structure of its human-written source, but within just two or three generations the output is qualitatively different---tail modes vanish, lexical diversity contracts, and surprisal distributions flatten~\\cite{shumailov2024collapse, dohmatob2024model}.\n6\tThis recursive degradation is not merely a theoretical concern; as synthetic text proliferates on the open web, training corpora inevitably ingest documents at varying generational depths, amplifying the risk of model collapse in downstream systems.\n7\tYet the dominant paradigm in synthetic text detection treats all machine-generated text identically: a document is classified as human or synthetic, with no regard for how many rounds of recursive generation it has undergone.\n8\tThis binary framing discards the generational depth dimension entirely.\n9\t\n10\tThe gap cuts across three research communities.\n11\tBinary detection methods---including DivEye~\\cite{basani2026diveye}, Min-K\\%++~\\cite{zhang2024minkpp}, and CoDeC~\\cite{zawalski2026codec}---achieve strong human-versus-machine separation but produce no depth estimate.\n12\tThe model collapse literature provides macro-level characterizations of recursive degradation: Shumailov et al.~\\cite{shumailov2024collapse} demonstrated irreversible tail loss, Alemohammad et al.~\\cite{alemohammad2024selfconsuming} proved convergence to a fixed point, and Schaeffer et al.~\\cite{schaeffer2025position} organized the field into a taxonomy of eight definitions---yet none of these works provides a tool for estimating the generational depth of an individual text.\n13\tData selection methods such as DSIR~\\cite{xie2023dsir}, D4~\\cite{tirumala2023d4}, and DoReMi~\\cite{xie2023doremi} perform distribution matching to improve corpus quality but ignore recursive depth altogether.\n14\tThe closest prior work is Drayson et al.~\\cite{drayson2025}, who combined binary machine-generated text detection with stratified importance resampling to prevent model collapse---but their approach remains fundamentally binary.\n15\tNo existing method estimates how many rounds of recursive generation a text has undergone, nor quantifies the boundary beyond which such estimation becomes infeasible.\n16\t\n17\tRecursive generation forms an iterated lossy channel; the Data Processing Inequality guarantees that the original signal degrades monotonically across generations, motivating the existence of a finite discrimination boundary $\\Kstar$ beyond which adjacent generations become indistinguishable.\n18\tMarkov chain convergence further implies that adjacent-generation distributions converge to a shared stationary distribution, so the classifier's task grows harder with each step.\n19\tMotivated by this theoretical structure, we set out to empirically measure $\\Kempirical$---the maximum depth at which a classifier can reliably distinguish adjacent generations.\n20\tOur approach combines a 15-dimensional statistical feature pipeline---capturing surprisal moments, surprisal derivatives, vocabulary diversity, and frequency tail statistics---with an Ordinal Binary Decomposition (OBD) LightGBM classifier that respects the ordinal structure of depth.\n21\tWe operationalize $\\Kempirical$ as the deepest generation at which adjacent depths remain statistically distinguishable, with the bootstrap 95\\% CI for pairwise $\\auc$ exceeding an operational threshold $\\theta = 0.60$ (formal definition in Section~\\ref{sec:method}).\n22\tThe choice of interpretable statistical features---rather than learned representations---is deliberate: it enables cross-generator transfer without retraining and permits attribution of discriminative power to specific text properties.\n23\t\n24\tOur contributions are organized into two groups.\n25\tThe primary contribution is a systematic empirical characterization of $\\Kempirical$ and its properties:\n26\t\n27\t\\begin{enumerate}[label=(\\alph*)]\n28\t  \\item \\textbf{$\\Kempirical = 2$: a consistent boundary across all tested conditions.}\n29\t    Across 4 model-mode configurations and 4 decoding strategies (8 conditions total), all 1v2 bootstrap CI lower bounds exceed $\\theta = 0.60$ and all 2v3 CI upper bounds fall below $\\theta$, with permutation $p \\leq 0.002$ for all boundary comparisons.\n30\t    The most marginal case is Qwen-continuation, where $\\text{CI}_\\text{lower} = 0.6015$.\n31\t    $\\Kempirical = 2$ is thus established as a consistent discrimination boundary across all 8 tested conditions at the $\\leq$1.5B scale.\n32\t    Higher decoding entropy increases signal strength ($\\auc_{1,2}$: $0.69$ greedy $\\to$ $0.70$ at $T{=}1.2$) but does not shift the boundary.\n33\t\n34\t  \\item \\textbf{Cross-model transfer.}\n35\t    Classifiers trained on one continuation-mode model and evaluated on another retain 80--92\\% of within-model accuracy (Pythia$\\leftrightarrow$OLMo: 90--92\\%).\n36\t    At the 0v1 boundary, cross-model $\\auc$ exceeds 0.96 across all tested model pairs.\n37\t    Transfer retention of 80--92\\% suggests a large text-intrinsic component of the depth signal, rather than generator-specific artifacts.\n38\t\n39\t  \\item \\textbf{Degradation ordering consistency.}\n40\t    Single-feature $\\auc$ rankings are highly correlated across continuation-mode models (Spearman $\\rho \\geq 0.85$), with the same top features---\\texttt{surp\\_d1\\_std}, \\texttt{surp\\_std}, \\texttt{surp\\_d2\\_std}---appearing across all three families.\n41\t    This shared ordering suggests a common degradation mechanism: each generation step smooths the token-level surprisal landscape.\n42\t    A limitation is that depth-pair-level agreement weakens ($\\tau \\approx 0.37$ at 1v2), indicating that individual feature contributions at the boundary vary across models.\n43\t\n44\t  \\item \\textbf{Generation mode analysis.}\n45\t    Within Qwen2.5-1.5B-Instruct, rewrite mode yields 1v2 $\\auc = 0.6955$ versus continuation's $0.6112$ ($\\Delta = +8.4$\\,pp), but rewrite-trained classifiers transfer poorly across models (61--63\\% retention versus 80--92\\% for continuation).\n46\t    Cross-mode transfer is asymmetric: continuation$\\to$rewrite retains 89\\% while rewrite$\\to$continuation retains 82\\%.\n47\t    Continuation mode is therefore recommended as the canonical condition for cross-model comparisons.\n48\t\\end{enumerate}\n49\t\n50\t\\noindent As a secondary contribution, we investigate whether the coarse 3-class ordinal signal implied by $\\Kempirical = 2$ enables \\emph{graduated filtering}---depth-aware data curation that preserves mildly contaminated text (depth~1, retaining most original signal) while removing deeply corrupted text (depth~$\\geq 3$)---and whether such filtering can improve upon binary approaches that discard all synthetic content indiscriminately (Section~\\ref{sec:experiments}).\n51\t\n52\tThe remainder of this paper is organized as follows.\n53\tSection~\\ref{sec:related_work} reviews related work.\n54\tSection~\\ref{sec:method} describes the method.\n55\tSection~\\ref{sec:experiments} presents experimental results.\n56\tSection~\\ref{sec:discussion} discusses implications and limitations.\n57\tSection~\\ref{sec:conclusion} concludes."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1d82699c-8f02-4864-bb5c-589190011c08",
+            "isSidechain": true,
+            "promptId": "b3f2cc73-d95e-485f-a36b-88268a78f805",
+            "agentId": "a9b17499a9915dbf4",
+            "type": "user",
+            "uuid": "48790365-d57b-47c6-ae2e-f4d3f43a84b5",
+            "sourceToolAssistantUUID": "1d82699c-8f02-4864-bb5c-589190011c08",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T07:58:41.441Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016YSEFYs6eoffevD41ZcnQL",
+              "name": "Bash",
+              "input": {
+                "command": "grep -r \"\\\\\\\\newcommand\\|\\\\\\\\def\" /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/ 2>/dev/null | head -30"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "48790365-d57b-47c6-ae2e-f4d3f43a84b5",
+            "isSidechain": true,
+            "agentId": "a9b17499a9915dbf4",
+            "requestId": "req_011Cb278wJfn7GuAvJzFiPoy",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "62cec4f2-ff4d-4c95-9ad8-d0025211da2d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XwweC1Am9KXMVageRZWb3s",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 7598,
+                "cache_read_input_tokens": 31874,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7598,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T07:58:41.521Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016YSEFYs6eoffevD41ZcnQL",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.log:\\defaultaddspace=\\dimen177\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex:\\newcommand{\\Kstar}{K^*}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex:\\newcommand{\\Kempirical}{K^*_{\\text{empirical}}}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex:\\newcommand{\\Ktheory}{K^*_{\\text{theory}}}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex:\\newcommand{\\auc}{\\text{AUC}}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex:\\newcommand{\\jsd}{\\text{JSD}}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "62cec4f2-ff4d-4c95-9ad8-d0025211da2d",
+            "isSidechain": true,
+            "promptId": "b3f2cc73-d95e-485f-a36b-88268a78f805",
+            "agentId": "a9b17499a9915dbf4",
+            "type": "user",
+            "uuid": "818d27bf-c6fb-481a-b8b5-a7c213a2eff4",
+            "sourceToolAssistantUUID": "62cec4f2-ff4d-4c95-9ad8-d0025211da2d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T07:58:43.030Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Let me also check if there are any artifact files to understand the overall context:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "818d27bf-c6fb-481a-b8b5-a7c213a2eff4",
+            "isSidechain": true,
+            "agentId": "a9b17499a9915dbf4",
+            "requestId": "req_011Cb2798U8Mtjc9i3NdDeeZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "efa2cd02-aeff-41cb-bfb0-b466a3e98c58",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DP27sAohnNaKCJFXLMZ82Z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2528,
+                "cache_read_input_tokens": 39472,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2528,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T07:58:43.457Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Fc2fHzHio9Acik5ZvabMcd",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "gen-depth-contamination",
+                "file": "memory.md",
+                "max_chars": 3000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "efa2cd02-aeff-41cb-bfb0-b466a3e98c58",
+            "isSidechain": true,
+            "agentId": "a9b17499a9915dbf4",
+            "requestId": "req_011Cb2798U8Mtjc9i3NdDeeZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0e5f0978-6cbb-4ab4-bed9-c0609ba14cd4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DP27sAohnNaKCJFXLMZ82Z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2528,
+                "cache_read_input_tokens": 39472,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2528,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T07:58:43.476Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Fc2fHzHio9Acik5ZvabMcd",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/memory.md\\\", \\\"content\\\": \\\"# Memory — gen-depth-contamination\\\\n\\\\n## 关键发现\\\\n\\\\n### K*(neural probe) 初步信号 = 3 [2026-05-14, 待验证]\\\\nexp-015 Qwen-cont 单数据集结果：K*=3（2v3 AUC=0.620 > θ=0.60）。但 Pythia/OLMo 因 OOM 丢失，**不可用于论文**。需重跑全 3 数据集 + bootstrap CI + permutation test 后才能写入论文。Director 明确指示：重跑前不更新论文。\\\\n\\\\n### exp-015 GPU OOM 教训 [2026-05-14]\\\\nexp-006 (15.5GB) + exp-015 (~9GB) 超出 4090D 24GB 显存。**硬规则**: 后续 GPU 并行必须用 `torch.cuda.max_memory_allocated()` 报告 peak VRAM，不用 nvidia-smi 静态快照（低估 peak usage）。GPU 共享实验必须独占，不并行。\\\\n\\\\n## 经验\\\\n\\\\n### AutoDL / westc-26893\\\\n- ModelScope CDN 下载 HuggingFace 模型比直连快（国内网络）\\\\n- source /etc/network_turbo 启用代理加速\\\\n- HF_HUB_DISABLE_XET=1 避免 xet_get 401 错误\\\\n- SSL 证书需设 REQUESTS_CA_BUNDLE + SSL_CERT_FILE\\\\n- conda 环境：source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\n- 服务器别名从 autodl-4090d 改为 westc-26893（exp-003 cron 失败教训）\\\\n\\\\n### 实验管理\\\\n- submit_training_job 必须用于后台训练（不用 nohup）——自动 tmux + cron 监控\\\\n- Registry 状态必须顺序推进：PREPARING → PENDING → QUEUED → ALLOCATED → RUNNING → DONE\\\\n- GPU 编号始终从 0 开始（框架自动映射物理 GPU）\\\\n- **exp-006 实际速度 ~45.2min/run**（training 37.5min + eval 7.7min, range 44-49min）。99min 估计是错误的，monitor Worker 从实际 run 时间戳验证 45.2min 正确。\\\\n- exp-006 lm-eval 配置：batch_size=\\\\\\\"auto\\\\\\\", device=cuda:0, **MMLU 0-shot + HellaSwag 0-shot**（lm-eval 默认 0），eval 仅占 17% 总耗时 [2026-05-14]\\\\n- **exp-006 实际目录结构**：输出在 `outputs/exp006/`（非 `runs/exp006_graduated_filtering/`）。6 策略：`no-filter, binary-ours, binary-drayson, graduated, surprisal, dsir`。graduated 用 α∈{0.1,0.3,0.5,0.7,0.9} sweep。eval 结果格式：`scores.mmlu[\\\\\\\"acc,none\\\\\\\"]`, `scores.hellaswag[\\\\\\\"acc_norm,none\\\\\\\"]` [2026-05-14]\\\\n\\\\n### 论文写作\\\\n- Claude proxy model ID: 'claude-opus-4-6'（无 anthropic/ 前缀）\\\\n- 6 处 bib 条目有 hallucinated author first names，需验证所有 2025-2026 引用\\\\n- Qwen-cont/Qwen-rw 需一致使用 Qwen-continuation/Qwen-rewrite（running text）\\\\n- 90-92%（非 91-92%）for Pythia↔OLMo transfer retention\\\\n- discussion.tex 不应量化 \\\\\\\"70-85% text-intrinsic / 15-30% model-specific\\\\\\\" decomposition——数据不支持精确拆分\\\\n- Related Work 引用补充完成：probing classifiers (alain2017/conneau2018/belinkov2022/frank2001) + Strong Model Collapse (dohmatob2025) + Beyond Model Collapse (feng2025) + Fast-DetectGPT (bao2024) [2026-05-14]\\\\n- OBD 全称统一为 \\\\\\\"Ordinal Binary Decomposition\\\\\\\" [2026-05-14]\\\\n- $\\\\\\\\Kempirical^{\\\\\\\\text{neural}}$ 是 neural K* 的统一记号（非 $\\\\\\\\Kstar_{\\\\\\\\text{neural}}$）[2026-05-14]\\\\n\\\", \\\"total_chars\\\": 2238, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0e5f0978-6cbb-4ab4-bed9-c0609ba14cd4",
+            "isSidechain": true,
+            "promptId": "b3f2cc73-d95e-485f-a36b-88268a78f805",
+            "agentId": "a9b17499a9915dbf4",
+            "type": "user",
+            "uuid": "8662b807-179e-4e1b-b887-0f7f7a846b93",
+            "sourceToolAssistantUUID": "0e5f0978-6cbb-4ab4-bed9-c0609ba14cd4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T07:58:43.844Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KkuRwJKdREk8p9qeCsc8pF",
+              "name": "Bash",
+              "input": {
+                "command": "ls -lh /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/report/ 2>/dev/null | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8662b807-179e-4e1b-b887-0f7f7a846b93",
+            "isSidechain": true,
+            "agentId": "a9b17499a9915dbf4",
+            "requestId": "req_011Cb2798U8Mtjc9i3NdDeeZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4bce7a8c-e791-455a-822f-7ea3960866a8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DP27sAohnNaKCJFXLMZ82Z",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2528,
+                "cache_read_input_tokens": 39472,
+                "output_tokens": 210,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2528
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 210,
+                    "cache_read_input_tokens": 39472,
+                    "cache_creation_input_tokens": 2528,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2528,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T07:58:43.915Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KkuRwJKdREk8p9qeCsc8pF",
+              "type": "tool_result",
+              "content": "total 156K\n-rw-r--r-- 1 ubuntu ubuntu 9.8K May 12 12:51 claim_routes.md\n-rw-r--r-- 1 ubuntu ubuntu  17K May 12 16:50 figure_plan.md\n-rw-r--r-- 1 ubuntu ubuntu  16K May 12 12:54 full_study_plan.md\n-rw-r--r-- 1 ubuntu ubuntu 4.0K May 12 12:49 gpu_optimization_report.txt\n-rw-r--r-- 1 ubuntu ubuntu  16K May 13 02:18 literature_positioning_notes.md\n-rw-r--r-- 1 ubuntu ubuntu  16K May 13 02:18 literature_positioning_notes_d23bf4.md\n-rw-r--r-- 1 ubuntu ubuntu  14K May 13 00:52 literature_scan_2025_2026.md\n-rw-r--r-- 1 ubuntu ubuntu  20K May 12 16:28 methodology_draft.md\n-rw-r--r-- 1 ubuntu ubuntu 9.3K May 12 12:49 related_work_structure.md\n-rw-r--r-- 1 ubuntu ubuntu  11K May 14 06:55 reviewer_pass_round1.md\n-rw-r--r-- 1 ubuntu ubuntu  11K May 12 12:52 theory_framework.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4bce7a8c-e791-455a-822f-7ea3960866a8",
+            "isSidechain": true,
+            "promptId": "b3f2cc73-d95e-485f-a36b-88268a78f805",
+            "agentId": "a9b17499a9915dbf4",
+            "type": "user",
+            "uuid": "8ee570ee-67a4-49e6-a78e-5e99bda42c21",
+            "sourceToolAssistantUUID": "4bce7a8c-e791-455a-822f-7ea3960866a8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T07:59:00.145Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now I have a comprehensive understanding of the project. Let me compile a final summary report:\n\n## Summary: LaTeX Writing Style and Commands for gen-depth-contamination Project\n\n### File Locations and Structure\n\n**Primary LaTeX Files in `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/`:**\n- `main.tex` - Document root with preamble and macro definitions\n- `conclusion.tex` - Conclusion section\n- `discussion.tex` - Discussion section (7 subsections with detailed analysis)\n- `experiments_c3.tex` - Graduated filtering experiments (incomplete, with TODO placeholders)\n- `method.tex` - Method section with formal problem formulation\n- `introduction.tex` - Introduction with contribution enumeration\n- `experiments_c1.tex` - Main experiments section\n- `related_work.tex`, `appendix.tex` - Supporting sections\n\n### Core LaTeX Command Definitions\nLocated in `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex` (lines 19-23):\n\n```latex\n\\newcommand{\\Kstar}{K^*}\n\\newcommand{\\Kempirical}{K^*_{\\text{empirical}}}\n\\newcommand{\\Ktheory}{K^*_{\\text{theory}}}\n\\newcommand{\\auc}{\\text{AUC}}\n\\newcommand{\\jsd}{\\text{JSD}}\n```\n\nAdditionally, based on usage in discussion.tex and conclusions.tex:\n- `\\Kempirical^{\\text{neural}}` for neural probe variant (K* neural)\n- Subscript/superscript notation: `K^*_{\\text{neural}}` is deprecated in favor of macro form\n\n### Writing Style Characteristics\n\n**Tone & Structure:**\n1. **Formal academic prose** with extensive cross-references (e.g., `Section~\\ref{sec:method}`, `Table~\\ref{tab:kstar_ci}`)\n2. **Numerical precision**: Report exact percentages, confidence intervals, and p-values (e.g., \"0.60 by only +0.15\\,pp\")\n3. **Methodological rigor**: Every finding includes bootstrap CI lower/upper bounds, permutation p-values, and operational thresholds\n4. **Parenthetical citations**: Use `\\cite{author2024}` format within text\n5. **Parenthetical notation**: Use `($\\theta = 0.60$)` for inline parameter definitions\n\n**Pattern Examples from conclusion.tex:**\n- \"Across ... we establish $\\Kempirical = 2$ as a consistent boundary\"\n- \"For the four model-mode configurations, bootstrap 95\\% confidence intervals and permutation tests confirm statistical significance at the 1v2 boundary ($p \\leq 0.002$ for all four)\"\n- \"All four decoding configurations (greedy, nucleus, $T{=}0.70$, $T{=}1.2$) likewise yield...\"\n- Uses em-dashes for elaboration: \"The shallowness of $\\Kempirical$ is explained by---\"\n\n**Feature & Metric Formatting:**\n- Monospace feature names: `\\texttt{surp\\_d1\\_std}`, `\\texttt{hapax\\_ratio}`, `\\texttt{self\\_bleu}`\n- LaTeX-formatted metrics: `\\text{MAE}`, `\\auc` (not \"AUC\")\n- Confidence intervals: `\\text{CI}_{\\text{lower}}^{95\\%}`, `\\text{CI}_{\\text{upper}}^{95\\%}`\n- Model names with dashes: Qwen2.5-1.5B-Instruct, Pythia-1.4B, OLMo-1B\n\n**Subsection Organization:**\nFrom discussion.tex pattern:\n- Subsections labeled: `\\subsection{...}\\label{sec:discuss_...}`\n- Explicit subheadings with `\\paragraph{}` for specific analysis points\n- Limitations section uses `\\emph{...}` for emphasis on constraint names\n\n**Table & Figure References:**\n- Tables: `Table~\\ref{tab:filtering_main}` with boilerplate captions using `\\toprule`, `\\midrule`, `\\bottomrule` from `booktabs` package\n- Figures: `Figure~\\ref{fig:auc_decay}` with inline reference to appendix versions (e.g., `Figure~\\ref{fig:s1_auc_decay_ci}`)\n\n### Incomplete/Template Sections\n\n**In experiments_c3.tex** (lines 48-127):\n- Table placeholders: `XX.X $\\pm$ X.X` for results pending completion\n- TODO comments indicating expected narrative structure\n- Paragraph-level guidance for future analysis (lines 120-145)\n\n### Document Context\n\n**Project Scope:**\n- EMNLP 2026 submission (ARR May 2026) on \"Generational Depth Contamination\" in language models\n- Core finding: $\\Kempirical = 2$ (two-generation discrimination boundary)\n- Methods: OBD-LightGBM classifier on 15 hand-crafted statistical features\n- Experiments: 8 conditions (4 model-mode configs × 4 decoding strategies)\n- Secondary contribution: Graduated filtering for depth-aware data curation\n\n**Memory Notes Highlight:**\n- Neural probe preliminary results show $\\Kempirical^{\\text{neural}} = 3$ on single dataset (pending validation)\n- Memory.md indicates references need verification (some hallucinated author names in 2025-2026 papers)\n- Consistent notation: use \"Qwen-continuation\" not \"Qwen-cont\" in running text\n\n### Package Dependencies (from main.tex)\n```latex\n\\usepackage{times}\n\\usepackage{graphicx}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{amsthm}\n\\usepackage{booktabs}       % Professional tables\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{hyperref}\n\\usepackage[numbers]{natbib}\n\\usepackage{enumitem}\n\\usepackage{subcaption}\n```\n\nThis gives you a complete picture of the LaTeX conventions, macro system, writing tone, and structural patterns used throughout this research project."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8ee570ee-67a4-49e6-a78e-5e99bda42c21",
+            "isSidechain": true,
+            "agentId": "a9b17499a9915dbf4",
+            "requestId": "req_011Cb279JYrVqtpCBBkuiU5a",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e9fa659c-29c4-4429-b74c-62f52080ca0d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "77a6dc16-e14b-41cc-9af2-e5a589b3ea94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Qdx757Jt3y1sq9K68W4waX",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2019,
+                "cache_read_input_tokens": 42000,
+                "output_tokens": 1554,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2019
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 1554,
+                    "cache_read_input_tokens": 42000,
+                    "cache_creation_input_tokens": 2019,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2019,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-read-several-files-in-the-project-home-ubuntu-agent-ml-research-idea.md"
+}

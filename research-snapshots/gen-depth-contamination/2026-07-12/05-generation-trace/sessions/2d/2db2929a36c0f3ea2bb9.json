@@ -1,0 +1,2470 @@
+{
+  "schema_version": "1.0",
+  "id": "2db2929a36c0f3ea2bb9",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Research Common Crawl data access for 2025-2026 snapshots. I need to know: 1. What are the latest available Common Crawl",
+  "task_key": "agent-a031e0f4b8919eec1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a031e0f4b8919eec1.jsonl",
+    "occurrence": 1,
+    "bytes": 110197,
+    "sha256": "13e675c8cf709ff15fdd8ee877d4cae7de603dcffe20917d1f12af2a8e632fd1"
+  },
+  "statistics": {
+    "messages": 52,
+    "user_turns": 1,
+    "tool_calls": 23,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 23,
+      "tool_result": 23
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T06:31:47.315Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Research Common Crawl data access for 2025-2026 snapshots. I need to know:\n\n1. What are the latest available Common Crawl snapshots (2025 and 2026)?\n2. How to access them - S3 paths, WARC vs WET format, index files\n3. How to efficiently sample a subset (~10K-50K English documents) without downloading the full crawl\n4. What tools exist for sampling Common Crawl? (e.g., comcrawl, cc-index, cdx-toolkit, resiliparse)\n5. Disk space needed for a representative sample\n6. Language detection approaches for filtering English text\n7. Any existing preprocessed/filtered versions (like C4's approach to CC filtering)?\n\nAlso check if there are alternatives to raw Common Crawl that might be easier - like FineWeb, RedPajama, or DCLM datasets that are derived from recent CC snapshots.\n\nReport concisely with specific commands/URLs where possible."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "1aaff919-6b1e-499f-9a2e-edbca12dff84",
+            "agentId": "a031e0f4b8919eec1",
+            "type": "user",
+            "uuid": "d28f1d7d-ed55-4394-802b-ad2b73abda42",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-25T06:31:47.318Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "d28f1d7d-ed55-4394-802b-ad2b73abda42",
+                "isSidechain": true,
+                "agentId": "a031e0f4b8919eec1",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "795cfb0f-3be4-4323-aee5-2e5feba465c0",
+                "timestamp": "2026-05-25T06:31:47.318Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-25T06:31:49.860Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll research Common Crawl data access comprehensively. Let me search the web for the latest information."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "795cfb0f-3be4-4323-aee5-2e5feba465c0",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpQqWxRiQHc4jcucJ7z",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "54722d98-5fc6-4795-88ce-47586f16bf7d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XxT7PCsj2dehwrB3v5gpgz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6882,
+                "cache_read_input_tokens": 8250,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6882,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-25T06:31:50.032Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PegZ7Fc53eQNe56VvjVpjR",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch,WebFetch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "54722d98-5fc6-4795-88ce-47586f16bf7d",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpQqWxRiQHc4jcucJ7z",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1a076b37-781d-41ec-9448-0676ff99fd4d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XxT7PCsj2dehwrB3v5gpgz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6882,
+                "cache_read_input_tokens": 8250,
+                "output_tokens": 104,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6882
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 104,
+                    "cache_read_input_tokens": 8250,
+                    "cache_creation_input_tokens": 6882,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6882,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-25T06:31:50.036Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01PegZ7Fc53eQNe56VvjVpjR",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1a076b37-781d-41ec-9448-0676ff99fd4d",
+            "isSidechain": true,
+            "promptId": "1aaff919-6b1e-499f-9a2e-edbca12dff84",
+            "agentId": "a031e0f4b8919eec1",
+            "type": "user",
+            "uuid": "296e8709-e264-4ac0-83dd-7d2ce7b817bf",
+            "sourceToolAssistantUUID": "1a076b37-781d-41ec-9448-0676ff99fd4d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-25T06:31:52.292Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nLet me search for the latest information across multiple dimensions."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "296e8709-e264-4ac0-83dd-7d2ce7b817bf",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpR3UHuvRVUbYu3SrAe",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4bb9b56c-73d3-459e-96b5-2a5fef2f43ad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U74ygNW6YDwuUz2nhj82q2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1960,
+                "cache_read_input_tokens": 15132,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1960,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-25T06:31:52.731Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PyUd9WdmBZCpWKY9XKk2Ac",
+              "name": "WebSearch",
+              "input": {
+                "query": "Common Crawl latest snapshots 2025 2026 available list"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4bb9b56c-73d3-459e-96b5-2a5fef2f43ad",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpR3UHuvRVUbYu3SrAe",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "33783043-7cf2-4031-b8b0-18702a6fd17b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U74ygNW6YDwuUz2nhj82q2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1960,
+                "cache_read_input_tokens": 15132,
+                "output_tokens": 80,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1960
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 80,
+                    "cache_read_input_tokens": 15132,
+                    "cache_creation_input_tokens": 1960,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1960,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-25T06:31:59.365Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PyUd9WdmBZCpWKY9XKk2Ac",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Common Crawl latest snapshots 2025 2026 available list\"\n\nLinks: [{\"title\":\"Common Crawl - Blog - Host- and Domain-Level Web Graphs November/December 2025 and January 2026\",\"url\":\"https://commoncrawl.org/blog/host--and-domain-level-web-graphs-november-december-2025-and-january-2026\"},{\"title\":\"Common Crawl - Blog\",\"url\":\"https://commoncrawl.org/blog\"},{\"title\":\"Common Crawl - Latest Crawl\",\"url\":\"https://commoncrawl.org/latest-crawl\"},{\"title\":\"Common Crawl - Google Groups\",\"url\":\"https://groups.google.com/g/common-crawl\"},{\"title\":\"Common Crawl - Open Repository of Web Crawl Data\",\"url\":\"https://commoncrawl.org/\"},{\"title\":\"Common Crawl Datasets\",\"url\":\"https://data.commoncrawl.org/\"},{\"title\":\"Statistics of Common Crawl Monthly Archives by commoncrawl\",\"url\":\"https://commoncrawl.github.io/cc-crawl-statistics/plots/crawlsize\"},{\"title\":\"What is the Common Crawl Database, and Why should a Site Owner Care?\",\"url\":\"https://www.searchengineworld.com/who-what-where-is-common-crawl-and-why-should-site-owners-care\"},{\"title\":\"Common Crawl - Wikipedia\",\"url\":\"https://en.wikipedia.org/wiki/Common_Crawl\"},{\"title\":\"commoncrawl/statistics at main\",\"url\":\"https://huggingface.co/datasets/commoncrawl/statistics/tree/main\"}]\n\nBased on the search results, here's information about the latest Common Crawl snapshots available in 2025-2026:\n\n## Latest Available Crawl\n\nThe latest crawl is: CC-MAIN-2026-17\n\n## Recent 2025-2026 Snapshots\n\nCommon Crawl has released several snapshots during this period:\n\n- CC-MAIN-2025-47, CC-MAIN-2025-51, and CC-MAIN-2026-04 (November and December 2025, and January 2026)\n- The January 2026 crawl archive, containing 2.3 billion web pages, or 398 TiB of uncompressed content\n- The crawl archive for April 2026 is now available, containing 2.19 billion web pages or 379.2 TiB of uncompressed content\n\n## Access Methods\n\nBy adding either s3://commoncrawl/ or https://data.commoncrawl.org/ to each file listing, you end up with the S3 and HTTP paths respectively\n\nAdditionally, the April 2026 crawl archive is now available in a Hugging Face Storage Bucket, alongside its existing home on AWS S3\n\nFor a comprehensive list and statistics of all available crawls, you can visit the official Common Crawl statistics page at commoncrawl.org/latest-crawl or data.commoncrawl.org.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "33783043-7cf2-4031-b8b0-18702a6fd17b",
+            "isSidechain": true,
+            "promptId": "1aaff919-6b1e-499f-9a2e-edbca12dff84",
+            "agentId": "a031e0f4b8919eec1",
+            "type": "user",
+            "uuid": "0e6a321f-a001-4d40-bb3d-e7fccbfe1624",
+            "sourceToolAssistantUUID": "33783043-7cf2-4031-b8b0-18702a6fd17b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-25T06:32:02.066Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TXYXCiZTPGVJ1cLYcB22G7",
+              "name": "WebSearch",
+              "input": {
+                "query": "Common Crawl S3 access WARC WET format paths index 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0e6a321f-a001-4d40-bb3d-e7fccbfe1624",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpRj1Zpvf4Eqa2hYm7h",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "fb3c4614-9474-4652-93e2-6ee749fe08ce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K68FrgETQzb1QjMvmD9xg9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 837,
+                "cache_read_input_tokens": 17092,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 837,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 46,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-25T06:32:02.483Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ppcq2SvPeTdgvTuAuRyWZ2",
+              "name": "WebSearch",
+              "input": {
+                "query": "Common Crawl sampling tools comcrawl cdx-toolkit cc-index efficient subset download"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fb3c4614-9474-4652-93e2-6ee749fe08ce",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpRj1Zpvf4Eqa2hYm7h",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d62efc3b-c0dd-48cd-9fb6-abbffb4ad8fc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K68FrgETQzb1QjMvmD9xg9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 837,
+                "cache_read_input_tokens": 17092,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 837,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 46,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-25T06:32:02.939Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RR2EWkYf3pfP5r8tfjP7qa",
+              "name": "WebSearch",
+              "input": {
+                "query": "FineWeb RedPajama DCLM dataset 2025 2026 Common Crawl derived preprocessed"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d62efc3b-c0dd-48cd-9fb6-abbffb4ad8fc",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpRj1Zpvf4Eqa2hYm7h",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1a19791f-ae92-4059-8410-1577c1a0b3e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K68FrgETQzb1QjMvmD9xg9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 837,
+                "cache_read_input_tokens": 17092,
+                "output_tokens": 184,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 837
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 184,
+                    "cache_read_input_tokens": 17092,
+                    "cache_creation_input_tokens": 837,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 837,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-25T06:32:09.054Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TXYXCiZTPGVJ1cLYcB22G7",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Common Crawl S3 access WARC WET format paths index 2026\"\n\nLinks: [{\"title\":\"Common Crawl - Latest Crawl\",\"url\":\"https://commoncrawl.org/latest-crawl\"},{\"title\":\"Common Crawl - Get Started\",\"url\":\"https://commoncrawl.org/get-started\"},{\"title\":\"Common Crawl - Blog - September 2025 Crawl Archive Now Available\",\"url\":\"https://commoncrawl.org/blog/september-2025-crawl-archive-now-available\"},{\"title\":\"Utilizing Common Crawl Data\",\"url\":\"https://apxml.com/courses/how-to-build-a-large-language-model/chapter-6-sourcing-acquiring-massive-text-datasets/utilizing-common-crawl-data\"},{\"title\":\"GitHub - commoncrawl/cc-pyspark: Process Common Crawl data with Python and Spark · GitHub\",\"url\":\"https://github.com/commoncrawl/cc-pyspark\"},{\"title\":\"commoncrawlzain · PyPI\",\"url\":\"https://pypi.org/project/commoncrawlzain/\"},{\"title\":\"Extracting Data from common Crawl Dataset — Innovature | by Innovature | Medium\",\"url\":\"https://marketing-70464.medium.com/extracting-data-from-common-crawl-dataset-innovature-23fd258d3b30\"},{\"title\":\"What is the Common Crawl Database, and Why should a Site Owner Care?\",\"url\":\"https://www.searchengineworld.com/who-what-where-is-common-crawl-and-why-should-site-owners-care\"}]\n\nBased on the search results, here's information about Common Crawl S3 access, WARC/WET formats, and paths for the 2026 index:\n\n## File Format and S3 Access\n\nCommon Crawl provides gzipped files which list all segments, WARC, WAT and WET files. By simply adding either s3://commoncrawl/ or https://data.commoncrawl.org/ to each line, you end up with the S3 and HTTP paths respectively.\n\n## Data Formats\n\nThe data is organized in three main formats:\n\n- **WARC**: The WARC format is the raw data from the crawl, providing a direct mapping to the crawl process\n- **WAT**: These files store metadata extracted from the WARC records, including information like HTTP headers, detected links on the page, and other metadata derived during the crawl processing\n- **WET**: These files contain plain text extracted from the HTML content stored in the WARC files\n\n## Latest 2026 Crawl Information\n\nThe latest crawl is CC-MAIN-2026-17, for which Common Crawl provides the index files listing all segments and format variants.\n\n## S3 Access Methods\n\nEach crawl has a unique identifier (e.g., CC-MAIN-2023-50), and its data is organized within a corresponding S3 bucket (e.g., s3://commoncrawl/). You can use standard AWS tools like the AWS Command Line Interface (CLI) or SDKs (like boto3 for Python) to list and download files.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fb3c4614-9474-4652-93e2-6ee749fe08ce",
+            "isSidechain": true,
+            "promptId": "1aaff919-6b1e-499f-9a2e-edbca12dff84",
+            "agentId": "a031e0f4b8919eec1",
+            "type": "user",
+            "uuid": "569827f2-8a2c-4e77-8ec2-2a95789e5db7",
+            "sourceToolAssistantUUID": "fb3c4614-9474-4652-93e2-6ee749fe08ce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-25T06:32:09.858Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RR2EWkYf3pfP5r8tfjP7qa",
+              "type": "tool_result",
+              "content": "Web search results for query: \"FineWeb RedPajama DCLM dataset 2025 2026 Common Crawl derived preprocessed\"\n\nLinks: [{\"title\":\"RedPajama: an Open Dataset for Training Large Language Models | Request PDF\",\"url\":\"https://www.researchgate.net/publication/397198141_RedPajama_an_Open_Dataset_for_Training_Large_Language_Models\"},{\"title\":\"[PDF] The FineWeb Datasets: Decanting the Web for the Finest Text Data at Scale | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/The-FineWeb-Datasets:-Decanting-the-Web-for-the-at-Penedo-Kydl%C3%ADcek/b83a9e35c3aeeb37708e362473c7617d59b815b5\"},{\"title\":\"RedPajama Dataset for LLM Research\",\"url\":\"https://www.emergentmind.com/topics/redpajama-dataset\"},{\"title\":\"The FineWeb Datasets: Decanting the Web for the Finest Text Data at Scale\",\"url\":\"https://www.researchgate.net/publication/397205318_The_FineWeb_Datasets_Decanting_the_Web_for_the_Finest_Text_Data_at_Scale\"},{\"title\":\"HuggingFaceFW/fineweb · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/HuggingFaceFW/fineweb\"},{\"title\":\"Technical Deep-Dive: Curating Our Way to a State-of-the-Art Text Dataset\",\"url\":\"https://www.datologyai.com/blog/technical-deep-dive-curating-our-way-to-a-state-of-the-art-text-dataset\"},{\"title\":\"RedPajama: an Open Dataset for Training Large Language Models\",\"url\":\"https://arxiv.org/html/2411.12372v1\"}]\n\nBased on the search results, here's what I found about these datasets:\n\n## FineWeb\n\nFineWeb is a 15-trillion token dataset derived from 96 Common Crawl snapshots that produces better-performing LLMs than other open pretraining datasets. This dataset was created by processing 96 CommonCrawl dumps comprising web data crawled from the summer of 2013 to April of 2024. FineWeb-Edu is a 1.3-trillion token collection of educational text filtered from FineWeb. As of November 2025, FineWeb has been updated to v1.4.0, which added 6 new snapshots including CC-MAIN-2025-05 and CC-MAIN-2025-08.\n\n## RedPajama\n\nRedPajama-V1 is an open reproduction of the LLaMA training dataset. RedPajama-V2 provides web text together with quality-related metadata for a subset of the corpus.\n\n## DCLM\n\nDCLM (DataComp for Language Models) extracts a standardized corpus of 240T tokens from Common Crawl dumps, which is then curated down to a 3.8T token dataset. It uses heuristic filtering similar to RefinedWeb, Bloom filter and MinHash for deduplication, and a fastText classifier trained on OpenHermes2.5 and Reddit r/explainlikeimfive datasets to keep the top 10% of documents.\n\nAll three datasets are derived from Common Crawl and represent major open-source preprocessing initiatives for large language model pretraining.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1a19791f-ae92-4059-8410-1577c1a0b3e3",
+            "isSidechain": true,
+            "promptId": "1aaff919-6b1e-499f-9a2e-edbca12dff84",
+            "agentId": "a031e0f4b8919eec1",
+            "type": "user",
+            "uuid": "fb694964-ff46-49a6-8645-0ff8db9895d8",
+            "sourceToolAssistantUUID": "1a19791f-ae92-4059-8410-1577c1a0b3e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-25T06:32:10.673Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ppcq2SvPeTdgvTuAuRyWZ2",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Common Crawl sampling tools comcrawl cdx-toolkit cc-index efficient subset download\"\n\nLinks: [{\"title\":\"cdx-toolkit · PyPI\",\"url\":\"https://pypi.org/project/cdx-toolkit/\"},{\"title\":\"How to build a subset of CommonCrawl dataset?\",\"url\":\"https://groups.google.com/g/common-crawl/c/WYwkW97RM4s\"},{\"title\":\"Utilizing Common Crawl Data\",\"url\":\"https://apxml.com/courses/how-to-build-a-large-language-model/chapter-6-sourcing-acquiring-massive-text-datasets/utilizing-common-crawl-data\"},{\"title\":\"Common Crawl On Laptop - Extracting Subset Of Data | Avil Page\",\"url\":\"https://avilpage.com/2022/11/common-crawl-laptop-extract-subset.html\"},{\"title\":\"GitHub - commoncrawl/cdx_toolkit: A toolkit for CDX indices such as Common Crawl and the Internet Archive's Wayback Machine · GitHub\",\"url\":\"https://github.com/commoncrawl/cdx_toolkit\"},{\"title\":\"CDXJ Index\",\"url\":\"https://commoncrawl.org/cdxj-index\"},{\"title\":\"Using the Common Crawl as a Data Source | by Samuel | Medium\",\"url\":\"https://medium.com/@samuel.schaffhauser/using-the-common-crawl-as-a-data-source-693a41b3baa9\"},{\"title\":\"GitHub - ikreymer/cdx-index-client: A command-line tool for using CommonCrawl Index API at http://index.commoncrawl.org/ · GitHub\",\"url\":\"https://github.com/ikreymer/cdx-index-client\"}]\n\nI've found comprehensive information about Common Crawl sampling and indexing tools. Here's what I discovered:\n\n## Key Tools for Working with Common Crawl\n\n**cdx-toolkit**: cdx-toolkit facilitates working with CDX indices of web crawls and archives. cdx-toolkit allows extracting archived pages from CC and IA into WARC files. If you're looking to create subsets of CC or IA data and then further process them, this is a feature you'll find useful.\n\n**Index Access**: You can query this index using tools like cdx-toolkit or by making direct HTTP requests to the CDX API endpoint. The index is served from index.commoncrawl.org, or alternatively the index files are available on the Common Crawl bucket on AWS S3 below the prefix s3://commoncrawl/cc-index/collections/.\n\n## Efficient Subset Download\n\nA filter allows a user to select a subset of CDX records, reducing network traffic between the CDX server and the user. For example, filter='!status:200' will only show captures whose http status is not 200.\n\nFor direct downloads, you can use aws cli to download the data from s3 bucket or use wget to download it from https endpoint. One compressed cdx-file is around 800 MB, decompressed it is around 5 GB. Download only those files which you need. There are 300 cdx-files, leading to 240 GB of compressed or 1.5 TB of decompressed data.\n\n**Alternative Tools**: You can use cdx_toolkit to download the records. Additionally, the project https://github.com/commoncrawl/cc-index-table contains code to fetch WARC records using Spark.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d62efc3b-c0dd-48cd-9fb6-abbffb4ad8fc",
+            "isSidechain": true,
+            "promptId": "1aaff919-6b1e-499f-9a2e-edbca12dff84",
+            "agentId": "a031e0f4b8919eec1",
+            "type": "user",
+            "uuid": "a3641655-dda9-4c56-85ed-bc452d796c55",
+            "sourceToolAssistantUUID": "d62efc3b-c0dd-48cd-9fb6-abbffb4ad8fc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-25T06:32:14.228Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L4qUNeD5kphXRB8fXyr33o",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://commoncrawl.org/latest-crawl",
+                "prompt": "List all available Common Crawl snapshots for 2025 and 2026. Extract the exact crawl IDs (like CC-MAIN-2025-XX), sizes, number of pages, and any S3 paths or URLs mentioned."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a3641655-dda9-4c56-85ed-bc452d796c55",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpSZLgAa1gz6JfDotFs",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6dc9915a-2d4c-4014-b8c8-3d53ba1d0026",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019k2gZhyQZ5RPxNqixUWSYa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 889,
+                "cache_creation_input_tokens": 1846,
+                "cache_read_input_tokens": 17929,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1846,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 60,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-25T06:32:15.605Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UgKKGXnx8wBE8yN3QRPEjm",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://commoncrawl.org/get-started",
+                "prompt": "Extract all technical details about accessing Common Crawl data: S3 bucket paths, WARC/WET/WAT format details, file listing URLs, index API endpoints, and any code examples for downloading or sampling data."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6dc9915a-2d4c-4014-b8c8-3d53ba1d0026",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpSZLgAa1gz6JfDotFs",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f44ad127-3eb5-48b9-8dcc-f2fad9dcd3d6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019k2gZhyQZ5RPxNqixUWSYa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 889,
+                "cache_creation_input_tokens": 1846,
+                "cache_read_input_tokens": 17929,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1846,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 60,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-25T06:32:16.539Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013u6pgDDJLAZvNEW2hTwXdG",
+              "name": "WebSearch",
+              "input": {
+                "query": "Common Crawl WET file size per segment disk space needed sample 10K documents"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f44ad127-3eb5-48b9-8dcc-f2fad9dcd3d6",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpSZLgAa1gz6JfDotFs",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "10533ec9-210d-4ef1-806e-99778137ff10",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019k2gZhyQZ5RPxNqixUWSYa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 889,
+                "cache_creation_input_tokens": 1846,
+                "cache_read_input_tokens": 17929,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1846,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 60,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-25T06:32:17.219Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Capc52TeFXRQviydZHSB6L",
+              "name": "WebSearch",
+              "input": {
+                "query": "resiliparse trafilatura language detection Common Crawl English filtering fasttext lid"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "10533ec9-210d-4ef1-806e-99778137ff10",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpSZLgAa1gz6JfDotFs",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b1fadeee-aabc-4c74-8d98-00e0852d59ee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019k2gZhyQZ5RPxNqixUWSYa",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 889,
+                "cache_creation_input_tokens": 1846,
+                "cache_read_input_tokens": 17929,
+                "output_tokens": 347,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1846
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 889,
+                    "output_tokens": 347,
+                    "cache_read_input_tokens": 17929,
+                    "cache_creation_input_tokens": 1846,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1846,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-25T06:32:17.512Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L4qUNeD5kphXRB8fXyr33o",
+              "type": "tool_result",
+              "content": "# Common Crawl Snapshots 2025-2026\n\nBased on the provided content, only **one snapshot is explicitly mentioned**:\n\n**CC-MAIN-2026-17** - This is identified as \"the latest crawl\" with a blog post available at the Common Crawl website.\n\n## Available Information\n\nThe page states that \"gzipped files which list all segments, WARC, WAT and WET files\" are provided for exploration. Users can access these files via:\n- S3 path: `s3://commoncrawl/`\n- HTTP path: `https://data.commoncrawl.org/`\n\n## Limitations\n\nThe webpage does not provide:\n- A comprehensive list of 2025 snapshots\n- Specific crawl IDs for other 2025 releases\n- Archive sizes or page counts\n- Direct S3 paths or complete URLs for individual snapshots\n\nTo access complete snapshot information and historical crawl data, the page directs users to visit the \"[Get Started](/get-started)\" section or the [Crawl Stats](https://commoncrawl.github.io/cc-crawl-statistics/) page for detailed statistics."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6dc9915a-2d4c-4014-b8c8-3d53ba1d0026",
+            "isSidechain": true,
+            "promptId": "1aaff919-6b1e-499f-9a2e-edbca12dff84",
+            "agentId": "a031e0f4b8919eec1",
+            "type": "user",
+            "uuid": "d8a2cc96-d02c-4fb8-bf4c-df7288018d52",
+            "sourceToolAssistantUUID": "6dc9915a-2d4c-4014-b8c8-3d53ba1d0026",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-25T06:32:22.384Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UgKKGXnx8wBE8yN3QRPEjm",
+              "type": "tool_result",
+              "content": "# Common Crawl Data Access: Technical Details\n\n## S3 Storage & Bucket Information\n- **Primary Bucket**: `s3://commoncrawl/`\n- **Region**: US-East-1 (Northern Virginia)\n- **Hosting**: Amazon Web Services Open Data Sets Sponsorships program\n- **Access URLs**: \n  - S3: `s3://commoncrawl/[path]`\n  - CloudFront: `https://ds5q9oxwqwsfj.cloudfront.net/[path]`\n  - HTTP: `https://data.commoncrawl.org/[path]`\n\n## File Format Specifications\n\n**WARC (Web ARChive)**\nContains raw crawl data with three record types: response (HTTP content), request (crawl request info), and metadata (process details). Stores complete HTTP headers and response bodies for efficient processing.\n\n**WAT (Web Archive Transformation)**\nComputed metadata stored as JSON, stripped of whitespace for compression. Includes HTTP response headers, page links with link-type classification, and HTML metadata (titles, meta tags).\n\n**WET (WARC Encapsulated Text)**\nExtracted plaintext only, designed for text-focused tasks. Format stores WARC metadata followed by plaintext content.\n\n## Access Methods\n\n### AWS CLI (Anonymous Access)\n```\naws --no-sign-request s3 cp s3://commoncrawl/[path] [local_path]\naws --no-sign-request s3 ls s3://commoncrawl/crawl-data/CC-MAIN-2018-17/segments/\n```\n\n### HTTP Download Tools\n```\nwget https://data.commoncrawl.org/crawl-data/CC-MAIN-2018-17/segments/[path]\n```\n\n## Available Crawl Datasets\nMultiple crawls available from 2016–2026, identified as `CC-MAIN-[YEAR]-[WEEK]`. Latest include CC-MAIN-2026-17, 2026-12, and historical archives back to 2016.\n\n## Python Resources\n- Whirlwind Python Tour for dataset introduction\n- Interactive Notebook for WARC/WAT/WET format processing"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f44ad127-3eb5-48b9-8dcc-f2fad9dcd3d6",
+            "isSidechain": true,
+            "promptId": "1aaff919-6b1e-499f-9a2e-edbca12dff84",
+            "agentId": "a031e0f4b8919eec1",
+            "type": "user",
+            "uuid": "70ae4f1a-102e-41cc-b33a-103c98ca0918",
+            "sourceToolAssistantUUID": "f44ad127-3eb5-48b9-8dcc-f2fad9dcd3d6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-25T06:32:23.895Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013u6pgDDJLAZvNEW2hTwXdG",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Common Crawl WET file size per segment disk space needed sample 10K documents\"\n\nLinks: [{\"title\":\"What is the size of the WET files in common crawl data? - Quora\",\"url\":\"https://www.quora.com/What-is-the-size-of-the-WET-files-in-common-crawl-data\"},{\"title\":\"Common Crawl - Get Started\",\"url\":\"https://commoncrawl.org/get-started\"},{\"title\":\"Common Crawl - Latest Crawl\",\"url\":\"https://commoncrawl.org/latest-crawl\"},{\"title\":\"GitHub - centic9/CommonCrawlDocumentDownload: A small tool which uses the CommonCrawl URL Index to download documents with certain file types or mime-types. This is used for mass-testing of frameworks like Apache POI and Apache Tika\",\"url\":\"https://github.com/centic9/CommonCrawlDocumentDownload\"},{\"title\":\"Notes about common crawl, etc · GitHub\",\"url\":\"https://gist.github.com/0xdevalias/e3618a3a256b3d43802cf2138f1d446a\"},{\"title\":\"Common Crawl - Blog - Web Archiving File Formats Explained\",\"url\":\"https://commoncrawl.org/blog/web-archiving-file-formats-explained\"},{\"title\":\"Common Crawl - Overview\",\"url\":\"https://commoncrawl.org/overview\"},{\"title\":\"Sampling Common Crawl WET records · Issue #1 · Marlin-Na/CommonCrawlDL\",\"url\":\"https://github.com/Marlin-Na/CommonCrawlDL/issues/1\"},{\"title\":\"Common Crawl - Open Repository of Web Crawl Data\",\"url\":\"https://commoncrawl.org/\"},{\"title\":\"Parsing Common Crawl in a day for $60 | Pierce Freeman\",\"url\":\"https://freeman.vc/notes/parsing-common-crawl-in-a-day-for-60\"}]\n\nBased on the search results, here's what I found about Common Crawl WET file sizes:\n\n## Overall WET File Size\n\nWET files total 8.69TB across 80,000 files in a typical crawl, compared to WARC files which are significantly larger at 86.77TB.\n\n## Per-File Size\n\nFrom the example in the search results, a sample WET record shows a content-length of 80,489 bytes, which represents a single extracted text document.\n\n## Key Characteristics\n\n- WET (WARC Encapsulated Text) files contain extracted plaintext, with the WARC metadata including the URL and length of plaintext data, followed by the plaintext itself\n\n- Archived content is truncated due to fetch size limits, with the threshold being 1 MiB prior to March 2025 and increased to 5 MiB from the March 2025 crawl onwards\n\n## Disk Space Estimation\n\nFor a sample of 10,000 documents, the disk space needed would depend on the average document size. Given that typical WET files are roughly 10% the size of their WARC counterparts, and considering the truncation limits, you could estimate anywhere from several hundred MB to a few GB for 10K documents, depending on the composition of the crawl data you're sampling.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "10533ec9-210d-4ef1-806e-99778137ff10",
+            "isSidechain": true,
+            "promptId": "1aaff919-6b1e-499f-9a2e-edbca12dff84",
+            "agentId": "a031e0f4b8919eec1",
+            "type": "user",
+            "uuid": "fc597bc8-b41f-4e64-bd3c-cd12fcbd8c6f",
+            "sourceToolAssistantUUID": "10533ec9-210d-4ef1-806e-99778137ff10",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-25T06:32:24.790Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Capc52TeFXRQviydZHSB6L",
+              "type": "tool_result",
+              "content": "Web search results for query: \"resiliparse trafilatura language detection Common Crawl English filtering fasttext lid\"\n\nLinks: [{\"title\":\"InfiMM-WebMath-40B: Advancing Multimodal Pre-Training ...\",\"url\":\"https://openreview.net/pdf?id=Twzrpa6V2o\"},{\"title\":\"Trafilatura: A Web Scraping Library and Command-Line Tool for Text Discovery and Extraction\",\"url\":\"https://www.researchgate.net/publication/353488798_Trafilatura_A_Web_Scraping_Library_and_Command-Line_Tool_for_Text_Discovery_and_Extraction\"},{\"title\":\"HuggingFaceFW/fineweb · Reprocessing for a new language\",\"url\":\"https://huggingface.co/datasets/HuggingFaceFW/fineweb/discussions/12\"},{\"title\":\"FLUX: Data Worth Training On Gowtham Sai Rupesh Sanjay Kumar Saravanan\",\"url\":\"https://arxiv.org/pdf/2603.13972\"},{\"title\":\"Download and Extract Text — NVIDIA NeMo Framework User Guide\",\"url\":\"https://docs.nvidia.com/nemo-framework/user-guide/25.07/datacuration/download.html\"},{\"title\":\"The FineWeb Datasets: Decanting the Web for the Finest Text Data at Scale\",\"url\":\"https://papers.neurips.cc/paper_files/paper/2024/file/370df50ccfdf8bde18f8f9c2d9151bda-Paper-Datasets_and_Benchmarks_Track.pdf\"},{\"title\":\"MegaMath: Pushing the Limits of Open Math Corpora | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/megamath-pushing-limits-open-math-corpora\"},{\"title\":\"Current language model training leaves large parts of the internet on the table\",\"url\":\"https://the-decoder.com/current-language-model-training-leaves-large-parts-of-the-internet-on-the-table/\"}]\n\nBased on the search results, here's what I found about how these tools are used together:\n\n## Language Detection and Filtering\n\nLanguage filtering is applied to Common Crawl repositories with fastText language identification models. This language filtering process significantly reduces the dataset size, lowering the number of pages from 122 billion to 57.2 billion.\n\n## Text Extraction Tools\n\nSeveral extraction tools exist—the speed-optimized Resiliparse, the balanced Trafilatura, and the stopword-based JusText. Existing web corpora have largely relied on heuristic-based extraction tools: RefinedWeb and FineWeb use Trafilatura, while DCLM and Dolma use Resiliparse, with both extractors significantly outperforming Common Crawl's WET files.\n\n## Combined Approaches\n\nThe extraction process can use a two-stage approach: first, Resiliparse is applied for rapid extraction and filtering, significantly shrinking the candidate data size, and then trafilatura is used on their WARC files for a second round of HTML optimizations and text extraction.\n\nTrafilatura library provides good quality extraction when compared to other available libraries, with minimal additional filtering using fastText language identification to filter samples with English as the language.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b1fadeee-aabc-4c74-8d98-00e0852d59ee",
+            "isSidechain": true,
+            "promptId": "1aaff919-6b1e-499f-9a2e-edbca12dff84",
+            "agentId": "a031e0f4b8919eec1",
+            "type": "user",
+            "uuid": "3db21cbd-cf8c-430f-8311-fb380335858c",
+            "sourceToolAssistantUUID": "b1fadeee-aabc-4c74-8d98-00e0852d59ee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-25T06:32:28.447Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0143KmmZY7JuR9okDB5HcBwL",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://commoncrawl.github.io/cc-crawl-statistics/plots/crawlsize",
+                "prompt": "List all Common Crawl snapshots available for 2025 and 2026, including their crawl IDs (CC-MAIN-YYYY-WW), number of pages, and data sizes."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3db21cbd-cf8c-430f-8311-fb380335858c",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpTbkZUDKEro7cGz4gB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c4dc6d6d-f406-4400-b2fc-087b13b565e1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VvaT16D9L1hd4QjtFZ2JWK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3714,
+                "cache_read_input_tokens": 19775,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3714,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 52,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-25T06:32:30.762Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CwiBoMQw7izTyq8k993EvW",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://huggingface.co/datasets/HuggingFaceFW/fineweb",
+                "prompt": "Extract: what CC snapshots does FineWeb cover? What is the latest snapshot included? How large is the dataset? How to download a subset (e.g., specific CC snapshot or sample)? Any info about FineWeb-2 or updates in 2025-2026?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c4dc6d6d-f406-4400-b2fc-087b13b565e1",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpTbkZUDKEro7cGz4gB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "519c3bf8-7747-4c81-94e5-38425436cd2f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VvaT16D9L1hd4QjtFZ2JWK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3714,
+                "cache_read_input_tokens": 19775,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3714,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 52,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-25T06:32:31.904Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ma3zyR4bk2HLS1XqYUKVx3",
+              "name": "WebSearch",
+              "input": {
+                "query": "comcrawl python library pip install Common Crawl download sample 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "519c3bf8-7747-4c81-94e5-38425436cd2f",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpTbkZUDKEro7cGz4gB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8f0cce28-b491-433d-8386-2db0ea9dc04a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VvaT16D9L1hd4QjtFZ2JWK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3714,
+                "cache_read_input_tokens": 19775,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3714,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 52,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-25T06:32:32.050Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0143KmmZY7JuR9okDB5HcBwL",
+              "type": "tool_result",
+              "content": "# Common Crawl Snapshots for 2025-2026\n\nBased on the provided content, I cannot provide a comprehensive list of all available Common Crawl snapshots for 2025 and 2026 with their specific details.\n\nThe webpage only mentions that \"Latest crawl: CC-MAIN-2026-21\" but does not include a table or listing of all snapshots from these years. The document focuses on statistical visualizations and analysis tools rather than a complete inventory of crawl IDs, page counts, and data sizes.\n\nTo obtain the specific information you're seeking—including crawl IDs in the format CC-MAIN-YYYY-WW, page counts, and data sizes for 2025 and 2026—you would need to:\n\n1. Visit the Common Crawl statistics portal directly\n2. Access the CSV files referenced in the page (such as the monthly crawl statistics)\n3. Check the main Common Crawl website or their GitHub repository for complete archives and specifications\n\nThe current page serves as an analytical dashboard rather than a comprehensive snapshot directory."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c4dc6d6d-f406-4400-b2fc-087b13b565e1",
+            "isSidechain": true,
+            "promptId": "1aaff919-6b1e-499f-9a2e-edbca12dff84",
+            "agentId": "a031e0f4b8919eec1",
+            "type": "user",
+            "uuid": "e3da5f36-0457-480f-abbd-060e8f8d4cd1",
+            "sourceToolAssistantUUID": "c4dc6d6d-f406-4400-b2fc-087b13b565e1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-25T06:32:32.270Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S27Fv5nQkhMgka47dTy15A",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"cc-index\" \"columnar index\" Common Crawl Athena parquet query subset 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e3da5f36-0457-480f-abbd-060e8f8d4cd1",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpTbkZUDKEro7cGz4gB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7dd06176-3037-41c4-af90-151085470e81",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VvaT16D9L1hd4QjtFZ2JWK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3714,
+                "cache_read_input_tokens": 19775,
+                "output_tokens": 379,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3714
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 379,
+                    "cache_read_input_tokens": 19775,
+                    "cache_creation_input_tokens": 3714,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3714,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-25T06:32:37.981Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CwiBoMQw7izTyq8k993EvW",
+              "type": "tool_result",
+              "content": "# FineWeb Dataset Overview\n\n## CC Snapshots Coverage\n\nFineWeb covers **114 different CommonCrawl (CC) snapshots** spanning from **2013 to 2025**. The dataset includes snapshots from:\n- **CC-MAIN-2013-20** through **CC-MAIN-2025-26** (regular snapshots)\n- Plus dedicated **sample subsets** (sample-10BT, sample-100BT, sample-350BT)\n\n## Latest Snapshot\n\nThe latest snapshot included is **CC-MAIN-2025-26** (197M rows), released in 2025.\n\n## Dataset Size\n\n- **Total**: 25.9 billion rows across all snapshots\n- **Size range**: 10B - 100B tokens\n- **Language**: Primarily English with language scoring\n- **License**: ODC-BY (Open Data Commons Attribution)\n\n## Accessing Subsets\n\nBased on the dataset structure shown, you can access specific snapshots:\n\n### Via Hugging Face Datasets Library\n```python\nfrom datasets import load_dataset\n\n# Load a specific CC snapshot\ndataset = load_dataset(\n    \"HuggingFaceFW/fineweb\",\n    name=\"CC-MAIN-2024-46\"  # Specify snapshot\n)\n\n# Load a sample subset\ndataset = load_dataset(\n    \"HuggingFaceFW/fineweb\",\n    name=\"sample-100BT\"\n)\n```\n\n### Available Samples\n- **sample-10BT** (14.9M rows)\n- **sample-100BT** (148M rows)\n- **sample-350BT** (518M rows)\n\n## Dataset Features\n\nEach row contains:\n- `text` - Document content\n- `id` - Unique identifier\n- `url` - Source URL\n- `date` - Crawl date\n- `dump` - CC snapshot identifier\n- `file_path` - S3 location\n- `language` - Language code\n- `language_score` - Quality score (0-1)\n- `token_count` - Number of tokens\n\n## FineWeb-2 & 2025-2026 Updates\n\nThe page does not explicitly mention FineWeb-2 or specific planned updates beyond the existing 2025 snapshots already included (through CC-MAIN-2025-26). For the latest information on future updates, check the [official dataset card](https://huggingface.co/datasets/HuggingFaceFW/fineweb) or the [arXiv papers](https://arxiv.org/abs/2406.17557) referenced."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "519c3bf8-7747-4c81-94e5-38425436cd2f",
+            "isSidechain": true,
+            "promptId": "1aaff919-6b1e-499f-9a2e-edbca12dff84",
+            "agentId": "a031e0f4b8919eec1",
+            "type": "user",
+            "uuid": "00457e89-a506-4776-8700-2ea68f6b21c6",
+            "sourceToolAssistantUUID": "519c3bf8-7747-4c81-94e5-38425436cd2f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-25T06:32:38.820Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ma3zyR4bk2HLS1XqYUKVx3",
+              "type": "tool_result",
+              "content": "Web search results for query: \"comcrawl python library pip install Common Crawl download sample 2025\"\n\nLinks: [{\"title\":\"comcrawl · PyPI\",\"url\":\"https://pypi.org/project/comcrawl/\"},{\"title\":\"CmonCrawl · PyPI\",\"url\":\"https://pypi.org/project/CmonCrawl/\"},{\"title\":\"comcrawl 1.0.2 on PyPI - Libraries.io - security & maintenance data for open source software\",\"url\":\"https://libraries.io/pypi/comcrawl\"},{\"title\":\"skeptric - Searching 100 Billion Webpages Pages With Capture Index\",\"url\":\"https://skeptric.com/searching-100b-pages-cdx/\"},{\"title\":\"GitHub - commoncrawl/whirlwind-python: A whirlwind tour of Common Crawl's data using Python\",\"url\":\"https://github.com/commoncrawl/whirlwind-python/\"},{\"title\":\"GitHub - commoncrawl/cc-pyspark: Process Common Crawl data with Python and Spark · GitHub\",\"url\":\"https://github.com/commoncrawl/cc-pyspark\"},{\"title\":\"GitHub - ppke-nlpg/commoncrawl-downloader: Simple Python command line tools for retrieving a list of urls and specific files in bulk\",\"url\":\"https://github.com/ppke-nlpg/commoncrawl-downloader\"},{\"title\":\"Getting Started — CommonCrawlJob alpha documentation\",\"url\":\"https://pythonhosted.org/CommonCrawlJob/examples/README.html\"},{\"title\":\"GitHub - neil-zt/common-crawl-client: A Common Crawl client example for scraping specific websites.\",\"url\":\"https://github.com/neil-zt/common-crawl-client\"},{\"title\":\"Exploring the Common Crawl with Python – dmorgan.info\",\"url\":\"https://dmorgan.info/posts/common-crawl-python/\"}]\n\nBased on the search results, here's information about the comcrawl Python library for working with Common Crawl data:\n\n## Overview\n\ncomcrawl simplifies the process of searching and downloading from Common Crawl by offering a simple API interface you can use in your python program. The Common Crawl project is an \"open repository of web crawl data that can be accessed and analyzed by anyone\" that contains billions of web pages and is often used for NLP projects to gather large amounts of text data.\n\n## Installation\n\nYou can install it with python -m pip install commcrawl.\n\n## Basic Usage\n\nTo use the library, you import IndexClient and can optionally restrict the search to certain Common Crawl Indexes by specifying them as a list. Here's a basic example from the search results:\n\n```python\nfrom comcrawl import IndexClient\nclient = IndexClient()\nclient.search(\"reddit.com/r/MachineLearning/*\")\nclient.download()\n```\n\nThe HTML for each page will be available as a string in the 'html' key in each results dictionary after calling the download method.\n\n## Limitations\n\nThis package is intended for use in small to medium projects, because it is not optimized for handling gigabytes or terabytes of data. For larger projects, you might want to check out cdx-toolkit or cdx-index-client.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8f0cce28-b491-433d-8386-2db0ea9dc04a",
+            "isSidechain": true,
+            "promptId": "1aaff919-6b1e-499f-9a2e-edbca12dff84",
+            "agentId": "a031e0f4b8919eec1",
+            "type": "user",
+            "uuid": "b1dd1570-5b55-4ba6-9499-7d954c22edcd",
+            "sourceToolAssistantUUID": "8f0cce28-b491-433d-8386-2db0ea9dc04a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-25T06:32:40.317Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S27Fv5nQkhMgka47dTy15A",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"cc-index\" \"columnar index\" Common Crawl Athena parquet query subset 2026\"\n\nLinks: [{\"title\":\"Columnar Index\",\"url\":\"https://commoncrawl.org/columnar-index\"},{\"title\":\"GitHub - commoncrawl/cc-index-table: Index Common Crawl archives in tabular format · GitHub\",\"url\":\"https://github.com/commoncrawl/cc-index-table\"},{\"title\":\"skeptric - Common Crawl Index Athena\",\"url\":\"https://skeptric.com/common-crawl-index-athena/\"},{\"title\":\"Common Crawl - Blog - Index to WARC Files and URLs in Columnar Format\",\"url\":\"https://commoncrawl.org/blog/index-to-warc-files-and-urls-in-columnar-format\"},{\"title\":\"How to query Common Crawl data using Amazon Athena | by Vishwajeet | Medium\",\"url\":\"https://medium.com/@vtbs55596/how-to-query-common-crawl-data-using-amazon-athena-416ad13e54f8\"},{\"title\":\"Common Crawl Index Table\",\"url\":\"https://github.com/commoncrawl/cc-index-table/blob/main/README.md\"},{\"title\":\"skeptric - Read Common Crawl Parquet Metadata with Python\",\"url\":\"https://skeptric.com/reading-parquet-metadata/\"},{\"title\":\"Search Results\",\"url\":\"https://commoncrawl.org/tag/parquet/\"},{\"title\":\"GitHub - commoncrawl/whirlwind-python: A whirlwind tour of Common Crawl's data using Python\",\"url\":\"https://github.com/commoncrawl/whirlwind-python/\"}]\n\nI've completed the web search for your query about cc-index, columnar index, Common Crawl, Athena, and parquet queries. Here's a summary of the key findings:\n\n## Overview\n\nThe cc-index is an index to the WARC files and URLs in the Common Crawl corpus in a columnar format (Apache Parquet). This format of the index is suited to efficient analytical and/or bulk queries of the data, saving time and computing resources.\n\n## Key Features and Structure\n\nThe index contains two PARTITIONED BY columns: crawl and subset. There are 3 kinds of subsets: warc (the actual web archive files containing all the data of successful requests), crawldiagnostics (contains responses like 404 file not found, redirects, 304 not modified, etc.), and robotstxt (contains the robots.txt that would impact what pages the crawl accessed).\n\n## Query Tools and Performance\n\nThe index table can be queried by SparkSQL, Amazon Athena (built on Presto or Trino), Apache Hive and many other big data frameworks and applications. The index table of a single monthly crawl contains about 300GB of data, which defines an upper bound on the cost (about $1.50 USD as of September 2025).\n\n## Query Optimization\n\nTo keep the amount of data processed low the best things to do is filter on crawl which correspond to which monthly snapshot is used, and subset, because the table is partitioned on these it will always reduce the amount of data scanned. Only querying the columns you need (instead of select *) will also reduce the amount of data scanned, since the data is stored in a columnar format.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7dd06176-3037-41c4-af90-151085470e81",
+            "isSidechain": true,
+            "promptId": "1aaff919-6b1e-499f-9a2e-edbca12dff84",
+            "agentId": "a031e0f4b8919eec1",
+            "type": "user",
+            "uuid": "18db4978-ea52-4592-9dc0-340838fedbe7",
+            "sourceToolAssistantUUID": "7dd06176-3037-41c4-af90-151085470e81",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-25T06:32:49.133Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KuEzeTtaj9KNHC27MxHDFB",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://commoncrawl.org/columnar-index",
+                "prompt": "Extract: exact S3 path for the columnar index parquet files, table schema/columns available, how to query with Athena or Python/Spark, and example queries for filtering by language or content type."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "18db4978-ea52-4592-9dc0-340838fedbe7",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpUk3uKpq41S6k13JiH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "62e4cc4d-898c-4087-b0bf-e411b8479a17",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016V7yoNUNXdFp8YfNxyuAtN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2936,
+                "cache_read_input_tokens": 23489,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2936,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-25T06:32:49.750Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016ZLp7UyqshbjZtVXdqdMuz",
+              "name": "WebSearch",
+              "input": {
+                "query": "FineWeb-2 multilingual HuggingFace 2025 2026 dataset CC snapshots"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "62e4cc4d-898c-4087-b0bf-e411b8479a17",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpUk3uKpq41S6k13JiH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f5865c80-e0fa-44e1-beeb-27d185f22d38",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016V7yoNUNXdFp8YfNxyuAtN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2936,
+                "cache_read_input_tokens": 23489,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2936,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-25T06:32:50.101Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LFfwJ9TgSWpYNZHYvmB6G8",
+              "name": "WebSearch",
+              "input": {
+                "query": "DCLM dataset HuggingFace download subset sampling 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f5865c80-e0fa-44e1-beeb-27d185f22d38",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpUk3uKpq41S6k13JiH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "20d1515e-66db-4223-87c8-501fa98954de",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016V7yoNUNXdFp8YfNxyuAtN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2936,
+                "cache_read_input_tokens": 23489,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2936,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-25T06:32:54.979Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KuEzeTtaj9KNHC27MxHDFB",
+              "type": "tool_result",
+              "content": "# Common Crawl Columnar Index: Key Information\n\n## S3 Path\nThe exact location for Parquet files is: `s3://commoncrawl/cc-index/table/cc-main/warc/`\n\n## Table Schema\nThe index contains 28 columns covering URL components (protocol, host, path, query), fetch metadata (timestamp, status, redirects), and content details (MIME type, charset, languages). Additional fields include WARC file references and offset information. \"The most recent schema version is available on GitHub,\" with newer fields including a timestamp indicating when they were added.\n\n## Querying Tools\n\n**AWS Athena** is recommended as the simplest SQL interface. \"Using AWS Athena is not free, but costs for small queries are low,\" with a single monthly crawl's index data (approximately 300GB) costing around $1.50 USD for full scanning.\n\n**Python/Spark alternatives** include:\n- Apache Spark via the cc-pyspark repository for content-heavy analysis\n- DuckDB for local SQL queries through the Whirlwind Tour examples\n\n## Example Queries\n\n1. **Domain filtering**: Count pages per registered domain within specific top-level domains\n2. **Language detection**: \"Extract all two-letter path elements\" using regex patterns to identify ISO 639-1 language codes in URLs, then aggregate by domain with histogram results\n\nBoth examples use partition filters (`crawl` and `subset` columns) to reduce scanning costs during development."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "62e4cc4d-898c-4087-b0bf-e411b8479a17",
+            "isSidechain": true,
+            "promptId": "1aaff919-6b1e-499f-9a2e-edbca12dff84",
+            "agentId": "a031e0f4b8919eec1",
+            "type": "user",
+            "uuid": "faba0c9d-8724-4154-a529-c733d38fd424",
+            "sourceToolAssistantUUID": "62e4cc4d-898c-4087-b0bf-e411b8479a17",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-25T06:32:56.613Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016ZLp7UyqshbjZtVXdqdMuz",
+              "type": "tool_result",
+              "content": "Web search results for query: \"FineWeb-2 multilingual HuggingFace 2025 2026 dataset CC snapshots\"\n\nLinks: [{\"title\":\"HuggingFaceFW/fineweb-2 · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/HuggingFaceFW/fineweb-2\"},{\"title\":\"HuggingFaceFW/fineweb · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/HuggingFaceFW/fineweb\"},{\"title\":\"GitHub - huggingface/fineweb-2 · GitHub\",\"url\":\"https://github.com/huggingface/fineweb-2\"},{\"title\":\"HuggingFaceFW/fineweb-edu · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu\"},{\"title\":\"README.md · HuggingFaceFW/finetranslations at 02a612ea836b5403c3a9c2172161517b3cd34dd5\",\"url\":\"https://huggingface.co/datasets/HuggingFaceFW/finetranslations/blob/02a612ea836b5403c3a9c2172161517b3cd34dd5/README.md\"},{\"title\":\"🥂 FineWeb2 - a HuggingFaceFW Collection\",\"url\":\"https://huggingface.co/collections/HuggingFaceFW/fineweb2\"},{\"title\":\"HuggingFaceFW/fineweb · Reprocessing for a new language\",\"url\":\"https://huggingface.co/datasets/HuggingFaceFW/fineweb/discussions/12\"},{\"title\":\"README.md · HuggingFaceFW/finetranslations-edu at 3e9f5de59b6a34b746c749e04082e89406f3b1d0\",\"url\":\"https://huggingface.co/datasets/HuggingFaceFW/finetranslations-edu/blob/3e9f5de59b6a34b746c749e04082e89406f3b1d0/README.md\"},{\"title\":\"fineweb-2/README.md at main · huggingface/fineweb-2\",\"url\":\"https://github.com/huggingface/fineweb-2/blob/main/README.md\"}]\n\nBased on the search results, here's what I found about FineWeb-2:\n\n## FineWeb-2 Overview\n\nFineWeb 2 is the second iteration of the popular FineWeb dataset, bringing high quality pretraining data to over 1000 languages. \n\n### CommonCrawl Data Sources\n\nThe dataset was created by processing 96 CommonCrawl dumps comprising web data crawled from the summer of 2013 to April 2024. The CommonCrawl data was carefully processed, deduplicated and filtered with the datatrove library, resulting in the largest publicly available multilingual clean LLM pretraining dataset.\n\n### Dataset Scale\n\nThe carefully deduplicated and filtered dataset comprises roughly 20 terabytes, across 5 billion documents, with over 3 trillion words.\n\n### Multilingual Processing\n\nUnlike in FineWeb, where data was deduplicated per CommonCrawl snapshot, in FineWeb 2, data is deduplicated per language globally. The processing pipeline had to be heavily adapted for a multilingual setting. As each language has its own peculiarities, they individually tuned each filter, defining different thresholds and stopwords for each language.\n\n### Related Dataset: FineTranslations\n\nThere is also a FineTranslations dataset containing over 1 trillion tokens of parallel text in English and 500+ languages, obtained by translating data from FineWeb2 into English using Gemma3 27B.\n\nThe dataset is available on HuggingFace at https://huggingface.co/datasets/HuggingFaceFW/fineweb-2\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f5865c80-e0fa-44e1-beeb-27d185f22d38",
+            "isSidechain": true,
+            "promptId": "1aaff919-6b1e-499f-9a2e-edbca12dff84",
+            "agentId": "a031e0f4b8919eec1",
+            "type": "user",
+            "uuid": "276d5717-d594-421e-a5e7-faa9c215ee6d",
+            "sourceToolAssistantUUID": "f5865c80-e0fa-44e1-beeb-27d185f22d38",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-25T06:32:57.844Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LFfwJ9TgSWpYNZHYvmB6G8",
+              "type": "tool_result",
+              "content": "Web search results for query: \"DCLM dataset HuggingFace download subset sampling 2025\"\n\nLinks: [{\"title\":\"GitHub - mlfoundations/dclm: DataComp for Language Models · GitHub\",\"url\":\"https://github.com/mlfoundations/dclm\"},{\"title\":\"HuggingFaceFW/dclm_100BT · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/HuggingFaceFW/dclm_100BT\"},{\"title\":\"dclm/README.md at main · mlfoundations/dclm\",\"url\":\"https://github.com/mlfoundations/dclm/blob/main/README.md\"},{\"title\":\"apple/DCLM-7B · Hugging Face\",\"url\":\"https://huggingface.co/apple/DCLM-7B\"},{\"title\":\"mlfoundations/dclm-baseline-1.0 · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/mlfoundations/dclm-baseline-1.0\"},{\"title\":\"HuggingFaceTB/dclm-edu · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/HuggingFaceTB/dclm-edu\"},{\"title\":\"Models - Hugging Face\",\"url\":\"https://huggingface.co/models?dataset=dataset:mlfoundations/dclm-baseline-1.0\"}]\n\nBased on the search results, here's what I found about the DCLM dataset on HuggingFace regarding downloading, subsets, and sampling:\n\n## Dataset Availability\n\nDCLM-Baseline is available on Huggingface in both zstd compressed jsonl and parquet formats. DCLM-Baseline is a subset of the DCLM-Pool, which is a corpus of 240 trillion tokens derived from Common Crawl.\n\n## Multiple Variants\n\nThe DCLM project offers several standardized input pools:\n\n- Datasets vary along two key dimensions: Compute scale: 400M-1x, 1B-1x, 3B-1x, 7B-1x, 7B-2x · Amount of pre-processing: either DCLM-Pool or DCLM-RefinedWeb\n- The main set of competition pools are subsets of DCLM-Pool, consisting of unfiltered Common Crawl data that has only undergone text extraction (via resiliparse).\n\n## Sampling Example\n\nA practical example is the dclm_100BT dataset, created by randomly sampling from the full DCLM-Baseline 1.0 dataset (~3.5T tokens) to produce a ~100B token subset. Sampling was performed with a fixed seed (42) and a slight 1.05× oversampling factor to account for variance.\n\n## Download Code\n\nYou can load the dataset using: `from datasets import load_dataset ds = load_dataset(\"HuggingFaceFW/dclm_100BT\", split=\"train\", streaming=True)`\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "20d1515e-66db-4223-87c8-501fa98954de",
+            "isSidechain": true,
+            "promptId": "1aaff919-6b1e-499f-9a2e-edbca12dff84",
+            "agentId": "a031e0f4b8919eec1",
+            "type": "user",
+            "uuid": "3d298a42-985e-4b0a-8788-8e9680765d37",
+            "sourceToolAssistantUUID": "20d1515e-66db-4223-87c8-501fa98954de",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-25T06:33:00.939Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HkNujbPuZ1X8Pz4699WRyc",
+              "name": "WebSearch",
+              "input": {
+                "query": "Common Crawl CDX API index.commoncrawl.org sample random pages Python example"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3d298a42-985e-4b0a-8788-8e9680765d37",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpW2zQiYdFgwJcYXShN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ba002cc9-7ac2-4d37-98a1-6261851f5ac8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018CwLBoGymerG5v3MPjMrts",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2412,
+                "cache_read_input_tokens": 26425,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2412,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-25T06:33:01.550Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DqniKHqfMG1ZsF12ZwNiQE",
+              "name": "WebSearch",
+              "input": {
+                "query": "fasttext lid.176.bin language identification model download 2025 alternative"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ba002cc9-7ac2-4d37-98a1-6261851f5ac8",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpW2zQiYdFgwJcYXShN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e2a55698-b0e2-4d60-b62d-998d6bbe00e6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018CwLBoGymerG5v3MPjMrts",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2412,
+                "cache_read_input_tokens": 26425,
+                "output_tokens": 121,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2412
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 121,
+                    "cache_read_input_tokens": 26425,
+                    "cache_creation_input_tokens": 2412,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2412,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-25T06:33:08.601Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HkNujbPuZ1X8Pz4699WRyc",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Common Crawl CDX API index.commoncrawl.org sample random pages Python example\"\n\nLinks: [{\"title\":\"CDXJ Index\",\"url\":\"https://commoncrawl.org/cdxj-index\"},{\"title\":\"Common Crawl - Blog - Announcing the Common Crawl Index!\",\"url\":\"https://commoncrawl.org/blog/announcing-the-common-crawl-index\"},{\"title\":\"Common Crawl - Example Projects\",\"url\":\"https://commoncrawl.org/examples\"},{\"title\":\"GitHub - ikreymer/cdx-index-client: A command-line tool for using CommonCrawl Index API at http://index.commoncrawl.org/ · GitHub\",\"url\":\"https://github.com/ikreymer/cdx-index-client\"},{\"title\":\"Common Crawl Index Server\",\"url\":\"https://index.commoncrawl.org/\"},{\"title\":\"Using the Common Crawl as a Data Source | by Samuel | Medium\",\"url\":\"https://medium.com/@samuel.schaffhauser/using-the-common-crawl-as-a-data-source-693a41b3baa9\"},{\"title\":\"GitHub - commoncrawl/whirlwind-python: A whirlwind tour of Common Crawl's data using Python\",\"url\":\"https://github.com/commoncrawl/whirlwind-python/\"},{\"title\":\"skeptric - Searching 100 Billion Webpages Pages With Capture Index\",\"url\":\"https://skeptric.com/searching-100b-pages-cdx/\"},{\"title\":\"cdx-toolkit · PyPI\",\"url\":\"https://pypi.org/project/cdx-toolkit/\"},{\"title\":\"An example of fetching a page from Common Crawl using the Common Crawl Index · GitHub\",\"url\":\"https://gist.github.com/Smerity/56bc6f21a8adec920ebf\"}]\n\nI found comprehensive information about the Common Crawl CDX API and working with index.commoncrawl.org. Here's a summary of relevant resources and approaches:\n\n## CDX API Basics\n\nThe index is served from index.commoncrawl.org, or alternatively the index files are available on the Common Crawl bucket on AWS S3. The API is a variation of the 'cdx server api' or 'capture index server api' that was originally built for the wayback machine.\n\n## Python Libraries and Tools\n\nSeveral Python tools are available for working with the CDX API:\n\n1. **cdx_toolkit**: Everything that you can do on the command line can be done by writing a Python program using cdx_toolkit. Example usage shows querying with size estimates and iterating through results.\n\n2. **CDX Index Client**: A simple python command line tool for retrieving lists of urls in bulk using the CommonCrawl Index API that takes advantage of the CDX Server Pagination API and Python multiprocessing support to load pages in parallel.\n\n## Learning Resources\n\nThe Whirlwind Tour gives further examples of querying the CDXJ index using Python. The whirlwind-python tutorial covers useful Python packages for interacting with the data: warcio, cdxj-indexer, cdx_toolkit, and duckdb.\n\n## Direct API Access\n\nAvailable indexes are stored in a JSON file called collinfo.json, which can be accessed at https://index.commoncrawl.org/collinfo.json and contains JSON data with the id, description, and API locations for each crawl.\n\nThese resources provide comprehensive examples and documentation for working with Common Crawl's CDX API in Python.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ba002cc9-7ac2-4d37-98a1-6261851f5ac8",
+            "isSidechain": true,
+            "promptId": "1aaff919-6b1e-499f-9a2e-edbca12dff84",
+            "agentId": "a031e0f4b8919eec1",
+            "type": "user",
+            "uuid": "f980823b-f99a-4000-bca1-10042da2afe2",
+            "sourceToolAssistantUUID": "ba002cc9-7ac2-4d37-98a1-6261851f5ac8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-25T06:33:08.981Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DqniKHqfMG1ZsF12ZwNiQE",
+              "type": "tool_result",
+              "content": "Web search results for query: \"fasttext lid.176.bin language identification model download 2025 alternative\"\n\nLinks: [{\"title\":\"Language identification · fastText\",\"url\":\"https://fasttext.cc/docs/en/language-identification.html\"},{\"title\":\"Comparison of language identification models | model.predict\",\"url\":\"https://modelpredict.com/language-identification-survey\"},{\"title\":\"Language identification with fastText - rand[om]\",\"url\":\"https://ricardoanderegg.com/posts/python-fast-language-identification-fasttext/\"},{\"title\":\"Language identification in python using fastText | by C CHAITANYA | Medium\",\"url\":\"https://medium.com/@c.chaitanya/language-identification-in-python-using-fasttext-60359dc30ed0\"},{\"title\":\"GitHub - rse/fasttext-lid: Language Identification with Facebook FastText for Node.js · GitHub\",\"url\":\"https://github.com/rse/fasttext-lid\"},{\"title\":\"fastText/docs/language-identification.md at main · facebookresearch/fastText\",\"url\":\"https://github.com/facebookresearch/fastText/blob/main/docs/language-identification.md\"},{\"title\":\"GitHub - Proteusiq/luga: Blazing fast language detection using fastText model · GitHub\",\"url\":\"https://github.com/Proteusiq/luga\"},{\"title\":\"Language Identification using the 'fastText' package (a ...\",\"url\":\"https://cran.r-project.org/web/packages/fastText/vignettes/language_identification.html\"},{\"title\":\"NuGet Gallery | Panlingo.LanguageIdentification.FastText 0.7.2\",\"url\":\"https://www.nuget.org/packages/Panlingo.LanguageIdentification.FastText\"},{\"title\":\"facebook/fasttext-language-identification · Hugging Face\",\"url\":\"https://huggingface.co/facebook/fasttext-language-identification\"}]\n\nBased on the search results, here's comprehensive information about the fastText lid.176.bin language identification model and alternatives:\n\n## fastText lid.176.bin Model\n\nFastText distributes two models for language identification, which can recognize 176 languages. The two versions are:\n\n1. lid.176.bin, which is faster and slightly more accurate, but has a file size of 126MB\n2. lid.176.ftz, which is the compressed version of the model, with a file size of 917kB\n\nYou can download the models using: wget https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin or wget https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.ftz\n\n## Newer Alternative: lid218e.bin\n\nA newer LID model was released as part of the NLLB project under CC-BY-NC 4.0 license. lid218e.bin uses different language codes from the original models—the ISO 639-3 code (e.g. \"eng\", \"fra\", \"rus\") plus an additional code describing the script (e.g., \"eng_Latn\", \"ukr_Cyrl\")—and has a file size of 1.2GB. This model is available on the Hugging Face Hub.\n\n## Other Language Identification Alternatives\n\ngcld3 is a python binding to CLD3, a Google's neural network model for language identification that supports 107 languages.\n\nThe module cld (Apache licensed, 160 languages) and the module franc (MIT licensed, 188 or 400 languages) are decent alternatives.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e2a55698-b0e2-4d60-b62d-998d6bbe00e6",
+            "isSidechain": true,
+            "promptId": "1aaff919-6b1e-499f-9a2e-edbca12dff84",
+            "agentId": "a031e0f4b8919eec1",
+            "type": "user",
+            "uuid": "6530cf51-111f-4a83-8ce1-5d5ea764d769",
+            "sourceToolAssistantUUID": "e2a55698-b0e2-4d60-b62d-998d6bbe00e6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-25T06:33:13.181Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GTNsfACjNWHSPxHqsVaPtB",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://data.commoncrawl.org/",
+                "prompt": "List all available crawl directories, especially for 2025 and 2026. I need the exact directory names like CC-MAIN-2025-XX and CC-MAIN-2026-XX."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6530cf51-111f-4a83-8ce1-5d5ea764d769",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpWrfaKAhuUWdDSpMeG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c4f7b1af-7430-47b0-b0a0-074b05e81b29",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ARVyGDeF9RDUZtLR3382cf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1892,
+                "cache_read_input_tokens": 28837,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1892,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 60,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-25T06:33:13.587Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017UmZvPkiUZdeMi3KiwoEpf",
+              "name": "WebSearch",
+              "input": {
+                "query": "RedPajama-V2 dataset 2025 Common Crawl snapshots download HuggingFace"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c4f7b1af-7430-47b0-b0a0-074b05e81b29",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpWrfaKAhuUWdDSpMeG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2bcac202-59b7-42f6-b137-cffc3860c61e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ARVyGDeF9RDUZtLR3382cf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1892,
+                "cache_read_input_tokens": 28837,
+                "output_tokens": 183,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1892
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 183,
+                    "cache_read_input_tokens": 28837,
+                    "cache_creation_input_tokens": 1892,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1892,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-25T06:33:17.006Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GTNsfACjNWHSPxHqsVaPtB",
+              "type": "tool_result",
+              "content": "Based on the provided webpage content, I cannot list specific 2025 or 2026 crawl directories with exact names like CC-MAIN-2025-XX or CC-MAIN-2026-XX.\n\nThe page indicates that \"Comprehensive monthly snapshots of the web\" are available through the Main Crawls section covering 2013 to present, but it directs users to check the \"[Main Crawls (2013–present)](crawl-data/index.html)\" link for current listings. Additionally, there's a reference to a \"JSON list of all available web crawls\" for complete directory information.\n\nTo find the specific 2025 and 2026 directory names you're seeking, you would need to visit those linked resources directly, as the current page doesn't enumerate individual crawl identifiers by year."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c4f7b1af-7430-47b0-b0a0-074b05e81b29",
+            "isSidechain": true,
+            "promptId": "1aaff919-6b1e-499f-9a2e-edbca12dff84",
+            "agentId": "a031e0f4b8919eec1",
+            "type": "user",
+            "uuid": "6749b9b3-c1c6-48a9-bf74-87e925a8094e",
+            "sourceToolAssistantUUID": "c4f7b1af-7430-47b0-b0a0-074b05e81b29",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-25T06:33:20.959Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017UmZvPkiUZdeMi3KiwoEpf",
+              "type": "tool_result",
+              "content": "Web search results for query: \"RedPajama-V2 dataset 2025 Common Crawl snapshots download HuggingFace\"\n\nLinks: [{\"title\":\"togethercomputer/RedPajama-Data-V2 · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/togethercomputer/RedPajama-Data-V2\"},{\"title\":\"GitHub - togethercomputer/RedPajama-Data: The RedPajama-Data repository contains code for preparing large datasets for training large language models. · GitHub\",\"url\":\"https://github.com/togethercomputer/RedPajama-Data\"},{\"title\":\"ShivamPR21/RedPajama-Data-V2 · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/ShivamPR21/RedPajama-Data-V2\"},{\"title\":\"https://huggingface.co/datasets/togethercomputer/R...\",\"url\":\"https://huggingface.co/datasets/togethercomputer/RedPajama-Data-V2/resolve/main/README.md\"},{\"title\":\"togethercomputer/RedPajama-Data-1T · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/togethercomputer/RedPajama-Data-1T\"},{\"title\":\"README.md · togethercomputer/RedPajama-Data-V2 at main\",\"url\":\"https://huggingface.co/datasets/togethercomputer/RedPajama-Data-V2/blob/main/README.md\"},{\"title\":\"RedPajama-Data-v2: An open dataset with 30 trillion tokens for training large language models\",\"url\":\"https://www.together.ai/blog/redpajama-data-v2\"},{\"title\":\"README.md · togethercomputer/RedPajama-Data-V2 at c4b24b2834a80a7a1bb1c58e467c360ee2de48db\",\"url\":\"https://huggingface.co/datasets/togethercomputer/RedPajama-Data-V2/blob/c4b24b2834a80a7a1bb1c58e467c360ee2de48db/README.md\"},{\"title\":\"README.md · togethercomputer/RedPajama-Data-V2 at 923e66af6d6c7931920c8064258ff945b2096a04\",\"url\":\"https://huggingface.co/datasets/togethercomputer/RedPajama-Data-V2/blame/923e66af6d6c7931920c8064258ff945b2096a04/README.md\"},{\"title\":\"togethercomputer/RedPajama-Data-V2 at e43cbf36f8c5118e7241a8606aa46d53e9a2515a\",\"url\":\"https://huggingface.co/datasets/togethercomputer/RedPajama-Data-V2/tree/e43cbf36f8c5118e7241a8606aa46d53e9a2515a\"}]\n\nBased on the search results, here's information about the RedPajama-V2 dataset:\n\n## Dataset Overview\n\nRedPajama-V2 is an open dataset for training large language models that includes over 100B text documents coming from 84 CommonCrawl snapshots and processed using the CCNet pipeline. Out of these, there are 30B documents in the corpus that additionally come with quality signals, and the dataset provides the ids of duplicated documents which can be used to create a dataset with 20B deduplicated documents.\n\n## Accessing and Downloading\n\nThe dataset is available on HuggingFace at `togethercomputer/RedPajama-Data-V2`. You can access it in multiple ways:\n\n**Using HuggingFace Datasets Library:**\nYou can load the dataset using Python with code like: `load_dataset(\"togethercomputer/RedPajama-Data-V2\", name=\"default\", partition=\"head_middle\", snapshots=[\"2023-06\", \"2022-49\"], languages=[\"en\", \"de\"])`\n\n**Using wget for direct download:**\nYou can download the full dataset via wget by first getting lists of URLs for text documents, quality signals, and duplicate IDs from data.together.xyz/redpajama-data-v2/v1.0.0/urls/\n\n## Storage Requirements\n\nDownloading the entire snapshots requires approximately 1TB of disk space per snapshot.\n\n## Available Options\n\nThe available partitions are `tail` and `head_middle`, and the available language tags are `en`, `de`, `fr`, `es`, `it`.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2bcac202-59b7-42f6-b137-cffc3860c61e",
+            "isSidechain": true,
+            "promptId": "1aaff919-6b1e-499f-9a2e-edbca12dff84",
+            "agentId": "a031e0f4b8919eec1",
+            "type": "user",
+            "uuid": "74aa8e46-175b-47b5-812b-cdda27965fed",
+            "sourceToolAssistantUUID": "2bcac202-59b7-42f6-b137-cffc3860c61e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-25T06:33:24.019Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ds4868GC8zM8h1FTaNGeYF",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://data.commoncrawl.org/crawl-data/index.html",
+                "prompt": "List ALL crawl directories for 2025 and 2026. I need the exact CC-MAIN identifiers like CC-MAIN-2025-XX and CC-MAIN-2026-XX."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "74aa8e46-175b-47b5-812b-cdda27965fed",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpXjpM2nXFX1jnfcu1Y",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "df6adfd5-c943-4222-bd80-563c5096b696",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01835XTS4HajMeqq6ZKmkBBS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1580,
+                "cache_read_input_tokens": 30729,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1580,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-25T06:33:24.824Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011XCN5bNLxKZR3F9LzpwLv9",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://index.commoncrawl.org/collinfo.json",
+                "prompt": "List all crawl collections for 2025 and 2026. Extract the collection IDs and their API endpoint URLs."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "df6adfd5-c943-4222-bd80-563c5096b696",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpXjpM2nXFX1jnfcu1Y",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f7253d9c-e290-403c-a61a-9a3265cd22fd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01835XTS4HajMeqq6ZKmkBBS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1580,
+                "cache_read_input_tokens": 30729,
+                "output_tokens": 223,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1580
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 223,
+                    "cache_read_input_tokens": 30729,
+                    "cache_creation_input_tokens": 1580,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1580,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-25T06:33:26.756Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ds4868GC8zM8h1FTaNGeYF",
+              "type": "tool_result",
+              "content": "# Common Crawl Archives for 2025 and 2026\n\n## 2026 Directories\n- CC-MAIN-2026-17 (April 2026)\n- CC-MAIN-2026-12 (March 2026)\n- CC-MAIN-2026-08 (February 2026)\n- CC-MAIN-2026-04 (January 2026)\n\n## 2025 Directories\n- CC-MAIN-2025-51 (December 2025)\n- CC-MAIN-2025-47 (November 2025)\n- CC-MAIN-2025-43 (October 2025)\n- CC-MAIN-2025-38 (September 2025)\n- CC-MAIN-2025-33 (August 2025)\n- CC-MAIN-2025-30 (July 2025)\n- CC-MAIN-2025-26 (June 2025)\n- CC-MAIN-2025-21 (May 2025)\n- CC-MAIN-2025-18 (April 2025)\n- CC-MAIN-2025-13 (March 2025)\n- CC-MAIN-2025-08 (February 2025)\n- CC-MAIN-2025-05 (January 2025)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "df6adfd5-c943-4222-bd80-563c5096b696",
+            "isSidechain": true,
+            "promptId": "1aaff919-6b1e-499f-9a2e-edbca12dff84",
+            "agentId": "a031e0f4b8919eec1",
+            "type": "user",
+            "uuid": "35dc943c-f58d-4a68-9e59-2f3846622566",
+            "sourceToolAssistantUUID": "df6adfd5-c943-4222-bd80-563c5096b696",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-25T06:33:28.806Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011XCN5bNLxKZR3F9LzpwLv9",
+              "type": "tool_result",
+              "content": "# Common Crawl Collections for 2025 and 2026\n\n## 2026 Collections\n\n| Collection ID | API Endpoint |\n|---|---|\n| CC-MAIN-2026-17 | https://index.commoncrawl.org/CC-MAIN-2026-17-index |\n| CC-MAIN-2026-12 | https://index.commoncrawl.org/CC-MAIN-2026-12-index |\n| CC-MAIN-2026-08 | https://index.commoncrawl.org/CC-MAIN-2026-08-index |\n| CC-MAIN-2026-04 | https://index.commoncrawl.org/CC-MAIN-2026-04-index |\n\n## 2025 Collections\n\n| Collection ID | API Endpoint |\n|---|---|\n| CC-MAIN-2025-51 | https://index.commoncrawl.org/CC-MAIN-2025-51-index |\n| CC-MAIN-2025-47 | https://index.commoncrawl.org/CC-MAIN-2025-47-index |\n| CC-MAIN-2025-43 | https://index.commoncrawl.org/CC-MAIN-2025-43-index |\n| CC-MAIN-2025-38 | https://index.commoncrawl.org/CC-MAIN-2025-38-index |\n| CC-MAIN-2025-33 | https://index.commoncrawl.org/CC-MAIN-2025-33-index |\n| CC-MAIN-2025-30 | https://index.commoncrawl.org/CC-MAIN-2025-30-index |\n| CC-MAIN-2025-26 | https://index.commoncrawl.org/CC-MAIN-2025-26-index |\n| CC-MAIN-2025-21 | https://index.commoncrawl.org/CC-MAIN-2025-21-index |\n| CC-MAIN-2025-18 | https://index.commoncrawl.org/CC-MAIN-2025-18-index |\n| CC-MAIN-2025-13 | https://index.commoncrawl.org/CC-MAIN-2025-13-index |\n| CC-MAIN-2025-08 | https://index.commoncrawl.org/CC-MAIN-2025-08-index |\n| CC-MAIN-2025-05 | https://index.commoncrawl.org/CC-MAIN-2025-05-index |"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f7253d9c-e290-403c-a61a-9a3265cd22fd",
+            "isSidechain": true,
+            "promptId": "1aaff919-6b1e-499f-9a2e-edbca12dff84",
+            "agentId": "a031e0f4b8919eec1",
+            "type": "user",
+            "uuid": "1d120628-0630-4710-adee-0d694509ebbd",
+            "sourceToolAssistantUUID": "f7253d9c-e290-403c-a61a-9a3265cd22fd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-25T06:33:31.714Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me save this research to the project artifacts."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1d120628-0630-4710-adee-0d694509ebbd",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpYKNwxrcZ4hsETG56p",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "05b2a3ca-8c55-4b4e-8efc-7fe07508bab5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KXc2ESf1qodHzuEkMVYHN9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1233,
+                "cache_read_input_tokens": 32309,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1233,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-25T06:33:32.196Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GoGBehrkF3AiR4MgRZ48j4",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__save_project_file",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "05b2a3ca-8c55-4b4e-8efc-7fe07508bab5",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpYKNwxrcZ4hsETG56p",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "af4cd17a-b300-4c98-866b-3772b6057340",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KXc2ESf1qodHzuEkMVYHN9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1233,
+                "cache_read_input_tokens": 32309,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1233,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-25T06:33:32.202Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01GoGBehrkF3AiR4MgRZ48j4",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "af4cd17a-b300-4c98-866b-3772b6057340",
+            "isSidechain": true,
+            "promptId": "1aaff919-6b1e-499f-9a2e-edbca12dff84",
+            "agentId": "a031e0f4b8919eec1",
+            "type": "user",
+            "uuid": "eb2c304c-5a6e-47ac-b932-72acce9bfc55",
+            "sourceToolAssistantUUID": "af4cd17a-b300-4c98-866b-3772b6057340",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-25T06:34:41.351Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nHere is the complete research report.\n\n---\n\n## 1. Available Common Crawl Snapshots (2025-2026)\n\n**2026 (4 snapshots so far):**\n| Crawl ID | Month |\n|---|---|\n| CC-MAIN-2026-17 | April 2026 (latest) |\n| CC-MAIN-2026-12 | March 2026 |\n| CC-MAIN-2026-08 | February 2026 |\n| CC-MAIN-2026-04 | January 2026 |\n\n**2025 (12 snapshots):**\n| Crawl ID | Month |\n|---|---|\n| CC-MAIN-2025-51 | December |\n| CC-MAIN-2025-47 | November |\n| CC-MAIN-2025-43 | October |\n| CC-MAIN-2025-38 | September |\n| CC-MAIN-2025-33 | August |\n| CC-MAIN-2025-30 | July |\n| CC-MAIN-2025-26 | June |\n| CC-MAIN-2025-21 | May |\n| CC-MAIN-2025-18 | April |\n| CC-MAIN-2025-13 | March |\n| CC-MAIN-2025-08 | February |\n| CC-MAIN-2025-05 | January |\n\nEach snapshot contains ~2.2-2.3 billion pages, ~380-400 TiB uncompressed.\n\n---\n\n## 2. Access Paths and Formats\n\n**S3 bucket** (anonymous, no AWS account needed for reads):\n```\ns3://commoncrawl/crawl-data/CC-MAIN-2026-17/\n```\n\n**HTTP**:\n```\nhttps://data.commoncrawl.org/crawl-data/CC-MAIN-2026-17/\n```\n\n**Three formats per crawl:**\n- **WARC** — raw HTTP responses + HTML. ~86 TB per crawl compressed. Use when you need HTML structure.\n- **WET** — extracted plaintext only. ~8.7 TB per crawl compressed. Best for text-focused research.\n- **WAT** — JSON metadata (headers, links, meta tags). Useful for filtering before downloading WARC/WET.\n\n**File listings** (get segment/file paths):\n```bash\n# List all WET files for a crawl\naws --no-sign-request s3 cp s3://commoncrawl/crawl-data/CC-MAIN-2026-17/wet.paths.gz .\n# List all WARC files\naws --no-sign-request s3 cp s3://commoncrawl/crawl-data/CC-MAIN-2026-17/warc.paths.gz .\n```\n\n**CDX Index API** (query by URL pattern without downloading data):\n```\nhttps://index.commoncrawl.org/CC-MAIN-2026-17-index?url=*.com&output=json\n```\n\n**Columnar Index** (Parquet, for bulk/analytical queries):\n```\ns3://commoncrawl/cc-index/table/cc-main/warc/\n```\nQueryable via AWS Athena (~$1.50 per full scan of one crawl), Spark, or DuckDB. Contains 28 columns: URL components, MIME type, languages, WARC offsets, etc.\n\n---\n\n## 3. Efficient Sampling Strategies (10K-50K English Docs)\n\n### Strategy A: Random WET segment sampling (simplest)\nEach crawl has ~80,000 WET files. Download 1-2 files, each contains ~25K-30K documents.\n\n```bash\n# Get file list\naws --no-sign-request s3 cp s3://commoncrawl/crawl-data/CC-MAIN-2026-17/wet.paths.gz .\ngunzip wet.paths.gz\n# Pick a random segment\nshuf -n 1 wet.paths > sample_path.txt\n# Download one WET file (~100-150 MB compressed)\naws --no-sign-request s3 cp \"s3://commoncrawl/$(cat sample_path.txt)\" .\n```\n\nThen parse with `warcio` in Python and filter for English.\n\n### Strategy B: CDX API + targeted WARC fetch\nQuery the index for specific domains/patterns, get WARC offsets, fetch only those byte ranges.\n\n```python\nimport cdx_toolkit\ncdx = cdx_toolkit.CDXFetcher(source='cc', cc_sort='ascending')\nfor record in cdx.iter('example.com/*', limit=1000,\n                        filter=['=status:200', '=mime-detected:text/html']):\n    # record.content gives you the page content\n    pass\n```\n\n### Strategy C: Columnar index + Athena (most precise)\n```sql\n-- Query the Parquet index via Athena to find English HTML pages\nSELECT url, warc_filename, warc_record_offset, warc_record_length\nFROM \"ccindex\".\"ccindex\"\nWHERE crawl = 'CC-MAIN-2026-17'\n  AND subset = 'warc'\n  AND content_languages LIKE '%eng%'\n  AND url_host_tld = 'com'\nLIMIT 50000;\n```\nThen use the offsets to fetch only those specific WARC records via HTTP range requests. Cost: ~$1.50 for the query.\n\n### Strategy D: Use preprocessed datasets (recommended for most use cases)\nSee Section 7 below.\n\n---\n\n## 4. Tools for Working with Common Crawl\n\n| Tool | Install | Best For |\n|---|---|---|\n| **cdx_toolkit** | `pip install cdx-toolkit` | Querying CDX index, fetching specific URLs, small-medium extractions |\n| **warcio** | `pip install warcio` | Parsing WARC/WET files in Python |\n| **comcrawl** | `pip install comcrawl` | Simple URL-based searches (small projects only) |\n| **cc-pyspark** | [github.com/commoncrawl/cc-pyspark](https://github.com/commoncrawl/cc-pyspark) | Large-scale Spark processing |\n| **cdx-index-client** | [github.com/ikreymer/cdx-index-client](https://github.com/ikreymer/cdx-index-client) | CLI bulk URL retrieval with parallel pagination |\n| **trafilatura** | `pip install trafilatura` | High-quality text extraction from HTML (better than WET) |\n| **resiliparse** | `pip install resiliparse` | Fast text extraction from HTML (used by DCLM) |\n| **datatrove** | `pip install datatrove` | HuggingFace's pipeline library (used to build FineWeb) |\n\nKey insight: **WET files are inferior to extracting text yourself from WARC using trafilatura or resiliparse.** FineWeb, RefinedWeb, and DCLM all avoid WET files and re-extract from WARC HTML.\n\n---\n\n## 5. Disk Space Estimates\n\n| What | Size |\n|---|---|\n| 1 WET file (compressed) | ~100-150 MB |\n| 1 WET file (uncompressed) | ~500 MB - 1 GB |\n| 10K docs extracted as plaintext | ~50-200 MB |\n| 50K docs extracted as plaintext | ~250 MB - 1 GB |\n| 1 WARC segment (compressed) | ~1 GB |\n| Full crawl WET (compressed) | ~8.7 TB |\n| Full crawl WARC (compressed) | ~86 TB |\n| Columnar index per crawl | ~300 GB |\n\nFor a 10K-50K document sample, budget **1-2 GB** including intermediate files.\n\n---\n\n## 6. Language Detection for English Filtering\n\n**fastText LID (standard choice):**\n```bash\n# Original model (176 languages, 126 MB)\nwget https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.bin\n# Compressed version (917 KB, slightly less accurate)\nwget https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.ftz\n```\n\n```python\nimport fasttext\nmodel = fasttext.load_model('lid.176.bin')\nprediction = model.predict(\"This is an English sentence.\")\n# Returns (('__label__en',), array([0.99]))\n# Filter: keep if label == '__label__en' and score > 0.65\n```\n\n**Newer NLLB model** (218 languages, 1.2 GB, uses ISO 639-3 codes like `eng_Latn`):\nAvailable at `facebook/fasttext-language-identification` on HuggingFace. CC-BY-NC license.\n\n**Other options:** gcld3 (Google's neural LID, 107 languages), lingua-py (higher accuracy on short texts but slower).\n\nThe standard pipeline used by FineWeb/DCLM: fastText LID with threshold ~0.65, applied after text extraction.\n\n---\n\n## 7. Preprocessed CC-Derived Datasets (Easier Alternatives)\n\n### FineWeb (recommended for English)\n- **Coverage:** 114 CC snapshots, 2013 through CC-MAIN-2025-26\n- **Size:** 15T tokens, 25.9B rows\n- **Quality:** trafilatura extraction + URL/line/doc-level filters + MinHash dedup\n- **Pre-built samples:** `sample-10BT` (14.9M rows), `sample-100BT`, `sample-350BT`\n- **Has language_score field** — already filtered for English\n```python\nfrom datasets import load_dataset\n# Load 10K docs from a specific CC snapshot\nds = load_dataset(\"HuggingFaceFW/fineweb\", name=\"CC-MAIN-2025-26\",\n                  split=\"train\", streaming=True)\ndocs = list(itertools.islice(ds, 10000))\n\n# Or use the 10B-token sample\nds = load_dataset(\"HuggingFaceFW/fineweb\", name=\"sample-10BT\",\n                  split=\"train\", streaming=True)\n```\n\n### FineWeb-2 (multilingual)\n- **Coverage:** 96 CC dumps (2013–April 2024), 1000+ languages\n- **Size:** ~20 TB, 5B documents, 3T words\n- **Per-language dedup** (global, not per-snapshot)\n- HuggingFace: `HuggingFaceFW/fineweb-2`\n\n### DCLM-Baseline\n- **Source:** 240T tokens from CC, filtered to 3.8T via resiliparse + fastText classifier\n- **Pre-built subset:** `HuggingFaceFW/dclm_100BT` (100B token sample)\n```python\nds = load_dataset(\"HuggingFaceFW/dclm_100BT\", split=\"train\", streaming=True)\n```\n\n### RedPajama-V2\n- **Coverage:** 84 CC snapshots, 100B+ documents\n- **Quality signals included** (not pre-filtered — you choose thresholds)\n- Can filter by language (`en`, `de`, `fr`, `es`, `it`) and partition (`head_middle`, `tail`)\n```python\nds = load_dataset(\"togethercomputer/RedPajama-Data-V2\",\n                  snapshots=[\"2023-06\"], languages=[\"en\"],\n                  partition=\"head_middle\", streaming=True)\n```\n\n---\n\n## Practical Recommendation\n\nFor the gen-depth-contamination project, if you need 10K-50K English documents from recent CC snapshots (2025-2026):\n\n1. **If you need data from the very latest snapshots (2026):** Use Strategy A (random WET segment download) or Strategy C (Athena query). FineWeb only covers through CC-MAIN-2025-26, so 2026 snapshots require direct CC access.\n\n2. **If 2025 data suffices:** Use FineWeb via HuggingFace streaming. Load a specific snapshot like `CC-MAIN-2025-26`, take 10K-50K rows. Already English-filtered, quality-filtered, and deduplicated. Minimal disk space needed (streaming mode).\n\n3. **If you need to compare pre-training vs. post-training CC data:** Download WET segments from two different snapshots (e.g., CC-MAIN-2024-10 pre-cutoff and CC-MAIN-2026-17 post-cutoff), sample from each, and compare contamination signals."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eb2c304c-5a6e-47ac-b932-72acce9bfc55",
+            "isSidechain": true,
+            "agentId": "a031e0f4b8919eec1",
+            "requestId": "req_011CbNpYaPbNxi2xLkVYCKTT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "50a4c2fe-db92-4872-a20b-f1f8db93463b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7a64af56-6cfa-429c-9571-3bdc9b88f0e6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014UC7h9Ld19oQmhqNJWGACY",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 375,
+                "cache_read_input_tokens": 33542,
+                "output_tokens": 3127,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 375
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 3127,
+                    "cache_read_input_tokens": 33542,
+                    "cache_creation_input_tokens": 375,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 375,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000052"
+        }
+      ],
+      "message_count": 52
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-research-common-crawl-data-access-for-2025-2026-snapshots-i-need-to-know-1-wha.md"
+}

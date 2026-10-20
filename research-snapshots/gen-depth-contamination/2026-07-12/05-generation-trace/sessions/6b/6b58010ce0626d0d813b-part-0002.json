@@ -1,0 +1,529 @@
+{
+  "schema_version": "1.0",
+  "session_id": "6b58010ce0626d0d813b",
+  "rounds": [
+    {
+      "number": 5,
+      "messages": [
+        {
+          "source_line": 170,
+          "timestamp": "2026-05-25T21:44:46.143Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N7bSaT2pWgep3Nsin4t1bV",
+              "name": "mcp__agent-ml-research__update_review_issues",
+              "input": {
+                "project": "gen-depth-contamination",
+                "issues_yaml": "## Review Issues Tracker — gen-depth-contamination\n## Updated: Round 30 Review (2026-05-25)\n\n# === CRITICAL / MUST-FIX ===\n\n- id: \"R25-N1\"\n  summary: \"Qwen 过度代表使 6/10 统计量误导\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 25\n  last_seen_round: 30\n  mentions:\n    - round: 25\n      reviewer: [R1, R2]\n      note: \"6/10 中 4 个 Qwen。按 family：仅 2/6 unanimously K*=2。\"\n    - round: 26\n      reviewer: [R1, R2]\n      note: \"尽管 Round 25 已添加 per-family，叙事权重仍以 '6/10' 为主导。\"\n    - round: 27\n      reviewer: [R1, R2]\n      note: \"共识 Must-Fix。非 Qwen 6 配置中仅 Pythia-1.4B+LLaMA-8B 为 K*=2。\"\n    - round: 29\n      reviewer: [R1, R2]\n      note: \"两人再次共识。R1(W3)+R2(W4) 均指出按 family 去重后 K*=2 比例降至约 50%。建议 per-family 去重分析。\"\n    - round: 30\n      reviewer: [R1, R2]\n      note: \"R1 标 Must-Fix(N2): 4/6 K*=2 为 Qwen 变体, 按 family 去重仅 Qwen robustly K*=2。R2 完全同意, 补充 neural probe self-familiarity artifact 可能。共识: per-family 分析为主体。\"\n  action_items:\n    - round: 27\n      action: \"重构 narrative hierarchy\"\n      assigned_to: paper_agent\n      status: superseded\n    - round: 29\n      action: \"Section 4.1 在 '6/10' 后立即加 per-family 去重数字\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R30-N1\"\n  summary: \"Bonferroni 校正下仅 3/6 K*=2 配置统计显著（全为 Qwen）\"\n  category: experiment\n  severity: critical\n  status: open\n  first_raised_round: 30\n  last_seen_round: 30\n  mentions:\n    - round: 30\n      reviewer: [R1, R2]\n      note: \"R1 标 Must-Fix(N1): Table 27 显示 Pythia-1.4B(0.593), Qwen-cont(0.598), LLaMA-8B(0.599) CI 下界均<θ=0.60。论文用 'marginal' 而非承认不显著。R2 AGREE 且与 R2-N2(K*=1 占 40%) 共振: statistically significant K*=2 仅 3 configs 全是 Qwen。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-W2\"\n  summary: \"贡献悖论: K*≤2 使 depth estimation 退化为 binary detection\"\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 25\n  last_seen_round: 30\n  mentions:\n    - round: 27\n      reviewer: [R1, R2]\n      note: \"需正面处理。\"\n    - round: 29\n      reviewer: [R1, R2]\n      note: \"R1 接受当前定位。分歧缩小。\"\n    - round: 30\n      reviewer: [R1, R2]\n      note: \"R2 升级为 Must-Fix(N1): framework 的实际产出等价于 binary detection。R1 REBUT severity(characterization 有独立价值, K*>2 场景证明框架扩展潜力), 但承认诊断准确。核心分歧: R1 认为修改 framing 可解决(3.5), R2 认为即使修复仍 Findings(3.0)。\"\n  action_items:\n    - round: 27\n      action: \"Intro 更早声明 K*=2 为核心发现\"\n      assigned_to: paper_agent\n      status: superseded\n    - round: 30\n      action: \"需在 Introduction/Discussion 中明确区分框架的理论贡献(characterization of information loss dynamics)和实践贡献(K*>2 场景的 non-binary depth estimation), 正面讨论 K*≤2 的 'why binary suffices' 解释价值\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R1-W2\"\n  summary: \"Filtering 实验效果量在现实污染比例下极小\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 20\n  last_seen_round: 30\n  mentions:\n    - round: 27\n      reviewer: [R1, R2]\n      note: \"100% 设置不切实际。\"\n    - round: 29\n      reviewer: [R1, R2]\n      note: \"两人均标 critical。≤50% 污染下所有策略趋同(p>0.12)。10% 下 MMLU Δ=0.09pp。\"\n    - round: 30\n      reviewer: [R1, R2]\n      note: \"R1 标 Should-Fix(W5), R2 强烈同意并认为进一步支持贡献悖论。Abstract 表述给人 practical contribution 印象, 但 Appendix B.8 显示 ≤50% 下效果消失。\"\n  action_items:\n    - round: 29\n      action: \"Abstract/Section 5 限定 filtering 声明适用范围\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R29-N1\"\n  summary: \"'Generator-agnostic' 声明范围过大——仅限 continuation mode\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 29\n  last_seen_round: 30\n  mentions:\n    - round: 29\n      reviewer: [R1, R2]\n      note: \"Abstract '80-92% cross-model transfer' 仅在 continuation mode 成立；rewrite mode 迁移仅 61-63%。\"\n    - round: 30\n      reviewer: [R1, R2]\n      note: \"R1 标 Should-Fix(W3), R2 AGREE。有效迁移仅在 Pythia↔OLMo↔Qwen-cont 间验证。建议限定 'across continuation-mode generators with K*≥2'。\"\n  action_items:\n    - round: 29\n      action: \"Abstract/Conclusion 限定 continuation mode\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R29-N2\"\n  summary: \"K*_empirical 在 5K→10K 样本量变化时不稳定\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 29\n  last_seen_round: 29\n  mentions:\n    - round: 29\n      reviewer: [R1, R2]\n      note: \"LLaMA-8B K*=2(5K)→K*=1(10K); Gemma-2-2B K*=1→K*=2。\"\n    - round: 30\n      reviewer: []\n      note: \"本轮未以 sample instability 角度提及。R30-N1 从 Bonferroni CI 角度替代了部分 concern。\"\n  action_items:\n    - round: 29\n      action: \"Bootstrap K*_empirical 分析\"\n      assigned_to: main_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R22-C4\"\n  summary: \"模型规模覆盖偏向小模型（≤8B），威胁可推广性\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 22\n  last_seen_round: 29\n  mentions:\n    - round: 29\n      reviewer: [R1, R2]\n      note: \"R1 仍标 Should-Fix。R2 反驳：Limitations 已恰当处理。\"\n    - round: 30\n      reviewer: []\n      note: \"本轮未直接提及。\"\n  action_items:\n    - round: 27\n      action: \"弱化 'regardless of scale'\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n# === WARNING / SHOULD-FIX ===\n\n- id: \"R1-N2\"\n  summary: \"θ=0.60 post-hoc 选择使 K*=2 核心结论脆弱\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 20\n  last_seen_round: 30\n  mentions:\n    - round: 29\n      reviewer: [R1, R2]\n      note: \"两人再次共识。R2: AUC 是 rank-based 指标，直接映射 Cohen's h 有概念混淆。\"\n    - round: 30\n      reviewer: [R1, R2]\n      note: \"R1(W2): 建议基于 permutation null 99th percentile 推导 θ。R2(W2): circularity, 1pp stability window 不宽裕, θ=0.61 时 Pythia-1.4B 已 drop 到 K*=1。共识。\"\n  action_items:\n    - round: 29\n      action: \"删除 Cohen's h 类比, 改用经验论据\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R1-N1\"\n  summary: \"DPI→adjacent-pair AUC 推理链存在逻辑缺口\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 20\n  last_seen_round: 30\n  mentions:\n    - round: 27\n      reviewer: [R1, R2]\n      note: \"AUC≠MI 单调函数。\"\n    - round: 29\n      reviewer: []\n      note: \"本轮未直接提及。\"\n    - round: 30\n      reviewer: [R1, R2]\n      note: \"R1 标 Should-Fix(W1), R2 AGREE。DPI 保证 I(X;Y_k) 单调, 但论文衡量 AUC_{k-1,k}(对应 I(Y_{k-1};Y_k)), 两者不等价。OLMo 非单调 AUC(M3) 构成实证反例。\"\n  action_items:\n    - round: 27\n      action: \"DPI 降级为 motivating intuition\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R29-W1\"\n  summary: \"Related Work 遗漏 text watermarking 作为 provenance tracking 替代方案\"\n  category: related_work\n  severity: warning\n  status: in_progress\n  first_raised_round: 29\n  last_seen_round: 30\n  mentions:\n    - round: 29\n      reviewer: [R1, R2]\n      note: \"R2 标 critical(N1); R1 反驳降级为 Should-Fix。\"\n    - round: 30\n      reviewer: [R1, R2]\n      note: \"R2 标 Should-Fix(W1), R1 AGREE。watermarking 在递归生成下鲁棒性也是 open question, 与 one-wash laundering 形成对比。补 1-2 句即可。\"\n  action_items:\n    - round: 29\n      action: \"Section 2 末尾加 1-2 句 watermarking 定位\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R30-W1\"\n  summary: \"Bootstrap CI 方法不一致 (Table 27 normal-approx vs Table 28 percentile)\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 30\n  last_seen_round: 30\n  mentions:\n    - round: 30\n      reviewer: [R1, R2]\n      note: \"R1 标 Should-Fix(W6), R2 AGREE。AUC 在 0.50-0.60 区间 bootstrap 分布可能偏斜, normal approximation 不准确。核心发现高度依赖 CI 是否跨越 θ。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R30-W2\"\n  summary: \"正文叙事密度过高, insight 深度不足\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 30\n  last_seen_round: 30\n  mentions:\n    - round: 30\n      reviewer: [R1, R2]\n      note: \"R2 标 Should-Fix(W4): Section 4.3(7行)/4.6(4行) 讨论过浅。R1 部分 AGREE, 建议重组结构(将 binary detector/feature ordering 移入 appendix)而非删减实验。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R30-W3\"\n  summary: \"Retrain-chain K*≥4 声明方法论支撑不足\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 30\n  last_seen_round: 30\n  mentions:\n    - round: 30\n      reviewer: [R1, R2]\n      note: \"R2 标 Should-Fix(W3): 正文仅一句话, 无方法/统计检验描述。R1 REBUT: Appendix B.7 提供了模型(Pythia-1.4B LoRA)/代数(5)/AUC 数值, 非 unsupported, 但缺 LoRA 超参数和 CI。分歧。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R30-W4\"\n  summary: \"OBD vs ordinal regression 对比公平性 (AUC<0.50 暗示调参不足)\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 30\n  last_seen_round: 30\n  mentions:\n    - round: 30\n      reviewer: [R1, R2]\n      note: \"R1 标 Should-Fix(W4): ordinal regression AUC 均值 0.4883<0.50, collapsing 应产生 ~0.50 而非 <0.50。R2 AGREE 但认为不影响核心结论(OBD 是工具选择非核心贡献), 建议降级为 Minor。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R29-W2\"\n  summary: \"'One-wash laundering' 命名与 K*=2 数据存在逻辑矛盾\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 29\n  last_seen_round: 30\n  mentions:\n    - round: 29\n      reviewer: [R1, R2]\n      note: \"R1(W4) 指出被 '洗掉' 的是深度信号而非检测信号。\"\n    - round: 30\n      reviewer: [R1]\n      note: \"R1 标 Minor(M2), 建议解释为隐喻。R2 REBUT: Discussion 已区分 one-wash laundering 与 model collapse, vivid imagery 有传播价值, 不应去掉隐喻色彩。\"\n  action_items:\n    - round: 29\n      action: \"从信号集中度角度精确定义 one-wash laundering\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R25-W1\"\n  summary: \"Prompt-chain 生态有效性——one-wash laundering 可能是 prompt-chain 特有\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 25\n  last_seen_round: 29\n  mentions:\n    - round: 29\n      reviewer: [R1, R2]\n      note: \"R1(W5) 指出 retrain-chain 段落表述不清。prompt-chain K*=2 vs retrain-chain K*=7 是定量巨大差异。\"\n    - round: 30\n      reviewer: []\n      note: \"本轮未直接提及。R30-W3(retrain-chain K*≥4 支撑不足)间接相关。\"\n  action_items:\n    - round: 27\n      action: \"Discussion 区分 one-wash laundering vs model collapse\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R26-W1\"\n  summary: \"遗漏高度相关近期工作\"\n  category: related_work\n  severity: warning\n  status: in_progress\n  first_raised_round: 26\n  last_seen_round: 29\n  mentions:\n    - round: 29\n      reviewer: [R2]\n      note: \"新增：watermarking 引用。见 R29-W1。\"\n    - round: 30\n      reviewer: []\n      note: \"本轮未提及新遗漏(watermarking 已独立追踪为 R29-W1)。\"\n  action_items:\n    - round: 27\n      action: \"Related Work 补充\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R27-W1\"\n  summary: \"self-BLEU 在 GroupKFold 中存在潜在数据泄漏\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 27\n  last_seen_round: 27\n  mentions:\n    - round: 30\n      reviewer: []\n      note: \"本轮未提及。\"\n  action_items:\n    - round: 27\n      action: \"Section 3.2 明确 fold-internal 计算\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R27-W2\"\n  summary: \"K*_empirical 下界紧致性未量化\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 27\n  last_seen_round: 27\n  mentions:\n    - round: 30\n      reviewer: []\n      note: \"本轮未提及。\"\n  action_items:\n    - round: 27\n      action: \"Discussion 承认 tightness 为开放问题\"\n      assigned_to: paper_agent\n      status: in_progress\n    - round: 29\n      action: \"修正 'near-tight' 表述\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R27-W3\"\n  summary: \"Binary detector 对比框架部分不公平\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 27\n  last_seen_round: 30\n  mentions:\n    - round: 29\n      reviewer: []\n      note: \"本轮未提及\"\n    - round: 30\n      reviewer: [R1]\n      note: \"R30-W4(ordinal regression AUC<0.50) 与此相关。\"\n  action_items:\n    - round: 27\n      action: \"Section 4.6 弱化 6-class accuracy\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R27-W4\"\n  summary: \"'model-free' 措辞与 scorer 模型依赖的张力\"\n  category: writing\n  severity: warning\n  status: in_progress\n  first_raised_round: 27\n  last_seen_round: 30\n  mentions:\n    - round: 29\n      reviewer: [R1, R2]\n      note: \"'generator-agnostic' 仍需限定 continuation mode。\"\n    - round: 30\n      reviewer: [R1, R2]\n      note: \"归入 R29-N1(generator-agnostic overclaim)。\"\n  action_items:\n    - round: 27\n      action: \"全文 'model-free' → 'generator-agnostic'\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R29-W3\"\n  summary: \"未报告特征提取和分类器训练/推理的计算开销\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 29\n  last_seen_round: 29\n  mentions:\n    - round: 30\n      reviewer: []\n      note: \"本轮未提及。\"\n  action_items:\n    - round: 29\n      action: \"Agent 提供 per-document benchmark 数据\"\n      assigned_to: main_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n# === MINOR ===\n\n- id: \"R29-M1\"\n  summary: \"Figure 4 heatmap 文字过小\"\n  category: format\n  severity: minor\n  status: in_progress\n  first_raised_round: 29\n  last_seen_round: 30\n  mentions:\n    - round: 29\n      reviewer: [R1, R2]\n      note: \"打印时难辨认。\"\n    - round: 30\n      reviewer: []\n      note: \"Reviewer 未直接提及, 但视觉审查确认 page 6 heatmap labels 偏小(warning)。\"\n  action_items:\n    - round: 29\n      action: \"放大 Figure 4 heatmap 字号\"\n      assigned_to: paper_agent\n      status: in_progress\n\n- id: \"R30-M1\"\n  summary: \"Eq.1 K*_empirical 定义未处理空集边界情况\"\n  category: method\n  severity: minor\n  status: open\n  first_raised_round: 30\n  last_seen_round: 30\n  mentions:\n    - round: 30\n      reviewer: [R1, R2]\n      note: \"R1 标 Minor(M1), R2 AGREE。当 AUC_{0,1}<θ 时定义未明确。实验中不触发(所有 0v1 AUC>0.92), 但形式定义应约定 K*=0。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R30-M2\"\n  summary: \"Abstract arXiv K*=3 claim 应注明 OLMo 为例外\"\n  category: writing\n  severity: minor\n  status: open\n  first_raised_round: 30\n  last_seen_round: 30\n  mentions:\n    - round: 30\n      reviewer: [R1, R2]\n      note: \"R1 标 Minor(M5), R2 AGREE。'four independent architecture families' 容易误读为所有测试 family。应标注 'four of five tested families (OLMo excluded)'。\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R29-M2\"\n  summary: \"Table 2 信息密度过高\"\n  category: format\n  severity: minor\n  status: wont_fix\n  first_raised_round: 29\n  last_seen_round: 29\n  mentions:\n    - round: 30\n      reviewer: []\n      note: \"本轮未提及。\"\n  resolution: \"8 页限制下难以大改。维持现状。\"\n  resolution_round: 29\n\n- id: \"R24-M3\"\n  summary: \"K*_empirical 定义中 max 算子隐含 AUC 单调递减假设\"\n  category: method\n  severity: minor\n  status: in_progress\n  first_raised_round: 24\n  last_seen_round: 27\n  mentions:\n    - round: 30\n      reviewer: []\n      note: \"本轮未提及\"\n  action_items:\n    - round: 27\n      action: \"Eq.1 记法改进\"\n      assigned_to: paper_agent\n      status: in_progress\n\n- id: \"R27-M1\"\n  summary: \"Top-3 特征缺乏直觉解释\"\n  category: writing\n  severity: minor\n  status: in_progress\n  first_raised_round: 27\n  last_seen_round: 27\n  mentions:\n    - round: 30\n      reviewer: []\n      note: \"本轮未提及\"\n\n- id: \"R27-M2\"\n  summary: \"Figure 2 caption 未自解释 pairwise AUC\"\n  category: format\n  severity: minor\n  status: in_progress\n  first_raised_round: 27\n  last_seen_round: 27\n  mentions:\n    - round: 30\n      reviewer: []\n      note: \"本轮未提及\"\n\n- id: \"R27-M3\"\n  summary: \"Conclusion 与 Abstract 逐字重复\"\n  category: writing\n  severity: minor\n  status: in_progress\n  first_raised_round: 27\n  last_seen_round: 27\n  mentions:\n    - round: 30\n      reviewer: []\n      note: \"本轮未提及\"\n\n# === RESOLVED ===\n\n- id: \"R26-N1\"\n  summary: \"arXiv K*=3 缺乏 bootstrap CI 和 permutation p-value\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 26\n  last_seen_round: 26\n  resolution: \"CI+p-value 已添加。Round 27 未重新提出。\"\n  resolution_round: 27\n\n- id: \"R26-W2\"\n  summary: \"边界 CI 决策缺乏多重比较校正\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 26\n  last_seen_round: 26\n  resolution: \"Bonferroni 99.5% CI 已添加。Round 27+ Reviewer 正面评价统计实践。\"\n  resolution_round: 27\n\n- id: \"R2-W3\"\n  summary: \"Conclusion 过于简短\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"Expanded; not re-raised Round 25-30\"\n  resolution_round: 25\n\n- id: \"R2-W1\"\n  summary: \"与 Geng/Wang 技术区分不够清晰\"\n  category: related_work\n  severity: warning\n  status: resolved\n  first_raised_round: 20\n  last_seen_round: 24\n  resolution: \"Citations added; not re-raised Round 25-30\"\n  resolution_round: 25\n\n- id: \"R24-M4\"\n  summary: \"Figure 4 红绿配色\"\n  category: format\n  severity: minor\n  status: resolved\n  first_raised_round: 24\n  last_seen_round: 24\n  resolution: \"Blue-orange palette; not re-raised\"\n  resolution_round: 25\n\n- id: \"R23-M2\"\n  summary: \"Orphan bib / 引用格式不一致\"\n  category: format\n  severity: minor\n  status: resolved\n  first_raised_round: 23\n  last_seen_round: 24\n  resolution: \"URLs completed; not re-raised\"\n  resolution_round: 25\n\n- id: \"R24-C1\"\n  summary: \"附录空占位符表格\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 23\n  last_seen_round: 24\n  resolution: \"All tables filled\"\n  resolution_round: 25\n\n- id: \"R24-C2\"\n  summary: \"Cross-scorer 部分证伪 scorer independence\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 22\n  last_seen_round: 25\n  resolution: \"Three-layer scorer independence rewrite; not re-raised\"\n  resolution_round: 26\n\n- id: \"R26-M1\"\n  summary: \"标题 'Recursive Synthetic Text' 范围略宽于 prompt-chain\"\n  category: framing\n  severity: minor\n  status: wont_fix\n  first_raised_round: 26\n  last_seen_round: 26\n  resolution: \"不改标题。正文已明确 prompt-chain protocol。\"\n  resolution_round: 26\n\n- id: \"R26-M2\"\n  summary: \"ANOVA 使用 GroupKFold 非独立观测值\"\n  category: method\n  severity: minor\n  status: resolved\n  first_raised_round: 26\n  last_seen_round: 26\n  resolution: \"Appendix ANOVA 后加 GroupKFold caveat\"\n  resolution_round: 27\n\n- id: \"R26-M3\"\n  summary: \"OLMo sub-threshold AUC 非单调性未显式标注\"\n  category: method\n  severity: minor\n  status: resolved\n  first_raised_round: 26\n  last_seen_round: 26\n  resolution: \"Table 2 脚注标注非单调性\"\n  resolution_round: 27\n\n- id: \"R26-M4\"\n  summary: \"Neural probe 'self-familiarity' 归因为推测\"\n  category: method\n  severity: minor\n  status: resolved\n  first_raised_round: 26\n  last_seen_round: 26\n  resolution: \"改为 'We hypothesize...' 假设性表述\"\n  resolution_round: 27"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4368b32d-4adc-48ae-845e-bf9bec471ee2",
+            "isSidechain": false,
+            "requestId": "req_011CbQ1cVxb2GSRc856R7RxL",
+            "type": "assistant",
+            "uuid": "1d943449-9759-4f33-a50b-b1b3109adfd4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/review_director_ff7eb619",
+            "sessionId": "227e0942-a6e3-4c57-9792-d53fddea619e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V32WY4xxWWDmRLP2VQC4LU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10631,
+                "cache_read_input_tokens": 127351,
+                "output_tokens": 10535,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 10535,
+                    "cache_read_input_tokens": 127351,
+                    "cache_creation_input_tokens": 0,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-25T21:44:46.213Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N7bSaT2pWgep3Nsin4t1bV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 18565}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1d943449-9759-4f33-a50b-b1b3109adfd4",
+            "isSidechain": false,
+            "promptId": "2e0d0a2c-ca80-4628-8b3c-249e9bfc0c8d",
+            "type": "user",
+            "uuid": "2b062b90-fc2e-4798-8746-4ae6fb68aa4c",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 18565}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_issues.yaml\", \"bytes\": 18565}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "1d943449-9759-4f33-a50b-b1b3109adfd4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/review_director_ff7eb619",
+            "sessionId": "227e0942-a6e3-4c57-9792-d53fddea619e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-25T21:44:46.250Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "2b062b90-fc2e-4798-8746-4ae6fb68aa4c",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "87c68ff5-b23c-4f74-b64c-f9467ed63167",
+                "timestamp": "2026-05-25T21:44:46.250Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/review_director_ff7eb619",
+                "sessionId": "227e0942-a6e3-4c57-9792-d53fddea619e",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Reviewer 2 审稿意见]: ## Reviewer 2 交叉回应 Reviewer 1 审稿意见  ---  ### 评分差异分析（R2: 3.0 vs R1: 3.5）  两人的分歧根源在于关注层次不同：  - **R1 的 Must-Fix 聚焦\"K\\*=2 是否站得住\"**（统计显著性、模型代表性），属于 empirical robustness 层面。这些问题通过修改 claim…",
+                "leafUuid": "87c68ff5-b23c-4f74-b64c-f9467ed63167",
+                "sessionId": "227e0942-a6e3-4c57-9792-d53fddea619e"
+              }
+            }
+          ],
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Address reviewer 2 depth estimation framework concerns",
+                "sessionId": "227e0942-a6e3-4c57-9792-d53fddea619e"
+              }
+            }
+          ],
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-25T21:44:51.959Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Issue tracker 已更新。提交审稿报告。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "87c68ff5-b23c-4f74-b64c-f9467ed63167",
+            "isSidechain": false,
+            "requestId": "req_011CbQ22pzVRUrYBg7UkmciW",
+            "type": "assistant",
+            "uuid": "28dc9d7a-d790-4581-a3f0-d4787678cbe8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/review_director_ff7eb619",
+            "sessionId": "227e0942-a6e3-4c57-9792-d53fddea619e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MXPnYHjta7VSphabFxdasX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10722,
+                "cache_read_input_tokens": 127351,
+                "output_tokens": 6240,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 10722,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6240,
+                    "cache_read_input_tokens": 127351,
+                    "cache_creation_input_tokens": 10722,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 10722
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": "2026-05-25T21:47:18.236Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FsbEWPCsyf5MFhP269G6Pu",
+              "name": "mcp__agent-ml-research__submit_review_report_to_research_director",
+              "input": {
+                "report": "# Round 30 审稿报告 — Generational Depth Estimation of Recursive Synthetic Text\n\n**Venue**: EMNLP 2026 (ARR May 2026)\n**Reviewers**: R1（方法严谨性 + 实验设计 + 统计有效性）、R2（新颖性 + 贡献 + 相关工作 + 写作质量）\n**审稿模式**: Fresh（独立初审 + 交叉分享）\n\n---\n\n## Summary\n\n本文定义了\"生成深度估计\"（generational depth estimation）问题，提出 K\\*\\_empirical 度量递归合成文本的可辨别深度边界。使用 15 维统计特征 + OBD-LightGBM 分类器，在 10 个模型配置（6 个架构族，1B-8B）上实验。核心发现：web text K\\*≤2（\"one-wash laundering\"），arXiv K\\*=3，跨模型迁移保持 80-92% 准确率（continuation mode）。Section 5 的 filtering 实验在 ~83% 污染下验证 binary 过滤优于渐进式策略。\n\n---\n\n## Strengths\n\n1. **问题定义新颖且重要**：将 generational depth estimation 从模糊直觉转化为可操作的度量（K\\*\\_empirical），为 model collapse 和数据治理研究提供量化工具。[共识]\n2. **实验覆盖面广**：10 个模型配置、6 个架构族、4 个领域、4 种解码策略，附带充分消融实验（长度、seed、scorer、样本量）。[共识]\n3. **统计实践规范**：permutation test + Bonferroni 校正、bootstrap CI、GroupKFold 防泄漏、self-BLEU 折内计算，多处主动标注 marginal cases。[共识]\n4. **\"One-wash laundering\"概念有传播价值**：将 K\\*=2 的发现包装为直观概念，对数据治理实践有 messaging value。[共识]\n5. **跨模型迁移（80-92%）是实用贡献**：15D generator-agnostic 特征集在 continuation mode 下的高迁移率使无需知道生成模型即可部署。[共识]\n6. **DeBERTa 上界实验提供有用对比**：15D 特征给出 lower bound，表征模型可将 K\\* 推至 4（arXiv），量化了 generator-agnostic 特征的代价。[共识]\n7. **可复现性好**：超参数、特征定义、数据集构造、匿名代码/数据链接均已提供。[共识]\n\n---\n\n## Weaknesses\n\n### Must-Fix（影响接收决定）\n\n**MF-1** [共识 critical] **Bonferroni 校正下仅 3/6 K\\*=2 配置统计显著，且全为 Qwen 变体**\n\n论文声称\"K\\*=2 for 6/10 configurations\"（Abstract, Section 4.1），但 Table 27 (Bonferroni-corrected 99.5% CI) 显示 Pythia-1.4B (CI lower 0.593)、Qwen-cont (0.598)、LLaMA-8B (0.599) 三个配置的 CI 下界均未超过 θ=0.60，统计不显著。仅 Qwen-rw、Qwen-base、Qwen-7B 三个 Qwen 变体的 CI 下界稳定超过 θ。论文在 Section 4.1 用\"marginal\"描述，但 Abstract/Introduction 未反映此限制。\n\n按 family 去重后，robust K\\*=2 仅 Qwen family；Pythia 和 LLaMA 为 marginal；OLMo、Gemma、Mistral 为 K\\*=1。\"K\\*≤2 universally\"的泛化性显著弱于论文所宣称。\n\n（来源：R1-N1 + R1-N2，R2 交叉回应 AGREE）\n\n**MF-2** [共识 critical] **4/10 配置 K\\*=1 削弱\"K\\*≤2 universally holds\"的主张**\n\n40% 配置（OLMo 全配置、Gemma-2-2B、Mistral-7B、Pythia-6.9B 部分）给出 K\\*=1，甚至无法区分 depth 1 和 depth 2。论文将 OLMo 称为\"sole exception\"，但 40% 比例不再是\"exception\"。论文缺乏对 K\\*=1 出现原因的系统性分析（模型容量、训练数据、架构差异还是特征集局限）。\n\n与 MF-1 共振：statistically significant K\\*=2 仅 3 configs（全 Qwen），K\\*=1 有 4 configs，论文实际发现更准确地说是\"Qwen family robustly achieves K\\*=2，其他 family 的 K\\* 在 1 和 2 之间模糊\"。\n\n（来源：R2-N2，R1 交叉回应 AGREE）\n\n**MF-3** [分歧 critical] **贡献悖论：K\\*≤2 使 depth estimation 框架退化为 binary detection**\n\n论文核心 framing 是\"generational depth estimation\"这一新问题，但 K\\*≤2 意味着深度估计在 web text 上等价于二分类（human vs. machine）。Section 5 的 filtering 实验进一步证实 binary filtering 是最优策略——这与现有 binary detector 的功能一致。论文未充分论证 depth framework 相比 binary detection 的增量价值。\n\n- **R2 立场（3.0）**：框架的实际产出等价于已有工作，novelty 和 practical contribution 不足以支撑 Main Conference。即使修复统计问题，conceptual contribution 仍停留在 Findings 水平。\n- **R1 立场（3.5）**：K\\*=2 作为 characterization result 有独立价值（解释 WHY binary suffices），且 K\\*>2 场景（arXiv K\\*=3, retrain-chain K\\*≥4, neural probe K\\*=3-4）证明框架有 beyond-binary 的扩展潜力。降至 Findings 过重。\n- **两人共识**：论文的 framing 确有张力（Title/Abstract 强调 depth estimation，但 web text 的 actionable conclusion 是 binary suffices），需要更好地区分理论贡献（characterization of information loss dynamics）和实践贡献。\n\n（来源：R2-N1，R1 REBUT severity 但 AGREE 诊断准确）\n\n### Should-Fix（影响评分但不一票否决）\n\n**SF-1** [共识] **DPI→AUC 单调递减的推理链有逻辑缺口**\n\nSection 3.1 用 DPI 论证 I(X; Y\\_k) 单调递减，但论文衡量的是 AUC\\_{k-1,k}（对应 I(Y\\_{k-1}; Y\\_k)），两者不等价。OLMo 的非单调 AUC（Table 2 脚注 §: 2v3=0.497, 3v4=0.503）构成实证反例。当前 \"The DPI motivates the empirical observation\" 措辞模糊了理论保证与经验观察的边界。建议明确 DPI 仅保证 seed-to-generation MI，降级为 motivating intuition。\n\n**SF-2** [共识] **θ=0.60 阈值 post-hoc 选取，存在 circularity 风险**\n\nθ 基于观察到的 AUC cluster gap 选择，构成弱 circularity。Figure 3 的 sensitivity analysis 缓解但不消除此问题——稳定窗口仅 1pp（θ∈[0.59, 0.60]），θ=0.61 时 Pythia-1.4B 已 drop 到 K\\*=1。应承认 post-hoc 性质，并报告基于 permutation null 99th percentile 推导的 principled threshold。\n\n**SF-3** [共识] **Cross-model transfer claim 范围过大**\n\nAbstract \"depth estimation on corpora from unknown generators requires no retraining\" 远超实际验证范围：(a) 仅覆盖 continuation mode，rewrite mode 迁移仅 61-63%；(b) K\\*=1 模型的迁移在 depth estimation 意义上 trivial；(c) 有效迁移仅在 3 个 continuation-mode 模型间验证。应限定为 \"across continuation-mode generators with K\\*≥2\"。\n\n**SF-4** [共识] **Filtering 实验的实际意义有限**\n\nAppendix B.8 显示在现实污染比例（≤50%）下，所有策略差异 <0.3pp，且 MMLU 均高于 base model——filtering 在现实场景下无实际效果。但 Abstract/contributions 的表述给人 practical contribution 的印象。应在 Section 5 开头直接说明 ≤50% 下效果消失，Abstract 限定适用范围。\n\n**SF-5** [共识] **Watermarking 作为 provenance tracking 替代方案的讨论不足**\n\nText watermarking（Kirchenbauer et al., 2023）是 generational provenance tracking 的直接对标方案。论文仅一句\"complementary post-hoc scenario\"带过，应补 1-2 句讨论互补性。\n\n**SF-6** [共识] **Bootstrap CI 方法不一致**\n\nTable 27 使用 normal-approximation，Table 28 使用 percentile CI。AUC 在 0.50-0.60 区间 bootstrap 分布可能偏斜。核心发现高度依赖 CI 是否跨越 θ，方法一致性重要。\n\n**SF-7** [共识] **正文叙事密度过高，insight 深度不足**\n\nSection 4-5 塞入过多实验，每个实验讨论空间极有限（Section 4.3 仅 7 行，Section 4.6 仅 4 行）。建议将 binary detector confidence、feature ordering 等边缘实验移入 appendix，腾出空间深入讨论核心发现。\n\n**SF-8** [分歧] **Retrain-chain K\\*≥4 声明方法论支撑不足**\n\nR2 认为正文仅一句话提及，无方法/统计检验。R1 反驳：Appendix B.7 提供了模型（Pythia-1.4B LoRA）、代数（5）、具体 AUC 数值，非 unsupported，但缺 LoRA 超参数和 CI。建议补充完整细节。\n\n**SF-9** [共识偏 minor] **OBD vs ordinal regression 对比公平性**\n\nOrdinal regression AUC 均值 0.4883 < 0.50 暗示调参可能不充分。论文解释为 collapsing，但 collapsing 应产生 ~0.50 而非 <0.50。R2 认为不影响核心结论（OBD 是工具选择非核心贡献），建议降级为 Minor。\n\n---\n\n## Reviewer Consensus [AGREE]\n\n1. **Bonferroni 显著性分层**（MF-1）：statistically significant K\\*=2 仅 3/6 configs（全 Qwen），Abstract/Introduction 的\"6/10\"表述需修改为 per-family 去重报告\n2. **Qwen 过度代表**（MF-1/MF-2）：per-family 分析应为主体，Qwen self-familiarity artifact 需排查\n3. **K\\*=1 比例**（MF-2）：40% configs K\\*=1 不是\"exception\"，需系统分析原因\n4. **θ=0.60 post-hoc**（SF-2）：两人一致要求承认 post-hoc 并报告 principled threshold\n5. **DPI→AUC 逻辑缺口**（SF-1）：降级为 motivating intuition\n6. **Transfer overclaim**（SF-3）：限定 continuation mode + K\\*≥2\n7. **Filtering 实际意义**（SF-4）：在现实污染下效果消失，表述需限定\n8. **Watermarking 讨论**（SF-5）：补 1-2 句\n9. **Bootstrap CI 不一致**（SF-6）：统一方法\n10. **叙事密度**（SF-7）：重组结构，腾出讨论空间\n\n## Reviewer Divergence [REBUT]\n\n1. **贡献悖论的杀伤力**（MF-3）：R2 认为 K\\*≤2 = binary detection，降至 3.0（Findings）；R1 认为 characterization result 有独立价值 + K\\*>2 场景，维持 3.5（Borderline Conference）。两人均承认论文 framing 有张力，但对可修复性判断不同。\n2. **Retrain-chain K\\*≥4 支撑**（SF-8）：R2 认为 unsupported claim；R1 认为 Appendix B.7 有数据但不够详尽。\n3. **\"One-wash laundering\"术语**：R1 建议解释为隐喻；R2 认为 vivid imagery 是传播价值，不应削弱。\n4. **Ordinal regression**（SF-9）：R1 标 Should-Fix；R2 认为应降级 Minor。\n\n---\n\n## Questions for Authors\n\n1. 如果以 Bonferroni CI 下界而非点估计判定 K\\*=2，核心结论从\"6/10\"变为\"3/10 (all Qwen)\"——论文的 framing 会如何修改？\n2. Qwen family 在 K\\*=2 中的 dominant 表现是否源于 Qwen 特有的 self-familiarity artifact（neural probe K\\*\\_neural=3 vs Pythia K\\*\\_neural=2 暗示此可能）？\n3. Ordinal regression AUC 均值 0.4883 < 0.50 的各 depth pair 分解是什么？是否调参过？\n4. Rewrite mode 迁移失败（61-63%）对实际部署的限制有多大？互联网文本可能由多种 mode 生成。\n5. 在什么条件下（更强特征、更大模型、structured domains）depth estimation 可能变得 non-trivially useful（K\\*>2 for web text）？\n\n---\n\n## Missing References\n\n- Kirchenbauer et al. (2023): text watermarking 作为 proactive provenance tracking（论文仅一句带过）\n- 无其他重大遗漏\n\n---\n\n## External Review (Stanford Agentic Reviewer)\n\n外部审稿：未请求\n\n---\n\n## Visual Layout Check（非评分项）\n\n状态：**已完成**（2026-05-25 21:16–21:19, 约 3 分钟）\n\n发现摘要（3 warning, 13 info, 0 critical）：\n- **[warning] Pages 1-2**: 连续 2 页纯文本无 display item，首个视觉锚点（Figure 1）直到 page 3 才出现。建议考虑 teaser figure 或提前 Figure 1。\n- **[warning] Page 5**: Table 2 全宽大表占页面 ~40%，视觉节奏偏单调（可接受）。\n- **[warning] Page 6**: 三个 display items（Figure 3 + Figure 4 + Table 3）挤在单页。Figure 4 heatmap 标签偏小，打印后可能难辨。建议 Figure 4 改用 figure\\*（全宽）。\n- **[info]**: 正文 8 页内 6 figures + 5 tables = 11 个 display items，密度 1.375/页，充足。颜色方案色盲友好。无 margin 溢出或公式渲染错误。匿名规则、页数限制、Limitations 格式均合规。AI Assistance 披露声明已有。\n\n---\n\n## Overall Assessment\n\n**Overall**: 3.0 (Findings) — 置信度 4/5\n\n**维度评分（两人共识）**：\n| 维度 | R1 | R2 | 共识 |\n|------|-----|-----|------|\n| Soundness | 3.5 | 3.5 | 3.5 |\n| Excitement | 3.5 | 3.0 | 3.0-3.5 |\n| Reproducibility | 4.0 | 4.0 | 4.0 |\n| Confidence | 4.0 | 4.0 | 4.0 |\n| Overall | 3.5 | 3.0 | **3.0** |\n\n**评分理由**：\n\n问题定义新颖，实验覆盖面广，统计实践规范——这些是明确的 strengths。但论文面临两个层面的挑战：\n\n1. **Empirical robustness 层面**（R1 主导）：K\\*=2 的核心 claim 在 Bonferroni 校正下仅 3/6 配置（全 Qwen）统计显著，40% 配置 K\\*=1，per-family 去重后 robust K\\*=2 仅 Qwen family。这些可通过修改 claim scope 和补充 per-family 分析解决。\n\n2. **Conceptual contribution 层面**（R2 主导）：即使修复所有统计问题，K\\*≤2 使 depth estimation 框架的实际效用等价于 binary detection，论文 ambition（depth estimation framework）与 conclusion（binary suffices）之间的根本张力仍在。这更难通过 revision 解决。\n\n综合两位 Reviewer 的判断，Overall 取 3.0（Findings）。R1 维持 3.5 认为 characterization result 有独立价值——这一分歧适合由 AC 在 meta-review 中裁定。\n\n**升分路径**：如果 revision 能 (a) 以 per-family 分析为主体，诚实报告 Bonferroni 显著性分层；(b) 正面回应贡献悖论，强化 K\\*>2 场景（arXiv K\\*=3, retrain-chain K\\*≥4, neural probe K\\*=3-4）作为框架价值的核心证据；(c) 修复 θ post-hoc、transfer overclaim、filtering scope 等表述问题——整体可提升至 3.5（Borderline Conference）。\n\n---\n\n## Detailed Comments\n\n### Section 1 (Introduction)\n- Contributions 列表中的\"generational depth estimation\"framing 与 K\\*≤2 结论之间的张力需正面处理（MF-3）\n- \"6/10 configurations\"需改为 per-family 去重表述（MF-1）\n\n### Section 3.1 (Method - K\\* Definition)\n- Eq.1 应处理 AUC\\_{0,1} < θ 的边界情况（约定 K\\*=0）\n- DPI motivation 应明确降级为 intuition，标注 DPI 保证 I(X;Y\\_k) 而非 I(Y\\_{k-1};Y\\_k) 的单调性（SF-1）\n- θ=0.60 应承认 post-hoc 性质，报告 permutation null 推导的 principled threshold（SF-2）\n\n### Section 3.2 (Method - OBD Classifier)\n- Ordinal regression AUC < 0.50 需分解各 depth pair，说明是否调参（SF-9）\n\n### Section 4.1 (Core Results)\n- 主报告应区分\"statistically significant K\\*=2\"（3 configs, all Qwen）和\"point-estimate K\\*=2\"（6 configs）（MF-1）\n- 需系统分析 K\\*=1 出现的原因（MF-2）\n- Bootstrap CI 方法应统一（SF-6）\n\n### Section 4.2 (Cross-Model Transfer)\n- \"requires no retraining\"限定为 continuation mode + K\\*≥2（SF-3）\n\n### Section 4.3-4.6 (Secondary Results)\n- Feature Ordering (7行) 和 Binary Detector (4行) 建议移入 appendix，腾出空间深入讨论核心发现（SF-7）\n\n### Section 5 (Filtering)\n- 开头直接说明 ≤50% 污染下效果消失（SF-4）\n- Abstract 相应限定\n\n### Section 6 (Discussion)\n- Retrain-chain K\\*≥4 补充完整实验细节和 CI（SF-8）\n- \"One-wash laundering\"从信号集中度角度精确定义\n\n### Related Work (Section 2)\n- 补 watermarking 讨论 1-2 句（SF-5）\n\n### Abstract\n- \"6/10 configurations\"→ per-family 表述\n- \"across four independent architecture families (arXiv)\"→ 标注 OLMo 例外\n- Transfer claim 限定 continuation mode\n- Filtering claim 限定 high contamination ratios",
+                "project": "gen-depth-contamination",
+                "reviewer_ids_acknowledged": [
+                  1,
+                  2
+                ],
+                "cross_response_reviewer_ids": [
+                  1,
+                  2
+                ],
+                "overall_score": "3.0 (Findings)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "28dc9d7a-d790-4581-a3f0-d4787678cbe8",
+            "isSidechain": false,
+            "requestId": "req_011CbQ22pzVRUrYBg7UkmciW",
+            "type": "assistant",
+            "uuid": "48947386-edb9-4a81-bfe9-e40f3e2421af",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/review_director_ff7eb619",
+            "sessionId": "227e0942-a6e3-4c57-9792-d53fddea619e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MXPnYHjta7VSphabFxdasX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10722,
+                "cache_read_input_tokens": 127351,
+                "output_tokens": 6240,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 10722,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6240,
+                    "cache_read_input_tokens": 127351,
+                    "cache_creation_input_tokens": 10722,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 10722
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-25T21:47:22.176Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FsbEWPCsyf5MFhP269G6Pu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "48947386-edb9-4a81-bfe9-e40f3e2421af",
+            "isSidechain": false,
+            "promptId": "2e0d0a2c-ca80-4628-8b3c-249e9bfc0c8d",
+            "type": "user",
+            "uuid": "0005ea04-2388-4022-954e-dfc43a0efaf4",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "48947386-edb9-4a81-bfe9-e40f3e2421af",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/review_director_ff7eb619",
+            "sessionId": "227e0942-a6e3-4c57-9792-d53fddea619e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Address reviewer 2 depth estimation framework concerns",
+                "sessionId": "227e0942-a6e3-4c57-9792-d53fddea619e"
+              }
+            }
+          ],
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": "2026-05-25T21:47:38.170Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-25T21:47:38.170Z",
+                "sessionId": "227e0942-a6e3-4c57-9792-d53fddea619e",
+                "content": "[Reviewer 2 审稿结果]:\n交叉回应已提交。核心结论：\n\n- R1 的两个 Must-Fix（Bonferroni 显著性、Qwen 过度代表）均 AGREE，且与我的 N2（K\\*=1 占比过高）形成共振\n- R1 的 6 个 Should-Fix 中 5 个 AGREE，仅在 W4（OBD vs ordinal regression）建议降级为 Minor\n- 唯一 REBUT 的是 M2（\"one-wash laundering\"术语），认为论文的隐喻处理已充分且有传播价值\n- 两份 review 互补：R1 质疑 evidence robustness（可修复），R2 质疑 contribution significance（更难修复），这解释了 0.5 分差距（3.0 vs 3.5）\n- 维持 Overall 3.0（Findings）评分"
+              }
+            }
+          ],
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": "2026-05-25T21:47:38.170Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-25T21:47:38.170Z",
+                "sessionId": "227e0942-a6e3-4c57-9792-d53fddea619e"
+              }
+            }
+          ],
+          "id": "event-000180"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "messages": [
+        {
+          "source_line": 181,
+          "timestamp": "2026-05-25T21:47:38.161Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue from where you left off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0005ea04-2388-4022-954e-dfc43a0efaf4",
+            "isSidechain": false,
+            "promptId": "787f48b6-e3c0-44bf-b141-6803476e2b1c",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "bee0a498-9d53-4bbb-bf02-6e781237995a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/review_director_ff7eb619",
+            "sessionId": "227e0942-a6e3-4c57-9792-d53fddea619e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-25T21:47:38.161Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bee0a498-9d53-4bbb-bf02-6e781237995a",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "fabe9fac-2a9e-4a47-a820-72d1926b5673",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/review_director_ff7eb619",
+            "sessionId": "227e0942-a6e3-4c57-9792-d53fddea619e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "6a6d2957-5d74-4c2d-83a5-a8e7106ac828",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000182"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "messages": [
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-25T21:47:38.248Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿结果]:\n交叉回应已提交。核心结论：\n\n- R1 的两个 Must-Fix（Bonferroni 显著性、Qwen 过度代表）均 AGREE，且与我的 N2（K\\*=1 占比过高）形成共振\n- R1 的 6 个 Should-Fix 中 5 个 AGREE，仅在 W4（OBD vs ordinal regression）建议降级为 Minor\n- 唯一 REBUT 的是 M2（\"one-wash laundering\"术语），认为论文的隐喻处理已充分且有传播价值\n- 两份 review 互补：R1 质疑 evidence robustness（可修复），R2 质疑 contribution significance（更难修复），这解释了 0.5 分差距（3.0 vs 3.5）\n- 维持 Overall 3.0（Findings）评分"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fabe9fac-2a9e-4a47-a820-72d1926b5673",
+            "isSidechain": false,
+            "promptId": "787f48b6-e3c0-44bf-b141-6803476e2b1c",
+            "type": "user",
+            "uuid": "f9f32b4d-6106-4a23-9155-8f8537d37b7b",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/review_director_ff7eb619",
+            "sessionId": "227e0942-a6e3-4c57-9792-d53fddea619e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000183"
+        }
+      ]
+    }
+  ]
+}

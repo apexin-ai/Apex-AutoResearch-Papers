@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "id": "5b81fafc1f6c732a0ffc",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 项目：gen-depth-contamination Venue：emnlp-2026 论文目录：/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-cont",
+  "task_key": "3355bdbd-a94f-424e-b96e-ece1835f5290",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/3355bdbd-a94f-424e-b96e-ece1835f5290.jsonl",
+    "occurrence": 1,
+    "bytes": 951044,
+    "sha256": "25743d1cb8193a99e048d6d3855241ad66009bbfd8b12477de1f91c3d94452a2"
+  },
+  "statistics": {
+    "messages": 300,
+    "user_turns": 2,
+    "tool_calls": 73,
+    "roles": {
+      "record": 88,
+      "user": 2,
+      "assistant": 63,
+      "tool_call": 73,
+      "tool_result": 73,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "5b81fafc1f6c732a0ffc-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 284,
+      "chunks": [
+        {
+          "path": "5b81fafc1f6c732a0ffc-part-0001.json",
+          "message_count": 120
+        },
+        {
+          "path": "5b81fafc1f6c732a0ffc-part-0002.json",
+          "message_count": 164
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "5b81fafc1f6c732a0ffc-part-0002.json",
+          "message_count": 14
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-gen-depth-contamination-venue-emnlp-2026-home-ubuntu-agent-ml-research-idea-ge-copy-3.md"
+}

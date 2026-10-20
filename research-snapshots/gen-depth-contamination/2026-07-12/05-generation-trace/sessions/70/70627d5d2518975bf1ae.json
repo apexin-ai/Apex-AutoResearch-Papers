@@ -1,0 +1,2481 @@
+{
+  "schema_version": "1.0",
+  "id": "70627d5d2518975bf1ae",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I'm reviewing a paper proposal about adding runtime verification to fast World Action Models (WAMs) in robotics. I need ",
+  "task_key": "agent-a7eafc9a9d9315d6c",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a7eafc9a9d9315d6c.jsonl",
+    "occurrence": 1,
+    "bytes": 139061,
+    "sha256": "1952f47373b70ed86190b258efa3603641635bce30be2b008422573138c91093"
+  },
+  "statistics": {
+    "messages": 55,
+    "user_turns": 1,
+    "tool_calls": 25,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 25,
+      "tool_result": 25,
+      "assistant": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-10T21:50:33.130Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'm reviewing a paper proposal about adding runtime verification to fast World Action Models (WAMs) in robotics. I need to find any competing or missing work that the proposal might have overlooked. The proposal already cites: FFDC-WAM, Fast-WAM, Motus, MotuBrain, Being-H0.7, WAV, OA-WAM, FIPER, FAIL-Detect, STEP, LingBot-VA, Falcon, T-STITCH, AdaDiff, D3P, X-WAM, Guardian, Code-as-Monitor, Foundational World Models for Failure Detection.\n\nPlease search for:\n1. \"world action model verification 2026\" - any NEW verification methods for WAMs\n2. \"adaptive denoising robot policy 2026\" - methods that adaptively choose denoising depth\n3. \"runtime failure detection manipulation 2026\" - newer failure detection approaches\n4. \"partial denoising video generation robotics\" - anyone else using partial video denoising for verification\n5. \"cascaded verification robot execution\" - cascaded or multi-level verification in robotics\n6. \"warm start video denoising\" - warm-start techniques applied to video generation specifically\n7. \"CoRL 2026 world model\" - any CoRL 2026 submissions in this space that might be concurrent\n\nFor each search, report the most relevant findings. I'm specifically looking for papers from Jan-May 2026 that the proposal might have missed."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "6dab29b5-f8f2-4e19-9c61-cb5d4eacdfbd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-10T21:50:33.132Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "6dab29b5-f8f2-4e19-9c61-cb5d4eacdfbd",
+                "isSidechain": true,
+                "agentId": "a7eafc9a9d9315d6c",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "5267274e-868c-451f-a02d-5510e34acebf",
+                "timestamp": "2026-05-10T21:50:33.132Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-10T21:50:36.734Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RYicYQzFGALPLLdBhaNw9v",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5267274e-868c-451f-a02d-5510e34acebf",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudLfM2hLcWVDEunS4Hg",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "81c4f0c4-42cd-45d3-a799-e2b22de33055",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ASTsj9NBnuKZXd4Yoczx9J",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 883,
+                "cache_read_input_tokens": 8223,
+                "output_tokens": 76,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 883
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 76,
+                    "cache_read_input_tokens": 8223,
+                    "cache_creation_input_tokens": 883,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 883,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-10T21:50:36.738Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01RYicYQzFGALPLLdBhaNw9v",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "81c4f0c4-42cd-45d3-a799-e2b22de33055",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "02c94169-207b-4ee2-9ae4-15afa4999f97",
+            "sourceToolAssistantUUID": "81c4f0c4-42cd-45d3-a799-e2b22de33055",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-10T21:50:40.970Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for each of these topics to find potentially missing or competing work. Let me run all seven searches."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "02c94169-207b-4ee2-9ae4-15afa4999f97",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudLw36UwGGDpUhzsHjn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "036d0c75-1c54-4381-8f5c-1029972802bd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LDhTvLJKWx9aEsfUWF7UAb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1392,
+                "cache_read_input_tokens": 9106,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1392,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-10T21:50:41.228Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ApCQ64EVWUTZUfX7H1T5M1",
+              "name": "WebSearch",
+              "input": {
+                "query": "world action model verification 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "036d0c75-1c54-4381-8f5c-1029972802bd",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudLw36UwGGDpUhzsHjn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "bef02eb7-d588-4ebf-ad73-f0b539495df6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LDhTvLJKWx9aEsfUWF7UAb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1392,
+                "cache_read_input_tokens": 9106,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1392,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-10T21:50:41.905Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SBGCvTZic1avXMU6xV1Kjw",
+              "name": "WebSearch",
+              "input": {
+                "query": "adaptive denoising robot policy 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bef02eb7-d588-4ebf-ad73-f0b539495df6",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudLw36UwGGDpUhzsHjn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9e7548af-0bd8-4961-9e8c-82c3742dc4ce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LDhTvLJKWx9aEsfUWF7UAb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1392,
+                "cache_read_input_tokens": 9106,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1392,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-10T21:50:42.413Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014GP1LjtMvpD9vWsjereoKe",
+              "name": "WebSearch",
+              "input": {
+                "query": "runtime failure detection manipulation 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e7548af-0bd8-4961-9e8c-82c3742dc4ce",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudLw36UwGGDpUhzsHjn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "63b66913-c321-4a2c-b708-5785d3f3e1b4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LDhTvLJKWx9aEsfUWF7UAb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1392,
+                "cache_read_input_tokens": 9106,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1392,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-10T21:50:42.425Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MAgn8aAoEwWnodMignrZbN",
+              "name": "WebSearch",
+              "input": {
+                "query": "partial denoising video generation robotics"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "63b66913-c321-4a2c-b708-5785d3f3e1b4",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudLw36UwGGDpUhzsHjn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c8d26156-0563-4f82-a613-69f93e5c5511",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LDhTvLJKWx9aEsfUWF7UAb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1392,
+                "cache_read_input_tokens": 9106,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1392,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-10T21:50:42.438Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YMSyDdQ7ar16Ld3ozHyfbC",
+              "name": "WebSearch",
+              "input": {
+                "query": "cascaded verification robot execution"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c8d26156-0563-4f82-a613-69f93e5c5511",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudLw36UwGGDpUhzsHjn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "20807721-8ce8-4a79-ba8e-853e934c90d4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LDhTvLJKWx9aEsfUWF7UAb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1392,
+                "cache_read_input_tokens": 9106,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1392,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-10T21:50:42.608Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016GgbfwmhJBkiQNPiyYD3Ab",
+              "name": "WebSearch",
+              "input": {
+                "query": "warm start video denoising generation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "20807721-8ce8-4a79-ba8e-853e934c90d4",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudLw36UwGGDpUhzsHjn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "14af7d8b-6335-4b02-8d2f-e29141f6b552",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LDhTvLJKWx9aEsfUWF7UAb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1392,
+                "cache_read_input_tokens": 9106,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1392,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-10T21:50:42.777Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SFJbYJY75cbws6KC1xuGJU",
+              "name": "WebSearch",
+              "input": {
+                "query": "CoRL 2026 world model robotics"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "14af7d8b-6335-4b02-8d2f-e29141f6b552",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudLw36UwGGDpUhzsHjn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "31395efd-4b41-452f-81dd-0d3368e0ee56",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LDhTvLJKWx9aEsfUWF7UAb",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1392,
+                "cache_read_input_tokens": 9106,
+                "output_tokens": 332,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1392
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 332,
+                    "cache_read_input_tokens": 9106,
+                    "cache_creation_input_tokens": 1392,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1392,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-10T21:50:48.581Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SFJbYJY75cbws6KC1xuGJU",
+              "type": "tool_result",
+              "content": "Web search results for query: \"CoRL 2026 world model robotics\"\n\nLinks: [{\"title\":\"CoRL 2026\",\"url\":\"https://www.corl.org/\"},{\"title\":\"CoRL 2026 - Call for Papers\",\"url\":\"https://www.corl.org/contributions/call-for-papers\"},{\"title\":\"CoRL 2026 - Workshops\",\"url\":\"https://www.corl.org/program/workshops\"},{\"title\":\"Robot Learning Foundation\",\"url\":\"https://www.robot-learning.org/\"},{\"title\":\"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf\",\"url\":\"https://www.underleaf.ai/templates/corl\"},{\"title\":\"CoRL 2026 - About CoRL\",\"url\":\"https://www.corl.org/about-corl\"},{\"title\":\"CoRL 2026 - Diamond Sponsor Talks\",\"url\":\"https://www.corl.org/program/diamond-sponsor-talks\"},{\"title\":\"CoRL - International Foundation of Robotics Research\",\"url\":\"http://ifrr.org/corl\"},{\"title\":\"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a\",\"url\":\"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf\"},{\"title\":\"CoRL 2026 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference\"}]\n\nBased on the search results, here's what I found about CoRL 2026 and world model robotics:\n\n## About CoRL 2026\n\nThe Conference on Robot Learning (CoRL) is an annual international conference focusing on the intersection of robotics and machine learning. CoRL 2026 will be held in Austin, Texas, US. More specifically, CoRL 2026 will be held at the JW Marriott Austin in Austin, TX (November 9–12, 2026), with a workshop day on November 9 and the main conference on November 10–12.\n\n## World Models at CoRL 2026\n\nWorld models are a key area of focus at the conference. CoRL welcomes papers in areas including video models and latent world models for robot learning. Additionally, there is a Workshop on Robotics World Modeling being held as part of the conference program.\n\n## Submission Details\n\nThe paper submission deadline is May 29, 2026. Submissions should focus on a core robotics problem and demonstrate the relevance of proposed models, algorithms, datasets, and benchmarks to robotics.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "31395efd-4b41-452f-81dd-0d3368e0ee56",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "b752b53a-6326-4b00-a803-68f0d44704e3",
+            "sourceToolAssistantUUID": "31395efd-4b41-452f-81dd-0d3368e0ee56",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-10T21:50:48.656Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ApCQ64EVWUTZUfX7H1T5M1",
+              "type": "tool_result",
+              "content": "Web search results for query: \"world action model verification 2026\"\n\nLinks: [{\"title\":\"XPENG Releases World Model Technical Report, Powering VLA 2.0 Model R&D and Verification\",\"url\":\"https://www.xpeng.com/news/019dd72da86c9dd703de8a0282290002\"},{\"title\":\"Executable World Models for ARC-AGI-3 in the Era of Coding Agents Project code will be released publicly after acceptance.\",\"url\":\"https://arxiv.org/html/2605.05138\"},{\"title\":\"World Action Verifier: Self-Improving World Models via Forward-Inverse Asymmetry\",\"url\":\"https://arxiv.org/html/2604.01985\"},{\"title\":\"DreamZero: World Action Models are Zero-shot Policies\",\"url\":\"https://dreamzero0.github.io/\"},{\"title\":\"[2602.15922] World Action Models are Zero-shot Policies\",\"url\":\"https://arxiv.org/abs/2602.15922\"},{\"title\":\"[2603.22078] Do World Action Models Generalize Better than VLAs? A Robustness Study\",\"url\":\"https://arxiv.org/abs/2603.22078\"},{\"title\":\"Paper page - Do World Action Models Generalize Better than VLAs? A Robustness Study\",\"url\":\"https://huggingface.co/papers/2603.22078\"},{\"title\":\"When to Trust Imagination: Adaptive Action Execution for World Action Models\",\"url\":\"https://arxiv.org/html/2605.06222\"},{\"title\":\"EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields\",\"url\":\"https://arxiv.org/html/2605.06192v1\"},{\"title\":\"[2603.16666] Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://arxiv.org/abs/2603.16666\"}]\n\nBased on the search results, here's what I found about world action model verification in 2026:\n\n## Overview\n\nWorld Action Verifier (WAV) is a framework that enables action-conditioned world models to self-improve from an asymmetric forward-inverse cycle involving a diverse subgoal generator, a sparse inverse model that infers actions, and a world model that verifies consistency between predicted and proposed states.\n\n## Key Developments in 2026\n\nSeveral important research advances have emerged this year:\n\n**World Action Verifier (WAV):** WAV is a framework that enables world models to identify their own prediction errors and self-improve by decomposing action-conditioned state prediction into state plausibility and action reachability, which are verified separately.\n\n**XPENG's X-World Model:** XPENG officially released its X-World Technical Report in April 2026, describing a controllable, multi-view generative world model designed for autonomous driving. X-World has been extensively utilized for environmental simulation and model evaluation throughout the R&D and validation phases of VLA 2.0.\n\n**Verification Mechanisms:** Recent work formulates adaptive world action model execution as a future-reality verification problem, proposing Future Forward Dynamics Causal Attention (FFDC), a lightweight verifier that jointly reasons over predicted future actions, visual dynamics, real observations, and language instructions.\n\n**Robustness Studies:** World action models demonstrate superior robustness in robot action planning compared to vision-language-action models, achieving higher success rates on benchmark datasets under various perturbations.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bef02eb7-d588-4ebf-ad73-f0b539495df6",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "2b5ff6fe-4598-4e44-b4df-25a77789f8c4",
+            "sourceToolAssistantUUID": "bef02eb7-d588-4ebf-ad73-f0b539495df6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-10T21:50:50.007Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MAgn8aAoEwWnodMignrZbN",
+              "type": "tool_result",
+              "content": "Web search results for query: \"partial denoising video generation robotics\"\n\nLinks: [{\"title\":\"mimic-video: Video-Action Models for Generalizable Robot Control Beyond VLAs\",\"url\":\"https://arxiv.org/html/2512.15692\"},{\"title\":\"Video Denoising\",\"url\":\"https://www.catalyzex.com/s/Video%20Denoising\"},{\"title\":\"Two-Steps Diffusion Policy for Robotic Manipulation via Genetic Denoising\",\"url\":\"https://arxiv.org/html/2510.21991\"},{\"title\":\"Video-Action Models: Are video model backbones the future of VLAs? - Mimic Robotics\",\"url\":\"https://www.mimicrobotics.com/blog/video-action-models-are-video-model-backbones-the-future-of-vlas\"},{\"title\":\"Zero-shot Synthetic Video Realism Enhancement via Structure-aware Denoising\",\"url\":\"https://arxiv.org/html/2511.14719v1\"},{\"title\":\"Video Generators are Robot Policies - Columbia University\",\"url\":\"https://videopolicy.cs.columbia.edu/assets/video_policy.pdf\"},{\"title\":\"Diffusion Policy: Teaching Robots to Act by Denoising\",\"url\":\"https://vizuara.substack.com/p/diffusion-policy-teaching-robots\"},{\"title\":\"GitHub - clausmichele/ViDeNN: ViDeNN - Deep Blind Video Denoising · GitHub\",\"url\":\"https://github.com/clausmichele/ViDeNN\"},{\"title\":\"Amplify: Actionless Motion Priors for Robot Learning from Videos\",\"url\":\"https://arxiv.org/html/2506.14198\"},{\"title\":\"Efficient spatio-temporal filtering for video denoising – Computer Vision and Robotics Laboratory\",\"url\":\"https://vision.ai.illinois.edu/research/low-level-vision/efficient-spatio-temporal-filtering-for-video-denoising/\"}]\n\nBased on the search results, here's what I found about partial denoising video generation in robotics:\n\n## Key Findings\n\nMimic-video is a Video-Action Model that grounds robotic policies in a pretrained video model by first partially generating a plausible video of a task's successful execution. \n\nThe framework uses a partial denoising strategy, where the video backbone follows the flow to an intermediate flow time to extract latent visual plans. These representations condition a smaller action decoder, which processes proprioceptive states and predicts action trajectories.\n\n## Why Partial Denoising Works Better\n\nInterestingly, stopping the video generation process early and conditioning the action decoder on a \"noisy\" visual plan yields substantially better performance than allowing the video model to fully denoise its prediction. Full video denoising is actually harmful, with evidence that action inference can be run after even just a single video backbone forward pass.\n\nBy intentionally leaving noise in the visual plan, the approach performs a kind of train and test-time augmentation that prevents the action decoder from relying on spurious ground truth visual cues that may not be present in the video model's own generations.\n\n## Performance Benefits\n\nBy leveraging the physical priors embedded in internet-scale video, mimic-video achieves an order-of-magnitude improvement in sample efficiency and significantly faster convergence compared to standard VLA baselines.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c8d26156-0563-4f82-a613-69f93e5c5511",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "503d73da-55f7-4b35-972a-eb15882c3771",
+            "sourceToolAssistantUUID": "c8d26156-0563-4f82-a613-69f93e5c5511",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-10T21:50:50.145Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016GgbfwmhJBkiQNPiyYD3Ab",
+              "type": "tool_result",
+              "content": "Web search results for query: \"warm start video denoising generation\"\n\nLinks: [{\"title\":\"GitHub - clausmichele/ViDeNN: ViDeNN - Deep Blind Video Denoising · GitHub\",\"url\":\"https://github.com/clausmichele/ViDeNN\"},{\"title\":\"Classic Video Denoising in a Machine Learning World: Robust, Fast, and Controllable\",\"url\":\"https://arxiv.org/html/2504.03136v1\"},{\"title\":\"Time-to-Move: Training-Free Motion Controlled Video Generation viaDual-Clock Denoising\",\"url\":\"https://arxiv.org/html/2511.08633v1\"},{\"title\":\"Video Denoiser - Remove Grain From Video & Adjust Lighting and Contrast | Media.io\",\"url\":\"https://www.media.io/denoise-video.html\"},{\"title\":\"Annotated Biomedical Video Generation using Denoising Diffusion Probabilistic Models and Flow Fields\",\"url\":\"https://arxiv.org/html/2403.17808v1\"},{\"title\":\"HiAR: Efficient Autoregressive Long Video Generation via Hierarchical Denoising\",\"url\":\"https://arxiv.org/html/2603.08703\"},{\"title\":\"Temporal action detection in videos with generative denoising diffusion - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0950705124004027\"},{\"title\":\"(PDF) Warm Starts Accelerate Generative Modelling\",\"url\":\"https://www.researchgate.net/publication/393685197_Warm_Starts_Accelerate_Generative_Modelling\"},{\"title\":\"arXiv:2507.01012v1 [cs.CV] 1 Jul 2025\",\"url\":\"https://arxiv.org/pdf/2507.01012\"},{\"title\":\"Classic Video Denoising in a Machine Learning World:\",\"url\":\"https://openaccess.thecvf.com/content/CVPR2025/papers/Jin_Classic_Video_Denoising_in_a_Machine_Learning_World_Robust_Fast_CVPR_2025_paper.pdf\"}]\n\nBased on the search results, I found several relevant research areas related to warm start video denoising generation:\n\n## Warm Start for Generative Modeling\n\nA warm-start model dramatically accelerates conditional generation by providing a better starting point. Instead of starting generation from an uninformed N(0, I) prior, the warm-start model predicts an informed prior N(mu, sigma), whose moments are conditioned on the input context. This \"warm start\" substantially reduces the distance the generative process must traverse, particularly when the conditioning information is strongly informative.\n\nOn tasks like image inpainting, the method achieves results competitive with a 1000-step DDPM baseline using only 11 total function evaluations (1 for the warm start, 10 for generation).\n\n## Hierarchical Denoising for Video Generation\n\nAnother relevant approach is HiAR, a Hierarchical Denoising paradigm that swaps the denoising order: instead of fully denoising previous blocks first, it performs causal generation across all blocks within each denoising step, then moves to the next step. The key insight is that conditioning on context at the same noise level as the current block provides sufficient signal for temporal consistency while effectively mitigating error propagation.\n\n## Video Denoising and Generation\n\nMore broadly, research in this area involves pairs of clean and noisy frame sequences, adopting the typical paradigm of taking a set of \"noise-free\" videos that serve as the ground truth, and augmenting them with various degradations to obtain the corresponding noisy inputs.\n\nThe search results indicate that warm start techniques and hierarchical denoising approaches are emerging methods for improving the efficiency and quality of video generation and denoising tasks.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "14af7d8b-6335-4b02-8d2f-e29141f6b552",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "bea071c3-5afe-45b8-8ab2-12a53042c309",
+            "sourceToolAssistantUUID": "14af7d8b-6335-4b02-8d2f-e29141f6b552",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-10T21:50:50.376Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014GP1LjtMvpD9vWsjereoKe",
+              "type": "tool_result",
+              "content": "Web search results for query: \"runtime failure detection manipulation 2026\"\n\nLinks: [{\"title\":\"Can We Detect Failures Without Failure Data? Uncertainty-Aware Runtime Failure Detection for Imitation Learning Policies · Robotics: Science and Systems\",\"url\":\"https://roboticsconference.org/program/papers/73/\"},{\"title\":\"(PDF) Can We Detect Failures Without Failure Data? Uncertainty-Aware Runtime Failure Detection for Imitation Learning Policies\",\"url\":\"https://www.researchgate.net/publication/389749218_Can_We_Detect_Failures_Without_Failure_Data_Uncertainty-Aware_Runtime_Failure_Detection_for_Imitation_Learning_Policies\"},{\"title\":\"Can We Detect Failures Without Failure Data? Uncertainty-Aware Runtime Failure Detection for Imitation Learning Policies | OpenReview\",\"url\":\"https://openreview.net/forum?id=A2iUXYdWZD\"},{\"title\":\"FailGuard: An OoD-Simulation Approach for Proactive Failure...\",\"url\":\"https://openreview.net/forum?id=4PX8lerO9B\"},{\"title\":\"The New Era of Application Security: Reasoning-Based Agents, Runtime Reality, and Risk Intelligence | Qualys\",\"url\":\"https://blog.qualys.com/product-tech/2026/03/17/new-era-application-security-reasoning-agents-runtime-risk-2026\"},{\"title\":\"Security briefing: April 2026 | Sysdig\",\"url\":\"https://webflow.sysdig.com/blog/security-briefing-april-2026\"},{\"title\":\"Failure Prediction at Runtime for Generative Robot Policies | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2510.09459v1\"},{\"title\":\"Unpacking Failure Modes of Generative Policies: Runtime Monitoring of Consistency and Progress | OpenReview\",\"url\":\"https://openreview.net/forum?id=yqLFb0RnDW\"},{\"title\":\"Runtime error detection - Wikipedia\",\"url\":\"https://en.wikipedia.org/wiki/Runtime_error_detection\"},{\"title\":\"Kubernetes Runtime Security 2026: Zero-Trust Threat Detection with Falco and eBPF | HAMS Tech\",\"url\":\"https://www.hams.tech/blog/kubernetes-runtime-security-falco-ebpf-2026.html\"}]\n\nBased on the search results, I found several relevant papers and articles on runtime failure detection for robotic manipulation in 2026:\n\n## Key Research in Runtime Failure Detection for Robotic Manipulation\n\nFAIL-Detect is a modular two-stage approach for failure detection in imitation learning-based robotic manipulation. The method frames the problem as sequential out-of-distribution (OOD) detection, distilling policy inputs and outputs into scalar signals that correlate with policy failures and capture epistemic uncertainty, and employs conformal prediction (CP) as a framework for uncertainty quantification with statistical guarantees.\n\nAnother notable approach is FailGuard, which achieves failure detection for robot visuomotor manipulation policy learning by collecting success rollouts from the pre-trained manipulation policy and augmenting the rollouts to simulate failure cases for detection learning.\n\nFIPER (Failure Prediction at Runtime) introduces a framework for runtime failure prediction in generative robot policies that operates without requiring failure data, instead calibrating its indicators using successful in-distribution rollouts, achieving superior accuracy and earlier detection by combining insights from out-of-distribution observations and high action uncertainty.\n\nAdditionally, Sentinel is a runtime monitoring framework that splits the detection of failures into two complementary categories: erratic failures detected using statistical measures of temporal action consistency, and task progression failures detected using Vision Language Models to identify when the policy takes actions that do not solve the task.\n\nThese 2026 approaches address the challenge of enabling trustworthy policy deployment in safety-critical human environments through reliable runtime failure detection during policy inference.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "63b66913-c321-4a2c-b708-5785d3f3e1b4",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "e7209368-5a31-41a5-8e24-86a902466fa9",
+            "sourceToolAssistantUUID": "63b66913-c321-4a2c-b708-5785d3f3e1b4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-10T21:50:51.199Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SBGCvTZic1avXMU6xV1Kjw",
+              "type": "tool_result",
+              "content": "Web search results for query: \"adaptive denoising robot policy 2026\"\n\nLinks: [{\"title\":\"D3P: Dynamic Denoising Difusion Policy via Reinforcement Learning Shu’ang Yu\",\"url\":\"https://nicsefc.ee.tsinghua.edu.cn/nics_file/pdf/90eaaadf-c4d8-4aa2-980f-d143a1e121cd.pdf\"},{\"title\":\"Diffusion Policy: Teaching Robots to Act by Denoising\",\"url\":\"https://vizuara.substack.com/p/diffusion-policy-teaching-robots\"},{\"title\":\"ADPro: a Test-time Adaptive Diffusion Policy via Manifold-constrained Denoising and Task-aware Initialization for Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2508.06266\"},{\"title\":\"D3P: Dynamic Denoising Diffusion Policy via Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2508.06804v1\"},{\"title\":\"Two-Steps Diffusion Policy for Robotic Manipulation via Genetic Denoising | OpenReview\",\"url\":\"https://openreview.net/forum?id=YY1MPKBHp7\"},{\"title\":\"[2508.06266] ADPro: a Test-time Adaptive Diffusion Policy via Manifold-constrained Denoising and Task-aware Initialization for Robotic Manipulation\",\"url\":\"https://arxiv.org/abs/2508.06266\"},{\"title\":\"Diffusion Policy: Visuomotor Policy Learning via Action Diffusion\",\"url\":\"https://diffusion-policy.cs.columbia.edu/\"},{\"title\":\"Diffusion Policy:\",\"url\":\"https://www.roboticsproceedings.org/rss19/p026.pdf\"},{\"title\":\"(PDF) Two-Steps Diffusion Policy for Robotic Manipulation via Genetic Denoising\",\"url\":\"https://www.researchgate.net/publication/396967649_Two-Steps_Diffusion_Policy_for_Robotic_Manipulation_via_Genetic_Denoising\"},{\"title\":\"Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising\",\"url\":\"https://arxiv.org/html/2604.26694v2\"}]\n\nBased on the search results, I found several relevant research papers on adaptive denoising robot policies from 2026:\n\n## Key Papers on Adaptive Denoising Robot Policies\n\n**D3P: Dynamic Denoising Diffusion Policy** - A diffusion-based policy that adaptively allocates denoising steps across actions at test time. D3P employs a lightweight adaptor to dynamically adjust denoising steps, assigning more steps to crucial actions and fewer to routine ones. D3P achieves an average 2.2× inference speed-up over baseline methods while maintaining comparable performance.\n\n**ADP (Adaptive Diffusion Policy)** - A test-time adaptation method that introduces inductive biases into the diffusion process, embedding a geometric manifold constraint that aligns denoising updates with task-relevant subspaces. ADP employs task-aware initialization and constrains updates along both task and spherical manifolds, yielding a more generalizable policy.\n\n**Genetic Denoising** - A method showing that diffusion policies can operate effectively with as few as 5 neural function evaluations, solving challenging tasks with only 2 NFE while improving or matching performance.\n\n**X-WAM (Unified 4D World Action Modeling)** - Introduces Asynchronous Noise Sampling (ANS) to enhance joint generation of videos and actions, employing an asynchronous denoising schedule that improves training efficiency while maximizing both action decoding speed and video generation quality.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e7548af-0bd8-4961-9e8c-82c3742dc4ce",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "14d88898-a36a-41f5-bc8c-3267d8e73e12",
+            "sourceToolAssistantUUID": "9e7548af-0bd8-4961-9e8c-82c3742dc4ce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-10T21:50:53.637Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YMSyDdQ7ar16Ld3ozHyfbC",
+              "type": "tool_result",
+              "content": "Web search results for query: \"cascaded verification robot execution\"\n\nLinks: [{\"title\":\"Cascaded Verification Layer\",\"url\":\"https://www.emergentmind.com/topics/cascaded-verification-layer\"},{\"title\":\"Verification and execution of the scientific literature via chemputation augmented by large language models | Communications Chemistry\",\"url\":\"https://www.nature.com/articles/s42004-026-01993-w\"},{\"title\":\"A corroborative approach to verification and validation of human–robot teams - Matt Webster, David Western, Dejanira Araiza-Illan, Clare Dixon, Kerstin Eder, Michael Fisher, Anthony G Pipe, 2020\",\"url\":\"https://journals.sagepub.com/doi/10.1177/0278364919883338\"},{\"title\":\"Formal Verification in Robotics: Why and How? | Springer Nature Link\",\"url\":\"https://link.springer.com/chapter/10.1007/978-1-4471-1021-7_26\"},{\"title\":\"Cascaded positional robot control structure | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/Cascaded-positional-robot-control-structure_fig2_228939784\"},{\"title\":\"Formal design, verification and implementation of robotic controller software via RoboChart and RoboTool | Autonomous Robots | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s10514-024-10163-7\"},{\"title\":\"A Cascaded Multiple Expert System for Verification | Request PDF\",\"url\":\"https://www.researchgate.net/publication/221094068_A_Cascaded_Multiple_Expert_System_for_Verification\"},{\"title\":\"Frontiers | Formal Verification of Real-Time Autonomous Robots: An Interdisciplinary Approach\",\"url\":\"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2022.791757/full\"},{\"title\":\"Verification and validation of an automated robot inspection cell for automotive body-in-white: a use case for the VALU3S ECSEL project - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC10446043/\"},{\"title\":\"Formal Verification of Mobile Robot Protocols\",\"url\":\"https://sancy.iut.uca.fr/~lafourcade//PAPERS/PDF/TCS16.pdf\"}]\n\nBased on the web search results, here's what I found about cascaded verification and robot execution:\n\n## Cascaded Verification in Robotics\n\nCascaded verification techniques utilize cross-layer formal verification to certify properties such as safety or liveness in modular robotic architectures. The cascaded approach decomposes the verification problem, allowing modular analysis, early rejection or pruning of incorrect behaviors, and efficient identification of errors or vulnerabilities.\n\n### How It Works\n\nEach verification layer targets a specific abstraction or subsystem, with verification information passing from one layer to subsequent layers either sequentially (gating) or recursively (hierarchical refinement). Cascaded verification layer organizes system checks into layered modules that isolate errors early, ensuring robust performance in neural, FPGA, and cyber-physical systems.\n\n### Applications and Benefits\n\nCascaded verification is applicable in diverse contexts, including deep learning robustness via convex programming, hardware-software co-verification in FPGA deployments, sequential decision processes for adversarial detection, and cross-layer formal verification in robotics.\n\nThe approach offers trade-offs: while cascaded verification layers offer substantial computational gains and modular analytical power, the maintenance of a hierarchical priority queue or repeated interface checking incurs moderate overhead, but is offset in practice by large pruned search spaces.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "20807721-8ce8-4a79-ba8e-853e934c90d4",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "4bccb5d1-8b15-417f-b53d-2b74ecf8108e",
+            "sourceToolAssistantUUID": "20807721-8ce8-4a79-ba8e-853e934c90d4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-10T21:50:57.753Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me do some follow-up searches to dig deeper into the most promising leads."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4bccb5d1-8b15-417f-b53d-2b74ecf8108e",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudNB2F9fLV5PXaxR6Rc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5fed6ce3-2abd-4404-a042-215fca1f174d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0178tgvPbpDVhfwaPJu87iq5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1624,
+                "cache_creation_input_tokens": 4813,
+                "cache_read_input_tokens": 10498,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4813,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-10T21:50:58.764Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018ri4VfoFuXYWhYVQ7jvHz6",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"When to Trust Imagination\" adaptive action execution world action model 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5fed6ce3-2abd-4404-a042-215fca1f174d",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudNB2F9fLV5PXaxR6Rc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f83a4975-8fd6-48f3-88c1-49cfa60feac0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0178tgvPbpDVhfwaPJu87iq5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1624,
+                "cache_creation_input_tokens": 4813,
+                "cache_read_input_tokens": 10498,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4813,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-10T21:50:59.250Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EdhPWps779BXhYEEkUBKsu",
+              "name": "WebSearch",
+              "input": {
+                "query": "FailGuard OoD simulation proactive failure detection robot 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f83a4975-8fd6-48f3-88c1-49cfa60feac0",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudNB2F9fLV5PXaxR6Rc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "30ddcf34-3ce3-40a8-b01f-d74b2b5cabea",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0178tgvPbpDVhfwaPJu87iq5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1624,
+                "cache_creation_input_tokens": 4813,
+                "cache_read_input_tokens": 10498,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4813,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-10T21:51:00.236Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014Eh4nkL2oG5M6tHK7XyhmF",
+              "name": "WebSearch",
+              "input": {
+                "query": "Sentinel runtime monitoring consistency progress generative robot policy 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "30ddcf34-3ce3-40a8-b01f-d74b2b5cabea",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudNB2F9fLV5PXaxR6Rc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2c11a5c6-6433-41e0-b44a-e77ff35ee941",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0178tgvPbpDVhfwaPJu87iq5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1624,
+                "cache_creation_input_tokens": 4813,
+                "cache_read_input_tokens": 10498,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4813,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-10T21:51:00.701Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N3pMxztPBqUoxvFDDmZiQp",
+              "name": "WebSearch",
+              "input": {
+                "query": "ADPro adaptive diffusion policy manifold denoising robotic manipulation 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2c11a5c6-6433-41e0-b44a-e77ff35ee941",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudNB2F9fLV5PXaxR6Rc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c0194541-0368-4211-a4c4-e1d565df4806",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0178tgvPbpDVhfwaPJu87iq5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1624,
+                "cache_creation_input_tokens": 4813,
+                "cache_read_input_tokens": 10498,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4813,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-10T21:51:01.102Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KbckriazA5MQHPzdGt38Lu",
+              "name": "WebSearch",
+              "input": {
+                "query": "mimic-video partial denoising video action model robotics 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c0194541-0368-4211-a4c4-e1d565df4806",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudNB2F9fLV5PXaxR6Rc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "84bc5830-e485-4c96-bdbe-db98f8c394e5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0178tgvPbpDVhfwaPJu87iq5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1624,
+                "cache_creation_input_tokens": 4813,
+                "cache_read_input_tokens": 10498,
+                "output_tokens": 285,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4813
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1624,
+                    "output_tokens": 285,
+                    "cache_read_input_tokens": 10498,
+                    "cache_creation_input_tokens": 4813,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4813,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-10T21:51:04.764Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EdhPWps779BXhYEEkUBKsu",
+              "type": "tool_result",
+              "content": "Web search results for query: \"FailGuard OoD simulation proactive failure detection robot 2026\"\n\nLinks: [{\"title\":\"FailGuard: An OoD-Simulation Approach for Proactive Failure...\",\"url\":\"https://openreview.net/forum?id=4PX8lerO9B\"},{\"title\":\"Failure Prediction at Runtime for Generative Robot Policies | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2510.09459v1\"},{\"title\":\"Real time fault diagnosis in industrial robotics using discrete and slantlet wavelet transformations | Scientific Reports\",\"url\":\"https://www.nature.com/articles/s41598-025-09272-9\"},{\"title\":\"Provably Safe Learning-Based Robot Control via Anomaly Detection\",\"url\":\"https://irom-lab.princeton.edu/wp-content/uploads/2023/02/Thesis_Farid.pdf\"},{\"title\":\"Unpacking Failure Modes of Generative Policies: Runtime Monitoring of Consistency and Progress\",\"url\":\"https://arxiv.org/html/2410.04640v1\"},{\"title\":\"Paper page - Failure Prediction at Runtime for Generative Robot Policies\",\"url\":\"https://huggingface.co/papers/2510.09459\"},{\"title\":\"Multi-Task Interactive Robot Fleet Learning with Visual World Models\",\"url\":\"https://ut-austin-rpl.github.io/sirius-fleet/\"},{\"title\":\"Guardian: Detecting Robotic Planning and Execution Errors\",\"url\":\"https://arxiv.org/pdf/2512.01946\"},{\"title\":\"Robot Simulation Software: A 2026 Perspective\",\"url\":\"https://www.blackcoffeerobotics.com/blog/which-robot-simulation-software-to-use\"},{\"title\":\"Industrial robot maintenance 2026: Everything you need to know - Standard Bots\",\"url\":\"https://standardbots.com/blog/industrial-robot-maintenance\"}]\n\nBased on the search results, I found information about FailGuard:\n\nFailGuard is a method to achieve failure detection for robot visuomotor manipulation policy learning. To learn a failure detector, it only collects success rollouts from the pre-trained manipulation policy and augments the rollouts to simulate failure cases for detection learning.\n\nAfter trained with the collected data, the failure detector can achieve runtime failure detection and early stop the impending failure, improving the success rate and safety of the robot manipulation. The method was evaluated on both RoboSuite benchmark and real world tasks, and the experimental results show that it outperforms several different kinds of baseline methods, and can effectively prevent failure cases during manipulation.\n\nThe paper was submitted to the ICLR 2026 Conference and desk rejected. You can find more details about the project on the official project website linked in the paper.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "30ddcf34-3ce3-40a8-b01f-d74b2b5cabea",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "51f871f1-a0d7-4ab2-820c-0229948de209",
+            "sourceToolAssistantUUID": "30ddcf34-3ce3-40a8-b01f-d74b2b5cabea",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-10T21:51:05.761Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018ri4VfoFuXYWhYVQ7jvHz6",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"When to Trust Imagination\" adaptive action execution world action model 2026\"\n\nLinks: [{\"title\":\"[2605.06222] When to Trust Imagination: Adaptive Action Execution for World Action Models\",\"url\":\"https://arxiv.org/abs/2605.06222\"},{\"title\":\"When to Trust Imagination: Adaptive Action Execution for World Action Models\",\"url\":\"https://arxiv.org/html/2605.06222\"},{\"title\":\"Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models\",\"url\":\"https://arxiv.org/html/2601.08955v2\"},{\"title\":\"[2603.16666] Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://arxiv.org/abs/2603.16666\"},{\"title\":\"(PDF) Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://www.researchgate.net/publication/402613129_Fast-WAM_Do_World_Action_Models_Need_Test-time_Future_Imagination\"},{\"title\":\"Necessity of Test-Time Future Imagination in World Action Models\",\"url\":\"https://www.emergentmind.com/open-problems/necessity-of-test-time-future-imagination-in-wams\"},{\"title\":\"A Step Toward World Models: A Survey on Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2511.02097v1\"},{\"title\":\"Do World Action Models Generalize Better than VLAs? A Robustness Study\",\"url\":\"https://arxiv.org/html/2603.22078v1\"},{\"title\":\"Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond\",\"url\":\"https://arxiv.org/html/2604.22748v1\"},{\"title\":\"World Action Models are Zero-shot Policies\",\"url\":\"https://arxiv.org/html/2602.15922v1\"}]\n\nI found research on \"When to Trust Imagination: Adaptive Action Execution for World Action Models.\" Here's what the search revealed:\n\n## Overview\n\nThis paper addresses World Action Models (WAMs), which have recently emerged as a promising paradigm for robotic manipulation by jointly predicting future visual observations and future actions. The paper was published on May 7, 2026.\n\n## Key Problem and Solution\n\nCurrent WAMs typically execute a fixed number of predicted actions after each model inference, leaving the robot blind to whether the imagined future remains consistent with the actual physical rollout. \n\nThe authors formulate adaptive WAM execution as a future-reality verification problem: the robot should execute longer when the WAM-predicted future remains reliable, and replan earlier when reality deviates from imagination.\n\n## The Proposed Method\n\nThe solution is Future Forward Dynamics Causal Attention (FFDC), a lightweight verifier that jointly reasons over predicted future actions, predicted visual dynamics, real observations, and language instructions.\n\n## Results\n\nExperiments on the RoboTwin benchmark and in the real world demonstrate that the method achieves a strong robustness-efficiency trade-off: on RoboTwin, it reduces WAM forward passes by 69.10% and execution time by 34.02%, while improving success rate by 2.54% over the short-chunk baseline; in real-world experiments, it improves success rate by 35%.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f83a4975-8fd6-48f3-88c1-49cfa60feac0",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "78f3e33f-26f2-45c1-a8ca-1388e5459ac2",
+            "sourceToolAssistantUUID": "f83a4975-8fd6-48f3-88c1-49cfa60feac0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-10T21:51:07.568Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014Eh4nkL2oG5M6tHK7XyhmF",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Sentinel runtime monitoring consistency progress generative robot policy 2026\"\n\nLinks: [{\"title\":\"Unpacking Failure Modes of Generative Policies: Runtime Monitoring of Consistency and Progress | OpenReview\",\"url\":\"https://openreview.net/forum?id=yqLFb0RnDW\"},{\"title\":\"GitHub - agiachris/sentinel: Official repository for \\\"Unpacking Failure Modes of Generative Policies: Runtime Monitoring of Consistency and Progress,\\\" presented at CoRL 2024.\",\"url\":\"https://github.com/agiachris/sentinel\"},{\"title\":\"[2410.04640] Unpacking Failure Modes of Generative Policies: Runtime Monitoring of Consistency and Progress\",\"url\":\"https://arxiv.org/abs/2410.04640\"},{\"title\":\"Sentinel: CoRL 2024\",\"url\":\"https://sites.google.com/stanford.edu/sentinel\"},{\"title\":\"Unpacking Failure Modes of Generative Policies: Runtime Monitoring of Consistency and Progress\",\"url\":\"https://arxiv.org/html/2410.04640v1\"},{\"title\":\"Unpacking Failure Modes of Generative Policies:\",\"url\":\"https://arxiv.org/pdf/2410.04640\"},{\"title\":\"Unpacking Failure Modes of Generative Policies: Runtime Monitoring of Consistency and Progress\",\"url\":\"https://proceedings.mlr.press/v270/agia25a.html\"},{\"title\":\"sentinel/README.md at main · agiachris/sentinel\",\"url\":\"https://github.com/agiachris/sentinel/blob/main/README.md\"},{\"title\":\"[Literature Review] Unpacking Failure Modes of Generative Policies: Runtime Monitoring of Consistency and Progress\",\"url\":\"https://www.themoonlight.io/en/review/unpacking-failure-modes-of-generative-policies-runtime-monitoring-of-consistency-and-progress\"},{\"title\":\"Unpacking Failure Modes of Generative Policies: Runtime Monitoring of Consistency and Progress | Request PDF\",\"url\":\"https://www.researchgate.net/publication/384700100_Unpacking_Failure_Modes_of_Generative_Policies_Runtime_Monitoring_of_Consistency_and_Progress\"}]\n\nBased on the search results, I found comprehensive information about Sentinel, a runtime monitoring framework for generative robot policies. Here's what the search revealed:\n\n## Overview\n\nSentinel is a framework for runtime monitoring of generative policies that uses 1) temporal consistency checks to detect erratic policy behavior and 2) Vision Language Models to detect failure to make progress on the task.\n\n## Key Components\n\nSentinel splits the detection of failures into two complementary categories: 1) Erratic failures, which it detects using statistical measures of temporal action consistency, and 2) task progression failures, where Vision Language Models (VLMs) are used to detect when the policy confidently and consistently takes actions that do not solve the task.\n\n## Performance\n\nBy unifying temporal consistency detection and VLM runtime monitoring, Sentinel detects 18% more failures than using either of the two detectors alone and significantly outperforms baselines, thus highlighting the importance of assigning specialized detectors to complementary categories of failure.\n\n## Real-World Results\n\nProvided with only a set of successful policy rollouts and a natural language description of the task, Sentinel detects over 97% of unknown failures exhibited by diffusion policies across simulated and real-world robotic mobile manipulation domains. In specific real-world tests, Sentinel achieves a 95% detection accuracy, highlighting its efficacy for detecting failures in real-world robotic settings.\n\n## Publication\n\nThe work was presented at CoRL 2024, and an official set of diffusion policy checkpoints for each simulation environment was released.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2c11a5c6-6433-41e0-b44a-e77ff35ee941",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "9ae5ef02-2a47-476b-9c56-63af47ef171e",
+            "sourceToolAssistantUUID": "2c11a5c6-6433-41e0-b44a-e77ff35ee941",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-10T21:51:08.013Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N3pMxztPBqUoxvFDDmZiQp",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ADPro adaptive diffusion policy manifold denoising robotic manipulation 2026\"\n\nLinks: [{\"title\":\"ADPro: a Test-time Adaptive Diffusion Policy via Manifold-constrained Denoising and Task-aware Initialization for Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2508.06266\"},{\"title\":\"[2508.06266] ADPro: a Test-time Adaptive Diffusion Policy via Manifold-constrained Denoising and Task-aware Initialization for Robotic Manipulation\",\"url\":\"https://arxiv.org/abs/2508.06266\"},{\"title\":\"ADPro: a Test-time Adaptive Diffusion Policy for Robot Manipulation via Manifold and Initial Noise Constraints\",\"url\":\"https://arxiv.org/html/2508.06266v1\"},{\"title\":\"Adaptive Diffusion Policy Optimization for Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2505.08376v1\"},{\"title\":\"AdaWorldPolicy: World-Model-Driven Diffusion Policy with Online Adaptive Learning for Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2602.20057\"},{\"title\":\"Adaptive Diffusion Policy Optimization for Robotic Manipulation\",\"url\":\"https://www.arxiv.org/pdf/2505.08376\"},{\"title\":\"[2505.08376] Adaptive Diffusion Policy Optimization for Robotic Manipulation\",\"url\":\"https://arxiv.org/abs/2505.08376\"},{\"title\":\"Discriminative Active Learning for Robotic Grasping in Cluttered Scene | Request PDF\",\"url\":\"https://www.researchgate.net/publication/368404027_Discriminative_Active_Learning_for_Robotic_Grasping_in_Cluttered_Scene\"},{\"title\":\"DIFFUSION POLICY POLICY OPTIMIZATION\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/c0749c39aaff9e9e4c91f7118bf21b1e-Paper-Conference.pdf\"},{\"title\":\"Diffusion Policy: Visuomotor Policy Learning via Action Diffusion\",\"url\":\"https://diffusion-policy.cs.columbia.edu/\"}]\n\nI found research on ADPro. Here are the key findings:\n\n## ADPro: Adaptive Diffusion Policy for Robotic Manipulation\n\nADPro is a novel and adaptive diffusion policy that leverages observation guidance from observed data and constrains the diffusion process to improve generalizability in robotic manipulation.\n\n### Core Approach\n\nADPro employs task-aware initialization and constrains updates along both task and spherical manifolds, yielding a more generalizable policy. Guiding the denoising process along known geometric or control-relevant manifolds (e.g., object-relative poses, contact trajectories) helps the model avoid implausible regions of the action space, resulting in more efficient inference and improved success rates.\n\n### Two Key Components\n\nThe method includes two main improvements:\n\n1. **Manifold-constrained Denoising**: Guiding updates along both task and spherical manifolds, effectively enhancing its generalizability and preventing unnecessary backtracking.\n\n2. **Task-aware Initialization**: Driving the diffusion process towards a more accurate direction instead of random noise, effectively reducing the number of denoising steps required.\n\n### Key Advantage\n\nADP is compatible with pre-trained diffusion policies and requires no retraining, enabling test-time adaptation that tailors the policy to specific tasks. Unlike traditional methods, ADPro can generate transferable actions for unseen tasks without retraining.\n\n### Experimental Results\n\nExperiments on RLBench, CALVIN, and real-world dataset show that ADPro improves success rates, generalization, and sampling efficiency, achieving up to 25% improvement over strong diffusion baselines.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c0194541-0368-4211-a4c4-e1d565df4806",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "0f7d99fa-aa0a-4151-8bad-9e125f537a4a",
+            "sourceToolAssistantUUID": "c0194541-0368-4211-a4c4-e1d565df4806",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-10T21:51:08.619Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KbckriazA5MQHPzdGt38Lu",
+              "type": "tool_result",
+              "content": "Web search results for query: \"mimic-video partial denoising video action model robotics 2026\"\n\nLinks: [{\"title\":\"mimic-video: Video-Action Models for Generalizable Robot Control Beyond VLAs\",\"url\":\"https://mimic-video.github.io/\"},{\"title\":\"mimic-video: Video-Action Models for Generalizable Robot Control Beyond VLAs\",\"url\":\"https://arxiv.org/html/2512.15692v1\"},{\"title\":\"Mimic-Video: Video-Driven Robotic Control\",\"url\":\"https://www.emergentmind.com/topics/mimic-video\"},{\"title\":\"[2512.15692] mimic-video: Video-Action Models for Generalizable Robot Control Beyond VLAs\",\"url\":\"https://arxiv.org/abs/2512.15692\"},{\"title\":\"Mimic Robotics Open-Sources \\\"mimic-video\\\" Recipe to Accelerate Video-Action Models | Humanoids Daily\",\"url\":\"https://www.humanoidsdaily.com/news/mimic-robotics-open-sources-mimic-video-recipe-to-accelerate-video-action-models\"},{\"title\":\"mimic-video: Video-Action Models for Generalizable Robot Control Beyond VLAs | Request PDF\",\"url\":\"https://www.researchgate.net/publication/398805687_mimic-video_Video-Action_Models_for_Generalizable_Robot_Control_Beyond_VLAs\"},{\"title\":\"Video-Action Models: Are video model backbones the future of VLAs? - Mimic Robotics\",\"url\":\"https://www.mimicrobotics.com/blog/video-action-models-are-video-model-backbones-the-future-of-vlas\"},{\"title\":\"mimic-video: Video-Action Models for Generalizable Robot Control Beyond VLAs | Papers | HyperAI\",\"url\":\"https://hyper.ai/en/papers/2512.15692\"},{\"title\":\"GitHub - lucidrains/mimic-video: Implementation of Mimic-Video, Video-Action Models for SOTA Generalizable Robot Control Beyond VLAs · GitHub\",\"url\":\"https://github.com/lucidrains/mimic-video\"},{\"title\":\"Video-Action Models: Are video model backbones the future of VLAs? | Elvis Nava\",\"url\":\"https://www.elvisnava.com/posts/2026_01_06_video_backbones/\"}]\n\nBased on the search results, here's what I found about mimic-video and its partial denoising strategy:\n\n## Overview\n\nmimic-video is a new class of Video-Action Model (VAM) that grounds robotic policies in pretrained video models. Unlike standard VLAs that must learn physical dynamics from scratch, mimic-video leverages the inherent visual dynamics of a video backbone to isolate the control problem, enabling state-of-the-art performance on dexterous manipulation tasks while achieving 10x greater sample efficiency compared to VLAs.\n\n## Partial Denoising Strategy\n\nThe model adapts for control via a partial denoising strategy, where the video backbone follows the flow to an intermediate flow time τv to extract latent visual plans. By stopping the video denoising process early—a strategy called partial denoising—the model can extract semantic features from \"noisy\" visual plans without the computational cost of full pixel reconstruction.\n\n## Key Mechanism\n\nFor each action chunk, mimic-video generates a partially denoised video plan, and then executes the actions on the real robot. The video backbone partially generates a future trajectory within a compact, tokenized latent space, and during video generation, intermediate representations from the video model serve as a plan conditioning a downstream action decoder, which operates as an Inverse Dynamics Model (IDM) to recover the corresponding low-level motor commands.\n\n## Performance Benefits\n\nThe approach achieves state-of-the-art performance on simulated and real-world robotic manipulation tasks, improving sample efficiency by 10x and convergence speed by 2x compared to traditional VLA architectures.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "84bc5830-e485-4c96-bdbe-db98f8c394e5",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "5d9ba5b1-1f9a-428a-964c-d91e58ff1d3d",
+            "sourceToolAssistantUUID": "84bc5830-e485-4c96-bdbe-db98f8c394e5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-10T21:51:12.837Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01He9gndAshvsjNX8LuEgRAj",
+              "name": "WebSearch",
+              "input": {
+                "query": "FIPER failure prediction runtime generative robot policy 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5d9ba5b1-1f9a-428a-964c-d91e58ff1d3d",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudPHBMwqtBeYQPkiqrD",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8144224e-974e-4b2c-8ee2-076893e22578",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FJaMN1ZgXUBt97jjp1xCCs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6280,
+                "cache_read_input_tokens": 15311,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6280,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-10T21:51:13.316Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015jmvKjHxjyF6p2Y7TRCVBR",
+              "name": "WebSearch",
+              "input": {
+                "query": "AdaWorldPolicy world model driven diffusion online adaptive learning robotic manipulation 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8144224e-974e-4b2c-8ee2-076893e22578",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudPHBMwqtBeYQPkiqrD",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "08a3c9d0-8566-4f94-a416-076e85345e5f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FJaMN1ZgXUBt97jjp1xCCs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6280,
+                "cache_read_input_tokens": 15311,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6280,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-10T21:51:13.785Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016Fi4ucFHM3KVFpUnKiNgAe",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Adaptive Diffusion Policy Optimization\" robotic manipulation 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "08a3c9d0-8566-4f94-a416-076e85345e5f",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudPHBMwqtBeYQPkiqrD",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "fef08f46-2efe-4899-9c6f-77e492409d89",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FJaMN1ZgXUBt97jjp1xCCs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6280,
+                "cache_read_input_tokens": 15311,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6280,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-10T21:51:14.723Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R2QETg2wDMJbemEp9cbbeh",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"warm starts accelerate generative modelling\" diffusion 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fef08f46-2efe-4899-9c6f-77e492409d89",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudPHBMwqtBeYQPkiqrD",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "376b7714-c6b6-4359-9ef1-4b90ec43342e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FJaMN1ZgXUBt97jjp1xCCs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6280,
+                "cache_read_input_tokens": 15311,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6280,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-10T21:51:15.176Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018K3cC5zngXmHdouyaEXgs9",
+              "name": "WebSearch",
+              "input": {
+                "query": "DreamZero world action model zero-shot policy 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "376b7714-c6b6-4359-9ef1-4b90ec43342e",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudPHBMwqtBeYQPkiqrD",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c28ecebe-0104-4593-9e14-9ec092f21b51",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FJaMN1ZgXUBt97jjp1xCCs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6280,
+                "cache_read_input_tokens": 15311,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6280,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-10T21:51:19.542Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01He9gndAshvsjNX8LuEgRAj",
+              "type": "tool_result",
+              "content": "Web search results for query: \"FIPER failure prediction runtime generative robot policy 2026\"\n\nLinks: [{\"title\":\"Failure Prediction at Runtime for Generative Robot Policies | OpenReview\",\"url\":\"https://openreview.net/forum?id=BXJWKpEfro\"},{\"title\":\"Failure Prediction at Runtime for Generative Robot Policies - Römer, Ralf; Kobras, Adrian; Worbis, Luca; Schoellig, Angela P.\",\"url\":\"https://tum-lsy.github.io/fiper_website/\"},{\"title\":\"[2510.09459] Failure Prediction at Runtime for Generative Robot Policies\",\"url\":\"https://arxiv.org/abs/2510.09459\"},{\"title\":\"GitHub - learnsyslab/fiper: [NeurIPS 2025] Official code repository for \\\"Failure Prediction at Runtime for Generative Robot Policies\\\". · GitHub\",\"url\":\"https://github.com/utiasDSL/fiper\"},{\"title\":\"Failure Prediction at Runtime for Generative Robot Policies | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2510.09459v1\"},{\"title\":\"NeurIPS Poster Failure Prediction at Runtime for Generative Robot Policies\",\"url\":\"https://neurips.cc/virtual/2025/poster/119369\"},{\"title\":\"Paper page - Failure Prediction at Runtime for Generative Robot Policies\",\"url\":\"https://huggingface.co/papers/2510.09459\"},{\"title\":\"Failure Prediction at Runtime for Generative Robot Policies Ralf Römer1,∗\",\"url\":\"https://openreview.net/pdf/24f35a3e58e1007b57f508079297fad1cfe3c46f.pdf\"},{\"title\":\"NeurIPS 2025: Failure Prediction at Runtime for Generative Robot Policies - YouTube\",\"url\":\"https://www.youtube.com/watch?v=BTNQlxf57jU\"},{\"title\":\"Can We Detect Failures Without Failure Data? Uncertainty-Aware Runtime Failure Detection for Imitation Learning Policies | Request PDF\",\"url\":\"https://www.researchgate.net/publication/395375767_Can_We_Detect_Failures_Without_Failure_Data_Uncertainty-Aware_Runtime_Failure_Detection_for_Imitation_Learning_Policies\"}]\n\nBased on the search results, here's comprehensive information about FIPER:\n\n## FIPER: Failure Prediction at Runtime for Generative Robot Policies\n\nFIPER is a general framework for Failure Prediction at Runtime for generative IL (imitation learning) policies that does not require failure data.\n\n### Key Motivation\n\nImitation learning with generative models, such as diffusion and flow matching, has enabled robots to perform complex, long-horizon tasks. However, distribution shifts from unseen environments or compounding action errors can still cause unpredictable and unsafe behavior, leading to task failure. Therefore, early failure prediction during runtime is essential for deploying robots in human-centered and safety-critical environments.\n\n### How FIPER Works\n\nFIPER identifies two key indicators of impending failure: (i) out-of-distribution (OOD) observations detected via random network distillation in the policy's embedding space, and (ii) high uncertainty in generated actions measured by a novel action-chunk entropy score. Both failure prediction scores are calibrated using a small set of successful rollouts via conformal prediction. A failure alarm is triggered when both indicators, aggregated over short time windows, exceed their thresholds.\n\n### Evaluation and Results\n\nFIPER was evaluated across five simulation and real-world environments involving diverse failure modes. The results demonstrate that FIPER better distinguishes actual failures from benign OOD situations and predicts failures more accurately and earlier than existing methods.\n\n### Publication and Availability\n\nFIPER is the official code repository for the paper presented at NeurIPS 2025 titled \"Failure Prediction at Runtime for Generative Robot Policies\". Code, data, and videos are available at tum-lsy.github.io/fiper_website.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8144224e-974e-4b2c-8ee2-076893e22578",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "246f95ea-a147-4375-9dbc-6dd166d777d7",
+            "sourceToolAssistantUUID": "8144224e-974e-4b2c-8ee2-076893e22578",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-10T21:51:20.735Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015jmvKjHxjyF6p2Y7TRCVBR",
+              "type": "tool_result",
+              "content": "Web search results for query: \"AdaWorldPolicy world model driven diffusion online adaptive learning robotic manipulation 2026\"\n\nLinks: [{\"title\":\"[2602.20057] AdaWorldPolicy: World-Model-Driven Diffusion Policy with Online Adaptive Learning for Robotic Manipulation\",\"url\":\"https://arxiv.org/abs/2602.20057\"},{\"title\":\"AdaWorldPolicy: World-Model-Driven Diffusion Policy with Online Adaptive Learning for Robotic Manipulation | alphaXiv\",\"url\":\"https://www.alphaxiv.org/abs/2602.20057\"},{\"title\":\"AdaWorldPolicy: World-Model-Driven Diffusion Policy with Online Adaptive Learning for Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2602.20057\"},{\"title\":\"AdaWorldPolicy: World-Model-Driven Diffusion Policy with Online Adaptive Learning for Robotic Manipulation\",\"url\":\"https://paperreading.club/page?id=379155\"},{\"title\":\"AdaWorldPolicy\",\"url\":\"https://adaworldpolicy.github.io/\"},{\"title\":\"AdaWorldPolicy: World-Model-Driven Diffusion Policy with Online Adaptive\",\"url\":\"https://arxiv.org/pdf/2602.20057\"},{\"title\":\"GitHub - leofan90/Awesome-World-Models: A comprehensive list of papers for the definition of World Models and using World Models for General Video Generation, Embodied AI, and Autonomous Driving, including papers, codes, and related websites. · GitHub\",\"url\":\"https://github.com/leofan90/Awesome-World-Models\"},{\"title\":\"World4RL: Diffusion World Models for Policy Refinement with Reinforcement Learning for Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2509.19080\"},{\"title\":\"Awesome-World-Models/README.md at main · leofan90/Awesome-World-Models\",\"url\":\"https://github.com/leofan90/Awesome-World-Models/blob/main/README.md\"},{\"title\":\"AdaWM: Adaptive World Model based Planning for Autonomous Driving | OpenReview\",\"url\":\"https://openreview.net/forum?id=NEu8wgPctU\"}]\n\nBased on the search results, here's what I found about AdaWorldPolicy:\n\n## Overview\n\nAdaWorldPolicy is a unified framework—World-Model-Driven Diffusion Policy with Online Adaptive Learning—designed to enhance robotic manipulation under dynamic conditions with minimal human involvement.\n\n## Key Components and Architecture\n\nAdaWorldPolicy integrates a world model, an action expert, and a force predictor—all implemented as interconnected Flow Matching Diffusion Transformers (DiT). These are interconnected via multi-modal self-attention layers, enabling deep feature exchange for joint learning while preserving their distinct modularity characteristics.\n\n## Core Innovation\n\nThe core insight is that world models provide strong supervision signals, enabling online adaptive learning in dynamic environments, which can be complemented by force-torque feedback to mitigate dynamic force shifts.\n\n## Performance\n\nThe full AdaWorldPolicy model with online learning achieves a success rate of 76.3%. Across simulated and real-robot benchmarks, AdaWorldPolicy achieves state-of-the-art performance, with dynamical adaptive capacity to out-of-distribution scenarios.\n\n## Publication\n\nThe paper was published on arXiv as arXiv paper 2602.20057.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "08a3c9d0-8566-4f94-a416-076e85345e5f",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "5c0c5feb-b5c7-47ee-9c09-f420095f1836",
+            "sourceToolAssistantUUID": "08a3c9d0-8566-4f94-a416-076e85345e5f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-10T21:51:21.177Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016Fi4ucFHM3KVFpUnKiNgAe",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Adaptive Diffusion Policy Optimization\" robotic manipulation 2026\"\n\nLinks: [{\"title\":\"Adaptive Diffusion Policy Optimization for Robotic Manipulation\",\"url\":\"https://www.arxiv.org/pdf/2505.08376\"},{\"title\":\"Adaptive Diffusion Policy Optimization for Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2505.08376v1\"},{\"title\":\"[2505.08376] Adaptive Diffusion Policy Optimization for Robotic Manipulation\",\"url\":\"https://arxiv.org/abs/2505.08376\"},{\"title\":\"[2602.20057] AdaWorldPolicy: World-Model-Driven Diffusion Policy with Online Adaptive Learning for Robotic Manipulation\",\"url\":\"https://arxiv.org/abs/2602.20057\"},{\"title\":\"(PDF) VADF: Vision-Adaptive Diffusion Policy Framework for Efficient Robotic Manipulation\",\"url\":\"https://www.researchgate.net/publication/403976521_VADF_Vision-Adaptive_Diffusion_Policy_Framework_for_Efficient_Robotic_Manipulation\"},{\"title\":\"Adaptive Diffusion Policy Optimization for Robotic Manipulation - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2025arXiv250508376J/abstract\"},{\"title\":\"VADF: Vision-Adaptive Diffusion Policy Framework for Efficient Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2604.15938\"},{\"title\":\"Diffusion Policy Policy Optimization | OpenReview\",\"url\":\"https://openreview.net/forum?id=mEpqHvbD2h\"},{\"title\":\"[2602.21622] ADM-DP: Adaptive Dynamic Modality Diffusion Policy through Vision-Tactile-Graph Fusion for Multi-Agent Manipulation\",\"url\":\"https://arxiv.org/abs/2602.21622\"},{\"title\":\"Frontiers | Diffusion models for robotic manipulation: a survey\",\"url\":\"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full\"}]\n\nBased on the search results, here's what I found about Adaptive Diffusion Policy Optimization for robotic manipulation:\n\n## Adaptive Diffusion Policy Optimization (ADPO)\n\nADPO is an Adam-based Diffusion Policy Optimization framework that contains best practices for fine-tuning diffusion-based policies in robotic control tasks using the adaptive gradient descent method in RL.\n\n### Key Contributions\n\nThis work addresses the challenge of how to optimize diffusion-based policies fast and stably by leveraging adaptive gradient methods in RL. This is the first proposal to leverage Adaptive Policy Gradient (ADAPG) to enhance the performance of diffusion-based RL.\n\n### Experimental Results\n\nThe research compared ADPO with six advanced diffusion-based RL methods across various robotics benchmarks, showing that ADPO not only accelerated the training process, but also achieved better performance than other baseline methods on multiple tasks, especially in cases of high task complexity or large environmental changes.\n\n### Applications\n\nADPO was applied to a series of diffusion-based RL methods (DPPO, DIPO, IDQL, DAWR, QSM, and DQL), creating variants such as ADPPO, ADIPO, AIDQL, ADAWR, AQSM, and ADQL. The framework was tested on ROBOMIMIC environments including robot manipulation tasks like Lift (lifting a cube from the table) and Can (picking up a Coke can and placing it at a target bin).\n\nThe research paper was recently submitted in May 2025 and represents a significant advancement in optimizing diffusion-based policies for robotic control tasks.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fef08f46-2efe-4899-9c6f-77e492409d89",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "241174d4-8f30-4355-899c-43c6e94fa468",
+            "sourceToolAssistantUUID": "fef08f46-2efe-4899-9c6f-77e492409d89",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-10T21:51:21.830Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018K3cC5zngXmHdouyaEXgs9",
+              "type": "tool_result",
+              "content": "Web search results for query: \"DreamZero world action model zero-shot policy 2026\"\n\nLinks: [{\"title\":\"DreamZero: World Action Models are Zero-shot Policies\",\"url\":\"https://dreamzero0.github.io/\"},{\"title\":\"[2602.15922] World Action Models are Zero-shot Policies\",\"url\":\"https://arxiv.org/abs/2602.15922\"},{\"title\":\"GitHub - dreamzero0/dreamzero: Code to pretrain, fine-tune, and evaluate DreamZero and run sim & real-world evals · GitHub\",\"url\":\"https://github.com/dreamzero0/dreamzero\"},{\"title\":\"World Action Models are Zero-shot Policies | OpenReview\",\"url\":\"https://openreview.net/forum?id=cd33uUB609\"},{\"title\":\"2026-2-4 World Action Models are Zero-shot Policies Seonghyeon Ye† Yunhao Ge*\",\"url\":\"https://dreamzero0.github.io/DreamZero.pdf\"},{\"title\":\"Paper page - World Action Models are Zero-shot Policies\",\"url\":\"https://huggingface.co/papers/2602.15922\"},{\"title\":\"World Action Models are Zero-shot Policies | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2602.15922\"},{\"title\":\"(PDF) World Action Models are Zero-shot Policies\",\"url\":\"https://www.researchgate.net/publication/400930242_World_Action_Models_are_Zero-shot_Policies\"},{\"title\":\"2026-2-19 World Action Models are Zero-shot Policies Seonghyeon Ye† Yunhao Ge*\",\"url\":\"https://arxiv.org/pdf/2602.15922\"},{\"title\":\"World Action Models as Zero-Shot Policies\",\"url\":\"https://www.emergentmind.com/papers/2602.15922\"}]\n\nBased on the search results, here's what I found about DreamZero:\n\n## Overview\n\nDreamZero is a World Action Model (WAM) built upon a pretrained video diffusion backbone. Unlike VLAs, WAMs learn physical dynamics by predicting future world states and actions, using video as a dense representation of how the world evolves.\n\n## Key Performance Results\n\nThis results in over 2x improvement in generalization to new tasks and environments compared to state-of-the-art VLAs in real robot experiments. More specifically, DreamZero achieves 62.2% average task progress—over 2× higher than the best pretrained VLA baseline (27.4%).\n\n## Technical Capabilities\n\nThrough model and system optimizations, DreamZero enables a 14B autoregressive video diffusion model to perform real-time closed-loop control at 7Hz.\n\n## Cross-Embodiment Transfer\n\nVideo-only demonstrations from other robots or humans yield a relative improvement of over 42% on unseen task performance with just 10-20 minutes of data. More surprisingly, DreamZero enables few-shot embodiment adaptation, transferring to a new embodiment with only 30 minutes of play data while retaining zero-shot generalization.\n\n## Publication\n\nThe paper was published in February 2026 (arXiv ID: 2602.15922).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c28ecebe-0104-4593-9e14-9ec092f21b51",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "1c5f2763-9ede-4690-a332-30b30f375275",
+            "sourceToolAssistantUUID": "c28ecebe-0104-4593-9e14-9ec092f21b51",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-10T21:51:24.911Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R2QETg2wDMJbemEp9cbbeh",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"warm starts accelerate generative modelling\" diffusion 2026\"\n\nLinks: [{\"title\":\"[2507.09212] Warm Starts Accelerate Conditional Diffusion\",\"url\":\"https://arxiv.org/abs/2507.09212\"},{\"title\":\"Warm Starts Accelerate Generative Modelling\",\"url\":\"https://arxiv.org/pdf/2507.09212\"},{\"title\":\"GitHub - jonas-scholz123/warm-start-model: Warm Starts Accelerate Generative Modelling\",\"url\":\"https://github.com/jonas-scholz123/warm-start-model\"},{\"title\":\"Warm Starts Accelerate Generative Modelling - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2025arXiv250709212S/abstract\"},{\"title\":\"(PDF) Warm Starts Accelerate Generative Modelling\",\"url\":\"https://www.researchgate.net/publication/393685197_Warm_Starts_Accelerate_Generative_Modelling\"},{\"title\":\"Warm Starts Accelerate Conditional Diffusion\",\"url\":\"https://arxiv.org/html/2507.09212v2\"},{\"title\":\"Machine Learning Jul 2025\",\"url\":\"https://arxiv.org/list/stat.ML/2025-07?skip=150&show=500\"},{\"title\":\"Information Theoretic Learning for Diffusion Models with Warm Start\",\"url\":\"https://arxiv.org/html/2510.20903\"},{\"title\":\"Towards Scalable One-Step Generative Modeling for Autoregressive Dynamical System Forecasting\",\"url\":\"https://arxiv.org/html/2605.05540\"},{\"title\":\"Warm-Start Initialization Strategies\",\"url\":\"https://www.emergentmind.com/topics/warm-start-initialization\"}]\n\nBased on the search results, I found relevant research on this topic. Here's what the search revealed:\n\n## Warm Starts Accelerate Generative Modelling\n\nWarm-Start Diffusion (WSD) is a method that uses a simple, deterministic model to dramatically accelerate conditional generation by providing a better starting point. The refinement process in generative models is notoriously slow, often requiring hundreds of function evaluations.\n\n### How It Works\n\nInstead of starting generation from an uninformed standard normal prior, the deterministic warm-start model predicts an informed prior whose moments are conditioned on the input context, which substantially reduces the distance the generative process must traverse and therefore the number of diffusion steps required.\n\n### Performance Results\n\nThe method substantially outperforms standard diffusion in the efficient sampling regime, generating realistic samples using only 4-6 function evaluations, and saturating performance with 10-12.\n\n### Applicability\n\nWSD is applicable to any standard diffusion or flow matching algorithm, is orthogonal to and synergistic with other fast sampling techniques like efficient solvers, and is simple to implement.\n\nThe research was published in July 2025 as a paper by Jonas Scholz and colleagues, and has been widely discussed in the machine learning community for its contributions to accelerating conditional generative models across various applications including image inpainting, weather forecasting, and other tasks.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "376b7714-c6b6-4359-9ef1-4b90ec43342e",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "5e266dcf-6bb5-4c7d-a9e0-29eebab133e1",
+            "sourceToolAssistantUUID": "376b7714-c6b6-4359-9ef1-4b90ec43342e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-10T21:51:29.976Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012wFTJBbsW2qDn7hu2SAs8M",
+              "name": "WebSearch",
+              "input": {
+                "query": "VADF vision adaptive diffusion policy framework robotic manipulation 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5e266dcf-6bb5-4c7d-a9e0-29eebab133e1",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudQUpNfLqbyfTC6TtSq",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a21b844c-9cb1-44fd-b6fe-3d9ce03d3337",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JXEBA9Ay7d2M71vRPnuJpe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 814,
+                "cache_creation_input_tokens": 3851,
+                "cache_read_input_tokens": 21591,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3851,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-10T21:51:31.000Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017kApSUK2X86kW7NJsGKfx5",
+              "name": "WebSearch",
+              "input": {
+                "query": "EA-WM event-aware generative world model kinematic visual action 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a21b844c-9cb1-44fd-b6fe-3d9ce03d3337",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudQUpNfLqbyfTC6TtSq",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9270f454-ee65-4457-80d5-633aa16e5afd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JXEBA9Ay7d2M71vRPnuJpe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 814,
+                "cache_creation_input_tokens": 3851,
+                "cache_read_input_tokens": 21591,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3851,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-10T21:51:31.107Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NHrcBHQywLuwavff1c4QjH",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"uncertainty-aware runtime failure detection imitation learning\" RSS 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9270f454-ee65-4457-80d5-633aa16e5afd",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudQUpNfLqbyfTC6TtSq",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "560ff462-cfb7-46a1-b7a6-040d4bef430d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JXEBA9Ay7d2M71vRPnuJpe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 814,
+                "cache_creation_input_tokens": 3851,
+                "cache_read_input_tokens": 21591,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3851,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-10T21:51:37.344Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NHrcBHQywLuwavff1c4QjH",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"uncertainty-aware runtime failure detection imitation learning\" RSS 2026\"\n\nLinks: [{\"title\":\"Can We Detect Failures Without Failure Data? Uncertainty-Aware Runtime Failure Detection for Imitation Learning Policies · Robotics: Science and Systems\",\"url\":\"https://roboticsconference.org/program/papers/73/\"},{\"title\":\"[2503.08558] Can We Detect Failures Without Failure Data? Uncertainty-Aware Runtime Failure Detection for Imitation Learning Policies\",\"url\":\"https://arxiv.org/abs/2503.08558\"},{\"title\":\"Can We Detect Failures Without Failure Data? Uncertainty-Aware Runtime Failure Detection for Imitation Learning Policies\",\"url\":\"https://arxiv.org/html/2503.08558v1\"},{\"title\":\"Scaling Verification Can Be More Effective than Scaling Policy Learning for Vision-Language-Action Alignment\",\"url\":\"https://arxiv.org/html/2602.12281v2\"},{\"title\":\"Uncertainty-Aware Failure Detection for Imitation Learning Robot Policies | OpenReview\",\"url\":\"https://openreview.net/forum?id=199tJ1rxmh\"},{\"title\":\"Robotics Mar 2025\",\"url\":\"https://www.arxiv.org/list/cs.RO/2025-03?skip=350&show=250\"},{\"title\":\"GitHub - CXU-TRI/FAIL-Detect: Code for RSS 2025 paper \\\"Can We Detect Failures Without Failure Data? Uncertainty-Aware Runtime Failure Detection for Imitation Learning Policies\\\" · GitHub\",\"url\":\"https://github.com/CXU-TRI/FAIL-Detect\"},{\"title\":\"Anomaly detection for generic failure monitoring in robotic assembly, screwing and manipulation\",\"url\":\"https://arxiv.org/html/2509.26308v3\"},{\"title\":\"(PDF) Can We Detect Failures Without Failure Data? Uncertainty-Aware Runtime Failure Detection for Imitation Learning Policies\",\"url\":\"https://www.researchgate.net/publication/389749218_Can_We_Detect_Failures_Without_Failure_Data_Uncertainty-Aware_Runtime_Failure_Detection_for_Imitation_Learning_Policies\"},{\"title\":\"Can We Detect Failures Without Failure Data? Uncertainty-Aware Runtime Failure Detection for Imitation Learning Policies | Request PDF\",\"url\":\"https://www.researchgate.net/publication/395375767_Can_We_Detect_Failures_Without_Failure_Data_Uncertainty-Aware_Runtime_Failure_Detection_for_Imitation_Learning_Policies\"}]\n\nBased on the search results, I found relevant information about this research topic:\n\n## Overview\n\nFAIL-Detect is a modular two-stage approach for failure detection in imitation learning-based robotic manipulation. The paper \"Can We Detect Failures Without Failure Data? Uncertainty-Aware Runtime Failure Detection for Imitation Learning Policies\" is accepted at Robotics: Science and Systems (RSS) 2025.\n\n## Key Problem and Approach\n\nMost existing failure detection approaches rely on prior knowledge of failure modes and require failure data during training, which imposes a significant challenge in practicality and scalability. To address this, the problem is framed as sequential out-of-distribution (OOD) detection.\n\n## Technical Method\n\nThe approach first distills policy inputs and outputs into scalar signals that correlate with policy failures and capture epistemic uncertainty, then employs conformal prediction (CP) as a versatile framework for uncertainty quantification with statistical guarantees.\n\n## Results\n\nExperiments show learned signals to be mostly consistently effective, particularly when using a novel flow-based density estimator, and the method detects failures more accurately and faster than state-of-the-art (SOTA) failure detection baselines.\n\nThe research is led by Chen Xu and colleagues, and the code is publicly available on GitHub.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "560ff462-cfb7-46a1-b7a6-040d4bef430d",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "14daedca-91a0-43d1-a6a3-523e74d7dcda",
+            "sourceToolAssistantUUID": "560ff462-cfb7-46a1-b7a6-040d4bef430d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-10T21:51:38.052Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017kApSUK2X86kW7NJsGKfx5",
+              "type": "tool_result",
+              "content": "Web search results for query: \"EA-WM event-aware generative world model kinematic visual action 2026\"\n\nLinks: [{\"title\":\"EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields\",\"url\":\"https://arxiv.org/html/2605.06192v1\"},{\"title\":\"GitHub - LMD0311/Awesome-World-Model: Collect some World Models for Autonomous Driving (and Robotic, etc.) papers. · GitHub\",\"url\":\"https://github.com/LMD0311/Awesome-World-Model\"},{\"title\":\"Runway Research | Introducing Runway GWM-1\",\"url\":\"https://runwayml.com/research/introducing-runway-gwm-1\"},{\"title\":\"Awesome-World-Model/README.md at main · LMD0311/Awesome-World-Model\",\"url\":\"https://github.com/LMD0311/Awesome-World-Model/blob/main/README.md\"},{\"title\":\"GitHub - leofan90/Awesome-World-Models: A comprehensive list of papers for the definition of World Models and using World Models for General Video Generation, Embodied AI, and Autonomous Driving, including papers, codes, and related websites. · GitHub\",\"url\":\"https://github.com/leofan90/Awesome-World-Models\"},{\"title\":\"GitHub - knightnemo/Awesome-World-Models: A Curated List of Awesome Works in World Modeling, Aiming to Serve as a One-stop Resource for Researchers, Practitioners, and Enthusiasts Interested in World Modeling. · GitHub\",\"url\":\"https://github.com/knightnemo/Awesome-World-Models\"},{\"title\":\"A Comprehensive Survey on World Models for Embodied AI\",\"url\":\"https://arxiv.org/html/2510.16732v1\"},{\"title\":\"Article Not peer-reviewed version Learning to Model the World: A Survey\",\"url\":\"https://www.preprints.org/frontend/manuscript/5086594a01b6a0b251820cb03ea9a8f6/download_pub\"},{\"title\":\"Towards Video World Models\",\"url\":\"https://www.xunhuang.me/blogs/world_model.html\"},{\"title\":\"GitHub - Li-Zn-H/AwesomeWorldModels: A Comprehensive Survey on World Models for Embodied AI · GitHub\",\"url\":\"https://github.com/Li-Zn-H/AwesomeWorldModels\"}]\n\nBased on the search results, here's what I found about EA-WM:\n\n## EA-WM: Event-Aware Generative World Model\n\nEA-WM is an Event-Aware Generative World Model that effectively closes the loop between kinematic control and visual perception.\n\n### Key Innovation: Kinematic-to-Visual Action Fields (KVAFs)\n\nThe main contribution of EA-WM is its novel approach to action conditioning. Rather than injecting joint or end-effector actions as abstract, low-dimensional tokens, EA-WM projects actions and kinematic states directly into the target camera view as Structured Kinematic-to-Visual Action Fields (KVAFs).\n\nKVAFs render depth-aware arm structures, joint landmarks, gripper geometry, end-effector heatmaps, and pose cues as temporally aligned visual fields.\n\n### Architecture and Mechanism\n\nAt the architectural level, EA-WM augments a diffusion-transformer backbone with a dedicated KVAF branch and interval-based bidirectional fusion, facilitating continuous interaction between structured kinematic cues and video features.\n\nEA-WM introduces an event-aware bidirectional fusion mechanism driven by Event-Difference Latent Supervision (EDLS), which explicitly regularizes cross-stream attention using temporal difference latents, compelling the model to dynamically attend to critical regions of robot motion, object state transitions, and robot-object interaction dynamics.\n\n### Performance\n\nCompared to existing state-of-the-art baselines, EA-WM significantly enhances the physical adherence, 3D geometric accuracy, and fine-grained controllability.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9270f454-ee65-4457-80d5-633aa16e5afd",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "40ba4ee5-c4fb-428b-bfe2-e8c2f02dab9e",
+            "sourceToolAssistantUUID": "9270f454-ee65-4457-80d5-633aa16e5afd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-10T21:51:38.344Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012wFTJBbsW2qDn7hu2SAs8M",
+              "type": "tool_result",
+              "content": "Web search results for query: \"VADF vision adaptive diffusion policy framework robotic manipulation 2026\"\n\nLinks: [{\"title\":\"[2604.15938] VADF: Vision-Adaptive Diffusion Policy Framework for Efficient Robotic Manipulation\",\"url\":\"https://arxiv.org/abs/2604.15938\"},{\"title\":\"VADF: Vision-Adaptive Diffusion Policy Framework for Efficient Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2604.15938\"},{\"title\":\"(PDF) VADF: Vision-Adaptive Diffusion Policy Framework for Efficient Robotic Manipulation\",\"url\":\"https://www.researchgate.net/publication/403976521_VADF_Vision-Adaptive_Diffusion_Policy_Framework_for_Efficient_Robotic_Manipulation\"},{\"title\":\"VADF: Vision-Adaptive Diffusion Policy Framework for Efficient Robotic Manipulation | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2604.15938\"},{\"title\":\"VADF: Vision-Adaptive Diffusion Framework. VADF introduces a... | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/ADF-Vision-Adaptive-Diffusion-Framework-VADF-introduces-a-dualadaptive-mechanism-for_fig1_403976521\"},{\"title\":\"VO-DP: Semantic-Geometric Adaptive Diffusion Policy for Vision-Only Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2510.15530v1\"},{\"title\":\"VADiff: Velocity Aware Diffusion Policy for Grasping Moving Objects with Humanoid Robots | IEEE Conference Publication | IEEE Xplore\",\"url\":\"https://ieeexplore.ieee.org/document/11375891/\"},{\"title\":\"AdaWorldPolicy: World-Model-Driven Diffusion Policy with Online Adaptive Learning for Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2602.20057\"},{\"title\":\"GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub\",\"url\":\"https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln\"},{\"title\":\"Frontiers | Diffusion models for robotic manipulation: a survey\",\"url\":\"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full\"}]\n\nBased on the search results, here's what I found about VADF:\n\n## VADF: Vision-Adaptive Diffusion Policy Framework\n\nVADF (Vision-Adaptive Diffusion Policy Framework) is a vision-driven dual-adaptive framework that significantly reduces convergence steps and achieves early success in inference, with model-agnostic design enabling seamless integration into any diffusion policy architecture.\n\n### The Problem It Addresses\n\nDiffusion policies are becoming mainstream in robotic manipulation but suffer from hard negative class imbalance due to uniform sampling and lack of sample difficulty awareness, leading to slow training convergence and frequent inference timeout failures.\n\n### Key Components\n\nThe framework features two main adaptive mechanisms:\n\n1. **Training Phase (ALN):** During training, VADF introduces Adaptive Loss Network (ALN), a lightweight MLP-based loss predictor that quantifies per-step sample difficulty in real time, and guided by hard negative mining, it performs weighted sampling to prioritize high-loss regions, enabling adaptive weight updates and faster convergence.\n\n2. **Inference Phase (HVTS):** In inference, the framework designs the Hierarchical Vision Task Segmenter (HVTS), which decomposes high-level task instructions into multi-stage low-level sub-instructions.\n\n### Performance Results\n\nExtensive evaluations across multiple benchmarks (e.g., Push-T, Kitchen, Adroit) demonstrate consistent gains in training speed, inference efficiency, and task performance. VADF consistently matches or improves task success rates while substantially boosting early success rate—from 85.4% to 91.3% for the MLP variant and from 80.1% to 86.8% for the Transformer variant.\n\nThe paper was submitted to arXiv on April 17, 2026, and is associated with Fudan University researchers.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a21b844c-9cb1-44fd-b6fe-3d9ce03d3337",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "2d5b2768-73a3-423a-85da-1d559febe4b7",
+            "sourceToolAssistantUUID": "a21b844c-9cb1-44fd-b6fe-3d9ce03d3337",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-10T21:51:43.437Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A3jwkKGCgptM8LsKCm4uia",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"scaling verification\" vision language action alignment robot 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2d5b2768-73a3-423a-85da-1d559febe4b7",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudRUAiM5yLjmSmAkng8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "dd8895a1-8876-4f00-85cc-52d4277c7b9c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LSnFF4Te8YPTEsxRkp9bFV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1956,
+                "cache_creation_input_tokens": 2082,
+                "cache_read_input_tokens": 25442,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2082,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-10T21:51:43.848Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RFMo1TxvpFRhac24vsvHte",
+              "name": "WebSearch",
+              "input": {
+                "query": "asynchronous denoising X-WAM unified 4D world action model video 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd8895a1-8876-4f00-85cc-52d4277c7b9c",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudRUAiM5yLjmSmAkng8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3b13d241-e326-419a-8bc8-fa15315218f9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LSnFF4Te8YPTEsxRkp9bFV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1956,
+                "cache_creation_input_tokens": 2082,
+                "cache_read_input_tokens": 25442,
+                "output_tokens": 118,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2082
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1956,
+                    "output_tokens": 118,
+                    "cache_read_input_tokens": 25442,
+                    "cache_creation_input_tokens": 2082,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2082,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-10T21:51:50.349Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A3jwkKGCgptM8LsKCm4uia",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"scaling verification\" vision language action alignment robot 2026\"\n\nLinks: [{\"title\":\"Scaling Verification Can Be More Effective than Scaling Policy Learning for Vision-Language-Action Alignment\",\"url\":\"https://arxiv.org/html/2602.12281v1\"},{\"title\":\"[2602.12281v1] Scaling Verification Can Be More Effective than Scaling Policy Learning for Vision-Language-Action Alignment\",\"url\":\"https://arxiv.org/abs/2602.12281v1\"},{\"title\":\"[2602.12281v2] Scaling Verification Can Be More Effective than Scaling Policy Learning for Vision-Language-Action Alignment\",\"url\":\"https://arxiv.org/abs/2602.12281v2\"},{\"title\":\"[2602.12281] Scaling Verification Can Be More Effective than Scaling Policy Learning for Vision-Language-Action Alignment\",\"url\":\"https://arxiv.org/abs/2602.12281\"},{\"title\":\"State of Vision-Language-Action (VLA) Research at ICLR 2026 – Moritz Reuss\",\"url\":\"https://mbreuss.github.io/blog_post_iclr_26_vla.html\"},{\"title\":\"Multimodal fusion with vision-language-action models for robotic manipulation: A systematic review - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/pii/S1566253525011248\"},{\"title\":\"[2510.16281] Do What You Say: Steering Vision-Language-Action Models via Runtime Reasoning-Action Alignment Verification\",\"url\":\"https://arxiv.org/abs/2510.16281\"},{\"title\":\"Vision-Language-Action (VLA) Models for Robotics\",\"url\":\"https://blog.roboflow.com/vision-language-action-models/\"},{\"title\":\"Vision-Language-Action in Robotics: A Survey of Datasets, Benchmarks, and Data Engines\",\"url\":\"https://arxiv.org/html/2604.23001v1\"},{\"title\":\"Rohit Bandaru | Foundation Models for Robotics: Vision-Language-Action (VLA)\",\"url\":\"https://rohitbandaru.github.io/blog/Foundation-Models-for-Robotics-VLA/\"}]\n\nBased on the search results, I found a highly relevant recent paper on this topic:\n\n## Scaling Verification for Vision-Language-Action Alignment\n\nVision-Language-Action (VLA) models have made progress toward general-purpose robots, yet their generated actions can still misalign with given instructions, and test-time verification can help shrink the \"intention-action gap.\"\n\n### CoVer Architecture\n\nResearchers introduced CoVer, a contrastive approach for verifying the alignment across vision, language, and action. The architecture employs a text-aware visual encoder that selectively extracts task-relevant features, and an action encoder that captures long-range temporal dependencies within action chunks.\n\n### Key Results\n\nScaling the number of synthetic instructions, model parameters, negative samples, and verifiers in an ensemble consistently improves verification and downstream retrieval accuracy. Compared to scaling policy pre-training on the same data, the verification approach yields 22% gains in-distribution and 13% out-of-distribution on the SIMPLER benchmark, with a further 45% improvement in real-world experiments.\n\n### Test-Time Scaling\n\nAction error consistently decreases as the number of rephrased instructions is scaled, and jointly scaling the number of rephrased instructions and generated actions constructs a more diverse action proposal distribution, often recovering correct actions more efficiently than scaling each dimension independently.\n\nThe paper demonstrates that verification-based approaches can be more effective than traditional policy learning for improving robot instruction-following alignment.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd8895a1-8876-4f00-85cc-52d4277c7b9c",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "9ec2bb6f-6582-46bc-b078-8f4a00c099af",
+            "sourceToolAssistantUUID": "dd8895a1-8876-4f00-85cc-52d4277c7b9c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-10T21:51:53.086Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RFMo1TxvpFRhac24vsvHte",
+              "type": "tool_result",
+              "content": "Web search results for query: \"asynchronous denoising X-WAM unified 4D world action model video 2026\"\n\nLinks: [{\"title\":\"Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising\",\"url\":\"https://arxiv.org/html/2604.26694v2\"},{\"title\":\"X-WAM: Unified 4D World Action Modeling from Video ...\",\"url\":\"https://sharinka0715.github.io/X-WAM/\"},{\"title\":\"X-WAM: Bridging Action and 4D Synthesis | StartupHub.ai\",\"url\":\"https://www.startuphub.ai/ai-news/ai-research/2026/x-wam-bridging-action-and-4d-synthesis\"},{\"title\":\"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | Request PDF\",\"url\":\"https://www.researchgate.net/publication/395371959_Unified_World_Models_Coupling_Video_and_Action_Diffusion_for_Pretraining_on_Large_Robotic_Datasets\"},{\"title\":\"Unified Video Action Model | Request PDF\",\"url\":\"https://www.researchgate.net/publication/395361978_Unified_Video_Action_Model\"},{\"title\":\"Awesome-Video-World-Models/README.md at main · hit-perfect/Awesome-Video-World-Models\",\"url\":\"https://github.com/hit-perfect/Awesome-Video-World-Models/blob/main/README.md\"},{\"title\":\"Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://arxiv.org/html/2603.16666v1\"},{\"title\":\"GitHub - leofan90/Awesome-World-Models: A comprehensive list of papers for the definition of World Models and using World Models for General Video Generation, Embodied AI, and Autonomous Driving, including papers, codes, and related websites. · GitHub\",\"url\":\"https://github.com/leofan90/awesome-world-models\"},{\"title\":\"MotuBrain: An Advanced World Action Model for Robot Control\",\"url\":\"https://arxiv.org/html/2604.27792v2\"},{\"title\":\"Phys4D: Fine-Grained Physics-Consistent 4D Modeling from Video Diffusion\",\"url\":\"https://arxiv.org/html/2603.03485v1\"}]\n\nBased on the search results, I found detailed information about X-WAM and asynchronous denoising in the context of unified 4D world action models:\n\n## X-WAM: Unified 4D World Action Model\n\nX-WAM is a unified 4D World Action Model that incorporates explicit 3D spatial awareness into joint video-action modeling, unifying real-time robotic action execution and high-fidelity 4D world synthesis (video + 3D reconstruction) in a single framework, addressing limitations of prior unified world models that only model 2D pixel-space.\n\n## Asynchronous Denoising Approach\n\nAsynchronous Noise Sampling (ANS) introduces a specialized asynchronous denoising schedule for inference: it rapidly decodes precise actions using only a fraction of the initial steps to allow them to be immediately executed by the policy, and subsequently completes the remaining steps to render high-fidelity future videos.\n\n## Key Technical Features\n\nX-WAM imagines the future world by predicting multi-view RGB-D videos and obtains spatial information efficiently through a lightweight structural adaptation: replicating the final few blocks of the pretrained Diffusion Transformer into a dedicated depth prediction branch for the reconstruction of future spatial information.\n\nInstead of completely decoupling the noise timesteps of these modalities via independent random sampling, ANS systematically samples from a joint distribution of video and actions that strictly matches the test-time distribution, elegantly eliminating the inefficiencies of decoupled sampling and maximizing both action inference speed and visual generation quality.\n\n## Performance Results\n\nPretrained on over 5,800 hours of robotic data, X-WAM achieves 79.2% and 90.7% average success rate on RoboCasa and RoboTwin 2.0 benchmarks, while producing high-fidelity 4D reconstruction and generation surpassing existing methods in both visual and geometric metrics.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3b13d241-e326-419a-8bc8-fa15315218f9",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "c7356bc3-701f-4a4a-ae46-673b30a4050b",
+            "sourceToolAssistantUUID": "3b13d241-e326-419a-8bc8-fa15315218f9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-10T21:51:57.163Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UUA3VGWBj1fczwFWZLeCPN",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Do What You Say\" runtime reasoning action alignment verification VLA 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c7356bc3-701f-4a4a-ae46-673b30a4050b",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudSZCrWNA3ScJW9xXKt",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "90192767-fef9-4650-a9f2-f12ce1d06bfb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MMJiGqaSDXy5G8vN8Uw7Kt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4039,
+                "cache_read_input_tokens": 27524,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4039,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 57,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-10T21:51:57.512Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FjPBXzZndPr8JA9Fwdi34t",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"two-steps diffusion policy\" genetic denoising robotic manipulation 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "90192767-fef9-4650-a9f2-f12ce1d06bfb",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudSZCrWNA3ScJW9xXKt",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "005ee9a5-fc76-4881-ad8a-b31824ef7a17",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MMJiGqaSDXy5G8vN8Uw7Kt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4039,
+                "cache_read_input_tokens": 27524,
+                "output_tokens": 119,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4039
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 119,
+                    "cache_read_input_tokens": 27524,
+                    "cache_creation_input_tokens": 4039,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4039,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-10T21:52:04.063Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UUA3VGWBj1fczwFWZLeCPN",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Do What You Say\" runtime reasoning action alignment verification VLA 2026\"\n\nLinks: [{\"title\":\"[2510.16281] Do What You Say: Steering Vision-Language-Action Models via Runtime Reasoning-Action Alignment Verification\",\"url\":\"https://arxiv.org/abs/2510.16281\"},{\"title\":\"Steering Vision-Language-Action Models via Runtime ...\",\"url\":\"https://yilin-wu98.github.io/steering-reasoning-vla/\"},{\"title\":\"Do What You Say: Steering Vision-Language-Action Models via Runtime Reasoning-Action Alignment Verification\",\"url\":\"https://arxiv.org/html/2510.16281v1\"},{\"title\":\"Yilin Wu 吴怡琳\",\"url\":\"https://yilin-wu98.github.io/\"},{\"title\":\"Paper page - Do What You Say: Steering Vision-Language-Action Models via Runtime Reasoning-Action Alignment Verification\",\"url\":\"https://huggingface.co/papers/2510.16281\"},{\"title\":\"Mechanistic interpretability for steering vision-language-action models\",\"url\":\"https://www.emergentmind.com/papers/2509.00328\"},{\"title\":\"Do What You Say: Steering Vision-Language-Action Models via\",\"url\":\"https://arxiv.org/pdf/2510.16281\"},{\"title\":\"(PDF) Do What You Say: Steering Vision-Language-Action Models via Runtime Reasoning-Action Alignment Verification\",\"url\":\"https://www.researchgate.net/publication/396714890_Do_What_You_Say_Steering_Vision-Language-Action_Models_via_Runtime_Reasoning-Action_Alignment_Verification\"},{\"title\":\"Vision-Language-Action Models and the Search for a Generalist Robot Policy\",\"url\":\"https://itcanthink.substack.com/p/vision-language-action-models-and\"},{\"title\":\"Method Overview. Reasoning Vision Language Action (VLA) models... | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/Method-Overview-Reasoning-Vision-Language-Action-VLA-models-interleave-textual_fig1_396714890\"}]\n\nBased on the search results, here's what I found about \"Do What You Say: Steering Vision-Language-Action Models via Runtime Reasoning-Action Alignment Verification\":\n\n## Overview\n\nThis is a research paper on Reasoning Vision Language Action (VLA) models that improve robotic instruction-following by generating step-by-step textual plans before low-level actions, and introduces a training-free, runtime policy steering method for reasoning-action alignment.\n\n## The Core Problem\n\nEven with a correct textual plan, the generated actions can still miss the intended outcomes in the plan, especially in out-of-distribution (OOD) scenarios. The authors formalize this as a lack of embodied CoT (Chain-of-Thought) faithfulness.\n\n## The Solution\n\nGiven a reasoning VLA's intermediate textual plan, the framework samples multiple candidate action sequences from the same model, predicts their outcomes via simulation, and uses a pre-trained Vision-Language Model (VLM) to select the sequence whose outcome best aligns with the VLA's own textual plan.\n\n## Key Results\n\nOnly executing action sequences that align with the textual reasoning turns the base VLA's natural action diversity from a source of error into a strength, boosting robustness to semantic and visual OOD perturbations and enabling novel behavior composition without costly re-training, with up to 15% performance gain over prior work on behavior composition tasks.\n\n## Publication\n\nThe paper is set to appear in the 2026 IEEE International Conference on Robotics & Automation (ICRA) by authors including Yilin Wu, Anqi Li, Tucker Hermans, Fabio Ramos, Andrea Bajcsy, and Claudia Pérez-D'Arpino.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "90192767-fef9-4650-a9f2-f12ce1d06bfb",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "b4e1c749-eede-482d-9d27-d203155b026f",
+            "sourceToolAssistantUUID": "90192767-fef9-4650-a9f2-f12ce1d06bfb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-10T21:52:05.196Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FjPBXzZndPr8JA9Fwdi34t",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"two-steps diffusion policy\" genetic denoising robotic manipulation 2026\"\n\nLinks: [{\"title\":\"[2510.21991] Two-Steps Diffusion Policy for Robotic Manipulation via Genetic Denoising\",\"url\":\"https://arxiv.org/abs/2510.21991\"},{\"title\":\"Two-Steps Diffusion Policy for Robotic Manipulation via Genetic Denoising | OpenReview\",\"url\":\"https://openreview.net/forum?id=YY1MPKBHp7\"},{\"title\":\"Two-Steps Diffusion Policy for Robotic Manipulation via Genetic Denoising\",\"url\":\"https://arxiv.org/html/2510.21991v1\"},{\"title\":\"(PDF) Two-Steps Diffusion Policy for Robotic Manipulation via Genetic Denoising\",\"url\":\"https://www.researchgate.net/publication/396967649_Two-Steps_Diffusion_Policy_for_Robotic_Manipulation_via_Genetic_Denoising\"},{\"title\":\"NeurIPS Poster Two-Steps Diffusion Policy for Robotic Manipulation via Genetic Denoising\",\"url\":\"https://neurips.cc/virtual/2025/poster/117411\"},{\"title\":\"Two-Steps Diffusion Policy for Robotic Manipulation via Genetic Denoising\",\"url\":\"https://openreview.net/pdf?id=YY1MPKBHp7\"},{\"title\":\"Diffusion Policy: Visuomotor Policy Learning via Action Diffusion\",\"url\":\"https://diffusion-policy.cs.columbia.edu/\"},{\"title\":\"Diffusion models for robotic manipulation: a survey - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC12454101/\"},{\"title\":\"Diffusion Policy:\",\"url\":\"https://www.roboticsproceedings.org/rss19/p026.pdf\"},{\"title\":\"Time-Unified Diffusion Policy with Action Discrimination for Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2506.09422\"}]\n\nI found comprehensive information about the \"Two-Steps Diffusion Policy for Robotic Manipulation via Genetic Denoising\" research paper. Here are the key findings:\n\n## Overview\n\nDiffusion models, such as diffusion policy, have achieved state-of-the-art results in robotic manipulation by imitating expert demonstrations. However, while diffusion models were originally developed for vision tasks like image and video generation, many of their inference strategies have been directly transferred to control domains without adaptation.\n\n## Key Innovation\n\nBy tailoring the denoising process to the specific characteristics of embodied AI tasks—particularly the structured, low-dimensional nature of action distributions—diffusion policies can operate effectively with as few as 5 neural function evaluations (NFE). Building on this insight, researchers propose a population-based sampling strategy, genetic denoising, which enhances both performance and stability by selecting denoising trajectories with low out-of-distribution risk.\n\n## Method Performance\n\nThe method solves challenging tasks with only 2 NFE while improving or matching performance. The approach was evaluated across 14 robotic manipulation tasks from D4RL and Robomimic, spanning multiple action horizons and inference budgets. In over 2 million evaluations, the method consistently outperforms standard diffusion-based policies, achieving up to 20% performance gains with significantly fewer inference steps.\n\n## Technical Insights\n\nThe analysis reveals that the default inference process suffers from out-of-distribution (OoD) intermediate states caused by clipping—a heuristic introduced to constrain predictions. Contrary to findings in image generation, reducing the injected noise in denoising steps improves performance in robotic tasks, due to the structured and low-dimensional nature of their action distributions.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "005ee9a5-fc76-4881-ad8a-b31824ef7a17",
+            "isSidechain": true,
+            "promptId": "30fa0de0-925a-4187-8c67-a23d7429fd5a",
+            "agentId": "a7eafc9a9d9315d6c",
+            "type": "user",
+            "uuid": "f4a6b9a7-fc74-409f-825a-825bb302de46",
+            "sourceToolAssistantUUID": "005ee9a5-fc76-4881-ad8a-b31824ef7a17",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-10T21:52:57.195Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on my comprehensive search, here is my analysis of potentially missing or competing work that the proposal may have overlooked:\n\n---\n\n## Summary of Findings: Potentially Missing Papers (Jan-May 2026)\n\n### HIGH RELEVANCE - Likely Missing from the Proposal\n\n**1. \"When to Trust Imagination: Adaptive Action Execution for World Action Models\" (May 2026)**\n- arXiv: 2605.06222\n- This paper appears to be the MOST directly competing work. It formulates adaptive WAM execution as a \"future-reality verification problem\" -- essentially the same framing the proposal likely uses. It introduces FFDC (Future Forward Dynamics Causal Attention), a lightweight verifier that jointly reasons over predicted future actions, visual dynamics, real observations, and language instructions. It reduces WAM forward passes by 69% and execution time by 34% while improving success rate by 2.5%. Given the proposal already cites FFDC-WAM, this may be the same work -- but if not, it is a critical competitor.\n\n**2. \"CoVer: Scaling Verification Can Be More Effective than Scaling Policy Learning for Vision-Language-Action Alignment\" (Feb 2026)**\n- arXiv: 2602.12281\n- A contrastive verification approach for VLA alignment. Demonstrates that scaling verification at test-time yields 22% gains in-distribution and 13% OOD improvements vs. scaling policy pre-training. This is directly relevant to the \"verification is cheaper than generation\" thesis. Uses test-time scaling of verification -- 45% improvement in real-world experiments.\n\n**3. AdaWorldPolicy: World-Model-Driven Diffusion Policy with Online Adaptive Learning (Feb 2026)**\n- arXiv: 2602.20057\n- Integrates a world model, an action expert, and a force predictor as interconnected Flow Matching DiTs with multi-modal self-attention. The core insight that \"world models provide strong supervision signals enabling online adaptive learning\" is relevant if the proposal uses world models for runtime adaptation.\n\n**4. EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields (May 2026)**\n- arXiv: 2605.06192\n- Introduces Kinematic-to-Visual Action Fields (KVAFs) and an event-aware bidirectional fusion mechanism. Uses Event-Difference Latent Supervision (EDLS) for temporally-aware attention to critical motion regions. This is a new generative world model architecture that may compete with whatever WAM backbone the proposal uses.\n\n**5. \"Do What You Say: Steering VLAs via Runtime Reasoning-Action Alignment Verification\" (ICRA 2026)**\n- arXiv: 2510.16281\n- A training-free runtime policy steering method that samples multiple candidate action sequences, predicts outcomes via simulation, and uses a VLM to select the best-aligned sequence. This is a form of cascaded runtime verification (reasoning-then-verification) that the proposal should cite.\n\n**6. VADF: Vision-Adaptive Diffusion Policy Framework (April 2026)**\n- arXiv: 2604.15938\n- Introduces adaptive mechanisms for both training (Adaptive Loss Network) and inference (Hierarchical Vision Task Segmenter). The inference-time adaptive component segments high-level tasks into sub-instructions -- relevant if the proposal uses hierarchical verification.\n\n### MEDIUM RELEVANCE - Should Be Checked Against Existing Citations\n\n**7. DreamZero: World Action Models are Zero-shot Policies (Feb 2026)**\n- arXiv: 2602.15922\n- A 14B autoregressive video diffusion model for real-time closed-loop control at 7Hz. Demonstrates zero-shot generalization and few-shot embodiment adaptation. Relevant as a WAM baseline the proposal should compare against.\n\n**8. ADPro: Test-time Adaptive Diffusion Policy via Manifold-constrained Denoising (2025, but gaining traction in 2026)**\n- arXiv: 2508.06266\n- Task-aware initialization and manifold-constrained denoising for test-time adaptation without retraining. Up to 25% improvement over baselines. Relevant to the \"adaptive denoising depth\" aspect of the proposal.\n\n**9. Warm Starts Accelerate Conditional Diffusion (July 2025, widely cited in 2026)**\n- arXiv: 2507.09212\n- Replaces standard N(0,I) prior with a learned informed prior, reducing required denoising steps to 4-6 NFE. If the proposal uses warm-starting of video denoising from prior frames, this is the foundational reference to cite.\n\n**10. Two-Steps Diffusion Policy via Genetic Denoising (NeurIPS 2025)**\n- arXiv: 2510.21991\n- Shows diffusion policies work with as few as 2 neural function evaluations using population-based genetic denoising. Relevant if the proposal claims partial denoising as novel for verification.\n\n**11. FailGuard: OoD-Simulation Approach for Proactive Failure Detection (submitted ICLR 2026, desk rejected)**\n- OpenReview: 4PX8lerO9B\n- Augments success rollouts to simulate failure cases. Achieves runtime failure detection and early stopping. Despite desk rejection, the approach is relevant and may reappear at another venue.\n\n**12. Sentinel: Runtime Monitoring of Consistency and Progress (CoRL 2024)**\n- arXiv: 2410.04640\n- Already published but likely missed: splits failure detection into temporal consistency (statistical) + task progression (VLM-based). 97% detection accuracy. This is a key baseline for any runtime verification paper.\n\n### REGARDING CoRL 2026\n- The submission deadline is **May 29, 2026**, so papers are being submitted NOW but none are publicly available yet. The \"Workshop on Robotics World Modeling\" is confirmed for CoRL 2026. Concurrent submissions cannot be identified at this time.\n\n### Papers Already Cited (Confirmed)\n- Fast-WAM, FFDC-WAM, X-WAM, D3P, FAIL-Detect, FIPER, Guardian, Code-as-Monitor, Falcon, T-STITCH, AdaDiff are all confirmed as already cited.\n\n---\n\n## Recommendations\n\nThe proposal should most urgently address:\n1. **CoVer** (Feb 2026) -- directly argues \"scaling verification beats scaling policy\" which likely overlaps with the proposal's thesis\n2. **\"When to Trust Imagination\"** (May 2026) -- if not the same as FFDC-WAM, this is the most direct competitor\n3. **\"Do What You Say\"** (ICRA 2026) -- runtime verification for VLAs via reasoning-action alignment\n4. **Warm Starts Accelerate Conditional Diffusion** -- if warm-starting video denoising is claimed as novel\n5. **EA-WM** (May 2026) -- a concurrent new world model architecture\n\nSources:\n- [When to Trust Imagination: Adaptive Action Execution for WAMs](https://arxiv.org/abs/2605.06222)\n- [Scaling Verification for VLA Alignment (CoVer)](https://arxiv.org/abs/2602.12281)\n- [AdaWorldPolicy](https://arxiv.org/abs/2602.20057)\n- [EA-WM: Event-Aware Generative World Model](https://arxiv.org/html/2605.06192v1)\n- [Do What You Say: Runtime Reasoning-Action Alignment](https://arxiv.org/abs/2510.16281)\n- [VADF: Vision-Adaptive Diffusion Policy](https://arxiv.org/abs/2604.15938)\n- [DreamZero: WAMs are Zero-shot Policies](https://arxiv.org/abs/2602.15922)\n- [ADPro: Test-time Adaptive Diffusion Policy](https://arxiv.org/abs/2508.06266)\n- [Warm Starts Accelerate Conditional Diffusion](https://arxiv.org/abs/2507.09212)\n- [Two-Steps Diffusion Policy via Genetic Denoising](https://arxiv.org/abs/2510.21991)\n- [FailGuard (OpenReview)](https://openreview.net/forum?id=4PX8lerO9B)\n- [Sentinel: Runtime Monitoring (CoRL 2024)](https://arxiv.org/abs/2410.04640)\n- [FIPER: Failure Prediction at Runtime (NeurIPS 2025)](https://arxiv.org/abs/2510.09459)\n- [FAIL-Detect (RSS 2025)](https://arxiv.org/abs/2503.08558)\n- [X-WAM: Unified 4D World Action Modeling](https://arxiv.org/html/2604.26694v2)\n- [Adaptive Diffusion Policy Optimization](https://arxiv.org/abs/2505.08376)\n- [CoRL 2026 Conference](https://www.corl.org/)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f4a6b9a7-fc74-409f-825a-825bb302de46",
+            "isSidechain": true,
+            "agentId": "a7eafc9a9d9315d6c",
+            "requestId": "req_011CaudTSza9nediBPeEXL3m",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2b3390a2-0425-405f-ae26-9e9c9eb563a1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "48cccba2-55eb-4ef3-800d-053af1c2ef58",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BgnydMy85SE9AcTwmf6Wm3",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2001,
+                "cache_read_input_tokens": 31563,
+                "output_tokens": 2182,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2001
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2182,
+                    "cache_read_input_tokens": 31563,
+                    "cache_creation_input_tokens": 2001,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2001,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000055"
+        }
+      ],
+      "message_count": 55
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-m-reviewing-a-paper-proposal-about-adding-runtime-verification-to-fast-world.md"
+}

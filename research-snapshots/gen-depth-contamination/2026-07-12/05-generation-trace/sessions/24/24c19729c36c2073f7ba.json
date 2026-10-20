@@ -1,0 +1,2171 @@
+{
+  "schema_version": "1.0",
+  "id": "24c19729c36c2073f7ba",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to find which DONE experiments have features.csv data for 4 domains (C4, arXiv, Code, Wikipedia) scored by Qwen2.",
+  "task_key": "agent-ab88b5d8cad8d850c",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-ab88b5d8cad8d850c.jsonl",
+    "occurrence": 1,
+    "bytes": 125341,
+    "sha256": "4031401863b8aa8f26c0b3e00d9ee3930ce204be6fa760b622eb9cae1faf0065"
+  },
+  "statistics": {
+    "messages": 42,
+    "user_turns": 1,
+    "tool_calls": 17,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 17,
+      "tool_result": 17,
+      "assistant": 6
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T02:30:09.999Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to find which DONE experiments have features.csv data for 4 domains (C4, arXiv, Code, Wikipedia) scored by Qwen2.5-1.5B. \n\nThe file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/27980e98-0ba2-4b24-ae11-e00bd22b804d/tool-results/mcp-agent-ml-research-read_registry-1779157794714.txt is JSON with schema: {result: string} where result is a JSON string itself.\n\nPlease:\n1. Parse the JSON (result field is a string that needs to be parsed again)\n2. Find all DONE experiments\n3. For each domain (C4, arXiv, Code/Python, Wikipedia), identify experiments that used Qwen2.5-1.5B as the model or scorer, and report:\n   - exp_id\n   - data_path (especially if features.csv is mentioned)\n   - model_name\n   - domain (C4/arXiv/Code/Wiki)\n   - Any results_dir or output path\n\nAlso check if any experiment mentions \"dream simulation\" in its hypothesis or notes.\n\nReport findings concisely."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "dca62a57-c6dd-4eba-ba8f-37337b874168",
+            "agentId": "ab88b5d8cad8d850c",
+            "type": "user",
+            "uuid": "1c7d7135-0f53-4aad-adf1-e20b7512586a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T02:30:10.008Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "1c7d7135-0f53-4aad-adf1-e20b7512586a",
+                "isSidechain": true,
+                "agentId": "ab88b5d8cad8d850c",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "dd243a2f-844b-4256-874d-f3f93f3ab10d",
+                "timestamp": "2026-05-19T02:30:10.008Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T02:30:13.980Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011bYNc7sdtBx6BvStHsXqAm",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/27980e98-0ba2-4b24-ae11-e00bd22b804d/tool-results/mcp-agent-ml-research-read_registry-1779157794714.txt",
+                "limit": 200
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd243a2f-844b-4256-874d-f3f93f3ab10d",
+            "isSidechain": true,
+            "agentId": "ab88b5d8cad8d850c",
+            "requestId": "req_011CbB98h3SE5PAYD9kpVCdP",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "24c05757-eee2-4fc4-a8dc-aaee8a4716e2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0119JHBUboZWLjDHQxNVrxW1",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16001,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 159,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 16001
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 159,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 16001,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 16001,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T02:30:14.268Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (74723 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_011bYNc7sdtBx6BvStHsXqAm"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "24c05757-eee2-4fc4-a8dc-aaee8a4716e2",
+            "isSidechain": true,
+            "promptId": "dca62a57-c6dd-4eba-ba8f-37337b874168",
+            "agentId": "ab88b5d8cad8d850c",
+            "type": "user",
+            "uuid": "57143815-bffa-4b18-b467-6815f5a65d08",
+            "toolUseResult": "Error: File content (74723 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "24c05757-eee2-4fc4-a8dc-aaee8a4716e2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T02:30:16.741Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file is very large. Let me search for relevant content."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "57143815-bffa-4b18-b467-6815f5a65d08",
+            "isSidechain": true,
+            "agentId": "ab88b5d8cad8d850c",
+            "requestId": "req_011CbB98zqG1TaqppB43yfbp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cd467d25-8112-477e-aa36-670d9e81736e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XQYfFKeR8oAyUPtbpz5E5C",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1060,
+                "cache_read_input_tokens": 16001,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1060,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T02:30:18.688Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L8yAnV2az4yfNYwWLX7fQq",
+              "name": "Grep",
+              "input": {
+                "pattern": "DONE",
+                "path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/27980e98-0ba2-4b24-ae11-e00bd22b804d/tool-results/mcp-agent-ml-research-read_registry-1779157794714.txt",
+                "output_mode": "content",
+                "head_limit": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cd467d25-8112-477e-aa36-670d9e81736e",
+            "isSidechain": true,
+            "agentId": "ab88b5d8cad8d850c",
+            "requestId": "req_011CbB98zqG1TaqppB43yfbp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8605b912-bdce-4065-8258-656b127e1f64",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XQYfFKeR8oAyUPtbpz5E5C",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1060,
+                "cache_read_input_tokens": 16001,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1060,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T02:30:18.714Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L8yAnV2az4yfNYwWLX7fQq",
+              "type": "tool_result",
+              "content": "1:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8605b912-bdce-4065-8258-656b127e1f64",
+            "isSidechain": true,
+            "promptId": "dca62a57-c6dd-4eba-ba8f-37337b874168",
+            "agentId": "ab88b5d8cad8d850c",
+            "type": "user",
+            "uuid": "9da6fede-bbd4-4a66-a57e-7f9edc9062be",
+            "sourceToolAssistantUUID": "8605b912-bdce-4065-8258-656b127e1f64",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T02:30:20.101Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018d5xtEfyFMYNffobmEWTn6",
+              "name": "Grep",
+              "input": {
+                "pattern": "Qwen2.5-1.5B",
+                "path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/27980e98-0ba2-4b24-ae11-e00bd22b804d/tool-results/mcp-agent-ml-research-read_registry-1779157794714.txt",
+                "output_mode": "content",
+                "head_limit": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9da6fede-bbd4-4a66-a57e-7f9edc9062be",
+            "isSidechain": true,
+            "agentId": "ab88b5d8cad8d850c",
+            "requestId": "req_011CbB98zqG1TaqppB43yfbp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9a7a0d7b-6049-4d28-8e24-39092dd86443",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XQYfFKeR8oAyUPtbpz5E5C",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1060,
+                "cache_read_input_tokens": 16001,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1060,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T02:30:20.115Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018d5xtEfyFMYNffobmEWTn6",
+              "type": "tool_result",
+              "content": "1:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9a7a0d7b-6049-4d28-8e24-39092dd86443",
+            "isSidechain": true,
+            "promptId": "dca62a57-c6dd-4eba-ba8f-37337b874168",
+            "agentId": "ab88b5d8cad8d850c",
+            "type": "user",
+            "uuid": "d7168431-fc25-4d4f-940d-8350c967a455",
+            "sourceToolAssistantUUID": "9a7a0d7b-6049-4d28-8e24-39092dd86443",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T02:30:21.512Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018NRaZQP3SaaVoBBnPjWFVK",
+              "name": "Grep",
+              "input": {
+                "pattern": "features\\.csv",
+                "path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/27980e98-0ba2-4b24-ae11-e00bd22b804d/tool-results/mcp-agent-ml-research-read_registry-1779157794714.txt",
+                "output_mode": "content",
+                "head_limit": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d7168431-fc25-4d4f-940d-8350c967a455",
+            "isSidechain": true,
+            "agentId": "ab88b5d8cad8d850c",
+            "requestId": "req_011CbB98zqG1TaqppB43yfbp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e01f971e-40a8-420a-bbba-5baa0873a5ee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XQYfFKeR8oAyUPtbpz5E5C",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1060,
+                "cache_read_input_tokens": 16001,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1060,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T02:30:21.526Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018NRaZQP3SaaVoBBnPjWFVK",
+              "type": "tool_result",
+              "content": "1:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e01f971e-40a8-420a-bbba-5baa0873a5ee",
+            "isSidechain": true,
+            "promptId": "dca62a57-c6dd-4eba-ba8f-37337b874168",
+            "agentId": "ab88b5d8cad8d850c",
+            "type": "user",
+            "uuid": "25a8a6fe-10af-4632-913b-e86b18c17851",
+            "sourceToolAssistantUUID": "e01f971e-40a8-420a-bbba-5baa0873a5ee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T02:30:22.558Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SiHuj27HvtqNPkjXdUS8me",
+              "name": "Grep",
+              "input": {
+                "pattern": "dream simulation",
+                "path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/27980e98-0ba2-4b24-ae11-e00bd22b804d/tool-results/mcp-agent-ml-research-read_registry-1779157794714.txt",
+                "output_mode": "content",
+                "head_limit": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "25a8a6fe-10af-4632-913b-e86b18c17851",
+            "isSidechain": true,
+            "agentId": "ab88b5d8cad8d850c",
+            "requestId": "req_011CbB98zqG1TaqppB43yfbp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cfe7ee02-fc28-4d97-a632-4c1e5ae6779a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XQYfFKeR8oAyUPtbpz5E5C",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1060,
+                "cache_read_input_tokens": 16001,
+                "output_tokens": 757,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1060
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 757,
+                    "cache_read_input_tokens": 16001,
+                    "cache_creation_input_tokens": 1060,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1060,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T02:30:22.571Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SiHuj27HvtqNPkjXdUS8me",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cfe7ee02-fc28-4d97-a632-4c1e5ae6779a",
+            "isSidechain": true,
+            "promptId": "dca62a57-c6dd-4eba-ba8f-37337b874168",
+            "agentId": "ab88b5d8cad8d850c",
+            "type": "user",
+            "uuid": "a810eaec-1db6-4fcc-aa95-f8b84b2a620f",
+            "sourceToolAssistantUUID": "cfe7ee02-fc28-4d97-a632-4c1e5ae6779a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T02:30:26.997Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file is one long line. Let me read it in chunks to parse the JSON."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a810eaec-1db6-4fcc-aa95-f8b84b2a620f",
+            "isSidechain": true,
+            "agentId": "ab88b5d8cad8d850c",
+            "requestId": "req_011CbB99cLSxfDsbLweBBhUi",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "70e2eac9-21c4-42c9-bc82-c07b5681e9f9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KVFPvDhb2K4M7hM3rid88U",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 896,
+                "cache_read_input_tokens": 17061,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 896,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T02:30:27.961Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019UFjLmxp3VpLvyN9QCUU2f",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/27980e98-0ba2-4b24-ae11-e00bd22b804d/tool-results/mcp-agent-ml-research-read_registry-1779157794714.txt",
+                "limit": 1,
+                "offset": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "70e2eac9-21c4-42c9-bc82-c07b5681e9f9",
+            "isSidechain": true,
+            "agentId": "ab88b5d8cad8d850c",
+            "requestId": "req_011CbB99cLSxfDsbLweBBhUi",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6a5e094e-d0b2-4ac0-84bd-9b9189916ed6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KVFPvDhb2K4M7hM3rid88U",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 896,
+                "cache_read_input_tokens": 17061,
+                "output_tokens": 194,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 896
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 194,
+                    "cache_read_input_tokens": 17061,
+                    "cache_creation_input_tokens": 896,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 896,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T02:30:28.248Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (74723 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_019UFjLmxp3VpLvyN9QCUU2f"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6a5e094e-d0b2-4ac0-84bd-9b9189916ed6",
+            "isSidechain": true,
+            "promptId": "dca62a57-c6dd-4eba-ba8f-37337b874168",
+            "agentId": "ab88b5d8cad8d850c",
+            "type": "user",
+            "uuid": "cb9b98da-5f21-4374-80e8-afff5c7a1cda",
+            "toolUseResult": "Error: File content (74723 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "6a5e094e-d0b2-4ac0-84bd-9b9189916ed6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T02:30:40.772Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CMVcgfcbtMnG6SaGStTyhL",
+              "name": "Bash",
+              "input": {
+                "command": "cat '/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/27980e98-0ba2-4b24-ae11-e00bd22b804d/tool-results/mcp-agent-ml-research-read_registry-1779157794714.txt' | python3 -c \"\nimport json, sys\n\nraw = json.load(sys.stdin)\n# Parse the outer JSON\nresult_str = raw['result']\n# Parse the inner JSON string\nregistry = json.loads(result_str)\n\n# Find all DONE experiments\nexperiments = registry.get('experiments', {})\ndone_exps = {k: v for k, v in experiments.items() if v.get('status') == 'DONE'}\n\nprint(f'Total experiments: {len(experiments)}')\nprint(f'DONE experiments: {len(done_exps)}')\nprint()\n\n# Filter for Qwen2.5-1.5B related\nqwen_exps = {}\nfor k, v in done_exps.items():\n    text = json.dumps(v).lower()\n    if 'qwen2.5-1.5b' in text or 'qwen2.5_1.5b' in text or 'qwen2_5-1.5b' in text:\n        qwen_exps[k] = v\n\nprint(f'DONE experiments mentioning Qwen2.5-1.5B: {len(qwen_exps)}')\nprint()\n\n# Check for features.csv\nfeatures_exps = {}\nfor k, v in done_exps.items():\n    text = json.dumps(v)\n    if 'features.csv' in text:\n        features_exps[k] = v\n\nprint(f'DONE experiments mentioning features.csv: {len(features_exps)}')\nprint()\n\n# Check domains\ndomains = ['c4', 'arxiv', 'code', 'python', 'wiki']\nfor k, v in qwen_exps.items():\n    text = json.dumps(v).lower()\n    matched_domains = [d for d in domains if d in text]\n    print(f'=== {k} ===')\n    print(f'  Domains found: {matched_domains}')\n    print(f'  Model: {v.get(\\\"model_name\\\", v.get(\\\"model\\\", \\\"N/A\\\"))}')\n    print(f'  Data path: {v.get(\\\"data_path\\\", \\\"N/A\\\")}')\n    print(f'  Results dir: {v.get(\\\"results_dir\\\", v.get(\\\"output_path\\\", \\\"N/A\\\"))}')\n    # Check for hypothesis\n    hyp = v.get('hypothesis', v.get('notes', ''))\n    if hyp:\n        print(f'  Hypothesis/Notes: {hyp[:200]}')\n    print()\n\"\n",
+                "description": "Parse the registry JSON to find DONE experiments with Qwen2.5-1.5B and features.csv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cb9b98da-5f21-4374-80e8-afff5c7a1cda",
+            "isSidechain": true,
+            "agentId": "ab88b5d8cad8d850c",
+            "requestId": "req_011CbB9A2gut7fyPx5648DBa",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "476d31b0-35cb-4564-a324-0451cc20cc43",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AFs1VtMhpkYEX67PhHkwmY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 255,
+                "cache_read_input_tokens": 17957,
+                "output_tokens": 819,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 255
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 819,
+                    "cache_read_input_tokens": 17957,
+                    "cache_creation_input_tokens": 255,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 255,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T02:30:41.116Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CMVcgfcbtMnG6SaGStTyhL",
+              "type": "tool_result",
+              "content": "Total experiments: 0\nDONE experiments: 0\n\nDONE experiments mentioning Qwen2.5-1.5B: 0\n\nDONE experiments mentioning features.csv: 0",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "476d31b0-35cb-4564-a324-0451cc20cc43",
+            "isSidechain": true,
+            "promptId": "dca62a57-c6dd-4eba-ba8f-37337b874168",
+            "agentId": "ab88b5d8cad8d850c",
+            "type": "user",
+            "uuid": "6a4b62a6-3d10-4614-914b-f4eba8097fee",
+            "sourceToolAssistantUUID": "476d31b0-35cb-4564-a324-0451cc20cc43",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T02:30:44.756Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The registry structure might be different. Let me inspect its top-level keys."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6a4b62a6-3d10-4614-914b-f4eba8097fee",
+            "isSidechain": true,
+            "agentId": "ab88b5d8cad8d850c",
+            "requestId": "req_011CbB9AyeP2KPmDsYbG5xiV",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7ae29476-2a7a-491f-a14e-cffe7447fc07",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HFDA34t7YeCKe8e77UKPWo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 875,
+                "cache_read_input_tokens": 18212,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 875,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T02:30:50.162Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FpLLigfyB4vWHsy9WzLNRD",
+              "name": "Bash",
+              "input": {
+                "command": "cat '/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/27980e98-0ba2-4b24-ae11-e00bd22b804d/tool-results/mcp-agent-ml-research-read_registry-1779157794714.txt' | python3 -c \"\nimport json, sys\n\nraw = json.load(sys.stdin)\nresult_str = raw['result']\nregistry = json.loads(result_str)\n\nprint('Top-level keys:', list(registry.keys()))\nprint()\n\n# Show structure of first few items in each key\nfor key in registry.keys():\n    val = registry[key]\n    if isinstance(val, dict):\n        print(f'{key}: dict with {len(val)} entries')\n        for i, (k2, v2) in enumerate(val.items()):\n            if i < 2:\n                print(f'  Sample key: {k2}')\n                if isinstance(v2, dict):\n                    print(f'    Keys: {list(v2.keys())[:15]}')\n                    # Check for status field\n                    if 'status' in v2:\n                        print(f'    Status: {v2[\\\"status\\\"]}')\n                else:\n                    print(f'    Type: {type(v2).__name__}, Value: {str(v2)[:100]}')\n    elif isinstance(val, list):\n        print(f'{key}: list with {len(val)} entries')\n        if len(val) > 0:\n            print(f'  Sample: {str(val[0])[:200]}')\n    else:\n        print(f'{key}: {type(val).__name__} = {str(val)[:200]}')\n    print()\n\"\n",
+                "description": "Inspect registry structure to find where experiments are stored"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7ae29476-2a7a-491f-a14e-cffe7447fc07",
+            "isSidechain": true,
+            "agentId": "ab88b5d8cad8d850c",
+            "requestId": "req_011CbB9AyeP2KPmDsYbG5xiV",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2dba5cf1-a25b-485f-ab26-b64211c343a5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HFDA34t7YeCKe8e77UKPWo",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 875,
+                "cache_read_input_tokens": 18212,
+                "output_tokens": 541,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 875
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 541,
+                    "cache_read_input_tokens": 18212,
+                    "cache_creation_input_tokens": 875,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 875,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T02:30:50.291Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FpLLigfyB4vWHsy9WzLNRD",
+              "type": "tool_result",
+              "content": "Top-level keys: ['success', 'data', 'error', 'metadata']\n\nsuccess: bool = True\n\ndata: dict with 4 entries\n  Sample key: experiments\n    Keys: ['exp_qwen_retrain_depth7', 'exp_code_pythia1b4', 'exp_028_power_curve', 'exp_qwen_retrain_chain', 'exp_code_qwen1b5', 'exp_olmo_retrain_chain', 'exp_028_subsampling_power', 'exp_026_arxiv_filtering', 'exp_027_latex_ablation', 'exp_025_pythia_filtering', 'exp_14b_c4', 'exp_arXiv_mistral7b_crossscorer', 'exp_arXiv_llama8b_crossscorer', 'exp_arXiv_qwen7b_crossscorer', 'exp_arXiv_qwen1b5_crossscorer']\n  Sample key: count\n    Type: int, Value: 74\n\nerror: NoneType = None\n\nmetadata: dict with 1 entries\n  Sample key: elapsed_seconds\n    Type: float, Value: 0.5948",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2dba5cf1-a25b-485f-ab26-b64211c343a5",
+            "isSidechain": true,
+            "promptId": "dca62a57-c6dd-4eba-ba8f-37337b874168",
+            "agentId": "ab88b5d8cad8d850c",
+            "type": "user",
+            "uuid": "02edeac7-a0a7-4a2e-9938-135ceeb092b8",
+            "sourceToolAssistantUUID": "2dba5cf1-a25b-485f-ab26-b64211c343a5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T02:30:57.588Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DKVSFXyZdj8Ne3wku3BVnS",
+              "name": "Bash",
+              "input": {
+                "command": "cat '/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/27980e98-0ba2-4b24-ae11-e00bd22b804d/tool-results/mcp-agent-ml-research-read_registry-1779157794714.txt' | python3 -c \"\nimport json, sys\n\nraw = json.load(sys.stdin)\nresult_str = raw['result']\nregistry = json.loads(result_str)\n\nexperiments = registry['data']['experiments']\nprint(f'Total experiments: {len(experiments)}')\n\n# Check structure of first experiment\nfirst_key = list(experiments.keys())[0]\nfirst_exp = experiments[first_key]\nprint(f'\\\\nSample experiment ({first_key}):')\nprint(f'  Keys: {list(first_exp.keys())}')\nprint(f'  Status: {first_exp.get(\\\"status\\\", \\\"N/A\\\")}')\nprint()\n\n# Find all DONE experiments\ndone_exps = {k: v for k, v in experiments.items() if v.get('status') == 'DONE'}\nprint(f'DONE experiments: {len(done_exps)}')\nfor k in done_exps:\n    print(f'  {k}')\n\"\n",
+                "description": "Parse experiments from data.experiments and find DONE ones"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "02edeac7-a0a7-4a2e-9938-135ceeb092b8",
+            "isSidechain": true,
+            "agentId": "ab88b5d8cad8d850c",
+            "requestId": "req_011CbB9BfpMYaUNXmMSUtcTL",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "eff23114-2f98-412c-8230-fb1c357c9927",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0126AyvQut4sxoMgQbdGJM9i",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 846,
+                "cache_read_input_tokens": 19087,
+                "output_tokens": 412,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 846
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 412,
+                    "cache_read_input_tokens": 19087,
+                    "cache_creation_input_tokens": 846,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 846,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T02:30:57.737Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DKVSFXyZdj8Ne3wku3BVnS",
+              "type": "tool_result",
+              "content": "Total experiments: 74\n\nSample experiment (exp_qwen_retrain_depth7):\n  Keys: ['status', 'retry_count', 'created_at', 'updated_at', 'hypothesis', 'parent', 'spec', 'checkpoint_path', 'log_path', 'metrics', 'conclusion', 'completed_at', 'notes']\n  Status: DONE\n\nDONE experiments: 74\n  exp_qwen_retrain_depth7\n  exp_code_pythia1b4\n  exp_028_power_curve\n  exp_qwen_retrain_chain\n  exp_code_qwen1b5\n  exp_olmo_retrain_chain\n  exp_028_subsampling_power\n  exp_026_arxiv_filtering\n  exp_027_latex_ablation\n  exp_025_pythia_filtering\n  exp_14b_c4\n  exp_arXiv_mistral7b_crossscorer\n  exp_arXiv_llama8b_crossscorer\n  exp_arXiv_qwen7b_crossscorer\n  exp_arXiv_qwen1b5_crossscorer\n  exp_wiki_scorer_confound_1b5\n  exp_wiki_scorer_confound\n  exp_wiki_qwen7b\n  exp_wiki_mistral7b\n  exp_wiki_llama8b\n  exp_arXiv_qwen7b\n  exp_arXiv_mistral7b\n  exp_arXiv_llama8b\n  exp_wiki_pythia_v2\n  exp_wiki_olmo_v2\n  exp_arXiv_olmo\n  exp_wiki_olmo\n  exp_wiki_pythia\n  exp_009_dose_response\n  exp_009_dose_50pct_v3\n  exp_009_dose_30pct_v3\n  exp_009_dose_10pct_v3\n  exp_027_retrain_bootstrap\n  exp_026_feature_stability_v2\n  exp_026_feature_stability\n  exp_027\n  exp_005_degradation\n  exp_024_arxiv_domain\n  exp_017_qwen_continuation\n  exp_012_binary_confidence\n  exp_C_permutation_10k\n  exp_002_olmo_depth\n  exp_009_dose_50pct_v2\n  exp_009_dose_30pct_v2\n  exp_009_dose_10pct_v2\n  exp_009_dose_50pct\n  exp_009_dose_30pct\n  exp_009_dose_10pct\n  exp_kstar_theta\n  exp_022_cross_scorer_matrix\n  exp_008_retrain_chain_v2\n  exp-008-retrain-chain\n  exp_025_pythia_arxiv\n  exp_020_pythia_decoding\n  exp_021_length_ablation\n  exp_018_llama8b_depth\n  exp_023_domain_ablation\n  exp_019b_mistral_cross_scorer\n  exp_019_mistral7b_depth\n  exp_016_base_vs_instruct\n  exp_003_decoding_ablation\n  exp_004_7b_crossscale\n  exp_E_paired_stats\n  exp_D_obd_n500\n  exp_B_14d_ablation\n  exp_A_alt_scorer\n  exp_015_neural_probe\n  exp_006_graduated_filtering\n  exp_007_bootstrap_ci\n  exp_011_llm_zeroshot\n  exp_013_cross_transfer\n  exp_010_ordinal_baseline\n  exp_001_pythia_depth\n  mvp_pilot_sat_v1",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eff23114-2f98-412c-8230-fb1c357c9927",
+            "isSidechain": true,
+            "promptId": "dca62a57-c6dd-4eba-ba8f-37337b874168",
+            "agentId": "ab88b5d8cad8d850c",
+            "type": "user",
+            "uuid": "dd1e40a7-d42c-4e93-9005-4cabeb06220f",
+            "sourceToolAssistantUUID": "eff23114-2f98-412c-8230-fb1c357c9927",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T02:41:02.010Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 74 experiments are DONE. Now let me find those related to Qwen2.5-1.5B and features.csv across the 4 domains."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd1e40a7-d42c-4e93-9005-4cabeb06220f",
+            "isSidechain": true,
+            "agentId": "ab88b5d8cad8d850c",
+            "requestId": "req_011CbB9xUd9yLWU3XR7iC7NH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "26181a86-a647-43b0-82c3-66dddba90ea2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UHLCskguVVHNG8oh2YhNcv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 21270,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 21270,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T02:41:11.961Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TKaDLcg4dU4tzWEvSSHnpC",
+              "name": "Bash",
+              "input": {
+                "command": "cat '/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/27980e98-0ba2-4b24-ae11-e00bd22b804d/tool-results/mcp-agent-ml-research-read_registry-1779157794714.txt' | python3 -c \"\nimport json, sys\n\nraw = json.load(sys.stdin)\nresult_str = raw['result']\nregistry = json.loads(result_str)\nexperiments = registry['data']['experiments']\n\n# Find Qwen2.5-1.5B related experiments\nqwen_exps = {}\nfor k, v in experiments.items():\n    text = json.dumps(v).lower()\n    if 'qwen' in text and ('1.5b' in text or '1b5' in text):\n        qwen_exps[k] = v\n\nprint(f'Experiments mentioning Qwen + 1.5B: {len(qwen_exps)}')\nprint('Keys:', list(qwen_exps.keys()))\nprint()\n\n# Now show details for each\nfor k, v in qwen_exps.items():\n    text = json.dumps(v).lower()\n    domains = []\n    if 'c4' in text: domains.append('C4')\n    if 'arxiv' in text or 'arXiv' in k: domains.append('arXiv')\n    if 'code' in text or 'python' in text: domains.append('Code')\n    if 'wiki' in text: domains.append('Wikipedia')\n    \n    has_features = 'features.csv' in json.dumps(v)\n    \n    print(f'=== {k} ===')\n    print(f'  Status: {v.get(\\\"status\\\")}')\n    print(f'  Domains: {domains}')\n    print(f'  Has features.csv: {has_features}')\n    \n    # Check spec for model info and paths\n    spec = v.get('spec', {})\n    if spec:\n        print(f'  Spec keys: {list(spec.keys()) if isinstance(spec, dict) else \\\"not a dict\\\"}')\n        if isinstance(spec, dict):\n            for sk in ['model', 'model_name', 'scorer', 'data_path', 'output_dir', 'results_dir', 'domain']:\n                if sk in spec:\n                    print(f'    {sk}: {spec[sk]}')\n    \n    # Check checkpoint/log paths\n    for field in ['checkpoint_path', 'log_path', 'notes', 'conclusion']:\n        val = v.get(field, '')\n        if val and 'features' in str(val).lower():\n            print(f'  {field} (features ref): {str(val)[:300]}')\n        elif val and field in ['checkpoint_path', 'log_path']:\n            print(f'  {field}: {str(val)[:200]}')\n    \n    # hypothesis\n    hyp = v.get('hypothesis', '')\n    if hyp:\n        print(f'  Hypothesis: {hyp[:200]}')\n    \n    print()\n\"\n",
+                "description": "Find Qwen 1.5B experiments with domain and features.csv info"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "26181a86-a647-43b0-82c3-66dddba90ea2",
+            "isSidechain": true,
+            "agentId": "ab88b5d8cad8d850c",
+            "requestId": "req_011CbB9xUd9yLWU3XR7iC7NH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "75524bcb-a991-4670-b573-4ad7ab4bbb0f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UHLCskguVVHNG8oh2YhNcv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 21270,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 21270,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T02:41:12.075Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TKaDLcg4dU4tzWEvSSHnpC",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (36.6KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/27980e98-0ba2-4b24-ae11-e00bd22b804d/tool-results/bivy8cnt6.txt\n\nPreview (first 2KB):\nExperiments mentioning Qwen + 1.5B: 50\nKeys: ['exp_qwen_retrain_depth7', 'exp_code_pythia1b4', 'exp_qwen_retrain_chain', 'exp_code_qwen1b5', 'exp_028_subsampling_power', 'exp_026_arxiv_filtering', 'exp_027_latex_ablation', 'exp_14b_c4', 'exp_arXiv_mistral7b_crossscorer', 'exp_arXiv_llama8b_crossscorer', 'exp_arXiv_qwen1b5_crossscorer', 'exp_wiki_scorer_confound_1b5', 'exp_wiki_scorer_confound', 'exp_wiki_qwen7b', 'exp_wiki_mistral7b', 'exp_wiki_llama8b', 'exp_arXiv_qwen7b', 'exp_arXiv_mistral7b', 'exp_arXiv_llama8b', 'exp_wiki_pythia_v2', 'exp_wiki_olmo_v2', 'exp_arXiv_olmo', 'exp_wiki_olmo', 'exp_wiki_pythia', 'exp_009_dose_response', 'exp_005_degradation', 'exp_024_arxiv_domain', 'exp_017_qwen_continuation', 'exp_002_olmo_depth', 'exp_009_dose_50pct_v2', 'exp_009_dose_30pct_v2', 'exp_009_dose_10pct_v2', 'exp_009_dose_50pct', 'exp_009_dose_30pct', 'exp_009_dose_10pct', 'exp_022_cross_scorer_matrix', 'exp_008_retrain_chain_v2', 'exp-008-retrain-chain', 'exp_025_pythia_arxiv', 'exp_021_length_ablation', 'exp_018_llama8b_depth', 'exp_023_domain_ablation', 'exp_019b_mistral_cross_scorer', 'exp_016_base_vs_instruct', 'exp_003_decoding_ablation', 'exp_004_7b_crossscale', 'exp_015_neural_probe', 'exp_006_graduated_filtering', 'exp_007_bootstrap_ci', 'exp_001_pythia_depth']\n\n=== exp_qwen_retrain_depth7 ===\n  Status: DONE\n  Domains: ['C4', 'Code']\n  Has features.csv: False\n  Spec keys: ['command', 'server', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data']\n    model_name: Qwen2.5-1.5B\n    data_path: /root/autodl-tmp/gen-depth-contamination/data/exp_qwen_retrain_chain_ext\n  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results/exp_qwen_retrain_chain_ext/\n  log_path: /root/autodl-tmp/gen-depth-contamination/results/exp_qwen_retrain_chain_ext/summary.json\n...\n</persisted-output>",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "75524bcb-a991-4670-b573-4ad7ab4bbb0f",
+            "isSidechain": true,
+            "promptId": "dca62a57-c6dd-4eba-ba8f-37337b874168",
+            "agentId": "ab88b5d8cad8d850c",
+            "type": "user",
+            "uuid": "4a99db6e-0776-4de9-a00a-22ae0b9c67e2",
+            "sourceToolAssistantUUID": "75524bcb-a991-4670-b573-4ad7ab4bbb0f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T02:41:16.610Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011L354XztaUZNfY8XdDLhtG",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/27980e98-0ba2-4b24-ae11-e00bd22b804d/tool-results/bivy8cnt6.txt",
+                "limit": 300,
+                "offset": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4a99db6e-0776-4de9-a00a-22ae0b9c67e2",
+            "isSidechain": true,
+            "agentId": "ab88b5d8cad8d850c",
+            "requestId": "req_011CbB9yVXWGN2Mry93paMmp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "eb465468-1cb4-4396-9bcc-5ce2a674400f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XPdWjZgf8Yt5P9bsjFJsqk",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1879,
+                "cache_read_input_tokens": 21270,
+                "output_tokens": 162,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1879
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 162,
+                    "cache_read_input_tokens": 21270,
+                    "cache_creation_input_tokens": 1879,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1879,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T02:41:16.620Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011L354XztaUZNfY8XdDLhtG",
+              "type": "tool_result",
+              "content": "0\tExperiments mentioning Qwen + 1.5B: 50\n1\tKeys: ['exp_qwen_retrain_depth7', 'exp_code_pythia1b4', 'exp_qwen_retrain_chain', 'exp_code_qwen1b5', 'exp_028_subsampling_power', 'exp_026_arxiv_filtering', 'exp_027_latex_ablation', 'exp_14b_c4', 'exp_arXiv_mistral7b_crossscorer', 'exp_arXiv_llama8b_crossscorer', 'exp_arXiv_qwen1b5_crossscorer', 'exp_wiki_scorer_confound_1b5', 'exp_wiki_scorer_confound', 'exp_wiki_qwen7b', 'exp_wiki_mistral7b', 'exp_wiki_llama8b', 'exp_arXiv_qwen7b', 'exp_arXiv_mistral7b', 'exp_arXiv_llama8b', 'exp_wiki_pythia_v2', 'exp_wiki_olmo_v2', 'exp_arXiv_olmo', 'exp_wiki_olmo', 'exp_wiki_pythia', 'exp_009_dose_response', 'exp_005_degradation', 'exp_024_arxiv_domain', 'exp_017_qwen_continuation', 'exp_002_olmo_depth', 'exp_009_dose_50pct_v2', 'exp_009_dose_30pct_v2', 'exp_009_dose_10pct_v2', 'exp_009_dose_50pct', 'exp_009_dose_30pct', 'exp_009_dose_10pct', 'exp_022_cross_scorer_matrix', 'exp_008_retrain_chain_v2', 'exp-008-retrain-chain', 'exp_025_pythia_arxiv', 'exp_021_length_ablation', 'exp_018_llama8b_depth', 'exp_023_domain_ablation', 'exp_019b_mistral_cross_scorer', 'exp_016_base_vs_instruct', 'exp_003_decoding_ablation', 'exp_004_7b_crossscale', 'exp_015_neural_probe', 'exp_006_graduated_filtering', 'exp_007_bootstrap_ci', 'exp_001_pythia_depth']\n2\t\n3\t=== exp_qwen_retrain_depth7 ===\n4\t  Status: DONE\n5\t  Domains: ['C4', 'Code']\n6\t  Has features.csv: False\n7\t  Spec keys: ['command', 'server', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data']\n8\t    model_name: Qwen2.5-1.5B\n9\t    data_path: /root/autodl-tmp/gen-depth-contamination/data/exp_qwen_retrain_chain_ext\n10\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results/exp_qwen_retrain_chain_ext/\n11\t  log_path: /root/autodl-tmp/gen-depth-contamination/results/exp_qwen_retrain_chain_ext/summary.json\n12\t  Hypothesis: Qwen2.5-1.5B retrain-chain extended to depth 7: K* measurement at higher depths. Retrain-chain with LoRA rank=16, alpha=32, 1 epoch per generation. Each depth uses independently trained LoRA merged be\n13\t\n14\t=== exp_code_pythia1b4 ===\n15\t  Status: DONE\n16\t  Domains: ['C4', 'Code']\n17\t  Has features.csv: True\n18\t  Spec keys: ['command', 'server', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data']\n19\t    model_name: Pythia-1.4B\n20\t    data_path: /root/autodl-tmp/gen-depth-contamination/data/exp_code_pythia1b4\n21\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results/exp_code_pythia1b4/\n22\t  log_path: /root/autodl-tmp/gen-depth-contamination/results/exp_code_pythia1b4/train.log\n23\t  Hypothesis: Pythia-1.4B on Code domain (Python/CodeSearchNet) will show K*=2 consistent with Qwen code domain results, indicating generalization depth saturation is model-independent for code data.\n24\t\n25\t=== exp_qwen_retrain_chain ===\n26\t  Status: DONE\n27\t  Domains: ['C4']\n28\t  Has features.csv: False\n29\t  Spec keys: ['checkpoint_path', 'log_path']\n30\t  Hypothesis: Qwen2.5-1.5B retrain-chain ecological validity: LoRA rank=16, alpha=32, 1 epoch per generation. Retrain-chain K* ≤ prompt-chain K*=2, confirming prompt-chain as conservative upper bound across a secon\n31\t\n32\t=== exp_code_qwen1b5 ===\n33\t  Status: DONE\n34\t  Domains: ['C4', 'arXiv', 'Code']\n35\t  Has features.csv: False\n36\t  Spec keys: ['checkpoint_path', 'log_path']\n37\t  notes (features ref): Code domain (Python/CodeSearchNet) K*=2, same as C4. 1v2 AUC=0.7382 well above θ, 2v3 drops to 0.5300. Bug fix: run_pipeline.py:462 int(doc_id) patched for string IDs. Top features: freq_entropy, surp_d2_mean, surp_d1_mean. Data source: CodeSearchNet Python subset (Husain et al. 2019).\n38\t  Hypothesis: Code domain (Python) K* measurement: Qwen2.5-1.5B continuation on CodeSearchNet Python subset (Husain et al. 2019). Code 的高度结构化特性（语法约束、缩进、函数签名）应使代际退化慢于 C4 (K*≥2)，可能接近 arXiv (K*=3)。5500 docs, depth 0-5\n39\t\n40\t=== exp_028_subsampling_power ===\n41\t  Status: DONE\n42\t  Domains: ['C4', 'Code']\n43\t  Has features.csv: False\n44\t  Spec keys: ['command', 'server', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data']\n45\t    model_name: Qwen2.5-1.5B (scorer)\n46\t    data_path: /root/autodl-tmp/gen-depth-contamination/results/ (exp-016 features)\n47\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results/c4_power_curve/\n48\t  log_path: /root/autodl-tmp/gen-depth-contamination/results/c4_power_curve/power_curve_results.json\n49\t  Hypothesis: C4 K*=2 信号的 minimum sample size: 在 n={1000..5000} 范围内，GroupKFold(5) 1v2 AUC 是否稳定超过 θ=0.60？确定可靠判定 K*=2 所需的最小样本量。\n50\t\n51\t=== exp_026_arxiv_filtering ===\n52\t  Status: DONE\n53\t  Domains: ['arXiv']\n54\t  Has features.csv: False\n55\t  Spec keys: ['command', 'server', 'data_path', 'data_count', 'model_name', 'seed', 'gpu', 'strategies', 'lora_rank', 'lora_alpha', 'pid', 'checkpoint_source', 'eval_data']\n56\t    model_name: Qwen2.5-1.5B\n57\t    data_path: /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/\n58\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/\n59\t  log_path: /root/autodl-tmp/gen-depth-contamination/logs/exp_026_arxiv_filtering.log\n60\t  Hypothesis: Graduated depth weighting (α=0.9^d) on arXiv depth chains will outperform both no-filter and binary-cut baselines on downstream benchmarks (MMLU, HellaSwag), because it preserves useful signal from de\n61\t\n62\t=== exp_027_latex_ablation ===\n63\t  Status: DONE\n64\t  Domains: ['arXiv', 'Code']\n65\t  Has features.csv: False\n66\t  Spec keys: ['command', 'server', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data']\n67\t    model_name: Qwen2.5-1.5B (scorer)\n68\t    data_path: /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/\n69\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation/\n70\t  log_path: /root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation/summary.txt\n71\t  Hypothesis: arXiv K*=3 不依赖 LaTeX 格式特征。去除 LaTeX markup 后重新提取 15D features 并跑 pairwise classification，K* 应仍=3，排除 LaTeX 语法作为 confound。\n72\t\n73\t=== exp_14b_c4 ===\n74\t  Status: DONE\n75\t  Domains: ['C4', 'arXiv', 'Code']\n76\t  Has features.csv: False\n77\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'wall_clock_seconds', 'gpu_hours']\n78\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/\n79\t  Hypothesis: Scale-dependent K* on C4: Qwen2.5-14B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 14B scale 是否稳定（已确认 1.5B/7B/8B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus \n80\t\n81\t=== exp_arXiv_mistral7b_crossscorer ===\n82\t  Status: DONE\n83\t  Domains: ['arXiv', 'Code', 'Wikipedia']\n84\t  Has features.csv: False\n85\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_count', 'data_path', 'model_name', 'seed', 'checkpoint_source', 'eval_data', 'checkpoint_path', 'wall_clock_seconds', 'gpu_hours']\n86\t    model_name: Mistral-7B (generator) + Pythia-1.4B (scorer)\n87\t    data_path: /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_mistral7b\n88\t  log_path: ~/runs/gen-depth-contamination/exp_arXiv_mistral7b_crossscorer.log\n89\t  Hypothesis: arXiv cross-scorer (Mistral-7B): Pythia scorer 验证 Mistral arXiv K*=3 是否 scorer-independent。\n90\t\n91\t=== exp_arXiv_llama8b_crossscorer ===\n92\t  Status: DONE\n93\t  Domains: ['arXiv', 'Wikipedia']\n94\t  Has features.csv: False\n95\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data', 'checkpoint_path', 'wall_clock_seconds', 'gpu_hours']\n96\t    model_name: pythia-1.4b\n97\t    data_path: /root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_llama8b_crossscorer/\n98\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_llama8b_crossscorer/\n99\t  log_path: ~/runs/gen-depth-contamination/exp_arXiv_llama8b_crossscorer.log\n100\t  Hypothesis: Replacing Qwen-1.5B scorer with Pythia-1.4B on arXiv LLaMA-8B depth 0-5 texts should yield the same K*=3 boundary, because the saturation signal is a genuine property of LLaMA-8B generated text rather\n101\t\n102\t=== exp_arXiv_qwen1b5_crossscorer ===\n103\t  Status: DONE\n104\t  Domains: ['C4', 'arXiv', 'Code', 'Wikipedia']\n105\t  Has features.csv: False\n106\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'checkpoint_path', 'wall_clock_seconds', 'gpu_hours']\n107\t  Hypothesis: arXiv cross-scorer (1.5B): Pythia-1.4B scorer 重评 Qwen-1.5B arXiv depth 0-5。验证 K*=3 scorer-independent。\n108\t\n109\t=== exp_wiki_scorer_confound_1b5 ===\n110\t  Status: DONE\n111\t  Domains: ['C4', 'Code', 'Wikipedia']\n112\t  Has features.csv: False\n113\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'wall_clock_seconds', 'gpu_hours']\n114\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results/exp_wiki_scorer_confound_1b5/\n115\t  log_path: ~/runs/gen-depth-contamination/exp_wiki_scorer_confound_1b5.log\n116\t  Hypothesis: Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen \n117\t\n118\t=== exp_wiki_scorer_confound ===\n119\t  Status: DONE\n120\t  Domains: ['C4', 'Code', 'Wikipedia']\n121\t  Has features.csv: False\n122\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'checkpoint_path', 'wall_clock_seconds', 'gpu_hours']\n123\t  log_path: ~/runs/gen-depth-contamination/exp_wiki_scorer_confound.log\n124\t  Hypothesis: Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded\n125\t\n126\t=== exp_wiki_qwen7b ===\n127\t  Status: DONE\n128\t  Domains: ['C4', 'arXiv', 'Code', 'Wikipedia']\n129\t  Has features.csv: False\n130\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'wall_clock_seconds', 'gpu_hours']\n131\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results/exp_wiki_qwen7b\n132\t  log_path: ~/runs/gen-depth-contamination/exp_wiki_qwen7b.log\n133\t  Hypothesis: Cross-scale Wikipedia K* validation: Qwen2.5-7B continuation on Wikipedia 的 K* 是否 = 2？Qwen2.5-1.5B 在 Wikipedia K*=2（唯一维持 K*=2 的模型），Pythia/OLMo/均 K*=1。测试 7B 规模是否仍维持 Qwen 家族在 Wikipedia 上的 K*=2 pattern。5\n134\t\n135\t=== exp_wiki_mistral7b ===\n136\t  Status: DONE\n137\t  Domains: ['C4', 'Code', 'Wikipedia']\n138\t  Has features.csv: False\n139\t  Spec keys: ['command', 'server', 'gpu', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data']\n140\t    model_name: mistralai/Mistral-7B-v0.3\n141\t    data_path: data/exp_wiki_mistral7b\n142\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results/exp_wiki_mistral7b\n143\t  log_path: ~/runs/gen-depth-contamination/exp_wiki_mistral7b.log\n144\t  Hypothesis: Mistral-7B Wikipedia K* test: Mistral-7B-v0.3 在 C4 上 K*=1 (text-intrinsic one-wash)。在 Wikipedia domain 上是否仍 K*=1？Pythia/OLMo 在 Wikipedia 均 K*=1，Qwen K*=2。如果 Mistral K*=1 → 确认 one-wash 跨域成立；如果 K*>1 → W\n145\t\n146\t=== exp_wiki_llama8b ===\n147\t  Status: DONE\n148\t  Domains: ['Code', 'Wikipedia']\n149\t  Has features.csv: False\n150\t  Spec keys: ['command', 'server', 'gpu', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data']\n151\t    model_name: Meta-Llama-3.1-8B\n152\t    data_path: data/exp_wiki_llama8b\n153\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results/exp_wiki_llama8b\n154\t  log_path: ~/runs/gen-depth-contamination/exp_wiki_llama8b.log\n155\t  Hypothesis: Cross-scale Wikipedia K* validation: LLaMA-3.1-8B continuation on Wikipedia 的 K* 是否 = 2？Pythia-1.4B K*=1, Qwen-1.5B K*=2, OLMo-1B K*=1。测试 8B scale 是否能在 Wikipedia 均质 domain 上维持 K*=2（scale 是否是决定因素）。5000\n156\t\n157\t=== exp_arXiv_qwen7b ===\n158\t  Status: DONE\n159\t  Domains: ['arXiv', 'Code']\n160\t  Has features.csv: False\n161\t  Spec keys: ['command', 'server', 'gpu', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data', 'checkpoint_path', 'log_path']\n162\t    model_name: Qwen2.5-7B\n163\t    data_path: data/exp_arXiv_qwen7b\n164\t  log_path: ~/runs/gen-depth-contamination/exp_arXiv_qwen7b.log\n165\t  Hypothesis: Qwen2.5-7B on arXiv abstracts will yield K*=3, validating that structured domain K*=3 is stable within the Qwen family across scales (1.5B vs 7B)\n166\t\n167\t=== exp_arXiv_mistral7b ===\n168\t  Status: DONE\n169\t  Domains: ['C4', 'arXiv', 'Code']\n170\t  Has features.csv: False\n171\t  Spec keys: ['command', 'server', 'gpu', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data']\n172\t    model_name: mistralai/Mistral-7B-v0.3\n173\t    data_path: data/exp_arXiv_mistral7b\n174\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_mistral7b\n175\t  log_path: ~/runs/gen-depth-contamination/exp_arXiv_mistral7b.log\n176\t  Hypothesis: Mistral-7B arXiv K* test: Mistral-7B-v0.3 在 C4 上 K*=1 (one-wash model)。在 arXiv structured domain 上是否仍 K*=1？如果 K*=1 → 确认 Mistral 的 one-wash 是 text-intrinsic (与 domain 无关)；如果 K*>1 → domain complexity 可以\n177\t\n178\t=== exp_arXiv_llama8b ===\n179\t  Status: DONE\n180\t  Domains: ['arXiv', 'Code']\n181\t  Has features.csv: False\n182\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data', 'wall_clock_seconds', 'gpu_hours']\n183\t    model_name: Meta-Llama-3.1-8B\n184\t    data_path: data/exp_arXiv_llama8b (seed from exp_024_arxiv/depth_0.jsonl)\n185\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_llama8b/\n186\t  Hypothesis: Cross-architecture arXiv K* validation: LLaMA-3.1-8B continuation on arXiv abstracts 的 K* 是否 = 3？验证 structured domain K*=3 在大模型（8B scale）上是否成立，排除小模型 capacity artifact。2200 docs, depth 0-5, nucleus p=0\n187\t\n188\t=== exp_wiki_pythia_v2 ===\n189\t  Status: DONE\n190\t  Domains: ['Code', 'Wikipedia']\n191\t  Has features.csv: False\n192\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'git_commit', 'checkpoint_source', 'eval_data', 'wall_clock_seconds', 'gpu_hours']\n193\t    model_name: EleutherAI/pythia-1.4b\n194\t    data_path: data/exp_wiki_pythia\n195\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results/exp_wiki_pythia_v2/\n196\t  Hypothesis: Cross-model Wikipedia K* validation (v2 fix): Pythia-1.4B continuation on Wikipedia 的 K* 是否 = 2？使用独立 data_dir 避免 v1 的 data reuse bug，让 pipeline 用 Pythia 重新生成 depth 1-5。5000 docs, depth 0-5, nucleus p=\n197\t\n198\t=== exp_wiki_olmo_v2 ===\n199\t  Status: DONE\n200\t  Domains: ['Code', 'Wikipedia']\n201\t  Has features.csv: False\n202\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'git_commit', 'checkpoint_source', 'eval_data', 'wall_clock_seconds', 'gpu_hours']\n203\t    model_name: allenai/OLMo-1B-hf\n204\t    data_path: data/exp_wiki_olmo\n205\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo_v2/\n206\t  Hypothesis: Cross-model Wikipedia K* validation (v2 fix): OLMo-1B continuation on Wikipedia 的 K* 是否 = 2？使用独立 data_dir 避免 v1 的 data reuse bug，让 pipeline 用 OLMo 重新生成 depth 1-5。5000 docs, depth 0-5, nucleus p=0.95 T\n207\t\n208\t=== exp_arXiv_olmo ===\n209\t  Status: DONE\n210\t  Domains: ['arXiv', 'Code']\n211\t  Has features.csv: False\n212\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data', 'wall_clock_seconds', 'gpu_hours']\n213\t    model_name: OLMo-1B-hf\n214\t    data_path: data/exp_arXiv_olmo (seed from exp_024_arxiv/depth_0.jsonl)\n215\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo/\n216\t  Hypothesis: Cross-model arXiv K* validation: OLMo-1B continuation on arXiv abstracts 的 K* 是否 = 3（与 exp-024 Qwen 和 exp-025 Pythia 一致）？验证 structured domain K*=3 跨第三个模型架构（OLMo）的稳定性。2200 docs, depth 0-5, nucleus p=0.\n217\t\n218\t=== exp_wiki_olmo ===\n219\t  Status: DONE\n220\t  Domains: ['Code', 'Wikipedia']\n221\t  Has features.csv: False\n222\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'git_commit', 'checkpoint_source', 'eval_data', 'wall_clock_seconds', 'gpu_hours']\n223\t    model_name: allenai/OLMo-1B-hf\n224\t    data_path: /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/\n225\t  checkpoint_path: N/A (invalid run)\n226\t  log_path: /root/runs/gen-depth-contamination/exp_wiki_olmo.log\n227\t  Hypothesis: OLMo-1B continuation on Wikipedia domain will show K*=2 depth saturation pattern consistent with Qwen2.5-1.5B, demonstrating cross-model generality of the distinguishability decay phenomenon.\n228\t\n229\t=== exp_wiki_pythia ===\n230\t  Status: DONE\n231\t  Domains: ['Code', 'Wikipedia']\n232\t  Has features.csv: False\n233\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'git_commit', 'checkpoint_source', 'eval_data', 'wall_clock_seconds', 'gpu_hours']\n234\t    model_name: EleutherAI/pythia-1.4b\n235\t    data_path: /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/\n236\t  checkpoint_path: N/A (invalid run)\n237\t  log_path: /root/runs/gen-depth-contamination/exp_wiki_pythia.log\n238\t  Hypothesis: Pythia-1.4B continuation on Wikipedia domain will show K*=2 depth saturation pattern consistent with Qwen2.5-1.5B, demonstrating cross-model generality of the distinguishability decay phenomenon.\n239\t\n240\t=== exp_009_dose_response ===\n241\t  Status: DONE\n242\t  Domains: []\n243\t  Has features.csv: False\n244\t  Spec keys: ['command', 'server', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data']\n245\t    model_name: Qwen2.5-1.5B\n246\t    data_path: /root/autodl-tmp/gen-depth-contamination/data/\n247\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/\n248\t  log_path: /root/autodl-tmp/gen-depth-contamination/artifacts/exp009_v3_partial_10_30.json\n249\t  Hypothesis: Contamination dose-response: 在 10%/30%/50% synthetic injection 比例下，graduated filtering 相对 binary filtering 的收益是否随 contamination 增加而扩大？验证 C3 (graduated filtering superiority) 在不同 contamination severity\n250\t\n251\t=== exp_005_degradation ===\n252\t  Status: DONE\n253\t  Domains: ['C4', 'Code']\n254\t  Has features.csv: False\n255\t  Spec keys: ['command', 'server', 'script_path', 'data_path', 'data_count', 'model_name', 'seed', 'input_dirs', 'checkpoint_path', 'log_path']\n256\t    model_name: Pythia-1.4B / OLMo-1B / Qwen-1.5B (3-model comparison)\n257\t    data_path: /root/autodl-tmp/gen-depth-contamination/results_exp005_degradation\n258\t  checkpoint_path: N/A\n259\t  log_path: /root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json\n260\t  Hypothesis: 递归生成文本在统计特征空间中呈现单调退化趋势（如 perplexity 上升、词汇多样性下降），且退化速率在 K*=2 后显著减缓，这解释了为什么分类器在深代后失去区分力。\n261\t\n262\t=== exp_024_arxiv_domain ===\n263\t  Status: DONE\n264\t  Domains: ['C4', 'arXiv', 'Wikipedia']\n265\t  Has features.csv: False\n266\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'wall_clock_seconds', 'gpu_hours']\n267\t    model_name: Qwen2.5-1.5B (base)\n268\t    data_path: /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/\n269\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv/\n270\t  log_path: ~/runs/gen-depth-contamination/exp_024_arxiv_domain.log\n271\t  Hypothesis: Domain ablation: arXiv abstracts 数据下 K*=2 是否成立？验证 K* 跨数据域（C4 vs Wikipedia vs arXiv）的稳定性。Qwen2.5-1.5B base, continuation, nucleus p=0.95 T=1.0, 5K docs, depth 0-5。\n272\t\n273\t=== exp_017_qwen_continuation ===\n274\t  Status: DONE\n275\t  Domains: ['Code']\n276\t  Has features.csv: False\n277\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'max_depth', 'generation_mode', 'checkpoint_path', 'wall_clock_seconds', 'gpu_hours']\n278\t    model_name: Qwen/Qwen2.5-1.5B-Instruct\n279\t    data_path: /root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont\n280\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results_exp017_qwen_cont/\n281\t  log_path: /root/runs/gen-depth-contamination/exp_017_qwen_continuation.log\n282\t  Hypothesis: Continuation mode 的 K* 应等于 rewrite mode（K*=2），因为 K* 饱和边界是递归生成的文本固有属性，与生成模式（续写 vs 改写）无关——两种模式在深代时都收敛到相同的统计吸引子。\n283\t\n284\t=== exp_002_olmo_depth ===\n285\t  Status: DONE\n286\t  Domains: ['Code']\n287\t  Has features.csv: False\n288\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_path', 'wall_clock_seconds', 'gpu_hours']\n289\t    model_name: allenai/OLMo-1B-hf\n290\t    data_path: /root/autodl-tmp/gen-depth-contamination/data_exp002_olmo\n291\t  Hypothesis: K* 跨模型一致性验证：OLMo-1B 在相同种子数据和解码策略下的 K* 是否与 Qwen2.5-1.5B 一致（K*=2）\n292\t\n293\t=== exp_009_dose_50pct_v2 ===\n294\t  Status: DONE\n295\t  Domains: ['Code']\n296\t  Has features.csv: False\n297\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data', 'wall_clock_seconds', 'gpu_hours']\n298\t    model_name: Qwen2.5-1.5B (continued pretraining)\n299\t    data_path: /root/autodl-tmp/gen-depth-contamination/data/exp_009_dose_response/ratio_50/"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eb465468-1cb4-4396-9bcc-5ce2a674400f",
+            "isSidechain": true,
+            "promptId": "dca62a57-c6dd-4eba-ba8f-37337b874168",
+            "agentId": "ab88b5d8cad8d850c",
+            "type": "user",
+            "uuid": "2943e4f8-a10a-498a-bc97-5dbe20608e74",
+            "sourceToolAssistantUUID": "eb465468-1cb4-4396-9bcc-5ce2a674400f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T02:41:23.914Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017m344vBbFsrGHZVkG73kqo",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/27980e98-0ba2-4b24-ae11-e00bd22b804d/tool-results/bivy8cnt6.txt",
+                "limit": 300,
+                "offset": 300
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2943e4f8-a10a-498a-bc97-5dbe20608e74",
+            "isSidechain": true,
+            "agentId": "ab88b5d8cad8d850c",
+            "requestId": "req_011CbB9yphgEXo4m4TVqjoA8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "bfdfc496-c1ab-4dc9-ad46-24d9cdb2192f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dphz77TqmFpSPXFwm5pUqp",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9813,
+                "cache_read_input_tokens": 23149,
+                "output_tokens": 162,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 9813
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 162,
+                    "cache_read_input_tokens": 23149,
+                    "cache_creation_input_tokens": 9813,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 9813,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T02:41:23.920Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017m344vBbFsrGHZVkG73kqo",
+              "type": "tool_result",
+              "content": "300\t    data_path: /root/autodl-tmp/gen-depth-contamination/data/exp_009_dose_response/ratio_50/\n301\t  checkpoint_path: N/A (crashed before checkpoint)\n302\t  Hypothesis: 50% synthetic injection 下 graduated filtering 应展现最大优势 >=2pp MMLU（v2: fix HF mirror）。机制同 v1：半数数据为合成时 binary 激进丢弃导致数据饥饿。\n303\t\n304\t=== exp_009_dose_30pct_v2 ===\n305\t  Status: DONE\n306\t  Domains: ['Code']\n307\t  Has features.csv: False\n308\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data', 'wall_clock_seconds', 'gpu_hours']\n309\t    model_name: Qwen2.5-1.5B (continued pretraining)\n310\t    data_path: /root/autodl-tmp/gen-depth-contamination/data/exp_009_dose_response/ratio_30/\n311\t  checkpoint_path: N/A (crashed before checkpoint)\n312\t  Hypothesis: 30% synthetic injection 下 graduated filtering 优势应 >=1pp MMLU（v2: fix HF mirror）。机制同 v1：更高污染率下 binary 丢弃更多可用 gen-1 数据。\n313\t\n314\t=== exp_009_dose_10pct_v2 ===\n315\t  Status: DONE\n316\t  Domains: ['Code']\n317\t  Has features.csv: False\n318\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data', 'wall_clock_seconds', 'gpu_hours']\n319\t    model_name: Qwen2.5-1.5B (continued pretraining)\n320\t    data_path: /root/autodl-tmp/gen-depth-contamination/data/exp_009_dose_response/ratio_10/\n321\t  checkpoint_path: N/A (crashed before checkpoint)\n322\t  Hypothesis: 10% synthetic injection 下 graduated filtering 应比 binary 保留 >=0.5pp MMLU（v2: fix HF mirror）。机制同 v1：低污染时 gen-1 有训练价值，binary 全丢造成数据损失。\n323\t\n324\t=== exp_009_dose_50pct ===\n325\t  Status: DONE\n326\t  Domains: ['C4', 'Code']\n327\t  Has features.csv: False\n328\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data', 'wall_clock_seconds', 'gpu_hours']\n329\t    model_name: Qwen2.5-1.5B (continued pretraining)\n330\t    data_path: /root/autodl-tmp/gen-depth-contamination/data/exp_009_dose_response/ratio_50/\n331\t  checkpoint_path: N/A (crashed before checkpoint)\n332\t  Hypothesis: 50% synthetic injection 下，graduated filtering 应展现最大优势（>=2pp MMLU），因为半数数据为合成时 binary filtering 的激进丢弃导致严重数据饥饿，而 graduated 保留 gen-1 维持训练集规模。\n333\t\n334\t=== exp_009_dose_30pct ===\n335\t  Status: DONE\n336\t  Domains: ['Code']\n337\t  Has features.csv: False\n338\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data', 'wall_clock_seconds', 'gpu_hours']\n339\t    model_name: Qwen2.5-1.5B (continued pretraining)\n340\t    data_path: /root/autodl-tmp/gen-depth-contamination/data/exp_009_dose_response/ratio_30/\n341\t  checkpoint_path: N/A (crashed before checkpoint)\n342\t  Hypothesis: 30% synthetic injection 下，graduated filtering 优势应大于 10% 场景（>=1pp MMLU），因为更高污染率意味着 binary filtering 丢弃更多可用 gen-1 数据，而 graduated 仅移除 gen-2+ 有害部分。\n343\t\n344\t=== exp_009_dose_10pct ===\n345\t  Status: DONE\n346\t  Domains: ['Code']\n347\t  Has features.csv: False\n348\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data', 'wall_clock_seconds', 'gpu_hours']\n349\t    model_name: Qwen2.5-1.5B (continued pretraining)\n350\t    data_path: /root/autodl-tmp/gen-depth-contamination/data/exp_009_dose_response/ratio_10/\n351\t  checkpoint_path: N/A (crashed before checkpoint)\n352\t  Hypothesis: 10% synthetic injection 下，graduated filtering 应比 binary filtering 保留更多 MMLU 性能（>=0.5pp），因为低污染场景中 gen-1 文本仍有训练价值，binary 全部丢弃造成不必要的数据损失。\n353\t\n354\t=== exp_022_cross_scorer_matrix ===\n355\t  Status: DONE\n356\t  Domains: ['C4']\n357\t  Has features.csv: False\n358\t  Spec keys: ['command', 'server', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data']\n359\t    model_name: cross: Qwen2.5-1.5B/Pythia-1.4B/OLMo-1B/Qwen2.5-1.5B-Instruct\n360\t    data_path: data_exp016_qwen_base + data_exp020_pythia_greedy + data/exp_021_length_256\n361\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/\n362\t  log_path: /root/autodl-tmp/gen-depth-contamination/logs/exp022_cross_scorer.log\n363\t  Hypothesis: Self-scoring（generator=scorer）的 K* 和 pairwise AUC 应与 cross-scoring（generator≠scorer）差异 < 0.02，证明 K*=2 不是 scorer-generator familiarity artifact，而是文本本身的可区分性边界。\n364\t\n365\t=== exp_008_retrain_chain_v2 ===\n366\t  Status: DONE\n367\t  Domains: ['C4', 'Code']\n368\t  Has features.csv: False\n369\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data', 'wall_clock_seconds', 'gpu_hours']\n370\t    model_name: EleutherAI/pythia-1.4b + LoRA (rank=16, alpha=32)\n371\t    data_path: /root/autodl-tmp/gen-depth-contamination/data/exp_008_retrain_chain/\n372\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/outputs/exp_008_retrain_chain/\n373\t  Hypothesis: Retrain-chain ecological validity (v2, fix: labels padding bug): Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一\n374\t\n375\t=== exp-008-retrain-chain ===\n376\t  Status: DONE\n377\t  Domains: ['C4', 'Code']\n378\t  Has features.csv: False\n379\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data', 'wall_clock_seconds', 'gpu_hours']\n380\t    model_name: EleutherAI/pythia-1.4b + LoRA (rank=16, alpha=32)\n381\t    data_path: /root/autodl-tmp/gen-depth-contamination/data/exp_008_retrain_chain/\n382\t  Hypothesis: Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservati\n383\t\n384\t=== exp_025_pythia_arxiv ===\n385\t  Status: DONE\n386\t  Domains: ['arXiv', 'Code']\n387\t  Has features.csv: False\n388\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data', 'wall_clock_seconds', 'gpu_hours']\n389\t    model_name: EleutherAI/pythia-1.4b\n390\t    data_path: /root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/\n391\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/\n392\t  log_path: /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log\n393\t  Hypothesis: Domain × model interaction: Pythia-1.4B on arXiv data 的 K* 是否与 exp-024 (Qwen on arXiv, K*=?) 一致？验证 arXiv domain effect 跨模型一致性，排除 Qwen-specific artifact。Pythia-1.4B continuation, nucleus p=0.95 T=1.0, \n394\t\n395\t=== exp_021_length_ablation ===\n396\t  Status: DONE\n397\t  Domains: ['C4', 'Code']\n398\t  Has features.csv: False\n399\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'generation_mode', 'max_new_tokens', 'max_depth', 'batch_size', 'checkpoint_path', 'description', 'wall_clock_seconds', 'gpu_hours']\n400\t    model_name: Qwen2.5-1.5B (base)\n401\t    data_path: /root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base/depth_0.jsonl (local C4, copied to data/exp_021_length_{128,256,512}/)\n402\t  Hypothesis: 文本长度消融：128/256/512 tokens 下 K* 是否稳定？验证 K*=2 不依赖于 256-token 固定长度设定。Qwen2.5-1.5B (base) continuation, C4 5K, depth 0-5。\n403\t\n404\t=== exp_018_llama8b_depth ===\n405\t  Status: DONE\n406\t  Domains: ['C4', 'Code']\n407\t  Has features.csv: False\n408\t  Spec keys: ['command', 'server', 'gpu', 'data_path', 'data_count', 'model_name', 'scorer', 'seed', 'generation_mode', 'max_depth', 'batch_size', 'feat_batch_size', 'log_path', 'checkpoint_path', 'description']\n409\t    model_name: LLaMA-3.1-8B (Meta-Llama-3.1-8B)\n410\t    scorer: Qwen2.5-1.5B base\n411\t    data_path: C4 validation (HuggingFace streaming)\n412\t  Hypothesis: Cross-family K* 验证：LLaMA-3.1-8B continuation mode 的 K* 是否 = 2？首次超出 Qwen 家族，验证 K* universality 跨模型架构。C4 5K, depth 0-5, scorer=Qwen2.5-1.5B base。\n413\t\n414\t=== exp_023_domain_ablation ===\n415\t  Status: DONE\n416\t  Domains: ['C4', 'Wikipedia']\n417\t  Has features.csv: False\n418\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'wall_clock_seconds', 'gpu_hours']\n419\t    model_name: Qwen2.5-1.5B (base)\n420\t    data_path: /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/\n421\t  checkpoint_path: results_exp023_wiki_domain/\n422\t  log_path: ~/runs/gen-depth-contamination/exp_023_domain_ablation.log\n423\t  Hypothesis: Domain ablation: Wikipedia 数据下 K*=2 是否成立？验证 K* 跨数据域（C4 vs Wikipedia）的稳定性。Qwen2.5-1.5B base, continuation, nucleus p=0.95 T=1.0, 5K docs, depth 0-5。\n424\t\n425\t=== exp_019b_mistral_cross_scorer ===\n426\t  Status: DONE\n427\t  Domains: ['C4', 'Code']\n428\t  Has features.csv: False\n429\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_source', 'eval_data', 'wall_clock_seconds', 'gpu_hours']\n430\t    model_name: mistral-7b-cross-qwen1.5b-scorer\n431\t    data_path: /root/autodl-tmp/gen-depth-contamination/data_exp019b_mistral_cross\n432\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results_exp019b_mistral_cross_scorer\n433\t  log_path: ~/runs/gen-depth-contamination/exp_019b_mistral_cross_scorer.log\n434\t  notes (features ref): K*=1 confirmed genuine (not self-scorer artifact). Cross-scorer (Qwen-base) 1v2 AUC=0.5695 CI [0.5645, 0.5746] — 比 self-scorer (0.5935) 更低。换 scorer 后区分度下降，排除 self-scorer inflation 假说。Top-3 features 与 self-scorer 完全一致: freq_entropy, surp_d1_skew, surp_d1_mean。\n435\t  Hypothesis: 排除 self-scorer 因素：Mistral-7B depth chain 用 Qwen2.5-1.5B-base 评分后 K* 是否=2？如果 K*=2 则 exp-019 的 K*=1 是 self-scorer artifact；如果 K*=1 则是 Mistral 生成文本的固有特性。\n436\t\n437\t=== exp_016_base_vs_instruct ===\n438\t  Status: DONE\n439\t  Domains: ['C4', 'Code']\n440\t  Has features.csv: False\n441\t  Spec keys: ['command', 'server', 'data_path', 'data_count', 'model_name', 'seed', 'generation_mode', 'scorer', 'gpu', 'tmux_session', 'log_path', 'note', 'checkpoint_source', 'eval_data']\n442\t    model_name: Qwen/Qwen2.5-1.5B (base, fp16)\n443\t    scorer: Qwen2.5-1.5B (base)\n444\t    data_path: /root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base\n445\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results_exp016_qwen_base/\n446\t  log_path: /tmp/exp016.log\n447\t  Hypothesis: Base vs Instruct K* 对比：Qwen2.5-1.5B (base) continuation mode 的 K* 是否与 exp-017 (Instruct continuation, K*=2) 一致？封堵 \"K*=2 是 instruct-tuning 副产物\" 攻击面。唯一变量 = base vs instruct。\n448\t\n449\t=== exp_003_decoding_ablation ===\n450\t  Status: DONE\n451\t  Domains: ['Code']\n452\t  Has features.csv: False\n453\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'data_path', 'data_count', 'model_name', 'seed', 'configs', 'checkpoint_path', 'log_path_note']\n454\t    model_name: Qwen/Qwen2.5-1.5B-Instruct\n455\t    data_path: /root/autodl-tmp/gen-depth-contamination/data_exp003_*\n456\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json\n457\t  log_path: ~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\n458\t  Hypothesis: 解码策略调控 K*：不同 top_p/temperature 设置是否改变饱和边界（greedy→更低 K*? 高温度→更高 K*?）\n459\t\n460\t=== exp_004_7b_crossscale ===\n461\t  Status: DONE\n462\t  Domains: ['C4']\n463\t  Has features.csv: False\n464\t  Spec keys: ['hypothesis', 'server', 'model_name', 'data_count', 'seed', 'command', 'gpu', 'data_path', 'note']\n465\t    model_name: Qwen/Qwen2.5-7B (fp16, 14.5GB) + Qwen2.5-1.5B-Instruct (scorer)\n466\t    data_path: /root/autodl-tmp/gen-depth-contamination/data_exp004_qwen7b\n467\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/data_exp004_qwen7b/\n468\t  log_path: /root/runs/gen-depth-contamination/exp_004_7b_crossscale.log\n469\t  Hypothesis: K*=2 在 7B scale 下是否成立？Qwen2.5-7B continuation mode, C4 5K seeds, scorer=Qwen2.5-1.5B。Reviewer R2 Critical: 现有实验仅 ≤1.5B\n470\t\n471\t=== exp_015_neural_probe ===\n472\t  Status: DONE\n473\t  Domains: ['Code']\n474\t  Has features.csv: False\n475\t  Spec keys: ['command', 'server', 'data_path', 'data_count', 'model_name', 'seed']\n476\t    model_name: Qwen/Qwen2.5-1.5B-Instruct (frozen encoder -> MLP probe)\n477\t    data_path: data_exp001_pythia + data_exp002_olmo + data_exp017_qwen_cont\n478\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/artifacts/exp015_neural_probe_results.json\n479\t  log_path: ~/runs/gen-depth-contamination/exp_015_neural_probe.log\n480\t  Hypothesis: Learned representations (frozen LLM → MLP) 的 K* 是否高于 hand-crafted 15D features？若 K*_neural > K*_15D，说明 15D projection 是 K*=2 的部分原因；若相同，加强 information-theoretic impossibility 论证\n481\t\n482\t=== exp_006_graduated_filtering ===\n483\t  Status: DONE\n484\t  Domains: ['Code']\n485\t  Has features.csv: False\n486\t  Spec keys: ['command', 'server', 'data_path', 'data_count', 'model_name', 'seed', 'gpu', 'checkpoint_source', 'eval_data', 'note']\n487\t    model_name: Qwen2.5-1.5B-Instruct\n488\t    data_path: /root/autodl-tmp/gen-depth-contamination/data/depth_corpus_30k\n489\t  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/artifacts/exp006_filtering/results/\n490\t  log_path: ~/runs/gen-depth-contamination/exp_006_graduated_filtering.log\n491\t  Hypothesis: K*-aware graduated filtering (exploiting human/gen-1/gen-2+ trichotomy) yields better downstream LM quality than binary filtering on MMLU and HellaSwag. 6 strategies × 5 seeds × α sweep.\n492\t\n493\t=== exp_007_bootstrap_ci ===\n494\t  Status: DONE\n495\t  Domains: ['Code']\n496\t  Has features.csv: False\n497\t  Spec keys: ['command', 'script_path', 'server', 'data_path', 'data_count', 'model_name', 'seed', 'input_sources', 'bootstrap_resamples', 'permutation_resamples', 'checkpoint_path', 'log_path']\n498\t    model_name: Pythia-1.4B / OLMo-1B / Qwen-1.5B\n499\t    data_path: /root/autodl-tmp/gen-depth-contamination/artifacts/bootstrap_ci_results.json\n500\t  Hypothesis: K* 统计严谨性验证：bootstrap 95% CI 和 permutation test 确认 K*=2 在三个模型族上统计显著\n501\t\n502\t=== exp_001_pythia_depth ===\n503\t  Status: DONE\n504\t  Domains: ['Code']\n505\t  Has features.csv: False\n506\t  Spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_path', 'wall_clock_seconds', 'gpu_hours']\n507\t    model_name: EleutherAI/pythia-1.4b\n508\t    data_path: /root/autodl-tmp/gen-depth-contamination/data_exp001_pythia\n509\t  Hypothesis: K* 跨模型一致性验证：Pythia-1.4B 在相同种子数据和解码策略下的 K* 是否与 Qwen2.5-1.5B 一致（K*=2）\n510\t\n511\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bfdfc496-c1ab-4dc9-ad46-24d9cdb2192f",
+            "isSidechain": true,
+            "promptId": "dca62a57-c6dd-4eba-ba8f-37337b874168",
+            "agentId": "ab88b5d8cad8d850c",
+            "type": "user",
+            "uuid": "0362f060-51f2-44d0-bc93-38cc98be29ec",
+            "sourceToolAssistantUUID": "bfdfc496-c1ab-4dc9-ad46-24d9cdb2192f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T02:41:32.499Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me specifically look for experiments that have features.csv and used Qwen2.5-1.5B as the scorer, since that's what produces features.csv files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0362f060-51f2-44d0-bc93-38cc98be29ec",
+            "isSidechain": true,
+            "agentId": "ab88b5d8cad8d850c",
+            "requestId": "req_011CbB9zNBGS1VHmzsvffTPn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "064cf933-f40d-47c0-9e0a-f379348a7a7a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fz3QNwyJXMtzyDi67mDHJv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6775,
+                "cache_read_input_tokens": 32962,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6775,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T02:41:43.972Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0159CEniTv1hXvQ1F87Af5Lk",
+              "name": "Bash",
+              "input": {
+                "command": "cat '/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/27980e98-0ba2-4b24-ae11-e00bd22b804d/tool-results/mcp-agent-ml-research-read_registry-1779157794714.txt' | python3 -c \"\nimport json, sys\n\nraw = json.load(sys.stdin)\nresult_str = raw['result']\nregistry = json.loads(result_str)\nexperiments = registry['data']['experiments']\n\n# Find experiments with features.csv\nprint('=== EXPERIMENTS WITH features.csv ===')\nfor k, v in experiments.items():\n    text = json.dumps(v)\n    if 'features.csv' in text:\n        print(f'  {k}')\n        # Find where features.csv appears\n        for field, val in v.items():\n            if isinstance(val, str) and 'features.csv' in val:\n                print(f'    {field}: {val[:300]}')\n            elif isinstance(val, dict):\n                for sk, sv in val.items():\n                    if isinstance(sv, str) and 'features.csv' in sv:\n                        print(f'    spec.{sk}: {sv[:300]}')\n\nprint()\n\n# Now check the notes/conclusion for each domain's features.csv paths\n# Look for experiments where Qwen2.5-1.5B is the scorer and features.csv is generated\nprint('=== EXPERIMENTS WITH features IN notes/conclusion ===')\nfor k, v in experiments.items():\n    text = json.dumps(v)\n    if 'features' in text.lower() and ('qwen' in text.lower() and '1.5b' in text.lower()):\n        notes = v.get('notes', '')\n        conclusion = v.get('conclusion', '')\n        combined = notes + ' ' + conclusion\n        if 'features' in combined.lower():\n            # Detect domain\n            domains = []\n            full_text = json.dumps(v).lower()\n            if 'c4' in full_text and ('c4' in k.lower() or 'c4' in v.get('hypothesis','').lower() or 'c4' in notes.lower()): domains.append('C4')\n            if 'arxiv' in full_text: domains.append('arXiv')\n            if 'code' in k.lower() or 'python' in full_text or 'codesearchnet' in full_text: domains.append('Code')\n            if 'wiki' in full_text: domains.append('Wikipedia')\n            \n            print(f'\\\\n  {k} (domains: {domains})')\n            if notes:\n                print(f'    Notes: {notes[:400]}')\n            if conclusion:\n                print(f'    Conclusion: {conclusion[:400]}')\n\" 2>&1 | head -120\n",
+                "description": "Find experiments with features.csv and feature extraction details"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "064cf933-f40d-47c0-9e0a-f379348a7a7a",
+            "isSidechain": true,
+            "agentId": "ab88b5d8cad8d850c",
+            "requestId": "req_011CbB9zNBGS1VHmzsvffTPn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "24742226-2a6f-4f40-9ea6-73b928ea9103",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fz3QNwyJXMtzyDi67mDHJv",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6775,
+                "cache_read_input_tokens": 32962,
+                "output_tokens": 834,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6775
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 834,
+                    "cache_read_input_tokens": 32962,
+                    "cache_creation_input_tokens": 6775,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6775,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T02:41:44.120Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0159CEniTv1hXvQ1F87Af5Lk",
+              "type": "tool_result",
+              "content": "=== EXPERIMENTS WITH features.csv ===\n  exp_code_pythia1b4\n    spec.features_csv: /root/autodl-tmp/gen-depth-contamination/data/exp_code_pythia1b4/features.csv\n  exp_028_power_curve\n    spec.data_path: /root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base/features.csv\n  exp_027_retrain_bootstrap\n    spec.data_path: /root/autodl-tmp/gen-depth-contamination/features/exp_008_retrain_chain_v2_features.csv\n  exp_026_feature_stability_v2\n    spec.data_path: /root/autodl-tmp/gen-depth-contamination/features/exp_001_pythia_features.csv\n  exp_010_ordinal_baseline\n    spec.data_path: data/features.csv, data_exp001_pythia/features.csv, data_exp002_olmo/features.csv\n\n=== EXPERIMENTS WITH features IN notes/conclusion ===\n\n  exp_code_qwen1b5 (domains: ['C4', 'arXiv', 'Code'])\n    Notes: Code domain (Python/CodeSearchNet) K*=2, same as C4. 1v2 AUC=0.7382 well above θ, 2v3 drops to 0.5300. Bug fix: run_pipeline.py:462 int(doc_id) patched for string IDs. Top features: freq_entropy, surp_d2_mean, surp_d1_mean. Data source: CodeSearchNet Python subset (Husain et al. 2019).\n    Conclusion: success\n\n  exp_019b_mistral_cross_scorer (domains: ['Code'])\n    Notes: K*=1 confirmed genuine (not self-scorer artifact). Cross-scorer (Qwen-base) 1v2 AUC=0.5695 CI [0.5645, 0.5746] — 比 self-scorer (0.5935) 更低。换 scorer 后区分度下降，排除 self-scorer inflation 假说。Top-3 features 与 self-scorer 完全一致: freq_entropy, surp_d1_skew, surp_d1_mean。\n    Conclusion: success",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "24742226-2a6f-4f40-9ea6-73b928ea9103",
+            "isSidechain": true,
+            "promptId": "dca62a57-c6dd-4eba-ba8f-37337b874168",
+            "agentId": "ab88b5d8cad8d850c",
+            "type": "user",
+            "uuid": "490eafcc-cfdb-4de4-afd6-1e95171648d7",
+            "sourceToolAssistantUUID": "24742226-2a6f-4f40-9ea6-73b928ea9103",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T02:41:55.952Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WASHKomJMHiZz6FeHP7AGK",
+              "name": "Bash",
+              "input": {
+                "command": "cat '/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/27980e98-0ba2-4b24-ae11-e00bd22b804d/tool-results/mcp-agent-ml-research-read_registry-1779157794714.txt' | python3 -c \"\nimport json, sys\n\nraw = json.load(sys.stdin)\nresult_str = raw['result']\nregistry = json.loads(result_str)\nexperiments = registry['data']['experiments']\n\n# Look specifically for experiments that:\n# 1. Used Qwen2.5-1.5B as scorer (most use it)\n# 2. Have checkpoint/results paths that likely contain features.csv\n# 3. Cover each of the 4 domains: C4, arXiv, Code, Wikipedia\n\n# Key experiments by domain with Qwen2.5-1.5B scorer:\n# C4: exp_016_base_vs_instruct, exp_001_pythia_depth (qwen scorer), exp_028_power_curve\n# arXiv: exp_024_arxiv_domain\n# Code: exp_code_qwen1b5\n# Wikipedia: exp_023_domain_ablation\n\n# Show detailed info for the primary domain experiments\nprimary_exps = [\n    'exp_016_base_vs_instruct',  # C4 domain, Qwen2.5-1.5B\n    'exp_024_arxiv_domain',      # arXiv domain, Qwen2.5-1.5B \n    'exp_code_qwen1b5',          # Code domain, Qwen2.5-1.5B\n    'exp_023_domain_ablation',   # Wikipedia domain, Qwen2.5-1.5B\n    'exp_028_power_curve',       # C4, has features.csv path\n    'exp_001_pythia_depth',      # C4, Pythia but qwen scorer\n    'mvp_pilot_sat_v1',          # original pilot\n]\n\nfor exp_id in primary_exps:\n    if exp_id in experiments:\n        v = experiments[exp_id]\n        print(f'=== {exp_id} ===')\n        print(f'  Full spec: {json.dumps(v.get(\\\"spec\\\", {}), indent=2)[:600]}')\n        print(f'  checkpoint_path: {v.get(\\\"checkpoint_path\\\", \\\"N/A\\\")}')\n        print(f'  log_path: {v.get(\\\"log_path\\\", \\\"N/A\\\")}')\n        print(f'  notes: {v.get(\\\"notes\\\", \\\"N/A\\\")[:300]}')\n        print(f'  conclusion: {v.get(\\\"conclusion\\\", \\\"N/A\\\")[:200]}')\n        print()\n\" 2>&1\n",
+                "description": "Show detailed spec for primary domain experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "490eafcc-cfdb-4de4-afd6-1e95171648d7",
+            "isSidechain": true,
+            "agentId": "ab88b5d8cad8d850c",
+            "requestId": "req_011CbBA1rJUHv2rYud6Zh6hN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "104eed2e-8100-4c37-adfd-c45e4edcff3f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NoRSEUVsD8bqEXE69jZYvA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1419,
+                "cache_read_input_tokens": 39737,
+                "output_tokens": 789,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1419
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 789,
+                    "cache_read_input_tokens": 39737,
+                    "cache_creation_input_tokens": 1419,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1419,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T02:41:56.116Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WASHKomJMHiZz6FeHP7AGK",
+              "type": "tool_result",
+              "content": "=== exp_016_base_vs_instruct ===\n  Full spec: {\n  \"command\": \"python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data_dir data_exp016_qwen_base --results_dir results_exp016_qwen_base --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\",\n  \"server\": \"cqa1-22115\",\n  \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base\",\n  \"data_count\": 5000,\n  \"model_name\": \"Qwen/Qwen2.5-1.5B (base, fp16)\",\n  \"seed\": 42,\n  \"generation_mode\": \"continuation\",\n  \"scorer\": \"Qwen2.5-1.5B (base)\",\n  \"gpu\": [\n    \"cuda:0\"\n  ],\n  \"tmux_session\": \"exp016\",\n  \"log_path\": \"/tmp\n  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results_exp016_qwen_base/\n  log_path: /tmp/exp016.log\n  notes: 2026-05-16: Resumed on cqa1-22115 (migrated from westc-26893). Depth 0-3 complete, generating depth 4-5. PID=3442 on cuda:0.\n  conclusion: success\n\n=== exp_024_arxiv_domain ===\n  Full spec: {\n  \"command\": \"bash scripts/exp024_arxiv_domain.sh\",\n  \"server\": \"cqa1-22115\",\n  \"gpu\": \"cuda:2\",\n  \"pid\": 46766,\n  \"log_path\": \"~/runs/gen-depth-contamination/exp_024_arxiv_domain.log\",\n  \"submitted_at\": \"2026-05-16T14:44:07.168Z\",\n  \"submitted_via\": \"submit_training_job\",\n  \"backend\": \"tmux\",\n  \"account\": \"root\",\n  \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/\",\n  \"data_count\": 2200,\n  \"model_name\": \"Qwen2.5-1.5B (base)\",\n  \"seed\": 42,\n  \"wall_clock_seconds\": 9545.8,\n  \"gpu_hours\": 2.65\n}\n  checkpoint_path: /root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv/\n  log_path: ~/runs/gen-depth-contamination/exp_024_arxiv_domain.log\n  notes: 2026-05-16 15:05 重启成功。PID 48295, cuda:2, 73% util。修复：depth_0.jsonl 已有 2200 行 arXiv 数据，prepare_seed_data 行数检查通过后跳过 C4 下载，HF_DATASETS_OFFLINE=1 不再冲突。n_docs=2200。预计 ~20 min 完成剩余 depth。\n  conclusion: success\n\n=== exp_code_qwen1b5 ===\n  Full spec: {\n  \"checkpoint_path\": \"N/A (pipeline experiment, no model checkpoint)\",\n  \"log_path\": \"~/runs/gen-depth-contamination/exp_code_qwen1b5.log\"\n}\n  checkpoint_path: N/A\n  log_path: N/A\n  notes: Code domain (Python/CodeSearchNet) K*=2, same as C4. 1v2 AUC=0.7382 well above θ, 2v3 drops to 0.5300. Bug fix: run_pipeline.py:462 int(doc_id) patched for string IDs. Top features: freq_entropy, surp_d2_mean, surp_d1_mean. Data source: CodeSearchNet Python subset (Husain et al. 2019).\n  conclusion: success\n\n=== exp_023_domain_ablation ===\n  Full spec: {\n  \"command\": \"bash scripts/exp023_wiki_domain.sh\",\n  \"server\": \"cqa1-22115\",\n  \"gpu\": \"cuda:1\",\n  \"pid\": 39530,\n  \"log_path\": \"~/runs/gen-depth-contamination/exp_023_domain_ablation.log\",\n  \"submitted_at\": \"2026-05-16T12:00:07.999Z\",\n  \"submitted_via\": \"submit_training_job\",\n  \"backend\": \"tmux\",\n  \"account\": \"root\",\n  \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/\",\n  \"data_count\": 5000,\n  \"model_name\": \"Qwen2.5-1.5B (base)\",\n  \"seed\": 42,\n  \"wall_clock_seconds\": 12314.4,\n  \"gpu_hours\": 3.42\n}\n  checkpoint_path: results_exp023_wiki_domain/\n  log_path: ~/runs/gen-depth-contamination/exp_023_domain_ablation.log\n  notes: N/A\n  conclusion: success\n\n=== exp_028_power_curve ===\n  Full spec: {\n  \"checkpoint_path\": \"N/A (analysis experiment)\",\n  \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_028_power_curve/\",\n  \"command\": \"python scripts/exp_028_power_curve.py\",\n  \"server\": \"cqa1-22115\",\n  \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base/features.csv\",\n  \"data_count\": 30000,\n  \"model_name\": \"N/A\",\n  \"seed\": 42\n}\n  checkpoint_path: N/A\n  log_path: N/A\n  notes: K*=2 detection on C4 requires minimum n=2000 docs for 100% success rate (10/10 resamples). Below n=2000 power drops sharply: n=1000 → 30%, n=500 → 20%. AUC variance monotonically decreases with n (0.018 at n=500 → 0.004 at n=4000). Feature data from exp016_qwen_base (C4, 5000 docs × 6 depths × 15 fe\n  conclusion: success\n\n=== exp_001_pythia_depth ===\n  Full spec: {\n  \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b --data_dir /root/autodl-tmp/gen-depth-contamination/data_exp001_pythia --res\n  checkpoint_path: N/A\n  log_path: N/A\n  notes: N/A\n  conclusion: success\n\n=== mvp_pilot_sat_v1 ===\n  Full spec: {\n  \"command\": \"bash /root/autodl-tmp/gen-depth-contamination/run_mvp.sh\",\n  \"server\": \"autodl-4090d\",\n  \"gpu\": [\n    \"cuda:0\"\n  ],\n  \"pid\": \"10619\",\n  \"log_path\": \"~/runs/gen-depth-contamination/mvp_pilot_sat_v1.log\",\n  \"submitted_at\": \"2026-05-12T16:46:33.175Z\",\n  \"submitted_via\": \"submit_training_job\",\n  \"backend\": \"tmux\",\n  \"account\": \"root\",\n  \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data/\",\n  \"wall_clock_seconds\": 9533.4,\n  \"gpu_hours\": 2.65\n}\n  checkpoint_path: N/A\n  log_path: N/A\n  notes: v2 left-padding rerun, per-fold AUC, full self-BLEU\n  conclusion: success",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "104eed2e-8100-4c37-adfd-c45e4edcff3f",
+            "isSidechain": true,
+            "promptId": "dca62a57-c6dd-4eba-ba8f-37337b874168",
+            "agentId": "ab88b5d8cad8d850c",
+            "type": "user",
+            "uuid": "f04992a9-9f40-421a-a814-15f229e395b8",
+            "sourceToolAssistantUUID": "104eed2e-8100-4c37-adfd-c45e4edcff3f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T02:42:11.408Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MsGyCjx2mPWUXjANot7wyz",
+              "name": "Bash",
+              "input": {
+                "command": "cat '/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/27980e98-0ba2-4b24-ae11-e00bd22b804d/tool-results/mcp-agent-ml-research-read_registry-1779157794714.txt' | python3 -c \"\nimport json, sys\n\nraw = json.load(sys.stdin)\nresult_str = raw['result']\nregistry = json.loads(result_str)\nexperiments = registry['data']['experiments']\n\n# The pipeline produces features.csv in the results_dir or data_dir.\n# Let me look for experiments where Qwen2.5-1.5B is the PRIMARY generator+scorer \n# and covers exactly one of the 4 domains.\n\n# C4 domain with Qwen2.5-1.5B:\n# - exp_016_base_vs_instruct: results_dir=results_exp016_qwen_base, data_dir=data_exp016_qwen_base \n#   -> features.csv confirmed at data_exp016_qwen_base/features.csv (used by exp_028_power_curve)\n#\n# arXiv domain with Qwen2.5-1.5B:\n# - exp_024_arxiv_domain: results_dir=results/exp_024_arxiv/, data_path=data/exp_024_arxiv/\n#   -> features.csv likely at results/exp_024_arxiv/features.csv or data/exp_024_arxiv/features.csv\n#\n# Code domain with Qwen2.5-1.5B:\n# - exp_code_qwen1b5: log_path ~/runs/..., notes mention CodeSearchNet Python\n#   -> features.csv likely at results/exp_code_qwen1b5/features.csv or data/exp_code_qwen1b5/features.csv\n#\n# Wikipedia domain with Qwen2.5-1.5B:\n# - exp_023_domain_ablation: results_dir=results_exp023_wiki_domain/, data_path=data/exp_023_wiki/\n#   -> features.csv likely at results_exp023_wiki_domain/features.csv or data/exp_023_wiki/features.csv\n\n# Let's also check if there's a 'results_dir' in the spec or other fields\nfor exp_id in ['exp_016_base_vs_instruct', 'exp_024_arxiv_domain', 'exp_code_qwen1b5', 'exp_023_domain_ablation']:\n    v = experiments[exp_id]\n    spec = v.get('spec', {})\n    cmd = spec.get('command', '')\n    print(f'{exp_id}:')\n    print(f'  command: {cmd[:500]}')\n    print(f'  All spec keys: {list(spec.keys())}')\n    # Look for results_dir in command\n    if '--results_dir' in cmd:\n        idx = cmd.index('--results_dir')\n        results_part = cmd[idx:idx+100].split()[1] if len(cmd[idx:].split()) > 1 else 'N/A'\n        print(f'  --results_dir from command: {results_part}')\n    if '--data_dir' in cmd:\n        idx = cmd.index('--data_dir')\n        data_part = cmd[idx:idx+100].split()[1] if len(cmd[idx:].split()) > 1 else 'N/A'\n        print(f'  --data_dir from command: {data_part}')\n    print()\n\n# Also check: does exp_code_qwen1b5 have a features_csv field like exp_code_pythia1b4?\nprint('exp_code_pythia1b4 spec:', json.dumps(experiments['exp_code_pythia1b4'].get('spec',{}), indent=2))\n\"\n",
+                "description": "Extract command-line paths for primary domain experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f04992a9-9f40-421a-a814-15f229e395b8",
+            "isSidechain": true,
+            "agentId": "ab88b5d8cad8d850c",
+            "requestId": "req_011CbBA2jbg74DShWCmVtfRJ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f7dc3cb4-749c-474f-a161-e0fd9d378be0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M3Kpv2VxGmPyn2bmRFaKdB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3016,
+                "cache_read_input_tokens": 41156,
+                "output_tokens": 1049,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3016
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1049,
+                    "cache_read_input_tokens": 41156,
+                    "cache_creation_input_tokens": 3016,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3016,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T02:42:11.501Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MsGyCjx2mPWUXjANot7wyz",
+              "type": "tool_result",
+              "content": "exp_016_base_vs_instruct:\n  command: python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data_dir data_exp016_qwen_base --results_dir results_exp016_qwen_base --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\n  All spec keys: ['command', 'server', 'data_path', 'data_count', 'model_name', 'seed', 'generation_mode', 'scorer', 'gpu', 'tmux_session', 'log_path', 'note', 'checkpoint_source', 'eval_data']\n  --results_dir from command: results_exp016_qwen_base\n  --data_dir from command: data_exp016_qwen_base\n\nexp_024_arxiv_domain:\n  command: bash scripts/exp024_arxiv_domain.sh\n  All spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'wall_clock_seconds', 'gpu_hours']\n\nexp_code_qwen1b5:\n  command: \n  All spec keys: ['checkpoint_path', 'log_path']\n\nexp_023_domain_ablation:\n  command: bash scripts/exp023_wiki_domain.sh\n  All spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'wall_clock_seconds', 'gpu_hours']\n\nexp_code_pythia1b4 spec: {\n  \"command\": \"cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/bin/activate && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_code_pythia1b4 --results_dir results/exp_code_pythia1b4 --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\",\n  \"server\": \"cqa1-22115\",\n  \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_code_pythia1b4\",\n  \"data_count\": 5000,\n  \"model_name\": \"Pythia-1.4B\",\n  \"seed\": 42,\n  \"checkpoint_source\": \"exp_code_qwen1b5\",\n  \"eval_data\": \"CodeSearchNet Python 5000 docs\"\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f7dc3cb4-749c-474f-a161-e0fd9d378be0",
+            "isSidechain": true,
+            "promptId": "dca62a57-c6dd-4eba-ba8f-37337b874168",
+            "agentId": "ab88b5d8cad8d850c",
+            "type": "user",
+            "uuid": "e4e7dfbf-0541-4c4f-bd64-52db29c5dd15",
+            "sourceToolAssistantUUID": "f7dc3cb4-749c-474f-a161-e0fd9d378be0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T02:42:18.945Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DNJ1NSf1mkJKP8StXSPJDV",
+              "name": "Bash",
+              "input": {
+                "command": "cat '/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/27980e98-0ba2-4b24-ae11-e00bd22b804d/tool-results/mcp-agent-ml-research-read_registry-1779157794714.txt' | python3 -c \"\nimport json, sys\n\nraw = json.load(sys.stdin)\nresult_str = raw['result']\nregistry = json.loads(result_str)\nexperiments = registry['data']['experiments']\n\n# Check if there are any other sections in data besides experiments\nprint('data keys:', list(registry['data'].keys()))\nprint()\n\n# Check for 'dream simulation' across ALL text\nall_text = json.dumps(registry).lower()\nif 'dream' in all_text:\n    # Find where\n    idx = all_text.index('dream')\n    print(f'Found \\\"dream\\\" at position {idx}')\n    print(f'Context: ...{all_text[max(0,idx-50):idx+100]}...')\nelse:\n    print('No mention of \\\"dream\\\" anywhere in the registry.')\n\n# Also check 'simulation' \nif 'simulation' in all_text:\n    idx = all_text.index('simulation')\n    print(f'\\\\nFound \\\"simulation\\\" at position {idx}')\n    print(f'Context: ...{all_text[max(0,idx-50):idx+100]}...')\nelse:\n    print('\\\\nNo mention of \\\"simulation\\\" anywhere in the registry.')\n\" 2>&1\n",
+                "description": "Check for dream simulation mentions and registry structure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e4e7dfbf-0541-4c4f-bd64-52db29c5dd15",
+            "isSidechain": true,
+            "agentId": "ab88b5d8cad8d850c",
+            "requestId": "req_011CbBA3sKo3A1miFtk8kuKc",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "857c22e9-0bb3-4c53-a973-7ead6ca1b685",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jjru45haNzEBCPeeGWM2Cv",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1863,
+                "cache_read_input_tokens": 44172,
+                "output_tokens": 468,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1863
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 468,
+                    "cache_read_input_tokens": 44172,
+                    "cache_creation_input_tokens": 1863,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1863,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T02:42:19.049Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DNJ1NSf1mkJKP8StXSPJDV",
+              "type": "tool_result",
+              "content": "data keys: ['experiments', 'count', 'total', 'baseline']\n\nNo mention of \"dream\" anywhere in the registry.\n\nNo mention of \"simulation\" anywhere in the registry.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "857c22e9-0bb3-4c53-a973-7ead6ca1b685",
+            "isSidechain": true,
+            "promptId": "dca62a57-c6dd-4eba-ba8f-37337b874168",
+            "agentId": "ab88b5d8cad8d850c",
+            "type": "user",
+            "uuid": "02fdef7a-97d1-46fc-978b-f566bd251451",
+            "sourceToolAssistantUUID": "857c22e9-0bb3-4c53-a973-7ead6ca1b685",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T02:42:44.444Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SvYhzpsHuHj48fjPYY64JW",
+              "name": "Bash",
+              "input": {
+                "command": "cat '/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/27980e98-0ba2-4b24-ae11-e00bd22b804d/tool-results/mcp-agent-ml-research-read_registry-1779157794714.txt' | python3 -c \"\nimport json, sys\n\nraw = json.load(sys.stdin)\nresult_str = raw['result']\nregistry = json.loads(result_str)\nexperiments = registry['data']['experiments']\n\n# Final summary: for each of the 4 target domains, identify the PRIMARY experiment\n# that used Qwen2.5-1.5B as generator+scorer and would have features.csv\n\nprint('='*70)\nprint('SUMMARY: Experiments with features.csv data for 4 domains')\nprint('All scored by Qwen2.5-1.5B')\nprint('='*70)\n\nprint()\nprint('1. C4 Domain')\nprint('   exp_id: exp_016_base_vs_instruct')\nprint('   model_name: Qwen2.5-1.5B (base) [generator + scorer]')\nprint('   data_dir: data_exp016_qwen_base')\nprint('   results_dir: results_exp016_qwen_base')\nprint('   features.csv: /root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base/features.csv')\nprint('   (confirmed: exp_028_power_curve reads this file)')\nprint('   K*=2, n=5000 docs, depth 0-5')\n\nprint()\nprint('2. arXiv Domain')\nprint('   exp_id: exp_024_arxiv_domain')\nprint('   model_name: Qwen2.5-1.5B (base) [generator + scorer]')\nprint('   data_path: /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/')\nprint('   results_dir: /root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv/')\nprint('   features.csv: likely at results/exp_024_arxiv/features.csv or data/exp_024_arxiv/features.csv')\nprint('   (not explicitly referenced by path but pipeline produces it)')\nprint('   K*=3, n=2200 docs, depth 0-5')\n\nprint()\nprint('3. Code (Python) Domain')\nprint('   exp_id: exp_code_qwen1b5')\nprint('   model_name: Qwen2.5-1.5B [generator + scorer]')\nprint('   data_path: likely /root/autodl-tmp/gen-depth-contamination/data/exp_code_qwen1b5/')\nprint('   features.csv: not explicitly recorded but pipeline generates it')\nprint('   (exp_code_pythia1b4 has explicit features_csv field; exp_code_qwen1b5 does not)')\nprint('   K*=2, n=5500 docs, depth 0-5, CodeSearchNet Python')\n\nprint()\nprint('4. Wikipedia Domain')\nprint('   exp_id: exp_023_domain_ablation')\nprint('   model_name: Qwen2.5-1.5B (base) [generator + scorer]')\nprint('   data_path: /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/')\nprint('   results_dir: results_exp023_wiki_domain/')\nprint('   features.csv: likely at results_exp023_wiki_domain/features.csv or data/exp_023_wiki/features.csv')\nprint('   (not explicitly referenced by path but pipeline produces it)')\nprint('   K*=2, n=5000 docs, depth 0-5')\n\nprint()\nprint('='*70)\nprint('ADDITIONAL: Experiments with EXPLICIT features.csv paths in registry')\nprint('='*70)\nprint()\nprint('- exp_028_power_curve:')\nprint('    reads: /root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base/features.csv (C4)')\nprint('- exp_code_pythia1b4:')  \nprint('    has: /root/autodl-tmp/gen-depth-contamination/data/exp_code_pythia1b4/features.csv (Code, Pythia generator)')\nprint('- exp_027_retrain_bootstrap:')\nprint('    reads: /root/autodl-tmp/gen-depth-contamination/features/exp_008_retrain_chain_v2_features.csv (C4, retrain)')\nprint('- exp_026_feature_stability_v2:')\nprint('    reads: /root/autodl-tmp/gen-depth-contamination/features/exp_001_pythia_features.csv (C4, Pythia)')\nprint('- exp_010_ordinal_baseline:')\nprint('    reads: data/features.csv, data_exp001_pythia/features.csv, data_exp002_olmo/features.csv')\n\nprint()\nprint('='*70)\nprint('\\\"dream simulation\\\": NOT FOUND anywhere in the registry')\nprint('='*70)\n\"\n",
+                "description": "Generate final summary of findings"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "02fdef7a-97d1-46fc-978b-f566bd251451",
+            "isSidechain": true,
+            "agentId": "ab88b5d8cad8d850c",
+            "requestId": "req_011CbBA4RpQWgodM98si4duf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "27beea50-ebe1-4776-9aee-c70c991cceb4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012YSZhsGugxZCuNJvgQeZoZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 521,
+                "cache_read_input_tokens": 46035,
+                "output_tokens": 1376,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 521
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1376,
+                    "cache_read_input_tokens": 46035,
+                    "cache_creation_input_tokens": 521,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 521,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T02:42:44.580Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SvYhzpsHuHj48fjPYY64JW",
+              "type": "tool_result",
+              "content": "======================================================================\nSUMMARY: Experiments with features.csv data for 4 domains\nAll scored by Qwen2.5-1.5B\n======================================================================\n\n1. C4 Domain\n   exp_id: exp_016_base_vs_instruct\n   model_name: Qwen2.5-1.5B (base) [generator + scorer]\n   data_dir: data_exp016_qwen_base\n   results_dir: results_exp016_qwen_base\n   features.csv: /root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base/features.csv\n   (confirmed: exp_028_power_curve reads this file)\n   K*=2, n=5000 docs, depth 0-5\n\n2. arXiv Domain\n   exp_id: exp_024_arxiv_domain\n   model_name: Qwen2.5-1.5B (base) [generator + scorer]\n   data_path: /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/\n   results_dir: /root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv/\n   features.csv: likely at results/exp_024_arxiv/features.csv or data/exp_024_arxiv/features.csv\n   (not explicitly referenced by path but pipeline produces it)\n   K*=3, n=2200 docs, depth 0-5\n\n3. Code (Python) Domain\n   exp_id: exp_code_qwen1b5\n   model_name: Qwen2.5-1.5B [generator + scorer]\n   data_path: likely /root/autodl-tmp/gen-depth-contamination/data/exp_code_qwen1b5/\n   features.csv: not explicitly recorded but pipeline generates it\n   (exp_code_pythia1b4 has explicit features_csv field; exp_code_qwen1b5 does not)\n   K*=2, n=5500 docs, depth 0-5, CodeSearchNet Python\n\n4. Wikipedia Domain\n   exp_id: exp_023_domain_ablation\n   model_name: Qwen2.5-1.5B (base) [generator + scorer]\n   data_path: /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/\n   results_dir: results_exp023_wiki_domain/\n   features.csv: likely at results_exp023_wiki_domain/features.csv or data/exp_023_wiki/features.csv\n   (not explicitly referenced by path but pipeline produces it)\n   K*=2, n=5000 docs, depth 0-5\n\n======================================================================\nADDITIONAL: Experiments with EXPLICIT features.csv paths in registry\n======================================================================\n\n- exp_028_power_curve:\n    reads: /root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base/features.csv (C4)\n- exp_code_pythia1b4:\n    has: /root/autodl-tmp/gen-depth-contamination/data/exp_code_pythia1b4/features.csv (Code, Pythia generator)\n- exp_027_retrain_bootstrap:\n    reads: /root/autodl-tmp/gen-depth-contamination/features/exp_008_retrain_chain_v2_features.csv (C4, retrain)\n- exp_026_feature_stability_v2:\n    reads: /root/autodl-tmp/gen-depth-contamination/features/exp_001_pythia_features.csv (C4, Pythia)\n- exp_010_ordinal_baseline:\n    reads: data/features.csv, data_exp001_pythia/features.csv, data_exp002_olmo/features.csv\n\n======================================================================\n\"dream simulation\": NOT FOUND anywhere in the registry\n======================================================================",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "27beea50-ebe1-4776-9aee-c70c991cceb4",
+            "isSidechain": true,
+            "promptId": "dca62a57-c6dd-4eba-ba8f-37337b874168",
+            "agentId": "ab88b5d8cad8d850c",
+            "type": "user",
+            "uuid": "cac180c9-c70b-4b3e-80d1-2971ca4c9ec6",
+            "sourceToolAssistantUUID": "27beea50-ebe1-4776-9aee-c70c991cceb4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-19T02:42:57.942Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are the findings:\n\n## 4 Domain Experiments with Qwen2.5-1.5B (all DONE)\n\nAll 74 experiments in the registry have status DONE.\n\n### Primary experiments (Qwen2.5-1.5B as generator + scorer):\n\n| Domain | exp_id | data_path | features.csv confirmed? | K* | n_docs |\n|--------|--------|-----------|------------------------|-----|--------|\n| **C4** | `exp_016_base_vs_instruct` | `data_exp016_qwen_base` | **Yes** (path: `/root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base/features.csv`, referenced by `exp_028_power_curve`) | 2 | 5000 |\n| **arXiv** | `exp_024_arxiv_domain` | `data/exp_024_arxiv/` | Not explicitly in registry, but pipeline produces it. Check `results/exp_024_arxiv/features.csv` or `data/exp_024_arxiv/features.csv` | 3 | 2200 |\n| **Code (Python)** | `exp_code_qwen1b5` | Likely `data/exp_code_qwen1b5/` (no explicit path recorded; minimal spec) | Not explicitly in registry. Note: sibling experiment `exp_code_pythia1b4` has explicit `features_csv: data/exp_code_pythia1b4/features.csv` | 2 | 5500 |\n| **Wikipedia** | `exp_023_domain_ablation` | `data/exp_023_wiki/` | Not explicitly in registry. Check `results_exp023_wiki_domain/features.csv` or `data/exp_023_wiki/features.csv` | 2 | 5000 |\n\n### Key observations:\n- Only **C4** has a confirmed, explicitly referenced `features.csv` path in the registry (used by `exp_028_power_curve`).\n- For **arXiv**, **Code**, and **Wikipedia**, the pipeline should have generated `features.csv` but the paths are not recorded in the registry. You would need to check the remote server filesystem to confirm they exist.\n- `exp_code_qwen1b5` has a very sparse spec (only `checkpoint_path` and `log_path`), but its notes confirm results (K\\*=2, AUC=0.7382, top features: freq_entropy, surp_d2_mean, surp_d1_mean).\n\n### \"dream simulation\"\nNo mention of \"dream simulation\" (or even \"dream\" or \"simulation\") anywhere in the registry."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cac180c9-c70b-4b3e-80d1-2971ca4c9ec6",
+            "isSidechain": true,
+            "agentId": "ab88b5d8cad8d850c",
+            "requestId": "req_011CbBA6Jj55sBZy6vSUDYwu",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d860ac38-7a33-4ca4-95d1-ccbe0469e0a7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "27980e98-0ba2-4b24-ae11-e00bd22b804d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GVYpvXt44Yz9yojhwb3zDC",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2332,
+                "cache_read_input_tokens": 46556,
+                "output_tokens": 643,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2332
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 643,
+                    "cache_read_input_tokens": 46556,
+                    "cache_creation_input_tokens": 2332,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2332,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000042"
+        }
+      ],
+      "message_count": 42
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-find-which-done-experiments-have-features-csv-data-for-4-domains-c4.md"
+}

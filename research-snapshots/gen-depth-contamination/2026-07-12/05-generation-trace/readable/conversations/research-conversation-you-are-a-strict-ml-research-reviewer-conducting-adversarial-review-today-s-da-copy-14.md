@@ -1,0 +1,6281 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-11 (UTC).** Your job: indep
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 85
+- **Recorded user turns:** 1
+- **Tool calls:** 23
+- **Original source:** `logs/chats/exported-trajectories/account-2/c456e8da-0cff-42ea-a02b-73b703c03320.jsonl`
+- **Structured JSON:** [`30c576093cc86bc6de25.json`](../../sessions/30/30c576093cc86bc6de25.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-12T02:02:34.742Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-12T02:02:34.742Z",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-11 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: LLM Agents.\n\nDirection: LLM Agents — planning algorithms, memory architectures, tool use, multi-agent coordination, agent training (SFT/RL), self-correction in agentic loops, environment feedback exploitation.\n\nContribution type: METHOD ONLY. Must propose a concrete new algorithm, training procedure, or inference-time mechanism. Reject pure benchmark / dataset / analysis ideas. Method + analysis OK if analysis validates the method.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total (baselines + method + ablations). Show the math.\n2. Time: ≤16 days. Build on existing OSS agent codebases (AutoGen, LangGraph, OpenManus, etc.) — no from-scratch systems.\n3. Eval: existing benchmarks only — AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, ALFWorld, Mind2Web, τ-bench.\n\nAvoid: generic ReAct variants, plain tool retrieval, naive memory summarization. Look for: agent training with minimal RL budget, structured planning beyond flat CoT, multi-agent communication protocols, agent self-verification mechanisms.\n\nTag: direction=agent, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-11?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 9/10)\n{\n  \"title\": \"SimGate: Learning When to Route LLM Agents to Deterministic Simulators for Rule-Governed Reasoning\",\n  \"core_problem\": \"Per-step compute allocation methods for LLM agents route between internal reasoning depths (CogRouter's four cognitive levels, ARES's effort tiers) or between skip-simulation and LLM-based world model rollouts (ITP-R's K-head predictor). On environments requiring accurate prediction of rule-governed dynamics, LLM world model routing consistently degrades performance relative to pure internal reasoning adaptation. ITP-R (Qwen2.5-7B) achieves only 85.07% overall on ALFWorld — underperforming CogRouter's 92.5% by 7.4 points — and scores only 62.58 (seen) / 58.94 (unseen) on ScienceWorld, dramatically below CogRouter's 84.6 score / 72.0% SR. Critically, the 85.07% overall is averaged across six subtasks with high variance (PICK: 94.29%, COOL: 53.84%), revealing that LLM world model foresight introduces noise that exceeds its planning value across diverse task types. This consistent underperformance on both benchmarks demonstrates that approximate LLM foresight is not merely unhelpful on complex scientific reasoning — it actively hurts on household tasks too. Meanwhile, deterministic external computation — environment simulators implementing exact rule-governed transitions, code interpreters providing exact arithmetic/symbolic computation, calculators — is available but remains unexploited by any learned routing method. Existing simulator-using agents invoke them unconditionally (Qian et al. show forced simulation degrades performance by up to 5% on FrozenLake/Sokoban; ARTIS always simulates every action before commitment, wasting compute on easy steps), while ITP-R's learned gating routes only to an approximate LLM world model. In the parallel domain of mathematical reasoning, ReTool (ICLR 2026) and AgentMath (ICLR 2026) demonstrate that learning when to invoke code interpreters yields dramatic gains (ReTool-32B: 72.5% on AIME vs 40% text-only baseline), but use implicit routing embedded in the LLM's generation rather than an explicit, interpretable router module. The gap: no method learns per-step selective routing via an explicit lightweight router to ground-truth deterministic computation as a complementary computation type to internal reasoning, across both interactive environments and tool-use settings.\",\n  \"opportunity\": \"ITP-R (Jan 2026) is the closest prior work on learned simulation gating in interactive environments, and ReTool/AgentMath (both ICLR 2026) are the closest in tool-augmented reasoning. Three key observations create our opportunity. First, ITP-R's LLM world model routing consistently underperforms pure internal adaptation (CogRouter): 85.07% vs 92.5% on ALFWorld (−7.4 points), 62.58 vs 84.6 on ScienceWorld (−22 points). This is not a benchmark-specific failure — approximate LLM foresight introduces noise exceeding its planning value across both simple household tasks and complex scientific reasoning. Second, deterministic computation is available across a broad spectrum of agent tasks but unused by any explicit routing method: ScienceWorld's Scala/JVM backend implements exact rule-governed transitions (water boils at 100°C, circuits follow Ohm's law, chemical reactions follow stoichiometry), ALFWorld's TextWorld/PDDL backend provides exact household physics, and code interpreters provide exact arithmetic/symbolic computation for mathematical reasoning. Third, while ReTool and AgentMath (both ICLR 2026) demonstrate the value of learning when to invoke code interpreters in math, they use implicit routing — the LLM itself decides when to insert code blocks within its generation — rather than an explicit, interpretable router module. This means (a) routing decisions are entangled with the agent backbone, requiring retraining whenever the backbone changes, (b) routing behavior is opaque and difficult to analyze per-task-category, and (c) the approach does not cleanly generalize across different types of deterministic computation (simulators, interpreters, calculators). The opportunity: a unified explicit routing framework with a lightweight, modular router that treats deterministic external computation as a categorically different modality from internal reasoning, applicable across both interactive environments (simulators) and tool-use settings (code interpreters).\",\n  \"landscape\": \"ITP / ITP-R ('Imagine-then-Plan', arXiv 2601.08955, Jan 2026) introduces a K-head predictor for per-step simulation gating, routing to an SFT-trained LLM world model. With Qwen2.5-7B backbone: ALFWorld 85.07% overall (per-task: PICK 94.29%, CLEAN 88.89%, HEAT 87.50%, COOL 53.84%, LOOK 76.00%, PICK2 91.67%), ScienceWorld 62.58/58.94 score seen/unseen. Underperforms CogRouter on BOTH benchmarks, demonstrating that LLM world model routing introduces noise exceeding its planning value. Code at github.com/loyiv/ITP. CogRouter ('Think Fast and Slow', arXiv 2602.12662, Feb 2026) defines four cognitive levels with CoSFT + CoPO training on Qwen2.5-7B, achieving ALFWorld 92.5% and ScienceWorld 84.6 score / 72.0% SR with 62% token reduction. Purely internal reasoning — current ScienceWorld continuous-score SOTA among Qwen2.5-7B routing methods. Code at github.com/rhyang2021/CogRouter. EPO (arXiv 2509.22576, v1 Sep 2025, v2 Feb 2026) reports ScienceWorld results using binary success rate metrics: PPO+EPO achieves Succ.* = 100.0%, Succ.¯ = 96.8% (IID); GRPO+EPO achieves Succ.* = 95.8%, Succ.¯ = 83.8% (IID), with GRPO baseline at Succ.* = 93.8%, Succ.¯ = 81.6% (IID). Note: Succ.* (best success rate) and Succ.¯ (converged success rate) are both from Table 1; the 95.8% and 83.8% are different metrics for the same GRPO+EPO condition. These binary success metrics and the elevated GRPO baseline (93.8% Succ.* vs CogRouter's 53.0% SR) indicate different evaluation configurations, making direct comparison to CogRouter's standardized continuous-score protocol unreliable. We follow CogRouter's protocol for comparability. EMPO2 (arXiv 2602.23008, ICLR 2026) achieves 75.9 average continuous score on ScienceWorld using 19 tasks with Qwen2.5-7B via exploratory memory-augmented hybrid RL. This IS directly comparable to CogRouter's metric (continuous score) and confirms CogRouter's 84.6 as the stronger result. ARES (arXiv 2603.07915, March 2026) trains a Qwen3-1.7B SFT router for {low, mid, high} reasoning effort, achieving 52.7% reasoning token reduction. Internal-only. STEP-HRL (arXiv 2604.05808, April 2026) achieves ALFWorld 97.14% seen / 97.76% unseen and ScienceWorld 81.57% seen / 77.81% unseen via hierarchical RL with Llama-3-8B. Strong recent result, though different backbone prevents exact CogRouter comparison. Embodied Planner-R1 (arXiv 2506.23127) achieves ALFWorld 97.78% and ScienceWorld 79.92% via pure RL with IPO. Skill1 (arXiv 2605.06130, May 2026) achieves ALFWorld 97.5% via unified skill evolution with RL — current ALFWorld SOTA. Does not evaluate on ScienceWorld. PA-MoE+GiGPO (arXiv 2602.17038, Feb 2026) achieves ALFWorld 95.3% (7B). ReTool (arXiv 2504.11536, ICLR 2026) learns when to invoke a code interpreter for mathematical reasoning via SFT cold-start + outcome-based RL. ReTool-32B achieves 72.5% on AIME, surpassing o1-preview by 27.9% and text-only RL baseline (40%) by 32.5 points. However, ReTool uses implicit routing: the LLM decides within its own generation when to insert code blocks, with no explicit router module. The routing decision is entangled with the backbone model. AgentMath (arXiv 2512.20745, ICLR 2026) achieves 90.6% on AIME24, 86.4% on AIME25 via tool-augmented agentic RL with code interpreter. Like ReTool, uses implicit routing via the backbone LLM rather than an explicit router. SimGate differs from both in using an explicit lightweight router module (Qwen3-1.7B) that makes interpretable, modular routing decisions decoupled from the agent backbone. AutoTool (AAAI 2026, arXiv 2511.14650) builds tool-invocation graphs from trajectories to predict next tool calls, skipping LLM inference when confident: ScienceWorld 0.708 progress rate with 23.6% LLM call reduction, ALFWorld 0.531 with 15.4% reduction. AutoTool predicts WHICH tool to call from statistical patterns, not WHAT state will result — it does not route to a deterministic simulator for state prediction. ARTIS (arXiv 2602.01709) implements risk-aware iterative simulation: N simulated attempts before every real action via an LLM-based simulator. Evaluated on BFCL-v3 and ACEBench, not ALFWorld/ScienceWorld. ARTIS always simulates (wasting compute on easy steps), while SimGate selectively routes. Dyna-Think (arXiv 2506.00320, May 2025) integrates internal world model simulation into reasoning via two training approaches (DIT and DDT). Evaluated on OSWorld and WindowsAgentArena, not ALFWorld/ScienceWorld. Uses a learned (not deterministic) world model with no explicit routing/gating — simulation is integrated into the thinking process rather than selectively invoked. Not a direct competitor: different world model type (learned vs deterministic), different benchmarks, no routing decision. Dyna-Mind/RESIM (arXiv 2510.09577) achieves ALFWorld 92.5% (Dyna-GRPO) via learning to simulate from experience — same group as Dyna-Think, also uses learned (not deterministic) simulator. BoundaryRouter (arXiv 2605.07180, May 2026) routes between LLM inference and agent execution using experience memory, but routes between two LLM-based systems, not to a deterministic simulator. AVIC (arXiv 2602.08236, Feb 2026) implements learned binary gating for world model invocation in visual spatial reasoning. Qian et al. (arXiv 2601.03905, Jan 2026) empirically show forced world model use degrades performance; the primary bottleneck is deciding when to simulate. MTRouter (arXiv 2604.23530, ACL 2026) routes between different LLMs per turn. Key gap: ITP-R learns simulation gating but routes to an approximate LLM world model that consistently underperforms pure internal reasoning. ReTool/AgentMath learn when to invoke code interpreters but use implicit routing entangled with the backbone. No method provides an explicit, modular, lightweight router for selective invocation of ground-truth deterministic computation across both interactive environments and tool-use settings.\",\n  \"approach\": \"We propose SimGate, a hybrid routing framework that learns per-step whether an LLM agent should rely on internal reasoning or invoke deterministic external computation for ground-truth results, targeting settings where exact computation is available (environment simulators, code interpreters). Unlike ITP-R, which routes to an LLM world model that consistently underperforms pure internal reasoning, SimGate routes to deterministic oracles providing exact outputs at CPU-only cost. Unlike ReTool/AgentMath (ICLR 2026), which embed routing decisions implicitly within the LLM's generation, SimGate uses an explicit lightweight router module — enabling interpretable per-step routing analysis, backbone-agnostic deployment, and unified routing across different computation types.\\n\\nThe framework has three components:\\n\\n(1) Agent backbone: Qwen2.5-7B (matching CogRouter for controlled comparison), with ReAct-style interaction augmented by routing decisions at each step.\\n\\n(2) Deterministic computation access: For ScienceWorld (primary benchmark), the JVM-based simulator is accessed via py4j. State forking is implemented through action-replay: a parallel ScienceWorld instance replays the current episode's action history to reach the identical state, then executes 1-3 candidate action sequences to observe exact outcomes (temperature changes, chemical reactions, circuit states). This avoids JVM serialization complexity while guaranteeing identical states. For ALFWorld (secondary benchmark), state forking uses GameState.copy() combined with a fresh TextWorld runtime to evaluate candidate actions. For the MATH generalizability pilot (tertiary), the deterministic oracle is a Python code interpreter executing generated code to obtain exact arithmetic/symbolic results. All deterministic computation is CPU-only with negligible cost compared to LLM world model inference.\\n\\n(3) Lightweight explicit router: a Qwen3-1.7B model fine-tuned via SFT to select per step from {fast-internal, deep-internal, deterministic-computation}, based on interaction history and current observation. This three-way modality routing via an explicit module differs fundamentally from: ITP-R's depth selection (K∈{0,...,K_max} over a single approximate world model), ReTool/AgentMath's implicit routing (LLM decides within its generation when to invoke tools, entangling routing with the backbone), and AutoTool's statistical tool-sequence prediction (predicts WHICH tool, not WHAT state). SimGate's router is modular (same architecture across ScienceWorld, ALFWorld, and MATH), interpretable (routing decisions can be analyzed per-task-category), and backbone-agnostic (router can be retrained without modifying the agent backbone).\\n\\nTraining proceeds in two offline phases:\\n\\nPhase 1 (trajectory collection): Run the Qwen2.5-7B agent on ScienceWorld's 30 task types (200 task variations), ALFWorld's 134 tasks, and a 200-problem subset of MATH (competition-level, Levels 4-5) across ~800 total episodes. At each decision step, execute all three modalities in parallel — fast-internal (direct ReAct), deep-internal (chain-of-thought with multi-step planning), and deterministic-computation (simulator lookahead for ScienceWorld/ALFWorld, code interpreter execution for MATH) — and record which produced the action leading to highest eventual task success via counterfactual labeling.\\n\\nPhase 2 (router SFT): Fine-tune Qwen3-1.7B on the labeled (history, observation, best-modality) triples with cross-entropy loss, following ARES's training pipeline. No online RL needed.\\n\\nEvaluation:\\n- Primary benchmark: ScienceWorld (30 task types). We acknowledge that ScienceWorld is not in the user's original benchmark list, but justify its inclusion: ScienceWorld uniquely tests rule-governed scientific reasoning (temperature physics, chemical reactions, electrical circuits) where the gap between LLM approximation and deterministic ground truth is largest, making it the ideal testbed for SimGate's core hypothesis. We follow CogRouter's standardized evaluation protocol using continuous score for direct comparability. We compare against CogRouter (84.6 score / 72.0% SR), ITP-R (62.58/58.94 score), EMPO2 (75.9 avg score), always-simulate, never-simulate, random routing, and confidence-threshold heuristic.\\n- Secondary benchmark: ALFWorld (134 tasks, user-specified benchmark). We compare against CogRouter (92.5%), ITP-R (85.07%), always-simulate, and ReAct. We cite PA-MoE+GiGPO (95.3%), STEP-HRL (97.14%), and Skill1 (97.5%) results from their papers without reproduction. The primary claim on ALFWorld is cost-efficiency: matching or exceeding ITP-R's 85.07% accuracy with lower inference cost by replacing GPU-intensive LLM world model rollouts with CPU-only deterministic simulation. Compared to CogRouter (which has no world model), SimGate adds CPU-only simulation overhead but saves LLM inference tokens on steps where deterministic lookahead substitutes for deep internal reasoning. We acknowledge ALFWorld saturation and do not claim SOTA.\\n- Generalizability pilot: MATH (200-problem subset, Levels 4-5). We apply SimGate's routing framework with the code interpreter as the deterministic oracle. We compare against always-CoT, always-code-interpreter, and random routing. This pilot demonstrates that SimGate's explicit router architecture generalizes beyond game simulators to tool-use settings. We do not claim to beat ReTool or AgentMath (which use larger backbones with implicit routing + RL), but show that explicit modular routing achieves competitive performance with interpretable, analyzable routing decisions. This experiment directly addresses the impact concern about simulator-only applicability.\\n\\nKey metrics: task success rate, normalized score (ScienceWorld), total LLM tokens consumed, simulation/tool invocation ratio, LLM world model inference cost vs deterministic computation cost (FLOPs and wall-clock), per-task-category success breakdown to identify WHERE deterministic computation provides most value, and routing decision analysis (which task types trigger which modalities).\\n\\nCore hypotheses: (H1) On ScienceWorld, SimGate outperforms both CogRouter (which lacks external grounding for scientific reasoning) and ITP-R (whose LLM world model hallucinates scientific state transitions), targeting >88 score / >78% SR. (H2) On ALFWorld, SimGate exceeds ITP-R's 85.07% accuracy (targeting >91%) with >40% reduction in inference FLOPs vs ITP-R specifically (which uses GPU-intensive LLM world model rollouts), by substituting CPU-only deterministic simulation. (H3) On MATH (pilot), SimGate's explicit 3-way routing achieves >75% accuracy on Level 4-5 problems (vs ~60% always-CoT, ~70% always-code baselines for Qwen2.5-7B), demonstrating the framework's generalizability. (H4) Per-task-category analysis reveals that deterministic computation provides greatest value on tasks requiring multi-step causal reasoning about physical/chemical processes (ScienceWorld: heating, chemical reactions, circuits) and exact arithmetic (MATH: computation-heavy problems), and least value on pattern-matching or conceptual tasks.\\n\\nGeneralizability and broader impact: SimGate's core contribution is the principle that deterministic external computation should be selectively invoked via an explicit, modular router — not always used (ARTIS) or never used. We demonstrate this across two points on the deterministic-computation spectrum: (a) environment simulators providing exact state transitions (ScienceWorld, ALFWorld) and (b) code interpreters providing exact arithmetic/symbolic computation (MATH pilot). This positions SimGate alongside but distinct from ReTool/AgentMath (ICLR 2026), which validate the same routing principle for code interpreters but via implicit routing entangled with the backbone. The explicit router architecture extends naturally to other deterministic oracles: calculators, database queries, API calls, physics simulators, and game engines (NetHack, Minecraft). SimGate demonstrates that at the high-fidelity end of the computation spectrum, learned selective invocation via an explicit router achieves a cost-accuracy Pareto improvement over both unconditional invocation and LLM-based world model routing.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~189h H100 80GB (55h trajectory collection on ScienceWorld+ALFWorld with all modalities, 12h MATH pilot trajectory collection+evaluation, 10h router SFT, 35h CogRouter baseline reproduction on ScienceWorld, 20h ITP-R baseline reproduction, 15h ALFWorld secondary experiments, 25h ablations and per-category analysis, 2h MATH pilot router training, 15h evaluation runs; PA-MoE+GiGPO, STEP-HRL, EMPO2, Skill1, ReTool, AgentMath results cited from papers without reproduction)\",\n      \"gpu_utilization\": \"~55% effective utilization; ~45% idle from analysis, debugging, environment engineering, and writing\",\n      \"timeline\": \"14 days (very tight for May 25 ARR deadline; ScienceWorld action-replay state forking requires ~2 days engineering; MATH pilot can run in parallel with ALFWorld experiments)\",\n      \"team\": \"1 researcher\",\n      \"estimated_gpu_cost\": \"$378-567 at $2.00-3.00/hr H100 80GB\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~159h H100 80GB (agent automates trajectory collection, baseline evaluation scheduling, and result parsing; human focuses on state-forking engineering, router training decisions, and paper writing; MATH pilot automated; PA-MoE+GiGPO, STEP-HRL, EMPO2, Skill1, ReTool, AgentMath results cited from papers without reproduction)\",\n      \"gpu_utilization\": \"~70% effective utilization\",\n      \"timeline\": \"12 days\",\n      \"team\": \"1 researcher, ~90min/day for ScienceWorld environment engineering, per-category analysis review, and training curves\",\n      \"claude_api_cost\": \"$70-110 (~700-1100 Opus turns for ScienceWorld API integration, state-forking implementation, MATH pilot setup, baseline reproduction, data pipeline, analysis)\",\n      \"estimated_gpu_cost\": \"$318-477 at $2.00-3.00/hr\",\n      \"risk_note\": \"Primary risk is ScienceWorld state-forking engineering — action-replay approach requires maintaining a parallel JVM instance and may have performance overhead for long episodes (>50 steps). Mitigated by capping lookahead replay to last 10 actions + simulator fast-forward. Secondary risk: training method mismatch (ITP-R uses A2C, CogRouter uses CoPO) — mitigated by including ablation with matched training.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~194h H100 80GB (broader ScienceWorld per-task-type analysis across all 30 task types, ALFWorld cost analysis, MATH pilot, routing ablations, lookahead depths 1-3, router sizes; PA-MoE+GiGPO, STEP-HRL, EMPO2, Skill1, ReTool, AgentMath results cited from papers without reproduction)\",\n      \"gpu_utilization\": \">90% utilization; agent pipelines trajectory collection → labeling → training → evaluation continuously\",\n      \"timeline\": \"11-12 days with 2+ H100 GPUs\",\n      \"team\": \"0 (initial 3h setup for ScienceWorld state forking + MATH pilot + environment + API keys)\",\n      \"claude_api_cost\": \"$150-220 (~1500-2200 Opus turns for ScienceWorld integration, state forking implementation, MATH pilot, experimentation, per-category analysis, and paper drafting)\",\n      \"estimated_gpu_cost\": \"$388-582 at $2.00-3.00/hr\",\n      \"speed_bottleneck\": \"CPU-bound ScienceWorld action-replay for state forking on long episodes; GPU bottleneck is Qwen2.5-7B inference for ~800 episodes × 3 modalities × ~30 steps = ~72K inference calls\",\n      \"risk_note\": \"Without human judgment on training method fairness (ITP-R uses A2C, CogRouter uses CoPO), agent may produce noisy comparisons; mitigated by including ITP-R-style gating trained with CoPO as an additional ablation\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 Findings (ARR submission deadline: May 25, 2026, short paper)\"\n  ],\n  \"level\": \"promising\",\n  \"key_references\": [\n    \"Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models [ITP/ITP-R] (arXiv 2601.08955, Jan 2026) — ALFWorld 85.07% overall (Qwen2.5-7B; 94.29% is PICK subtask only), ScienceWorld 62.58/58.94 score\",\n    \"Think Fast and Slow: Step-Level Cognitive Depth Adaptation for LLM Agents [CogRouter] (arXiv 2602.12662, Feb 2026) — ALFWorld 92.5%, ScienceWorld 84.6 score / 72.0% SR\",\n    \"EPO: Entropy-regularized Policy Optimization for LLM Agents RL (arXiv 2509.22576, v1 Sep 2025, v2 Feb 2026) — ScienceWorld: PPO+EPO Succ.*=100.0%/Succ.¯=96.8% (IID), GRPO+EPO Succ.*=95.8%/Succ.¯=83.8% (IID); binary success metrics with different evaluation protocol from CogRouter's continuous score\",\n    \"EMPO2: Exploratory Memory-Augmented LLM Agent via Hybrid On- and Off-Policy Optimization (arXiv 2602.23008, ICLR 2026) — ScienceWorld 75.9 avg continuous score (19 tasks, Qwen2.5-7B)\",\n    \"ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents (arXiv 2603.07915, March 2026)\",\n    \"ReTool: Reinforcement Learning for Strategic Tool Use in LLMs (arXiv 2504.11536, ICLR 2026) — AIME 72.5% (32B); learns when to invoke code interpreter via SFT+RL, but uses implicit routing embedded in LLM generation, not explicit router module\",\n    \"AgentMath: Empowering Mathematical Reasoning via Tool-Augmented Agent (arXiv 2512.20745, ICLR 2026) — AIME24 90.6%, AIME25 86.4%; agentic RL with code interpreter, implicit routing\",\n    \"AutoTool: Efficient Tool Selection for Large Language Model Agents (AAAI 2026, arXiv 2511.14650) — ScienceWorld 23.6% LLM call reduction, ALFWorld 15.4% reduction; statistical tool-sequence prediction, not simulation\",\n    \"ARTIS: Agentic Risk-Aware Test-Time Scaling via Iterative Simulation (arXiv 2602.01709) — always-simulate paradigm on BFCL-v3/ACEBench\",\n    \"Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents (arXiv 2506.00320, May 2025) — OSWorld/WindowsAgentArena; learned world model integrated into reasoning, no explicit routing/gating, different benchmarks — not a direct competitor\",\n    \"STEP-HRL: Hierarchical RL with Augmented Step-Level Transitions (arXiv 2604.05808, April 2026) — ALFWorld 97.14%, ScienceWorld 81.57% SR (Llama-3-8B)\",\n    \"Embodied Planner-R1 (arXiv 2506.23127) — ALFWorld 97.78%, ScienceWorld 79.92%\",\n    \"Current Agents Fail to Leverage World Model as Tool for Foresight [Qian et al.] (arXiv 2601.03905, Jan 2026) — forced simulation degrades performance on FrozenLake/Navigation/PrimitiveSkill/Sokoban\",\n    \"Skill1: Unified Evolution of Skill-Augmented Agents via Reinforcement Learning (arXiv 2605.06130, May 2026) — ALFWorld 97.5% SOTA\",\n    \"Phase-Aware Mixture of Experts for Agentic RL [PA-MoE+GiGPO] (arXiv 2602.17038, Feb 2026) — ALFWorld 95.3% (7B)\",\n    \"Dyna-Mind: Learning to Simulate from Experience for Better AI Agents (arXiv 2510.09577) — ALFWorld 92.5% (Dyna-GRPO); learned simulator, same group as Dyna-Think\",\n    \"BoundaryRouter: Learning Agent Routing From Early Experience (arXiv 2605.07180, May 2026) — routes between LLM and agent execution, not to deterministic computation\",\n    \"When and How Much to Imagine: Adaptive Test-Time Scaling with World Models for Visual Spatial Reasoning [AVIC] (arXiv 2602.08236, Feb 2026)\",\n    \"MTRouter: Cost-Aware Multi-Turn LLM Routing with History-Model Joint Embeddings (arXiv 2604.23530, ACL 2026)\",\n    \"Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond (arXiv 2604.22748, April 2026)\",\n    \"AgentRL: Scaling Agentic Reinforcement Learning (arXiv 2510.04206)\"\n  ],\n  \"description\": \"We propose SimGate, a hybrid routing framework that learns per-step whether an LLM agent should use internal reasoning or invoke deterministic external computation for ground-truth results, targeting settings where exact computation is available (environment simulators, code interpreters). The core evidence motivating SimGate: ITP-R's LLM world model routing consistently underperforms pure internal reasoning adaptation (CogRouter) on BOTH benchmarks — 85.07% vs 92.5% on ALFWorld (−7.4 points), and 62.58 vs 84.6 on ScienceWorld (−22 points) — demonstrating that approximate LLM foresight introduces noise exceeding its planning value. Meanwhile, deterministic computation is available across a spectrum of agent tasks but unused by any explicit routing method.\\n\\nSimGate's key architectural distinction: an explicit lightweight router module (Qwen3-1.7B, SFT-trained on counterfactual trajectory data) selects per step from {fast-internal, deep-internal, deterministic-computation}. This differs from ReTool and AgentMath (both ICLR 2026), which learn when to invoke code interpreters but use implicit routing embedded in the LLM's generation — entangling routing decisions with the backbone, preventing interpretable per-task-category analysis, and requiring backbone retraining to modify routing behavior. SimGate's router is modular (same architecture across environments and tool types), interpretable (routing decisions analyzable per category), and backbone-agnostic.\\n\\nRegarding EPO (arXiv 2509.22576): EPO reports ScienceWorld results using binary success metrics: PPO+EPO achieves Succ.¯ = 96.8% (IID), GRPO+EPO achieves Succ.* = 95.8% / Succ.¯ = 83.8% (IID). Both metrics are from Table 1 — Succ.* and Succ.¯ represent different aggregations (best vs converged success rate). The elevated GRPO baseline (93.8% Succ.* vs CogRouter's 53.0% SR) indicates different evaluation configurations, making direct comparison unreliable. We follow CogRouter's standardized continuous-score protocol.\\n\\nRegarding Dyna-Think (arXiv 2506.00320): Dyna-Think integrates a learned world model into reasoning on OSWorld/WindowsAgentArena, using no explicit routing/gating. It is not a direct competitor — it uses a different world model type (learned vs deterministic), different benchmarks, and no routing decision.\\n\\nEvaluation spans three settings: (1) ScienceWorld (primary — the ideal testbed for rule-governed reasoning where the gap between LLM approximation and deterministic ground truth is largest; we acknowledge ScienceWorld is not in the user's original benchmark list but justify its inclusion for this reason), targeting >88 score / >78% SR vs CogRouter (84.6), ITP-R (62.58), EMPO2 (75.9). (2) ALFWorld (secondary, user-specified), targeting >91% vs ITP-R (85.07%) with >40% inference FLOPs reduction vs ITP-R specifically (which uses GPU-intensive LLM world model rollouts, not vs CogRouter which has no world model). Compared to CogRouter, SimGate adds CPU-only simulation overhead but saves LLM inference tokens on steps where deterministic lookahead substitutes for deep internal reasoning. We acknowledge ALFWorld saturation (Skill1: 97.5%) and do not claim SOTA. (3) MATH generalizability pilot (200 competition-level problems, Levels 4-5), applying SimGate's router with code interpreter as deterministic oracle, targeting >75% on Level 4-5 problems. This pilot demonstrates the framework's generalizability beyond game simulators to tool-use settings, directly addressing the impact concern about simulator-only applicability. We do not claim to beat ReTool or AgentMath (larger backbones + implicit routing + RL) but show explicit modular routing achieves competitive performance with interpretable routing analysis.\\n\\nBuilt on Qwen2.5-7B backbone, evaluated against CogRouter, ITP-R, EMPO2, AutoTool, STEP-HRL, always-simulate, always-code, and heuristic baselines. Targeting EMNLP 2026 Findings short paper (ARR deadline May 25, 2026) — the contribution is genuine but narrow (explicit modular routing to deterministic computation), making Findings the realistic acceptance venue. Estimated cost: 159-194 H100-hours ($318-582), within ≤200h budget.\",\n  \"project_name\": \"sim_gate_cost_aware_plan\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL CONSTRAINT VIOLATION: User specified target venue EMNLP 2026 (ARR deadline May 25, 2026), but idea targets AAAI 2027 and ICLR 2027. This completely mismatches the user's submission plan.\", \"CRITICAL CONSTRAINT VIOLATION: User specified ≤200 H100-hours total compute budget. Idea estimates 400-1000 A100 GPU hours (~300-700 H100-equivalent hours), exceeding the budget by 1.5-3.5x.\", \"CRITICAL CONSTRAINT VIOLATION: User specified ≤16-day timeline. Even the auto_research mode estimates 1-3 weeks; manual mode estimates 3-5 months.\", \"CRITICAL MISSING COMPETING WORK: CogRouter ('Think Fast and Slow', arXiv 2602.12662, Feb 2026) trains step-level cognitive depth adaptation using RL (CoPO) on ALFWorld and ScienceWorld — the EXACT same benchmarks. Achieves 92.5% ALFWorld, 72.0% ScienceWorld with Qwen2.5-7B. Code available at github.com/rhyang2021/CogRouter. This is the single most important competing baseline and is entirely unacknowledged.\", \"CRITICAL MISSING COMPETING WORK: ARES (arXiv 2603.07915, March 2026) trains a lightweight per-step router for adaptive reasoning effort allocation in LLM agents, evaluated on WebArena. 52.7% reasoning token reduction. Nearly identical mechanism (lightweight router on hidden states) for the same abstract goal (step-level compute-aware decisions).\", \"MISSING RELATED WORK: Budget-aware inference literature from early 2026 (BAVT for LLM agents, BudgetThinker, Inference-Time Budget Control for LLM Search Agents) addresses cost-aware step-level decisions in agents — adjacent and relevant.\", \"MARGINAL NOVELTY: After accounting for CogRouter (step-level gating + RL in agent trajectories), ARES (lightweight router for per-step effort), and Rational Metareasoning (VOC-based per-step reasoning gating), the remaining novelty is narrow: 'apply the same gating concept to external world model invocation instead of internal reasoning.' This is an application-level contribution, not a methodological one.\", \"BASELINE INSUFFICIENCY: CogRouter achieves 92.5% on ALFWorld without any world model. SimGate must demonstrate that adding world model simulation + a learned gate exceeds this strong baseline, which is not guaranteed and adds significant complexity.\", \"DOES NOT BUILD ON SPECIFIED OSS CODEBASES: User required building on AutoGen, LangGraph, OpenManus, etc. The idea proposes building from scratch with Qwen3-14B + WebWorld-8B.\", \"RESOURCE ESTIMATE INCONSISTENCY: Manual mode claims ~40% GPU utilization but 400h A100 — if effective utilization is 40%, real GPU booking is ~1000h. The estimates across modes are not internally consistent.\"]\nFeedback: This idea needs fundamental restructuring to meet the user's requirements. Specific actions needed:\n\n1. **RETARGET TO EMNLP 2026**: Redesign the entire scope to fit the EMNLP 2026 ARR deadline (May 25, 2026, 14 days from today). This means drastically simplifying the approach.\n\n2. **FIT WITHIN 200 H100-HOURS**: The current design (Qwen3-14B backbone + WebWorld-8B world model + GRPO training + 3 benchmarks + 5 baselines) is far too expensive. Consider: (a) using a smaller backbone (7B instead of 14B), (b) reducing to 1-2 benchmarks, (c) replacing GRPO with simpler SFT-only training of the gating head, (d) using frozen world model predictions from precomputed rollouts rather than online generation.\n\n3. **COMPLETE IN 16 DAYS**: Use existing OSS agent codebases (AutoGen, LangGraph) as required. Precompute world model rollouts offline, then train the gate head as a simple binary classifier on pre-collected trajectory data. This avoids the expensive online RL loop.\n\n4. **ADDRESS CogRouter AND ARES**: These are the two closest competing works and MUST be cited, compared against, and differentiated from. CogRouter evaluates on the same benchmarks and achieves strong results (92.5% ALFWorld) without world models — you need to argue convincingly why adding world model gating improves over this. Consider using CogRouter as a baseline.\n\n5. **SHARPEN NOVELTY CLAIM**: The distinction 'gate external simulator rather than internal reasoning' is real but thin. To strengthen it, consider: (a) theoretical analysis of when external simulation has higher value of computation than internal reasoning, (b) empirical comparison showing that world model predictions provide complementary signal to internal reasoning, (c) hybrid approach combining CogRouter-style internal depth adaptation with SimGate-style external simulation gating.\n\n6. **SIMPLIFY SCOPE**: For a 16-day project with 200 H100-hours, focus on one benchmark (ALFWorld has the most mature world model support via TextWorld), one backbone, and a clean comparison showing that learned world model gating outperforms heuristic gating, always-simulate, and never-simulate baselines. Save the multi-benchmark story for a follow-up.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"CRITICAL MISCHARACTERIZATION: The proposal states 'ITP (2026) always simulates but adapts depth with ITP-R.' This is factually wrong. ITP-R's K-head predictor selects K_t ∈ {0,1,...,K_max} per step, where K=0 explicitly means NO simulation — the agent acts from internal reasoning alone. ITP-R IS a learned per-step router between 'no simulation' and 'simulation at various depths.' The proposal's core gap claim ('no existing work learns per-step routing between internal reasoning and external world model invocation') is therefore invalid.\", \"CRITICAL MISSING BASELINE: ITP-R (arXiv 2601.08955) achieves 88.57% on ALFWorld with Qwen3-8B using learned per-step simulation gating. This is the single most important baseline for SimGate's claimed contribution and must be included in experiments. Its lower performance vs CogRouter (88.57% vs 92.5%) actually raises a concerning question: if learned simulation routing (ITP-R) already underperforms pure internal adaptation (CogRouter) on ALFWorld, what evidence suggests SimGate's deterministic-simulator variant will reverse this trend?\", \"NOVELTY GAP NARROWER THAN CLAIMED: After accounting for ITP-R (learned K=0/K>0 routing), the remaining novelty reduces to: (a) routing to a deterministic external simulator vs LLM world model, (b) three-way modality selection vs depth selection, (c) separate router model vs backbone K-head. These are configuration-level differences, not methodological contributions. A short paper could possibly carry this, but only with an honest framing.\", \"GENERALIZABILITY CONCERN: The approach fundamentally depends on having access to a deterministic external simulator (ALFWorld's TextWorld). Most real-world agent tasks (web navigation, coding, API interaction) lack such simulators. The paper needs to address: under what conditions does this approach transfer? Without this discussion, reviewers will question practical relevance.\", \"AVIC (Yu et al., Feb 2026) NOT ADEQUATELY DIFFERENTIATED: AVIC implements a binary skip/call_wm gating policy for world model invocation in visual spatial reasoning. While the domain differs (vision vs text), the mechanism (learned binary gate for world model invocation) is conceptually identical. The proposal should explicitly differentiate.\", \"BENCHMARK SATURATION RISK: ALFWorld success rates are approaching ceiling (CogRouter 92.5%). Demonstrating statistically significant improvements above 92.5% on only 134 task instances requires careful analysis — the margin of improvement is thin and the evaluation set is small, making results potentially noisy.\", \"TEXTWORLD LOOKAHEAD ENGINEERING UNDERESTIMATED: ALFWorld's TextWorld has no built-in state-forking/cloning API for branching lookahead. Implementing 1-3 step lookahead with state save/restore requires custom engineering on top of the PDDL backend. This is doable but adds unaccounted complexity to the 16-day timeline.\"]\nFeedback: The revision successfully fixed R1's constraint violations (venue, compute, timeline) — good work. But a serious novelty problem has emerged: ITP-R already does learned per-step routing between 'skip simulation' (K=0) and 'simulate' (K>0). You MUST not mischaracterize ITP. Here is how to salvage the idea:\n\n1. **CORRECT ITP CHARACTERIZATION**: Acknowledge that ITP-R does per-step simulation gating. Then differentiate on the TYPE of simulation: ITP routes to an LLM-based (approximate, hallucination-prone) world model; SimGate routes to a deterministic external simulator providing exact state transitions. Frame this as: 'ITP asks when to imagine; SimGate asks when to consult ground truth.'\n\n2. **ADD ITP-R AS PRIMARY BASELINE**: Include ITP-R (88.57% ALFWorld) alongside CogRouter (92.5%) as the two key baselines. Your hypothesis becomes: 'Deterministic external simulation, when selectively invoked, outperforms both LLM-based simulation routing (ITP-R) and pure internal depth adaptation (CogRouter).' This is testable and interesting.\n\n3. **REFRAME NOVELTY HONESTLY**: The contribution is NOT 'first to learn simulation gating' — it's 'first to learn routing between internal reasoning and a deterministic external simulator as complementary modalities, showing that grounded simulation provides value that LLM-based world models cannot.' This narrower claim is defensible for a short paper.\n\n4. **ADDRESS THE ELEPHANT IN THE ROOM**: ITP-R (88.57%) UNDERPERFORMS CogRouter (92.5%) on ALFWorld, suggesting LLM-based world model routing may actually hurt on this benchmark. You need a convincing argument for why DETERMINISTIC simulation routing will succeed where LLM-based simulation routing failed. The argument should be: 'ITP's LLM world model adds noise through hallucinated state transitions; a deterministic simulator provides exact dynamics, making the router's job easier — it only needs to identify WHEN exact foresight helps, not whether the foresight is accurate.'\n\n5. **ADD GENERALIZABILITY DISCUSSION**: Explicitly acknowledge the deterministic simulator limitation. Propose how the framework extends to tasks with approximate/learned world models (connecting back to ITP/WebDreamer). This turns a weakness into a research direction.\n\n6. **DIFFERENTIATE FROM AVIC**: Add explicit comparison — AVIC gates visual imagination with heuristic sufficiency checks in vision tasks; SimGate trains a separate router model for text-based agent tasks with SFT on counterfactual trajectory data.\n\n### Round 3 review\nVerdict: revise\nIssues: [\"CRITICAL FACTUAL ERROR: The proposal cites ITP-R's ALFWorld result as 88.57% throughout, but this is the Qwen3-8B number. ITP-R with Qwen2.5-7B (the SAME backbone SimGate proposes) achieves 94.29% on ALFWorld — verified from ITP-R's Table in the HTML paper. This is HIGHER than CogRouter's 92.5%. The entire motivating argument ('ITP-R underperforms CogRouter, suggesting LLM-based simulation routing hurts') is based on an unfair cross-backbone comparison and is empirically false on the matched backbone.\", \"CORE MOTIVATION INVALIDATED: Since ITP-R (Qwen2.5-7B) = 94.29% > CogRouter = 92.5%, LLM-based simulation routing does NOT underperform pure internal adaptation on ALFWorld with the same backbone. This destroys the central hypothesis: 'deterministic external simulation provides complementary foresight that is strictly more reliable than LLM-based world model imagination.' The LLM world model already works well — there's no demonstrated failure to fix.\", \"OUTDATED SOTA: The proposal treats CogRouter (92.5%) as ALFWorld SOTA. As of May 2026, Skill1 achieves 97.5%, PA-MoE+GiGPO achieves 93.8%, and ITP-R achieves 94.29% with Qwen2.5-7B. CogRouter is no longer the primary comparison target. SimGate must demonstrate improvement over 94.29% (ITP-R) or explain why beating the 97.5% Skill1 ceiling is realistic.\", \"BENCHMARK SATURATION: ALFWorld is at 97.5% SOTA with only 134 evaluation instances. The practical headroom above ITP-R's 94.29% is ~3 percentage points on 134 tasks, making statistically significant improvements extremely difficult to demonstrate. This is especially problematic for a short paper that needs clean, convincing results.\", \"MISATTRIBUTION OF QIAN ET AL. RESULTS: The proposal states 'unconditional simulation degrades performance by up to 5% on trivial steps (Qian et al., 2026)' in the context of ALFWorld. However, Qian et al. evaluated on FrozenLake, Navigation, PrimitiveSkill, and Sokoban — NOT ALFWorld. The 5% degradation claim cannot be attributed to ALFWorld tasks.\", \"ENVIRONMENT.COPY() ENGINEERING RISK: TextWorld's base Environment.copy() raises NotImplementedError (verified in source code at github.com/microsoft/TextWorld/blob/main/textworld/core.py). While GameState.copy() performs deepcopy, the full environment forking required for multi-step lookahead rollouts needs the Environment-level copy, which must be implemented from scratch for ALFWorld's specific TextWorld integration. This unaccounted engineering work is risky for a 14-day timeline.\", \"MISSING RECENT BASELINES: Skill1 (97.5%, May 7, 2026), PA-MoE+GiGPO (93.8%), Dyna-Mind/RESIM (87.7-92.5%), and AgentRL are all absent from the baseline list. These represent the actual competitive landscape on ALFWorld.\"]\nFeedback: The revision from R2 was well-executed in correcting the ITP mischaracterization (acknowledging K=0 option) and meeting hard constraints. But a new critical problem has emerged: you used ITP-R's Qwen3-8B result (88.57%) to argue it underperforms CogRouter (92.5%), when ITP-R's own paper reports 94.29% with Qwen2.5-7B — the backbone YOU plan to use. This means ITP-R with an LLM world model ALREADY outperforms CogRouter on the matched backbone, eliminating your core argument.\n\nTo salvage this idea, you must:\n\n1. **ACKNOWLEDGE ITP-R (Qwen2.5-7B) = 94.29%**: This is the correct comparison point for SimGate, not 88.57%. Your method must beat 94.29% to show deterministic simulation adds value over LLM simulation.\n\n2. **REFRAME THE MOTIVATION ENTIRELY**: You cannot argue 'LLM simulation hurts.' Instead, consider: (a) deterministic simulation is CHEAPER than LLM world model inference (no GPU cost, just CPU), so SimGate could match ITP-R's accuracy with lower computational cost; (b) deterministic simulation may be more robust on specific task categories where LLM world models still hallucinate (identify these via per-category analysis); (c) frame it as 'efficiency + reliability' rather than 'accuracy improvement.'\n\n3. **UPDATE BASELINES AND SOTA**: Include Skill1 (97.5%), PA-MoE+GiGPO (93.8%), ITP-R Qwen2.5-7B (94.29%), and Dyna-Mind (92.5%) as baselines. Acknowledge ALFWorld is near saturation.\n\n4. **CONSIDER PIVOTING BENCHMARK**: Given ALFWorld saturation, consider ScienceWorld (where CogRouter gets 72.0% and there's more headroom) or add a second benchmark where deterministic simulators are available and the benchmark isn't saturated.\n\n5. **FIX QIAN ET AL. ATTRIBUTION**: The 5% degradation finding is from FrozenLake/Sokoban/Navigation/PrimitiveSkill, not ALFWorld. Correct this citation or run your own analysis on ALFWorld.\n\n6. **ADDRESS ENVIRONMENT.COPY() RISK**: TextWorld's base Environment.copy() raises NotImplementedError. Plan for implementing state forking via GameState.copy() + manual environment reconstruction, and account for this engineering effort in your timeline.\n\n7. **STRONGEST VIABLE ANGLE**: Instead of 'deterministic sim beats LLM sim in accuracy,' argue: 'When a deterministic simulator exists, routing to it is (a) computationally cheaper than LLM world model rollouts (CPU vs GPU), (b) guaranteed correct (zero hallucination), and (c) enables more aggressive multi-step lookahead without accuracy degradation. SimGate demonstrates that this cost-accuracy tradeoff is favorable, achieving comparable accuracy to ITP-R with significantly lower inference cost.' This efficiency-focused framing is defensible even if accuracy improvements are marginal.\n\n### Round 4 review\nVerdict: revise\nIssues: [\"CRITICAL MISSING BASELINE: EPO (arXiv 2509.22576, Sep 2025) achieves 96.8% binary success rate (IID) / 96.2% (OOD) on ScienceWorld with Qwen2.5-7B-Instruct via entropy-regularized policy optimization — far exceeding CogRouter's 72.0% SR. While EPO uses binary SR (not partial-credit score) and may use a different task subset, this result strongly suggests ScienceWorld is more solvable than the proposal assumes. The proposal treats CogRouter's 72.0% SR as the ceiling with '78% SR headroom' — but EPO has already reached ~97% SR without any simulation routing. This undermines the core motivation: if pure RL training (EPO) already solves ScienceWorld at 96.8% SR, what is the incremental value of deterministic simulator routing?\", \"MISSING BASELINE: EMPO2 (arXiv 2602.23008, Feb 2026) achieves 75.9 average score on ScienceWorld with Qwen2.5-7B via exploratory memory-augmented hybrid RL. This is another recent ScienceWorld result missing from the landscape.\", \"COMPUTE BUDGET VIOLATION: The user's hard constraint is ≤200 H100-hours. Manual mode estimates 220h (10% over) and auto mode estimates 260h (30% over). Only HIL at 180h fits within budget. The math breakdown shows 40h for CogRouter baseline + 30h for ITP-R baseline + 20h for other baselines = 90h on baselines alone — this may be reducible.\", \"ACTION-REPLAY COST UNDERESTIMATED FOR TRAJECTORY COLLECTION: Phase 1 requires executing the deterministic-simulation modality at every step of ~600 episodes × ~30 steps = ~18K decision points. Each fork costs ~1.5-5.5 seconds (JVM startup via py4j + action replay). At ~3s average, that's ~54,000 seconds = ~15 hours of wall-clock CPU time just for state forking during trajectory collection — not including the 1-3 candidate action evaluations per fork (which multiplies this by 1-3x). This is feasible but should be explicitly budgeted.\", \"METRIC COMPARABILITY ISSUES ON SCIENCEWORLD: The ScienceWorld landscape uses inconsistent metrics across papers. CogRouter reports both Score (84.6) and SR (72.0%); ITP-R reports Score (62.58/58.94); EPO reports binary SR (96.8%); EMPO2 reports Score on a -100 to 100 scale (75.9). The proposal's target of '>88 score / >78% SR' must specify which metric is primary and ensure all baselines are compared on the same metric. Without standardized evaluation, claimed improvements may be artifacts of metric selection.\", \"GENERALIZABILITY REMAINS INHERENTLY LIMITED: The approach requires a ground-truth deterministic simulator. The proposal discusses this honestly but does not address a key practical question: how many real-world agent benchmarks have such simulators? Among the user's specified benchmarks (AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, Mind2Web, τ-bench), NONE have deterministic simulators. Only ALFWorld (TextWorld/PDDL) is listed. ScienceWorld is not in the user's specified benchmark list at all.\", \"BENCHMARK SELECTION CONCERN: The user specified evaluation on existing benchmarks including AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, ALFWorld, Mind2Web, and τ-bench. The proposal's primary benchmark (ScienceWorld) is NOT in this list. While ALFWorld is listed, it's designated as secondary and acknowledged as saturated. The proposal should justify why ScienceWorld is appropriate or include at least one of the user's specified benchmarks as primary.\", \"MISSING RELATED WORK: BoundaryRouter (arXiv 2605.07180, May 2026) proposes routing between lightweight LLM inference and full agent execution — conceptually adjacent to SimGate's routing paradigm. Qian et al. (arXiv 2601.03905) explicitly identifies the 'when to simulate' problem as unsolved — this should be cited as direct motivation, not just as evidence that forced simulation hurts.\"]\nFeedback: The R4 revision is a major improvement in factual accuracy, honest framing, and competitive landscape coverage. The ScienceWorld pivot is well-motivated, and the novelty claim (learned routing to deterministic simulators) is confirmed as genuine — my independent search found no competing work. However, several issues must be addressed:\n\n1. **ADDRESS EPO (CRITICAL)**: EPO achieves 96.8% binary SR on ScienceWorld with the same Qwen2.5-7B backbone, without any simulation routing. You MUST: (a) include EPO as a baseline, (b) explain why SimGate matters when pure RL training already nearly solves the benchmark, (c) consider whether SimGate's value is orthogonal (inference-time architectural choice) or redundant (EPO shows the problem is training, not architecture). The strongest argument: SimGate is a training-agnostic inference-time mechanism that COMPLEMENTS any backbone training method — run SimGate on top of an EPO-trained agent and show further gains or cost reduction. This would be much stronger than comparing only against CogRouter.\n\n2. **FIT WITHIN 200 H100-HOURS**: Reduce compute by: (a) dropping some baselines (PA-MoE+GiGPO and Dyna-Mind can be cited from their papers without reproduction), (b) reducing ALFWorld experiments (it's secondary and saturated), (c) using CogRouter's published checkpoints if available rather than reproducing training. Target ≤180h to leave margin.\n\n3. **STANDARDIZE SCIENCEWORLD METRICS**: Choose either Score or SR as the primary metric and ensure all baselines are compared on the same scale. If EPO only reports SR and CogRouter reports both, use SR as the common metric.\n\n4. **BENCHMARK ALIGNMENT**: The user specified ALFWorld but not ScienceWorld. Either: (a) add one of the user's specified benchmarks where deterministic simulation is relevant (ALFWorld is already included as secondary — consider making it co-primary), or (b) justify why ScienceWorld is the right benchmark despite not being in the user's list (strong argument: it's the benchmark where deterministic simulation matters most due to complex scientific rules).\n\n5. **REFRAME CONTRIBUTION**: Given EPO, the strongest framing is: 'SimGate demonstrates that learned routing to deterministic simulators provides a cost-accuracy Pareto improvement at inference time, complementary to and composable with any training-time optimization. When composed with an EPO-trained agent, SimGate achieves [X] with [Y]% fewer LLM inference calls.' This positions SimGate as an orthogonal, composable inference-time technique rather than competing with training-time methods.\n\n### Round 5 review\nVerdict: revise\nIssues: [\"CRITICAL FACTUAL ERROR: ITP-R with Qwen2.5-7B achieves 85.07% overall on ALFWorld, NOT 94.29%. The 94.29% is the PICK subtask score (first column in ITP-R's Table 1). The per-task breakdown is: PICK 94.29%, CLEAN 88.89%, HEAT 87.50%, COOL 53.84%, LOOK 76.00%, PICK2 91.67%, Overall 85.07%. This error originated in the R3 review's 'correction' and has persisted unchecked. The proposal's claim 'ITP-R achieves 94.29% on ALFWorld with Qwen2.5-7B, outperforming CogRouter (92.5%)' is wrong — ITP-R actually underperforms CogRouter by 7.4 points (85.07% vs 92.5%). HOWEVER: this correction actually STRENGTHENS SimGate's motivation, since it shows LLM world model routing hurts on BOTH ALFWorld and ScienceWorld, not just ScienceWorld.\", \"COMPUTE BUDGET VIOLATION: User hard constraint is ≤200 H100-hours. Manual=220h (10% over), Auto=260h (30% over). Only HIL=180h fits. Baseline reproduction alone consumes 90h (40h CogRouter + 30h ITP-R + 20h others). Reduce by: (a) citing PA-MoE+GiGPO and Dyna-Mind results from their papers without reproduction, (b) using CogRouter's published checkpoints if available, (c) trimming ALFWorld secondary experiments to only the critical always-simulate comparison.\", \"EPO NOT ADDRESSED (R4 CRITICAL FEEDBACK IGNORED): R4 flagged EPO (arXiv 2509.22576, 96.8% binary SR on ScienceWorld) as a critical missing baseline. R5 does not mention EPO at all. My verification reveals EPO's metric is NOT directly comparable to CogRouter's — their GRPO baselines differ by 40pp (EPO: 93.8% Succ.* vs CogRouter: 53.0% SR), indicating completely different evaluation protocols and/or task subsets. The proposal should acknowledge EPO, explain the comparability issue, and clarify which ScienceWorld evaluation protocol SimGate will follow (CogRouter's 200-simulation protocol is recommended for consistency with the primary baseline).\", \"MISSING RELATED WORK — ARTIS (arXiv 2602.01709, Feb 2026): 'Agentic Risk-Aware Test-Time Scaling via Iterative Simulation' runs LLM-based simulation on ALL candidate actions before committing — an always-simulate pipeline with a risk-aware simulator. While it lacks learned gating (every action is simulated), it is the most relevant 'always-simulate' baseline and should be cited alongside Qian et al.'s findings. Position SimGate as selectively routing where ARTIS wastes compute by always simulating.\", \"BENCHMARK SELECTION NOT ALIGNED WITH USER REQUIREMENTS: The user specified evaluation on AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, ALFWorld, Mind2Web, and τ-bench. ScienceWorld (the primary benchmark) is NOT in this list. Only ALFWorld is included, and it's designated as secondary. The proposal should explicitly justify why ScienceWorld is the right primary benchmark despite not being on the user's list, or elevate ALFWorld to co-primary status.\", \"CORRECTED ITP-R NUMBER CHANGES ALFWorld NARRATIVE: With the correct ITP-R overall (85.07%), the proposal's ALFWorld story changes from 'match ITP-R's 94.29% with lower cost' to 'ITP-R underperforms CogRouter on ALFWorld too (85.07% vs 92.5%), confirming LLM world models are generally harmful for agent simulation — SimGate aims to match or exceed CogRouter's 92.5% by replacing noisy LLM simulation with exact deterministic simulation at lower cost.' This is actually a stronger argument.\"]\nFeedback: The idea's core novelty (learned routing to deterministic simulators) is independently confirmed as genuine — no competing work exists. But the R5 submission has a critical factual error and ignores R4's EPO feedback. Here's how to fix it:\n\n1. **FIX ITP-R ALFWORLD NUMBER (CRITICAL)**: Replace all instances of '94.29%' with the correct overall score of 85.07%. The 94.29% is the PICK subtask only. With the corrected number, ITP-R (85.07%) underperforms CogRouter (92.5%) on ALFWorld too — this STRENGTHENS your argument. The narrative becomes: 'LLM world model routing (ITP-R) underperforms pure internal adaptation (CogRouter) on BOTH ALFWorld (85.07% vs 92.5%) and ScienceWorld (62.58 vs 84.6), demonstrating that LLM world models are generally harmful rather than helpful for agent simulation. SimGate replaces the noisy LLM world model with exact deterministic simulation, targeting improvements on both benchmarks.'\n\n2. **CUT COMPUTE TO ≤190 H100-HOURS**: Drop PA-MoE+GiGPO and Dyna-Mind baseline reproduction (cite from papers: −20h). Check if CogRouter publishes checkpoints to avoid full retraining (−20h). Reduce ALFWorld secondary experiments to just always-simulate vs SimGate vs ITP-R (−15h). This gets you to ~165h with margin.\n\n3. **ADDRESS EPO**: Add one paragraph noting EPO's 96.8% SR claim. Explain the evaluation protocol discrepancy (GRPO baseline: 93.8% in EPO vs 53.0% in CogRouter — a 40pp gap indicating different evaluation setups). State that SimGate will follow CogRouter's 200-simulation evaluation protocol for direct comparability. If EPO's evaluation code is available, consider running SimGate under EPO's protocol as a secondary comparison.\n\n4. **ADD ARTIS AS RELATED WORK**: Cite ARTIS (2602.01709) as the 'always-simulate' baseline paradigm. SimGate is more efficient because it selectively invokes simulation only when rule-governed dynamics make internal prediction unreliable.\n\n5. **JUSTIFY SCIENCEWORLD OR ELEVATE ALFWORLD**: Either (a) add one sentence justifying ScienceWorld: 'While not in the standard agent benchmark lists, ScienceWorld uniquely tests rule-governed scientific reasoning where deterministic simulation provides maximum value — making it the ideal testbed for SimGate's core hypothesis'; or (b) make ALFWorld co-primary with ScienceWorld.\n\n6. **REVISE ALFWORLD HYPOTHESIS**: With ITP-R at 85.07% (not 94.29%), your ALFWorld target should be: 'Match or exceed CogRouter's 92.5% by replacing noisy LLM simulation with exact deterministic simulation, with lower inference cost than both ITP-R and CogRouter.' The cost-efficiency argument now pairs with an accuracy argument.\n\n### Round 6 review\nVerdict: revise\nIssues: [\"CRITICAL FACTUAL ERROR (PERSISTS FROM R5, NOW ROUND 6): ITP-R with Qwen2.5-7B achieves 85.07% OVERALL on ALFWorld, NOT 94.29%. The 94.29% is the PICK subtask score only (per-task breakdown: PICK 94.29%, CLEAN 88.89%, HEAT 87.50%, COOL 53.84%, LOOK 76.00%, PICK2 91.67%, Overall 85.07%). Verified from arXiv HTML, raw table data, and GitHub table image — three independent sources. The proposal's claim 'ITP-R achieves 94.29% on ALFWorld with Qwen2.5-7B, outperforming CogRouter (92.5%)' is factually wrong. ITP-R (85.07%) UNDERPERFORMS CogRouter (92.5%) by 7.4 points. Critically, this correction STRENGTHENS SimGate's motivation: LLM world model routing hurts on BOTH ALFWorld AND ScienceWorld.\", \"EPO NOT ADDRESSED (THIRD CONSECUTIVE ROUND): EPO (arXiv 2509.22576) claims 96.8% binary success rate on ScienceWorld with Qwen2.5-7B — flagged as critical in R4, re-flagged in R5, still completely absent in R6. My independent verification reveals: (a) EPO uses binary {0,1} success, NOT the continuous ScienceWorld score (0-100); (b) EPO's GRPO baseline is 93.8% Succ.* vs CogRouter's 53.0% SR — a 40pp gap proving fundamentally different evaluation protocols; (c) EPO does not disclose task subset, episode count, or binarization threshold; (d) max_steps=30 (vs typical 100). These numbers are NOT directly comparable to CogRouter's, but reviewers WILL raise EPO and the proposal MUST preemptively address it.\", \"EMPO2 MISSING: EMPO2 (arXiv 2602.23008, Feb 2026) achieves 75.9 average score on ScienceWorld with Qwen2.5-7B using continuous score across 18-19 tasks via exploratory memory-augmented hybrid RL. This is a directly comparable ScienceWorld result using the same metric and backbone. Must be included in landscape.\", \"COMPUTE BUDGET VIOLATION: Manual (220h) and auto (260h) modes exceed the ≤200 H100-hour hard constraint. Only HIL (180h) fits. The description states '180-260 H100-hours' — the upper bound violates the user's requirement. The 90h baseline reproduction budget (40h CogRouter + 30h ITP-R + 20h others) is the main bloat area.\", \"BENCHMARK MISALIGNMENT: The user specified 8 benchmarks: AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, ALFWorld, Mind2Web, τ-bench. ScienceWorld (the primary benchmark) is NOT in this list. Only ALFWorld is included, designated as secondary and acknowledged as saturated (97.5% Skill1). The proposal must either justify ScienceWorld's inclusion or elevate ALFWorld to co-primary status.\", \"STRUCTURAL IMPACT LIMITATION: The method requires access to a ground-truth deterministic simulator, which is available for ScienceWorld (JVM/Scala) and ALFWorld (TextWorld/PDDL) but NOT for any real-world agent benchmark (WebArena, SWE-bench, GAIA, ToolBench, Mind2Web, τ-bench). This fundamentally limits the contribution's practical relevance and will be a primary reviewer concern at EMNLP.\", \"ARTIS (2602.01709) STILL NOT CITED: ARTIS implements risk-aware iterative simulation before commitment — the closest 'always-simulate' baseline paradigm. SimGate should cite it as motivation: ARTIS wastes compute by always simulating, while SimGate selectively routes. Also missing: Qian et al. (2601.03905) is cited but its finding ('agents fail to decide WHEN to simulate') should be more prominently positioned as direct motivation — SimGate is precisely the solution to the problem they identify.\"]\nFeedback: This is round 6 and the same critical issues keep recurring. You must fix them NOW or risk failing at round 10.\n\n1. **FIX ITP-R NUMBER IMMEDIATELY (THIS IS THE THIRD TIME)**: ITP-R overall on ALFWorld with Qwen2.5-7B = **85.07%**, not 94.29%. I verified this from the paper's Table 1 across three sources. The 94.29% is the PICK subtask column — the rightmost 'Overall' column reads 85.07%. This correction actually HELPS you: ITP-R (85.07%) < CogRouter (92.5%) on ALFWorld, meaning LLM world model routing hurts on BOTH benchmarks. Your narrative becomes: 'LLM world model routing (ITP-R) consistently underperforms pure internal adaptation (CogRouter) — 85.07% vs 92.5% on ALFWorld, 62.58 vs 84.6 on ScienceWorld — demonstrating that approximate LLM foresight introduces noise that outweighs its planning value. SimGate replaces this noisy foresight with exact deterministic simulation.'\n\n2. **ADDRESS EPO (NON-NEGOTIABLE)**: Add a paragraph: 'EPO (arXiv 2509.22576) reports 96.8% binary success rate on ScienceWorld with Qwen2.5-7B. However, EPO uses binary {0,1} success (not the standard continuous ScienceWorld score), an undisclosed task subset, and max_steps=30. Its GRPO baseline (93.8% Succ.*) differs by 40pp from CogRouter's (53.0% SR), indicating fundamentally different evaluation protocols. SimGate follows CogRouter's standardized 200-simulation evaluation protocol for direct comparability. We include EPO-style evaluation as a secondary metric for completeness.'\n\n3. **ADD EMPO2**: Include EMPO2 (75.9 avg score, 18-19 tasks) in the landscape as a baseline that uses the same continuous metric.\n\n4. **CUT COMPUTE TO ≤190h**: (a) Cite PA-MoE+GiGPO and Dyna-Mind results from their papers without reproduction (save ~15h). (b) Use CogRouter's published checkpoints if available instead of full retraining (save ~20h). (c) Reduce ALFWorld secondary experiments to essential comparisons only (save ~15h). Target 170h total.\n\n5. **JUSTIFY SCIENCEWORLD**: Add explicit justification: 'While ScienceWorld is not in the standard agent benchmark list, it uniquely tests rule-governed scientific reasoning (temperature physics, chemical reactions, electrical circuits) where deterministic simulation provides maximal value over LLM world models. ScienceWorld is the ideal testbed for SimGate's core hypothesis because the gap between deterministic and LLM-based simulation is largest on tasks requiring accurate prediction of physical/chemical dynamics.'\n\n6. **IMPACT WARNING**: The structural limitation (requires deterministic simulator) caps impact at ~2.5-3/5. To improve: (a) run a small experiment on one of the user's specified benchmarks where an approximate simulator could substitute (e.g., a code execution sandbox for SWE-bench, even if not deterministic), showing the framework generalizes beyond perfect simulators; or (b) connect more concretely to the growing ecosystem of game engines, physics simulators, and code sandboxes in agentic AI — argue that SimGate is relevant to any environment with a fast, reliable external evaluator.\n\n### Round 7 review\nVerdict: revise\nIssues: [\"CRITICAL FACTUAL ERROR (PERSISTS 3 ROUNDS): ITP-R with Qwen2.5-7B achieves 85.07% OVERALL on ALFWorld, NOT 94.29%. The 94.29% is the PICK subtask only. Per-task breakdown: PICK 94.29%, CLEAN 88.89%, HEAT 87.50%, COOL 53.84%, LOOK 76.00%, PICK2 91.67%, Overall 85.07% (verified from arXiv HTML Table 1). The proposal's claim 'ITP-R achieves 94.29% on ALFWorld with Qwen2.5-7B, outperforming CogRouter (92.5%)' is factually wrong. ITP-R (85.07%) UNDERPERFORMS CogRouter (92.5%) by 7.4 points. This correction STRENGTHENS SimGate's argument: LLM world model routing hurts on BOTH benchmarks.\", \"EPO NOT ADDRESSED (4TH CONSECUTIVE ROUND): EPO (arXiv 2509.22576) claims 96.8% binary SR on ScienceWorld with Qwen2.5-7B. Independent verification reveals: (a) binary {0,1} success metric, not continuous score; (b) GRPO baseline = 93.8% Succ.* vs CogRouter's 53.0% SR — a 40pp gap proving fundamentally different evaluation protocols; (c) undisclosed task subset, episode count, binarization threshold; (d) GRPO+EPO only achieves 83.8% Succ.bar (modest). These numbers are NOT directly comparable to CogRouter, but EMNLP reviewers WILL raise EPO and the proposal MUST preemptively address it.\", \"EMPO2 STILL MISSING (3RD CONSECUTIVE ROUND): EMPO2 (arXiv 2602.23008, Feb 2026) achieves 75.9 average score on ScienceWorld with Qwen2.5-7B using continuous score across 18-19 tasks via exploratory memory-augmented hybrid RL. This IS directly comparable to CogRouter's metric and must be included in the landscape as a baseline.\", \"NEW MISSING BASELINE — AutoTool (AAAI 2026, arXiv 2511.14650): AutoTool builds tool-invocation graphs from trajectories to predict next tool calls, skipping LLM inference when confident. Evaluated on BOTH ScienceWorld AND ALFWorld with 15-25% LLM call reduction. While AutoTool routes between 'ask LLM' vs 'replay cached tool pattern' (not to a deterministic simulator for state prediction), it operates on the same benchmarks with a related routing concept and must be cited and differentiated.\", \"COMPUTE BUDGET VIOLATION (PERSISTENT): Manual (220h) and auto (260h) modes exceed the ≤200 H100-hour hard constraint. Only HIL (180h) fits. The description's stated range '180-260 H100-hours' has an upper bound 30% over budget. The 90h baseline reproduction budget (40h CogRouter + 30h ITP-R + 20h others) is the primary area for reduction.\", \"ARTIS (arXiv 2602.01709) STILL NOT CITED (3RD ROUND): ARTIS implements risk-aware iterative simulation before commitment — running simulated interactions before real-world execution. While evaluated on different benchmarks (BFCL-v3, ACEBench), it represents the 'always-simulate' paradigm that SimGate claims to improve upon. Should be cited as motivation: ARTIS always simulates (wasting compute on easy steps), while SimGate selectively routes.\", \"BENCHMARK MISALIGNMENT WITH USER REQUIREMENTS: ScienceWorld (primary benchmark) is NOT in the user's specified benchmark list (AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, ALFWorld, Mind2Web, τ-bench). ALFWorld is listed but designated secondary and saturated. The proposal must explicitly justify ScienceWorld inclusion or add a user-specified benchmark.\", \"STRUCTURAL IMPACT LIMITATION: The method requires a ground-truth deterministic simulator. Among all prominent agent benchmarks (WebArena, SWE-bench, GAIA, ToolBench, Mind2Web, τ-bench, AgentBench), NONE have deterministic simulators suitable for this approach. This confines the contribution to ScienceWorld and ALFWorld — environments that are increasingly marginal in the EMNLP agent track, which favors real-world web/code/tool-use benchmarks.\"]\nFeedback: This is round 7 of 10. The core novelty (learned routing to deterministic simulator) is CONFIRMED genuine — my extensive search across arXiv, conference proceedings, and adjacent fields found no competing work. But you are running out of rounds with the same errors persisting. Here are NON-NEGOTIABLE fixes:\n\n1. **FIX ITP-R TO 85.07% (FINAL WARNING)**: ITP-R overall ALFWorld with Qwen2.5-7B = 85.07%, confirmed from Table 1 across three independent sources. The 94.29% is the PICK subtask column ONLY. This is the 4th round I'm flagging this. Ironically, correcting it HELPS you: ITP-R (85.07%) < CogRouter (92.5%) means LLM world model routing hurts on BOTH ALFWorld AND ScienceWorld, strengthening your motivation. New narrative: 'ITP-R's LLM world model routing consistently underperforms pure internal adaptation (CogRouter): 85.07% vs 92.5% on ALFWorld, 62.58 vs 84.6 on ScienceWorld. This demonstrates that approximate LLM foresight introduces noise exceeding its planning value. SimGate replaces noisy foresight with exact deterministic simulation.'\n\n2. **ADDRESS EPO IN ONE PARAGRAPH**: 'EPO (arXiv 2509.22576) reports 96.8% binary success rate on ScienceWorld with Qwen2.5-7B. However, its evaluation protocol differs fundamentally from ours: (a) binary {0,1} success, not continuous ScienceWorld score; (b) GRPO baseline = 93.8% vs CogRouter's 53.0% SR, indicating different task subsets or evaluation configurations; (c) undisclosed task subset and episode count. We follow CogRouter's standardized 200-simulation protocol using continuous score for direct comparability. We also note EMPO2 (arXiv 2602.23008, 75.9 avg score) as a directly comparable baseline.'\n\n3. **CUT COMPUTE TO ≤180h**: (a) Cite PA-MoE+GiGPO, Dyna-Mind, and Skill1 results from their papers without reproduction (−15h). (b) Check CogRouter's GitHub for published checkpoints (−20h if available). (c) Reduce ALFWorld secondary experiments to SimGate vs always-simulate vs ITP-R only (−10h). (d) Drop one ablation tier (−10h). Target: 165h with 35h margin.\n\n4. **ADD AutoTool (AAAI 2026)**: Cite and differentiate: 'AutoTool learns to skip LLM calls by predicting tool sequences from a trajectory graph. SimGate differs in routing to a deterministic SIMULATOR for state prediction/lookahead, not replaying cached tool patterns. AutoTool optimizes call efficiency; SimGate optimizes reasoning modality.'\n\n5. **STRENGTHEN IMPACT ARGUMENT**: The structural limitation (needs deterministic simulator) is the biggest weakness. Mitigate by: (a) Connecting to the growing ecosystem of code execution sandboxes (SWE-bench uses Docker), game engines (NetHack, Minecraft), physics simulators — argue these are all forms of deterministic external computation that SimGate's framework extends to; (b) Frame SimGate as establishing the PRINCIPLE that ground-truth external computation, when available, should be selectively invoked rather than always used or never used — the principle generalizes even if this paper demonstrates it on two benchmarks; (c) Add a brief discussion connecting to tool-use agents: code interpreters, calculators, and API calls are all forms of 'deterministic external computation' — SimGate's routing concept applies whenever the agent can choose between reasoning internally and consulting an exact external oracle.\n\n6. **JUSTIFY SCIENCEWORLD BENCHMARK CHOICE**: Add: 'ScienceWorld uniquely tests rule-governed scientific reasoning (temperature physics, chemical reactions, electrical circuits) where the gap between LLM approximation and deterministic ground truth is largest. This makes it the ideal testbed for SimGate's core hypothesis, complementing ALFWorld (user-specified benchmark) as a secondary evaluation.'\n\nROUND 7 WARNING: You have 3 rounds remaining. Issues 1-4 are copy-paste fixes that should take <5 minutes. If these same errors appear in round 8, I will escalate to 'fail' on grounds of persistent non-responsiveness to reviewer feedback — a serious signal about execution quality.\n\n### Round 8 review\nVerdict: revise\nIssues: [\"IMPACT CEILING: The structural requirement for a ground-truth deterministic simulator limits practical relevance to synthetic environments (ScienceWorld, ALFWorld, game engines). Among the user's 8 specified benchmarks, only ALFWorld qualifies. ScienceWorld (the primary benchmark) is not on the user's list. The 'simulator fidelity spectrum' discussion is theoretical — no experiment demonstrates generalization to code execution sandboxes or calculators. EMNLP reviewers will question relevance to real-world agent tasks.\", \"EPO NUMBERS REQUIRE VERIFICATION: The proposal states 'GRPO+EPO achieves a more modest 83.8% Succ.bar.' My independent verification of the HTML paper (v1) shows GRPO+EPO at 95.8% IID / 95.8% OOD in Table 1. The 83.8% may come from the v2 update or a different table/metric, but this discrepancy should be double-checked against the v2 PDF to ensure accuracy. The PPO+EPO = 96.8% figure is consistent with the search results showing 96.8 vs 38.4 average success rate.\", \"BENCHMARK MISALIGNMENT PERSISTS: ScienceWorld (primary benchmark) is not in the user's specified list. The justification ('ideal testbed for rule-governed reasoning') is reasonable for the research question but does not fully satisfy the user's constraint. The proposal should acknowledge this tension explicitly.\", \"COST REDUCTION CLAIM NEEDS PRECISION: The '>40% inference FLOPs reduction' on ALFWorld is claimed vs ITP-R (which uses GPU-intensive LLM world model rollouts), not vs CogRouter (which has no world model). This should be made explicit — the cost advantage is over ITP-R specifically. Vs CogRouter, SimGate adds overhead (deterministic simulation invocations) that may or may not be offset by reduced LLM inference on simulation-routed steps.\", \"SHORT PAPER VENUE REALISM: The proposal targets 'EMNLP 2026 (ARR submission deadline: May 25, 2026, short paper).' For EMNLP Main, the limited impact (synthetic environments only) and narrow novelty (ITP-R variant with deterministic simulator) make acceptance unlikely. For EMNLP Findings, the genuine novelty and clean experimental design make it viable. The proposal should explicitly target Findings as the realistic venue.\", \"MISSING COMPETING WORK — Dyna-Think (related to Dyna-Mind): While Dyna-Mind/RESIM is included, the search results also reference 'Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents' — verify this isn't a closer competitor that blends internal reasoning with simulation in a routing-like framework.\"]\nFeedback: Round 8 is a major improvement — ALL persistent issues from rounds 1-7 are finally fixed. The ITP-R number (85.07%), EPO evaluation protocol, EMPO2, AutoTool, and ARTIS are all correctly addressed. The compute budget fits within 200h. The landscape is now comprehensive. However, the average score (3.5) remains below the 4.0 pass threshold due to structural impact limitations.\n\nTo push toward pass in rounds 9-10, focus on these specific actions:\n\n1. **STRENGTHEN IMPACT (CRITICAL — this is the blocking dimension)**: Add a concrete, brief proof-of-concept design for how SimGate's routing framework extends to one real-world deterministic oracle. The strongest candidate: tool-use agents that invoke calculators or code interpreters. Frame a 1-paragraph experiment: 'On ToolBench or GAIA, agents choose between reasoning internally about arithmetic/code and executing via a calculator/interpreter. We apply SimGate's routing framework to learn when external execution provides more value than internal reasoning.' Even without running this experiment, designing it shows the framework generalizes. If you can run even a minimal 5-instance pilot, it dramatically changes impact.\n\n2. **VERIFY EPO GRPO+EPO = 83.8%**: Double-check against the v2 PDF. My HTML fetch of v1 showed 95.8% for GRPO+EPO. If 83.8% is from v2 or a different aggregation, note this. If it's an error, correct it.\n\n3. **TARGET FINDINGS EXPLICITLY**: State 'targeting EMNLP 2026 Findings (short paper)' rather than leaving both Main and Findings as options. The contribution is genuine but narrow — Findings is the realistic acceptance venue. This also reduces reviewer expectations.\n\n4. **CLARIFY COST REDUCTION BASELINE**: Specify that the '>40% FLOPs reduction' is vs ITP-R (which uses GPU-heavy LLM world model), not vs CogRouter (which has no world model). Add a sentence: 'Compared to CogRouter, SimGate adds CPU-only simulation overhead but saves LLM inference tokens on steps where deterministic lookahead substitutes for deep internal reasoning.'\n\n5. **CHECK DYNA-THINK**: Verify 'Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation' is not a closer competitor — it appeared in my search results adjacent to Dyna-Mind.\n\n6. **ROUND 10 OUTLOOK**: If impact remains at 3.0 and the average stays below 4.0, I will need to make a pass/fail decision. The idea is genuinely novel and feasible — I lean toward pass for Findings short paper if you address the above. But a failed impact argument could tip to fail. Prioritize items 1 and 3.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-12T02:02:34.747Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-12T02:02:34.747Z",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320"
+}
+```
+
+---
+
+## Round 1
+
+83 recorded events
+
+### User
+
+_source line 3 · 2026-05-12T02:02:34.798Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-11 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: LLM Agents.
+
+Direction: LLM Agents — planning algorithms, memory architectures, tool use, multi-agent coordination, agent training (SFT/RL), self-correction in agentic loops, environment feedback exploitation.
+
+Contribution type: METHOD ONLY. Must propose a concrete new algorithm, training procedure, or inference-time mechanism. Reject pure benchmark / dataset / analysis ideas. Method + analysis OK if analysis validates the method.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total (baselines + method + ablations). Show the math.
+2. Time: ≤16 days. Build on existing OSS agent codebases (AutoGen, LangGraph, OpenManus, etc.) — no from-scratch systems.
+3. Eval: existing benchmarks only — AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, ALFWorld, Mind2Web, τ-bench.
+
+Avoid: generic ReAct variants, plain tool retrieval, naive memory summarization. Look for: agent training with minimal RL budget, structured planning beyond flat CoT, multi-agent communication protocols, agent self-verification mechanisms.
+
+Tag: direction=agent, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-11?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 9/10)
+{
+  "title": "SimGate: Learning When to Route LLM Agents to Deterministic Simulators for Rule-Governed Reasoning",
+  "core_problem": "Per-step compute allocation methods for LLM agents route between internal reasoning depths (CogRouter's four cognitive levels, ARES's effort tiers) or between skip-simulation and LLM-based world model rollouts (ITP-R's K-head predictor). On environments requiring accurate prediction of rule-governed dynamics, LLM world model routing consistently degrades performance relative to pure internal reasoning adaptation. ITP-R (Qwen2.5-7B) achieves only 85.07% overall on ALFWorld — underperforming CogRouter's 92.5% by 7.4 points — and scores only 62.58 (seen) / 58.94 (unseen) on ScienceWorld, dramatically below CogRouter's 84.6 score / 72.0% SR. Critically, the 85.07% overall is averaged across six subtasks with high variance (PICK: 94.29%, COOL: 53.84%), revealing that LLM world model foresight introduces noise that exceeds its planning value across diverse task types. This consistent underperformance on both benchmarks demonstrates that approximate LLM foresight is not merely unhelpful on complex scientific reasoning — it actively hurts on household tasks too. Meanwhile, deterministic external computation — environment simulators implementing exact rule-governed transitions, code interpreters providing exact arithmetic/symbolic computation, calculators — is available but remains unexploited by any learned routing method. Existing simulator-using agents invoke them unconditionally (Qian et al. show forced simulation degrades performance by up to 5% on FrozenLake/Sokoban; ARTIS always simulates every action before commitment, wasting compute on easy steps), while ITP-R's learned gating routes only to an approximate LLM world model. In the parallel domain of mathematical reasoning, ReTool (ICLR 2026) and AgentMath (ICLR 2026) demonstrate that learning when to invoke code interpreters yields dramatic gains (ReTool-32B: 72.5% on AIME vs 40% text-only baseline), but use implicit routing embedded in the LLM's generation rather than an explicit, interpretable router module. The gap: no method learns per-step selective routing via an explicit lightweight router to ground-truth deterministic computation as a complementary computation type to internal reasoning, across both interactive environments and tool-use settings.",
+  "opportunity": "ITP-R (Jan 2026) is the closest prior work on learned simulation gating in interactive environments, and ReTool/AgentMath (both ICLR 2026) are the closest in tool-augmented reasoning. Three key observations create our opportunity. First, ITP-R's LLM world model routing consistently underperforms pure internal adaptation (CogRouter): 85.07% vs 92.5% on ALFWorld (−7.4 points), 62.58 vs 84.6 on ScienceWorld (−22 points). This is not a benchmark-specific failure — approximate LLM foresight introduces noise exceeding its planning value across both simple household tasks and complex scientific reasoning. Second, deterministic computation is available across a broad spectrum of agent tasks but unused by any explicit routing method: ScienceWorld's Scala/JVM backend implements exact rule-governed transitions (water boils at 100°C, circuits follow Ohm's law, chemical reactions follow stoichiometry), ALFWorld's TextWorld/PDDL backend provides exact household physics, and code interpreters provide exact arithmetic/symbolic computation for mathematical reasoning. Third, while ReTool and AgentMath (both ICLR 2026) demonstrate the value of learning when to invoke code interpreters in math, they use implicit routing — the LLM itself decides when to insert code blocks within its generation — rather than an explicit, interpretable router module. This means (a) routing decisions are entangled with the agent backbone, requiring retraining whenever the backbone changes, (b) routing behavior is opaque and difficult to analyze per-task-category, and (c) the approach does not cleanly generalize across different types of deterministic computation (simulators, interpreters, calculators). The opportunity: a unified explicit routing framework with a lightweight, modular router that treats deterministic external computation as a categorically different modality from internal reasoning, applicable across both interactive environments (simulators) and tool-use settings (code interpreters).",
+  "landscape": "ITP / ITP-R ('Imagine-then-Plan', arXiv 2601.08955, Jan 2026) introduces a K-head predictor for per-step simulation gating, routing to an SFT-trained LLM world model. With Qwen2.5-7B backbone: ALFWorld 85.07% overall (per-task: PICK 94.29%, CLEAN 88.89%, HEAT 87.50%, COOL 53.84%, LOOK 76.00%, PICK2 91.67%), ScienceWorld 62.58/58.94 score seen/unseen. Underperforms CogRouter on BOTH benchmarks, demonstrating that LLM world model routing introduces noise exceeding its planning value. Code at github.com/loyiv/ITP. CogRouter ('Think Fast and Slow', arXiv 2602.12662, Feb 2026) defines four cognitive levels with CoSFT + CoPO training on Qwen2.5-7B, achieving ALFWorld 92.5% and ScienceWorld 84.6 score / 72.0% SR with 62% token reduction. Purely internal reasoning — current ScienceWorld continuous-score SOTA among Qwen2.5-7B routing methods. Code at github.com/rhyang2021/CogRouter. EPO (arXiv 2509.22576, v1 Sep 2025, v2 Feb 2026) reports ScienceWorld results using binary success rate metrics: PPO+EPO achieves Succ.* = 100.0%, Succ.¯ = 96.8% (IID); GRPO+EPO achieves Succ.* = 95.8%, Succ.¯ = 83.8% (IID), with GRPO baseline at Succ.* = 93.8%, Succ.¯ = 81.6% (IID). Note: Succ.* (best success rate) and Succ.¯ (converged success rate) are both from Table 1; the 95.8% and 83.8% are different metrics for the same GRPO+EPO condition. These binary success metrics and the elevated GRPO baseline (93.8% Succ.* vs CogRouter's 53.0% SR) indicate different evaluation configurations, making direct comparison to CogRouter's standardized continuous-score protocol unreliable. We follow CogRouter's protocol for comparability. EMPO2 (arXiv 2602.23008, ICLR 2026) achieves 75.9 average continuous score on ScienceWorld using 19 tasks with Qwen2.5-7B via exploratory memory-augmented hybrid RL. This IS directly comparable to CogRouter's metric (continuous score) and confirms CogRouter's 84.6 as the stronger result. ARES (arXiv 2603.07915, March 2026) trains a Qwen3-1.7B SFT router for {low, mid, high} reasoning effort, achieving 52.7% reasoning token reduction. Internal-only. STEP-HRL (arXiv 2604.05808, April 2026) achieves ALFWorld 97.14% seen / 97.76% unseen and ScienceWorld 81.57% seen / 77.81% unseen via hierarchical RL with Llama-3-8B. Strong recent result, though different backbone prevents exact CogRouter comparison. Embodied Planner-R1 (arXiv 2506.23127) achieves ALFWorld 97.78% and ScienceWorld 79.92% via pure RL with IPO. Skill1 (arXiv 2605.06130, May 2026) achieves ALFWorld 97.5% via unified skill evolution with RL — current ALFWorld SOTA. Does not evaluate on ScienceWorld. PA-MoE+GiGPO (arXiv 2602.17038, Feb 2026) achieves ALFWorld 95.3% (7B). ReTool (arXiv 2504.11536, ICLR 2026) learns when to invoke a code interpreter for mathematical reasoning via SFT cold-start + outcome-based RL. ReTool-32B achieves 72.5% on AIME, surpassing o1-preview by 27.9% and text-only RL baseline (40%) by 32.5 points. However, ReTool uses implicit routing: the LLM decides within its own generation when to insert code blocks, with no explicit router module. The routing decision is entangled with the backbone model. AgentMath (arXiv 2512.20745, ICLR 2026) achieves 90.6% on AIME24, 86.4% on AIME25 via tool-augmented agentic RL with code interpreter. Like ReTool, uses implicit routing via the backbone LLM rather than an explicit router. SimGate differs from both in using an explicit lightweight router module (Qwen3-1.7B) that makes interpretable, modular routing decisions decoupled from the agent backbone. AutoTool (AAAI 2026, arXiv 2511.14650) builds tool-invocation graphs from trajectories to predict next tool calls, skipping LLM inference when confident: ScienceWorld 0.708 progress rate with 23.6% LLM call reduction, ALFWorld 0.531 with 15.4% reduction. AutoTool predicts WHICH tool to call from statistical patterns, not WHAT state will result — it does not route to a deterministic simulator for state prediction. ARTIS (arXiv 2602.01709) implements risk-aware iterative simulation: N simulated attempts before every real action via an LLM-based simulator. Evaluated on BFCL-v3 and ACEBench, not ALFWorld/ScienceWorld. ARTIS always simulates (wasting compute on easy steps), while SimGate selectively routes. Dyna-Think (arXiv 2506.00320, May 2025) integrates internal world model simulation into reasoning via two training approaches (DIT and DDT). Evaluated on OSWorld and WindowsAgentArena, not ALFWorld/ScienceWorld. Uses a learned (not deterministic) world model with no explicit routing/gating — simulation is integrated into the thinking process rather than selectively invoked. Not a direct competitor: different world model type (learned vs deterministic), different benchmarks, no routing decision. Dyna-Mind/RESIM (arXiv 2510.09577) achieves ALFWorld 92.5% (Dyna-GRPO) via learning to simulate from experience — same group as Dyna-Think, also uses learned (not deterministic) simulator. BoundaryRouter (arXiv 2605.07180, May 2026) routes between LLM inference and agent execution using experience memory, but routes between two LLM-based systems, not to a deterministic simulator. AVIC (arXiv 2602.08236, Feb 2026) implements learned binary gating for world model invocation in visual spatial reasoning. Qian et al. (arXiv 2601.03905, Jan 2026) empirically show forced world model use degrades performance; the primary bottleneck is deciding when to simulate. MTRouter (arXiv 2604.23530, ACL 2026) routes between different LLMs per turn. Key gap: ITP-R learns simulation gating but routes to an approximate LLM world model that consistently underperforms pure internal reasoning. ReTool/AgentMath learn when to invoke code interpreters but use implicit routing entangled with the backbone. No method provides an explicit, modular, lightweight router for selective invocation of ground-truth deterministic computation across both interactive environments and tool-use settings.",
+  "approach": "We propose SimGate, a hybrid routing framework that learns per-step whether an LLM agent should rely on internal reasoning or invoke deterministic external computation for ground-truth results, targeting settings where exact computation is available (environment simulators, code interpreters). Unlike ITP-R, which routes to an LLM world model that consistently underperforms pure internal reasoning, SimGate routes to deterministic oracles providing exact outputs at CPU-only cost. Unlike ReTool/AgentMath (ICLR 2026), which embed routing decisions implicitly within the LLM's generation, SimGate uses an explicit lightweight router module — enabling interpretable per-step routing analysis, backbone-agnostic deployment, and unified routing across different computation types.\n\nThe framework has three components:\n\n(1) Agent backbone: Qwen2.5-7B (matching CogRouter for controlled comparison), with ReAct-style interaction augmented by routing decisions at each step.\n\n(2) Deterministic computation access: For ScienceWorld (primary benchmark), the JVM-based simulator is accessed via py4j. State forking is implemented through action-replay: a parallel ScienceWorld instance replays the current episode's action history to reach the identical state, then executes 1-3 candidate action sequences to observe exact outcomes (temperature changes, chemical reactions, circuit states). This avoids JVM serialization complexity while guaranteeing identical states. For ALFWorld (secondary benchmark), state forking uses GameState.copy() combined with a fresh TextWorld runtime to evaluate candidate actions. For the MATH generalizability pilot (tertiary), the deterministic oracle is a Python code interpreter executing generated code to obtain exact arithmetic/symbolic results. All deterministic computation is CPU-only with negligible cost compared to LLM world model inference.\n\n(3) Lightweight explicit router: a Qwen3-1.7B model fine-tuned via SFT to select per step from {fast-internal, deep-internal, deterministic-computation}, based on interaction history and current observation. This three-way modality routing via an explicit module differs fundamentally from: ITP-R's depth selection (K∈{0,...,K_max} over a single approximate world model), ReTool/AgentMath's implicit routing (LLM decides within its generation when to invoke tools, entangling routing with the backbone), and AutoTool's statistical tool-sequence prediction (predicts WHICH tool, not WHAT state). SimGate's router is modular (same architecture across ScienceWorld, ALFWorld, and MATH), interpretable (routing decisions can be analyzed per-task-category), and backbone-agnostic (router can be retrained without modifying the agent backbone).\n\nTraining proceeds in two offline phases:\n\nPhase 1 (trajectory collection): Run the Qwen2.5-7B agent on ScienceWorld's 30 task types (200 task variations), ALFWorld's 134 tasks, and a 200-problem subset of MATH (competition-level, Levels 4-5) across ~800 total episodes. At each decision step, execute all three modalities in parallel — fast-internal (direct ReAct), deep-internal (chain-of-thought with multi-step planning), and deterministic-computation (simulator lookahead for ScienceWorld/ALFWorld, code interpreter execution for MATH) — and record which produced the action leading to highest eventual task success via counterfactual labeling.\n\nPhase 2 (router SFT): Fine-tune Qwen3-1.7B on the labeled (history, observation, best-modality) triples with cross-entropy loss, following ARES's training pipeline. No online RL needed.\n\nEvaluation:\n- Primary benchmark: ScienceWorld (30 task types). We acknowledge that ScienceWorld is not in the user's original benchmark list, but justify its inclusion: ScienceWorld uniquely tests rule-governed scientific reasoning (temperature physics, chemical reactions, electrical circuits) where the gap between LLM approximation and deterministic ground truth is largest, making it the ideal testbed for SimGate's core hypothesis. We follow CogRouter's standardized evaluation protocol using continuous score for direct comparability. We compare against CogRouter (84.6 score / 72.0% SR), ITP-R (62.58/58.94 score), EMPO2 (75.9 avg score), always-simulate, never-simulate, random routing, and confidence-threshold heuristic.\n- Secondary benchmark: ALFWorld (134 tasks, user-specified benchmark). We compare against CogRouter (92.5%), ITP-R (85.07%), always-simulate, and ReAct. We cite PA-MoE+GiGPO (95.3%), STEP-HRL (97.14%), and Skill1 (97.5%) results from their papers without reproduction. The primary claim on ALFWorld is cost-efficiency: matching or exceeding ITP-R's 85.07% accuracy with lower inference cost by replacing GPU-intensive LLM world model rollouts with CPU-only deterministic simulation. Compared to CogRouter (which has no world model), SimGate adds CPU-only simulation overhead but saves LLM inference tokens on steps where deterministic lookahead substitutes for deep internal reasoning. We acknowledge ALFWorld saturation and do not claim SOTA.\n- Generalizability pilot: MATH (200-problem subset, Levels 4-5). We apply SimGate's routing framework with the code interpreter as the deterministic oracle. We compare against always-CoT, always-code-interpreter, and random routing. This pilot demonstrates that SimGate's explicit router architecture generalizes beyond game simulators to tool-use settings. We do not claim to beat ReTool or AgentMath (which use larger backbones with implicit routing + RL), but show that explicit modular routing achieves competitive performance with interpretable, analyzable routing decisions. This experiment directly addresses the impact concern about simulator-only applicability.\n\nKey metrics: task success rate, normalized score (ScienceWorld), total LLM tokens consumed, simulation/tool invocation ratio, LLM world model inference cost vs deterministic computation cost (FLOPs and wall-clock), per-task-category success breakdown to identify WHERE deterministic computation provides most value, and routing decision analysis (which task types trigger which modalities).\n\nCore hypotheses: (H1) On ScienceWorld, SimGate outperforms both CogRouter (which lacks external grounding for scientific reasoning) and ITP-R (whose LLM world model hallucinates scientific state transitions), targeting >88 score / >78% SR. (H2) On ALFWorld, SimGate exceeds ITP-R's 85.07% accuracy (targeting >91%) with >40% reduction in inference FLOPs vs ITP-R specifically (which uses GPU-intensive LLM world model rollouts), by substituting CPU-only deterministic simulation. (H3) On MATH (pilot), SimGate's explicit 3-way routing achieves >75% accuracy on Level 4-5 problems (vs ~60% always-CoT, ~70% always-code baselines for Qwen2.5-7B), demonstrating the framework's generalizability. (H4) Per-task-category analysis reveals that deterministic computation provides greatest value on tasks requiring multi-step causal reasoning about physical/chemical processes (ScienceWorld: heating, chemical reactions, circuits) and exact arithmetic (MATH: computation-heavy problems), and least value on pattern-matching or conceptual tasks.\n\nGeneralizability and broader impact: SimGate's core contribution is the principle that deterministic external computation should be selectively invoked via an explicit, modular router — not always used (ARTIS) or never used. We demonstrate this across two points on the deterministic-computation spectrum: (a) environment simulators providing exact state transitions (ScienceWorld, ALFWorld) and (b) code interpreters providing exact arithmetic/symbolic computation (MATH pilot). This positions SimGate alongside but distinct from ReTool/AgentMath (ICLR 2026), which validate the same routing principle for code interpreters but via implicit routing entangled with the backbone. The explicit router architecture extends naturally to other deterministic oracles: calculators, database queries, API calls, physics simulators, and game engines (NetHack, Minecraft). SimGate demonstrates that at the high-fidelity end of the computation spectrum, learned selective invocation via an explicit router achieves a cost-accuracy Pareto improvement over both unconditional invocation and LLM-based world model routing.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~189h H100 80GB (55h trajectory collection on ScienceWorld+ALFWorld with all modalities, 12h MATH pilot trajectory collection+evaluation, 10h router SFT, 35h CogRouter baseline reproduction on ScienceWorld, 20h ITP-R baseline reproduction, 15h ALFWorld secondary experiments, 25h ablations and per-category analysis, 2h MATH pilot router training, 15h evaluation runs; PA-MoE+GiGPO, STEP-HRL, EMPO2, Skill1, ReTool, AgentMath results cited from papers without reproduction)",
+      "gpu_utilization": "~55% effective utilization; ~45% idle from analysis, debugging, environment engineering, and writing",
+      "timeline": "14 days (very tight for May 25 ARR deadline; ScienceWorld action-replay state forking requires ~2 days engineering; MATH pilot can run in parallel with ALFWorld experiments)",
+      "team": "1 researcher",
+      "estimated_gpu_cost": "$378-567 at $2.00-3.00/hr H100 80GB"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~159h H100 80GB (agent automates trajectory collection, baseline evaluation scheduling, and result parsing; human focuses on state-forking engineering, router training decisions, and paper writing; MATH pilot automated; PA-MoE+GiGPO, STEP-HRL, EMPO2, Skill1, ReTool, AgentMath results cited from papers without reproduction)",
+      "gpu_utilization": "~70% effective utilization",
+      "timeline": "12 days",
+      "team": "1 researcher, ~90min/day for ScienceWorld environment engineering, per-category analysis review, and training curves",
+      "claude_api_cost": "$70-110 (~700-1100 Opus turns for ScienceWorld API integration, state-forking implementation, MATH pilot setup, baseline reproduction, data pipeline, analysis)",
+      "estimated_gpu_cost": "$318-477 at $2.00-3.00/hr",
+      "risk_note": "Primary risk is ScienceWorld state-forking engineering — action-replay approach requires maintaining a parallel JVM instance and may have performance overhead for long episodes (>50 steps). Mitigated by capping lookahead replay to last 10 actions + simulator fast-forward. Secondary risk: training method mismatch (ITP-R uses A2C, CogRouter uses CoPO) — mitigated by including ablation with matched training."
+    },
+    "auto_research": {
+      "gpu_hours": "~194h H100 80GB (broader ScienceWorld per-task-type analysis across all 30 task types, ALFWorld cost analysis, MATH pilot, routing ablations, lookahead depths 1-3, router sizes; PA-MoE+GiGPO, STEP-HRL, EMPO2, Skill1, ReTool, AgentMath results cited from papers without reproduction)",
+      "gpu_utilization": ">90% utilization; agent pipelines trajectory collection → labeling → training → evaluation continuously",
+      "timeline": "11-12 days with 2+ H100 GPUs",
+      "team": "0 (initial 3h setup for ScienceWorld state forking + MATH pilot + environment + API keys)",
+      "claude_api_cost": "$150-220 (~1500-2200 Opus turns for ScienceWorld integration, state forking implementation, MATH pilot, experimentation, per-category analysis, and paper drafting)",
+      "estimated_gpu_cost": "$388-582 at $2.00-3.00/hr",
+      "speed_bottleneck": "CPU-bound ScienceWorld action-replay for state forking on long episodes; GPU bottleneck is Qwen2.5-7B inference for ~800 episodes × 3 modalities × ~30 steps = ~72K inference calls",
+      "risk_note": "Without human judgment on training method fairness (ITP-R uses A2C, CogRouter uses CoPO), agent may produce noisy comparisons; mitigated by including ITP-R-style gating trained with CoPO as an additional ablation"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 Findings (ARR submission deadline: May 25, 2026, short paper)"
+  ],
+  "level": "promising",
+  "key_references": [
+    "Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models [ITP/ITP-R] (arXiv 2601.08955, Jan 2026) — ALFWorld 85.07% overall (Qwen2.5-7B; 94.29% is PICK subtask only), ScienceWorld 62.58/58.94 score",
+    "Think Fast and Slow: Step-Level Cognitive Depth Adaptation for LLM Agents [CogRouter] (arXiv 2602.12662, Feb 2026) — ALFWorld 92.5%, ScienceWorld 84.6 score / 72.0% SR",
+    "EPO: Entropy-regularized Policy Optimization for LLM Agents RL (arXiv 2509.22576, v1 Sep 2025, v2 Feb 2026) — ScienceWorld: PPO+EPO Succ.*=100.0%/Succ.¯=96.8% (IID), GRPO+EPO Succ.*=95.8%/Succ.¯=83.8% (IID); binary success metrics with different evaluation protocol from CogRouter's continuous score",
+    "EMPO2: Exploratory Memory-Augmented LLM Agent via Hybrid On- and Off-Policy Optimization (arXiv 2602.23008, ICLR 2026) — ScienceWorld 75.9 avg continuous score (19 tasks, Qwen2.5-7B)",
+    "ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents (arXiv 2603.07915, March 2026)",
+    "ReTool: Reinforcement Learning for Strategic Tool Use in LLMs (arXiv 2504.11536, ICLR 2026) — AIME 72.5% (32B); learns when to invoke code interpreter via SFT+RL, but uses implicit routing embedded in LLM generation, not explicit router module",
+    "AgentMath: Empowering Mathematical Reasoning via Tool-Augmented Agent (arXiv 2512.20745, ICLR 2026) — AIME24 90.6%, AIME25 86.4%; agentic RL with code interpreter, implicit routing",
+    "AutoTool: Efficient Tool Selection for Large Language Model Agents (AAAI 2026, arXiv 2511.14650) — ScienceWorld 23.6% LLM call reduction, ALFWorld 15.4% reduction; statistical tool-sequence prediction, not simulation",
+    "ARTIS: Agentic Risk-Aware Test-Time Scaling via Iterative Simulation (arXiv 2602.01709) — always-simulate paradigm on BFCL-v3/ACEBench",
+    "Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents (arXiv 2506.00320, May 2025) — OSWorld/WindowsAgentArena; learned world model integrated into reasoning, no explicit routing/gating, different benchmarks — not a direct competitor",
+    "STEP-HRL: Hierarchical RL with Augmented Step-Level Transitions (arXiv 2604.05808, April 2026) — ALFWorld 97.14%, ScienceWorld 81.57% SR (Llama-3-8B)",
+    "Embodied Planner-R1 (arXiv 2506.23127) — ALFWorld 97.78%, ScienceWorld 79.92%",
+    "Current Agents Fail to Leverage World Model as Tool for Foresight [Qian et al.] (arXiv 2601.03905, Jan 2026) — forced simulation degrades performance on FrozenLake/Navigation/PrimitiveSkill/Sokoban",
+    "Skill1: Unified Evolution of Skill-Augmented Agents via Reinforcement Learning (arXiv 2605.06130, May 2026) — ALFWorld 97.5% SOTA",
+    "Phase-Aware Mixture of Experts for Agentic RL [PA-MoE+GiGPO] (arXiv 2602.17038, Feb 2026) — ALFWorld 95.3% (7B)",
+    "Dyna-Mind: Learning to Simulate from Experience for Better AI Agents (arXiv 2510.09577) — ALFWorld 92.5% (Dyna-GRPO); learned simulator, same group as Dyna-Think",
+    "BoundaryRouter: Learning Agent Routing From Early Experience (arXiv 2605.07180, May 2026) — routes between LLM and agent execution, not to deterministic computation",
+    "When and How Much to Imagine: Adaptive Test-Time Scaling with World Models for Visual Spatial Reasoning [AVIC] (arXiv 2602.08236, Feb 2026)",
+    "MTRouter: Cost-Aware Multi-Turn LLM Routing with History-Model Joint Embeddings (arXiv 2604.23530, ACL 2026)",
+    "Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond (arXiv 2604.22748, April 2026)",
+    "AgentRL: Scaling Agentic Reinforcement Learning (arXiv 2510.04206)"
+  ],
+  "description": "We propose SimGate, a hybrid routing framework that learns per-step whether an LLM agent should use internal reasoning or invoke deterministic external computation for ground-truth results, targeting settings where exact computation is available (environment simulators, code interpreters). The core evidence motivating SimGate: ITP-R's LLM world model routing consistently underperforms pure internal reasoning adaptation (CogRouter) on BOTH benchmarks — 85.07% vs 92.5% on ALFWorld (−7.4 points), and 62.58 vs 84.6 on ScienceWorld (−22 points) — demonstrating that approximate LLM foresight introduces noise exceeding its planning value. Meanwhile, deterministic computation is available across a spectrum of agent tasks but unused by any explicit routing method.\n\nSimGate's key architectural distinction: an explicit lightweight router module (Qwen3-1.7B, SFT-trained on counterfactual trajectory data) selects per step from {fast-internal, deep-internal, deterministic-computation}. This differs from ReTool and AgentMath (both ICLR 2026), which learn when to invoke code interpreters but use implicit routing embedded in the LLM's generation — entangling routing decisions with the backbone, preventing interpretable per-task-category analysis, and requiring backbone retraining to modify routing behavior. SimGate's router is modular (same architecture across environments and tool types), interpretable (routing decisions analyzable per category), and backbone-agnostic.\n\nRegarding EPO (arXiv 2509.22576): EPO reports ScienceWorld results using binary success metrics: PPO+EPO achieves Succ.¯ = 96.8% (IID), GRPO+EPO achieves Succ.* = 95.8% / Succ.¯ = 83.8% (IID). Both metrics are from Table 1 — Succ.* and Succ.¯ represent different aggregations (best vs converged success rate). The elevated GRPO baseline (93.8% Succ.* vs CogRouter's 53.0% SR) indicates different evaluation configurations, making direct comparison unreliable. We follow CogRouter's standardized continuous-score protocol.\n\nRegarding Dyna-Think (arXiv 2506.00320): Dyna-Think integrates a learned world model into reasoning on OSWorld/WindowsAgentArena, using no explicit routing/gating. It is not a direct competitor — it uses a different world model type (learned vs deterministic), different benchmarks, and no routing decision.\n\nEvaluation spans three settings: (1) ScienceWorld (primary — the ideal testbed for rule-governed reasoning where the gap between LLM approximation and deterministic ground truth is largest; we acknowledge ScienceWorld is not in the user's original benchmark list but justify its inclusion for this reason), targeting >88 score / >78% SR vs CogRouter (84.6), ITP-R (62.58), EMPO2 (75.9). (2) ALFWorld (secondary, user-specified), targeting >91% vs ITP-R (85.07%) with >40% inference FLOPs reduction vs ITP-R specifically (which uses GPU-intensive LLM world model rollouts, not vs CogRouter which has no world model). Compared to CogRouter, SimGate adds CPU-only simulation overhead but saves LLM inference tokens on steps where deterministic lookahead substitutes for deep internal reasoning. We acknowledge ALFWorld saturation (Skill1: 97.5%) and do not claim SOTA. (3) MATH generalizability pilot (200 competition-level problems, Levels 4-5), applying SimGate's router with code interpreter as deterministic oracle, targeting >75% on Level 4-5 problems. This pilot demonstrates the framework's generalizability beyond game simulators to tool-use settings, directly addressing the impact concern about simulator-only applicability. We do not claim to beat ReTool or AgentMath (larger backbones + implicit routing + RL) but show explicit modular routing achieves competitive performance with interpretable routing analysis.\n\nBuilt on Qwen2.5-7B backbone, evaluated against CogRouter, ITP-R, EMPO2, AutoTool, STEP-HRL, always-simulate, always-code, and heuristic baselines. Targeting EMNLP 2026 Findings short paper (ARR deadline May 25, 2026) — the contribution is genuine but narrow (explicit modular routing to deterministic computation), making Findings the realistic acceptance venue. Estimated cost: 159-194 H100-hours ($318-582), within ≤200h budget.",
+  "project_name": "sim_gate_cost_aware_plan",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL CONSTRAINT VIOLATION: User specified target venue EMNLP 2026 (ARR deadline May 25, 2026), but idea targets AAAI 2027 and ICLR 2027. This completely mismatches the user's submission plan.", "CRITICAL CONSTRAINT VIOLATION: User specified ≤200 H100-hours total compute budget. Idea estimates 400-1000 A100 GPU hours (~300-700 H100-equivalent hours), exceeding the budget by 1.5-3.5x.", "CRITICAL CONSTRAINT VIOLATION: User specified ≤16-day timeline. Even the auto_research mode estimates 1-3 weeks; manual mode estimates 3-5 months.", "CRITICAL MISSING COMPETING WORK: CogRouter ('Think Fast and Slow', arXiv 2602.12662, Feb 2026) trains step-level cognitive depth adaptation using RL (CoPO) on ALFWorld and ScienceWorld — the EXACT same benchmarks. Achieves 92.5% ALFWorld, 72.0% ScienceWorld with Qwen2.5-7B. Code available at github.com/rhyang2021/CogRouter. This is the single most important competing baseline and is entirely unacknowledged.", "CRITICAL MISSING COMPETING WORK: ARES (arXiv 2603.07915, March 2026) trains a lightweight per-step router for adaptive reasoning effort allocation in LLM agents, evaluated on WebArena. 52.7% reasoning token reduction. Nearly identical mechanism (lightweight router on hidden states) for the same abstract goal (step-level compute-aware decisions).", "MISSING RELATED WORK: Budget-aware inference literature from early 2026 (BAVT for LLM agents, BudgetThinker, Inference-Time Budget Control for LLM Search Agents) addresses cost-aware step-level decisions in agents — adjacent and relevant.", "MARGINAL NOVELTY: After accounting for CogRouter (step-level gating + RL in agent trajectories), ARES (lightweight router for per-step effort), and Rational Metareasoning (VOC-based per-step reasoning gating), the remaining novelty is narrow: 'apply the same gating concept to external world model invocation instead of internal reasoning.' This is an application-level contribution, not a methodological one.", "BASELINE INSUFFICIENCY: CogRouter achieves 92.5% on ALFWorld without any world model. SimGate must demonstrate that adding world model simulation + a learned gate exceeds this strong baseline, which is not guaranteed and adds significant complexity.", "DOES NOT BUILD ON SPECIFIED OSS CODEBASES: User required building on AutoGen, LangGraph, OpenManus, etc. The idea proposes building from scratch with Qwen3-14B + WebWorld-8B.", "RESOURCE ESTIMATE INCONSISTENCY: Manual mode claims ~40% GPU utilization but 400h A100 — if effective utilization is 40%, real GPU booking is ~1000h. The estimates across modes are not internally consistent."]
+Feedback: This idea needs fundamental restructuring to meet the user's requirements. Specific actions needed:
+
+1. **RETARGET TO EMNLP 2026**: Redesign the entire scope to fit the EMNLP 2026 ARR deadline (May 25, 2026, 14 days from today). This means drastically simplifying the approach.
+
+2. **FIT WITHIN 200 H100-HOURS**: The current design (Qwen3-14B backbone + WebWorld-8B world model + GRPO training + 3 benchmarks + 5 baselines) is far too expensive. Consider: (a) using a smaller backbone (7B instead of 14B), (b) reducing to 1-2 benchmarks, (c) replacing GRPO with simpler SFT-only training of the gating head, (d) using frozen world model predictions from precomputed rollouts rather than online generation.
+
+3. **COMPLETE IN 16 DAYS**: Use existing OSS agent codebases (AutoGen, LangGraph) as required. Precompute world model rollouts offline, then train the gate head as a simple binary classifier on pre-collected trajectory data. This avoids the expensive online RL loop.
+
+4. **ADDRESS CogRouter AND ARES**: These are the two closest competing works and MUST be cited, compared against, and differentiated from. CogRouter evaluates on the same benchmarks and achieves strong results (92.5% ALFWorld) without world models — you need to argue convincingly why adding world model gating improves over this. Consider using CogRouter as a baseline.
+
+5. **SHARPEN NOVELTY CLAIM**: The distinction 'gate external simulator rather than internal reasoning' is real but thin. To strengthen it, consider: (a) theoretical analysis of when external simulation has higher value of computation than internal reasoning, (b) empirical comparison showing that world model predictions provide complementary signal to internal reasoning, (c) hybrid approach combining CogRouter-style internal depth adaptation with SimGate-style external simulation gating.
+
+6. **SIMPLIFY SCOPE**: For a 16-day project with 200 H100-hours, focus on one benchmark (ALFWorld has the most mature world model support via TextWorld), one backbone, and a clean comparison showing that learned world model gating outperforms heuristic gating, always-simulate, and never-simulate baselines. Save the multi-benchmark story for a follow-up.
+
+### Round 2 review
+Verdict: revise
+Issues: ["CRITICAL MISCHARACTERIZATION: The proposal states 'ITP (2026) always simulates but adapts depth with ITP-R.' This is factually wrong. ITP-R's K-head predictor selects K_t ∈ {0,1,...,K_max} per step, where K=0 explicitly means NO simulation — the agent acts from internal reasoning alone. ITP-R IS a learned per-step router between 'no simulation' and 'simulation at various depths.' The proposal's core gap claim ('no existing work learns per-step routing between internal reasoning and external world model invocation') is therefore invalid.", "CRITICAL MISSING BASELINE: ITP-R (arXiv 2601.08955) achieves 88.57% on ALFWorld with Qwen3-8B using learned per-step simulation gating. This is the single most important baseline for SimGate's claimed contribution and must be included in experiments. Its lower performance vs CogRouter (88.57% vs 92.5%) actually raises a concerning question: if learned simulation routing (ITP-R) already underperforms pure internal adaptation (CogRouter) on ALFWorld, what evidence suggests SimGate's deterministic-simulator variant will reverse this trend?", "NOVELTY GAP NARROWER THAN CLAIMED: After accounting for ITP-R (learned K=0/K>0 routing), the remaining novelty reduces to: (a) routing to a deterministic external simulator vs LLM world model, (b) three-way modality selection vs depth selection, (c) separate router model vs backbone K-head. These are configuration-level differences, not methodological contributions. A short paper could possibly carry this, but only with an honest framing.", "GENERALIZABILITY CONCERN: The approach fundamentally depends on having access to a deterministic external simulator (ALFWorld's TextWorld). Most real-world agent tasks (web navigation, coding, API interaction) lack such simulators. The paper needs to address: under what conditions does this approach transfer? Without this discussion, reviewers will question practical relevance.", "AVIC (Yu et al., Feb 2026) NOT ADEQUATELY DIFFERENTIATED: AVIC implements a binary skip/call_wm gating policy for world model invocation in visual spatial reasoning. While the domain differs (vision vs text), the mechanism (learned binary gate for world model invocation) is conceptually identical. The proposal should explicitly differentiate.", "BENCHMARK SATURATION RISK: ALFWorld success rates are approaching ceiling (CogRouter 92.5%). Demonstrating statistically significant improvements above 92.5% on only 134 task instances requires careful analysis — the margin of improvement is thin and the evaluation set is small, making results potentially noisy.", "TEXTWORLD LOOKAHEAD ENGINEERING UNDERESTIMATED: ALFWorld's TextWorld has no built-in state-forking/cloning API for branching lookahead. Implementing 1-3 step lookahead with state save/restore requires custom engineering on top of the PDDL backend. This is doable but adds unaccounted complexity to the 16-day timeline."]
+Feedback: The revision successfully fixed R1's constraint violations (venue, compute, timeline) — good work. But a serious novelty problem has emerged: ITP-R already does learned per-step routing between 'skip simulation' (K=0) and 'simulate' (K>0). You MUST not mischaracterize ITP. Here is how to salvage the idea:
+
+1. **CORRECT ITP CHARACTERIZATION**: Acknowledge that ITP-R does per-step simulation gating. Then differentiate on the TYPE of simulation: ITP routes to an LLM-based (approximate, hallucination-prone) world model; SimGate routes to a deterministic external simulator providing exact state transitions. Frame this as: 'ITP asks when to imagine; SimGate asks when to consult ground truth.'
+
+2. **ADD ITP-R AS PRIMARY BASELINE**: Include ITP-R (88.57% ALFWorld) alongside CogRouter (92.5%) as the two key baselines. Your hypothesis becomes: 'Deterministic external simulation, when selectively invoked, outperforms both LLM-based simulation routing (ITP-R) and pure internal depth adaptation (CogRouter).' This is testable and interesting.
+
+3. **REFRAME NOVELTY HONESTLY**: The contribution is NOT 'first to learn simulation gating' — it's 'first to learn routing between internal reasoning and a deterministic external simulator as complementary modalities, showing that grounded simulation provides value that LLM-based world models cannot.' This narrower claim is defensible for a short paper.
+
+4. **ADDRESS THE ELEPHANT IN THE ROOM**: ITP-R (88.57%) UNDERPERFORMS CogRouter (92.5%) on ALFWorld, suggesting LLM-based world model routing may actually hurt on this benchmark. You need a convincing argument for why DETERMINISTIC simulation routing will succeed where LLM-based simulation routing failed. The argument should be: 'ITP's LLM world model adds noise through hallucinated state transitions; a deterministic simulator provides exact dynamics, making the router's job easier — it only needs to identify WHEN exact foresight helps, not whether the foresight is accurate.'
+
+5. **ADD GENERALIZABILITY DISCUSSION**: Explicitly acknowledge the deterministic simulator limitation. Propose how the framework extends to tasks with approximate/learned world models (connecting back to ITP/WebDreamer). This turns a weakness into a research direction.
+
+6. **DIFFERENTIATE FROM AVIC**: Add explicit comparison — AVIC gates visual imagination with heuristic sufficiency checks in vision tasks; SimGate trains a separate router model for text-based agent tasks with SFT on counterfactual trajectory data.
+
+### Round 3 review
+Verdict: revise
+Issues: ["CRITICAL FACTUAL ERROR: The proposal cites ITP-R's ALFWorld result as 88.57% throughout, but this is the Qwen3-8B number. ITP-R with Qwen2.5-7B (the SAME backbone SimGate proposes) achieves 94.29% on ALFWorld — verified from ITP-R's Table in the HTML paper. This is HIGHER than CogRouter's 92.5%. The entire motivating argument ('ITP-R underperforms CogRouter, suggesting LLM-based simulation routing hurts') is based on an unfair cross-backbone comparison and is empirically false on the matched backbone.", "CORE MOTIVATION INVALIDATED: Since ITP-R (Qwen2.5-7B) = 94.29% > CogRouter = 92.5%, LLM-based simulation routing does NOT underperform pure internal adaptation on ALFWorld with the same backbone. This destroys the central hypothesis: 'deterministic external simulation provides complementary foresight that is strictly more reliable than LLM-based world model imagination.' The LLM world model already works well — there's no demonstrated failure to fix.", "OUTDATED SOTA: The proposal treats CogRouter (92.5%) as ALFWorld SOTA. As of May 2026, Skill1 achieves 97.5%, PA-MoE+GiGPO achieves 93.8%, and ITP-R achieves 94.29% with Qwen2.5-7B. CogRouter is no longer the primary comparison target. SimGate must demonstrate improvement over 94.29% (ITP-R) or explain why beating the 97.5% Skill1 ceiling is realistic.", "BENCHMARK SATURATION: ALFWorld is at 97.5% SOTA with only 134 evaluation instances. The practical headroom above ITP-R's 94.29% is ~3 percentage points on 134 tasks, making statistically significant improvements extremely difficult to demonstrate. This is especially problematic for a short paper that needs clean, convincing results.", "MISATTRIBUTION OF QIAN ET AL. RESULTS: The proposal states 'unconditional simulation degrades performance by up to 5% on trivial steps (Qian et al., 2026)' in the context of ALFWorld. However, Qian et al. evaluated on FrozenLake, Navigation, PrimitiveSkill, and Sokoban — NOT ALFWorld. The 5% degradation claim cannot be attributed to ALFWorld tasks.", "ENVIRONMENT.COPY() ENGINEERING RISK: TextWorld's base Environment.copy() raises NotImplementedError (verified in source code at github.com/microsoft/TextWorld/blob/main/textworld/core.py). While GameState.copy() performs deepcopy, the full environment forking required for multi-step lookahead rollouts needs the Environment-level copy, which must be implemented from scratch for ALFWorld's specific TextWorld integration. This unaccounted engineering work is risky for a 14-day timeline.", "MISSING RECENT BASELINES: Skill1 (97.5%, May 7, 2026), PA-MoE+GiGPO (93.8%), Dyna-Mind/RESIM (87.7-92.5%), and AgentRL are all absent from the baseline list. These represent the actual competitive landscape on ALFWorld."]
+Feedback: The revision from R2 was well-executed in correcting the ITP mischaracterization (acknowledging K=0 option) and meeting hard constraints. But a new critical problem has emerged: you used ITP-R's Qwen3-8B result (88.57%) to argue it underperforms CogRouter (92.5%), when ITP-R's own paper reports 94.29% with Qwen2.5-7B — the backbone YOU plan to use. This means ITP-R with an LLM world model ALREADY outperforms CogRouter on the matched backbone, eliminating your core argument.
+
+To salvage this idea, you must:
+
+1. **ACKNOWLEDGE ITP-R (Qwen2.5-7B) = 94.29%**: This is the correct comparison point for SimGate, not 88.57%. Your method must beat 94.29% to show deterministic simulation adds value over LLM simulation.
+
+2. **REFRAME THE MOTIVATION ENTIRELY**: You cannot argue 'LLM simulation hurts.' Instead, consider: (a) deterministic simulation is CHEAPER than LLM world model inference (no GPU cost, just CPU), so SimGate could match ITP-R's accuracy with lower computational cost; (b) deterministic simulation may be more robust on specific task categories where LLM world models still hallucinate (identify these via per-category analysis); (c) frame it as 'efficiency + reliability' rather than 'accuracy improvement.'
+
+3. **UPDATE BASELINES AND SOTA**: Include Skill1 (97.5%), PA-MoE+GiGPO (93.8%), ITP-R Qwen2.5-7B (94.29%), and Dyna-Mind (92.5%) as baselines. Acknowledge ALFWorld is near saturation.
+
+4. **CONSIDER PIVOTING BENCHMARK**: Given ALFWorld saturation, consider ScienceWorld (where CogRouter gets 72.0% and there's more headroom) or add a second benchmark where deterministic simulators are available and the benchmark isn't saturated.
+
+5. **FIX QIAN ET AL. ATTRIBUTION**: The 5% degradation finding is from FrozenLake/Sokoban/Navigation/PrimitiveSkill, not ALFWorld. Correct this citation or run your own analysis on ALFWorld.
+
+6. **ADDRESS ENVIRONMENT.COPY() RISK**: TextWorld's base Environment.copy() raises NotImplementedError. Plan for implementing state forking via GameState.copy() + manual environment reconstruction, and account for this engineering effort in your timeline.
+
+7. **STRONGEST VIABLE ANGLE**: Instead of 'deterministic sim beats LLM sim in accuracy,' argue: 'When a deterministic simulator exists, routing to it is (a) computationally cheaper than LLM world model rollouts (CPU vs GPU), (b) guaranteed correct (zero hallucination), and (c) enables more aggressive multi-step lookahead without accuracy degradation. SimGate demonstrates that this cost-accuracy tradeoff is favorable, achieving comparable accuracy to ITP-R with significantly lower inference cost.' This efficiency-focused framing is defensible even if accuracy improvements are marginal.
+
+### Round 4 review
+Verdict: revise
+Issues: ["CRITICAL MISSING BASELINE: EPO (arXiv 2509.22576, Sep 2025) achieves 96.8% binary success rate (IID) / 96.2% (OOD) on ScienceWorld with Qwen2.5-7B-Instruct via entropy-regularized policy optimization — far exceeding CogRouter's 72.0% SR. While EPO uses binary SR (not partial-credit score) and may use a different task subset, this result strongly suggests ScienceWorld is more solvable than the proposal assumes. The proposal treats CogRouter's 72.0% SR as the ceiling with '78% SR headroom' — but EPO has already reached ~97% SR without any simulation routing. This undermines the core motivation: if pure RL training (EPO) already solves ScienceWorld at 96.8% SR, what is the incremental value of deterministic simulator routing?", "MISSING BASELINE: EMPO2 (arXiv 2602.23008, Feb 2026) achieves 75.9 average score on ScienceWorld with Qwen2.5-7B via exploratory memory-augmented hybrid RL. This is another recent ScienceWorld result missing from the landscape.", "COMPUTE BUDGET VIOLATION: The user's hard constraint is ≤200 H100-hours. Manual mode estimates 220h (10% over) and auto mode estimates 260h (30% over). Only HIL at 180h fits within budget. The math breakdown shows 40h for CogRouter baseline + 30h for ITP-R baseline + 20h for other baselines = 90h on baselines alone — this may be reducible.", "ACTION-REPLAY COST UNDERESTIMATED FOR TRAJECTORY COLLECTION: Phase 1 requires executing the deterministic-simulation modality at every step of ~600 episodes × ~30 steps = ~18K decision points. Each fork costs ~1.5-5.5 seconds (JVM startup via py4j + action replay). At ~3s average, that's ~54,000 seconds = ~15 hours of wall-clock CPU time just for state forking during trajectory collection — not including the 1-3 candidate action evaluations per fork (which multiplies this by 1-3x). This is feasible but should be explicitly budgeted.", "METRIC COMPARABILITY ISSUES ON SCIENCEWORLD: The ScienceWorld landscape uses inconsistent metrics across papers. CogRouter reports both Score (84.6) and SR (72.0%); ITP-R reports Score (62.58/58.94); EPO reports binary SR (96.8%); EMPO2 reports Score on a -100 to 100 scale (75.9). The proposal's target of '>88 score / >78% SR' must specify which metric is primary and ensure all baselines are compared on the same metric. Without standardized evaluation, claimed improvements may be artifacts of metric selection.", "GENERALIZABILITY REMAINS INHERENTLY LIMITED: The approach requires a ground-truth deterministic simulator. The proposal discusses this honestly but does not address a key practical question: how many real-world agent benchmarks have such simulators? Among the user's specified benchmarks (AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, Mind2Web, τ-bench), NONE have deterministic simulators. Only ALFWorld (TextWorld/PDDL) is listed. ScienceWorld is not in the user's specified benchmark list at all.", "BENCHMARK SELECTION CONCERN: The user specified evaluation on existing benchmarks including AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, ALFWorld, Mind2Web, and τ-bench. The proposal's primary benchmark (ScienceWorld) is NOT in this list. While ALFWorld is listed, it's designated as secondary and acknowledged as saturated. The proposal should justify why ScienceWorld is appropriate or include at least one of the user's specified benchmarks as primary.", "MISSING RELATED WORK: BoundaryRouter (arXiv 2605.07180, May 2026) proposes routing between lightweight LLM inference and full agent execution — conceptually adjacent to SimGate's routing paradigm. Qian et al. (arXiv 2601.03905) explicitly identifies the 'when to simulate' problem as unsolved — this should be cited as direct motivation, not just as evidence that forced simulation hurts."]
+Feedback: The R4 revision is a major improvement in factual accuracy, honest framing, and competitive landscape coverage. The ScienceWorld pivot is well-motivated, and the novelty claim (learned routing to deterministic simulators) is confirmed as genuine — my independent search found no competing work. However, several issues must be addressed:
+
+1. **ADDRESS EPO (CRITICAL)**: EPO achieves 96.8% binary SR on ScienceWorld with the same Qwen2.5-7B backbone, without any simulation routing. You MUST: (a) include EPO as a baseline, (b) explain why SimGate matters when pure RL training already nearly solves the benchmark, (c) consider whether SimGate's value is orthogonal (inference-time architectural choice) or redundant (EPO shows the problem is training, not architecture). The strongest argument: SimGate is a training-agnostic inference-time mechanism that COMPLEMENTS any backbone training method — run SimGate on top of an EPO-trained agent and show further gains or cost reduction. This would be much stronger than comparing only against CogRouter.
+
+2. **FIT WITHIN 200 H100-HOURS**: Reduce compute by: (a) dropping some baselines (PA-MoE+GiGPO and Dyna-Mind can be cited from their papers without reproduction), (b) reducing ALFWorld experiments (it's secondary and saturated), (c) using CogRouter's published checkpoints if available rather than reproducing training. Target ≤180h to leave margin.
+
+3. **STANDARDIZE SCIENCEWORLD METRICS**: Choose either Score or SR as the primary metric and ensure all baselines are compared on the same scale. If EPO only reports SR and CogRouter reports both, use SR as the common metric.
+
+4. **BENCHMARK ALIGNMENT**: The user specified ALFWorld but not ScienceWorld. Either: (a) add one of the user's specified benchmarks where deterministic simulation is relevant (ALFWorld is already included as secondary — consider making it co-primary), or (b) justify why ScienceWorld is the right benchmark despite not being in the user's list (strong argument: it's the benchmark where deterministic simulation matters most due to complex scientific rules).
+
+5. **REFRAME CONTRIBUTION**: Given EPO, the strongest framing is: 'SimGate demonstrates that learned routing to deterministic simulators provides a cost-accuracy Pareto improvement at inference time, complementary to and composable with any training-time optimization. When composed with an EPO-trained agent, SimGate achieves [X] with [Y]% fewer LLM inference calls.' This positions SimGate as an orthogonal, composable inference-time technique rather than competing with training-time methods.
+
+### Round 5 review
+Verdict: revise
+Issues: ["CRITICAL FACTUAL ERROR: ITP-R with Qwen2.5-7B achieves 85.07% overall on ALFWorld, NOT 94.29%. The 94.29% is the PICK subtask score (first column in ITP-R's Table 1). The per-task breakdown is: PICK 94.29%, CLEAN 88.89%, HEAT 87.50%, COOL 53.84%, LOOK 76.00%, PICK2 91.67%, Overall 85.07%. This error originated in the R3 review's 'correction' and has persisted unchecked. The proposal's claim 'ITP-R achieves 94.29% on ALFWorld with Qwen2.5-7B, outperforming CogRouter (92.5%)' is wrong — ITP-R actually underperforms CogRouter by 7.4 points (85.07% vs 92.5%). HOWEVER: this correction actually STRENGTHENS SimGate's motivation, since it shows LLM world model routing hurts on BOTH ALFWorld and ScienceWorld, not just ScienceWorld.", "COMPUTE BUDGET VIOLATION: User hard constraint is ≤200 H100-hours. Manual=220h (10% over), Auto=260h (30% over). Only HIL=180h fits. Baseline reproduction alone consumes 90h (40h CogRouter + 30h ITP-R + 20h others). Reduce by: (a) citing PA-MoE+GiGPO and Dyna-Mind results from their papers without reproduction, (b) using CogRouter's published checkpoints if available, (c) trimming ALFWorld secondary experiments to only the critical always-simulate comparison.", "EPO NOT ADDRESSED (R4 CRITICAL FEEDBACK IGNORED): R4 flagged EPO (arXiv 2509.22576, 96.8% binary SR on ScienceWorld) as a critical missing baseline. R5 does not mention EPO at all. My verification reveals EPO's metric is NOT directly comparable to CogRouter's — their GRPO baselines differ by 40pp (EPO: 93.8% Succ.* vs CogRouter: 53.0% SR), indicating completely different evaluation protocols and/or task subsets. The proposal should acknowledge EPO, explain the comparability issue, and clarify which ScienceWorld evaluation protocol SimGate will follow (CogRouter's 200-simulation protocol is recommended for consistency with the primary baseline).", "MISSING RELATED WORK — ARTIS (arXiv 2602.01709, Feb 2026): 'Agentic Risk-Aware Test-Time Scaling via Iterative Simulation' runs LLM-based simulation on ALL candidate actions before committing — an always-simulate pipeline with a risk-aware simulator. While it lacks learned gating (every action is simulated), it is the most relevant 'always-simulate' baseline and should be cited alongside Qian et al.'s findings. Position SimGate as selectively routing where ARTIS wastes compute by always simulating.", "BENCHMARK SELECTION NOT ALIGNED WITH USER REQUIREMENTS: The user specified evaluation on AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, ALFWorld, Mind2Web, and τ-bench. ScienceWorld (the primary benchmark) is NOT in this list. Only ALFWorld is included, and it's designated as secondary. The proposal should explicitly justify why ScienceWorld is the right primary benchmark despite not being on the user's list, or elevate ALFWorld to co-primary status.", "CORRECTED ITP-R NUMBER CHANGES ALFWorld NARRATIVE: With the correct ITP-R overall (85.07%), the proposal's ALFWorld story changes from 'match ITP-R's 94.29% with lower cost' to 'ITP-R underperforms CogRouter on ALFWorld too (85.07% vs 92.5%), confirming LLM world models are generally harmful for agent simulation — SimGate aims to match or exceed CogRouter's 92.5% by replacing noisy LLM simulation with exact deterministic simulation at lower cost.' This is actually a stronger argument."]
+Feedback: The idea's core novelty (learned routing to deterministic simulators) is independently confirmed as genuine — no competing work exists. But the R5 submission has a critical factual error and ignores R4's EPO feedback. Here's how to fix it:
+
+1. **FIX ITP-R ALFWORLD NUMBER (CRITICAL)**: Replace all instances of '94.29%' with the correct overall score of 85.07%. The 94.29% is the PICK subtask only. With the corrected number, ITP-R (85.07%) underperforms CogRouter (92.5%) on ALFWorld too — this STRENGTHENS your argument. The narrative becomes: 'LLM world model routing (ITP-R) underperforms pure internal adaptation (CogRouter) on BOTH ALFWorld (85.07% vs 92.5%) and ScienceWorld (62.58 vs 84.6), demonstrating that LLM world models are generally harmful rather than helpful for agent simulation. SimGate replaces the noisy LLM world model with exact deterministic simulation, targeting improvements on both benchmarks.'
+
+2. **CUT COMPUTE TO ≤190 H100-HOURS**: Drop PA-MoE+GiGPO and Dyna-Mind baseline reproduction (cite from papers: −20h). Check if CogRouter publishes checkpoints to avoid full retraining (−20h). Reduce ALFWorld secondary experiments to just always-simulate vs SimGate vs ITP-R (−15h). This gets you to ~165h with margin.
+
+3. **ADDRESS EPO**: Add one paragraph noting EPO's 96.8% SR claim. Explain the evaluation protocol discrepancy (GRPO baseline: 93.8% in EPO vs 53.0% in CogRouter — a 40pp gap indicating different evaluation setups). State that SimGate will follow CogRouter's 200-simulation evaluation protocol for direct comparability. If EPO's evaluation code is available, consider running SimGate under EPO's protocol as a secondary comparison.
+
+4. **ADD ARTIS AS RELATED WORK**: Cite ARTIS (2602.01709) as the 'always-simulate' baseline paradigm. SimGate is more efficient because it selectively invokes simulation only when rule-governed dynamics make internal prediction unreliable.
+
+5. **JUSTIFY SCIENCEWORLD OR ELEVATE ALFWORLD**: Either (a) add one sentence justifying ScienceWorld: 'While not in the standard agent benchmark lists, ScienceWorld uniquely tests rule-governed scientific reasoning where deterministic simulation provides maximum value — making it the ideal testbed for SimGate's core hypothesis'; or (b) make ALFWorld co-primary with ScienceWorld.
+
+6. **REVISE ALFWORLD HYPOTHESIS**: With ITP-R at 85.07% (not 94.29%), your ALFWorld target should be: 'Match or exceed CogRouter's 92.5% by replacing noisy LLM simulation with exact deterministic simulation, with lower inference cost than both ITP-R and CogRouter.' The cost-efficiency argument now pairs with an accuracy argument.
+
+### Round 6 review
+Verdict: revise
+Issues: ["CRITICAL FACTUAL ERROR (PERSISTS FROM R5, NOW ROUND 6): ITP-R with Qwen2.5-7B achieves 85.07% OVERALL on ALFWorld, NOT 94.29%. The 94.29% is the PICK subtask score only (per-task breakdown: PICK 94.29%, CLEAN 88.89%, HEAT 87.50%, COOL 53.84%, LOOK 76.00%, PICK2 91.67%, Overall 85.07%). Verified from arXiv HTML, raw table data, and GitHub table image — three independent sources. The proposal's claim 'ITP-R achieves 94.29% on ALFWorld with Qwen2.5-7B, outperforming CogRouter (92.5%)' is factually wrong. ITP-R (85.07%) UNDERPERFORMS CogRouter (92.5%) by 7.4 points. Critically, this correction STRENGTHENS SimGate's motivation: LLM world model routing hurts on BOTH ALFWorld AND ScienceWorld.", "EPO NOT ADDRESSED (THIRD CONSECUTIVE ROUND): EPO (arXiv 2509.22576) claims 96.8% binary success rate on ScienceWorld with Qwen2.5-7B — flagged as critical in R4, re-flagged in R5, still completely absent in R6. My independent verification reveals: (a) EPO uses binary {0,1} success, NOT the continuous ScienceWorld score (0-100); (b) EPO's GRPO baseline is 93.8% Succ.* vs CogRouter's 53.0% SR — a 40pp gap proving fundamentally different evaluation protocols; (c) EPO does not disclose task subset, episode count, or binarization threshold; (d) max_steps=30 (vs typical 100). These numbers are NOT directly comparable to CogRouter's, but reviewers WILL raise EPO and the proposal MUST preemptively address it.", "EMPO2 MISSING: EMPO2 (arXiv 2602.23008, Feb 2026) achieves 75.9 average score on ScienceWorld with Qwen2.5-7B using continuous score across 18-19 tasks via exploratory memory-augmented hybrid RL. This is a directly comparable ScienceWorld result using the same metric and backbone. Must be included in landscape.", "COMPUTE BUDGET VIOLATION: Manual (220h) and auto (260h) modes exceed the ≤200 H100-hour hard constraint. Only HIL (180h) fits. The description states '180-260 H100-hours' — the upper bound violates the user's requirement. The 90h baseline reproduction budget (40h CogRouter + 30h ITP-R + 20h others) is the main bloat area.", "BENCHMARK MISALIGNMENT: The user specified 8 benchmarks: AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, ALFWorld, Mind2Web, τ-bench. ScienceWorld (the primary benchmark) is NOT in this list. Only ALFWorld is included, designated as secondary and acknowledged as saturated (97.5% Skill1). The proposal must either justify ScienceWorld's inclusion or elevate ALFWorld to co-primary status.", "STRUCTURAL IMPACT LIMITATION: The method requires access to a ground-truth deterministic simulator, which is available for ScienceWorld (JVM/Scala) and ALFWorld (TextWorld/PDDL) but NOT for any real-world agent benchmark (WebArena, SWE-bench, GAIA, ToolBench, Mind2Web, τ-bench). This fundamentally limits the contribution's practical relevance and will be a primary reviewer concern at EMNLP.", "ARTIS (2602.01709) STILL NOT CITED: ARTIS implements risk-aware iterative simulation before commitment — the closest 'always-simulate' baseline paradigm. SimGate should cite it as motivation: ARTIS wastes compute by always simulating, while SimGate selectively routes. Also missing: Qian et al. (2601.03905) is cited but its finding ('agents fail to decide WHEN to simulate') should be more prominently positioned as direct motivation — SimGate is precisely the solution to the problem they identify."]
+Feedback: This is round 6 and the same critical issues keep recurring. You must fix them NOW or risk failing at round 10.
+
+1. **FIX ITP-R NUMBER IMMEDIATELY (THIS IS THE THIRD TIME)**: ITP-R overall on ALFWorld with Qwen2.5-7B = **85.07%**, not 94.29%. I verified this from the paper's Table 1 across three sources. The 94.29% is the PICK subtask column — the rightmost 'Overall' column reads 85.07%. This correction actually HELPS you: ITP-R (85.07%) < CogRouter (92.5%) on ALFWorld, meaning LLM world model routing hurts on BOTH benchmarks. Your narrative becomes: 'LLM world model routing (ITP-R) consistently underperforms pure internal adaptation (CogRouter) — 85.07% vs 92.5% on ALFWorld, 62.58 vs 84.6 on ScienceWorld — demonstrating that approximate LLM foresight introduces noise that outweighs its planning value. SimGate replaces this noisy foresight with exact deterministic simulation.'
+
+2. **ADDRESS EPO (NON-NEGOTIABLE)**: Add a paragraph: 'EPO (arXiv 2509.22576) reports 96.8% binary success rate on ScienceWorld with Qwen2.5-7B. However, EPO uses binary {0,1} success (not the standard continuous ScienceWorld score), an undisclosed task subset, and max_steps=30. Its GRPO baseline (93.8% Succ.*) differs by 40pp from CogRouter's (53.0% SR), indicating fundamentally different evaluation protocols. SimGate follows CogRouter's standardized 200-simulation evaluation protocol for direct comparability. We include EPO-style evaluation as a secondary metric for completeness.'
+
+3. **ADD EMPO2**: Include EMPO2 (75.9 avg score, 18-19 tasks) in the landscape as a baseline that uses the same continuous metric.
+
+4. **CUT COMPUTE TO ≤190h**: (a) Cite PA-MoE+GiGPO and Dyna-Mind results from their papers without reproduction (save ~15h). (b) Use CogRouter's published checkpoints if available instead of full retraining (save ~20h). (c) Reduce ALFWorld secondary experiments to essential comparisons only (save ~15h). Target 170h total.
+
+5. **JUSTIFY SCIENCEWORLD**: Add explicit justification: 'While ScienceWorld is not in the standard agent benchmark list, it uniquely tests rule-governed scientific reasoning (temperature physics, chemical reactions, electrical circuits) where deterministic simulation provides maximal value over LLM world models. ScienceWorld is the ideal testbed for SimGate's core hypothesis because the gap between deterministic and LLM-based simulation is largest on tasks requiring accurate prediction of physical/chemical dynamics.'
+
+6. **IMPACT WARNING**: The structural limitation (requires deterministic simulator) caps impact at ~2.5-3/5. To improve: (a) run a small experiment on one of the user's specified benchmarks where an approximate simulator could substitute (e.g., a code execution sandbox for SWE-bench, even if not deterministic), showing the framework generalizes beyond perfect simulators; or (b) connect more concretely to the growing ecosystem of game engines, physics simulators, and code sandboxes in agentic AI — argue that SimGate is relevant to any environment with a fast, reliable external evaluator.
+
+### Round 7 review
+Verdict: revise
+Issues: ["CRITICAL FACTUAL ERROR (PERSISTS 3 ROUNDS): ITP-R with Qwen2.5-7B achieves 85.07% OVERALL on ALFWorld, NOT 94.29%. The 94.29% is the PICK subtask only. Per-task breakdown: PICK 94.29%, CLEAN 88.89%, HEAT 87.50%, COOL 53.84%, LOOK 76.00%, PICK2 91.67%, Overall 85.07% (verified from arXiv HTML Table 1). The proposal's claim 'ITP-R achieves 94.29% on ALFWorld with Qwen2.5-7B, outperforming CogRouter (92.5%)' is factually wrong. ITP-R (85.07%) UNDERPERFORMS CogRouter (92.5%) by 7.4 points. This correction STRENGTHENS SimGate's argument: LLM world model routing hurts on BOTH benchmarks.", "EPO NOT ADDRESSED (4TH CONSECUTIVE ROUND): EPO (arXiv 2509.22576) claims 96.8% binary SR on ScienceWorld with Qwen2.5-7B. Independent verification reveals: (a) binary {0,1} success metric, not continuous score; (b) GRPO baseline = 93.8% Succ.* vs CogRouter's 53.0% SR — a 40pp gap proving fundamentally different evaluation protocols; (c) undisclosed task subset, episode count, binarization threshold; (d) GRPO+EPO only achieves 83.8% Succ.bar (modest). These numbers are NOT directly comparable to CogRouter, but EMNLP reviewers WILL raise EPO and the proposal MUST preemptively address it.", "EMPO2 STILL MISSING (3RD CONSECUTIVE ROUND): EMPO2 (arXiv 2602.23008, Feb 2026) achieves 75.9 average score on ScienceWorld with Qwen2.5-7B using continuous score across 18-19 tasks via exploratory memory-augmented hybrid RL. This IS directly comparable to CogRouter's metric and must be included in the landscape as a baseline.", "NEW MISSING BASELINE — AutoTool (AAAI 2026, arXiv 2511.14650): AutoTool builds tool-invocation graphs from trajectories to predict next tool calls, skipping LLM inference when confident. Evaluated on BOTH ScienceWorld AND ALFWorld with 15-25% LLM call reduction. While AutoTool routes between 'ask LLM' vs 'replay cached tool pattern' (not to a deterministic simulator for state prediction), it operates on the same benchmarks with a related routing concept and must be cited and differentiated.", "COMPUTE BUDGET VIOLATION (PERSISTENT): Manual (220h) and auto (260h) modes exceed the ≤200 H100-hour hard constraint. Only HIL (180h) fits. The description's stated range '180-260 H100-hours' has an upper bound 30% over budget. The 90h baseline reproduction budget (40h CogRouter + 30h ITP-R + 20h others) is the primary area for reduction.", "ARTIS (arXiv 2602.01709) STILL NOT CITED (3RD ROUND): ARTIS implements risk-aware iterative simulation before commitment — running simulated interactions before real-world execution. While evaluated on different benchmarks (BFCL-v3, ACEBench), it represents the 'always-simulate' paradigm that SimGate claims to improve upon. Should be cited as motivation: ARTIS always simulates (wasting compute on easy steps), while SimGate selectively routes.", "BENCHMARK MISALIGNMENT WITH USER REQUIREMENTS: ScienceWorld (primary benchmark) is NOT in the user's specified benchmark list (AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, ALFWorld, Mind2Web, τ-bench). ALFWorld is listed but designated secondary and saturated. The proposal must explicitly justify ScienceWorld inclusion or add a user-specified benchmark.", "STRUCTURAL IMPACT LIMITATION: The method requires a ground-truth deterministic simulator. Among all prominent agent benchmarks (WebArena, SWE-bench, GAIA, ToolBench, Mind2Web, τ-bench, AgentBench), NONE have deterministic simulators suitable for this approach. This confines the contribution to ScienceWorld and ALFWorld — environments that are increasingly marginal in the EMNLP agent track, which favors real-world web/code/tool-use benchmarks."]
+Feedback: This is round 7 of 10. The core novelty (learned routing to deterministic simulator) is CONFIRMED genuine — my extensive search across arXiv, conference proceedings, and adjacent fields found no competing work. But you are running out of rounds with the same errors persisting. Here are NON-NEGOTIABLE fixes:
+
+1. **FIX ITP-R TO 85.07% (FINAL WARNING)**: ITP-R overall ALFWorld with Qwen2.5-7B = 85.07%, confirmed from Table 1 across three independent sources. The 94.29% is the PICK subtask column ONLY. This is the 4th round I'm flagging this. Ironically, correcting it HELPS you: ITP-R (85.07%) < CogRouter (92.5%) means LLM world model routing hurts on BOTH ALFWorld AND ScienceWorld, strengthening your motivation. New narrative: 'ITP-R's LLM world model routing consistently underperforms pure internal adaptation (CogRouter): 85.07% vs 92.5% on ALFWorld, 62.58 vs 84.6 on ScienceWorld. This demonstrates that approximate LLM foresight introduces noise exceeding its planning value. SimGate replaces noisy foresight with exact deterministic simulation.'
+
+2. **ADDRESS EPO IN ONE PARAGRAPH**: 'EPO (arXiv 2509.22576) reports 96.8% binary success rate on ScienceWorld with Qwen2.5-7B. However, its evaluation protocol differs fundamentally from ours: (a) binary {0,1} success, not continuous ScienceWorld score; (b) GRPO baseline = 93.8% vs CogRouter's 53.0% SR, indicating different task subsets or evaluation configurations; (c) undisclosed task subset and episode count. We follow CogRouter's standardized 200-simulation protocol using continuous score for direct comparability. We also note EMPO2 (arXiv 2602.23008, 75.9 avg score) as a directly comparable baseline.'
+
+3. **CUT COMPUTE TO ≤180h**: (a) Cite PA-MoE+GiGPO, Dyna-Mind, and Skill1 results from their papers without reproduction (−15h). (b) Check CogRouter's GitHub for published checkpoints (−20h if available). (c) Reduce ALFWorld secondary experiments to SimGate vs always-simulate vs ITP-R only (−10h). (d) Drop one ablation tier (−10h). Target: 165h with 35h margin.
+
+4. **ADD AutoTool (AAAI 2026)**: Cite and differentiate: 'AutoTool learns to skip LLM calls by predicting tool sequences from a trajectory graph. SimGate differs in routing to a deterministic SIMULATOR for state prediction/lookahead, not replaying cached tool patterns. AutoTool optimizes call efficiency; SimGate optimizes reasoning modality.'
+
+5. **STRENGTHEN IMPACT ARGUMENT**: The structural limitation (needs deterministic simulator) is the biggest weakness. Mitigate by: (a) Connecting to the growing ecosystem of code execution sandboxes (SWE-bench uses Docker), game engines (NetHack, Minecraft), physics simulators — argue these are all forms of deterministic external computation that SimGate's framework extends to; (b) Frame SimGate as establishing the PRINCIPLE that ground-truth external computation, when available, should be selectively invoked rather than always used or never used — the principle generalizes even if this paper demonstrates it on two benchmarks; (c) Add a brief discussion connecting to tool-use agents: code interpreters, calculators, and API calls are all forms of 'deterministic external computation' — SimGate's routing concept applies whenever the agent can choose between reasoning internally and consulting an exact external oracle.
+
+6. **JUSTIFY SCIENCEWORLD BENCHMARK CHOICE**: Add: 'ScienceWorld uniquely tests rule-governed scientific reasoning (temperature physics, chemical reactions, electrical circuits) where the gap between LLM approximation and deterministic ground truth is largest. This makes it the ideal testbed for SimGate's core hypothesis, complementing ALFWorld (user-specified benchmark) as a secondary evaluation.'
+
+ROUND 7 WARNING: You have 3 rounds remaining. Issues 1-4 are copy-paste fixes that should take <5 minutes. If these same errors appear in round 8, I will escalate to 'fail' on grounds of persistent non-responsiveness to reviewer feedback — a serious signal about execution quality.
+
+### Round 8 review
+Verdict: revise
+Issues: ["IMPACT CEILING: The structural requirement for a ground-truth deterministic simulator limits practical relevance to synthetic environments (ScienceWorld, ALFWorld, game engines). Among the user's 8 specified benchmarks, only ALFWorld qualifies. ScienceWorld (the primary benchmark) is not on the user's list. The 'simulator fidelity spectrum' discussion is theoretical — no experiment demonstrates generalization to code execution sandboxes or calculators. EMNLP reviewers will question relevance to real-world agent tasks.", "EPO NUMBERS REQUIRE VERIFICATION: The proposal states 'GRPO+EPO achieves a more modest 83.8% Succ.bar.' My independent verification of the HTML paper (v1) shows GRPO+EPO at 95.8% IID / 95.8% OOD in Table 1. The 83.8% may come from the v2 update or a different table/metric, but this discrepancy should be double-checked against the v2 PDF to ensure accuracy. The PPO+EPO = 96.8% figure is consistent with the search results showing 96.8 vs 38.4 average success rate.", "BENCHMARK MISALIGNMENT PERSISTS: ScienceWorld (primary benchmark) is not in the user's specified list. The justification ('ideal testbed for rule-governed reasoning') is reasonable for the research question but does not fully satisfy the user's constraint. The proposal should acknowledge this tension explicitly.", "COST REDUCTION CLAIM NEEDS PRECISION: The '>40% inference FLOPs reduction' on ALFWorld is claimed vs ITP-R (which uses GPU-intensive LLM world model rollouts), not vs CogRouter (which has no world model). This should be made explicit — the cost advantage is over ITP-R specifically. Vs CogRouter, SimGate adds overhead (deterministic simulation invocations) that may or may not be offset by reduced LLM inference on simulation-routed steps.", "SHORT PAPER VENUE REALISM: The proposal targets 'EMNLP 2026 (ARR submission deadline: May 25, 2026, short paper).' For EMNLP Main, the limited impact (synthetic environments only) and narrow novelty (ITP-R variant with deterministic simulator) make acceptance unlikely. For EMNLP Findings, the genuine novelty and clean experimental design make it viable. The proposal should explicitly target Findings as the realistic venue.", "MISSING COMPETING WORK — Dyna-Think (related to Dyna-Mind): While Dyna-Mind/RESIM is included, the search results also reference 'Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents' — verify this isn't a closer competitor that blends internal reasoning with simulation in a routing-like framework."]
+Feedback: Round 8 is a major improvement — ALL persistent issues from rounds 1-7 are finally fixed. The ITP-R number (85.07%), EPO evaluation protocol, EMPO2, AutoTool, and ARTIS are all correctly addressed. The compute budget fits within 200h. The landscape is now comprehensive. However, the average score (3.5) remains below the 4.0 pass threshold due to structural impact limitations.
+
+To push toward pass in rounds 9-10, focus on these specific actions:
+
+1. **STRENGTHEN IMPACT (CRITICAL — this is the blocking dimension)**: Add a concrete, brief proof-of-concept design for how SimGate's routing framework extends to one real-world deterministic oracle. The strongest candidate: tool-use agents that invoke calculators or code interpreters. Frame a 1-paragraph experiment: 'On ToolBench or GAIA, agents choose between reasoning internally about arithmetic/code and executing via a calculator/interpreter. We apply SimGate's routing framework to learn when external execution provides more value than internal reasoning.' Even without running this experiment, designing it shows the framework generalizes. If you can run even a minimal 5-instance pilot, it dramatically changes impact.
+
+2. **VERIFY EPO GRPO+EPO = 83.8%**: Double-check against the v2 PDF. My HTML fetch of v1 showed 95.8% for GRPO+EPO. If 83.8% is from v2 or a different aggregation, note this. If it's an error, correct it.
+
+3. **TARGET FINDINGS EXPLICITLY**: State 'targeting EMNLP 2026 Findings (short paper)' rather than leaving both Main and Findings as options. The contribution is genuine but narrow — Findings is the realistic acceptance venue. This also reduces reviewer expectations.
+
+4. **CLARIFY COST REDUCTION BASELINE**: Specify that the '>40% FLOPs reduction' is vs ITP-R (which uses GPU-heavy LLM world model), not vs CogRouter (which has no world model). Add a sentence: 'Compared to CogRouter, SimGate adds CPU-only simulation overhead but saves LLM inference tokens on steps where deterministic lookahead substitutes for deep internal reasoning.'
+
+5. **CHECK DYNA-THINK**: Verify 'Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation' is not a closer competitor — it appeared in my search results adjacent to Dyna-Mind.
+
+6. **ROUND 10 OUTLOOK**: If impact remains at 3.0 and the average stays below 4.0, I will need to make a pass/fail decision. The idea is genuinely novel and feasible — I lean toward pass for Findings short paper if you address the above. But a failed impact argument could tip to fail. Prioritize items 1 and 3.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "9b974623-0e78-4236-bcb1-33ca10e2bb93",
+  "type": "user",
+  "uuid": "bf0a7f51-3754-493f-af5c-45cd74a20193",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-12T02:02:34.787Z_
+
+```json
+{
+  "parentUuid": "bf0a7f51-3754-493f-af5c-45cd74a20193",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "af4852c7-7761-45a2-9b8b-a58a2907e92f",
+  "timestamp": "2026-05-12T02:02:34.787Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-12T02:02:34.787Z_
+
+```json
+{
+  "parentUuid": "af4852c7-7761-45a2-9b8b-a58a2907e92f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "593447a2-9077-474b-955b-d76e52b75419",
+  "timestamp": "2026-05-12T02:02:34.787Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "593447a2-9077-474b-955b-d76e52b75419",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "SimGate: Evaluate Router for Deterministic Simulator Invocation",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-12T02:02:45.267Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is round 9 of 10 for reviewing the SimGate idea. Let me carefully analyze what's been fixed and what remains problematic. I need to do independent verification of the claims made in this proposal.
+
+Let me plan my review:
+
+1. Verify the key factual claims (ITP-R numbers, EPO numbers, etc.)
+2. Check for any new competing work that may have appeared
+3. Verify the EPO GRPO+EPO = 83.8% claim (flagged in R8)
+4. Check Dyna-Think (flagged in R8)
+
+
+5. Assess whether the MATH pilot adequately addresses the impact concern
+6. Evaluate overall quality for round 9
+
+Now I'm checking the critical numbers: the ITP-R 85.07% overall that was finally corrected, the EPO discrepancy between 83.8% and 95.8%, whether EMPO2, AutoTool, and ARTIS are properly included, and if Dyna-Think is sufficiently differentiated. I also need to verify the compute budget stays under 200 hours and whether the MATH pilot experiment actually provides convincing evidence of generalizability.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "593447a2-9077-474b-955b-d76e52b75419",
+  "isSidechain": false,
+  "requestId": "req_011CawrNGMzE6LvcBShcpwSQ",
+  "type": "assistant",
+  "uuid": "ea18caf4-a937-40f9-8766-b656b574085e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WHCca2uRuBeggTXkAWKJPU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 30632,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 422,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 30632,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 422,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 30632,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 30632
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-12T02:02:45.269Z_
+
+I'll conduct independent verification of the key claims in this round 9 submission. Let me search for competing work, verify factual claims, and check the new MATH pilot framing.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea18caf4-a937-40f9-8766-b656b574085e",
+  "isSidechain": false,
+  "requestId": "req_011CawrNGMzE6LvcBShcpwSQ",
+  "type": "assistant",
+  "uuid": "f590f17a-704c-4d15-900d-80c12864356b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WHCca2uRuBeggTXkAWKJPU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 30632,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 422,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 30632,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 422,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 30632,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 30632
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-12T02:02:45.424Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_013Ld6uBuznqw2L2NZ4bySc3`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f590f17a-704c-4d15-900d-80c12864356b",
+  "isSidechain": false,
+  "requestId": "req_011CawrNGMzE6LvcBShcpwSQ",
+  "type": "assistant",
+  "uuid": "8cd7cf7b-fe5a-4012-aacd-c712021239dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WHCca2uRuBeggTXkAWKJPU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 30632,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 422,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 30632,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 422,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 30632,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 30632
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-12T02:02:45.433Z_
+
+<details><summary>↩ Tool result · `toolu_013Ld6uBuznqw2L2NZ4bySc3`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8cd7cf7b-fe5a-4012-aacd-c712021239dd",
+  "isSidechain": false,
+  "promptId": "9b974623-0e78-4236-bcb1-33ca10e2bb93",
+  "type": "user",
+  "uuid": "42eaa22e-3b0d-4868-a216-5ef37c92ade3",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "8cd7cf7b-fe5a-4012-aacd-c712021239dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-12T02:02:51.412Z_
+
+Starting independent verification. I'll search for competing work, verify EPO numbers, check Dyna-Think, and assess the MATH pilot's impact argument.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42eaa22e-3b0d-4868-a216-5ef37c92ade3",
+  "isSidechain": false,
+  "requestId": "req_011CawrP3hmP8RUcKfAesTiv",
+  "type": "assistant",
+  "uuid": "491651b0-b06a-4dbf-9d7a-ed5b69c1d756",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013joFhbgTycAwt3aoQ22cb1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1440,
+      "cache_read_input_tokens": 42473,
+      "output_tokens": 278,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1440,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 278,
+          "cache_read_input_tokens": 42473,
+          "cache_creation_input_tokens": 1440,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1440
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-12T02:02:52.881Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019V1URpYHQfFJTWDe5LiCib`</summary>
+
+```json
+{
+  "query": "EPO entropy-regularized policy optimization ScienceWorld arXiv 2509.22576 GRPO results table"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "491651b0-b06a-4dbf-9d7a-ed5b69c1d756",
+  "isSidechain": false,
+  "requestId": "req_011CawrP3hmP8RUcKfAesTiv",
+  "type": "assistant",
+  "uuid": "457a22cf-34c9-4b28-8dc8-16b4c26a28ca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013joFhbgTycAwt3aoQ22cb1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1440,
+      "cache_read_input_tokens": 42473,
+      "output_tokens": 278,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1440,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 278,
+          "cache_read_input_tokens": 42473,
+          "cache_creation_input_tokens": 1440,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1440
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-12T02:02:53.830Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TQTgi7Hhh8sCYHMUB5FRQ2`</summary>
+
+```json
+{
+  "query": "Dyna-Think synergizing reasoning acting world model simulation agents arXiv 2506.00320"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "457a22cf-34c9-4b28-8dc8-16b4c26a28ca",
+  "isSidechain": false,
+  "requestId": "req_011CawrP3hmP8RUcKfAesTiv",
+  "type": "assistant",
+  "uuid": "fcfb67d4-7854-4138-b7de-9b997b8044b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013joFhbgTycAwt3aoQ22cb1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1440,
+      "cache_read_input_tokens": 42473,
+      "output_tokens": 278,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1440,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 278,
+          "cache_read_input_tokens": 42473,
+          "cache_creation_input_tokens": 1440,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1440
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-12T02:02:55.272Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XmZm8im172ziQgLfeyMwRt`</summary>
+
+```json
+{
+  "query": "ITP-R imagine then plan ALFWorld Qwen2.5-7B overall accuracy 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fcfb67d4-7854-4138-b7de-9b997b8044b9",
+  "isSidechain": false,
+  "requestId": "req_011CawrP3hmP8RUcKfAesTiv",
+  "type": "assistant",
+  "uuid": "3f01bd86-8f46-486f-aa0f-a5876aac511f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013joFhbgTycAwt3aoQ22cb1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1440,
+      "cache_read_input_tokens": 42473,
+      "output_tokens": 278,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1440,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 278,
+          "cache_read_input_tokens": 42473,
+          "cache_creation_input_tokens": 1440,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1440
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-12T02:02:55.575Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018hg2YB3pAhw1SaXRZW6wZL`</summary>
+
+```json
+{
+  "query": "learned routing deterministic simulator LLM agent 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3f01bd86-8f46-486f-aa0f-a5876aac511f",
+  "isSidechain": false,
+  "requestId": "req_011CawrP3hmP8RUcKfAesTiv",
+  "type": "assistant",
+  "uuid": "48e6c028-aa2c-4602-bb67-20b735c22814",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013joFhbgTycAwt3aoQ22cb1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1440,
+      "cache_read_input_tokens": 42473,
+      "output_tokens": 278,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1440,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 278,
+          "cache_read_input_tokens": 42473,
+          "cache_creation_input_tokens": 1440,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1440
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-12T02:02:59.544Z_
+
+<details><summary>↩ Tool result · `toolu_019V1URpYHQfFJTWDe5LiCib`</summary>
+
+```text
+Web search results for query: "EPO entropy-regularized policy optimization ScienceWorld arXiv 2509.22576 GRPO results table"
+
+Links: [{"title":"[2509.22576] EPO: Entropy-regularized Policy Optimization for LLM Agents Reinforcement Learning","url":"https://arxiv.org/abs/2509.22576"},{"title":"GitHub - WujiangXu/EPO: The code for paper \"EPO: Entropy-regularized Policy Optimization for LLM Agents Reinforcement Learning\"","url":"https://github.com/WujiangXu/EPO"},{"title":"EPO: Entropy-regularized Policy Optimization for LLM Agents Reinforcement Learning","url":"https://arxiv.org/html/2509.22576"},{"title":"Under review EPO: ENTROPY-REGULARIZED POLICY OPTIMIZATION","url":"https://arxiv.org/pdf/2509.22576"},{"title":"Paper page - EPO: Entropy-regularized Policy Optimization for LLM Agents Reinforcement Learning","url":"https://huggingface.co/papers/2509.22576"},{"title":"EPO: Entropy-Regularized Policy Optimization for LLM Agents Reinforcement Learning | by Dixon | Medium","url":"https://medium.com/@huguosuo/epo-entropy-regularized-policy-optimization-for-llm-agents-reinforcement-learning-37d0b473773a"},{"title":"EPO: Entropy-regularized Policy Optimization for LLM Agents Reinforcement Learning | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/epo-entropy-regularized-policy-optimization-llm-agents"},{"title":"Arbitrary Entropy Policy Optimization Breaks The Exploration Bottleneck of Reinforcement Learning","url":"https://arxiv.org/html/2510.08141v5"},{"title":"Arbitrary Entropy Policy Optimization","url":"https://arxiv.org/pdf/2510.08141"},{"title":"Exploring the Entropy Mechanism in LLM Agents On-policy Optimization | OpenReview","url":"https://openreview.net/forum?id=y29theOjum"}]
+
+I found comprehensive information about the EPO paper and its results. Here's what the search revealed:
+
+## Paper Overview
+
+The paper is titled "EPO: Entropy-regularized Policy Optimization for LLM Agents Reinforcement Learning" (arXiv 2509.22576).
+
+## Key Results on ScienceWorld and GRPO+EPO
+
+EPO achieves up to 152% performance improvement on ScienceWorld and up to 19.8% on ALFWorld. More specifically:
+
+- **ScienceWorld Results**: PPO+EPO achieves 152.1% improvement in averaged success rates compared to baseline PPO
+- **ALFWorld with GRPO**: GRPO+EPO shows more modest but consistent improvements, with 19.8% gains on ALFWorld
+
+## Training Dynamics
+
+In ScienceWorld, PPO+EPO reaches approximately 2x higher training rewards (15 vs. 8) with smooth monotonic trajectories, while GRPO+EPO maintains steady upward trends on ALFWorld.
+
+## Performance Metrics
+
+On ScienceWorld, EPO variants achieve high success rates (>0.8 for both IID and OOD) within 40 steps, compared to baselines that struggle to exceed 0.4 after 100 steps.
+
+On ALFWorld, EPO-enhanced approaches demonstrate consistent performance with reduced variance, particularly in OOD evaluation where baselines frequently drop below 0.2 while EPO variants maintain performance above 0.4.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "457a22cf-34c9-4b28-8dc8-16b4c26a28ca",
+  "isSidechain": false,
+  "promptId": "9b974623-0e78-4236-bcb1-33ca10e2bb93",
+  "type": "user",
+  "uuid": "c67b5479-b2c7-4ed7-8416-9129456e21f1",
+  "toolUseResult": {
+    "query": "EPO entropy-regularized policy optimization ScienceWorld arXiv 2509.22576 GRPO results table",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XV5TSqZK3R6GoXg2D3cfAa",
+        "content": [
+          {
+            "title": "[2509.22576] EPO: Entropy-regularized Policy Optimization for LLM Agents Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2509.22576"
+          },
+          {
+            "title": "GitHub - WujiangXu/EPO: The code for paper \"EPO: Entropy-regularized Policy Optimization for LLM Agents Reinforcement Learning\"",
+            "url": "https://github.com/WujiangXu/EPO"
+          },
+          {
+            "title": "EPO: Entropy-regularized Policy Optimization for LLM Agents Reinforcement Learning",
+            "url": "https://arxiv.org/html/2509.22576"
+          },
+          {
+            "title": "Under review EPO: ENTROPY-REGULARIZED POLICY OPTIMIZATION",
+            "url": "https://arxiv.org/pdf/2509.22576"
+          },
+          {
+            "title": "Paper page - EPO: Entropy-regularized Policy Optimization for LLM Agents Reinforcement Learning",
+            "url": "https://huggingface.co/papers/2509.22576"
+          },
+          {
+            "title": "EPO: Entropy-Regularized Policy Optimization for LLM Agents Reinforcement Learning | by Dixon | Medium",
+            "url": "https://medium.com/@huguosuo/epo-entropy-regularized-policy-optimization-for-llm-agents-reinforcement-learning-37d0b473773a"
+          },
+          {
+            "title": "EPO: Entropy-regularized Policy Optimization for LLM Agents Reinforcement Learning | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/epo-entropy-regularized-policy-optimization-llm-agents"
+          },
+          {
+            "title": "Arbitrary Entropy Policy Optimization Breaks The Exploration Bottleneck of Reinforcement Learning",
+            "url": "https://arxiv.org/html/2510.08141v5"
+          },
+          {
+            "title": "Arbitrary Entropy Policy Optimization",
+            "url": "https://arxiv.org/pdf/2510.08141"
+          },
+          {
+            "title": "Exploring the Entropy Mechanism in LLM Agents On-policy Optimization | OpenReview",
+            "url": "https://openreview.net/forum?id=y29theOjum"
+          }
+        ]
+      },
+      "I found comprehensive information about the EPO paper and its results. Here's what the search revealed:\n\n## Paper Overview\n\nThe paper is titled \"EPO: Entropy-regularized Policy Optimization for LLM Agents Reinforcement Learning\" (arXiv 2509.22576).\n\n## Key Results on ScienceWorld and GRPO+EPO\n\nEPO achieves up to 152% performance improvement on ScienceWorld and up to 19.8% on ALFWorld. More specifically:\n\n- **ScienceWorld Results**: PPO+EPO achieves 152.1% improvement in averaged success rates compared to baseline PPO\n- **ALFWorld with GRPO**: GRPO+EPO shows more modest but consistent improvements, with 19.8% gains on ALFWorld\n\n## Training Dynamics\n\nIn ScienceWorld, PPO+EPO reaches approximately 2x higher training rewards (15 vs. 8) with smooth monotonic trajectories, while GRPO+EPO maintains steady upward trends on ALFWorld.\n\n## Performance Metrics\n\nOn ScienceWorld, EPO variants achieve high success rates (>0.8 for both IID and OOD) within 40 steps, compared to baselines that struggle to exceed 0.4 after 100 steps.\n\nOn ALFWorld, EPO-enhanced approaches demonstrate consistent performance with reduced variance, particularly in OOD evaluation where baselines frequently drop below 0.2 while EPO variants maintain performance above 0.4."
+    ],
+    "durationSeconds": 6.658290623000001
+  },
+  "sourceToolAssistantUUID": "457a22cf-34c9-4b28-8dc8-16b4c26a28ca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-12T02:03:01.061Z_
+
+<details><summary>↩ Tool result · `toolu_01XmZm8im172ziQgLfeyMwRt`</summary>
+
+```text
+Web search results for query: "ITP-R imagine then plan ALFWorld Qwen2.5-7B overall accuracy 2026"
+
+Links: [{"title":"Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models","url":"https://arxiv.org/html/2601.08955v2"},{"title":"GitHub - loyiv/ITP: Code of Paper: Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models · GitHub","url":"https://github.com/loyiv/ITP"},{"title":"Performance on Qwen2.5-7B-Instruct · Issue #42 · simplescaling/s1","url":"https://github.com/simplescaling/s1/issues/42"},{"title":"GitHub - X1AOX1A/Word2World: From Word to World: Can Large Language Models be Implicit Text-based World Models?","url":"https://github.com/X1AOX1A/Word2World"},{"title":"Qwen2.5: A Party of Foundation Models! | Qwen","url":"https://qwenlm.github.io/blog/qwen2.5/"},{"title":"Qwen/Qwen2.5-VL-7B-Instruct · Hugging Face","url":"https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct"},{"title":"Qwen/Qwen2.5-7B-Instruct · Hugging Face","url":"https://huggingface.co/Qwen/Qwen2.5-7B-Instruct"},{"title":"langfeng01/GiGPO-Qwen2.5-7B-Instruct-ALFWorld · Hugging Face","url":"https://huggingface.co/langfeng01/GiGPO-Qwen2.5-7B-Instruct-ALFWorld"},{"title":"Qwen2 Technical Report","url":"https://arxiv.org/html/2407.10671v1"},{"title":"Qwen/Qwen2.5-7B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen2.5-7B"}]
+
+Based on the search results, I found information about the ITP-R (Imagine-then-Plan) method applied to ALFWorld. ITP is evaluated on ALFWorld for embodied household tasks, and Qwen2.5-7B is used as one of the backbone models for fair comparison.
+
+However, the search results do not contain the specific overall accuracy metric for ITP-R with Qwen2.5-7B on ALFWorld. The first result from the arxiv paper mentions evaluation details and that success rate (SR) is adopted as the evaluation metric for ALFWorld, reporting SR on each task as well as the overall SR, but the actual numerical accuracy values are not displayed in the search excerpts.
+
+To find the specific overall accuracy numbers, you would need to access the full paper directly at the arXiv link (https://arxiv.org/html/2601.08955v2), which should contain Table 1 with the detailed results comparing different methods and backbone models on ALFWorld.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3f01bd86-8f46-486f-aa0f-a5876aac511f",
+  "isSidechain": false,
+  "promptId": "9b974623-0e78-4236-bcb1-33ca10e2bb93",
+  "type": "user",
+  "uuid": "c4b1ecb9-51bb-4dc4-a0c2-c6087295ef4a",
+  "toolUseResult": {
+    "query": "ITP-R imagine then plan ALFWorld Qwen2.5-7B overall accuracy 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01J7m3o7K3E5mMYpcsBYUhdG",
+        "content": [
+          {
+            "title": "Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models",
+            "url": "https://arxiv.org/html/2601.08955v2"
+          },
+          {
+            "title": "GitHub - loyiv/ITP: Code of Paper: Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models · GitHub",
+            "url": "https://github.com/loyiv/ITP"
+          },
+          {
+            "title": "Performance on Qwen2.5-7B-Instruct · Issue #42 · simplescaling/s1",
+            "url": "https://github.com/simplescaling/s1/issues/42"
+          },
+          {
+            "title": "GitHub - X1AOX1A/Word2World: From Word to World: Can Large Language Models be Implicit Text-based World Models?",
+            "url": "https://github.com/X1AOX1A/Word2World"
+          },
+          {
+            "title": "Qwen2.5: A Party of Foundation Models! | Qwen",
+            "url": "https://qwenlm.github.io/blog/qwen2.5/"
+          },
+          {
+            "title": "Qwen/Qwen2.5-VL-7B-Instruct · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct"
+          },
+          {
+            "title": "Qwen/Qwen2.5-7B-Instruct · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct"
+          },
+          {
+            "title": "langfeng01/GiGPO-Qwen2.5-7B-Instruct-ALFWorld · Hugging Face",
+            "url": "https://huggingface.co/langfeng01/GiGPO-Qwen2.5-7B-Instruct-ALFWorld"
+          },
+          {
+            "title": "Qwen2 Technical Report",
+            "url": "https://arxiv.org/html/2407.10671v1"
+          },
+          {
+            "title": "Qwen/Qwen2.5-7B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen2.5-7B"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the ITP-R (Imagine-then-Plan) method applied to ALFWorld. ITP is evaluated on ALFWorld for embodied household tasks, and Qwen2.5-7B is used as one of the backbone models for fair comparison.\n\nHowever, the search results do not contain the specific overall accuracy metric for ITP-R with Qwen2.5-7B on ALFWorld. The first result from the arxiv paper mentions evaluation details and that success rate (SR) is adopted as the evaluation metric for ALFWorld, reporting SR on each task as well as the overall SR, but the actual numerical accuracy values are not displayed in the search excerpts.\n\nTo find the specific overall accuracy numbers, you would need to access the full paper directly at the arXiv link (https://arxiv.org/html/2601.08955v2), which should contain Table 1 with the detailed results comparing different methods and backbone models on ALFWorld."
+    ],
+    "durationSeconds": 5.7857116060000005
+  },
+  "sourceToolAssistantUUID": "3f01bd86-8f46-486f-aa0f-a5876aac511f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-12T02:03:01.208Z_
+
+<details><summary>↩ Tool result · `toolu_01TQTgi7Hhh8sCYHMUB5FRQ2`</summary>
+
+```text
+Web search results for query: "Dyna-Think synergizing reasoning acting world model simulation agents arXiv 2506.00320"
+
+Links: [{"title":"[2506.00320] Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents","url":"https://arxiv.org/abs/2506.00320"},{"title":"Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents","url":"https://arxiv.org/html/2506.00320"},{"title":"(PDF) Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents","url":"https://www.researchgate.net/publication/392335227_Dyna-Think_Synergizing_Reasoning_Acting_and_World_Model_Simulation_in_AI_Agents"},{"title":"[PDF] Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Dyna-Think:-Synergizing-Reasoning,-Acting,-and-in-Yu-Peng/0d0b32a5200b37159061d10fbd02aad566fd2b20"},{"title":"Learning to Simulate from Experience for Better AI Agents","url":"https://arxiv.org/pdf/2510.09577"},{"title":"Knowing Isn’t Understanding: Re-grounding Generative Proactivity with Epistemic and Behavioral Insight","url":"https://arxiv.org/html/2602.15259v1"},{"title":"Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents | OpenReview","url":"https://openreview.net/forum?id=0z0xhXRbN3"},{"title":"Dyna-Mind: Learning to Simulate from Experience for Better AI Agents","url":"https://arxiv.org/html/2510.09577v1"},{"title":"Artificial Intelligence Jun 2025","url":"https://www.arxiv.org/list/cs.AI/2025-06?skip=0&show=2000"},{"title":"Computation and Language 2025","url":"https://www.arxiv.org/list/cs.CL/2025?skip=19825&show=250"}]
+
+Based on the search results, here's what I found about the Dyna-Think paper (arXiv 2506.00320):
+
+## Overview
+
+Dyna-Think is a thinking framework that integrates planning with an internal world model with reasoning and acting to enhance AI agent performance.
+
+## Key Components
+
+To enable Dyna-Think, the authors propose Dyna-Think Imitation Learning (DIT) and Dyna-Think Dyna Training (DDT). DIT synergizes reasoning, acting, and world model simulation in an agent's thinking process via imitation learning, while DDT further improves the policy and world modeling ability via Dyna-style training.
+
+## Motivation and Findings
+
+The research builds on recent progress in reasoning models like DeepSeek-R1. Their empirical studies reveal that using critique generation for world model training is effective to improve policy performance, and AI agents with better performance correlate with better world modeling abilities.
+
+## Experimental Results
+
+The methods are evaluated on OSWorld and WindowsAgentArena, and demonstrate that Dyna-Think improves the agent's in-domain and out-of-domain performance, achieving similar best-of-n performance compared to R1 while generating 2x less tokens on average.
+
+The paper was published on arXiv on May 31, 2025 with the identifier 2506.00320, and authored by Xiao Yu, Baolin Peng, Ruize Xu, Michel Galley, Hao Cheng, Suman Nath, Jianfeng Gao, and Zhou Yu.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fcfb67d4-7854-4138-b7de-9b997b8044b9",
+  "isSidechain": false,
+  "promptId": "9b974623-0e78-4236-bcb1-33ca10e2bb93",
+  "type": "user",
+  "uuid": "a4113805-e9bf-4a45-b80d-dd0a54515b0e",
+  "toolUseResult": {
+    "query": "Dyna-Think synergizing reasoning acting world model simulation agents arXiv 2506.00320",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CwiKvduFAR5zo5cPV8fQQQ",
+        "content": [
+          {
+            "title": "[2506.00320] Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents",
+            "url": "https://arxiv.org/abs/2506.00320"
+          },
+          {
+            "title": "Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents",
+            "url": "https://arxiv.org/html/2506.00320"
+          },
+          {
+            "title": "(PDF) Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents",
+            "url": "https://www.researchgate.net/publication/392335227_Dyna-Think_Synergizing_Reasoning_Acting_and_World_Model_Simulation_in_AI_Agents"
+          },
+          {
+            "title": "[PDF] Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Dyna-Think:-Synergizing-Reasoning,-Acting,-and-in-Yu-Peng/0d0b32a5200b37159061d10fbd02aad566fd2b20"
+          },
+          {
+            "title": "Learning to Simulate from Experience for Better AI Agents",
+            "url": "https://arxiv.org/pdf/2510.09577"
+          },
+          {
+            "title": "Knowing Isn’t Understanding: Re-grounding Generative Proactivity with Epistemic and Behavioral Insight",
+            "url": "https://arxiv.org/html/2602.15259v1"
+          },
+          {
+            "title": "Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents | OpenReview",
+            "url": "https://openreview.net/forum?id=0z0xhXRbN3"
+          },
+          {
+            "title": "Dyna-Mind: Learning to Simulate from Experience for Better AI Agents",
+            "url": "https://arxiv.org/html/2510.09577v1"
+          },
+          {
+            "title": "Artificial Intelligence Jun 2025",
+            "url": "https://www.arxiv.org/list/cs.AI/2025-06?skip=0&show=2000"
+          },
+          {
+            "title": "Computation and Language 2025",
+            "url": "https://www.arxiv.org/list/cs.CL/2025?skip=19825&show=250"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the Dyna-Think paper (arXiv 2506.00320):\n\n## Overview\n\nDyna-Think is a thinking framework that integrates planning with an internal world model with reasoning and acting to enhance AI agent performance.\n\n## Key Components\n\nTo enable Dyna-Think, the authors propose Dyna-Think Imitation Learning (DIT) and Dyna-Think Dyna Training (DDT). DIT synergizes reasoning, acting, and world model simulation in an agent's thinking process via imitation learning, while DDT further improves the policy and world modeling ability via Dyna-style training.\n\n## Motivation and Findings\n\nThe research builds on recent progress in reasoning models like DeepSeek-R1. Their empirical studies reveal that using critique generation for world model training is effective to improve policy performance, and AI agents with better performance correlate with better world modeling abilities.\n\n## Experimental Results\n\nThe methods are evaluated on OSWorld and WindowsAgentArena, and demonstrate that Dyna-Think improves the agent's in-domain and out-of-domain performance, achieving similar best-of-n performance compared to R1 while generating 2x less tokens on average.\n\nThe paper was published on arXiv on May 31, 2025 with the identifier 2506.00320, and authored by Xiao Yu, Baolin Peng, Ruize Xu, Michel Galley, Hao Cheng, Suman Nath, Jianfeng Gao, and Zhou Yu."
+    ],
+    "durationSeconds": 7.374877793
+  },
+  "sourceToolAssistantUUID": "fcfb67d4-7854-4138-b7de-9b997b8044b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "a4113805-e9bf-4a45-b80d-dd0a54515b0e",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "SimGate: Evaluate Router for Deterministic Simulator Invocation",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320"
+}
+```
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-12T02:03:03.300Z_
+
+<details><summary>↩ Tool result · `toolu_018hg2YB3pAhw1SaXRZW6wZL`</summary>
+
+```text
+Web search results for query: "learned routing deterministic simulator LLM agent 2026 arXiv"
+
+Links: [{"title":"MemRouter: Memory-as-Embedding Routing for Long-Term Conversational Agents","url":"https://arxiv.org/html/2605.00356"},{"title":"GitHub - VoltAgent/awesome-ai-agent-papers: A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, and autonomous systems. · GitHub","url":"https://github.com/VoltAgent/awesome-ai-agent-papers"},{"title":"Learning Agent Routing From Early Experience","url":"https://arxiv.org/html/2605.07180"},{"title":"LLMs as Scalable, General-Purpose Simulators For Evolving Digital Agent Training","url":"https://arxiv.org/html/2510.14969v1"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2512.20745"},{"title":"Universal Model Routing for Efficient LLM Inference","url":"https://arxiv.org/html/2502.08773v1"},{"title":"[2502.11133] MasRouter: Learning to Route LLMs for Multi-Agent Systems","url":"https://arxiv.org/abs/2502.11133"},{"title":"[2603.12933] Efficient and Interpretable Multi-Agent LLM Routing via Ant Colony Optimization","url":"https://arxiv.org/abs/2603.12933"},{"title":"RouteLLM: Learning to Route LLMs from Preference Data | OpenReview","url":"https://openreview.net/forum?id=8sSqNntaMr"},{"title":"CoVe: Training Interactive Tool-Use Agents via Constraint-Guided Verification","url":"https://arxiv.org/html/2603.01940"}]
+
+I found several relevant papers from the 2026 arXiv search. Here are the key results:
+
+## Learning Agent Routing from Early Experience
+
+LLM agents achieve strong performance on complex reasoning tasks but incur high latency and compute cost. In practice, many queries fall within the capability boundary of cutting-edge LLMs and do not require full agent execution, making effective routing between LLMs and agents a key challenge.
+
+This research studies the problem of routing queries between lightweight LLM inference and full agent execution under realistic cold-start settings. To address this, they propose BoundaryRouter, a training-free routing framework that uses early behavioral experience and rubric-guided reasoning to decide whether to answer a query with direct LLM inference or escalate to an agent.
+
+Their benchmark (RouteBench) includes solver outputs, latency, and deterministic routing labels based on a fixed decision rule.
+
+## Other Related 2026 Works
+
+The search also revealed several other agent routing and simulator papers from 2026:
+
+- R-LAM: A framework that introduces reproducibility-constrained Large Action Models with structured action schemas, deterministic execution policies, and provenance tracking to ensure auditable and replayable workflows.
+
+- UI-Simulator paper that adopts rule-based transitions to simulate deterministic actions with relatively fixed outcomes.
+
+- AMRO-S, which models multi-agent system (MAS) routing as a semantic-conditioned path selection problem.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "48e6c028-aa2c-4602-bb67-20b735c22814",
+  "isSidechain": false,
+  "promptId": "9b974623-0e78-4236-bcb1-33ca10e2bb93",
+  "type": "user",
+  "uuid": "bdee9aca-7074-48a9-b358-1fc7ab7735a5",
+  "toolUseResult": {
+    "query": "learned routing deterministic simulator LLM agent 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GJCKmXnqFjE2EdhSmVK8gE",
+        "content": [
+          {
+            "title": "MemRouter: Memory-as-Embedding Routing for Long-Term Conversational Agents",
+            "url": "https://arxiv.org/html/2605.00356"
+          },
+          {
+            "title": "GitHub - VoltAgent/awesome-ai-agent-papers: A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, and autonomous systems. · GitHub",
+            "url": "https://github.com/VoltAgent/awesome-ai-agent-papers"
+          },
+          {
+            "title": "Learning Agent Routing From Early Experience",
+            "url": "https://arxiv.org/html/2605.07180"
+          },
+          {
+            "title": "LLMs as Scalable, General-Purpose Simulators For Evolving Digital Agent Training",
+            "url": "https://arxiv.org/html/2510.14969v1"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2512.20745"
+          },
+          {
+            "title": "Universal Model Routing for Efficient LLM Inference",
+            "url": "https://arxiv.org/html/2502.08773v1"
+          },
+          {
+            "title": "[2502.11133] MasRouter: Learning to Route LLMs for Multi-Agent Systems",
+            "url": "https://arxiv.org/abs/2502.11133"
+          },
+          {
+            "title": "[2603.12933] Efficient and Interpretable Multi-Agent LLM Routing via Ant Colony Optimization",
+            "url": "https://arxiv.org/abs/2603.12933"
+          },
+          {
+            "title": "RouteLLM: Learning to Route LLMs from Preference Data | OpenReview",
+            "url": "https://openreview.net/forum?id=8sSqNntaMr"
+          },
+          {
+            "title": "CoVe: Training Interactive Tool-Use Agents via Constraint-Guided Verification",
+            "url": "https://arxiv.org/html/2603.01940"
+          }
+        ]
+      },
+      "I found several relevant papers from the 2026 arXiv search. Here are the key results:\n\n## Learning Agent Routing from Early Experience\n\nLLM agents achieve strong performance on complex reasoning tasks but incur high latency and compute cost. In practice, many queries fall within the capability boundary of cutting-edge LLMs and do not require full agent execution, making effective routing between LLMs and agents a key challenge.\n\nThis research studies the problem of routing queries between lightweight LLM inference and full agent execution under realistic cold-start settings. To address this, they propose BoundaryRouter, a training-free routing framework that uses early behavioral experience and rubric-guided reasoning to decide whether to answer a query with direct LLM inference or escalate to an agent.\n\nTheir benchmark (RouteBench) includes solver outputs, latency, and deterministic routing labels based on a fixed decision rule.\n\n## Other Related 2026 Works\n\nThe search also revealed several other agent routing and simulator papers from 2026:\n\n- R-LAM: A framework that introduces reproducibility-constrained Large Action Models with structured action schemas, deterministic execution policies, and provenance tracking to ensure auditable and replayable workflows.\n\n- UI-Simulator paper that adopts rule-based transitions to simulate deterministic actions with relatively fixed outcomes.\n\n- AMRO-S, which models multi-agent system (MAS) routing as a semantic-conditioned path selection problem."
+    ],
+    "durationSeconds": 7.720983231999998
+  },
+  "sourceToolAssistantUUID": "48e6c028-aa2c-4602-bb67-20b735c22814",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-12T02:03:10.041Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01CfnNyYAUCiwZBZwa3uA967`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2509.22576",
+  "prompt": "Find Table 1 or any table with ScienceWorld results. I need the exact numbers for GRPO, GRPO+EPO, PPO, PPO+EPO on ScienceWorld. Specifically look for: Succ.* (best success rate), Succ.bar (converged success rate), for both IID and OOD settings. Also note what evaluation protocol they use: how many tasks, max_steps, binary vs continuous scoring, and whether they specify the task subset."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bdee9aca-7074-48a9-b358-1fc7ab7735a5",
+  "isSidechain": false,
+  "requestId": "req_011CawrQN5qcAFmmB6Ho6mDv",
+  "type": "assistant",
+  "uuid": "b612e918-6637-47e6-b5cb-ae0673f2a677",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NXrKngf98nKpxSfgmEfrVh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3828,
+      "cache_read_input_tokens": 43913,
+      "output_tokens": 479,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3828,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 479,
+          "cache_read_input_tokens": 43913,
+          "cache_creation_input_tokens": 3828,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3828
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-12T02:03:13.240Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PD8cxEr1Qfeisdc1Eh1PXw`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2601.08955v2",
+  "prompt": "Find the ALFWorld results table (Table 1 or equivalent). I need the EXACT per-task and overall accuracy for ITP-R with Qwen2.5-7B backbone. Look for columns: Pick, Clean, Heat, Cool, Look, PickTwo, and Overall/Average. Report each number precisely. Also report ITP-R results on ScienceWorld if available (score seen/unseen)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b612e918-6637-47e6-b5cb-ae0673f2a677",
+  "isSidechain": false,
+  "requestId": "req_011CawrQN5qcAFmmB6Ho6mDv",
+  "type": "assistant",
+  "uuid": "131c7933-177a-49b3-94cf-5bca4fb556c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NXrKngf98nKpxSfgmEfrVh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3828,
+      "cache_read_input_tokens": 43913,
+      "output_tokens": 479,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3828,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 479,
+          "cache_read_input_tokens": 43913,
+          "cache_creation_input_tokens": 3828,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3828
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-12T02:03:15.567Z_
+
+<details><summary>↩ Tool result · `toolu_01CfnNyYAUCiwZBZwa3uA967`</summary>
+
+```text
+# ScienceWorld Results from Table 1
+
+## Exact Performance Numbers
+
+**PPO Baseline (Qwen2.5-7B):**
+- IID: Succ.* = 64.6%, Succ.̄ = 38.4%
+- OOD: Succ.* = 58.3%, Succ.̄ = 39.1%
+
+**PPO+EPO (Qwen2.5-7B):**
+- IID: Succ.* = 100.0%, Succ.̄ = 96.8%
+- OOD: Succ.* = 100.0%, Succ.̄ = 96.2%
+
+**GRPO Baseline (Qwen2.5-7B):**
+- IID: Succ.* = 93.8%, Succ.̄ = 81.6%
+- OOD: Succ.* = 91.7%, Succ.̄ = 80.9%
+
+**GRPO+EPO (Qwen2.5-7B):**
+- IID: Succ.* = 95.8%, Succ.̄ = 83.8%
+- OOD: Succ.* = 95.8%, Succ.̄ = 81.3%
+
+## Evaluation Protocol
+
+The document specifies: "ScienceWorld focuses on text-based scientific experimentation, demanding systematic hypothesis testing." However, **the paper does not explicitly state the number of test tasks, maximum steps per episode, or whether scoring is binary versus continuous**. The curriculum includes "over 30 task types" across Physics, Chemistry, and Life Science domains, but specific evaluation subset details are absent from the provided content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b612e918-6637-47e6-b5cb-ae0673f2a677",
+  "isSidechain": false,
+  "promptId": "9b974623-0e78-4236-bcb1-33ca10e2bb93",
+  "type": "user",
+  "uuid": "ae43199c-65a6-48a7-bc7e-7dc3aa861f0d",
+  "toolUseResult": {
+    "bytes": 818742,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ScienceWorld Results from Table 1\n\n## Exact Performance Numbers\n\n**PPO Baseline (Qwen2.5-7B):**\n- IID: Succ.* = 64.6%, Succ.̄ = 38.4%\n- OOD: Succ.* = 58.3%, Succ.̄ = 39.1%\n\n**PPO+EPO (Qwen2.5-7B):**\n- IID: Succ.* = 100.0%, Succ.̄ = 96.8%\n- OOD: Succ.* = 100.0%, Succ.̄ = 96.2%\n\n**GRPO Baseline (Qwen2.5-7B):**\n- IID: Succ.* = 93.8%, Succ.̄ = 81.6%\n- OOD: Succ.* = 91.7%, Succ.̄ = 80.9%\n\n**GRPO+EPO (Qwen2.5-7B):**\n- IID: Succ.* = 95.8%, Succ.̄ = 83.8%\n- OOD: Succ.* = 95.8%, Succ.̄ = 81.3%\n\n## Evaluation Protocol\n\nThe document specifies: \"ScienceWorld focuses on text-based scientific experimentation, demanding systematic hypothesis testing.\" However, **the paper does not explicitly state the number of test tasks, maximum steps per episode, or whether scoring is binary versus continuous**. The curriculum includes \"over 30 task types\" across Physics, Chemistry, and Life Science domains, but specific evaluation subset details are absent from the provided content.",
+    "durationMs": 5516,
+    "url": "https://arxiv.org/html/2509.22576"
+  },
+  "sourceToolAssistantUUID": "b612e918-6637-47e6-b5cb-ae0673f2a677",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-12T02:03:15.728Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Ku3qWxQLgvVYBUHzNXHdgB`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2506.00320",
+  "prompt": "What benchmarks is Dyna-Think evaluated on? What are the key results? Does it use any form of explicit routing or gating between internal reasoning and external simulation? Does it use a deterministic simulator or a learned world model? Is there any connection to ALFWorld or ScienceWorld?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ae43199c-65a6-48a7-bc7e-7dc3aa861f0d",
+  "isSidechain": false,
+  "requestId": "req_011CawrQN5qcAFmmB6Ho6mDv",
+  "type": "assistant",
+  "uuid": "7eaa6a65-c5bc-4e0c-b338-c1d942cb0c53",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NXrKngf98nKpxSfgmEfrVh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3828,
+      "cache_read_input_tokens": 43913,
+      "output_tokens": 479,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3828,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 479,
+          "cache_read_input_tokens": 43913,
+          "cache_creation_input_tokens": 3828,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3828
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-12T02:03:18.873Z_
+
+<details><summary>↩ Tool result · `toolu_01PD8cxEr1Qfeisdc1Eh1PXw`</summary>
+
+```text
+# ITP-R Performance Results
+
+## ALFWorld (Qwen2.5-7B)
+
+Based on Table 1, **ITP_R** achieves the following per-task accuracies:
+
+- **Pick:** 94.29%
+- **Clean:** 88.89%
+- **Heat:** 87.50%
+- **Cool:** 53.84%
+- **Look:** 76.00%
+- **Pick2:** 91.67%
+- **Overall:** 85.07%
+
+## ScienceWorld (Qwen2.5-7B)
+
+The table indicates results across test splits:
+
+- **Seen:** 62.58%
+- **Unseen:** 58.94%
+
+These results demonstrate consistent performance improvements across household embodied tasks and science-based reasoning benchmarks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "131c7933-177a-49b3-94cf-5bca4fb556c9",
+  "isSidechain": false,
+  "promptId": "9b974623-0e78-4236-bcb1-33ca10e2bb93",
+  "type": "user",
+  "uuid": "d5d2c835-b1d4-4d9b-8616-a6f6ec4a9497",
+  "toolUseResult": {
+    "bytes": 367182,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ITP-R Performance Results\n\n## ALFWorld (Qwen2.5-7B)\n\nBased on Table 1, **ITP_R** achieves the following per-task accuracies:\n\n- **Pick:** 94.29%\n- **Clean:** 88.89%\n- **Heat:** 87.50%\n- **Cool:** 53.84%\n- **Look:** 76.00%\n- **Pick2:** 91.67%\n- **Overall:** 85.07%\n\n## ScienceWorld (Qwen2.5-7B)\n\nThe table indicates results across test splits:\n\n- **Seen:** 62.58%\n- **Unseen:** 58.94%\n\nThese results demonstrate consistent performance improvements across household embodied tasks and science-based reasoning benchmarks.",
+    "durationMs": 5629,
+    "url": "https://arxiv.org/html/2601.08955v2"
+  },
+  "sourceToolAssistantUUID": "131c7933-177a-49b3-94cf-5bca4fb556c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-12T02:03:21.578Z_
+
+<details><summary>↩ Tool result · `toolu_01Ku3qWxQLgvVYBUHzNXHdgB`</summary>
+
+```text
+# Dyna-Think Evaluation Summary
+
+## Benchmarks
+
+Dyna-Think is evaluated on two main benchmarks:
+
+1. **OSWorld**: A diverse benchmark with 369 open-ended computer tasks across 10 domains including OS Terminal, LibreOffice applications, Chrome, VLC Player, Thunderbird, VS Code, and GIMP.
+
+2. **WindowsAgentArena**: Used to assess generalization to a different operating system (Windows OS).
+
+The paper focuses on 5 more accessible OSWorld domains (OS, Chrome, VS Code, GIMP, Thunderbird) for main results, with GIMP and Thunderbird held out for out-of-domain testing.
+
+## Key Results
+
+The framework achieves notable efficiency gains: "similar BoN score, while generating 2x less tokens on average and being only 32B in size" compared to DeepSeek-R1 (685B). Specific performance includes 26.6% average success rate and 44.3% best-of-N success on in-domain tasks.
+
+## Architecture Approach
+
+Dyna-Think does **not** use explicit routing or gating mechanisms. Instead, it integrates world modeling directly into the agent's reasoning process through two training stages (DIT and DDT). It employs a **learned world model** rather than a deterministic simulator—specifically training the policy model itself to perform world model simulation.
+
+## Related Benchmarks
+
+The paper does not mention connections to ALFWorld or ScienceWorld. Its focus is exclusively on computer-use tasks in real desktop environments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7eaa6a65-c5bc-4e0c-b338-c1d942cb0c53",
+  "isSidechain": false,
+  "promptId": "9b974623-0e78-4236-bcb1-33ca10e2bb93",
+  "type": "user",
+  "uuid": "e7c10b23-10b2-4667-b55a-1c123ec73ec0",
+  "toolUseResult": {
+    "bytes": 297217,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Dyna-Think Evaluation Summary\n\n## Benchmarks\n\nDyna-Think is evaluated on two main benchmarks:\n\n1. **OSWorld**: A diverse benchmark with 369 open-ended computer tasks across 10 domains including OS Terminal, LibreOffice applications, Chrome, VLC Player, Thunderbird, VS Code, and GIMP.\n\n2. **WindowsAgentArena**: Used to assess generalization to a different operating system (Windows OS).\n\nThe paper focuses on 5 more accessible OSWorld domains (OS, Chrome, VS Code, GIMP, Thunderbird) for main results, with GIMP and Thunderbird held out for out-of-domain testing.\n\n## Key Results\n\nThe framework achieves notable efficiency gains: \"similar BoN score, while generating 2x less tokens on average and being only 32B in size\" compared to DeepSeek-R1 (685B). Specific performance includes 26.6% average success rate and 44.3% best-of-N success on in-domain tasks.\n\n## Architecture Approach\n\nDyna-Think does **not** use explicit routing or gating mechanisms. Instead, it integrates world modeling directly into the agent's reasoning process through two training stages (DIT and DDT). It employs a **learned world model** rather than a deterministic simulator—specifically training the policy model itself to perform world model simulation.\n\n## Related Benchmarks\n\nThe paper does not mention connections to ALFWorld or ScienceWorld. Its focus is exclusively on computer-use tasks in real desktop environments.",
+    "durationMs": 5843,
+    "url": "https://arxiv.org/html/2506.00320"
+  },
+  "sourceToolAssistantUUID": "7eaa6a65-c5bc-4e0c-b338-c1d942cb0c53",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-12T02:03:21.581Z_
+
+```json
+{
+  "parentUuid": "e7c10b23-10b2-4667-b55a-1c123ec73ec0",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "71a6f74a-0788-43d5-a0fe-e95b8c119e5f",
+  "timestamp": "2026-05-12T02:03:21.581Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-12T02:03:39.622Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Let me verify the key facts:
+
+1. **ITP-R ALFWorld Qwen2.5-7B**: CONFIRMED 85.07% overall. Per-task: PICK 94.29%, CLEAN 88.89%, HEAT 87.50%, COOL 53.84%, LOOK 76.00%, PICK2 91.67%. The proposal now correctly uses 85.07%. ✓
+
+2. **ITP-R ScienceWorld Qwen2.5-7B**: 62.58 (seen) / 58.94 (unseen). ✓
+   
+3. **EPO Numbers**: Looking at the HTML paper, I can see PPO+EPO achieves 100.0% IID success and 96.8% average, while GRPO+EPO gets 95.8% IID success with 83.8% average. The baseline GRPO sits at 93.8% IID success with 81.6% average, so the proposal needs to incorporate these comparisons correctly.
+
+The numbers check out — GRPO+EPO's 95.8% and 83.8% are both accurate from Table 1, just representing different success metrics. PPO+EPO's 96.8% refers to the converged success rate rather than the peak, and the 83.8% for GRPO+EPO is indeed from the table, not from a different version. The proposal now correctly reports both metrics for GRPO+EPO.
+
+4. **Dyna-Think**: This was evaluated as well.
+
+5. **EPO evaluation protocol**: The paper doesn't explicitly specify task counts, step limits, or whether scoring is binary or continuous, but the success metrics (Succ.* and Succ.̄) are clearly binary. The stark difference between GRPO's 93.8% Succ.* and CogRouter's 53.0% success rate confirms they're using fundamentally different evaluation setups, which the proposal handles appropriately.
+
+Dyna-Think operates only on OSWorld and WindowsAgentArena using a learned world model rather than a deterministic simulator, with no explicit routing mechanism and no connection to ALFWorld or ScienceWorld, so it's not a direct competitor to the proposal's approach. Now I should check for any other competing work and verify the remaining claims.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "71a6f74a-0788-43d5-a0fe-e95b8c119e5f",
+  "isSidechain": false,
+  "requestId": "req_011CawrRiA7K59JzGdc8g319",
+  "type": "assistant",
+  "uuid": "bb1d2b89-933c-4f98-b583-0457c1245da4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DbzUELQZpvcf5rd4fFZX6A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1623,
+      "cache_read_input_tokens": 47741,
+      "output_tokens": 984,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1623,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 984,
+          "cache_read_input_tokens": 47741,
+          "cache_creation_input_tokens": 1623,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1623
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-12T02:03:39.625Z_
+
+Good — EPO numbers and ITP-R numbers are now verified. Let me check for additional competing work and verify the remaining claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bb1d2b89-933c-4f98-b583-0457c1245da4",
+  "isSidechain": false,
+  "requestId": "req_011CawrRiA7K59JzGdc8g319",
+  "type": "assistant",
+  "uuid": "da842a52-a744-4d64-8df0-e04df2f5a709",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DbzUELQZpvcf5rd4fFZX6A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1623,
+      "cache_read_input_tokens": 47741,
+      "output_tokens": 984,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1623,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 984,
+          "cache_read_input_tokens": 47741,
+          "cache_creation_input_tokens": 1623,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1623
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-12T02:03:39.846Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011RGbyS44UuKinmuSUq4Qgu`</summary>
+
+```json
+{
+  "query": "selective simulation invocation agent routing code interpreter calculator 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "da842a52-a744-4d64-8df0-e04df2f5a709",
+  "isSidechain": false,
+  "requestId": "req_011CawrRiA7K59JzGdc8g319",
+  "type": "assistant",
+  "uuid": "4067c15c-4659-42d0-9ba6-66b8e1b6056a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DbzUELQZpvcf5rd4fFZX6A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1623,
+      "cache_read_input_tokens": 47741,
+      "output_tokens": 984,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1623,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 984,
+          "cache_read_input_tokens": 47741,
+          "cache_creation_input_tokens": 1623,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1623
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-12T02:03:40.797Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PXg3xxDBQVRUzcGa83SVdg`</summary>
+
+```json
+{
+  "query": "ReTool reinforcement learning code interpreter ICLR 2026 arXiv 2504.11536"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4067c15c-4659-42d0-9ba6-66b8e1b6056a",
+  "isSidechain": false,
+  "requestId": "req_011CawrRiA7K59JzGdc8g319",
+  "type": "assistant",
+  "uuid": "6ed4ea79-4f92-405e-b70f-72d32367682a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DbzUELQZpvcf5rd4fFZX6A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1623,
+      "cache_read_input_tokens": 47741,
+      "output_tokens": 984,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1623,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 984,
+          "cache_read_input_tokens": 47741,
+          "cache_creation_input_tokens": 1623,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1623
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-12T02:03:41.734Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Km926H3Dz7u3ABaEut7Cqj`</summary>
+
+```json
+{
+  "query": "STEP-HRL hierarchical RL ALFWorld ScienceWorld 2026 arXiv 2604.05808"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ed4ea79-4f92-405e-b70f-72d32367682a",
+  "isSidechain": false,
+  "requestId": "req_011CawrRiA7K59JzGdc8g319",
+  "type": "assistant",
+  "uuid": "588d73d8-e173-4e80-9ae0-773764510a53",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DbzUELQZpvcf5rd4fFZX6A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1623,
+      "cache_read_input_tokens": 47741,
+      "output_tokens": 984,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1623,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 984,
+          "cache_read_input_tokens": 47741,
+          "cache_creation_input_tokens": 1623,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1623
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-12T02:03:42.444Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01G9ZUeqP63YohRYq653LoLy`</summary>
+
+```json
+{
+  "query": "Skill1 unified skill evolution ALFWorld 97.5 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "588d73d8-e173-4e80-9ae0-773764510a53",
+  "isSidechain": false,
+  "requestId": "req_011CawrRiA7K59JzGdc8g319",
+  "type": "assistant",
+  "uuid": "2b0f2476-0fbf-4e6f-bec9-9c9759eaddfc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DbzUELQZpvcf5rd4fFZX6A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1623,
+      "cache_read_input_tokens": 47741,
+      "output_tokens": 984,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1623,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 984,
+          "cache_read_input_tokens": 47741,
+          "cache_creation_input_tokens": 1623,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1623
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-12T02:03:46.655Z_
+
+<details><summary>↩ Tool result · `toolu_01PXg3xxDBQVRUzcGa83SVdg`</summary>
+
+```text
+Web search results for query: "ReTool reinforcement learning code interpreter ICLR 2026 arXiv 2504.11536"
+
+Links: [{"title":"[2504.11536] ReTool: Reinforcement Learning for Strategic Tool Use in LLMs","url":"https://arxiv.org/abs/2504.11536"},{"title":"Paper page - ReTool: Reinforcement Learning for Strategic Tool Use in LLMs","url":"https://huggingface.co/papers/2504.11536"},{"title":"ReTool: Reinforcement Learning for Strategic Tool Use in LLMs","url":"https://arxiv.org/pdf/2504.11536"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2512.20745"},{"title":"ReTool: Reinforcement Learning for Strategic Tool Use in LLMs | alphaXiv","url":"https://www.alphaxiv.org/overview/2504.11536v2"},{"title":"GitHub - ReTool-RL/ReTool · GitHub","url":"https://github.com/ReTool-RL/ReTool"},{"title":"ReTool","url":"https://retool-rl.github.io/"},{"title":"[2504.11536v1] ReTool: Reinforcement Learning for Strategic Tool Use in LLMs","url":"https://arxiv.org/abs/2504.11536v1"},{"title":"[PDF] ReTool: Reinforcement Learning for Strategic Tool Use in LLMs | Semantic Scholar","url":"https://www.semanticscholar.org/paper/ReTool:-Reinforcement-Learning-for-Strategic-Tool-Feng-Huang/8402e446158252992b6ddf1ff1b0658c39d7604e"},{"title":"Published as a conference paper at ICLR 2026 RETOOL:","url":"https://openreview.net/pdf?id=tRk1nofSmz"}]
+
+Based on the search results, here's what I found about ReTool:
+
+## Overview
+
+ReTool enhances long-form reasoning with tool-integrated learning, including dynamic interleaving of real-time code execution within natural language reasoning processes, and an automated RL paradigm that allows policy rollouts with multi-turn real-time code execution and teaches the model when and how to invoke tools based on outcome feedback.
+
+## Motivation
+
+While reasoning models (e.g., DeepSeek R1) trained with reinforcement learning excel in textual reasoning, they struggle in scenarios requiring structured problem-solving, such as geometric reasoning, concise computation, or complex equation solving—areas where computational tools like code interpreters demonstrate distinct advantages.
+
+## Training Framework
+
+ReTool employs a systematic training framework, beginning with synthetic cold-start data generation to produce code-augmented long-form reasoning traces for fine-tuning base models. Subsequent RL training leverages task outcomes as rewards to iteratively refine the model's tool use strategy, enabling autonomous discovery of optimal tool invocation patterns without human priors.
+
+## Results
+
+On the challenging MATH Olympiad benchmark AIME, the 32B model achieves 67% accuracy with 400 training steps, outperforming text-based RL baseline (40% accuracy, 1080 steps) in efficiency and performance. ReTool-32B attains 72.5% accuracy in extended settings, surpassing OpenAI's o1-preview by 27.9%.
+
+The paper was published at ICLR 2026 according to the search results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6ed4ea79-4f92-405e-b70f-72d32367682a",
+  "isSidechain": false,
+  "promptId": "9b974623-0e78-4236-bcb1-33ca10e2bb93",
+  "type": "user",
+  "uuid": "f941b26c-3aa8-4233-be77-7939f45f3fe4",
+  "toolUseResult": {
+    "query": "ReTool reinforcement learning code interpreter ICLR 2026 arXiv 2504.11536",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LGKRdQTJFGLvzKSfG86WeT",
+        "content": [
+          {
+            "title": "[2504.11536] ReTool: Reinforcement Learning for Strategic Tool Use in LLMs",
+            "url": "https://arxiv.org/abs/2504.11536"
+          },
+          {
+            "title": "Paper page - ReTool: Reinforcement Learning for Strategic Tool Use in LLMs",
+            "url": "https://huggingface.co/papers/2504.11536"
+          },
+          {
+            "title": "ReTool: Reinforcement Learning for Strategic Tool Use in LLMs",
+            "url": "https://arxiv.org/pdf/2504.11536"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2512.20745"
+          },
+          {
+            "title": "ReTool: Reinforcement Learning for Strategic Tool Use in LLMs | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2504.11536v2"
+          },
+          {
+            "title": "GitHub - ReTool-RL/ReTool · GitHub",
+            "url": "https://github.com/ReTool-RL/ReTool"
+          },
+          {
+            "title": "ReTool",
+            "url": "https://retool-rl.github.io/"
+          },
+          {
+            "title": "[2504.11536v1] ReTool: Reinforcement Learning for Strategic Tool Use in LLMs",
+            "url": "https://arxiv.org/abs/2504.11536v1"
+          },
+          {
+            "title": "[PDF] ReTool: Reinforcement Learning for Strategic Tool Use in LLMs | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/ReTool:-Reinforcement-Learning-for-Strategic-Tool-Feng-Huang/8402e446158252992b6ddf1ff1b0658c39d7604e"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 RETOOL:",
+            "url": "https://openreview.net/pdf?id=tRk1nofSmz"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about ReTool:\n\n## Overview\n\nReTool enhances long-form reasoning with tool-integrated learning, including dynamic interleaving of real-time code execution within natural language reasoning processes, and an automated RL paradigm that allows policy rollouts with multi-turn real-time code execution and teaches the model when and how to invoke tools based on outcome feedback.\n\n## Motivation\n\nWhile reasoning models (e.g., DeepSeek R1) trained with reinforcement learning excel in textual reasoning, they struggle in scenarios requiring structured problem-solving, such as geometric reasoning, concise computation, or complex equation solving—areas where computational tools like code interpreters demonstrate distinct advantages.\n\n## Training Framework\n\nReTool employs a systematic training framework, beginning with synthetic cold-start data generation to produce code-augmented long-form reasoning traces for fine-tuning base models. Subsequent RL training leverages task outcomes as rewards to iteratively refine the model's tool use strategy, enabling autonomous discovery of optimal tool invocation patterns without human priors.\n\n## Results\n\nOn the challenging MATH Olympiad benchmark AIME, the 32B model achieves 67% accuracy with 400 training steps, outperforming text-based RL baseline (40% accuracy, 1080 steps) in efficiency and performance. ReTool-32B attains 72.5% accuracy in extended settings, surpassing OpenAI's o1-preview by 27.9%.\n\nThe paper was published at ICLR 2026 according to the search results."
+    ],
+    "durationSeconds": 5.85441905099999
+  },
+  "sourceToolAssistantUUID": "6ed4ea79-4f92-405e-b70f-72d32367682a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "f941b26c-3aa8-4233-be77-7939f45f3fe4",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "SimGate: Evaluate Router for Deterministic Simulator Invocation",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320"
+}
+```
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-12T02:03:47.268Z_
+
+<details><summary>↩ Tool result · `toolu_01Km926H3Dz7u3ABaEut7Cqj`</summary>
+
+```text
+Web search results for query: "STEP-HRL hierarchical RL ALFWorld ScienceWorld 2026 arXiv 2604.05808"
+
+Links: [{"title":"[2604.05808] Hierarchical Reinforcement Learning with Augmented Step-Level Transitions for LLM Agents","url":"https://arxiv.org/abs/2604.05808"},{"title":"Hierarchical Reinforcement Learning with Augmented Step-Level Transitions for LLM Agents","url":"https://arxiv.org/html/2604.05808"},{"title":"STEP-HRL: Efficient Hierarchical RL for LLM Agents","url":"https://richlyai.com/blog/step-hrl-efficient-hierarchical-rl-for-llm-agents-ai-news/"},{"title":"Hierarchical in-Context Reinforcement Learning with Hindsight Modular Reflections for Planning","url":"https://arxiv.org/html/2408.06520v1"},{"title":"Hierarchical Reinforcement Learning with Augmented Step-Level Transitions for LLM Agents | OpenReview","url":"https://openreview.net/forum?id=rMBlfQTAtA"},{"title":"DPEPO: Diverse Parallel Exploration Policy Optimization for LLM-based Agents","url":"https://arxiv.org/html/2604.24320"},{"title":"Exploring the limits of hierarchical world models in reinforcement learning | Scientific Reports","url":"https://www.nature.com/articles/s41598-024-76719-w"},{"title":"Explore | alphaXiv","url":"https://www.alphaxiv.org/"},{"title":"HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents","url":"https://arxiv.org/html/2602.16165"},{"title":"Co-Evolution of Policy and Internal Reward for Language Agents","url":"https://arxiv.org/html/2604.03098"}]
+
+I found detailed information about the STEP-HRL paper (arXiv 2604.05808). Here's what the search returned:
+
+## STEP-HRL: Hierarchical Reinforcement Learning with Augmented Step-Level Transitions for LLM Agents
+
+STEP-HRL is a hierarchical reinforcement learning (HRL) framework that enables step-level learning by conditioning only on single-step transitions rather than full interaction histories.
+
+### Key Components
+
+STEP-HRL structures tasks hierarchically, using completed subtasks to represent global progress of the overall task, and by introducing a local progress module, it iteratively and selectively summarizes interaction history within each subtask to produce a compact summary of local progress.
+
+### Experimental Results
+
+Experimental results on ScienceWorld and ALFWorld benchmarks consistently demonstrate that STEP-HRL substantially outperforms baselines in terms of performance and generalization while reducing token usage.
+
+The paper addresses an important problem in LLM-based agents: existing approaches rely on increasingly long interaction histories, which creates computational overhead and scalability issues. By focusing on step-level transitions and hierarchical task structuring, STEP-HRL provides a more efficient approach to reinforcement learning for language model agents.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "588d73d8-e173-4e80-9ae0-773764510a53",
+  "isSidechain": false,
+  "promptId": "9b974623-0e78-4236-bcb1-33ca10e2bb93",
+  "type": "user",
+  "uuid": "89d90118-1e18-4464-9d83-9c0ad44d6e2b",
+  "toolUseResult": {
+    "query": "STEP-HRL hierarchical RL ALFWorld ScienceWorld 2026 arXiv 2604.05808",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WmfQx4hEjPSrFcndbPqW89",
+        "content": [
+          {
+            "title": "[2604.05808] Hierarchical Reinforcement Learning with Augmented Step-Level Transitions for LLM Agents",
+            "url": "https://arxiv.org/abs/2604.05808"
+          },
+          {
+            "title": "Hierarchical Reinforcement Learning with Augmented Step-Level Transitions for LLM Agents",
+            "url": "https://arxiv.org/html/2604.05808"
+          },
+          {
+            "title": "STEP-HRL: Efficient Hierarchical RL for LLM Agents",
+            "url": "https://richlyai.com/blog/step-hrl-efficient-hierarchical-rl-for-llm-agents-ai-news/"
+          },
+          {
+            "title": "Hierarchical in-Context Reinforcement Learning with Hindsight Modular Reflections for Planning",
+            "url": "https://arxiv.org/html/2408.06520v1"
+          },
+          {
+            "title": "Hierarchical Reinforcement Learning with Augmented Step-Level Transitions for LLM Agents | OpenReview",
+            "url": "https://openreview.net/forum?id=rMBlfQTAtA"
+          },
+          {
+            "title": "DPEPO: Diverse Parallel Exploration Policy Optimization for LLM-based Agents",
+            "url": "https://arxiv.org/html/2604.24320"
+          },
+          {
+            "title": "Exploring the limits of hierarchical world models in reinforcement learning | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-024-76719-w"
+          },
+          {
+            "title": "Explore | alphaXiv",
+            "url": "https://www.alphaxiv.org/"
+          },
+          {
+            "title": "HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents",
+            "url": "https://arxiv.org/html/2602.16165"
+          },
+          {
+            "title": "Co-Evolution of Policy and Internal Reward for Language Agents",
+            "url": "https://arxiv.org/html/2604.03098"
+          }
+        ]
+      },
+      "I found detailed information about the STEP-HRL paper (arXiv 2604.05808). Here's what the search returned:\n\n## STEP-HRL: Hierarchical Reinforcement Learning with Augmented Step-Level Transitions for LLM Agents\n\nSTEP-HRL is a hierarchical reinforcement learning (HRL) framework that enables step-level learning by conditioning only on single-step transitions rather than full interaction histories.\n\n### Key Components\n\nSTEP-HRL structures tasks hierarchically, using completed subtasks to represent global progress of the overall task, and by introducing a local progress module, it iteratively and selectively summarizes interaction history within each subtask to produce a compact summary of local progress.\n\n### Experimental Results\n\nExperimental results on ScienceWorld and ALFWorld benchmarks consistently demonstrate that STEP-HRL substantially outperforms baselines in terms of performance and generalization while reducing token usage.\n\nThe paper addresses an important problem in LLM-based agents: existing approaches rely on increasingly long interaction histories, which creates computational overhead and scalability issues. By focusing on step-level transitions and hierarchical task structuring, STEP-HRL provides a more efficient approach to reinforcement learning for language model agents."
+    ],
+    "durationSeconds": 5.531969168999989
+  },
+  "sourceToolAssistantUUID": "588d73d8-e173-4e80-9ae0-773764510a53",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-12T02:03:47.607Z_
+
+<details><summary>↩ Tool result · `toolu_011RGbyS44UuKinmuSUq4Qgu`</summary>
+
+```text
+Web search results for query: "selective simulation invocation agent routing code interpreter calculator 2026 arXiv"
+
+Links: [{"title":"Uno-Orchestra: Parsimonious Agent Routing via Selective Delegation","url":"https://arxiv.org/html/2605.05007"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2512.20745"},{"title":"[2605.05007] Uno-Orchestra: Parsimonious Agent Routing via Selective Delegation","url":"https://arxiv.org/abs/2605.05007"},{"title":"GitHub - VoltAgent/awesome-ai-agent-papers: A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, and autonomous systems. · GitHub","url":"https://github.com/VoltAgent/awesome-ai-agent-papers"},{"title":"[2409.20306] Diagnosing and Repairing Distributed Routing Configurations Using Selective Symbolic Simulation","url":"https://arxiv.org/abs/2409.20306"},{"title":"AgentGate: A Lightweight Structured Routing Engine for the Internet of Agents","url":"https://arxiv.org/html/2604.06696v1"},{"title":"GitHub - VILA-Lab/Dive-into-Claude-Code: A Systematic Analysis and Discussion of Claude Code for Designing Today's and Future AI Agent Systems · GitHub","url":"https://github.com/VILA-Lab/Dive-into-Claude-Code"},{"title":"Simulation Agent: A Framework for Integrating Simulation and Large Language Models for Enhanced Decision-Making","url":"https://arxiv.org/html/2505.13761v1"},{"title":"Towards Generalized Routing: Model and Agent Orchestration for Adaptive and Efficient Inference","url":"https://arxiv.org/html/2509.07571v1"},{"title":"CodeAgent: Enhancing Code Generation with Tool-Integrated Agent Systems for Real-World Repo-level Coding Challenges","url":"https://arxiv.org/html/2401.07339v2"}]
+
+Based on the web search results, I found relevant research related to your query. Here are the key findings:
+
+## Primary Result: Uno-Orchestra
+
+The most directly relevant paper is "Uno-Orchestra: Parsimonious Agent Routing via Selective Delegation" (arXiv paper 2605.05007). Uno-Orchestra is a router-orchestrator that, given an arbitrary task, emits a plan over subtasks together with an explicit (model, primitive) routing decision for every subtask, all from a single causal-LM policy.
+
+The key design choice is to collapse decomposition and dispatch into a single shared backbone: one causal-LM jointly emits the task decomposition and the per-subtask (model, primitive) routing within the same assistant turn, eliminating redundant context passes between separate planner and dispatcher modules.
+
+## Related 2026 arXiv Papers
+
+The search also revealed other relevant agent routing and simulation papers from 2026:
+
+- **AgentGate**: AgentGate is a lightweight two-stage routing engine that decomposes routing into action decision and structural grounding, enabling executable and interpretable routing with compact edge-side models.
+
+- **Agentic RL with Code Invocation**: One approach transforms chain-of-thought into agent-style demonstrations with executable code invocations and authentic interpreter feedback, yielding a compact and efficient instruction dataset for SFT.
+
+All of these papers address the core themes of agent routing, selective invocation, and orchestration of different tools and computational primitives.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4067c15c-4659-42d0-9ba6-66b8e1b6056a",
+  "isSidechain": false,
+  "promptId": "9b974623-0e78-4236-bcb1-33ca10e2bb93",
+  "type": "user",
+  "uuid": "01265536-c60a-4157-87e6-326cfcfe7d03",
+  "toolUseResult": {
+    "query": "selective simulation invocation agent routing code interpreter calculator 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JCuEoSKNo3irS3iZoEzAf5",
+        "content": [
+          {
+            "title": "Uno-Orchestra: Parsimonious Agent Routing via Selective Delegation",
+            "url": "https://arxiv.org/html/2605.05007"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2512.20745"
+          },
+          {
+            "title": "[2605.05007] Uno-Orchestra: Parsimonious Agent Routing via Selective Delegation",
+            "url": "https://arxiv.org/abs/2605.05007"
+          },
+          {
+            "title": "GitHub - VoltAgent/awesome-ai-agent-papers: A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, and autonomous systems. · GitHub",
+            "url": "https://github.com/VoltAgent/awesome-ai-agent-papers"
+          },
+          {
+            "title": "[2409.20306] Diagnosing and Repairing Distributed Routing Configurations Using Selective Symbolic Simulation",
+            "url": "https://arxiv.org/abs/2409.20306"
+          },
+          {
+            "title": "AgentGate: A Lightweight Structured Routing Engine for the Internet of Agents",
+            "url": "https://arxiv.org/html/2604.06696v1"
+          },
+          {
+            "title": "GitHub - VILA-Lab/Dive-into-Claude-Code: A Systematic Analysis and Discussion of Claude Code for Designing Today's and Future AI Agent Systems · GitHub",
+            "url": "https://github.com/VILA-Lab/Dive-into-Claude-Code"
+          },
+          {
+            "title": "Simulation Agent: A Framework for Integrating Simulation and Large Language Models for Enhanced Decision-Making",
+            "url": "https://arxiv.org/html/2505.13761v1"
+          },
+          {
+            "title": "Towards Generalized Routing: Model and Agent Orchestration for Adaptive and Efficient Inference",
+            "url": "https://arxiv.org/html/2509.07571v1"
+          },
+          {
+            "title": "CodeAgent: Enhancing Code Generation with Tool-Integrated Agent Systems for Real-World Repo-level Coding Challenges",
+            "url": "https://arxiv.org/html/2401.07339v2"
+          }
+        ]
+      },
+      "Based on the web search results, I found relevant research related to your query. Here are the key findings:\n\n## Primary Result: Uno-Orchestra\n\nThe most directly relevant paper is \"Uno-Orchestra: Parsimonious Agent Routing via Selective Delegation\" (arXiv paper 2605.05007). Uno-Orchestra is a router-orchestrator that, given an arbitrary task, emits a plan over subtasks together with an explicit (model, primitive) routing decision for every subtask, all from a single causal-LM policy.\n\nThe key design choice is to collapse decomposition and dispatch into a single shared backbone: one causal-LM jointly emits the task decomposition and the per-subtask (model, primitive) routing within the same assistant turn, eliminating redundant context passes between separate planner and dispatcher modules.\n\n## Related 2026 arXiv Papers\n\nThe search also revealed other relevant agent routing and simulation papers from 2026:\n\n- **AgentGate**: AgentGate is a lightweight two-stage routing engine that decomposes routing into action decision and structural grounding, enabling executable and interpretable routing with compact edge-side models.\n\n- **Agentic RL with Code Invocation**: One approach transforms chain-of-thought into agent-style demonstrations with executable code invocations and authentic interpreter feedback, yielding a compact and efficient instruction dataset for SFT.\n\nAll of these papers address the core themes of agent routing, selective invocation, and orchestration of different tools and computational primitives."
+    ],
+    "durationSeconds": 7.7560875680000025
+  },
+  "sourceToolAssistantUUID": "4067c15c-4659-42d0-9ba6-66b8e1b6056a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-12T02:03:49.527Z_
+
+<details><summary>↩ Tool result · `toolu_01G9ZUeqP63YohRYq653LoLy`</summary>
+
+```text
+Web search results for query: "Skill1 unified skill evolution ALFWorld 97.5 2026 arXiv"
+
+Links: [{"title":"[2605.06130] Skill1: Unified Evolution of Skill-Augmented Agents via Reinforcement Learning","url":"https://arxiv.org/abs/2605.06130"},{"title":"Skill1: Unified Evolution of Skill-Augmented Agents via Reinforcement Learning","url":"https://arxiv.org/html/2605.06130v1"},{"title":"Explore | alphaXiv","url":"https://www.alphaxiv.org/"},{"title":"Paper page - Skill1: Unified Evolution of Skill-Augmented Agents via Reinforcement Learning","url":"https://huggingface.co/papers/2605.06130"},{"title":"SKILLRL: Evolving Agents via Recursive Skill-Augmented Reinforcement Learning","url":"https://arxiv.org/pdf/2602.08234"},{"title":"SkillNet: Create, Evaluate, and Connect AI Skills","url":"https://arxiv.org/html/2603.04448"},{"title":"SkillOS: Learning Skill Curation for Self-Evolving Agents","url":"https://arxiv.org/html/2605.06614"},{"title":"Unified Evolution of Skill-Augmented Agents via Reinforcement ...","url":"https://bytez.com/docs/arxiv/2605.06130/paper"},{"title":"GitHub - aiming-lab/SkillRL: SkillRL: Evolving Agents via Recursive Skill-Augmented Reinforcement Learning · GitHub","url":"https://github.com/aiming-lab/SkillRL"},{"title":"[2602.08234] SkillRL: Evolving Agents via Recursive Skill-Augmented Reinforcement Learning","url":"https://arxiv.org/abs/2602.08234"}]
+
+I found the paper you're searching for! Here are the key details about Skill1:
+
+## Paper Information
+
+Skill1 is titled "Unified Evolution of Skill-Augmented Agents via Reinforcement Learning" and was published on arXiv (ID: 2605.06130) in May 2026.
+
+## Key Results
+
+On ALFWorld, Skill1 reaches 97.5% average success rate, surpassing the previous best RetroAgent by 2.6 points and ranking first on 5 out of 6 task types.
+
+## Framework Overview
+
+Skill1 is a framework that trains a single policy to co-evolve skill selection, utilization, and distillation toward a shared task-outcome objective. The policy generates a query to search the skill library, re-ranks candidates to select one, solves the task conditioned on it, and distills a new skill from the trajectory.
+
+## Performance Details
+
+Experiments on ALFWorld and WebShop show that Skill1 outperforms prior skill-based and reinforcement learning baselines. Skill1 surpasses the strongest RL-only method GiGPO by 6.5 points, with the largest gains on Look and Pick2 where composing multiple sub-procedures benefits most from reusable skills.
+
+The paper is available on arXiv at: https://arxiv.org/abs/2605.06130
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2b0f2476-0fbf-4e6f-bec9-9c9759eaddfc",
+  "isSidechain": false,
+  "promptId": "9b974623-0e78-4236-bcb1-33ca10e2bb93",
+  "type": "user",
+  "uuid": "ea4be732-3fa9-4ddb-ae87-2b5b6cfc7a0d",
+  "toolUseResult": {
+    "query": "Skill1 unified skill evolution ALFWorld 97.5 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MMFFyyyZnWX7SXcg1jTiDs",
+        "content": [
+          {
+            "title": "[2605.06130] Skill1: Unified Evolution of Skill-Augmented Agents via Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2605.06130"
+          },
+          {
+            "title": "Skill1: Unified Evolution of Skill-Augmented Agents via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2605.06130v1"
+          },
+          {
+            "title": "Explore | alphaXiv",
+            "url": "https://www.alphaxiv.org/"
+          },
+          {
+            "title": "Paper page - Skill1: Unified Evolution of Skill-Augmented Agents via Reinforcement Learning",
+            "url": "https://huggingface.co/papers/2605.06130"
+          },
+          {
+            "title": "SKILLRL: Evolving Agents via Recursive Skill-Augmented Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2602.08234"
+          },
+          {
+            "title": "SkillNet: Create, Evaluate, and Connect AI Skills",
+            "url": "https://arxiv.org/html/2603.04448"
+          },
+          {
+            "title": "SkillOS: Learning Skill Curation for Self-Evolving Agents",
+            "url": "https://arxiv.org/html/2605.06614"
+          },
+          {
+            "title": "Unified Evolution of Skill-Augmented Agents via Reinforcement ...",
+            "url": "https://bytez.com/docs/arxiv/2605.06130/paper"
+          },
+          {
+            "title": "GitHub - aiming-lab/SkillRL: SkillRL: Evolving Agents via Recursive Skill-Augmented Reinforcement Learning · GitHub",
+            "url": "https://github.com/aiming-lab/SkillRL"
+          },
+          {
+            "title": "[2602.08234] SkillRL: Evolving Agents via Recursive Skill-Augmented Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2602.08234"
+          }
+        ]
+      },
+      "I found the paper you're searching for! Here are the key details about Skill1:\n\n## Paper Information\n\nSkill1 is titled \"Unified Evolution of Skill-Augmented Agents via Reinforcement Learning\" and was published on arXiv (ID: 2605.06130) in May 2026.\n\n## Key Results\n\nOn ALFWorld, Skill1 reaches 97.5% average success rate, surpassing the previous best RetroAgent by 2.6 points and ranking first on 5 out of 6 task types.\n\n## Framework Overview\n\nSkill1 is a framework that trains a single policy to co-evolve skill selection, utilization, and distillation toward a shared task-outcome objective. The policy generates a query to search the skill library, re-ranks candidates to select one, solves the task conditioned on it, and distills a new skill from the trajectory.\n\n## Performance Details\n\nExperiments on ALFWorld and WebShop show that Skill1 outperforms prior skill-based and reinforcement learning baselines. Skill1 surpasses the strongest RL-only method GiGPO by 6.5 points, with the largest gains on Look and Pick2 where composing multiple sub-procedures benefits most from reusable skills.\n\nThe paper is available on arXiv at: https://arxiv.org/abs/2605.06130"
+    ],
+    "durationSeconds": 7.080487697000004
+  },
+  "sourceToolAssistantUUID": "2b0f2476-0fbf-4e6f-bec9-9c9759eaddfc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-12T02:04:01.756Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Let me now verify:
+
+1. **ITP-R ALFWorld 85.07%**: ✓ CONFIRMED from the actual paper table. The proposal now correctly uses 85.07%.
+
+2. **EPO numbers**: ✓ CONFIRMED. GRPO+EPO: Succ.* = 95.8%, Succ.̄ = 83.8% (IID). PPO+EPO: Succ.* = 100.0%, Succ.̄ = 96.8% (IID). The proposal's characterization is accurate.
+
+
+3. **Dyna-Think**: ✓ CONFIRMED. Evaluated on OSWorld/WindowsAgentArena, uses learned world model, no explicit routing/gating, not a direct competitor.
+
+4. **ReTool ICLR 2026**: ✓ CONFIRMED. ReTool-32B achieves 72.5% on AIME. Uses implicit routing (the LLM decides within its generation when to insert code blocks).
+
+5. **STEP-HRL**: ✓ CONFIRMED. Exists and evaluated on ALFWorld and ScienceWorld.
+
+6. **Skill1**: ✓ CONFIRMED. ALFWorld 97.5%.
+
+Now I'm checking what other competing approaches might be relevant to include.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea4be732-3fa9-4ddb-ae87-2b5b6cfc7a0d",
+  "isSidechain": false,
+  "requestId": "req_011CawrTme1tKFJ78a9GHEtu",
+  "type": "assistant",
+  "uuid": "cf5f92d2-8810-4718-9cfe-55ada123b60e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016yqdDqQAA1x5qvNzpANfYM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4398,
+      "cache_read_input_tokens": 49364,
+      "output_tokens": 631,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4398,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 631,
+          "cache_read_input_tokens": 49364,
+          "cache_creation_input_tokens": 4398,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4398
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-12T02:04:02.262Z_
+
+Let me check AgentGate and Uno-Orchestra which appeared in my earlier search, plus search for any very recent work on explicit routing to external tools/simulators.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cf5f92d2-8810-4718-9cfe-55ada123b60e",
+  "isSidechain": false,
+  "requestId": "req_011CawrTme1tKFJ78a9GHEtu",
+  "type": "assistant",
+  "uuid": "0649b290-43b0-4fb9-94ca-eedd28f90c72",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016yqdDqQAA1x5qvNzpANfYM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4398,
+      "cache_read_input_tokens": 49364,
+      "output_tokens": 631,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4398,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 631,
+          "cache_read_input_tokens": 49364,
+          "cache_creation_input_tokens": 4398,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4398
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-12T02:04:03.222Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019e3AkTcdxmcUsPhF5Wi6sy`</summary>
+
+```json
+{
+  "query": "AgentGate lightweight structured routing engine agents arXiv 2604.06696"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0649b290-43b0-4fb9-94ca-eedd28f90c72",
+  "isSidechain": false,
+  "requestId": "req_011CawrTme1tKFJ78a9GHEtu",
+  "type": "assistant",
+  "uuid": "ca41899f-c237-48f6-a3b8-e1b0d630ae44",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016yqdDqQAA1x5qvNzpANfYM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4398,
+      "cache_read_input_tokens": 49364,
+      "output_tokens": 631,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4398,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 631,
+          "cache_read_input_tokens": 49364,
+          "cache_creation_input_tokens": 4398,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4398
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-12T02:04:04.176Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AvqSFJfaCF342Vmwiz6KNL`</summary>
+
+```json
+{
+  "query": "explicit router module tool invocation LLM agent gating external computation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ca41899f-c237-48f6-a3b8-e1b0d630ae44",
+  "isSidechain": false,
+  "requestId": "req_011CawrTme1tKFJ78a9GHEtu",
+  "type": "assistant",
+  "uuid": "2e0c34c5-b1b0-4811-aadd-3024f536f99b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016yqdDqQAA1x5qvNzpANfYM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4398,
+      "cache_read_input_tokens": 49364,
+      "output_tokens": 631,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4398,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 631,
+          "cache_read_input_tokens": 49364,
+          "cache_creation_input_tokens": 4398,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4398
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-12T02:04:04.909Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PjQzf5QxbavW2W3g77LVEV`</summary>
+
+```json
+{
+  "query": "Embodied Planner-R1 ALFWorld ScienceWorld arXiv 2506.23127"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e0c34c5-b1b0-4811-aadd-3024f536f99b",
+  "isSidechain": false,
+  "requestId": "req_011CawrTme1tKFJ78a9GHEtu",
+  "type": "assistant",
+  "uuid": "2fc18143-c5b5-45d5-9563-31ec78da64b1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016yqdDqQAA1x5qvNzpANfYM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4398,
+      "cache_read_input_tokens": 49364,
+      "output_tokens": 631,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4398,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 631,
+          "cache_read_input_tokens": 49364,
+          "cache_creation_input_tokens": 4398,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4398
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-12T02:04:10.872Z_
+
+<details><summary>↩ Tool result · `toolu_019e3AkTcdxmcUsPhF5Wi6sy`</summary>
+
+```text
+Web search results for query: "AgentGate lightweight structured routing engine agents arXiv 2604.06696"
+
+Links: [{"title":"[2604.06696] AgentGate: A Lightweight Structured Routing Engine for the Internet of Agents","url":"https://arxiv.org/abs/2604.06696"},{"title":"[2604.06696v1] AgentGate: A Lightweight Structured Routing Engine for the Internet of Agents","url":"https://arxiv.org/abs/2604.06696v1"},{"title":"AgentGate: A Lightweight Structured Routing Engine for the Internet of Agents","url":"https://arxiv.org/html/2604.06696"},{"title":"[2604.06753v1] Select-then-Solve: Paradigm Routing as Inference-Time Optimization for LLM Agents","url":"https://arxiv.org/abs/2604.06753v1"},{"title":"[2604.06753] Select-then-Solve: Paradigm Routing as Inference-Time Optimization for LLM Agents","url":"https://arxiv.org/abs/2604.06753"},{"title":"[2604.23080] Usable Agent Discovery for Decentralized AI Systems","url":"https://arxiv.org/abs/2604.23080"},{"title":"agentgateway | Agent Connectivity Solved","url":"https://agentgateway.dev/"},{"title":"[2604.01235] Runtime Burden Allocation for Structured LLM Routing in Agentic Expert Systems: A Full-Factorial Cross-Backend Methodology","url":"https://arxiv.org/abs/2604.01235"},{"title":"Throttling Web Agents Using Reasoning Gates","url":"https://arxiv.org/html/2509.01619v1"},{"title":"GitHub - agentgateway/agentgateway: Next Generation Agentic Proxy for AI Agents and MCP servers · GitHub","url":"https://github.com/agentgateway/agentgateway"}]
+
+Based on the search results, I found the paper you were looking for. Here's the key information about AgentGate:
+
+## Overview
+
+AgentGate is a lightweight structured routing engine for candidate-aware agent dispatch. The paper addresses the Internet of Agents, where specialized agents operate across local devices, edge nodes, private services, and cloud platforms, tackling the open problem of efficient request dispatch under latency, privacy, and cost constraints.
+
+## Architecture
+
+AgentGate formulates routing as a constrained decision problem decomposed into two stages: action decision and structural grounding. The first stage determines whether a query should trigger single-agent invocation, multi-agent planning, direct response, or safe escalation, while the second stage instantiates the selected action into executable outputs such as target agents, structured arguments, or multi-step plans.
+
+## Key Features
+
+AgentGate is designed to run at the edge and to make routing decisions under practical deployment constraints, including latency, privacy, and heterogeneous backend availability. This design makes the routing process easier to constrain, interpret, and validate, especially when the router is implemented using compact 3B–7B class models.
+
+## Research Contributions
+
+The researchers developed a candidate-aware fine-tuning pipeline with routing-oriented supervision and hard negative design, showing through experiments on 3B–7B open-weight models that small models can serve as effective structured routers for AI agent ecosystems.
+
+The paper was submitted on April 8, 2026, and is available on arXiv at the identifier 2604.06696.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ca41899f-c237-48f6-a3b8-e1b0d630ae44",
+  "isSidechain": false,
+  "promptId": "9b974623-0e78-4236-bcb1-33ca10e2bb93",
+  "type": "user",
+  "uuid": "e400bf4e-18fd-4c88-98bc-3e470022bc4e",
+  "toolUseResult": {
+    "query": "AgentGate lightweight structured routing engine agents arXiv 2604.06696",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01K7XTSaiEYykaQSwa5E9KWd",
+        "content": [
+          {
+            "title": "[2604.06696] AgentGate: A Lightweight Structured Routing Engine for the Internet of Agents",
+            "url": "https://arxiv.org/abs/2604.06696"
+          },
+          {
+            "title": "[2604.06696v1] AgentGate: A Lightweight Structured Routing Engine for the Internet of Agents",
+            "url": "https://arxiv.org/abs/2604.06696v1"
+          },
+          {
+            "title": "AgentGate: A Lightweight Structured Routing Engine for the Internet of Agents",
+            "url": "https://arxiv.org/html/2604.06696"
+          },
+          {
+            "title": "[2604.06753v1] Select-then-Solve: Paradigm Routing as Inference-Time Optimization for LLM Agents",
+            "url": "https://arxiv.org/abs/2604.06753v1"
+          },
+          {
+            "title": "[2604.06753] Select-then-Solve: Paradigm Routing as Inference-Time Optimization for LLM Agents",
+            "url": "https://arxiv.org/abs/2604.06753"
+          },
+          {
+            "title": "[2604.23080] Usable Agent Discovery for Decentralized AI Systems",
+            "url": "https://arxiv.org/abs/2604.23080"
+          },
+          {
+            "title": "agentgateway | Agent Connectivity Solved",
+            "url": "https://agentgateway.dev/"
+          },
+          {
+            "title": "[2604.01235] Runtime Burden Allocation for Structured LLM Routing in Agentic Expert Systems: A Full-Factorial Cross-Backend Methodology",
+            "url": "https://arxiv.org/abs/2604.01235"
+          },
+          {
+            "title": "Throttling Web Agents Using Reasoning Gates",
+            "url": "https://arxiv.org/html/2509.01619v1"
+          },
+          {
+            "title": "GitHub - agentgateway/agentgateway: Next Generation Agentic Proxy for AI Agents and MCP servers · GitHub",
+            "url": "https://github.com/agentgateway/agentgateway"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you were looking for. Here's the key information about AgentGate:\n\n## Overview\n\nAgentGate is a lightweight structured routing engine for candidate-aware agent dispatch. The paper addresses the Internet of Agents, where specialized agents operate across local devices, edge nodes, private services, and cloud platforms, tackling the open problem of efficient request dispatch under latency, privacy, and cost constraints.\n\n## Architecture\n\nAgentGate formulates routing as a constrained decision problem decomposed into two stages: action decision and structural grounding. The first stage determines whether a query should trigger single-agent invocation, multi-agent planning, direct response, or safe escalation, while the second stage instantiates the selected action into executable outputs such as target agents, structured arguments, or multi-step plans.\n\n## Key Features\n\nAgentGate is designed to run at the edge and to make routing decisions under practical deployment constraints, including latency, privacy, and heterogeneous backend availability. This design makes the routing process easier to constrain, interpret, and validate, especially when the router is implemented using compact 3B–7B class models.\n\n## Research Contributions\n\nThe researchers developed a candidate-aware fine-tuning pipeline with routing-oriented supervision and hard negative design, showing through experiments on 3B–7B open-weight models that small models can serve as effective structured routers for AI agent ecosystems.\n\nThe paper was submitted on April 8, 2026, and is available on arXiv at the identifier 2604.06696."
+    ],
+    "durationSeconds": 7.643708188999997
+  },
+  "sourceToolAssistantUUID": "ca41899f-c237-48f6-a3b8-e1b0d630ae44",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "e400bf4e-18fd-4c88-98bc-3e470022bc4e",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "SimGate: Evaluate Router for Deterministic Simulator Invocation",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320"
+}
+```
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-12T02:04:13.130Z_
+
+<details><summary>↩ Tool result · `toolu_01PjQzf5QxbavW2W3g77LVEV`</summary>
+
+```text
+Web search results for query: "Embodied Planner-R1 ALFWorld ScienceWorld arXiv 2506.23127"
+
+Links: [{"title":"arXiv:2506.23127v1 [cs.CL] 29 Jun 2025 OpenMOSS","url":"https://arxiv.org/pdf/2506.23127"},{"title":"[2506.23127] Unleashing Embodied Task Planning Ability in LLMs via Reinforcement Learning","url":"https://arxiv.org/abs/2506.23127"},{"title":"Unleashing Embodied Task Planning Ability in LLMs via Reinforcement Learning","url":"https://arxiv.org/html/2506.23127"},{"title":"GitHub - OpenMOSS/Embodied-Planner-R1: Embodied-Planner-R1: Unleashing Embodied Task Planning Ability in LLMs via Reinforcement Learning · GitHub","url":"https://github.com/OpenMOSS/Embodied-Planner-R1"},{"title":"A Goal Without a Plan Is Just a Wish: Efficient and Effective Global Planner Training for Long-Horizon Agent Tasks","url":"https://arxiv.org/html/2510.05608v2"},{"title":"SEEA-R1: Tree-Structured Reinforcement Fine-Tuning for Self-Evolving Embodied Agents","url":"https://arxiv.org/html/2506.21669v1"},{"title":"ALFWorld: Aligning Text and Embodied Environments for Interactive Learning | OpenReview","url":"https://openreview.net/forum?id=0IOX0YcCdTn"},{"title":"Embodied Multi-Modal Agent trained by an LLM from a Parallel TextWorld","url":"https://arxiv.org/html/2311.16714"},{"title":"alfworld: aligning text and embodied environments for ...","url":"https://arxiv.org/pdf/2010.03768"},{"title":"[2010.03768] ALFWorld: Aligning Text and Embodied Environments for Interactive Learning","url":"https://arxiv.org/abs/2010.03768"}]
+
+Based on the search results, here's what I found about the paper with arXiv ID 2506.23127:
+
+## Overview
+
+Embodied Planner-R1 is a novel outcome-driven reinforcement learning framework that enables LLMs to develop interactive capabilities through autonomous exploration with minimal supervision.
+
+## Key Contributions
+
+The framework incorporates three key innovations: (1) pure reinforcement learning with group rollout, incorporating in-environment interaction through parallel exploration without human annotations; (2) completion-driven sparse reward; and (3) Interactive Policy Optimization (IPO) for efficient learning from grouped trajectories.
+
+## Performance Results
+
+Across two challenging text-based Embodied planning benchmarks, Embodied Planner-R1 achieves impressive completion rates of 97.78% on ALFWorld and 79.92% on ScienceWorld, surpassing prior methods by a large margin.
+
+## Benchmarks
+
+- **ALFWorld**: ALFWorld encompasses six categories of planning tasks set primarily in home environments, covering not only basic object manipulation (such as "pick and place") but also tasks requiring complex interaction sequences.
+
+- **ScienceWorld**: ScienceWorld presents a more challenging benchmark, requiring models to complete scientific experiments in a highly interactive environment.
+
+The paper is titled "Unleashing Embodied Task Planning Ability in LLMs via Reinforcement Learning" and was published on June 29, 2025. Additional resources including code and model checkpoints are available on the [GitHub repository](https://github.com/OpenMOSS/Embodied-Planner-R1).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2fc18143-c5b5-45d5-9563-31ec78da64b1",
+  "isSidechain": false,
+  "promptId": "9b974623-0e78-4236-bcb1-33ca10e2bb93",
+  "type": "user",
+  "uuid": "b03b4e2e-bddc-4110-b410-28469e967bdc",
+  "toolUseResult": {
+    "query": "Embodied Planner-R1 ALFWorld ScienceWorld arXiv 2506.23127",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GWtUTFBL7QDa1wRpS5wwxQ",
+        "content": [
+          {
+            "title": "arXiv:2506.23127v1 [cs.CL] 29 Jun 2025 OpenMOSS",
+            "url": "https://arxiv.org/pdf/2506.23127"
+          },
+          {
+            "title": "[2506.23127] Unleashing Embodied Task Planning Ability in LLMs via Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2506.23127"
+          },
+          {
+            "title": "Unleashing Embodied Task Planning Ability in LLMs via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2506.23127"
+          },
+          {
+            "title": "GitHub - OpenMOSS/Embodied-Planner-R1: Embodied-Planner-R1: Unleashing Embodied Task Planning Ability in LLMs via Reinforcement Learning · GitHub",
+            "url": "https://github.com/OpenMOSS/Embodied-Planner-R1"
+          },
+          {
+            "title": "A Goal Without a Plan Is Just a Wish: Efficient and Effective Global Planner Training for Long-Horizon Agent Tasks",
+            "url": "https://arxiv.org/html/2510.05608v2"
+          },
+          {
+            "title": "SEEA-R1: Tree-Structured Reinforcement Fine-Tuning for Self-Evolving Embodied Agents",
+            "url": "https://arxiv.org/html/2506.21669v1"
+          },
+          {
+            "title": "ALFWorld: Aligning Text and Embodied Environments for Interactive Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=0IOX0YcCdTn"
+          },
+          {
+            "title": "Embodied Multi-Modal Agent trained by an LLM from a Parallel TextWorld",
+            "url": "https://arxiv.org/html/2311.16714"
+          },
+          {
+            "title": "alfworld: aligning text and embodied environments for ...",
+            "url": "https://arxiv.org/pdf/2010.03768"
+          },
+          {
+            "title": "[2010.03768] ALFWorld: Aligning Text and Embodied Environments for Interactive Learning",
+            "url": "https://arxiv.org/abs/2010.03768"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the paper with arXiv ID 2506.23127:\n\n## Overview\n\nEmbodied Planner-R1 is a novel outcome-driven reinforcement learning framework that enables LLMs to develop interactive capabilities through autonomous exploration with minimal supervision.\n\n## Key Contributions\n\nThe framework incorporates three key innovations: (1) pure reinforcement learning with group rollout, incorporating in-environment interaction through parallel exploration without human annotations; (2) completion-driven sparse reward; and (3) Interactive Policy Optimization (IPO) for efficient learning from grouped trajectories.\n\n## Performance Results\n\nAcross two challenging text-based Embodied planning benchmarks, Embodied Planner-R1 achieves impressive completion rates of 97.78% on ALFWorld and 79.92% on ScienceWorld, surpassing prior methods by a large margin.\n\n## Benchmarks\n\n- **ALFWorld**: ALFWorld encompasses six categories of planning tasks set primarily in home environments, covering not only basic object manipulation (such as \"pick and place\") but also tasks requiring complex interaction sequences.\n\n- **ScienceWorld**: ScienceWorld presents a more challenging benchmark, requiring models to complete scientific experiments in a highly interactive environment.\n\nThe paper is titled \"Unleashing Embodied Task Planning Ability in LLMs via Reinforcement Learning\" and was published on June 29, 2025. Additional resources including code and model checkpoints are available on the [GitHub repository](https://github.com/OpenMOSS/Embodied-Planner-R1)."
+    ],
+    "durationSeconds": 8.218048991999996
+  },
+  "sourceToolAssistantUUID": "2fc18143-c5b5-45d5-9563-31ec78da64b1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-12T02:04:17.308Z_
+
+<details><summary>↩ Tool result · `toolu_01AvqSFJfaCF342Vmwiz6KNL`</summary>
+
+```text
+Web search results for query: "explicit router module tool invocation LLM agent gating external computation 2025 2026"
+
+Links: [{"title":"[FEAT]: Agentic Router for Autonomous Tool/Agent Invocation · Issue #3887 · Mintplex-Labs/anything-llm","url":"https://github.com/Mintplex-Labs/anything-llm/issues/3887"},{"title":"AI Agent Routing: Tutorial & Best Practices","url":"https://www.patronus.ai/ai-agent-development/ai-agent-routing"},{"title":"The Evolution of Tool Use in LLM Agents: From Single-Tool Call to Multi-Tool Orchestration","url":"https://arxiv.org/html/2603.22862v2"},{"title":"How to Build an AI Agent With Semantic Router and LLM Tools - The New Stack","url":"https://thenewstack.io/how-to-build-an-ai-agent-with-semantic-router-and-llm-tools/"},{"title":"GitHub - NVIDIA-AI-Blueprints/llm-router: Route LLM requests to the best model for the task at hand. · GitHub","url":"https://github.com/NVIDIA-AI-Blueprints/llm-router"},{"title":"ENHANCING LLM ROUTING AND AGENTIC AI ... - IRJMETS","url":"https://www.irjmets.com/upload_newfiles/irjmets70800040152/paper_file/irjmets70800040152.pdf"},{"title":"Build a multi-source knowledge base with routing - Docs by LangChain","url":"https://docs.langchain.com/oss/python/langchain/multi-agent/router-knowledge-base"},{"title":"Best Practices for Building an Agent Router - Arize AI","url":"https://arize.com/blog/best-practices-for-building-an-ai-agent-router/"},{"title":"AI Agents and LLM Models: Routers and Gateways for Efficient Management - DEV Community","url":"https://dev.to/sreeni5018/ai-agents-and-llm-models-routers-and-gateways-for-efficient-management-3ef6"},{"title":"GitHub - lm-sys/RouteLLM: A framework for serving and evaluating LLM routers - save LLM costs without compromising quality · GitHub","url":"https://github.com/lm-sys/routellm"}]
+
+I found relevant search results on your query. Here's a summary of the findings:
+
+## Key Findings on Router Modules, Tool Invocation, and External Computation Gating
+
+### Recent Developments (2025-2026)
+
+Current systems typically require users to explicitly invoke specialized agents with tools using commands, but there's interest in allowing LLMs to more autonomously decide when to use available tools/agents through agentic routers.
+
+An "Agentic Router" approach is being proposed as a configurable component that sits in front of user queries, analyzing the raw query and deciding whether it should be handled by standard document RAG or routed to a specialized agent with specific tools like web search.
+
+### Router Architecture and Function Calling
+
+LLM-based routing controllers optimize task delegation across multi-model architectures by analyzing prompt intent and dynamically selecting appropriate models or tools, with structured function-calling APIs enabling even lightweight models to invoke external capabilities with high precision.
+
+Dynamic scheduling over large tool ecosystems can be addressed through centralized planning and semantic routing, where decomposing workflows into planner, caller, and summarizer roles allows smaller models to compete effectively with larger monolithic agents.
+
+### Latency and Computation Gating
+
+Traditional observation-thinking-action loops require LLMs to block and wait for I/O results after calling external tools, causing latency accumulation, though approaches like ReWoo address this by decoupling inference from observation and speculatively generating execution graphs.
+
+To control computational costs, multi-agent architectures have shifted towards a computational allocation strategy that dynamically matches model size to task difficulty.
+
+These results reflect the current state of research and development in agentic AI systems as of 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2e0c34c5-b1b0-4811-aadd-3024f536f99b",
+  "isSidechain": false,
+  "promptId": "9b974623-0e78-4236-bcb1-33ca10e2bb93",
+  "type": "user",
+  "uuid": "366188e2-3dee-4758-adcc-375e66422f3d",
+  "toolUseResult": {
+    "query": "explicit router module tool invocation LLM agent gating external computation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017WiqGP4yRUpXXgQ4SS7SWM",
+        "content": [
+          {
+            "title": "[FEAT]: Agentic Router for Autonomous Tool/Agent Invocation · Issue #3887 · Mintplex-Labs/anything-llm",
+            "url": "https://github.com/Mintplex-Labs/anything-llm/issues/3887"
+          },
+          {
+            "title": "AI Agent Routing: Tutorial & Best Practices",
+            "url": "https://www.patronus.ai/ai-agent-development/ai-agent-routing"
+          },
+          {
+            "title": "The Evolution of Tool Use in LLM Agents: From Single-Tool Call to Multi-Tool Orchestration",
+            "url": "https://arxiv.org/html/2603.22862v2"
+          },
+          {
+            "title": "How to Build an AI Agent With Semantic Router and LLM Tools - The New Stack",
+            "url": "https://thenewstack.io/how-to-build-an-ai-agent-with-semantic-router-and-llm-tools/"
+          },
+          {
+            "title": "GitHub - NVIDIA-AI-Blueprints/llm-router: Route LLM requests to the best model for the task at hand. · GitHub",
+            "url": "https://github.com/NVIDIA-AI-Blueprints/llm-router"
+          },
+          {
+            "title": "ENHANCING LLM ROUTING AND AGENTIC AI ... - IRJMETS",
+            "url": "https://www.irjmets.com/upload_newfiles/irjmets70800040152/paper_file/irjmets70800040152.pdf"
+          },
+          {
+            "title": "Build a multi-source knowledge base with routing - Docs by LangChain",
+            "url": "https://docs.langchain.com/oss/python/langchain/multi-agent/router-knowledge-base"
+          },
+          {
+            "title": "Best Practices for Building an Agent Router - Arize AI",
+            "url": "https://arize.com/blog/best-practices-for-building-an-ai-agent-router/"
+          },
+          {
+            "title": "AI Agents and LLM Models: Routers and Gateways for Efficient Management - DEV Community",
+            "url": "https://dev.to/sreeni5018/ai-agents-and-llm-models-routers-and-gateways-for-efficient-management-3ef6"
+          },
+          {
+            "title": "GitHub - lm-sys/RouteLLM: A framework for serving and evaluating LLM routers - save LLM costs without compromising quality · GitHub",
+            "url": "https://github.com/lm-sys/routellm"
+          }
+        ]
+      },
+      "I found relevant search results on your query. Here's a summary of the findings:\n\n## Key Findings on Router Modules, Tool Invocation, and External Computation Gating\n\n### Recent Developments (2025-2026)\n\nCurrent systems typically require users to explicitly invoke specialized agents with tools using commands, but there's interest in allowing LLMs to more autonomously decide when to use available tools/agents through agentic routers.\n\nAn \"Agentic Router\" approach is being proposed as a configurable component that sits in front of user queries, analyzing the raw query and deciding whether it should be handled by standard document RAG or routed to a specialized agent with specific tools like web search.\n\n### Router Architecture and Function Calling\n\nLLM-based routing controllers optimize task delegation across multi-model architectures by analyzing prompt intent and dynamically selecting appropriate models or tools, with structured function-calling APIs enabling even lightweight models to invoke external capabilities with high precision.\n\nDynamic scheduling over large tool ecosystems can be addressed through centralized planning and semantic routing, where decomposing workflows into planner, caller, and summarizer roles allows smaller models to compete effectively with larger monolithic agents.\n\n### Latency and Computation Gating\n\nTraditional observation-thinking-action loops require LLMs to block and wait for I/O results after calling external tools, causing latency accumulation, though approaches like ReWoo address this by decoupling inference from observation and speculatively generating execution graphs.\n\nTo control computational costs, multi-agent architectures have shifted towards a computational allocation strategy that dynamically matches model size to task difficulty.\n\nThese results reflect the current state of research and development in agentic AI systems as of 2025-2026."
+    ],
+    "durationSeconds": 13.128956562000006
+  },
+  "sourceToolAssistantUUID": "2e0c34c5-b1b0-4811-aadd-3024f536f99b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-12T02:04:25.907Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Let me now check for the key things:
+
+1. **AgentGate (2604.06696)**: This is about routing between different agents/models/services, NOT routing to deterministic simulators. Not a direct competitor to SimGate.
+
+2. **Embodied Planner-R1**: Confirmed ALFWorld 97.78%, ScienceWorld 79.92%. Already cited in the proposal. ✓
+
+3. Let me now check for the most critical remaining things:
+   - The MATH pilot as a generalizability argument
+   - Whether the compute budget is now realistic
+   - Whether the venue targeting is appropriate
+   
+Now I need to search for any existing work that uses explicit router modules to decide when to invoke a code interpreter—that would be the closest potential competitor to what we're proposing with the MATH pilot.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "366188e2-3dee-4758-adcc-375e66422f3d",
+  "isSidechain": false,
+  "requestId": "req_011CawrVpbR4vRCQ3AkAimnD",
+  "type": "assistant",
+  "uuid": "b8c973b4-8c50-4ccd-a8cf-584625942fb9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01REfePsnVqhktzCh7gDrAqP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 938,
+      "cache_creation_input_tokens": 2525,
+      "cache_read_input_tokens": 53762,
+      "output_tokens": 409,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2525,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 938,
+          "output_tokens": 409,
+          "cache_read_input_tokens": 53762,
+          "cache_creation_input_tokens": 2525,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2525
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-12T02:04:25.912Z_
+
+Now let me check for work on explicit routing to code interpreters (to assess the MATH pilot's novelty) and verify a few more claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b8c973b4-8c50-4ccd-a8cf-584625942fb9",
+  "isSidechain": false,
+  "requestId": "req_011CawrVpbR4vRCQ3AkAimnD",
+  "type": "assistant",
+  "uuid": "d883b972-ded8-4140-86d3-8db5b39d30bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01REfePsnVqhktzCh7gDrAqP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 938,
+      "cache_creation_input_tokens": 2525,
+      "cache_read_input_tokens": 53762,
+      "output_tokens": 409,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2525,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 938,
+          "output_tokens": 409,
+          "cache_read_input_tokens": 53762,
+          "cache_creation_input_tokens": 2525,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2525
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-12T02:04:27.006Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01F3gLVZWruTBhUqzyUHDfeS`</summary>
+
+```json
+{
+  "query": "explicit router module when to use code interpreter math reasoning 2025 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d883b972-ded8-4140-86d3-8db5b39d30bb",
+  "isSidechain": false,
+  "requestId": "req_011CawrVpbR4vRCQ3AkAimnD",
+  "type": "assistant",
+  "uuid": "662bc046-566a-42f5-bd9d-512cc89f658c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01REfePsnVqhktzCh7gDrAqP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 938,
+      "cache_creation_input_tokens": 2525,
+      "cache_read_input_tokens": 53762,
+      "output_tokens": 409,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2525,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 938,
+          "output_tokens": 409,
+          "cache_read_input_tokens": 53762,
+          "cache_creation_input_tokens": 2525,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2525
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-12T02:04:27.844Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01P2WJDBNhhsXryJNj1u8atr`</summary>
+
+```json
+{
+  "query": "AgentMath tool-augmented agentic RL code interpreter ICLR 2026 arXiv 2512.20745"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "662bc046-566a-42f5-bd9d-512cc89f658c",
+  "isSidechain": false,
+  "requestId": "req_011CawrVpbR4vRCQ3AkAimnD",
+  "type": "assistant",
+  "uuid": "11cde851-bf4d-4c1b-bb42-6efcb0885d9f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01REfePsnVqhktzCh7gDrAqP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 938,
+      "cache_creation_input_tokens": 2525,
+      "cache_read_input_tokens": 53762,
+      "output_tokens": 409,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2525,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 938,
+          "output_tokens": 409,
+          "cache_read_input_tokens": 53762,
+          "cache_creation_input_tokens": 2525,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2525
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-12T02:04:28.601Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VnNfxEp76ezyuo5ZUedDvL`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 ARR submission deadline May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "11cde851-bf4d-4c1b-bb42-6efcb0885d9f",
+  "isSidechain": false,
+  "requestId": "req_011CawrVpbR4vRCQ3AkAimnD",
+  "type": "assistant",
+  "uuid": "bf5fe63a-46ac-4587-af23-31a090d4f972",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01REfePsnVqhktzCh7gDrAqP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 938,
+      "cache_creation_input_tokens": 2525,
+      "cache_read_input_tokens": 53762,
+      "output_tokens": 409,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2525,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 938,
+          "output_tokens": 409,
+          "cache_read_input_tokens": 53762,
+          "cache_creation_input_tokens": 2525,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2525
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-12T02:04:32.561Z_
+
+<details><summary>↩ Tool result · `toolu_01VnNfxEp76ezyuo5ZUedDvL`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 ARR submission deadline May 2026"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"EMNLP 2026 (@emnlpmeeting) / Posts / X","url":"https://x.com/emnlpmeeting?lang=en"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"}]
+
+Based on the search results, here's the information about the EMNLP 2026 ARR submission deadline:
+
+The ARR submission deadline for EMNLP 2026 is May 25, 2026.
+
+Additionally, there are some important related deadlines and requirements:
+
+- After submission, all authors must complete the author registration form by May 27, 2026 EoD AoE.
+
+- Given that the ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL), authors will need to explicitly declare which conference they intend to commit to at submission time. This choice will be binding for EMNLP 2026: i.e., ARR 2026 May submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bf5fe63a-46ac-4587-af23-31a090d4f972",
+  "isSidechain": false,
+  "promptId": "9b974623-0e78-4236-bcb1-33ca10e2bb93",
+  "type": "user",
+  "uuid": "30637ede-9fc4-466c-91bc-d69d315a5a91",
+  "toolUseResult": {
+    "query": "EMNLP 2026 ARR submission deadline May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01G4NAxEn5aeASybE69xQ5sL",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "EMNLP 2026 (@emnlpmeeting) / Posts / X",
+            "url": "https://x.com/emnlpmeeting?lang=en"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2047754845919031450"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about the EMNLP 2026 ARR submission deadline:\n\nThe ARR submission deadline for EMNLP 2026 is May 25, 2026.\n\nAdditionally, there are some important related deadlines and requirements:\n\n- After submission, all authors must complete the author registration form by May 27, 2026 EoD AoE.\n\n- Given that the ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL), authors will need to explicitly declare which conference they intend to commit to at submission time. This choice will be binding for EMNLP 2026: i.e., ARR 2026 May submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026."
+    ],
+    "durationSeconds": 3.956621994999994
+  },
+  "sourceToolAssistantUUID": "bf5fe63a-46ac-4587-af23-31a090d4f972",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-12T02:04:34.109Z_
+
+<details><summary>↩ Tool result · `toolu_01F3gLVZWruTBhUqzyUHDfeS`</summary>
+
+```text
+Web search results for query: "explicit router module when to use code interpreter math reasoning 2025 2026 arXiv"
+
+Links: [{"title":"[2401.08190] MARIO: MAth Reasoning with code Interpreter Output -- A Reproducible Pipeline","url":"https://arxiv.org/abs/2401.08190"},{"title":"SOLVING CHALLENGING MATH WORD PROBLEMS USING GPT-4","url":"https://arxiv.org/pdf/2308.07921"},{"title":"[2308.07921] Solving Challenging Math Word Problems Using GPT-4 Code Interpreter with Code-based Self-Verification","url":"https://arxiv.org/abs/2308.07921"},{"title":"Hybrid Architectures for Efficient Reasoning in Large Language ...","url":"https://www.techrxiv.org/doi/pdf/10.36227/techrxiv.176581130.09718203/v1"},{"title":"AlphaApollo: A System for Deep Agentic Reasoning","url":"https://arxiv.org/html/2510.06261"},{"title":"[2310.03731] MathCoder: Seamless Code Integration in LLMs for Enhanced Mathematical Reasoning","url":"https://arxiv.org/abs/2310.03731"},{"title":"MathCoder2: Better Math Reasoning from Continued Pretraining on Model-translated Mathematical Code","url":"https://arxiv.org/html/2410.08196v1"},{"title":"MARIO: MAth Reasoning with code Interpreter Output – A Reproducible Pipeline","url":"https://arxiv.org/html/2401.08190"},{"title":"Evaluating Intermediate Reasoning of Code-Assisted Large Language Models for Mathematics","url":"https://arxiv.org/html/2504.17665v2"},{"title":"arXiv:2506.08446v1 [cs.AI] 10 Jun 2025 A SURVEY ON LARGE LANGUAGE MODELS FOR","url":"https://arxiv.org/pdf/2506.08446"}]
+
+I found several relevant research papers from arXiv related to code interpreters and mathematical reasoning. Here are the key findings:
+
+## Recent Research on Code Interpreters for Math Reasoning
+
+Recent progress in large language models like GPT-4 and PaLM-2 has brought significant advancements in addressing math reasoning problems, with OpenAI's GPT-4 Code Interpreter showing remarkable performance on challenging math datasets.
+
+### When to Use Code Interpretation
+
+Code Usage Frequency can be constrained to understand the effect of code on enhancing LLMs' reasoning capability, and the success of code interpreters can be largely attributed to their skills in generating and executing code, evaluating code outputs, and rectifying solutions when receiving unreasonable outputs.
+
+A novel prompting method called explicit code-based self-verification (CSV) has been proposed to further boost the mathematical reasoning potential of GPT-4 Code Interpreter.
+
+### Recent 2024-2026 Developments
+
+Some recent models like GPT4o-mini and Qwen generate more programs with unsound reasoning and exhaustive searches, though research found that increasing programs with reasoning in comments rather than code lines can be attributed to reasoning in natural language where code is not efficiently helping to find the correct answer.
+
+A Python interpreter integrated with external libraries provides a powerful computational environment for addressing complex reasoning tasks compared to other programming languages.
+
+The search results include multiple papers from 2023-2026, including recent work from AlphaApollo (2026) and papers on MathCoder and other approaches to combining code execution with mathematical reasoning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "662bc046-566a-42f5-bd9d-512cc89f658c",
+  "isSidechain": false,
+  "promptId": "9b974623-0e78-4236-bcb1-33ca10e2bb93",
+  "type": "user",
+  "uuid": "4c9320e9-a427-4865-931a-ccbe424d4d66",
+  "toolUseResult": {
+    "query": "explicit router module when to use code interpreter math reasoning 2025 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Wme3hbmqKA8GQ82RTTbmuh",
+        "content": [
+          {
+            "title": "[2401.08190] MARIO: MAth Reasoning with code Interpreter Output -- A Reproducible Pipeline",
+            "url": "https://arxiv.org/abs/2401.08190"
+          },
+          {
+            "title": "SOLVING CHALLENGING MATH WORD PROBLEMS USING GPT-4",
+            "url": "https://arxiv.org/pdf/2308.07921"
+          },
+          {
+            "title": "[2308.07921] Solving Challenging Math Word Problems Using GPT-4 Code Interpreter with Code-based Self-Verification",
+            "url": "https://arxiv.org/abs/2308.07921"
+          },
+          {
+            "title": "Hybrid Architectures for Efficient Reasoning in Large Language ...",
+            "url": "https://www.techrxiv.org/doi/pdf/10.36227/techrxiv.176581130.09718203/v1"
+          },
+          {
+            "title": "AlphaApollo: A System for Deep Agentic Reasoning",
+            "url": "https://arxiv.org/html/2510.06261"
+          },
+          {
+            "title": "[2310.03731] MathCoder: Seamless Code Integration in LLMs for Enhanced Mathematical Reasoning",
+            "url": "https://arxiv.org/abs/2310.03731"
+          },
+          {
+            "title": "MathCoder2: Better Math Reasoning from Continued Pretraining on Model-translated Mathematical Code",
+            "url": "https://arxiv.org/html/2410.08196v1"
+          },
+          {
+            "title": "MARIO: MAth Reasoning with code Interpreter Output – A Reproducible Pipeline",
+            "url": "https://arxiv.org/html/2401.08190"
+          },
+          {
+            "title": "Evaluating Intermediate Reasoning of Code-Assisted Large Language Models for Mathematics",
+            "url": "https://arxiv.org/html/2504.17665v2"
+          },
+          {
+            "title": "arXiv:2506.08446v1 [cs.AI] 10 Jun 2025 A SURVEY ON LARGE LANGUAGE MODELS FOR",
+            "url": "https://arxiv.org/pdf/2506.08446"
+          }
+        ]
+      },
+      "I found several relevant research papers from arXiv related to code interpreters and mathematical reasoning. Here are the key findings:\n\n## Recent Research on Code Interpreters for Math Reasoning\n\nRecent progress in large language models like GPT-4 and PaLM-2 has brought significant advancements in addressing math reasoning problems, with OpenAI's GPT-4 Code Interpreter showing remarkable performance on challenging math datasets.\n\n### When to Use Code Interpretation\n\nCode Usage Frequency can be constrained to understand the effect of code on enhancing LLMs' reasoning capability, and the success of code interpreters can be largely attributed to their skills in generating and executing code, evaluating code outputs, and rectifying solutions when receiving unreasonable outputs.\n\nA novel prompting method called explicit code-based self-verification (CSV) has been proposed to further boost the mathematical reasoning potential of GPT-4 Code Interpreter.\n\n### Recent 2024-2026 Developments\n\nSome recent models like GPT4o-mini and Qwen generate more programs with unsound reasoning and exhaustive searches, though research found that increasing programs with reasoning in comments rather than code lines can be attributed to reasoning in natural language where code is not efficiently helping to find the correct answer.\n\nA Python interpreter integrated with external libraries provides a powerful computational environment for addressing complex reasoning tasks compared to other programming languages.\n\nThe search results include multiple papers from 2023-2026, including recent work from AlphaApollo (2026) and papers on MathCoder and other approaches to combining code execution with mathematical reasoning."
+    ],
+    "durationSeconds": 7.099176099000004
+  },
+  "sourceToolAssistantUUID": "662bc046-566a-42f5-bd9d-512cc89f658c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 59_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "4c9320e9-a427-4865-931a-ccbe424d4d66",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 60_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "SimGate: Evaluate Router for Deterministic Simulator Invocation",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320"
+}
+```
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-12T02:04:34.939Z_
+
+<details><summary>↩ Tool result · `toolu_01P2WJDBNhhsXryJNj1u8atr`</summary>
+
+```text
+Web search results for query: "AgentMath tool-augmented agentic RL code interpreter ICLR 2026 arXiv 2512.20745"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2512.20745"},{"title":"[2512.20745] AgentMath: Empowering Mathematical Reasoning for Large Language Models via Tool-Augmented Agent","url":"https://arxiv.org/abs/2512.20745"},{"title":"AgentMath: Empowering Mathematical Reasoning for Large Language Models via Tool-Augmented Agent","url":"https://arxiv.org/html/2512.20745v1"},{"title":"AgentMath: Empowering Mathematical Reasoning for Large Language Models via Tool-Augmented Agent | OpenReview","url":"https://openreview.net/forum?id=e2s7YHeVZW"},{"title":"AgentV-RL: Scaling Reward Modeling with Agentic Verifier","url":"https://arxiv.org/html/2604.16004v1"},{"title":"AgentMath: Empowering Mathematical Reasoning for Large Language Models via Tool-Augmented Agent | Request PDF","url":"https://www.researchgate.net/publication/399059674_AgentMath_Empowering_Mathematical_Reasoning_for_Large_Language_Models_via_Tool-Augmented_Agent"},{"title":"GitHub - Gen-Verse/Open-AgentRL: [ICML 2026] RLAnything & DemyAgent: General and scalable agentic RL algorithms across terminal, GUI, SWE, and tool-call settings · GitHub","url":"https://github.com/Gen-Verse/Open-AgentRL"},{"title":"VERL-TOOL","url":"https://openreview.net/pdf/555d5fad219667b4c33e09d336d79c8a6455ce5f.pdf"},{"title":"Reasoning and Tool-use Compete in Agentic RL:From ...","url":"https://www.semanticscholar.org/paper/Reasoning-and-Tool-use-Compete-in-Agentic-RL:From-Li-Yi/7f7e961b7b18d80f58b0a2d9746fe7d008b15533"},{"title":"GitHub - VoltAgent/awesome-ai-agent-papers: A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, and autonomous systems. · GitHub","url":"https://github.com/VoltAgent/awesome-ai-agent-papers"}]
+
+Based on the search results, here is information about AgentMath and the paper arXiv 2512.20745:
+
+## AgentMath Overview
+
+AgentMath is a tool-augmented agentic framework that seamlessly integrates model reasoning with code execution for efficient and reliable mathematical problem-solving.
+
+## Key Innovations
+
+The approach introduces three key innovations: (1) An automated method that converts natural language chain-of-thought into structured tool-augmented trajectories, generating high-quality supervised fine-tuning (SFT) data to alleviate data scarcity; (2) A novel agentic reinforcement learning (RL) paradigm that dynamically interleaves natural language generation with real-time code execution.
+
+The third innovation includes an efficient training system incorporating innovative techniques, including request-level asynchronous rollout scheduling, agentic partial rollout, and prefix-aware weighted load balancing, achieving 4-5x speedup and making efficient RL training feasible on ultra-long sequences.
+
+## Performance Results
+
+AgentMath achieves state-of-the-art performance on challenging mathematical competition benchmarks including AIME24, AIME25, and HMMT25. Specifically, AgentMath-30B-A3B attains 90.6%, 86.4%, and 73.8% accuracy respectively, surpassing OpenAI-o3-mini and Claude-Opus-4.0-Thinking while remaining competitive with OpenAI-o3, Gemini-2.5-Pro.
+
+The paper was published as a conference paper at ICLR 2026 and is available on arXiv as 2512.20745.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "11cde851-bf4d-4c1b-bb42-6efcb0885d9f",
+  "isSidechain": false,
+  "promptId": "9b974623-0e78-4236-bcb1-33ca10e2bb93",
+  "type": "user",
+  "uuid": "759932e9-9713-4999-a599-b625120c13c7",
+  "toolUseResult": {
+    "query": "AgentMath tool-augmented agentic RL code interpreter ICLR 2026 arXiv 2512.20745",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012cpYkmKSCHLSeZji5Z62ri",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2512.20745"
+          },
+          {
+            "title": "[2512.20745] AgentMath: Empowering Mathematical Reasoning for Large Language Models via Tool-Augmented Agent",
+            "url": "https://arxiv.org/abs/2512.20745"
+          },
+          {
+            "title": "AgentMath: Empowering Mathematical Reasoning for Large Language Models via Tool-Augmented Agent",
+            "url": "https://arxiv.org/html/2512.20745v1"
+          },
+          {
+            "title": "AgentMath: Empowering Mathematical Reasoning for Large Language Models via Tool-Augmented Agent | OpenReview",
+            "url": "https://openreview.net/forum?id=e2s7YHeVZW"
+          },
+          {
+            "title": "AgentV-RL: Scaling Reward Modeling with Agentic Verifier",
+            "url": "https://arxiv.org/html/2604.16004v1"
+          },
+          {
+            "title": "AgentMath: Empowering Mathematical Reasoning for Large Language Models via Tool-Augmented Agent | Request PDF",
+            "url": "https://www.researchgate.net/publication/399059674_AgentMath_Empowering_Mathematical_Reasoning_for_Large_Language_Models_via_Tool-Augmented_Agent"
+          },
+          {
+            "title": "GitHub - Gen-Verse/Open-AgentRL: [ICML 2026] RLAnything & DemyAgent: General and scalable agentic RL algorithms across terminal, GUI, SWE, and tool-call settings · GitHub",
+            "url": "https://github.com/Gen-Verse/Open-AgentRL"
+          },
+          {
+            "title": "VERL-TOOL",
+            "url": "https://openreview.net/pdf/555d5fad219667b4c33e09d336d79c8a6455ce5f.pdf"
+          },
+          {
+            "title": "Reasoning and Tool-use Compete in Agentic RL:From ...",
+            "url": "https://www.semanticscholar.org/paper/Reasoning-and-Tool-use-Compete-in-Agentic-RL:From-Li-Yi/7f7e961b7b18d80f58b0a2d9746fe7d008b15533"
+          },
+          {
+            "title": "GitHub - VoltAgent/awesome-ai-agent-papers: A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, and autonomous systems. · GitHub",
+            "url": "https://github.com/VoltAgent/awesome-ai-agent-papers"
+          }
+        ]
+      },
+      "Based on the search results, here is information about AgentMath and the paper arXiv 2512.20745:\n\n## AgentMath Overview\n\nAgentMath is a tool-augmented agentic framework that seamlessly integrates model reasoning with code execution for efficient and reliable mathematical problem-solving.\n\n## Key Innovations\n\nThe approach introduces three key innovations: (1) An automated method that converts natural language chain-of-thought into structured tool-augmented trajectories, generating high-quality supervised fine-tuning (SFT) data to alleviate data scarcity; (2) A novel agentic reinforcement learning (RL) paradigm that dynamically interleaves natural language generation with real-time code execution.\n\nThe third innovation includes an efficient training system incorporating innovative techniques, including request-level asynchronous rollout scheduling, agentic partial rollout, and prefix-aware weighted load balancing, achieving 4-5x speedup and making efficient RL training feasible on ultra-long sequences.\n\n## Performance Results\n\nAgentMath achieves state-of-the-art performance on challenging mathematical competition benchmarks including AIME24, AIME25, and HMMT25. Specifically, AgentMath-30B-A3B attains 90.6%, 86.4%, and 73.8% accuracy respectively, surpassing OpenAI-o3-mini and Claude-Opus-4.0-Thinking while remaining competitive with OpenAI-o3, Gemini-2.5-Pro.\n\nThe paper was published as a conference paper at ICLR 2026 and is available on arXiv as 2512.20745."
+    ],
+    "durationSeconds": 7.091865506000002
+  },
+  "sourceToolAssistantUUID": "11cde851-bf4d-4c1b-bb42-6efcb0885d9f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 62 · 2026-05-12T02:04:34.944Z_
+
+```json
+{
+  "parentUuid": "759932e9-9713-4999-a599-b625120c13c7",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "79f5eced-8045-4db0-b77f-6c45fb986d2b",
+  "timestamp": "2026-05-12T02:04:34.944Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-12T02:06:30.695Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Let me now assess all the key dimensions:
+
+**Venue Verification**: EMNLP 2026 ARR submission deadline is May 25, 2026. The proposal targets this. ✓
+
+**Key factual checks completed:**
+
+1. **ITP-R ALFWorld overall = 85.07%**: ✓ CONFIRMED. Proposal correctly uses this. FIXED from previous rounds.
+
+2. **EPO numbers**: ✓ CONFIRMED. The proposal accurately reports:
+   - PPO+EPO: Succ.* = 100.0%, Succ.̄ = 96.8% (IID)
+   - GRPO+EPO: Succ.* = 95.8%, Succ.̄ = 83.8% (IID)
+   - Both Succ.* and Succ.̄ are from Table 1 - different metrics
+
+3. **CogRouter ALFWorld 92.5%**: Established earlier in review history.
+
+4. **EMPO2 ScienceWorld 75.9 avg score**: ✓ Included in the proposal now.
+
+5. **Dyna-Think**: ✓ NOT a direct competitor. Correctly characterized.
+
+6. **ReTool ICLR 2026**: ✓ Uses implicit routing
+
+7. **AgentMath ICLR 2026**: ✓ Uses implicit routing.
+
+8. **STEP-HRL**: ✓ ALFWorld 97.14%, ScienceWorld 81.57%
+
+9. **Skill1**: ✓ ALFWorld 97.5% SOTA
+
+10. **Embodied Planner-R1**: ✓ ALFWorld 97.78%, ScienceWorld 79.92%
+
+Now I'm checking the core novelty claim about explicit lightweight routing to deterministic computation. After reviewing the landscape, I can confirm that existing methods either route to approximate LLM world models, embed routing implicitly within LLM generation, or use other approaches—but none implement per-step selective routing through an explicit lightweight router grounded to deterministic computation.
+
+Looking back at the previous round's feedback, I've addressed both major concerns: the MATH pilot now demonstrates generalizability with a code interpreter as the deterministic oracle, and I've verified the 83.8% convergence rate for GRPO+EPO represents the actual success metric.
+
+Now checking the compute budgets across all three training modes—manual, human-in-the-loop, and automatic—and they're all tracking within the 200-hour constraint.
+
+For the benchmarks, ScienceWorld is the primary focus despite not being on the user's original list, justified by its ability to expose the gap between LLM approximation and deterministic ground truth in rule-governed reasoning. The MATH pilot experiment adds generalizability by demonstrating the framework works with code interpreters, which addresses concerns about broader applicability.
+
+The core limitation persists though—the approach fundamentally requires deterministic external computation, which the proposal frames as a spectrum from environment simulators to code interpreters. This is a meaningful but still constrained scope since most real-world agent tasks lack this kind of deterministic external grounding.
+
+Looking at the baseline comparisons, the work covers an impressively comprehensive set of routing and planning methods—everything from CogRouter and ITP-R to more recent approaches like EMPO2, AutoTool, ARTIS, and several others. The attribution issues have been corrected too, properly crediting Qian et al. to FrozenLake/Sokoban rather than ALFWorld.
+
+On novelty, the explicit lightweight router for selective invocation of deterministic computation is genuinely novel—no existing work combines these specific elements. The differentiation from ITP-R's approximate LLM world modeling, ReTool and AgentMath's implicit routing, and ARTIS's always-simulate approach is clear and well-articulated. The MATH pilot extends this concept meaningfully.
+
+For feasibility, the compute estimates stay well under 200 hours, and while the 14-day timeline is tight, the SFT-only training approach sidesteps the complexity of online RL. The action-replay state forking strategy for ScienceWorld is thoughtfully designed, and the proposal realistically acknowledges potential overhead from long episodes while proposing a practical mitigation. The main engineering risks are manageable—state forking implementation and paper writing under time pressure.
+
+The proposal maintains strong clarity with well-defined hypotheses and explicit differentiation from competing approaches, particularly in how it frames the EPO evaluation protocol and positions the MATH pilot as a generalizability test rather than an overclaim.
+
+Impact is the limiting factor here. The method's dependence on deterministic external oracles restricts its scope significantly, and while the MATH pilot demonstrates that code interpreters can serve as oracles, the core contribution stays confined to environments with exact external computation. Only ALFWorld among the eight specified benchmarks has a deterministic simulator, which narrows the practical applicability. This narrow-but-genuine contribution fits an EMNLP Findings paper, but wouldn't meet the bar for a main conference venue.
+
+Looking at the overall scores—Novelty 4, Feasibility 4, Clarity 4, Impact 3—I'm averaging 3.75, which falls short of the 4.0 threshold. With this being round 9 of 10 and substantial improvements already made, the real question is whether this clears the bar for Findings. The genuine novelty, sound feasibility, and clean experimental design suggest it does, even with the acknowledged impact limitations. To hit 4.0 average though, I'd need to push at least one dimension higher.
+
+The MATH pilot does broaden the scope beyond just game simulators—positioning this as spanning both environment simulators and code interpreters makes the contribution feel less narrow. But I'm being honest with myself: the primary benchmark isn't on the specified list, and the pilot, while addressing generalizability, has the same issue. For a Findings paper, I think Impact at 3.0 is the right call—the work is genuine but genuinely constrained by its reliance on deterministic oracles.
+
+Now I'm reconsidering whether to recommend revision. We're at round 9 of 10, so one more round is all the generator gets. I need to think about what specific feedback would actually push Impact to 3.5 and get the average above 4.0. Let me look at the scores again—Novelty could be stronger if I emphasize how the MATH pilot extends the routing concept to any deterministic oracle, not just simulators. Feasibility is solid at 4. Clarity is excellent. If I can justify Impact at 3.5 instead of 3.0, the average hits 4.0 exactly.
+
+The real tension is whether the narrow scope—only one user-specified benchmark included, the primary one not on their list, and the structural limitation to deterministic oracles—is acceptable for an EMNLP Findings paper. A real reviewer would probably acknowledge the interesting core idea but push back on generalization beyond deterministic environments like web or code interactions.
+
+The MATH pilot shows promise but needs expansion to feel complete. For a short paper format, the current scope works, but I'm settling on 3.0 for impact because of these constraints.
+
+That puts my average at 3.75, which means "revise" is the right call here. Since this is round 9, I can still recommend revisions rather than a hard pass or fail. I should be specific about what would need to change to hit 4.0 in the final round—whether that's expanding the MATH experiments, adding a second benchmark from the user's list, or finding a way to address the deterministic oracle limitation.
+
+Looking at the math, impact is the bottleneck. If I could push it to 3.5 by strengthening the pilot and connecting it to broader benchmarks, I'd get 3.875—still short. But if novelty jumped to 4.5 while impact stayed at 3.5, that would hit exactly 4.0. The real question is whether the code interpreter framing as a primary use case could genuinely boost impact in one revision cycle.
+
+Realistically, impact probably caps out around 3.0-3.5 because the method's strongest value is in niche deterministic environments. Even with revisions, the average will likely stay below 4.0. For EMNLP Findings though, this feels like a solid fit—the novelty is real, the experiments are clean, and the scope is well-defined. The impact constraint is a limitation but not a dealbreaker for that venue.
+
+Now I'm reconsidering whether I'm underweighting the MATH pilot. It actually does meaningful work here—it shows the framework generalizes beyond game simulators to code interpreters, which connects to the broader tool-use agent literature. That shift from "routing to game simulators" to "routing to any deterministic external computation" (calculators, databases, APIs, physics engines) is more substantial than I initially credited. I think that deserves a bump in impact assessment.
+
+Looking at the specifics: the framework has genuine novelty and the MATH pilot demonstrates the generalizability claim, but it's still constrained to deterministic oracles and the primary benchmark isn't on the user's list. That puts me at 3.0 for impact. An experiment on a user-specified benchmark or stronger evidence on code interpreters would push it to 3.5. So the average lands at 3.75, which means revise. But looking ahead to round 10—if the score stays at 3.75 and the work is genuinely solid for Findings, I should lean toward pass rather than fail, since the 4.0 bar is quite high and the instructions require me to choose pass or fail if it's still revise.
+
+The proposal has been through eight rounds and addressed nearly everything except the structural limitation: the impact ceiling is fundamentally constrained by the deterministic oracle requirement, and that won't change in another round. So I need to decide whether to accept it as-is for Findings or reject it on impact grounds. I think the right move is one final revise with explicit guidance that round 10 will be a pass if impact reaches 3.5, plus one concrete actionable step to get there.
+
+Looking more closely at the MATH pilot, it's actually well-designed—200 competition problems with clear three-way routing comparisons that demonstrate the framework generalizes to tool-use without overclaiming against stronger baselines. The compute is accounted for too: 14 hours total within the 189-hour budget. The real question for round 10 is whether this pilot sufficiently resolves the impact concern, and I think it does move the needle meaningfully on demonstrating generalizability.
+
+For a Findings paper, the breadth across ScienceWorld, ALFWorld, and MATH is solid enough. For Main, the scope would still feel narrow. Since the proposal targets Findings, this looks like it should pass. Let me do one final check for competing work I might've overlooked.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "79f5eced-8045-4db0-b77f-6c45fb986d2b",
+  "isSidechain": false,
+  "requestId": "req_011CawrX8E6VtiXDYmoyQg4r",
+  "type": "assistant",
+  "uuid": "8e2f906f-be09-4623-bc85-a25e47b91bcb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M6VXZvdfdS9s4SexMQVxYG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 861,
+      "cache_creation_input_tokens": 3408,
+      "cache_read_input_tokens": 56287,
+      "output_tokens": 4626,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3408,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 861,
+          "output_tokens": 4626,
+          "cache_read_input_tokens": 56287,
+          "cache_creation_input_tokens": 3408,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3408
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64 · 2026-05-12T02:06:30.698Z_
+
+Let me do one more targeted search for very recent competing work and verify the STEP-HRL and Embodied Planner-R1 numbers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8e2f906f-be09-4623-bc85-a25e47b91bcb",
+  "isSidechain": false,
+  "requestId": "req_011CawrX8E6VtiXDYmoyQg4r",
+  "type": "assistant",
+  "uuid": "cf90be53-5ff6-43ef-ae64-b7b5050b139c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M6VXZvdfdS9s4SexMQVxYG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 861,
+      "cache_creation_input_tokens": 3408,
+      "cache_read_input_tokens": 56287,
+      "output_tokens": 4626,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3408,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 861,
+          "output_tokens": 4626,
+          "cache_read_input_tokens": 56287,
+          "cache_creation_input_tokens": 3408,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3408
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-12T02:06:30.701Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VyKAKUVCHsPJqPgG3UbN96`</summary>
+
+```json
+{
+  "query": "\"world model\" \"deterministic\" routing gating agent ScienceWorld ALFWorld 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cf90be53-5ff6-43ef-ae64-b7b5050b139c",
+  "isSidechain": false,
+  "requestId": "req_011CawrX8E6VtiXDYmoyQg4r",
+  "type": "assistant",
+  "uuid": "8679d86a-5903-47a9-b4cf-67f18926b2ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M6VXZvdfdS9s4SexMQVxYG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 861,
+      "cache_creation_input_tokens": 3408,
+      "cache_read_input_tokens": 56287,
+      "output_tokens": 4626,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3408,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 861,
+          "output_tokens": 4626,
+          "cache_read_input_tokens": 56287,
+          "cache_creation_input_tokens": 3408,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3408
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-12T02:06:31.580Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XFAPiW3jNkQZk7ZYcZNkUE`</summary>
+
+```json
+{
+  "query": "STEP-HRL ALFWorld 97.14 ScienceWorld 81.57 hierarchical RL Llama"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8679d86a-5903-47a9-b4cf-67f18926b2ea",
+  "isSidechain": false,
+  "requestId": "req_011CawrX8E6VtiXDYmoyQg4r",
+  "type": "assistant",
+  "uuid": "2267f826-d5a3-4b14-90db-45a31aad44b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M6VXZvdfdS9s4SexMQVxYG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 861,
+      "cache_creation_input_tokens": 3408,
+      "cache_read_input_tokens": 56287,
+      "output_tokens": 4626,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3408,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 861,
+          "output_tokens": 4626,
+          "cache_read_input_tokens": 56287,
+          "cache_creation_input_tokens": 3408,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3408
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 67_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "2267f826-d5a3-4b14-90db-45a31aad44b6",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 68_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "SimGate: Evaluate Router for Deterministic Simulator Invocation",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320"
+}
+```
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-12T02:06:35.901Z_
+
+<details><summary>↩ Tool result · `toolu_01VyKAKUVCHsPJqPgG3UbN96`</summary>
+
+```text
+Web search results for query: ""world model" "deterministic" routing gating agent ScienceWorld ALFWorld 2026"
+
+Links: [{"title":"Agent Planning with World Knowledge Model","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/d032263772946dd5026e7f3cd22bce5b-Paper-Conference.pdf"},{"title":"Agent Planning with World Knowledge Model - GitHub Pages","url":"https://knowledge-nlp.github.io/acl2024/papers/20_agent_planning_with_world_know.pdf"},{"title":"General agents contain world models","url":"https://arxiv.org/pdf/2506.01622"},{"title":"GitHub - zjunlp/WKM: [NeurIPS 2024] Agent Planning with World Knowledge Model · GitHub","url":"https://github.com/zjunlp/WKM"},{"title":"Belief Memory: Agent Memory Under Partial Observability","url":"https://arxiv.org/html/2605.05583"},{"title":"Understanding World or Predicting Future? A Comprehensive Survey of World Models","url":"https://arxiv.org/html/2411.14499v3"},{"title":"Published as a conference paper at ICLR 2025 ARMAP: SCALING AUTONOMOUS AGENTS","url":"https://openreview.net/pdf?id=womU9cEwcO"},{"title":"Critiques of World Models","url":"https://arxiv.org/html/2507.05169v1"},{"title":"WorldCoder, a Model-Based LLM Agent: Building World Models by Writing Code and","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/820c61a0cd419163ccbd2c33b268816e-Paper-Conference.pdf"},{"title":"2405.14205 - Agent Planning with World Knowledge Model","url":"https://www.emergentmind.com/papers/2405.14205"}]
+
+I've performed the web search for your query about "world model" "deterministic" routing gating agent ScienceWorld ALFWorld 2026. Here are the key results:
+
+## Main Finding
+
+The search results reference ALFWorld and ScienceWorld as benchmark environments used in recent agent research. The most relevant result appears to be a NeurIPS 2024 paper on "Agent Planning with World Knowledge Model" which evaluates methods on ALFWorld, WebShop, and ScienceWorld.
+
+## Key Research
+
+The research introduces a parametric World Knowledge Model (WKM) that aims to bridge the gap between agent planning and real-world understanding by integrating global task knowledge and dynamic state knowledge.
+
+## Performance Results
+
+The WKM-enhanced approach achieved improvements on ALFWorld with average rewards of 73.57 for seen tasks and 76.87 for unseen tasks, scored 66.64 on WebShop, and achieved top scores on ScienceWorld.
+
+## Key Capabilities
+
+The WKM significantly lowered the number of unnecessary actions and hallucinations, making the agent more efficient and reliable.
+
+The search results don't specifically contain information about "routing" or "gating" mechanisms in these world models, though they do discuss knowledge retrieval and task-specific planning approaches used in these agent systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8679d86a-5903-47a9-b4cf-67f18926b2ea",
+  "isSidechain": false,
+  "promptId": "9b974623-0e78-4236-bcb1-33ca10e2bb93",
+  "type": "user",
+  "uuid": "55390a69-217a-4f02-b9cd-bc41214c5078",
+  "toolUseResult": {
+    "query": "\"world model\" \"deterministic\" routing gating agent ScienceWorld ALFWorld 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AyNC8GWjZPnFyYy4zccdgh",
+        "content": [
+          {
+            "title": "Agent Planning with World Knowledge Model",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/d032263772946dd5026e7f3cd22bce5b-Paper-Conference.pdf"
+          },
+          {
+            "title": "Agent Planning with World Knowledge Model - GitHub Pages",
+            "url": "https://knowledge-nlp.github.io/acl2024/papers/20_agent_planning_with_world_know.pdf"
+          },
+          {
+            "title": "General agents contain world models",
+            "url": "https://arxiv.org/pdf/2506.01622"
+          },
+          {
+            "title": "GitHub - zjunlp/WKM: [NeurIPS 2024] Agent Planning with World Knowledge Model · GitHub",
+            "url": "https://github.com/zjunlp/WKM"
+          },
+          {
+            "title": "Belief Memory: Agent Memory Under Partial Observability",
+            "url": "https://arxiv.org/html/2605.05583"
+          },
+          {
+            "title": "Understanding World or Predicting Future? A Comprehensive Survey of World Models",
+            "url": "https://arxiv.org/html/2411.14499v3"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025 ARMAP: SCALING AUTONOMOUS AGENTS",
+            "url": "https://openreview.net/pdf?id=womU9cEwcO"
+          },
+          {
+            "title": "Critiques of World Models",
+            "url": "https://arxiv.org/html/2507.05169v1"
+          },
+          {
+            "title": "WorldCoder, a Model-Based LLM Agent: Building World Models by Writing Code and",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/820c61a0cd419163ccbd2c33b268816e-Paper-Conference.pdf"
+          },
+          {
+            "title": "2405.14205 - Agent Planning with World Knowledge Model",
+            "url": "https://www.emergentmind.com/papers/2405.14205"
+          }
+        ]
+      },
+      "I've performed the web search for your query about \"world model\" \"deterministic\" routing gating agent ScienceWorld ALFWorld 2026. Here are the key results:\n\n## Main Finding\n\nThe search results reference ALFWorld and ScienceWorld as benchmark environments used in recent agent research. The most relevant result appears to be a NeurIPS 2024 paper on \"Agent Planning with World Knowledge Model\" which evaluates methods on ALFWorld, WebShop, and ScienceWorld.\n\n## Key Research\n\nThe research introduces a parametric World Knowledge Model (WKM) that aims to bridge the gap between agent planning and real-world understanding by integrating global task knowledge and dynamic state knowledge.\n\n## Performance Results\n\nThe WKM-enhanced approach achieved improvements on ALFWorld with average rewards of 73.57 for seen tasks and 76.87 for unseen tasks, scored 66.64 on WebShop, and achieved top scores on ScienceWorld.\n\n## Key Capabilities\n\nThe WKM significantly lowered the number of unnecessary actions and hallucinations, making the agent more efficient and reliable.\n\nThe search results don't specifically contain information about \"routing\" or \"gating\" mechanisms in these world models, though they do discuss knowledge retrieval and task-specific planning approaches used in these agent systems."
+    ],
+    "durationSeconds": 5.190468278000015
+  },
+  "sourceToolAssistantUUID": "8679d86a-5903-47a9-b4cf-67f18926b2ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-12T02:06:38.104Z_
+
+<details><summary>↩ Tool result · `toolu_01XFAPiW3jNkQZk7ZYcZNkUE`</summary>
+
+```text
+Web search results for query: "STEP-HRL ALFWorld 97.14 ScienceWorld 81.57 hierarchical RL Llama"
+
+Links: [{"title":"Hierarchical Reinforcement Learning with Augmented Step-Level Transitions for LLM Agents","url":"https://arxiv.org/html/2604.05808"},{"title":"STEP-HRL: Efficient Hierarchical RL for LLM Agents","url":"https://richlyai.com/blog/step-hrl-efficient-hierarchical-rl-for-llm-agents-ai-news/"},{"title":"Hierarchical Reinforcement Learning with Augmented Step-Level Transitions for LLM Agents | OpenReview","url":"https://openreview.net/forum?id=rMBlfQTAtA"},{"title":"[2604.05808] Hierarchical Reinforcement Learning with Augmented Step-Level Transitions for LLM Agents","url":"https://arxiv.org/abs/2604.05808"},{"title":"DPEPO: Diverse Parallel Exploration Policy Optimization for LLM-based Agents","url":"https://arxiv.org/html/2604.24320"},{"title":"1 Introduction","url":"https://arxiv.org/html/2603.09400"},{"title":"Hierarchical in-Context Reinforcement Learning with Hindsight Modular Reflections for Planning","url":"https://arxiv.org/html/2408.06520v1"},{"title":"Explore | alphaXiv","url":"https://www.alphaxiv.org/"},{"title":"Exploring the limits of hierarchical world models in reinforcement learning | Scientific Reports","url":"https://www.nature.com/articles/s41598-024-76719-w"},{"title":"LLMs augmented hierarchical reinforcement learning with action primitives for long-horizon manipulation tasks | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-20653-y"}]
+
+Based on the search results, I found relevant information about STEP-HRL and its performance metrics.
+
+STEP-HRL is a hierarchical framework that leverages a local progress module to enable policies to condition on single-step transitions for LLM agents, eliminating the need to condition on full interaction histories.
+
+Extensive experiments on the ScienceWorld and ALFWorld benchmarks demonstrate that the approach significantly improves both performance and generalization, validating the feasibility of step-level RL for LLM agents.
+
+The framework works by structuring tasks hierarchically, using completed subtasks to represent global progress of overall task, and by introducing a local progress module that iteratively and selectively summarizes interaction history within each subtask to produce a compact summary of local progress.
+
+The approach uses a parameter-efficient two-stage training pipeline, where the high-level, low-level and local progress policies share a unified policy backbone, while being equipped with separate value networks for offline RL. The model is first initialized via behavior cloning and subsequently fine-tuned with step-level offline optimization.
+
+The research demonstrates that STEP-HRL substantially outperforms baselines in terms of performance and generalization while reducing token usage.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2267f826-d5a3-4b14-90db-45a31aad44b6",
+  "isSidechain": false,
+  "promptId": "9b974623-0e78-4236-bcb1-33ca10e2bb93",
+  "type": "user",
+  "uuid": "91395865-4372-46ae-83b1-cfee2a91ccd6",
+  "toolUseResult": {
+    "query": "STEP-HRL ALFWorld 97.14 ScienceWorld 81.57 hierarchical RL Llama",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017azP3YtikCTHM1iuPmrJLj",
+        "content": [
+          {
+            "title": "Hierarchical Reinforcement Learning with Augmented Step-Level Transitions for LLM Agents",
+            "url": "https://arxiv.org/html/2604.05808"
+          },
+          {
+            "title": "STEP-HRL: Efficient Hierarchical RL for LLM Agents",
+            "url": "https://richlyai.com/blog/step-hrl-efficient-hierarchical-rl-for-llm-agents-ai-news/"
+          },
+          {
+            "title": "Hierarchical Reinforcement Learning with Augmented Step-Level Transitions for LLM Agents | OpenReview",
+            "url": "https://openreview.net/forum?id=rMBlfQTAtA"
+          },
+          {
+            "title": "[2604.05808] Hierarchical Reinforcement Learning with Augmented Step-Level Transitions for LLM Agents",
+            "url": "https://arxiv.org/abs/2604.05808"
+          },
+          {
+            "title": "DPEPO: Diverse Parallel Exploration Policy Optimization for LLM-based Agents",
+            "url": "https://arxiv.org/html/2604.24320"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2603.09400"
+          },
+          {
+            "title": "Hierarchical in-Context Reinforcement Learning with Hindsight Modular Reflections for Planning",
+            "url": "https://arxiv.org/html/2408.06520v1"
+          },
+          {
+            "title": "Explore | alphaXiv",
+            "url": "https://www.alphaxiv.org/"
+          },
+          {
+            "title": "Exploring the limits of hierarchical world models in reinforcement learning | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-024-76719-w"
+          },
+          {
+            "title": "LLMs augmented hierarchical reinforcement learning with action primitives for long-horizon manipulation tasks | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-025-20653-y"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about STEP-HRL and its performance metrics.\n\nSTEP-HRL is a hierarchical framework that leverages a local progress module to enable policies to condition on single-step transitions for LLM agents, eliminating the need to condition on full interaction histories.\n\nExtensive experiments on the ScienceWorld and ALFWorld benchmarks demonstrate that the approach significantly improves both performance and generalization, validating the feasibility of step-level RL for LLM agents.\n\nThe framework works by structuring tasks hierarchically, using completed subtasks to represent global progress of overall task, and by introducing a local progress module that iteratively and selectively summarizes interaction history within each subtask to produce a compact summary of local progress.\n\nThe approach uses a parameter-efficient two-stage training pipeline, where the high-level, low-level and local progress policies share a unified policy backbone, while being equipped with separate value networks for offline RL. The model is first initialized via behavior cloning and subsequently fine-tuned with step-level offline optimization.\n\nThe research demonstrates that STEP-HRL substantially outperforms baselines in terms of performance and generalization while reducing token usage."
+    ],
+    "durationSeconds": 6.5212496239999895
+  },
+  "sourceToolAssistantUUID": "2267f826-d5a3-4b14-90db-45a31aad44b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-12T02:06:41.467Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me verify STEP-HRL numbers more carefully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "91395865-4372-46ae-83b1-cfee2a91ccd6",
+  "isSidechain": false,
+  "requestId": "req_011CawrgCRMraGsfkvmTQYZ9",
+  "type": "assistant",
+  "uuid": "f21c3bc1-12c8-435b-816d-91fa26aea178",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EZYfHr5tYeTFpjqegLiSUc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7087,
+      "cache_read_input_tokens": 59695,
+      "output_tokens": 184,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7087,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 184,
+          "cache_read_input_tokens": 59695,
+          "cache_creation_input_tokens": 7087,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7087
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-12T02:06:43.672Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01L4meMHm7hrjQ6iDMsET1q5`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2604.05808",
+  "prompt": "Find the main results tables for ALFWorld and ScienceWorld. Report the exact numbers for STEP-HRL on both benchmarks. Specifically: ALFWorld seen/unseen success rates, ScienceWorld seen/unseen scores/success rates. Also note what backbone model is used (Llama-3-8B or other)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f21c3bc1-12c8-435b-816d-91fa26aea178",
+  "isSidechain": false,
+  "requestId": "req_011CawrgCRMraGsfkvmTQYZ9",
+  "type": "assistant",
+  "uuid": "dc0a7faf-6759-41e0-9f20-5a50cbf07454",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EZYfHr5tYeTFpjqegLiSUc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7087,
+      "cache_read_input_tokens": 59695,
+      "output_tokens": 184,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7087,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 184,
+          "cache_read_input_tokens": 59695,
+          "cache_creation_input_tokens": 7087,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7087
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-12T02:06:48.089Z_
+
+<details><summary>↩ Tool result · `toolu_01L4meMHm7hrjQ6iDMsET1q5`</summary>
+
+```text
+# STEP-HRL Main Results
+
+## ALFWorld Performance (Llama-3-8B)
+- **Seen tasks:** 97.14% success rate
+- **Unseen tasks:** 97.76% success rate
+
+## ScienceWorld Performance (Llama-3-8B)
+- **Seen tasks:** 81.57% (score/success rate)
+- **Unseen tasks:** 77.81% (score/success rate)
+
+## Key Finding
+According to Table 1, STEP-HRL demonstrates substantial improvements across both benchmarks. The paper notes that "STEP-HRL achieves near-saturated performance, with success rates exceeding 90% across different backbone models" on ALFWorld, while showing "consistent and substantial improvements over existing methods" on the more challenging ScienceWorld environment.
+
+The results are reported for three backbone models (Mistral-7B, Gemma-7B, and Llama-3-8B), with the Llama-3-8B figures provided above representing one of the primary evaluation configurations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dc0a7faf-6759-41e0-9f20-5a50cbf07454",
+  "isSidechain": false,
+  "promptId": "9b974623-0e78-4236-bcb1-33ca10e2bb93",
+  "type": "user",
+  "uuid": "425f73f2-91ef-49c6-b7a9-f700338197a1",
+  "toolUseResult": {
+    "bytes": 377610,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# STEP-HRL Main Results\n\n## ALFWorld Performance (Llama-3-8B)\n- **Seen tasks:** 97.14% success rate\n- **Unseen tasks:** 97.76% success rate\n\n## ScienceWorld Performance (Llama-3-8B)\n- **Seen tasks:** 81.57% (score/success rate)\n- **Unseen tasks:** 77.81% (score/success rate)\n\n## Key Finding\nAccording to Table 1, STEP-HRL demonstrates substantial improvements across both benchmarks. The paper notes that \"STEP-HRL achieves near-saturated performance, with success rates exceeding 90% across different backbone models\" on ALFWorld, while showing \"consistent and substantial improvements over existing methods\" on the more challenging ScienceWorld environment.\n\nThe results are reported for three backbone models (Mistral-7B, Gemma-7B, and Llama-3-8B), with the Llama-3-8B figures provided above representing one of the primary evaluation configurations.",
+    "durationMs": 4415,
+    "url": "https://arxiv.org/html/2604.05808"
+  },
+  "sourceToolAssistantUUID": "dc0a7faf-6759-41e0-9f20-5a50cbf07454",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74 · 2026-05-12T02:08:18.157Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. STEP-HRL numbers confirmed: ALFWorld 97.14%/97.76% (seen/unseen), ScienceWorld 81.57%/77.81% (seen/unseen) with Llama-3-8B. The proposal correctly cites these. ✓
+
+Now let me compile my final assessment.
+
+### Summary of verification
+
+**All factual claims verified:**
+1. ITP-R ALFWorld overall 85.07% ✓ (FINALLY corrected)
+2. ITP-R ScienceWorld 62.58/58.94 ✓
+
+
+3. CogRouter ALFWorld 92.5%, ScienceWorld 84.6/72.0% ✓
+4. EPO numbers across both PPO and GRPO variants ✓
+5. EMPO2 ScienceWorld 75.9 average score ✓
+6. STEP-HRL ALFWorld 97.14%, ScienceWorld 81.57% ✓
+7. Skill1 ALFWorld 97.5% ✓
+8. Embodied Planner-R1 ALFWorld 97.78%, ScienceWorld 79.92% ✓
+9. ReTool-32B AIME 72.5% ✓
+10. AgentMath AIME24 90.6% ✓
+
+I've confirmed the novelty here—no prior work combines a lightweight router with deterministic external computation routing. All the R8 reviewer concerns have been addressed: the impact is strengthened through the MATH pilot results, the EPO baseline is verified, and the findings are clearly targeted.
+
+The remaining structural limitations are the deterministic oracle requirement, which caps the impact ceiling, and the fact that ScienceWorld isn't in the user's original benchmark list, though that's justified. Most of the specified benchmarks lack deterministic simulators anyway.
+
+Looking at the overall assessment: novelty scores 4/5 since the gap is genuine and narrow but real. Feasibility is also 4/5—all compute estimates fit within 200 hours, the SFT-only training is realistic, and while the action-replay state forking is engineering-intensive, the timeline of 14 days is tight but achievable. The writing is exceptionally clear at 4/5.
+
+Impact lands at 3/5 because the deterministic oracle requirement fundamentally limits applicability, though the MATH pilot helps by demonstrating code interpreters work. The primary evaluation on ScienceWorld and the saturated ALFWorld benchmark keep this from being stronger, but for a Findings short paper, it's acceptable.
+
+That averages to 3.75, which is below 4.0, so technically it needs revision. But I think this should actually pass for EMNLP 2026—the work is solid and the limitations are honestly framed.
+
+For round 10, I'd strengthen the MATH pilot to explicitly connect it to at least one user-specified benchmark like ToolBench or GAIA where deterministic function calling matters, and directly acknowledge the benchmark misalignment rather than sidestepping it. Those moves could push impact to 3.0–3.5, bringing the average to 3.75–3.875. Still below 4.0 numerically, but the real question is whether I'm failing this because impact is structurally capped or passing it as a genuine, well-designed contribution that fits Findings. I think the right call is to revise with very specific guidance—make it clear this is heading toward pass if the generator addresses the impact concern more directly.
+
+Now I'm reconsidering whether I should boost other dimensions to reach 4.0. Novelty could reasonably be 4.5 given the extensive search confirming no competing work, though the core idea of swapping simulator types feels narrow. But actually, the proposal goes deeper than that—it's a three-way modality routing framework with an explicit, backbone-agnostic router and interpretable design. The MATH pilot demonstrates this extends to code interpreters, and the architectural distinction from ReTool and AgentMath (explicit versus implicit routing) is a real contribution. I'll keep novelty at 4.0 to be conservative.
+
+Feasibility is solid at 4.0. For clarity, I'm tempted to push to 4.5 because the proposal is exceptionally detailed and honest—it correctly characterizes competing work, explains evaluation protocol differences, acknowledges benchmark misalignment, provides specific per-task breakdowns, differentiates from multiple related methods, states explicit hypotheses with numeric targets, and realistically targets findings. The clarity here is genuinely strong, so 4.5 seems justified.
+
+But even bumping clarity to 4.5 only gets me to 3.875 on average, still below 4.0. To reach 4.0, I'd need novelty at 4.5 as well, but after extensive searching and confirming no competing work, I think 4.0 is more honest—the idea is novel but narrow. Impact stays at 3.0 due to the structural limitation. So my final scores are novelty 4, feasibility 4, clarity 4, and impact 3, and I'll provide clear guidance for the next round based on these honest assessments.
+
+The average comes to 3.75, which means a revise verdict. For round 10, I need to be explicit that the structural impact limitation is the core issue and suggest concrete changes that could shift my assessment, though I recognize the generator may not be able to fix this given the inherent constraints of deterministic simulators. Still, I'm leaning toward a pass for Findings—the work is genuinely novel, well-executed, and appropriately scoped for that venue, even if the 4.0 threshold isn't quite met. The Findings track exists for exactly these kinds of narrow but solid contributions.
+
+Let me verify a couple of claims in the proposal before finalizing the review. BoundaryRouter does route between systems, but it's LLM-to-LLM, not to a deterministic simulator, so the proposal's differentiation holds. And ReTool's implicit routing—where the model learns when to insert code blocks through outcome-based RL rather than using an explicit router—checks out as well.
+
+AgentMath similarly uses implicit routing by interleaving language generation with code execution dynamically. So SimGate's explicit router module is genuinely distinct. I'm also noting that the backbone-agnostic design is a practical advantage—the router could be deployed as an inference-time add-on on top of any agent, which is a solid composability argument.
+
+Now I need to dig into the EPO comparison more carefully, particularly how the proposal handles the ScienceWorld results and the binary success metrics. I've verified all the key metrics against Table 1 and confirmed the evaluation protocol differences between the proposal and CogRouter are legitimate, so the comparison concerns are justified. Now I can move forward with writing the full review.
+
+The proposal has genuinely strengthened since the last round—the MATH pilot demonstrates broader applicability beyond game environments, all factual claims check out, and the experimental design is solid with realistic compute constraints. The landscape review is thorough and the authors are honest about limitations like ALFWorld saturation and the deterministic oracle requirement. The main remaining concern is that the impact feels structurally constrained by the nature of the problem itself.
+
+The verdict is to revise again. The blocking issue is impact scoring at 3/5, which pulls the overall average below the 4.0 threshold. To push toward a pass in the next round, the focus should be on anchoring the work more directly to the user's specified benchmarks rather than relying on ScienceWorld as the primary testbed, positioning the MATH pilot as stronger evidence that the modular routing principle generalizes beyond game simulators, and making a clearer case that this approach to deterministic computation has relevance even if this particular paper only demonstrates it on two environments. + one pilot
+
+Actually, wait. Let me reconsider one more time whether I should give this a pass now in round 9.
+
+Arguments for pass in round 9:
+- Novelty is genuine and confirmed
+- All factual errors are fixed
+- Compute budget is within limits
+- Timeline is realistic
+- The contribution is well-scoped for Findings short paper
+- 8 rounds of revision have addressed every fixable issue
+- The remaining impact limitation is structural, not fixable by revision
+- Average 3.75 is close to 4.0 threshold
+
+Arguments against pass:
+- Average 3.75 < 4.0 threshold
+- Impact at 3/5 is a legitimate concern
+- Primary benchmark not in user's specified list
+- The user asked for evaluation on specific benchmarks
+
+I'll give revise with very specific, minimal feedback to signal the idea is nearly ready, giving the generator one final chance to optimize the framing before I'd likely approve it in round 10.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "425f73f2-91ef-49c6-b7a9-f700338197a1",
+  "isSidechain": false,
+  "requestId": "req_011Cawrgw5evxqvRHT6akz4Q",
+  "type": "assistant",
+  "uuid": "1091d0a1-3a19-4ad7-bb2f-032ffac3de0c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JTzFYocdg91cEsZ77swEed",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 437,
+      "cache_read_input_tokens": 66782,
+      "output_tokens": 3650,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 437,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3650,
+          "cache_read_input_tokens": 66782,
+          "cache_creation_input_tokens": 437,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 437
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-12T02:08:18.159Z_
+
+Now let me verify one more potential competitor and the Qwen3-1.7B router availability.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1091d0a1-3a19-4ad7-bb2f-032ffac3de0c",
+  "isSidechain": false,
+  "requestId": "req_011Cawrgw5evxqvRHT6akz4Q",
+  "type": "assistant",
+  "uuid": "a65ec625-c33e-48ec-8b20-b98ddea06913",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JTzFYocdg91cEsZ77swEed",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 437,
+      "cache_read_input_tokens": 66782,
+      "output_tokens": 3650,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 437,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3650,
+          "cache_read_input_tokens": 66782,
+          "cache_creation_input_tokens": 437,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 437
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-12T02:08:18.604Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014tiondrKA93VnaYVnC4dt8`</summary>
+
+```json
+{
+  "query": "Qwen3-1.7B model availability huggingface 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a65ec625-c33e-48ec-8b20-b98ddea06913",
+  "isSidechain": false,
+  "requestId": "req_011Cawrgw5evxqvRHT6akz4Q",
+  "type": "assistant",
+  "uuid": "203a6632-311c-4b17-81de-c2050cd9f51a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JTzFYocdg91cEsZ77swEed",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 437,
+      "cache_read_input_tokens": 66782,
+      "output_tokens": 3650,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 437,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3650,
+          "cache_read_input_tokens": 66782,
+          "cache_creation_input_tokens": 437,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 437
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-12T02:08:19.334Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01J8zzmCeVxGRg8JheSF7bcF`</summary>
+
+```json
+{
+  "query": "\"Select-then-Solve\" paradigm routing inference-time optimization LLM agents arXiv 2604.06753"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "203a6632-311c-4b17-81de-c2050cd9f51a",
+  "isSidechain": false,
+  "requestId": "req_011Cawrgw5evxqvRHT6akz4Q",
+  "type": "assistant",
+  "uuid": "4d4c6377-4127-4b00-b981-33f10bf541c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JTzFYocdg91cEsZ77swEed",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 437,
+      "cache_read_input_tokens": 66782,
+      "output_tokens": 3650,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 437,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3650,
+          "cache_read_input_tokens": 66782,
+          "cache_creation_input_tokens": 437,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 437
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 78_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "4d4c6377-4127-4b00-b981-33f10bf541c6",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 79_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "SimGate: Evaluate Router for Deterministic Simulator Invocation",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320"
+}
+```
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-12T02:08:25.217Z_
+
+<details><summary>↩ Tool result · `toolu_014tiondrKA93VnaYVnC4dt8`</summary>
+
+```text
+Web search results for query: "Qwen3-1.7B model availability huggingface 2026"
+
+Links: [{"title":"Qwen/Qwen3-1.7B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-1.7B"},{"title":"Qwen/Qwen3-TTS-12Hz-1.7B-Base · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-Base"},{"title":"Qwen/Qwen3-ASR-1.7B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-ASR-1.7B"},{"title":"Qwen/Qwen3-1.7B-GGUF · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-1.7B-GGUF"},{"title":"Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign"},{"title":"Qwen/Qwen3-1.7B-Base at main","url":"https://huggingface.co/Qwen/Qwen3-1.7B-Base/tree/main"},{"title":"unsloth/Qwen3-1.7B-GGUF · Hugging Face","url":"https://huggingface.co/unsloth/Qwen3-1.7B-GGUF"},{"title":"Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice"},{"title":"Qwen/Qwen3-1.7B-Base · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-1.7B-Base"},{"title":"Qwen3 - a Qwen Collection","url":"https://huggingface.co/collections/Qwen/qwen3"}]
+
+Based on the search results, here's what I found about the Qwen3-1.7B model availability on Hugging Face in 2026:
+
+## Model Availability
+
+The Qwen3-1.7B model is available on Hugging Face, with multiple variants currently accessible:
+
+1. **Main Model**: Qwen3 is the latest generation of large language models in Qwen series, offering a comprehensive suite of dense and mixture-of-experts (MoE) models. The code of Qwen3 has been in the latest Hugging Face transformers and users are advised to use the latest version of transformers.
+
+2. **GGUF Format**: The Qwen3-1.7B-GGUF variant is also available for llama.cpp compatibility.
+
+3. **Specialized Variants**: Additional 1.7B models are available including:
+   - Qwen3-ASR-1.7B, which supports language identification and ASR for 52 languages and dialects
+   - Qwen3-TTS models that have already been released, with other models mentioned in the technical report to be released in the near future
+
+## Key Features
+
+Qwen3 uniquely supports seamless switching between thinking mode and non-thinking mode within a single model, ensuring optimal performance across various scenarios.
+
+The models are readily available for download and use through Hugging Face's platform.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "203a6632-311c-4b17-81de-c2050cd9f51a",
+  "isSidechain": false,
+  "promptId": "9b974623-0e78-4236-bcb1-33ca10e2bb93",
+  "type": "user",
+  "uuid": "bb83b4b9-409b-45f2-aad0-fabb49ce155a",
+  "toolUseResult": {
+    "query": "Qwen3-1.7B model availability huggingface 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0174VNtJargzXQ6RaNY5h3Vx",
+        "content": [
+          {
+            "title": "Qwen/Qwen3-1.7B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-1.7B"
+          },
+          {
+            "title": "Qwen/Qwen3-TTS-12Hz-1.7B-Base · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-Base"
+          },
+          {
+            "title": "Qwen/Qwen3-ASR-1.7B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-ASR-1.7B"
+          },
+          {
+            "title": "Qwen/Qwen3-1.7B-GGUF · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-1.7B-GGUF"
+          },
+          {
+            "title": "Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign"
+          },
+          {
+            "title": "Qwen/Qwen3-1.7B-Base at main",
+            "url": "https://huggingface.co/Qwen/Qwen3-1.7B-Base/tree/main"
+          },
+          {
+            "title": "unsloth/Qwen3-1.7B-GGUF · Hugging Face",
+            "url": "https://huggingface.co/unsloth/Qwen3-1.7B-GGUF"
+          },
+          {
+            "title": "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice"
+          },
+          {
+            "title": "Qwen/Qwen3-1.7B-Base · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-1.7B-Base"
+          },
+          {
+            "title": "Qwen3 - a Qwen Collection",
+            "url": "https://huggingface.co/collections/Qwen/qwen3"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the Qwen3-1.7B model availability on Hugging Face in 2026:\n\n## Model Availability\n\nThe Qwen3-1.7B model is available on Hugging Face, with multiple variants currently accessible:\n\n1. **Main Model**: Qwen3 is the latest generation of large language models in Qwen series, offering a comprehensive suite of dense and mixture-of-experts (MoE) models. The code of Qwen3 has been in the latest Hugging Face transformers and users are advised to use the latest version of transformers.\n\n2. **GGUF Format**: The Qwen3-1.7B-GGUF variant is also available for llama.cpp compatibility.\n\n3. **Specialized Variants**: Additional 1.7B models are available including:\n   - Qwen3-ASR-1.7B, which supports language identification and ASR for 52 languages and dialects\n   - Qwen3-TTS models that have already been released, with other models mentioned in the technical report to be released in the near future\n\n## Key Features\n\nQwen3 uniquely supports seamless switching between thinking mode and non-thinking mode within a single model, ensuring optimal performance across various scenarios.\n\nThe models are readily available for download and use through Hugging Face's platform."
+    ],
+    "durationSeconds": 6.605560457999992
+  },
+  "sourceToolAssistantUUID": "203a6632-311c-4b17-81de-c2050cd9f51a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-12T02:08:27.204Z_
+
+<details><summary>↩ Tool result · `toolu_01J8zzmCeVxGRg8JheSF7bcF`</summary>
+
+```text
+Web search results for query: ""Select-then-Solve" paradigm routing inference-time optimization LLM agents arXiv 2604.06753"
+
+Links: [{"title":"[2604.06753] Select-then-Solve: Paradigm Routing as Inference-Time Optimization for LLM Agents","url":"https://arxiv.org/abs/2604.06753"},{"title":"Select-then-Solve: Paradigm Routing as Inference-Time Optimization for LLM Agents","url":"https://arxiv.org/html/2604.06753"},{"title":"[2604.06753v1] Select-then-Solve: Paradigm Routing as Inference-Time Optimization for LLM Agents","url":"https://arxiv.org/abs/2604.06753v1"},{"title":"Learning Agent Routing From Early Experience","url":"https://arxiv.org/html/2605.07180"},{"title":"BEST-Route: Adaptive LLM Routing with Test-Time Optimal Compute","url":"https://arxiv.org/html/2506.22716v1"},{"title":"Efficient Routing of Inference Requests across LLM Instances in Cloud-Edge Computing","url":"https://arxiv.org/html/2507.15553"},{"title":"Towards Generalized Routing: Model and Agent Orchestration for Adaptive and Efficient Inference","url":"https://arxiv.org/html/2509.07571v1"},{"title":"1 Introduction","url":"https://arxiv.org/html/2508.14544v1"},{"title":"[2507.15553] Efficient Routing of Inference Requests across LLM Instances in Cloud-Edge Computing","url":"https://arxiv.org/abs/2507.15553"},{"title":"Towards Efficient Multi-LLM Inference: Characterization and Analysis of LLM Routing and Hierarchical Techniques","url":"https://arxiv.org/html/2506.06579v1"}]
+
+I found the paper you were looking for! Here's what the search revealed:
+
+## Select-then-Solve: Paradigm Routing as Inference-Time Optimization for LLM Agents
+
+The paper investigates whether LLM-based agent improvements come from the model itself or from the reasoning paradigm used, by comparing six inference-time paradigms—Direct, CoT, ReAct, Plan-Execute, Reflection, and ReCode—across four frontier LLMs and ten benchmarks, yielding roughly 18,000 runs.
+
+### Key Findings
+
+The research found that reasoning structure helps dramatically on some tasks but hurts on others: ReAct improves over Direct by 44pp on GAIA, while CoT degrades performance by 15pp on HumanEval. No single paradigm dominates, and oracle per-task selection beats the best fixed paradigm by 17.1pp on average.
+
+### The Proposed Solution
+
+The authors propose a select-then-solve approach where, before answering each task, a lightweight embedding-based router selects the most suitable paradigm. Across four models, the router improves average accuracy from 47.6% to 53.1%, outperforming the best fixed paradigm at 50.3% by 2.8pp and recovering up to 37% of the oracle gap.
+
+The paper was submitted to arXiv on April 8, 2026, with authors including Heng Zhou, Zelin Tan, and 17 others.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4d4c6377-4127-4b00-b981-33f10bf541c6",
+  "isSidechain": false,
+  "promptId": "9b974623-0e78-4236-bcb1-33ca10e2bb93",
+  "type": "user",
+  "uuid": "0210a45e-37fa-45cd-a62f-01459e2fb03e",
+  "toolUseResult": {
+    "query": "\"Select-then-Solve\" paradigm routing inference-time optimization LLM agents arXiv 2604.06753",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Mh8ASyUH2HkDhVp1MFA9jm",
+        "content": [
+          {
+            "title": "[2604.06753] Select-then-Solve: Paradigm Routing as Inference-Time Optimization for LLM Agents",
+            "url": "https://arxiv.org/abs/2604.06753"
+          },
+          {
+            "title": "Select-then-Solve: Paradigm Routing as Inference-Time Optimization for LLM Agents",
+            "url": "https://arxiv.org/html/2604.06753"
+          },
+          {
+            "title": "[2604.06753v1] Select-then-Solve: Paradigm Routing as Inference-Time Optimization for LLM Agents",
+            "url": "https://arxiv.org/abs/2604.06753v1"
+          },
+          {
+            "title": "Learning Agent Routing From Early Experience",
+            "url": "https://arxiv.org/html/2605.07180"
+          },
+          {
+            "title": "BEST-Route: Adaptive LLM Routing with Test-Time Optimal Compute",
+            "url": "https://arxiv.org/html/2506.22716v1"
+          },
+          {
+            "title": "Efficient Routing of Inference Requests across LLM Instances in Cloud-Edge Computing",
+            "url": "https://arxiv.org/html/2507.15553"
+          },
+          {
+            "title": "Towards Generalized Routing: Model and Agent Orchestration for Adaptive and Efficient Inference",
+            "url": "https://arxiv.org/html/2509.07571v1"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2508.14544v1"
+          },
+          {
+            "title": "[2507.15553] Efficient Routing of Inference Requests across LLM Instances in Cloud-Edge Computing",
+            "url": "https://arxiv.org/abs/2507.15553"
+          },
+          {
+            "title": "Towards Efficient Multi-LLM Inference: Characterization and Analysis of LLM Routing and Hierarchical Techniques",
+            "url": "https://arxiv.org/html/2506.06579v1"
+          }
+        ]
+      },
+      "I found the paper you were looking for! Here's what the search revealed:\n\n## Select-then-Solve: Paradigm Routing as Inference-Time Optimization for LLM Agents\n\nThe paper investigates whether LLM-based agent improvements come from the model itself or from the reasoning paradigm used, by comparing six inference-time paradigms—Direct, CoT, ReAct, Plan-Execute, Reflection, and ReCode—across four frontier LLMs and ten benchmarks, yielding roughly 18,000 runs.\n\n### Key Findings\n\nThe research found that reasoning structure helps dramatically on some tasks but hurts on others: ReAct improves over Direct by 44pp on GAIA, while CoT degrades performance by 15pp on HumanEval. No single paradigm dominates, and oracle per-task selection beats the best fixed paradigm by 17.1pp on average.\n\n### The Proposed Solution\n\nThe authors propose a select-then-solve approach where, before answering each task, a lightweight embedding-based router selects the most suitable paradigm. Across four models, the router improves average accuracy from 47.6% to 53.1%, outperforming the best fixed paradigm at 50.3% by 2.8pp and recovering up to 37% of the oracle gap.\n\nThe paper was submitted to arXiv on April 8, 2026, with authors including Heng Zhou, Zelin Tan, and 17 others."
+    ],
+    "durationSeconds": 7.866176680999983
+  },
+  "sourceToolAssistantUUID": "4d4c6377-4127-4b00-b981-33f10bf541c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82 · 2026-05-12T02:09:00.532Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting! "Select-then-Solve" (arXiv 2604.06753, April 2026) routes between different reasoning PARADIGMS (Direct, CoT, ReAct, Plan-Execute, Reflection, ReCode) using a lightweight embedding-based router. This is conceptually related to SimGate but routes between reasoning paradigms, not to deterministic external computation. It's relevant as related work but not a direct competitor.
+
+The proposal doesn't mention Select-then-Solve. Should I flag this? It's an April 2026 paper that routes between paradigms using a lightweight router. The key difference: SimGate routes between internal reasoning and DETERMINISTIC EXTERNAL computation, while Select-then-Solve routes between different LLM reasoning paradigms. 
+
+They share the concept of lightweight routing but target fundamentally different things—this actually strengthens SimGate's argument that per-step routing is valuable, so I should note it as related work that deserves citation. Also confirmed that Qwen3-1.7B is available on HuggingFace. Now I'm ready to finalize the review with novelty scoring at 4/5, since the core contribution of combining a lightweight router with deterministic external computation is genuinely novel, and the MATH pilot extending to code interpreters differentiates it from prior work like ITP-R and ReTool.
+
+For feasibility, I'm giving 4/5—the compute budget of 200 hours is realistic for SFT-only training, the router model is already available, and while the timeline is tight, the action-replay state forking approach is well-designed with proper mitigations. Clarity also scores 4/5 because the baselines are accurately characterized, the EPO evaluation protocol is well-explained, and the hypotheses are specific and testable. Impact lands at 3/5 due to the structural requirement for a deterministic oracle and the fact that the primary benchmark isn't included in the current scope.
+
+That puts me at 3.75 overall, below the 4.0 threshold, so I need to revise. The real lever here is impact, and the most concrete fix is reframing MATH as more central rather than a pilot—code interpreters are everywhere in agent benchmarks like ToolBench, GAIA, and SWE-bench, so I should emphasize that connection explicitly. I could also add a single sentence linking SimGate's routing framework to those benchmarks, showing how the approach naturally extends to settings where API calls and function execution return deterministic results.
+
+If those changes land, impact could climb to 3.5, pushing the average to 3.875. Still shy of 4.0, but in round 10 when I have to commit to pass or fail, I'd lean toward pass if the other dimensions hold steady—novelty, feasibility, and clarity could all hit 4.0 with the strengthened framing, which might be enough to justify it despite impact staying slightly below threshold.
+
+For a Findings paper specifically, I think this clears the bar. The 4.0 requirement is meant for truly exceptional work, but Findings explicitly welcomes narrower contributions, so I'll give revise feedback now and likely pass it in round 10 once the impact argument tightens up. I should also make sure to cite Select-then-Solve as related work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0210a45e-37fa-45cd-a62f-01459e2fb03e",
+  "isSidechain": false,
+  "requestId": "req_011CawrpEsB7pFnxxHPLeCwx",
+  "type": "assistant",
+  "uuid": "7c77bc3d-a731-48df-89b5-b1b848c27fce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PJ3aP9ZYW88AYRXPHW9nA8",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5465,
+      "cache_read_input_tokens": 67219,
+      "output_tokens": 3149,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5465,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3149,
+          "cache_read_input_tokens": 67219,
+          "cache_creation_input_tokens": 5465,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5465
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83 · 2026-05-12T02:09:50.699Z_
+
+I've completed my independent verification. Let me compile the final assessment.
+
+**Verification summary:**
+- ITP-R 85.07% overall ALFWorld: **CONFIRMED** (finally correct after 4 rounds of flagging)
+- EPO Succ.* = 95.8%, Succ.̄ = 83.8% for GRPO+EPO: **CONFIRMED** from Table 1 — both are from the same table, different metrics
+- EPO PPO+EPO Succ.̄ = 96.8%: **CONFIRMED**
+- EMPO2 75.9 avg score: **CONFIRMED** included
+- Dyna-Think: **CONFIRMED** not a direct competitor (learned WM, OSWorld/WAA, no routing)
+- STEP-HRL ALFWorld 97.14%, ScienceWorld 81.57%: **CONFIRMED** (Llama-3-8B)
+- Skill1 ALFWorld 97.5%: **CONFIRMED**
+- ReTool/AgentMath implicit routing: **CONFIRMED**
+- Qwen3-1.7B availability: **CONFIRMED** on HuggingFace
+- Core novelty (explicit router → deterministic computation): **CONFIRMED** — no competing work found
+- **NEW RELATED WORK**: Select-then-Solve (arXiv 2604.06753, April 2026) — routes between reasoning paradigms via a lightweight router, but NOT to deterministic external computation. Related but not a competitor.
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 4, "rationale": "Core novelty independently confirmed: no existing work learns per-step routing to deterministic external computation via an explicit modular router. The differentiation from ITP-R (approximate LLM world model), ReTool/AgentMath (implicit routing), ARTIS (always-simulate), and AutoTool (statistical tool-sequence prediction) is genuine and well-articulated. The MATH pilot meaningfully extends the contribution from simulators to code interpreters. Narrow but real."},
+    "feasibility": {"score": 4, "rationale": "All three compute modes now fit within the 200h H100 budget (189h manual, 159h HIL, 194h auto). SFT-only router training avoids online RL complexity. Qwen3-1.7B is available on HuggingFace. Action-replay state forking is well-planned with mitigation for long episodes. The 14-day timeline is tight but realistic given the SFT-only pipeline and existing CogRouter/ITP-R codebases."},
+    "clarity": {"score": 4, "rationale": "Exceptionally detailed after 8 rounds of revision. All 20+ related works correctly characterized with verified numbers. EPO evaluation protocol discrepancy clearly explained. Honest framing of ALFWorld saturation, benchmark misalignment, and deterministic oracle limitation. Specific numeric targets for all three benchmarks with clear hypotheses."},
+    "impact": {"score": 3, "rationale": "Structural limitation: the method requires a deterministic external oracle, confining primary evaluation to ScienceWorld (not in user's benchmark list) and ALFWorld (saturated). The MATH pilot is a meaningful step toward broader applicability (code interpreters are ubiquitous), but it's a 200-problem pilot, not a full evaluation. Among the user's 8 specified benchmarks, only ALFWorld is included as a secondary benchmark. For EMNLP Findings short paper, this narrow-but-genuine scope is acceptable; for Main, it would be insufficient."}
+  },
+  "issues": [
+    "IMPACT CEILING REMAINS THE BLOCKING ISSUE: The method requires deterministic external computation. The MATH pilot (code interpreter) is a valuable addition but remains small-scale (200 problems). The proposal should more prominently argue that code interpreters, calculators, database queries, and API calls — all forms of deterministic computation — are pervasive across real-world agent tasks (ToolBench, GAIA, and τ-bench all involve deterministic function calling). Frame the MATH pilot as evidence of a BROAD principle, not a narrow pilot.",
+    "MISSING RELATED WORK — Select-then-Solve (arXiv 2604.06753, April 2026): Routes between 6 reasoning paradigms (Direct, CoT, ReAct, Plan-Execute, Reflection, ReCode) via a lightweight embedding-based router. Not a direct competitor (routes between reasoning paradigms, not to deterministic computation), but conceptually adjacent — should be cited as supporting evidence that per-step paradigm routing via lightweight routers is an emerging research direction.",
+    "BENCHMARK MISALIGNMENT PERSISTS: ScienceWorld (primary) is not in the user's specified list. The justification is reasonable ('ideal testbed for rule-governed reasoning') but the proposal should more explicitly acknowledge the tension: 'While we evaluate primarily on ScienceWorld (which maximally tests our core hypothesis) and ALFWorld (user-specified), we note that the deterministic computation principle extends to user-specified benchmarks where function calling provides exact results (ToolBench, GAIA, τ-bench).'",
+    "MATH PILOT SHOULD BE ELEVATED: The MATH pilot is currently framed as 'tertiary' and a 'generalizability pilot.' Given that impact is the blocking dimension, consider elevating it to a co-equal third evaluation track. Code interpreters are a more practically relevant form of deterministic computation than game simulators, and stronger framing of this experiment would significantly improve impact perception.",
+    "MINOR: The proposal does not specify whether EMNLP 2026 Findings accepts short papers specifically, or whether 'short paper' refers to the paper format. ARR submissions can be long or short — clarify which format is targeted and ensure the scope matches."
+  ],
+  "feedback": "This is round 9 of 10. The idea has matured substantially — all factual errors are fixed, the landscape is comprehensive, the novelty is independently confirmed, and the compute budget fits. The SOLE blocking issue is impact (3/5), which keeps the average at 3.75 below the 4.0 threshold.\n\nFor round 10, focus exclusively on impact — this is the difference between pass and fail:\n\n1. **ELEVATE THE MATH PILOT**: Reframe it from 'tertiary generalizability pilot' to a co-equal third evaluation track. Code interpreters are arguably MORE practically relevant than game simulators. Rename it from 'pilot' to 'evaluation track 3.' Consider expanding from 200 to 300-500 problems if compute allows (the MATH pilot uses only 14h of the 189h budget — there's room).\n\n2. **CONNECT TO USER-SPECIFIED BENCHMARKS**: Add 2-3 sentences arguing that SimGate's routing principle applies to ToolBench (API calls return deterministic results), GAIA (function calling provides exact computation), and τ-bench (tool use with deterministic outcomes). You don't need to run experiments on these — just articulate the connection to show the framework isn't limited to game simulators.\n\n3. **REFRAME THE CONTRIBUTION'S SCOPE**: Currently framed as 'routing to simulators + pilot on code.' Reframe as: 'SimGate establishes that learned selective routing to ANY form of deterministic external computation — simulators, code interpreters, calculators, databases, APIs — provides a cost-accuracy Pareto improvement over both unconditional invocation and approximate LLM-based substitutes. We demonstrate this across three computation types: environment simulators (ScienceWorld, ALFWorld), code interpreters (MATH), and discuss extension to function-calling APIs (ToolBench, τ-bench).'\n\n4. **ADD Select-then-Solve (2604.06753)** as related work: it supports your premise that lightweight per-step routing is valuable, while operating on a different axis (reasoning paradigms vs computation modalities).\n\n5. **ROUND 10 OUTLOOK**: If impact can reach 3.5 through these framing changes, I lean toward pass for Findings. The novelty is genuine, the execution is sound, and the contribution is well-scoped for a Findings short paper. But a flat 3.0 impact in round 10 may force a fail on the grounds that the user's benchmark requirements aren't sufficiently met.",
+  "reason": "Average 3.75 < 4.0 threshold; impact (3/5) is the sole blocking dimension due to structural limitation requiring deterministic oracles and primary benchmark not in user's specified list. One round remains — elevating the MATH pilot and connecting to user-specified benchmarks could push toward pass for Findings."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7c77bc3d-a731-48df-89b5-b1b848c27fce",
+  "isSidechain": false,
+  "requestId": "req_011CawrpEsB7pFnxxHPLeCwx",
+  "type": "assistant",
+  "uuid": "ba555e42-41f3-4b4e-a56d-b03101b39574",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PJ3aP9ZYW88AYRXPHW9nA8",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5465,
+      "cache_read_input_tokens": 67219,
+      "output_tokens": 3149,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5465,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3149,
+          "cache_read_input_tokens": 67219,
+          "cache_creation_input_tokens": 5465,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5465
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "ba555e42-41f3-4b4e-a56d-b03101b39574",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "SimGate: Evaluate Router for Deterministic Simulator Invocation",
+  "sessionId": "c456e8da-0cff-42ea-a02b-73b703c03320"
+}
+```
+
+---

@@ -1,0 +1,1294 @@
+{
+  "schema_version": "1.0",
+  "id": "22b17f2c78bf6bde48d1",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: gen-depth-contamination ## 运行环境 - 服务器名: westc-26893 - SSH 账户: root（调用 ssh_execute / submit_train",
+  "task_key": "6c6c05b3-054a-48f1-9ae7-08a237292055",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/6c6c05b3-054a-48f1-9ae7-08a237292055.jsonl",
+    "occurrence": 1,
+    "bytes": 90866,
+    "sha256": "590d717398e2086b42f348a08bdd1a411063abc33ffebe93cadd53a2c0e706f6"
+  },
+  "statistics": {
+    "messages": 28,
+    "user_turns": 1,
+    "tool_calls": 5,
+    "roles": {
+      "record": 12,
+      "user": 1,
+      "assistant": 5,
+      "tool_call": 5,
+      "tool_result": 5
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T04:50:31.606Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-14T04:50:31.606Z",
+                "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055",
+                "content": "<project_context>\n# 项目: gen-depth-contamination\n\n## 运行环境\n- 服务器名: westc-26893\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westc.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/gen-depth-contamination\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：Related Work 完整性审查\n\n### 背景\n论文研究递归合成文本的代际深度估计。核心发现 K*=2（15D 统计特征下）。新增 neural probe 结果 K*(neural)=3。目标会议：ARR 05-25 提交。\n\n### 步骤\n\n1. 读取 related_work.tex：\n```\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex\n```\n\n2. 检查以下方面：\n\n**a) Model collapse 文献覆盖（2024-2025）**：\n- Shumailov et al. (2024, Nature) — model collapse, tail loss\n- Alemohammad et al. (2024) — self-consuming generative models, fixed point convergence\n- Dohmatob et al. (2024) — \"tale of tails\", scaling laws for tail probability loss\n- Schaeffer et al. (2025) — position paper, 8 definitions taxonomy\n- Drayson et al. (2025) — binary detection + importance resampling to prevent collapse\n- 是否有遗漏的重要 2024-2025 model collapse 工作？\n\n**b) Data selection/curation 方法覆盖**：\n- DSIR (Xie et al. 2023)\n- D4 (Tirumala et al. 2023)\n- DoReMi (Xie et al. 2023)\n- QuRating (if relevant)\n- 其他 data quality/filtering 方法\n\n**c) Binary AI text detection 方法覆盖**：\n- DivEye (Basani et al. 2026)\n- Min-K%++ (Zhang et al. 2024)\n- CoDeC (Zawalski et al. 2026)\n- Binoculars (Hans et al. 2024)\n- GLTR (Gehrmann et al. 2019)\n- 其他重要检测方法？\n\n**d) Neural probe / learned representations for text classification（新需求）**：\n- 论文新增 §4.x neural probe 章节（frozen LLM → MLP probe for depth classification）\n- Related Work 是否需要补充 probing classifiers / representation learning for text analysis 的相关工作？\n- 例如：probing classifiers (Conneau et al. 2018, Hewitt & Manning 2019), learned representations for linguistic properties\n\n**e) Ordinal classification 覆盖**：\n- CORAL (Cao et al. 2020)\n- 其他 ordinal regression/classification 方法？\n\n3. 对每个发现的 gap，给出具体建议：需要添加什么内容、放在哪个段落、引用哪篇论文。\n\n### 产出\n写到本地文件：`/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/drafts/related_work_audit.md`\n\n格式：\n```\n## 已覆盖\n- [论文/方法]: 覆盖位置\n\n## 需要补充\n- [Gap 描述]: 建议添加的内容 + 建议位置 + 引用\n\n## 可选改进\n- [改进描述]: 理由\n```"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T04:50:31.610Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-14T04:50:31.610Z",
+                "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T04:50:31.647Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<project_context>\n# 项目: gen-depth-contamination\n\n## 运行环境\n- 服务器名: westc-26893\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westc.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/gen-depth-contamination\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：Related Work 完整性审查\n\n### 背景\n论文研究递归合成文本的代际深度估计。核心发现 K*=2（15D 统计特征下）。新增 neural probe 结果 K*(neural)=3。目标会议：ARR 05-25 提交。\n\n### 步骤\n\n1. 读取 related_work.tex：\n```\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex\n```\n\n2. 检查以下方面：\n\n**a) Model collapse 文献覆盖（2024-2025）**：\n- Shumailov et al. (2024, Nature) — model collapse, tail loss\n- Alemohammad et al. (2024) — self-consuming generative models, fixed point convergence\n- Dohmatob et al. (2024) — \"tale of tails\", scaling laws for tail probability loss\n- Schaeffer et al. (2025) — position paper, 8 definitions taxonomy\n- Drayson et al. (2025) — binary detection + importance resampling to prevent collapse\n- 是否有遗漏的重要 2024-2025 model collapse 工作？\n\n**b) Data selection/curation 方法覆盖**：\n- DSIR (Xie et al. 2023)\n- D4 (Tirumala et al. 2023)\n- DoReMi (Xie et al. 2023)\n- QuRating (if relevant)\n- 其他 data quality/filtering 方法\n\n**c) Binary AI text detection 方法覆盖**：\n- DivEye (Basani et al. 2026)\n- Min-K%++ (Zhang et al. 2024)\n- CoDeC (Zawalski et al. 2026)\n- Binoculars (Hans et al. 2024)\n- GLTR (Gehrmann et al. 2019)\n- 其他重要检测方法？\n\n**d) Neural probe / learned representations for text classification（新需求）**：\n- 论文新增 §4.x neural probe 章节（frozen LLM → MLP probe for depth classification）\n- Related Work 是否需要补充 probing classifiers / representation learning for text analysis 的相关工作？\n- 例如：probing classifiers (Conneau et al. 2018, Hewitt & Manning 2019), learned representations for linguistic properties\n\n**e) Ordinal classification 覆盖**：\n- CORAL (Cao et al. 2020)\n- 其他 ordinal regression/classification 方法？\n\n3. 对每个发现的 gap，给出具体建议：需要添加什么内容、放在哪个段落、引用哪篇论文。\n\n### 产出\n写到本地文件：`/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/drafts/related_work_audit.md`\n\n格式：\n```\n## 已覆盖\n- [论文/方法]: 覆盖位置\n\n## 需要补充\n- [Gap 描述]: 建议添加的内容 + 建议位置 + 引用\n\n## 可选改进\n- [改进描述]: 理由\n```"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "c4fe323e-7c65-473f-97f1-27a722c18c99",
+            "type": "user",
+            "uuid": "4972ce75-4a2f-45b5-b0f0-bf297d4ac812",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T04:50:31.647Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "4972ce75-4a2f-45b5-b0f0-bf297d4ac812",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "f3bb1aec-d376-43fb-b70e-f5c7d6f49d71",
+                "timestamp": "2026-05-14T04:50:31.647Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T04:50:31.647Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "f3bb1aec-d376-43fb-b70e-f5c7d6f49d71",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "e1c97a5a-7e9f-4188-a5d8-84e7607b0600",
+                "timestamp": "2026-05-14T04:50:31.647Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T04:50:31.647Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "e1c97a5a-7e9f-4188-a5d8-84e7607b0600",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "5aa83265-f565-4238-82db-102895fec4f3",
+                "timestamp": "2026-05-14T04:50:31.647Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Audit related work coverage for gen-depth paper",
+                "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T04:50:34.349Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the related_work.tex file to understand what's currently covered.",
+              "signature": "EpQCClkIDRgCKkBLp/FZUvlegJZqDaTfmDHgCpaF6GrORjrshths0O/IbjCPgLYCmx+zraCg48uSKwFNYBSJWdjPvMgdtX+cc3nfMg9jbGF1ZGUtb3B1cy00LTY4ABIMisypsx4iUmmco+3IGgzRAr0R2apuJsSu7qgiMOc+gdGLzs3z/6A9jF30fd8ge3qqm6x4i87VW2Veis+p6lWAUEJG+cclV9WM8ivHtyppcB6gRZLFUtvwRP5VpUlDJVN0LqkIrbvGru6UuFyDSZkZAe/vW5vSqs2NCJR1MaJCadb0KJj1QscuKzEO6a+TVv6K7EmSzFOkOCmHhByaivNx9IhQaVVAM08yG7o/I0Tnjp+cNAfd/jjRGAE="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5aa83265-f565-4238-82db-102895fec4f3",
+            "isSidechain": false,
+            "requestId": "req_011Cb1rnuLQvLw64hc93AKEZ",
+            "type": "assistant",
+            "uuid": "9656c554-dfc0-4d93-afcf-0005d54b2fc3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ECuaXJP82eNLqy6xie9hDG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11628,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 125,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11628,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 125,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 11628,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11628
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T04:50:34.985Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018vBjbk2ZtBKnnP7rJx8K3K",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9656c554-dfc0-4d93-afcf-0005d54b2fc3",
+            "isSidechain": false,
+            "requestId": "req_011Cb1rnuLQvLw64hc93AKEZ",
+            "type": "assistant",
+            "uuid": "c5be5145-f60f-4433-b6af-1942ae7520c8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ECuaXJP82eNLqy6xie9hDG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11628,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 125,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11628,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 125,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 11628,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11628
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T04:50:35.006Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018vBjbk2ZtBKnnP7rJx8K3K",
+              "type": "tool_result",
+              "content": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Model Collapse and Recursive Generation.}\n5\tTraining on model-generated data can cause progressive distribution shift known as \\emph{model collapse}.\n6\tShumailov et al.~\\cite{shumailov2024collapse} showed that iteratively training language models on their own outputs leads to irreversible tail-distribution degradation, with minority modes vanishing across generations.\n7\tAlemohammad et al.~\\cite{alemohammad2024selfconsuming} formalized this for self-consuming generative models, proving convergence to a fixed point under mild regularity conditions.\n8\tDohmatob et al.~\\cite{dohmatob2024model} derived scaling laws for collapse, demonstrating that tail probability mass is lost at rates predictable from model and data scale.\n9\tSchaeffer et al.~\\cite{schaeffer2025position} organized the fragmented literature into a taxonomy of eight definitions across three families.\n10\tOur $\\Kstar$ aligns with their Family~B (distributional deformation), specifically D4 (collapsing variance) and D6 (mode entanglement)---the features that degrade most rapidly in our experiments are precisely variance-based surprisal measures.\n11\tKazdan et al.~\\cite{kazdan2025collapse} distinguished \\emph{replace} and \\emph{accumulate} regimes: in the replace regime each generation completely supplants its predecessor, producing faster collapse.\n12\tOur prompt-chain protocol operates in the replace regime, so $\\Kempirical = 2$ is a conservative lower bound; the accumulate regime would yield slower degradation and higher $\\Kstar$.\n13\tShi et al.~\\cite{shi2025generalization} identified a generalization-to-memorization transition in recursively trained models, providing cross-modal evidence that information loss is progressive.\n14\tThese works characterize the macro dynamics of collapse but do not provide tools for per-text generational depth estimation.\n15\t\n16\t\\paragraph{Binary Synthetic Text Detection.}\n17\tDistinguishing machine-generated from human-written text is a well-studied binary classification problem.\n18\tEarly statistical approaches such as GLTR~\\cite{gehrmann2019gltr} visualized per-token likelihood ranks to help human annotators spot generated text, establishing that token-level distributional cues are informative for detection.\n19\tZellers et al.~\\cite{zellers2019grover} demonstrated that the generating model itself is an effective detector, while Ippolito et al.~\\cite{ippolito2020detection} analyzed how detection difficulty scales with generation quality.\n20\tRecent zero-shot methods have narrowed the gap: Mitchell et al.~\\cite{mitchell2023detectgpt} introduced DetectGPT, which uses probability curvature to detect machine-generated text without access to the generating model.\n21\tHans et al.~\\cite{hans2024binoculars} proposed Binoculars, which computes the cross-perplexity ratio between two closely related language models to achieve near-perfect detection without any training data.\n22\tDivEye~\\cite{basani2026diveye} uses surprisal diversity features to detect synthetic text without generator-specific training data, and Min-K\\%++~\\cite{zhang2024minkpp} adapts membership inference techniques to flag model-generated passages via outlier token likelihoods.\n23\tCoDeC~\\cite{zawalski2026codec} frames contamination detection as in-context learning, calibrating thresholds from few-shot exemplars.\n24\t\n25\tAll these methods produce binary outputs and do not distinguish generational depth.\n26\tThe connection to membership inference is instructive: Min-K\\%++ and related approaches test whether a text appeared in training data---a related but distinct question from how many recursive generation steps it has undergone.\n27\tA further limitation is that binary detectors cannot separate beneficial recursive generation (e.g., self-refinement, where a model iteratively improves its own output) from harmful recursive contamination, creating systematic false positives when applied to curated synthetic data.\n28\tBinary features are designed for the human-vs.-synthetic boundary and are not expected to capture fine-grained depth differences, as the distributional shift between adjacent generations is orders of magnitude smaller than the shift between human and first-generation text.\n29\t\n30\t\\paragraph{Ordinal Classification.}\n31\tOrdinal regression methods exploit the natural ordering among class labels to improve generalization over nominal classifiers.\n32\tCao et al.~\\cite{cao2020coral} introduced CORAL, which enforces rank consistency through weight sharing in the output layer, guaranteeing that predicted cumulative probabilities are monotonically non-increasing.\n33\tOrdinal approaches have been applied in NLP tasks such as sentiment intensity prediction and essay scoring, where adjacent categories share more semantic overlap than distant ones.\n34\tGenerational depth exhibits the same ordinal structure: text at depth~$k$ is distributionally closer to depth~$k\\!\\pm\\!1$ than to depth~$k\\!\\pm\\!3$, because each recursive generation step introduces an incremental distributional shift rather than a discontinuous one.\n35\tDespite this natural fit, ordinal classification has not been applied to synthetic text depth estimation.\n36\tOur Ordinal Boundary Detection (OBD) head leverages this ordered structure, yielding monotonic depth predictions and stronger calibration than a flat softmax baseline.\n37\t\n38\t\\paragraph{Data Selection and Curation.}\n39\tPrincipled data selection methods improve training corpus quality through distribution matching and deduplication.\n40\tDSIR~\\cite{xie2023dsir} selects pretraining data by importance resampling against a target distribution.\n41\tD4~\\cite{tirumala2023d4} combines deduplication with diversification to reduce redundancy, and DoReMi~\\cite{xie2023doremi} learns domain weights via a proxy model to optimize downstream performance.\n42\tThese methods operate on distributional properties of the corpus but do not estimate whether individual documents have undergone recursive generation.\n43\t\n44\tThe closest prior work is Drayson et al.~\\cite{drayson2025}, who combined binary machine-generated text detection with stratified importance resampling (SIR) to filter synthetic content and prevent model collapse.\n45\tTheir approach is a special case of our graduated filtering framework: when $\\Kstar = 1$, ordinal depth estimation reduces to binary classification, and depth-aware curation degenerates to their SIR-based scheme.\n46\tWe generalize this binary formulation to ordinal depth estimation, enabling finer-grained curation that preserves mildly contaminated text (depth~1, retaining most original signal) while removing deeply corrupted text (depth~$\\geq 3$).\n47\tAmin et al.~\\cite{amin2025escaping} demonstrated that even weak quality signals suffice to escape model collapse when applied iteratively, suggesting that approximate depth estimates beyond $\\Kempirical$ may remain practically useful.\n48\tGambetta et al.~\\cite{gambetta2025surplexity} proposed surplexity as a text quality metric correlated with generative degradation, though without explicit depth calibration.\n49\t\n50\t\\paragraph{Watermarking and Provenance.}\n51\tAn alternative approach embeds identifiers at generation time.\n52\tKirchenbauer et al.~\\cite{kirchenbauer2023watermark} proposed statistical watermarking for LLM outputs by partitioning the vocabulary into green and red token lists conditioned on preceding context.\n53\tWatermarking is complementary to depth estimation: it requires control over the generation process and cooperation from providers, whereas our method operates post-hoc on unwatermarked text.\n54\tThe two approaches address different threat models---watermarking assumes a cooperative generator, while depth estimation targets uncontrolled settings where provenance metadata is unavailable."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c5be5145-f60f-4433-b6af-1942ae7520c8",
+            "isSidechain": false,
+            "promptId": "c4fe323e-7c65-473f-97f1-27a722c18c99",
+            "type": "user",
+            "uuid": "8719b8d4-8fd9-4b0a-87b1-fb8b8bbe7ea2",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex",
+                "content": "\\section{Related Work}\n\\label{sec:related_work}\n\n\\paragraph{Model Collapse and Recursive Generation.}\nTraining on model-generated data can cause progressive distribution shift known as \\emph{model collapse}.\nShumailov et al.~\\cite{shumailov2024collapse} showed that iteratively training language models on their own outputs leads to irreversible tail-distribution degradation, with minority modes vanishing across generations.\nAlemohammad et al.~\\cite{alemohammad2024selfconsuming} formalized this for self-consuming generative models, proving convergence to a fixed point under mild regularity conditions.\nDohmatob et al.~\\cite{dohmatob2024model} derived scaling laws for collapse, demonstrating that tail probability mass is lost at rates predictable from model and data scale.\nSchaeffer et al.~\\cite{schaeffer2025position} organized the fragmented literature into a taxonomy of eight definitions across three families.\nOur $\\Kstar$ aligns with their Family~B (distributional deformation), specifically D4 (collapsing variance) and D6 (mode entanglement)---the features that degrade most rapidly in our experiments are precisely variance-based surprisal measures.\nKazdan et al.~\\cite{kazdan2025collapse} distinguished \\emph{replace} and \\emph{accumulate} regimes: in the replace regime each generation completely supplants its predecessor, producing faster collapse.\nOur prompt-chain protocol operates in the replace regime, so $\\Kempirical = 2$ is a conservative lower bound; the accumulate regime would yield slower degradation and higher $\\Kstar$.\nShi et al.~\\cite{shi2025generalization} identified a generalization-to-memorization transition in recursively trained models, providing cross-modal evidence that information loss is progressive.\nThese works characterize the macro dynamics of collapse but do not provide tools for per-text generational depth estimation.\n\n\\paragraph{Binary Synthetic Text Detection.}\nDistinguishing machine-generated from human-written text is a well-studied binary classification problem.\nEarly statistical approaches such as GLTR~\\cite{gehrmann2019gltr} visualized per-token likelihood ranks to help human annotators spot generated text, establishing that token-level distributional cues are informative for detection.\nZellers et al.~\\cite{zellers2019grover} demonstrated that the generating model itself is an effective detector, while Ippolito et al.~\\cite{ippolito2020detection} analyzed how detection difficulty scales with generation quality.\nRecent zero-shot methods have narrowed the gap: Mitchell et al.~\\cite{mitchell2023detectgpt} introduced DetectGPT, which uses probability curvature to detect machine-generated text without access to the generating model.\nHans et al.~\\cite{hans2024binoculars} proposed Binoculars, which computes the cross-perplexity ratio between two closely related language models to achieve near-perfect detection without any training data.\nDivEye~\\cite{basani2026diveye} uses surprisal diversity features to detect synthetic text without generator-specific training data, and Min-K\\%++~\\cite{zhang2024minkpp} adapts membership inference techniques to flag model-generated passages via outlier token likelihoods.\nCoDeC~\\cite{zawalski2026codec} frames contamination detection as in-context learning, calibrating thresholds from few-shot exemplars.\n\nAll these methods produce binary outputs and do not distinguish generational depth.\nThe connection to membership inference is instructive: Min-K\\%++ and related approaches test whether a text appeared in training data---a related but distinct question from how many recursive generation steps it has undergone.\nA further limitation is that binary detectors cannot separate beneficial recursive generation (e.g., self-refinement, where a model iteratively improves its own output) from harmful recursive contamination, creating systematic false positives when applied to curated synthetic data.\nBinary features are designed for the human-vs.-synthetic boundary and are not expected to capture fine-grained depth differences, as the distributional shift between adjacent generations is orders of magnitude smaller than the shift between human and first-generation text.\n\n\\paragraph{Ordinal Classification.}\nOrdinal regression methods exploit the natural ordering among class labels to improve generalization over nominal classifiers.\nCao et al.~\\cite{cao2020coral} introduced CORAL, which enforces rank consistency through weight sharing in the output layer, guaranteeing that predicted cumulative probabilities are monotonically non-increasing.\nOrdinal approaches have been applied in NLP tasks such as sentiment intensity prediction and essay scoring, where adjacent categories share more semantic overlap than distant ones.\nGenerational depth exhibits the same ordinal structure: text at depth~$k$ is distributionally closer to depth~$k\\!\\pm\\!1$ than to depth~$k\\!\\pm\\!3$, because each recursive generation step introduces an incremental distributional shift rather than a discontinuous one.\nDespite this natural fit, ordinal classification has not been applied to synthetic text depth estimation.\nOur Ordinal Boundary Detection (OBD) head leverages this ordered structure, yielding monotonic depth predictions and stronger calibration than a flat softmax baseline.\n\n\\paragraph{Data Selection and Curation.}\nPrincipled data selection methods improve training corpus quality through distribution matching and deduplication.\nDSIR~\\cite{xie2023dsir} selects pretraining data by importance resampling against a target distribution.\nD4~\\cite{tirumala2023d4} combines deduplication with diversification to reduce redundancy, and DoReMi~\\cite{xie2023doremi} learns domain weights via a proxy model to optimize downstream performance.\nThese methods operate on distributional properties of the corpus but do not estimate whether individual documents have undergone recursive generation.\n\nThe closest prior work is Drayson et al.~\\cite{drayson2025}, who combined binary machine-generated text detection with stratified importance resampling (SIR) to filter synthetic content and prevent model collapse.\nTheir approach is a special case of our graduated filtering framework: when $\\Kstar = 1$, ordinal depth estimation reduces to binary classification, and depth-aware curation degenerates to their SIR-based scheme.\nWe generalize this binary formulation to ordinal depth estimation, enabling finer-grained curation that preserves mildly contaminated text (depth~1, retaining most original signal) while removing deeply corrupted text (depth~$\\geq 3$).\nAmin et al.~\\cite{amin2025escaping} demonstrated that even weak quality signals suffice to escape model collapse when applied iteratively, suggesting that approximate depth estimates beyond $\\Kempirical$ may remain practically useful.\nGambetta et al.~\\cite{gambetta2025surplexity} proposed surplexity as a text quality metric correlated with generative degradation, though without explicit depth calibration.\n\n\\paragraph{Watermarking and Provenance.}\nAn alternative approach embeds identifiers at generation time.\nKirchenbauer et al.~\\cite{kirchenbauer2023watermark} proposed statistical watermarking for LLM outputs by partitioning the vocabulary into green and red token lists conditioned on preceding context.\nWatermarking is complementary to depth estimation: it requires control over the generation process and cooperation from providers, whereas our method operates post-hoc on unwatermarked text.\nThe two approaches address different threat models---watermarking assumes a cooperative generator, while depth estimation targets uncontrolled settings where provenance metadata is unavailable.",
+                "numLines": 54,
+                "startLine": 1,
+                "totalLines": 54
+              }
+            },
+            "sourceToolAssistantUUID": "c5be5145-f60f-4433-b6af-1942ae7520c8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T04:50:39.104Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also check the .bib file to see what references are already defined, and look for any neural probe section in the paper."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8719b8d4-8fd9-4b0a-87b1-fb8b8bbe7ea2",
+            "isSidechain": false,
+            "requestId": "req_011Cb1ro9eNzvVGL1cwBTjj9",
+            "type": "assistant",
+            "uuid": "57b20d6a-935a-4d68-90fe-c1fb210560c5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VMztuqWbZSz6JQTe8m5nkP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2007,
+                "cache_read_input_tokens": 23469,
+                "output_tokens": 247,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2007,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 247,
+                    "cache_read_input_tokens": 23469,
+                    "cache_creation_input_tokens": 2007,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2007
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T04:50:44.356Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GW9g85PRMju6umzZFLjoYu",
+              "name": "Agent",
+              "input": {
+                "subagent_type": "Explore",
+                "description": "Find bib and neural probe sections",
+                "prompt": "In the directory /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/, I need to:\n\n1. Find all .bib files and list their paths\n2. Search all .tex files for \"neural probe\" or \"probing\" or \"probe\" mentions to understand how the neural probe section is written\n3. Search for \"frozen\" mentions in .tex files (related to frozen LLM features)\n\nReport the file paths found and the relevant content snippets with line numbers."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "57b20d6a-935a-4d68-90fe-c1fb210560c5",
+            "isSidechain": false,
+            "requestId": "req_011Cb1ro9eNzvVGL1cwBTjj9",
+            "type": "assistant",
+            "uuid": "1ba15b81-afde-425a-a54d-43f3f4a66a38",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VMztuqWbZSz6JQTe8m5nkP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2007,
+                "cache_read_input_tokens": 23469,
+                "output_tokens": 247,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2007,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 247,
+                    "cache_read_input_tokens": 23469,
+                    "cache_creation_input_tokens": 2007,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2007
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "1ba15b81-afde-425a-a54d-43f3f4a66a38",
+                "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055"
+              }
+            }
+          ],
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Audit related work coverage for gen-depth paper",
+                "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055"
+              }
+            }
+          ],
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T04:51:04.498Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GW9g85PRMju6umzZFLjoYu",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "## Summary of Findings\n\n### 1. Bibliography Files Found\n\n**Single .bib file:**\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib`\n\nThis file contains 23 references organized into two categories: \"Must-Cite\" (5 papers on model collapse and synthetic data) and \"Should-Cite\" (18 papers covering data contamination detection, LLM training, and synthetic text detection).\n\n---\n\n### 2. Neural Probe / Probing Mentions in .tex Files\n\n**Key Results: 13 matches across 2 files**\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex`**\n\n- **Line 29:** \"Preliminary evidence from a neural probing experiment supports this distinction.\"\n\n- **Line 30:** \"A frozen Qwen2.5-1.5B encoder (1536-dimensional last-layer representations) paired with a lightweight MLP classifier achieves 2v3 $\\auc = 0.6195$ ($\\text{std} = 0.0094$) on the Qwen-continuation dataset...\"\n\n- **Line 32:** \"The improvement is concentrated at the 2v3 pair ($+$5.86\\,pp over LightGBM); at the already-separable 1v2 boundary the neural probe achieves 0.6983 versus 0.6114...\"\n\n- **Line 33:** \"At 3v4, the neural probe reaches $\\auc = 0.5930$---below $\\theta$ but closer to the threshold than any hand-crafted configuration...\"\n\n- **Line 34:** \"The lossy-channel narrative remains intact: even with 1536-dimensional frozen representations, the discriminable depth horizon extends to only three steps...\"\n\n- **Line 117:** \"This narrow margin means that small changes in the feature set or classifier could shift the boundary---as the neural probe results confirm...\"\n\n- **Line 123:** \"Preliminary neural probing results provide direct evidence for this gap: on the Qwen-continuation dataset, a frozen-encoder MLP achieves $\\Kempirical^{\\text{neural}} = 3$...\"\n\n- **Line 125:** \"However, the neural probe result rests on a single dataset and awaits cross-model validation and bootstrap confidence intervals...\"\n\n- **Line 129:** \"A preliminary neural probing experiment demonstrates that frozen LLM embeddings (1536 dimensions) paired with a lightweight MLP push $\\Kempirical$ from~2 to~3...\"\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/conclusion.tex`**\n\n- **Line 45:** \"A preliminary neural probing experiment suggests that this operational bound is not tight: a frozen Qwen2.5-1.5B encoder paired with an MLP classifier achieves $\\Kempirical^{\\text{neural}} = 3$ on the Qwen-continuation dataset...\"\n\n---\n\n### 3. Frozen Mentions in .tex Files\n\n**Key Results: 4 matches across 2 files**\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/conclusion.tex`**\n\n- **Line 45:** \"a frozen Qwen2.5-1.5B encoder paired with an MLP classifier achieves...\"\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex`**\n\n- **Line 30:** \"A frozen Qwen2.5-1.5B encoder (1536-dimensional last-layer representations) paired with a lightweight MLP classifier...\"\n\n- **Line 34:** \"...even with 1536-dimensional frozen representations, the discriminable depth horizon extends to only three steps...\"\n\n- **Line 123:** \"...a frozen-encoder MLP achieves $\\Kempirical^{\\text{neural}} = 3$ (2v3 $\\auc = 0.6195$)...\"\n\n---\n\n### Pattern Summary\n\nThe neural probe section is primarily in the **discussion.tex** file (lines 29-35, 117, 123-125, 129-131) and briefly in **conclusion.tex** (line 45). The approach uses a frozen Qwen2.5-1.5B encoder with learned 1536-dimensional embeddings paired with a lightweight MLP classifier to validate that learned representations can recover one additional discriminable depth boundary (pushing Kempirical from 2 to 3) beyond what the 15-dimensional hand-crafted features achieve."
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1ba15b81-afde-425a-a54d-43f3f4a66a38",
+            "isSidechain": false,
+            "promptId": "c4fe323e-7c65-473f-97f1-27a722c18c99",
+            "type": "user",
+            "uuid": "4dee92dc-4722-48ed-90df-aed7c4b765d4",
+            "toolUseResult": {
+              "status": "completed",
+              "prompt": "In the directory /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/, I need to:\n\n1. Find all .bib files and list their paths\n2. Search all .tex files for \"neural probe\" or \"probing\" or \"probe\" mentions to understand how the neural probe section is written\n3. Search for \"frozen\" mentions in .tex files (related to frozen LLM features)\n\nReport the file paths found and the relevant content snippets with line numbers.",
+              "agentId": "a85f2f198f8b7192f",
+              "agentType": "Explore",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "## Summary of Findings\n\n### 1. Bibliography Files Found\n\n**Single .bib file:**\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib`\n\nThis file contains 23 references organized into two categories: \"Must-Cite\" (5 papers on model collapse and synthetic data) and \"Should-Cite\" (18 papers covering data contamination detection, LLM training, and synthetic text detection).\n\n---\n\n### 2. Neural Probe / Probing Mentions in .tex Files\n\n**Key Results: 13 matches across 2 files**\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex`**\n\n- **Line 29:** \"Preliminary evidence from a neural probing experiment supports this distinction.\"\n\n- **Line 30:** \"A frozen Qwen2.5-1.5B encoder (1536-dimensional last-layer representations) paired with a lightweight MLP classifier achieves 2v3 $\\auc = 0.6195$ ($\\text{std} = 0.0094$) on the Qwen-continuation dataset...\"\n\n- **Line 32:** \"The improvement is concentrated at the 2v3 pair ($+$5.86\\,pp over LightGBM); at the already-separable 1v2 boundary the neural probe achieves 0.6983 versus 0.6114...\"\n\n- **Line 33:** \"At 3v4, the neural probe reaches $\\auc = 0.5930$---below $\\theta$ but closer to the threshold than any hand-crafted configuration...\"\n\n- **Line 34:** \"The lossy-channel narrative remains intact: even with 1536-dimensional frozen representations, the discriminable depth horizon extends to only three steps...\"\n\n- **Line 117:** \"This narrow margin means that small changes in the feature set or classifier could shift the boundary---as the neural probe results confirm...\"\n\n- **Line 123:** \"Preliminary neural probing results provide direct evidence for this gap: on the Qwen-continuation dataset, a frozen-encoder MLP achieves $\\Kempirical^{\\text{neural}} = 3$...\"\n\n- **Line 125:** \"However, the neural probe result rests on a single dataset and awaits cross-model validation and bootstrap confidence intervals...\"\n\n- **Line 129:** \"A preliminary neural probing experiment demonstrates that frozen LLM embeddings (1536 dimensions) paired with a lightweight MLP push $\\Kempirical$ from~2 to~3...\"\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/conclusion.tex`**\n\n- **Line 45:** \"A preliminary neural probing experiment suggests that this operational bound is not tight: a frozen Qwen2.5-1.5B encoder paired with an MLP classifier achieves $\\Kempirical^{\\text{neural}} = 3$ on the Qwen-continuation dataset...\"\n\n---\n\n### 3. Frozen Mentions in .tex Files\n\n**Key Results: 4 matches across 2 files**\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/conclusion.tex`**\n\n- **Line 45:** \"a frozen Qwen2.5-1.5B encoder paired with an MLP classifier achieves...\"\n\n**File: `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex`**\n\n- **Line 30:** \"A frozen Qwen2.5-1.5B encoder (1536-dimensional last-layer representations) paired with a lightweight MLP classifier...\"\n\n- **Line 34:** \"...even with 1536-dimensional frozen representations, the discriminable depth horizon extends to only three steps...\"\n\n- **Line 123:** \"...a frozen-encoder MLP achieves $\\Kempirical^{\\text{neural}} = 3$ (2v3 $\\auc = 0.6195$)...\"\n\n---\n\n### Pattern Summary\n\nThe neural probe section is primarily in the **discussion.tex** file (lines 29-35, 117, 123-125, 129-131) and briefly in **conclusion.tex** (line 45). The approach uses a frozen Qwen2.5-1.5B encoder with learned 1536-dimensional embeddings paired with a lightweight MLP classifier to validate that learned representations can recover one additional discriminable depth boundary (pushing Kempirical from 2 to 3) beyond what the 15-dimensional hand-crafted features achieve."
+                }
+              ],
+              "totalDurationMs": 20134,
+              "totalTokens": 27727,
+              "totalToolUseCount": 5,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 2960,
+                "cache_read_input_tokens": 23634,
+                "output_tokens": 1127,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2960
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 1127,
+                    "cache_read_input_tokens": 23634,
+                    "cache_creation_input_tokens": 2960,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2960,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 1,
+                "searchCount": 4,
+                "bashCount": 0,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 0
+              }
+            },
+            "sourceToolAssistantUUID": "1ba15b81-afde-425a-a54d-43f3f4a66a38",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T04:51:08.507Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015ACG7KYfJXr33PAGgGvi1M",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4dee92dc-4722-48ed-90df-aed7c4b765d4",
+            "isSidechain": false,
+            "requestId": "req_011Cb1rqKifuDwt39U9MJd1p",
+            "type": "assistant",
+            "uuid": "cc733101-ec85-4d4c-b4bb-decd6609b9c3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018SFKwF392Xh5RWo4PZcz2e",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1382,
+                "cache_read_input_tokens": 25476,
+                "output_tokens": 89,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1382,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 89,
+                    "cache_read_input_tokens": 25476,
+                    "cache_creation_input_tokens": 1382,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1382
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T04:51:08.546Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015ACG7KYfJXr33PAGgGvi1M",
+              "type": "tool_result",
+              "content": "1\t% === References for gen-depth-contamination ===\n2\t% Source: literature_map.yaml — verified 2026-05-14\n3\t\n4\t% === Must-Cite ===\n5\t\n6\t@inproceedings{drayson2025,\n7\t  title={Machine-Generated Text Detection Prevents Language Model Collapse},\n8\t  author={Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n9\t  booktitle={Proceedings of EMNLP},\n10\t  year={2025},\n11\t  url={https://arxiv.org/abs/2502.15654}\n12\t}\n13\t\n14\t@inproceedings{schaeffer2025position,\n15\t  title={Position: Model Collapse Does Not Mean What You Think},\n16\t  author={Schaeffer, Rylan and Kazdan, Joshua and Arulandu, Anirudh and Koyejo, Sanmi},\n17\t  booktitle={Proceedings of ICML},\n18\t  year={2025},\n19\t  url={https://arxiv.org/abs/2503.03150}\n20\t}\n21\t\n22\t@inproceedings{kazdan2025collapse,\n23\t  title={Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World},\n24\t  author={Kazdan, Joshua and Schaeffer, Rylan and Dey, Apratim and Gerstgrasser, Matthias and Rafailov, Rafael and Donoho, David and Koyejo, Sanmi},\n25\t  booktitle={Proceedings of ICML},\n26\t  year={2025},\n27\t  url={https://arxiv.org/abs/2410.16713}\n28\t}\n29\t\n30\t@inproceedings{shi2025generalization,\n31\t  title={A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective},\n32\t  author={Shi, Lianghe and Wu, Meng and Zhang, Huijie and Zhang, Zekai and Tao, Molei and Qu, Qing},\n33\t  booktitle={Advances in NeurIPS},\n34\t  year={2025},\n35\t  note={Spotlight},\n36\t  url={https://arxiv.org/abs/2509.16499}\n37\t}\n38\t\n39\t@inproceedings{mitchell2023detectgpt,\n40\t  title={{DetectGPT}: Zero-Shot Machine-Generated Text Detection using Probability Curvature},\n41\t  author={Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n42\t  booktitle={Proceedings of ICML},\n43\t  year={2023}\n44\t}\n45\t\n46\t% === Should-Cite ===\n47\t\n48\t@article{basani2026diveye,\n49\t  title={{DivEye}: Diversity Boosts {AI}-Generated Text Detection},\n50\t  author={Basani, Advik Raj and Chen, Pin-Yu},\n51\t  journal={Transactions on Machine Learning Research},\n52\t  year={2026},\n53\t  url={https://arxiv.org/abs/2509.18880}\n54\t}\n55\t\n56\t@inproceedings{amin2025escaping,\n57\t  title={Escaping Collapse: The Strength of Weak Data for Large Language Model Training},\n58\t  author={Amin, Kareem and Babakniya, Sara and Bie, Alex and Kong, Weiwei and Syed, Umar and Vassilvitskii, Sergei},\n59\t  booktitle={Advances in NeurIPS},\n60\t  year={2025},\n61\t  url={https://arxiv.org/abs/2502.08924}\n62\t}\n63\t\n64\t@inproceedings{zawalski2026codec,\n65\t  title={{CoDeC}: Detecting Data Contamination in {LLM}s via In-Context Learning},\n66\t  author={Zawalski, Micha{\\l} and Boubdir, Meriem and Ba{\\l}azy, Klaudia and Nushi, Besmira and Ribalta, Pablo},\n67\t  booktitle={Proceedings of ICLR},\n68\t  year={2026},\n69\t  url={https://arxiv.org/abs/2510.27055}\n70\t}\n71\t\n72\t@article{gambetta2025surplexity,\n73\t  title={Learning by Surprise: Surplexity for Mitigating Model Collapse},\n74\t  author={Gambetta, Daniele and Gezici, Gizem and Giannotti, Fosca and Pedreschi, Dino and Knott, Alistair and Pappalardo, Luca},\n75\t  journal={arXiv preprint arXiv:2410.12341},\n76\t  year={2025},\n77\t  url={https://arxiv.org/abs/2410.12341}\n78\t}\n79\t\n80\t@inproceedings{zhang2024minkpp,\n81\t  title={Min-{K}\\%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models},\n82\t  author={Zhang, Jingyang and Zheng, Jingwei and Gao, Jing and Miao, Chunyan},\n83\t  booktitle={Proceedings of EMNLP},\n84\t  year={2024}\n85\t}\n86\t\n87\t@article{shumailov2024collapse,\n88\t  title={{AI} Models Collapse When Trained on Recursively Generated Data},\n89\t  author={Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n90\t  journal={Nature},\n91\t  year={2024}\n92\t}\n93\t\n94\t@inproceedings{alemohammad2024selfconsuming,\n95\t  title={Self-Consuming Generative Models Go {MAD}},\n96\t  author={Alemohammad, Sina and Casco-Rodriguez, Josue and Luber, Lorenzo and Babaei, Ahmed Imtiaz and Letizia, Daniel and Bastani, Osbert and Baraniuk, Richard},\n97\t  booktitle={Proceedings of ICLR},\n98\t  year={2024}\n99\t}\n100\t\n101\t@inproceedings{dohmatob2024model,\n102\t  title={A Tale of Tails: Model Collapse as a Change of Scaling Laws},\n103\t  author={Dohmatob, Elvis and Feng, Yunzhen and Yang, Pin-Yu and Charton, Francois and Kempe, Julia},\n104\t  booktitle={Proceedings of ICML},\n105\t  year={2024}\n106\t}\n107\t\n108\t@inproceedings{xie2023dsir,\n109\t  title={Data Selection with Importance Resampling},\n110\t  author={Xie, Sang Michael and Santurkar, Shibani and Ma, Tengyu and Liang, Percy},\n111\t  booktitle={Proceedings of ICML},\n112\t  year={2023}\n113\t}\n114\t\n115\t@inproceedings{tirumala2023d4,\n116\t  title={{D4}: Improving {LLM} Pretraining via Document De-Duplication and Diversification},\n117\t  author={Tirumala, Kushal and Markosyan, Aram and Zettlemoyer, Luke and Aghajanyan, Armen},\n118\t  booktitle={Advances in NeurIPS},\n119\t  year={2023}\n120\t}\n121\t\n122\t@inproceedings{xie2023doremi,\n123\t  title={{DoReMi}: Optimizing Data Mixtures Speeds Up Language Model Pretraining},\n124\t  author={Xie, Sang Michael and Pham, Hieu and Dong, Xuanyi and Du, Nan and Liu, Hanxiao and Lu, Yifeng and Liang, Percy and Le, Quoc V. and Ma, Tengyu and Yu, Adams Wei},\n125\t  booktitle={Advances in NeurIPS},\n126\t  year={2023}\n127\t}\n128\t\n129\t@inproceedings{kirchenbauer2023watermark,\n130\t  title={A Watermark for Large Language Models},\n131\t  author={Kirchenbauer, John and Geiping, Jonas and Wen, Yuxin and Katz, Jonathan and Miers, Ian and Goldstein, Tom},\n132\t  booktitle={Proceedings of ICML},\n133\t  year={2023}\n134\t}\n135\t\n136\t@inproceedings{gehrmann2019gltr,\n137\t  title={{GLTR}: Statistical Detection and Visualization of Generated Text},\n138\t  author={Gehrmann, Sebastian and Strobelt, Hendrik and Rush, Alexander M.},\n139\t  booktitle={Proceedings of ACL: System Demonstrations},\n140\t  year={2019}\n141\t}\n142\t\n143\t@inproceedings{hans2024binoculars,\n144\t  title={Spotting {LLMs} With Binoculars},\n145\t  author={Hans, Abhimanyu and Schwarzschild, Avi and Cherepanova, Valeriia and Kazemi, Hamid and Saha, Aniruddha and Goldblum, Micah and Geiping, Jonas and Goldstein, Tom},\n146\t  booktitle={Proceedings of ICML},\n147\t  year={2024}\n148\t}\n149\t\n150\t@article{cao2020coral,\n151\t  title={Rank consistent ordinal regression for neural networks with application to age estimation},\n152\t  author={Cao, Wenzhi and Mirjalili, Vahid and Raschka, Sebastian},\n153\t  journal={Pattern Recognition Letters},\n154\t  volume={140},\n155\t  pages={325--331},\n156\t  year={2020}\n157\t}\n158\t\n159\t@inproceedings{zellers2019grover,\n160\t  title={Defending Against Neural Fake News},\n161\t  author={Zellers, Rowan and Holtzman, Ari and Rashkin, Hannah and Bisk, Yonatan and Farhadi, Ali and Roesner, Franziska and Choi, Yejin},\n162\t  booktitle={Advances in NeurIPS},\n163\t  year={2019}\n164\t}\n165\t\n166\t@inproceedings{ippolito2020detection,\n167\t  title={Automatic Detection of Generated Text is Easiest when Humans are Fooled},\n168\t  author={Ippolito, Daphne and Duckworth, Daniel and Callison-Burch, Chris and Eck, Douglas},\n169\t  booktitle={Proceedings of ACL},\n170\t  year={2020}\n171\t}\n172\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cc733101-ec85-4d4c-b4bb-decd6609b9c3",
+            "isSidechain": false,
+            "promptId": "c4fe323e-7c65-473f-97f1-27a722c18c99",
+            "type": "user",
+            "uuid": "3b5173ef-0563-447b-aac7-81684f51f2f7",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib",
+                "content": "% === References for gen-depth-contamination ===\n% Source: literature_map.yaml — verified 2026-05-14\n\n% === Must-Cite ===\n\n@inproceedings{drayson2025,\n  title={Machine-Generated Text Detection Prevents Language Model Collapse},\n  author={Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n  booktitle={Proceedings of EMNLP},\n  year={2025},\n  url={https://arxiv.org/abs/2502.15654}\n}\n\n@inproceedings{schaeffer2025position,\n  title={Position: Model Collapse Does Not Mean What You Think},\n  author={Schaeffer, Rylan and Kazdan, Joshua and Arulandu, Anirudh and Koyejo, Sanmi},\n  booktitle={Proceedings of ICML},\n  year={2025},\n  url={https://arxiv.org/abs/2503.03150}\n}\n\n@inproceedings{kazdan2025collapse,\n  title={Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World},\n  author={Kazdan, Joshua and Schaeffer, Rylan and Dey, Apratim and Gerstgrasser, Matthias and Rafailov, Rafael and Donoho, David and Koyejo, Sanmi},\n  booktitle={Proceedings of ICML},\n  year={2025},\n  url={https://arxiv.org/abs/2410.16713}\n}\n\n@inproceedings{shi2025generalization,\n  title={A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective},\n  author={Shi, Lianghe and Wu, Meng and Zhang, Huijie and Zhang, Zekai and Tao, Molei and Qu, Qing},\n  booktitle={Advances in NeurIPS},\n  year={2025},\n  note={Spotlight},\n  url={https://arxiv.org/abs/2509.16499}\n}\n\n@inproceedings{mitchell2023detectgpt,\n  title={{DetectGPT}: Zero-Shot Machine-Generated Text Detection using Probability Curvature},\n  author={Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n  booktitle={Proceedings of ICML},\n  year={2023}\n}\n\n% === Should-Cite ===\n\n@article{basani2026diveye,\n  title={{DivEye}: Diversity Boosts {AI}-Generated Text Detection},\n  author={Basani, Advik Raj and Chen, Pin-Yu},\n  journal={Transactions on Machine Learning Research},\n  year={2026},\n  url={https://arxiv.org/abs/2509.18880}\n}\n\n@inproceedings{amin2025escaping,\n  title={Escaping Collapse: The Strength of Weak Data for Large Language Model Training},\n  author={Amin, Kareem and Babakniya, Sara and Bie, Alex and Kong, Weiwei and Syed, Umar and Vassilvitskii, Sergei},\n  booktitle={Advances in NeurIPS},\n  year={2025},\n  url={https://arxiv.org/abs/2502.08924}\n}\n\n@inproceedings{zawalski2026codec,\n  title={{CoDeC}: Detecting Data Contamination in {LLM}s via In-Context Learning},\n  author={Zawalski, Micha{\\l} and Boubdir, Meriem and Ba{\\l}azy, Klaudia and Nushi, Besmira and Ribalta, Pablo},\n  booktitle={Proceedings of ICLR},\n  year={2026},\n  url={https://arxiv.org/abs/2510.27055}\n}\n\n@article{gambetta2025surplexity,\n  title={Learning by Surprise: Surplexity for Mitigating Model Collapse},\n  author={Gambetta, Daniele and Gezici, Gizem and Giannotti, Fosca and Pedreschi, Dino and Knott, Alistair and Pappalardo, Luca},\n  journal={arXiv preprint arXiv:2410.12341},\n  year={2025},\n  url={https://arxiv.org/abs/2410.12341}\n}\n\n@inproceedings{zhang2024minkpp,\n  title={Min-{K}\\%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models},\n  author={Zhang, Jingyang and Zheng, Jingwei and Gao, Jing and Miao, Chunyan},\n  booktitle={Proceedings of EMNLP},\n  year={2024}\n}\n\n@article{shumailov2024collapse,\n  title={{AI} Models Collapse When Trained on Recursively Generated Data},\n  author={Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n  journal={Nature},\n  year={2024}\n}\n\n@inproceedings{alemohammad2024selfconsuming,\n  title={Self-Consuming Generative Models Go {MAD}},\n  author={Alemohammad, Sina and Casco-Rodriguez, Josue and Luber, Lorenzo and Babaei, Ahmed Imtiaz and Letizia, Daniel and Bastani, Osbert and Baraniuk, Richard},\n  booktitle={Proceedings of ICLR},\n  year={2024}\n}\n\n@inproceedings{dohmatob2024model,\n  title={A Tale of Tails: Model Collapse as a Change of Scaling Laws},\n  author={Dohmatob, Elvis and Feng, Yunzhen and Yang, Pin-Yu and Charton, Francois and Kempe, Julia},\n  booktitle={Proceedings of ICML},\n  year={2024}\n}\n\n@inproceedings{xie2023dsir,\n  title={Data Selection with Importance Resampling},\n  author={Xie, Sang Michael and Santurkar, Shibani and Ma, Tengyu and Liang, Percy},\n  booktitle={Proceedings of ICML},\n  year={2023}\n}\n\n@inproceedings{tirumala2023d4,\n  title={{D4}: Improving {LLM} Pretraining via Document De-Duplication and Diversification},\n  author={Tirumala, Kushal and Markosyan, Aram and Zettlemoyer, Luke and Aghajanyan, Armen},\n  booktitle={Advances in NeurIPS},\n  year={2023}\n}\n\n@inproceedings{xie2023doremi,\n  title={{DoReMi}: Optimizing Data Mixtures Speeds Up Language Model Pretraining},\n  author={Xie, Sang Michael and Pham, Hieu and Dong, Xuanyi and Du, Nan and Liu, Hanxiao and Lu, Yifeng and Liang, Percy and Le, Quoc V. and Ma, Tengyu and Yu, Adams Wei},\n  booktitle={Advances in NeurIPS},\n  year={2023}\n}\n\n@inproceedings{kirchenbauer2023watermark,\n  title={A Watermark for Large Language Models},\n  author={Kirchenbauer, John and Geiping, Jonas and Wen, Yuxin and Katz, Jonathan and Miers, Ian and Goldstein, Tom},\n  booktitle={Proceedings of ICML},\n  year={2023}\n}\n\n@inproceedings{gehrmann2019gltr,\n  title={{GLTR}: Statistical Detection and Visualization of Generated Text},\n  author={Gehrmann, Sebastian and Strobelt, Hendrik and Rush, Alexander M.},\n  booktitle={Proceedings of ACL: System Demonstrations},\n  year={2019}\n}\n\n@inproceedings{hans2024binoculars,\n  title={Spotting {LLMs} With Binoculars},\n  author={Hans, Abhimanyu and Schwarzschild, Avi and Cherepanova, Valeriia and Kazemi, Hamid and Saha, Aniruddha and Goldblum, Micah and Geiping, Jonas and Goldstein, Tom},\n  booktitle={Proceedings of ICML},\n  year={2024}\n}\n\n@article{cao2020coral,\n  title={Rank consistent ordinal regression for neural networks with application to age estimation},\n  author={Cao, Wenzhi and Mirjalili, Vahid and Raschka, Sebastian},\n  journal={Pattern Recognition Letters},\n  volume={140},\n  pages={325--331},\n  year={2020}\n}\n\n@inproceedings{zellers2019grover,\n  title={Defending Against Neural Fake News},\n  author={Zellers, Rowan and Holtzman, Ari and Rashkin, Hannah and Bisk, Yonatan and Farhadi, Ali and Roesner, Franziska and Choi, Yejin},\n  booktitle={Advances in NeurIPS},\n  year={2019}\n}\n\n@inproceedings{ippolito2020detection,\n  title={Automatic Detection of Generated Text is Easiest when Humans are Fooled},\n  author={Ippolito, Daphne and Duckworth, Daniel and Callison-Burch, Chris and Eck, Douglas},\n  booktitle={Proceedings of ACL},\n  year={2020}\n}\n",
+                "numLines": 172,
+                "startLine": 1,
+                "totalLines": 172
+              }
+            },
+            "sourceToolAssistantUUID": "cc733101-ec85-4d4c-b4bb-decd6609b9c3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T04:51:34.740Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a complete picture of what's in the related work and what references exist. Let me now create the audit document. Let me analyze each category:\n\n**a) Model collapse 文献覆盖（2024-2025）**：\n- Shumailov et al. (2024, Nature) — ✅ covered (line 6)\n- Alemohammad et al. (2024) — ✅ covered (line 7)\n- Dohmatob et al. (2024) — ✅ covered (line 8)\n- Schaeffer et al. (2025) — ✅ covered (line 9-10)\n\n\n- Drayson et al. (2025) — ✅ covered (line 44)\n- Kazdan et al. (2025) — ✅ covered (line 11)\n- Shi et al. (2025) — ✅ covered (line 13)\n- Amin et al. (2025) — ✅ covered (line 47)\n- Gambetta et al. (2025) — ✅ covered (line 48)\n\nI notice there's a gap with Gerstgrasser et al. (2024) on the theoretical conditions for model collapse, which seems like an important piece to include.\n\nLooking at the data selection and curation methods, I've got DSIR, D4, and DoReMi covered, but FineWeb and DataComp aren't mentioned yet. I'm also checking what's needed for binary AI text detection approaches, starting with DivEye. I'm noticing some gaps in the detection methods coverage — Fast-DetectGPT, GPTZero, and Ghostbuster aren't mentioned yet. I should also check the neural probing section since the paper discusses it but doesn't cite key work like Conneau's embedding probing, structural probes, or probing classifier surveys. The ordinal classification methods like CORAL appear to be covered, but I need to verify the full list.\n\nThere are a few other areas worth flagging: multi-class AI text attribution (beyond binary detection), and self-refinement literature like Madaan et al.'s work, which connects to the paper's discussion of distinguishing beneficial recursive generation from contamination. Now I'll compile the audit document.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3b5173ef-0563-447b-aac7-81684f51f2f7",
+            "isSidechain": false,
+            "requestId": "req_011Cb1rqd6SMwCfYWeFNvmr9",
+            "type": "assistant",
+            "uuid": "9318fb54-da02-48b6-aac9-cd72c8272474",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018Dkgku4vLpXXzRwf2U8ut9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2943,
+                "cache_read_input_tokens": 26858,
+                "output_tokens": 1279,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2943,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1279,
+                    "cache_read_input_tokens": 26858,
+                    "cache_creation_input_tokens": 2943,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2943
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T04:51:34.742Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check if the artifacts/drafts directory exists."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9318fb54-da02-48b6-aac9-cd72c8272474",
+            "isSidechain": false,
+            "requestId": "req_011Cb1rqd6SMwCfYWeFNvmr9",
+            "type": "assistant",
+            "uuid": "1d7d657a-e486-4626-a70b-159f8f158f2c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018Dkgku4vLpXXzRwf2U8ut9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2943,
+                "cache_read_input_tokens": 26858,
+                "output_tokens": 1279,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2943,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1279,
+                    "cache_read_input_tokens": 26858,
+                    "cache_creation_input_tokens": 2943,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2943
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T04:51:36.423Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RhWY8a7Q1Vo8HooyovY7jQ",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/drafts/ 2>/dev/null || echo \"DIR_NOT_FOUND\"",
+                "description": "Check if drafts directory exists"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1d7d657a-e486-4626-a70b-159f8f158f2c",
+            "isSidechain": false,
+            "requestId": "req_011Cb1rqd6SMwCfYWeFNvmr9",
+            "type": "assistant",
+            "uuid": "9f056c39-1413-4471-8556-e8f28cf4f389",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018Dkgku4vLpXXzRwf2U8ut9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2943,
+                "cache_read_input_tokens": 26858,
+                "output_tokens": 1279,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2943,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1279,
+                    "cache_read_input_tokens": 26858,
+                    "cache_creation_input_tokens": 2943,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2943
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "9f056c39-1413-4471-8556-e8f28cf4f389",
+                "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055"
+              }
+            }
+          ],
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Audit related work coverage for gen-depth paper",
+                "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055"
+              }
+            }
+          ],
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T04:51:36.615Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RhWY8a7Q1Vo8HooyovY7jQ",
+              "type": "tool_result",
+              "content": "discussion_v2.md\nneural_probe_section.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9f056c39-1413-4471-8556-e8f28cf4f389",
+            "isSidechain": false,
+            "promptId": "c4fe323e-7c65-473f-97f1-27a722c18c99",
+            "type": "user",
+            "uuid": "e0be0870-2301-465c-822c-a050557e6e5f",
+            "toolUseResult": {
+              "stdout": "discussion_v2.md\nneural_probe_section.md",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "9f056c39-1413-4471-8556-e8f28cf4f389",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T04:52:38.983Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016km5BCwJF2FYEYxhtMg4k3",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/drafts/related_work_audit.md",
+                "content": "# Related Work 完整性审查\n\n审查日期: 2026-05-14\n审查范围: `related_work.tex` (54行, 5个段落)\n\n---\n\n## 已覆盖\n\n### Model Collapse and Recursive Generation\n- Shumailov et al. (2024, Nature): line 6, tail-distribution degradation\n- Alemohammad et al. (2024, ICLR): line 7, self-consuming models, fixed point convergence\n- Dohmatob et al. (2024, ICML): line 8, scaling laws for tail loss\n- Schaeffer et al. (2025, ICML): line 9-10, 8-definition taxonomy, K* 与 Family B 对齐\n- Kazdan et al. (2025, ICML): line 11-12, replace vs accumulate regimes\n- Shi et al. (2025, NeurIPS Spotlight): line 13, generalization-to-memorization transition\n- Amin et al. (2025, NeurIPS): line 47, weak signals suffice to escape collapse\n- Gambetta et al. (2025): line 48, surplexity metric\n\n### Binary Synthetic Text Detection\n- GLTR (Gehrmann et al. 2019): line 18, token-level likelihood visualization\n- Grover (Zellers et al. 2019): line 19, generator-as-detector\n- Ippolito et al. (2020): line 19, detection difficulty vs generation quality\n- DetectGPT (Mitchell et al. 2023): line 20, probability curvature\n- Binoculars (Hans et al. 2024): line 21, cross-perplexity ratio\n- DivEye (Basani et al. 2026): line 22, surprisal diversity\n- Min-K%++ (Zhang et al. 2024): line 22, outlier token likelihoods\n- CoDeC (Zawalski et al. 2026): line 23, in-context learning contamination detection\n\n### Ordinal Classification\n- CORAL (Cao et al. 2020): line 32-33, rank-consistent ordinal regression\n\n### Data Selection and Curation\n- DSIR (Xie et al. 2023): line 40, importance resampling\n- D4 (Tirumala et al. 2023): line 41, deduplication + diversification\n- DoReMi (Xie et al. 2023): line 41, domain weight optimization\n- Drayson et al. (2025): line 44-46, binary detection + SIR (positioned as special case of our framework)\n\n### Watermarking\n- Kirchenbauer et al. (2023): line 52-53, statistical watermarking\n\n---\n\n## 需要补充\n\n### 1. [高优先] Probing Classifiers 文献 — 支撑 Neural Probe 实验\n\n**Gap**: discussion.tex (lines 29-35, 123-129) 和 conclusion.tex (line 45) 大量讨论 frozen-encoder + MLP probe 实验，但 Related Work 中完全没有 probing classifiers 的文献支撑。审稿人会质疑方法选择的依据。\n\n**建议**: 在 Ordinal Classification 段落之后新增一个段落，或在 Ordinal Classification 段末追加 2-3 句。\n\n**需要引用**:\n- Alain & Bengio (2017), \"Understanding intermediate layers using linear classifier probes\" — 提出用线性探针分析网络中间表征，是 frozen-encoder probing 的方法论基础\n- Conneau et al. (2018), \"What you can cram into a single $&!#* vector: Probing sentence embeddings for linguistic properties\" (ACL) — 系统研究 sentence embedding 编码了哪些语言学属性\n- Belinkov (2022), \"Probing Classifiers: Promises, Shortcomings, and Advances\" (CL) — probing 方法的综述，讨论了 probe 复杂度与结论有效性的权衡\n\n**建议文本**:\n\n> \\paragraph{Probing Classifiers.}\n> Linear and shallow MLP probes have become a standard tool for analyzing what information is encoded in pretrained representations~\\cite{alain2017understanding,conneau2018probing}.\n> Belinkov~\\cite{belinkov2022probing} surveys the methodology and cautions that probe complexity must be controlled to ensure that performance reflects representational content rather than probe capacity.\n> Our neural probe experiment follows this protocol: a two-layer MLP on frozen Qwen2.5-1.5B embeddings, where the probe's limited capacity ensures that discriminability reflects information present in the representations rather than learned de novo.\n\n### 2. [中优先] Fast-DetectGPT — Binary Detection 段落补充\n\n**Gap**: DetectGPT 已引用，但其改进版 Fast-DetectGPT 在 2024 年成为 zero-shot 检测的新 SOTA，被广泛引用。\n\n**建议**: 在 line 20 (DetectGPT 之后) 追加一句。\n\n**需要引用**:\n- Bao et al. (2024), \"Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature\" (ICLR 2024)\n\n**建议文本**: 在 Mitchell et al. 句后加:\n\n> Bao et al.~\\cite{bao2024fastdetectgpt} improved efficiency by replacing perturbation sampling with conditional probability curvature, achieving comparable accuracy with orders-of-magnitude speedup.\n\n### 3. [中优先] Gerstgrasser et al. (2024) — Model Collapse 理论补充\n\n**Gap**: 现有 model collapse 覆盖全面，但缺少 Gerstgrasser et al. 关于 collapse 可避免条件的理论分析。该工作与本文的 data curation 动机直接相关——他们证明保留足够的原始数据可以避免 collapse，本文的 depth-aware filtering 正是实现这一点的工具。\n\n**建议**: 在 line 13 (Shi et al.) 之后追加一句。\n\n**需要引用**:\n- Gerstgrasser et al. (2024), \"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data\" (arXiv 2404.01413)\n\n**建议文本**:\n\n> Gerstgrasser et al.~\\cite{gerstgrasser2024inevitable} proved that collapse is avoidable when sufficient original data is retained alongside synthetic samples, a condition that depth-aware curation can enforce by construction.\n\n### 4. [低-中优先] Ordinal Classification 补充\n\n**Gap**: 仅引用 CORAL 一篇。Ordinal classification 是本文方法的核心组件（OBD head），仅一篇引用显得单薄。\n\n**建议**: 在 CORAL 引用后追加 1-2 篇经典方法。\n\n**需要引用**:\n- Frank & Hall (2001), \"A Simple Approach to Ordinal Classification\" (ECML) — 将 ordinal 问题分解为一系列二分类的开创性工作，与 OBD head 的 boundary detection 思路直接对应\n- Diaz & Marathe (2019), \"Soft Labels for Ordinal Regression\" (CVPR) — soft label 方法，与 OBD 的 monotonic probability 设计相关\n\n**建议文本**: 在 line 33 CORAL 句后追加:\n\n> The idea of decomposing ordinal problems into a series of binary decisions dates to Frank \\& Hall~\\cite{frank2001ordinal}; our OBD head follows this principle by learning $K\\!-\\!1$ cumulative boundary classifiers.\n\n---\n\n## 可选改进\n\n### 1. Self-Refinement 文献补充\n\n**理由**: Related Work line 27 提到 \"beneficial recursive generation (e.g., self-refinement)\" 但没有引用。添加一篇可以增强论点。\n\n**建议引用**: Madaan et al. (2023), \"Self-Refine: Iterative Refinement with Self-Feedback\" (NeurIPS 2023)\n\n**位置**: line 27, 将 \"self-refinement\" 处加引用即可。\n\n### 2. Trained/Fine-tuned 检测器覆盖\n\n**理由**: Binary Detection 段落偏重 zero-shot 和 statistical 方法。如有 fine-tuned detector 的工作（如 OpenAI text classifier, Ghostbuster），可以在 line 19 附近用一句话覆盖 supervised 检测方向，说明本文的 ordinal approach 与之的关系。但这不是必须的，因为本文聚焦 post-hoc 无训练数据场景。\n\n### 3. Multi-class AI Text Attribution\n\n**理由**: 有一些工作不只做二分类，而是区分不同 LLM 生成的文本（source attribution）。与本文的 ordinal depth 不同但相关。如果空间允许可以提一句以示区分。\n\n**建议引用**: Uchendu et al. (2020), \"Authorship Attribution for Neural Text Generation\" (EMNLP)\n\n### 4. Data Contamination (Benchmark) 文献\n\n**理由**: CoDeC 已覆盖 benchmark contamination detection，但该方向有更多工作（Golchin & Surdeanu 2024, Oren et al. 2024）。不过本文的 \"contamination\" 指 recursive generation contamination 而非 benchmark data leakage，过多引用可能造成混淆。现有覆盖已足够。\n\n---\n\n## 总结\n\n| 类别 | 状态 | 行动 |\n|------|------|------|\n| Model collapse | ✅ 充分 | 可选补 Gerstgrasser (collapse avoidability) |\n| Binary detection | ✅ 充分 | 可选补 Fast-DetectGPT |\n| Ordinal classification | ⚠️ 偏薄 | 建议补 Frank & Hall |\n| Data selection | ✅ 充分 | 无需补充 |\n| Watermarking | ✅ 充分 | 无需补充 |\n| **Probing classifiers** | ❌ **缺失** | **必须补充** — neural probe 实验缺文献支撑 |\n\n**最高优先级**: 补充 Probing Classifiers 段落（Alain & Bengio 2017, Conneau et al. 2018, Belinkov 2022），直接支撑 discussion.tex 中的 neural probe 实验设计。\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e0be0870-2301-465c-822c-a050557e6e5f",
+            "isSidechain": false,
+            "requestId": "req_011Cb1rsh8pxem8ZLKHJ3HRy",
+            "type": "assistant",
+            "uuid": "4cf52fa6-839f-4ad9-90d7-4c57aaf0c7f2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y3xGVuq1JWtqREgFSnSjtF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1301,
+                "cache_read_input_tokens": 29801,
+                "output_tokens": 2936,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1301,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2936,
+                    "cache_read_input_tokens": 29801,
+                    "cache_creation_input_tokens": 1301,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1301
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T04:52:39.007Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016km5BCwJF2FYEYxhtMg4k3",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/drafts/related_work_audit.md"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4cf52fa6-839f-4ad9-90d7-4c57aaf0c7f2",
+            "isSidechain": false,
+            "promptId": "c4fe323e-7c65-473f-97f1-27a722c18c99",
+            "type": "user",
+            "uuid": "da946d61-460e-431c-9ce3-af3ad97aaf76",
+            "toolUseResult": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/drafts/related_work_audit.md",
+              "content": "# Related Work 完整性审查\n\n审查日期: 2026-05-14\n审查范围: `related_work.tex` (54行, 5个段落)\n\n---\n\n## 已覆盖\n\n### Model Collapse and Recursive Generation\n- Shumailov et al. (2024, Nature): line 6, tail-distribution degradation\n- Alemohammad et al. (2024, ICLR): line 7, self-consuming models, fixed point convergence\n- Dohmatob et al. (2024, ICML): line 8, scaling laws for tail loss\n- Schaeffer et al. (2025, ICML): line 9-10, 8-definition taxonomy, K* 与 Family B 对齐\n- Kazdan et al. (2025, ICML): line 11-12, replace vs accumulate regimes\n- Shi et al. (2025, NeurIPS Spotlight): line 13, generalization-to-memorization transition\n- Amin et al. (2025, NeurIPS): line 47, weak signals suffice to escape collapse\n- Gambetta et al. (2025): line 48, surplexity metric\n\n### Binary Synthetic Text Detection\n- GLTR (Gehrmann et al. 2019): line 18, token-level likelihood visualization\n- Grover (Zellers et al. 2019): line 19, generator-as-detector\n- Ippolito et al. (2020): line 19, detection difficulty vs generation quality\n- DetectGPT (Mitchell et al. 2023): line 20, probability curvature\n- Binoculars (Hans et al. 2024): line 21, cross-perplexity ratio\n- DivEye (Basani et al. 2026): line 22, surprisal diversity\n- Min-K%++ (Zhang et al. 2024): line 22, outlier token likelihoods\n- CoDeC (Zawalski et al. 2026): line 23, in-context learning contamination detection\n\n### Ordinal Classification\n- CORAL (Cao et al. 2020): line 32-33, rank-consistent ordinal regression\n\n### Data Selection and Curation\n- DSIR (Xie et al. 2023): line 40, importance resampling\n- D4 (Tirumala et al. 2023): line 41, deduplication + diversification\n- DoReMi (Xie et al. 2023): line 41, domain weight optimization\n- Drayson et al. (2025): line 44-46, binary detection + SIR (positioned as special case of our framework)\n\n### Watermarking\n- Kirchenbauer et al. (2023): line 52-53, statistical watermarking\n\n---\n\n## 需要补充\n\n### 1. [高优先] Probing Classifiers 文献 — 支撑 Neural Probe 实验\n\n**Gap**: discussion.tex (lines 29-35, 123-129) 和 conclusion.tex (line 45) 大量讨论 frozen-encoder + MLP probe 实验，但 Related Work 中完全没有 probing classifiers 的文献支撑。审稿人会质疑方法选择的依据。\n\n**建议**: 在 Ordinal Classification 段落之后新增一个段落，或在 Ordinal Classification 段末追加 2-3 句。\n\n**需要引用**:\n- Alain & Bengio (2017), \"Understanding intermediate layers using linear classifier probes\" — 提出用线性探针分析网络中间表征，是 frozen-encoder probing 的方法论基础\n- Conneau et al. (2018), \"What you can cram into a single $&!#* vector: Probing sentence embeddings for linguistic properties\" (ACL) — 系统研究 sentence embedding 编码了哪些语言学属性\n- Belinkov (2022), \"Probing Classifiers: Promises, Shortcomings, and Advances\" (CL) — probing 方法的综述，讨论了 probe 复杂度与结论有效性的权衡\n\n**建议文本**:\n\n> \\paragraph{Probing Classifiers.}\n> Linear and shallow MLP probes have become a standard tool for analyzing what information is encoded in pretrained representations~\\cite{alain2017understanding,conneau2018probing}.\n> Belinkov~\\cite{belinkov2022probing} surveys the methodology and cautions that probe complexity must be controlled to ensure that performance reflects representational content rather than probe capacity.\n> Our neural probe experiment follows this protocol: a two-layer MLP on frozen Qwen2.5-1.5B embeddings, where the probe's limited capacity ensures that discriminability reflects information present in the representations rather than learned de novo.\n\n### 2. [中优先] Fast-DetectGPT — Binary Detection 段落补充\n\n**Gap**: DetectGPT 已引用，但其改进版 Fast-DetectGPT 在 2024 年成为 zero-shot 检测的新 SOTA，被广泛引用。\n\n**建议**: 在 line 20 (DetectGPT 之后) 追加一句。\n\n**需要引用**:\n- Bao et al. (2024), \"Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature\" (ICLR 2024)\n\n**建议文本**: 在 Mitchell et al. 句后加:\n\n> Bao et al.~\\cite{bao2024fastdetectgpt} improved efficiency by replacing perturbation sampling with conditional probability curvature, achieving comparable accuracy with orders-of-magnitude speedup.\n\n### 3. [中优先] Gerstgrasser et al. (2024) — Model Collapse 理论补充\n\n**Gap**: 现有 model collapse 覆盖全面，但缺少 Gerstgrasser et al. 关于 collapse 可避免条件的理论分析。该工作与本文的 data curation 动机直接相关——他们证明保留足够的原始数据可以避免 collapse，本文的 depth-aware filtering 正是实现这一点的工具。\n\n**建议**: 在 line 13 (Shi et al.) 之后追加一句。\n\n**需要引用**:\n- Gerstgrasser et al. (2024), \"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data\" (arXiv 2404.01413)\n\n**建议文本**:\n\n> Gerstgrasser et al.~\\cite{gerstgrasser2024inevitable} proved that collapse is avoidable when sufficient original data is retained alongside synthetic samples, a condition that depth-aware curation can enforce by construction.\n\n### 4. [低-中优先] Ordinal Classification 补充\n\n**Gap**: 仅引用 CORAL 一篇。Ordinal classification 是本文方法的核心组件（OBD head），仅一篇引用显得单薄。\n\n**建议**: 在 CORAL 引用后追加 1-2 篇经典方法。\n\n**需要引用**:\n- Frank & Hall (2001), \"A Simple Approach to Ordinal Classification\" (ECML) — 将 ordinal 问题分解为一系列二分类的开创性工作，与 OBD head 的 boundary detection 思路直接对应\n- Diaz & Marathe (2019), \"Soft Labels for Ordinal Regression\" (CVPR) — soft label 方法，与 OBD 的 monotonic probability 设计相关\n\n**建议文本**: 在 line 33 CORAL 句后追加:\n\n> The idea of decomposing ordinal problems into a series of binary decisions dates to Frank \\& Hall~\\cite{frank2001ordinal}; our OBD head follows this principle by learning $K\\!-\\!1$ cumulative boundary classifiers.\n\n---\n\n## 可选改进\n\n### 1. Self-Refinement 文献补充\n\n**理由**: Related Work line 27 提到 \"beneficial recursive generation (e.g., self-refinement)\" 但没有引用。添加一篇可以增强论点。\n\n**建议引用**: Madaan et al. (2023), \"Self-Refine: Iterative Refinement with Self-Feedback\" (NeurIPS 2023)\n\n**位置**: line 27, 将 \"self-refinement\" 处加引用即可。\n\n### 2. Trained/Fine-tuned 检测器覆盖\n\n**理由**: Binary Detection 段落偏重 zero-shot 和 statistical 方法。如有 fine-tuned detector 的工作（如 OpenAI text classifier, Ghostbuster），可以在 line 19 附近用一句话覆盖 supervised 检测方向，说明本文的 ordinal approach 与之的关系。但这不是必须的，因为本文聚焦 post-hoc 无训练数据场景。\n\n### 3. Multi-class AI Text Attribution\n\n**理由**: 有一些工作不只做二分类，而是区分不同 LLM 生成的文本（source attribution）。与本文的 ordinal depth 不同但相关。如果空间允许可以提一句以示区分。\n\n**建议引用**: Uchendu et al. (2020), \"Authorship Attribution for Neural Text Generation\" (EMNLP)\n\n### 4. Data Contamination (Benchmark) 文献\n\n**理由**: CoDeC 已覆盖 benchmark contamination detection，但该方向有更多工作（Golchin & Surdeanu 2024, Oren et al. 2024）。不过本文的 \"contamination\" 指 recursive generation contamination 而非 benchmark data leakage，过多引用可能造成混淆。现有覆盖已足够。\n\n---\n\n## 总结\n\n| 类别 | 状态 | 行动 |\n|------|------|------|\n| Model collapse | ✅ 充分 | 可选补 Gerstgrasser (collapse avoidability) |\n| Binary detection | ✅ 充分 | 可选补 Fast-DetectGPT |\n| Ordinal classification | ⚠️ 偏薄 | 建议补 Frank & Hall |\n| Data selection | ✅ 充分 | 无需补充 |\n| Watermarking | ✅ 充分 | 无需补充 |\n| **Probing classifiers** | ❌ **缺失** | **必须补充** — neural probe 实验缺文献支撑 |\n\n**最高优先级**: 补充 Probing Classifiers 段落（Alain & Bengio 2017, Conneau et al. 2018, Belinkov 2022），直接支撑 discussion.tex 中的 neural probe 实验设计。\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "4cf52fa6-839f-4ad9-90d7-4c57aaf0c7f2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T04:52:45.927Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审查完成，结果已写入 `artifacts/drafts/related_work_audit.md`。\n\n核心发现：\n\n| 类别 | 状态 |\n|------|------|\n| Model collapse | 充分（8篇） |\n| Binary detection | 充分（8篇） |\n| Data selection | 充分（4篇） |\n| Watermarking | 充分 |\n| Ordinal classification | 偏薄（仅 CORAL 1篇） |\n| **Probing classifiers** | **缺失** |\n\n**最高优先级缺口**：neural probe 实验在 discussion.tex 和 conclusion.tex 中大量讨论，但 Related Work 完全没有 probing classifiers 文献支撑。建议新增段落引用 Alain & Bengio (2017)、Conneau et al. (2018)、Belinkov (2022)。\n\n次优先级：补 Frank & Hall (2001) 加强 ordinal classification 段落，可选补 Fast-DetectGPT 和 Gerstgrasser et al. (2024)。详细建议文本和插入位置见审查文件。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "da946d61-460e-431c-9ce3-af3ad97aaf76",
+            "isSidechain": false,
+            "requestId": "req_011Cb1rxHjJZGjwEjPUCubkv",
+            "type": "assistant",
+            "uuid": "296d203c-2c27-4a22-8ad4-856387668ddb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ld52NUts2DaXVgJ2uhaD5W",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2994,
+                "cache_read_input_tokens": 31102,
+                "output_tokens": 315,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2994,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 315,
+                    "cache_read_input_tokens": 31102,
+                    "cache_creation_input_tokens": 2994,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2994
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "296d203c-2c27-4a22-8ad4-856387668ddb",
+                "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055"
+              }
+            }
+          ],
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Audit related work coverage for gen-depth paper",
+                "sessionId": "6c6c05b3-054a-48f1-9ae7-08a237292055"
+              }
+            }
+          ],
+          "id": "event-000028"
+        }
+      ],
+      "message_count": 26
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-gen-depth-contamination-westc-26893-ssh-root-ssh-execute-submi-copy-121.md"
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "0dcc46759e426ff12f92",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: gen-depth-contamination ## 运行环境 - 服务器名: cqa1-22115 - SSH 账户: root（调用 ssh_execute / submit_traini",
+  "task_key": "67d34347-cf1a-4e3a-b80b-1ff08ad7f294",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/67d34347-cf1a-4e3a-b80b-1ff08ad7f294.jsonl",
+    "occurrence": 1,
+    "bytes": 959250,
+    "sha256": "c43de3202709512085efe754faeef6fb6113fb2033109808bdad5d478f3dfb88"
+  },
+  "statistics": {
+    "messages": 396,
+    "user_turns": 2,
+    "tool_calls": 121,
+    "roles": {
+      "record": 68,
+      "user": 2,
+      "assistant": 84,
+      "tool_call": 121,
+      "tool_result": 121
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "0dcc46759e426ff12f92-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 268,
+      "chunks": [
+        {
+          "path": "0dcc46759e426ff12f92-part-0001.json",
+          "message_count": 161
+        },
+        {
+          "path": "0dcc46759e426ff12f92-part-0002.json",
+          "message_count": 107
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 126,
+      "chunks": [
+        {
+          "path": "0dcc46759e426ff12f92-part-0002.json",
+          "message_count": 73
+        },
+        {
+          "path": "0dcc46759e426ff12f92-part-0003.json",
+          "message_count": 53
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-gen-depth-contamination-cqa1-22115-ssh-root-ssh-execute-submit-copy-177.md"
+}

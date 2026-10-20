@@ -1,0 +1,3708 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-11 (UTC).** Your job: indep
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 48
+- **Recorded user turns:** 1
+- **Tool calls:** 11
+- **Original source:** `logs/chats/exported-trajectories/account-2/283d6351-5ef7-4e15-8ceb-bae22e467cd2.jsonl`
+- **Structured JSON:** [`43fb55440cb1240ddf46.json`](../../sessions/43/43fb55440cb1240ddf46.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-12T02:00:35.063Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-12T02:00:35.063Z",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-11 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: LLM Agents.\n\nDirection: LLM Agents — planning algorithms, memory architectures, tool use, multi-agent coordination, agent training (SFT/RL), self-correction in agentic loops, environment feedback exploitation.\n\nContribution type: METHOD ONLY. Must propose a concrete new algorithm, training procedure, or inference-time mechanism. Reject pure benchmark / dataset / analysis ideas. Method + analysis OK if analysis validates the method.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total (baselines + method + ablations). Show the math.\n2. Time: ≤16 days. Build on existing OSS agent codebases (AutoGen, LangGraph, OpenManus, etc.) — no from-scratch systems.\n3. Eval: existing benchmarks only — AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, ALFWorld, Mind2Web, τ-bench.\n\nAvoid: generic ReAct variants, plain tool retrieval, naive memory summarization. Look for: agent training with minimal RL budget, structured planning beyond flat CoT, multi-agent communication protocols, agent self-verification mechanisms.\n\nTag: direction=agent, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-11?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 3/10)\n{\n  \"title\": \"STAG: Do Environment State Graphs Reveal Where to Sample? Analyzing Complementary Rollout Allocation Signals in Agentic RL\",\n  \"core_problem\": \"Recent rollout allocation methods for long-horizon agentic RL rely exclusively on model-dependent signals: policy entropy (ARPO), learned exploration tags (Spark), UUCB bounds (InfoTree), or static reference-policy variance (PivotRL). Meanwhile, environment state-transition graphs — already constructed by methods like RewardFlow for reward propagation — encode structural information about the decision landscape. But a fundamental empirical question remains unanswered: do graph-topology signals (downstream return variance, successor diversity, betweenness centrality) provide complementary or redundant information compared to model-dependent signals for identifying high-information states? Understanding this relationship is prerequisite to designing efficient rollout allocation strategies, yet no prior work has measured it. If graph topology captures decision-relevant structure that policy signals miss (or vice versa), then current single-signal allocation methods leave efficiency gains on the table.\",\n  \"opportunity\": \"The rollout allocation landscape in agentic RL has rapidly diversified along the signal axis: ARPO (ICLR 2026) uses token-level entropy to trigger adaptive branching at tool-call steps. Spark (January 2026) bootstraps learned &lt;explore> tags via SFT on ~300 trajectories for policy-aware branching. InfoTree (May 2026) formalizes allocation as monotone submodular optimization with UUCB state selection. PivotRL (March 2026) profiles outcome variance from a frozen reference policy offline. GRESO (NeurIPS 2025) filters uninformative prompts via reward dynamics. PODS (TMLR 2026) applies max-variance down-sampling for reasoning tasks. All these methods use signals derived from or dependent on the policy itself. Separately, RewardFlow (March 2026) constructs state-transition graphs from environment observations and uses graph topology for reward propagation — demonstrating that graph structure encodes meaningful decision-relevant information. But no one has asked: do graph-topology signals identify the same critical states as model-dependent signals, or different ones? If different, their combination should yield better allocation than either alone. This is a tractable, high-value empirical question that can be answered with standard verl-agent infrastructure and modest compute.\",\n  \"landscape\": \"Credit assignment and rollout efficiency for agentic RL now spans 50+ methods. Rollout efficiency methods divide by signal type: (A) Model-dependent allocation: ARPO (ICLR 2026) uses entropy-based adaptive branching at high-entropy tool-call rounds with branch penalty to prevent over-branching, achieving competitive performance with half the tool-use budget. Spark (January 2026) uses SFT-bootstrapped &lt;explore> tags in reasoning traces — the agent learns to signal its own uncertainty, then branches at those states. InfoTree (May 2026) casts rollout allocation as monotone submodular maximization over UUCB marginal gains, with a (1-1/e) approximation guarantee. PivotRL (March 2026) identifies pivot turns via static offline profiling of reference policy outcome variance, achieving 4x fewer rollout turns on SWE-Bench. (B) Prompt/prefix-level allocation: GRESO (NeurIPS 2025) filters prompts with low reward variance. PODS (TMLR 2026) applies max-variance down-sampling to select rollout subsets, achieving 1.7x training speedup for reasoning. Tree-GRPO (ICLR 2026) and Tree Training (November 2025) reuse prefix computation. PRAISE (April 2026) reuses trajectory prefixes for search training. (C) Graph-based methods (credit assignment, not allocation): RewardFlow (March 2026) constructs state graphs and propagates terminal rewards via BFS/Personalized PageRank, achieving 89.8% on ALFWorld with Qwen2.5-7B. SALT (EACL 2026) builds trajectory graphs for step-level advantage. RTMC (April 2026) exploits rollout tree structure for unbiased per-step MC advantages. (D) Milestone/hierarchical methods: HiPER (February 2026) achieves 97.4% on ALFWorld via hierarchical plan-execute decomposition with hierarchical advantage estimation — the current SOTA. BEACON (May 2026) detects milestones from state changes for dual-scale advantage, reaching 92.9%. HGPO (ICLR 2026) assigns steps to hierarchical context-consistent groups. MiRA (March 2026) uses LLM-generated milestones. The critical gap: all rollout allocation methods (group A) use model-dependent signals, while graph-based methods (group C) use graphs only for credit assignment. No work has: (i) compared graph-topology signals vs model-dependent signals as rollout allocation criteria, (ii) measured their overlap/complementarity across training, or (iii) tested whether combining them yields better allocation. This is a fundamental empirical question that informs the design of future allocation strategies.\",\n  \"approach\": \"We propose STAG (State-Transition-graph Analysis for Guided allocation), an empirical study with a lightweight method that answers whether environment state-graph topology provides complementary signal to model-dependent methods for rollout allocation. The work has two components: (I) Empirical Analysis of Signal Complementarity. (1) Graph Construction (extending RewardFlow): During standard GRPO training, we construct a state-transition DAG from environment observations across rollouts for each prompt. State hashing uses domain-specific extractors on structured environment feedback already available as agent observations. For ALFWorld: (location, sorted-inventory, task-progress-flags) tuples. For WebShop: (page-type, search-query-hash, sorted-cart-items, current-product-id) tuples. No learned models required. (2) Graph-Topology Metrics per state node: (a) downstream return variance σ²(v) — variance of terminal rewards across rollouts passing through v; (b) successor entropy H(succ(v)) — Shannon entropy over out-edges, measuring action diversity; (c) betweenness centrality — fraction of successful paths passing through v. (3) Model-Dependent Metrics per state (computed from the same rollouts): (a) policy entropy at v — average token-level entropy of the policy's next-action distribution; (b) advantage variance at v — variance of per-step advantage estimates; (c) action diversity — number of distinct actions taken across rollouts at v. (4) Analysis: At multiple training checkpoints (every 10 iterations), we measure Spearman rank correlation between graph-topology and model-dependent rankings of states by informativeness. We track how this correlation evolves over training. We identify 'blind spots' — states scored high by one signal type but low by the other — and categorize them (e.g., structurally complex but policy-resolved vs. policy-confused but structurally simple). (II) STAG: Graph-Augmented Rollout Allocation. Based on the analysis, we propose a lightweight allocation method that combines graph-topology signals with policy signals via two mechanisms: (a) Prompt-level reallocation: In each training batch, compute per-prompt graph informativeness (average node informativeness across the prompt's state graph). Allocate more rollouts to prompts with higher graph informativeness, reducing allocation to already-saturated prompts. This extends GRESO's prompt-level filtering with a graph-topology signal that captures within-prompt decision complexity. (b) Advantage reweighting: Upweight advantage estimates at graph-identified high-information states: A_weighted(s,a) = A(s,a) × (1 + α · I_topo(s)), where I_topo(s) is the normalized graph-topology informativeness. This amplifies gradient signal at structurally critical decision points without requiring environment checkpointing or branching. Both mechanisms are orthogonal to the underlying RL algorithm (GRPO, GiGPO, HGPO) and add negligible compute overhead (graph construction is O(rollouts × steps) with hash-based node lookup). Key design choices vs. prior work: (a) vs. RewardFlow — uses graph for allocation signal, not reward propagation; complementary and combinable. (b) vs. PivotRL — online (graph updates each batch) vs. static (one-time profiling); state-level topology vs. turn-level variance; no environment checkpointing needed. (c) vs. ARPO/Spark — model-free graph topology vs. model-dependent entropy/tags; tests complementarity rather than replacement. (d) vs. InfoTree — empirical outcome variance at environment states vs. policy UUCB; operates across training batches vs. within single tree-search episodes. We implement STAG as a plugin to verl-agent, adding graph construction hooks to the standard rollout pipeline and modifying the advantage computation. No changes to the environment interface or rollout generation loop are needed — we avoid the checkpoint-and-branch design since ALFWorld and WebShop do not expose checkpoint-restore APIs natively. Evaluation on ALFWorld and WebShop using Qwen2.5-1.5B-Instruct (primary) with verification on Qwen2.5-7B-Instruct using released GiGPO checkpoints for baseline comparison. Baselines: GRPO (uniform allocation), GRPO+GRESO (prompt-level filtering). All experiments use verl-agent with identical hyperparameters. Primary metrics: (i) success rate at a fixed compute budget (200 H100-hours total), (ii) training iterations to reach a fixed performance threshold. Analysis metrics: (iii) Spearman ρ between graph-topology and policy-signal state rankings, (iv) fraction of top-k critical states identified by only one signal type (complementarity ratio). Ablations: advantage reweighting only vs. prompt reallocation only vs. both; graph-topology metrics (variance only vs. full I_topo).\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~180h H100 (7 training runs on ALFWorld + WebShop with Qwen2.5-1.5B-Instruct: GRPO baseline × 2 seeds on both benchmarks = 4 runs + STAG+GRPO × 2 seeds on ALFWorld + 1 seed on WebShop = 3 runs; ~25h H100 per run on 2 H100 GPUs for 150 iterations with 1.5B model). Additional ~10h for analysis rollouts from checkpoints.\",\n      \"gpu_utilization\": \"~50-60% — idle time during graph construction implementation and analysis between experiment batches\",\n      \"timeline\": \"14 days (days 1-3: implement graph construction + scoring as verl-agent plugin; days 4-8: run baseline and STAG experiments; days 9-11: analysis + ablations; days 12-14: paper writing)\",\n      \"team\": \"1 researcher with verl-agent experience\",\n      \"estimated_gpu_cost\": \"$540-720 (180h × $3-4/hr H100)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~190h H100 (same 7 runs + 1 additional ablation run; agent handles verl-agent integration code and experiment scripting)\",\n      \"gpu_utilization\": \"~65-75% — agent scripts experiments and parses results; human validates state hash quality on pilot rollouts\",\n      \"timeline\": \"12-14 days (agent generates verl-agent plugin code; human validates hash collision rates on 1-2 pilot rollouts before committing full budget)\",\n      \"team\": \"1 researcher, ~2hr/day for reviewing state graph quality, validating analysis outputs, and paper editing\",\n      \"claude_api_cost\": \"$60-100 (~600-1000 turns for code generation, experiment scripting, and analysis)\",\n      \"estimated_gpu_cost\": \"$570-760 (190h × $3-4/hr H100)\",\n      \"risk_note\": \"State hashing quality is the critical bottleneck — poor hash functions that collapse distinct states or split identical states degrade graph topology. Human validation of hash collision rates on 2-3 pilot rollouts (each ~25h) is essential before committing remaining budget. WebShop state hashing is less trivial than ALFWorld's symbolic state; may require iterating on the hash function design.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~300h H100 (broader exploration of hash functions, informativeness metrics, and reweighting schedules; ~12 runs including suboptimal configurations)\",\n      \"gpu_utilization\": \"~80% — agent queues experiments with minimal idle time\",\n      \"timeline\": \"10-14 days with 4 H100 GPUs\",\n      \"team\": \"0 (initial setup: specify environment configs, baselines, evaluation metrics)\",\n      \"claude_api_cost\": \"$150-250 (~1500-2500 turns)\",\n      \"estimated_gpu_cost\": \"$900-1,200 (300h × $3-4/hr H100)\",\n      \"speed_bottleneck\": \"Sequential dependency: must complete baseline runs to construct initial graphs before testing STAG allocation. Can parallelize across benchmarks (ALFWorld vs. WebShop) but not within the graph-construction → allocation-testing pipeline.\",\n      \"risk_note\": \"WebShop state hashing is less structured than ALFWorld's PDDL state. Automatic hash function design may produce degenerate graphs without human-designed priors. Agent should detect graph degeneracy (>90% unique nodes or <5% unique nodes) and flag for human review before proceeding.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR submission deadline: May 25, 2026)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"RewardFlow: Topology-Aware Reward Propagation on State Graphs for Agentic RL (arXiv 2603.18859, March 2026) — constructs the same state graph we analyze, but for reward propagation; our work studies whether graph topology also provides allocation signal\",\n    \"ARPO: Agentic Reinforced Policy Optimization (ICLR 2026, arXiv 2507.19849) — entropy-based adaptive branching at tool-call steps; model-dependent allocation baseline we compare against\",\n    \"Spark: Strategic Policy-Aware Exploration via Dynamic Branching (arXiv 2601.20209, January 2026) — uses SFT-bootstrapped &lt;explore> tags for branching at critical states; model-dependent, qualitatively different from graph-topology signals\",\n    \"PivotRL: High Accuracy Agentic Post-Training at Low Compute Cost (arXiv 2603.21383, March 2026) — static offline profiling of reference-policy outcome variance for pivot identification; our online graph approach provides a complementary signal\",\n    \"InfoTree: Maximizing Rollout Informativeness under a Fixed Budget via Submodular Tree Search (arXiv 2605.05262, May 2026) — formalizes allocation via UUCB; policy-dependent, operates within single episodes vs. our cross-batch analysis\",\n    \"HiPER: Hierarchical RL with Explicit Credit Assignment for LLM Agents (arXiv 2602.16165, February 2026) — achieves 97.4% on ALFWorld with Qwen2.5-7B, current SOTA; relevant as upper-bound baseline\",\n    \"HGPO: Hierarchy-of-Groups Policy Optimization for Long-Horizon Agentic Tasks (ICLR 2026, arXiv 2602.22817)\",\n    \"BEACON: Milestone-Guided Policy Learning for Long-Horizon Language Agents (arXiv 2605.06078, May 2026)\",\n    \"PODS: Not All Rollouts are Useful — Down-Sampling Rollouts in LLM RL (TMLR 2026, arXiv 2504.13818) — max-variance rollout selection for reasoning; we extend the selective-allocation principle to agentic settings with graph-topology signals\",\n    \"GRESO: Act Only When It Pays — Efficient RL via Selective Rollouts (NeurIPS 2025, arXiv 2506.02177) — prompt-level filtering baseline\",\n    \"GiGPO: Group-in-Group Policy Optimization for LLM Agent Training (NeurIPS 2025, arXiv 2505.10978)\",\n    \"RTMC: Step-Level Credit Assignment via Rollout Trees (arXiv 2604.11037, April 2026)\",\n    \"SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph (EACL 2026, arXiv 2510.20022)\",\n    \"Tree-GRPO: Tree Search for LLM Agent Reinforcement Learning (ICLR 2026)\",\n    \"Tree Training: Accelerating Agentic LLMs Training via Shared Prefix Reuse (arXiv 2511.00413, November 2025)\",\n    \"PRAISE: Prefix-Based Rollout Reuse in Agentic Search Training (arXiv 2604.03675, April 2026)\",\n    \"From Reasoning to Agentic: Credit Assignment in RL for LLMs — Survey (arXiv 2604.09459, April 2026)\",\n    \"MiRA: A Subgoal-driven Framework for Improving Long-Horizon LLM Agents (arXiv 2603.19685, March 2026)\",\n    \"SPA-RL: Reinforcing LLM Agents via Stepwise Progress Attribution (arXiv 2505.20732, May 2025)\",\n    \"RLAnything and DemyAgent: General and Scalable Agentic RL Algorithms (ICML 2026)\"\n  ],\n  \"description\": \"We present STAG, an empirical study with a lightweight method that investigates whether environment state-transition graphs provide complementary signal to model-dependent methods for rollout allocation in long-horizon agentic RL. While recent work has developed diverse allocation strategies based on policy entropy (ARPO), learned exploration tags (Spark), UUCB bounds (InfoTree), and static outcome variance (PivotRL), all rely on model-dependent signals. Separately, RewardFlow has shown that state graphs constructed from environment observations encode meaningful decision-relevant structure — but only for reward propagation. We ask: do graph-topology signals (downstream return variance, successor diversity, betweenness centrality) identify the same critical states as model-dependent signals, or different ones? We construct state-transition graphs from standard GRPO training rollouts on ALFWorld and WebShop, measure the Spearman correlation between graph-topology and policy-signal state rankings across training, and identify 'blind spots' where each signal type captures information the other misses. Based on this analysis, we propose Graph-Augmented Rollout Allocation — a lightweight extension that combines graph-topology informativeness with standard advantage estimation via (a) prompt-level reallocation toward graph-complex prompts and (b) advantage reweighting at topology-identified critical states. Unlike prior graph-based methods (RewardFlow, SALT), STAG uses graphs for allocation rather than credit assignment; unlike checkpoint-and-branch designs (Spark), it requires no environment checkpoint-restore API. We evaluate with Qwen2.5-1.5B-Instruct on ALFWorld and WebShop under a matched 200 H100-hour budget, comparing against GRPO and GRPO+GRESO baselines, with GiGPO/HGPO released checkpoints as additional reference points. The analysis contribution — measuring graph-topology vs. policy-signal complementarity across training — provides actionable insights for designing future allocation strategies regardless of whether our specific method achieves SOTA. Limitations: (1) 1.5B model scale limits claims about 7B+ settings, (2) ALFWorld's symbolic PDDL state makes graph construction trivially clean — WebShop's noisier observations are a harder test, (3) the 'model-free' advantage of graph topology may diminish as policies become stronger and policy signals become more reliable.\",\n  \"project_name\": \"stag_rollout_allocation\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"CRITICAL: MiRA (arXiv 2603.19685, March 2026) — 'Milestoning your Reinforcement Learning Enhanced Agent' — uses milestone-based dense reward signals for RL training, achieving 43% on WebArena-Lite with Gemma3-12B. This is conceptually near-identical to MAHCA's milestone-anchored credit assignment and is NOT cited.\", \"CRITICAL: HGPO (ICLR 2026, arXiv 2602.22817) — 'Hierarchy-of-Groups Policy Optimization' — the direct successor to GiGPO by the same verl-agent team, does hierarchical advantage estimation with context-consistent grouping. This is the most directly competing published work at a top venue and is NOT cited.\", \"CRITICAL: Compute budget violation. User constraint is ≤200 H100-hours. The resource estimate claims '500h A100' but actual calculation: 50 runs × 10h wall-clock × 4-8 GPUs = 2000-4000 A100 GPU-hours ≈ 1000-2000 H100-hours, which is 5-10x over budget.\", \"MAJOR: SPA-RL (arXiv 2505.20732) and SALT (EACL 2026 Findings, arXiv 2510.20022) are highly relevant concurrent works achieving step-level advantage assignment on ALFWorld/WebShop without auxiliary models, both NOT cited.\", \"MAJOR: Baselines HiPER and ADMIRE have no publicly available open-source implementations. Reimplementing both within 16 days alongside MAHCA development for 3 benchmarks is unrealistic.\", \"MAJOR: The 'heuristic-based environment state change detection' — the claimed key differentiator from HiPER/MiRA — is ad-hoc and under-specified. What DOM diff threshold? How to generalize across environments? This seems like an engineering choice, not a research contribution.\", \"MINOR: The claim of reducing 'effective horizon from 100+ steps to 5-15 steps per segment' is speculative and unvalidated. Whether this actually lowers variance depends heavily on segment granularity, which itself depends on poorly-specified heuristics.\", \"MINOR: Proposing 14B model experiments requiring 8 GPUs per run makes the 200 H100-hour budget mathematically impossible — a single 14B SWE-bench training run costs ~64 H100-hours (per Agent-RLVR benchmarks).\"]\nFeedback: This idea faces three fundamental challenges that must ALL be addressed for viability:\n\n1. **Differentiate from MiRA and HGPO or abandon**: MiRA (2603.19685) already does milestone-based reward shaping for RL agents, and HGPO (ICLR 2026) already does hierarchical advantage estimation in verl-agent. You must either: (a) clearly articulate what MAHCA adds beyond both papers — the heuristic state-change detection alone is insufficient, or (b) pivot to a genuinely novel angle, such as combining milestone detection with rollout tree sharing (RTMC-style) or using environment state changes for adaptive rollout allocation rather than credit assignment.\n\n2. **Drastically reduce experimental scope to fit ≤200 H100-hours**: Drop the 14B model entirely. Use only 1 benchmark (ALFWorld is cheapest). Use Qwen2.5-7B only. Drop HiPER and ADMIRE as baselines (no code available) — compare against GiGPO, HGPO (both in verl-agent), and GRPO only. Estimate: ~5 method variants × ~10 GPU-hours per run × 4 GPUs ≈ 200 H100-hours. This significantly weakens the paper but is the only way to fit the budget.\n\n3. **Cite and differentiate from ALL concurrent work**: At minimum cite MiRA, HGPO, SALT, SPA-RL, and MICA. Construct a clear comparison table showing: (a) milestone detection method (LLM-based vs heuristic vs learned critic), (b) hierarchy level (plan/segment/step/token), (c) auxiliary model requirement, (d) domain generality. Position MAHCA in a cell no other method occupies.\n\nGiven the extreme competition (47 credit assignment methods in 2024-2026), consider whether this direction can realistically produce a top-venue paper under these resource constraints. A narrower, more surprising contribution (e.g., a negative result showing that environment-state-based segmentation HURTS credit assignment in certain domains) might be more publishable than another hierarchical advantage estimation variant.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"CRITICAL: VENUE VIOLATION — The idea targets AAAI 2027 (~August 2026 deadline) and ICLR 2027 (~September/October 2026), but the user explicitly requires EMNLP 2026 with ARR submission deadline May 25, 2026. This is a direct violation of the user's requirements.\", \"CRITICAL: TIMELINE VIOLATION — The idea estimates 2-3 months (manual) and 5-7 weeks (human-in-loop), but the user requires completion within ≤16 days. Even the auto_research estimate of 1-2 weeks barely fits, and it requires 400 H100-hours (2x over budget).\", \"CRITICAL: GPU COST SEVERELY UNDERESTIMATED — Claims '~10h H100-equivalent per run on 4 GPUs' for ALFWorld with Qwen2.5-7B. Verified benchmarks show typical ALFWorld 7B training costs 50-300 H100-hours. GiGPO's own paper reports 4×H100 for 150 iterations on ALFWorld. At realistic costs: 16 runs × 50h = 800 H100-hours minimum, 4x over the 200h budget.\", \"MAJOR: INCREMENTAL NOVELTY — RewardFlow (March 2026) already constructs the same state graph from environment observations during RL training and identifies 'bottleneck or pivotal junctures' via degree analysis. Spark (January 2026) already implements checkpoint-and-branch at critical decision states. PivotRL (March 2026) already does selective rollout allocation based on outcome variance. STAG's contribution reduces to: 'use RewardFlow's graph topology (instead of PivotRL's static variance or Spark's learned tag) to trigger Spark-style branching.' This is an obvious combination of three concurrent papers.\", \"MAJOR: FACTUAL ERROR ON SPARK — The idea describes Spark as using 'intrinsic policy signals (entropy, value uncertainty)' for branching. Spark actually uses a learned &lt;explore> tag in the reasoning trace, bootstrapped via SFT with ~300 trajectories. This is qualitatively different from computed entropy/value uncertainty and must be corrected.\", \"MAJOR: SINGLE BENCHMARK (ALFWorld only) — ALFWorld's symbolic PDDL state makes state hashing trivially effective. The generalization to environments without clean symbolic state representations (WebArena, SWE-bench, Mind2Web) is entirely untested. Single-benchmark papers are rarely competitive at top venues, especially when the benchmark's properties perfectly align with the method's assumptions.\", \"MAJOR: ALFWorld CHECKPOINTING MISREPRESENTED — Claims 'natively supported in text-based environments like ALFWorld via game-state serialization.' Verification shows ALFWorld does NOT expose a high-level checkpoint-and-restore API. The underlying TextWorld engine has PDDL state primitives, but checkpoint-and-branch requires custom engineering. verl-agent does NOT support this natively.\", \"MINOR: MISSING COMPETING WORK — PODS (TMLR 2026, arXiv 2504.13818) proposes max-variance down-sampling for selective rollout training, directly addressing rollout efficiency for LLM RL. Not cited.\", \"MINOR: ALFWorld SOTA MISREPRESENTED — HiPER (arXiv 2602.16165, February 2026) achieves 97.4% on ALFWorld with Qwen2.5-7B-Instruct, significantly above BEACON's 92.9%. The idea does not cite HiPER or acknowledge it as the actual SOTA baseline.\", \"MINOR: The 'model-free' advantage is debatable — model-dependent signals (Spark's &lt;explore> tag, InfoTree's UUCB) capture the agent's actual epistemic uncertainty, which may be MORE informative for rollout allocation than environment topology. The idea asserts model-free is better without evidence.\"]\nFeedback: This revision made a smart pivot from the overcrowded credit assignment space to rollout allocation, but the execution has critical gaps that must ALL be addressed:\n\n1. **Fix venue/timeline immediately**: Target EMNLP 2026 (ARR May 25). If 16 days is insufficient, be honest about it and scope the contribution accordingly — perhaps a focused analysis paper showing that environment state graphs provide complementary signal to model-dependent allocation methods, validated with minimal experiments.\n\n2. **Get realistic cost estimates**: Your 10 H100-hrs/run figure is 5-30x too low based on published verl-agent benchmarks. Look at GiGPO's actual training costs. With realistic estimates, you may need to reduce to 3-4 runs total (GRPO baseline + STAG+GRPO, 2 seeds each) to fit 200h. Consider LoRA instead of full fine-tuning to reduce per-run cost.\n\n3. **Strengthen novelty beyond 'combination of concurrent papers'**: The current framing — 'model-free graph topology for allocation' — reads as 'RewardFlow graph + PivotRL allocation + Spark branching.' To differentiate:\n   (a) Show theoretically WHY environment topology provides complementary signal to policy-dependent signals (variance decomposition: which variance does topology capture that policy uncertainty doesn't?).\n   (b) Run a direct ablation: STAG allocation vs. Spark allocation vs. InfoTree allocation on the SAME graph — this isolates the allocation signal's value.\n   (c) Consider combining STAG with RewardFlow (graph for both allocation AND reward propagation) — this makes the contribution 'a unified state graph framework' rather than 'yet another use of the same graph.'\n\n4. **Fix factual errors**: Spark uses &lt;explore> tags, not entropy/value uncertainty. HiPER (97.4%) is ALFWorld SOTA, not BEACON (92.9%). ALFWorld checkpointing is NOT native — requires TextWorld PDDL state engineering. Cite PODS (TMLR 2026).\n\n5. **Address single-benchmark weakness**: Either (a) add a second benchmark where state hashing is non-trivial (WebArena or SWE-bench via file-diff-based state representation), or (b) explicitly scope the contribution as 'for symbolic-state environments' and discuss limitations honestly.\n\n6. **Reconsider whether model-free is actually better**: Spark's learned &lt;explore> tag captures agent-specific uncertainty; STAG's environment topology captures structural branching but not agent confusion. An agent might face a critical decision at a node with low graph entropy (only one successor observed so far because the agent consistently takes one action). STAG would miss this; Spark would catch it. Address this directly.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-12T02:00:35.068Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-12T02:00:35.068Z",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2"
+}
+```
+
+---
+
+## Round 1
+
+46 recorded events
+
+### User
+
+_source line 3 · 2026-05-12T02:00:35.111Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-11 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: LLM Agents.
+
+Direction: LLM Agents — planning algorithms, memory architectures, tool use, multi-agent coordination, agent training (SFT/RL), self-correction in agentic loops, environment feedback exploitation.
+
+Contribution type: METHOD ONLY. Must propose a concrete new algorithm, training procedure, or inference-time mechanism. Reject pure benchmark / dataset / analysis ideas. Method + analysis OK if analysis validates the method.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total (baselines + method + ablations). Show the math.
+2. Time: ≤16 days. Build on existing OSS agent codebases (AutoGen, LangGraph, OpenManus, etc.) — no from-scratch systems.
+3. Eval: existing benchmarks only — AgentBench, WebArena, SWE-bench Verified, GAIA, ToolBench, ALFWorld, Mind2Web, τ-bench.
+
+Avoid: generic ReAct variants, plain tool retrieval, naive memory summarization. Look for: agent training with minimal RL budget, structured planning beyond flat CoT, multi-agent communication protocols, agent self-verification mechanisms.
+
+Tag: direction=agent, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-11?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 3/10)
+{
+  "title": "STAG: Do Environment State Graphs Reveal Where to Sample? Analyzing Complementary Rollout Allocation Signals in Agentic RL",
+  "core_problem": "Recent rollout allocation methods for long-horizon agentic RL rely exclusively on model-dependent signals: policy entropy (ARPO), learned exploration tags (Spark), UUCB bounds (InfoTree), or static reference-policy variance (PivotRL). Meanwhile, environment state-transition graphs — already constructed by methods like RewardFlow for reward propagation — encode structural information about the decision landscape. But a fundamental empirical question remains unanswered: do graph-topology signals (downstream return variance, successor diversity, betweenness centrality) provide complementary or redundant information compared to model-dependent signals for identifying high-information states? Understanding this relationship is prerequisite to designing efficient rollout allocation strategies, yet no prior work has measured it. If graph topology captures decision-relevant structure that policy signals miss (or vice versa), then current single-signal allocation methods leave efficiency gains on the table.",
+  "opportunity": "The rollout allocation landscape in agentic RL has rapidly diversified along the signal axis: ARPO (ICLR 2026) uses token-level entropy to trigger adaptive branching at tool-call steps. Spark (January 2026) bootstraps learned &lt;explore> tags via SFT on ~300 trajectories for policy-aware branching. InfoTree (May 2026) formalizes allocation as monotone submodular optimization with UUCB state selection. PivotRL (March 2026) profiles outcome variance from a frozen reference policy offline. GRESO (NeurIPS 2025) filters uninformative prompts via reward dynamics. PODS (TMLR 2026) applies max-variance down-sampling for reasoning tasks. All these methods use signals derived from or dependent on the policy itself. Separately, RewardFlow (March 2026) constructs state-transition graphs from environment observations and uses graph topology for reward propagation — demonstrating that graph structure encodes meaningful decision-relevant information. But no one has asked: do graph-topology signals identify the same critical states as model-dependent signals, or different ones? If different, their combination should yield better allocation than either alone. This is a tractable, high-value empirical question that can be answered with standard verl-agent infrastructure and modest compute.",
+  "landscape": "Credit assignment and rollout efficiency for agentic RL now spans 50+ methods. Rollout efficiency methods divide by signal type: (A) Model-dependent allocation: ARPO (ICLR 2026) uses entropy-based adaptive branching at high-entropy tool-call rounds with branch penalty to prevent over-branching, achieving competitive performance with half the tool-use budget. Spark (January 2026) uses SFT-bootstrapped &lt;explore> tags in reasoning traces — the agent learns to signal its own uncertainty, then branches at those states. InfoTree (May 2026) casts rollout allocation as monotone submodular maximization over UUCB marginal gains, with a (1-1/e) approximation guarantee. PivotRL (March 2026) identifies pivot turns via static offline profiling of reference policy outcome variance, achieving 4x fewer rollout turns on SWE-Bench. (B) Prompt/prefix-level allocation: GRESO (NeurIPS 2025) filters prompts with low reward variance. PODS (TMLR 2026) applies max-variance down-sampling to select rollout subsets, achieving 1.7x training speedup for reasoning. Tree-GRPO (ICLR 2026) and Tree Training (November 2025) reuse prefix computation. PRAISE (April 2026) reuses trajectory prefixes for search training. (C) Graph-based methods (credit assignment, not allocation): RewardFlow (March 2026) constructs state graphs and propagates terminal rewards via BFS/Personalized PageRank, achieving 89.8% on ALFWorld with Qwen2.5-7B. SALT (EACL 2026) builds trajectory graphs for step-level advantage. RTMC (April 2026) exploits rollout tree structure for unbiased per-step MC advantages. (D) Milestone/hierarchical methods: HiPER (February 2026) achieves 97.4% on ALFWorld via hierarchical plan-execute decomposition with hierarchical advantage estimation — the current SOTA. BEACON (May 2026) detects milestones from state changes for dual-scale advantage, reaching 92.9%. HGPO (ICLR 2026) assigns steps to hierarchical context-consistent groups. MiRA (March 2026) uses LLM-generated milestones. The critical gap: all rollout allocation methods (group A) use model-dependent signals, while graph-based methods (group C) use graphs only for credit assignment. No work has: (i) compared graph-topology signals vs model-dependent signals as rollout allocation criteria, (ii) measured their overlap/complementarity across training, or (iii) tested whether combining them yields better allocation. This is a fundamental empirical question that informs the design of future allocation strategies.",
+  "approach": "We propose STAG (State-Transition-graph Analysis for Guided allocation), an empirical study with a lightweight method that answers whether environment state-graph topology provides complementary signal to model-dependent methods for rollout allocation. The work has two components: (I) Empirical Analysis of Signal Complementarity. (1) Graph Construction (extending RewardFlow): During standard GRPO training, we construct a state-transition DAG from environment observations across rollouts for each prompt. State hashing uses domain-specific extractors on structured environment feedback already available as agent observations. For ALFWorld: (location, sorted-inventory, task-progress-flags) tuples. For WebShop: (page-type, search-query-hash, sorted-cart-items, current-product-id) tuples. No learned models required. (2) Graph-Topology Metrics per state node: (a) downstream return variance σ²(v) — variance of terminal rewards across rollouts passing through v; (b) successor entropy H(succ(v)) — Shannon entropy over out-edges, measuring action diversity; (c) betweenness centrality — fraction of successful paths passing through v. (3) Model-Dependent Metrics per state (computed from the same rollouts): (a) policy entropy at v — average token-level entropy of the policy's next-action distribution; (b) advantage variance at v — variance of per-step advantage estimates; (c) action diversity — number of distinct actions taken across rollouts at v. (4) Analysis: At multiple training checkpoints (every 10 iterations), we measure Spearman rank correlation between graph-topology and model-dependent rankings of states by informativeness. We track how this correlation evolves over training. We identify 'blind spots' — states scored high by one signal type but low by the other — and categorize them (e.g., structurally complex but policy-resolved vs. policy-confused but structurally simple). (II) STAG: Graph-Augmented Rollout Allocation. Based on the analysis, we propose a lightweight allocation method that combines graph-topology signals with policy signals via two mechanisms: (a) Prompt-level reallocation: In each training batch, compute per-prompt graph informativeness (average node informativeness across the prompt's state graph). Allocate more rollouts to prompts with higher graph informativeness, reducing allocation to already-saturated prompts. This extends GRESO's prompt-level filtering with a graph-topology signal that captures within-prompt decision complexity. (b) Advantage reweighting: Upweight advantage estimates at graph-identified high-information states: A_weighted(s,a) = A(s,a) × (1 + α · I_topo(s)), where I_topo(s) is the normalized graph-topology informativeness. This amplifies gradient signal at structurally critical decision points without requiring environment checkpointing or branching. Both mechanisms are orthogonal to the underlying RL algorithm (GRPO, GiGPO, HGPO) and add negligible compute overhead (graph construction is O(rollouts × steps) with hash-based node lookup). Key design choices vs. prior work: (a) vs. RewardFlow — uses graph for allocation signal, not reward propagation; complementary and combinable. (b) vs. PivotRL — online (graph updates each batch) vs. static (one-time profiling); state-level topology vs. turn-level variance; no environment checkpointing needed. (c) vs. ARPO/Spark — model-free graph topology vs. model-dependent entropy/tags; tests complementarity rather than replacement. (d) vs. InfoTree — empirical outcome variance at environment states vs. policy UUCB; operates across training batches vs. within single tree-search episodes. We implement STAG as a plugin to verl-agent, adding graph construction hooks to the standard rollout pipeline and modifying the advantage computation. No changes to the environment interface or rollout generation loop are needed — we avoid the checkpoint-and-branch design since ALFWorld and WebShop do not expose checkpoint-restore APIs natively. Evaluation on ALFWorld and WebShop using Qwen2.5-1.5B-Instruct (primary) with verification on Qwen2.5-7B-Instruct using released GiGPO checkpoints for baseline comparison. Baselines: GRPO (uniform allocation), GRPO+GRESO (prompt-level filtering). All experiments use verl-agent with identical hyperparameters. Primary metrics: (i) success rate at a fixed compute budget (200 H100-hours total), (ii) training iterations to reach a fixed performance threshold. Analysis metrics: (iii) Spearman ρ between graph-topology and policy-signal state rankings, (iv) fraction of top-k critical states identified by only one signal type (complementarity ratio). Ablations: advantage reweighting only vs. prompt reallocation only vs. both; graph-topology metrics (variance only vs. full I_topo).",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~180h H100 (7 training runs on ALFWorld + WebShop with Qwen2.5-1.5B-Instruct: GRPO baseline × 2 seeds on both benchmarks = 4 runs + STAG+GRPO × 2 seeds on ALFWorld + 1 seed on WebShop = 3 runs; ~25h H100 per run on 2 H100 GPUs for 150 iterations with 1.5B model). Additional ~10h for analysis rollouts from checkpoints.",
+      "gpu_utilization": "~50-60% — idle time during graph construction implementation and analysis between experiment batches",
+      "timeline": "14 days (days 1-3: implement graph construction + scoring as verl-agent plugin; days 4-8: run baseline and STAG experiments; days 9-11: analysis + ablations; days 12-14: paper writing)",
+      "team": "1 researcher with verl-agent experience",
+      "estimated_gpu_cost": "$540-720 (180h × $3-4/hr H100)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~190h H100 (same 7 runs + 1 additional ablation run; agent handles verl-agent integration code and experiment scripting)",
+      "gpu_utilization": "~65-75% — agent scripts experiments and parses results; human validates state hash quality on pilot rollouts",
+      "timeline": "12-14 days (agent generates verl-agent plugin code; human validates hash collision rates on 1-2 pilot rollouts before committing full budget)",
+      "team": "1 researcher, ~2hr/day for reviewing state graph quality, validating analysis outputs, and paper editing",
+      "claude_api_cost": "$60-100 (~600-1000 turns for code generation, experiment scripting, and analysis)",
+      "estimated_gpu_cost": "$570-760 (190h × $3-4/hr H100)",
+      "risk_note": "State hashing quality is the critical bottleneck — poor hash functions that collapse distinct states or split identical states degrade graph topology. Human validation of hash collision rates on 2-3 pilot rollouts (each ~25h) is essential before committing remaining budget. WebShop state hashing is less trivial than ALFWorld's symbolic state; may require iterating on the hash function design."
+    },
+    "auto_research": {
+      "gpu_hours": "~300h H100 (broader exploration of hash functions, informativeness metrics, and reweighting schedules; ~12 runs including suboptimal configurations)",
+      "gpu_utilization": "~80% — agent queues experiments with minimal idle time",
+      "timeline": "10-14 days with 4 H100 GPUs",
+      "team": "0 (initial setup: specify environment configs, baselines, evaluation metrics)",
+      "claude_api_cost": "$150-250 (~1500-2500 turns)",
+      "estimated_gpu_cost": "$900-1,200 (300h × $3-4/hr H100)",
+      "speed_bottleneck": "Sequential dependency: must complete baseline runs to construct initial graphs before testing STAG allocation. Can parallelize across benchmarks (ALFWorld vs. WebShop) but not within the graph-construction → allocation-testing pipeline.",
+      "risk_note": "WebShop state hashing is less structured than ALFWorld's PDDL state. Automatic hash function design may produce degenerate graphs without human-designed priors. Agent should detect graph degeneracy (>90% unique nodes or <5% unique nodes) and flag for human review before proceeding."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline: May 25, 2026)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "RewardFlow: Topology-Aware Reward Propagation on State Graphs for Agentic RL (arXiv 2603.18859, March 2026) — constructs the same state graph we analyze, but for reward propagation; our work studies whether graph topology also provides allocation signal",
+    "ARPO: Agentic Reinforced Policy Optimization (ICLR 2026, arXiv 2507.19849) — entropy-based adaptive branching at tool-call steps; model-dependent allocation baseline we compare against",
+    "Spark: Strategic Policy-Aware Exploration via Dynamic Branching (arXiv 2601.20209, January 2026) — uses SFT-bootstrapped &lt;explore> tags for branching at critical states; model-dependent, qualitatively different from graph-topology signals",
+    "PivotRL: High Accuracy Agentic Post-Training at Low Compute Cost (arXiv 2603.21383, March 2026) — static offline profiling of reference-policy outcome variance for pivot identification; our online graph approach provides a complementary signal",
+    "InfoTree: Maximizing Rollout Informativeness under a Fixed Budget via Submodular Tree Search (arXiv 2605.05262, May 2026) — formalizes allocation via UUCB; policy-dependent, operates within single episodes vs. our cross-batch analysis",
+    "HiPER: Hierarchical RL with Explicit Credit Assignment for LLM Agents (arXiv 2602.16165, February 2026) — achieves 97.4% on ALFWorld with Qwen2.5-7B, current SOTA; relevant as upper-bound baseline",
+    "HGPO: Hierarchy-of-Groups Policy Optimization for Long-Horizon Agentic Tasks (ICLR 2026, arXiv 2602.22817)",
+    "BEACON: Milestone-Guided Policy Learning for Long-Horizon Language Agents (arXiv 2605.06078, May 2026)",
+    "PODS: Not All Rollouts are Useful — Down-Sampling Rollouts in LLM RL (TMLR 2026, arXiv 2504.13818) — max-variance rollout selection for reasoning; we extend the selective-allocation principle to agentic settings with graph-topology signals",
+    "GRESO: Act Only When It Pays — Efficient RL via Selective Rollouts (NeurIPS 2025, arXiv 2506.02177) — prompt-level filtering baseline",
+    "GiGPO: Group-in-Group Policy Optimization for LLM Agent Training (NeurIPS 2025, arXiv 2505.10978)",
+    "RTMC: Step-Level Credit Assignment via Rollout Trees (arXiv 2604.11037, April 2026)",
+    "SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph (EACL 2026, arXiv 2510.20022)",
+    "Tree-GRPO: Tree Search for LLM Agent Reinforcement Learning (ICLR 2026)",
+    "Tree Training: Accelerating Agentic LLMs Training via Shared Prefix Reuse (arXiv 2511.00413, November 2025)",
+    "PRAISE: Prefix-Based Rollout Reuse in Agentic Search Training (arXiv 2604.03675, April 2026)",
+    "From Reasoning to Agentic: Credit Assignment in RL for LLMs — Survey (arXiv 2604.09459, April 2026)",
+    "MiRA: A Subgoal-driven Framework for Improving Long-Horizon LLM Agents (arXiv 2603.19685, March 2026)",
+    "SPA-RL: Reinforcing LLM Agents via Stepwise Progress Attribution (arXiv 2505.20732, May 2025)",
+    "RLAnything and DemyAgent: General and Scalable Agentic RL Algorithms (ICML 2026)"
+  ],
+  "description": "We present STAG, an empirical study with a lightweight method that investigates whether environment state-transition graphs provide complementary signal to model-dependent methods for rollout allocation in long-horizon agentic RL. While recent work has developed diverse allocation strategies based on policy entropy (ARPO), learned exploration tags (Spark), UUCB bounds (InfoTree), and static outcome variance (PivotRL), all rely on model-dependent signals. Separately, RewardFlow has shown that state graphs constructed from environment observations encode meaningful decision-relevant structure — but only for reward propagation. We ask: do graph-topology signals (downstream return variance, successor diversity, betweenness centrality) identify the same critical states as model-dependent signals, or different ones? We construct state-transition graphs from standard GRPO training rollouts on ALFWorld and WebShop, measure the Spearman correlation between graph-topology and policy-signal state rankings across training, and identify 'blind spots' where each signal type captures information the other misses. Based on this analysis, we propose Graph-Augmented Rollout Allocation — a lightweight extension that combines graph-topology informativeness with standard advantage estimation via (a) prompt-level reallocation toward graph-complex prompts and (b) advantage reweighting at topology-identified critical states. Unlike prior graph-based methods (RewardFlow, SALT), STAG uses graphs for allocation rather than credit assignment; unlike checkpoint-and-branch designs (Spark), it requires no environment checkpoint-restore API. We evaluate with Qwen2.5-1.5B-Instruct on ALFWorld and WebShop under a matched 200 H100-hour budget, comparing against GRPO and GRPO+GRESO baselines, with GiGPO/HGPO released checkpoints as additional reference points. The analysis contribution — measuring graph-topology vs. policy-signal complementarity across training — provides actionable insights for designing future allocation strategies regardless of whether our specific method achieves SOTA. Limitations: (1) 1.5B model scale limits claims about 7B+ settings, (2) ALFWorld's symbolic PDDL state makes graph construction trivially clean — WebShop's noisier observations are a harder test, (3) the 'model-free' advantage of graph topology may diminish as policies become stronger and policy signals become more reliable.",
+  "project_name": "stag_rollout_allocation",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["CRITICAL: MiRA (arXiv 2603.19685, March 2026) — 'Milestoning your Reinforcement Learning Enhanced Agent' — uses milestone-based dense reward signals for RL training, achieving 43% on WebArena-Lite with Gemma3-12B. This is conceptually near-identical to MAHCA's milestone-anchored credit assignment and is NOT cited.", "CRITICAL: HGPO (ICLR 2026, arXiv 2602.22817) — 'Hierarchy-of-Groups Policy Optimization' — the direct successor to GiGPO by the same verl-agent team, does hierarchical advantage estimation with context-consistent grouping. This is the most directly competing published work at a top venue and is NOT cited.", "CRITICAL: Compute budget violation. User constraint is ≤200 H100-hours. The resource estimate claims '500h A100' but actual calculation: 50 runs × 10h wall-clock × 4-8 GPUs = 2000-4000 A100 GPU-hours ≈ 1000-2000 H100-hours, which is 5-10x over budget.", "MAJOR: SPA-RL (arXiv 2505.20732) and SALT (EACL 2026 Findings, arXiv 2510.20022) are highly relevant concurrent works achieving step-level advantage assignment on ALFWorld/WebShop without auxiliary models, both NOT cited.", "MAJOR: Baselines HiPER and ADMIRE have no publicly available open-source implementations. Reimplementing both within 16 days alongside MAHCA development for 3 benchmarks is unrealistic.", "MAJOR: The 'heuristic-based environment state change detection' — the claimed key differentiator from HiPER/MiRA — is ad-hoc and under-specified. What DOM diff threshold? How to generalize across environments? This seems like an engineering choice, not a research contribution.", "MINOR: The claim of reducing 'effective horizon from 100+ steps to 5-15 steps per segment' is speculative and unvalidated. Whether this actually lowers variance depends heavily on segment granularity, which itself depends on poorly-specified heuristics.", "MINOR: Proposing 14B model experiments requiring 8 GPUs per run makes the 200 H100-hour budget mathematically impossible — a single 14B SWE-bench training run costs ~64 H100-hours (per Agent-RLVR benchmarks)."]
+Feedback: This idea faces three fundamental challenges that must ALL be addressed for viability:
+
+1. **Differentiate from MiRA and HGPO or abandon**: MiRA (2603.19685) already does milestone-based reward shaping for RL agents, and HGPO (ICLR 2026) already does hierarchical advantage estimation in verl-agent. You must either: (a) clearly articulate what MAHCA adds beyond both papers — the heuristic state-change detection alone is insufficient, or (b) pivot to a genuinely novel angle, such as combining milestone detection with rollout tree sharing (RTMC-style) or using environment state changes for adaptive rollout allocation rather than credit assignment.
+
+2. **Drastically reduce experimental scope to fit ≤200 H100-hours**: Drop the 14B model entirely. Use only 1 benchmark (ALFWorld is cheapest). Use Qwen2.5-7B only. Drop HiPER and ADMIRE as baselines (no code available) — compare against GiGPO, HGPO (both in verl-agent), and GRPO only. Estimate: ~5 method variants × ~10 GPU-hours per run × 4 GPUs ≈ 200 H100-hours. This significantly weakens the paper but is the only way to fit the budget.
+
+3. **Cite and differentiate from ALL concurrent work**: At minimum cite MiRA, HGPO, SALT, SPA-RL, and MICA. Construct a clear comparison table showing: (a) milestone detection method (LLM-based vs heuristic vs learned critic), (b) hierarchy level (plan/segment/step/token), (c) auxiliary model requirement, (d) domain generality. Position MAHCA in a cell no other method occupies.
+
+Given the extreme competition (47 credit assignment methods in 2024-2026), consider whether this direction can realistically produce a top-venue paper under these resource constraints. A narrower, more surprising contribution (e.g., a negative result showing that environment-state-based segmentation HURTS credit assignment in certain domains) might be more publishable than another hierarchical advantage estimation variant.
+
+### Round 2 review
+Verdict: revise
+Issues: ["CRITICAL: VENUE VIOLATION — The idea targets AAAI 2027 (~August 2026 deadline) and ICLR 2027 (~September/October 2026), but the user explicitly requires EMNLP 2026 with ARR submission deadline May 25, 2026. This is a direct violation of the user's requirements.", "CRITICAL: TIMELINE VIOLATION — The idea estimates 2-3 months (manual) and 5-7 weeks (human-in-loop), but the user requires completion within ≤16 days. Even the auto_research estimate of 1-2 weeks barely fits, and it requires 400 H100-hours (2x over budget).", "CRITICAL: GPU COST SEVERELY UNDERESTIMATED — Claims '~10h H100-equivalent per run on 4 GPUs' for ALFWorld with Qwen2.5-7B. Verified benchmarks show typical ALFWorld 7B training costs 50-300 H100-hours. GiGPO's own paper reports 4×H100 for 150 iterations on ALFWorld. At realistic costs: 16 runs × 50h = 800 H100-hours minimum, 4x over the 200h budget.", "MAJOR: INCREMENTAL NOVELTY — RewardFlow (March 2026) already constructs the same state graph from environment observations during RL training and identifies 'bottleneck or pivotal junctures' via degree analysis. Spark (January 2026) already implements checkpoint-and-branch at critical decision states. PivotRL (March 2026) already does selective rollout allocation based on outcome variance. STAG's contribution reduces to: 'use RewardFlow's graph topology (instead of PivotRL's static variance or Spark's learned tag) to trigger Spark-style branching.' This is an obvious combination of three concurrent papers.", "MAJOR: FACTUAL ERROR ON SPARK — The idea describes Spark as using 'intrinsic policy signals (entropy, value uncertainty)' for branching. Spark actually uses a learned &lt;explore> tag in the reasoning trace, bootstrapped via SFT with ~300 trajectories. This is qualitatively different from computed entropy/value uncertainty and must be corrected.", "MAJOR: SINGLE BENCHMARK (ALFWorld only) — ALFWorld's symbolic PDDL state makes state hashing trivially effective. The generalization to environments without clean symbolic state representations (WebArena, SWE-bench, Mind2Web) is entirely untested. Single-benchmark papers are rarely competitive at top venues, especially when the benchmark's properties perfectly align with the method's assumptions.", "MAJOR: ALFWorld CHECKPOINTING MISREPRESENTED — Claims 'natively supported in text-based environments like ALFWorld via game-state serialization.' Verification shows ALFWorld does NOT expose a high-level checkpoint-and-restore API. The underlying TextWorld engine has PDDL state primitives, but checkpoint-and-branch requires custom engineering. verl-agent does NOT support this natively.", "MINOR: MISSING COMPETING WORK — PODS (TMLR 2026, arXiv 2504.13818) proposes max-variance down-sampling for selective rollout training, directly addressing rollout efficiency for LLM RL. Not cited.", "MINOR: ALFWorld SOTA MISREPRESENTED — HiPER (arXiv 2602.16165, February 2026) achieves 97.4% on ALFWorld with Qwen2.5-7B-Instruct, significantly above BEACON's 92.9%. The idea does not cite HiPER or acknowledge it as the actual SOTA baseline.", "MINOR: The 'model-free' advantage is debatable — model-dependent signals (Spark's &lt;explore> tag, InfoTree's UUCB) capture the agent's actual epistemic uncertainty, which may be MORE informative for rollout allocation than environment topology. The idea asserts model-free is better without evidence."]
+Feedback: This revision made a smart pivot from the overcrowded credit assignment space to rollout allocation, but the execution has critical gaps that must ALL be addressed:
+
+1. **Fix venue/timeline immediately**: Target EMNLP 2026 (ARR May 25). If 16 days is insufficient, be honest about it and scope the contribution accordingly — perhaps a focused analysis paper showing that environment state graphs provide complementary signal to model-dependent allocation methods, validated with minimal experiments.
+
+2. **Get realistic cost estimates**: Your 10 H100-hrs/run figure is 5-30x too low based on published verl-agent benchmarks. Look at GiGPO's actual training costs. With realistic estimates, you may need to reduce to 3-4 runs total (GRPO baseline + STAG+GRPO, 2 seeds each) to fit 200h. Consider LoRA instead of full fine-tuning to reduce per-run cost.
+
+3. **Strengthen novelty beyond 'combination of concurrent papers'**: The current framing — 'model-free graph topology for allocation' — reads as 'RewardFlow graph + PivotRL allocation + Spark branching.' To differentiate:
+   (a) Show theoretically WHY environment topology provides complementary signal to policy-dependent signals (variance decomposition: which variance does topology capture that policy uncertainty doesn't?).
+   (b) Run a direct ablation: STAG allocation vs. Spark allocation vs. InfoTree allocation on the SAME graph — this isolates the allocation signal's value.
+   (c) Consider combining STAG with RewardFlow (graph for both allocation AND reward propagation) — this makes the contribution 'a unified state graph framework' rather than 'yet another use of the same graph.'
+
+4. **Fix factual errors**: Spark uses &lt;explore> tags, not entropy/value uncertainty. HiPER (97.4%) is ALFWorld SOTA, not BEACON (92.9%). ALFWorld checkpointing is NOT native — requires TextWorld PDDL state engineering. Cite PODS (TMLR 2026).
+
+5. **Address single-benchmark weakness**: Either (a) add a second benchmark where state hashing is non-trivial (WebArena or SWE-bench via file-diff-based state representation), or (b) explicitly scope the contribution as 'for symbolic-state environments' and discuss limitations honestly.
+
+6. **Reconsider whether model-free is actually better**: Spark's learned &lt;explore> tag captures agent-specific uncertainty; STAG's environment topology captures structural branching but not agent confusion. An agent might face a critical decision at a node with low graph entropy (only one successor observed so far because the agent consistently takes one action). STAG would miss this; Spark would catch it. Address this directly.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+  "type": "user",
+  "uuid": "2f76ef96-f46c-44e6-b768-baff3cd2ab13",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-12T02:00:35.107Z_
+
+```json
+{
+  "parentUuid": "2f76ef96-f46c-44e6-b768-baff3cd2ab13",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "425fdc4e-36b8-4bf6-a019-272b86a47b5d",
+  "timestamp": "2026-05-12T02:00:35.107Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-12T02:00:35.107Z_
+
+```json
+{
+  "parentUuid": "425fdc4e-36b8-4bf6-a019-272b86a47b5d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "e1eb6c6c-dd82-4af8-a697-82bb86fdb0ca",
+  "timestamp": "2026-05-12T02:00:35.107Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "e1eb6c6c-dd82-4af8-a697-82bb86fdb0ca",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "STAG: Empirical analysis of graph-topology vs. policy-signal complementarity for rollout allocation",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-12T02:00:52.238Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this round 3 submission of STAG. This is a significantly revised idea from the previous rounds. Let me track the key changes:
+
+1. Round 1: MAHCA (milestone-anchored hierarchical credit assignment) - rejected for missing citations, compute violations, incremental novelty
+2. Round 2: STAG v1 (state-transition graph for rollout allocation) - rejected for venue violation, timeline violation, GPU cost underestimates, incremental novelty (combination of RewardFlow + PivotRL + Spark), single benchmark, factual errors
+
+
+3. Round 3: STAG v2 - now framed as "empirical analysis + lightweight method" studying complementarity of graph-topology vs model-dependent signals for rollout allocation
+
+The submission addresses most previous concerns: venue is now EMNLP 2026 with ARR deadline May 25, they've added WebShop as a second benchmark, dropped the checkpoint-and-branch approach that wasn't feasible, and reframed the work as analysis plus method rather than pure methodology. They're using Qwen2.5-1.5B to keep compute costs down, with resource estimates around 180 hours on H100 for manual work, 190 for human-in-the-loop, and 300 for automation.
+
+Now I need to verify the core claims: whether the cited papers actually exist and accurately represent the state of the art, if anyone's actually compared graph-topology versus model-dependent signals for rollout allocation, whether the compute estimates hold up, and whether this contribution is substantial enough for EMNLP. I should also check for any concurrent work they might have missed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e1eb6c6c-dd82-4af8-a697-82bb86fdb0ca",
+  "isSidechain": false,
+  "requestId": "req_011CawrDVGNvRuRN4yQKUcFB",
+  "type": "assistant",
+  "uuid": "95c8ba8e-f6e4-46aa-bf60-9985dbe0d7d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P6GfZJn9kjGfav7cHUHnCZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16679,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 2286,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16679,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2286,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 16679,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16679
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-12T02:00:52.240Z_
+
+I'll conduct an independent review of this Round 3 STAG submission. Let me verify the key claims systematically.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "95c8ba8e-f6e4-46aa-bf60-9985dbe0d7d7",
+  "isSidechain": false,
+  "requestId": "req_011CawrDVGNvRuRN4yQKUcFB",
+  "type": "assistant",
+  "uuid": "8051b0d6-4fc1-47cc-87cf-13db9a69b2aa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P6GfZJn9kjGfav7cHUHnCZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16679,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 2286,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16679,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2286,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 16679,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16679
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-12T02:01:02.568Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01EAChYaBDg5L9Sqg5nYBvgz`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify STAG key references",
+  "prompt": "You are helping me verify references for a research paper review. I need you to search for and verify the following papers exist and are described accurately. For each paper, search for it and report: (1) does it exist, (2) is the description accurate, (3) any key details.\n\nPapers to verify:\n1. RewardFlow (arXiv 2603.18859, March 2026) — \"constructs state-transition graphs from environment observations and propagates terminal rewards via BFS/Personalized PageRank, achieving 89.8% on ALFWorld with Qwen2.5-7B\"\n2. InfoTree (arXiv 2605.05262, May 2026) — \"formalizes allocation as monotone submodular optimization with UUCB state selection\"\n3. PivotRL (arXiv 2603.21383, March 2026) — \"identifies pivot turns via static offline profiling of reference policy outcome variance, achieving 4x fewer rollout turns on SWE-Bench\"\n4. BEACON (arXiv 2605.06078, May 2026) — \"detects milestones from state changes for dual-scale advantage, reaching 92.9% on ALFWorld\"\n5. RTMC (arXiv 2604.11037, April 2026) — \"exploits rollout tree structure for unbiased per-step MC advantages\"\n6. PRAISE (arXiv 2604.03675, April 2026) — \"reuses trajectory prefixes for search training\"\n\nUse WebSearch to find each paper. Report your findings concisely."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8051b0d6-4fc1-47cc-87cf-13db9a69b2aa",
+  "isSidechain": false,
+  "requestId": "req_011CawrDVGNvRuRN4yQKUcFB",
+  "type": "assistant",
+  "uuid": "9fc032a8-5b10-464d-97d9-c6eb4e7f5f8a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P6GfZJn9kjGfav7cHUHnCZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16679,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 2286,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16679,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2286,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 16679,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16679
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-12T02:01:11.036Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01CKAe21Pw3UKCQUXzupJJrM`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search competing rollout allocation work",
+  "prompt": "You are helping me review a research paper about using environment state-transition graphs for rollout allocation in agentic RL (reinforcement learning for LLM agents). I need you to search for competing work that the paper may have missed.\n\nThe paper (called STAG) claims that all existing rollout allocation methods use model-dependent signals (policy entropy, learned tags, UUCB bounds, outcome variance), while graph-based methods only use graphs for credit assignment/reward propagation. STAG proposes using graph topology for allocation instead.\n\nSearch for:\n1. \"state graph rollout allocation LLM agent 2025 2026\" - any work combining graph topology with rollout allocation\n2. \"environment structure guided exploration LLM agent RL\" - structural exploration signals\n3. \"graph-based training efficiency reinforcement learning language model\" - graph methods for RL training efficiency\n4. \"state transition graph reinforcement learning allocation sampling\" - graph-guided sampling\n5. \"complementary signals rollout allocation agentic RL\" - signal complementarity analysis\n6. \"environment topology reinforcement learning agent training 2026\" - topology for agent training\n7. Search for any work by the RewardFlow authors that extends graph usage beyond reward propagation\n\nReport all relevant papers found, especially any that combine graph topology with rollout allocation or analyze complementarity of different allocation signals. Be thorough."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9fc032a8-5b10-464d-97d9-c6eb4e7f5f8a",
+  "isSidechain": false,
+  "requestId": "req_011CawrDVGNvRuRN4yQKUcFB",
+  "type": "assistant",
+  "uuid": "f97c0d32-84a1-4d8b-a942-323e9c5a8028",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P6GfZJn9kjGfav7cHUHnCZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16679,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 2286,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16679,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2286,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 16679,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16679
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-12T02:01:19.795Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01UTGw5FoLNvVVWLcqVms3R5`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Verify compute estimates and verl-agent costs",
+  "prompt": "I need to verify compute cost estimates for training LLM agents with reinforcement learning. The paper under review claims:\n- ~25h H100 per run on 2 H100 GPUs for 150 iterations with Qwen2.5-1.5B-Instruct on ALFWorld\n- 7 total training runs fitting within ~180h H100\n- Using verl-agent framework\n\nSearch for:\n1. \"verl-agent training cost H100 GPU hours ALFWorld\" - actual reported costs\n2. \"GiGPO training cost GPU hours ALFWorld\" - GiGPO's reported training costs\n3. \"Qwen2.5-1.5B reinforcement learning training cost\" - small model RL training costs\n4. \"GRPO ALFWorld training iterations GPU\" - GRPO training costs on ALFWorld\n5. \"verl-agent Qwen2.5-1.5B\" - any reports of using verl-agent with 1.5B models\n6. \"HiPER ALFWorld training cost\" - HiPER's training costs for comparison\n\nAlso search for: \"verl-agent github\" to check if verl-agent supports Qwen2.5-1.5B and what the typical training configuration is.\n\nReport findings on whether 25h H100 per run with 1.5B model on ALFWorld is realistic. Previous review rounds found that 7B model runs cost 50-300 H100-hours, so 1.5B should be much cheaper, but I need verification."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f97c0d32-84a1-4d8b-a942-323e9c5a8028",
+  "isSidechain": false,
+  "requestId": "req_011CawrDVGNvRuRN4yQKUcFB",
+  "type": "assistant",
+  "uuid": "6a1e7236-c12a-42bb-95b6-30e7aa639230",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P6GfZJn9kjGfav7cHUHnCZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16679,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 2286,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16679,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2286,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 16679,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16679
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-12T02:01:31.606Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01TavxxE7H29dExnALDhGkKC`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Search for contribution type concerns",
+  "prompt": "I'm reviewing a paper called STAG that frames itself as \"an empirical study with a lightweight method\" analyzing whether environment state-graph topology provides complementary signal to model-dependent methods for rollout allocation in agentic RL. The user's requirements explicitly state: \"Contribution type: METHOD ONLY. Must propose a concrete new algorithm, training procedure, or inference-time mechanism. Reject pure benchmark / dataset / analysis ideas. Method + analysis OK if analysis validates the method.\"\n\nSTAG has two components:\n1. Empirical Analysis: measuring Spearman correlation between graph-topology signals and model-dependent signals across training\n2. A lightweight method: prompt-level reallocation + advantage reweighting using graph topology signals\n\nThe paper says: \"The analysis contribution — measuring graph-topology vs. policy-signal complementarity across training — provides actionable insights for designing future allocation strategies regardless of whether our specific method achieves SOTA.\"\n\nQuestions to investigate:\n1. Search for \"EMNLP 2026 call for papers\" or \"ACL Rolling Review 2026 guidelines\" to understand what EMNLP expects for method contributions\n2. Search for precedent: \"empirical analysis method paper EMNLP accepted\" - are method+analysis papers well-received?\n3. Search for \"analysis paper NLP venue acceptance\" - how do analysis-heavy papers fare?\n4. Does the method component (advantage reweighting + prompt reallocation) seem substantial enough as a method contribution, or is this primarily an analysis paper with a thin method wrapper?\n\nAlso search for: \"EMNLP 2026 ARR deadline May 2026\" to confirm the submission deadline is correct.\n\nReport your assessment of whether this idea meets the \"METHOD ONLY\" requirement."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a1e7236-c12a-42bb-95b6-30e7aa639230",
+  "isSidechain": false,
+  "requestId": "req_011CawrDVGNvRuRN4yQKUcFB",
+  "type": "assistant",
+  "uuid": "3b3f39c3-d10b-42c0-bbd1-054a580317fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P6GfZJn9kjGfav7cHUHnCZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 16679,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 2286,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16679,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2286,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 16679,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16679
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-12T02:02:16.045Z_
+
+<details><summary>↩ Tool result · `toolu_01EAChYaBDg5L9Sqg5nYBvgz`</summary>
+
+```text
+Here are my findings for each of the six papers:
+
+---
+
+## 1. RewardFlow (arXiv 2603.18859, March 2026)
+
+**Exists:** YES. The paper is titled "RewardFlow: Topology-Aware Reward Propagation on State Graphs for Agentic RL with Large Language Models."
+
+**Description accuracy:** ACCURATE. The paper does construct state-transition graphs from environment observations and propagates terminal rewards via BFS/Personalized PageRank. The 89.8% on ALFWorld with Qwen2.5-7B is confirmed -- it achieves 89.8% success rate, which is 7.0% higher than GiGPO. The use of Qwen2.5-7B as the base model is also confirmed.
+
+**No issues found with this reference.**
+
+Sources: [arXiv page](https://arxiv.org/abs/2603.18859), [HTML version](https://arxiv.org/html/2603.18859)
+
+---
+
+## 2. InfoTree (arXiv 2605.05262, May 2026)
+
+**Exists:** YES. The paper is titled "Maximizing Rollout Informativeness under a Fixed Budget: A Submodular View of Tree Search for Tool-Use Agentic Reinforcement Learning."
+
+**Description accuracy:** ACCURATE. The paper does formalize rollout allocation as a monotone submodular optimization problem. It uses UUCB (Uncertainty-aware Upper Confidence Bound) for state selection, where the UUCB terms arise as closed-form marginal gains of the submodular objective. The framework is called "InfoTree."
+
+**No issues found with this reference.**
+
+Sources: [arXiv page](https://arxiv.org/abs/2605.05262), [HTML version](https://arxiv.org/html/2605.05262)
+
+---
+
+## 3. PivotRL (arXiv 2603.21383, March 2026)
+
+**Exists:** YES. The paper is titled "PivotRL: High Accuracy Agentic Post-Training at Low Compute Cost."
+
+**Description accuracy:** PARTIALLY INACCURATE. Key concerns:
+- **arXiv ID:** The user listed 2603.21383, which is correct. (The user's original query had the right ID.)
+- **"static offline profiling of reference policy outcome variance":** This description appears to be inaccurate or at least misleading. According to the paper, PivotRL identifies pivots via **on-policy rollouts** (not static offline profiling), filtering for assistant turns where sampled actions exhibit **mixed outcomes** (both successes and failures). The pivots are identified dynamically during local on-policy rollouts, not through static offline profiling of a reference policy.
+- **"4x fewer rollout turns on SWE-Bench":** This is confirmed -- PivotRL achieves competitive accuracy with 4x fewer rollout turns compared to end-to-end RL on agentic coding tasks.
+
+**Issue: The mechanism for identifying pivots is misdescribed. It uses on-policy rollouts with mixed-outcome filtering, not "static offline profiling of reference policy outcome variance."**
+
+Sources: [arXiv page](https://arxiv.org/abs/2603.21383), [HTML version](https://arxiv.org/html/2603.21383), [MarkTechPost coverage](https://www.marktechpost.com/2026/03/25/nvidia-ai-introduces-pivotrl-a-new-ai-framework-achieving-high-agentic-accuracy-with-4x-fewer-rollout-turns-efficiently/)
+
+---
+
+## 4. BEACON (arXiv 2605.06078, May 2026)
+
+**Exists:** YES. The paper is titled "Milestone-Guided Policy Learning for Long-Horizon Language Agents." (Note: the paper appears to use "BEACON" as an acronym for this framework.)
+
+**Description accuracy:** ACCURATE. The paper detects milestones from state changes, applies temporal reward shaping within segments, and estimates advantages at **dual scales** to prevent distant failures from corrupting local action evaluation. The 92.9% success rate on ALFWorld is confirmed (nearly doubling GRPO's 53.5%).
+
+**No issues found with this reference.**
+
+Sources: [arXiv page](https://arxiv.org/abs/2605.06078), [HTML version](https://arxiv.org/html/2605.06078)
+
+---
+
+## 5. RTMC (arXiv 2604.11037, April 2026)
+
+**Exists:** YES. The paper is titled "RTMC: Step-Level Credit Assignment via Rollout Trees."
+
+**Description accuracy:** ACCURATE. RTMC exploits the natural tree structure that emerges when multiple rollouts are collected for the same problem (rollouts sharing common states form a tree). It produces unbiased per-step Monte Carlo advantages without any learned critic, using state-action signatures to match states across rollouts. The paper reports a 3.2pp improvement over GRPO on SWE-bench Verified.
+
+**No issues found with this reference.**
+
+Sources: [arXiv page](https://arxiv.org/abs/2604.11037), [HTML version](https://arxiv.org/html/2604.11037)
+
+---
+
+## 6. PRAISE (arXiv 2604.03675, April 2026)
+
+**Exists:** YES. The paper is titled "PRAISE: Prefix-Based Rollout Reuse in Agentic Search Training."
+
+**Description accuracy:** ACCURATE. PRAISE reuses trajectory prefixes for search training. Specifically, it extracts prefix states at different search turns from complete trajectories, elicits intermediate answers, and uses these prefixes to construct additional training trajectories and derive step-level rewards.
+
+**No issues found with this reference.**
+
+Sources: [arXiv page](https://arxiv.org/html/2604.03675)
+
+---
+
+## Summary
+
+| Paper | Exists | Description Accurate | Issues |
+|-------|--------|---------------------|--------|
+| RewardFlow | Yes | Yes | None |
+| InfoTree | Yes | Yes | None |
+| PivotRL | Yes | **Partially** | Pivot identification mechanism is misdescribed -- uses on-policy mixed-outcome filtering, not "static offline profiling of reference policy outcome variance" |
+| BEACON | Yes | Yes | None |
+| RTMC | Yes | Yes | None |
+| PRAISE | Yes | Yes | None |
+
+**One reference needs correction:** PivotRL's description of how pivots are identified should be revised. The paper uses on-policy rollouts that filter for turns with mixed outcomes (high variance in sampled action results), not "static offline profiling of reference policy outcome variance."
+
+agentId: a59ce1575dbd44253 (use SendMessage with to: 'a59ce1575dbd44253' to continue this agent)
+&lt;usage>total_tokens: 20381
+tool_uses: 10
+duration_ms: 73469&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9fc032a8-5b10-464d-97d9-c6eb4e7f5f8a",
+  "isSidechain": false,
+  "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+  "type": "user",
+  "uuid": "3ce7ff87-e036-46eb-947e-ff28582cf053",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "You are helping me verify references for a research paper review. I need you to search for and verify the following papers exist and are described accurately. For each paper, search for it and report: (1) does it exist, (2) is the description accurate, (3) any key details.\n\nPapers to verify:\n1. RewardFlow (arXiv 2603.18859, March 2026) — \"constructs state-transition graphs from environment observations and propagates terminal rewards via BFS/Personalized PageRank, achieving 89.8% on ALFWorld with Qwen2.5-7B\"\n2. InfoTree (arXiv 2605.05262, May 2026) — \"formalizes allocation as monotone submodular optimization with UUCB state selection\"\n3. PivotRL (arXiv 2603.21383, March 2026) — \"identifies pivot turns via static offline profiling of reference policy outcome variance, achieving 4x fewer rollout turns on SWE-Bench\"\n4. BEACON (arXiv 2605.06078, May 2026) — \"detects milestones from state changes for dual-scale advantage, reaching 92.9% on ALFWorld\"\n5. RTMC (arXiv 2604.11037, April 2026) — \"exploits rollout tree structure for unbiased per-step MC advantages\"\n6. PRAISE (arXiv 2604.03675, April 2026) — \"reuses trajectory prefixes for search training\"\n\nUse WebSearch to find each paper. Report your findings concisely.",
+    "agentId": "a59ce1575dbd44253",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here are my findings for each of the six papers:\n\n---\n\n## 1. RewardFlow (arXiv 2603.18859, March 2026)\n\n**Exists:** YES. The paper is titled \"RewardFlow: Topology-Aware Reward Propagation on State Graphs for Agentic RL with Large Language Models.\"\n\n**Description accuracy:** ACCURATE. The paper does construct state-transition graphs from environment observations and propagates terminal rewards via BFS/Personalized PageRank. The 89.8% on ALFWorld with Qwen2.5-7B is confirmed -- it achieves 89.8% success rate, which is 7.0% higher than GiGPO. The use of Qwen2.5-7B as the base model is also confirmed.\n\n**No issues found with this reference.**\n\nSources: [arXiv page](https://arxiv.org/abs/2603.18859), [HTML version](https://arxiv.org/html/2603.18859)\n\n---\n\n## 2. InfoTree (arXiv 2605.05262, May 2026)\n\n**Exists:** YES. The paper is titled \"Maximizing Rollout Informativeness under a Fixed Budget: A Submodular View of Tree Search for Tool-Use Agentic Reinforcement Learning.\"\n\n**Description accuracy:** ACCURATE. The paper does formalize rollout allocation as a monotone submodular optimization problem. It uses UUCB (Uncertainty-aware Upper Confidence Bound) for state selection, where the UUCB terms arise as closed-form marginal gains of the submodular objective. The framework is called \"InfoTree.\"\n\n**No issues found with this reference.**\n\nSources: [arXiv page](https://arxiv.org/abs/2605.05262), [HTML version](https://arxiv.org/html/2605.05262)\n\n---\n\n## 3. PivotRL (arXiv 2603.21383, March 2026)\n\n**Exists:** YES. The paper is titled \"PivotRL: High Accuracy Agentic Post-Training at Low Compute Cost.\"\n\n**Description accuracy:** PARTIALLY INACCURATE. Key concerns:\n- **arXiv ID:** The user listed 2603.21383, which is correct. (The user's original query had the right ID.)\n- **\"static offline profiling of reference policy outcome variance\":** This description appears to be inaccurate or at least misleading. According to the paper, PivotRL identifies pivots via **on-policy rollouts** (not static offline profiling), filtering for assistant turns where sampled actions exhibit **mixed outcomes** (both successes and failures). The pivots are identified dynamically during local on-policy rollouts, not through static offline profiling of a reference policy.\n- **\"4x fewer rollout turns on SWE-Bench\":** This is confirmed -- PivotRL achieves competitive accuracy with 4x fewer rollout turns compared to end-to-end RL on agentic coding tasks.\n\n**Issue: The mechanism for identifying pivots is misdescribed. It uses on-policy rollouts with mixed-outcome filtering, not \"static offline profiling of reference policy outcome variance.\"**\n\nSources: [arXiv page](https://arxiv.org/abs/2603.21383), [HTML version](https://arxiv.org/html/2603.21383), [MarkTechPost coverage](https://www.marktechpost.com/2026/03/25/nvidia-ai-introduces-pivotrl-a-new-ai-framework-achieving-high-agentic-accuracy-with-4x-fewer-rollout-turns-efficiently/)\n\n---\n\n## 4. BEACON (arXiv 2605.06078, May 2026)\n\n**Exists:** YES. The paper is titled \"Milestone-Guided Policy Learning for Long-Horizon Language Agents.\" (Note: the paper appears to use \"BEACON\" as an acronym for this framework.)\n\n**Description accuracy:** ACCURATE. The paper detects milestones from state changes, applies temporal reward shaping within segments, and estimates advantages at **dual scales** to prevent distant failures from corrupting local action evaluation. The 92.9% success rate on ALFWorld is confirmed (nearly doubling GRPO's 53.5%).\n\n**No issues found with this reference.**\n\nSources: [arXiv page](https://arxiv.org/abs/2605.06078), [HTML version](https://arxiv.org/html/2605.06078)\n\n---\n\n## 5. RTMC (arXiv 2604.11037, April 2026)\n\n**Exists:** YES. The paper is titled \"RTMC: Step-Level Credit Assignment via Rollout Trees.\"\n\n**Description accuracy:** ACCURATE. RTMC exploits the natural tree structure that emerges when multiple rollouts are collected for the same problem (rollouts sharing common states form a tree). It produces unbiased per-step Monte Carlo advantages without any learned critic, using state-action signatures to match states across rollouts. The paper reports a 3.2pp improvement over GRPO on SWE-bench Verified.\n\n**No issues found with this reference.**\n\nSources: [arXiv page](https://arxiv.org/abs/2604.11037), [HTML version](https://arxiv.org/html/2604.11037)\n\n---\n\n## 6. PRAISE (arXiv 2604.03675, April 2026)\n\n**Exists:** YES. The paper is titled \"PRAISE: Prefix-Based Rollout Reuse in Agentic Search Training.\"\n\n**Description accuracy:** ACCURATE. PRAISE reuses trajectory prefixes for search training. Specifically, it extracts prefix states at different search turns from complete trajectories, elicits intermediate answers, and uses these prefixes to construct additional training trajectories and derive step-level rewards.\n\n**No issues found with this reference.**\n\nSources: [arXiv page](https://arxiv.org/html/2604.03675)\n\n---\n\n## Summary\n\n| Paper | Exists | Description Accurate | Issues |\n|-------|--------|---------------------|--------|\n| RewardFlow | Yes | Yes | None |\n| InfoTree | Yes | Yes | None |\n| PivotRL | Yes | **Partially** | Pivot identification mechanism is misdescribed -- uses on-policy mixed-outcome filtering, not \"static offline profiling of reference policy outcome variance\" |\n| BEACON | Yes | Yes | None |\n| RTMC | Yes | Yes | None |\n| PRAISE | Yes | Yes | None |\n\n**One reference needs correction:** PivotRL's description of how pivots are identified should be revised. The paper uses on-policy rollouts that filter for turns with mixed outcomes (high variance in sampled action results), not \"static offline profiling of reference policy outcome variance.\""
+      }
+    ],
+    "totalDurationMs": 73469,
+    "totalTokens": 20381,
+    "totalToolUseCount": 10,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1460,
+      "cache_read_input_tokens": 17324,
+      "output_tokens": 1596,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1460
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1596,
+          "cache_read_input_tokens": 17324,
+          "cache_creation_input_tokens": 1460,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1460,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 10
+    }
+  },
+  "sourceToolAssistantUUID": "9fc032a8-5b10-464d-97d9-c6eb4e7f5f8a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-12T02:04:09.862Z_
+
+<details><summary>↩ Tool result · `toolu_01TavxxE7H29dExnALDhGkKC`</summary>
+
+```text
+Now I have comprehensive information to provide a thorough assessment. Let me compile the findings.
+
+---
+
+## Assessment: Does STAG Meet the "METHOD ONLY" Requirement?
+
+### 1. Deadline Confirmation
+
+The EMNLP 2026 ARR submission deadline is **May 25, 2026**, confirmed by the official call for papers. Since today is May 12, 2026, there are roughly 13 days remaining. Note that since EMNLP and AACL share the May ARR cycle, authors must explicitly select their target conference at submission time, and this choice is binding.
+
+### 2. What EMNLP/ARR Actually Expects
+
+The ARR Call for Papers lists these **contribution types** that authors can self-select:
+
+- Approaches to low-resource settings
+- Approaches to low compute settings / efficiency
+- Data resources
+- **Data analysis**
+- **Model analysis & interpretability**
+- **NLP engineering experiment**
+- Publicly available software and/or pre-trained models
+- Position papers
+- Reproduction study
+- Surveys
+- Theory
+
+Critically, there is no rigid "METHOD ONLY" gate at the venue level. EMNLP and ARR explicitly welcome analysis papers, negative results, surveys, and position papers. The ARR review form scores papers on **Soundness**, **Excitement**, and **Overall Assessment** -- not on whether they propose a novel method. Papers can be accepted to main conference or Findings based on different balances of these criteria.
+
+### 3. Precedent: Method + Analysis Papers
+
+Analysis-heavy papers are regularly accepted at EMNLP and ACL. The venue's very name -- "Empirical Methods" -- foregrounds empirical investigation. "Model analysis & interpretability" is an explicitly recognized contribution type. Papers that combine a lightweight method with substantial empirical analysis are well-received **when the analysis itself provides novel, actionable insights**.
+
+However, the user's own requirements state: **"Contribution type: METHOD ONLY. Must propose a concrete new algorithm, training procedure, or inference-time mechanism. Reject pure benchmark / dataset / analysis ideas. Method + analysis OK if analysis validates the method."**
+
+This is the user's internal filter, not the venue's -- and it is the standard against which STAG must be judged.
+
+### 4. Critical Assessment of STAG Against the "METHOD ONLY" Requirement
+
+**STAG has two components:**
+
+**Component A (Analysis):** Measuring Spearman correlation between graph-topology signals and model-dependent signals (e.g., policy advantage, value estimates) across training. This is the paper's primary intellectual contribution -- it provides "actionable insights for designing future allocation strategies regardless of whether our specific method achieves SOTA."
+
+**Component B (Method):** Prompt-level reallocation + advantage reweighting using graph topology signals.
+
+**The problem is the paper's own framing.** The quoted sentence -- "The analysis contribution... provides actionable insights... regardless of whether our specific method achieves SOTA" -- is a red flag. This sentence explicitly positions the analysis as the standalone, primary contribution and the method as secondary/optional. A genuine method paper would never hedge this way; it would say "our method achieves X improvement because of Y mechanism."
+
+**Comparison to existing work further weakens the method claim:**
+- **VSPO** (Value-based Sampling Policy Optimization, late 2025) already addresses the same problem space: it replaces zero-advantage samples in GRPO with prompts selected by a task-value metric balancing difficulty and uncertainty, and applies value-smoothing clipping. This is a more principled and heavier-weight method.
+- **AgentRL** (2025) proposes cross-policy sampling and task advantage normalization for multi-task agentic training.
+- **Turn-PPO** proposes turn-level advantage estimation for multi-turn agentic RL.
+- The STAG method (prompt reallocation + advantage reweighting using graph topology) is lightweight by its own admission, and its two sub-components (reallocation and reweighting) are standard techniques applied with a new signal source (graph topology features).
+
+**The method's novelty is the signal source, not the mechanism.** Advantage reweighting and prompt-level rollout reallocation are known techniques. The contribution is using graph-topology features to drive them. But the paper itself frames the deeper contribution as the *analysis showing that graph topology provides complementary signal* -- which is an analysis contribution, not a method contribution.
+
+### 5. Verdict
+
+**STAG does not cleanly meet the "METHOD ONLY" requirement as stated by the user.** Here is the breakdown:
+
+| Criterion | Assessment |
+|---|---|
+| Proposes a concrete algorithm? | Yes, but it is self-described as "lightweight" and uses standard mechanisms (reweighting, reallocation) with a new signal |
+| Is the method the primary contribution? | **No.** The paper explicitly says the analysis provides value "regardless of whether our specific method achieves SOTA" |
+| Would it survive without the analysis? | Unlikely -- a two-component method (reweight + reallocate using graph features) without the complementarity analysis would be thin relative to VSPO, AgentRL, and Turn-PPO |
+| Method + analysis where analysis validates the method? | **Not quite.** The analysis is positioned as independently valuable, not as validation of the method. The causal arrow runs from analysis to method design, not method to analysis-as-validation |
+
+**Recommendation: This paper is primarily an analysis contribution with a method wrapper, not a method contribution validated by analysis.** Under the user's stated filter ("Contribution type: METHOD ONLY... Reject pure benchmark / dataset / analysis ideas. Method + analysis OK if analysis validates the method"), STAG falls in a gray zone that leans toward rejection. The distinguishing test is the paper's own language: if the authors claim the analysis stands alone, then the method is not the primary contribution.
+
+**To pass the filter, the paper would need to be reframed** so that:
+1. The method is the headline contribution, with specific performance claims
+2. The graph-topology complementarity analysis serves as the *motivation and ablation* for the method, not as an independent contribution
+3. The hedging sentence about SOTA is removed
+4. The method is shown to match or exceed VSPO/AgentRL on standard benchmarks, not positioned as "lightweight"
+
+As currently framed, this is an analysis paper that happens to include a method, not a method paper that happens to include analysis.
+
+---
+
+Sources:
+- [EMNLP 2026 Call for Main Conference Papers](https://2026.emnlp.org/calls/main_conference_papers/)
+- [ACL Rolling Review Call for Papers](http://aclrollingreview.org/cfp)
+- [ARR Submission Form Fields](http://aclrollingreview.org/submissionform)
+- [ARR Review Form](http://aclrollingreview.org/reviewform)
+- [ARR Reviewer Guidelines](http://aclrollingreview.org/reviewerguidelines)
+- [EMNLP 2026 Twitter Announcement (ARR Deadline)](https://x.com/emnlpmeeting/status/2029508292637061462)
+- [EMNLP 2026 Twitter (AACL Shared Cycle Notice)](https://x.com/emnlpmeeting/status/2047754845919031450)
+- [VSPO: Enhancing Agentic RL with Progressive Reward Shaping](https://arxiv.org/abs/2512.07478)
+- [AgentRL: Scaling Agentic Reinforcement Learning](https://openreview.net/forum?id=zq3vAmuUk9)
+- [Training Recipes for Agentic RL Survey](https://github.com/blacksnail789521/Agentic-RL-Training-Recipes)
+- [Post-Training in 2026: GRPO, DAPO, RLVR & Beyond](https://llm-stats.com/blog/research/post-training-techniques-2026)
+- [ARR Dates and Venues](http://aclrollingreview.org/dates)
+
+agentId: a439f23f5d6632194 (use SendMessage with to: 'a439f23f5d6632194' to continue this agent)
+&lt;usage>total_tokens: 27902
+tool_uses: 19
+duration_ms: 158252&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3b3f39c3-d10b-42c0-bbd1-054a580317fe",
+  "isSidechain": false,
+  "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+  "type": "user",
+  "uuid": "bc7dd36e-a083-4cf6-a80b-b852208494ea",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I'm reviewing a paper called STAG that frames itself as \"an empirical study with a lightweight method\" analyzing whether environment state-graph topology provides complementary signal to model-dependent methods for rollout allocation in agentic RL. The user's requirements explicitly state: \"Contribution type: METHOD ONLY. Must propose a concrete new algorithm, training procedure, or inference-time mechanism. Reject pure benchmark / dataset / analysis ideas. Method + analysis OK if analysis validates the method.\"\n\nSTAG has two components:\n1. Empirical Analysis: measuring Spearman correlation between graph-topology signals and model-dependent signals across training\n2. A lightweight method: prompt-level reallocation + advantage reweighting using graph topology signals\n\nThe paper says: \"The analysis contribution — measuring graph-topology vs. policy-signal complementarity across training — provides actionable insights for designing future allocation strategies regardless of whether our specific method achieves SOTA.\"\n\nQuestions to investigate:\n1. Search for \"EMNLP 2026 call for papers\" or \"ACL Rolling Review 2026 guidelines\" to understand what EMNLP expects for method contributions\n2. Search for precedent: \"empirical analysis method paper EMNLP accepted\" - are method+analysis papers well-received?\n3. Search for \"analysis paper NLP venue acceptance\" - how do analysis-heavy papers fare?\n4. Does the method component (advantage reweighting + prompt reallocation) seem substantial enough as a method contribution, or is this primarily an analysis paper with a thin method wrapper?\n\nAlso search for: \"EMNLP 2026 ARR deadline May 2026\" to confirm the submission deadline is correct.\n\nReport your assessment of whether this idea meets the \"METHOD ONLY\" requirement.",
+    "agentId": "a439f23f5d6632194",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have comprehensive information to provide a thorough assessment. Let me compile the findings.\n\n---\n\n## Assessment: Does STAG Meet the \"METHOD ONLY\" Requirement?\n\n### 1. Deadline Confirmation\n\nThe EMNLP 2026 ARR submission deadline is **May 25, 2026**, confirmed by the official call for papers. Since today is May 12, 2026, there are roughly 13 days remaining. Note that since EMNLP and AACL share the May ARR cycle, authors must explicitly select their target conference at submission time, and this choice is binding.\n\n### 2. What EMNLP/ARR Actually Expects\n\nThe ARR Call for Papers lists these **contribution types** that authors can self-select:\n\n- Approaches to low-resource settings\n- Approaches to low compute settings / efficiency\n- Data resources\n- **Data analysis**\n- **Model analysis & interpretability**\n- **NLP engineering experiment**\n- Publicly available software and/or pre-trained models\n- Position papers\n- Reproduction study\n- Surveys\n- Theory\n\nCritically, there is no rigid \"METHOD ONLY\" gate at the venue level. EMNLP and ARR explicitly welcome analysis papers, negative results, surveys, and position papers. The ARR review form scores papers on **Soundness**, **Excitement**, and **Overall Assessment** -- not on whether they propose a novel method. Papers can be accepted to main conference or Findings based on different balances of these criteria.\n\n### 3. Precedent: Method + Analysis Papers\n\nAnalysis-heavy papers are regularly accepted at EMNLP and ACL. The venue's very name -- \"Empirical Methods\" -- foregrounds empirical investigation. \"Model analysis & interpretability\" is an explicitly recognized contribution type. Papers that combine a lightweight method with substantial empirical analysis are well-received **when the analysis itself provides novel, actionable insights**.\n\nHowever, the user's own requirements state: **\"Contribution type: METHOD ONLY. Must propose a concrete new algorithm, training procedure, or inference-time mechanism. Reject pure benchmark / dataset / analysis ideas. Method + analysis OK if analysis validates the method.\"**\n\nThis is the user's internal filter, not the venue's -- and it is the standard against which STAG must be judged.\n\n### 4. Critical Assessment of STAG Against the \"METHOD ONLY\" Requirement\n\n**STAG has two components:**\n\n**Component A (Analysis):** Measuring Spearman correlation between graph-topology signals and model-dependent signals (e.g., policy advantage, value estimates) across training. This is the paper's primary intellectual contribution -- it provides \"actionable insights for designing future allocation strategies regardless of whether our specific method achieves SOTA.\"\n\n**Component B (Method):** Prompt-level reallocation + advantage reweighting using graph topology signals.\n\n**The problem is the paper's own framing.** The quoted sentence -- \"The analysis contribution... provides actionable insights... regardless of whether our specific method achieves SOTA\" -- is a red flag. This sentence explicitly positions the analysis as the standalone, primary contribution and the method as secondary/optional. A genuine method paper would never hedge this way; it would say \"our method achieves X improvement because of Y mechanism.\"\n\n**Comparison to existing work further weakens the method claim:**\n- **VSPO** (Value-based Sampling Policy Optimization, late 2025) already addresses the same problem space: it replaces zero-advantage samples in GRPO with prompts selected by a task-value metric balancing difficulty and uncertainty, and applies value-smoothing clipping. This is a more principled and heavier-weight method.\n- **AgentRL** (2025) proposes cross-policy sampling and task advantage normalization for multi-task agentic training.\n- **Turn-PPO** proposes turn-level advantage estimation for multi-turn agentic RL.\n- The STAG method (prompt reallocation + advantage reweighting using graph topology) is lightweight by its own admission, and its two sub-components (reallocation and reweighting) are standard techniques applied with a new signal source (graph topology features).\n\n**The method's novelty is the signal source, not the mechanism.** Advantage reweighting and prompt-level rollout reallocation are known techniques. The contribution is using graph-topology features to drive them. But the paper itself frames the deeper contribution as the *analysis showing that graph topology provides complementary signal* -- which is an analysis contribution, not a method contribution.\n\n### 5. Verdict\n\n**STAG does not cleanly meet the \"METHOD ONLY\" requirement as stated by the user.** Here is the breakdown:\n\n| Criterion | Assessment |\n|---|---|\n| Proposes a concrete algorithm? | Yes, but it is self-described as \"lightweight\" and uses standard mechanisms (reweighting, reallocation) with a new signal |\n| Is the method the primary contribution? | **No.** The paper explicitly says the analysis provides value \"regardless of whether our specific method achieves SOTA\" |\n| Would it survive without the analysis? | Unlikely -- a two-component method (reweight + reallocate using graph features) without the complementarity analysis would be thin relative to VSPO, AgentRL, and Turn-PPO |\n| Method + analysis where analysis validates the method? | **Not quite.** The analysis is positioned as independently valuable, not as validation of the method. The causal arrow runs from analysis to method design, not method to analysis-as-validation |\n\n**Recommendation: This paper is primarily an analysis contribution with a method wrapper, not a method contribution validated by analysis.** Under the user's stated filter (\"Contribution type: METHOD ONLY... Reject pure benchmark / dataset / analysis ideas. Method + analysis OK if analysis validates the method\"), STAG falls in a gray zone that leans toward rejection. The distinguishing test is the paper's own language: if the authors claim the analysis stands alone, then the method is not the primary contribution.\n\n**To pass the filter, the paper would need to be reframed** so that:\n1. The method is the headline contribution, with specific performance claims\n2. The graph-topology complementarity analysis serves as the *motivation and ablation* for the method, not as an independent contribution\n3. The hedging sentence about SOTA is removed\n4. The method is shown to match or exceed VSPO/AgentRL on standard benchmarks, not positioned as \"lightweight\"\n\nAs currently framed, this is an analysis paper that happens to include a method, not a method paper that happens to include analysis.\n\n---\n\nSources:\n- [EMNLP 2026 Call for Main Conference Papers](https://2026.emnlp.org/calls/main_conference_papers/)\n- [ACL Rolling Review Call for Papers](http://aclrollingreview.org/cfp)\n- [ARR Submission Form Fields](http://aclrollingreview.org/submissionform)\n- [ARR Review Form](http://aclrollingreview.org/reviewform)\n- [ARR Reviewer Guidelines](http://aclrollingreview.org/reviewerguidelines)\n- [EMNLP 2026 Twitter Announcement (ARR Deadline)](https://x.com/emnlpmeeting/status/2029508292637061462)\n- [EMNLP 2026 Twitter (AACL Shared Cycle Notice)](https://x.com/emnlpmeeting/status/2047754845919031450)\n- [VSPO: Enhancing Agentic RL with Progressive Reward Shaping](https://arxiv.org/abs/2512.07478)\n- [AgentRL: Scaling Agentic Reinforcement Learning](https://openreview.net/forum?id=zq3vAmuUk9)\n- [Training Recipes for Agentic RL Survey](https://github.com/blacksnail789521/Agentic-RL-Training-Recipes)\n- [Post-Training in 2026: GRPO, DAPO, RLVR & Beyond](https://llm-stats.com/blog/research/post-training-techniques-2026)\n- [ARR Dates and Venues](http://aclrollingreview.org/dates)"
+      }
+    ],
+    "totalDurationMs": 158252,
+    "totalTokens": 27902,
+    "totalToolUseCount": 19,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 956,
+      "cache_read_input_tokens": 25041,
+      "output_tokens": 1904,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 956
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1904,
+          "cache_read_input_tokens": 25041,
+          "cache_creation_input_tokens": 956,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 956,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 19
+    }
+  },
+  "sourceToolAssistantUUID": "3b3f39c3-d10b-42c0-bbd1-054a580317fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "bc7dd36e-a083-4cf6-a80b-b852208494ea",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "STAG: Empirical analysis of graph-topology vs. policy-signal complementarity for rollout allocation",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2"
+}
+```
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-12T02:04:39.524Z_
+
+<details><summary>↩ Tool result · `toolu_01CKAe21Pw3UKCQUXzupJJrM`</summary>
+
+```text
+Now I have a comprehensive picture. Here is my report.
+
+---
+
+## Competing Work Analysis for STAG Paper
+
+I conducted a thorough search across the landscape of rollout allocation, graph-based methods, and exploration signals in agentic RL for LLMs. Below are the findings organized by relevance to STAG's claims.
+
+---
+
+### MOST CRITICAL FINDING: Potential Direct Competitor
+
+**InfoTree: Maximizing Rollout Informativeness under a Fixed Budget (arxiv 2605.05262, May 2026)**
+
+This is the paper STAG most urgently needs to discuss. InfoTree formalizes rollout budget allocation as a monotone submodular maximization problem (RIFB) and derives UUCB terms as closed-form marginal gains. It couples UUCB with a learned **Adaptive Budget Allocator (ABA)** and an asynchronous Speculative Expansion scheme. Critically, InfoTree's ABA predicts whether a prompt whose initial tree is still uniform-outcome can be "rescued" by an additional rollout -- this is a learned allocation signal but partly derives from tree *structure* (whether the tree is still uniform-outcome). It claims superiority over Tree-GRPO, AT2PO, CW-GRPO, and RC-GRPO across nine benchmarks. STAG needs to position itself against InfoTree, since InfoTree's ABA learns from *structural* properties of the search tree, which partially overlaps with graph-topology-based allocation.
+
+- [InfoTree on arXiv](https://arxiv.org/abs/2605.05262)
+
+---
+
+### Papers Using Entropy/Model-Dependent Signals for Rollout Allocation (Supports STAG's Claim)
+
+These confirm STAG's characterization that existing methods use model-dependent signals, but each should be cited:
+
+1. **ARPO / AEPO: Agentic (Entropy-Balanced) Reinforced Policy Optimization (arxiv 2507.19849, ICLR 2026; arxiv 2510.14545)**
+   Uses entropy pre-monitoring to adaptively allocate global vs. branch sampling budget. Imposes a branch penalty on consecutive high-entropy tool-call steps. This is a clean example of model-dependent (entropy-based) allocation. AEPO extends ARPO to a generalized web agent setting.
+   - [ARPO on arXiv](https://arxiv.org/abs/2507.19849)
+   - [AEPO on arXiv](https://arxiv.org/abs/2510.14545)
+
+2. **RC-GRPO: Reward-Conditioned GRPO (arxiv 2602.03025)**
+   Uses discrete reward tokens to steer within-group diversity. Allocation is driven by reward conditioning -- a model-dependent signal.
+   - [RC-GRPO on arXiv](https://arxiv.org/html/2602.03025)
+
+3. **GRESO: Selective Rollouts via Reward Training Dynamics (arxiv 2506.02177)**
+   Pre-rollout filtering that predicts and skips uninformative prompts using temporal consistency of reward dynamics. Achieves 2x training speedup. This is a model-dependent signal (reward history), not graph topology. However, it is an important baseline for rollout *allocation* efficiency that STAG should compare against or discuss.
+   - [GRESO on arXiv](https://arxiv.org/abs/2506.02177)
+
+---
+
+### Papers Using Tree/Graph Structure for Rollout (Partially Overlapping with STAG)
+
+4. **Tree-GRPO (arxiv 2509.21240, ICLR 2026)**
+   Uses tree-search rollout strategy with shared prefixes. Achieves comparable performance with only 25% of the rollout budget. The tree structure is used for both prefix sharing (efficiency) and process supervision signal derivation. This uses *tree topology* but for rollout efficiency via prefix sharing, not for allocation *decisions* based on graph metrics. STAG should differentiate from this.
+   - [Tree-GRPO on arXiv](https://arxiv.org/abs/2509.21240)
+
+5. **AT2PO: Agentic Turn-based Policy Optimization via Tree Search (arxiv 2601.04767, Jan 2026)**
+   Uses Entropy-Guided Tree Expansion for exploration and turn-wise credit assignment. The tree expansion is guided by entropy (model-dependent), but the tree *structure* is used for credit assignment. This bridges graph structure and model signals.
+   - [AT2PO on arXiv](https://arxiv.org/abs/2601.04767)
+
+6. **A2TGPO: Agentic Turn-Group Policy Optimization (arxiv 2605.06200, May 2026)**
+   Very recent. Uses Information Gain as intrinsic signal with turn-group normalization and variance-rescaled discounted accumulation. IG is computed from the search process itself -- partially structure-dependent. STAG should cite this.
+   - [A2TGPO on arXiv](https://arxiv.org/abs/2605.06200)
+
+7. **TSR: Trajectory-Search Rollouts (arxiv 2602.11767, ICLR 2026)**
+   Repurposes test-time tree search for training-time rollout generation. Selects high-scoring actions at each turn using task-specific feedback. Changes *how* rollouts are generated but uses task feedback (outcome-based), not graph topology. Optimizer-agnostic.
+   - [TSR on arXiv](https://arxiv.org/abs/2602.11767)
+
+---
+
+### Graph-Based Methods (Credit Assignment, Not Allocation -- Supports STAG's Claim)
+
+8. **RewardFlow (arxiv 2603.18859, March 2026)**
+   The paper STAG likely already cites. Uses state graphs for reward *propagation* (BFS, Personalized PageRank) but not for rollout *allocation*. The RewardFlow authors (Xiao Feng, Bo Han, Zhanke Zhou et al.) have a related paper **AlphaApollo** but it does not extend graph usage to allocation either. STAG's claim that graph methods only use graphs for credit assignment/reward propagation appears to hold for RewardFlow.
+   - [RewardFlow on arXiv](https://arxiv.org/abs/2603.18859)
+
+9. **Highway Graph to Accelerate RL (arxiv 2405.11727, TMLR)**
+   Identifies "highways" (non-branching transition sequences) in state-transition graphs and uses them for accelerated value propagation. This uses graph *topology* (specifically, non-branching paths) to accelerate training -- but in classical RL (discrete state/action), not LLM agents. However, this is conceptually close to using graph topology for training efficiency and STAG should discuss it as a precursor from classical RL.
+   - [Highway Graph on arXiv](https://arxiv.org/abs/2405.11727)
+
+---
+
+### Exploration-Focused Methods (Related but Distinct)
+
+10. **SGE: Strategy-Guided Exploration (arxiv 2603.02045, March 2026)**
+    Explores in the space of natural-language *strategies* rather than actions, using mixed-temperature sampling. Not graph-based, but uses environment structure implicitly through language-level strategy abstraction.
+    - [SGE on arXiv](https://arxiv.org/abs/2603.02045)
+
+11. **SIGHT: Self-Evidence and Information-Gain Diverse Branching (arxiv 2602.11551, Feb 2026)**
+    Calculates Information Gain to identify pivotal states where observations maximally reduce uncertainty, then guides branching. The IG-based pivotal state identification is conceptually related to graph-topology-based allocation (identifying "important" states), though it uses information-theoretic signals rather than pure graph metrics.
+    - [SIGHT on arXiv](https://arxiv.org/abs/2602.11551)
+
+12. **Complementary RL (arxiv 2603.17621, March 2026)**
+    Dual-loop co-evolution of experience extractor and policy actor. Not graph-based and not directly about rollout allocation, but relevant to the broader signal complementarity question.
+    - [Complementary RL on arXiv](https://arxiv.org/abs/2603.17621)
+
+---
+
+### Key Takeaways for the STAG Paper
+
+**STAG's core claim appears to hold with one important caveat:**
+
+1. **The claim that all existing rollout allocation methods use model-dependent signals is largely correct.** ARPO/AEPO use entropy, GRESO uses reward training dynamics, RC-GRPO uses reward tokens, AT2PO uses entropy-guided expansion, A2TGPO uses information gain, and SIGHT uses information-theoretic signals. None of these use pure graph topology for allocation.
+
+2. **The claim that graph-based methods only use graphs for credit assignment/reward propagation also holds.** RewardFlow uses graphs for reward propagation. Highway Graph uses topology for value propagation acceleration but in classical RL, not LLM agents.
+
+3. **The main threat is InfoTree (May 2026).** Its Adaptive Budget Allocator learns from tree-structural properties (uniform-outcome detection), which partially bridges the gap between model-dependent signals and structural signals. STAG must engage with InfoTree and argue either that (a) ABA's structural signal is still fundamentally model-dependent (it uses a learned head), or (b) STAG's pure graph-topology approach is complementary/orthogonal to InfoTree's.
+
+4. **Missing related work to add:** Highway Graph (topology for training acceleration in classical RL), GRESO (rollout allocation efficiency baseline), A2TGPO (very recent, IG-based), and SIGHT (pivotal state identification via IG) should all be discussed. The paper should also cite the full lineup of entropy-based methods (ARPO, AEPO, EPO) as examples of model-dependent allocation.
+
+5. **On signal complementarity:** No paper was found that explicitly analyzes complementarity between graph-topology signals and model-dependent signals for rollout allocation. This appears to be a genuine gap that STAG could claim as a contribution, but the paper should frame it clearly against InfoTree's implicit structural signal.
+
+agentId: a12282be18c1f624e (use SendMessage with to: 'a12282be18c1f624e' to continue this agent)
+&lt;usage>total_tokens: 41863
+tool_uses: 30
+duration_ms: 208482&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f97c0d32-84a1-4d8b-a942-323e9c5a8028",
+  "isSidechain": false,
+  "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+  "type": "user",
+  "uuid": "e41dd2b3-ada6-4c2b-ae3a-a4ab0c71627a",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "You are helping me review a research paper about using environment state-transition graphs for rollout allocation in agentic RL (reinforcement learning for LLM agents). I need you to search for competing work that the paper may have missed.\n\nThe paper (called STAG) claims that all existing rollout allocation methods use model-dependent signals (policy entropy, learned tags, UUCB bounds, outcome variance), while graph-based methods only use graphs for credit assignment/reward propagation. STAG proposes using graph topology for allocation instead.\n\nSearch for:\n1. \"state graph rollout allocation LLM agent 2025 2026\" - any work combining graph topology with rollout allocation\n2. \"environment structure guided exploration LLM agent RL\" - structural exploration signals\n3. \"graph-based training efficiency reinforcement learning language model\" - graph methods for RL training efficiency\n4. \"state transition graph reinforcement learning allocation sampling\" - graph-guided sampling\n5. \"complementary signals rollout allocation agentic RL\" - signal complementarity analysis\n6. \"environment topology reinforcement learning agent training 2026\" - topology for agent training\n7. Search for any work by the RewardFlow authors that extends graph usage beyond reward propagation\n\nReport all relevant papers found, especially any that combine graph topology with rollout allocation or analyze complementarity of different allocation signals. Be thorough.",
+    "agentId": "a12282be18c1f624e",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have a comprehensive picture. Here is my report.\n\n---\n\n## Competing Work Analysis for STAG Paper\n\nI conducted a thorough search across the landscape of rollout allocation, graph-based methods, and exploration signals in agentic RL for LLMs. Below are the findings organized by relevance to STAG's claims.\n\n---\n\n### MOST CRITICAL FINDING: Potential Direct Competitor\n\n**InfoTree: Maximizing Rollout Informativeness under a Fixed Budget (arxiv 2605.05262, May 2026)**\n\nThis is the paper STAG most urgently needs to discuss. InfoTree formalizes rollout budget allocation as a monotone submodular maximization problem (RIFB) and derives UUCB terms as closed-form marginal gains. It couples UUCB with a learned **Adaptive Budget Allocator (ABA)** and an asynchronous Speculative Expansion scheme. Critically, InfoTree's ABA predicts whether a prompt whose initial tree is still uniform-outcome can be \"rescued\" by an additional rollout -- this is a learned allocation signal but partly derives from tree *structure* (whether the tree is still uniform-outcome). It claims superiority over Tree-GRPO, AT2PO, CW-GRPO, and RC-GRPO across nine benchmarks. STAG needs to position itself against InfoTree, since InfoTree's ABA learns from *structural* properties of the search tree, which partially overlaps with graph-topology-based allocation.\n\n- [InfoTree on arXiv](https://arxiv.org/abs/2605.05262)\n\n---\n\n### Papers Using Entropy/Model-Dependent Signals for Rollout Allocation (Supports STAG's Claim)\n\nThese confirm STAG's characterization that existing methods use model-dependent signals, but each should be cited:\n\n1. **ARPO / AEPO: Agentic (Entropy-Balanced) Reinforced Policy Optimization (arxiv 2507.19849, ICLR 2026; arxiv 2510.14545)**\n   Uses entropy pre-monitoring to adaptively allocate global vs. branch sampling budget. Imposes a branch penalty on consecutive high-entropy tool-call steps. This is a clean example of model-dependent (entropy-based) allocation. AEPO extends ARPO to a generalized web agent setting.\n   - [ARPO on arXiv](https://arxiv.org/abs/2507.19849)\n   - [AEPO on arXiv](https://arxiv.org/abs/2510.14545)\n\n2. **RC-GRPO: Reward-Conditioned GRPO (arxiv 2602.03025)**\n   Uses discrete reward tokens to steer within-group diversity. Allocation is driven by reward conditioning -- a model-dependent signal.\n   - [RC-GRPO on arXiv](https://arxiv.org/html/2602.03025)\n\n3. **GRESO: Selective Rollouts via Reward Training Dynamics (arxiv 2506.02177)**\n   Pre-rollout filtering that predicts and skips uninformative prompts using temporal consistency of reward dynamics. Achieves 2x training speedup. This is a model-dependent signal (reward history), not graph topology. However, it is an important baseline for rollout *allocation* efficiency that STAG should compare against or discuss.\n   - [GRESO on arXiv](https://arxiv.org/abs/2506.02177)\n\n---\n\n### Papers Using Tree/Graph Structure for Rollout (Partially Overlapping with STAG)\n\n4. **Tree-GRPO (arxiv 2509.21240, ICLR 2026)**\n   Uses tree-search rollout strategy with shared prefixes. Achieves comparable performance with only 25% of the rollout budget. The tree structure is used for both prefix sharing (efficiency) and process supervision signal derivation. This uses *tree topology* but for rollout efficiency via prefix sharing, not for allocation *decisions* based on graph metrics. STAG should differentiate from this.\n   - [Tree-GRPO on arXiv](https://arxiv.org/abs/2509.21240)\n\n5. **AT2PO: Agentic Turn-based Policy Optimization via Tree Search (arxiv 2601.04767, Jan 2026)**\n   Uses Entropy-Guided Tree Expansion for exploration and turn-wise credit assignment. The tree expansion is guided by entropy (model-dependent), but the tree *structure* is used for credit assignment. This bridges graph structure and model signals.\n   - [AT2PO on arXiv](https://arxiv.org/abs/2601.04767)\n\n6. **A2TGPO: Agentic Turn-Group Policy Optimization (arxiv 2605.06200, May 2026)**\n   Very recent. Uses Information Gain as intrinsic signal with turn-group normalization and variance-rescaled discounted accumulation. IG is computed from the search process itself -- partially structure-dependent. STAG should cite this.\n   - [A2TGPO on arXiv](https://arxiv.org/abs/2605.06200)\n\n7. **TSR: Trajectory-Search Rollouts (arxiv 2602.11767, ICLR 2026)**\n   Repurposes test-time tree search for training-time rollout generation. Selects high-scoring actions at each turn using task-specific feedback. Changes *how* rollouts are generated but uses task feedback (outcome-based), not graph topology. Optimizer-agnostic.\n   - [TSR on arXiv](https://arxiv.org/abs/2602.11767)\n\n---\n\n### Graph-Based Methods (Credit Assignment, Not Allocation -- Supports STAG's Claim)\n\n8. **RewardFlow (arxiv 2603.18859, March 2026)**\n   The paper STAG likely already cites. Uses state graphs for reward *propagation* (BFS, Personalized PageRank) but not for rollout *allocation*. The RewardFlow authors (Xiao Feng, Bo Han, Zhanke Zhou et al.) have a related paper **AlphaApollo** but it does not extend graph usage to allocation either. STAG's claim that graph methods only use graphs for credit assignment/reward propagation appears to hold for RewardFlow.\n   - [RewardFlow on arXiv](https://arxiv.org/abs/2603.18859)\n\n9. **Highway Graph to Accelerate RL (arxiv 2405.11727, TMLR)**\n   Identifies \"highways\" (non-branching transition sequences) in state-transition graphs and uses them for accelerated value propagation. This uses graph *topology* (specifically, non-branching paths) to accelerate training -- but in classical RL (discrete state/action), not LLM agents. However, this is conceptually close to using graph topology for training efficiency and STAG should discuss it as a precursor from classical RL.\n   - [Highway Graph on arXiv](https://arxiv.org/abs/2405.11727)\n\n---\n\n### Exploration-Focused Methods (Related but Distinct)\n\n10. **SGE: Strategy-Guided Exploration (arxiv 2603.02045, March 2026)**\n    Explores in the space of natural-language *strategies* rather than actions, using mixed-temperature sampling. Not graph-based, but uses environment structure implicitly through language-level strategy abstraction.\n    - [SGE on arXiv](https://arxiv.org/abs/2603.02045)\n\n11. **SIGHT: Self-Evidence and Information-Gain Diverse Branching (arxiv 2602.11551, Feb 2026)**\n    Calculates Information Gain to identify pivotal states where observations maximally reduce uncertainty, then guides branching. The IG-based pivotal state identification is conceptually related to graph-topology-based allocation (identifying \"important\" states), though it uses information-theoretic signals rather than pure graph metrics.\n    - [SIGHT on arXiv](https://arxiv.org/abs/2602.11551)\n\n12. **Complementary RL (arxiv 2603.17621, March 2026)**\n    Dual-loop co-evolution of experience extractor and policy actor. Not graph-based and not directly about rollout allocation, but relevant to the broader signal complementarity question.\n    - [Complementary RL on arXiv](https://arxiv.org/abs/2603.17621)\n\n---\n\n### Key Takeaways for the STAG Paper\n\n**STAG's core claim appears to hold with one important caveat:**\n\n1. **The claim that all existing rollout allocation methods use model-dependent signals is largely correct.** ARPO/AEPO use entropy, GRESO uses reward training dynamics, RC-GRPO uses reward tokens, AT2PO uses entropy-guided expansion, A2TGPO uses information gain, and SIGHT uses information-theoretic signals. None of these use pure graph topology for allocation.\n\n2. **The claim that graph-based methods only use graphs for credit assignment/reward propagation also holds.** RewardFlow uses graphs for reward propagation. Highway Graph uses topology for value propagation acceleration but in classical RL, not LLM agents.\n\n3. **The main threat is InfoTree (May 2026).** Its Adaptive Budget Allocator learns from tree-structural properties (uniform-outcome detection), which partially bridges the gap between model-dependent signals and structural signals. STAG must engage with InfoTree and argue either that (a) ABA's structural signal is still fundamentally model-dependent (it uses a learned head), or (b) STAG's pure graph-topology approach is complementary/orthogonal to InfoTree's.\n\n4. **Missing related work to add:** Highway Graph (topology for training acceleration in classical RL), GRESO (rollout allocation efficiency baseline), A2TGPO (very recent, IG-based), and SIGHT (pivotal state identification via IG) should all be discussed. The paper should also cite the full lineup of entropy-based methods (ARPO, AEPO, EPO) as examples of model-dependent allocation.\n\n5. **On signal complementarity:** No paper was found that explicitly analyzes complementarity between graph-topology signals and model-dependent signals for rollout allocation. This appears to be a genuine gap that STAG could claim as a contribution, but the paper should frame it clearly against InfoTree's implicit structural signal."
+      }
+    ],
+    "totalDurationMs": 208482,
+    "totalTokens": 41863,
+    "totalToolUseCount": 30,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1971,
+      "cache_read_input_tokens": 37430,
+      "output_tokens": 2461,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1971
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2461,
+          "cache_read_input_tokens": 37430,
+          "cache_creation_input_tokens": 1971,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1971,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 30
+    }
+  },
+  "sourceToolAssistantUUID": "f97c0d32-84a1-4d8b-a942-323e9c5a8028",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-12T02:05:34.473Z_
+
+<details><summary>↩ Tool result · `toolu_01UTGw5FoLNvVVWLcqVms3R5`</summary>
+
+```text
+Now I have enough data to provide a comprehensive analysis. Let me compile the findings.
+
+Here is my analysis of the compute cost claims:
+
+---
+
+## Verification of Training Cost Claims
+
+### What the Paper Claims
+- ~25h H100 per run on 2 H100 GPUs for 150 iterations with Qwen2.5-1.5B-Instruct on ALFWorld
+- 7 total training runs fitting within ~180h H100
+- Using verl-agent framework
+
+### Confirmed Facts from Primary Sources
+
+**1. verl-agent Training Script Configuration (verified from GitHub)**
+
+The official `run_alfworld.sh` script at `github.com/langfengQ/verl-agent` for GiGPO/GRPO ALFWorld training with Qwen2.5-1.5B-Instruct specifies:
+- **Model**: Qwen/Qwen2.5-1.5B-Instruct
+- **GPUs**: 2 per node, 1 node (tensor_parallel_size=2)
+- **Total epochs/iterations**: 150
+- **Rollout group size**: 8 (i.e., 8 trajectories per prompt per iteration)
+- **Max environment steps per trajectory**: 50
+- **Training batch size**: 16
+- **Max prompt length**: 2048, max response length**: 512
+- **GPU memory utilization**: 0.6
+
+This confirms the paper's claim of 2 H100 GPUs and 150 iterations.
+
+**2. GiGPO Paper (arXiv:2505.10978) Hardware Configuration**
+- ALFWorld & WebShop with Qwen2.5-1.5B: 2x H100 GPUs
+- ALFWorld & WebShop with Qwen2.5-7B: 4x H100 GPUs
+- The paper does NOT report explicit wall-clock training times or total GPU-hours.
+
+**3. Comparable Training Time Data Points**
+
+| Setup | Hardware | Duration | GPU-hours |
+|---|---|---|---|
+| GRPO + LoRA, Qwen2.5-3B, GSM8K (15 epochs) | 4x A100 80GB | ~6h (optimized) | ~24 A100-h |
+| GRPO, Qwen2.5-1.5B, GSM8K (4,043 steps, 13 epochs) | 6x RTX 4090 | 32h 12m | ~193 4090-h |
+| GRPO, Qwen2.5-1.5B, GSM8K (1,620 steps, 30 epochs) | 8x RTX 3090 | 20h 09m | ~161 3090-h |
+| AgentFly, Qwen2.5-3B, code interpreter | 8x H200 | ~25h | ~200 H200-h |
+| RLVR, R1-Distill-Qwen-1.5B (to saturation) | H100 cluster | N/A | 20,000+ H100-h |
+
+### Plausibility Analysis
+
+**The ~25h H100 per run claim (= ~50 H100-GPU-hours per run on 2 GPUs) appears plausible, but is on the lower end of what would be expected. Here is the reasoning:**
+
+**Arguments supporting plausibility:**
+
+1. **Small model size**: Qwen2.5-1.5B is very small. Forward/backward passes and rollout generation are fast on H100 GPUs. A 1.5B model on 2 H100s has roughly 4.7x less compute per step than a 7B model on 4 H100s.
+
+2. **Reasonable iteration count**: 150 iterations with batch size 16 and group size 8 means 150 x 16 x 8 = 19,200 trajectory rollouts total. Each trajectory can be up to 50 steps with 512-token responses.
+
+3. **Per-iteration time estimate**: At ~50 H100-GPU-hours total for 150 iterations, that is ~20 minutes per iteration (wall-clock) on 2 GPUs. For a 1.5B model generating 16 x 8 = 128 trajectories of up to 50 steps each, plus gradient updates, ~20 minutes per iteration is tight but feasible given H100 throughput and the small model size. The environment rollout (ALFWorld is text-based) is likely the bottleneck, not the model compute.
+
+4. **Consistent with LoRA training**: The verl-agent README notes support for "training 7B models using 2 H100 GPUs" with LoRA. Full fine-tuning of a 1.5B model would require comparable or fewer resources than LoRA fine-tuning of a 7B model.
+
+5. **AgentFly comparison**: AgentFly reported ~200 GPU-hours per run with 3B models on 8x H200. Scaling down to 1.5B on 2 GPUs, a figure of ~50 H100-GPU-hours is in the right ballpark.
+
+**Potential concerns:**
+
+1. **Environment rollout bottleneck**: ALFWorld trajectories of up to 50 steps require sequential LLM inference (cannot be batched across steps within a trajectory). With 128 trajectories per iteration, even with parallelism, this could dominate training time. The script sets `num_cpus_per_env_worker=0.1`, suggesting they use many CPU workers for environment simulation, but GPU inference for each step is still sequential per trajectory.
+
+2. **No published wall-clock times**: Neither the GiGPO paper nor the verl-agent documentation explicitly reports wall-clock training times. The 25h figure cannot be verified against published data from the original authors.
+
+3. **7 runs at 25h each = 175h H100**: The claim of "~180h H100" for 7 runs is arithmetically consistent (7 x 25h = 175h, rounded to ~180h). This suggests the 7 runs were for different methods/seeds (the GiGPO paper compares GRPO, GiGPO, and other baselines).
+
+4. **The RLVR comparison is not directly comparable**: The 20,000+ H100-h figure for RLVR training of 1.5B is for a completely different task (math/code reasoning with massive datasets), not agentic RL on ALFWorld with small datasets.
+
+### Bottom Line Assessment
+
+**The claim of ~25h H100 per run (50 H100-GPU-hours) for Qwen2.5-1.5B on ALFWorld with 150 iterations on 2 H100 GPUs is within a plausible range but cannot be independently verified from published sources.** No paper in this space (GiGPO, HiPER, SPEAR, AgentFly, Practitioner's Guide) reports explicit wall-clock training times for this specific configuration.
+
+The figure is consistent with:
+- The confirmed training configuration (2x H100, 150 iterations, batch 16, group 8)
+- Known scaling behavior from 3B/7B to 1.5B models
+- The AgentFly data point of ~200 GPU-hours for 3B models on 8x H200
+
+Previous review rounds found 50-300 H100-hours for 7B models. The 1.5B model would be expected to cost roughly 3-5x less due to reduced model size (fewer FLOPs per forward/backward pass, faster inference during rollout). This puts the expected range at roughly 10-100 H100-hours per run, and the claimed 50 H100-hours falls squarely within this range.
+
+**The 7 runs / ~180h total claim is internally consistent and reasonable for a paper comparing multiple RL algorithms (GRPO, GiGPO, etc.) with limited seed repetition.**
+
+### Key Sources
+- [verl-agent GitHub repository](https://github.com/langfengQ/verl-agent) - Training scripts and configuration
+- [GiGPO paper (arXiv:2505.10978)](https://arxiv.org/html/2505.10978v3) - Hardware config (2x H100 for 1.5B, 4x H100 for 7B)
+- [AgentFly paper (arXiv:2507.14897)](https://arxiv.org/html/2507.14897v1) - ~200 GPU-hours per run for 3B on 8x H200
+- [GRPO + LoRA Engineering Handbook](https://huggingface.co/blog/Weyaxi/engineering-handbook-grpo-lora-with-verl) - 6h on 4x A100 for 3B model (15 epochs, GSM8K)
+- [RLVR-vs-SFT Qwen2.5-1.5B](https://github.com/jayminban/RLVR-vs-SFT-Qwen2.5-1.5b) - 20-32h on consumer GPUs for 1.5B GRPO
+- [HiPER paper (arXiv:2602.16165)](https://arxiv.org/html/2602.16165) - No GPU-hours reported but uses same 150-epoch setup
+- [Practitioner's Guide (arXiv:2510.01132)](https://arxiv.org/html/2510.01132v2) - 8x H100 for agentic RL, no wall-clock times
+- [GiGPO OpenReview](https://openreview.net/forum?id=QXEhBMNrCW) - NeurIPS accepted paper
+
+agentId: a663589db4418e389 (use SendMessage with to: 'a663589db4418e389' to continue this agent)
+&lt;usage>total_tokens: 45285
+tool_uses: 36
+duration_ms: 254673&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6a1e7236-c12a-42bb-95b6-30e7aa639230",
+  "isSidechain": false,
+  "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+  "type": "user",
+  "uuid": "347a5888-79c0-4d1d-9d54-5b43dbb0e15f",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to verify compute cost estimates for training LLM agents with reinforcement learning. The paper under review claims:\n- ~25h H100 per run on 2 H100 GPUs for 150 iterations with Qwen2.5-1.5B-Instruct on ALFWorld\n- 7 total training runs fitting within ~180h H100\n- Using verl-agent framework\n\nSearch for:\n1. \"verl-agent training cost H100 GPU hours ALFWorld\" - actual reported costs\n2. \"GiGPO training cost GPU hours ALFWorld\" - GiGPO's reported training costs\n3. \"Qwen2.5-1.5B reinforcement learning training cost\" - small model RL training costs\n4. \"GRPO ALFWorld training iterations GPU\" - GRPO training costs on ALFWorld\n5. \"verl-agent Qwen2.5-1.5B\" - any reports of using verl-agent with 1.5B models\n6. \"HiPER ALFWorld training cost\" - HiPER's training costs for comparison\n\nAlso search for: \"verl-agent github\" to check if verl-agent supports Qwen2.5-1.5B and what the typical training configuration is.\n\nReport findings on whether 25h H100 per run with 1.5B model on ALFWorld is realistic. Previous review rounds found that 7B model runs cost 50-300 H100-hours, so 1.5B should be much cheaper, but I need verification.",
+    "agentId": "a663589db4418e389",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Now I have enough data to provide a comprehensive analysis. Let me compile the findings.\n\nHere is my analysis of the compute cost claims:\n\n---\n\n## Verification of Training Cost Claims\n\n### What the Paper Claims\n- ~25h H100 per run on 2 H100 GPUs for 150 iterations with Qwen2.5-1.5B-Instruct on ALFWorld\n- 7 total training runs fitting within ~180h H100\n- Using verl-agent framework\n\n### Confirmed Facts from Primary Sources\n\n**1. verl-agent Training Script Configuration (verified from GitHub)**\n\nThe official `run_alfworld.sh` script at `github.com/langfengQ/verl-agent` for GiGPO/GRPO ALFWorld training with Qwen2.5-1.5B-Instruct specifies:\n- **Model**: Qwen/Qwen2.5-1.5B-Instruct\n- **GPUs**: 2 per node, 1 node (tensor_parallel_size=2)\n- **Total epochs/iterations**: 150\n- **Rollout group size**: 8 (i.e., 8 trajectories per prompt per iteration)\n- **Max environment steps per trajectory**: 50\n- **Training batch size**: 16\n- **Max prompt length**: 2048, max response length**: 512\n- **GPU memory utilization**: 0.6\n\nThis confirms the paper's claim of 2 H100 GPUs and 150 iterations.\n\n**2. GiGPO Paper (arXiv:2505.10978) Hardware Configuration**\n- ALFWorld & WebShop with Qwen2.5-1.5B: 2x H100 GPUs\n- ALFWorld & WebShop with Qwen2.5-7B: 4x H100 GPUs\n- The paper does NOT report explicit wall-clock training times or total GPU-hours.\n\n**3. Comparable Training Time Data Points**\n\n| Setup | Hardware | Duration | GPU-hours |\n|---|---|---|---|\n| GRPO + LoRA, Qwen2.5-3B, GSM8K (15 epochs) | 4x A100 80GB | ~6h (optimized) | ~24 A100-h |\n| GRPO, Qwen2.5-1.5B, GSM8K (4,043 steps, 13 epochs) | 6x RTX 4090 | 32h 12m | ~193 4090-h |\n| GRPO, Qwen2.5-1.5B, GSM8K (1,620 steps, 30 epochs) | 8x RTX 3090 | 20h 09m | ~161 3090-h |\n| AgentFly, Qwen2.5-3B, code interpreter | 8x H200 | ~25h | ~200 H200-h |\n| RLVR, R1-Distill-Qwen-1.5B (to saturation) | H100 cluster | N/A | 20,000+ H100-h |\n\n### Plausibility Analysis\n\n**The ~25h H100 per run claim (= ~50 H100-GPU-hours per run on 2 GPUs) appears plausible, but is on the lower end of what would be expected. Here is the reasoning:**\n\n**Arguments supporting plausibility:**\n\n1. **Small model size**: Qwen2.5-1.5B is very small. Forward/backward passes and rollout generation are fast on H100 GPUs. A 1.5B model on 2 H100s has roughly 4.7x less compute per step than a 7B model on 4 H100s.\n\n2. **Reasonable iteration count**: 150 iterations with batch size 16 and group size 8 means 150 x 16 x 8 = 19,200 trajectory rollouts total. Each trajectory can be up to 50 steps with 512-token responses.\n\n3. **Per-iteration time estimate**: At ~50 H100-GPU-hours total for 150 iterations, that is ~20 minutes per iteration (wall-clock) on 2 GPUs. For a 1.5B model generating 16 x 8 = 128 trajectories of up to 50 steps each, plus gradient updates, ~20 minutes per iteration is tight but feasible given H100 throughput and the small model size. The environment rollout (ALFWorld is text-based) is likely the bottleneck, not the model compute.\n\n4. **Consistent with LoRA training**: The verl-agent README notes support for \"training 7B models using 2 H100 GPUs\" with LoRA. Full fine-tuning of a 1.5B model would require comparable or fewer resources than LoRA fine-tuning of a 7B model.\n\n5. **AgentFly comparison**: AgentFly reported ~200 GPU-hours per run with 3B models on 8x H200. Scaling down to 1.5B on 2 GPUs, a figure of ~50 H100-GPU-hours is in the right ballpark.\n\n**Potential concerns:**\n\n1. **Environment rollout bottleneck**: ALFWorld trajectories of up to 50 steps require sequential LLM inference (cannot be batched across steps within a trajectory). With 128 trajectories per iteration, even with parallelism, this could dominate training time. The script sets `num_cpus_per_env_worker=0.1`, suggesting they use many CPU workers for environment simulation, but GPU inference for each step is still sequential per trajectory.\n\n2. **No published wall-clock times**: Neither the GiGPO paper nor the verl-agent documentation explicitly reports wall-clock training times. The 25h figure cannot be verified against published data from the original authors.\n\n3. **7 runs at 25h each = 175h H100**: The claim of \"~180h H100\" for 7 runs is arithmetically consistent (7 x 25h = 175h, rounded to ~180h). This suggests the 7 runs were for different methods/seeds (the GiGPO paper compares GRPO, GiGPO, and other baselines).\n\n4. **The RLVR comparison is not directly comparable**: The 20,000+ H100-h figure for RLVR training of 1.5B is for a completely different task (math/code reasoning with massive datasets), not agentic RL on ALFWorld with small datasets.\n\n### Bottom Line Assessment\n\n**The claim of ~25h H100 per run (50 H100-GPU-hours) for Qwen2.5-1.5B on ALFWorld with 150 iterations on 2 H100 GPUs is within a plausible range but cannot be independently verified from published sources.** No paper in this space (GiGPO, HiPER, SPEAR, AgentFly, Practitioner's Guide) reports explicit wall-clock training times for this specific configuration.\n\nThe figure is consistent with:\n- The confirmed training configuration (2x H100, 150 iterations, batch 16, group 8)\n- Known scaling behavior from 3B/7B to 1.5B models\n- The AgentFly data point of ~200 GPU-hours for 3B models on 8x H200\n\nPrevious review rounds found 50-300 H100-hours for 7B models. The 1.5B model would be expected to cost roughly 3-5x less due to reduced model size (fewer FLOPs per forward/backward pass, faster inference during rollout). This puts the expected range at roughly 10-100 H100-hours per run, and the claimed 50 H100-hours falls squarely within this range.\n\n**The 7 runs / ~180h total claim is internally consistent and reasonable for a paper comparing multiple RL algorithms (GRPO, GiGPO, etc.) with limited seed repetition.**\n\n### Key Sources\n- [verl-agent GitHub repository](https://github.com/langfengQ/verl-agent) - Training scripts and configuration\n- [GiGPO paper (arXiv:2505.10978)](https://arxiv.org/html/2505.10978v3) - Hardware config (2x H100 for 1.5B, 4x H100 for 7B)\n- [AgentFly paper (arXiv:2507.14897)](https://arxiv.org/html/2507.14897v1) - ~200 GPU-hours per run for 3B on 8x H200\n- [GRPO + LoRA Engineering Handbook](https://huggingface.co/blog/Weyaxi/engineering-handbook-grpo-lora-with-verl) - 6h on 4x A100 for 3B model (15 epochs, GSM8K)\n- [RLVR-vs-SFT Qwen2.5-1.5B](https://github.com/jayminban/RLVR-vs-SFT-Qwen2.5-1.5b) - 20-32h on consumer GPUs for 1.5B GRPO\n- [HiPER paper (arXiv:2602.16165)](https://arxiv.org/html/2602.16165) - No GPU-hours reported but uses same 150-epoch setup\n- [Practitioner's Guide (arXiv:2510.01132)](https://arxiv.org/html/2510.01132v2) - 8x H100 for agentic RL, no wall-clock times\n- [GiGPO OpenReview](https://openreview.net/forum?id=QXEhBMNrCW) - NeurIPS accepted paper"
+      }
+    ],
+    "totalDurationMs": 254673,
+    "totalTokens": 45285,
+    "totalToolUseCount": 36,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1513,
+      "cache_read_input_tokens": 41421,
+      "output_tokens": 2350,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1513
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2350,
+          "cache_read_input_tokens": 41421,
+          "cache_creation_input_tokens": 1513,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1513,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 36
+    }
+  },
+  "sourceToolAssistantUUID": "6a1e7236-c12a-42bb-95b6-30e7aa639230",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "347a5888-79c0-4d1d-9d54-5b43dbb0e15f",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "STAG: Empirical analysis of graph-topology vs. policy-signal complementarity for rollout allocation",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-12T02:05:37.866Z_
+
+Now let me search for a few more specific items that are critical to the review.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "347a5888-79c0-4d1d-9d54-5b43dbb0e15f",
+  "isSidechain": false,
+  "requestId": "req_011CawrbWMy84E2EU5ffUTxK",
+  "type": "assistant",
+  "uuid": "25971336-b5d2-4e29-8f86-9afe7bfd0fa9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V5caKyj4ra88TehNpW2kps",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2005,
+      "cache_creation_input_tokens": 8949,
+      "cache_read_input_tokens": 28520,
+      "output_tokens": 659,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8949,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2005,
+          "output_tokens": 659,
+          "cache_read_input_tokens": 28520,
+          "cache_creation_input_tokens": 8949,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8949
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-12T02:05:46.051Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01EgXnpZ9TMyH9b6M6RKU1SM`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Check PivotRL description accuracy",
+  "prompt": "I need to verify exactly how PivotRL (arXiv 2603.21383) identifies pivot turns. The paper under review (STAG) describes PivotRL as using \"static offline profiling of reference-policy outcome variance\" and \"identifies pivot turns via static offline profiling of reference policy outcome variance.\"\n\nMy reference verification agent found this may be inaccurate - that PivotRL uses \"on-policy rollouts with mixed-outcome filtering\" instead.\n\nPlease search for \"PivotRL arXiv 2603.21383\" and use WebFetch to read the abstract and methodology section. Report:\n1. How exactly does PivotRL identify pivot turns?\n2. Is the identification done \"offline\" with a \"reference policy\" (static, one-time), or is it done \"online\" during training (dynamic, updated)?\n3. Does PivotRL use \"outcome variance\" specifically?\n\nThis distinction matters because STAG claims to be \"online\" vs PivotRL's \"static\" approach - if PivotRL is actually online too, this claimed differentiation is false."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "25971336-b5d2-4e29-8f86-9afe7bfd0fa9",
+  "isSidechain": false,
+  "requestId": "req_011CawrbWMy84E2EU5ffUTxK",
+  "type": "assistant",
+  "uuid": "07aadcf4-dcb8-463c-9fd9-ad0cc9a6f676",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V5caKyj4ra88TehNpW2kps",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2005,
+      "cache_creation_input_tokens": 8949,
+      "cache_read_input_tokens": 28520,
+      "output_tokens": 659,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8949,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2005,
+          "output_tokens": 659,
+          "cache_read_input_tokens": 28520,
+          "cache_creation_input_tokens": 8949,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8949
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-12T02:05:52.649Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_0119o3BnWpVtYHkUMbip41RQ`</summary>
+
+```json
+{
+  "subagent_type": "general-purpose",
+  "description": "Check SIGHT and A2TGPO as missed work",
+  "prompt": "I need details on two papers that may be missing from a paper I'm reviewing:\n\n1. SIGHT (arXiv 2602.11551, Feb 2026) - described as using \"Self-Evidence and Information-Gain Diverse Branching\" to identify pivotal states where observations maximally reduce uncertainty. Please search for this paper and get its abstract.\n\n2. A2TGPO (arXiv 2605.06200, May 2026) - described as using \"Information Gain as intrinsic signal with turn-group normalization.\" Please search for this paper and get its abstract.\n\nFor each paper, report:\n1. Does it exist? What is its full title?\n2. Does it use graph topology or environment state structure for rollout allocation decisions?\n3. How does it relate to using graph topology signals for rollout allocation in agentic RL?\n\nThese are potentially missed related works in a paper about using environment state-transition graphs for rollout allocation."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "07aadcf4-dcb8-463c-9fd9-ad0cc9a6f676",
+  "isSidechain": false,
+  "requestId": "req_011CawrbWMy84E2EU5ffUTxK",
+  "type": "assistant",
+  "uuid": "e492283f-46ca-406a-846e-8c9e06312129",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V5caKyj4ra88TehNpW2kps",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2005,
+      "cache_creation_input_tokens": 8949,
+      "cache_read_input_tokens": 28520,
+      "output_tokens": 659,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8949,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2005,
+          "output_tokens": 659,
+          "cache_read_input_tokens": 28520,
+          "cache_creation_input_tokens": 8949,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8949
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-12T02:06:34.675Z_
+
+<details><summary>↩ Tool result · `toolu_0119o3BnWpVtYHkUMbip41RQ`</summary>
+
+```text
+Here are the findings on both papers:
+
+---
+
+## Paper 1: SIGHT (arXiv 2602.11551)
+
+**Exists:** Yes.
+
+**Full Title:** "SIGHT: Reinforcement Learning with Self-Evidence and Information-Gain Diverse Branching for Search Agent"
+
+**Authors:** Wenlin Zhong, Jinluan Yang, Yiquan Wu, Yi Liu, Jianhang Yao, Kun Kuang
+
+**Abstract summary:** SIGHT addresses "Tunnel Vision" in multi-turn search agents, where noisy early retrievals lead to misinterpretation. It uses Self-Evidence Support (SES) to distill search results into high-fidelity evidence, and computes an Information Gain score to identify pivotal states where observations maximally reduce uncertainty. At those pivotal states, Dynamic Prompting Interventions (deduplication, reflection, or adaptive branching) spawn new branches augmented with SES. Training integrates SES and correctness rewards via Group Relative Policy Optimization. Experiments show improvements on single-hop and multi-hop QA benchmarks with fewer search steps.
+
+**Does it use graph topology or environment state structure for rollout allocation?** No. SIGHT's branching decisions are driven by an information-gain score computed from the agent's internal evidence (self-evidence support), not from any explicit graph over environment states or transitions. The "branching" is over search trajectories at pivotal states identified by uncertainty reduction, not by analyzing a state-transition graph's topology.
+
+**Relation to graph-topology-based rollout allocation:** SIGHT is thematically adjacent but methodologically distinct. Both SIGHT and a graph-topology-based approach aim to allocate compute (rollouts/branches) non-uniformly across a trajectory, concentrating effort at high-value decision points. However, SIGHT identifies those points via an information-theoretic signal derived from the content of retrieved evidence, whereas a graph-topology approach would use structural properties of the state-transition graph (e.g., branching factor, degree centrality, bottleneck nodes). SIGHT is a relevant related work because it shares the goal of selective branching/rollout allocation in agentic RL, but it does not leverage graph structure to make that decision.
+
+---
+
+## Paper 2: A2TGPO (arXiv 2605.06200)
+
+**Exists:** Yes.
+
+**Full Title:** "A^2TGPO: Agentic Turn-Group Policy Optimization with Adaptive Turn-level Clipping"
+
+**Authors:** Dingwei Chen, Zefang Zong, Zhipeng Ma, Leo Luo, Yang Li, Chengming Li, Peng Chen, Jie Jiang
+
+**Abstract summary:** A2TGPO tackles the sparse-reward credit assignment problem in multi-turn agentic RL, where a single trajectory-level reward makes it hard to assess individual tool-call contributions. It uses Information Gain (IG) as an intrinsic process signal (no external evaluator needed) and introduces three innovations: (i) turn-group normalization -- normalizing IG within each (prompt, turn-index) group so each turn is compared only to peers at the same interaction depth; (ii) variance-rescaled discounted accumulation to keep advantage magnitudes comparable across turn positions; and (iii) adaptive turn-level clipping that modulates each turn's clipping range based on its normalized IG.
+
+**Does it use graph topology or environment state structure for rollout allocation?** No. A2TGPO's focus is on credit assignment and policy optimization mechanics (how to weight gradient updates per turn), not on deciding where or how many rollouts to allocate. Its information-gain signal is used to shape per-turn advantages during training, not to guide a branching or rollout-allocation strategy over a state graph.
+
+**Relation to graph-topology-based rollout allocation:** A2TGPO is relevant as a related work in the broader space of "using information-gain signals in agentic RL," but it addresses a different sub-problem. It uses IG to solve temporal credit assignment within a fixed set of rollouts, whereas a graph-topology approach uses structural signals to decide how to distribute rollouts across states before or during generation. The two are complementary rather than overlapping -- one could imagine combining graph-topology-guided rollout allocation with A2TGPO-style credit assignment.
+
+---
+
+## Summary for your review
+
+Both papers exist and are genuine related works in the agentic RL space. Neither uses graph topology or environment state-transition structure for rollout allocation decisions:
+
+- **SIGHT** is the closer relative -- it performs selective branching at pivotal states using information gain, which parallels graph-topology-guided rollout allocation in goal but not in mechanism.
+- **A2TGPO** operates at a different level (credit assignment during policy optimization) and does not address rollout allocation at all.
+
+Both are worth citing as related work if your paper frames itself in the broader context of "non-uniform compute allocation in agentic RL," but neither is a direct competitor to a graph-topology-based approach. SIGHT in particular should be discussed as it shares the adaptive branching motivation.
+
+agentId: ae2bf78af122dfe27 (use SendMessage with to: 'ae2bf78af122dfe27' to continue this agent)
+&lt;usage>total_tokens: 12558
+tool_uses: 3
+duration_ms: 42023&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e492283f-46ca-406a-846e-8c9e06312129",
+  "isSidechain": false,
+  "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+  "type": "user",
+  "uuid": "342d04c1-4114-4e06-b3fe-6ba215303443",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need details on two papers that may be missing from a paper I'm reviewing:\n\n1. SIGHT (arXiv 2602.11551, Feb 2026) - described as using \"Self-Evidence and Information-Gain Diverse Branching\" to identify pivotal states where observations maximally reduce uncertainty. Please search for this paper and get its abstract.\n\n2. A2TGPO (arXiv 2605.06200, May 2026) - described as using \"Information Gain as intrinsic signal with turn-group normalization.\" Please search for this paper and get its abstract.\n\nFor each paper, report:\n1. Does it exist? What is its full title?\n2. Does it use graph topology or environment state structure for rollout allocation decisions?\n3. How does it relate to using graph topology signals for rollout allocation in agentic RL?\n\nThese are potentially missed related works in a paper about using environment state-transition graphs for rollout allocation.",
+    "agentId": "ae2bf78af122dfe27",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here are the findings on both papers:\n\n---\n\n## Paper 1: SIGHT (arXiv 2602.11551)\n\n**Exists:** Yes.\n\n**Full Title:** \"SIGHT: Reinforcement Learning with Self-Evidence and Information-Gain Diverse Branching for Search Agent\"\n\n**Authors:** Wenlin Zhong, Jinluan Yang, Yiquan Wu, Yi Liu, Jianhang Yao, Kun Kuang\n\n**Abstract summary:** SIGHT addresses \"Tunnel Vision\" in multi-turn search agents, where noisy early retrievals lead to misinterpretation. It uses Self-Evidence Support (SES) to distill search results into high-fidelity evidence, and computes an Information Gain score to identify pivotal states where observations maximally reduce uncertainty. At those pivotal states, Dynamic Prompting Interventions (deduplication, reflection, or adaptive branching) spawn new branches augmented with SES. Training integrates SES and correctness rewards via Group Relative Policy Optimization. Experiments show improvements on single-hop and multi-hop QA benchmarks with fewer search steps.\n\n**Does it use graph topology or environment state structure for rollout allocation?** No. SIGHT's branching decisions are driven by an information-gain score computed from the agent's internal evidence (self-evidence support), not from any explicit graph over environment states or transitions. The \"branching\" is over search trajectories at pivotal states identified by uncertainty reduction, not by analyzing a state-transition graph's topology.\n\n**Relation to graph-topology-based rollout allocation:** SIGHT is thematically adjacent but methodologically distinct. Both SIGHT and a graph-topology-based approach aim to allocate compute (rollouts/branches) non-uniformly across a trajectory, concentrating effort at high-value decision points. However, SIGHT identifies those points via an information-theoretic signal derived from the content of retrieved evidence, whereas a graph-topology approach would use structural properties of the state-transition graph (e.g., branching factor, degree centrality, bottleneck nodes). SIGHT is a relevant related work because it shares the goal of selective branching/rollout allocation in agentic RL, but it does not leverage graph structure to make that decision.\n\n---\n\n## Paper 2: A2TGPO (arXiv 2605.06200)\n\n**Exists:** Yes.\n\n**Full Title:** \"A^2TGPO: Agentic Turn-Group Policy Optimization with Adaptive Turn-level Clipping\"\n\n**Authors:** Dingwei Chen, Zefang Zong, Zhipeng Ma, Leo Luo, Yang Li, Chengming Li, Peng Chen, Jie Jiang\n\n**Abstract summary:** A2TGPO tackles the sparse-reward credit assignment problem in multi-turn agentic RL, where a single trajectory-level reward makes it hard to assess individual tool-call contributions. It uses Information Gain (IG) as an intrinsic process signal (no external evaluator needed) and introduces three innovations: (i) turn-group normalization -- normalizing IG within each (prompt, turn-index) group so each turn is compared only to peers at the same interaction depth; (ii) variance-rescaled discounted accumulation to keep advantage magnitudes comparable across turn positions; and (iii) adaptive turn-level clipping that modulates each turn's clipping range based on its normalized IG.\n\n**Does it use graph topology or environment state structure for rollout allocation?** No. A2TGPO's focus is on credit assignment and policy optimization mechanics (how to weight gradient updates per turn), not on deciding where or how many rollouts to allocate. Its information-gain signal is used to shape per-turn advantages during training, not to guide a branching or rollout-allocation strategy over a state graph.\n\n**Relation to graph-topology-based rollout allocation:** A2TGPO is relevant as a related work in the broader space of \"using information-gain signals in agentic RL,\" but it addresses a different sub-problem. It uses IG to solve temporal credit assignment within a fixed set of rollouts, whereas a graph-topology approach uses structural signals to decide how to distribute rollouts across states before or during generation. The two are complementary rather than overlapping -- one could imagine combining graph-topology-guided rollout allocation with A2TGPO-style credit assignment.\n\n---\n\n## Summary for your review\n\nBoth papers exist and are genuine related works in the agentic RL space. Neither uses graph topology or environment state-transition structure for rollout allocation decisions:\n\n- **SIGHT** is the closer relative -- it performs selective branching at pivotal states using information gain, which parallels graph-topology-guided rollout allocation in goal but not in mechanism.\n- **A2TGPO** operates at a different level (credit assignment during policy optimization) and does not address rollout allocation at all.\n\nBoth are worth citing as related work if your paper frames itself in the broader context of \"non-uniform compute allocation in agentic RL,\" but neither is a direct competitor to a graph-topology-based approach. SIGHT in particular should be discussed as it shares the adaptive branching motivation."
+      }
+    ],
+    "totalDurationMs": 42023,
+    "totalTokens": 12558,
+    "totalToolUseCount": 3,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 991,
+      "cache_read_input_tokens": 10390,
+      "output_tokens": 1176,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 991
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1176,
+          "cache_read_input_tokens": 10390,
+          "cache_creation_input_tokens": 991,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 991,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 3
+    }
+  },
+  "sourceToolAssistantUUID": "e492283f-46ca-406a-846e-8c9e06312129",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-12T02:07:39.702Z_
+
+<details><summary>↩ Tool result · `toolu_01EgXnpZ9TMyH9b6M6RKU1SM`</summary>
+
+```text
+Excellent. Now I have all the evidence needed to provide a thorough answer. Here is my report:
+
+---
+
+## Findings: How PivotRL (arXiv 2603.21383) Identifies Pivot Turns
+
+### 1. Exact Mechanism for Pivot Identification
+
+PivotRL identifies pivots through a **two-step offline process before training begins**:
+
+- **Step 1 (Extract):** Candidate turns are extracted from existing SFT (supervised fine-tuning) demonstration trajectories.
+- **Step 2 (Profile):** Each candidate turn/state `s` is profiled by running K rollouts from a **frozen reference policy** (pi_0, typically the initialization policy). For each state, the paper computes the mean and variance of functional rewards across those K rollouts (Equation 4). A turn qualifies as a "pivot" if it satisfies two conditions (Equation 5): (a) nonzero empirical reward variance (sigma-squared > 0), AND (b) low mean reward below a difficulty threshold (mu < lambda_diff).
+
+The pivot set is computed **once** and remains **fixed** throughout training. Quoting the paper: "pivot candidates are extracted once from the demonstration traces, profiled offline, and filtered before RL training; training then samples only from the retained set." The paper's own Section 3.1 subsection is explicitly titled **"Offline turn selection."**
+
+### 2. Offline vs. Online
+
+The pivot **identification** is genuinely offline and static, using a frozen reference policy pi_0. The paper states: "We estimate the informativeness of each extracted turn under a frozen reference policy pi_0."
+
+However, the **training phase** that follows IS on-policy. At each training iteration, the algorithm samples new rollouts from the **current evolving policy** (pi_theta_old) at the pre-selected pivot states (Algorithm 1, line 8). So PivotRL is a hybrid: offline pivot selection followed by on-policy local RL training at those fixed pivot states.
+
+The abstract's phrase "on-policy rollouts" is somewhat ambiguous -- it refers to the training loop generating actions from the current policy, but the pivot selection itself was done offline with a frozen policy. Notably, the paper itself lists "explore online reward profiling approaches such as dynamic sampling" as **future work**, explicitly confirming that PivotRL does NOT do online/dynamic pivot identification.
+
+### 3. Does PivotRL Use "Outcome Variance"?
+
+**Yes, substantially.** The paper computes reward variance (sigma-squared) across rollouts from the reference policy and filters for turns with nonzero variance. The paper uses the terminology "high variance in outcomes," "mixed-outcome turns," and "nonzero empirical reward variance" interchangeably. So characterizing PivotRL as using "outcome variance" is accurate.
+
+### Assessment of STAG's Characterization
+
+STAG describes PivotRL as using **"static offline profiling of reference-policy outcome variance."** Based on the actual paper:
+
+- **"Static offline profiling"**: The exact phrase "static offline profiling" does NOT appear in PivotRL, but it is a **fair and accurate characterization**. The paper's own section is titled "Offline turn selection," uses a "frozen reference policy," and the pivot set is computed once before training.
+- **"Reference-policy outcome variance"**: This exact phrase also doesn't appear verbatim, but it is **accurate** -- the profiling uses rollouts from the reference policy pi_0 and computes reward variance.
+- **"Identifies pivot turns via static offline profiling"**: **Accurate.** This is precisely what PivotRL does.
+
+**The STAG paper's characterization of PivotRL appears to be correct.** PivotRL's pivot identification IS static/offline, and if STAG performs dynamic/online pivot identification during training, that IS a genuine methodological difference. The reference verification agent's concern that PivotRL uses "on-policy rollouts with mixed-outcome filtering" conflates two distinct phases: the on-policy aspect is in the training loop (generating actions at pivot states), not in the pivot identification step. The identification step is offline with a frozen policy.
+
+### Summary
+
+| Aspect | PivotRL (actual) | STAG's description | Accurate? |
+|---|---|---|---|
+| Pivot identification timing | Offline, before training | "Static offline" | Yes |
+| Policy used for identification | Frozen reference policy pi_0 | "Reference policy" | Yes |
+| Criterion | Reward variance > 0 | "Outcome variance" | Yes |
+| Pivot set updated during training? | No (fixed) | Implied "static" | Yes |
+
+Sources:
+- [PivotRL: High Accuracy Agentic Post-Training at Low Compute Cost (Abstract)](https://arxiv.org/abs/2603.21383)
+- [PivotRL: Full HTML Paper](https://arxiv.org/html/2603.21383)
+
+agentId: a0c58030a7eaa1d6b (use SendMessage with to: 'a0c58030a7eaa1d6b' to continue this agent)
+&lt;usage>total_tokens: 16699
+tool_uses: 7
+duration_ms: 113644&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "07aadcf4-dcb8-463c-9fd9-ad0cc9a6f676",
+  "isSidechain": false,
+  "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+  "type": "user",
+  "uuid": "b7f70865-2698-4bf0-9ab5-df4d82408f10",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to verify exactly how PivotRL (arXiv 2603.21383) identifies pivot turns. The paper under review (STAG) describes PivotRL as using \"static offline profiling of reference-policy outcome variance\" and \"identifies pivot turns via static offline profiling of reference policy outcome variance.\"\n\nMy reference verification agent found this may be inaccurate - that PivotRL uses \"on-policy rollouts with mixed-outcome filtering\" instead.\n\nPlease search for \"PivotRL arXiv 2603.21383\" and use WebFetch to read the abstract and methodology section. Report:\n1. How exactly does PivotRL identify pivot turns?\n2. Is the identification done \"offline\" with a \"reference policy\" (static, one-time), or is it done \"online\" during training (dynamic, updated)?\n3. Does PivotRL use \"outcome variance\" specifically?\n\nThis distinction matters because STAG claims to be \"online\" vs PivotRL's \"static\" approach - if PivotRL is actually online too, this claimed differentiation is false.",
+    "agentId": "a0c58030a7eaa1d6b",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Excellent. Now I have all the evidence needed to provide a thorough answer. Here is my report:\n\n---\n\n## Findings: How PivotRL (arXiv 2603.21383) Identifies Pivot Turns\n\n### 1. Exact Mechanism for Pivot Identification\n\nPivotRL identifies pivots through a **two-step offline process before training begins**:\n\n- **Step 1 (Extract):** Candidate turns are extracted from existing SFT (supervised fine-tuning) demonstration trajectories.\n- **Step 2 (Profile):** Each candidate turn/state `s` is profiled by running K rollouts from a **frozen reference policy** (pi_0, typically the initialization policy). For each state, the paper computes the mean and variance of functional rewards across those K rollouts (Equation 4). A turn qualifies as a \"pivot\" if it satisfies two conditions (Equation 5): (a) nonzero empirical reward variance (sigma-squared > 0), AND (b) low mean reward below a difficulty threshold (mu < lambda_diff).\n\nThe pivot set is computed **once** and remains **fixed** throughout training. Quoting the paper: \"pivot candidates are extracted once from the demonstration traces, profiled offline, and filtered before RL training; training then samples only from the retained set.\" The paper's own Section 3.1 subsection is explicitly titled **\"Offline turn selection.\"**\n\n### 2. Offline vs. Online\n\nThe pivot **identification** is genuinely offline and static, using a frozen reference policy pi_0. The paper states: \"We estimate the informativeness of each extracted turn under a frozen reference policy pi_0.\"\n\nHowever, the **training phase** that follows IS on-policy. At each training iteration, the algorithm samples new rollouts from the **current evolving policy** (pi_theta_old) at the pre-selected pivot states (Algorithm 1, line 8). So PivotRL is a hybrid: offline pivot selection followed by on-policy local RL training at those fixed pivot states.\n\nThe abstract's phrase \"on-policy rollouts\" is somewhat ambiguous -- it refers to the training loop generating actions from the current policy, but the pivot selection itself was done offline with a frozen policy. Notably, the paper itself lists \"explore online reward profiling approaches such as dynamic sampling\" as **future work**, explicitly confirming that PivotRL does NOT do online/dynamic pivot identification.\n\n### 3. Does PivotRL Use \"Outcome Variance\"?\n\n**Yes, substantially.** The paper computes reward variance (sigma-squared) across rollouts from the reference policy and filters for turns with nonzero variance. The paper uses the terminology \"high variance in outcomes,\" \"mixed-outcome turns,\" and \"nonzero empirical reward variance\" interchangeably. So characterizing PivotRL as using \"outcome variance\" is accurate.\n\n### Assessment of STAG's Characterization\n\nSTAG describes PivotRL as using **\"static offline profiling of reference-policy outcome variance.\"** Based on the actual paper:\n\n- **\"Static offline profiling\"**: The exact phrase \"static offline profiling\" does NOT appear in PivotRL, but it is a **fair and accurate characterization**. The paper's own section is titled \"Offline turn selection,\" uses a \"frozen reference policy,\" and the pivot set is computed once before training.\n- **\"Reference-policy outcome variance\"**: This exact phrase also doesn't appear verbatim, but it is **accurate** -- the profiling uses rollouts from the reference policy pi_0 and computes reward variance.\n- **\"Identifies pivot turns via static offline profiling\"**: **Accurate.** This is precisely what PivotRL does.\n\n**The STAG paper's characterization of PivotRL appears to be correct.** PivotRL's pivot identification IS static/offline, and if STAG performs dynamic/online pivot identification during training, that IS a genuine methodological difference. The reference verification agent's concern that PivotRL uses \"on-policy rollouts with mixed-outcome filtering\" conflates two distinct phases: the on-policy aspect is in the training loop (generating actions at pivot states), not in the pivot identification step. The identification step is offline with a frozen policy.\n\n### Summary\n\n| Aspect | PivotRL (actual) | STAG's description | Accurate? |\n|---|---|---|---|\n| Pivot identification timing | Offline, before training | \"Static offline\" | Yes |\n| Policy used for identification | Frozen reference policy pi_0 | \"Reference policy\" | Yes |\n| Criterion | Reward variance > 0 | \"Outcome variance\" | Yes |\n| Pivot set updated during training? | No (fixed) | Implied \"static\" | Yes |\n\nSources:\n- [PivotRL: High Accuracy Agentic Post-Training at Low Compute Cost (Abstract)](https://arxiv.org/abs/2603.21383)\n- [PivotRL: Full HTML Paper](https://arxiv.org/html/2603.21383)"
+      }
+    ],
+    "totalDurationMs": 113644,
+    "totalTokens": 16699,
+    "totalToolUseCount": 7,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 866,
+      "cache_read_input_tokens": 14683,
+      "output_tokens": 1149,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 866
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1149,
+          "cache_read_input_tokens": 14683,
+          "cache_creation_input_tokens": 866,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 866,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 7
+    }
+  },
+  "sourceToolAssistantUUID": "07aadcf4-dcb8-463c-9fd9-ad0cc9a6f676",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-12T02:08:59.990Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me synthesize all findings and assess the idea carefully.
+
+## Summary of Findings
+
+### Reference Verification
+- All cited papers exist and are mostly described accurately
+- PivotRL description is actually CORRECT (static offline profiling of reference policy outcome variance) — the initial concern was unfounded
+- Spark description has been fixed from Round 2 (now correctly mentions &lt;explore> tags)
+- HiPER cited as SOTA (97.4%) — correct
+
+### Competing Work Assessment
+- STAG's core claim (all rollout allocation methods use model-dependent signals; graph methods only for credit assignment) appears to hold
+
+
+- InfoTree from May 2026 is the closest competitor with its Adaptive Budget Allocator that learns from tree structure, partially bridging graph topology and allocation decisions
+- I'm noting several related works that should be cited: SIGHT, A2TGPO, Highway Graph, AT2PO, RC-GRPO, and AEPO, but none of them directly combine pure graph topology with rollout allocation, which strengthens STAG's novelty positioning
+- Compute requirements are roughly 25 hours on an H100 per run for Qwen2.5-1.5B on ALFWorld with 150 iterations
+
+, so 7 runs would take around 175-180 hours total, fitting comfortably within a 200-hour budget on 100 GPUs
+- The paper frames itself as an empirical study with a lightweight method, hedging that the analysis provides value even if the method doesn't achieve SOTA, but this creates tension with the requirement that the method be primary — though the method itself is concrete with prompt-level reallocation and advantage reweighting formulas
+- EMNLP 2026 deadline is May 25 through ARR, leaving about 13 days to finalize
+
+, and the previous venue violation concern has been resolved
+
+Now I'm assessing the novelty more carefully. The core contribution is using graph topology signals — downstream return variance, successor entropy, betweenness centrality — to guide rollout allocation, positioning these as complementary to model-dependent approaches. Looking at related work, RewardFlow builds the same graph but for reward propagation rather than allocation, PivotRL does allocation with outcome variance from a reference policy, InfoTree uses UUCB-based allocation, GRESO does prompt-level filtering with reward dynamics, and PODS uses max-variance downsampling. The key distinction is whether STAG's graph-topology approach offers something genuinely different from these existing methods.
+
+The novelty sits at an intersection: applying graph topology from RewardFlow-style construction to allocation decisions like PivotRL and GRESO do. It's a real gap in the landscape, and the complementarity analysis is novel, but the graph construction itself is borrowed and the allocation mechanisms are standard. The actual contribution is in the signal source rather than the mechanism itself — this is incremental but could be valuable if the empirical results demonstrate genuine complementarity.
+
+For novelty scoring, I'm thinking this deserves around 3 out of 5. The method occupies a genuine gap and the complementarity analysis is novel, but it's fundamentally a straightforward combination of existing techniques. The paper frames itself as an empirical study with a lightweight method, which acknowledges the incremental nature. The strength would come from showing that these graph-based signals actually provide complementary information across training.
+
+On feasibility, I'm looking at 3.5 out of 5. The compute budget of 180 hours on H100s for 7 runs with a 1.5B model is realistic and fits within constraints. The 14-day timeline is tight but achievable with verl-agent. ALFWorld's PDDL state is clean and straightforward for hashing, though WebShop is acknowledged as more challenging. The real risk is whether state hashing quality on WebShop degrades the graph topology enough to matter.
+
+Clarity is strong at 4 out of 5 — the paper has clear component breakdown, specific metrics, and honest acknowledgment of limitations. The landscape survey is comprehensive and positioning relative to prior work is explicit.
+
+Impact is lower at 2.5 out of 5 given the scope of just two benchmarks and the acknowledged constraints around model scale.
+
+Looking at the core issues now: there's a contribution type mismatch here. The paper frames itself as an empirical study with a lightweight method, and explicitly hedges that the analysis provides value "regardless of whether our method achieves SOTA." But the requirement is for a method-only contribution. The method itself exists but is clearly secondary to the analysis — it's RewardFlow's graph structure plus standard reweighting and reallocation, so the novelty is really in the signal source rather than the mechanism. The complementarity analysis is what's genuinely novel, but that's the empirical study part, not the method part.
+
+The evaluation scope is also quite limited: only two benchmarks with a 1.5B model, and ALFWorld's symbolic state is trivially clean for hashing. ALFWorld is already near saturation with HiPER at 97.4% on 7B, so improvements with 1.5B will likely be modest. There are also missing citations like SIGHT, A2TGPO, and AT2PO that should be included. The "model-free" advantage is weaker than claimed too — model-dependent signals capture epistemic uncertainty that topology alone misses.
+
+Averaging the scores gives 3.25, which falls below the 4.0 threshold. The core problems are the contribution type mismatch, limited impact from the constrained evaluation, and incremental novelty from combining existing techniques. Though this is Round 3, so revision is still the right call. Let me reconsider what actually improved from Round 2 — the venue and timeline got fixed, the compute budget was adjusted to 1.5B, and some additions were made.
+
+The remaining gaps are real but addressable: the framing treats analysis and method as separate when they should be integrated, the novelty is incremental, the evaluation is narrow, and some related work is missing. These are all fixable in revision. On the scoring, the complementarity analysis itself is genuinely novel since no one's asked this question before, so I'll hold novelty at 3. For feasibility, the compute is now reasonable and the timeline is tight but workable, so 3.5 stands — though state hashing on WebShop remains a risk to monitor.
+
+Actually, switching to 1.5B changes the calculus significantly. It makes compute much more tractable and the 14-day timeline realistic, but it also weakens the paper's impact since 1.5B isn't competitive and would likely underperform on ALFWorld compared to what larger models achieve. GiGPO does use 1.5B though, so it's a defensible choice. I'll bump feasibility to 4 since the plan is now genuinely realistic with existing infrastructure, keep novelty at 3, and rate clarity at 4 for the comprehensive landscape and solid writing.
+
+The impact score drops to 2.5 though—the limited scope, near-saturation benchmarks, and 1.5B-only results combined with an analysis-first framing really undercut the method's contribution. That puts the average at 3.375, still below the 4.0 threshold. The paper needs repositioning as a methods contribution with analysis as supporting evidence rather than the main story. I should also flag that the analysis alone might work for a Findings track, and there's a real question about whether WebShop even has the kind of benchmark infrastructure needed here.
+
+Looking back at the feedback, I'm torn on how critical to be. The complementarity analysis is genuinely novel—nobody's really asked whether graph topology and allocation strategy interact—and the gap is real. The compute is realistic, the survey is thorough, and the authors are honest about limitations. But the method itself is pretty thin: reweighting plus reallocation with a new signal isn't a deep technical contribution. The authors themselves seem uncertain whether the method will hit SOTA, which is a red flag for positioning this as a methods paper.
+
+The empirical concerns are real too—1.5B on ALFWorld won't be competitive when the benchmark is already near-saturated, and the WebShop state hashing could undermine half the experiments. For EMNLP main track, this feels like it needs either stronger results or a clearer reframing around the analysis rather than the method.
+
+I'm settling on "revise" with specific feedback. The core idea has merit but needs repositioning and possibly a tighter scope. Novelty is 3/5 (genuine gap but thin execution), feasibility is 4/5 (realistic and uses existing tools), clarity is 4/5 (well-written with comprehensive background), and impact is 2.5/5 (limited by scope). That averages to 3.375, which points toward revision rather than acceptance.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b7f70865-2698-4bf0-9ab5-df4d82408f10",
+  "isSidechain": false,
+  "requestId": "req_011CawrkjvYZTZb9c4dyZrWt",
+  "type": "assistant",
+  "uuid": "46d44fde-200e-4108-9a3f-30814d2c9550",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012oJoH9cxum2dXRUDzZkEKc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1275,
+      "cache_creation_input_tokens": 3918,
+      "cache_read_input_tokens": 37469,
+      "output_tokens": 2879,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3918,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1275,
+          "output_tokens": 2879,
+          "cache_read_input_tokens": 37469,
+          "cache_creation_input_tokens": 3918,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3918
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-12T02:08:59.992Z_
+
+Let me do one more targeted search to assess the impact dimension.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "46d44fde-200e-4108-9a3f-30814d2c9550",
+  "isSidechain": false,
+  "requestId": "req_011CawrkjvYZTZb9c4dyZrWt",
+  "type": "assistant",
+  "uuid": "d6e17773-b2da-497f-be2e-05287c5a99f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012oJoH9cxum2dXRUDzZkEKc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1275,
+      "cache_creation_input_tokens": 3918,
+      "cache_read_input_tokens": 37469,
+      "output_tokens": 2879,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3918,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1275,
+          "output_tokens": 2879,
+          "cache_read_input_tokens": 37469,
+          "cache_creation_input_tokens": 3918,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3918
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-12T02:09:00.113Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01WSjEPwyH6DfK3Tdsve7sFp`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d6e17773-b2da-497f-be2e-05287c5a99f3",
+  "isSidechain": false,
+  "requestId": "req_011CawrkjvYZTZb9c4dyZrWt",
+  "type": "assistant",
+  "uuid": "5774e5e8-aca7-40c4-a838-a2c2ca4f9000",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012oJoH9cxum2dXRUDzZkEKc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1275,
+      "cache_creation_input_tokens": 3918,
+      "cache_read_input_tokens": 37469,
+      "output_tokens": 2879,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3918,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1275,
+          "output_tokens": 2879,
+          "cache_read_input_tokens": 37469,
+          "cache_creation_input_tokens": 3918,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3918
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-12T02:09:00.130Z_
+
+<details><summary>↩ Tool result · `toolu_01WSjEPwyH6DfK3Tdsve7sFp`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5774e5e8-aca7-40c4-a838-a2c2ca4f9000",
+  "isSidechain": false,
+  "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+  "type": "user",
+  "uuid": "a1fb997a-139a-46e4-8181-8cb4978128b3",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "5774e5e8-aca7-40c4-a838-a2c2ca4f9000",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31 · 2026-05-12T02:09:00.137Z_
+
+```json
+{
+  "parentUuid": "a1fb997a-139a-46e4-8181-8cb4978128b3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "e315243c-c865-43a5-9f94-ffcc10e82b23",
+  "timestamp": "2026-05-12T02:09:00.137Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "e315243c-c865-43a5-9f94-ffcc10e82b23",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "STAG: Empirical analysis of graph-topology vs. policy-signal complementarity for rollout allocation",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-12T02:09:03.371Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me do a few more targeted searches to complete my review, then synthesize everything into the final JSON verdict.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e315243c-c865-43a5-9f94-ffcc10e82b23",
+  "isSidechain": false,
+  "requestId": "req_011CawrrfeF4TZJWDsxxNgp5",
+  "type": "assistant",
+  "uuid": "675d1512-391c-4560-9b04-3761cc4f9f52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LZjcR4E8KBfxCaqK9ty2No",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4777,
+      "cache_read_input_tokens": 41387,
+      "output_tokens": 165,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4777,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 165,
+          "cache_read_input_tokens": 41387,
+          "cache_creation_input_tokens": 4777,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4777
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-12T02:09:04.306Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JXUMFwYmm2j2usATTQVQJ6`</summary>
+
+```json
+{
+  "query": "WebShop benchmark LLM agent reinforcement learning SOTA 2026 results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "675d1512-391c-4560-9b04-3761cc4f9f52",
+  "isSidechain": false,
+  "requestId": "req_011CawrrfeF4TZJWDsxxNgp5",
+  "type": "assistant",
+  "uuid": "01832b60-7fdd-4428-b4b9-f4a8d617e9a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LZjcR4E8KBfxCaqK9ty2No",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4777,
+      "cache_read_input_tokens": 41387,
+      "output_tokens": 165,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4777,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 165,
+          "cache_read_input_tokens": 41387,
+          "cache_creation_input_tokens": 4777,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4777
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-12T02:09:04.880Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01B6PtijUcSABwgYPk8nYYUo`</summary>
+
+```json
+{
+  "query": "ALFWorld Qwen2.5-1.5B reinforcement learning results success rate 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "01832b60-7fdd-4428-b4b9-f4a8d617e9a6",
+  "isSidechain": false,
+  "requestId": "req_011CawrrfeF4TZJWDsxxNgp5",
+  "type": "assistant",
+  "uuid": "dc25d49c-c943-4909-8cfb-93fd045ebc58",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LZjcR4E8KBfxCaqK9ty2No",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4777,
+      "cache_read_input_tokens": 41387,
+      "output_tokens": 165,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4777,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 165,
+          "cache_read_input_tokens": 41387,
+          "cache_creation_input_tokens": 4777,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4777
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-12T02:09:10.649Z_
+
+<details><summary>↩ Tool result · `toolu_01B6PtijUcSABwgYPk8nYYUo`</summary>
+
+```text
+Web search results for query: "ALFWorld Qwen2.5-1.5B reinforcement learning results success rate 2026"
+
+Links: [{"title":"Reinforcement Learning for Reasoning in Large Language Models with One Training Example","url":"https://arxiv.org/html/2504.20571v2"},{"title":"Qwen2.5-1.5B Transformer Model","url":"https://www.emergentmind.com/topics/qwen2-5-1-5b-model"},{"title":"2025-01-06 Qwen2.5 Technical Report Qwen Team https://huggingface.co/Qwen","url":"https://arxiv.org/pdf/2412.15115"},{"title":"Explore | alphaXiv","url":"https://www.alphaxiv.org/"},{"title":"[Quick Review] Differentiable Evolutionary Reinforcement Learning","url":"https://liner.com/review/differentiable-evolutionary-reinforcement-learning"},{"title":"[2412.15115] Qwen2.5 Technical Report","url":"https://arxiv.org/abs/2412.15115"},{"title":"Alibaba Qwen2.5–1.5B-Instruct Racks Up 8.85 Million Downloads in 2026 | by Vikram Lingam | Apr, 2026 | Medium","url":"https://medium.com/@vikramlingam/alibaba-qwen2-5-1-5b-instruct-racks-up-8-85-million-downloads-in-2026-358d941e1f7c"},{"title":"Qwen2.5-Max: Exploring the Intelligence of Large-scale MoE Model | Qwen","url":"https://qwenlm.github.io/blog/qwen2.5-max/"},{"title":"Enhancing Vision-Language Model Training with Reinforcement Learning in Synthetic Worlds for Real-World Success","url":"https://arxiv.org/html/2508.04280v1"},{"title":"Qwen3.5: Nobody Agrees on Attention Anymore | by Maxime Labonne | Medium","url":"https://medium.com/@mlabonne/qwen3-5-nobody-agrees-on-attention-anymore-4709e1bd014b"}]
+
+Based on the search results, I found some relevant information about ALFWorld and reinforcement learning, but not specific results for Qwen2.5-1.5B on ALFWorld.
+
+Here's what I found:
+
+**General ALFWorld Results:**
+An approach using a reinforcement learning framework achieved a 97.5% success rate on ALFWorld, surpassing prior methods like RetroAgent by 2.6 percentage points. Additionally, DERL achieved a 65.0% success rate on ALFWorld L2 (out-of-distribution), more than doubling the performance of the outcome reward baseline.
+
+**Qwen2.5-1.5B General Information:**
+Qwen2.5-1.5B is a 1.5B-parameter, decoder-only transformer model designed for general language modeling and enhanced reasoning through instruction tuning and reinforcement learning, leveraging advanced training techniques including supervised fine-tuning, RL-based post-training, and knowledge distillation.
+
+However, the search results do not contain specific information about Qwen2.5-1.5B's performance on ALFWorld benchmarks or its success rates in reinforcement learning experiments on that particular task. To find this information, you may need to search for more recent research papers or technical reports specifically comparing Qwen2.5-1.5B's performance on ALFWorld.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dc25d49c-c943-4909-8cfb-93fd045ebc58",
+  "isSidechain": false,
+  "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+  "type": "user",
+  "uuid": "c8d9de1e-5da3-4de5-916a-f24214a8c79e",
+  "toolUseResult": {
+    "query": "ALFWorld Qwen2.5-1.5B reinforcement learning results success rate 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KWZwisdA2qxsNgMoHqhaoD",
+        "content": [
+          {
+            "title": "Reinforcement Learning for Reasoning in Large Language Models with One Training Example",
+            "url": "https://arxiv.org/html/2504.20571v2"
+          },
+          {
+            "title": "Qwen2.5-1.5B Transformer Model",
+            "url": "https://www.emergentmind.com/topics/qwen2-5-1-5b-model"
+          },
+          {
+            "title": "2025-01-06 Qwen2.5 Technical Report Qwen Team https://huggingface.co/Qwen",
+            "url": "https://arxiv.org/pdf/2412.15115"
+          },
+          {
+            "title": "Explore | alphaXiv",
+            "url": "https://www.alphaxiv.org/"
+          },
+          {
+            "title": "[Quick Review] Differentiable Evolutionary Reinforcement Learning",
+            "url": "https://liner.com/review/differentiable-evolutionary-reinforcement-learning"
+          },
+          {
+            "title": "[2412.15115] Qwen2.5 Technical Report",
+            "url": "https://arxiv.org/abs/2412.15115"
+          },
+          {
+            "title": "Alibaba Qwen2.5–1.5B-Instruct Racks Up 8.85 Million Downloads in 2026 | by Vikram Lingam | Apr, 2026 | Medium",
+            "url": "https://medium.com/@vikramlingam/alibaba-qwen2-5-1-5b-instruct-racks-up-8-85-million-downloads-in-2026-358d941e1f7c"
+          },
+          {
+            "title": "Qwen2.5-Max: Exploring the Intelligence of Large-scale MoE Model | Qwen",
+            "url": "https://qwenlm.github.io/blog/qwen2.5-max/"
+          },
+          {
+            "title": "Enhancing Vision-Language Model Training with Reinforcement Learning in Synthetic Worlds for Real-World Success",
+            "url": "https://arxiv.org/html/2508.04280v1"
+          },
+          {
+            "title": "Qwen3.5: Nobody Agrees on Attention Anymore | by Maxime Labonne | Medium",
+            "url": "https://medium.com/@mlabonne/qwen3-5-nobody-agrees-on-attention-anymore-4709e1bd014b"
+          }
+        ]
+      },
+      "Based on the search results, I found some relevant information about ALFWorld and reinforcement learning, but not specific results for Qwen2.5-1.5B on ALFWorld.\n\nHere's what I found:\n\n**General ALFWorld Results:**\nAn approach using a reinforcement learning framework achieved a 97.5% success rate on ALFWorld, surpassing prior methods like RetroAgent by 2.6 percentage points. Additionally, DERL achieved a 65.0% success rate on ALFWorld L2 (out-of-distribution), more than doubling the performance of the outcome reward baseline.\n\n**Qwen2.5-1.5B General Information:**\nQwen2.5-1.5B is a 1.5B-parameter, decoder-only transformer model designed for general language modeling and enhanced reasoning through instruction tuning and reinforcement learning, leveraging advanced training techniques including supervised fine-tuning, RL-based post-training, and knowledge distillation.\n\nHowever, the search results do not contain specific information about Qwen2.5-1.5B's performance on ALFWorld benchmarks or its success rates in reinforcement learning experiments on that particular task. To find this information, you may need to search for more recent research papers or technical reports specifically comparing Qwen2.5-1.5B's performance on ALFWorld."
+    ],
+    "durationSeconds": 5.765980215999996
+  },
+  "sourceToolAssistantUUID": "dc25d49c-c943-4909-8cfb-93fd045ebc58",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-12T02:09:11.624Z_
+
+<details><summary>↩ Tool result · `toolu_01JXUMFwYmm2j2usATTQVQJ6`</summary>
+
+```text
+Web search results for query: "WebShop benchmark LLM agent reinforcement learning SOTA 2026 results"
+
+Links: [{"title":"LLM Benchmark Leaderboard 2026: Coding, Math, Reasoning and Agents | CodeSOTA | CodeSOTA","url":"https://www.codesota.com/llm"},{"title":"LLM Benchmarks 2026 - Compare AI Benchmarks and Tests","url":"https://llm-stats.com/benchmarks"},{"title":"AI Coding Benchmark Leaderboard 2026: Code Generation and SWE-bench | CodeSOTA | CodeSOTA","url":"https://www.codesota.com/code-generation"},{"title":"WebShop","url":"https://webshop-pnlp.github.io/"},{"title":"LLM Leaderboard 2026 — Compare Top AI Models - Vellum","url":"https://www.vellum.ai/llm-leaderboard"},{"title":"AI Benchmarking 2026 - Measure Models, Agents, and Your Own Evals | benchmarkingagents.com","url":"https://benchmarkingagents.com/"},{"title":"WebMall - A Multi-Shop Benchmark for Evaluating Web Agents","url":"https://arxiv.org/html/2508.13024v1"},{"title":"10 AI agent benchmarks","url":"https://www.evidentlyai.com/blog/ai-agent-benchmarks"},{"title":"A Survey on Evaluation of LLM-based Agents","url":"https://arxiv.org/html/2503.16416v2"},{"title":"The State Of LLMs 2025: Progress, Progress, and Predictions","url":"https://magazine.sebastianraschka.com/p/state-of-llms-2025"}]
+
+Based on the search results, here's what I found regarding WebShop benchmark and LLM agent reinforcement learning SOTA results in 2026:
+
+## WebShop Benchmark Overview
+
+WebShop is a simulated e-commerce website environment with 1.18 million real-world products and 12,087 crowd-sourced text instructions. Researchers have trained and evaluated a diverse range of agents using reinforcement learning, imitation learning, and pre-trained image and language models.
+
+## Current Agent Benchmarking Landscape (2026)
+
+While the search results don't provide specific 2026 SOTA scores for WebShop with reinforcement learning, they do indicate that:
+
+1. Agent benchmarks including WebArena, AgentBench, Terminal-Bench, and OSWorld are still in the "less-settled category" where scores are moving fast and the methodology itself is disputed.
+
+2. A newer multi-shop benchmark (WebMall) shows baseline agents achieving completion rates of 75% and 53%, and F1 scores of 87% and 63%, on the basic and advanced task sets respectively.
+
+3. A 2026 Berkeley RDI study found that eight major agent benchmarks — including WebArena and others — could be exploited to near-perfect scores without solving any tasks due to issues like leaked reference answers and unsanitized evaluation functions.
+
+The search results suggest that specific 2026 WebShop reinforcement learning SOTA results aren't prominently featured in current leaderboards, though the benchmark itself remains relevant for evaluating LLM agent capabilities in e-commerce environments.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "01832b60-7fdd-4428-b4b9-f4a8d617e9a6",
+  "isSidechain": false,
+  "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+  "type": "user",
+  "uuid": "04c7c545-6230-41ab-bd01-b751e8ef4ec9",
+  "toolUseResult": {
+    "query": "WebShop benchmark LLM agent reinforcement learning SOTA 2026 results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016ZpZYRXgsoGyCaTgocSokH",
+        "content": [
+          {
+            "title": "LLM Benchmark Leaderboard 2026: Coding, Math, Reasoning and Agents | CodeSOTA | CodeSOTA",
+            "url": "https://www.codesota.com/llm"
+          },
+          {
+            "title": "LLM Benchmarks 2026 - Compare AI Benchmarks and Tests",
+            "url": "https://llm-stats.com/benchmarks"
+          },
+          {
+            "title": "AI Coding Benchmark Leaderboard 2026: Code Generation and SWE-bench | CodeSOTA | CodeSOTA",
+            "url": "https://www.codesota.com/code-generation"
+          },
+          {
+            "title": "WebShop",
+            "url": "https://webshop-pnlp.github.io/"
+          },
+          {
+            "title": "LLM Leaderboard 2026 — Compare Top AI Models - Vellum",
+            "url": "https://www.vellum.ai/llm-leaderboard"
+          },
+          {
+            "title": "AI Benchmarking 2026 - Measure Models, Agents, and Your Own Evals | benchmarkingagents.com",
+            "url": "https://benchmarkingagents.com/"
+          },
+          {
+            "title": "WebMall - A Multi-Shop Benchmark for Evaluating Web Agents",
+            "url": "https://arxiv.org/html/2508.13024v1"
+          },
+          {
+            "title": "10 AI agent benchmarks",
+            "url": "https://www.evidentlyai.com/blog/ai-agent-benchmarks"
+          },
+          {
+            "title": "A Survey on Evaluation of LLM-based Agents",
+            "url": "https://arxiv.org/html/2503.16416v2"
+          },
+          {
+            "title": "The State Of LLMs 2025: Progress, Progress, and Predictions",
+            "url": "https://magazine.sebastianraschka.com/p/state-of-llms-2025"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding WebShop benchmark and LLM agent reinforcement learning SOTA results in 2026:\n\n## WebShop Benchmark Overview\n\nWebShop is a simulated e-commerce website environment with 1.18 million real-world products and 12,087 crowd-sourced text instructions. Researchers have trained and evaluated a diverse range of agents using reinforcement learning, imitation learning, and pre-trained image and language models.\n\n## Current Agent Benchmarking Landscape (2026)\n\nWhile the search results don't provide specific 2026 SOTA scores for WebShop with reinforcement learning, they do indicate that:\n\n1. Agent benchmarks including WebArena, AgentBench, Terminal-Bench, and OSWorld are still in the \"less-settled category\" where scores are moving fast and the methodology itself is disputed.\n\n2. A newer multi-shop benchmark (WebMall) shows baseline agents achieving completion rates of 75% and 53%, and F1 scores of 87% and 63%, on the basic and advanced task sets respectively.\n\n3. A 2026 Berkeley RDI study found that eight major agent benchmarks — including WebArena and others — could be exploited to near-perfect scores without solving any tasks due to issues like leaked reference answers and unsanitized evaluation functions.\n\nThe search results suggest that specific 2026 WebShop reinforcement learning SOTA results aren't prominently featured in current leaderboards, though the benchmark itself remains relevant for evaluating LLM agent capabilities in e-commerce environments."
+    ],
+    "durationSeconds": 7.314629006000003
+  },
+  "sourceToolAssistantUUID": "01832b60-7fdd-4428-b4b9-f4a8d617e9a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-12T02:09:15.217Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MCqWJHaK319tRpPT22tNTf`</summary>
+
+```json
+{
+  "query": "GiGPO ALFWorld WebShop Qwen2.5-1.5B success rate results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "04c7c545-6230-41ab-bd01-b751e8ef4ec9",
+  "isSidechain": false,
+  "requestId": "req_011CawrsWjzLFRUPcBjE1Nor",
+  "type": "assistant",
+  "uuid": "ddd5a6e1-c3c6-4dba-a757-c78876db90c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eobbjg1kVDcxMFQtxTEAJg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 908,
+      "cache_creation_input_tokens": 1010,
+      "cache_read_input_tokens": 46164,
+      "output_tokens": 129,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1010,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 908,
+          "output_tokens": 129,
+          "cache_read_input_tokens": 46164,
+          "cache_creation_input_tokens": 1010,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1010
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-12T02:09:15.599Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QkEqJd6EpCfq1imFKNnvNG`</summary>
+
+```json
+{
+  "query": "\"graph topology\" \"complementary signal\" reinforcement learning allocation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ddd5a6e1-c3c6-4dba-a757-c78876db90c2",
+  "isSidechain": false,
+  "requestId": "req_011CawrsWjzLFRUPcBjE1Nor",
+  "type": "assistant",
+  "uuid": "2b60a78f-872c-4b4e-9877-93e59b9d9045",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eobbjg1kVDcxMFQtxTEAJg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 908,
+      "cache_creation_input_tokens": 1010,
+      "cache_read_input_tokens": 46164,
+      "output_tokens": 129,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1010,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 908,
+          "output_tokens": 129,
+          "cache_read_input_tokens": 46164,
+          "cache_creation_input_tokens": 1010,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1010
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-12T02:09:21.639Z_
+
+<details><summary>↩ Tool result · `toolu_01MCqWJHaK319tRpPT22tNTf`</summary>
+
+```text
+Web search results for query: "GiGPO ALFWorld WebShop Qwen2.5-1.5B success rate results"
+
+Links: [{"title":"Phase-Aware Mixture of Experts for Agentic Reinforcement Learning","url":"https://arxiv.org/html/2602.17038"},{"title":"Group-in-Group Policy Optimization for LLM Agent Training","url":"https://arxiv.org/html/2505.10978"},{"title":"Skill1: Unified Evolution of Skill-Augmented Agents via Reinforcement Learning","url":"https://arxiv.org/html/2605.06130"},{"title":"Graph-Enhanced Policy Optimization in LLM Agent Training","url":"https://arxiv.org/html/2510.26270"},{"title":"DPEPO: Diverse Parallel Exploration Policy Optimization for LLM-based Agents","url":"https://arxiv.org/html/2604.24320"},{"title":"Group-in-Group Policy Optimization for LLM Agent Training Lang Feng1","url":"https://personal.ntu.edu.sg/boan/papers/NeurIPS25_GiGPO.pdf"},{"title":"HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents","url":"https://arxiv.org/html/2602.16165"},{"title":"RLVMR: RL with Verifiable Meta-Reasoning Rewards for Long-Horizon Agents","url":"https://arxiv.org/pdf/2507.22844"},{"title":"Group-in-Group Policy Optimization for LLM Agent Training - Consensus","url":"https://consensus.app/papers/groupingroup-policy-optimization-for-llm-agent-training-an-feng/ae6de571c22e532d95865b46257f2719/"},{"title":"Entropy-Modulated Policy Gradients for Long-Horizon LLM ...","url":"https://arxiv.org/pdf/2509.09265"}]
+
+Based on the search results, here are the key findings about GiGPO ALFWorld WebShop Qwen2.5-1.5B success rate results:
+
+## ALFWorld Results
+
+PA-MoE+GiGPO with Qwen2.5-1.5B achieves 93.8% overall success on ALFWorld, improving over the GiGPO baseline (86.1%) by +7.7 percentage points.
+
+For specific task types: heating reaches 100% (vs. 91.3%), cooling 89.5% (vs. 71.7%), and cleaning 95.8% (vs. 91.8%).
+
+## WebShop Results
+
+The larger gain on WebShop compared to ALFWorld (+14.9 vs. +7.7) reflects WebShop's longer episodes and more diverse action space, which amplify simplicity bias in baselines.
+
+## General GiGPO Performance Claims
+
+GiGPO achieves performance gains of > 12% on ALFWorld and > 9% on WebShop over GRPO, along with remarkable performance on search-based QA tasks (42.1% on 3B and 47.2% on 7B).
+
+Experiments with Qwen2.5-1.5B/3B/7B-Instruct show that GiGPO consistently outperforms prompt-based agents, actor-critic baselines, and prior group-based RL methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ddd5a6e1-c3c6-4dba-a757-c78876db90c2",
+  "isSidechain": false,
+  "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+  "type": "user",
+  "uuid": "4aad30ba-adb9-4ef9-96cb-3b936623e2f3",
+  "toolUseResult": {
+    "query": "GiGPO ALFWorld WebShop Qwen2.5-1.5B success rate results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0141uoES3pe3eaaQtvKLvBsT",
+        "content": [
+          {
+            "title": "Phase-Aware Mixture of Experts for Agentic Reinforcement Learning",
+            "url": "https://arxiv.org/html/2602.17038"
+          },
+          {
+            "title": "Group-in-Group Policy Optimization for LLM Agent Training",
+            "url": "https://arxiv.org/html/2505.10978"
+          },
+          {
+            "title": "Skill1: Unified Evolution of Skill-Augmented Agents via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2605.06130"
+          },
+          {
+            "title": "Graph-Enhanced Policy Optimization in LLM Agent Training",
+            "url": "https://arxiv.org/html/2510.26270"
+          },
+          {
+            "title": "DPEPO: Diverse Parallel Exploration Policy Optimization for LLM-based Agents",
+            "url": "https://arxiv.org/html/2604.24320"
+          },
+          {
+            "title": "Group-in-Group Policy Optimization for LLM Agent Training Lang Feng1",
+            "url": "https://personal.ntu.edu.sg/boan/papers/NeurIPS25_GiGPO.pdf"
+          },
+          {
+            "title": "HiPER: Hierarchical Reinforcement Learning with Explicit Credit Assignment for Large Language Model Agents",
+            "url": "https://arxiv.org/html/2602.16165"
+          },
+          {
+            "title": "RLVMR: RL with Verifiable Meta-Reasoning Rewards for Long-Horizon Agents",
+            "url": "https://arxiv.org/pdf/2507.22844"
+          },
+          {
+            "title": "Group-in-Group Policy Optimization for LLM Agent Training - Consensus",
+            "url": "https://consensus.app/papers/groupingroup-policy-optimization-for-llm-agent-training-an-feng/ae6de571c22e532d95865b46257f2719/"
+          },
+          {
+            "title": "Entropy-Modulated Policy Gradients for Long-Horizon LLM ...",
+            "url": "https://arxiv.org/pdf/2509.09265"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings about GiGPO ALFWorld WebShop Qwen2.5-1.5B success rate results:\n\n## ALFWorld Results\n\nPA-MoE+GiGPO with Qwen2.5-1.5B achieves 93.8% overall success on ALFWorld, improving over the GiGPO baseline (86.1%) by +7.7 percentage points.\n\nFor specific task types: heating reaches 100% (vs. 91.3%), cooling 89.5% (vs. 71.7%), and cleaning 95.8% (vs. 91.8%).\n\n## WebShop Results\n\nThe larger gain on WebShop compared to ALFWorld (+14.9 vs. +7.7) reflects WebShop's longer episodes and more diverse action space, which amplify simplicity bias in baselines.\n\n## General GiGPO Performance Claims\n\nGiGPO achieves performance gains of > 12% on ALFWorld and > 9% on WebShop over GRPO, along with remarkable performance on search-based QA tasks (42.1% on 3B and 47.2% on 7B).\n\nExperiments with Qwen2.5-1.5B/3B/7B-Instruct show that GiGPO consistently outperforms prompt-based agents, actor-critic baselines, and prior group-based RL methods."
+    ],
+    "durationSeconds": 6.419243509000051
+  },
+  "sourceToolAssistantUUID": "ddd5a6e1-c3c6-4dba-a757-c78876db90c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-12T02:09:22.332Z_
+
+<details><summary>↩ Tool result · `toolu_01QkEqJd6EpCfq1imFKNnvNG`</summary>
+
+```text
+Web search results for query: ""graph topology" "complementary signal" reinforcement learning allocation 2025 2026"
+
+Links: [{"title":"Survey on Graph-Based Reinforcement Learning for Networked Coordination and Control","url":"https://www.mdpi.com/2673-4052/6/4/65"},{"title":"Practical Topology Optimization with Deep Reinforcement Learning and Genetic Algorithms, American Journal of Applied Scientific Research, Science Publishing Group","url":"https://www.sciencepublishinggroup.com/article/10.11648/j.ajasr.20261201.11"},{"title":"Multi-agent reinforcement learning for resources allocation optimization: a survey | Artificial Intelligence Review | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10462-025-11340-5"},{"title":"Network Topology Optimization via Deep Reinforcement Learning | IEEE Journals & Magazine | IEEE Xplore","url":"https://ieeexplore.ieee.org/iel7/26/5497975/10045737.pdf"},{"title":"GitHub - jwwthu/GNN-Communication-Networks: This is the repository for the collection of Graph-based Deep Learning for Communication Networks. · GitHub","url":"https://github.com/jwwthu/GNN-Communication-Networks"},{"title":"A multi-agent reinforcement learning scheduling algorithm integrating state graph and task graph structural modeling for ride-sharing dispatching | Scientific Reports","url":"https://www.nature.com/articles/s41598-026-35004-8"},{"title":"[2204.14133] Network Topology Optimization via Deep Reinforcement Learning","url":"https://arxiv.org/abs/2204.14133"},{"title":"Graph Reinforcement Learning for Combinatorial Optimization: A Survey and Unifying Perspective","url":"https://arxiv.org/html/2404.06492v1"},{"title":"GraphRARE: Reinforcement Learning Enhanced Graph Neural Network with Relative Entropy","url":"https://arxiv.org/html/2312.09708v1"},{"title":"Combining Graph Neural Network with Deep Reinforcement Learning for Resource Allocation in Computing Force Networks | Newswise","url":"https://www.newswise.com/articles/combining-graph-neural-network-with-deep-reinforcement-learning-for-resource-allocation-in-computing-force-networks"}]
+
+I've completed the web search for your query about graph topology, complementary signals, reinforcement learning, and allocation in 2025-2026. Here's a summary of the key findings:
+
+## Main Research Areas
+
+**Graph-Based Reinforcement Learning (GRL)**: Graph-based reinforcement learning has emerged as a powerful paradigm that combines reinforcement learning with graph signal processing and graph neural networks (GNNs) to develop policies that are relationally aware, scalable, and adaptable to diverse network topologies.
+
+**Complementary Approaches in Topology Optimization**: A hybrid DRL–GA methodology leverages the complementary strengths of learning-based exploration and evolutionary optimization, resulting in consistently improved solutions compared to standalone DRL.
+
+**Resource Allocation**: Multi-Agent Reinforcement Learning (MARL) has become a powerful framework for numerous real-world applications, modeling distributed decision-making and learning from interactions with complex environments. Resource Allocation Optimization (RAO) benefits significantly from MARL's ability to tackle dynamic and decentralized contexts.
+
+**Recent Applications (2025-2026)**:
+- A graph neural network (GNN)-based deep reinforcement learning (DRL) framework enables agents to jointly optimize network and computing resources while possessing topology generalization, making it more adaptable to dynamic changes in network topologies.
+- The graph convolutional recurrent network (GCRN) algorithm introduces three complementary innovations for enhanced reward shaping optimization.
+
+The search results reveal active research combining graph structures with reinforcement learning for optimization and resource allocation across networked systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2b60a78f-872c-4b4e-9877-93e59b9d9045",
+  "isSidechain": false,
+  "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+  "type": "user",
+  "uuid": "5d33db22-3520-4808-8945-5f844ae5fe1d",
+  "toolUseResult": {
+    "query": "\"graph topology\" \"complementary signal\" reinforcement learning allocation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NS5pZ8jdGJouMZgC3vJrik",
+        "content": [
+          {
+            "title": "Survey on Graph-Based Reinforcement Learning for Networked Coordination and Control",
+            "url": "https://www.mdpi.com/2673-4052/6/4/65"
+          },
+          {
+            "title": "Practical Topology Optimization with Deep Reinforcement Learning and Genetic Algorithms, American Journal of Applied Scientific Research, Science Publishing Group",
+            "url": "https://www.sciencepublishinggroup.com/article/10.11648/j.ajasr.20261201.11"
+          },
+          {
+            "title": "Multi-agent reinforcement learning for resources allocation optimization: a survey | Artificial Intelligence Review | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10462-025-11340-5"
+          },
+          {
+            "title": "Network Topology Optimization via Deep Reinforcement Learning | IEEE Journals & Magazine | IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/iel7/26/5497975/10045737.pdf"
+          },
+          {
+            "title": "GitHub - jwwthu/GNN-Communication-Networks: This is the repository for the collection of Graph-based Deep Learning for Communication Networks. · GitHub",
+            "url": "https://github.com/jwwthu/GNN-Communication-Networks"
+          },
+          {
+            "title": "A multi-agent reinforcement learning scheduling algorithm integrating state graph and task graph structural modeling for ride-sharing dispatching | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-026-35004-8"
+          },
+          {
+            "title": "[2204.14133] Network Topology Optimization via Deep Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2204.14133"
+          },
+          {
+            "title": "Graph Reinforcement Learning for Combinatorial Optimization: A Survey and Unifying Perspective",
+            "url": "https://arxiv.org/html/2404.06492v1"
+          },
+          {
+            "title": "GraphRARE: Reinforcement Learning Enhanced Graph Neural Network with Relative Entropy",
+            "url": "https://arxiv.org/html/2312.09708v1"
+          },
+          {
+            "title": "Combining Graph Neural Network with Deep Reinforcement Learning for Resource Allocation in Computing Force Networks | Newswise",
+            "url": "https://www.newswise.com/articles/combining-graph-neural-network-with-deep-reinforcement-learning-for-resource-allocation-in-computing-force-networks"
+          }
+        ]
+      },
+      "I've completed the web search for your query about graph topology, complementary signals, reinforcement learning, and allocation in 2025-2026. Here's a summary of the key findings:\n\n## Main Research Areas\n\n**Graph-Based Reinforcement Learning (GRL)**: Graph-based reinforcement learning has emerged as a powerful paradigm that combines reinforcement learning with graph signal processing and graph neural networks (GNNs) to develop policies that are relationally aware, scalable, and adaptable to diverse network topologies.\n\n**Complementary Approaches in Topology Optimization**: A hybrid DRL–GA methodology leverages the complementary strengths of learning-based exploration and evolutionary optimization, resulting in consistently improved solutions compared to standalone DRL.\n\n**Resource Allocation**: Multi-Agent Reinforcement Learning (MARL) has become a powerful framework for numerous real-world applications, modeling distributed decision-making and learning from interactions with complex environments. Resource Allocation Optimization (RAO) benefits significantly from MARL's ability to tackle dynamic and decentralized contexts.\n\n**Recent Applications (2025-2026)**:\n- A graph neural network (GNN)-based deep reinforcement learning (DRL) framework enables agents to jointly optimize network and computing resources while possessing topology generalization, making it more adaptable to dynamic changes in network topologies.\n- The graph convolutional recurrent network (GCRN) algorithm introduces three complementary innovations for enhanced reward shaping optimization.\n\nThe search results reveal active research combining graph structures with reinforcement learning for optimization and resource allocation across networked systems."
+    ],
+    "durationSeconds": 6.730416698999936
+  },
+  "sourceToolAssistantUUID": "2b60a78f-872c-4b4e-9877-93e59b9d9045",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "5d33db22-3520-4808-8945-5f844ae5fe1d",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "STAG: Empirical analysis of graph-topology vs. policy-signal complementarity for rollout allocation",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-12T02:09:46.193Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Now I have the GiGPO baseline results for ALFWorld with Qwen2.5-1.5B: GiGPO achieves 86.1% on ALFWorld. The search for "graph topology complementary signal" in RL confirms there's no work specifically studying complementarity of graph topology vs model signals for rollout allocation in LLM agent RL.
+
+Let me also note: PA-MoE+GiGPO achieves 93.8% with 1.5B, and HiPER achieves 97.4% with 7B. So ALFWorld with 1.5B has reasonable room for improvement (from 86.1% GiGPO baseline).
+ 
+Wrapping up my analysis: the references check out and PivotRL's description is accurate. The claimed research gap holds up—no prior work has examined how graph topology and model-dependent signals complement each other for rollout allocation. I should add SIGHT and A2TGPO to the related work section, though neither directly competes. The computational requirements are realistic—25 hours on an H100 per run with 1.5B parameters is standard, and the 180-hour total is feasible.
+
+The core issue is that this reads as an analysis-focused paper rather than a methods paper. The framing around "empirical study with lightweight method" plus "regardless of whether the method achieves SOTA" signals that the analysis is the primary contribution, which doesn't align with what's being requested. The novelty is genuine but the method itself is a fairly straightforward combination—the real innovation lies in the empirical analysis. The impact is constrained by the 1.5B scale, limited to two benchmarks, and ALFWorld is already near saturation.
+
+Assigning scores: novelty gets 3/5 since the gap is real but the method is thin; feasibility is 4/5 with compute fitting and timeline tight but workable; clarity rates 4/5 for comprehensive positioning and honest limitations; impact is 2.5/5 given the narrow scope and analysis-primary nature. Now I'll generate the final JSON review.
+
+The average comes to 3.375, which points to a revise verdict. The main problems are the contribution type mismatch—analysis is being framed as primary when the requirement is method-only—plus the method novelty being thin, limited evaluation scope, some missing related work, and the model-free advantage concern from earlier still not fully resolved.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5d33db22-3520-4808-8945-5f844ae5fe1d",
+  "isSidechain": false,
+  "requestId": "req_011CawrtJWZZ9paj1o83a6um",
+  "type": "assistant",
+  "uuid": "63d08678-4464-4a69-831e-bc814350a057",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XZeb7WwJcHFVXiJMapeQ49",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2863,
+      "cache_read_input_tokens": 47174,
+      "output_tokens": 3020,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2863,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3020,
+          "cache_read_input_tokens": 47174,
+          "cache_creation_input_tokens": 2863,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2863
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-12T02:10:45.724Z_
+
+Now I have enough evidence to issue my verdict. Let me synthesize all findings.
+
+**Key findings from my independent verification:**
+
+1. **All references verified as real** — PivotRL's description as "static offline profiling" is actually correct (confirmed by reading the paper). Spark description is now accurate (fixed from Round 2).
+
+2. **The claimed gap IS real** — no work combines pure graph topology with rollout allocation. My search for "graph topology complementary signal RL allocation" found zero direct competitors. InfoTree's ABA is the closest but still uses a learned model-dependent signal.
+
+3. **Compute estimates are now plausible** — GiGPO's verl-agent config confirms 2×H100 for 1.5B models, 150 iterations. ~25h/run is reasonable for 1.5B. 7 runs × 25h = 175h fits the 200h budget.
+
+4. **GiGPO baseline on ALFWorld with 1.5B**: 86.1% success rate. HiPER: 97.4% with 7B. Room exists for improvement at 1.5B scale.
+
+5. **Missing related work**: SIGHT (2602.11551) and A2TGPO (2605.06200) should be cited.
+
+6. **Contribution type is a major concern**: The paper explicitly hedges "regardless of whether our method achieves SOTA" — signaling analysis as primary contribution, violating the user's METHOD ONLY requirement.
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 3, "rationale": "The complementarity analysis question is genuinely novel — no prior work has compared graph-topology vs model-dependent signals for rollout allocation. However, the method itself (advantage reweighting + prompt reallocation) uses standard mechanisms with a new signal source; novelty is in the signal, not the mechanism. This is RewardFlow's graph construction + GRESO-style reallocation, a straightforward combination."},
+    "feasibility": {"score": 4, "rationale": "Compute budget now fits: 7 runs × ~25h H100 with Qwen2.5-1.5B on verl-agent is plausible and within 200h. Timeline of 14 days is tight but realistic given verl-agent's plugin architecture. State hashing on ALFWorld is trivially clean; WebShop hashing is riskier but the paper acknowledges this honestly."},
+    "clarity": {"score": 4, "rationale": "Exceptionally comprehensive landscape survey covering 20+ methods with clear taxonomy (model-dependent vs graph-based vs milestone). Positioning relative to each prior work is precise. Limitations are honestly stated. The two-component structure (analysis + method) is clearly articulated."},
+    "impact": {"score": 2, "rationale": "Limited by three factors: (1) only 2 benchmarks with 1.5B model — ALFWorld's symbolic PDDL state trivializes graph construction, making results hard to generalize; (2) the paper's own framing ('regardless of whether our method achieves SOTA') signals low confidence in method impact; (3) even if complementarity is demonstrated, the practical improvement over GRPO+GRESO on ALFWorld (where HiPER already hits 97.4% with 7B) is likely marginal."}
+  },
+  "issues": [
+    "CRITICAL: CONTRIBUTION TYPE MISMATCH — The paper frames itself as 'empirical study with lightweight method' and explicitly states 'The analysis contribution provides actionable insights regardless of whether our specific method achieves SOTA.' This positions analysis as the primary contribution and method as secondary. The user's requirements explicitly demand 'METHOD ONLY... Reject pure benchmark/dataset/analysis ideas. Method + analysis OK if analysis validates the method.' The current framing inverts this: the method validates the analysis, not the other way around. Must be reframed so the method is the headline contribution.",
+    "MAJOR: METHOD IS THIN — The two mechanisms (prompt-level reallocation and advantage reweighting A_weighted = A(s,a) × (1 + α · I_topo(s))) are both standard techniques applied with a new signal source. Prompt-level reallocation extends GRESO; advantage reweighting is a standard technique used in RTMC, SALT, etc. The entire method reduces to 'compute graph-topology features and plug them into existing mechanisms.' This is insufficient as a standalone method contribution for EMNLP main track without stronger empirical results showing clear gains.",
+    "MAJOR: LIMITED IMPACT SCOPE — Only 2 benchmarks (ALFWorld + WebShop) with 1.5B model. ALFWorld's symbolic PDDL state makes graph construction trivially clean, so results there provide weak evidence for generalization. WebShop is harder but still structured. No evidence that graph-topology signals would work in truly unstructured environments (WebArena, SWE-bench, Mind2Web). Single model scale (1.5B) limits claims about 7B+ settings — the paper acknowledges this but doesn't address it.",
+    "MAJOR: 'MODEL-FREE ADVANTAGE' NOT ADDRESSED — Round 2 raised the concern that model-dependent signals capture epistemic uncertainty that topology misses. Example: a node with low graph entropy (agent consistently takes one action) but high policy confusion (the agent is stuck in a local optimum) would be missed by STAG but caught by Spark/ARPO. This Round 3 revision does not address this fundamental limitation. The analysis should include cases where graph topology FAILS relative to model signals, not just where it succeeds.",
+    "MINOR: MISSING RELATED WORK — SIGHT (arXiv 2602.11551, Feb 2026) uses information-gain scoring to identify pivotal states for adaptive branching in search agents — thematically adjacent to STAG's goal of identifying high-information states for allocation. A2TGPO (arXiv 2605.06200, May 2026) uses information gain with turn-group normalization for credit assignment — relevant to the graph-topology vs IG signal comparison. Both should be cited.",
+    "MINOR: BETWEENNESS CENTRALITY METRIC QUESTIONABLE — The paper defines betweenness centrality as 'fraction of successful paths passing through v.' Standard betweenness centrality measures the fraction of ALL shortest paths that pass through a node. The proposed definition is closer to 'success path coverage' and should be renamed to avoid confusion with the established graph theory concept.",
+    "MINOR: ADVANTAGE REWEIGHTING INTERACTION — The formula A_weighted(s,a) = A(s,a) × (1 + α · I_topo(s)) multiplicatively scales advantages at high-information states. If I_topo correlates with advantage magnitude (likely, since high-information states tend to have high advantage variance), this could amplify gradient noise rather than signal. No analysis of this interaction is proposed."
+  ],
+  "feedback": "This revision successfully addressed Round 2's venue/timeline/compute violations — the switch to 1.5B, the corrected venue, and the verl-agent plugin architecture all make the project feasible. But the paper now has a different problem: it's an analysis paper wearing a method paper's clothes.\n\nTo pass as a METHOD contribution for EMNLP 2026, make these changes:\n\n1. **Reframe radically**: The method must be the headline. Delete 'regardless of whether our method achieves SOTA' — that sentence alone would sink reviewer confidence. Structure: (1) we propose STAG, a graph-augmented allocation method; (2) we validate it empirically and show X% improvement over GRPO/GRESO; (3) we analyze WHY it works via complementarity analysis. The analysis serves the method, not vice versa.\n\n2. **Strengthen the method**: Currently it's two standard mechanisms with a new signal. Consider: (a) combine STAG allocation with RewardFlow reward propagation for a unified state-graph framework (allocation + credit assignment from the same graph) — this is a more substantial contribution than either alone; (b) add an adaptive α schedule that increases graph-signal weight early in training (when policy signals are unreliable) and decreases it later (when policy converges and its signals become more reliable) — this directly addresses the 'model-free vs model-dependent' tradeoff; (c) propose a principled method for combining graph and model signals (e.g., learned mixture weights or a simple bandit over signal sources) rather than fixed additive reweighting.\n\n3. **Address the model-free weakness head-on**: Include an explicit analysis of when graph topology FAILS — states where topology says 'unimportant' but the policy is actually confused. Frame this as a contribution: 'we characterize the failure modes of graph-only and model-only allocation, motivating hybrid approaches.' This turns a weakness into a finding.\n\n4. **Add SIGHT and A2TGPO citations**: Both are relevant adjacent work (pivotal state identification via IG, turn-level credit assignment via IG). Position STAG against them: STAG uses environment-structural signals where they use information-theoretic ones.\n\n5. **Fix the betweenness centrality definition**: What you describe is 'success path fraction,' not betweenness centrality. Either use the standard definition or rename your metric.\n\nBottom line: The gap is real, the compute is feasible, and the question is genuinely interesting. But the paper needs to commit to being a method paper with strong empirical results, not an analysis paper with a method appendix. If you can show STAG+GRPO consistently beats GRPO+GRESO on both ALFWorld and WebShop at matched compute, and the complementarity analysis explains why, this could be a solid Findings-track paper.",
+  "reason": "Analysis-primary framing violates METHOD ONLY requirement; method itself is thin (standard mechanisms + new signal source); limited evaluation scope (2 benchmarks, 1.5B only) constrains impact below EMNLP main-track threshold."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "63d08678-4464-4a69-831e-bc814350a057",
+  "isSidechain": false,
+  "requestId": "req_011CawrtJWZZ9paj1o83a6um",
+  "type": "assistant",
+  "uuid": "b1d89aff-d1d0-485f-a71b-43f6fec48bbd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XZeb7WwJcHFVXiJMapeQ49",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2863,
+      "cache_read_input_tokens": 47174,
+      "output_tokens": 3020,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2863,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3020,
+          "cache_read_input_tokens": 47174,
+          "cache_creation_input_tokens": 2863,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2863
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "b1d89aff-d1d0-485f-a71b-43f6fec48bbd",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "STAG: Empirical analysis of graph-topology vs. policy-signal complementarity for rollout allocation",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2"
+}
+```
+
+---

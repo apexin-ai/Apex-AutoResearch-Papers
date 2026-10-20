@@ -1,0 +1,1292 @@
+# Research conversation: Search the web for two papers and verify their claims: 1. Being-H0.7 (arXiv 2605.00078, May 2026): - Does it achieve 99.
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 21
+- **Recorded user turns:** 1
+- **Tool calls:** 8
+- **Original source:** `logs/chats/exported-trajectories/account-3/agent-ac067d887f8f86d84.jsonl`
+- **Structured JSON:** [`2f8e7d2cdb685c10298f.json`](../../sessions/2f/2f8e7d2cdb685c10298f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+21 recorded events
+
+### User
+
+_source line 1 · 2026-05-10T20:01:24.402Z_
+
+Search the web for two papers and verify their claims:
+
+1. Being-H0.7 (arXiv 2605.00078, May 2026): 
+   - Does it achieve 99.2% on LIBERO?
+   - Does it drop to 82.1% on LIBERO-Plus under distributional shift?
+   - Does it use latent queries with no video generation at test time?
+   - Is it 3-4ms/step?
+
+2. FFDC-WAM (arXiv 2605.06222, May 2026):
+   - Does it use cross-modal agreement (predicted video vs reality) as quality oracle?
+   - Does it operate BETWEEN WAM calls (not within)?
+   - Does it achieve 69% fewer calls and 35% real-world success improvement?
+   - Does it show that without verification, real-world success drops from 80% to 45%?
+
+Use WebSearch with queries:
+- "site:arxiv.org 2605.00078 Being latent world action"
+- "site:arxiv.org 2605.06222 FFDC-WAM trust imagination"
+- "Being-H0.7 LIBERO-Plus distributional shift"
+- "FFDC-WAM cross-modal verification world action model"
+
+Use WebFetch to read the arXiv abstracts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "0b10807c-7db1-4e3e-afe2-5ed671a76021",
+  "agentId": "ac067d887f8f86d84",
+  "type": "user",
+  "uuid": "b9b38daf-ec30-4eec-b0a8-f661acdb81f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 2 · 2026-05-10T20:01:25.717Z_
+
+I'll search for these two papers and verify the claims you've specified.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b9b38daf-ec30-4eec-b0a8-f661acdb81f9",
+  "isSidechain": true,
+  "agentId": "ac067d887f8f86d84",
+  "requestId": "req_011CauV1vmG7kKTo9avGRXdy",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "e3a9f6cc-aa8f-498a-aedb-b1c4c29e167c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01X5eyNyCgxm2nJRxt4Bxeup",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 740,
+      "cache_read_input_tokens": 16153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 740,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-10T20:01:26.021Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019SXZMRmQKUkcogzG1jssS8`</summary>
+
+```json
+{
+  "query": "site:arxiv.org 2605.00078 Being latent world action"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e3a9f6cc-aa8f-498a-aedb-b1c4c29e167c",
+  "isSidechain": true,
+  "agentId": "ac067d887f8f86d84",
+  "requestId": "req_011CauV1vmG7kKTo9avGRXdy",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "e15ddee5-1a6c-476f-b7f9-999e3e171c5f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01X5eyNyCgxm2nJRxt4Bxeup",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 740,
+      "cache_read_input_tokens": 16153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 740,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-10T20:01:26.296Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013K6Pfgz4BzxCNi3sBcLH6K`</summary>
+
+```json
+{
+  "query": "site:arxiv.org 2605.06222 FFDC-WAM trust imagination"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e15ddee5-1a6c-476f-b7f9-999e3e171c5f",
+  "isSidechain": true,
+  "agentId": "ac067d887f8f86d84",
+  "requestId": "req_011CauV1vmG7kKTo9avGRXdy",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "26c766e5-cda9-4567-b5d3-f37122fe88dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01X5eyNyCgxm2nJRxt4Bxeup",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 740,
+      "cache_read_input_tokens": 16153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 740,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-10T20:01:26.490Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01M5re9XBvEQjcGLphbXwsKn`</summary>
+
+```json
+{
+  "query": "Being-H0.7 LIBERO-Plus distributional shift"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "26c766e5-cda9-4567-b5d3-f37122fe88dc",
+  "isSidechain": true,
+  "agentId": "ac067d887f8f86d84",
+  "requestId": "req_011CauV1vmG7kKTo9avGRXdy",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "38c3a25c-ed6a-4b18-9409-cfde28b50f09",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01X5eyNyCgxm2nJRxt4Bxeup",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 740,
+      "cache_read_input_tokens": 16153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 740,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-10T20:01:26.656Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014BmJSGe3kjBteDGP3vg8GK`</summary>
+
+```json
+{
+  "query": "FFDC-WAM cross-modal verification world action model"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "38c3a25c-ed6a-4b18-9409-cfde28b50f09",
+  "isSidechain": true,
+  "agentId": "ac067d887f8f86d84",
+  "requestId": "req_011CauV1vmG7kKTo9avGRXdy",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "fdc5a0dd-08a2-447a-b195-48c3ec981b1a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01X5eyNyCgxm2nJRxt4Bxeup",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 740,
+      "cache_read_input_tokens": 16153,
+      "output_tokens": 236,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 740
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 236,
+          "cache_read_input_tokens": 16153,
+          "cache_creation_input_tokens": 740,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 740,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-10T20:01:32.971Z_
+
+<details><summary>↩ Tool result · `toolu_013K6Pfgz4BzxCNi3sBcLH6K`</summary>
+
+```text
+Web search results for query: "site:arxiv.org 2605.06222 FFDC-WAM trust imagination"
+
+Links: [{"title":"[2605.06222] When to Trust Imagination: Adaptive Action Execution for World Action Models","url":"https://arxiv.org/abs/2605.06222"},{"title":"When to Trust Imagination: Adaptive Action Execution for World Action Models","url":"https://arxiv.org/html/2605.06222"},{"title":"[2603.16666] Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://arxiv.org/abs/2603.16666"},{"title":"Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://arxiv.org/html/2603.16666v1"},{"title":"CKT-WAM: Parameter-Efficient Context Knowledge Transfer Between World Action Models","url":"https://arxiv.org/html/2605.06247v1"},{"title":"[2605.00957] \"I Don't Know\" -- Towards Appropriate Trust with Certainty-Aware Retrieval Augmented Generation","url":"https://arxiv.org/abs/2605.00957"},{"title":"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation","url":"https://arxiv.org/html/2605.06481v1"},{"title":"[2605.04709] ELVIS: Ensemble-Calibrated Latent Imagination for Long-Horizon Visual MPC","url":"https://arxiv.org/abs/2605.04709"},{"title":"[2605.01428] Hallucinations Undermine Trust; Metacognition is a Way Forward","url":"https://arxiv.org/abs/2605.01428"},{"title":"MTRBO: Multiple trust-region based Bayesian optimization","url":"https://arxiv.org/html/2605.06618"}]
+
+Based on the search results, here's information about the arXiv paper 2605.06222:
+
+## Paper: "When to Trust Imagination: Adaptive Action Execution for World Action Models"
+
+This paper is titled "When to Trust Imagination: Adaptive Action Execution for World Action Models" and was posted on May 7, 2026 by Rui Wang and co-authors.
+
+### Key Concept
+
+The paper formulates adaptive WAM execution as a future-reality verification problem: the robot should execute longer when the WAM-predicted future remains reliable, and replan earlier when reality deviates from imagination.
+
+### The FFDC Method
+
+The authors propose Future Forward Dynamics Causal Attention (FFDC), a lightweight verifier that jointly reasons over predicted future actions, predicted visual dynamics, real observations, and language instructions to estimate whether the remaining action rollout can still be trusted.
+
+FFDC enables adaptive action chunk sizes as an emergent consequence of prediction-observation consistency, preserving the efficiency of long-horizon execution while restoring responsiveness in contact-rich or difficult phases.
+
+### Results
+
+On the RoboTwin benchmark, the method reduces WAM forward passes by 69.10% and execution time by 34.02%, while improving success rate by 2.54% over the short-chunk baseline; in real-world experiments, it improves success rate by 35%.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "26c766e5-cda9-4567-b5d3-f37122fe88dc",
+  "isSidechain": true,
+  "promptId": "0b10807c-7db1-4e3e-afe2-5ed671a76021",
+  "agentId": "ac067d887f8f86d84",
+  "type": "user",
+  "uuid": "7903f177-a702-41aa-b13f-cd81e61c6e8e",
+  "sourceToolAssistantUUID": "26c766e5-cda9-4567-b5d3-f37122fe88dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-10T20:01:34.077Z_
+
+<details><summary>↩ Tool result · `toolu_01M5re9XBvEQjcGLphbXwsKn`</summary>
+
+```text
+Web search results for query: "Being-H0.7 LIBERO-Plus distributional shift"
+
+Links: [{"title":"Being-H0.7: A Latent World-Action Model from ... - BeingBeyond","url":"https://research.beingbeyond.com/being-h07"},{"title":"LIBERO Tasks: Lifelong Robotic Learning","url":"https://www.emergentmind.com/topics/libero-tasks"},{"title":"Being-H0.5: Scaling Human-Centric Robot Learning for Cross-Embodiment Generalization","url":"https://arxiv.org/html/2601.12993v1"},{"title":"[2601.12993] Being-H0.5: Scaling Human-Centric Robot Learning for Cross-Embodiment Generalization","url":"https://arxiv.org/abs/2601.12993"},{"title":"GitHub - BeingBeyond/Being-H: Being-H is BeingBeyond's family of human-centric embodied foundation models. · GitHub","url":"https://github.com/BeingBeyond/Being-H"},{"title":"Paper page - Being-H0.5: Scaling Human-Centric Robot Learning for Cross-Embodiment Generalization","url":"https://huggingface.co/papers/2601.12993"},{"title":"Being-H0: Vision-Language-Action Pretraining from Large-Scale Human Videos","url":"https://arxiv.org/html/2507.15597v1"},{"title":"Being-H0","url":"https://beingbeyond.github.io/Being-H0/"},{"title":"Being-H0: Vision-Language-Action Model | PDF | Learning | Cognitive Science","url":"https://www.scribd.com/document/900573442/Being-H0"},{"title":"Being-H0.5: Scaling Human-Centric Robot Learning for Cross ...","url":"https://research.beingbeyond.com/being-h05"}]
+
+Based on the search results, I found relevant information about Being-H0.7, LIBERO-Plus, and distributional shift:
+
+Being-H0.7 sits on or near the frontier across almost every axis at once, including LIBERO, both LIBERO-plus settings, GR1, and both CALVIN splits. 
+
+The shape of Being-H0.7's performance is notable: standard tabletop control, perturbation robustness, bimanual dexterity, long-horizon sequencing, and zero-shot environment shift all move together rather than trading off against one another. This indicates that Being-H0.7 handles distributional shifts and environmental changes effectively without sacrificing performance in other dimensions.
+
+Being-H0.7 is a robot policy that can reason about future interaction in a compact latent space, then act immediately without explicit future-image generation at test time, creating a latent world-action model trained from large-scale egocentric videos that keeps the predictive value of world modeling through a deployable latent action prior rather than a pixel-space rollout.
+
+The LIBERO-Plus benchmarks are used to evaluate how well models can handle distributional shifts, and Being-H0.7's strong performance on both LIBERO-Plus settings suggests it has robust capabilities for handling such shifts in robotic manipulation tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "38c3a25c-ed6a-4b18-9409-cfde28b50f09",
+  "isSidechain": true,
+  "promptId": "0b10807c-7db1-4e3e-afe2-5ed671a76021",
+  "agentId": "ac067d887f8f86d84",
+  "type": "user",
+  "uuid": "351af23f-6566-4517-b290-a422dce766e8",
+  "sourceToolAssistantUUID": "38c3a25c-ed6a-4b18-9409-cfde28b50f09",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-10T20:01:34.824Z_
+
+<details><summary>↩ Tool result · `toolu_019SXZMRmQKUkcogzG1jssS8`</summary>
+
+```text
+Web search results for query: "site:arxiv.org 2605.00078 Being latent world action"
+
+Links: [{"title":"Being-H0.7: A Latent World-Action Model from Egocentric Videos","url":"https://arxiv.org/html/2605.00078v1"},{"title":"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation","url":"https://arxiv.org/html/2605.06481v1"},{"title":"Latent State Design for World Models under Sufficiency Constraints","url":"https://arxiv.org/html/2605.01694"},{"title":"When to Trust Imagination: Adaptive Action Execution for World Action Models","url":"https://arxiv.org/html/2605.06222"},{"title":"[2605.01694] Latent State Design for World Models under Sufficiency Constraints","url":"https://arxiv.org/abs/2605.01694"},{"title":"LATENT STATE DESIGN FOR WORLD MODELS UNDER SUFFICIENCY CONSTRAINTS A PREPRINT","url":"https://arxiv.org/pdf/2605.01694"},{"title":"Preprint LATENT ACTION WORLD MODELS FOR CONTROL WITH UNLABELED TRAJECTORIES","url":"https://www.arxiv.org/pdf/2512.10016"},{"title":"Physically Native World Models: A Hamiltonian Perspective on Generative World Modeling","url":"https://arxiv.org/html/2605.00412"},{"title":"ELVIS: Ensemble-Calibrated Latent Imagination for Long-Horizon Visual MPC","url":"https://arxiv.org/html/2605.04709"},{"title":"Latent Action Pretraining Through World Modeling","url":"https://arxiv.org/html/2509.18428v1"}]
+
+Based on the search results, I found the paper you're looking for:
+
+## Being-H0.7: A Latent World-Action Model from Egocentric Videos
+
+Being-H0.7 is a latent world-action model that brings future-aware reasoning into VLA-style policies without generating future frames.
+
+**Key Innovation:**
+Being-H0.7 introduces a small set of learnable latent queries between the multimodal context and the action tokens. During model propagation, these dedicated reasoning slots attend to the instruction, observation history, and robot state, and aggregate task- and interaction-relevant information.
+
+**Architecture:**
+Being-H0.7 inserts learnable latent queries between perception and action as a compact reasoning interface, and trains them with a future-informed dual-branch design: a deployable prior branch infers latent states from the current context, while a training-only posterior branch replaces the queries with embeddings from future observations. Jointly aligning the two branches at the latent reasoning space leads the prior branch to reason future-aware, action-useful structure from current observations alone.
+
+**Performance:**
+Experiments across six simulation benchmarks and diverse real-world tasks show that Being-H0.7 achieves state-of-the-art or comparable performance, combining the predictive benefits of world models with the efficiency and deployability of direct VLA policies.
+
+The paper was published on arXiv on April 30, 2026 (arXiv:2605.00078).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e15ddee5-1a6c-476f-b7f9-999e3e171c5f",
+  "isSidechain": true,
+  "promptId": "0b10807c-7db1-4e3e-afe2-5ed671a76021",
+  "agentId": "ac067d887f8f86d84",
+  "type": "user",
+  "uuid": "5acbabc7-7e60-430f-8578-69e55ac5d497",
+  "sourceToolAssistantUUID": "e15ddee5-1a6c-476f-b7f9-999e3e171c5f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-10T20:01:36.899Z_
+
+<details><summary>↩ Tool result · `toolu_014BmJSGe3kjBteDGP3vg8GK`</summary>
+
+```text
+Web search results for query: "FFDC-WAM cross-modal verification world action model"
+
+Links: [{"title":"When to Trust Imagination: Adaptive Action Execution for World Action Models","url":"https://arxiv.org/html/2605.06222"},{"title":"[2605.06222] When to Trust Imagination: Adaptive Action Execution for World Action Models","url":"https://arxiv.org/abs/2605.06222"},{"title":"[2603.16666] Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://arxiv.org/abs/2603.16666"},{"title":"(PDF) Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://www.researchgate.net/publication/402613129_Fast-WAM_Do_World_Action_Models_Need_Test-time_Future_Imagination"},{"title":"[2602.15922] World Action Models are Zero-shot Policies","url":"https://arxiv.org/abs/2602.15922"},{"title":"World Action Model (WaM) Overview","url":"https://www.emergentmind.com/topics/world-action-model-wam"},{"title":"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation","url":"https://arxiv.org/html/2605.06481v1"},{"title":"JailWAM: Jailbreaking World Action Models in Robot Control","url":"https://arxiv.org/html/2604.05498"},{"title":"DreamZero: World Action Models are Zero-shot Policies","url":"https://dreamzero0.github.io/"},{"title":"Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising","url":"https://arxiv.org/html/2604.26694v2"}]
+
+Based on the search results, I found detailed information about FFDC and cross-modal verification in World Action Models:
+
+## FFDC - Future Forward Dynamics Causal Attention
+
+FFDC is a lightweight verifier that jointly reasons over predicted future actions, predicted visual dynamics, real observations, and language instructions to estimate whether the remaining action rollout can still be trusted.
+
+### The Problem It Addresses
+
+Current WAMs typically execute a fixed number of predicted actions after each model inference, leaving the robot blind to whether the imagined future remains consistent with the actual physical rollout. FFDC formulates adaptive WAM execution as a future-reality verification problem: the robot should execute longer when the WAM-predicted future remains reliable, and replan earlier when reality deviates from imagination.
+
+### How Cross-Modal Verification Works
+
+During execution, the robot can compare the real observation with the WAM-predicted observation at the corresponding timestep and jointly reason over them with the action sequence to assess whether the remaining rollout is still compatible with reality. If the predicted visual dynamics, the real observation, and the planned actions remain causally consistent, the robot can continue executing the current chunk and avoid expensive WAM inference.
+
+### Technical Details
+
+FFDC uses a structured attention mechanism to model the interaction between predicted vision and action, allowing it to detect task-critical mismatches and decide whether the remaining rollout can still be trusted. FFDC is trained on a binary verification dataset using valid segments from demonstrations and successful rollouts, together with failure-prone segments from failed rollouts and synthetic action corruptions, to predict the executability of the remaining action segment.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fdc5a0dd-08a2-447a-b195-48c3ec981b1a",
+  "isSidechain": true,
+  "promptId": "0b10807c-7db1-4e3e-afe2-5ed671a76021",
+  "agentId": "ac067d887f8f86d84",
+  "type": "user",
+  "uuid": "21c241b0-d64d-4435-ba16-3295cd463e6d",
+  "sourceToolAssistantUUID": "fdc5a0dd-08a2-447a-b195-48c3ec981b1a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-10T20:01:38.459Z_
+
+Now let me fetch the full arXiv pages to verify the specific numerical claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "21c241b0-d64d-4435-ba16-3295cd463e6d",
+  "isSidechain": true,
+  "agentId": "ac067d887f8f86d84",
+  "requestId": "req_011CauV2rADeYhBjoFqB3h8p",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "42c32b93-c6d1-4240-ba60-767b0ced95e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011YH8JL5weJkiCG6oGaQDFT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 4326,
+      "cache_read_input_tokens": 16893,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4326,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-10T20:01:39.317Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_013AjFYt8m7YwU9CFoc9jWuy`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.00078",
+  "prompt": "What are the specific performance numbers on LIBERO and LIBERO-Plus? What is the latency per step? Does it use latent queries without video generation?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42c32b93-c6d1-4240-ba60-767b0ced95e7",
+  "isSidechain": true,
+  "agentId": "ac067d887f8f86d84",
+  "requestId": "req_011CauV2rADeYhBjoFqB3h8p",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "23cd3294-90e1-4982-8c50-d053e9534dd4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011YH8JL5weJkiCG6oGaQDFT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 4326,
+      "cache_read_input_tokens": 16893,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4326,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-10T20:01:40.201Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01KSpiJDd1T7oLAfyrhwHDva`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.06222",
+  "prompt": "Does it use cross-modal agreement between predicted video and reality? Does it operate between WAM calls? What are the specific numbers for reduced calls, real-world success improvement, and the comparison with/without verification?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "23cd3294-90e1-4982-8c50-d053e9534dd4",
+  "isSidechain": true,
+  "agentId": "ac067d887f8f86d84",
+  "requestId": "req_011CauV2rADeYhBjoFqB3h8p",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "3f588e10-4a02-4bb1-8f2d-e22bf2f3ab62",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011YH8JL5weJkiCG6oGaQDFT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 4326,
+      "cache_read_input_tokens": 16893,
+      "output_tokens": 244,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4326
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 244,
+          "cache_read_input_tokens": 16893,
+          "cache_creation_input_tokens": 4326,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4326,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-10T20:01:42.518Z_
+
+<details><summary>↩ Tool result · `toolu_013AjFYt8m7YwU9CFoc9jWuy`</summary>
+
+```text
+Based on the provided content, I cannot answer your specific questions about performance numbers on LIBERO and LIBERO-Plus or latency per step metrics. The abstract does not include these quantitative results.
+
+However, regarding your third question about latent queries: Yes, the paper describes this approach. As stated in the abstract, Being-H0.7 "inserts learnable latent queries between perception and action as a compact reasoning interface" and notably, "At inference, Being-H0.7 discards the posterior branch and performs no visual rollout."
+
+This confirms the model uses latent queries without generating future video frames during deployment, combining "the predictive benefits of world models with the efficiency and deployability of direct VLA policies."
+
+For the specific performance benchmarks you're asking about, you would need to consult the full paper PDF or HTML version linked on the arXiv page.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "23cd3294-90e1-4982-8c50-d053e9534dd4",
+  "isSidechain": true,
+  "promptId": "0b10807c-7db1-4e3e-afe2-5ed671a76021",
+  "agentId": "ac067d887f8f86d84",
+  "type": "user",
+  "uuid": "68006825-c221-4599-8db8-4f6a74975897",
+  "sourceToolAssistantUUID": "23cd3294-90e1-4982-8c50-d053e9534dd4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-10T20:01:44.701Z_
+
+<details><summary>↩ Tool result · `toolu_01KSpiJDd1T7oLAfyrhwHDva`</summary>
+
+```text
+# Analysis of FFDC Method for WAM Execution
+
+**Cross-modal Agreement:**
+Yes, the method incorporates cross-modal verification. It uses "Future Forward Dynamics Causal Attention (FFDC), a lightweight verifier that jointly reasons over predicted future actions, predicted visual dynamics, real observations, and language instructions" to assess consistency between predictions and reality.
+
+**Operation Timing:**
+The approach operates between WAM inference calls. It enables "adaptive action chunk sizes as an emergent consequence of prediction-observation consistency," allowing the robot to execute longer sequences when predictions remain reliable and replan earlier when deviations occur.
+
+**Specific Performance Numbers:**
+- **Reduced inference calls:** 69.10% fewer WAM forward passes on RoboTwin benchmark
+- **Execution time reduction:** 34.02% faster on RoboTwin
+- **Success rate improvements:** 2.54% gain over short-chunk baseline on RoboTwin; 35% improvement in real-world experiments
+
+The paper positions these results as demonstrating a "strong robustness-efficiency trade-off" compared to fixed-chunk baseline approaches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3f588e10-4a02-4bb1-8f2d-e22bf2f3ab62",
+  "isSidechain": true,
+  "promptId": "0b10807c-7db1-4e3e-afe2-5ed671a76021",
+  "agentId": "ac067d887f8f86d84",
+  "type": "user",
+  "uuid": "4de17791-dc81-49b5-a8de-f3b1b1ef9835",
+  "sourceToolAssistantUUID": "3f588e10-4a02-4bb1-8f2d-e22bf2f3ab62",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-10T20:01:45.849Z_
+
+Let me get the full HTML versions to extract the complete numerical claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4de17791-dc81-49b5-a8de-f3b1b1ef9835",
+  "isSidechain": true,
+  "agentId": "ac067d887f8f86d84",
+  "requestId": "req_011CauV3RZedQzaJ3yrxf2RB",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "8a9612a6-609f-4d96-a27a-c4af4dd541dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01U5MWTdLTmomHvy8DJLdkd9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 743,
+      "cache_read_input_tokens": 21219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 743,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-10T20:01:46.283Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01HFB4ahS1yz7bfkTEcNmKtv`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2605.00078v1",
+  "prompt": "Extract all performance numbers: LIBERO accuracy percentage, LIBERO-Plus accuracy under distributional shift, latency in milliseconds per step"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8a9612a6-609f-4d96-a27a-c4af4dd541dc",
+  "isSidechain": true,
+  "agentId": "ac067d887f8f86d84",
+  "requestId": "req_011CauV3RZedQzaJ3yrxf2RB",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "1a15d414-890d-439f-8015-1a823b7ecea6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01U5MWTdLTmomHvy8DJLdkd9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 743,
+      "cache_read_input_tokens": 21219,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 743,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-10T20:01:46.703Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_016jAfJP1xWiBGR16HzanYy9`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2605.06222",
+  "prompt": "What is the real-world success rate without verification? What is it with verification? What are exact percentages for reduced WAM calls and real-world success improvement?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1a15d414-890d-439f-8015-1a823b7ecea6",
+  "isSidechain": true,
+  "agentId": "ac067d887f8f86d84",
+  "requestId": "req_011CauV3RZedQzaJ3yrxf2RB",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "d2d7aabe-8075-44c4-bd74-00303256e0f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01U5MWTdLTmomHvy8DJLdkd9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 743,
+      "cache_read_input_tokens": 21219,
+      "output_tokens": 227,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 743
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 227,
+          "cache_read_input_tokens": 21219,
+          "cache_creation_input_tokens": 743,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 743,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-10T20:01:50.594Z_
+
+<details><summary>↩ Tool result · `toolu_01HFB4ahS1yz7bfkTEcNmKtv`</summary>
+
+```text
+# Being-H0.7 Performance Metrics
+
+## LIBERO Accuracy
+- **Standard LIBERO**: 99.2% average success rate
+- **LIBERO-plus (zero-shot)**: 82.1% success rate
+- **LIBERO-plus (fine-tuned)**: 84.8% success rate
+
+## Latency
+- **Inference speed**: 3–4 milliseconds per step, achieved through the latency-aware Universal Asynchronous Chunking (UAC) mechanism
+
+## Additional Benchmark Performance
+The model also demonstrated strong results across other simulation environments:
+- RoboCasa-50: 62.1% success rate
+- GR1 (humanoid dexterity): 49.2% average success rate
+- RoboTwin 2.0 (domain-randomized): 90.2% easy / 89.6% hard settings
+- CALVIN (long-horizon): 4.67 tasks completed (ABCD→D) and 4.48 tasks (ABC→D)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1a15d414-890d-439f-8015-1a823b7ecea6",
+  "isSidechain": true,
+  "promptId": "0b10807c-7db1-4e3e-afe2-5ed671a76021",
+  "agentId": "ac067d887f8f86d84",
+  "type": "user",
+  "uuid": "014dc89b-44db-4c26-a3ff-5ebcc1a29e22",
+  "sourceToolAssistantUUID": "1a15d414-890d-439f-8015-1a823b7ecea6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-10T20:01:50.986Z_
+
+<details><summary>↩ Tool result · `toolu_016jAfJP1xWiBGR16HzanYy9`</summary>
+
+```text
+# Real-World Performance Metrics
+
+**Real-World Success Rates:**
+- Without verification (LC-16 baseline): 45% average success rate
+- With verification (FFDC-WAM): 80% average success rate
+- **Improvement: 35 percentage points**
+
+**Computational Efficiency on RoboTwin:**
+- WAM forward pass reduction: "69.10%" fewer model calls compared to the baseline
+- Execution time reduction: "34.02%" faster task completion
+- Success rate gain: "2.54%" improvement over short-chunk baseline
+
+The verification mechanism demonstrates substantial robustness gains in real-world settings. The authors attribute this to FFDC's capacity to "detect execution drift online and trigger replanning when the real scene deviates from the predicted rollout," enabling the system to correct errors before they compound into failures.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d2d7aabe-8075-44c4-bd74-00303256e0f1",
+  "isSidechain": true,
+  "promptId": "0b10807c-7db1-4e3e-afe2-5ed671a76021",
+  "agentId": "ac067d887f8f86d84",
+  "type": "user",
+  "uuid": "1f971f28-527f-4f37-b422-d3cd5ea3c49b",
+  "sourceToolAssistantUUID": "d2d7aabe-8075-44c4-bd74-00303256e0f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-10T20:01:58.454Z_
+
+Perfect! I now have the information needed to verify both papers' claims. Here's my verification report:
+
+## Verification Report
+
+### 1. Being-H0.7 (arXiv 2605.00078, May 2026)
+
+**Claim 1: 99.2% on LIBERO?**
+✓ **VERIFIED** - The paper achieves exactly 99.2% average success rate on standard LIBERO.
+
+**Claim 2: Drops to 82.1% on LIBERO-Plus under distributional shift?**
+✓ **VERIFIED** - Under zero-shot LIBERO-Plus (distributional shift setting), it achieves 82.1% success rate.
+
+**Claim 3: Uses latent queries with no video generation at test time?**
+✓ **VERIFIED** - The paper explicitly states it "inserts learnable latent queries between perception and action as a compact reasoning interface" and at inference "discards the posterior branch and performs no visual rollout."
+
+**Claim 4: Is 3-4ms/step?**
+✓ **VERIFIED** - The paper achieves 3–4 milliseconds per step through the Universal Asynchronous Chunking (UAC) mechanism.
+
+---
+
+### 2. FFDC-WAM (arXiv 2605.06222, May 2026)
+
+**Claim 1: Uses cross-modal agreement (predicted video vs reality) as quality oracle?**
+✓ **VERIFIED** - The paper uses "Future Forward Dynamics Causal Attention (FFDC), a lightweight verifier that jointly reasons over predicted future actions, predicted visual dynamics, real observations, and language instructions" to assess prediction-reality consistency.
+
+**Claim 2: Operates BETWEEN WAM calls (not within)?**
+✓ **VERIFIED** - The method enables "adaptive action chunk sizes" that allow the robot to execute longer when predictions remain reliable and replan earlier when deviations occur, operating between inference calls.
+
+**Claim 3: Achieves 69% fewer calls and 35% real-world success improvement?**
+✓ **VERIFIED** - On RoboTwin: 69.10% fewer WAM forward passes. In real-world experiments: 35 percentage points improvement (from 45% to 80% success rate).
+
+**Claim 4: Without verification, real-world success drops from 80% to 45%?**
+✓ **VERIFIED** - The baseline (LC-16 without verification) achieves 45% success, while FFDC-WAM with verification achieves 80% success rate.
+
+---
+
+## Summary
+
+**All 8 claims across both papers have been verified as accurate.** The numerical values, architectural details, and performance metrics match exactly what is reported in the arXiv papers.
+
+Sources:
+- [Being-H0.7: A Latent World-Action Model from Egocentric Videos](https://arxiv.org/html/2605.00078v1)
+- [When to Trust Imagination: Adaptive Action Execution for World Action Models](https://arxiv.org/html/2605.06222)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1f971f28-527f-4f37-b422-d3cd5ea3c49b",
+  "isSidechain": true,
+  "agentId": "ac067d887f8f86d84",
+  "requestId": "req_011CauV3tQS6vSwzZvhndn68",
+  "attributionAgent": "Explore",
+  "type": "assistant",
+  "uuid": "762df3cd-b31d-4916-97b7-5e8cd293994f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01DvxeegRMsh691hgitN2c5d",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 821,
+      "cache_read_input_tokens": 21962,
+      "output_tokens": 728,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 821
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 728,
+          "cache_read_input_tokens": 21962,
+          "cache_creation_input_tokens": 821,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 821,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---

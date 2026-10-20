@@ -1,0 +1,467 @@
+{
+  "schema_version": "1.0",
+  "id": "653dddf44103eaf80f6e",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search for \"BEACON Milestone-Guided Policy Learning Long-Horizon Language Agents arXiv 2605.06078 May 2026\". Also search",
+  "task_key": "agent-ad633758280618122",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-ad633758280618122.jsonl",
+    "occurrence": 1,
+    "bytes": 21587,
+    "sha256": "9c7014860ff7d1373d80a39c89104e13c4c94848154f5c6e751bd12a18121586"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 1,
+    "tool_calls": 3,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 3,
+      "tool_result": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-12T02:45:48.227Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search for \"BEACON Milestone-Guided Policy Learning Long-Horizon Language Agents arXiv 2605.06078 May 2026\". Also search for \"A2TGPO Agentic Turn-Group Policy Optimization Adaptive Turn-level Clipping arXiv 2605.06200 May 2026\" and \"SIGHT RL Self-Evidence Information-Gain Diverse Branching Search Agents arXiv 2602.11551 February 2026\". Verify these papers exist and report their key methods and results. Use WebSearch."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "5fc9d6c1-454b-4e99-a233-c623f645bec5",
+            "agentId": "ad633758280618122",
+            "type": "user",
+            "uuid": "e262fb5d-bc8c-4ed5-a0c2-4b8dfd47b47c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "5b5312fa-b268-4011-9c27-c3ec2d834525",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-12T02:45:49.230Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for these three research papers to verify their existence and identify their key methods and results."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e262fb5d-bc8c-4ed5-a0c2-4b8dfd47b47c",
+            "isSidechain": true,
+            "agentId": "ad633758280618122",
+            "requestId": "req_011CawufSARTpzuqkxc3Lfbv",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fd1b29a2-a14b-412e-9585-b90c3543908d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "5b5312fa-b268-4011-9c27-c3ec2d834525",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Vz9WVRzDdh2ULvSKdcjp5p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 554,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 554,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-12T02:45:49.643Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UtgDVRn4EikRNjUDsYkQbM",
+              "name": "WebSearch",
+              "input": {
+                "query": "BEACON Milestone-Guided Policy Learning Long-Horizon Language Agents arXiv 2605.06078 May 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fd1b29a2-a14b-412e-9585-b90c3543908d",
+            "isSidechain": true,
+            "agentId": "ad633758280618122",
+            "requestId": "req_011CawufSARTpzuqkxc3Lfbv",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a957c86c-a354-4f7e-af4d-711e0fb68f43",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "5b5312fa-b268-4011-9c27-c3ec2d834525",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Vz9WVRzDdh2ULvSKdcjp5p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 554,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 554,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-12T02:45:49.851Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015TmMR3tktHz8KCQAt26SBe",
+              "name": "WebSearch",
+              "input": {
+                "query": "A2TGPO Agentic Turn-Group Policy Optimization Adaptive Turn-level Clipping arXiv 2605.06200 May 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a957c86c-a354-4f7e-af4d-711e0fb68f43",
+            "isSidechain": true,
+            "agentId": "ad633758280618122",
+            "requestId": "req_011CawufSARTpzuqkxc3Lfbv",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "93a059bd-c0b2-4121-bf5d-2bb0cfcd6175",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "5b5312fa-b268-4011-9c27-c3ec2d834525",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Vz9WVRzDdh2ULvSKdcjp5p",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 554,
+                "cache_read_input_tokens": 16153,
+                "output_tokens": 241,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 554
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 241,
+                    "cache_read_input_tokens": 16153,
+                    "cache_creation_input_tokens": 554,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 554,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-12T02:45:49.913Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017PYVYJoGnvGG1YKvZb48yh",
+              "name": "WebSearch",
+              "input": {
+                "query": "SIGHT RL Self-Evidence Information-Gain Diverse Branching Search Agents arXiv 2602.11551 February 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "93a059bd-c0b2-4121-bf5d-2bb0cfcd6175",
+            "isSidechain": true,
+            "agentId": "ad633758280618122",
+            "requestId": "req_011CawufSARTpzuqkxc3Lfbv",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fb9ca856-acba-4ee8-9232-301a86f7fb83",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "5b5312fa-b268-4011-9c27-c3ec2d834525",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Vz9WVRzDdh2ULvSKdcjp5p",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 554,
+                "cache_read_input_tokens": 16153,
+                "output_tokens": 241,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 554
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 241,
+                    "cache_read_input_tokens": 16153,
+                    "cache_creation_input_tokens": 554,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 554,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-12T02:45:56.811Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015TmMR3tktHz8KCQAt26SBe",
+              "type": "tool_result",
+              "content": "Web search results for query: \"A2TGPO Agentic Turn-Group Policy Optimization Adaptive Turn-level Clipping arXiv 2605.06200 May 2026\"\n\nLinks: [{\"title\":\"[2605.06200] A$^2$TGPO: Agentic Turn-Group Policy Optimization with Adaptive Turn-level Clipping\",\"url\":\"https://arxiv.org/abs/2605.06200\"},{\"title\":\"A2TGPO: Agentic Turn-Group Policy Optimization with Adaptive Turn-level Clipping\",\"url\":\"https://arxiv.org/html/2605.06200\"},{\"title\":\"AT2PO: Agentic Turn-based Policy Optimization via Tree Search\",\"url\":\"https://arxiv.org/html/2601.04767v1\"},{\"title\":\"[2601.04767] AT$^2$PO: Agentic Turn-based Policy Optimization via Tree Search\",\"url\":\"https://arxiv.org/abs/2601.04767\"},{\"title\":\"Paper page - AT^2PO: Agentic Turn-based Policy Optimization via Tree Search\",\"url\":\"https://huggingface.co/papers/2601.04767\"},{\"title\":\"Agentic Reinforced Policy Optimization | OpenReview\",\"url\":\"https://openreview.net/forum?id=TX4k7BF6aO\"},{\"title\":\"AT^2PO: Agentic Turn-based Policy Optimization via Tree Search - Paper Details\",\"url\":\"https://www.chatpaper.ai/dashboard/paper/abcb2bb8-26d6-4239-9c80-ac05426322be\"},{\"title\":\"Empowering Multi-Turn Tool-Integrated Agentic Reasoning with Group Turn Policy Optimization\",\"url\":\"https://arxiv.org/html/2511.14846\"},{\"title\":\"Group-in-Group Policy Optimization for LLM Agent Training | OpenReview\",\"url\":\"https://openreview.net/forum?id=QXEhBMNrCW\"},{\"title\":\"[2605.05262] Maximizing Rollout Informativeness under a Fixed Budget: A Submodular View of Tree Search for Tool-Use Agentic Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2605.05262\"}]\n\nI found the paper you're looking for. Here's the information about A²TGPO from arXiv:\n\n## A²TGPO: Agentic Turn-Group Policy Optimization with Adaptive Turn-level Clipping\n\n**Paper Details:**\n- ArXiv ID: 2605.06200\n- Full title: A²TGPO (Agentic Turn-Group Policy Optimization with Adaptive Turn-level Clipping)\n- Published: May 2026 (5 days ago at time of search)\n\n**Problem Statement:**\nReinforcement learning for agentic large language models (LLMs) typically relies on a sparse, trajectory-level outcome reward, making it difficult to evaluate the contribution of individual tool-calls within multi-turn interactions.\n\n**Key Innovation:**\nThe method retains Information Gain (IG) as the intrinsic signal but re-designs how it is normalized, accumulated, and consumed: (i) turn-group normalization: normalizes IG within each (prompt, turn-index) group so that each turn is compared only against peers at the same interaction depth; (ii) variance-rescaled discounted accumulation: divides cumulative normalized IG by square root of accumulated terms to keep advantage magnitudes comparable across turn positions.\n\n**Results:**\nThe paper evaluates A2TGPO on seven single-hop and multi-hop open-domain QA benchmarks across three backbones and shows that it consistently outperforms prior strong baselines.\n\nYou can access the full paper at https://arxiv.org/abs/2605.06200.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "93a059bd-c0b2-4121-bf5d-2bb0cfcd6175",
+            "isSidechain": true,
+            "promptId": "5fc9d6c1-454b-4e99-a233-c623f645bec5",
+            "agentId": "ad633758280618122",
+            "type": "user",
+            "uuid": "40ebde63-a294-4541-93ff-193f63e984e0",
+            "sourceToolAssistantUUID": "93a059bd-c0b2-4121-bf5d-2bb0cfcd6175",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "5b5312fa-b268-4011-9c27-c3ec2d834525",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-12T02:45:57.627Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UtgDVRn4EikRNjUDsYkQbM",
+              "type": "tool_result",
+              "content": "Web search results for query: \"BEACON Milestone-Guided Policy Learning Long-Horizon Language Agents arXiv 2605.06078 May 2026\"\n\nLinks: [{\"title\":\"[2605.06078] Milestone-Guided Policy Learning for Long-Horizon Language Agents\",\"url\":\"https://arxiv.org/abs/2605.06078\"},{\"title\":\"Milestone-Guided Policy Learning for Long-Horizon Language Agents\",\"url\":\"https://arxiv.org/html/2605.06078\"},{\"title\":\"On Training Large Language Models for Long-Horizon Tasks: An Empirical Study of Horizon Length\",\"url\":\"https://arxiv.org/html/2605.02572v1\"},{\"title\":\"[2605.02572v1] On Training Large Language Models for Long-Horizon Tasks: An Empirical Study of Horizon Length\",\"url\":\"https://arxiv.org/abs/2605.02572v1\"},{\"title\":\"[2605.02572] On Training Large Language Models for Long-Horizon Tasks: An Empirical Study of Horizon Length\",\"url\":\"https://arxiv.org/abs/2605.02572\"},{\"title\":\"[2402.17753] Evaluating Very Long-Term Conversational Memory of LLM Agents\",\"url\":\"https://arxiv.org/abs/2402.17753\"},{\"title\":\"[2605.07725] SOD: Step-wise On-policy Distillation for Small Language Model Agents\",\"url\":\"https://arxiv.org/abs/2605.07725\"},{\"title\":\"What You Think is What You See: Driving Exploration in VLM Agents via Visual-Linguistic Curiosity\",\"url\":\"https://arxiv.org/html/2605.03782\"},{\"title\":\"[2506.15841v2] MEM1: Learning to Synergize Memory and Reasoning for Efficient Long-Horizon Agents\",\"url\":\"https://arxiv.org/abs/2506.15841v2\"},{\"title\":\"[2502.01600] Reinforcement Learning for Long-Horizon Interactive LLM Agents\",\"url\":\"https://arxiv.org/abs/2502.01600\"}]\n\nI found the paper you're looking for! Here's the information about BEACON:\n\n## BEACON: Milestone-Guided Policy Learning for Long-Horizon Language Agents\n\nBEACON is a milestone-guided policy learning framework that leverages the compositional structure of long-horizon tasks to ensure precise credit assignment.\n\n### Problem It Addresses\nWhile long-horizon agentic tasks require language agents to perform dozens of sequential decisions, training such agents with reinforcement learning remains challenging due to credit misattribution (where correct early actions are penalized due to terminal failures) and sample inefficiency (where scarce successful trajectories result in near-total loss of learning signal).\n\n### How It Works\nBEACON partitions trajectories at milestone boundaries, applies temporal reward shaping within segments to credit partial progress, and estimates advantages at dual scales to prevent distant failures from corrupting the evaluation of local actions.\n\n### Results\nOn ALFWorld, WebShop, and ScienceWorld, BEACON consistently outperforms GRPO and GiGPO. On long-horizon ALFWorld tasks, BEACON achieves 92.9% success rate, nearly doubling GRPO's 53.5%, while improving effective sample utilization from 23.7% to 82.0%.\n\nCode is available at https://github.com/ZJU-REAL/BEACON.\n\nThe paper was posted on arXiv on May 7, 2026, and represents recent research in improving reinforcement learning for long-horizon language agent tasks.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a957c86c-a354-4f7e-af4d-711e0fb68f43",
+            "isSidechain": true,
+            "promptId": "5fc9d6c1-454b-4e99-a233-c623f645bec5",
+            "agentId": "ad633758280618122",
+            "type": "user",
+            "uuid": "d0c7942c-4642-4869-b983-506222be5c5b",
+            "sourceToolAssistantUUID": "a957c86c-a354-4f7e-af4d-711e0fb68f43",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "5b5312fa-b268-4011-9c27-c3ec2d834525",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-12T02:45:57.936Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017PYVYJoGnvGG1YKvZb48yh",
+              "type": "tool_result",
+              "content": "Web search results for query: \"SIGHT RL Self-Evidence Information-Gain Diverse Branching Search Agents arXiv 2602.11551 February 2026\"\n\nLinks: [{\"title\":\"[2602.11551v1] SIGHT: Reinforcement Learning with Self-Evidence and Information-Gain Diverse Branching for Search Agent\",\"url\":\"https://arxiv.org/abs/2602.11551v1\"},{\"title\":\"[2602.11551] SIGHT: Reinforcement Learning with Self-Evidence and Information-Gain Diverse Branching for Search Agent\",\"url\":\"https://arxiv.org/abs/2602.11551\"},{\"title\":\"SIGHT: Reinforcement Learning with Self-Evidence and Information-Gain Diverse Branching for Search Agent\",\"url\":\"https://arxiv.org/html/2602.11551\"},{\"title\":\"SIGHT: Reinforcement Learning with Self-Evidence and ...\",\"url\":\"https://arxiv.org/pdf/2602.11551\"},{\"title\":\"A Survey of LLM-based Deep Search Agents: Paradigm, Optimization, Evaluation, and Challenges\",\"url\":\"https://arxiv.org/html/2508.05668v3\"},{\"title\":\"From Web Search towards Agentic Deep ReSearch: Incentivizing Search with Reasoning Agents\",\"url\":\"https://arxiv.org/html/2506.18959v1\"},{\"title\":\"WideSeek: Advancing Wide Research via Multi-Agent Scaling\",\"url\":\"https://arxiv.org/html/2602.02636\"},{\"title\":\"[2510.16724] A Comprehensive Survey on Reinforcement Learning-based Agentic Search: Foundations, Roles, Optimizations, Evaluations, and Applications\",\"url\":\"https://arxiv.org/abs/2510.16724\"},{\"title\":\"GitHub - ventr1c/Awesome-RL-based-Agentic-Search-Papers: The official repository of \\\"A Comprehensive Survey on Reinforcement Learning-based Agentic Search: Foundations, Roles, Optimizations, Evaluations, and Applications\\\". · GitHub\",\"url\":\"https://github.com/ventr1c/Awesome-RL-based-Agentic-Search-Papers\"},{\"title\":\"[2602.17518v1] A Picture of Agentic Search\",\"url\":\"https://arxiv.org/abs/2602.17518v1\"}]\n\nI found the paper you're looking for! Here are the key details about SIGHT:\n\n## SIGHT Paper Overview\n\n**Title:** SIGHT: Reinforcement Learning with Self-Evidence and Information-Gain Diverse Branching for Search Agent\n\n**arXiv Reference:** arXiv:2602.11551v1, submitted on 12 Feb 2026\n\n**Authors:** Wenlin Zhong, Jinluan Yang, Yiquan Wu, Yi Liu, Jianhang Yao, Kun Kuang\n\n## Core Contribution\n\nSIGHT is a framework that enhances search-based reasoning through Self-Evidence Support (SES) and Information-Gain Driven Diverse Branching.\n\n## Key Technical Approach\n\nSIGHT distills search results into high-fidelity evidence via SES and calculates an Information Gain score to pinpoint pivotal states where observations maximally reduce uncertainty. This score guides Dynamic Prompting Interventions - including de-duplication, reflection, or adaptive branching - to spawn new branches with SES.\n\n## Problem Being Addressed\n\nWithin multi-turn search scenarios, search results often suffer from high redundancy and low signal-to-noise ratios. Consequently, agents easily fall into \"Tunnel Vision,\" where the forced interpretation of early noisy retrievals leads to irreversible error accumulation.\n\n## Results\n\nExperiments on single-hop and multi-hop QA benchmarks demonstrate that SIGHT significantly outperforms existing approaches, particularly in complex reasoning scenarios, using fewer search steps.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fb9ca856-acba-4ee8-9232-301a86f7fb83",
+            "isSidechain": true,
+            "promptId": "5fc9d6c1-454b-4e99-a233-c623f645bec5",
+            "agentId": "ad633758280618122",
+            "type": "user",
+            "uuid": "1e5b76bc-e45c-4bcd-b9d5-1730439b4b84",
+            "sourceToolAssistantUUID": "fb9ca856-acba-4ee8-9232-301a86f7fb83",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "5b5312fa-b268-4011-9c27-c3ec2d834525",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-12T02:46:07.426Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Summary of Paper Verification\n\nI have successfully verified all three papers exist on arXiv. Here are the key findings:\n\n### 1. BEACON: Milestone-Guided Policy Learning for Long-Horizon Language Agents\n**arXiv: 2605.06078 (May 2026)**\n\n**Key Method:**\n- Partitions trajectories at milestone boundaries to solve credit misattribution problems\n- Applies temporal reward shaping within segments to credit partial progress\n- Estimates advantages at dual scales to prevent distant failures from corrupting evaluation of local actions\n\n**Key Results:**\n- On ALFWorld, WebShop, and ScienceWorld benchmarks, consistently outperforms GRPO and GiGPO baselines\n- Achieves 92.9% success rate on long-horizon ALFWorld tasks (nearly double GRPO's 53.5%)\n- Improves effective sample utilization from 23.7% to 82.0%\n\n**Paper:** [https://arxiv.org/abs/2605.06078](https://arxiv.org/abs/2605.06078)\n\n---\n\n### 2. A²TGPO: Agentic Turn-Group Policy Optimization with Adaptive Turn-level Clipping\n**arXiv: 2605.06200 (May 2026)**\n\n**Key Method:**\n- Redesigns how Information Gain (IG) is normalized, accumulated, and consumed in multi-turn agent interactions\n- Turn-group normalization: normalizes IG within each (prompt, turn-index) group so each turn is compared only against peers at the same interaction depth\n- Variance-rescaled discounted accumulation: divides cumulative normalized IG by square root of accumulated terms to maintain consistent advantage magnitudes across turn positions\n\n**Key Results:**\n- Evaluated on seven single-hop and multi-hop open-domain QA benchmarks across three different backbones\n- Consistently outperforms prior strong baselines in multi-turn tool-integrated agent scenarios\n\n**Paper:** [https://arxiv.org/abs/2605.06200](https://arxiv.org/abs/2605.06200)\n\n---\n\n### 3. SIGHT: Reinforcement Learning with Self-Evidence and Information-Gain Diverse Branching for Search Agent\n**arXiv: 2602.11551 (February 2026)**\n\n**Key Method:**\n- Self-Evidence Support (SES): distills search results into high-fidelity evidence\n- Information-Gain Driven Diverse Branching: calculates Information Gain scores to identify pivotal states where observations maximally reduce uncertainty\n- Dynamic Prompting Interventions: uses IG scores to guide de-duplication, reflection, or adaptive branching decisions with SES\n\n**Key Results:**\n- Significantly outperforms existing approaches on single-hop and multi-hop QA benchmarks\n- Demonstrates particular strength in complex reasoning scenarios\n- Achieves superior performance while using fewer search steps\n\n**Paper:** [https://arxiv.org/abs/2602.11551](https://arxiv.org/abs/2602.11551)\n\n---\n\n**Verification Status:** All three papers successfully found on arXiv. All are recent publications from 2026 focused on reinforcement learning and policy optimization for long-horizon language agents and search-based reasoning tasks.\n\nSources:\n- [BEACON - arXiv 2605.06078](https://arxiv.org/abs/2605.06078)\n- [A²TGPO - arXiv 2605.06200](https://arxiv.org/abs/2605.06200)\n- [SIGHT - arXiv 2602.11551](https://arxiv.org/abs/2602.11551)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1e5b76bc-e45c-4bcd-b9d5-1730439b4b84",
+            "isSidechain": true,
+            "agentId": "ad633758280618122",
+            "requestId": "req_011Cawug9fGEojxt6JKJy1ob",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "96ca8d27-6e22-44f5-b827-3966567748e6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "5b5312fa-b268-4011-9c27-c3ec2d834525",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013fz58svQdxh24igjWkyUPi",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3821,
+                "cache_read_input_tokens": 16707,
+                "output_tokens": 860,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3821
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 860,
+                    "cache_read_input_tokens": 16707,
+                    "cache_creation_input_tokens": 3821,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3821,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-for-beacon-milestone-guided-policy-learning-long-horizon-language-agent.md"
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "2612a349ad0df0d8dffd",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [Director 指令] [Partial Draft] 写 EMNLP 2026 Main 论文的可独立完成章节，DDL 05-25 ARR。 **Core narrative**: 2+1 claim 结构（D012）。C1' (K*",
+  "task_key": "b68aec3d-ccdb-4520-aeee-e93e6307b06b",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/b68aec3d-ccdb-4520-aeee-e93e6307b06b.jsonl",
+    "occurrence": 1,
+    "bytes": 859395,
+    "sha256": "637829568538de778661199fede498788a21acb0fdee42117eb0d85def52531c"
+  },
+  "statistics": {
+    "messages": 314,
+    "user_turns": 1,
+    "tool_calls": 112,
+    "roles": {
+      "record": 54,
+      "user": 1,
+      "assistant": 36,
+      "tool_call": 112,
+      "tool_result": 111
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2612a349ad0df0d8dffd-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 312,
+      "chunks": [
+        {
+          "path": "2612a349ad0df0d8dffd-part-0001.json",
+          "message_count": 162
+        },
+        {
+          "path": "2612a349ad0df0d8dffd-part-0002.json",
+          "message_count": 150
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-director-partial-draft-emnlp-2026-main-ddl-05-25-arr-core-narrative-2-1-claim.md"
+}

@@ -1,0 +1,217 @@
+{
+  "schema_version": "1.0",
+  "session_id": "6c5638e55552819fd0d1",
+  "rounds": [
+    {
+      "number": 2,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": "2026-05-24T10:14:22.936Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01TStCpmuNXZF2SKY9cAGLtW",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__detect_image"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "edad69a2-331a-47d2-93a1-c70669ef58d1",
+            "isSidechain": false,
+            "promptId": "47725f63-de8a-4290-a2e1-d8de773dd3bb",
+            "type": "user",
+            "uuid": "b17bfbc5-dc0b-4329-8212-764b3fdafe9f",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__detect_image"
+              ],
+              "query": "select:mcp__agent-ml-research__detect_image",
+              "total_deferred_tools": 23
+            },
+            "sourceToolAssistantUUID": "edad69a2-331a-47d2-93a1-c70669ef58d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "c72fc149-a266-4daa-be22-d9a812887c4e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wiggly-bubbling-lampson"
+          },
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": "2026-05-24T10:14:50.504Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I don't need detect_image. I have all the data. Let me now compile the full summary table for the user.\n\nLet me organize all 20 pairs into a clean summary.\n\nHere's the complete data:\n\n**Mistral-7B Code (K*=2)**\n| Pair | AUC | 95% CI | Bonf CI | perm_p | bonf_p | >θ |\n|------|-----|--------|---------|--------|--------|----|\n| 0v1 | 0.9189 | [0.9142, 0.9237] | [0.9127, 0.9251] | 0.0001 | 0.0005 | YES |\n\n\n| 1v2 | 0.6150 | [0.6054, 0.6250] | [0.6024, 0.6281] | 0.0001 | 0.0005 | YES |\n| 2v3 | 0.5292 | [0.5191, 0.5393] | [0.5155, 0.5426] | 0.0001 | 0.0005 | NO |\n| 3v4 | 0.5286 | [0.5183, 0.5387] | [0.5152, 0.5418] | 0.0001 | 0.0005 | NO |\n\nGenerating markdown table... Generating markdown table... Generating comparison metrics... Generating comparison table...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b17bfbc5-dc0b-4329-8212-764b3fdafe9f",
+            "isSidechain": false,
+            "requestId": "req_011CbMDaRbUsZ2BF1RVZeh3y",
+            "type": "assistant",
+            "uuid": "cbcc77ba-79a4-48fe-9fec-e067e54a80ec",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "c72fc149-a266-4daa-be22-d9a812887c4e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wiggly-bubbling-lampson",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EFZzjizRiuJ5AYv7VHw1uJ",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 300,
+                "cache_read_input_tokens": 47845,
+                "output_tokens": 3413,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 300,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 3413,
+                    "cache_read_input_tokens": 47845,
+                    "cache_creation_input_tokens": 300,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 300
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000722"
+        },
+        {
+          "source_line": 723,
+          "timestamp": "2026-05-24T10:15:05.071Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 20 pairs complete. JSON artifact saved locally. Here's the full summary:\n\n## Bootstrap CI + Permutation Test Results (10K resamples, Bonferroni-corrected)\n\n### Mistral-7B Code — K\\*=2\n| Pair | AUC | 95% CI | Bonf CI (α=0.01) | bonf_p | >θ |\n|------|-----|--------|-------------------|--------|----|\n| 0v1 | 0.9189 | [0.9142, 0.9237] | [0.9127, 0.9251] | 0.0005 | YES |\n| **1v2** | **0.6150** | **[0.6054, 0.6250]** | **[0.6024, 0.6281]** | **0.0005** | **YES** |\n| 2v3 | 0.5292 | [0.5191, 0.5393] | [0.5155, 0.5426] | 0.0005 | NO |\n| 3v4 | 0.5286 | [0.5183, 0.5387] | [0.5152, 0.5418] | 0.0005 | NO |\n| 4v5 | 0.5099 | [0.4994, 0.5207] | [0.4961, 0.5235] | 0.1870 | NO |\n\n### Qwen-7B Code — K\\*=2\n| Pair | AUC | 95% CI | Bonf CI (α=0.01) | bonf_p | >θ |\n|------|-----|--------|-------------------|--------|----|\n| 0v1 | 0.9050 | [0.9000, 0.9102] | [0.8985, 0.9118] | 0.0005 | YES |\n| 1v2 | 0.7273 | [0.7184, 0.7362] | [0.7153, 0.7389] | 0.0005 | YES |\n| 2v3 | 0.5367 | [0.5267, 0.5464] | [0.5237, 0.5496] | 0.0005 | NO |\n| 3v4 | 0.5088 | [0.4984, 0.5190] | [0.4950, 0.5223] | 0.2950 | NO |\n| 4v5 | 0.5137 | [0.5034, 0.5240] | [0.5002, 0.5274] | 0.0415 | NO |\n\n### Mistral-7B Wiki — K\\*=1\n| Pair | AUC | 95% CI | Bonf CI (α=0.01) | bonf_p | >θ |\n|------|-----|--------|-------------------|--------|----|\n| 0v1 | 0.9614 | [0.9581, 0.9644] | [0.9571, 0.9654] | 0.0005 | YES |\n| 1v2 | 0.5576 | [0.5470, 0.5681] | [0.5434, 0.5716] | 0.0005 | NO |\n| 2v3 | 0.5193 | [0.5083, 0.5301] | [0.5046, 0.5337] | 0.0020 | NO |\n| 3v4 | 0.5172 | [0.5062, 0.5280] | [0.5029, 0.5317] | 0.0100 | NO |\n| 4v5 | 0.5011 | [0.4903, 0.5120] | [0.4866, 0.5155] | 1.0000 | NO |\n\n### LLaMA-8B Wiki — K\\*=1\n| Pair | AUC | 95% CI | Bonf CI (α=0.01) | bonf_p | >θ |\n|------|-----|--------|-------------------|--------|----|\n| 0v1 | 0.9321 | [0.9273, 0.9366] | [0.9260, 0.9380] | 0.0005 | YES |\n| 1v2 | 0.5919 | [0.5822, 0.6019] | [0.5788, 0.6049] | 0.0005 | NO |\n| 2v3 | 0.5379 | [0.5275, 0.5484] | [0.5240, 0.5514] | 0.0005 | NO |\n| 3v4 | 0.5105 | [0.4999, 0.5213] | [0.4962, 0.5244] | 0.2310 | NO |\n| 4v5 | 0.5051 | [0.4944, 0.5161] | [0.4908, 0.5193] | 1.0000 | NO |\n\n---\n\n### 关键判定\n\n**Mistral-7B Code 1v2 — Bonferroni CI 下界 0.6024 > θ=0.60。** 即使经过最严格的多重比较校正，CI 仍不跨越阈值，K\\*=2 成立。这是最关键的 borderline case，现在可以确认。\n\n### K\\* 汇总\n\n| Config | K\\* | 判定依据 |\n|--------|-----|---------|\n| Mistral-7B Code | 2 | 1v2 Bonf CI [0.6024, 0.6281] 整体在 θ 之上 |\n| Qwen-7B Code | 2 | 1v2 AUC=0.7273，远超 θ |\n| Mistral-7B Wiki | 1 | 1v2 AUC=0.5576，Bonf CI 上界 0.5716 < θ |\n| LLaMA-8B Wiki | 1 | 1v2 AUC=0.5919，Bonf CI 上界 0.6049 跨 θ 但点估计 < θ |\n\nJSON artifact 已保存至 `artifacts/code_wiki_bootstrap_ci.json`（本地+远程）。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cbcc77ba-79a4-48fe-9fec-e067e54a80ec",
+            "isSidechain": false,
+            "requestId": "req_011CbMDaRbUsZ2BF1RVZeh3y",
+            "type": "assistant",
+            "uuid": "b6505da2-def9-4e80-bf4b-619888cf942d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "c72fc149-a266-4daa-be22-d9a812887c4e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wiggly-bubbling-lampson",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EFZzjizRiuJ5AYv7VHw1uJ",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 300,
+                "cache_read_input_tokens": 47845,
+                "output_tokens": 3413,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 300,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 3413,
+                    "cache_read_input_tokens": 47845,
+                    "cache_creation_input_tokens": 300,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 300
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000723"
+        },
+        {
+          "source_line": 724,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "b6505da2-def9-4e80-bf4b-619888cf942d",
+                "sessionId": "c72fc149-a266-4daa-be22-d9a812887c4e"
+              }
+            }
+          ],
+          "id": "event-000724"
+        },
+        {
+          "source_line": 725,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Calculate bootstrap CI for Code and Wiki experiments",
+                "sessionId": "c72fc149-a266-4daa-be22-d9a812887c4e"
+              }
+            }
+          ],
+          "id": "event-000725"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1715 @@
+# Research conversation: You are helping me verify references for a research paper review. I need you to search for and verify the following pape
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 27
+- **Recorded user turns:** 1
+- **Tool calls:** 10
+- **Original source:** `logs/chats/exported-trajectories/account-2/agent-a59ce1575dbd44253.jsonl`
+- **Structured JSON:** [`e68efb17d915cc847b66.json`](../../sessions/e6/e68efb17d915cc847b66.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+27 recorded events
+
+### User
+
+_source line 1 · 2026-05-12T02:01:02.574Z_
+
+You are helping me verify references for a research paper review. I need you to search for and verify the following papers exist and are described accurately. For each paper, search for it and report: (1) does it exist, (2) is the description accurate, (3) any key details.
+
+Papers to verify:
+1. RewardFlow (arXiv 2603.18859, March 2026) — "constructs state-transition graphs from environment observations and propagates terminal rewards via BFS/Personalized PageRank, achieving 89.8% on ALFWorld with Qwen2.5-7B"
+2. InfoTree (arXiv 2605.05262, May 2026) — "formalizes allocation as monotone submodular optimization with UUCB state selection"
+3. PivotRL (arXiv 2603.21383, March 2026) — "identifies pivot turns via static offline profiling of reference policy outcome variance, achieving 4x fewer rollout turns on SWE-Bench"
+4. BEACON (arXiv 2605.06078, May 2026) — "detects milestones from state changes for dual-scale advantage, reaching 92.9% on ALFWorld"
+5. RTMC (arXiv 2604.11037, April 2026) — "exploits rollout tree structure for unbiased per-step MC advantages"
+6. PRAISE (arXiv 2604.03675, April 2026) — "reuses trajectory prefixes for search training"
+
+Use WebSearch to find each paper. Report your findings concisely.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+  "agentId": "a59ce1575dbd44253",
+  "type": "user",
+  "uuid": "04d62e0a-0a4b-4ce3-b5db-540a4b0338cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-12T02:01:02.577Z_
+
+```json
+{
+  "parentUuid": "04d62e0a-0a4b-4ce3-b5db-540a4b0338cf",
+  "isSidechain": true,
+  "agentId": "a59ce1575dbd44253",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "5efb8369-a79d-42b6-ab84-2c14ea558df5",
+  "timestamp": "2026-05-12T02:01:02.577Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-12T02:01:05.055Z_
+
+
+
+I'll search for all six papers in parallel to verify their existence and accuracy.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5efb8369-a79d-42b6-ab84-2c14ea558df5",
+  "isSidechain": true,
+  "agentId": "a59ce1575dbd44253",
+  "requestId": "req_011CawrFTrrGH5zcVGea7EoG",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a11adcda-6b08-4fcc-9d92-52dafe066aa9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NJC2bWJXtrpMm9agFE6L6X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9139,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9139,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-12T02:01:05.587Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01UH8mhWt37y85RN9niocHwf`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a11adcda-6b08-4fcc-9d92-52dafe066aa9",
+  "isSidechain": true,
+  "agentId": "a59ce1575dbd44253",
+  "requestId": "req_011CawrFTrrGH5zcVGea7EoG",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e5317d1c-2145-4652-bcb5-8e0c31daade6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NJC2bWJXtrpMm9agFE6L6X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9139,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 93,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 9139
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 93,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 9139,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 9139,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-12T02:01:05.592Z_
+
+<details><summary>↩ Tool result · `toolu_01UH8mhWt37y85RN9niocHwf`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e5317d1c-2145-4652-bcb5-8e0c31daade6",
+  "isSidechain": true,
+  "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+  "agentId": "a59ce1575dbd44253",
+  "type": "user",
+  "uuid": "ed0e3e31-092f-4f46-b47f-3b81ed80762b",
+  "sourceToolAssistantUUID": "e5317d1c-2145-4652-bcb5-8e0c31daade6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6 · 2026-05-12T02:01:09.428Z_
+
+
+
+Now let me search for all six papers in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ed0e3e31-092f-4f46-b47f-3b81ed80762b",
+  "isSidechain": true,
+  "agentId": "a59ce1575dbd44253",
+  "requestId": "req_011CawrFh27Vd9ADfDYvxtCi",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7dcd1bc2-2293-4f37-8298-37f8691b6fc9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013TaPES7fn7a1uYyqJC2JTG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1410,
+      "cache_read_input_tokens": 9139,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1410,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-12T02:01:10.380Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TrkuDpk2ibL7TMACDdyzME`</summary>
+
+```json
+{
+  "query": "RewardFlow arXiv 2603.18859 state-transition graphs BFS PageRank ALFWorld"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7dcd1bc2-2293-4f37-8298-37f8691b6fc9",
+  "isSidechain": true,
+  "agentId": "a59ce1575dbd44253",
+  "requestId": "req_011CawrFh27Vd9ADfDYvxtCi",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ed65814d-126e-4b17-906d-db980cdd30df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013TaPES7fn7a1uYyqJC2JTG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1410,
+      "cache_read_input_tokens": 9139,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1410,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-12T02:01:11.376Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018Muj5oM5pyBEMfTeDRB8dg`</summary>
+
+```json
+{
+  "query": "InfoTree arXiv 2605.05262 monotone submodular optimization UUCB state selection"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ed65814d-126e-4b17-906d-db980cdd30df",
+  "isSidechain": true,
+  "agentId": "a59ce1575dbd44253",
+  "requestId": "req_011CawrFh27Vd9ADfDYvxtCi",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7e718391-ecb0-4139-806a-b73204ed792d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013TaPES7fn7a1uYyqJC2JTG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1410,
+      "cache_read_input_tokens": 9139,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1410,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-12T02:01:12.316Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UJgTU9L8Scu158DoTZ1Jcg`</summary>
+
+```json
+{
+  "query": "PivotRL arXiv 2605.21383 pivot turns offline profiling rollout SWE-Bench 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7e718391-ecb0-4139-806a-b73204ed792d",
+  "isSidechain": true,
+  "agentId": "a59ce1575dbd44253",
+  "requestId": "req_011CawrFh27Vd9ADfDYvxtCi",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3d618e11-991e-4d78-9df1-4dae89f77f29",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013TaPES7fn7a1uYyqJC2JTG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1410,
+      "cache_read_input_tokens": 9139,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1410,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-12T02:01:13.259Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FkVAWqCERvsEA9QQjHp2M1`</summary>
+
+```json
+{
+  "query": "BEACON arXiv 2605.06078 milestones state changes dual-scale advantage ALFWorld"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3d618e11-991e-4d78-9df1-4dae89f77f29",
+  "isSidechain": true,
+  "agentId": "a59ce1575dbd44253",
+  "requestId": "req_011CawrFh27Vd9ADfDYvxtCi",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "51b9cf57-4d0e-4f65-8960-dda3283addb6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013TaPES7fn7a1uYyqJC2JTG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1410,
+      "cache_read_input_tokens": 9139,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1410,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-12T02:01:14.204Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014Up2trMLopNERSX5MyWGqN`</summary>
+
+```json
+{
+  "query": "RTMC arXiv 2604.11037 rollout tree structure unbiased per-step MC advantages"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "51b9cf57-4d0e-4f65-8960-dda3283addb6",
+  "isSidechain": true,
+  "agentId": "a59ce1575dbd44253",
+  "requestId": "req_011CawrFh27Vd9ADfDYvxtCi",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d92a3017-e631-45ee-875b-5dc061524c2c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013TaPES7fn7a1uYyqJC2JTG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1410,
+      "cache_read_input_tokens": 9139,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1410,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-12T02:01:15.067Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Euuvfuf21BEu5CKHXTAX9b`</summary>
+
+```json
+{
+  "query": "PRAISE arXiv 2604.03675 trajectory prefixes search training"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d92a3017-e631-45ee-875b-5dc061524c2c",
+  "isSidechain": true,
+  "agentId": "a59ce1575dbd44253",
+  "requestId": "req_011CawrFh27Vd9ADfDYvxtCi",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3f935cef-c0ab-4523-baf4-2154d5250fe2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013TaPES7fn7a1uYyqJC2JTG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1410,
+      "cache_read_input_tokens": 9139,
+      "output_tokens": 379,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1410
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 379,
+          "cache_read_input_tokens": 9139,
+          "cache_creation_input_tokens": 1410,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1410,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-12T02:01:18.205Z_
+
+<details><summary>↩ Tool result · `toolu_01TrkuDpk2ibL7TMACDdyzME`</summary>
+
+```text
+Web search results for query: "RewardFlow arXiv 2603.18859 state-transition graphs BFS PageRank ALFWorld"
+
+Links: [{"title":"RewardFlow: Topology-Aware Reward Propagation on State Graphs for Agentic RL with Large Language Models","url":"https://arxiv.org/html/2603.18859"},{"title":"[2603.18859] RewardFlow: Topology-Aware Reward Propagation on State Graphs for Agentic RL with Large Language Models","url":"https://arxiv.org/abs/2603.18859"},{"title":"REWARDFLOW: PROPAGATING REWARD IN THE STATE ...","url":"https://openreview.net/pdf?id=5oGJbM5u86"},{"title":"RewardFlow: Propagating Reward in the State Graphs of Agentic Learning with LLMs | OpenReview","url":"https://openreview.net/forum?id=5oGJbM5u86"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/recent?show=500&skip=725"},{"title":"Overcoming Latency-bound Limitations of Distributed Graph Algorithms using the HPX Runtime System","url":"https://arxiv.org/html/2603.04583"},{"title":"RewardFlow: Topology-Aware Reward Propagation on State Graphs for Agentic RL with Large Language Models | Request PDF","url":"https://www.researchgate.net/publication/402860521_RewardFlow_Topology-Aware_Reward_Propagation_on_State_Graphs_for_Agentic_RL_with_Large_Language_Models"},{"title":"An Initial Evaluation of Distributed Graph Algorithms using NWGraph and HPX","url":"https://arxiv.org/html/2601.18158"},{"title":"A Survey of Distributed Graph Algorithms on Massive Graphs","url":"https://arxiv.org/html/2404.06037v1"},{"title":"Theoretically Efficient Parallel Graph Algorithms Can Be Fast and Scalable∗","url":"https://ldhulipala.github.io/papers/gbbs_topc.pdf"}]
+
+I found comprehensive information about the RewardFlow paper (arXiv 2603.18859). Here are the key findings:
+
+## RewardFlow: Overview
+
+RewardFlow is a lightweight method for estimating state-level rewards tailored to agentic reasoning tasks that leverages the intrinsic topological structure of states within reasoning trajectories by constructing state graphs, enabling an analysis of state-wise contributions to success, followed by topology-aware graph propagation to quantify contributions and yield objective, state-level rewards.
+
+## Graph Construction and Propagation Methods
+
+RewardFlow constructs a state graph from multiple rollouts and propagates terminal rewards from successful states to all visited states using graph propagation methods such as Breadth-First Search and Personalized PageRank.
+
+RewardFlow first constructs a faithful directed graph from collected rollouts, recording exactly what the policy experienced: no transitions are removed or altered. It then adds reverse edges solely for the propagation phase, effectively treating the graph as undirected during BFS.
+
+## Performance on ALFWorld
+
+RewardFlow consistently outperforms baselines, achieving relative success-rate gains of 12.3% on ALFWorld and has been evaluated on four agentic benchmarks spanning both text and visual modalities: Sokoban, ALFWorld, WebShop, and DeepResearch.
+
+## Key Results
+
+RewardFlow substantially improves the optimization efficacy of reinforcement learning algorithms for LLM reasoning in agentic tasks, yielding a 7.4% gain on text-based benchmarks and a 25.3% average gain on visual benchmarks relative to the strongest baseline.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ed65814d-126e-4b17-906d-db980cdd30df",
+  "isSidechain": true,
+  "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+  "agentId": "a59ce1575dbd44253",
+  "type": "user",
+  "uuid": "67fb6378-7691-4b40-a15b-0bb769c16e23",
+  "sourceToolAssistantUUID": "ed65814d-126e-4b17-906d-db980cdd30df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-12T02:01:19.189Z_
+
+<details><summary>↩ Tool result · `toolu_018Muj5oM5pyBEMfTeDRB8dg`</summary>
+
+```text
+Web search results for query: "InfoTree arXiv 2605.05262 monotone submodular optimization UUCB state selection"
+
+Links: [{"title":"[2605.05262] Maximizing Rollout Informativeness under a Fixed Budget: A Submodular View of Tree Search for Tool-Use Agentic Reinforcement Learning","url":"https://arxiv.org/abs/2605.05262"},{"title":"Maximizing Rollout Informativeness under a Fixed Budget: A Submodular View of Tree Search for Tool-Use Agentic Reinforcement Learning","url":"https://arxiv.org/html/2605.05262"},{"title":"Submodular Benchmark Selection","url":"https://arxiv.org/html/2605.02209"},{"title":"[2605.04428] Submodular Ground-Set Pruning: Monotone Tightness and a Non-Monotone Separation","url":"https://arxiv.org/abs/2605.04428"},{"title":"Submodular Ground-Set Pruning: Monotone Tightness and a Non-Monotone Separation","url":"https://arxiv.org/html/2605.04428"},{"title":"A Poisson Process for Submodular Maximization","url":"https://arxiv.org/html/2605.03071"},{"title":"Improved Approximation Algorithms for $k$-Submodular Maximization via Multilinear Extension | OpenReview","url":"https://openreview.net/forum?id=EPHsIa0Ytg"},{"title":"Randomized Algorithms for Monotone Submodular Function","url":"https://arxiv.org/pdf/2111.10175"},{"title":"Submodular Benchmark Selection Alex Smola Boson AI 4677 Old Ironsides Dr","url":"https://arxiv.org/pdf/2605.02209"},{"title":"Optimizing Monotone Chance-Constrained Submodular Functions Using Evolutionary Multi-Objective Algorithms","url":"https://arxiv.org/html/2006.11444"}]
+
+Based on the web search results, I found the arXiv paper 2605.05262 you're looking for. Here's what the paper is about:
+
+## InfoTree: Submodular Tree Search for Tool-Use Reinforcement Learning
+
+The paper is titled "Maximizing Rollout Informativeness under a Fixed Budget: A Submodular View of Tree Search for Tool-Use Agentic Reinforcement Learning".
+
+**Key Contributions:**
+
+The paper formalizes Rollout Informativeness under a Fixed Budget (RIFB) as the expected non-vanishing policy-gradient mass that a tool-use rollout set injects into Group Relative Policy Optimization (GRPO).
+
+**The Monotone Submodular Optimization Framework:**
+
+The authors recast intermediate state selection as a monotone submodular maximization problem, where a greedy one-step selector enjoys a 1 minus 1/e approximation guarantee.
+
+**UUCB State Selection:**
+
+Their Uncertainty-aware Upper Confidence Bound (UUCB) terms arise as closed-form marginal gains of this submodular objective. This turns the token-level entropy bonus from an empirical trick into an analytic consequence of the formulation.
+
+**InfoTree Framework:**
+
+The paper presents InfoTree, a training-time tree-search framework coupling UUCB with a learned Adaptive Budget Allocator (ABA) and an asynchronous Speculative Expansion scheme.
+
+The work demonstrates strong empirical results across multiple benchmarks including math reasoning, web search agents, and coding tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7e718391-ecb0-4139-806a-b73204ed792d",
+  "isSidechain": true,
+  "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+  "agentId": "a59ce1575dbd44253",
+  "type": "user",
+  "uuid": "4bbad905-8450-4557-b325-e465d86a37ec",
+  "sourceToolAssistantUUID": "7e718391-ecb0-4139-806a-b73204ed792d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-12T02:01:20.114Z_
+
+<details><summary>↩ Tool result · `toolu_01UJgTU9L8Scu158DoTZ1Jcg`</summary>
+
+```text
+Web search results for query: "PivotRL arXiv 2605.21383 pivot turns offline profiling rollout SWE-Bench 2026"
+
+Links: [{"title":"PivotRL: High Accuracy Agentic Post-Training at Low Compute Cost","url":"https://arxiv.org/html/2603.21383"},{"title":"2026-3-24 PivotRL: High Accuracy Agentic Post-Training at Low Compute Cost","url":"https://arxiv.org/pdf/2603.21383"},{"title":"NVIDIA AI Introduces PivotRL: A New AI Framework Achieving High Agentic Accuracy With 4x Fewer Rollout Turns Efficiently - MarkTechPost","url":"https://www.marktechpost.com/2026/03/25/nvidia-ai-introduces-pivotrl-a-new-ai-framework-achieving-high-agentic-accuracy-with-4x-fewer-rollout-turns-efficiently/"},{"title":"[2603.21383] PivotRL: High Accuracy Agentic Post-Training at Low Compute Cost","url":"https://arxiv.org/abs/2603.21383"},{"title":"NVIDIA AI Introduces PivotRL: Efficient Agentic Training with 4x Fewer Rollouts • Dev|Journal","url":"https://earezki.com/ai-news/2026-03-25-nvidia-ai-introduces-pivotrl-a-new-ai-framework-achieving-high-agentic-accuracy-with-4x-fewer-rollout-turns-efficiently/"},{"title":"Dissecting the SWE-Bench Leaderboards: Profiling Submitters and","url":"https://arxiv.org/pdf/2506.17208"},{"title":"Paper page - PivotRL: High Accuracy Agentic Post-Training at Low Compute Cost","url":"https://huggingface.co/papers/2603.21383"},{"title":"ProgramBench: Can Language Models Rebuild Programs From Scratch?","url":"https://arxiv.org/html/2605.03546v1"},{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"Maximizing Rollout Informativeness under a Fixed Budget: A Submodular View of Tree Search for Tool-Use Agentic Reinforcement Learning","url":"https://arxiv.org/html/2605.05262"}]
+
+Based on the search results, here's what I found about PivotRL:
+
+## PivotRL: High Accuracy Agentic Post-Training at Low Compute Cost
+
+PivotRL is a turn-level reinforcement learning algorithm designed to tractably post-train large language models for long-horizon agentic tasks. The paper is on arXiv with ID 2603.21383 (note: the search query had 2605, but the correct ID is 2603).
+
+### Key Mechanisms
+
+PivotRL executes local, on-policy rollouts and filters for pivots—informative assistant turns where sampled actions exhibit mixed outcomes—and it utilizes rewards for functional-equivalent actions rather than demanding strict string matching with the SFT data demonstration.
+
+### Performance Results
+
+PivotRL achieves +4.17% higher in-domain accuracy on average across four agentic domains, and +10.04% higher OOD accuracy in non-agentic tasks compared to standard SFT. On agentic coding tasks, PivotRL achieves competitive accuracy with E2E RL with 4x fewer rollout turns.
+
+### SWE-Bench Evaluation
+
+Training efficiency on SWE-Bench Verified showed a 5.5x faster wall-clock time compared to E2E RL when using identical compute nodes, with agents achieving high accuracy with 4x fewer rollout turns.
+
+### Deployment
+
+PivotRL is adopted by NVIDIA's Nemotron-3-Super-120B-A12B, acting as the workhorse in production-scale agentic post-training.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3d618e11-991e-4d78-9df1-4dae89f77f29",
+  "isSidechain": true,
+  "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+  "agentId": "a59ce1575dbd44253",
+  "type": "user",
+  "uuid": "7d2cee75-6bc8-4a24-b40c-73a9d1ae5769",
+  "sourceToolAssistantUUID": "3d618e11-991e-4d78-9df1-4dae89f77f29",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-12T02:01:20.303Z_
+
+<details><summary>↩ Tool result · `toolu_01FkVAWqCERvsEA9QQjHp2M1`</summary>
+
+```text
+Web search results for query: "BEACON arXiv 2605.06078 milestones state changes dual-scale advantage ALFWorld"
+
+Links: [{"title":"Milestone-Guided Policy Learning for Long-Horizon Language Agents","url":"https://arxiv.org/html/2605.06078"},{"title":"[2605.06078] Milestone-Guided Policy Learning for Long-Horizon Language Agents","url":"https://arxiv.org/abs/2605.06078"},{"title":"StateFlow: Enhancing LLM Task-Solving through State-Driven Workflows","url":"https://arxiv.org/html/2403.11322v5"},{"title":"SkillOS: Learning Skill Curation for Self-Evolving Agents","url":"https://arxiv.org/html/2605.06614"},{"title":"alfworld: aligning text and embodied environments for ...","url":"https://arxiv.org/pdf/2010.03768"},{"title":"Lifting Traces to Logic: Programmatic Skill Induction with Neuro-Symbolic Learning for Long-Horizon Agentic Tasks","url":"https://arxiv.org/html/2605.01293"},{"title":"SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph","url":"https://arxiv.org/html/2510.20022"},{"title":"ALFWorld: Aligning Text and Embodied Environments for Interactive Learning | OpenReview","url":"https://openreview.net/forum?id=0IOX0YcCdTn"},{"title":"Skill1: Unified Evolution of Skill-Augmented Agents via Reinforcement Learning","url":"https://arxiv.org/html/2605.06130"},{"title":"ALFWorld","url":"https://alfworld.github.io/"}]
+
+Based on the web search results, I found comprehensive information about BEACON (arXiv 2605.06078):
+
+## BEACON: Milestone-Guided Policy Learning for Long-Horizon Language Agents
+
+BEACON is a milestone-guided policy learning framework that leverages the compositional structure of long-horizon tasks to ensure precise credit assignment.
+
+### Key Technical Approach
+
+BEACON partitions trajectories at milestone boundaries, applies temporal reward shaping within segments to credit partial progress, and estimates advantages at dual scales to prevent distant failures from corrupting the evaluation of local actions. This dual-scale advantage estimation is the innovation that addresses state changes and prevents credit misattribution across trajectory segments.
+
+### Problem Statement
+
+The framework addresses two root causes of training challenges in long-horizon tasks: credit misattribution, where correct early actions are penalized due to terminal failures, and sample inefficiency, where scarce successful trajectories result in near-total loss of learning signal.
+
+### Performance on ALFWorld
+
+On long-horizon ALFWorld tasks, BEACON achieves 92.9% success rate, nearly doubling GRPO's 53.5%, while improving effective sample utilization from 23.7% to 82.0%. On ALFWorld, WebShop, and ScienceWorld, BEACON consistently outperforms GRPO and GiGPO.
+
+The paper demonstrates that milestone-anchored credit assignment is an effective paradigm for training long-horizon language agents by addressing both the credit misattribution problem and sample efficiency issues that plague existing approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "51b9cf57-4d0e-4f65-8960-dda3283addb6",
+  "isSidechain": true,
+  "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+  "agentId": "a59ce1575dbd44253",
+  "type": "user",
+  "uuid": "0dd1e76c-3762-43b5-bd81-a379e03addfb",
+  "sourceToolAssistantUUID": "51b9cf57-4d0e-4f65-8960-dda3283addb6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-12T02:01:21.282Z_
+
+<details><summary>↩ Tool result · `toolu_01Euuvfuf21BEu5CKHXTAX9b`</summary>
+
+```text
+Web search results for query: "PRAISE arXiv 2604.03675 trajectory prefixes search training"
+
+Links: [{"title":"PRAISE: Prefix-Based Rollout Reuse in Agentic Search Training","url":"https://arxiv.org/html/2604.03675"},{"title":"1 Illustration of shared prefixes. Left: Multiple trajectories share common prefix segments (e.g., all trajectories share 𝑟→𝑢), while smaller subsets may share longer prefixes (e.g., trajectories 1–3 share 𝑟→𝑢→𝑣₁). Right: Merging these overlapping prefixes forms a hierarchical tree, where shared computation is explicitly represented by internal nodes, and unique continuations correspond to leaf branches. This tree structure enables efficient reuse of common computation across trajec","url":"https://arxiv.org/html/2511.00413v1"},{"title":"PAINT: Partial-Solution Adaptive Interpolated Training for Self-Distilled Reasoners","url":"https://arxiv.org/html/2604.26573"},{"title":"Rethinking the Comparison Unit in Sequence-Level Reinforcement Learning: An Equal-Length Paired Training Framework from Loss Correction to Sample Construction","url":"https://arxiv.org/html/2604.17328v1"},{"title":"Cycle-Consistent Search: Question Reconstructability as a Proxy Reward for Search Agent Training","url":"https://arxiv.org/html/2604.12967"},{"title":"\"E\"³-TIR: Enhanced Experience Exploitation for Tool-Integrated Reasoning","url":"https://arxiv.org/html/2604.09455v1"},{"title":"The First Few Tokens Are All You Need: An Efficient and Effective Unsupervised Prefix Fine-Tuning Method for Reasoning Models","url":"https://arxiv.org/html/2503.02875v1"},{"title":"[2604.19011] Accelerating trajectory optimization with Sobolev-trained diffusion policies","url":"https://arxiv.org/abs/2604.19011"},{"title":"LiteResearcher: A Scalable Agentic RL Training Framework for Deep Research Agent","url":"https://arxiv.org/html/2604.17931"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/recent?skip=220&show=2000"}]
+
+Based on the search results, I found the PRAISE paper. Here's what it covers:
+
+## PRAISE: Prefix-Based Rollout Reuse in Agentic Search Training
+
+PRAISE is a framework for improving both data efficiency and credit assignment in agentic search training.
+
+### Core Problem
+Current search-based Reinforcement Learning (RL) methods suffer from two core limitations: expensive long-horizon rollouts are under-utilized during training, and supervision is typically available only at the final answer, resulting in severe reward sparsity.
+
+### Key Approach
+Given a complete search trajectory, PRAISE extracts prefix states at different search turns, elicits intermediate answers from them, and uses these prefixes both to construct additional training trajectories and to derive step-level rewards from performance differences across prefixes.
+
+### Application Domain
+In agentic search, large language models (LLMs) are trained to perform multi-turn retrieval and reasoning for complex tasks such as multi-hop question answering (QA).
+
+The paper was published on April 4, 2026, and addresses the inefficiency of treating single expensive search rollouts as individual training instances rather than extracting value from the intermediate trajectory states.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3f935cef-c0ab-4523-baf4-2154d5250fe2",
+  "isSidechain": true,
+  "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+  "agentId": "a59ce1575dbd44253",
+  "type": "user",
+  "uuid": "30139d4c-ad56-48e1-89ce-c122fd62ec1a",
+  "sourceToolAssistantUUID": "3f935cef-c0ab-4523-baf4-2154d5250fe2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-12T02:01:21.432Z_
+
+<details><summary>↩ Tool result · `toolu_014Up2trMLopNERSX5MyWGqN`</summary>
+
+```text
+Web search results for query: "RTMC arXiv 2604.11037 rollout tree structure unbiased per-step MC advantages"
+
+Links: [{"title":"[2604.11037] RTMC: Step-Level Credit Assignment via Rollout Trees","url":"https://arxiv.org/abs/2604.11037"},{"title":"RTMC: Step-Level Credit Assignment via Rollout Trees","url":"https://arxiv.org/html/2604.11037"},{"title":"(PDF) RTMC: Step-Level Credit Assignment via Rollout Trees","url":"https://www.researchgate.net/publication/403791864_RTMC_Step-Level_Credit_Assignment_via_Rollout_Trees"},{"title":"SRT: Accelerating Reinforcement Learning via Speculative Rollout with Tree-Structured Cache","url":"https://arxiv.org/html/2601.09083"},{"title":"Accelerating RL Post-Training Rollouts via System-Integrated Speculative Decoding","url":"https://arxiv.org/html/2604.26779?linkId=100000420267663"},{"title":"TreeAdv: Tree-Structured Advantage Redistribution for Group-Based RL","url":"https://arxiv.org/html/2601.03703"},{"title":"[2601.03703] TreeAdv: Tree-Structured Advantage Redistribution for Group-Based RL","url":"https://www.arxiv.org/abs/2601.03703"},{"title":"Maximizing Rollout Informativeness under a Fixed Budget: A Submodular View of Tree Search for Tool-Use Agentic Reinforcement Learning","url":"https://arxiv.org/html/2605.05262"},{"title":"[2605.05262] Maximizing Rollout Informativeness under a Fixed Budget: A Submodular View of Tree Search for Tool-Use Agentic Reinforcement Learning","url":"https://arxiv.org/abs/2605.05262"},{"title":"PRAISE: Prefix-Based Rollout Reuse in Agentic Search Training","url":"https://arxiv.org/html/2604.03675"}]
+
+Based on the search results, here's what I found about RTMC (arXiv 2604.11037):
+
+## Overview
+
+RTMC (Rollout-Tree Monte Carlo) advantage estimation aggregates return statistics across rollouts sharing a common state to produce per-step Q-values and advantages without any learned critic.
+
+## Key Innovation: Rollout Tree Structure
+
+The method observes that group rollouts targeting the same problem often traverse overlapping intermediate states, implicitly forming a tree whose branches diverge at successive decision points. A state-action signature system compresses raw interaction histories into compact, comparable representations, making cross-rollout state matching tractable.
+
+## Unbiased Per-Step Monte Carlo Advantages
+
+The step-action-state binding captures the temporal evolution of the agent's decision process, where the advantage of each action is estimated from downstream returns to reachable terminal states. This approach enables true per-step advantage estimates by leveraging the natural tree structure that emerges when multiple rollouts are collected for the same problem.
+
+## Performance
+
+On SWE-bench Verified, RTMC improves pass@1 by 3.2 percentage points over GRPO.
+
+The paper was submitted on April 13, 2026, by authors Tao Wang, Suhang Zheng, and Xiaoxiao Xu from Alibaba Group.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d92a3017-e631-45ee-875b-5dc061524c2c",
+  "isSidechain": true,
+  "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+  "agentId": "a59ce1575dbd44253",
+  "type": "user",
+  "uuid": "a2e50c50-4cef-4d3a-ab93-8c9e3c194594",
+  "sourceToolAssistantUUID": "d92a3017-e631-45ee-875b-5dc061524c2c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-12T02:01:24.511Z_
+
+Let me do one more search to get the specific ALFWorld score for RewardFlow and to verify the PivotRL arXiv ID discrepancy.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a2e50c50-4cef-4d3a-ab93-8c9e3c194594",
+  "isSidechain": true,
+  "agentId": "a59ce1575dbd44253",
+  "requestId": "req_011CawrGrVA2rj1CCP1EbmbQ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9d3737f8-ea1a-40e5-9d3a-061a74bd2d44",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AQRRkgkf4ML4YrSyMSrvoG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 890,
+      "cache_creation_input_tokens": 4911,
+      "cache_read_input_tokens": 10549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4911,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-12T02:01:25.397Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015dhhD85qqCzQmRHcDJsiTS`</summary>
+
+```json
+{
+  "query": "RewardFlow ALFWorld 89.8% Qwen2.5-7B success rate results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9d3737f8-ea1a-40e5-9d3a-061a74bd2d44",
+  "isSidechain": true,
+  "agentId": "a59ce1575dbd44253",
+  "requestId": "req_011CawrGrVA2rj1CCP1EbmbQ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ece9b531-d3de-4642-b612-ea70b2a81eec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AQRRkgkf4ML4YrSyMSrvoG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 890,
+      "cache_creation_input_tokens": 4911,
+      "cache_read_input_tokens": 10549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4911,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-12T02:01:25.922Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0129Mc7d46oe12d6c7R9hfvc`</summary>
+
+```json
+{
+  "query": "PivotRL \"static offline profiling\" \"reference policy outcome variance\" pivot identification"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ece9b531-d3de-4642-b612-ea70b2a81eec",
+  "isSidechain": true,
+  "agentId": "a59ce1575dbd44253",
+  "requestId": "req_011CawrGrVA2rj1CCP1EbmbQ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "91f5f054-1481-47d2-8c38-5f9c08229947",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AQRRkgkf4ML4YrSyMSrvoG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 890,
+      "cache_creation_input_tokens": 4911,
+      "cache_read_input_tokens": 10549,
+      "output_tokens": 161,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4911
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 890,
+          "output_tokens": 161,
+          "cache_read_input_tokens": 10549,
+          "cache_creation_input_tokens": 4911,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4911,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-12T02:01:30.269Z_
+
+<details><summary>↩ Tool result · `toolu_0129Mc7d46oe12d6c7R9hfvc`</summary>
+
+```text
+Web search results for query: "PivotRL "static offline profiling" "reference policy outcome variance" pivot identification"
+
+Links: [{"title":"Offline Policy Evaluation in Large Action Spaces via Outcome-Oriented Action Grouping | Proceedings of the ACM Web Conference 2023","url":"https://dl.acm.org/doi/abs/10.1145/3543507.3583448"},{"title":"Offline Policy Optimization with Variance Regularization | OpenReview","url":"https://openreview.net/forum?id=P3WG6p6Jnb"},{"title":"Sample-Efficient Policy Constraint Offline Deep Reinforcement Learning based on Sample Filtering","url":"https://arxiv.org/html/2512.20115"},{"title":"Beyond Static Datasets: Robust Offline Policy Optimization via Vetted Synthetic Transitions","url":"https://arxiv.org/html/2601.18107v1"},{"title":"Efficient Policy Evaluation with Offline Data Informed Behavior Policy Design","url":"https://arxiv.org/html/2301.13734"},{"title":"arXiv:2212.06355v1 [stat.ML] 13 Dec 2022 A Review of Off-Policy Evaluation","url":"https://arxiv.org/pdf/2212.06355"},{"title":"Stabilizing Policy Gradient Methods via Reward Profiling","url":"https://arxiv.org/html/2511.16629"},{"title":"Beyond Static Datasets: Robust Offline Policy Optimization ...","url":"https://arxiv.org/pdf/2601.18107"},{"title":"Distributional Off-Policy Evaluation for Slate Recommendations","url":"https://arxiv.org/html/2308.14165v2"},{"title":"LEASE: Offline Preference-based Reinforcement Learning with High Sample Efficiency","url":"https://arxiv.org/html/2412.21001"}]
+
+I searched for papers matching your query, but the search results did not contain information specifically about "PivotRL" with the exact terms "static offline profiling," "reference policy outcome variance," and "pivot identification" that you're looking for.
+
+The search returned results on related topics in offline reinforcement learning, off-policy evaluation, and variance reduction techniques, but none of these appear to be the specific PivotRL paper you're interested in.
+
+To help you find the right paper, could you provide any additional context such as:
+- The approximate year of publication
+- Author names
+- Conference or venue where it was published
+- A more detailed description of what PivotRL does
+
+Alternatively, if you have a direct link or arXiv ID, that would help me locate the exact paper.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "91f5f054-1481-47d2-8c38-5f9c08229947",
+  "isSidechain": true,
+  "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+  "agentId": "a59ce1575dbd44253",
+  "type": "user",
+  "uuid": "0d476c1d-e7c6-41b4-87e3-f97548489d4b",
+  "sourceToolAssistantUUID": "91f5f054-1481-47d2-8c38-5f9c08229947",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-12T02:01:31.080Z_
+
+<details><summary>↩ Tool result · `toolu_015dhhD85qqCzQmRHcDJsiTS`</summary>
+
+```text
+Web search results for query: "RewardFlow ALFWorld 89.8% Qwen2.5-7B success rate results"
+
+Links: [{"title":"RewardFlow: Topology-Aware Reward Propagation on State Graphs for Agentic RL with Large Language Models","url":"https://arxiv.org/html/2603.18859"},{"title":"AI & ML Ops on X: \"With Qwen2.5-7B, it reaches an 82.3% success rate, outperforming GPT-4o (+40.3%), OpenAI-o3 (+18.3%), and GRPO (+14.0%), while using 62% fewer tokens. Paper: arxiv. org/pdf/2602.12662\" / X","url":"https://x.com/ai_ml_ops/status/2025343995916824788"},{"title":"1 Introduction","url":"https://arxiv.org/html/2603.09400"},{"title":"Qwen2.5-Math Technical Report: Toward Mathematical Expert Model via Self-Improvement","url":"https://arxiv.org/html/2409.12122v1"},{"title":"Explore | alphaXiv","url":"https://www.alphaxiv.org/"},{"title":"Updated ALFWorld Model Performance Metrics Model Success Rate Reward... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Updated-ALFWorld-Model-Performance-Metrics-Model-Success-Rate-Reward-Precision-Completion_tbl2_371311588"},{"title":"Reinforcement learning with random rewards actually works with Qwen 2.5","url":"https://www.interconnects.ai/p/reinforcement-learning-with-random"},{"title":"Reasoning or Memorization? Unreliable Results of Reinforcement Learning Due to Data Contamination","url":"https://arxiv.org/html/2507.10532v1"},{"title":"RewardBench 2: Advancing Reward Model Evaluation","url":"https://arxiv.org/html/2506.01937v1"},{"title":"LocalAI models","url":"https://localai.io/gallery.html"}]
+
+Based on the search results, I found relevant information about RewardFlow's performance on ALFWorld with Qwen2.5-7B.
+
+RewardFlow achieves an 89.8% success rate on ALFWorld with Qwen2.5-7B, which is 7.0% higher than GiGPO and ranks first or second in nearly all subtasks across all model sizes. Additionally, RewardFlow establishes state-of-the-art results in the Pick subtask (100% at 7B, 7.7% improvement over GRPO) and the Clean subtask (100% at 7B, 4.0% improvement over GiGPO).
+
+The particularly large gains on smaller models (1.5B/3B) demonstrate that RewardFlow's fine-grained rewards substantially reduce optimization difficulty and markedly improve agentic reasoning in lower-capacity models. These results come from a paper titled "RewardFlow: Topology-Aware Reward Propagation on State Graphs for Agentic RL with Large Language Models," available on arXiv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ece9b531-d3de-4642-b612-ea70b2a81eec",
+  "isSidechain": true,
+  "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+  "agentId": "a59ce1575dbd44253",
+  "type": "user",
+  "uuid": "69a7b3d6-cc76-4d79-8a72-59d746bce131",
+  "sourceToolAssistantUUID": "ece9b531-d3de-4642-b612-ea70b2a81eec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-12T02:01:34.319Z_
+
+Now let me read the RewardFlow paper more carefully and check the PivotRL paper's actual description of how pivots are identified.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "69a7b3d6-cc76-4d79-8a72-59d746bce131",
+  "isSidechain": true,
+  "agentId": "a59ce1575dbd44253",
+  "requestId": "req_011CawrHZidYLYpY7zyc3hdG",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "31b84830-ac2b-4dfb-9fa4-4918097a2d1a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KxQNgQf9ipwcs9GvccTBKm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 679,
+      "cache_creation_input_tokens": 1864,
+      "cache_read_input_tokens": 15460,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1864,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-12T02:01:37.268Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NtN6prgqxBH7Q3StiQvuZY`</summary>
+
+```json
+{
+  "query": "PivotRL arxiv 2603.21383 how pivots identified \"mixed outcomes\" turn-level reinforcement learning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "31b84830-ac2b-4dfb-9fa4-4918097a2d1a",
+  "isSidechain": true,
+  "agentId": "a59ce1575dbd44253",
+  "requestId": "req_011CawrHZidYLYpY7zyc3hdG",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4e080ee1-af05-4f5b-b2a9-dbcfab93a466",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KxQNgQf9ipwcs9GvccTBKm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 679,
+      "cache_creation_input_tokens": 1864,
+      "cache_read_input_tokens": 15460,
+      "output_tokens": 108,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1864
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 679,
+          "output_tokens": 108,
+          "cache_read_input_tokens": 15460,
+          "cache_creation_input_tokens": 1864,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1864,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-12T02:01:42.491Z_
+
+<details><summary>↩ Tool result · `toolu_01NtN6prgqxBH7Q3StiQvuZY`</summary>
+
+```text
+Web search results for query: "PivotRL arxiv 2603.21383 how pivots identified "mixed outcomes" turn-level reinforcement learning"
+
+Links: [{"title":"2026-3-24 PivotRL: High Accuracy Agentic Post-Training at Low Compute Cost","url":"https://arxiv.org/pdf/2603.21383"},{"title":"PivotRL: High Accuracy Agentic Post-Training at Low Compute Cost","url":"https://arxiv.org/html/2603.21383"},{"title":"[2603.21383] PivotRL: High Accuracy Agentic Post-Training at Low Compute Cost","url":"https://arxiv.org/abs/2603.21383"},{"title":"Paper page - PivotRL: High Accuracy Agentic Post-Training at Low Compute Cost","url":"https://huggingface.co/papers/2603.21383"},{"title":"Multi-turn Reinforcement Learning from Preference Human Feedback","url":"https://arxiv.org/html/2405.14655v1"},{"title":"PivotRL: High Accuracy Agentic Post-Training at Low Compute Cost | alphaXiv","url":"https://www.alphaxiv.org/overview/2603.21383"},{"title":"MAPO: Mixed Advantage Policy Optimization for Long-Horizon Multi-Turn Dialogue","url":"https://arxiv.org/html/2603.06194"},{"title":"Outcome-based Reinforcement Learning to Predict the Future","url":"https://arxiv.org/html/2505.17989v1"},{"title":"Consistently Simulating Human Personas with Multi-Turn Reinforcement Learning","url":"https://arxiv.org/html/2511.00222v1"},{"title":"[2405.14655] Multi-turn Reinforcement Learning from Preference Human Feedback","url":"https://arxiv.org/abs/2405.14655"}]
+
+Based on the search results for PivotRL (arXiv 2603.21383), here's how pivots are identified with "mixed outcomes" in turn-level reinforcement learning:
+
+PivotRL executes local, on-policy rollouts and filters for pivots: informative assistant turns where sampled actions exhibit mixed outcomes (i.e., both successes and failures).
+
+More specifically, pivots are informative intermediate turns where sampled actions exhibit high variance in outcomes. The key insight is that training requires only brief, partial rollouts from these pivot states rather than exhaustive full trajectories.
+
+The purpose of focusing on mixed outcomes is to identify turns with strong learning signals. This is particularly important because randomly selected intermediate turns frequently provide negligible learning signals, making pivot selection a critical mechanism for efficient turn-level training.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4e080ee1-af05-4f5b-b2a9-dbcfab93a466",
+  "isSidechain": true,
+  "promptId": "235226b7-c9fb-47cc-955c-3ec137490437",
+  "agentId": "a59ce1575dbd44253",
+  "type": "user",
+  "uuid": "2cc585de-8e2a-41c7-aabe-e913f170964a",
+  "sourceToolAssistantUUID": "4e080ee1-af05-4f5b-b2a9-dbcfab93a466",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-12T02:02:15.983Z_
+
+Here are my findings for each of the six papers:
+
+---
+
+## 1. RewardFlow (arXiv 2603.18859, March 2026)
+
+**Exists:** YES. The paper is titled "RewardFlow: Topology-Aware Reward Propagation on State Graphs for Agentic RL with Large Language Models."
+
+**Description accuracy:** ACCURATE. The paper does construct state-transition graphs from environment observations and propagates terminal rewards via BFS/Personalized PageRank. The 89.8% on ALFWorld with Qwen2.5-7B is confirmed -- it achieves 89.8% success rate, which is 7.0% higher than GiGPO. The use of Qwen2.5-7B as the base model is also confirmed.
+
+**No issues found with this reference.**
+
+Sources: [arXiv page](https://arxiv.org/abs/2603.18859), [HTML version](https://arxiv.org/html/2603.18859)
+
+---
+
+## 2. InfoTree (arXiv 2605.05262, May 2026)
+
+**Exists:** YES. The paper is titled "Maximizing Rollout Informativeness under a Fixed Budget: A Submodular View of Tree Search for Tool-Use Agentic Reinforcement Learning."
+
+**Description accuracy:** ACCURATE. The paper does formalize rollout allocation as a monotone submodular optimization problem. It uses UUCB (Uncertainty-aware Upper Confidence Bound) for state selection, where the UUCB terms arise as closed-form marginal gains of the submodular objective. The framework is called "InfoTree."
+
+**No issues found with this reference.**
+
+Sources: [arXiv page](https://arxiv.org/abs/2605.05262), [HTML version](https://arxiv.org/html/2605.05262)
+
+---
+
+## 3. PivotRL (arXiv 2603.21383, March 2026)
+
+**Exists:** YES. The paper is titled "PivotRL: High Accuracy Agentic Post-Training at Low Compute Cost."
+
+**Description accuracy:** PARTIALLY INACCURATE. Key concerns:
+- **arXiv ID:** The user listed 2603.21383, which is correct. (The user's original query had the right ID.)
+- **"static offline profiling of reference policy outcome variance":** This description appears to be inaccurate or at least misleading. According to the paper, PivotRL identifies pivots via **on-policy rollouts** (not static offline profiling), filtering for assistant turns where sampled actions exhibit **mixed outcomes** (both successes and failures). The pivots are identified dynamically during local on-policy rollouts, not through static offline profiling of a reference policy.
+- **"4x fewer rollout turns on SWE-Bench":** This is confirmed -- PivotRL achieves competitive accuracy with 4x fewer rollout turns compared to end-to-end RL on agentic coding tasks.
+
+**Issue: The mechanism for identifying pivots is misdescribed. It uses on-policy rollouts with mixed-outcome filtering, not "static offline profiling of reference policy outcome variance."**
+
+Sources: [arXiv page](https://arxiv.org/abs/2603.21383), [HTML version](https://arxiv.org/html/2603.21383), [MarkTechPost coverage](https://www.marktechpost.com/2026/03/25/nvidia-ai-introduces-pivotrl-a-new-ai-framework-achieving-high-agentic-accuracy-with-4x-fewer-rollout-turns-efficiently/)
+
+---
+
+## 4. BEACON (arXiv 2605.06078, May 2026)
+
+**Exists:** YES. The paper is titled "Milestone-Guided Policy Learning for Long-Horizon Language Agents." (Note: the paper appears to use "BEACON" as an acronym for this framework.)
+
+**Description accuracy:** ACCURATE. The paper detects milestones from state changes, applies temporal reward shaping within segments, and estimates advantages at **dual scales** to prevent distant failures from corrupting local action evaluation. The 92.9% success rate on ALFWorld is confirmed (nearly doubling GRPO's 53.5%).
+
+**No issues found with this reference.**
+
+Sources: [arXiv page](https://arxiv.org/abs/2605.06078), [HTML version](https://arxiv.org/html/2605.06078)
+
+---
+
+## 5. RTMC (arXiv 2604.11037, April 2026)
+
+**Exists:** YES. The paper is titled "RTMC: Step-Level Credit Assignment via Rollout Trees."
+
+**Description accuracy:** ACCURATE. RTMC exploits the natural tree structure that emerges when multiple rollouts are collected for the same problem (rollouts sharing common states form a tree). It produces unbiased per-step Monte Carlo advantages without any learned critic, using state-action signatures to match states across rollouts. The paper reports a 3.2pp improvement over GRPO on SWE-bench Verified.
+
+**No issues found with this reference.**
+
+Sources: [arXiv page](https://arxiv.org/abs/2604.11037), [HTML version](https://arxiv.org/html/2604.11037)
+
+---
+
+## 6. PRAISE (arXiv 2604.03675, April 2026)
+
+**Exists:** YES. The paper is titled "PRAISE: Prefix-Based Rollout Reuse in Agentic Search Training."
+
+**Description accuracy:** ACCURATE. PRAISE reuses trajectory prefixes for search training. Specifically, it extracts prefix states at different search turns from complete trajectories, elicits intermediate answers, and uses these prefixes to construct additional training trajectories and derive step-level rewards.
+
+**No issues found with this reference.**
+
+Sources: [arXiv page](https://arxiv.org/html/2604.03675)
+
+---
+
+## Summary
+
+| Paper | Exists | Description Accurate | Issues |
+|-------|--------|---------------------|--------|
+| RewardFlow | Yes | Yes | None |
+| InfoTree | Yes | Yes | None |
+| PivotRL | Yes | **Partially** | Pivot identification mechanism is misdescribed -- uses on-policy mixed-outcome filtering, not "static offline profiling of reference policy outcome variance" |
+| BEACON | Yes | Yes | None |
+| RTMC | Yes | Yes | None |
+| PRAISE | Yes | Yes | None |
+
+**One reference needs correction:** PivotRL's description of how pivots are identified should be revised. The paper uses on-policy rollouts that filter for turns with mixed outcomes (high variance in sampled action results), not "static offline profiling of reference policy outcome variance."
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2cc585de-8e2a-41c7-aabe-e913f170964a",
+  "isSidechain": true,
+  "agentId": "a59ce1575dbd44253",
+  "requestId": "req_011CawrJQVXc7KjHXFzKcuMS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b43b11b1-6197-4710-9ce6-9adcb2a9e50b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "283d6351-5ef7-4e15-8ceb-bae22e467cd2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J5tKApbxutHeYawsvUcsnj",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1460,
+      "cache_read_input_tokens": 17324,
+      "output_tokens": 1596,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1460
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1596,
+          "cache_read_input_tokens": 17324,
+          "cache_creation_input_tokens": 1460,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1460,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---

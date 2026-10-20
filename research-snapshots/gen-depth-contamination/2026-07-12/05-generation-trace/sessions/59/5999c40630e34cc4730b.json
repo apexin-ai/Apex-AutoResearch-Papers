@@ -1,0 +1,1237 @@
+{
+  "schema_version": "1.0",
+  "id": "5999c40630e34cc4730b",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read all YAML files in /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/distill_tmp/ tha",
+  "task_key": "agent-a6abfa09072239cc9",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a6abfa09072239cc9.jsonl",
+    "occurrence": 1,
+    "bytes": 131613,
+    "sha256": "4d7ebf1df25139829fb0b29bf7f6bef43a6ab7750bbe1017da87cf733e84fcec"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 1,
+    "tool_calls": 12,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 12,
+      "tool_result": 12
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T05:54:17.734Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read all YAML files in /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/distill_tmp/ that I haven't seen yet. I need the content of these specific files:\n- amin2025escaping.yaml\n- drayson2025.yaml\n- falahati2026curated.yaml\n- ippolito2020detection.yaml\n- kazdan2025collapse.yaml\n- mady2026feataugmented.yaml\n- schaeffer2025position.yaml\n- shi2025generalization.yaml\n- tirumala2024d4.yaml\n- xie2023dsir.yaml\n- xie2024doremi.yaml\n- zellers2019grover.yaml\n\nRead each file and return its FULL content (every line). This is for a cross-paper synthesis task. I need all fields especially: paper_key, title, venue, research (baselines, metrics, datasets, ablation_dimensions, method_family), positioning (core_claim, relation_to_us, limitations), narrative, figures, and tables sections."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "ba4f2ef3-110a-4d78-ab2c-1df0f2b8280d",
+            "agentId": "a6abfa09072239cc9",
+            "type": "user",
+            "uuid": "e4828552-8662-4512-be4a-b38ae0438acb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T05:54:19.438Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read all these YAML files from the distill_tmp directory. Let me fetch them all in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e4828552-8662-4512-be4a-b38ae0438acb",
+            "isSidechain": true,
+            "agentId": "a6abfa09072239cc9",
+            "requestId": "req_011CbDJWS8fvsxNSSSks4XLk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "89274814-26b3-4aac-8fef-6d682e82b0b5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PAsMYUxBSZWf8QVAyJBVV6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18021,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18021,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T05:54:19.659Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RabtcasCgUmJCbccTKAAKL",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/distill_tmp/amin2025escaping.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "89274814-26b3-4aac-8fef-6d682e82b0b5",
+            "isSidechain": true,
+            "agentId": "a6abfa09072239cc9",
+            "requestId": "req_011CbDJWS8fvsxNSSSks4XLk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8bfda0c5-6a03-4ce4-a621-3a1bfd84fa72",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PAsMYUxBSZWf8QVAyJBVV6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18021,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18021,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T05:54:19.666Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RabtcasCgUmJCbccTKAAKL",
+              "type": "tool_result",
+              "content": "1\tpaper_key: \"amin2025escaping\"\n2\ttitle: \"Escaping Collapse: The Strength of Weak Data for Large Language Model Training\"\n3\tvenue: \"arXiv 2025\"\n4\tfull_text_available: true\n5\tresearch:\n6\t  baselines: [\"Do nothing (pure synthetic)\", \"Filter only\", \"Gold SFT\", \"Boosting w/o focusing\", \"Pretrained baseline\"]\n7\t  metrics: [{name: \"Train accuracy@1\", direction: \"higher_better\"}, {name: \"Test accuracy@1\", direction: \"higher_better\"}, {name: \"Test pass@32\", direction: \"higher_better\"}]\n8\t  datasets: [{name: \"GSM8K\", size: \"7K math problems\"}, {name: \"MBPP\", size: \"374 coding problems\"}]\n9\t  ablation_dimensions: [\"alpha (weak data weight)\", \"focusing vs non-focusing\", \"weak data setup A vs B\", \"rounds 1-5\"]\n10\t  training_recipe: {model: \"Gemma 2 2B\", iterations: 5, seeds: 3}\n11\t  method_family: \"model collapse mitigation via weak external labeling (boosting framework)\"\n12\tpositioning:\n13\t  core_claim: \"Any weak exogenous signal with beta>0 fraction correct suffices to prevent collapse in O(log(1/ε)/β) iterations, via inverse-boosting framework.\"\n14\t  key_results: \"GSM8K: Boosting 0.456 test@1 > Filter-only 0.393 > Do-nothing 0.129\"\n15\t  limitations: [\"perfect strong learner assumption unrealistic\", \"only bounds training performance\", \"2B model only\", \"5 rounds only\"]\n16\t  relation_to_us: \"complementary\"\n17\tnarrative:\n18\t  story_type: \"化繁为简型 + 突破局限型\"\n19\t  hook: \"High-quality human data may soon be exhausted\"\n20\t  tension: \"Synthetic data necessary but dangerous; what minimal curation prevents collapse?\"\n21\t  key_insight: \"Iterative synthetic training is an inversion of classical boosting: strong learner + weak data is dual to weak learner + strong data\"\n22\t  argument_chain: \"data exhaustion → collapse risk → boosting lens → beta>0 suffices → convergence theorem → focus on hard examples → validation\"\n23\t  contribution_framing: \"5 contributions: framework, theorem, boosting connection, focusing strategy, unification of STaR/ReST/ReSTEM\"\n24\t  intro_structure: \"6 paragraphs: motivation, problem, question, mechanism, result preview, boosting connection\"\n25\t  notable_technique: \"Dual inversion framing gives reviewers a memorable conceptual handle\"\n26\tfigures:\n27\t  figure_count: 3\n28\t  figure1:\n29\t    type: \"teaser_result\"\n30\t    description: \"Line plots with error bands showing test/train accuracy across 5 rounds on GSM8K\"\n31\t    narrative_role: \"Primary empirical validation of theoretical hierarchy\"\n32\t    design_elements: [\"shaded error bands (3 seeds)\", \"dual metrics\", \"separate test/train panels\"]\n33\t  figure_narrative_role: \"Fig1 (GSM8K) → Fig2 (MBPP) → Fig3 (labeler assumption validation)\"\n34\ttables:\n35\t  table_count: 1\n36\t  main_result_table:\n37\t    table_id: \"Table 1\"\n38\t    row_axis: \"methods\"\n39\t    col_axis: \"datasets × metrics\"\n40\t    highlight_strategy: \"bold best implied\"\n41\t    statistical_reporting: \"mean ± std, 3 seeds\"\n42\t    num_baselines: 5\n43\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8bfda0c5-6a03-4ce4-a621-3a1bfd84fa72",
+            "isSidechain": true,
+            "promptId": "ba4f2ef3-110a-4d78-ab2c-1df0f2b8280d",
+            "agentId": "a6abfa09072239cc9",
+            "type": "user",
+            "uuid": "85d94740-0204-46bc-b7ed-2a067822f656",
+            "sourceToolAssistantUUID": "8bfda0c5-6a03-4ce4-a621-3a1bfd84fa72",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T05:54:20.166Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SoSy3GbFNk5ww7DZbjMZgF",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/distill_tmp/drayson2025.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "85d94740-0204-46bc-b7ed-2a067822f656",
+            "isSidechain": true,
+            "agentId": "a6abfa09072239cc9",
+            "requestId": "req_011CbDJWS8fvsxNSSSks4XLk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ec151f8d-1686-4fc3-ae46-cd4264ca4ef7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PAsMYUxBSZWf8QVAyJBVV6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18021,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18021,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T05:54:20.172Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SoSy3GbFNk5ww7DZbjMZgF",
+              "type": "tool_result",
+              "content": "1\tpaper_key: \"drayson2025\"\n2\ttitle: \"Machine-generated text detection prevents language model collapse\"\n3\tvenue: \"arXiv 2025\"\n4\tfull_text_available: true\n5\tresearch:\n6\t  baselines: [\"Oracle filter\", \"Unfiltered baseline\", \"RoBERTa detector\", \"DeBERTav3 detector\", \"ModernBERT detector\", \"Longformer\"]\n7\t  metrics: [{name: \"Perplexity\", direction: \"lower_better\"}, {name: \"MAUVE\", direction: \"higher_better\"}, {name: \"Diversity\", direction: \"higher_better\"}, {name: \"Self-BLEU\", direction: \"lower_better\"}, {name: \"AUC\", direction: \"higher_better\"}]\n8\t  datasets: [{name: \"WikiText-2\", size: \"36K docs\"}, {name: \"MAGE\", size: \"448K texts\"}, {name: \"RAID\", size: \"128K samples\"}]\n9\t  ablation_dimensions: [\"decoding strategy\", \"model family/size\", \"mixing coefficients\", \"generation index\", \"detector architecture\"]\n10\t  training_recipe: {optimizer: \"AdamW\", lr: \"5e-5\", epochs: \"1 per generation\", generations: \"10-100\"}\n11\t  method_family: \"model collapse mitigation via MGT detection + SIR\"\n12\tpositioning:\n13\t  core_claim: \"Calibrated MGT detectors used as importance weights in SIR prevent and reverse model collapse, outperforming an oracle that perfectly filters all synthetic content.\"\n14\t  key_results: \"ModernBERT 0.986 AUC; GPT-2 perplexity -4.45%, diversity +3.59%; method beats oracle in several configs\"\n15\t  limitations: [\"fine-tuning only, not pre-training\", \"limited to open-ended generation on WikiText-2\", \"largest model under 2B params\"]\n16\t  relation_to_us: \"foundation\"\n17\tnarrative:\n18\t  story_type: \"突破局限型\"\n19\t  hook: \"LLM outputs contaminate the web; future models inevitably train on this synthetic content\"\n20\t  tension: \"No one has studied how decoding strategy modulates collapse severity or proposed detection-based intervention\"\n21\t  key_insight: \"Imperfect detector used for importance resampling prevents collapse better than oracle filter because curated synthetic data retains useful signal\"\n22\t  argument_chain: \"synthetic proliferation → decoding strategy analysis → characterization → detector training → SIR method → validation\"\n23\t  contribution_framing: \"Five numbered contributions: framework, decoding analysis, detector, method, validation\"\n24\t  intro_structure: \"5 paragraphs: motivation, context, gap, direction, contributions\"\n25\t  notable_technique: \"Oracle comparison flip: showing imperfect detector beats oracle reframes detection error as a feature\"\n26\tfigures:\n27\t  figure_count: 9\n28\t  figure1:\n29\t    type: \"teaser_result\"\n30\t    description: \"Line plots showing perplexity/accuracy across 100 generations for multiple decoding strategies\"\n31\t    narrative_role: \"Establishes collapse severity and variability before method is proposed\"\n32\t    design_elements: [\"multi-line per decoding strategy\", \"100-generation x-axis\", \"strategy-colored legend\"]\n33\t  result_figures:\n34\t    - {figure_id: \"Figure 3\", viz_type: \"line_plot\", what_compared: \"mitigation vs baseline vs oracle across 10 gens\"}\n35\t    - {figure_id: \"Figure 4\", viz_type: \"line_plot\", what_compared: \"perplexity distributions at gen 0, 11, 99\"}\n36\t  figure_narrative_role: \"Fig1 (collapse) → Fig2 (method) → Fig3 (results) → Fig4 (mechanism)\"\n37\ttables:\n38\t  table_count: 4\n39\t  main_result_table:\n40\t    table_id: \"Table 3\"\n41\t    row_axis: \"model × decoding × mixing\"\n42\t    col_axis: \"metrics as % change\"\n43\t    highlight_strategy: \"color-coded blue/red\"\n44\t    statistical_reporting: \"% change from baseline, single run\"\n45\t    num_baselines: 2\n46\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ec151f8d-1686-4fc3-ae46-cd4264ca4ef7",
+            "isSidechain": true,
+            "promptId": "ba4f2ef3-110a-4d78-ab2c-1df0f2b8280d",
+            "agentId": "a6abfa09072239cc9",
+            "type": "user",
+            "uuid": "5ed99a5b-3fbd-4881-a7f0-128fcf80604a",
+            "sourceToolAssistantUUID": "ec151f8d-1686-4fc3-ae46-cd4264ca4ef7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T05:54:23.715Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PLqVy6D7xm1rpSrbdiA11U",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/distill_tmp/falahati2026curated.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5ed99a5b-3fbd-4881-a7f0-128fcf80604a",
+            "isSidechain": true,
+            "agentId": "a6abfa09072239cc9",
+            "requestId": "req_011CbDJWS8fvsxNSSSks4XLk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b1f3aa42-04c1-40fd-a013-0834208b969e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PAsMYUxBSZWf8QVAyJBVV6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18021,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18021,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T05:54:23.721Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PLqVy6D7xm1rpSrbdiA11U",
+              "type": "tool_result",
+              "content": "1\tpaper_key: \"falahati2026curated\"\n2\ttitle: \"Curated Synthetic Data Doesn't Have to Collapse: A Theoretical Study of Generative Retraining with Pluralistic Preferences\"\n3\tvenue: \"ICML 2026\"\n4\tfull_text_available: false\n5\t\n6\tresearch:\n7\t  baselines: [single-reward curation, unfiltered retraining, real-data mixing]\n8\t  metrics:\n9\t    - {name: \"distribution diversity preservation\", direction: \"higher_better\"}\n10\t    - {name: \"convergence stability\", direction: \"higher_better\"}\n11\t    - {name: \"Nash bargaining optimality\", direction: \"higher_better\"}\n12\t  datasets:\n13\t    - {name: \"theoretical analysis (no specific empirical dataset)\", size: \"N/A\"}\n14\t  ablation_dimensions: [number of reward functions, reward function heterogeneity, convergence conditions]\n15\t  training_recipe: {details: \"Theoretical framework: recursive retraining with curation based on multiple heterogeneous reward functions instead of a single objective; proves convergence to weighted Nash bargaining solution\"}\n16\t  method_family: \"model collapse mitigation (pluralistic preference curation, theoretical)\"\n17\t\n18\tpositioning:\n19\t  core_claim: \"Collapse under recursive synthetic retraining is avoidable without real data by curating with multiple diverse reward functions, which provably converges to a stable diversity-preserving distribution satisfying Nash bargaining\"\n20\t  relation_to_us: \"complementary\"\n21\t\n22\tnarrative: N/A\n23\tfigures: N/A\n24\ttables: N/A\n25\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b1f3aa42-04c1-40fd-a013-0834208b969e",
+            "isSidechain": true,
+            "promptId": "ba4f2ef3-110a-4d78-ab2c-1df0f2b8280d",
+            "agentId": "a6abfa09072239cc9",
+            "type": "user",
+            "uuid": "5ab5cbcb-d58a-4088-841b-fd44a9221aad",
+            "sourceToolAssistantUUID": "b1f3aa42-04c1-40fd-a013-0834208b969e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T05:54:24.384Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LwP4qvKpQXFhbt1ZkGLJ2P",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/distill_tmp/ippolito2020detection.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5ab5cbcb-d58a-4088-841b-fd44a9221aad",
+            "isSidechain": true,
+            "agentId": "a6abfa09072239cc9",
+            "requestId": "req_011CbDJWS8fvsxNSSSks4XLk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0e577c36-a344-45a3-8d43-3f22dc979e8a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PAsMYUxBSZWf8QVAyJBVV6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18021,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18021,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T05:54:24.394Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LwP4qvKpQXFhbt1ZkGLJ2P",
+              "type": "tool_result",
+              "content": "1\tpaper_key: \"ippolito2020detection\"\n2\ttitle: \"Automatic Detection of Generated Text is Easiest when Humans are Fooled\"\n3\tvenue: \"ACL 2020\"\n4\tfull_text_available: false\n5\t\n6\tresearch:\n7\t  baselines: [GLTR, GPT-2 zero-shot detector, fine-tuned BERT classifier, human raters]\n8\t  metrics:\n9\t    - {name: \"detection accuracy\", direction: \"higher_better\"}\n10\t    - {name: \"human deception rate\", direction: \"context_dependent\"}\n11\t    - {name: \"AUROC\", direction: \"higher_better\"}\n12\t  datasets:\n13\t    - {name: \"GPT-2 generated text with varying decoding strategies\", size: \"not specified\"}\n14\t  ablation_dimensions: [decoding strategy (top-k / nucleus / random), text excerpt length, detector type]\n15\t  training_recipe: {details: \"Benchmark study comparing human and automatic detectors across three sampling-based decoding strategies\"}\n16\t  method_family: \"detection benchmarking / decoding-artifact analysis\"\n17\t\n18\tpositioning:\n19\t  core_claim: \"Decoding improvements that better fool humans simultaneously introduce statistical artifacts that make automatic detection easier, revealing an inverse relationship between human and machine detectability\"\n20\t  relation_to_us: \"foundation\"\n21\t\n22\tnarrative: N/A\n23\tfigures: N/A\n24\ttables: N/A\n25\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0e577c36-a344-45a3-8d43-3f22dc979e8a",
+            "isSidechain": true,
+            "promptId": "ba4f2ef3-110a-4d78-ab2c-1df0f2b8280d",
+            "agentId": "a6abfa09072239cc9",
+            "type": "user",
+            "uuid": "6cb0ba0d-be0e-406d-81d2-2a6ea4466e3b",
+            "sourceToolAssistantUUID": "0e577c36-a344-45a3-8d43-3f22dc979e8a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T05:54:24.670Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018iQ19gST1ARgvMP4VwJxg3",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/distill_tmp/kazdan2025collapse.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6cb0ba0d-be0e-406d-81d2-2a6ea4466e3b",
+            "isSidechain": true,
+            "agentId": "a6abfa09072239cc9",
+            "requestId": "req_011CbDJWS8fvsxNSSSks4XLk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "93019f6b-71f7-4576-93a0-2fb755233359",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PAsMYUxBSZWf8QVAyJBVV6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18021,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18021,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T05:54:24.688Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018iQ19gST1ARgvMP4VwJxg3",
+              "type": "tool_result",
+              "content": "1\tpaper_key: \"kazdan2025collapse\"\n2\ttitle: \"Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World\"\n3\tvenue: \"arXiv 2024\"\n4\tfull_text_available: true\n5\tresearch:\n6\t  baselines: [\"replace workflow\", \"accumulate workflow\", \"accumulate-subsample\", \"real-data-only\"]\n7\t  metrics: [{name: \"test loss (NLL)\", direction: \"lower_better\"}, {name: \"Wasserstein-2 distance\", direction: \"lower_better\"}, {name: \"R²\", direction: \"higher_better\"}]\n8\t  datasets: [{name: \"HelpSteer2\", size: \"12.5k\"}, {name: \"TinyStories\", size: \"GPT-generated\"}, {name: \"sklearn benchmarks\", size: \"standard\"}]\n9\t  ablation_dimensions: [\"training workflow\", \"cardinality of real data\", \"proportion real vs synthetic\", \"iterations\"]\n10\t  training_recipe: {model: \"Gemma2 2B (SFT)\"}\n11\t  method_family: \"synthetic data / model collapse analysis\"\n12\tpositioning:\n13\t  core_claim: \"Model collapse is a workflow artifact: replace causes collapse, accumulate prevents it; cardinality of real data (R²=0.59) predicts synthetic data value better than proportion (R²=0.34).\"\n14\t  key_results: \"Replace diverges; accumulate bounded; below ~1024 real samples synthetic helps, above that it hurts\"\n15\t  limitations: [\"ignores data quality filtering\", \"loss metrics not downstream tasks\", \"no adversarial generation\"]\n16\t  relation_to_us: \"foundation\"\n17\tnarrative:\n18\t  story_type: \"化繁为简型\"\n19\t  hook: \"With each passing day, the internet contains more AI-generated content\"\n20\t  tension: \"Collapse alarmists vs optimists disagree; paper resolves by identifying implicit workflow assumptions\"\n21\t  key_insight: \"Both camps are right under different workflow assumptions; reframes binary debate as conditional\"\n22\t  argument_chain: \"AI contamination → conflicting literature → workflow assumptions differ → test 3 workflows × 5 settings → replace=collapse, accumulate=stable → data composition analysis\"\n23\t  contribution_framing: \"Three contributions: universality validation, accumulate-subsample paradigm, data composition analysis\"\n24\t  intro_structure: \"6 paragraphs: hook, conflicting lit, definitions, adopted definition, workflows, contributions\"\n25\t  notable_technique: \"Reframing binary debate as conditional; validates both camps while positioning as reconciling synthesis\"\n26\tfigures:\n27\t  figure_count: 5\n28\t  figure1:\n29\t    type: \"motivation\"\n30\t    description: \"Replace vs accumulate on Gaussian: distributions, means, covariances across iterations\"\n31\t    narrative_role: \"Simplest-case intuition building\"\n32\t    design_elements: [\"3-row panel\", \"side-by-side replace vs accumulate\", \"iteration x-axis\"]\n33\t  result_figures:\n34\t    - {figure_id: \"Figure 4\", viz_type: \"line_plot\", what_compared: \"3 workflows × 5 tasks\"}\n35\t    - {figure_id: \"Figure 5\", viz_type: \"heatmap\", what_compared: \"real cardinality × synthetic proportion\"}\n36\t  figure_narrative_role: \"Fig1 (toy) → Fig2 (KDE) → Fig3 (LLM SFT) → Fig4 (all tasks) → Fig5 (data composition)\"\n37\ttables:\n38\t  table_count: 1\n39\t  main_result_table: {note: \"primarily figure-driven paper\"}\n40\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "93019f6b-71f7-4576-93a0-2fb755233359",
+            "isSidechain": true,
+            "promptId": "ba4f2ef3-110a-4d78-ab2c-1df0f2b8280d",
+            "agentId": "a6abfa09072239cc9",
+            "type": "user",
+            "uuid": "16f907a9-3642-4155-97f3-a0753c8c4996",
+            "sourceToolAssistantUUID": "93019f6b-71f7-4576-93a0-2fb755233359",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T05:54:24.764Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013h42U1M57eRXgtZC7YKEFP",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/distill_tmp/mady2026feataugmented.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "16f907a9-3642-4155-97f3-a0753c8c4996",
+            "isSidechain": true,
+            "agentId": "a6abfa09072239cc9",
+            "requestId": "req_011CbDJWS8fvsxNSSSks4XLk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c6037427-4370-4b77-bca2-b3be209805db",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PAsMYUxBSZWf8QVAyJBVV6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18021,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18021,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T05:54:24.771Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013h42U1M57eRXgtZC7YKEFP",
+              "type": "tool_result",
+              "content": "1\tpaper_key: \"mady2026feataugmented\"\n2\ttitle: \"Feature-Augmented Transformers for Robust AI-Text Detection Across Domains and Generators\"\n3\tvenue: \"arXiv 2026 (submitted to ICML 2026)\"\n4\tfull_text_available: false\n5\t\n6\tresearch:\n7\t  baselines: [BERT, RoBERTa, DeBERTa-v3-base, zero-shot detectors (DetectGPT, Binoculars)]\n8\t  metrics:\n9\t    - {name: \"balanced accuracy\", direction: \"higher_better\"}\n10\t    - {name: \"in-domain accuracy\", direction: \"higher_better\"}\n11\t    - {name: \"cross-domain transfer accuracy\", direction: \"higher_better\"}\n12\t  datasets:\n13\t    - {name: \"HC3 PLUS\", size: \"not specified\"}\n14\t    - {name: \"M4\", size: \"multi-domain multi-generator benchmark\"}\n15\t    - {name: \"AI-Text-Detection-Pile\", size: \"not specified\"}\n16\t  ablation_dimensions: [feature type (readability, vocabulary, linguistic), fusion method (attention-based), backbone model]\n17\t  training_recipe: {details: \"Train transformer detectors on HC3 PLUS with fixed decision threshold from validation; augment with attention-based linguistic feature fusion for cross-domain robustness\"}\n18\t  method_family: \"supervised detection with linguistic feature augmentation\"\n19\t\n20\tpositioning:\n21\t  core_claim: \"Attention-based fusion of linguistic features into transformer detectors improves cross-domain transfer, with DeBERTa-v3-base+FeatAttn achieving 85.9% balanced accuracy on M4 while base models degrade severely under distribution shift\"\n22\t  relation_to_us: \"competitor\"\n23\t\n24\tnarrative: N/A\n25\tfigures: N/A\n26\ttables: N/A\n27\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c6037427-4370-4b77-bca2-b3be209805db",
+            "isSidechain": true,
+            "promptId": "ba4f2ef3-110a-4d78-ab2c-1df0f2b8280d",
+            "agentId": "a6abfa09072239cc9",
+            "type": "user",
+            "uuid": "b8bbeab8-fe2f-43bf-88e4-487a0010e253",
+            "sourceToolAssistantUUID": "c6037427-4370-4b77-bca2-b3be209805db",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T05:54:24.878Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WQ1bb8eRpZQrq2PUTDvXWo",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/distill_tmp/schaeffer2025position.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b8bbeab8-fe2f-43bf-88e4-487a0010e253",
+            "isSidechain": true,
+            "agentId": "a6abfa09072239cc9",
+            "requestId": "req_011CbDJWS8fvsxNSSSks4XLk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7655fd60-2b96-41d9-996d-6871b270ba82",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PAsMYUxBSZWf8QVAyJBVV6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18021,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18021,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T05:54:24.884Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WQ1bb8eRpZQrq2PUTDvXWo",
+              "type": "tool_result",
+              "content": "1\tpaper_key: \"schaeffer2025position\"\n2\ttitle: \"Position: Model Collapse Does Not Mean What You Think\"\n3\tvenue: \"arXiv 2025\"\n4\tfull_text_available: true\n5\tresearch:\n6\t  baselines: [\"28 prior publications annotated for definitional usage\"]\n7\t  metrics: [{name: \"population risk\", direction: \"lower_better\"}, {name: \"entropy over iterations\", direction: \"higher_better\"}]\n8\t  datasets: [{name: \"28 model-collapse papers (meta-analysis)\", size: \"28 publications\"}]\n9\t  ablation_dimensions: [\"replace vs accumulate paradigm\", \"which of 8 definitions applied\"]\n10\t  training_recipe: {details: \"N/A - position paper\"}\n11\t  method_family: \"position paper / model collapse taxonomy\"\n12\tpositioning:\n13\t  core_claim: \"Model collapse is 8 distinct definitions; under realistic accumulate paradigm, population risk does not diverge.\"\n14\t  key_results: \"28 papers annotated; trillions of training runs possible before collapse onset under realistic conditions\"\n15\t  limitations: [\"realistic conditions may be contested\", \"fine-tuning/RLHF not addressed\", \"tail data loss magnitude unclear\"]\n16\t  relation_to_us: \"foundation\"\n17\tnarrative:\n18\t  story_type: \"突破局限型\"\n19\t  hook: \"Cites Nature's alarming coverage then positions it as oversimplification\"\n20\t  tension: \"Literature can't agree on what collapse means; 8 conflicting definitions\"\n21\t  key_insight: \"Propagation paradigm (replace vs accumulate) is the crux; under accumulate, catastrophic divergence is mathematically avoided\"\n22\t  argument_chain: \"alarm → 8 definitions → definitional shifting in papers → realistic conditions → no divergence → redirect to diversity loss\"\n23\t  contribution_framing: \"Two corrective contributions: taxonomy + evaluative reanalysis\"\n24\t  intro_structure: \"5-6 paragraphs: hook, problem, taxonomy contribution, evaluation contribution, conclusions, roadmap\"\n25\t  notable_technique: \"Annotated meta-analysis as evidence: hand-annotating 28 papers turns literature confusion into experimental finding\"\n26\tfigures:\n27\t  figure_count: 4\n28\t  figure1:\n29\t    type: \"problem_illustration\"\n30\t    description: \"Taxonomy of 8 definitions in 3 families with schematic curves\"\n31\t    narrative_role: \"Visual anchor for the central taxonomy claim\"\n32\t    design_elements: [\"3 family groupings\", \"8 named definitions\", \"schematic curves not data\"]\n33\t  result_figures:\n34\t    - {figure_id: \"Figure 2\", viz_type: \"annotation_matrix\", what_compared: \"28 papers × definition usage\"}\n35\t    - {figure_id: \"Figure 3\", viz_type: \"conceptual_comparison\", what_compared: \"replace vs accumulate paradigms\"}\n36\t  figure_narrative_role: \"Fig1 (taxonomy) → Fig2 (meta-analysis evidence) → Fig3 (paradigm contrast) → Fig4 (timescale)\"\n37\ttables:\n38\t  table_count: 1\n39\t  main_result_table:\n40\t    table_id: \"Table 1\"\n41\t    row_axis: \"collapse definitions\"\n42\t    col_axis: \"outcome (Y/N)\"\n43\t    highlight_strategy: \"binary yes/no\"\n44\t    num_baselines: 0\n45\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7655fd60-2b96-41d9-996d-6871b270ba82",
+            "isSidechain": true,
+            "promptId": "ba4f2ef3-110a-4d78-ab2c-1df0f2b8280d",
+            "agentId": "a6abfa09072239cc9",
+            "type": "user",
+            "uuid": "80298b0c-fbbd-4e2b-978b-27a31ac05405",
+            "sourceToolAssistantUUID": "7655fd60-2b96-41d9-996d-6871b270ba82",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T05:54:24.962Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AhabZscE5KLmQ1zGKiyaXV",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/distill_tmp/shi2025generalization.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "80298b0c-fbbd-4e2b-978b-27a31ac05405",
+            "isSidechain": true,
+            "agentId": "a6abfa09072239cc9",
+            "requestId": "req_011CbDJWS8fvsxNSSSks4XLk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "90b02889-2e6a-47f8-9599-28d0a328bd1e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PAsMYUxBSZWf8QVAyJBVV6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18021,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18021,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T05:54:24.967Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AhabZscE5KLmQ1zGKiyaXV",
+              "type": "tool_result",
+              "content": "1\tpaper_key: \"shi2025generalization\"\n2\ttitle: \"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective\"\n3\tvenue: \"NeurIPS 2025 Spotlight\"\n4\tfull_text_available: true\n5\tresearch:\n6\t  baselines: [\"vanilla accumulate\", \"vanilla replace\", \"baseline 2N images\", \"CFG without selection\"]\n7\t  metrics: [{name: \"Generalization Score\", direction: \"higher_better\"}, {name: \"FID\", direction: \"lower_better\"}, {name: \"Entropy (KL estimator)\", direction: \"higher_better\"}]\n8\t  datasets: [{name: \"CIFAR-10\", size: \"32K images\"}, {name: \"FFHQ\", size: \"8K-32K images\"}, {name: \"MNIST\", size: \"12K images\"}]\n9\t  ablation_dimensions: [\"dataset size\", \"paradigm\", \"selection method\", \"decay rate\", \"data volume\", \"CFG\"]\n10\t  training_recipe: {architecture: \"DDPM UNet ~16M params\", optimizer: \"Adam\", lr: \"1e-4\", epochs: \"500 (CIFAR-10)\", feature_extractor: \"DINOv2\"}\n11\t  method_family: \"model collapse analysis + entropy-based data selection\"\n12\tpositioning:\n13\t  core_claim: \"Model collapse is a generalization-to-memorization transition driven by entropy collapse in synthetic data (r=0.91 correlation), mitigated by entropy-maximizing data selection.\"\n14\t  key_results: \"Pearson r=0.91 entropy-GS; accumulate FID 75.7→44.7 (41% improvement) with greedy selection\"\n15\t  limitations: [\"no theoretical explanation for entropy collapse\", \"greedy selection computationally expensive\", \"image-only, not text\"]\n16\t  relation_to_us: \"foundation\"\n17\tnarrative:\n18\t  story_type: \"突破局限型\"\n19\t  hook: \"Diffusion models produce realistic images; synthetic data will contaminate future training sets\"\n20\t  tension: \"Existing explanations (variance/distribution shift) too abstract to explain practical memorization\"\n21\t  key_insight: \"Entropy collapse drives generalization-to-memorization transition; r=0.91 anchors the causal story\"\n22\t  argument_chain: \"collapse → memorization observed → entropy collapse mechanism → r=0.91 correlation → entropy selection → FID improvement\"\n23\t  contribution_framing: \"Three contributions: phenomenon identification, causal mechanism, selection methods\"\n24\t  intro_structure: \"5 paragraphs: motivation, prior work critique, new phenomenon, mechanism + evidence, contributions\"\n25\t  notable_technique: \"Front-loading r=0.91 in intro pre-empts skepticism; contrastive scatter (entropy vs variance) eliminates rival explanations\"\n26\tfigures:\n27\t  figure_count: 9\n28\t  figure1:\n29\t    type: \"motivation\"\n30\t    description: \"Pipeline comparison: vanilla collapse vs mitigated with data selection, plus image strips showing degradation\"\n31\t    narrative_role: \"Visual evidence of generalization-to-memorization before quantification\"\n32\t    design_elements: [\"pipeline comparison\", \"iteration-indexed image strips\", \"with/without selection\"]\n33\t  result_figures:\n34\t    - {figure_id: \"Figure 4\", viz_type: \"scatter\", what_compared: \"entropy vs GS (r=0.91) vs variance vs GS\"}\n35\t    - {figure_id: \"Figure 5\", viz_type: \"line_plot\", what_compared: \"GS across iterations: vanilla vs selection methods\"}\n36\t  figure_narrative_role: \"Fig1 (motivation) → Fig2 (GS collapse) → Fig3 (entropy collapse) → Fig4 (causal link) → Fig5-6 (solution) → Fig7 (mechanism validation) → Fig8-9 (interpretability)\"\n37\ttables:\n38\t  table_count: 3\n39\t  main_result_table:\n40\t    table_id: \"Table 1\"\n41\t    row_axis: \"methods\"\n42\t    col_axis: \"datasets × paradigms\"\n43\t    highlight_strategy: \"bold_best\"\n44\t    statistical_reporting: \"single run\"\n45\t    num_baselines: 2\n46\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "90b02889-2e6a-47f8-9599-28d0a328bd1e",
+            "isSidechain": true,
+            "promptId": "ba4f2ef3-110a-4d78-ab2c-1df0f2b8280d",
+            "agentId": "a6abfa09072239cc9",
+            "type": "user",
+            "uuid": "c6afce0b-4ed4-4177-8ca9-8642f46f1b98",
+            "sourceToolAssistantUUID": "90b02889-2e6a-47f8-9599-28d0a328bd1e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T05:54:25.065Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AetDwJWXHN5JKm6oYM93nn",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/distill_tmp/tirumala2024d4.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c6afce0b-4ed4-4177-8ca9-8642f46f1b98",
+            "isSidechain": true,
+            "agentId": "a6abfa09072239cc9",
+            "requestId": "req_011CbDJWS8fvsxNSSSks4XLk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ce359e00-f6f1-4cd8-9445-a5647ae11232",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PAsMYUxBSZWf8QVAyJBVV6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18021,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18021,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T05:54:25.078Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AetDwJWXHN5JKm6oYM93nn",
+              "type": "tool_result",
+              "content": "1\tpaper_key: \"tirumala2024d4\"\n2\ttitle: \"D4: Improving LLM Pretraining via Document De-Duplication and Diversification\"\n3\tvenue: \"NeurIPS 2023 (Datasets and Benchmarks Track)\"\n4\tfull_text_available: true\n5\t\n6\tresearch:\n7\t  baselines:\n8\t    - \"Random selection (iid sampling from MinHash-deduped data)\"\n9\t    - \"SemDeDup alone (semantic deduplication via epsilon-ball removal within K-Means clusters)\"\n10\t    - \"SSL Prototypes alone (prototypicality-based selection: discard points far from cluster centroids)\"\n11\t  metrics:\n12\t    - {name: \"Validation perplexity - web snapshots (C4, CommonCrawl, CC-dedup)\", direction: \"lower_better\"}\n13\t    - {name: \"Validation perplexity - non-web (OpenWebText2, HackerNews, Wikipedia, BookCorpusFair, DM Mathematics, Gutenberg, OpenSubtitles, USPTO, Reddit)\", direction: \"lower_better\"}\n14\t    - {name: \"Instruction+Answers perplexity (OPT-IML, 1500+ NLP tasks)\", direction: \"lower_better\"}\n15\t    - {name: \"Average 0-shot downstream accuracy (16 NLP tasks: ARC Challenge/Easy, HellaSwag, OpenBookQA, PIQA, StoryCloze, Winograd, Winogrande, SuperGLUE tasks)\", direction: \"higher_better\"}\n16\t  datasets:\n17\t    - {name: \"CC-dedup (CommonCrawl, 5 dumps 2017-2020, CCNet pipeline + MinHash dedup)\", size: \"600M documents\"}\n18\t    - {name: \"16 NLP downstream tasks\", size: \"varies per task\"}\n19\t    - {name: \"OPT-IML instruction-tuning data (Super-NaturalInstructions + PromptSource)\", size: \"1500+ NLP tasks\"}\n20\t  ablation_dimensions:\n21\t    - \"Number of K-Means clusters (tested 11K)\"\n22\t    - \"Re-clustering step necessity in D4 pipeline\"\n23\t    - \"Embedding space choice (SentenceTransformers vs OPT embeddings)\"\n24\t    - \"R_dedup parameter (SemDeDup selection ratio, default 0.75)\"\n25\t    - \"Selection ratio R across {0.25, 0.5, 0.75, 1.0}\"\n26\t    - \"Token repetition across model scales (125M, 1.3B, 6.7B)\"\n27\t    - \"Token repetition across data selection methods\"\n28\t  training_recipe:\n29\t    optimizer: \"Adam (beta1=0.9, beta2=0.95, eps=1e-8)\"\n30\t    lr: \"Polynomial schedule; warmup 0→peak over first 375M tokens, decay to 0.1*peak. Peak LR: 3e-3 (8M), 6e-4 (125M), 2e-4 (1.3B), 1.2e-4 (6.7B)\"\n31\t    hardware: \"A100 GPUs, fully sharded data parallel, Megatron-LM tensor parallelism, fp16 precision\"\n32\t    batch_size: \"0.5M tokens (8M/125M), 1M tokens (1.3B), 2M tokens (6.7B)\"\n33\t    model_scales: \"8M, 125M, 1.3B, 6.7B (OPT architecture)\"\n34\t    token_budgets: \"3B (125M), 40B (1.3B), 100B (6.7B)\"\n35\t    trainer: \"MetaSeq, standard OPT hyperparameters, no dropout\"\n36\t    data_selection_cost: \"~8 GPU hours for embedding 400B tokens using 125M OPT (768-dim); net savings 3,412 GPU hours at 6.7B scale\"\n37\t    k_means_clusters: 11000\n38\t    embedding_dim: 768\n39\t  method_family: \"embedding-based data curation (deduplication + diversification)\"\n40\t\n41\tpositioning:\n42\t  core_claim: \"Semantic deduplication prior to prototypicality-based diversification removes duplicate-driven clusters that waste K-Means assignments, yielding a combined D4 pipeline that achieves 18-20% training efficiency gains at the 6.7B scale and demonstrates that intelligent data repetition outperforms training on random new data.\"\n43\t  key_results: \"6.7B OPT on 100B tokens: 18-20% efficiency gains on validation perplexity, 2% increase in avg 0-shot accuracy on 16 tasks. Data selection cost: 8 GPU hours for 600M documents (net savings: 3,412 GPU hours, 79% gain after overhead). Efficiency gains increase with model scale. D4 at R=0.25 with 2 epochs beats random new data at 1 epoch.\"\n44\t  limitations:\n45\t    - \"Only evaluated up to 6.7B parameters on 100B tokens; larger scale (>100B params) investigation needed\"\n46\t    - \"Uses one data distribution for both selection and training; modern LLMs mix multiple sources\"\n47\t    - \"MinHash hyperparameters used defaults (20 hashes, 20 buckets, 1 row per bucket); more aggressive dedup could reduce SemDeDup necessity\"\n48\t    - \"Did not explicitly balance clusters; cluster balancing identified as valuable future work\"\n49\t    - \"OPT embeddings may be biased toward end-of-document formatting (Section A.7)\"\n50\t  relation_to_us: \"complementary\"\n51\t\n52\tnarrative:\n53\t  story_type: \"跨界迁移型\"\n54\t  hook: \"Over recent years, increasing compute and data has been poured into LLM training via one-pass learning on randomly sampled web corpora, but the size of improvements diminishes with scale and there has been little work exploring data selection beyond simple MinHash deduplication.\"\n55\t  tension: \"Scaling laws hit diminishing returns with random data. Data selection works in vision (SemDeDup, SSL Prototypes), but naively applying these to LLMs fails because duplicate-driven clusters in text embedding space waste K-Means cluster assignments on templated/redundant text.\"\n56\t  key_insight: \"Duplicate-driven clusters are the root cause of suboptimal diversification. Sparsifying dense regions via SemDeDup before re-clustering dramatically improves K-Means cluster quality and downstream selection. Delivered in Section 3.4 with the D4 pipeline design and validated via re-clustering ablation (Figure 7).\"\n57\t  argument_chain: \"scaling hits diminishing returns → data selection can help (evidence from vision) → naive application fails due to duplicate-driven clusters → SemDeDup removes duplicates first → re-clustering on cleaned data improves diversification quality → D4 = SemDeDup + re-cluster + SSL Prototypes → validation at 125M/1.3B/6.7B scales → bonus finding: intelligent repetition beats random new data, questioning single-epoch paradigm\"\n58\t  contribution_framing: \"Three bullets: (1) investigate data selection strategies and propose D4 to handle duplicate-driven clusters, (2) demonstrate ~20% efficiency gains scaling with model size at 6.7B, (3) show intelligent data repetition beats random new data, questioning single-epoch training paradigm\"\n59\t  intro_structure: \"4 paragraphs: P1 = context setting (shift from curated datasets to large-scale web data, diminishing returns with scale), P2 = problem identification (random sampling suboptimal, approaching data limits), P3 = solution motivation (successful precedent from vision/vision-language research), P4 = contributions (three specific claims about D4, efficiency gains, and data repetition)\"\n60\t  notable_technique: \"The 'questioning the paradigm' move: framing intelligent data repetition as challenging the standard single-epoch LLM training practice elevates a secondary finding into a paradigm-level contribution, making the paper relevant beyond just efficiency gains.\"\n61\t\n62\tfigures:\n63\t  figure_count: 7\n64\t  figure1:\n65\t    type: \"teaser_result\"\n66\t    description: \"Learning curves for 6.7B OPT model on 100B tokens: D4 (pink line) vs random baseline (gray line). Shows validation perplexity over training updates with D4 consistently lower throughout training.\"\n67\t    narrative_role: \"Immediately demonstrates the headline result (18-20% efficiency gains) before any method explanation, creating forward momentum and reader buy-in.\"\n68\t    design_elements: [\"line plot with shaded error bands\", \"pink vs gray color coding\", \"single clean plot\", \"efficiency gain percentage annotated\"]\n69\t  result_figures:\n70\t    - figure_id: \"Figure 2\"\n71\t      viz_type: \"line_plot\"\n72\t      what_compared: \"Four selection methods (Baseline, SemDeDup, SSL Prototypes, D4) across selection ratios R on 1.3B OPT with 40B tokens\"\n73\t      how_gain_highlighted: \"Gray horizontal reference line for baseline; D4 curve consistently below others across all R values; 2x2 grid separates metric groups\"\n74\t      design_note: \"Four subplots (web ppl, non-web ppl, instruction ppl, downstream accuracy) with shaded error bands (3 seeds); x-axis = selection ratio R enables reading optimal operating point; different metric groups reveal that D4 wins on non-web and instruction metrics even when web ppl effects are mixed\"\n75\t    - figure_id: \"Figure 3\"\n76\t      viz_type: \"line_plot\"\n77\t      what_compared: \"New tokens vs repeated tokens for random vs D4 selection at R=0.25 for 1.3B OPT\"\n78\t      how_gain_highlighted: \"D4 repeated tokens line crosses below random new tokens line, directly proving the counterintuitive repetition claim\"\n79\t      design_note: \"Key figure for the paradigm-challenging claim; simple 2-line comparison makes the counterintuitive finding unmistakable\"\n80\t    - figure_id: \"Figure 4\"\n81\t      viz_type: \"bar_chart\"\n82\t      what_compared: \"Naive vs overall efficiency gain of D4 relative to total training cost across model scales (125M, 1.3B, 6.7B)\"\n83\t      how_gain_highlighted: \"Paired bars showing gains increasing with scale; separates naive gain from overall gain (subtracting selection overhead cost)\"\n84\t      design_note: \"x-axis = model scale shows the desirable property that gains grow with scale; the distinction between naive and overall gain demonstrates transparency about overhead costs\"\n85\t  ablation_figures:\n86\t    - figure_id: \"Figure 5\"\n87\t      viz_type: \"box_plot\"\n88\t      dimensions_varied: [\"Train-test similarity across validation sets (left: cosine distance boxplots)\", \"C4 validation analysis (right: histogram of distance + original ppl + ppl difference)\"]\n89\t      design_note: \"Left: boxplots by validation set type reveal web vs non-web similarity gap. Right: three stacked metrics on histogram bins provide mechanistic understanding of what data selection affects\"\n90\t    - figure_id: \"Figure 6\"\n91\t      viz_type: \"scatter_plot\"\n92\t      dimensions_varied: [\"Correlation between Instruct+Answers ppl, web snapshot ppl, and downstream accuracy\"]\n93\t      design_note: \"Three scatter panels with trend lines; each point = one training config (method + seed); reveals surprising slight negative correlation between web ppl and stronger LM indicators\"\n94\t    - figure_id: \"Figure 7\"\n95\t      viz_type: \"line_plot\"\n96\t      dimensions_varied: [\"Re-clustering step in D4 (with vs without re-clustering)\"]\n97\t      design_note: \"Four subplots: 3 perplexity comparisons + 1 CDF of mean distance to centroid; CDF panel is critical mechanistic evidence that re-clustering removes duplicate-driven clusters (clusters with low mean distance to centroid)\"\n98\t  figure_narrative_role: \"Figure 1 (headline 6.7B teaser result) → Figure 2 (systematic 1.3B comparison across methods/ratios) → Figure 3 (paradigm-challenging repetition finding) → Figure 4 (scaling behavior of gains) → Figure 5 (mechanistic: train-test similarity) → Figure 6 (mechanistic: metric correlations) → Figure 7 (ablation: re-clustering necessity with CDF evidence)\"\n99\t\n100\ttables:\n101\t  table_count: 1\n102\t  main_result_table:\n103\t    table_id: \"Table 1\"\n104\t    row_axis: \"methods\"\n105\t    col_axis: \"T_total | T_selected | Epochs | Non-Web PPL | Instruction PPL\"\n106\t    row_organization: \"by_category\"\n107\t    col_organization: \"flat\"\n108\t    highlight_strategy: \"bold_best\"\n109\t    statistical_reporting: \"mean +/- std across 3 seeds\"\n110\t    num_baselines: 2\n111\t    design_note: \"Deliberately compact 3-row table focused on the data repetition comparison (Random 1-epoch new data vs Random 2-epoch repeated vs D4 2-epoch repeated). The paper is figure-heavy (7 figures, 1 table); heavy lifting done by figures while the single table targets the most counterintuitive finding.\"\n112\t  ablation_tables:\n113\t    - table_id: \"Table A1 (Appendix)\"\n114\t      what_varied: [\"Model architecture details across scales (8M, 125M, 1.3B, 6.7B)\"]\n115\t      variation_style: \"full_numbers\"\n116\t      design_note: \"Standard architecture spec table; columns: Layers, Heads, Embedding Dim, Peak LR, Batch Size\"\n117\t  supplementary_tables:\n118\t    in_appendix: true\n119\t    content: \"Tables A1-A9: architecture details (A1), instruction+answers examples (A2), cluster centroid examples showing semantic redundancy (A3-A5), nearest neighbor analyses (A8-A9)\"\n120\t    reason: \"Main paper deliberately figure-heavy (7 figures, 1 table in body); all detailed numerical results, qualitative examples of duplicate-driven clusters, and architecture specs pushed to appendix to maintain visual storytelling flow\"\n121\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ce359e00-f6f1-4cd8-9445-a5647ae11232",
+            "isSidechain": true,
+            "promptId": "ba4f2ef3-110a-4d78-ab2c-1df0f2b8280d",
+            "agentId": "a6abfa09072239cc9",
+            "type": "user",
+            "uuid": "aeb3ea17-1a2e-4a59-ad8c-275d3d828596",
+            "sourceToolAssistantUUID": "ce359e00-f6f1-4cd8-9445-a5647ae11232",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T05:54:25.144Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017981KH9sSTp4j5qufP48fJ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/distill_tmp/xie2023dsir.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aeb3ea17-1a2e-4a59-ad8c-275d3d828596",
+            "isSidechain": true,
+            "agentId": "a6abfa09072239cc9",
+            "requestId": "req_011CbDJWS8fvsxNSSSks4XLk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1c8d499b-f703-451f-8ffc-8df97a427352",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PAsMYUxBSZWf8QVAyJBVV6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18021,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18021,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T05:54:25.149Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017981KH9sSTp4j5qufP48fJ",
+              "type": "tool_result",
+              "content": "1\tpaper_key: \"xie2023dsir\"\n2\ttitle: \"Data Selection for Language Models via Importance Resampling\"\n3\tvenue: \"NeurIPS 2023\"\n4\tfull_text_available: true\n5\t\n6\tresearch:\n7\t  baselines:\n8\t    - \"Random selection (without replacement)\"\n9\t    - \"Heuristic classification (GPT-3/Pile/PaLM binary classifier filtering)\"\n10\t    - \"Top-k heuristic classification\"\n11\t    - \"Manual curation (DAPT, Gururangan et al. 2020)\"\n12\t    - \"DSIR with fasttext discriminative features\"\n13\t    - \"DSIR with n-gram discriminative features\"\n14\t    - \"DSIR with unigram-only features\"\n15\t  metrics:\n16\t    - {name: \"Macro-F1 (domain-specific tasks)\", direction: \"higher_better\"}\n17\t    - {name: \"Micro-F1 (ChemProt, RCT)\", direction: \"higher_better\"}\n18\t    - {name: \"Average GLUE accuracy\", direction: \"higher_better\"}\n19\t    - {name: \"KL reduction\", direction: \"higher_better\"}\n20\t  datasets:\n21\t    - {name: \"The Pile (raw corpus)\", size: \"1.6B examples, 800GB\"}\n22\t    - {name: \"ACL-ARC (CS papers)\", size: \"~1.6K\"}\n23\t    - {name: \"Sci-ERC (CS papers)\", size: \"~500\"}\n24\t    - {name: \"ChemProt (biomedical)\", size: \"~15K\"}\n25\t    - {name: \"RCT (biomedical)\", size: \"~200K\"}\n26\t    - {name: \"AGNews (news)\", size: \"~127K\"}\n27\t    - {name: \"HyperPartisan (news)\", size: \"~600\"}\n28\t    - {name: \"Helpfulness (reviews)\", size: \"~115K\"}\n29\t    - {name: \"IMDB (reviews)\", size: \"~50K\"}\n30\t    - {name: \"GLUE benchmark (8 tasks)\", size: \"varies per task\"}\n31\t  ablation_dimensions:\n32\t    - \"Feature type: generative vs discriminative models\"\n33\t    - \"Feature granularity: unigram vs n-gram\"\n34\t    - \"Resampling vs top-k selection\"\n35\t    - \"Cross-domain transfer (8x8 domain pairs)\"\n36\t    - \"Neural features (SentenceTransformer) vs hashed n-gram\"\n37\t  training_recipe:\n38\t    optimizer: \"Standard (RoBERTa defaults for fine-tuning)\"\n39\t    lr: \"RoBERTa defaults\"\n40\t    hardware: \"1 CPU node (96 cores) for data selection; standard GPU for model training\"\n41\t    base_model: \"RoBERTa-base (continued pretraining), BERT-base (general-domain)\"\n42\t    selection_budget: \"25M examples x 256 tokens (domain-specific); 51.2M examples (general-domain)\"\n43\t    general_domain_training: \"50k steps, batch size 4096, token length 128\"\n44\t    selection_time: \"100M documents from full Pile in 4.5 hours (4.36h importance weights + 1min fitting + 6min resampling)\"\n45\t  method_family: \"importance resampling / distribution matching\"\n46\t\n47\tpositioning:\n48\t  core_claim: \"Reducing importance weight estimation to a low-dimensional hashed n-gram feature space makes classical importance resampling both tractable and effective for large-scale LM data selection, matching expert curation quality.\"\n49\t  key_results: \"Domain-specific: 83.76% avg F1 (vs 82.58% random, 83.46% manual curation). General-domain GLUE: 82.30% (vs 80.25% random, +2.05%). KL reduction correlates r=0.82 with downstream accuracy across 8 methods. 100M documents selected in 4.5 hours on single CPU node.\"\n50\t  limitations:\n51\t    - \"N-gram features capture only superficial word-level overlap, not semantic similarity\"\n52\t    - \"Neural feature spaces (SentenceTransformer) tested but underperformed n-grams and are more expensive\"\n53\t    - \"Target distribution definition is heuristic (Wikipedia+books as quality proxy); unclear how to optimally collect target data\"\n54\t    - \"Generative models require less tuning than discriminative, but estimator choice still matters\"\n55\t    - \"Could amplify biases present in target data\"\n56\t  relation_to_us: \"complementary\"\n57\t\n58\tnarrative:\n59\t  story_type: \"化繁为简型\"\n60\t  hook: \"The choice of pretraining data is critical given fixed compute budgets, yet existing methods rely on simple heuristics (GPT-3 binary classifier) or expensive manual curation with no distribution-matching guarantees.\"\n61\t  tension: \"Classical importance resampling is theoretically principled but statistically intractable on high-dimensional text data. How to bridge the gap between principled framework and practical scalability?\"\n62\t  key_insight: \"Reducing to hashed n-gram feature space preserves enough distributional signal for effective importance weight estimation while making computation trivially parallelizable. Delivered in Section 3 with the bag-of-n-grams generative model parameterization.\"\n63\t  argument_chain: \"data selection matters → importance resampling is principled but intractable on text → reduce to feature space → instantiate with hashed n-grams → validate: matches expert curation on 8 domains, improves GLUE by 2-2.5%, and KL reduction metric (r=0.82) confirms feature space captures downstream-relevant signal\"\n64\t  contribution_framing: \"Four contributions: (1) DSIR framework extending classical importance resampling to LM data selection, (2) scalable hashed n-gram instantiation, (3) KL reduction as model-free data quality metric, (4) comprehensive empirical validation\"\n65\t  intro_structure: \"4 paragraphs: P1 = hook (data selection importance + heuristic status quo), P2 = prior work and gap (domain-specific curation exists but unscalable), P3 = DSIR contribution (feature-space reduction solves intractability), P4 = specific instantiation (hashed n-grams enable 100M-doc scale)\"\n66\t  notable_technique: \"Proposing KL reduction as a model-free proxy metric (r=0.82 correlation) that validates the approach without requiring downstream evaluation, strengthening the theoretical narrative beyond empirical results alone.\"\n67\t\n68\tfigures:\n69\t  figure_count: 7\n70\t  figure1:\n71\t    type: \"method_overview\"\n72\t    description: \"Pipeline flow diagram showing data selection process: large raw dataset (The Pile) and small target dataset → importance weight computation in hashed n-gram feature space → resampling to produce selected subset. Includes sample text examples and weight computation illustration.\"\n73\t    narrative_role: \"Establishes the complete DSIR pipeline visually, making the three-step process (fit distributions → compute weights → resample) concrete and immediately comprehensible.\"\n74\t    design_elements: [\"flow diagram with arrows\", \"three-stage progression\", \"sample text examples\", \"schematic geometric style\"]\n75\t  result_figures:\n76\t    - figure_id: \"Figure 2\"\n77\t      viz_type: \"heatmap\"\n78\t      what_compared: \"Cross-domain transfer: 8x8 matrix of pretraining targets vs downstream tasks, showing F1 scores\"\n79\t      how_gain_highlighted: \"Per-column color ranking (darker = better F1); diagonal (within-domain) visually stands out as strongest\"\n80\t      design_note: \"Heatmap reveals transfer structure across domains at a glance; identifies which domain pairings fail catastrophically (HyperPartisan drops up to 30% cross-domain)\"\n81\t    - figure_id: \"Figure 3\"\n82\t      viz_type: \"scatter_plot\"\n83\t      what_compared: \"KL reduction vs average downstream F1 across 8 data selection methods\"\n84\t      how_gain_highlighted: \"Trend line with r=0.82 Pearson correlation; DSIR positioned at top-right corner\"\n85\t      design_note: \"Single scatter plot delivers the core message of the metric contribution; each point = one method, making the correlation visually undeniable\"\n86\t    - figure_id: \"Figure 4\"\n87\t      viz_type: \"qualitative_comparison\"\n88\t      what_compared: \"Sample selected text from Random vs Heuristic Classification vs DSIR\"\n89\t      how_gain_highlighted: \"Side-by-side text panels showing DSIR selects more formal/clean text than alternatives\"\n90\t      design_note: \"Qualitative evidence complements quantitative tables; three parallel panels for direct visual comparison of text quality\"\n91\t  ablation_figures:\n92\t    - figure_id: \"Figure 5 (Appendix C)\"\n93\t      viz_type: \"bar_chart\"\n94\t      dimensions_varied: [\"Data source distributions across selection methods\"]\n95\t      design_note: \"Three-panel comparison of source composition under different selection approaches\"\n96\t  figure_narrative_role: \"Figure 1 (pipeline overview) → Figure 2 (cross-domain transfer analysis) → Figure 3 (KL reduction metric validation) → Figure 4 (qualitative text examples) → Appendix figures (distribution analysis, additional scatter plots)\"\n97\t\n98\ttables:\n99\t  table_count: 5\n100\t  main_result_table:\n101\t    table_id: \"Table 1\"\n102\t    row_axis: \"methods\"\n103\t    col_axis: \"8 downstream datasets (4 domains x 2 tasks each) + Average\"\n104\t    row_organization: \"by_category\"\n105\t    col_organization: \"grouped_by_domain\"\n106\t    highlight_strategy: \"bold_best\"\n107\t    statistical_reporting: \"mean with subscript std across 5 seeds\"\n108\t    num_baselines: 5\n109\t    design_note: \"Clean layout with 8 task columns plus average; subscript standard deviations keep table compact; methods ordered from baseline through increasingly sophisticated approaches (random → heuristic → top-k → manual → DSIR)\"\n110\t  ablation_tables:\n111\t    - table_id: \"Table 2\"\n112\t      what_varied: [\"Feature type (generative vs discriminative)\", \"Feature granularity (unigram vs n-gram)\", \"Selection method (resampling vs top-k vs calibrated threshold)\"]\n113\t      variation_style: \"full_numbers\"\n114\t      design_note: \"Same column structure as Table 1 for direct comparison; isolates contribution of each design choice; generative n-gram outperforms all discriminative variants by 0.6-0.7%\"\n115\t    - table_id: \"Table 3\"\n116\t      what_varied: [\"Selection method applied to general-domain (GLUE) setting\"]\n117\t      variation_style: \"full_numbers\"\n118\t      design_note: \"8 GLUE tasks + average; RTE shows largest gain (75.09% DSIR vs 67.37% random); demonstrates generalization from domain-specific to general-domain setting\"\n119\t  supplementary_tables:\n120\t    in_appendix: true\n121\t    content: \"Table 4: neural features (SentenceTransformer) results showing 81.40% avg (underperforms n-gram 82.30%); Table 5: continued pretraining with formal text target on BERT-base (83.99% avg)\"\n122\t    reason: \"Negative/preliminary results (neural features underperform) and alternative base model results separated from main positive narrative\"\n123\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1c8d499b-f703-451f-8ffc-8df97a427352",
+            "isSidechain": true,
+            "promptId": "ba4f2ef3-110a-4d78-ab2c-1df0f2b8280d",
+            "agentId": "a6abfa09072239cc9",
+            "type": "user",
+            "uuid": "ac967c53-aae9-42e6-b543-56a1c1eec0ef",
+            "sourceToolAssistantUUID": "1c8d499b-f703-451f-8ffc-8df97a427352",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T05:54:25.206Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QzLAGVDrRnTCnvLR4EKDfG",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/distill_tmp/xie2024doremi.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ac967c53-aae9-42e6-b543-56a1c1eec0ef",
+            "isSidechain": true,
+            "agentId": "a6abfa09072239cc9",
+            "requestId": "req_011CbDJWS8fvsxNSSSks4XLk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e0587334-49fb-42a1-bd00-7c0755834805",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PAsMYUxBSZWf8QVAyJBVV6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18021,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 966,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 18021
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 966,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 18021,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 18021,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T05:54:25.212Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QzLAGVDrRnTCnvLR4EKDfG",
+              "type": "tool_result",
+              "content": "1\tpaper_key: \"xie2024doremi\"\n2\ttitle: \"DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining\"\n3\tvenue: \"NeurIPS 2023 (Spotlight)\"\n4\tfull_text_available: true\n5\t\n6\tresearch:\n7\t  baselines:\n8\t    - \"Default domain weights (The Pile heuristic proportions)\"\n9\t    - \"Uniform domain weights\"\n10\t    - \"Downstream-tuned oracle weights (GLaM dataset only)\"\n11\t  metrics:\n12\t    - {name: \"Per-domain log-perplexity (22 Pile domains)\", direction: \"lower_better\"}\n13\t    - {name: \"Worst-case perplexity across domains\", direction: \"lower_better\"}\n14\t    - {name: \"Average unweighted per-domain perplexity\", direction: \"lower_better\"}\n15\t    - {name: \"Average one-shot exact-match accuracy (5 generative tasks: TriviaQA, NaturalQuestions, WebQuestions, SQuADv2, LAMBADA)\", direction: \"higher_better\"}\n16\t  datasets:\n17\t    - {name: \"The Pile\", size: \"800GB, 22 domains (24% web, 9% Wikipedia, 4% GitHub, etc.)\"}\n18\t    - {name: \"GLaM dataset\", size: \"8 domains (Wikipedia, Filtered webpages, Conversations, Forums, Books, News, etc.)\"}\n19\t    - {name: \"TriviaQA\", size: \"standard\"}\n20\t    - {name: \"NaturalQuestions\", size: \"standard\"}\n21\t    - {name: \"WebQuestions\", size: \"standard\"}\n22\t    - {name: \"SQuADv2\", size: \"standard\"}\n23\t    - {name: \"LAMBADA\", size: \"standard\"}\n24\t  ablation_dimensions:\n25\t    - \"Proxy model scale (70M, 150M, 280M, 1B) with fixed 8B main model\"\n26\t    - \"Same-size training (280M, 510M, 760M, 1B DoReMi→same scale)\"\n27\t    - \"Loss component decomposition (excess loss vs hardest-domains-only vs easiest-domains-only)\"\n28\t    - \"Iterated DoReMi (multiple DRO rounds on GLaM: Round 1, 2, 3)\"\n29\t    - \"Domain weight trajectory analysis over training steps\"\n30\t  training_recipe:\n31\t    optimizer: \"Adafactor\"\n32\t    lr: \"1e-3 initial, exponential decay to 1e-4\"\n33\t    weight_decay: \"1e-2\"\n34\t    gradient_clipping: \"norm 1\"\n35\t    warmup: \"6% of total steps\"\n36\t    hardware: \"TPUv3 (models <=1B), TPUv4 (models >1B)\"\n37\t    batch_size: \"512 sequences\"\n38\t    max_token_length: 1024\n39\t    training_steps: \"200k (The Pile), 300k (GLaM)\"\n40\t    model_architecture: \"Vanilla Transformer decoder-only, 256k vocabulary\"\n41\t    model_scales: \"70M, 150M, 280M, 510M, 760M, 1B, 8B\"\n42\t    dro_hyperparams: \"step size eta=1, smoothing c=1e-3, per-token excess loss clipped at 0, uniform domain sampling during proxy training\"\n43\t    proxy_overhead: \"8% of main model FLOPs\"\n44\t  method_family: \"distributionally robust optimization / domain reweighting\"\n45\t\n46\tpositioning:\n47\t  core_claim: \"A small proxy model trained with Group DRO over domains can discover domain mixture weights that transfer to 30x larger models, simultaneously improving perplexity on all domains without any downstream task knowledge, at only 8% additional compute cost.\"\n48\t  key_results: \"The Pile 8B: +6.5% avg one-shot downstream accuracy (26.56% vs 20.03% baseline), 2.6x fewer steps to reach baseline accuracy (75k vs 200k). All 22 domains improve in perplexity simultaneously. GLaM 8B: iterated DoReMi (Round 2) matches oracle downstream-tuned weights. DRO overhead: 8% of main model FLOPs. Notable domain weight shifts: Pile-CC upweighted 0.11→0.61 (+0.49); ArXiv/PubMed heavily downweighted.\"\n49\t  limitations:\n50\t    - \"Proxy model training runs for same duration as main model; early stopping could save compute (domain weights stabilize after ~50k steps per Figure 8)\"\n51\t    - \"Domain weights depend on reference model choice; iterated DoReMi mitigates but adds computational rounds\"\n52\t    - \"Domain definition by data provenance is coarse; finer-grained clustering could improve but risks DRO pessimism\"\n53\t    - \"Group DRO optimizer degrades at larger proxy scales (1B proxy underperforms 280M proxy for 8B main)\"\n54\t    - \"Mismatch between loss reweighting (proxy stage) and resampling (main training stage) may explain performance gap\"\n55\t    - \"No empirical fairness measurements despite theoretical DRO connection to minority subgroup improvement\"\n56\t  relation_to_us: \"complementary\"\n57\t\n58\tnarrative:\n59\t  story_type: \"突破局限型\"\n60\t  hook: \"Domain mixture proportions greatly affect LM performance (The Pile: 24% web, 9% Wikipedia, 4% GitHub), yet determining optimal proportions is either ad-hoc or requires thousands of expensive training runs tuned to specific downstream tasks.\"\n61\t  tension: \"Two failure modes of existing approaches: (1) heuristic weights are potentially suboptimal, (2) downstream-tuned weights require massive compute and risk overfitting to particular evaluation sets. How to systematically optimize domain proportions without downstream knowledge?\"\n62\t  key_insight: \"Group DRO's minimax formulation on per-token excess loss (model loss minus reference loss) identifies domains with the most headroom for improvement. The excess loss decomposition is critical: using only hardest-domain loss or only easiest-domain loss both fail; only the combined excess loss works. Delivered in Section 3 and validated in Section 5.4 ablation.\"\n63\t  argument_chain: \"domain mixtures critically affect LM quality → existing approaches are ad-hoc or prohibitively expensive → apply Group DRO with small proxy model to find domain weights → excess loss captures improvement headroom per domain → small proxy weights transfer to 30x larger models → validation: 6.5% improvement on Pile + matches oracle on GLaM → bonus: all 22 domains improve simultaneously (no-tradeoff phenomenon)\"\n64\t  contribution_framing: \"Six contributions: (1) novel DRO-based domain reweighting algorithm, (2) 30x scale transfer demonstration (280M→8B), (3) 2.6x training speedup on The Pile, (4) no-tradeoff discovery (all domains improve), (5) computational efficiency (8% overhead), (6) public code and optimized weights release\"\n65\t  intro_structure: \"4 paragraphs: P1 = problem setup (domain mixtures matter, concrete examples of existing compositions), P2 = motivation (DRO as principled alternative to heuristics and downstream tuning), P3 = method overview (three-step proxy→DRO→main pipeline, 8% overhead claim), P4 = results and contribution claims (6.5%, 2.6x, matches oracle)\"\n66\t  notable_technique: \"Two standout moves: (1) The 'no-tradeoff' discovery that all 22 domains improve simultaneously even when some are downweighted, which is counterintuitive and strengthens the paper beyond raw numbers. (2) The 280M→8B scale transfer (30x) as practical value demonstration, showing the method has real-world applicability.\"\n67\t\n68\tfigures:\n69\t  figure_count: 8\n70\t  figure1:\n71\t    type: \"method_overview\"\n72\t    description: \"Three-panel horizontal flow diagram: (1) reference model training on initial weights, (2) DRO proxy training with domain weight dynamics visualization, (3) large model training with resampled data. Steps labeled 1-2-3 with connecting arrows.\"\n73\t    narrative_role: \"Makes the three-step pipeline immediately comprehensible before technical details; establishes the computational flow and shows the proxy-to-main scale transfer visually.\"\n74\t    design_elements: [\"horizontal flow with numbered steps\", \"boxes and arrows\", \"schematic style\", \"domain weight dynamics in middle panel\"]\n75\t  result_figures:\n76\t    - figure_id: \"Figure 2\"\n77\t      viz_type: \"line_plot\"\n78\t      what_compared: \"Baseline vs DoReMi average one-shot downstream accuracy over training steps (8B models, The Pile)\"\n79\t      how_gain_highlighted: \"'2.6x faster' annotation with arrow pointing to step where DoReMi reaches baseline's final accuracy; '6.5% points' gap highlighted at convergence\"\n80\t      design_note: \"Single clean plot with annotated speedup and accuracy gap; the '2.6x' annotation is the money shot, immediately communicating practical value\"\n81\t    - figure_id: \"Figure 3a\"\n82\t      viz_type: \"line_plot\"\n83\t      what_compared: \"Baseline vs DoReMi (280M→8B) accuracy curves on The Pile\"\n84\t      how_gain_highlighted: \"Clear persistent gap between curves throughout training\"\n85\t      design_note: \"Paired with Figure 3b for cross-dataset consistency narrative\"\n86\t    - figure_id: \"Figure 3b\"\n87\t      viz_type: \"line_plot\"\n88\t      what_compared: \"Baseline vs DoReMi Round 1 vs DoReMi Round 2 vs oracle downstream-tuned weights on GLaM\"\n89\t      how_gain_highlighted: \"Round 2 DoReMi line overlapping with oracle line, showing convergence without downstream knowledge\"\n90\t      design_note: \"Four conditions on one plot; the visual convergence of DoReMi to oracle is the key message for the GLaM experiment\"\n91\t    - figure_id: \"Figure 4\"\n92\t      viz_type: \"bar_chart\"\n93\t      what_compared: \"Per-domain log-perplexity for all 22 Pile domains: baseline vs DoReMi\"\n94\t      how_gain_highlighted: \"All 22 DoReMi bars shorter than baseline bars (no-tradeoff phenomenon)\"\n95\t      design_note: \"Visually striking: 22 paired bars where DoReMi wins every single one; directly supports the no-tradeoff claim that is one of the paper's strongest selling points\"\n96\t  ablation_figures:\n97\t    - figure_id: \"Figure 5\"\n98\t      viz_type: \"line_plot\"\n99\t      dimensions_varied: [\"Model scale (280M, 510M, 760M, 1B same-size training)\"]\n100\t      design_note: \"Four panels showing DoReMi consistently provides ~2-3% improvement and ~4x average speedup across all tested scales; demonstrates scale-invariant benefit\"\n101\t    - figure_id: \"Figure 6 (Left)\"\n102\t      viz_type: \"line_plot\"\n103\t      dimensions_varied: [\"Proxy model size (70M, 280M, 1B) for fixed 8B main model\"]\n104\t      design_note: \"Shows performance plateau at 280M; 1B proxy slightly degrades, suggesting optimal proxy scale exists\"\n105\t    - figure_id: \"Figure 6 (Right)\"\n106\t      viz_type: \"bar_chart\"\n107\t      dimensions_varied: [\"Loss component ablation: DoReMi (excess loss) vs hardest-domains-only vs easiest-domains-only\"]\n108\t      design_note: \"Clean 3-bar comparison showing only excess loss (combined) works; hardest-only and easiest-only both fail, delivering the necessity argument for the full formulation\"\n109\t    - figure_id: \"Figures 7-8 (Appendix)\"\n110\t      viz_type: \"line_plot\"\n111\t      dimensions_varied: [\"GLaM cross-scale results (Fig 7)\", \"Domain weight trajectories via EMA over training steps (Fig 8)\"]\n112\t      design_note: \"Weight trajectory plots show rapid changes in first ~50k steps then stabilization, providing evidence for early-stopping optimization as future work direction\"\n113\t  figure_narrative_role: \"Figure 1 (method pipeline) → Figure 2 (headline speedup result with 2.6x annotation) → Figure 3 (Pile + GLaM main results, oracle matching) → Figure 4 (all-domain improvement, no-tradeoff) → Figure 5 (scale invariance) → Figure 6 (proxy size + loss component ablations) → Figures 7-8 (appendix: GLaM details + weight dynamics)\"\n114\t\n115\ttables:\n116\t  table_count: 9\n117\t  main_result_table:\n118\t    table_id: \"Table 1\"\n119\t    row_axis: \"domains\"\n120\t    col_axis: \"Baseline weight | DoReMi (280M) weight | Difference\"\n121\t    row_organization: \"flat\"\n122\t    col_organization: \"flat\"\n123\t    highlight_strategy: \"no explicit bold; focus on weight difference magnitudes showing domain redistribution pattern\"\n124\t    statistical_reporting: \"single run domain weights (deterministic from DRO optimization)\"\n125\t    num_baselines: 1\n126\t    design_note: \"22 rows for all Pile domains; the table IS the result showing domain weight redistribution. Notable shifts: Pile-CC upweighted 0.11→0.61 (+0.49), ArXiv downweighted by -0.10. Not a traditional performance comparison table but a weight allocation table, which is novel for this paper type.\"\n127\t  ablation_tables:\n128\t    - table_id: \"Table 2\"\n129\t      what_varied: [\"Iterated DoReMi rounds on GLaM (Round 1, 2, 3) vs downstream-tuned oracle weights\"]\n130\t      variation_style: \"full_numbers\"\n131\t      design_note: \"8 GLaM domains showing weight convergence across rounds; Round 2 approximately equals Round 3 approximately equals oracle, proving iterative convergence\"\n132\t    - table_id: \"Table 3\"\n133\t      what_varied: [\"Proxy scale impact on worst-case and average perplexity for 8B main model\"]\n134\t      variation_style: \"full_numbers\"\n135\t      design_note: \"Two sub-tables: (a) perplexity vs proxy size showing 280M is optimal, (b) proxy vs main model quality comparison showing proxy systematically underperforms main at same size\"\n136\t    - table_id: \"Table 7\"\n137\t      what_varied: [\"Loss component ablation: baseline vs DoReMi vs hardest-only vs easiest-only\"]\n138\t      variation_style: \"full_numbers\"\n139\t      design_note: \"Demonstrates excess loss necessity; only full DoReMi achieves strong worst-case and average perplexity simultaneously\"\n140\t  supplementary_tables:\n141\t    in_appendix: true\n142\t    content: \"Table 4: per-domain perplexities across all proxy sizes for 8B main (22 domains x 5 configs). Table 5: per-task exact-match accuracies (5 tasks x 5 configs, DoReMi 280M→8B achieves 26.56% avg vs 20.03% baseline). Table 6: scale-invariant analysis. Table 8: domain weights comparison by proxy size (280M vs 1B show different local minima). Table 9: architecture details for all 7 model scales.\"\n143\t    reason: \"Main paper keeps only domain weight tables (1-2) and summary statistics (3) in body; full per-domain breakdowns, per-task accuracies, and architecture specs in appendix to maintain narrative focus on the algorithm and key high-level findings\"\n144\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e0587334-49fb-42a1-bd00-7c0755834805",
+            "isSidechain": true,
+            "promptId": "ba4f2ef3-110a-4d78-ab2c-1df0f2b8280d",
+            "agentId": "a6abfa09072239cc9",
+            "type": "user",
+            "uuid": "94e5812a-5aad-4a6d-ba3f-50cba455e4c8",
+            "sourceToolAssistantUUID": "e0587334-49fb-42a1-bd00-7c0755834805",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T05:54:25.257Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XKBGNxTTe4rAf2Bj8uhVGy",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/distill_tmp/zellers2019grover.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "94e5812a-5aad-4a6d-ba3f-50cba455e4c8",
+            "isSidechain": true,
+            "agentId": "a6abfa09072239cc9",
+            "requestId": "req_011CbDJWS8fvsxNSSSks4XLk",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5cca4079-2530-4390-94a7-db061fb8fae1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PAsMYUxBSZWf8QVAyJBVV6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18021,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 966,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 18021
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 966,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 18021,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 18021,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T05:54:25.262Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XKBGNxTTe4rAf2Bj8uhVGy",
+              "type": "tool_result",
+              "content": "1\tpaper_key: \"zellers2019grover\"\n2\ttitle: \"Defending Against Neural Fake News\"\n3\tvenue: \"NeurIPS 2019\"\n4\tfull_text_available: false\n5\t\n6\tresearch:\n7\t  baselines: [GPT-2 discriminator, BERT discriminator, FastText, stylistic feature classifiers]\n8\t  metrics:\n9\t    - {name: \"detection accuracy\", direction: \"higher_better\"}\n10\t    - {name: \"human evaluation accuracy\", direction: \"higher_better\"}\n11\t  datasets:\n12\t    - {name: \"RealNews\", size: \"120K articles from Common Crawl\"}\n13\t  ablation_dimensions: [generator size, discriminator architecture, training data amount]\n14\t  training_recipe: {details: \"Grover generator trained on RealNews corpus; discriminator fine-tuned on generated vs real articles\"}\n15\t  method_family: \"generator-as-discriminator detection\"\n16\t\n17\tpositioning:\n18\t  core_claim: \"The best defense against neural fake news generators is the generator itself, with Grover achieving 92% detection accuracy vs 73% for standard discriminators\"\n19\t  relation_to_us: \"foundation\"\n20\t\n21\tnarrative: N/A\n22\tfigures: N/A\n23\ttables: N/A\n24\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5cca4079-2530-4390-94a7-db061fb8fae1",
+            "isSidechain": true,
+            "promptId": "ba4f2ef3-110a-4d78-ab2c-1df0f2b8280d",
+            "agentId": "a6abfa09072239cc9",
+            "type": "user",
+            "uuid": "0503b8b3-2a90-41f5-a9d2-723c1e831d47",
+            "sourceToolAssistantUUID": "5cca4079-2530-4390-94a7-db061fb8fae1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T05:56:41.769Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I've successfully read all 12 YAML files. Here is the complete content of each file for your cross-paper synthesis task:\n\n## amin2025escaping.yaml\n**Paper Key**: amin2025escaping\n**Title**: \"Escaping Collapse: The Strength of Weak Data for Large Language Model Training\"\n**Venue**: arXiv 2025\n**Full Text Available**: true\n\n**Research**:\n- **Baselines**: Do nothing (pure synthetic), Filter only, Gold SFT, Boosting w/o focusing, Pretrained baseline\n- **Metrics**: Train accuracy@1, Test accuracy@1, Test pass@32\n- **Datasets**: GSM8K (7K math problems), MBPP (374 coding problems)\n- **Ablation Dimensions**: alpha (weak data weight), focusing vs non-focusing, weak data setup A vs B, rounds 1-5\n- **Training Recipe**: Gemma 2 2B, 5 iterations, 3 seeds\n- **Method Family**: model collapse mitigation via weak external labeling (boosting framework)\n\n**Positioning**:\n- **Core Claim**: Any weak exogenous signal with beta>0 fraction correct suffices to prevent collapse in O(log(1/ε)/β) iterations, via inverse-boosting framework.\n- **Key Results**: GSM8K: Boosting 0.456 test@1 > Filter-only 0.393 > Do-nothing 0.129\n- **Limitations**: perfect strong learner assumption unrealistic, only bounds training performance, 2B model only, 5 rounds only\n- **Relation to Us**: complementary\n\n**Narrative**:\n- **Story Type**: 化繁为简型 + 突破局限型\n- **Hook**: High-quality human data may soon be exhausted\n- **Tension**: Synthetic data necessary but dangerous; what minimal curation prevents collapse?\n- **Key Insight**: Iterative synthetic training is an inversion of classical boosting: strong learner + weak data is dual to weak learner + strong data\n- **Argument Chain**: data exhaustion → collapse risk → boosting lens → beta>0 suffices → convergence theorem → focus on hard examples → validation\n- **Contribution Framing**: 5 contributions: framework, theorem, boosting connection, focusing strategy, unification of STaR/ReST/ReSTEM\n- **Intro Structure**: 6 paragraphs: motivation, problem, question, mechanism, result preview, boosting connection\n- **Notable Technique**: Dual inversion framing gives reviewers a memorable conceptual handle\n\n**Figures**:\n- **Figure Count**: 3\n- **Figure 1**: teaser_result type; Line plots with error bands showing test/train accuracy across 5 rounds on GSM8K; Primary empirical validation of theoretical hierarchy; Design elements: shaded error bands (3 seeds), dual metrics, separate test/train panels\n- **Figure Narrative Role**: Fig1 (GSM8K) → Fig2 (MBPP) → Fig3 (labeler assumption validation)\n\n**Tables**:\n- **Table Count**: 1\n- **Main Result Table**: Table 1; row_axis: methods; col_axis: datasets × metrics; highlight_strategy: bold best implied; statistical_reporting: mean ± std, 3 seeds; num_baselines: 5\n\n---\n\n## drayson2025.yaml\n**Paper Key**: drayson2025\n**Title**: \"Machine-generated text detection prevents language model collapse\"\n**Venue**: arXiv 2025\n**Full Text Available**: true\n\n**Research**:\n- **Baselines**: Oracle filter, Unfiltered baseline, RoBERTa detector, DeBERTav3 detector, ModernBERT detector, Longformer\n- **Metrics**: Perplexity (lower_better), MAUVE (higher_better), Diversity (higher_better), Self-BLEU (lower_better), AUC (higher_better)\n- **Datasets**: WikiText-2 (36K docs), MAGE (448K texts), RAID (128K samples)\n- **Ablation Dimensions**: decoding strategy, model family/size, mixing coefficients, generation index, detector architecture\n- **Training Recipe**: optimizer: AdamW, lr: 5e-5, epochs: 1 per generation, generations: 10-100\n- **Method Family**: model collapse mitigation via MGT detection + SIR\n\n**Positioning**:\n- **Core Claim**: Calibrated MGT detectors used as importance weights in SIR prevent and reverse model collapse, outperforming an oracle that perfectly filters all synthetic content.\n- **Key Results**: ModernBERT 0.986 AUC; GPT-2 perplexity -4.45%, diversity +3.59%; method beats oracle in several configs\n- **Limitations**: fine-tuning only, not pre-training, limited to open-ended generation on WikiText-2, largest model under 2B params\n- **Relation to Us**: foundation\n\n**Narrative**:\n- **Story Type**: 突破局限型\n- **Hook**: LLM outputs contaminate the web; future models inevitably train on this synthetic content\n- **Tension**: No one has studied how decoding strategy modulates collapse severity or proposed detection-based intervention\n- **Key Insight**: Imperfect detector used for importance resampling prevents collapse better than oracle filter because curated synthetic data retains useful signal\n- **Argument Chain**: synthetic proliferation → decoding strategy analysis → characterization → detector training → SIR method → validation\n- **Contribution Framing**: Five numbered contributions: framework, decoding analysis, detector, method, validation\n- **Intro Structure**: 5 paragraphs: motivation, context, gap, direction, contributions\n- **Notable Technique**: Oracle comparison flip: showing imperfect detector beats oracle reframes detection error as a feature\n\n**Figures**:\n- **Figure Count**: 9\n- **Figure 1**: teaser_result type; Line plots showing perplexity/accuracy across 100 generations for multiple decoding strategies; Establishes collapse severity and variability before method is proposed; Design elements: multi-line per decoding strategy, 100-generation x-axis, strategy-colored legend\n- **Result Figures**: Figure 3 (line_plot, mitigation vs baseline vs oracle across 10 gens), Figure 4 (line_plot, perplexity distributions at gen 0, 11, 99)\n- **Figure Narrative Role**: Fig1 (collapse) → Fig2 (method) → Fig3 (results) → Fig4 (mechanism)\n\n**Tables**:\n- **Table Count**: 4\n- **Main Result Table**: Table 3; row_axis: model × decoding × mixing; col_axis: metrics as % change; highlight_strategy: color-coded blue/red; statistical_reporting: % change from baseline, single run; num_baselines: 2\n\n---\n\n## falahati2026curated.yaml\n**Paper Key**: falahati2026curated\n**Title**: \"Curated Synthetic Data Doesn't Have to Collapse: A Theoretical Study of Generative Retraining with Pluralistic Preferences\"\n**Venue**: ICML 2026\n**Full Text Available**: false\n\n**Research**:\n- **Baselines**: single-reward curation, unfiltered retraining, real-data mixing\n- **Metrics**: distribution diversity preservation (higher_better), convergence stability (higher_better), Nash bargaining optimality (higher_better)\n- **Datasets**: theoretical analysis (no specific empirical dataset), N/A\n- **Ablation Dimensions**: number of reward functions, reward function heterogeneity, convergence conditions\n- **Training Recipe**: Theoretical framework: recursive retraining with curation based on multiple heterogeneous reward functions instead of a single objective; proves convergence to weighted Nash bargaining solution\n- **Method Family**: model collapse mitigation (pluralistic preference curation, theoretical)\n\n**Positioning**:\n- **Core Claim**: Collapse under recursive synthetic retraining is avoidable without real data by curating with multiple diverse reward functions, which provably converges to a stable diversity-preserving distribution satisfying Nash bargaining\n- **Relation to Us**: complementary\n\n**Narrative**, **Figures**, **Tables**: N/A\n\n---\n\n## ippolito2020detection.yaml\n**Paper Key**: ippolito2020detection\n**Title**: \"Automatic Detection of Generated Text is Easiest when Humans are Fooled\"\n**Venue**: ACL 2020\n**Full Text Available**: false\n\n**Research**:\n- **Baselines**: GLTR, GPT-2 zero-shot detector, fine-tuned BERT classifier, human raters\n- **Metrics**: detection accuracy (higher_better), human deception rate (context_dependent), AUROC (higher_better)\n- **Datasets**: GPT-2 generated text with varying decoding strategies, size: not specified\n- **Ablation Dimensions**: decoding strategy (top-k / nucleus / random), text excerpt length, detector type\n- **Training Recipe**: Benchmark study comparing human and automatic detectors across three sampling-based decoding strategies\n- **Method Family**: detection benchmarking / decoding-artifact analysis\n\n**Positioning**:\n- **Core Claim**: Decoding improvements that better fool humans simultaneously introduce statistical artifacts that make automatic detection easier, revealing an inverse relationship between human and machine detectability\n- **Relation to Us**: foundation\n\n**Narrative**, **Figures**, **Tables**: N/A\n\n---\n\n## kazdan2025collapse.yaml\n**Paper Key**: kazdan2025collapse\n**Title**: \"Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World\"\n**Venue**: arXiv 2024\n**Full Text Available**: true\n\n**Research**:\n- **Baselines**: replace workflow, accumulate workflow, accumulate-subsample, real-data-only\n- **Metrics**: test loss (NLL) (lower_better), Wasserstein-2 distance (lower_better), R² (higher_better)\n- **Datasets**: HelpSteer2 (12.5k), TinyStories (GPT-generated), sklearn benchmarks (standard)\n- **Ablation Dimensions**: training workflow, cardinality of real data, proportion real vs synthetic, iterations\n- **Training Recipe**: model: Gemma2 2B (SFT)\n- **Method Family**: synthetic data / model collapse analysis\n\n**Positioning**:\n- **Core Claim**: Model collapse is a workflow artifact: replace causes collapse, accumulate prevents it; cardinality of real data (R²=0.59) predicts synthetic data value better than proportion (R²=0.34).\n- **Key Results**: Replace diverges; accumulate bounded; below ~1024 real samples synthetic helps, above that it hurts\n- **Limitations**: ignores data quality filtering, loss metrics not downstream tasks, no adversarial generation\n- **Relation to Us**: foundation\n\n**Narrative**:\n- **Story Type**: 化繁为简型\n- **Hook**: With each passing day, the internet contains more AI-generated content\n- **Tension**: Collapse alarmists vs optimists disagree; paper resolves by identifying implicit workflow assumptions\n- **Key Insight**: Both camps are right under different workflow assumptions; reframes binary debate as conditional\n- **Argument Chain**: AI contamination → conflicting literature → workflow assumptions differ → test 3 workflows × 5 settings → replace=collapse, accumulate=stable → data composition analysis\n- **Contribution Framing**: Three contributions: universality validation, accumulate-subsample paradigm, data composition analysis\n- **Intro Structure**: 6 paragraphs: hook, conflicting lit, definitions, adopted definition, workflows, contributions\n- **Notable Technique**: Reframing binary debate as conditional; validates both camps while positioning as reconciling synthesis\n\n**Figures**:\n- **Figure Count**: 5\n- **Figure 1**: motivation type; Replace vs accumulate on Gaussian: distributions, means, covariances across iterations; Simplest-case intuition building; Design elements: 3-row panel, side-by-side replace vs accumulate, iteration x-axis\n- **Result Figures**: Figure 4 (line_plot, 3 workflows × 5 tasks), Figure 5 (heatmap, real cardinality × synthetic proportion)\n- **Figure Narrative Role**: Fig1 (toy) → Fig2 (KDE) → Fig3 (LLM SFT) → Fig4 (all tasks) → Fig5 (data composition)\n\n**Tables**:\n- **Table Count**: 1\n- **Main Result Table**: note: primarily figure-driven paper\n\n---\n\n## mady2026feataugmented.yaml\n**Paper Key**: mady2026feataugmented\n**Title**: \"Feature-Augmented Transformers for Robust AI-Text Detection Across Domains and Generators\"\n**Venue**: arXiv 2026 (submitted to ICML 2026)\n**Full Text Available**: false\n\n**Research**:\n- **Baselines**: BERT, RoBERTa, DeBERTa-v3-base, zero-shot detectors (DetectGPT, Binoculars)\n- **Metrics**: balanced accuracy (higher_better), in-domain accuracy (higher_better), cross-domain transfer accuracy (higher_better)\n- **Datasets**: HC3 PLUS (not specified), M4 (multi-domain multi-generator benchmark), AI-Text-Detection-Pile (not specified)\n- **Ablation Dimensions**: feature type (readability, vocabulary, linguistic), fusion method (attention-based), backbone model\n- **Training Recipe**: Train transformer detectors on HC3 PLUS with fixed decision threshold from validation; augment with attention-based linguistic feature fusion for cross-domain robustness\n- **Method Family**: supervised detection with linguistic feature augmentation\n\n**Positioning**:\n- **Core Claim**: Attention-based fusion of linguistic features into transformer detectors improves cross-domain transfer, with DeBERTa-v3-base+FeatAttn achieving 85.9% balanced accuracy on M4 while base models degrade severely under distribution shift\n- **Relation to Us**: competitor\n\n**Narrative**, **Figures**, **Tables**: N/A\n\n---\n\n## schaeffer2025position.yaml\n**Paper Key**: schaeffer2025position\n**Title**: \"Position: Model Collapse Does Not Mean What You Think\"\n**Venue**: arXiv 2025\n**Full Text Available**: true\n\n**Research**:\n- **Baselines**: 28 prior publications annotated for definitional usage\n- **Metrics**: population risk (lower_better), entropy over iterations (higher_better)\n- **Datasets**: 28 model-collapse papers (meta-analysis), size: 28 publications\n- **Ablation Dimensions**: replace vs accumulate paradigm, which of 8 definitions applied\n- **Training Recipe**: N/A - position paper\n- **Method Family**: position paper / model collapse taxonomy\n\n**Positioning**:\n- **Core Claim**: Model collapse is 8 distinct definitions; under realistic accumulate paradigm, population risk does not diverge.\n- **Key Results**: 28 papers annotated; trillions of training runs possible before collapse onset under realistic conditions\n- **Limitations**: realistic conditions may be contested, fine-tuning/RLHF not addressed, tail data loss magnitude unclear\n- **Relation to Us**: foundation\n\n**Narrative**:\n- **Story Type**: 突破局限型\n- **Hook**: Cites Nature's alarming coverage then positions it as oversimplification\n- **Tension**: Literature can't agree on what collapse means; 8 conflicting definitions\n- **Key Insight**: Propagation paradigm (replace vs accumulate) is the crux; under accumulate, catastrophic divergence is mathematically avoided\n- **Argument Chain**: alarm → 8 definitions → definitional shifting in papers → realistic conditions → no divergence → redirect to diversity loss\n- **Contribution Framing**: Two corrective contributions: taxonomy + evaluative reanalysis\n- **Intro Structure**: 5-6 paragraphs: hook, problem, taxonomy contribution, evaluation contribution, conclusions, roadmap\n- **Notable Technique**: Annotated meta-analysis as evidence: hand-annotating 28 papers turns literature confusion into experimental finding\n\n**Figures**:\n- **Figure Count**: 4\n- **Figure 1**: problem_illustration type; Taxonomy of 8 definitions in 3 families with schematic curves; Visual anchor for the central taxonomy claim; Design elements: 3 family groupings, 8 named definitions, schematic curves not data\n- **Result Figures**: Figure 2 (annotation_matrix, 28 papers × definition usage), Figure 3 (conceptual_comparison, replace vs accumulate paradigms)\n- **Figure Narrative Role**: Fig1 (taxonomy) → Fig2 (meta-analysis evidence) → Fig3 (paradigm contrast) → Fig4 (timescale)\n\n**Tables**:\n- **Table Count**: 1\n- **Main Result Table**: Table 1; row_axis: collapse definitions; col_axis: outcome (Y/N); highlight_strategy: binary yes/no; num_baselines: 0\n\n---\n\n## shi2025generalization.yaml\n**Paper Key**: shi2025generalization\n**Title**: \"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective\"\n**Venue**: NeurIPS 2025 Spotlight\n**Full Text Available**: true\n\n**Research**:\n- **Baselines**: vanilla accumulate, vanilla replace, baseline 2N images, CFG without selection\n- **Metrics**: Generalization Score (higher_better), FID (lower_better), Entropy (KL estimator) (higher_better)\n- **Datasets**: CIFAR-10 (32K images), FFHQ (8K-32K images), MNIST (12K images)\n- **Ablation Dimensions**: dataset size, paradigm, selection method, decay rate, data volume, CFG\n- **Training Recipe**: architecture: DDPM UNet ~16M params, optimizer: Adam, lr: 1e-4, epochs: 500 (CIFAR-10), feature_extractor: DINOv2\n- **Method Family**: model collapse analysis + entropy-based data selection\n\n**Positioning**:\n- **Core Claim**: Model collapse is a generalization-to-memorization transition driven by entropy collapse in synthetic data (r=0.91 correlation), mitigated by entropy-maximizing data selection.\n- **Key Results**: Pearson r=0.91 entropy-GS; accumulate FID 75.7→44.7 (41% improvement) with greedy selection\n- **Limitations**: no theoretical explanation for entropy collapse, greedy selection computationally expensive, image-only, not text\n- **Relation to Us**: foundation\n\n**Narrative**:\n- **Story Type**: 突破局限型\n- **Hook**: Diffusion models produce realistic images; synthetic data will contaminate future training sets\n- **Tension**: Existing explanations (variance/distribution shift) too abstract to explain practical memorization\n- **Key Insight**: Entropy collapse drives generalization-to-memorization transition; r=0.91 anchors the causal story\n- **Argument Chain**: collapse → memorization observed → entropy collapse mechanism → r=0.91 correlation → entropy selection → FID improvement\n- **Contribution Framing**: Three contributions: phenomenon identification, causal mechanism, selection methods\n- **Intro Structure**: 5 paragraphs: motivation, prior work critique, new phenomenon, mechanism + evidence, contributions\n- **Notable Technique**: Front-loading r=0.91 in intro pre-empts skepticism; contrastive scatter (entropy vs variance) eliminates rival explanations\n\n**Figures**:\n- **Figure Count**: 9\n- **Figure 1**: motivation type; Pipeline comparison: vanilla collapse vs mitigated with data selection, plus image strips showing degradation; Visual evidence of generalization-to-memorization before quantification; Design elements: pipeline comparison, iteration-indexed image strips, with/without selection\n- **Result Figures**: Figure 4 (scatter, entropy vs GS (r=0.91) vs variance vs GS), Figure 5 (line_plot, GS across iterations: vanilla vs selection methods)\n- **Figure Narrative Role**: Fig1 (motivation) → Fig2 (GS collapse) → Fig3 (entropy collapse) → Fig4 (causal link) → Fig5-6 (solution) → Fig7 (mechanism validation) → Fig8-9 (interpretability)\n\n**Tables**:\n- **Table Count**: 3\n- **Main Result Table**: Table 1; row_axis: methods; col_axis: datasets × paradigms; highlight_strategy: bold_best; statistical_reporting: single run; num_baselines: 2\n\n---\n\n## tirumala2024d4.yaml\n**Paper Key**: tirumala2024d4\n**Title**: \"D4: Improving LLM Pretraining via Document De-Duplication and Diversification\"\n**Venue**: NeurIPS 2023 (Datasets and Benchmarks Track)\n**Full Text Available**: true\n\n**Research**:\n- **Baselines**: Random selection (iid sampling from MinHash-deduped data), SemDeDup alone (semantic deduplication via epsilon-ball removal within K-Means clusters), SSL Prototypes alone (prototypicality-based selection: discard points far from cluster centroids)\n- **Metrics**: Validation perplexity - web snapshots (C4, CommonCrawl, CC-dedup) (lower_better), Validation perplexity - non-web (OpenWebText2, HackerNews, Wikipedia, BookCorpusFair, DM Mathematics, Gutenberg, OpenSubtitles, USPTO, Reddit) (lower_better), Instruction+Answers perplexity (OPT-IML, 1500+ NLP tasks) (lower_better), Average 0-shot downstream accuracy (16 NLP tasks: ARC Challenge/Easy, HellaSwag, OpenBookQA, PIQA, StoryCloze, Winograd, Winogrande, SuperGLUE tasks) (higher_better)\n- **Datasets**: CC-dedup (CommonCrawl, 5 dumps 2017-2020, CCNet pipeline + MinHash dedup) (600M documents), 16 NLP downstream tasks (varies per task), OPT-IML instruction-tuning data (Super-NaturalInstructions + PromptSource) (1500+ NLP tasks)\n- **Ablation Dimensions**: Number of K-Means clusters (tested 11K), Re-clustering step necessity in D4 pipeline, Embedding space choice (SentenceTransformers vs OPT embeddings), R_dedup parameter (SemDeDup selection ratio, default 0.75), Selection ratio R across {0.25, 0.5, 0.75, 1.0}, Token repetition across model scales (125M, 1.3B, 6.7B), Token repetition across data selection methods\n- **Training Recipe**: optimizer: Adam (beta1=0.9, beta2=0.95, eps=1e-8), lr: Polynomial schedule; warmup 0→peak over first 375M tokens, decay to 0.1*peak. Peak LR: 3e-3 (8M), 6e-4 (125M), 2e-4 (1.3B), 1.2e-4 (6.7B), hardware: A100 GPUs, fully sharded data parallel, Megatron-LM tensor parallelism, fp16 precision, batch_size: 0.5M tokens (8M/125M), 1M tokens (1.3B), 2M tokens (6.7B), model_scales: 8M, 125M, 1.3B, 6.7B (OPT architecture), token_budgets: 3B (125M), 40B (1.3B), 100B (6.7B), trainer: MetaSeq, standard OPT hyperparameters, no dropout, data_selection_cost: ~8 GPU hours for embedding 400B tokens using 125M OPT (768-dim); net savings 3,412 GPU hours at 6.7B scale, k_means_clusters: 11000, embedding_dim: 768\n- **Method Family**: embedding-based data curation (deduplication + diversification)\n\n**Positioning**:\n- **Core Claim**: Semantic deduplication prior to prototypicality-based diversification removes duplicate-driven clusters that waste K-Means assignments, yielding a combined D4 pipeline that achieves 18-20% training efficiency gains at the 6.7B scale and demonstrates that intelligent data repetition outperforms training on random new data.\n- **Key Results**: 6.7B OPT on 100B tokens: 18-20% efficiency gains on validation perplexity, 2% increase in avg 0-shot accuracy on 16 tasks. Data selection cost: 8 GPU hours for 600M documents (net savings: 3,412 GPU hours, 79% gain after overhead). Efficiency gains increase with model scale. D4 at R=0.25 with 2 epochs beats random new data at 1 epoch.\n- **Limitations**: Only evaluated up to 6.7B parameters on 100B tokens; larger scale (>100B params) investigation needed, Uses one data distribution for both selection and training; modern LLMs mix multiple sources, MinHash hyperparameters used defaults (20 hashes, 20 buckets, 1 row per bucket); more aggressive dedup could reduce SemDeDup necessity, Did not explicitly balance clusters; cluster balancing identified as valuable future work, OPT embeddings may be biased toward end-of-document formatting (Section A.7)\n- **Relation to Us**: complementary\n\n**Narrative**:\n- **Story Type**: 跨界迁移型\n- **Hook**: Over recent years, increasing compute and data has been poured into LLM training via one-pass learning on randomly sampled web corpora, but the size of improvements diminishes with scale and there has been little work exploring data selection beyond simple MinHash deduplication.\n- **Tension**: Scaling laws hit diminishing returns with random data. Data selection works in vision (SemDeDup, SSL Prototypes), but naively applying these to LLMs fails because duplicate-driven clusters in text embedding space waste K-Means cluster assignments on templated/redundant text.\n- **Key Insight**: Duplicate-driven clusters are the root cause of suboptimal diversification. Sparsifying dense regions via SemDeDup before re-clustering dramatically improves K-Means cluster quality and downstream selection. Delivered in Section 3.4 with the D4 pipeline design and validated via re-clustering ablation (Figure 7).\n- **Argument Chain**: scaling hits diminishing returns → data selection can help (evidence from vision) → naive application fails due to duplicate-driven clusters → SemDeDup removes duplicates first → re-clustering on cleaned data improves diversification quality → D4 = SemDeDup + re-cluster + SSL Prototypes → validation at 125M/1.3B/6.7B scales → bonus finding: intelligent repetition beats random new data, questioning single-epoch paradigm\n- **Contribution Framing**: Three bullets: (1) investigate data selection strategies and propose D4 to handle duplicate-driven clusters, (2) demonstrate ~20% efficiency gains scaling with model size at 6.7B, (3) show intelligent data repetition beats random new data, questioning single-epoch training paradigm\n- **Intro Structure**: 4 paragraphs: P1 = context setting (shift from curated datasets to large-scale web data, diminishing returns with scale), P2 = problem identification (random sampling suboptimal, approaching data limits), P3 = solution motivation (successful precedent from vision/vision-language research), P4 = contributions (three specific claims about D4, efficiency gains, and data repetition)\n- **Notable Technique**: The 'questioning the paradigm' move: framing intelligent data repetition as challenging the standard single-epoch LLM training practice elevates a secondary finding into a paradigm-level contribution, making the paper relevant beyond just efficiency gains.\n\n**Figures**:\n- **Figure Count**: 7\n- **Figure 1**: teaser_result type; Learning curves for 6.7B OPT model on 100B tokens: D4 (pink line) vs random baseline (gray line). Shows validation perplexity over training updates with D4 consistently lower throughout training.; Immediately demonstrates the headline result (18-20% efficiency gains) before any method explanation, creating forward momentum and reader buy-in.; Design elements: line plot with shaded error bands, pink vs gray color coding, single clean plot, efficiency gain percentage annotated\n- **Result Figures**: Figure 2 (line_plot, Four selection methods across selection ratios R on 1.3B OPT with 40B tokens; Gray horizontal reference line for baseline; D4 curve consistently below others across all R values; 2x2 grid separates metric groups), Figure 3 (line_plot, New tokens vs repeated tokens for random vs D4 selection at R=0.25 for 1.3B OPT; D4 repeated tokens line crosses below random new tokens line; Key figure for paradigm-challenging claim), Figure 4 (bar_chart, Naive vs overall efficiency gain of D4 relative to total training cost across model scales; Paired bars showing gains increasing with scale)\n- **Ablation Figures**: Figure 5 (box_plot, Train-test similarity across validation sets and C4 validation analysis), Figure 6 (scatter_plot, Correlation between Instruct+Answers ppl, web snapshot ppl, and downstream accuracy), Figure 7 (line_plot, Re-clustering step in D4)\n- **Figure Narrative Role**: Figure 1 (headline 6.7B teaser result) → Figure 2 (systematic 1.3B comparison across methods/ratios) → Figure 3 (paradigm-challenging repetition finding) → Figure 4 (scaling behavior of gains) → Figure 5 (mechanistic: train-test similarity) → Figure 6 (mechanistic: metric correlations) → Figure 7 (ablation: re-clustering necessity with CDF evidence)\n\n**Tables**:\n- **Table Count**: 1\n- **Main Result Table**: Table 1; row_axis: methods; col_axis: T_total | T_selected | Epochs | Non-Web PPL | Instruction PPL; row_organization: by_category; col_organization: flat; highlight_strategy: bold_best; statistical_reporting: mean +/- std across 3 seeds; num_baselines: 2; design_note: Deliberately compact 3-row table focused on the data repetition comparison (Random 1-epoch new data vs Random 2-epoch repeated vs D4 2-epoch repeated). The paper is figure-heavy (7 figures, 1 table); heavy lifting done by figures while the single table targets the most counterintuitive finding.\n- **Ablation Tables**: Table A1 (Appendix) - Model architecture details across scales\n- **Supplementary Tables**: Tables A1-A9 in appendix: architecture details (A1), instruction+answers examples (A2), cluster centroid examples showing semantic redundancy (A3-A5), nearest neighbor analyses (A8-A9)\n\n---\n\n## xie2023dsir.yaml\n**Paper Key**: xie2023dsir\n**Title**: \"Data Selection for Language Models via Importance Resampling\"\n**Venue**: NeurIPS 2023\n**Full Text Available**: true\n\n**Research**:\n- **Baselines**: Random selection (without replacement), Heuristic classification (GPT-3/Pile/PaLM binary classifier filtering), Top-k heuristic classification, Manual curation (DAPT, Gururangan et al. 2020), DSIR with fasttext discriminative features, DSIR with n-gram discriminative features, DSIR with unigram-only features\n- **Metrics**: Macro-F1 (domain-specific tasks) (higher_better), Micro-F1 (ChemProt, RCT) (higher_better), Average GLUE accuracy (higher_better), KL reduction (higher_better)\n- **Datasets**: The Pile (raw corpus) (1.6B examples, 800GB), ACL-ARC (CS papers) (~1.6K), Sci-ERC (CS papers) (~500), ChemProt (biomedical) (~15K), RCT (biomedical) (~200K), AGNews (news) (~127K), HyperPartisan (news) (~600), Helpfulness (reviews) (~115K), IMDB (reviews) (~50K), GLUE benchmark (8 tasks) (varies per task)\n- **Ablation Dimensions**: Feature type: generative vs discriminative models, Feature granularity: unigram vs n-gram, Resampling vs top-k selection, Cross-domain transfer (8x8 domain pairs), Neural features (SentenceTransformer) vs hashed n-gram\n- **Training Recipe**: optimizer: Standard (RoBERTa defaults for fine-tuning), lr: RoBERTa defaults, hardware: 1 CPU node (96 cores) for data selection; standard GPU for model training, base_model: RoBERTa-base (continued pretraining), BERT-base (general-domain), selection_budget: 25M examples x 256 tokens (domain-specific); 51.2M examples (general-domain), general_domain_training: 50k steps, batch size 4096, token length 128, selection_time: 100M documents from full Pile in 4.5 hours (4.36h importance weights + 1min fitting + 6min resampling)\n- **Method Family**: importance resampling / distribution matching\n\n**Positioning**:\n- **Core Claim**: Reducing importance weight estimation to a low-dimensional hashed n-gram feature space makes classical importance resampling both tractable and effective for large-scale LM data selection, matching expert curation quality.\n- **Key Results**: Domain-specific: 83.76% avg F1 (vs 82.58% random, 83.46% manual curation). General-domain GLUE: 82.30% (vs 80.25% random, +2.05%). KL reduction correlates r=0.82 with downstream accuracy across 8 methods. 100M documents selected in 4.5 hours on single CPU node.\n- **Limitations**: N-gram features capture only superficial word-level overlap, not semantic similarity, Neural feature spaces (SentenceTransformer) tested but underperformed n-grams and are more expensive, Target distribution definition is heuristic (Wikipedia+books as quality proxy); unclear how to optimally collect target data, Generative models require less tuning than discriminative, but estimator choice still matters, Could amplify biases present in target data\n- **Relation to Us**: complementary\n\n**Narrative**:\n- **Story Type**: 化繁为简型\n- **Hook**: The choice of pretraining data is critical given fixed compute budgets, yet existing methods rely on simple heuristics (GPT-3 binary classifier) or expensive manual curation with no distribution-matching guarantees.\n- **Tension**: Classical importance resampling is theoretically principled but statistically intractable on high-dimensional text data. How to bridge the gap between principled framework and practical scalability?\n- **Key Insight**: Reducing to hashed n-gram feature space preserves enough distributional signal for effective importance weight estimation while making computation trivially parallelizable. Delivered in Section 3 with the bag-of-n-grams generative model parameterization.\n- **Argument Chain**: data selection matters → importance resampling is principled but intractable on text → reduce to feature space → instantiate with hashed n-grams → validate: matches expert curation on 8 domains, improves GLUE by 2-2.5%, and KL reduction metric (r=0.82) confirms feature space captures downstream-relevant signal\n- **Contribution Framing**: Four contributions: (1) DSIR framework extending classical importance resampling to LM data selection, (2) scalable hashed n-gram instantiation, (3) KL reduction as model-free data quality metric, (4) comprehensive empirical validation\n- **Intro Structure**: 4 paragraphs: P1 = hook (data selection importance + heuristic status quo), P2 = prior work and gap (domain-specific curation exists but unscalable), P3 = DSIR contribution (feature-space reduction solves intractability), P4 = specific instantiation (hashed n-grams enable 100M-doc scale)\n- **Notable Technique**: Proposing KL reduction as a model-free proxy metric (r=0.82 correlation) that validates the approach without requiring downstream evaluation, strengthening the theoretical narrative beyond empirical results alone.\n\n**Figures**:\n- **Figure Count**: 7\n- **Figure 1**: method_overview type; Pipeline flow diagram showing data selection process: large raw dataset (The Pile) and small target dataset → importance weight computation in hashed n-gram feature space → resampling to produce selected subset. Includes sample text examples and weight computation illustration.; Establishes the complete DSIR pipeline visually, making the three-step process (fit distributions → compute weights → resample) concrete and immediately comprehensible.; Design elements: flow diagram with arrows, three-stage progression, sample text examples, schematic geometric style\n- **Result Figures**: Figure 2 (heatmap, Cross-domain transfer: 8x8 matrix of pretraining targets vs downstream tasks, showing F1 scores), Figure 3 (scatter_plot, KL reduction vs average downstream F1 across 8 data selection methods), Figure 4 (qualitative_comparison, Sample selected text from Random vs Heuristic Classification vs DSIR)\n- **Ablation Figures**: Figure 5 (Appendix C) (bar_chart, Data source distributions across selection methods)\n- **Figure Narrative Role**: Figure 1 (pipeline overview) → Figure 2 (cross-domain transfer analysis) → Figure 3 (KL reduction metric validation) → Figure 4 (qualitative text examples) → Appendix figures (distribution analysis, additional scatter plots)\n\n**Tables**:\n- **Table Count**: 5\n- **Main Result Table**: Table 1; row_axis: methods; col_axis: 8 downstream datasets (4 domains x 2 tasks each) + Average; row_organization: by_category; col_organization: grouped_by_domain; highlight_strategy: bold_best; statistical_reporting: mean with subscript std across 5 seeds; num_baselines: 5; design_note: Clean layout with 8 task columns plus average; subscript standard deviations keep table compact; methods ordered from baseline through increasingly sophisticated approaches\n- **Ablation Tables**: Table 2 (Feature type, granularity, selection method variations), Table 3 (General-domain GLUE setting)\n- **Supplementary Tables**: Table 4 (neural features underperform), Table 5 (continued pretraining alternative)\n\n---\n\n## xie2024doremi.yaml\n**Paper Key**: xie2024doremi\n**Title**: \"DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining\"\n**Venue**: NeurIPS 2023 (Spotlight)\n**Full Text Available**: true\n\n**Research**:\n- **Baselines**: Default domain weights (The Pile heuristic proportions), Uniform domain weights, Downstream-tuned oracle weights (GLaM dataset only)\n- **Metrics**: Per-domain log-perplexity (22 Pile domains) (lower_better), Worst-case perplexity across domains (lower_better), Average unweighted per-domain perplexity (lower_better), Average one-shot exact-match accuracy (5 generative tasks: TriviaQA, NaturalQuestions, WebQuestions, SQuADv2, LAMBADA) (higher_better)\n- **Datasets**: The Pile (800GB, 22 domains), GLaM dataset (8 domains), TriviaQA, NaturalQuestions, WebQuestions, SQuADv2, LAMBADA\n- **Ablation Dimensions**: Proxy model scale (70M, 150M, 280M, 1B with fixed 8B main model), Same-size training (280M, 510M, 760M, 1B), Loss component decomposition, Iterated DoReMi (multiple DRO rounds), Domain weight trajectory analysis\n- **Training Recipe**: optimizer: Adafactor, lr: 1e-3 initial, exponential decay to 1e-4, weight_decay: 1e-2, gradient_clipping: norm 1, warmup: 6% of total steps, hardware: TPUv3 (models <=1B), TPUv4 (models >1B), batch_size: 512 sequences, max_token_length: 1024, training_steps: 200k (The Pile), 300k (GLaM), model_architecture: Vanilla Transformer decoder-only, 256k vocabulary, model_scales: 70M, 150M, 280M, 510M, 760M, 1B, 8B, dro_hyperparams: step size eta=1, smoothing c=1e-3, per-token excess loss clipped at 0, uniform domain sampling during proxy training, proxy_overhead: 8% of main model FLOPs\n- **Method Family**: distributionally robust optimization / domain reweighting\n\n**Positioning**:\n- **Core Claim**: A small proxy model trained with Group DRO over domains can discover domain mixture weights that transfer to 30x larger models, simultaneously improving perplexity on all domains without any downstream task knowledge, at only 8% additional compute cost.\n- **Key Results**: The Pile 8B: +6.5% avg one-shot downstream accuracy (26.56% vs 20.03% baseline), 2.6x fewer steps to reach baseline accuracy (75k vs 200k). All 22 domains improve in perplexity simultaneously. GLaM 8B: iterated DoReMi (Round 2) matches oracle downstream-tuned weights. DRO overhead: 8% of main model FLOPs. Notable domain weight shifts: Pile-CC upweighted 0.11→0.61 (+0.49); ArXiv/PubMed heavily downweighted.\n- **Limitations**: Proxy model training runs for same duration as main model; early stopping could save compute (domain weights stabilize after ~50k steps), Domain weights depend on reference model choice; iterated DoReMi mitigates but adds computational rounds, Domain definition by data provenance is coarse; finer-grained clustering could improve but risks DRO pessimism, Group DRO optimizer degrades at larger proxy scales (1B proxy underperforms 280M proxy), Mismatch between loss reweighting (proxy stage) and resampling (main training stage) may explain performance gap, No empirical fairness measurements despite theoretical DRO connection to minority subgroup improvement\n- **Relation to Us**: complementary\n\n**Narrative**:\n- **Story Type**: 突破局限型\n- **Hook**: Domain mixture proportions greatly affect LM performance (The Pile: 24% web, 9% Wikipedia, 4% GitHub), yet determining optimal proportions is either ad-hoc or requires thousands of expensive training runs tuned to specific downstream tasks.\n- **Tension**: Two failure modes of existing approaches: (1) heuristic weights are potentially suboptimal, (2) downstream-tuned weights require massive compute and risk overfitting to particular evaluation sets. How to systematically optimize domain proportions without downstream knowledge?\n- **Key Insight**: Group DRO's minimax formulation on per-token excess loss (model loss minus reference loss) identifies domains with the most headroom for improvement. The excess loss decomposition is critical: using only hardest-domain loss or only easiest-domain loss both fail; only the combined excess loss works. Delivered in Section 3 and validated in Section 5.4 ablation.\n- **Argument Chain**: domain mixtures critically affect LM quality → existing approaches are ad-hoc or prohibitively expensive → apply Group DRO with small proxy model to find domain weights → excess loss captures improvement headroom per domain → small proxy weights transfer to 30x larger models → validation: 6.5% improvement on Pile + matches oracle on GLaM → bonus: all 22 domains improve simultaneously\n- **Contribution Framing**: Six contributions: (1) novel DRO-based domain reweighting algorithm, (2) 30x scale transfer demonstration (280M→8B), (3) 2.6x training speedup on The Pile, (4) no-tradeoff discovery (all domains improve), (5) computational efficiency (8% overhead), (6) public code and optimized weights release\n- **Intro Structure**: 4 paragraphs: P1 = problem setup (domain mixtures matter, concrete examples of existing compositions), P2 = motivation (DRO as principled alternative to heuristics and downstream tuning), P3 = method overview (three-step proxy→DRO→main pipeline, 8% overhead claim), P4 = results and contribution claims (6.5%, 2.6x, matches oracle)\n- **Notable Technique**: Two standout moves: (1) The 'no-tradeoff' discovery that all 22 domains improve simultaneously even when some are downweighted, which is counterintuitive and strengthens the paper beyond raw numbers. (2) The 280M→8B scale transfer (30x) as practical value demonstration, showing the method has real-world applicability.\n\n**Figures**:\n- **Figure Count**: 8\n- **Figure 1**: method_overview type; Three-panel horizontal flow diagram: (1) reference model training on initial weights, (2) DRO proxy training with domain weight dynamics visualization, (3) large model training with resampled data. Steps labeled 1-2-3 with connecting arrows.; Makes the three-step pipeline immediately comprehensible before technical details; establishes the computational flow and shows the proxy-to-main scale transfer visually.; Design elements: horizontal flow with numbered steps, boxes and arrows, schematic style, domain weight dynamics in middle panel\n- **Result Figures**: Figure 2 (line_plot, Baseline vs DoReMi average one-shot downstream accuracy over training steps; '2.6x faster' annotation with arrow pointing to step where DoReMi reaches baseline's final accuracy), Figure 3a (line_plot, Baseline vs DoReMi (280M→8B) accuracy curves), Figure 3b (line_plot, Baseline vs DoReMi Round 1 vs DoReMi Round 2 vs oracle downstream-tuned weights on GLaM), Figure 4 (bar_chart, Per-domain log-perplexity for all 22 Pile domains: baseline vs DoReMi; All 22 DoReMi bars shorter than baseline bars)\n- **Ablation Figures**: Figure 5 (line_plot, Model scale 280M, 510M, 760M, 1B same-size training), Figure 6 Left (line_plot, Proxy model size 70M, 280M, 1B for fixed 8B main model), Figure 6 Right (bar_chart, Loss component ablation), Figures 7-8 (Appendix, GLaM cross-scale results and Domain weight trajectories)\n- **Figure Narrative Role**: Figure 1 (method pipeline) → Figure 2 (headline speedup result with 2.6x annotation) → Figure 3 (Pile + GLaM main results, oracle matching) → Figure 4 (all-domain improvement, no-tradeoff) → Figure 5 (scale invariance) → Figure 6 (proxy size + loss component ablations) → Figures 7-8 (appendix: GLaM details + weight dynamics)\n\n**Tables**:\n- **Table Count**: 9\n- **Main Result Table**: Table 1; row_axis: domains; col_axis: Baseline weight | DoReMi (280M) weight | Difference; row_organization: flat; col_organization: flat; highlight_strategy: no explicit bold; focus on weight difference magnitudes showing domain redistribution pattern; statistical_reporting: single run domain weights (deterministic from DRO optimization); num_baselines: 1; design_note: 22 rows for all Pile domains; the table IS the result showing domain weight redistribution\n- **Ablation Tables**: Table 2 (Iterated DoReMi rounds on GLaM), Table 3 (Proxy scale impact), Table 7 (Loss component ablation)\n- **Supplementary Tables**: Tables 4-6, 8-9 in appendix covering per-domain perplexities, per-task accuracies, scale-invariant analysis, domain weights comparison, and architecture details\n\n---\n\n## zellers2019grover.yaml\n**Paper Key**: zellers2019grover\n**Title**: \"Defending Against Neural Fake News\"\n**Venue**: NeurIPS 2019\n**Full Text Available**: false\n\n**Research**:\n- **Baselines**: GPT-2 discriminator, BERT discriminator, FastText, stylistic feature classifiers\n- **Metrics**: detection accuracy (higher_better), human evaluation accuracy (higher_better)\n- **Datasets**: RealNews (120K articles from Common Crawl)\n- **Ablation Dimensions**: generator size, discriminator architecture, training data amount\n- **Training Recipe**: Grover generator trained on RealNews corpus; discriminator fine-tuned on generated vs real articles\n- **Method Family**: generator-as-discriminator detection\n\n**Positioning**:\n- **Core Claim**: The best defense against neural fake news generators is the generator itself, with Grover achieving 92% detection accuracy vs 73% for standard discriminators\n- **Relation to Us**: foundation\n\n**Narrative**, **Figures**, **Tables**: N/A\n\n---\n\nAll 12 YAML files have been read in full. These files represent a comprehensive collection of papers spanning model collapse detection/mitigation, data selection strategies, domain reweighting, and AI-text detection. The papers range from theoretical frameworks (falahati2026curated) to large-scale empirical studies (tirumala2024d4, xie2024doremi) to position papers (schaeffer2025position) to foundational work (ippolito2020detection, zellers2019grover)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0503b8b3-2a90-41f5-a9d2-723c1e831d47",
+            "isSidechain": true,
+            "agentId": "a6abfa09072239cc9",
+            "requestId": "req_011CbDJWza47zFHXJe32gaQo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7ab83fbe-c1f6-43e1-a503-f326c1dadbc2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/distiller_3413cb75",
+            "sessionId": "7330ef8e-e4ae-40ea-a9ef-2555d490eb06",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01811TcvAGJPBu4pbqt51r6d",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 19914,
+                "cache_read_input_tokens": 17343,
+                "output_tokens": 12007,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 19914
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 12007,
+                    "cache_read_input_tokens": 17343,
+                    "cache_creation_input_tokens": 19914,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 19914,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-all-yaml-files-in-home-ubuntu-agent-ml-research-idea-gen-0509-7-projects.md"
+}

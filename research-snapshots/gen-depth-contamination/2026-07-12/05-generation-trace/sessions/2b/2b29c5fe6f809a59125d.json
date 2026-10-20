@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "2b29c5fe6f809a59125d",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> exp-017 (Instruct continuation) 结果：K*=2, pairwise_auc: 0v1=0.9972, 1v2=0.6114, 2v3=0.5609, 3v4=0.5408, 4",
+  "task_key": "c4d1ff48-578c-43c6-8cfc-445bcfe622f5",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/c4d1ff48-578c-43c6-8cfc-445bcfe622f5.jsonl",
+    "occurrence": 1,
+    "bytes": 515017,
+    "sha256": "94823b632428c4cf7abbe272beeeabc1b26323c1c9d1f0e51ef8fce47e1f7a61"
+  },
+  "statistics": {
+    "messages": 314,
+    "user_turns": 1,
+    "tool_calls": 100,
+    "roles": {
+      "record": 53,
+      "user": 1,
+      "assistant": 60,
+      "tool_call": 100,
+      "tool_result": 100
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2b29c5fe6f809a59125d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 312,
+      "chunks": [
+        {
+          "path": "2b29c5fe6f809a59125d-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "2b29c5fe6f809a59125d-part-0002.json",
+          "message_count": 134
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-exp-017-instruct-continuation-k-2-pairwise-auc-0v1-0-9972-1v2-0.md"
+}

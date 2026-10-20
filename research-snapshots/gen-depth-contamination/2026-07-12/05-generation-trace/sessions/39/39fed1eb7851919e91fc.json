@@ -1,0 +1,1219 @@
+{
+  "schema_version": "1.0",
+  "id": "39fed1eb7851919e91fc",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: gen-depth-contamination ## 运行环境 - 服务器名: cqa1-22115 - SSH 账户: root（调用 ssh_execute / submit_traini",
+  "task_key": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/aa8f01c1-a96a-4498-8b68-a4552b7ad0d0.jsonl",
+    "occurrence": 1,
+    "bytes": 66464,
+    "sha256": "b2707dd637b839f3c511bdeb07d81ca79bce94e07308b67fdaf7ec90552827d1"
+  },
+  "statistics": {
+    "messages": 26,
+    "user_turns": 1,
+    "tool_calls": 5,
+    "roles": {
+      "record": 10,
+      "user": 1,
+      "assistant": 5,
+      "tool_call": 5,
+      "tool_result": 5
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T18:04:20.243Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-22T18:04:20.243Z",
+                "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0",
+                "content": "<project_context>\n# 项目: gen-depth-contamination\n\n## 运行环境\n- 服务器名: cqa1-22115\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh cqa1-22115  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/gen-depth-contamination\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：填充 appendix_extended.tex 的 10K robustness 表格\n\n### 背景\nappendix_extended.tex 中有一个 10K robustness 表格 (tab:robustness_10k)，Qwen-cont 10K 行仍标为 pending。现在数据已就绪，需要填入。\n\n### 数据来源（已验证，直接使用）\n\n**Qwen-cont 10K (exp_qwen_cont_10k):**\n- K* = 2\n- AUC 0v1 = 0.9875\n- AUC 1v2 = 0.6346\n- AUC 2v3 = 0.5616\n- AUC 3v4 = 0.5451\n- AUC 4v5 = 0.5254\n- Bootstrap 95% CI (1v2): [0.6282, 0.6409]\n- Bonferroni 99.5% CI (1v2): [0.6255, 0.6436]\n- permutation p-value (1v2): 0.0001\n- Bonferroni PASS: yes\n- top_feature: freq_entropy\n\n**Pythia-1.4B 10K (exp_pythia14b_c4_10k) — 确认已填入:**\n- K* = 2\n- AUC 0v1 = 0.9712\n- AUC 1v2 = 0.6175\n- AUC 2v3 = 0.5364\n- AUC 3v4 = 0.5134\n- AUC 4v5 = 0.5088\n- Bootstrap 95% CI (1v2): [0.6108, 0.6242]\n- Bonferroni 99.5% CI (1v2): [0.6078, 0.6273]\n- permutation p-value (1v2): 0.0001\n- Bonferroni PASS: yes\n\n### 步骤\n\n1. 读取本地 appendix_extended.tex:\n   `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex`\n\n2. 找到 tab:robustness_10k 表格\n\n3. 将 Qwen-cont 10K 的数据填入对应行（替换 pending 标记）\n\n4. 确认 Pythia-1.4B 10K 行也已正确填入（如果还是 pending，一并填入）\n\n5. 检查 LLaMA-8B 10K 行是否存在（标为 pending 即可，实验还在跑）\n\n6. 保存文件\n\n### 格式参考\n参考表格中已填入的行的格式，保持一致。数字保留 4 位小数。\n\n### 注意\n- 只修改本地文件，不需要 SSH\n- 不要改动表格结构或其他内容\n"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T18:04:20.247Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-22T18:04:20.247Z",
+                "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T18:04:20.277Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<project_context>\n# 项目: gen-depth-contamination\n\n## 运行环境\n- 服务器名: cqa1-22115\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh cqa1-22115  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/gen-depth-contamination\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：填充 appendix_extended.tex 的 10K robustness 表格\n\n### 背景\nappendix_extended.tex 中有一个 10K robustness 表格 (tab:robustness_10k)，Qwen-cont 10K 行仍标为 pending。现在数据已就绪，需要填入。\n\n### 数据来源（已验证，直接使用）\n\n**Qwen-cont 10K (exp_qwen_cont_10k):**\n- K* = 2\n- AUC 0v1 = 0.9875\n- AUC 1v2 = 0.6346\n- AUC 2v3 = 0.5616\n- AUC 3v4 = 0.5451\n- AUC 4v5 = 0.5254\n- Bootstrap 95% CI (1v2): [0.6282, 0.6409]\n- Bonferroni 99.5% CI (1v2): [0.6255, 0.6436]\n- permutation p-value (1v2): 0.0001\n- Bonferroni PASS: yes\n- top_feature: freq_entropy\n\n**Pythia-1.4B 10K (exp_pythia14b_c4_10k) — 确认已填入:**\n- K* = 2\n- AUC 0v1 = 0.9712\n- AUC 1v2 = 0.6175\n- AUC 2v3 = 0.5364\n- AUC 3v4 = 0.5134\n- AUC 4v5 = 0.5088\n- Bootstrap 95% CI (1v2): [0.6108, 0.6242]\n- Bonferroni 99.5% CI (1v2): [0.6078, 0.6273]\n- permutation p-value (1v2): 0.0001\n- Bonferroni PASS: yes\n\n### 步骤\n\n1. 读取本地 appendix_extended.tex:\n   `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex`\n\n2. 找到 tab:robustness_10k 表格\n\n3. 将 Qwen-cont 10K 的数据填入对应行（替换 pending 标记）\n\n4. 确认 Pythia-1.4B 10K 行也已正确填入（如果还是 pending，一并填入）\n\n5. 检查 LLaMA-8B 10K 行是否存在（标为 pending 即可，实验还在跑）\n\n6. 保存文件\n\n### 格式参考\n参考表格中已填入的行的格式，保持一致。数字保留 4 位小数。\n\n### 注意\n- 只修改本地文件，不需要 SSH\n- 不要改动表格结构或其他内容\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "8d0964a4-778d-4384-b1fa-74e68cd814e2",
+            "type": "user",
+            "uuid": "d8ebc560-7971-4cff-ac44-95052f7b7161",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T18:04:20.277Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "d8ebc560-7971-4cff-ac44-95052f7b7161",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "e6ef61b0-f381-4cd5-beff-c068f587a941",
+                "timestamp": "2026-05-22T18:04:20.277Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T18:04:20.277Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "e6ef61b0-f381-4cd5-beff-c068f587a941",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "8e77ff95-384a-4ca6-9148-de6ec3d159e8",
+                "timestamp": "2026-05-22T18:04:20.277Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T18:04:20.277Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "8e77ff95-384a-4ca6-9148-de6ec3d159e8",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "72c2c90e-ceab-4d37-b0c7-89ea2a8c8c4c",
+                "timestamp": "2026-05-22T18:04:20.277Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Fill Qwen robustness table in appendix",
+                "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T18:04:23.685Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the file to find the table."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "72c2c90e-ceab-4d37-b0c7-89ea2a8c8c4c",
+            "isSidechain": false,
+            "requestId": "req_011CbJ3o91mgiNgkHmnUUaZ8",
+            "type": "assistant",
+            "uuid": "a687c29a-3c0e-4624-a93a-991d26997d1e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PsGjTFyCyeg9m8AUc5L97Y",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12344,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 103,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 12344,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 103,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 12344,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 12344
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T18:04:23.859Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F6ZYedjk9WZD4MHpLN9tBx",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a687c29a-3c0e-4624-a93a-991d26997d1e",
+            "isSidechain": false,
+            "requestId": "req_011CbJ3o91mgiNgkHmnUUaZ8",
+            "type": "assistant",
+            "uuid": "0a273f7d-4ecb-47ed-8b18-b7cdec75942d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PsGjTFyCyeg9m8AUc5L97Y",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12344,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 103,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 12344,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 103,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 12344,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 12344
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T18:04:23.871Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F6ZYedjk9WZD4MHpLN9tBx",
+              "type": "tool_result",
+              "content": "1\t\\section{Extended Discussion}\n2\t\\label{sec:extended_discussion}\n3\t\n4\t\\subsection{Theoretical Implications of $\\Kempirical = 2$}\n5\t\n6\tThe DPI guarantees a finite $\\Ktheory$; for general web text, $\\Kempirical \\leq 2$ across all 10 configurations (1B--8B, 6 families), while structured domains (arXiv) yield $\\Kempirical{=}3$, aligning with model collapse convergence~\\cite{shumailov2024collapse, dohmatob2024model, alemohammad2024selfconsuming}.\n7\tDecoding strategy modestly affects signal strength (1v2 $\\auc \\in [0.6866, 0.7039]$) but does not shift the boundary.\n8\t\n9\t\\subsection{Cross-Model Transfer Implications}\n10\t\n11\tCross-model classification retains 80--100\\% accuracy with scorer-invariant feature rankings ($\\rho > 0.90$), enabling single-classifier deployment across generators.\n12\tAbsolute discriminability at the $\\Kempirical$ boundary is scorer-sensitive: alternative scorers reduce Qwen-continuation $\\Kempirical$ from 2 to 1, while rewrite-mode $\\Kempirical = 2$ is preserved.\n13\tModel family similarity modulates transfer (Pythia$\\leftrightarrow$OLMo: 90--92\\% vs.\\ Qwen-cont$\\leftrightarrow$OLMo: 80--85\\%).\n14\t\n15\t\\begin{minipage}{\\columnwidth}\n16\t\\centering\n17\t\\captionof{table}{Cross-scorer validation on Qwen-generated text. Alternative scorers (Pythia-1.4B, OLMo-1B) preserve feature ranking ($\\rho > 0.90$) and rewrite-mode $\\Kempirical = 2$, but reduce continuation-mode $\\Kempirical$ from 2 to 1.}\n18\t\\label{tab:crossscorer}\n19\t\\resizebox{\\columnwidth}{!}{\\input{tables/tab_crossscorer}}\n20\t\\end{minipage}\n21\t\n22\t\\begin{table}[h]\n23\t\\centering\n24\t\\small\n25\t\\caption{Three-way ANOVA (Generator $\\times$ Scorer $\\times$ Depth-Pair) on per-fold pairwise $\\auc$ values. DV = per-fold AUC; $N{=}300$ (12 cells $\\times$ 5 folds $\\times$ 5 depth-pairs). Scorer is statistically significant but explains modest variance ($\\eta^2_p{=}.166$) relative to Depth-Pair ($\\eta^2_p{=}.997$), supporting near-scorer-independence of depth discrimination.}\n26\t\\label{tab:anova_crossscorer}\n27\t\\begin{tabular}{lrrrr}\n28\t\\toprule\n29\t\\textbf{Source} & \\textbf{df} & $F$ & $p$ & $\\eta^2_p$ \\\\\n30\t\\midrule\n31\tGenerator     & 2  & 851.91  & ${<}.001$  & .866 \\\\\n32\tScorer        & 3  & 17.48  & ${<}.001$  & .166 \\\\\n33\tDepth-Pair    & 4  & 22737.70  & ${<}.001$  & .997 \\\\\n34\tGen$\\times$Scorer & 6 & 7.50 & ${<}.001$ & .146 \\\\\n35\tGen$\\times$Depth  & 8 & 913.41 & ${<}.001$ & .965 \\\\\n36\tScorer$\\times$Depth & 12 & 2.25 & $.010$ & .093 \\\\\n37\tResidual      & 264 & & & \\\\\n38\t\\bottomrule\n39\t\\end{tabular}\n40\t\\end{table}\n41\t\n42\t\\subsection{Feature Importance Across Decoding Strategies}\n43\t\n44\tFeature importance ordering varies across decoding strategies: greedy and $T{=}0.7$ share highly correlated rankings ($\\rho = 0.914$), while greedy vs.\\ $T{=}1.2$ yields lower correlation ($\\rho = 0.53$, nonsignificant after Bonferroni).\n45\tThe depth boundary is robust but the optimal feature subset is strategy-dependent.\n46\t\n47\t\\subsection{Scale and Neural Probe}\n48\t\\label{sec:extended_neural_probe}\n49\t\n50\tCross-scale validation confirms $\\Kempirical = 2$ from 1.5B through 8B: Qwen-7B (1v2 $\\auc = 0.6168$ $[0.608, 0.626]$) and LLaMA-3.1-8B (1v2 $\\auc = 0.6123$, 0v1 $= 0.9225$) both exceed $\\theta$, with progressively lower 0v1 signal consistent with larger models generating more human-like text. Scaling to 13B+ remains open.\n51\t\n52\tThe neural probe yields model-dependent $\\Kempirical^{\\text{neural}}$: $3$ for Qwen (self-familiarity effect from instruction-tuned representations) but $2$ for Pythia; OLMo yields $\\Kempirical^{\\text{neural}} = 1$ (1v2 $\\auc = 0.5054$), consistent with the 15D LightGBM boundary.\n53\tThe 15D model-free features yield $\\Kempirical = 2$ for Pythia and Qwen, while OLMo yields $\\Kempirical = 1$ under the standardized pipeline.\n54\t\n55\t\\subsection{LLM Zero-Shot Baseline}\n56\t\\label{sec:extended_llm}\n57\t\n58\tGPT-5.5 achieves 33.2\\% accuracy (MAE = 1.10) and Claude Opus~4.6 33.1\\% (MAE = 1.15) on a balanced 500-sample test set, comparable to OBD-LightGBM's 38.0\\% (95\\% CI: $[0.340, 0.422]$; McNemar $p = 0.081$, $0.069$; Table~\\ref{tab:s3_llm_zeroshot}).\n59\tPer-depth recall confirms convergent failure at depths $\\geq 2$ (Section~\\ref{sec:why_kstar}).\n60\tWhen 6-class probabilities are marginalized to 5 classes ($P(d{\\geq}4)$), accuracy rises to 44.4\\% but concentrates in depth-4 (recall: 22\\%$\\to$80\\%) while depths 2--3 collapse to 2--8\\%; we report raw 6-class results.\n61\t\n62\t\\subsection{Practical Considerations}\n63\t\n64\tAll filtering strategies degrade general capabilities (MMLU: 0.6018 $\\to$ 0.5865--0.5941; HellaSwag: 0.6821 $\\to$ 0.6638--0.6701); our 100\\% synthetic setting is an upper bound; in mixed corpora, degradation scales with contamination fraction~\\cite{shumailov2024collapse, dohmatob2024model}.\n65\t$\\Kstar$-aware binary filtering reduces MMLU degradation by ${\\sim}$50\\% ($-$1.53\\,pp $\\to$ $-$0.77\\,pp), requires no per-model calibration, and is combinable with distribution-matching methods (DSIR, DoReMi).\n66\t\n67\t\\subsection{Extended Limitations}\n68\t\\label{sec:extended_limitations}\n69\t\n70\t\\emph{Prompt-chain versus retrain-chain.}\n71\tRetrain-chain validation (Pythia-1.4B LoRA, 5 generations) yields $\\Kempirical{\\geq}4$ (1v2 $\\auc = 0.9484$, 2v3 $= 0.8888$, 3v4 $= 0.7982$), far exceeding prompt-chain $\\Kempirical{=}2$.\n72\tThe elevated signal arises from cumulative model-adaptation artifacts rather than text-intrinsic degradation; prompt-chain $\\Kempirical$ is the operationally relevant boundary for data curation.\n73\t\n74\t\\emph{Threshold sensitivity.}\n75\tAt $\\theta = 0.55$, $\\Kempirical = 3$ for Qwen-rewrite/continuation; at $\\theta = 0.70$, $\\Kempirical = 1$ across all configurations (Figure~\\ref{fig:kstar_theta}).\n76\tQwen-continuation's 1v2 CI lower bound exceeds $\\theta$ by only 0.2\\,pp; all ten boundary comparisons yield permutation $p < 0.001$.\n77\t\n78\t\\emph{Structural confound: token length.}\n79\tIn continuation mode the generation prompt is discarded, so all depths $\\geq 1$ consist entirely of machine-generated tokens and the 1v2 boundary compares texts differing only in conditioning context (human-authored vs.\\ machine-generated prompt), not structural composition.\n80\tDepth~0 texts average ${\\sim}$191 subword tokens (C4 truncation), while depth~1+ texts average 193--256 tokens depending on model (Table~\\ref{tab:token_length}).\n81\tThis asymmetry is directionally opposite to a length-inflation confound: shorter depth-0 texts provide less feature-extraction context, making 0v1 discrimination harder, not easier.\n82\tWithin depths 1--5, mean token counts are stable (within-model range $\\leq$ 4 tokens for all configurations except Qwen-continuation at 6 tokens), so the pairwise comparisons underlying $\\Kempirical{=}2$ are unaffected by length.\n83\tEOS truncation rates are similarly depth-stable within each model: Qwen-rewrite 7--11\\%, Pythia 34--36\\%, OLMo $<$1\\%, Qwen-continuation 17--20\\%, Qwen-7B 45--47\\%.\n84\tModels with the highest truncation (Pythia, Qwen-7B) still yield $\\Kempirical{=}2$ with the same step-function AUC decay pattern as low-truncation models (Table~\\ref{tab:kstar_ci}), confirming that EOS truncation does not drive the boundary.\n85\t\n86\t\\emph{Graduated filtering.}\n87\tAll $\\alpha$ values (0.1--0.9) underperform binary-ours on MMLU ($\\alpha{=}0.1$: 0.5873; $\\alpha{=}0.9$: 0.5892 vs.\\ 0.5941); at $\\alpha{=}0.9$, HellaSwag matches exactly (0.6701).\n88\tBinary-ours significantly outperforms all alternatives on MMLU ($p_{\\text{corr}} \\leq 0.021$); Graduated$_{0.9}$ is indistinguishable on HellaSwag ($p = 1.00$) but worse on MMLU ($p_{\\text{corr}} = 0.011$).\n89\t\\label{tab:pairwise_significance}\n90\t\n91\t\\subsection{Dose-Response: Contamination Ratio Effect}\n92\t\\label{sec:dose_response}\n93\t\n94\tThe main filtering experiments (Section~\\ref{sec:filtering}) use 100\\% synthetic data to maximize effect size.\n95\tTo characterize behavior at lower contamination ratios, we mix synthetic depths 1--5 with clean C4 at 10\\%, 30\\%, and 50\\% contamination (Qwen-1.5B continuation, 5 seeds each; Table~\\ref{tab:dose_response}).\n96\t\n97\t\\begin{table}[h]\n98\t\\centering\n99\t\\small\n100\t\\caption{MMLU accuracy by contamination ratio (fraction of synthetic data in training set) and filtering strategy. Base model (no fine-tuning): 0.6018. Mean $\\pm$ std over 5 seeds.}\n101\t\\label{tab:dose_response}\n102\t\\resizebox{\\columnwidth}{!}{%\n103\t\\begin{tabular}{lccc}\n104\t\\toprule\n105\t\\textbf{Strategy} & \\textbf{10\\%} & \\textbf{30\\%} & \\textbf{50\\%} \\\\\n106\t\\midrule\n107\tNo-filter   & $0.6009 \\pm .003$ & $0.5978 \\pm .004$ & $0.5932 \\pm .004$ \\\\\n108\tBinary-ours & $0.6011 \\pm .003$ & $0.5988 \\pm .003$ & $0.5956 \\pm .004$ \\\\\n109\tGraduated   & $0.6008 \\pm .003$ & $0.5982 \\pm .004$ & $0.5944 \\pm .004$ \\\\\n110\t\\bottomrule\n111\t\\end{tabular}}\n112\t\\end{table}\n113\t\n114\t{\\sloppy At 10\\% contamination, no-filter MMLU ($0.6009$) remains within noise of the base model ($0.6018$, $\\Delta = -0.09$\\,pp), and all three strategies are indistinguishable ($\\Delta_{\\max} = 0.03$\\,pp between strategies, $p > 0.8$).\n115\tAt 30\\%, differences emerge directionally ($\\Delta = 0.10$\\,pp, binary vs.\\ no-filter) but remain non-significant ($p > 0.3$).\n116\tAt 50\\%, binary-ours shows a 0.24\\,pp advantage over no-filter, approaching but not reaching significance ($p = 0.12$).\n117\tThe strategy ordering (binary $>$ graduated $>$ no-filter) is consistent with the 100\\% setting, but effect sizes scale linearly with contamination fraction.\n118\tThis demonstrates that $\\Kstar$-aware curation provides practical benefit primarily when contamination is severe enough to cause measurable quality degradation.\\par}\n119\t\n120\t\\subsection{Seed Robustness}\n121\t\\label{sec:seed_robustness}\n122\t\n123\tBecause the random seed governs both corpus sampling and generation quality (not merely CV splits), absolute AUC values are seed-dependent.\n124\tWe re-run three configurations with seed$\\,{=}\\,123$ (primary: seed$\\,{=}\\,42$; Table~\\ref{tab:seed_robustness}).\n125\t$\\Kempirical$ is stable in 2/3 cases: Pythia-1.4B on Wikipedia yields $\\Kempirical{=}1$ under both seeds (1v2 $\\Delta = -0.8$\\,pp), and Qwen-1.5B on C4 yields $\\Kempirical{=}2$ (1v2 $\\Delta = +9.0$\\,pp, both seeds above $\\theta$).\n126\tQwen-1.5B on Wikipedia shifts from $\\Kempirical{=}2$ to $\\Kempirical{=}3$ under seed$\\,{=}\\,123$, but the 2v3 AUC ($0.6067$) is marginal: one of five folds falls below $\\theta$ (fold~5 $= 0.595$), so this does not constitute strong evidence for $\\Kempirical{=}3$.\n127\tThe ${\\pm}9$\\,pp absolute AUC variation across seeds strengthens the methodological case for threshold-based $\\Kempirical$ over raw AUC comparisons: the qualitative boundary is robust even when point estimates shift.\n128\t\n129\t\\begin{table}[h]\n130\t\\centering\n131\t\\footnotesize\n132\t\\caption{Seed robustness: $\\Kempirical$ under two random seeds. 1v2 $\\Delta$: change in 1v2 AUC from seed 42 to seed 123. $\\Kempirical$ is stable in 2/3 configurations; the Qwen-Wiki shift to $\\Kempirical{=}3$ is marginal (2v3 fold variance crosses $\\theta$).}\n133\t\\label{tab:seed_robustness}\n134\t\\resizebox{\\columnwidth}{!}{%\n135\t\\begin{tabular}{llcccc}\n136\t\\toprule\n137\t\\textbf{Model} & \\textbf{Domain} & \\multicolumn{2}{c}{$\\Kempirical$} & \\textbf{1v2 $\\Delta$} & \\textbf{Stable?} \\\\\n138\t\\cmidrule(lr){3-4}\n139\t & & seed=42 & seed=123 & & \\\\\n140\t\\midrule\n141\tPythia-1.4B & Wikipedia & 1 & 1 & $-0.8$\\,pp & \\checkmark \\\\\n142\tQwen-1.5B  & C4        & 2 & 2 & $+9.0$\\,pp & \\checkmark \\\\\n143\tQwen-1.5B  & Wikipedia & 2 & 3$^\\dagger$ & $+8.7$\\,pp & $\\times$ \\\\\n144\t\\bottomrule\n145\t\\multicolumn{6}{l}{\\footnotesize $^\\dagger$2v3 $\\auc = 0.6067$; fold 5 $= 0.595 < \\theta$. Marginal boundary.}\n146\t\\end{tabular}}\n147\t\\end{table}\n148\t\n149\t\\subsection{Bonferroni-Corrected Confidence Intervals}\n150\t\\label{sec:bonferroni_ci}\n151\t\n152\tTo control the family-wise error rate across all 10 model configurations, we apply Bonferroni correction: $\\alpha_{\\text{corr}} = 0.05 / 10 = 0.005$, yielding 99.5\\% confidence intervals ($z = 2.807$).\n153\tTable~\\ref{tab:bonferroni_ci} reports the corrected intervals for each configuration's $\\Kempirical$ boundary pair.\n154\tEight of ten configurations retain CI lower bounds above $\\theta{=}0.60$; two marginal $\\Kempirical{=}2$ configurations (Qwen-cont, LLaMA-8B) see their lower bounds dip below $\\theta$ under the stricter criterion ($0.5976$ and $0.5988$, respectively).\n155\tThese near-misses reflect narrow effect sizes ($\\auc - \\theta < 0.013$) rather than classification failure: both retain point estimates above $\\theta$ and uncorrected 95\\% CI lower bounds above $\\theta$.\n156\t\n157\t\\begin{table}[h]\n158\t\\centering\n159\t\\footnotesize\n160\t\\caption{Bonferroni-corrected 99.5\\% confidence intervals for $\\Kempirical$ boundary pairs across all 10 configurations. $\\alpha_{\\text{corr}} = 0.005$; CI computed as $\\auc \\pm 2.807 \\times \\hat{\\sigma}_{\\text{boot}}$. ``Pass $\\theta$'': CI lower bound $> 0.60$.}\n161\t\\label{tab:bonferroni_ci}\n162\t\\resizebox{\\columnwidth}{!}{%\n163\t\\begin{tabular}{llcccc}\n164\t\\toprule\n165\t\\textbf{Configuration} & \\textbf{Boundary} & $\\auc$ & $\\hat{\\sigma}_{\\text{boot}}$ & \\textbf{99.5\\% CI} & \\textbf{Pass $\\theta$} \\\\\n166\t\\midrule\n167\t\\multicolumn{6}{l}{\\textit{$\\Kempirical = 2$ configurations}} \\\\\n168\tQwen-rw (Instruct)       & 1v2 & .6955 & .0046 & $[.683,\\,.708]$ & \\checkmark \\\\\n169\tPythia-1.4B               & 1v2 & .6539 & .0046 & $[.641,\\,.667]$ & \\checkmark \\\\\n170\tQwen-base                 & 1v2 & .6260 & .0047 & $[.613,\\,.639]$ & \\checkmark \\\\\n171\tQwen-7B$^\\ddagger$        & 1v2 & .6168 & .0046 & $[.604,\\,.630]$ & \\checkmark \\\\\n172\tLLaMA-8B                  & 1v2 & .6123 & .0048 & $[.599,\\,.626]$ & $\\times$ \\\\\n173\tQwen-cont (Instruct)     & 1v2 & .6112 & .0049 & $[.598,\\,.625]$ & $\\times$ \\\\\n174\t\\midrule\n175\t\\multicolumn{6}{l}{\\textit{$\\Kempirical = 1$ configurations}} \\\\\n176\tOLMo-1B                   & 0v1 & .9860 & .0009 & $[.983,\\,.989]$ & \\checkmark \\\\\n177\tMistral-7B                & 0v1 & .9842 & .0009 & $[.982,\\,.987]$ & \\checkmark \\\\\n178\tPythia-6.9B$^\\S$          & 0v1 & .9599 & .0015$^\\dagger$ & $[.956,\\,.964]$ & \\checkmark \\\\\n179\tGemma-2-2B                & 0v1 & .9530 & .0018 & $[.948,\\,.958]$ & \\checkmark \\\\\n180\t\\bottomrule\n181\t\\multicolumn{6}{l}{\\footnotesize $^\\ddagger$Generator: Qwen2.5-7B; scorer: Qwen2.5-1.5B.} \\\\\n182\t\\multicolumn{6}{l}{\\footnotesize $^\\S$Nucleus sampling ($p{=}0.95$, $T{=}1.0$).} \\\\\n183\t\\multicolumn{6}{l}{\\footnotesize $^\\dagger$Estimated from analogous configurations (no separate bootstrap JSON).}\n184\t\\end{tabular}}\n185\t\\end{table}\n186\t\n187\t\\subsection{Cross-Sample Robustness: 5K vs.\\ 10K}\n188\t\\label{sec:robustness_10k}\n189\t\n190\tThe preceding analyses fix the sample pool at $N{=}5{,}000$ passages per depth.\n191\tTo assess between-sample variability, we re-draw an independent $N{=}10{,}000$ sample from C4 using a different random seed and repeat the full OBD pipeline.\n192\tIf $\\Kempirical$ and the boundary AUC are driven by the underlying distributional shift rather than by idiosyncrasies of a particular sample, both quantities should remain stable across draws.\n193\t\n194\tTable~\\ref{tab:robustness_10k} reports the results.\n195\tFor Pythia-1.4B (continuation, C4), the 5K and 10K samples agree on $\\Kempirical{=}2$: the 0v1 AUC is nearly identical ($0.9700$ vs.\\ $0.9712$), while the boundary 1v2 AUC decreases from $0.6539$ to $0.6175$ ($\\Delta = -0.036$).\n196\tThis shift is consistent with natural sampling variability across C4 subsets and does not alter the qualitative depth boundary.\n197\tThe 2v3 pair remains near chance in both draws ($0.54$, $0.54$), confirming that depths $\\geq 2$ are indistinguishable regardless of sample.\n198\tResults for Qwen-1.5B and LLaMA-3.1-8B (continuation, C4) are pending; once available, they will allow a more comprehensive assessment of cross-sample stability across model scales.\n199\t\n200\t\\begin{table}[h]\n201\t\\centering\n202\t\\footnotesize\n203\t\\caption{Cross-sample robustness: pairwise AUC and $\\Kempirical$ under 5K and 10K C4 samples drawn with different random seeds. All configurations use continuation mode. $\\Kempirical$ is determined by the $\\theta{=}0.60$ threshold on 1v2 AUC.}\n204\t\\label{tab:robustness_10k}\n205\t\\resizebox{\\columnwidth}{!}{\\begin{tabular}{llcccc}\n206\t\\toprule\n207\t\\textbf{Model} & $N$ & \\textbf{AUC(0v1)} & \\textbf{AUC(1v2)} & \\textbf{AUC(2v3)} & $\\Kempirical$ \\\\\n208\t\\midrule\n209\tPythia-1.4B cont & 5K  & 0.9700 & 0.6539 & 0.5400 & 2 \\\\\n210\tPythia-1.4B cont & 10K & 0.9712 & 0.6175 & 0.5364 & 2 \\\\\n211\t\\midrule\n212\tQwen-1.5B cont  & 5K  & \\multicolumn{3}{c}{(see Table~\\ref{tab:bonferroni_ci})} & 2 \\\\\n213\tQwen-1.5B cont  & 10K & \\multicolumn{4}{c}{\\textit{pending}} \\\\\n214\t\\midrule\n215\tLLaMA-8B cont   & 5K  & \\multicolumn{3}{c}{(see Table~\\ref{tab:bonferroni_ci})} & 2 \\\\\n216\tLLaMA-8B cont   & 10K & \\multicolumn{4}{c}{\\textit{pending}} \\\\\n217\t\\bottomrule\n218\t\\end{tabular}}\n219\t\\end{table}\n220\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0a273f7d-4ecb-47ed-8b18-b7cdec75942d",
+            "isSidechain": false,
+            "promptId": "8d0964a4-778d-4384-b1fa-74e68cd814e2",
+            "type": "user",
+            "uuid": "dc476e28-2282-4361-ac8f-3bc749907328",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+                "content": "\\section{Extended Discussion}\n\\label{sec:extended_discussion}\n\n\\subsection{Theoretical Implications of $\\Kempirical = 2$}\n\nThe DPI guarantees a finite $\\Ktheory$; for general web text, $\\Kempirical \\leq 2$ across all 10 configurations (1B--8B, 6 families), while structured domains (arXiv) yield $\\Kempirical{=}3$, aligning with model collapse convergence~\\cite{shumailov2024collapse, dohmatob2024model, alemohammad2024selfconsuming}.\nDecoding strategy modestly affects signal strength (1v2 $\\auc \\in [0.6866, 0.7039]$) but does not shift the boundary.\n\n\\subsection{Cross-Model Transfer Implications}\n\nCross-model classification retains 80--100\\% accuracy with scorer-invariant feature rankings ($\\rho > 0.90$), enabling single-classifier deployment across generators.\nAbsolute discriminability at the $\\Kempirical$ boundary is scorer-sensitive: alternative scorers reduce Qwen-continuation $\\Kempirical$ from 2 to 1, while rewrite-mode $\\Kempirical = 2$ is preserved.\nModel family similarity modulates transfer (Pythia$\\leftrightarrow$OLMo: 90--92\\% vs.\\ Qwen-cont$\\leftrightarrow$OLMo: 80--85\\%).\n\n\\begin{minipage}{\\columnwidth}\n\\centering\n\\captionof{table}{Cross-scorer validation on Qwen-generated text. Alternative scorers (Pythia-1.4B, OLMo-1B) preserve feature ranking ($\\rho > 0.90$) and rewrite-mode $\\Kempirical = 2$, but reduce continuation-mode $\\Kempirical$ from 2 to 1.}\n\\label{tab:crossscorer}\n\\resizebox{\\columnwidth}{!}{\\input{tables/tab_crossscorer}}\n\\end{minipage}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Three-way ANOVA (Generator $\\times$ Scorer $\\times$ Depth-Pair) on per-fold pairwise $\\auc$ values. DV = per-fold AUC; $N{=}300$ (12 cells $\\times$ 5 folds $\\times$ 5 depth-pairs). Scorer is statistically significant but explains modest variance ($\\eta^2_p{=}.166$) relative to Depth-Pair ($\\eta^2_p{=}.997$), supporting near-scorer-independence of depth discrimination.}\n\\label{tab:anova_crossscorer}\n\\begin{tabular}{lrrrr}\n\\toprule\n\\textbf{Source} & \\textbf{df} & $F$ & $p$ & $\\eta^2_p$ \\\\\n\\midrule\nGenerator     & 2  & 851.91  & ${<}.001$  & .866 \\\\\nScorer        & 3  & 17.48  & ${<}.001$  & .166 \\\\\nDepth-Pair    & 4  & 22737.70  & ${<}.001$  & .997 \\\\\nGen$\\times$Scorer & 6 & 7.50 & ${<}.001$ & .146 \\\\\nGen$\\times$Depth  & 8 & 913.41 & ${<}.001$ & .965 \\\\\nScorer$\\times$Depth & 12 & 2.25 & $.010$ & .093 \\\\\nResidual      & 264 & & & \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Feature Importance Across Decoding Strategies}\n\nFeature importance ordering varies across decoding strategies: greedy and $T{=}0.7$ share highly correlated rankings ($\\rho = 0.914$), while greedy vs.\\ $T{=}1.2$ yields lower correlation ($\\rho = 0.53$, nonsignificant after Bonferroni).\nThe depth boundary is robust but the optimal feature subset is strategy-dependent.\n\n\\subsection{Scale and Neural Probe}\n\\label{sec:extended_neural_probe}\n\nCross-scale validation confirms $\\Kempirical = 2$ from 1.5B through 8B: Qwen-7B (1v2 $\\auc = 0.6168$ $[0.608, 0.626]$) and LLaMA-3.1-8B (1v2 $\\auc = 0.6123$, 0v1 $= 0.9225$) both exceed $\\theta$, with progressively lower 0v1 signal consistent with larger models generating more human-like text. Scaling to 13B+ remains open.\n\nThe neural probe yields model-dependent $\\Kempirical^{\\text{neural}}$: $3$ for Qwen (self-familiarity effect from instruction-tuned representations) but $2$ for Pythia; OLMo yields $\\Kempirical^{\\text{neural}} = 1$ (1v2 $\\auc = 0.5054$), consistent with the 15D LightGBM boundary.\nThe 15D model-free features yield $\\Kempirical = 2$ for Pythia and Qwen, while OLMo yields $\\Kempirical = 1$ under the standardized pipeline.\n\n\\subsection{LLM Zero-Shot Baseline}\n\\label{sec:extended_llm}\n\nGPT-5.5 achieves 33.2\\% accuracy (MAE = 1.10) and Claude Opus~4.6 33.1\\% (MAE = 1.15) on a balanced 500-sample test set, comparable to OBD-LightGBM's 38.0\\% (95\\% CI: $[0.340, 0.422]$; McNemar $p = 0.081$, $0.069$; Table~\\ref{tab:s3_llm_zeroshot}).\nPer-depth recall confirms convergent failure at depths $\\geq 2$ (Section~\\ref{sec:why_kstar}).\nWhen 6-class probabilities are marginalized to 5 classes ($P(d{\\geq}4)$), accuracy rises to 44.4\\% but concentrates in depth-4 (recall: 22\\%$\\to$80\\%) while depths 2--3 collapse to 2--8\\%; we report raw 6-class results.\n\n\\subsection{Practical Considerations}\n\nAll filtering strategies degrade general capabilities (MMLU: 0.6018 $\\to$ 0.5865--0.5941; HellaSwag: 0.6821 $\\to$ 0.6638--0.6701); our 100\\% synthetic setting is an upper bound; in mixed corpora, degradation scales with contamination fraction~\\cite{shumailov2024collapse, dohmatob2024model}.\n$\\Kstar$-aware binary filtering reduces MMLU degradation by ${\\sim}$50\\% ($-$1.53\\,pp $\\to$ $-$0.77\\,pp), requires no per-model calibration, and is combinable with distribution-matching methods (DSIR, DoReMi).\n\n\\subsection{Extended Limitations}\n\\label{sec:extended_limitations}\n\n\\emph{Prompt-chain versus retrain-chain.}\nRetrain-chain validation (Pythia-1.4B LoRA, 5 generations) yields $\\Kempirical{\\geq}4$ (1v2 $\\auc = 0.9484$, 2v3 $= 0.8888$, 3v4 $= 0.7982$), far exceeding prompt-chain $\\Kempirical{=}2$.\nThe elevated signal arises from cumulative model-adaptation artifacts rather than text-intrinsic degradation; prompt-chain $\\Kempirical$ is the operationally relevant boundary for data curation.\n\n\\emph{Threshold sensitivity.}\nAt $\\theta = 0.55$, $\\Kempirical = 3$ for Qwen-rewrite/continuation; at $\\theta = 0.70$, $\\Kempirical = 1$ across all configurations (Figure~\\ref{fig:kstar_theta}).\nQwen-continuation's 1v2 CI lower bound exceeds $\\theta$ by only 0.2\\,pp; all ten boundary comparisons yield permutation $p < 0.001$.\n\n\\emph{Structural confound: token length.}\nIn continuation mode the generation prompt is discarded, so all depths $\\geq 1$ consist entirely of machine-generated tokens and the 1v2 boundary compares texts differing only in conditioning context (human-authored vs.\\ machine-generated prompt), not structural composition.\nDepth~0 texts average ${\\sim}$191 subword tokens (C4 truncation), while depth~1+ texts average 193--256 tokens depending on model (Table~\\ref{tab:token_length}).\nThis asymmetry is directionally opposite to a length-inflation confound: shorter depth-0 texts provide less feature-extraction context, making 0v1 discrimination harder, not easier.\nWithin depths 1--5, mean token counts are stable (within-model range $\\leq$ 4 tokens for all configurations except Qwen-continuation at 6 tokens), so the pairwise comparisons underlying $\\Kempirical{=}2$ are unaffected by length.\nEOS truncation rates are similarly depth-stable within each model: Qwen-rewrite 7--11\\%, Pythia 34--36\\%, OLMo $<$1\\%, Qwen-continuation 17--20\\%, Qwen-7B 45--47\\%.\nModels with the highest truncation (Pythia, Qwen-7B) still yield $\\Kempirical{=}2$ with the same step-function AUC decay pattern as low-truncation models (Table~\\ref{tab:kstar_ci}), confirming that EOS truncation does not drive the boundary.\n\n\\emph{Graduated filtering.}\nAll $\\alpha$ values (0.1--0.9) underperform binary-ours on MMLU ($\\alpha{=}0.1$: 0.5873; $\\alpha{=}0.9$: 0.5892 vs.\\ 0.5941); at $\\alpha{=}0.9$, HellaSwag matches exactly (0.6701).\nBinary-ours significantly outperforms all alternatives on MMLU ($p_{\\text{corr}} \\leq 0.021$); Graduated$_{0.9}$ is indistinguishable on HellaSwag ($p = 1.00$) but worse on MMLU ($p_{\\text{corr}} = 0.011$).\n\\label{tab:pairwise_significance}\n\n\\subsection{Dose-Response: Contamination Ratio Effect}\n\\label{sec:dose_response}\n\nThe main filtering experiments (Section~\\ref{sec:filtering}) use 100\\% synthetic data to maximize effect size.\nTo characterize behavior at lower contamination ratios, we mix synthetic depths 1--5 with clean C4 at 10\\%, 30\\%, and 50\\% contamination (Qwen-1.5B continuation, 5 seeds each; Table~\\ref{tab:dose_response}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{MMLU accuracy by contamination ratio (fraction of synthetic data in training set) and filtering strategy. Base model (no fine-tuning): 0.6018. Mean $\\pm$ std over 5 seeds.}\n\\label{tab:dose_response}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Strategy} & \\textbf{10\\%} & \\textbf{30\\%} & \\textbf{50\\%} \\\\\n\\midrule\nNo-filter   & $0.6009 \\pm .003$ & $0.5978 \\pm .004$ & $0.5932 \\pm .004$ \\\\\nBinary-ours & $0.6011 \\pm .003$ & $0.5988 \\pm .003$ & $0.5956 \\pm .004$ \\\\\nGraduated   & $0.6008 \\pm .003$ & $0.5982 \\pm .004$ & $0.5944 \\pm .004$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n{\\sloppy At 10\\% contamination, no-filter MMLU ($0.6009$) remains within noise of the base model ($0.6018$, $\\Delta = -0.09$\\,pp), and all three strategies are indistinguishable ($\\Delta_{\\max} = 0.03$\\,pp between strategies, $p > 0.8$).\nAt 30\\%, differences emerge directionally ($\\Delta = 0.10$\\,pp, binary vs.\\ no-filter) but remain non-significant ($p > 0.3$).\nAt 50\\%, binary-ours shows a 0.24\\,pp advantage over no-filter, approaching but not reaching significance ($p = 0.12$).\nThe strategy ordering (binary $>$ graduated $>$ no-filter) is consistent with the 100\\% setting, but effect sizes scale linearly with contamination fraction.\nThis demonstrates that $\\Kstar$-aware curation provides practical benefit primarily when contamination is severe enough to cause measurable quality degradation.\\par}\n\n\\subsection{Seed Robustness}\n\\label{sec:seed_robustness}\n\nBecause the random seed governs both corpus sampling and generation quality (not merely CV splits), absolute AUC values are seed-dependent.\nWe re-run three configurations with seed$\\,{=}\\,123$ (primary: seed$\\,{=}\\,42$; Table~\\ref{tab:seed_robustness}).\n$\\Kempirical$ is stable in 2/3 cases: Pythia-1.4B on Wikipedia yields $\\Kempirical{=}1$ under both seeds (1v2 $\\Delta = -0.8$\\,pp), and Qwen-1.5B on C4 yields $\\Kempirical{=}2$ (1v2 $\\Delta = +9.0$\\,pp, both seeds above $\\theta$).\nQwen-1.5B on Wikipedia shifts from $\\Kempirical{=}2$ to $\\Kempirical{=}3$ under seed$\\,{=}\\,123$, but the 2v3 AUC ($0.6067$) is marginal: one of five folds falls below $\\theta$ (fold~5 $= 0.595$), so this does not constitute strong evidence for $\\Kempirical{=}3$.\nThe ${\\pm}9$\\,pp absolute AUC variation across seeds strengthens the methodological case for threshold-based $\\Kempirical$ over raw AUC comparisons: the qualitative boundary is robust even when point estimates shift.\n\n\\begin{table}[h]\n\\centering\n\\footnotesize\n\\caption{Seed robustness: $\\Kempirical$ under two random seeds. 1v2 $\\Delta$: change in 1v2 AUC from seed 42 to seed 123. $\\Kempirical$ is stable in 2/3 configurations; the Qwen-Wiki shift to $\\Kempirical{=}3$ is marginal (2v3 fold variance crosses $\\theta$).}\n\\label{tab:seed_robustness}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Domain} & \\multicolumn{2}{c}{$\\Kempirical$} & \\textbf{1v2 $\\Delta$} & \\textbf{Stable?} \\\\\n\\cmidrule(lr){3-4}\n & & seed=42 & seed=123 & & \\\\\n\\midrule\nPythia-1.4B & Wikipedia & 1 & 1 & $-0.8$\\,pp & \\checkmark \\\\\nQwen-1.5B  & C4        & 2 & 2 & $+9.0$\\,pp & \\checkmark \\\\\nQwen-1.5B  & Wikipedia & 2 & 3$^\\dagger$ & $+8.7$\\,pp & $\\times$ \\\\\n\\bottomrule\n\\multicolumn{6}{l}{\\footnotesize $^\\dagger$2v3 $\\auc = 0.6067$; fold 5 $= 0.595 < \\theta$. Marginal boundary.}\n\\end{tabular}}\n\\end{table}\n\n\\subsection{Bonferroni-Corrected Confidence Intervals}\n\\label{sec:bonferroni_ci}\n\nTo control the family-wise error rate across all 10 model configurations, we apply Bonferroni correction: $\\alpha_{\\text{corr}} = 0.05 / 10 = 0.005$, yielding 99.5\\% confidence intervals ($z = 2.807$).\nTable~\\ref{tab:bonferroni_ci} reports the corrected intervals for each configuration's $\\Kempirical$ boundary pair.\nEight of ten configurations retain CI lower bounds above $\\theta{=}0.60$; two marginal $\\Kempirical{=}2$ configurations (Qwen-cont, LLaMA-8B) see their lower bounds dip below $\\theta$ under the stricter criterion ($0.5976$ and $0.5988$, respectively).\nThese near-misses reflect narrow effect sizes ($\\auc - \\theta < 0.013$) rather than classification failure: both retain point estimates above $\\theta$ and uncorrected 95\\% CI lower bounds above $\\theta$.\n\n\\begin{table}[h]\n\\centering\n\\footnotesize\n\\caption{Bonferroni-corrected 99.5\\% confidence intervals for $\\Kempirical$ boundary pairs across all 10 configurations. $\\alpha_{\\text{corr}} = 0.005$; CI computed as $\\auc \\pm 2.807 \\times \\hat{\\sigma}_{\\text{boot}}$. ``Pass $\\theta$'': CI lower bound $> 0.60$.}\n\\label{tab:bonferroni_ci}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Configuration} & \\textbf{Boundary} & $\\auc$ & $\\hat{\\sigma}_{\\text{boot}}$ & \\textbf{99.5\\% CI} & \\textbf{Pass $\\theta$} \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{$\\Kempirical = 2$ configurations}} \\\\\nQwen-rw (Instruct)       & 1v2 & .6955 & .0046 & $[.683,\\,.708]$ & \\checkmark \\\\\nPythia-1.4B               & 1v2 & .6539 & .0046 & $[.641,\\,.667]$ & \\checkmark \\\\\nQwen-base                 & 1v2 & .6260 & .0047 & $[.613,\\,.639]$ & \\checkmark \\\\\nQwen-7B$^\\ddagger$        & 1v2 & .6168 & .0046 & $[.604,\\,.630]$ & \\checkmark \\\\\nLLaMA-8B                  & 1v2 & .6123 & .0048 & $[.599,\\,.626]$ & $\\times$ \\\\\nQwen-cont (Instruct)     & 1v2 & .6112 & .0049 & $[.598,\\,.625]$ & $\\times$ \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{$\\Kempirical = 1$ configurations}} \\\\\nOLMo-1B                   & 0v1 & .9860 & .0009 & $[.983,\\,.989]$ & \\checkmark \\\\\nMistral-7B                & 0v1 & .9842 & .0009 & $[.982,\\,.987]$ & \\checkmark \\\\\nPythia-6.9B$^\\S$          & 0v1 & .9599 & .0015$^\\dagger$ & $[.956,\\,.964]$ & \\checkmark \\\\\nGemma-2-2B                & 0v1 & .9530 & .0018 & $[.948,\\,.958]$ & \\checkmark \\\\\n\\bottomrule\n\\multicolumn{6}{l}{\\footnotesize $^\\ddagger$Generator: Qwen2.5-7B; scorer: Qwen2.5-1.5B.} \\\\\n\\multicolumn{6}{l}{\\footnotesize $^\\S$Nucleus sampling ($p{=}0.95$, $T{=}1.0$).} \\\\\n\\multicolumn{6}{l}{\\footnotesize $^\\dagger$Estimated from analogous configurations (no separate bootstrap JSON).}\n\\end{tabular}}\n\\end{table}\n\n\\subsection{Cross-Sample Robustness: 5K vs.\\ 10K}\n\\label{sec:robustness_10k}\n\nThe preceding analyses fix the sample pool at $N{=}5{,}000$ passages per depth.\nTo assess between-sample variability, we re-draw an independent $N{=}10{,}000$ sample from C4 using a different random seed and repeat the full OBD pipeline.\nIf $\\Kempirical$ and the boundary AUC are driven by the underlying distributional shift rather than by idiosyncrasies of a particular sample, both quantities should remain stable across draws.\n\nTable~\\ref{tab:robustness_10k} reports the results.\nFor Pythia-1.4B (continuation, C4), the 5K and 10K samples agree on $\\Kempirical{=}2$: the 0v1 AUC is nearly identical ($0.9700$ vs.\\ $0.9712$), while the boundary 1v2 AUC decreases from $0.6539$ to $0.6175$ ($\\Delta = -0.036$).\nThis shift is consistent with natural sampling variability across C4 subsets and does not alter the qualitative depth boundary.\nThe 2v3 pair remains near chance in both draws ($0.54$, $0.54$), confirming that depths $\\geq 2$ are indistinguishable regardless of sample.\nResults for Qwen-1.5B and LLaMA-3.1-8B (continuation, C4) are pending; once available, they will allow a more comprehensive assessment of cross-sample stability across model scales.\n\n\\begin{table}[h]\n\\centering\n\\footnotesize\n\\caption{Cross-sample robustness: pairwise AUC and $\\Kempirical$ under 5K and 10K C4 samples drawn with different random seeds. All configurations use continuation mode. $\\Kempirical$ is determined by the $\\theta{=}0.60$ threshold on 1v2 AUC.}\n\\label{tab:robustness_10k}\n\\resizebox{\\columnwidth}{!}{\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & $N$ & \\textbf{AUC(0v1)} & \\textbf{AUC(1v2)} & \\textbf{AUC(2v3)} & $\\Kempirical$ \\\\\n\\midrule\nPythia-1.4B cont & 5K  & 0.9700 & 0.6539 & 0.5400 & 2 \\\\\nPythia-1.4B cont & 10K & 0.9712 & 0.6175 & 0.5364 & 2 \\\\\n\\midrule\nQwen-1.5B cont  & 5K  & \\multicolumn{3}{c}{(see Table~\\ref{tab:bonferroni_ci})} & 2 \\\\\nQwen-1.5B cont  & 10K & \\multicolumn{4}{c}{\\textit{pending}} \\\\\n\\midrule\nLLaMA-8B cont   & 5K  & \\multicolumn{3}{c}{(see Table~\\ref{tab:bonferroni_ci})} & 2 \\\\\nLLaMA-8B cont   & 10K & \\multicolumn{4}{c}{\\textit{pending}} \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n",
+                "numLines": 220,
+                "startLine": 1,
+                "totalLines": 220
+              }
+            },
+            "sourceToolAssistantUUID": "0a273f7d-4ecb-47ed-8b18-b7cdec75942d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "dc476e28-2282-4361-ac8f-3bc749907328",
+                "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0"
+              }
+            }
+          ],
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Fill Qwen robustness table in appendix",
+                "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0"
+              }
+            }
+          ],
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T18:04:37.014Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I found the table at lines 200-219. The Qwen-1.5B cont 10K row is at line 213 and needs to be filled with the provided data. The Pythia-1.4B 10K row (line 210) is already filled correctly. The LLaMA-8B 10K row (line 216) should remain as pending.\n\nLet me fill in the Qwen-1.5B cont 10K row with:\n- AUC 0v1 = 0.9875\n\n\n- AUC 1v2 = 0.6346\n- AUC 2v3 = 0.5616\n- K* = 2\n\nI'm formatting this to match the table structure, following the same pattern as the Pythia-1.4B row with the model name, values, and LaTeX line ending.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dc476e28-2282-4361-ac8f-3bc749907328",
+            "isSidechain": false,
+            "requestId": "req_011CbJ3oQTTjzeRzeAvm2SiQ",
+            "type": "assistant",
+            "uuid": "443ad620-a006-4bf8-90f4-4dde4bfeb2dc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JqbwWci3wB2QCFG6fzNTcg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6826,
+                "cache_read_input_tokens": 24185,
+                "output_tokens": 621,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6826,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 621,
+                    "cache_read_input_tokens": 24185,
+                    "cache_creation_input_tokens": 6826,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6826
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T18:04:37.021Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pythia-1.4B 10K 已正确填入（line 210）。LLaMA-8B 10K 保持 pending。填入 Qwen-1.5B cont 10K 数据。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "443ad620-a006-4bf8-90f4-4dde4bfeb2dc",
+            "isSidechain": false,
+            "requestId": "req_011CbJ3oQTTjzeRzeAvm2SiQ",
+            "type": "assistant",
+            "uuid": "b9ec1c1c-b990-44f8-b55b-0dcfb42c8ff8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JqbwWci3wB2QCFG6fzNTcg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6826,
+                "cache_read_input_tokens": 24185,
+                "output_tokens": 621,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6826,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 621,
+                    "cache_read_input_tokens": 24185,
+                    "cache_creation_input_tokens": 6826,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6826
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T18:04:37.029Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BiqM5b3fj78ywCiB3t8rQG",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+                "old_string": "\tQwen-1.5B cont  & 10K & \\multicolumn{4}{c}{\\textit{pending}} \\\\",
+                "new_string": "\tQwen-1.5B cont  & 10K & 0.9875 & 0.6346 & 0.5616 & 2 \\\\"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b9ec1c1c-b990-44f8-b55b-0dcfb42c8ff8",
+            "isSidechain": false,
+            "requestId": "req_011CbJ3oQTTjzeRzeAvm2SiQ",
+            "type": "assistant",
+            "uuid": "46348815-a84b-4029-abe9-594669ca301c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JqbwWci3wB2QCFG6fzNTcg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6826,
+                "cache_read_input_tokens": 24185,
+                "output_tokens": 621,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6826,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 621,
+                    "cache_read_input_tokens": 24185,
+                    "cache_creation_input_tokens": 6826,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6826
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T18:04:37.031Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "<tool_use_error>String to replace not found in file.\nString: \tQwen-1.5B cont  & 10K & \\multicolumn{4}{c}{\\textit{pending}} \\\\</tool_use_error>",
+              "is_error": true,
+              "tool_use_id": "toolu_01BiqM5b3fj78ywCiB3t8rQG"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "46348815-a84b-4029-abe9-594669ca301c",
+            "isSidechain": false,
+            "promptId": "8d0964a4-778d-4384-b1fa-74e68cd814e2",
+            "type": "user",
+            "uuid": "a21aaad7-23e3-4cde-bafe-6ad1da614458",
+            "toolUseResult": "Error: String to replace not found in file.\nString: \tQwen-1.5B cont  & 10K & \\multicolumn{4}{c}{\\textit{pending}} \\\\",
+            "sourceToolAssistantUUID": "46348815-a84b-4029-abe9-594669ca301c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T18:04:39.929Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0144G3jYZ5t2TuQtoEqM4vy4",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+                "offset": 211,
+                "limit": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a21aaad7-23e3-4cde-bafe-6ad1da614458",
+            "isSidechain": false,
+            "requestId": "req_011CbJ3pQ79rtGaSu98Q8LPy",
+            "type": "assistant",
+            "uuid": "c9a15e6c-c539-4b25-9a36-8a2bdece0a80",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TRkdAztetm4AzWoAYPykvU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 715,
+                "cache_read_input_tokens": 31011,
+                "output_tokens": 125,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 715,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 125,
+                    "cache_read_input_tokens": 31011,
+                    "cache_creation_input_tokens": 715,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 715
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T18:04:39.936Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0144G3jYZ5t2TuQtoEqM4vy4",
+              "type": "tool_result",
+              "content": "211\t\\midrule\n212\tQwen-1.5B cont  & 5K  & \\multicolumn{3}{c}{(see Table~\\ref{tab:bonferroni_ci})} & 2 \\\\\n213\tQwen-1.5B cont  & 10K & \\multicolumn{4}{c}{\\textit{pending}} \\\\\n214\t\\midrule\n215\tLLaMA-8B cont   & 5K  & \\multicolumn{3}{c}{(see Table~\\ref{tab:bonferroni_ci})} & 2 \\\\"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c9a15e6c-c539-4b25-9a36-8a2bdece0a80",
+            "isSidechain": false,
+            "promptId": "8d0964a4-778d-4384-b1fa-74e68cd814e2",
+            "type": "user",
+            "uuid": "38b202c5-15be-4dd1-9ae0-cb54606b8745",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+                "content": "\\midrule\nQwen-1.5B cont  & 5K  & \\multicolumn{3}{c}{(see Table~\\ref{tab:bonferroni_ci})} & 2 \\\\\nQwen-1.5B cont  & 10K & \\multicolumn{4}{c}{\\textit{pending}} \\\\\n\\midrule\nLLaMA-8B cont   & 5K  & \\multicolumn{3}{c}{(see Table~\\ref{tab:bonferroni_ci})} & 2 \\\\",
+                "numLines": 5,
+                "startLine": 211,
+                "totalLines": 220
+              }
+            },
+            "sourceToolAssistantUUID": "c9a15e6c-c539-4b25-9a36-8a2bdece0a80",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T18:04:42.578Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VJLsEjxYPg2pn757S47VyL",
+              "name": "Bash",
+              "input": {
+                "command": "cat -A \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex\" | sed -n '213p'",
+                "description": "Show exact whitespace on line 213"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "38b202c5-15be-4dd1-9ae0-cb54606b8745",
+            "isSidechain": false,
+            "requestId": "req_011CbJ3pbGNJFu2qbzfkJbZ6",
+            "type": "assistant",
+            "uuid": "d7c55cc9-551f-4788-a908-f33507666423",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NqFjE7XDJwDBBNeC3aYVBq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 286,
+                "cache_read_input_tokens": 31726,
+                "output_tokens": 126,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 286,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 126,
+                    "cache_read_input_tokens": 31726,
+                    "cache_creation_input_tokens": 286,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 286
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T18:04:42.739Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VJLsEjxYPg2pn757S47VyL",
+              "type": "tool_result",
+              "content": "Qwen-1.5B cont  & 10K & \\multicolumn{4}{c}{\\textit{pending}} \\\\$",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d7c55cc9-551f-4788-a908-f33507666423",
+            "isSidechain": false,
+            "promptId": "8d0964a4-778d-4384-b1fa-74e68cd814e2",
+            "type": "user",
+            "uuid": "dd1826d2-708b-4e12-8a67-3173968db122",
+            "toolUseResult": {
+              "stdout": "Qwen-1.5B cont  & 10K & \\multicolumn{4}{c}{\\textit{pending}} \\\\$",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "d7c55cc9-551f-4788-a908-f33507666423",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T18:04:45.954Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No leading tab — just plain spaces."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd1826d2-708b-4e12-8a67-3173968db122",
+            "isSidechain": false,
+            "requestId": "req_011CbJ3po6mPz6kvH83ZwyH1",
+            "type": "assistant",
+            "uuid": "be5e10ad-c179-4a4d-8c56-ff93b11df30b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017pYuqHUy2qzdULdKj89kTm",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 171,
+                "cache_read_input_tokens": 32012,
+                "output_tokens": 209,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 171,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 209,
+                    "cache_read_input_tokens": 32012,
+                    "cache_creation_input_tokens": 171,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 171
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T18:04:47.082Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BoST14HnxB3woWK9UxTrrq",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+                "old_string": "Qwen-1.5B cont  & 10K & \\multicolumn{4}{c}{\\textit{pending}} \\\\",
+                "new_string": "Qwen-1.5B cont  & 10K & 0.9875 & 0.6346 & 0.5616 & 2 \\\\"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be5e10ad-c179-4a4d-8c56-ff93b11df30b",
+            "isSidechain": false,
+            "requestId": "req_011CbJ3po6mPz6kvH83ZwyH1",
+            "type": "assistant",
+            "uuid": "bfb31dac-909b-490c-aa4d-0f58dc3149ea",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017pYuqHUy2qzdULdKj89kTm",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 171,
+                "cache_read_input_tokens": 32012,
+                "output_tokens": 209,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 171,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 209,
+                    "cache_read_input_tokens": 32012,
+                    "cache_creation_input_tokens": 171,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 171
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T18:04:47.097Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BoST14HnxB3woWK9UxTrrq",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bfb31dac-909b-490c-aa4d-0f58dc3149ea",
+            "isSidechain": false,
+            "promptId": "8d0964a4-778d-4384-b1fa-74e68cd814e2",
+            "type": "user",
+            "uuid": "8c783f0a-5367-46c9-8a87-660903679c59",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+              "oldString": "Qwen-1.5B cont  & 10K & \\multicolumn{4}{c}{\\textit{pending}} \\\\",
+              "newString": "Qwen-1.5B cont  & 10K & 0.9875 & 0.6346 & 0.5616 & 2 \\\\",
+              "originalFile": null,
+              "structuredPatch": [
+                {
+                  "oldStart": 210,
+                  "oldLines": 7,
+                  "newStart": 210,
+                  "newLines": 7,
+                  "lines": [
+                    " Pythia-1.4B cont & 10K & 0.9712 & 0.6175 & 0.5364 & 2 \\\\",
+                    " \\midrule",
+                    " Qwen-1.5B cont  & 5K  & \\multicolumn{3}{c}{(see Table~\\ref{tab:bonferroni_ci})} & 2 \\\\",
+                    "-Qwen-1.5B cont  & 10K & \\multicolumn{4}{c}{\\textit{pending}} \\\\",
+                    "+Qwen-1.5B cont  & 10K & 0.9875 & 0.6346 & 0.5616 & 2 \\\\",
+                    " \\midrule",
+                    " LLaMA-8B cont   & 5K  & \\multicolumn{3}{c}{(see Table~\\ref{tab:bonferroni_ci})} & 2 \\\\",
+                    " LLaMA-8B cont   & 10K & \\multicolumn{4}{c}{\\textit{pending}} \\\\"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "bfb31dac-909b-490c-aa4d-0f58dc3149ea",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T18:04:50.753Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已填入 Qwen-1.5B cont 10K 数据（AUC 0v1=0.9875, 1v2=0.6346, 2v3=0.5616, K*=2）。Pythia-1.4B 10K 已确认正确，LLaMA-8B 10K 保持 pending。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8c783f0a-5367-46c9-8a87-660903679c59",
+            "isSidechain": false,
+            "requestId": "req_011CbJ3q7oQd5zFfSUXS3Qcs",
+            "type": "assistant",
+            "uuid": "2cafe709-9e0b-4c28-a6a3-1445b8e6142a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012bac9deA4TrFXVMUivSCjA",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 285,
+                "cache_read_input_tokens": 32183,
+                "output_tokens": 96,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 285,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 96,
+                    "cache_read_input_tokens": 32183,
+                    "cache_creation_input_tokens": 285,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 285
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "2cafe709-9e0b-4c28-a6a3-1445b8e6142a",
+                "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0"
+              }
+            }
+          ],
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Fill Qwen robustness table in appendix",
+                "sessionId": "aa8f01c1-a96a-4498-8b68-a4552b7ad0d0"
+              }
+            }
+          ],
+          "id": "event-000026"
+        }
+      ],
+      "message_count": 24
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-gen-depth-contamination-cqa1-22115-ssh-root-ssh-execute-submit-copy-415.md"
+}

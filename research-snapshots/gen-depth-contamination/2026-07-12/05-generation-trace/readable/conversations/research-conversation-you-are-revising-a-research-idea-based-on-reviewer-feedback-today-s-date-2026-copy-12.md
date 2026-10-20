@@ -1,0 +1,5970 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-11 (UTC).** ## Original idea { "tit
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 86
+- **Recorded user turns:** 1
+- **Tool calls:** 27
+- **Original source:** `logs/chats/exported-trajectories/account-2/ead2f84a-5451-46ff-89de-092196b42eb6.jsonl`
+- **Structured JSON:** [`f8f2c1375f30e739f235.json`](../../sessions/f8/f8f2c1375f30e739f235.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-12T00:03:18.695Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-12T00:03:18.695Z",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-11 (UTC).**\n\n## Original idea\n{\n  \"title\": \"TaxEI: Structured Non-Tool Error Injection for Agent Recovery Training\",\n  \"core_problem\": \"LLM agents fail frequently at planning and context management — WebArena success rates remain around 35-40% for open-weight models, and failure analysis shows planning decomposition errors and context loss account for 40-55% of agent failures across benchmarks (AgentDebug taxonomy, AgenTracer). Yet all training-time error-resilience work targets only tool-level failures or operates without structured error categorization: PALADIN (ICLR 2026) injects API exceptions and timeouts into 50K+ trajectories for SFT-based recovery, achieving 89.7% tool-error recovery — but planning errors, context corruption, and memory failures remain unaddressed at training time. Agent-R (arXiv 2025) trains recovery via MCTS-based iterative self-training on natural errors but without error categorization, limiting targeted improvement. AgentRefine (ICLR 2025) learns from environment feedback through refinement tuning for generalization but does not inject structured faults. Meanwhile, MAS-FIRE (arXiv 2026) defines a comprehensive taxonomy of 15 fault types including planning and memory categories — but purely for evaluation, not training. Inference-time approaches (AgentDebug, ErrorProbe, SHIELDA) add scaffolding without improving the agent's inherent robustness, while AgenTracer trains a separate diagnostic model to locate errors but does not teach agents to recover from them.\",\n  \"opportunity\": \"PALADIN (ICLR 2026) demonstrated that training-time error injection with SFT substantially improves tool-failure recovery (+13.6% recovery rate), establishing injection-for-recovery as a viable paradigm. MAS-FIRE (arXiv 2026) defined a systematic fault taxonomy of 15 types covering planning (Inexecutable Plan, Critical Information Loss), memory (Memory Loss, Context Length Violation), reasoning, and action categories — but for evaluation, not training. AgenTracer (arXiv 2025) showed that programmatic fault injection on trajectories can generate high-fidelity failure data and trained a diagnostic model via GRPO — but for error attribution, not recovery. Agent-R (arXiv 2025) trains recovery via MCTS-based self-training, splicing correct paths into failed trajectories (+5.59% on WebShop/ScienceWorld/TextCraft) — but does not categorize errors or target specific failure modes. AgentRefine (ICLR 2025) improves agent generalization through refinement tuning with environment feedback, achieving better perturbation robustness — but operates on natural errors without structured injection. ERL (arXiv 2026) embeds reflection-consolidation into RL training to learn from natural failures (+81% in multi-step environments), but does not inject structured faults or target specific error categories. AgentHER (arXiv 2026) repurposes failed trajectories via hindsight relabeling for +7-12pp SFT/DPO gains but does not inject errors or train category-specific recovery. The gap: MAS-FIRE proved that structured fault taxonomies can systematically expose agent weaknesses; PALADIN proved that injection-for-recovery works for tool errors; Agent-R proved that training recovery from errors improves performance — but no work has combined structured category-specific injection of non-tool errors (planning, context/memory) with recovery-oriented training. TaxEI bridges this gap by operationalizing MAS-FIRE-style fault categories as training-time injection operators, extending PALADIN's validated paradigm beyond tool errors.\",\n  \"landscape\": \"Training-time approaches: PALADIN (ICLR 2026) injects tool failures (API exceptions, timeouts, hallucinated tools) into 50K+ trajectories and trains recovery via LoRA SFT, achieving +13.6% avg recovery rate — but is limited to tool errors and requires an inference-time exemplar bank. Agent-R (arXiv 2025, ByteDance) uses MCTS to construct error-recovery training pairs by identifying the first error step in failed trajectories and splicing correct paths, achieving +5.59% on WebShop/ScienceWorld/TextCraft via SFT on Llama-3.1-8B — but without error categorization, recovery is unstructured. AgentRefine (ICLR 2025) enables agents to learn from mistakes via environment feedback through refinement tuning, improving generalization and perturbation robustness — but operates on natural errors without structured injection or category targeting. AgenTracer (arXiv 2025) uses LLM-based perturbation operators to corrupt successful trajectories and trains AgenTracer-8B (GRPO) for error diagnosis — achieving up to 14.2% improvement when feeding diagnostic output back to agents, but the agent itself does not learn recovery. ERL (arXiv 2026) integrates experience-reflection-consolidation into RL, learning from naturally-occurring failures for +81% in control tasks and +11% in tool-use — but without structured injection or error categorization. AgentHER (arXiv 2026) converts failed trajectories into training data via hindsight relabeling (+7-12pp on WebArena/ToolBench), a data-efficiency technique complementary to error injection.\\n\\nEvaluation-time approaches: MAS-FIRE (arXiv 2026) defines a taxonomy of 15 fault types across 7 categories — including Planning (Inexecutable Plan, Critical Information Loss), Memory (Memory Loss, Context Length Violation), Reasoning (Hallucination), and Action faults — injected via prompt modification, response rewriting, and message routing manipulation. It evaluates on 3 MAS architectures and finds that iterative closed-loop designs neutralize 40%+ of faults that collapse linear workflows, but does not use this taxonomy for training. AgentDebug (arXiv 2025) provides modular corrective feedback with AgentErrorTaxonomy covering memory, reflection, planning, action, and system categories, and releases AgentErrorBench (200 expert-annotated failure trajectories on ALFWorld/GAIA/WebShop, Cohen's kappa=0.55) — achieving +26% relative improvement via inference-time feedback. ReliabilityBench (arXiv 2026) evaluates agent reliability across consistency, robustness, and fault tolerance using chaos-engineering-style injection (timeouts, rate limits, schema drift). ErrorProbe (arXiv 2026) does symptom-driven backward tracing with verified error/patch memory. SHIELDA (arXiv 2025) defines 36 exception types across 12 agent artifacts but uses heuristic protocols. Hell or High Water (arXiv 2025) evaluates agentic recovery from external failures, finding that agents struggle to formulate backup plans even in restricted search spaces.\\n\\nKey insight from 'What Do Agents Learn from Trajectory-SFT' (arXiv 2026): trajectory SFT can induce interface shortcutting rather than semantic learning — our error injection approach may counteract this by forcing agents to handle unexpected states rather than memorizing normal-case patterns.\\n\\nThe fundamental gap: MAS-FIRE proved that structured fault taxonomies (including planning and memory categories) systematically expose agent weaknesses at evaluation time. PALADIN proved injection-for-recovery works for tool errors at training time. Agent-R proved that training error recovery improves performance. AgentRefine proved that learning from mistakes improves generalization. But no work has combined structured category-specific injection of planning and context/memory errors — aligned with established evaluation taxonomies — with recovery-oriented agent training. TaxEI uniquely provides both the injection taxonomy (operationalizing MAS-FIRE-style fault categories as training operators) and the recovery policy (extending PALADIN's SFT paradigm) in a single pipeline.\",\n  \"approach\": \"We propose TaxEI (Taxonomy-guided Error Injection), a training framework that extends PALADIN's injection-for-recovery paradigm from tool-only errors to planning and context/memory error categories. TaxEI operationalizes fault categories from evaluation frameworks (particularly MAS-FIRE's taxonomy) as concrete injection operators for recovery-oriented SFT, implemented via LangGraph middleware hooks on the verl-agent infrastructure.\\n\\n**Error Injection Operators** (the core technical contribution):\\n\\nWe define 8 injection operators across 2 non-tool error categories, explicitly aligned with MAS-FIRE's intra-agent fault taxonomy:\\n\\n*Planning errors* (4 operators, injected via @before_model middleware modifying plan state; aligned with MAS-FIRE's Planning faults):\\n(P1) Step-order swap: transpose two causally-dependent steps in a decomposed plan (e.g., swap 'pick up knife' and 'go to countertop'). [Aligned with MAS-FIRE: Inexecutable Plan]\\n(P2) Sub-goal deletion: remove a critical intermediate step, leaving an unachievable gap. [Aligned with MAS-FIRE: Critical Information Loss]\\n(P3) Irrelevant sub-goal insertion: inject an unrelated action step (e.g., 'examine painting' during a cooking task). [Novel: not directly in MAS-FIRE]\\n(P4) Goal drift: mid-trajectory, subtly shift the target objective to a related but different goal. [Novel: extends MAS-FIRE's Critical Information Loss to objective-level corruption]\\n\\n*Context/memory errors* (4 operators, injected via custom state modifier on message history; aligned with MAS-FIRE's Memory faults):\\n(C1) Context truncation: remove the earliest k observations from the agent's context, simulating window overflow. [Aligned with MAS-FIRE: Memory Loss / Context Length Violation]\\n(C2) Contradictory fact injection: insert an observation contradicting a previously established fact (e.g., 'the drawer is empty' after the agent saw an item in it). [Novel: extends MAS-FIRE's Memory faults to active corruption]\\n(C3) Stale state replay: repeat an outdated observation as current, simulating failure to track state changes. [Novel: not directly in MAS-FIRE]\\n(C4) Observation masking: replace a critical observation with a null/empty result, simulating environment feedback loss. [Aligned with MAS-FIRE: Memory Loss]\\n\\nKey differentiation from related training-time approaches: (1) vs. PALADIN: extends from tool errors to planning/context errors; (2) vs. Agent-R: uses structured category-specific injection rather than mining natural errors without categorization; (3) vs. AgentRefine: injects synthetic faults into successful trajectories rather than learning from natural environment feedback; (4) vs. AgenTracer: trains recovery policies in the agent itself rather than a separate diagnostic model.\\n\\n**Pipeline**:\\n\\n(0) **Teacher Quality Pilot Study**: Before scaling, validate GPT-4o's recovery demonstration quality. Generate 50 recovery demonstrations per operator category (400 total). Two annotators independently evaluate each for: (a) correct error detection, (b) appropriate recovery strategy, (c) successful task continuation. Report precision and inter-annotator agreement per category. If any category falls below 80% precision, apply mitigation: use a stronger reasoning model (o1/o3) for that category's recovery generation, or add human correction for the hardest cases. This pilot is critical because planning-error recovery (e.g., 'what is correct recovery from goal drift?') is inherently more ambiguous than tool-error recovery (retry/switch tool), a concern validated by Hell or High Water (arXiv 2025) which found agents struggle with backup planning.\\n\\n(1) Collect successful trajectories using GPT-4o as the base agent, leveraging verl-agent's existing environment integrations: ~4K from ALFWorld, ~4K from WebShop, ~2K from GAIA (set up as a custom LangGraph environment with web search and code execution tools). Total: ~10K base trajectories.\\n\\n(2) Apply injection operators stochastically: each trajectory receives 1-2 injections sampled from the 8 operators, producing ~16K corrupted trajectory variants.\\n\\n(3) Use GPT-4o as the teacher model to generate recovery demonstrations: given the corrupted trajectory up to the injection point, generate the correct recovery action sequence (detect error, classify, recover).\\n\\n(4) Format as SFT data with explicit recovery annotations: [DETECT: error description] -> [CLASSIFY: planning/context + operator type] -> [RECOVER: corrective action].\\n\\n(5) Train Qwen3-8B with LoRA SFT using ms-swift on the ~16K annotated recovery pairs.\\n\\n**Evaluation** (designed to address circular evaluation risk):\\n\\n(a) **Held-out operator generalization**: Train on 6/8 operators (P1, P2, P3, C1, C3, C4), hold out P4 (goal drift) and C2 (contradictory fact injection) — the two most semantically complex operators. Test recovery on all 8 operators. For held-out operators, evaluate behavioral recovery (can the agent detect something is wrong and take corrective action?) rather than classification accuracy (the agent has never seen these category labels). This tests whether recovery training generalizes beyond memorizing specific injection patterns.\\n\\n(b) **Three-environment evaluation**: ALFWorld, WebShop, and GAIA. Compare against: (i) vanilla ReAct baseline (no error training), (ii) PALADIN-reproduced (tool-error SFT only), (iii) AgentHER (hindsight relabeling), (iv) Agent-R (MCTS self-training), and (v) AgentRefine (refinement tuning).\\n\\n(c) **Naturally-occurring error evaluation**: Evaluate on AgentErrorBench from AgentDebug (200 expert-annotated failure trajectories: 100 ALFWorld, 50 WebShop, 50 GAIA). This tests whether training on synthetic injections transfers to naturally-occurring planning and context errors.\\n\\n(d) **Clean task evaluation**: Task success rate on unperturbed tasks across all 3 environments to verify no regression.\\n\\nMetrics: task success rate under injected errors (controlled), task success rate on clean tasks (regression check), per-category recovery rate (seen vs. unseen operators), recovery rate on AgentErrorBench (natural error transfer). For fair PALADIN comparison: report tool-error recovery (where PALADIN should match or beat TaxEI) alongside planning/context error recovery (where TaxEI should outperform).\\n\\n**OSS codebase**: Built entirely on verl-agent (LangGraph + veRL integration, MIT license) with existing ALFWorld and WebShop environments, plus GAIA as a custom LangGraph environment. Injection operators implemented as LangGraph middleware modules. Training via ms-swift with LoRA.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~130h H100 (trajectory collection ~20h across 3 envs, SFT training ~25h, all evaluations incl. held-out/AgentErrorBench ~55h, ablations ~15h, buffer ~15h)\",\n      \"gpu_utilization\": \"Moderate idle (~30%): injection operator implementation, pilot study annotation, and recovery quality review happen off-GPU\",\n      \"timeline\": \"20 days\",\n      \"team\": \"1 researcher\",\n      \"estimated_gpu_cost\": \"$325-$455 at ~$2.50-3.50/hr per H100\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~170h H100 (same core + agent-driven hyperparameter sweeps on injection rates and LoRA config + GAIA environment setup)\",\n      \"gpu_utilization\": \"~15-20% idle: agent continuously queues training runs and evaluations\",\n      \"timeline\": \"16-18 days\",\n      \"team\": \"1 researcher, ~1.5h/day (pilot study annotation: 2 days concentrated, then ongoing review of recovery annotation correctness and held-out evaluation analysis)\",\n      \"claude_api_cost\": \"$150-250 (~1200-1800 Opus turns for experiment orchestration and analysis)\",\n      \"estimated_gpu_cost\": \"$425-$595 at ~$2.50-3.50/hr per H100\",\n      \"risk_note\": \"Pilot study may reveal that planning-error recovery quality requires model upgrade (o1/o3) or human correction for specific operators, adding 2-3 days and $100-200 API cost\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~240h H100 (additional: ablations across all 8 operators individually, injection rate sweeps 10-50%, Qwen3-14B comparison, cross-environment transfer analysis, AgentErrorBench deep evaluation)\",\n      \"gpu_utilization\": \"Near-zero idle (~5%): agent parallelizes trajectory generation, training, and evaluation continuously\",\n      \"timeline\": \"12-14 days with 4 concurrent H100s\",\n      \"team\": \"0 (initial setup only: verl-agent environment, ms-swift config, base model download, GAIA environment integration)\",\n      \"claude_api_cost\": \"$250-450 (~2500-3500 Opus turns for full pipeline orchestration)\",\n      \"estimated_gpu_cost\": \"$600-$840 at ~$2.50-3.50/hr per H100\",\n      \"speed_bottleneck\": \"GPT-4o API rate limits for teacher trajectory generation; GAIA episodes require web search/code execution tools adding latency\",\n      \"risk_note\": \"Automated injection operator tuning may over-optimize for easy-to-recover errors; diversity of injections across the 8 operators needs monitoring. GAIA environment integration may require debugging.\"\n    },\n    \"teacher_model_api_cost\": \"$500-900 (GPT-4o for ~10K base trajectories across 3 environments + ~16K recovery demonstrations + pilot study. Per-environment breakdown: ALFWorld ~$150-250 [~4K trajectories, avg 10 successful steps, ~20K tokens/trajectory with growing context], WebShop ~$200-350 [~4K trajectories, avg 8 steps, ~28K tokens/trajectory with longer HTML observations], GAIA ~$150-300 [~2K trajectories, avg 10 steps, ~50K tokens/trajectory with tool outputs]; recovery demonstrations ~$150-250 [16K demos, avg ~7K context + 1.5K output]. Costs assume GPT-4o at $2.50/M input, $10.00/M output; ~30% savings possible with prompt caching at $1.25/M cached input. If GPT-4o-mini suffices for base trajectory collection in ALFWorld/WebShop, total drops to $350-600.)\"\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR deadline: May 25, 2026)\",\n    \"AAAI 2027 (expected ~Aug 2026)\",\n    \"ICLR 2027 (expected ~Sep 2026)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases (ICLR 2026)\",\n    \"MAS-FIRE: Fault Injection and Reliability Evaluation for LLM-Based Multi-Agent Systems (arXiv 2602.19843, 2026)\",\n    \"Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training (arXiv 2501.11425, 2025)\",\n    \"AgentRefine: Enhancing Agent Generalization through Refinement Tuning (ICLR 2025, arXiv 2501.01702)\",\n    \"AgenTracer: Who Is Inducing Failure in the LLM Agentic Systems? (arXiv 2509.03312, 2025)\",\n    \"Experiential Reinforcement Learning (arXiv 2602.13949, 2026)\",\n    \"Experiential Reflective Learning for Self-Improving LLM Agents (ICLR 2026 MemAgents Workshop, arXiv 2603.24639)\",\n    \"AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling (arXiv 2603.21357, 2026)\",\n    \"Where LLM Agents Fail and How They can Learn From Failures [AgentDebug/AgentErrorBench] (arXiv 2509.25370, 2025)\",\n    \"What Do Agents Learn from Trajectory-SFT: Semantics or Interfaces? (arXiv 2602.01611, 2026)\",\n    \"SHIELDA: Structured Handling of Exceptions in LLM-Driven Agentic Workflows (arXiv 2025)\",\n    \"Why Do Multi-Agent LLM Systems Fail? (NeurIPS 2025)\",\n    \"Hell or High Water: Evaluating Agentic Recovery from External Failures (arXiv 2508.11027, 2025)\",\n    \"ReliabilityBench: Evaluating LLM Agent Reliability Under Production-Like Stress Conditions (arXiv 2601.06112, 2026)\"\n  ],\n  \"description\": \"LLM agents suffer from planning decomposition errors and context/memory failures that account for 40-55% of failures across benchmarks, yet training-time error-resilience work either targets only tool-level errors (PALADIN, ICLR 2026), trains recovery without error categorization (Agent-R, arXiv 2025), or learns from natural errors without structured injection (AgentRefine, ICLR 2025). Meanwhile, MAS-FIRE (arXiv 2026) defined a comprehensive fault taxonomy of 15 types including planning and memory categories — but purely for evaluation. We propose TaxEI, which bridges this gap by operationalizing evaluation-taxonomy fault categories as training-time injection operators for recovery-oriented SFT. TaxEI defines 8 concrete injection operators — 4 for planning errors (step-order swap, sub-goal deletion, irrelevant insertion, goal drift) and 4 for context/memory errors (context truncation, contradictory fact injection, stale state replay, observation masking) — explicitly aligned with MAS-FIRE's fault taxonomy and implemented as LangGraph middleware hooks. The pipeline includes a teacher quality pilot study (400 samples, 2 annotators, per-category precision reporting) to validate GPT-4o's recovery demonstration quality before scaling, addressing the inherent ambiguity of planning-error recovery. Using GPT-4o as teacher, we generate ~16K corrupted-trajectory/recovery-demonstration pairs from ~10K successful trajectories across three environments: ALFWorld, WebShop, and GAIA. Qwen3-8B is trained via LoRA SFT with explicit [DETECT]->[CLASSIFY]->[RECOVER] structure. Evaluation addresses circular evaluation risk via: (a) held-out operator generalization (train on 6/8 operators, test on 2 unseen), (b) naturally-occurring error transfer (AgentErrorBench: 200 expert-annotated trajectories), and (c) three-environment breadth. Baselines include PALADIN (tool errors), Agent-R (MCTS recovery), AgentHER (hindsight relabeling), and AgentRefine (refinement tuning). Built on the open-source verl-agent stack (LangGraph + veRL). Total compute: ~130 H100-hours; teacher API cost: $500-900 (revised with per-environment token budgets). RL-based recovery policies (GRPO) positioned as future work. Primary targets: EMNLP 2026 ARR, AAAI 2027, ICLR 2027.\",\n  \"project_name\": \"tax_error_inject_agent\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 3)\nIssues: [\"PALADIN VENUE MISATTRIBUTION: PALADIN (arXiv:2509.25238) was desk-rejected from ICLR 2026 (OpenReview ID M2AXTAKXbz) and only accepted at the AAAI 2026 Workshop on Learning Agents and Multi-Agent Systems (LaMAS). The proposal cites it as 'ICLR 2026' at least 10 times. Reviewers familiar with this will question the proposal's scholarship. Must correct to 'arXiv 2025' or 'AAAI 2026 Workshop' throughout.\", \"MISSING CRITICAL CITATION — Wu et al. (arXiv 2512.02389, Dec 2025) 'Synthetic Error Injection Fails to Elicit Self-Correction in Language Models' directly tested SFT training with injected errors and found it fails due to distribution mismatch between synthetic and naturally-occurring errors. While their setup (pure CoT reasoning, 1B models, toy tasks, no environment feedback) differs substantially from TaxEI's agent trajectory setting, this paper must be cited and explicitly addressed. TaxEI should argue: (1) agent trajectories with environment feedback provide external error signals unlike pure CoT introspective self-correction, (2) the DETECT→CLASSIFY→RECOVER structure leverages environment grounding, not just internal pattern matching, (3) the held-out operator and AgentErrorBench evaluations directly test generalization to unseen error distributions.\", \"WebArena open-weight SOTA outdated: The proposal claims 'WebArena success rates remain around 35-40% for open-weight models.' Current SOTA for open-weight models is 46-57% (Qwen3.6 Plus: 57.2%, Qwen3.5 397B: 55.8%, DeepSeek V3.2: 48.6%). While planning/context errors remain a problem, the motivation paragraph overstates the gap.\", \"Timeline does not meet the 16-day hard constraint in manual mode (20 days) and is borderline in HIL mode (16-18 days). Only auto mode (12-14 days) clearly fits, but auto mode requires 240 H100-hours which exceeds the 200h compute constraint. No single configuration satisfies both ≤16 days AND ≤200 H100-hours simultaneously — HIL at 170h/16-18 days is the closest but the timeline is uncertain.\", \"Baseline reproduction scope may be unrealistic: Reproducing PALADIN (tool-error SFT), Agent-R (MCTS self-training), AgentHER (hindsight relabeling), AND AgentRefine (refinement tuning) as baselines in ≤16 days alongside the main method is very ambitious. Agent-R requires MCTS infrastructure; AgentRefine requires environment-feedback refinement loops; PALADIN requires ToolScan error injection. Consider: (a) dropping AgentRefine or AgentHER if code isn't publicly available, (b) using reported numbers where possible and only fully reproducing 1-2 baselines.\", \"verl-agent license is Apache-2.0, not MIT as claimed. Minor factual error but should be corrected.\", \"SFT-only approach faces headwinds: Multiple recent works (ERL, SCoRe/Google DeepMind, Wu et al.) suggest RL is superior to SFT for teaching error recovery and self-correction. While TaxEI reasonably positions RL as future work due to compute constraints, this limits the ceiling of results and may draw reviewer criticism at a top venue.\"]\nFeedback: The proposal has improved substantially across rounds — the 8 concrete injection operators, pilot study, held-out operator evaluation, AgentErrorBench transfer test, and multi-environment design are all strong additions. Three issues remain critical for the next revision:\n\n1. **Fix PALADIN citation immediately**: PALADIN was desk-rejected from ICLR 2026. Cite it as 'PALADIN (arXiv 2025)' or 'PALADIN (AAAI 2026 LaMAS Workshop)' throughout. This is a factual error that would damage credibility with reviewers. Importantly, PALADIN's methodology is still valid and worth building on — the venue correction doesn't weaken TaxEI's technical argument, just the framing.\n\n2. **Cite and defuse Wu et al. (arXiv 2512.02389)**: This paper found that SFT with synthetic error injection fails for pure CoT self-correction due to distribution mismatch. Add it to the landscape section and explicitly argue why TaxEI's setup is different: (a) agent trajectories have environment feedback providing external error signals, unlike pure CoT introspection; (b) PALADIN (which also uses SFT with injection) demonstrated this works for tool-error recovery in agent settings, suggesting the environment-grounding mitigates Wu et al.'s concern; (c) TaxEI's held-out operator and AgentErrorBench evaluations directly measure generalization to unseen error distributions, addressing the distribution-mismatch objection empirically.\n\n3. **Resolve the timeline-compute tension**: No configuration currently satisfies both ≤16 days AND ≤200 H100-hours cleanly. Options: (a) Trim HIL timeline to 16 days by reducing from 4 baselines to 2 (PALADIN + Agent-R, the two most important comparisons — drop AgentHER and AgentRefine or report their published numbers); (b) Reduce GAIA to a stretch goal rather than a core environment, cutting trajectory collection and evaluation time; (c) Accept 2 environments (ALFWorld + WebShop) for the ARR submission and add GAIA in the camera-ready. A 2-environment paper with strong results and thorough evaluation design (held-out operators, AgentErrorBench) can still make Findings.\n\nAdditional fixes: Update WebArena SOTA numbers to 46-57% for open-weight models. Correct verl-agent license to Apache-2.0. Consider adding a brief discussion of why SFT (not RL) is the right first step for this specific problem, beyond just compute constraints — e.g., structured injection labels enable supervised recovery training that RL cannot easily leverage, and the DETECT→CLASSIFY→RECOVER format provides a curriculum that RL would need to discover from scratch.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\")."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-12T00:03:18.710Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-12T00:03:18.710Z",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6"
+}
+```
+
+---
+
+## Round 1
+
+84 recorded events
+
+### User
+
+_source line 3 · 2026-05-12T00:03:18.994Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-11 (UTC).**
+
+## Original idea
+{
+  "title": "TaxEI: Structured Non-Tool Error Injection for Agent Recovery Training",
+  "core_problem": "LLM agents fail frequently at planning and context management — WebArena success rates remain around 35-40% for open-weight models, and failure analysis shows planning decomposition errors and context loss account for 40-55% of agent failures across benchmarks (AgentDebug taxonomy, AgenTracer). Yet all training-time error-resilience work targets only tool-level failures or operates without structured error categorization: PALADIN (ICLR 2026) injects API exceptions and timeouts into 50K+ trajectories for SFT-based recovery, achieving 89.7% tool-error recovery — but planning errors, context corruption, and memory failures remain unaddressed at training time. Agent-R (arXiv 2025) trains recovery via MCTS-based iterative self-training on natural errors but without error categorization, limiting targeted improvement. AgentRefine (ICLR 2025) learns from environment feedback through refinement tuning for generalization but does not inject structured faults. Meanwhile, MAS-FIRE (arXiv 2026) defines a comprehensive taxonomy of 15 fault types including planning and memory categories — but purely for evaluation, not training. Inference-time approaches (AgentDebug, ErrorProbe, SHIELDA) add scaffolding without improving the agent's inherent robustness, while AgenTracer trains a separate diagnostic model to locate errors but does not teach agents to recover from them.",
+  "opportunity": "PALADIN (ICLR 2026) demonstrated that training-time error injection with SFT substantially improves tool-failure recovery (+13.6% recovery rate), establishing injection-for-recovery as a viable paradigm. MAS-FIRE (arXiv 2026) defined a systematic fault taxonomy of 15 types covering planning (Inexecutable Plan, Critical Information Loss), memory (Memory Loss, Context Length Violation), reasoning, and action categories — but for evaluation, not training. AgenTracer (arXiv 2025) showed that programmatic fault injection on trajectories can generate high-fidelity failure data and trained a diagnostic model via GRPO — but for error attribution, not recovery. Agent-R (arXiv 2025) trains recovery via MCTS-based self-training, splicing correct paths into failed trajectories (+5.59% on WebShop/ScienceWorld/TextCraft) — but does not categorize errors or target specific failure modes. AgentRefine (ICLR 2025) improves agent generalization through refinement tuning with environment feedback, achieving better perturbation robustness — but operates on natural errors without structured injection. ERL (arXiv 2026) embeds reflection-consolidation into RL training to learn from natural failures (+81% in multi-step environments), but does not inject structured faults or target specific error categories. AgentHER (arXiv 2026) repurposes failed trajectories via hindsight relabeling for +7-12pp SFT/DPO gains but does not inject errors or train category-specific recovery. The gap: MAS-FIRE proved that structured fault taxonomies can systematically expose agent weaknesses; PALADIN proved that injection-for-recovery works for tool errors; Agent-R proved that training recovery from errors improves performance — but no work has combined structured category-specific injection of non-tool errors (planning, context/memory) with recovery-oriented training. TaxEI bridges this gap by operationalizing MAS-FIRE-style fault categories as training-time injection operators, extending PALADIN's validated paradigm beyond tool errors.",
+  "landscape": "Training-time approaches: PALADIN (ICLR 2026) injects tool failures (API exceptions, timeouts, hallucinated tools) into 50K+ trajectories and trains recovery via LoRA SFT, achieving +13.6% avg recovery rate — but is limited to tool errors and requires an inference-time exemplar bank. Agent-R (arXiv 2025, ByteDance) uses MCTS to construct error-recovery training pairs by identifying the first error step in failed trajectories and splicing correct paths, achieving +5.59% on WebShop/ScienceWorld/TextCraft via SFT on Llama-3.1-8B — but without error categorization, recovery is unstructured. AgentRefine (ICLR 2025) enables agents to learn from mistakes via environment feedback through refinement tuning, improving generalization and perturbation robustness — but operates on natural errors without structured injection or category targeting. AgenTracer (arXiv 2025) uses LLM-based perturbation operators to corrupt successful trajectories and trains AgenTracer-8B (GRPO) for error diagnosis — achieving up to 14.2% improvement when feeding diagnostic output back to agents, but the agent itself does not learn recovery. ERL (arXiv 2026) integrates experience-reflection-consolidation into RL, learning from naturally-occurring failures for +81% in control tasks and +11% in tool-use — but without structured injection or error categorization. AgentHER (arXiv 2026) converts failed trajectories into training data via hindsight relabeling (+7-12pp on WebArena/ToolBench), a data-efficiency technique complementary to error injection.\n\nEvaluation-time approaches: MAS-FIRE (arXiv 2026) defines a taxonomy of 15 fault types across 7 categories — including Planning (Inexecutable Plan, Critical Information Loss), Memory (Memory Loss, Context Length Violation), Reasoning (Hallucination), and Action faults — injected via prompt modification, response rewriting, and message routing manipulation. It evaluates on 3 MAS architectures and finds that iterative closed-loop designs neutralize 40%+ of faults that collapse linear workflows, but does not use this taxonomy for training. AgentDebug (arXiv 2025) provides modular corrective feedback with AgentErrorTaxonomy covering memory, reflection, planning, action, and system categories, and releases AgentErrorBench (200 expert-annotated failure trajectories on ALFWorld/GAIA/WebShop, Cohen's kappa=0.55) — achieving +26% relative improvement via inference-time feedback. ReliabilityBench (arXiv 2026) evaluates agent reliability across consistency, robustness, and fault tolerance using chaos-engineering-style injection (timeouts, rate limits, schema drift). ErrorProbe (arXiv 2026) does symptom-driven backward tracing with verified error/patch memory. SHIELDA (arXiv 2025) defines 36 exception types across 12 agent artifacts but uses heuristic protocols. Hell or High Water (arXiv 2025) evaluates agentic recovery from external failures, finding that agents struggle to formulate backup plans even in restricted search spaces.\n\nKey insight from 'What Do Agents Learn from Trajectory-SFT' (arXiv 2026): trajectory SFT can induce interface shortcutting rather than semantic learning — our error injection approach may counteract this by forcing agents to handle unexpected states rather than memorizing normal-case patterns.\n\nThe fundamental gap: MAS-FIRE proved that structured fault taxonomies (including planning and memory categories) systematically expose agent weaknesses at evaluation time. PALADIN proved injection-for-recovery works for tool errors at training time. Agent-R proved that training error recovery improves performance. AgentRefine proved that learning from mistakes improves generalization. But no work has combined structured category-specific injection of planning and context/memory errors — aligned with established evaluation taxonomies — with recovery-oriented agent training. TaxEI uniquely provides both the injection taxonomy (operationalizing MAS-FIRE-style fault categories as training operators) and the recovery policy (extending PALADIN's SFT paradigm) in a single pipeline.",
+  "approach": "We propose TaxEI (Taxonomy-guided Error Injection), a training framework that extends PALADIN's injection-for-recovery paradigm from tool-only errors to planning and context/memory error categories. TaxEI operationalizes fault categories from evaluation frameworks (particularly MAS-FIRE's taxonomy) as concrete injection operators for recovery-oriented SFT, implemented via LangGraph middleware hooks on the verl-agent infrastructure.\n\n**Error Injection Operators** (the core technical contribution):\n\nWe define 8 injection operators across 2 non-tool error categories, explicitly aligned with MAS-FIRE's intra-agent fault taxonomy:\n\n*Planning errors* (4 operators, injected via @before_model middleware modifying plan state; aligned with MAS-FIRE's Planning faults):\n(P1) Step-order swap: transpose two causally-dependent steps in a decomposed plan (e.g., swap 'pick up knife' and 'go to countertop'). [Aligned with MAS-FIRE: Inexecutable Plan]\n(P2) Sub-goal deletion: remove a critical intermediate step, leaving an unachievable gap. [Aligned with MAS-FIRE: Critical Information Loss]\n(P3) Irrelevant sub-goal insertion: inject an unrelated action step (e.g., 'examine painting' during a cooking task). [Novel: not directly in MAS-FIRE]\n(P4) Goal drift: mid-trajectory, subtly shift the target objective to a related but different goal. [Novel: extends MAS-FIRE's Critical Information Loss to objective-level corruption]\n\n*Context/memory errors* (4 operators, injected via custom state modifier on message history; aligned with MAS-FIRE's Memory faults):\n(C1) Context truncation: remove the earliest k observations from the agent's context, simulating window overflow. [Aligned with MAS-FIRE: Memory Loss / Context Length Violation]\n(C2) Contradictory fact injection: insert an observation contradicting a previously established fact (e.g., 'the drawer is empty' after the agent saw an item in it). [Novel: extends MAS-FIRE's Memory faults to active corruption]\n(C3) Stale state replay: repeat an outdated observation as current, simulating failure to track state changes. [Novel: not directly in MAS-FIRE]\n(C4) Observation masking: replace a critical observation with a null/empty result, simulating environment feedback loss. [Aligned with MAS-FIRE: Memory Loss]\n\nKey differentiation from related training-time approaches: (1) vs. PALADIN: extends from tool errors to planning/context errors; (2) vs. Agent-R: uses structured category-specific injection rather than mining natural errors without categorization; (3) vs. AgentRefine: injects synthetic faults into successful trajectories rather than learning from natural environment feedback; (4) vs. AgenTracer: trains recovery policies in the agent itself rather than a separate diagnostic model.\n\n**Pipeline**:\n\n(0) **Teacher Quality Pilot Study**: Before scaling, validate GPT-4o's recovery demonstration quality. Generate 50 recovery demonstrations per operator category (400 total). Two annotators independently evaluate each for: (a) correct error detection, (b) appropriate recovery strategy, (c) successful task continuation. Report precision and inter-annotator agreement per category. If any category falls below 80% precision, apply mitigation: use a stronger reasoning model (o1/o3) for that category's recovery generation, or add human correction for the hardest cases. This pilot is critical because planning-error recovery (e.g., 'what is correct recovery from goal drift?') is inherently more ambiguous than tool-error recovery (retry/switch tool), a concern validated by Hell or High Water (arXiv 2025) which found agents struggle with backup planning.\n\n(1) Collect successful trajectories using GPT-4o as the base agent, leveraging verl-agent's existing environment integrations: ~4K from ALFWorld, ~4K from WebShop, ~2K from GAIA (set up as a custom LangGraph environment with web search and code execution tools). Total: ~10K base trajectories.\n\n(2) Apply injection operators stochastically: each trajectory receives 1-2 injections sampled from the 8 operators, producing ~16K corrupted trajectory variants.\n\n(3) Use GPT-4o as the teacher model to generate recovery demonstrations: given the corrupted trajectory up to the injection point, generate the correct recovery action sequence (detect error, classify, recover).\n\n(4) Format as SFT data with explicit recovery annotations: [DETECT: error description] -> [CLASSIFY: planning/context + operator type] -> [RECOVER: corrective action].\n\n(5) Train Qwen3-8B with LoRA SFT using ms-swift on the ~16K annotated recovery pairs.\n\n**Evaluation** (designed to address circular evaluation risk):\n\n(a) **Held-out operator generalization**: Train on 6/8 operators (P1, P2, P3, C1, C3, C4), hold out P4 (goal drift) and C2 (contradictory fact injection) — the two most semantically complex operators. Test recovery on all 8 operators. For held-out operators, evaluate behavioral recovery (can the agent detect something is wrong and take corrective action?) rather than classification accuracy (the agent has never seen these category labels). This tests whether recovery training generalizes beyond memorizing specific injection patterns.\n\n(b) **Three-environment evaluation**: ALFWorld, WebShop, and GAIA. Compare against: (i) vanilla ReAct baseline (no error training), (ii) PALADIN-reproduced (tool-error SFT only), (iii) AgentHER (hindsight relabeling), (iv) Agent-R (MCTS self-training), and (v) AgentRefine (refinement tuning).\n\n(c) **Naturally-occurring error evaluation**: Evaluate on AgentErrorBench from AgentDebug (200 expert-annotated failure trajectories: 100 ALFWorld, 50 WebShop, 50 GAIA). This tests whether training on synthetic injections transfers to naturally-occurring planning and context errors.\n\n(d) **Clean task evaluation**: Task success rate on unperturbed tasks across all 3 environments to verify no regression.\n\nMetrics: task success rate under injected errors (controlled), task success rate on clean tasks (regression check), per-category recovery rate (seen vs. unseen operators), recovery rate on AgentErrorBench (natural error transfer). For fair PALADIN comparison: report tool-error recovery (where PALADIN should match or beat TaxEI) alongside planning/context error recovery (where TaxEI should outperform).\n\n**OSS codebase**: Built entirely on verl-agent (LangGraph + veRL integration, MIT license) with existing ALFWorld and WebShop environments, plus GAIA as a custom LangGraph environment. Injection operators implemented as LangGraph middleware modules. Training via ms-swift with LoRA.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~130h H100 (trajectory collection ~20h across 3 envs, SFT training ~25h, all evaluations incl. held-out/AgentErrorBench ~55h, ablations ~15h, buffer ~15h)",
+      "gpu_utilization": "Moderate idle (~30%): injection operator implementation, pilot study annotation, and recovery quality review happen off-GPU",
+      "timeline": "20 days",
+      "team": "1 researcher",
+      "estimated_gpu_cost": "$325-$455 at ~$2.50-3.50/hr per H100"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~170h H100 (same core + agent-driven hyperparameter sweeps on injection rates and LoRA config + GAIA environment setup)",
+      "gpu_utilization": "~15-20% idle: agent continuously queues training runs and evaluations",
+      "timeline": "16-18 days",
+      "team": "1 researcher, ~1.5h/day (pilot study annotation: 2 days concentrated, then ongoing review of recovery annotation correctness and held-out evaluation analysis)",
+      "claude_api_cost": "$150-250 (~1200-1800 Opus turns for experiment orchestration and analysis)",
+      "estimated_gpu_cost": "$425-$595 at ~$2.50-3.50/hr per H100",
+      "risk_note": "Pilot study may reveal that planning-error recovery quality requires model upgrade (o1/o3) or human correction for specific operators, adding 2-3 days and $100-200 API cost"
+    },
+    "auto_research": {
+      "gpu_hours": "~240h H100 (additional: ablations across all 8 operators individually, injection rate sweeps 10-50%, Qwen3-14B comparison, cross-environment transfer analysis, AgentErrorBench deep evaluation)",
+      "gpu_utilization": "Near-zero idle (~5%): agent parallelizes trajectory generation, training, and evaluation continuously",
+      "timeline": "12-14 days with 4 concurrent H100s",
+      "team": "0 (initial setup only: verl-agent environment, ms-swift config, base model download, GAIA environment integration)",
+      "claude_api_cost": "$250-450 (~2500-3500 Opus turns for full pipeline orchestration)",
+      "estimated_gpu_cost": "$600-$840 at ~$2.50-3.50/hr per H100",
+      "speed_bottleneck": "GPT-4o API rate limits for teacher trajectory generation; GAIA episodes require web search/code execution tools adding latency",
+      "risk_note": "Automated injection operator tuning may over-optimize for easy-to-recover errors; diversity of injections across the 8 operators needs monitoring. GAIA environment integration may require debugging."
+    },
+    "teacher_model_api_cost": "$500-900 (GPT-4o for ~10K base trajectories across 3 environments + ~16K recovery demonstrations + pilot study. Per-environment breakdown: ALFWorld ~$150-250 [~4K trajectories, avg 10 successful steps, ~20K tokens/trajectory with growing context], WebShop ~$200-350 [~4K trajectories, avg 8 steps, ~28K tokens/trajectory with longer HTML observations], GAIA ~$150-300 [~2K trajectories, avg 10 steps, ~50K tokens/trajectory with tool outputs]; recovery demonstrations ~$150-250 [16K demos, avg ~7K context + 1.5K output]. Costs assume GPT-4o at $2.50/M input, $10.00/M output; ~30% savings possible with prompt caching at $1.25/M cached input. If GPT-4o-mini suffices for base trajectory collection in ALFWorld/WebShop, total drops to $350-600.)"
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR deadline: May 25, 2026)",
+    "AAAI 2027 (expected ~Aug 2026)",
+    "ICLR 2027 (expected ~Sep 2026)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases (ICLR 2026)",
+    "MAS-FIRE: Fault Injection and Reliability Evaluation for LLM-Based Multi-Agent Systems (arXiv 2602.19843, 2026)",
+    "Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training (arXiv 2501.11425, 2025)",
+    "AgentRefine: Enhancing Agent Generalization through Refinement Tuning (ICLR 2025, arXiv 2501.01702)",
+    "AgenTracer: Who Is Inducing Failure in the LLM Agentic Systems? (arXiv 2509.03312, 2025)",
+    "Experiential Reinforcement Learning (arXiv 2602.13949, 2026)",
+    "Experiential Reflective Learning for Self-Improving LLM Agents (ICLR 2026 MemAgents Workshop, arXiv 2603.24639)",
+    "AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling (arXiv 2603.21357, 2026)",
+    "Where LLM Agents Fail and How They can Learn From Failures [AgentDebug/AgentErrorBench] (arXiv 2509.25370, 2025)",
+    "What Do Agents Learn from Trajectory-SFT: Semantics or Interfaces? (arXiv 2602.01611, 2026)",
+    "SHIELDA: Structured Handling of Exceptions in LLM-Driven Agentic Workflows (arXiv 2025)",
+    "Why Do Multi-Agent LLM Systems Fail? (NeurIPS 2025)",
+    "Hell or High Water: Evaluating Agentic Recovery from External Failures (arXiv 2508.11027, 2025)",
+    "ReliabilityBench: Evaluating LLM Agent Reliability Under Production-Like Stress Conditions (arXiv 2601.06112, 2026)"
+  ],
+  "description": "LLM agents suffer from planning decomposition errors and context/memory failures that account for 40-55% of failures across benchmarks, yet training-time error-resilience work either targets only tool-level errors (PALADIN, ICLR 2026), trains recovery without error categorization (Agent-R, arXiv 2025), or learns from natural errors without structured injection (AgentRefine, ICLR 2025). Meanwhile, MAS-FIRE (arXiv 2026) defined a comprehensive fault taxonomy of 15 types including planning and memory categories — but purely for evaluation. We propose TaxEI, which bridges this gap by operationalizing evaluation-taxonomy fault categories as training-time injection operators for recovery-oriented SFT. TaxEI defines 8 concrete injection operators — 4 for planning errors (step-order swap, sub-goal deletion, irrelevant insertion, goal drift) and 4 for context/memory errors (context truncation, contradictory fact injection, stale state replay, observation masking) — explicitly aligned with MAS-FIRE's fault taxonomy and implemented as LangGraph middleware hooks. The pipeline includes a teacher quality pilot study (400 samples, 2 annotators, per-category precision reporting) to validate GPT-4o's recovery demonstration quality before scaling, addressing the inherent ambiguity of planning-error recovery. Using GPT-4o as teacher, we generate ~16K corrupted-trajectory/recovery-demonstration pairs from ~10K successful trajectories across three environments: ALFWorld, WebShop, and GAIA. Qwen3-8B is trained via LoRA SFT with explicit [DETECT]->[CLASSIFY]->[RECOVER] structure. Evaluation addresses circular evaluation risk via: (a) held-out operator generalization (train on 6/8 operators, test on 2 unseen), (b) naturally-occurring error transfer (AgentErrorBench: 200 expert-annotated trajectories), and (c) three-environment breadth. Baselines include PALADIN (tool errors), Agent-R (MCTS recovery), AgentHER (hindsight relabeling), and AgentRefine (refinement tuning). Built on the open-source verl-agent stack (LangGraph + veRL). Total compute: ~130 H100-hours; teacher API cost: $500-900 (revised with per-environment token budgets). RL-based recovery policies (GRPO) positioned as future work. Primary targets: EMNLP 2026 ARR, AAAI 2027, ICLR 2027.",
+  "project_name": "tax_error_inject_agent",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 3)
+Issues: ["PALADIN VENUE MISATTRIBUTION: PALADIN (arXiv:2509.25238) was desk-rejected from ICLR 2026 (OpenReview ID M2AXTAKXbz) and only accepted at the AAAI 2026 Workshop on Learning Agents and Multi-Agent Systems (LaMAS). The proposal cites it as 'ICLR 2026' at least 10 times. Reviewers familiar with this will question the proposal's scholarship. Must correct to 'arXiv 2025' or 'AAAI 2026 Workshop' throughout.", "MISSING CRITICAL CITATION — Wu et al. (arXiv 2512.02389, Dec 2025) 'Synthetic Error Injection Fails to Elicit Self-Correction in Language Models' directly tested SFT training with injected errors and found it fails due to distribution mismatch between synthetic and naturally-occurring errors. While their setup (pure CoT reasoning, 1B models, toy tasks, no environment feedback) differs substantially from TaxEI's agent trajectory setting, this paper must be cited and explicitly addressed. TaxEI should argue: (1) agent trajectories with environment feedback provide external error signals unlike pure CoT introspective self-correction, (2) the DETECT→CLASSIFY→RECOVER structure leverages environment grounding, not just internal pattern matching, (3) the held-out operator and AgentErrorBench evaluations directly test generalization to unseen error distributions.", "WebArena open-weight SOTA outdated: The proposal claims 'WebArena success rates remain around 35-40% for open-weight models.' Current SOTA for open-weight models is 46-57% (Qwen3.6 Plus: 57.2%, Qwen3.5 397B: 55.8%, DeepSeek V3.2: 48.6%). While planning/context errors remain a problem, the motivation paragraph overstates the gap.", "Timeline does not meet the 16-day hard constraint in manual mode (20 days) and is borderline in HIL mode (16-18 days). Only auto mode (12-14 days) clearly fits, but auto mode requires 240 H100-hours which exceeds the 200h compute constraint. No single configuration satisfies both ≤16 days AND ≤200 H100-hours simultaneously — HIL at 170h/16-18 days is the closest but the timeline is uncertain.", "Baseline reproduction scope may be unrealistic: Reproducing PALADIN (tool-error SFT), Agent-R (MCTS self-training), AgentHER (hindsight relabeling), AND AgentRefine (refinement tuning) as baselines in ≤16 days alongside the main method is very ambitious. Agent-R requires MCTS infrastructure; AgentRefine requires environment-feedback refinement loops; PALADIN requires ToolScan error injection. Consider: (a) dropping AgentRefine or AgentHER if code isn't publicly available, (b) using reported numbers where possible and only fully reproducing 1-2 baselines.", "verl-agent license is Apache-2.0, not MIT as claimed. Minor factual error but should be corrected.", "SFT-only approach faces headwinds: Multiple recent works (ERL, SCoRe/Google DeepMind, Wu et al.) suggest RL is superior to SFT for teaching error recovery and self-correction. While TaxEI reasonably positions RL as future work due to compute constraints, this limits the ceiling of results and may draw reviewer criticism at a top venue."]
+Feedback: The proposal has improved substantially across rounds — the 8 concrete injection operators, pilot study, held-out operator evaluation, AgentErrorBench transfer test, and multi-environment design are all strong additions. Three issues remain critical for the next revision:
+
+1. **Fix PALADIN citation immediately**: PALADIN was desk-rejected from ICLR 2026. Cite it as 'PALADIN (arXiv 2025)' or 'PALADIN (AAAI 2026 LaMAS Workshop)' throughout. This is a factual error that would damage credibility with reviewers. Importantly, PALADIN's methodology is still valid and worth building on — the venue correction doesn't weaken TaxEI's technical argument, just the framing.
+
+2. **Cite and defuse Wu et al. (arXiv 2512.02389)**: This paper found that SFT with synthetic error injection fails for pure CoT self-correction due to distribution mismatch. Add it to the landscape section and explicitly argue why TaxEI's setup is different: (a) agent trajectories have environment feedback providing external error signals, unlike pure CoT introspection; (b) PALADIN (which also uses SFT with injection) demonstrated this works for tool-error recovery in agent settings, suggesting the environment-grounding mitigates Wu et al.'s concern; (c) TaxEI's held-out operator and AgentErrorBench evaluations directly measure generalization to unseen error distributions, addressing the distribution-mismatch objection empirically.
+
+3. **Resolve the timeline-compute tension**: No configuration currently satisfies both ≤16 days AND ≤200 H100-hours cleanly. Options: (a) Trim HIL timeline to 16 days by reducing from 4 baselines to 2 (PALADIN + Agent-R, the two most important comparisons — drop AgentHER and AgentRefine or report their published numbers); (b) Reduce GAIA to a stretch goal rather than a core environment, cutting trajectory collection and evaluation time; (c) Accept 2 environments (ALFWorld + WebShop) for the ARR submission and add GAIA in the camera-ready. A 2-environment paper with strong results and thorough evaluation design (held-out operators, AgentErrorBench) can still make Findings.
+
+Additional fixes: Update WebArena SOTA numbers to 46-57% for open-weight models. Correct verl-agent license to Apache-2.0. Consider adding a brief discussion of why SFT (not RL) is the right first step for this specific problem, beyond just compute constraints — e.g., structured injection labels enable supervised recovery training that RL cannot easily leverage, and the DETECT→CLASSIFY→RECOVER format provides a curriculum that RL would need to discover from scratch.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "8b913862-8de2-4ff1-ade8-1ebfc0cabc11",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-12T00:03:18.993Z_
+
+```json
+{
+  "parentUuid": "8b913862-8de2-4ff1-ade8-1ebfc0cabc11",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "861137da-7fde-4ab4-9906-92bf610d9f66",
+  "timestamp": "2026-05-12T00:03:18.993Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-12T00:03:18.993Z_
+
+```json
+{
+  "parentUuid": "861137da-7fde-4ab4-9906-92bf610d9f66",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "e891fe3d-d3af-436b-b179-c58adc114861",
+  "timestamp": "2026-05-12T00:03:18.993Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-11 (UTC).**  ## Original idea {   \"title\": \"TaxEI: Structured Non-Tool Error Injection for Agent Recovery Training…",
+  "leafUuid": "e891fe3d-d3af-436b-b179-c58adc114861",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise TaxEI with PALADIN venue correction and Wu et al. defusing",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-12T00:03:30.360Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully and plan my research approach:
+
+1. **PALADIN venue misattribution** - Need to verify the actual venue
+2. **Wu et al. (arXiv 2512.02389)** - Need to find and read this paper
+3. **WebArena SOTA** - Need to verify current open-weight SOTA
+4. **Timeline-compute tension** - Need to resolve
+5. **Baseline reproduction scope** - Need to trim
+6. **verl-agent license** - Need to verify
+7. **SFT vs RL concerns** - Need to address
+
+
+8. I'll spin up multiple research agents to tackle these issues simultaneously.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e891fe3d-d3af-436b-b179-c58adc114861",
+  "isSidechain": false,
+  "requestId": "req_011CawhGnFcune6nbWfMXccM",
+  "type": "assistant",
+  "uuid": "60f6c19e-97cf-4cf5-8cf3-e27a6b2a5c35",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xtb1PewFD9CcURYQUCNiKq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13530,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 259,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13530,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 259,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13530,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13530
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-12T00:03:30.399Z_
+
+I'll research each reviewer issue in parallel before making revisions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "60f6c19e-97cf-4cf5-8cf3-e27a6b2a5c35",
+  "isSidechain": false,
+  "requestId": "req_011CawhGnFcune6nbWfMXccM",
+  "type": "assistant",
+  "uuid": "70d8dec5-1539-4e42-86e6-7b195b481d65",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xtb1PewFD9CcURYQUCNiKq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13530,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 259,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13530,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 259,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13530,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13530
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-12T00:03:31.990Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01YPVxtTYfS4ioFZfnZ38fsJ`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "70d8dec5-1539-4e42-86e6-7b195b481d65",
+  "isSidechain": false,
+  "requestId": "req_011CawhGnFcune6nbWfMXccM",
+  "type": "assistant",
+  "uuid": "ac0a30b2-a13a-4b9a-86cc-9556bd29cf6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xtb1PewFD9CcURYQUCNiKq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13530,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 259,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13530,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 259,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13530,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13530
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-12T00:03:32.001Z_
+
+<details><summary>↩ Tool result · `toolu_01YPVxtTYfS4ioFZfnZ38fsJ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ac0a30b2-a13a-4b9a-86cc-9556bd29cf6f",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "290bcd78-9e4c-4d15-a11c-ccf2fda3a359",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "ac0a30b2-a13a-4b9a-86cc-9556bd29cf6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-12T00:03:34.546Z_
+
+Now let me launch parallel research on all the key issues flagged by reviewers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "290bcd78-9e4c-4d15-a11c-ccf2fda3a359",
+  "isSidechain": false,
+  "requestId": "req_011CawhHjuG7mNipALeoNk4j",
+  "type": "assistant",
+  "uuid": "d473c374-4770-4c62-a939-29ad05a91ebf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DP6LN4DrLUCGXDfKoCe7gs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1279,
+      "cache_read_input_tokens": 25371,
+      "output_tokens": 100,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1279,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 100,
+          "cache_read_input_tokens": 25371,
+          "cache_creation_input_tokens": 1279,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1279
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-12T00:03:35.891Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Cvx8TUHhanwqE9n1KWb4Yp`</summary>
+
+```json
+{
+  "query": "PALADIN self-correcting language model agents tool failure arXiv 2509.25238 venue ICLR 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d473c374-4770-4c62-a939-29ad05a91ebf",
+  "isSidechain": false,
+  "requestId": "req_011CawhHjuG7mNipALeoNk4j",
+  "type": "assistant",
+  "uuid": "372d4e54-96e6-4e49-a9a7-fe46fa06b26f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DP6LN4DrLUCGXDfKoCe7gs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1279,
+      "cache_read_input_tokens": 25371,
+      "output_tokens": 100,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1279,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 100,
+          "cache_read_input_tokens": 25371,
+          "cache_creation_input_tokens": 1279,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1279
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-12T00:03:42.036Z_
+
+<details><summary>↩ Tool result · `toolu_01Cvx8TUHhanwqE9n1KWb4Yp`</summary>
+
+```text
+Web search results for query: "PALADIN self-correcting language model agents tool failure arXiv 2509.25238 venue ICLR 2026"
+
+Links: [{"title":"[2509.25238] PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases","url":"https://arxiv.org/abs/2509.25238"},{"title":"PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases","url":"https://arxiv.org/html/2509.25238v1"},{"title":"PALADIN: Self-Correcting Language Model Agents to Cure ...","url":"https://arxiv.org/pdf/2509.25238"},{"title":"PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases | alphaXiv","url":"https://www.alphaxiv.org/abs/2509.25238"},{"title":"[PDF] PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases | Semantic Scholar","url":"https://www.semanticscholar.org/paper/PALADIN:-Self-Correcting-Language-Model-Agents-to-Vuddanti-Shah/9ae73fb066a4d577bce84c42ec285a05f0b24c46"},{"title":"(PDF) PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases","url":"https://www.researchgate.net/publication/396048240_PALADIN_Self-Correcting_Language_Model_Agents_to_Cure_Tool-Failure_Cases"},{"title":"PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases - haebom","url":"https://slashpage.com/haebom/daily_arxiv?lang=en&tl=en&post=7916x82r8wqjj24kpyg3"},{"title":"PALADIN: Self-Correcting Language Model Agents to Cure ...","url":"https://www.aimodels.fyi/papers/arxiv/paladin-self-correcting-language-model-agents-cure"},{"title":"PALADIN: Self-Correcting Language Model Agents to Cure ...","url":"https://openreview.net/pdf/8cf404c11b619f3ff8809308181318756620f971.pdf"},{"title":"PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases","url":"https://openreview.net/attachment?id=NVTtoO297p&name=pdf"}]
+
+I found the paper you're looking for! Here's what the search revealed:
+
+**Paper Details:**
+- Title: PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases
+- arXiv: 2509.25238, submitted on 25 September 2025
+- Published as a conference paper at ICLR 2026
+
+**Overview:**
+Tool-augmented language agents frequently fail in real-world deployment due to tool malfunctions--timeouts, API exceptions, or inconsistent outputs--triggering cascading reasoning errors and task abandonment. Existing agent training pipelines optimize only for success trajectories, failing to expose models to the tool failures that dominate real-world usage.
+
+**The PALADIN Framework:**
+PALADIN is a generalizable framework for equipping language agents with robust failure recovery capabilities. PALADIN trains on 50,000+ recovery-annotated trajectories constructed via systematic failure injection and expert demonstrations on an enhanced ToolBench dataset. Training uses LoRA-based fine-tuning to retain base capabilities while injecting recovery competence. At inference, PALADIN detects execution-time errors and retrieves the most similar case from a curated bank of 55+ failure exemplars aligned with ToolScan's taxonomy, then executes the corresponding recovery action.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "372d4e54-96e6-4e49-a9a7-fe46fa06b26f",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "ac6d93fa-a475-49e9-b930-a38a1c78532a",
+  "toolUseResult": {
+    "query": "PALADIN self-correcting language model agents tool failure arXiv 2509.25238 venue ICLR 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Nt4buMfqiqZbKZZc1QQk1n",
+        "content": [
+          {
+            "title": "[2509.25238] PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases",
+            "url": "https://arxiv.org/abs/2509.25238"
+          },
+          {
+            "title": "PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases",
+            "url": "https://arxiv.org/html/2509.25238v1"
+          },
+          {
+            "title": "PALADIN: Self-Correcting Language Model Agents to Cure ...",
+            "url": "https://arxiv.org/pdf/2509.25238"
+          },
+          {
+            "title": "PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases | alphaXiv",
+            "url": "https://www.alphaxiv.org/abs/2509.25238"
+          },
+          {
+            "title": "[PDF] PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/PALADIN:-Self-Correcting-Language-Model-Agents-to-Vuddanti-Shah/9ae73fb066a4d577bce84c42ec285a05f0b24c46"
+          },
+          {
+            "title": "(PDF) PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases",
+            "url": "https://www.researchgate.net/publication/396048240_PALADIN_Self-Correcting_Language_Model_Agents_to_Cure_Tool-Failure_Cases"
+          },
+          {
+            "title": "PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases - haebom",
+            "url": "https://slashpage.com/haebom/daily_arxiv?lang=en&tl=en&post=7916x82r8wqjj24kpyg3"
+          },
+          {
+            "title": "PALADIN: Self-Correcting Language Model Agents to Cure ...",
+            "url": "https://www.aimodels.fyi/papers/arxiv/paladin-self-correcting-language-model-agents-cure"
+          },
+          {
+            "title": "PALADIN: Self-Correcting Language Model Agents to Cure ...",
+            "url": "https://openreview.net/pdf/8cf404c11b619f3ff8809308181318756620f971.pdf"
+          },
+          {
+            "title": "PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases",
+            "url": "https://openreview.net/attachment?id=NVTtoO297p&name=pdf"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what the search revealed:\n\n**Paper Details:**\n- Title: PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases\n- arXiv: 2509.25238, submitted on 25 September 2025\n- Published as a conference paper at ICLR 2026\n\n**Overview:**\nTool-augmented language agents frequently fail in real-world deployment due to tool malfunctions--timeouts, API exceptions, or inconsistent outputs--triggering cascading reasoning errors and task abandonment. Existing agent training pipelines optimize only for success trajectories, failing to expose models to the tool failures that dominate real-world usage.\n\n**The PALADIN Framework:**\nPALADIN is a generalizable framework for equipping language agents with robust failure recovery capabilities. PALADIN trains on 50,000+ recovery-annotated trajectories constructed via systematic failure injection and expert demonstrations on an enhanced ToolBench dataset. Training uses LoRA-based fine-tuning to retain base capabilities while injecting recovery competence. At inference, PALADIN detects execution-time errors and retrieves the most similar case from a curated bank of 55+ failure exemplars aligned with ToolScan's taxonomy, then executes the corresponding recovery action."
+    ],
+    "durationSeconds": 6.139606669999997
+  },
+  "sourceToolAssistantUUID": "372d4e54-96e6-4e49-a9a7-fe46fa06b26f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-12T00:03:46.284Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U56HyuUFSbikMiCUyQXnzD`</summary>
+
+```json
+{
+  "query": "Wu et al \"Synthetic Error Injection Fails to Elicit Self-Correction\" arXiv 2512.02389 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac6d93fa-a475-49e9-b930-a38a1c78532a",
+  "isSidechain": false,
+  "requestId": "req_011CawhJUcHLAsPpNhgNTmAK",
+  "type": "assistant",
+  "uuid": "2c02c518-4159-4c4c-9cf9-c07a1e1ca30d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ErXP1FKrMziFXmM4GkRr6p",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1059,
+      "cache_read_input_tokens": 26650,
+      "output_tokens": 83,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1059,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 83,
+          "cache_read_input_tokens": 26650,
+          "cache_creation_input_tokens": 1059,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1059
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-12T00:03:52.194Z_
+
+<details><summary>↩ Tool result · `toolu_01U56HyuUFSbikMiCUyQXnzD`</summary>
+
+```text
+Web search results for query: "Wu et al "Synthetic Error Injection Fails to Elicit Self-Correction" arXiv 2512.02389 2025"
+
+Links: [{"title":"[2512.02389] Synthetic Error Injection Fails to Elicit Self-Correction In Language Models","url":"https://arxiv.org/abs/2512.02389"},{"title":"Synthetic Error Injection Fails to Elicit Self-Correction In Language Models","url":"https://arxiv.org/html/2512.02389"},{"title":"David X. Wu's research works | University of California, Berkeley and other places","url":"https://www.researchgate.net/scientific-contributions/David-X-Wu-2245210416"},{"title":"Self-Correction Bench: Revealing and Addressing the Self-Correction Blind Spot in LLMs","url":"https://arxiv.org/html/2507.02778v1"},{"title":"[2512.01389] Syndrome-Flow Consistency Model Achieves One-step Denoising Error Correction Codes","url":"https://arxiv.org/abs/2512.01389"},{"title":"Self-Correction Bench: Uncovering and Addressing the Self-Correction Blind Spot in Large Language Models","url":"https://arxiv.org/html/2507.02778"},{"title":"Syndrome-Flow Consistency Model Achieves One-step Denoising Error Correction Codes","url":"https://arxiv.org/html/2512.01389"},{"title":"Subtle Errors Matter: Preference Learning via Error-injected Self-editing","url":"https://arxiv.org/html/2410.06638v1"},{"title":"[2507.02778v2] Self-Correction Bench: Uncovering and Addressing the Self-Correction Blind Spot in Large Language Models","url":"https://arxiv.org/abs/2507.02778v2"},{"title":"Fault Injection Attacks on Machine Learning-based Quantum Computer Readout Error Correction","url":"https://arxiv.org/html/2512.20077"}]
+
+I found the paper you're looking for. Here's information about it:
+
+**Paper Title:** Synthetic Error Injection Fails to Elicit Self-Correction In Language Models
+
+**Authors:** David X. Wu, Shreyas Kapur, Anant Sahai, Stuart Russell
+
+**arXiv ID:** 2512.02389
+
+**Key Findings:**
+
+The paper investigates whether supervised learning with synthetic error injection can induce self-correction abilities in language models. The approach inserts artificial errors into reasoning chains, masks them, and supervises the model to recognize and correct these mistakes.
+
+However, the method fails to significantly improve performance even on simple synthetic tasks across multiple models. Additionally, even when the model catches its own error, it often parrots the original mistake.
+
+The distribution shift of synthetic errors to on-policy errors significantly degrades the error-correction capabilities of the fine-tuned model, even with good synthetic coverage of on-policy errors.
+
+The paper is available on arXiv at https://arxiv.org/abs/2512.02389.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2c02c518-4159-4c4c-9cf9-c07a1e1ca30d",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "d697b758-a3b1-467c-b0e5-f232c6301a4b",
+  "toolUseResult": {
+    "query": "Wu et al \"Synthetic Error Injection Fails to Elicit Self-Correction\" arXiv 2512.02389 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013WNKBkugqPky3Z8SHMsWmC",
+        "content": [
+          {
+            "title": "[2512.02389] Synthetic Error Injection Fails to Elicit Self-Correction In Language Models",
+            "url": "https://arxiv.org/abs/2512.02389"
+          },
+          {
+            "title": "Synthetic Error Injection Fails to Elicit Self-Correction In Language Models",
+            "url": "https://arxiv.org/html/2512.02389"
+          },
+          {
+            "title": "David X. Wu's research works | University of California, Berkeley and other places",
+            "url": "https://www.researchgate.net/scientific-contributions/David-X-Wu-2245210416"
+          },
+          {
+            "title": "Self-Correction Bench: Revealing and Addressing the Self-Correction Blind Spot in LLMs",
+            "url": "https://arxiv.org/html/2507.02778v1"
+          },
+          {
+            "title": "[2512.01389] Syndrome-Flow Consistency Model Achieves One-step Denoising Error Correction Codes",
+            "url": "https://arxiv.org/abs/2512.01389"
+          },
+          {
+            "title": "Self-Correction Bench: Uncovering and Addressing the Self-Correction Blind Spot in Large Language Models",
+            "url": "https://arxiv.org/html/2507.02778"
+          },
+          {
+            "title": "Syndrome-Flow Consistency Model Achieves One-step Denoising Error Correction Codes",
+            "url": "https://arxiv.org/html/2512.01389"
+          },
+          {
+            "title": "Subtle Errors Matter: Preference Learning via Error-injected Self-editing",
+            "url": "https://arxiv.org/html/2410.06638v1"
+          },
+          {
+            "title": "[2507.02778v2] Self-Correction Bench: Uncovering and Addressing the Self-Correction Blind Spot in Large Language Models",
+            "url": "https://arxiv.org/abs/2507.02778v2"
+          },
+          {
+            "title": "Fault Injection Attacks on Machine Learning-based Quantum Computer Readout Error Correction",
+            "url": "https://arxiv.org/html/2512.20077"
+          }
+        ]
+      },
+      "I found the paper you're looking for. Here's information about it:\n\n**Paper Title:** Synthetic Error Injection Fails to Elicit Self-Correction In Language Models\n\n**Authors:** David X. Wu, Shreyas Kapur, Anant Sahai, Stuart Russell\n\n**arXiv ID:** 2512.02389\n\n**Key Findings:**\n\nThe paper investigates whether supervised learning with synthetic error injection can induce self-correction abilities in language models. The approach inserts artificial errors into reasoning chains, masks them, and supervises the model to recognize and correct these mistakes.\n\nHowever, the method fails to significantly improve performance even on simple synthetic tasks across multiple models. Additionally, even when the model catches its own error, it often parrots the original mistake.\n\nThe distribution shift of synthetic errors to on-policy errors significantly degrades the error-correction capabilities of the fine-tuned model, even with good synthetic coverage of on-policy errors.\n\nThe paper is available on arXiv at https://arxiv.org/abs/2512.02389."
+    ],
+    "durationSeconds": 5.905506697000001
+  },
+  "sourceToolAssistantUUID": "2c02c518-4159-4c4c-9cf9-c07a1e1ca30d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-12T00:03:55.031Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012iqfjZd52XBDW7CMGaGyxL`</summary>
+
+```json
+{
+  "query": "WebArena leaderboard open-weight models 2026 current SOTA results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d697b758-a3b1-467c-b0e5-f232c6301a4b",
+  "isSidechain": false,
+  "requestId": "req_011CawhKDvWvyGz7xcET8byP",
+  "type": "assistant",
+  "uuid": "68e25e07-8917-4d85-a8d4-db4f4e8b6823",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xu5DAaJMdXtSTXuwBVKJ1b",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 856,
+      "cache_read_input_tokens": 27709,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 856,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 27709,
+          "cache_creation_input_tokens": 856,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 856
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-12T00:04:01.480Z_
+
+<details><summary>↩ Tool result · `toolu_012iqfjZd52XBDW7CMGaGyxL`</summary>
+
+```text
+Web search results for query: "WebArena leaderboard open-weight models 2026 current SOTA results"
+
+Links: [{"title":"LLM Benchmark Leaderboard 2026: Coding, Math, Reasoning and Agents | CodeSOTA | CodeSOTA","url":"https://www.codesota.com/llm"},{"title":"Open LLM Leaderboard 2026 - Compare Open Source LLM Rankings","url":"https://llm-stats.com/leaderboards/open-llm-leaderboard"},{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"LLM Leaderboard 2026: Best AI Models Benchmark & Ranking","url":"https://www.clickrank.ai/llm-leaderboard/"},{"title":"Open Source LLM Leaderboard 2026 — Compare Open-Weight Models","url":"https://www.vellum.ai/open-llm-leaderboard"},{"title":"AI Coding Model Leaderboard 2026: Live Rankings & Benchmarks | Kilo","url":"https://kilo.ai/leaderboard"},{"title":"LLM Leaderboard 2026: Compare 300+ Top AI Models by Intelligence, Speed & Price","url":"https://llm-stats.com/"},{"title":"WebArena Benchmark 2026: 15 model averages | BenchLM.ai","url":"https://benchlm.ai/benchmarks/webArena"},{"title":"LLM Leaderboard 2026 — Compare Top AI Models - Vellum","url":"https://www.vellum.ai/llm-leaderboard"},{"title":"Speech AI Leaderboard 2026: Best STT, ASR and TTS Models | CodeSOTA | CodeSOTA","url":"https://www.codesota.com/speech"}]
+
+Based on the web search results, here's what I found regarding WebArena leaderboard and open-weight models in 2026:
+
+## WebArena Current Results
+
+Claude Mythos Preview currently leads the published WebArena snapshot with a tracked score of 68.7%. However, it's important to note that proprietary models like GPT-5 and Claude Opus 4.6 lead WebArena and OSWorld evaluations by margins that open-weights models have not yet closed.
+
+## Open-Weight Models Performance
+
+For open-weight models specifically on agentic tasks like WebArena, DeepSeek V3.2 is the strongest open-weights model across all three agentic benchmarks, sitting within 10 percentage points of the proprietary leaders at a fraction of the cost.
+
+The search results indicate that open-weights leaders include Llama, Qwen and DeepSeek, with Kimi K2.6 currently leading among open-weights LLMs at 90.5% on GPQA, though this is a general reasoning benchmark rather than WebArena specifically.
+
+## Key Context
+
+15 AI models are included in BenchLM's mirrored WebArena snapshot, based on the public leaderboard captured on May 1, 2026, providing relatively recent data on benchmark performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "68e25e07-8917-4d85-a8d4-db4f4e8b6823",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "5f5c642a-e3b7-4610-9437-97ea2d4e2fb4",
+  "toolUseResult": {
+    "query": "WebArena leaderboard open-weight models 2026 current SOTA results",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019iF9tUnpimqVatUx5zWq8r",
+        "content": [
+          {
+            "title": "LLM Benchmark Leaderboard 2026: Coding, Math, Reasoning and Agents | CodeSOTA | CodeSOTA",
+            "url": "https://www.codesota.com/llm"
+          },
+          {
+            "title": "Open LLM Leaderboard 2026 - Compare Open Source LLM Rankings",
+            "url": "https://llm-stats.com/leaderboards/open-llm-leaderboard"
+          },
+          {
+            "title": "SWE-bench Leaderboards",
+            "url": "https://www.swebench.com/"
+          },
+          {
+            "title": "LLM Leaderboard 2026: Best AI Models Benchmark & Ranking",
+            "url": "https://www.clickrank.ai/llm-leaderboard/"
+          },
+          {
+            "title": "Open Source LLM Leaderboard 2026 — Compare Open-Weight Models",
+            "url": "https://www.vellum.ai/open-llm-leaderboard"
+          },
+          {
+            "title": "AI Coding Model Leaderboard 2026: Live Rankings & Benchmarks | Kilo",
+            "url": "https://kilo.ai/leaderboard"
+          },
+          {
+            "title": "LLM Leaderboard 2026: Compare 300+ Top AI Models by Intelligence, Speed & Price",
+            "url": "https://llm-stats.com/"
+          },
+          {
+            "title": "WebArena Benchmark 2026: 15 model averages | BenchLM.ai",
+            "url": "https://benchlm.ai/benchmarks/webArena"
+          },
+          {
+            "title": "LLM Leaderboard 2026 — Compare Top AI Models - Vellum",
+            "url": "https://www.vellum.ai/llm-leaderboard"
+          },
+          {
+            "title": "Speech AI Leaderboard 2026: Best STT, ASR and TTS Models | CodeSOTA | CodeSOTA",
+            "url": "https://www.codesota.com/speech"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found regarding WebArena leaderboard and open-weight models in 2026:\n\n## WebArena Current Results\n\nClaude Mythos Preview currently leads the published WebArena snapshot with a tracked score of 68.7%. However, it's important to note that proprietary models like GPT-5 and Claude Opus 4.6 lead WebArena and OSWorld evaluations by margins that open-weights models have not yet closed.\n\n## Open-Weight Models Performance\n\nFor open-weight models specifically on agentic tasks like WebArena, DeepSeek V3.2 is the strongest open-weights model across all three agentic benchmarks, sitting within 10 percentage points of the proprietary leaders at a fraction of the cost.\n\nThe search results indicate that open-weights leaders include Llama, Qwen and DeepSeek, with Kimi K2.6 currently leading among open-weights LLMs at 90.5% on GPQA, though this is a general reasoning benchmark rather than WebArena specifically.\n\n## Key Context\n\n15 AI models are included in BenchLM's mirrored WebArena snapshot, based on the public leaderboard captured on May 1, 2026, providing relatively recent data on benchmark performance."
+    ],
+    "durationSeconds": 6.445015477000001
+  },
+  "sourceToolAssistantUUID": "68e25e07-8917-4d85-a8d4-db4f4e8b6823",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-12T00:04:03.959Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01955qp1L46HSukFjLMf9Ahq`</summary>
+
+```json
+{
+  "query": "WebArena benchmark results open-weight open-source models 2026 Qwen DeepSeek success rate"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5f5c642a-e3b7-4610-9437-97ea2d4e2fb4",
+  "isSidechain": false,
+  "requestId": "req_011CawhKuewdPmW4nBtrHvst",
+  "type": "assistant",
+  "uuid": "3a4a32c1-83f1-40cf-a477-6a76a62a3d4f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DFmDuCnq3csL893K8EHCtX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 848,
+      "cache_read_input_tokens": 28565,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 848,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 28565,
+          "cache_creation_input_tokens": 848,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 848
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-12T00:04:14.176Z_
+
+<details><summary>↩ Tool result · `toolu_01955qp1L46HSukFjLMf9Ahq`</summary>
+
+```text
+Web search results for query: "WebArena benchmark results open-weight open-source models 2026 Qwen DeepSeek success rate"
+
+Links: [{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"Open LLM Leaderboard 2026 - Compare Open Source LLM Rankings","url":"https://llm-stats.com/leaderboards/open-llm-leaderboard"},{"title":"LLM Leaderboard 2026: Compare 300+ Top AI Models by Intelligence, Speed & Price","url":"https://llm-stats.com/"},{"title":"Open-Source LLM Landscape 2026: DeepSeek V4 vs Llama 4 vs Qwen 3.5 vs Gemma 4","url":"https://codersera.com/blog/open-source-llms-landscape-2026/"},{"title":"Open Source LLM Leaderboard 2026 — Compare Open-Weight Models","url":"https://www.vellum.ai/open-llm-leaderboard"},{"title":"LLM Leaderboard 2026: Best AI Models Benchmark & Ranking","url":"https://www.clickrank.ai/llm-leaderboard/"},{"title":"LLM Coding Benchmark (May 2026): DeepSeek v4, Kimi v2.6, Grok 4.3, GPT 5.5 – AkitaOnRails.com","url":"https://akitaonrails.com/en/2026/04/24/llm-benchmarks-parte-3-deepseek-kimi-mimo/"},{"title":"Best Open-Source LLM in May 2026: Llama 4 vs Qwen 3.5 vs DeepSeek V4 vs Gemma 4 vs Mistral Medium 3.5","url":"https://codersera.com/blog/best-open-source-llm-2026-llama-4-qwen-3-5-deepseek-v4-gemma-4-mistral/"},{"title":"DeepSeek is back among the leading open weights models with V4 Pro and V4 Flash","url":"https://artificialanalysis.ai/articles/deepseek-is-back-among-the-leading-open-weights-models-with-v4-pro-and-v4-flash"},{"title":"WebArena Benchmark 2026: 15 model averages | BenchLM.ai","url":"https://benchlm.ai/benchmarks/webArena"}]
+
+Based on the web search results, here are the WebArena benchmark results for open-weight and open-source models in 2026:
+
+## WebArena Performance
+
+Claude Mythos Preview currently leads the published WebArena snapshot with a tracked score of 68.7%. However, this is a proprietary model, not open-weight.
+
+For **agentic performance among open-weight models**, DeepSeek V4 Pro (Max) leads open weight models on agentic real-world work tasks, scoring 1554 on GDPval-AA, placing it ahead of Kimi K2.6 (1484), GLM-5.1 (1535), GLM-5 (1402), and MiniMax-M2.7 (1514).
+
+## Qwen and DeepSeek Results
+
+**DeepSeek V4 Pro** shows strong performance across benchmarks:
+- Benchmarks (Pro Max mode): 87.5 MMLU-Pro, 90.1 GPQA Diamond, 93.5 LiveCodeBench, 80.6 SWE-Bench Verified
+- DeepSeek V4 Pro (Max) scores 52 on the Artificial Analysis Intelligence Index, making it the #2 open weights reasoning model behind Kimi K2.6.
+
+**Qwen 3.5** strengths:
+- Qwen 3.5 leads open weights on GPQA Diamond at 88.4%.
+
+Overall, open-weights leaders include Llama, Qwen and DeepSeek.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3a4a32c1-83f1-40cf-a477-6a76a62a3d4f",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "ad4aa8a4-2fe1-4b58-842e-833756a060b4",
+  "toolUseResult": {
+    "query": "WebArena benchmark results open-weight open-source models 2026 Qwen DeepSeek success rate",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UfWXuaswgV6k2C2t1XR5ch",
+        "content": [
+          {
+            "title": "SWE-bench Leaderboards",
+            "url": "https://www.swebench.com/"
+          },
+          {
+            "title": "Open LLM Leaderboard 2026 - Compare Open Source LLM Rankings",
+            "url": "https://llm-stats.com/leaderboards/open-llm-leaderboard"
+          },
+          {
+            "title": "LLM Leaderboard 2026: Compare 300+ Top AI Models by Intelligence, Speed & Price",
+            "url": "https://llm-stats.com/"
+          },
+          {
+            "title": "Open-Source LLM Landscape 2026: DeepSeek V4 vs Llama 4 vs Qwen 3.5 vs Gemma 4",
+            "url": "https://codersera.com/blog/open-source-llms-landscape-2026/"
+          },
+          {
+            "title": "Open Source LLM Leaderboard 2026 — Compare Open-Weight Models",
+            "url": "https://www.vellum.ai/open-llm-leaderboard"
+          },
+          {
+            "title": "LLM Leaderboard 2026: Best AI Models Benchmark & Ranking",
+            "url": "https://www.clickrank.ai/llm-leaderboard/"
+          },
+          {
+            "title": "LLM Coding Benchmark (May 2026): DeepSeek v4, Kimi v2.6, Grok 4.3, GPT 5.5 – AkitaOnRails.com",
+            "url": "https://akitaonrails.com/en/2026/04/24/llm-benchmarks-parte-3-deepseek-kimi-mimo/"
+          },
+          {
+            "title": "Best Open-Source LLM in May 2026: Llama 4 vs Qwen 3.5 vs DeepSeek V4 vs Gemma 4 vs Mistral Medium 3.5",
+            "url": "https://codersera.com/blog/best-open-source-llm-2026-llama-4-qwen-3-5-deepseek-v4-gemma-4-mistral/"
+          },
+          {
+            "title": "DeepSeek is back among the leading open weights models with V4 Pro and V4 Flash",
+            "url": "https://artificialanalysis.ai/articles/deepseek-is-back-among-the-leading-open-weights-models-with-v4-pro-and-v4-flash"
+          },
+          {
+            "title": "WebArena Benchmark 2026: 15 model averages | BenchLM.ai",
+            "url": "https://benchlm.ai/benchmarks/webArena"
+          }
+        ]
+      },
+      "Based on the web search results, here are the WebArena benchmark results for open-weight and open-source models in 2026:\n\n## WebArena Performance\n\nClaude Mythos Preview currently leads the published WebArena snapshot with a tracked score of 68.7%. However, this is a proprietary model, not open-weight.\n\nFor **agentic performance among open-weight models**, DeepSeek V4 Pro (Max) leads open weight models on agentic real-world work tasks, scoring 1554 on GDPval-AA, placing it ahead of Kimi K2.6 (1484), GLM-5.1 (1535), GLM-5 (1402), and MiniMax-M2.7 (1514).\n\n## Qwen and DeepSeek Results\n\n**DeepSeek V4 Pro** shows strong performance across benchmarks:\n- Benchmarks (Pro Max mode): 87.5 MMLU-Pro, 90.1 GPQA Diamond, 93.5 LiveCodeBench, 80.6 SWE-Bench Verified\n- DeepSeek V4 Pro (Max) scores 52 on the Artificial Analysis Intelligence Index, making it the #2 open weights reasoning model behind Kimi K2.6.\n\n**Qwen 3.5** strengths:\n- Qwen 3.5 leads open weights on GPQA Diamond at 88.4%.\n\nOverall, open-weights leaders include Llama, Qwen and DeepSeek."
+    ],
+    "durationSeconds": 10.212971125000003
+  },
+  "sourceToolAssistantUUID": "3a4a32c1-83f1-40cf-a477-6a76a62a3d4f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-11 (UTC).**  ## Original idea {   \"title\": \"TaxEI: Structured Non-Tool Error Injection for Agent Recovery Training…",
+  "leafUuid": "ad4aa8a4-2fe1-4b58-842e-833756a060b4",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise TaxEI with PALADIN venue correction and Wu et al. defusing",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6"
+}
+```
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-12T00:04:18.792Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01MWNn9dHFkoQHQxX4QUYATC`</summary>
+
+```json
+{
+  "url": "https://benchlm.ai/benchmarks/webArena",
+  "prompt": "List all models and their WebArena scores/success rates, especially open-weight/open-source models. I need the actual percentage scores."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ad4aa8a4-2fe1-4b58-842e-833756a060b4",
+  "isSidechain": false,
+  "requestId": "req_011CawhLqxEAtqUrgkhTYeje",
+  "type": "assistant",
+  "uuid": "150d8441-3498-47ed-90dd-6b78a70c5d12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CHVX4HFHbtDhJEMeNpF1cF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1100,
+      "cache_read_input_tokens": 29413,
+      "output_tokens": 111,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1100,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 111,
+          "cache_read_input_tokens": 29413,
+          "cache_creation_input_tokens": 1100,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1100
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-12T00:04:23.233Z_
+
+<details><summary>↩ Tool result · `toolu_01MWNn9dHFkoQHQxX4QUYATC`</summary>
+
+```text
+# WebArena Benchmark Scores (All 15 Models)
+
+Based on the page content, here are all evaluated models with their scores:
+
+1. Claude Mythos Preview (Anthropic) – 68.7%
+2. GPT-5.4 Pro (OpenAI) – 65.8%
+3. Claude Opus 4.6 (Anthropic) – 64.5%
+4. GPT-5.4 (OpenAI) – 62.3%
+5. Claude Sonnet 4.6 (Anthropic) – 59.2%
+6. Gemini 3.1 Pro (Google) – 58.4%
+7. Qwen3.6 Plus (Alibaba) – 57.2%
+8. Qwen3.5 397B (Alibaba) – 55.8%
+9. Grok 4.1 (xAI) – 53.7%
+10. Gemini 3 Pro (Google) – 52.1%
+11. Kimi K2.5 (Moonshot AI) – 51.3%
+12. GLM-5 Reasoning (Z.AI) – 49.8%
+13. DeepSeek V3.2 Thinking (DeepSeek) – 48.6%
+14. Llama 4 Behemoth (Meta) – 46.2%
+15. o4-mini (high) (OpenAI) – 44.5%
+
+**Open-source/open-weight models** in this list include Llama 4 Behemoth (Meta) at 46.2%, though the page doesn't explicitly distinguish licensing status for other entries. The benchmark evaluates agents on "complex, multi-step browser tasks" across e-commerce and content management systems.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "150d8441-3498-47ed-90dd-6b78a70c5d12",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "a0907c2b-238c-4852-abcf-a994548ff737",
+  "toolUseResult": {
+    "bytes": 74534,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# WebArena Benchmark Scores (All 15 Models)\n\nBased on the page content, here are all evaluated models with their scores:\n\n1. Claude Mythos Preview (Anthropic) – 68.7%\n2. GPT-5.4 Pro (OpenAI) – 65.8%\n3. Claude Opus 4.6 (Anthropic) – 64.5%\n4. GPT-5.4 (OpenAI) – 62.3%\n5. Claude Sonnet 4.6 (Anthropic) – 59.2%\n6. Gemini 3.1 Pro (Google) – 58.4%\n7. Qwen3.6 Plus (Alibaba) – 57.2%\n8. Qwen3.5 397B (Alibaba) – 55.8%\n9. Grok 4.1 (xAI) – 53.7%\n10. Gemini 3 Pro (Google) – 52.1%\n11. Kimi K2.5 (Moonshot AI) – 51.3%\n12. GLM-5 Reasoning (Z.AI) – 49.8%\n13. DeepSeek V3.2 Thinking (DeepSeek) – 48.6%\n14. Llama 4 Behemoth (Meta) – 46.2%\n15. o4-mini (high) (OpenAI) – 44.5%\n\n**Open-source/open-weight models** in this list include Llama 4 Behemoth (Meta) at 46.2%, though the page doesn't explicitly distinguish licensing status for other entries. The benchmark evaluates agents on \"complex, multi-step browser tasks\" across e-commerce and content management systems.",
+    "durationMs": 4436,
+    "url": "https://benchlm.ai/benchmarks/webArena"
+  },
+  "sourceToolAssistantUUID": "150d8441-3498-47ed-90dd-6b78a70c5d12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-12T00:04:27.205Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019bJHTgEsjzocevaYJx3P99`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2512.02389",
+  "prompt": "Extract the full abstract, key findings, experimental setup (model sizes, tasks, whether they use agent trajectories or pure CoT), and main conclusions. I need to understand exactly what they tested and why synthetic error injection failed."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a0907c2b-238c-4852-abcf-a994548ff737",
+  "isSidechain": false,
+  "requestId": "req_011CawhMWeeWLYp5WPyabRgD",
+  "type": "assistant",
+  "uuid": "0f7ca0e9-2306-4412-83df-96342b150da7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Upa9GHBYSKfKcp3qPjHRs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 550,
+      "cache_read_input_tokens": 30513,
+      "output_tokens": 127,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 550,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 127,
+          "cache_read_input_tokens": 30513,
+          "cache_creation_input_tokens": 550,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 550
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-12T00:04:32.178Z_
+
+<details><summary>↩ Tool result · `toolu_019bJHTgEsjzocevaYJx3P99`</summary>
+
+```text
+# Research Summary: Synthetic Error Injection in Language Models
+
+## Full Abstract
+The researchers investigated whether supervised learning with synthetic error injection could induce self-correction in language models, inspired by techniques from autonomous driving and robotics. They inserted artificial errors into reasoning chains, masked them, and trained models to recognize and correct mistakes. However, the approach failed to significantly improve performance, and models often repeated original errors even when catching them. The key finding: distribution shifts between synthetic and actual errors substantially degraded performance, explaining why reinforcement learning proves more effective.
+
+## Key Findings
+1. **Method ineffectiveness**: "Fails to significantly improve performance even on simple synthetic tasks across multiple models"
+2. **Error parroting problem**: Models catch errors but reproduce the original mistake anyway
+3. **Distribution shift issue**: The gap between synthetic and on-policy errors dramatically reduced correction capabilities
+4. **RL superiority**: Results demonstrate why on-policy reinforcement learning remains uniquely effective
+
+## Experimental Setup
+- **Models tested**: Multiple language models (specific sizes not detailed in abstract)
+- **Task complexity**: Simple synthetic tasks used as baseline
+- **Approach type**: Pure supervised learning with synthetic data, not agent trajectories
+- **Training method**: Masking artificial errors and supervising error recognition/correction
+
+## Main Conclusions
+Synthetic error injection is fundamentally limited because training errors don't match real model errors. On-policy RL methods succeed precisely because they address this distribution problem directly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0f7ca0e9-2306-4412-83df-96342b150da7",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "e9a0a196-e339-4c73-8803-223b10d1d02a",
+  "toolUseResult": {
+    "bytes": 46058,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Research Summary: Synthetic Error Injection in Language Models\n\n## Full Abstract\nThe researchers investigated whether supervised learning with synthetic error injection could induce self-correction in language models, inspired by techniques from autonomous driving and robotics. They inserted artificial errors into reasoning chains, masked them, and trained models to recognize and correct mistakes. However, the approach failed to significantly improve performance, and models often repeated original errors even when catching them. The key finding: distribution shifts between synthetic and actual errors substantially degraded performance, explaining why reinforcement learning proves more effective.\n\n## Key Findings\n1. **Method ineffectiveness**: \"Fails to significantly improve performance even on simple synthetic tasks across multiple models\"\n2. **Error parroting problem**: Models catch errors but reproduce the original mistake anyway\n3. **Distribution shift issue**: The gap between synthetic and on-policy errors dramatically reduced correction capabilities\n4. **RL superiority**: Results demonstrate why on-policy reinforcement learning remains uniquely effective\n\n## Experimental Setup\n- **Models tested**: Multiple language models (specific sizes not detailed in abstract)\n- **Task complexity**: Simple synthetic tasks used as baseline\n- **Approach type**: Pure supervised learning with synthetic data, not agent trajectories\n- **Training method**: Masking artificial errors and supervising error recognition/correction\n\n## Main Conclusions\nSynthetic error injection is fundamentally limited because training errors don't match real model errors. On-policy RL methods succeed precisely because they address this distribution problem directly.",
+    "durationMs": 4970,
+    "url": "https://arxiv.org/abs/2512.02389"
+  },
+  "sourceToolAssistantUUID": "0f7ca0e9-2306-4412-83df-96342b150da7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-12T00:04:39.990Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01HPndgG4iBWB7DRtjxDKkxB`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2512.02389",
+  "prompt": "Extract: 1) What model sizes were tested (1B, 7B, etc.)? 2) What tasks were used (math, reasoning, coding, agent tasks)? 3) Was there any environment feedback or was it pure CoT self-correction? 4) What specific distribution mismatch did they identify? 5) Any discussion of agent settings vs pure reasoning? 6) Key limitations they acknowledge. I need very specific details about the experimental setup."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e9a0a196-e339-4c73-8803-223b10d1d02a",
+  "isSidechain": false,
+  "requestId": "req_011CawhNAvXCvGuUCSaADvrk",
+  "type": "assistant",
+  "uuid": "32dd6d6d-05e6-4443-952c-5c789d7e17b1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012eTquG24261m1b9WDcYbJo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 452,
+      "cache_read_input_tokens": 31063,
+      "output_tokens": 181,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 452,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 181,
+          "cache_read_input_tokens": 31063,
+          "cache_creation_input_tokens": 452,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 452
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-12T00:04:47.314Z_
+
+<details><summary>↩ Tool result · `toolu_01HPndgG4iBWB7DRtjxDKkxB`</summary>
+
+```text
+# Experimental Setup Details from "Synthetic Error Injection Fails to Elicit Self-Correction"
+
+## 1) Model Sizes Tested
+The researchers evaluated three **1B parameter models**:
+- Qwen2.5-Math-1.5B-Instruct
+- Gemma-3-1B-it
+- Llama-3.2-1B-Instruct
+
+No larger models (7B, 70B, etc.) were tested in this study.
+
+## 2) Tasks Used
+Two synthetic reasoning tasks only:
+- **Multiplication**: 4-digit multiplication problems (arithmetic reasoning)
+- **Sudoku**: 4×4 Sudoku problems restricted to "naked single" solution moves
+
+No coding, agent, or complex reasoning benchmarks were included.
+
+## 3) Environment Feedback
+Pure chain-of-thought (CoT) self-correction with no external feedback. The paper states: "synthetic errors into the CoT, mask them, and supervise the model to recognize and correct these mistakes." All evaluation used greedy decoding without environmental rewards or verifiers beyond task correctness checking.
+
+## 4) Distribution Mismatch Identified
+The critical finding was a **synthetic-to-on-policy error distribution gap**. Despite achieving "95%+ coverage" of natural errors, the EIFT model's error recognition plummeted from 94% (synthetic errors) to 8% (FT-generated errors) on Sudoku. The authors conclude that "the model only learns to reliably correct synthetic errors. It fails to generalize this error-correction capability to the distribution of context-dependent errors."
+
+## 5) Agent vs. Pure Reasoning
+No agent settings explored. The paper explicitly focuses on linear CoT reasoning without planning, tree search, or multi-step environment interaction.
+
+## 6) Key Limitations Acknowledged
+- Computational constraints prevented testing stronger base models or harder NP-complete problems
+- Difficulty constructing realistic error distributions (LLMs "would often explicitly acknowledge mistakes")
+- Unclear mechanism: "the model learns two circuits, one for computing the answer...the other for verifying" but lacks integration
+- Limited scalability of synthetic error injection beyond simple tasks
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "32dd6d6d-05e6-4443-952c-5c789d7e17b1",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "5aa256e2-5ef5-4a8b-b594-bd0c6f0996ae",
+  "toolUseResult": {
+    "bytes": 87915,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Experimental Setup Details from \"Synthetic Error Injection Fails to Elicit Self-Correction\"\n\n## 1) Model Sizes Tested\nThe researchers evaluated three **1B parameter models**:\n- Qwen2.5-Math-1.5B-Instruct\n- Gemma-3-1B-it\n- Llama-3.2-1B-Instruct\n\nNo larger models (7B, 70B, etc.) were tested in this study.\n\n## 2) Tasks Used\nTwo synthetic reasoning tasks only:\n- **Multiplication**: 4-digit multiplication problems (arithmetic reasoning)\n- **Sudoku**: 4×4 Sudoku problems restricted to \"naked single\" solution moves\n\nNo coding, agent, or complex reasoning benchmarks were included.\n\n## 3) Environment Feedback\nPure chain-of-thought (CoT) self-correction with no external feedback. The paper states: \"synthetic errors into the CoT, mask them, and supervise the model to recognize and correct these mistakes.\" All evaluation used greedy decoding without environmental rewards or verifiers beyond task correctness checking.\n\n## 4) Distribution Mismatch Identified\nThe critical finding was a **synthetic-to-on-policy error distribution gap**. Despite achieving \"95%+ coverage\" of natural errors, the EIFT model's error recognition plummeted from 94% (synthetic errors) to 8% (FT-generated errors) on Sudoku. The authors conclude that \"the model only learns to reliably correct synthetic errors. It fails to generalize this error-correction capability to the distribution of context-dependent errors.\"\n\n## 5) Agent vs. Pure Reasoning\nNo agent settings explored. The paper explicitly focuses on linear CoT reasoning without planning, tree search, or multi-step environment interaction.\n\n## 6) Key Limitations Acknowledged\n- Computational constraints prevented testing stronger base models or harder NP-complete problems\n- Difficulty constructing realistic error distributions (LLMs \"would often explicitly acknowledge mistakes\")\n- Unclear mechanism: \"the model learns two circuits, one for computing the answer...the other for verifying\" but lacks integration\n- Limited scalability of synthetic error injection beyond simple tasks",
+    "durationMs": 7320,
+    "url": "https://arxiv.org/html/2512.02389"
+  },
+  "sourceToolAssistantUUID": "32dd6d6d-05e6-4443-952c-5c789d7e17b1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-12T00:04:47.317Z_
+
+```json
+{
+  "parentUuid": "5aa256e2-5ef5-4a8b-b594-bd0c6f0996ae",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "bb29ad47-57bb-49c3-8f4e-66a0dd599ef8",
+  "timestamp": "2026-05-12T00:04:47.317Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-12T00:04:53.204Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016x7Ew6oZaorNwPSCiEEjkq`</summary>
+
+```json
+{
+  "query": "PALADIN arXiv 2509.25238 OpenReview ICLR 2026 desk reject AAAI workshop LaMAS acceptance"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bb29ad47-57bb-49c3-8f4e-66a0dd599ef8",
+  "isSidechain": false,
+  "requestId": "req_011CawhPHxDWWJj4M27S4AMg",
+  "type": "assistant",
+  "uuid": "01e1caf3-c018-4638-bedc-aad3b697ef83",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fj84iAZimSmujJ8GqR4jPp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 787,
+      "cache_read_input_tokens": 31515,
+      "output_tokens": 86,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 787,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 86,
+          "cache_read_input_tokens": 31515,
+          "cache_creation_input_tokens": 787,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 787
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-12T00:04:57.332Z_
+
+<details><summary>↩ Tool result · `toolu_016x7Ew6oZaorNwPSCiEEjkq`</summary>
+
+```text
+Web search results for query: "PALADIN arXiv 2509.25238 OpenReview ICLR 2026 desk reject AAAI workshop LaMAS acceptance"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2509.25238"},{"title":"ICLR 2026 Conference Submissions","url":"https://openreview.net/submissions?page=387&venue=ICLR.cc/2026/Conference"},{"title":"ICLR 2026 Conference | OpenReview","url":"https://openreview.net/group?id=ICLR.cc%2F2026%2FConference"},{"title":"ICLR 2026","url":"https://iclr.cc/"},{"title":"ICLR | OpenReview","url":"https://openreview.net/group?id=ICLR.cc"},{"title":"ICLR 2026 Call for Papers","url":"https://iclr.cc/Conferences/2026/CallForPapers"},{"title":"Insights from the ICLR Peer Review and Rebuttal Process","url":"https://arxiv.org/pdf/2511.15462"},{"title":"ICLR 2026 Accepted Paper List - Paper Copilot","url":"https://papercopilot.com/paper-list/iclr-paper-list/iclr-2026-paper-list/"},{"title":"ICLR 2026 Reviewer Guide","url":"https://iclr.cc/Conferences/2026/ReviewerGuide"},{"title":"ICLR 2026 Workshop Proposal MemAgents: Memory for LLM-Based Agentic Systems","url":"https://openreview.net/pdf?id=U51WxL382H"}]
+
+Based on the search results, I found that PALADIN (arXiv:2509.25238) was published as a conference paper at ICLR 2026.
+
+The paper appears to focus on fault-tolerant agents, with PALADIN as an effective method for building fault-tolerant agents capable of robust recovery in real-world tool environments. PALADIN achieves consistently strong safety and recovery performance, with modest efficiency tradeoffs.
+
+However, the search results don't contain specific information about desk rejections, OpenReview details, AAAI workshop information, or LaMAS acceptance status for this paper. The available search results only confirm the paper's publication at ICLR 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "01e1caf3-c018-4638-bedc-aad3b697ef83",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "e2d4d94b-33ca-4da2-8d89-b2d962d5a244",
+  "toolUseResult": {
+    "query": "PALADIN arXiv 2509.25238 OpenReview ICLR 2026 desk reject AAAI workshop LaMAS acceptance",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Jh9tXpMBRK7f3Cq1JjWpvS",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2509.25238"
+          },
+          {
+            "title": "ICLR 2026 Conference Submissions",
+            "url": "https://openreview.net/submissions?page=387&venue=ICLR.cc/2026/Conference"
+          },
+          {
+            "title": "ICLR 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=ICLR.cc%2F2026%2FConference"
+          },
+          {
+            "title": "ICLR 2026",
+            "url": "https://iclr.cc/"
+          },
+          {
+            "title": "ICLR | OpenReview",
+            "url": "https://openreview.net/group?id=ICLR.cc"
+          },
+          {
+            "title": "ICLR 2026 Call for Papers",
+            "url": "https://iclr.cc/Conferences/2026/CallForPapers"
+          },
+          {
+            "title": "Insights from the ICLR Peer Review and Rebuttal Process",
+            "url": "https://arxiv.org/pdf/2511.15462"
+          },
+          {
+            "title": "ICLR 2026 Accepted Paper List - Paper Copilot",
+            "url": "https://papercopilot.com/paper-list/iclr-paper-list/iclr-2026-paper-list/"
+          },
+          {
+            "title": "ICLR 2026 Reviewer Guide",
+            "url": "https://iclr.cc/Conferences/2026/ReviewerGuide"
+          },
+          {
+            "title": "ICLR 2026 Workshop Proposal MemAgents: Memory for LLM-Based Agentic Systems",
+            "url": "https://openreview.net/pdf?id=U51WxL382H"
+          }
+        ]
+      },
+      "Based on the search results, I found that PALADIN (arXiv:2509.25238) was published as a conference paper at ICLR 2026.\n\nThe paper appears to focus on fault-tolerant agents, with PALADIN as an effective method for building fault-tolerant agents capable of robust recovery in real-world tool environments. PALADIN achieves consistently strong safety and recovery performance, with modest efficiency tradeoffs.\n\nHowever, the search results don't contain specific information about desk rejections, OpenReview details, AAAI workshop information, or LaMAS acceptance status for this paper. The available search results only confirm the paper's publication at ICLR 2026."
+    ],
+    "durationSeconds": 4.122682323000001
+  },
+  "sourceToolAssistantUUID": "01e1caf3-c018-4638-bedc-aad3b697ef83",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-12T00:05:01.053Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AKx1LKiafGhqsKWanamRf9`</summary>
+
+```json
+{
+  "query": "PALADIN OpenReview M2AXTAKXbz ICLR 2026 review decision"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e2d4d94b-33ca-4da2-8d89-b2d962d5a244",
+  "isSidechain": false,
+  "requestId": "req_011CawhQ2SqWGtDLpMyjdzzQ",
+  "type": "assistant",
+  "uuid": "8a690c0b-b15b-42ec-bcc7-87d587b249de",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EjtwfuKQAi8tvN8vs8USA9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 725,
+      "cache_read_input_tokens": 32302,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 725,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 32302,
+          "cache_creation_input_tokens": 725,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 725
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-12T00:05:05.926Z_
+
+<details><summary>↩ Tool result · `toolu_01AKx1LKiafGhqsKWanamRf9`</summary>
+
+```text
+Web search results for query: "PALADIN OpenReview M2AXTAKXbz ICLR 2026 review decision"
+
+Links: [{"title":"ICLR 2026 | OpenReview","url":"https://openreview.net/group?id=ICLR.cc%2F2026"},{"title":"ICLR 2026 Reviewer Guide","url":"https://iclr.cc/Conferences/2026/ReviewerGuide"},{"title":"PaperDecision | Modeling the Complete Peer Review Process","url":"https://paperdecision.netlify.app/"},{"title":"ICLR 2026 Conference | OpenReview","url":"https://openreview.net/group?id=ICLR.cc%2F2026%2FConference"},{"title":"A Retrospective on the ICLR 2026 Review Process – ICLR Blog","url":"https://blog.iclr.cc/2026/03/31/a-retrospective-on-the-iclr-2026-review-process/"},{"title":"ICLR 2026 Conference Submissions","url":"https://openreview.net/submissions?page=747&venue=ICLR.cc/2026/Conference"},{"title":"ICLR 2026 Workshop | OpenReview","url":"https://openreview.net/group?id=ICLR.cc%2F2026%2FWorkshop"},{"title":"ICML 2026 Peer Review FAQ","url":"https://icml.cc/Conferences/2026/PeerReviewFAQ"},{"title":"Insights from the ICLR Peer Review and Rebuttal Process","url":"https://arxiv.org/pdf/2511.15462"},{"title":"ICLR 2026 - Reviews","url":"https://iclr.pangram.com/reviews"}]
+
+The search results don't contain specific information about a paper with the submission ID "M2AXTAKXbz" or a paper titled "PALADIN" in the ICLR 2026 OpenReview system. The search returned general information about ICLR 2026 and its review process, but not the specific submission you're looking for.
+
+To access the specific review decision for this paper, you would need to:
+
+1. Visit the OpenReview page directly at https://openreview.net/forum?id=M2AXTAKXbz
+2. Log into your OpenReview account if you're an author or reviewer to view the full review details and decision
+
+The general ICLR 2026 results show that 5,355 papers were accepted and 8,408 were rejected, representing an acceptance rate of 27.4%, but I cannot find the specific decision information for the PALADIN submission you mentioned without access to the direct OpenReview forum page.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8a690c0b-b15b-42ec-bcc7-87d587b249de",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "4f70f02c-d076-4535-89c7-534e62e93c94",
+  "toolUseResult": {
+    "query": "PALADIN OpenReview M2AXTAKXbz ICLR 2026 review decision",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013JBfwZgZ3VbevqCjkEs6wj",
+        "content": [
+          {
+            "title": "ICLR 2026 | OpenReview",
+            "url": "https://openreview.net/group?id=ICLR.cc%2F2026"
+          },
+          {
+            "title": "ICLR 2026 Reviewer Guide",
+            "url": "https://iclr.cc/Conferences/2026/ReviewerGuide"
+          },
+          {
+            "title": "PaperDecision | Modeling the Complete Peer Review Process",
+            "url": "https://paperdecision.netlify.app/"
+          },
+          {
+            "title": "ICLR 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=ICLR.cc%2F2026%2FConference"
+          },
+          {
+            "title": "A Retrospective on the ICLR 2026 Review Process – ICLR Blog",
+            "url": "https://blog.iclr.cc/2026/03/31/a-retrospective-on-the-iclr-2026-review-process/"
+          },
+          {
+            "title": "ICLR 2026 Conference Submissions",
+            "url": "https://openreview.net/submissions?page=747&venue=ICLR.cc/2026/Conference"
+          },
+          {
+            "title": "ICLR 2026 Workshop | OpenReview",
+            "url": "https://openreview.net/group?id=ICLR.cc%2F2026%2FWorkshop"
+          },
+          {
+            "title": "ICML 2026 Peer Review FAQ",
+            "url": "https://icml.cc/Conferences/2026/PeerReviewFAQ"
+          },
+          {
+            "title": "Insights from the ICLR Peer Review and Rebuttal Process",
+            "url": "https://arxiv.org/pdf/2511.15462"
+          },
+          {
+            "title": "ICLR 2026 - Reviews",
+            "url": "https://iclr.pangram.com/reviews"
+          }
+        ]
+      },
+      "The search results don't contain specific information about a paper with the submission ID \"M2AXTAKXbz\" or a paper titled \"PALADIN\" in the ICLR 2026 OpenReview system. The search returned general information about ICLR 2026 and its review process, but not the specific submission you're looking for.\n\nTo access the specific review decision for this paper, you would need to:\n\n1. Visit the OpenReview page directly at https://openreview.net/forum?id=M2AXTAKXbz\n2. Log into your OpenReview account if you're an author or reviewer to view the full review details and decision\n\nThe general ICLR 2026 results show that 5,355 papers were accepted and 8,408 were rejected, representing an acceptance rate of 27.4%, but I cannot find the specific decision information for the PALADIN submission you mentioned without access to the direct OpenReview forum page."
+    ],
+    "durationSeconds": 4.869804348999998
+  },
+  "sourceToolAssistantUUID": "8a690c0b-b15b-42ec-bcc7-87d587b249de",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-12T00:05:09.690Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Bd9LVZaUJnsM9mXXdbULXZ`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=M2AXTAKXbz",
+  "prompt": "What is the title of this paper? What was the decision (accepted or rejected)? What venue was it submitted to? What were the reviewer scores?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4f70f02c-d076-4535-89c7-534e62e93c94",
+  "isSidechain": false,
+  "requestId": "req_011CawhQfDv5dxyFjq6KuDZS",
+  "type": "assistant",
+  "uuid": "639745f6-b070-4bb3-9107-5d9b77c44349",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01K7cZzmwERSw2m3rk6q6Rem",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 796,
+      "cache_read_input_tokens": 33027,
+      "output_tokens": 121,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 796,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 121,
+          "cache_read_input_tokens": 33027,
+          "cache_creation_input_tokens": 796,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 796
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-12T00:05:12.479Z_
+
+<details><summary>↩ Tool result · `toolu_01Bd9LVZaUJnsM9mXXdbULXZ`</summary>
+
+```text
+Based on the webpage content provided:
+
+**Title:** "PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases"
+
+**Decision:** The paper was "Desk Rejected" at ICLR 2026, meaning it did not proceed to peer review.
+
+**Venue:** ICLR 2026 Conference
+
+**Reviewer Scores:** The webpage does not display any reviewer scores. Since this submission received a desk rejection, it appears no formal peer reviews were conducted or made public on this page.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "639745f6-b070-4bb3-9107-5d9b77c44349",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "53f7ba28-0e8e-4b87-858c-5db1313d41e3",
+  "toolUseResult": {
+    "bytes": 71858,
+    "code": 200,
+    "codeText": "OK",
+    "result": "Based on the webpage content provided:\n\n**Title:** \"PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases\"\n\n**Decision:** The paper was \"Desk Rejected\" at ICLR 2026, meaning it did not proceed to peer review.\n\n**Venue:** ICLR 2026 Conference\n\n**Reviewer Scores:** The webpage does not display any reviewer scores. Since this submission received a desk rejection, it appears no formal peer reviews were conducted or made public on this page.",
+    "durationMs": 2781,
+    "url": "https://openreview.net/forum?id=M2AXTAKXbz"
+  },
+  "sourceToolAssistantUUID": "639745f6-b070-4bb3-9107-5d9b77c44349",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-12T00:05:23.642Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Bh2it9zQpN1gB66uaQpX5K`</summary>
+
+```json
+{
+  "query": "PALADIN tool-failure agents AAAI 2026 workshop LaMAS accepted NVTtoO297p"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "53f7ba28-0e8e-4b87-858c-5db1313d41e3",
+  "isSidechain": false,
+  "requestId": "req_011CawhR9bEca1uLpAzBZx6S",
+  "type": "assistant",
+  "uuid": "9986f9aa-de59-48f4-b14a-48748919ce06",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018HKqynqVQoYgZ4ZWnKSSpP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 250,
+      "cache_read_input_tokens": 33823,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 250,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 33823,
+          "cache_creation_input_tokens": 250,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 250
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-11 (UTC).**  ## Original idea {   \"title\": \"TaxEI: Structured Non-Tool Error Injection for Agent Recovery Training…",
+  "leafUuid": "9986f9aa-de59-48f4-b14a-48748919ce06",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise TaxEI with PALADIN venue correction and Wu et al. defusing",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6"
+}
+```
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-12T00:05:29.630Z_
+
+<details><summary>↩ Tool result · `toolu_01Bh2it9zQpN1gB66uaQpX5K`</summary>
+
+```text
+Web search results for query: "PALADIN tool-failure agents AAAI 2026 workshop LaMAS accepted NVTtoO297p"
+
+Links: [{"title":"LaMAS 2026@AAAI'26","url":"https://sites.google.com/view/lamas2026"},{"title":"AAAI-26 Workshop Program - AAAI","url":"https://aaai.org/conference/aaai/aaai-26/workshops-program/"},{"title":"AAAI 2026 Workshop LaMAS | OpenReview","url":"https://openreview.net/group?id=AAAI.org%2F2026%2FWorkshop%2FLaMAS"},{"title":"PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases","url":"https://openreview.net/attachment?id=NVTtoO297p&name=pdf"},{"title":"WMAC 2026: AAAI 2026 Bridge Program on Advancing LLM-Based Multi-Agent Collaboration","url":"https://multiagents.org/workshop/"},{"title":"PALADIN: Self-Correcting Language Model Agents to Cure ...","url":"https://arxiv.org/pdf/2509.25238"},{"title":"PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases","url":"https://arxiv.org/html/2509.25238v1"},{"title":"[2509.25238] PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases","url":"https://arxiv.org/abs/2509.25238"},{"title":"WMAC 2026 - Overview | WMAC 2026: AAAI 2026 Bridge Program on Advancing LLM-Based Multi-Agent Collaboration","url":"https://multiagents.org/2026/"},{"title":"AAAI 2026 Workshop | OpenReview","url":"https://openreview.net/group?id=AAAI.org%2F2026%2FWorkshop"}]
+
+Based on my search results, I found information about the paper you're looking for:
+
+PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases is an accepted paper at the LaMAS 2026 workshop, which focuses on the emerging field of multi-agent systems powered by LLMs.
+
+The paper with ID NVTtoO297p addresses an important problem in AI agents. Tool-augmented language agents frequently fail in real-world deployment due to tool malfunctions--timeouts, API exceptions, or inconsistent outputs--triggering cascading reasoning errors and task abandonment.
+
+PALADIN is a generalizable framework for equipping language agents with robust failure recovery capabilities that trains on 50,000+ recovery-annotated trajectories constructed via systematic failure injection and expert demonstrations on an enhanced ToolBench dataset.
+
+The paper demonstrates strong results: PALADIN improves Recovery Rate (RR) from 32.76% to 89.68% (+57% relative) over ToolBench and outperforms the strongest baseline CRITIC (76.34%) by +13.3%.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9986f9aa-de59-48f4-b14a-48748919ce06",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "19426f31-e365-4417-bb5f-c857659e5b76",
+  "toolUseResult": {
+    "query": "PALADIN tool-failure agents AAAI 2026 workshop LaMAS accepted NVTtoO297p",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EumaZQGnstGX9UCFAf7TVD",
+        "content": [
+          {
+            "title": "LaMAS 2026@AAAI'26",
+            "url": "https://sites.google.com/view/lamas2026"
+          },
+          {
+            "title": "AAAI-26 Workshop Program - AAAI",
+            "url": "https://aaai.org/conference/aaai/aaai-26/workshops-program/"
+          },
+          {
+            "title": "AAAI 2026 Workshop LaMAS | OpenReview",
+            "url": "https://openreview.net/group?id=AAAI.org%2F2026%2FWorkshop%2FLaMAS"
+          },
+          {
+            "title": "PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases",
+            "url": "https://openreview.net/attachment?id=NVTtoO297p&name=pdf"
+          },
+          {
+            "title": "WMAC 2026: AAAI 2026 Bridge Program on Advancing LLM-Based Multi-Agent Collaboration",
+            "url": "https://multiagents.org/workshop/"
+          },
+          {
+            "title": "PALADIN: Self-Correcting Language Model Agents to Cure ...",
+            "url": "https://arxiv.org/pdf/2509.25238"
+          },
+          {
+            "title": "PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases",
+            "url": "https://arxiv.org/html/2509.25238v1"
+          },
+          {
+            "title": "[2509.25238] PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases",
+            "url": "https://arxiv.org/abs/2509.25238"
+          },
+          {
+            "title": "WMAC 2026 - Overview | WMAC 2026: AAAI 2026 Bridge Program on Advancing LLM-Based Multi-Agent Collaboration",
+            "url": "https://multiagents.org/2026/"
+          },
+          {
+            "title": "AAAI 2026 Workshop | OpenReview",
+            "url": "https://openreview.net/group?id=AAAI.org%2F2026%2FWorkshop"
+          }
+        ]
+      },
+      "Based on my search results, I found information about the paper you're looking for:\n\nPALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases is an accepted paper at the LaMAS 2026 workshop, which focuses on the emerging field of multi-agent systems powered by LLMs.\n\nThe paper with ID NVTtoO297p addresses an important problem in AI agents. Tool-augmented language agents frequently fail in real-world deployment due to tool malfunctions--timeouts, API exceptions, or inconsistent outputs--triggering cascading reasoning errors and task abandonment.\n\nPALADIN is a generalizable framework for equipping language agents with robust failure recovery capabilities that trains on 50,000+ recovery-annotated trajectories constructed via systematic failure injection and expert demonstrations on an enhanced ToolBench dataset.\n\nThe paper demonstrates strong results: PALADIN improves Recovery Rate (RR) from 32.76% to 89.68% (+57% relative) over ToolBench and outperforms the strongest baseline CRITIC (76.34%) by +13.3%."
+    ],
+    "durationSeconds": 5.984339947999979
+  },
+  "sourceToolAssistantUUID": "9986f9aa-de59-48f4-b14a-48748919ce06",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-12T00:05:36.233Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019UZ13irG9uBgJxRPZEcRpP`</summary>
+
+```json
+{
+  "url": "https://openreview.net/forum?id=NVTtoO297p",
+  "prompt": "What is the decision for this paper? Was it accepted? What venue? What are the reviewer scores?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "19426f31-e365-4417-bb5f-c857659e5b76",
+  "isSidechain": false,
+  "requestId": "req_011CawhSQXvymH9zPhJ2njYo",
+  "type": "assistant",
+  "uuid": "64a7075b-d533-4a5f-80df-2488ec74dfff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012gCKj18vuyNB6NKfKNuxwy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 868,
+      "cache_read_input_tokens": 34073,
+      "output_tokens": 108,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 868,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 108,
+          "cache_read_input_tokens": 34073,
+          "cache_creation_input_tokens": 868,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 868
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-12T00:05:39.010Z_
+
+<details><summary>↩ Tool result · `toolu_019UZ13irG9uBgJxRPZEcRpP`</summary>
+
+```text
+# Paper Decision Information
+
+Based on the content provided, **PALADIN was accepted** to the **AAAI 2026 Workshop LaMAS** as an oral presentation, indicated by the "LaMAS 2026 Oral" designation on the OpenReview page.
+
+However, the webpage does not contain:
+- Explicit acceptance/rejection decision statement
+- Individual reviewer scores
+- Review comments
+
+The page shows the paper was "Published: 10 Jan 2026" and last modified "24 Jan 2026," confirming its acceptance, but specific reviewer ratings and detailed feedback are not visible in the provided content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "64a7075b-d533-4a5f-80df-2488ec74dfff",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "7e562444-dc1e-4961-9fe6-76aabc9b33bd",
+  "toolUseResult": {
+    "bytes": 72698,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Decision Information\n\nBased on the content provided, **PALADIN was accepted** to the **AAAI 2026 Workshop LaMAS** as an oral presentation, indicated by the \"LaMAS 2026 Oral\" designation on the OpenReview page.\n\nHowever, the webpage does not contain:\n- Explicit acceptance/rejection decision statement\n- Individual reviewer scores\n- Review comments\n\nThe page shows the paper was \"Published: 10 Jan 2026\" and last modified \"24 Jan 2026,\" confirming its acceptance, but specific reviewer ratings and detailed feedback are not visible in the provided content.",
+    "durationMs": 2773,
+    "url": "https://openreview.net/forum?id=NVTtoO297p"
+  },
+  "sourceToolAssistantUUID": "64a7075b-d533-4a5f-80df-2488ec74dfff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-12T00:05:45.496Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015oZwDt6xnkg4m7DQRigQ7V`</summary>
+
+```json
+{
+  "query": "verl-agent GitHub license Apache MIT LangGraph veRL"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7e562444-dc1e-4961-9fe6-76aabc9b33bd",
+  "isSidechain": false,
+  "requestId": "req_011CawhT8SLHt6nA3bEUFsf7",
+  "type": "assistant",
+  "uuid": "17385efe-466c-4582-a776-13dd1fc1a55b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QNdWB2ni6RYtSSr7FWwLtF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 255,
+      "cache_read_input_tokens": 34941,
+      "output_tokens": 64,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 255,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 64,
+          "cache_read_input_tokens": 34941,
+          "cache_creation_input_tokens": 255,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 255
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-12T00:05:51.079Z_
+
+<details><summary>↩ Tool result · `toolu_015oZwDt6xnkg4m7DQRigQ7V`</summary>
+
+```text
+Web search results for query: "verl-agent GitHub license Apache MIT LangGraph veRL"
+
+Links: [{"title":"GitHub - langfengQ/verl-agent: verl-agent is an extension of veRL, designed for training LLM/VLM agents via RL. verl-agent is also the official code for paper \"Group-in-Group Policy Optimization for LLM Agent Training\" · GitHub","url":"https://github.com/langfengQ/verl-agent"},{"title":"GitHub - langchain-ai/langgraph: Build resilient language agents as graphs. Available in TypeScript! · GitHub","url":"https://github.com/langchain-ai/langgraph"},{"title":"Agentic RL Training - verl documentation - Read the Docs","url":"https://verl.readthedocs.io/en/latest/start/agentic_rl.html"},{"title":"Welcome to verl’s documentation! — verl documentation","url":"https://verl.readthedocs.io/"},{"title":"LangGraph: Agent Orchestration Framework for Reliable AI Agents","url":"https://www.langchain.com/langgraph"},{"title":"Releases · langfengQ/verl-agent","url":"https://github.com/langfengQ/verl-agent/releases"},{"title":"Releases · verl-project/verl","url":"https://github.com/verl-project/verl/releases"},{"title":"Train SQL Agent with Agent-lightning and VERL","url":"https://microsoft.github.io/agent-lightning/latest/how-to/train-sql-agent/"},{"title":"verl-agent/README.md at master · langfengQ/verl-agent","url":"https://github.com/langfengQ/verl-agent/blob/master/README.md"},{"title":"verl/LICENSE at main · volcengine/verl","url":"https://github.com/volcengine/verl/blob/main/LICENSE"}]
+
+Based on the search results, here's what I found about the projects mentioned in your query:
+
+## verl-agent
+
+verl-agent is an extension of veRL, designed for training LLM/VLM agents via RL. The search results mention that the project has a LICENSE file (indicated by the update in PR #29), but the specific license type (Apache or MIT) wasn't directly stated in the accessible search results for the verl-agent repository.
+
+## LangGraph
+
+LangGraph is an MIT-licensed open-source library and is free to use. LangGraph is a low-level orchestration framework for building, managing, and deploying long-running, stateful agents.
+
+## veRL
+
+The search results indicate that veRL is an RL training framework, and verl provides a few example agent loop implementations including: Multi-turn conversations and tool calls and LangGraph-based Agent. However, the specific license for veRL wasn't clearly visible in the search results shown.
+
+For the exact license information of verl-agent and veRL, I'd recommend checking their respective GitHub repository license files directly, as they would have the authoritative license information.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "17385efe-466c-4582-a776-13dd1fc1a55b",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "c3cec2ff-a5d0-4dfe-8843-c02159692a14",
+  "toolUseResult": {
+    "query": "verl-agent GitHub license Apache MIT LangGraph veRL",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018XGcgteQcEqsjudVHo8cvm",
+        "content": [
+          {
+            "title": "GitHub - langfengQ/verl-agent: verl-agent is an extension of veRL, designed for training LLM/VLM agents via RL. verl-agent is also the official code for paper \"Group-in-Group Policy Optimization for LLM Agent Training\" · GitHub",
+            "url": "https://github.com/langfengQ/verl-agent"
+          },
+          {
+            "title": "GitHub - langchain-ai/langgraph: Build resilient language agents as graphs. Available in TypeScript! · GitHub",
+            "url": "https://github.com/langchain-ai/langgraph"
+          },
+          {
+            "title": "Agentic RL Training - verl documentation - Read the Docs",
+            "url": "https://verl.readthedocs.io/en/latest/start/agentic_rl.html"
+          },
+          {
+            "title": "Welcome to verl’s documentation! — verl documentation",
+            "url": "https://verl.readthedocs.io/"
+          },
+          {
+            "title": "LangGraph: Agent Orchestration Framework for Reliable AI Agents",
+            "url": "https://www.langchain.com/langgraph"
+          },
+          {
+            "title": "Releases · langfengQ/verl-agent",
+            "url": "https://github.com/langfengQ/verl-agent/releases"
+          },
+          {
+            "title": "Releases · verl-project/verl",
+            "url": "https://github.com/verl-project/verl/releases"
+          },
+          {
+            "title": "Train SQL Agent with Agent-lightning and VERL",
+            "url": "https://microsoft.github.io/agent-lightning/latest/how-to/train-sql-agent/"
+          },
+          {
+            "title": "verl-agent/README.md at master · langfengQ/verl-agent",
+            "url": "https://github.com/langfengQ/verl-agent/blob/master/README.md"
+          },
+          {
+            "title": "verl/LICENSE at main · volcengine/verl",
+            "url": "https://github.com/volcengine/verl/blob/main/LICENSE"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the projects mentioned in your query:\n\n## verl-agent\n\nverl-agent is an extension of veRL, designed for training LLM/VLM agents via RL. The search results mention that the project has a LICENSE file (indicated by the update in PR #29), but the specific license type (Apache or MIT) wasn't directly stated in the accessible search results for the verl-agent repository.\n\n## LangGraph\n\nLangGraph is an MIT-licensed open-source library and is free to use. LangGraph is a low-level orchestration framework for building, managing, and deploying long-running, stateful agents.\n\n## veRL\n\nThe search results indicate that veRL is an RL training framework, and verl provides a few example agent loop implementations including: Multi-turn conversations and tool calls and LangGraph-based Agent. However, the specific license for veRL wasn't clearly visible in the search results shown.\n\nFor the exact license information of verl-agent and veRL, I'd recommend checking their respective GitHub repository license files directly, as they would have the authoritative license information."
+    ],
+    "durationSeconds": 5.576878257000004
+  },
+  "sourceToolAssistantUUID": "17385efe-466c-4582-a776-13dd1fc1a55b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-12T00:05:54.394Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PXtiSTvJ5gyPoZ5QeCNBT1`</summary>
+
+```json
+{
+  "url": "https://github.com/langfengQ/verl-agent",
+  "prompt": "What license does verl-agent use? Look for the license badge, LICENSE file reference, or any mention of Apache-2.0 or MIT license."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c3cec2ff-a5d0-4dfe-8843-c02159692a14",
+  "isSidechain": false,
+  "requestId": "req_011CawhTzGERWVizcFbmQMPS",
+  "type": "assistant",
+  "uuid": "471b0452-f1bf-4ec7-b1d1-b8d9cffee286",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019rQQfHwFqegYS9vXniM2Lq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 823,
+      "cache_read_input_tokens": 35196,
+      "output_tokens": 115,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 823,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 115,
+          "cache_read_input_tokens": 35196,
+          "cache_creation_input_tokens": 823,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 823
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-12T00:05:57.547Z_
+
+<details><summary>↩ Tool result · `toolu_01PXtiSTvJ5gyPoZ5QeCNBT1`</summary>
+
+```text
+# verl-agent License
+
+Based on the documentation, **verl-agent uses the Apache-2.0 license**.
+
+This is confirmed by multiple references in the repository:
+
+1. **License badge**: The page displays "Apache-2.0 license" in the repository header
+2. **LICENSE file**: A LICENSE file is present in the repository root
+3. **Footer reference**: The license is identified as "Apache-2.0-1-ov-file"
+
+The Apache License 2.0 is a permissive open-source license that allows broad usage while requiring attribution and providing patent protections.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "471b0452-f1bf-4ec7-b1d1-b8d9cffee286",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "e391d8d2-bfb0-44b3-9f9c-627ed1de5f50",
+  "toolUseResult": {
+    "bytes": 489578,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# verl-agent License\n\nBased on the documentation, **verl-agent uses the Apache-2.0 license**.\n\nThis is confirmed by multiple references in the repository:\n\n1. **License badge**: The page displays \"Apache-2.0 license\" in the repository header\n2. **LICENSE file**: A LICENSE file is present in the repository root\n3. **Footer reference**: The license is identified as \"Apache-2.0-1-ov-file\"\n\nThe Apache License 2.0 is a permissive open-source license that allows broad usage while requiring attribution and providing patent protections.",
+    "durationMs": 3151,
+    "url": "https://github.com/langfengQ/verl-agent"
+  },
+  "sourceToolAssistantUUID": "471b0452-f1bf-4ec7-b1d1-b8d9cffee286",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-12T00:06:00.517Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017EyvM1X64UYxvrrDUTrvwg`</summary>
+
+```json
+{
+  "query": "SCoRe self-correction reinforcement learning LLM Google DeepMind 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e391d8d2-bfb0-44b3-9f9c-627ed1de5f50",
+  "isSidechain": false,
+  "requestId": "req_011CawhUTrfKuTXos48Nf8dx",
+  "type": "assistant",
+  "uuid": "15901664-4dbd-4b00-a298-fa373a2f194f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BaaKgCsSXJAaYPCdAAn1uD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 259,
+      "cache_read_input_tokens": 36019,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 259,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 36019,
+          "cache_creation_input_tokens": 259,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 259
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-12T00:06:07.654Z_
+
+<details><summary>↩ Tool result · `toolu_017EyvM1X64UYxvrrDUTrvwg`</summary>
+
+```text
+Web search results for query: "SCoRe self-correction reinforcement learning LLM Google DeepMind 2024 2025"
+
+Links: [{"title":"Google Publishes LLM Self-Correction Algorithm SCoRe - InfoQ","url":"https://www.infoq.com/news/2024/10/google-deepmind-score/"},{"title":"2024-10-7 Training Language Models to Self-Correct via Reinforcement Learning","url":"https://arxiv.org/pdf/2409.12917"},{"title":"[2409.12917] Training Language Models to Self-Correct via Reinforcement Learning","url":"https://arxiv.org/abs/2409.12917"},{"title":"Google DeepMind’s SCoRe: Advancing AI Self-Correction via Reinforcement Learning - Ajith Vallath Prabhakar","url":"https://ajithp.com/2024/09/23/google-deepind-score/"},{"title":"Google DeepMind Introduced Self-Correction via Reinforcement Learning (SCoRe): A New AI Method Enhancing Large Language Models’ Accuracy in Complex Mathematical and Coding Tasks - MarkTechPost","url":"https://www.marktechpost.com/2024/09/21/google-deepmind-introduced-self-correction-via-reinforcement-learning-score-a-new-ai-method-enhancing-large-language-models-accuracy-in-complex-mathematical-and-coding-tasks/"},{"title":"DeepMind's SCoRe shows LLMs can use their internal knowledge to correct their mistakes | VentureBeat","url":"https://venturebeat.com/ai/deepminds-score-shows-llms-can-use-their-internal-knowledge-to-correct-their-mistakes"},{"title":"Training Language Models to Self-Correction via Reinforcement Learning: A Deep Dive into SCoRe with Code Implementation using PyTorch. | by Devmallya Karar | Medium","url":"https://medium.com/@devmallyakarar/training-language-models-to-self-correction-via-reinforcement-learning-a-deep-dive-into-score-with-ff85421b4186"},{"title":"Training Language Models to Self-Correct via Reinforcement Learning | alphaXiv","url":"https://www.alphaxiv.org/overview/2409.12917v2"},{"title":"[Quick Review] Training Language Models to Self-Correct via Reinforcement Learning","url":"https://liner.com/review/training-language-models-to-selfcorrect-via-reinforcement-learning"},{"title":"Training Language Models to Self-Correct via Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=CjwERcAU7w"}]
+
+Based on the search results, here's what I found about SCoRe:
+
+## Overview
+
+SCoRe (Self-Correction via Reinforcement Learning) is a technique developed by Google DeepMind researchers for improving LLMs' ability to self-correct when solving math or coding problems.
+
+## How It Works
+
+Unlike previous self-correction methods that rely on prompt engineering or separate "teacher" models, SCoRe uses data generated by the LLM itself to generate self-correction traces: synthetic dialogues where the LLM gives an incorrect response, followed by a correction prompt, followed by the LLM giving a correct response. This data is used in a two-stage RL process to fine-tune the LLM.
+
+In the first stage, the model is trained to keep its initial response the same but generate a correct response on the second attempt. In the second stage, the model is rewarded for correct answers in both responses, with a bonus reward for an improved second response.
+
+## Performance Results
+
+When evaluated against baseline Gemini 1.0 models, the fine-tuned LLM improved by 15.6 percentage points on the MATH benchmark and 9.1 percentage points on HumanEval.
+
+## Key Innovation
+
+SCoRe presents the first method to achieve substantially positive intrinsic self-correction using only self-generated data within a single LLM, eliminating dependencies on external supervision or multiple models.
+
+The research paper was published in September-October 2024 and addresses the fundamental challenge that LLMs are not trained to look back and introspect their mistakes, they are trained to produce the best response given a question.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "15901664-4dbd-4b00-a298-fa373a2f194f",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "39de7c4b-0b66-4b3c-81bd-7e968f68bcb0",
+  "toolUseResult": {
+    "query": "SCoRe self-correction reinforcement learning LLM Google DeepMind 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Adaactzv2NjKH245zBn3e1",
+        "content": [
+          {
+            "title": "Google Publishes LLM Self-Correction Algorithm SCoRe - InfoQ",
+            "url": "https://www.infoq.com/news/2024/10/google-deepmind-score/"
+          },
+          {
+            "title": "2024-10-7 Training Language Models to Self-Correct via Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2409.12917"
+          },
+          {
+            "title": "[2409.12917] Training Language Models to Self-Correct via Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2409.12917"
+          },
+          {
+            "title": "Google DeepMind’s SCoRe: Advancing AI Self-Correction via Reinforcement Learning - Ajith Vallath Prabhakar",
+            "url": "https://ajithp.com/2024/09/23/google-deepind-score/"
+          },
+          {
+            "title": "Google DeepMind Introduced Self-Correction via Reinforcement Learning (SCoRe): A New AI Method Enhancing Large Language Models’ Accuracy in Complex Mathematical and Coding Tasks - MarkTechPost",
+            "url": "https://www.marktechpost.com/2024/09/21/google-deepmind-introduced-self-correction-via-reinforcement-learning-score-a-new-ai-method-enhancing-large-language-models-accuracy-in-complex-mathematical-and-coding-tasks/"
+          },
+          {
+            "title": "DeepMind's SCoRe shows LLMs can use their internal knowledge to correct their mistakes | VentureBeat",
+            "url": "https://venturebeat.com/ai/deepminds-score-shows-llms-can-use-their-internal-knowledge-to-correct-their-mistakes"
+          },
+          {
+            "title": "Training Language Models to Self-Correction via Reinforcement Learning: A Deep Dive into SCoRe with Code Implementation using PyTorch. | by Devmallya Karar | Medium",
+            "url": "https://medium.com/@devmallyakarar/training-language-models-to-self-correction-via-reinforcement-learning-a-deep-dive-into-score-with-ff85421b4186"
+          },
+          {
+            "title": "Training Language Models to Self-Correct via Reinforcement Learning | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2409.12917v2"
+          },
+          {
+            "title": "[Quick Review] Training Language Models to Self-Correct via Reinforcement Learning",
+            "url": "https://liner.com/review/training-language-models-to-selfcorrect-via-reinforcement-learning"
+          },
+          {
+            "title": "Training Language Models to Self-Correct via Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=CjwERcAU7w"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about SCoRe:\n\n## Overview\n\nSCoRe (Self-Correction via Reinforcement Learning) is a technique developed by Google DeepMind researchers for improving LLMs' ability to self-correct when solving math or coding problems.\n\n## How It Works\n\nUnlike previous self-correction methods that rely on prompt engineering or separate \"teacher\" models, SCoRe uses data generated by the LLM itself to generate self-correction traces: synthetic dialogues where the LLM gives an incorrect response, followed by a correction prompt, followed by the LLM giving a correct response. This data is used in a two-stage RL process to fine-tune the LLM.\n\nIn the first stage, the model is trained to keep its initial response the same but generate a correct response on the second attempt. In the second stage, the model is rewarded for correct answers in both responses, with a bonus reward for an improved second response.\n\n## Performance Results\n\nWhen evaluated against baseline Gemini 1.0 models, the fine-tuned LLM improved by 15.6 percentage points on the MATH benchmark and 9.1 percentage points on HumanEval.\n\n## Key Innovation\n\nSCoRe presents the first method to achieve substantially positive intrinsic self-correction using only self-generated data within a single LLM, eliminating dependencies on external supervision or multiple models.\n\nThe research paper was published in September-October 2024 and addresses the fundamental challenge that LLMs are not trained to look back and introspect their mistakes, they are trained to produce the best response given a question."
+    ],
+    "durationSeconds": 7.132992979000003
+  },
+  "sourceToolAssistantUUID": "15901664-4dbd-4b00-a298-fa373a2f194f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-12T00:06:11.903Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016xJZYwvXEsgugdgxhFh1pN`</summary>
+
+```json
+{
+  "query": "agent error recovery training SFT vs RL 2025 2026 recent work structured fault injection"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "39de7c4b-0b66-4b3c-81bd-7e968f68bcb0",
+  "isSidechain": false,
+  "requestId": "req_011CawhVD7fxUAikNZMwtmP2",
+  "type": "assistant",
+  "uuid": "a9180fb3-279b-4845-a32f-7bc048f0e818",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N3mQod8CyZZYMFbwuXdThZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1145,
+      "cache_read_input_tokens": 36278,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1145,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 36278,
+          "cache_creation_input_tokens": 1145,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1145
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-12T00:06:30.618Z_
+
+<details><summary>↩ Tool result · `toolu_016xJZYwvXEsgugdgxhFh1pN`</summary>
+
+```text
+Web search results for query: "agent error recovery training SFT vs RL 2025 2026 recent work structured fault injection"
+
+Links: [{"title":"Best Practices for Multi-Turn RL","url":"https://fireworks.ai/blog/best-practices-for-multi-turn-RL"},{"title":"RL Is Neither a Panacea Nor a Mirage: Understanding Supervised vs. Reinforcement Learning Fine-Tuning for LLMs","url":"https://arxiv.org/html/2508.16546v1"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2508.11408"},{"title":"Supervised Fine-Tuning vs Reinforcement Learning","url":"https://research.aimultiple.com/rl-vs-sft/"},{"title":"Why off-policy training isn't enough: SFT, RL, and the limits of imitation | Decagon","url":"https://decagon.ai/blog/why-off-policy-training-isnt-enough"},{"title":"SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training | OpenReview","url":"https://openreview.net/forum?id=dYur3yabMj"},{"title":"AI 101: The State of Reinforcement Learning in 2025","url":"https://turingpost.substack.com/p/ai-101-the-state-of-reinforcement"},{"title":"Agent2 RL-Bench: Can LLM Agents Engineer Agentic RL Post-Training?","url":"https://arxiv.org/html/2604.10547"},{"title":"Beyond Two-Stage Training: Cooperative SFT and RL for LLM Reasoning","url":"https://arxiv.org/html/2509.06948v1"},{"title":"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub","url":"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"}]
+
+Now let me search specifically for structured fault injection work:
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2512.20745"},{"title":"Master Fault Injection: Hands-On Training for Security Professionals","url":"https://www.keysight.com/blogs/en/tech/nwvs/2026/01/27/master-fault-injection-hands-on-training-for-security-professionals"},{"title":"AI-Driven Fault Injection Testing: Enhancing","url":"https://files.sdiarticle5.com/wp-content/uploads/2025/05/Ms_AJRCOS_135387.pdf"},{"title":"GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub","url":"https://github.com/tmgthb/Autonomous-Agents"},{"title":"What is Fault Injection in Software Testing? | BrowserStack","url":"https://www.browserstack.com/guide/fault-injection-in-software-testing"},{"title":"Prompt Injection Attacks on Agentic Coding Assistants: A Systematic Analysis of Vulnerabilities in Skills, Tools, and Protocol Ecosystems","url":"https://arxiv.org/html/2601.17548v1"},{"title":"Countermeasures Against Fault Injection Attacks in Processors: A Review","url":"https://www.mdpi.com/2078-2489/16/4/293"},{"title":"Hardwear.io Netherlands 2025 to Spotlight Breakthrough Research and Hands-On Training in Hardware Security","url":"https://ismg.io/hardwear-io-netherlands-2025-to-spotlight-breakthrough-research-and-hands-on-training-in-hardware-security/"},{"title":"Systems Security Foundations for Agentic Computing","url":"https://eprint.iacr.org/2025/2173.pdf"},{"title":"Perfecting AI Agent Frameworks through Unified Design Principles","url":"https://www.scitepress.org/Papers/2026/144223/144223.pdf"}]
+
+Let me search for more specific recent work on error recovery in agent training:
+
+Links: [{"title":"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub","url":"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2512.20745"},{"title":"[2604.08178v1] Aligning Agents via Planning: A Benchmark for Trajectory-Level Reward Modeling","url":"https://arxiv.org/abs/2604.08178v1"},{"title":"Inside the Agentic RL Training Loop • Singularity Notes","url":"https://blog.guanghan.ai/post/260213_agentic_rl/"},{"title":"Best Practices for Multi-Turn RL","url":"https://fireworks.ai/blog/best-practices-for-multi-turn-RL"},{"title":"TSR: Trajectory‑Search Rollouts for Multi‑Turn RL of LLM Agents","url":"https://arxiv.org/html/2602.11767v1"},{"title":"Reason in Chains, Learn in Trees: Self-Rectification and Grafting for Multi-turn Agent Policy Optimization","url":"https://arxiv.org/html/2604.07165v1"},{"title":"[2604.08178] Aligning Agents via Planning: A Benchmark for Trajectory-Level Reward Modeling","url":"https://arxiv.org/abs/2604.08178"},{"title":"AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling","url":"https://arxiv.org/html/2603.21357v2"},{"title":"Building Efficient RL Training for the Agentic Era - Salesforce","url":"https://www.salesforce.com/blog/efficient-rl-training-agentic-era/"}]
+
+Based on my web search results, I've found comprehensive recent work on agent error recovery training and the comparison of SFT vs RL approaches in 2025-2026. Here's a summary of the key findings:
+
+## SFT vs RL for Agent Error Recovery (2025-2026)
+
+### Key Comparison: RL's Superior Error Recovery Capability
+
+SFT gives you a warm start; RL teaches the model to adapt, generalize, and self-correct. RL naturally supports error recovery: if taking a corrective action after a mistake leads to higher final reward, the policy can learn to do that.
+
+In other words, SFT learns a map of known roads, but not how to navigate when you miss a turn or a road is blocked. This structural limitation is significant: SFT has a structural limitation: the student always learns conditioned on the teacher's prior tokens, never its own. At inference, it generates from its own previous outputs. If the model drifts early in its reasoning, it enters a state never encountered during training with no learned mechanism for recovery.
+
+### Recent Findings on Division of Labor (2025)
+
+RL is most effective for enhancing robustness on low- to medium-difficulty tasks, while SFT's structured demonstrations yield superior gains on complex reasoning problems. This suggests a division of labor where each method addresses a different facet of model improvement.
+
+However, the subsequent RL stage substantially mitigates OOD decay: it restores up to 99% of the OOD performance lost during SFT for Qwen-2.5-7B and up to 85% for Llama-3.2-11B, all while maintaining strong ID competence. This restoration has a limit: if SFT is prolonged beyond a threshold, the lost ability becomes only partially recoverable.
+
+### Structured Fault Injection for Self-Correction (ICLR 2026)
+
+Recent work on code-integrated agents implements structured error recovery through "Self-Correction Capability Injection": A robust agent needs to recover from erroneous tool feedback. Failed trajectories are sampled with execution failures, and for each failed program with error output, the teacher model generates a structured self-correction trace (diagnose the error → repair the code → re-execute → continue reasoning). A small fraction of these negative-to-positive corrections is injected to strengthen debugging robustness.
+
+### Agent Error Recovery Benchmarking (April 2026)
+
+As Large Language Models evolve into agentic systems capable of autonomous tool invocation and complex reasoning, the paradigm of reward modeling faces unprecedented challenges. Plan-RewardBench covers four representative task families -- (i) Safety Refusal, (ii) Tool-Irrelevance / Unavailability, (iii) Complex Planning, and (iv) Robust Error Recovery.
+
+### Practical Recommendations for Multi-Turn Agent RL
+
+In multi-turn, tool-heavy settings, RL is usually the way to go. SFT alone quickly hits a ceiling. RL naturally supports error recovery: if taking a corrective action after a mistake leads to higher final reward, the policy can learn to do that.
+
+### Advanced Error Recovery Techniques (2026)
+
+Recent work on trajectory optimization includes sophisticated approaches for error correction: At divergence points where children exhibit large value differences, the agent performs self-rectification by generating corrective reasoning that transfers successful logic to failed contexts, producing preference pairs for surgical policy optimization.
+
+Through RL with environment interaction, the model learns to use tools, plan multi-step solutions, recover from errors, and manage context — natively, without relying on external orchestration.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a9180fb3-279b-4845-a32f-7bc048f0e818",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "5016d19b-37e7-4f40-b98b-640c3707f6ef",
+  "toolUseResult": {
+    "query": "agent error recovery training SFT vs RL 2025 2026 recent work structured fault injection",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01T2jku1VyQBfCnN75rLUAWP",
+        "content": [
+          {
+            "title": "Best Practices for Multi-Turn RL",
+            "url": "https://fireworks.ai/blog/best-practices-for-multi-turn-RL"
+          },
+          {
+            "title": "RL Is Neither a Panacea Nor a Mirage: Understanding Supervised vs. Reinforcement Learning Fine-Tuning for LLMs",
+            "url": "https://arxiv.org/html/2508.16546v1"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2508.11408"
+          },
+          {
+            "title": "Supervised Fine-Tuning vs Reinforcement Learning",
+            "url": "https://research.aimultiple.com/rl-vs-sft/"
+          },
+          {
+            "title": "Why off-policy training isn't enough: SFT, RL, and the limits of imitation | Decagon",
+            "url": "https://decagon.ai/blog/why-off-policy-training-isnt-enough"
+          },
+          {
+            "title": "SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training | OpenReview",
+            "url": "https://openreview.net/forum?id=dYur3yabMj"
+          },
+          {
+            "title": "AI 101: The State of Reinforcement Learning in 2025",
+            "url": "https://turingpost.substack.com/p/ai-101-the-state-of-reinforcement"
+          },
+          {
+            "title": "Agent2 RL-Bench: Can LLM Agents Engineer Agentic RL Post-Training?",
+            "url": "https://arxiv.org/html/2604.10547"
+          },
+          {
+            "title": "Beyond Two-Stage Training: Cooperative SFT and RL for LLM Reasoning",
+            "url": "https://arxiv.org/html/2509.06948v1"
+          },
+          {
+            "title": "GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub",
+            "url": "https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"
+          }
+        ]
+      },
+      "Now let me search specifically for structured fault injection work:",
+      {
+        "tool_use_id": "srvtoolu_011VVUm7qZ48pKVho6ie9Vor",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2512.20745"
+          },
+          {
+            "title": "Master Fault Injection: Hands-On Training for Security Professionals",
+            "url": "https://www.keysight.com/blogs/en/tech/nwvs/2026/01/27/master-fault-injection-hands-on-training-for-security-professionals"
+          },
+          {
+            "title": "AI-Driven Fault Injection Testing: Enhancing",
+            "url": "https://files.sdiarticle5.com/wp-content/uploads/2025/05/Ms_AJRCOS_135387.pdf"
+          },
+          {
+            "title": "GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub",
+            "url": "https://github.com/tmgthb/Autonomous-Agents"
+          },
+          {
+            "title": "What is Fault Injection in Software Testing? | BrowserStack",
+            "url": "https://www.browserstack.com/guide/fault-injection-in-software-testing"
+          },
+          {
+            "title": "Prompt Injection Attacks on Agentic Coding Assistants: A Systematic Analysis of Vulnerabilities in Skills, Tools, and Protocol Ecosystems",
+            "url": "https://arxiv.org/html/2601.17548v1"
+          },
+          {
+            "title": "Countermeasures Against Fault Injection Attacks in Processors: A Review",
+            "url": "https://www.mdpi.com/2078-2489/16/4/293"
+          },
+          {
+            "title": "Hardwear.io Netherlands 2025 to Spotlight Breakthrough Research and Hands-On Training in Hardware Security",
+            "url": "https://ismg.io/hardwear-io-netherlands-2025-to-spotlight-breakthrough-research-and-hands-on-training-in-hardware-security/"
+          },
+          {
+            "title": "Systems Security Foundations for Agentic Computing",
+            "url": "https://eprint.iacr.org/2025/2173.pdf"
+          },
+          {
+            "title": "Perfecting AI Agent Frameworks through Unified Design Principles",
+            "url": "https://www.scitepress.org/Papers/2026/144223/144223.pdf"
+          }
+        ]
+      },
+      "Let me search for more specific recent work on error recovery in agent training:",
+      {
+        "tool_use_id": "srvtoolu_012BQMkjXhGQNq1jA2wHP8mY",
+        "content": [
+          {
+            "title": "GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub",
+            "url": "https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2512.20745"
+          },
+          {
+            "title": "[2604.08178v1] Aligning Agents via Planning: A Benchmark for Trajectory-Level Reward Modeling",
+            "url": "https://arxiv.org/abs/2604.08178v1"
+          },
+          {
+            "title": "Inside the Agentic RL Training Loop • Singularity Notes",
+            "url": "https://blog.guanghan.ai/post/260213_agentic_rl/"
+          },
+          {
+            "title": "Best Practices for Multi-Turn RL",
+            "url": "https://fireworks.ai/blog/best-practices-for-multi-turn-RL"
+          },
+          {
+            "title": "TSR: Trajectory‑Search Rollouts for Multi‑Turn RL of LLM Agents",
+            "url": "https://arxiv.org/html/2602.11767v1"
+          },
+          {
+            "title": "Reason in Chains, Learn in Trees: Self-Rectification and Grafting for Multi-turn Agent Policy Optimization",
+            "url": "https://arxiv.org/html/2604.07165v1"
+          },
+          {
+            "title": "[2604.08178] Aligning Agents via Planning: A Benchmark for Trajectory-Level Reward Modeling",
+            "url": "https://arxiv.org/abs/2604.08178"
+          },
+          {
+            "title": "AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling",
+            "url": "https://arxiv.org/html/2603.21357v2"
+          },
+          {
+            "title": "Building Efficient RL Training for the Agentic Era - Salesforce",
+            "url": "https://www.salesforce.com/blog/efficient-rl-training-agentic-era/"
+          }
+        ]
+      },
+      "Based on my web search results, I've found comprehensive recent work on agent error recovery training and the comparison of SFT vs RL approaches in 2025-2026. Here's a summary of the key findings:\n\n## SFT vs RL for Agent Error Recovery (2025-2026)\n\n### Key Comparison: RL's Superior Error Recovery Capability\n\nSFT gives you a warm start; RL teaches the model to adapt, generalize, and self-correct. RL naturally supports error recovery: if taking a corrective action after a mistake leads to higher final reward, the policy can learn to do that.\n\nIn other words, SFT learns a map of known roads, but not how to navigate when you miss a turn or a road is blocked. This structural limitation is significant: SFT has a structural limitation: the student always learns conditioned on the teacher's prior tokens, never its own. At inference, it generates from its own previous outputs. If the model drifts early in its reasoning, it enters a state never encountered during training with no learned mechanism for recovery.\n\n### Recent Findings on Division of Labor (2025)\n\nRL is most effective for enhancing robustness on low- to medium-difficulty tasks, while SFT's structured demonstrations yield superior gains on complex reasoning problems. This suggests a division of labor where each method addresses a different facet of model improvement.\n\nHowever, the subsequent RL stage substantially mitigates OOD decay: it restores up to 99% of the OOD performance lost during SFT for Qwen-2.5-7B and up to 85% for Llama-3.2-11B, all while maintaining strong ID competence. This restoration has a limit: if SFT is prolonged beyond a threshold, the lost ability becomes only partially recoverable.\n\n### Structured Fault Injection for Self-Correction (ICLR 2026)\n\nRecent work on code-integrated agents implements structured error recovery through \"Self-Correction Capability Injection\": A robust agent needs to recover from erroneous tool feedback. Failed trajectories are sampled with execution failures, and for each failed program with error output, the teacher model generates a structured self-correction trace (diagnose the error → repair the code → re-execute → continue reasoning). A small fraction of these negative-to-positive corrections is injected to strengthen debugging robustness.\n\n### Agent Error Recovery Benchmarking (April 2026)\n\nAs Large Language Models evolve into agentic systems capable of autonomous tool invocation and complex reasoning, the paradigm of reward modeling faces unprecedented challenges. Plan-RewardBench covers four representative task families -- (i) Safety Refusal, (ii) Tool-Irrelevance / Unavailability, (iii) Complex Planning, and (iv) Robust Error Recovery.\n\n### Practical Recommendations for Multi-Turn Agent RL\n\nIn multi-turn, tool-heavy settings, RL is usually the way to go. SFT alone quickly hits a ceiling. RL naturally supports error recovery: if taking a corrective action after a mistake leads to higher final reward, the policy can learn to do that.\n\n### Advanced Error Recovery Techniques (2026)\n\nRecent work on trajectory optimization includes sophisticated approaches for error correction: At divergence points where children exhibit large value differences, the agent performs self-rectification by generating corrective reasoning that transfers successful logic to failed contexts, producing preference pairs for surgical policy optimization.\n\nThrough RL with environment interaction, the model learns to use tools, plan multi-step solutions, recover from errors, and manage context — natively, without relying on external orchestration."
+    ],
+    "durationSeconds": 18.710879335000005
+  },
+  "sourceToolAssistantUUID": "a9180fb3-279b-4845-a32f-7bc048f0e818",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-11 (UTC).**  ## Original idea {   \"title\": \"TaxEI: Structured Non-Tool Error Injection for Agent Recovery Training…",
+  "leafUuid": "5016d19b-37e7-4f40-b98b-640c3707f6ef",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise TaxEI with PALADIN venue correction and Wu et al. defusing",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6"
+}
+```
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-12T00:06:33.910Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BTskMyVQ6JYrxqKdNwXWYu`</summary>
+
+```json
+{
+  "query": "\"SFT Memorizes RL Generalizes\" foundation model post-training ICLR 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5016d19b-37e7-4f40-b98b-640c3707f6ef",
+  "isSidechain": false,
+  "requestId": "req_011CawhWuMPizv7kSekoeLL1",
+  "type": "assistant",
+  "uuid": "562aa71d-6d20-4774-a9cd-231479e7ea09",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013SovgV1sLYkeq3RtfF1N71",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2443,
+      "cache_read_input_tokens": 37423,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2443,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 37423,
+          "cache_creation_input_tokens": 2443,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2443
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-12T00:06:40.010Z_
+
+<details><summary>↩ Tool result · `toolu_01BTskMyVQ6JYrxqKdNwXWYu`</summary>
+
+```text
+Web search results for query: ""SFT Memorizes RL Generalizes" foundation model post-training ICLR 2026"
+
+Links: [{"title":"[2501.17161] SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training","url":"https://arxiv.org/abs/2501.17161"},{"title":"GitHub - LeslieTrue/SFTvsRL: Official implementation of paper: SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training · GitHub","url":"https://github.com/LeslieTrue/SFTvsRL"},{"title":"SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training | OpenReview","url":"https://openreview.net/forum?id=dYur3yabMj"},{"title":"ICML Poster SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training","url":"https://icml.cc/virtual/2025/poster/44633"},{"title":"SFT Memorizes, RL Generalizes","url":"https://tianzhechu.com/SFTvsRL/"},{"title":"SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training","url":"https://arxiv.org/html/2501.17161v1"},{"title":"SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training","url":"https://proceedings.mlr.press/v267/chu25c.html"},{"title":"Paper page - SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training","url":"https://huggingface.co/papers/2501.17161"},{"title":"SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training, Tianzhe Chu+, ICML'25 · Issue #1740 · AkihikoWatanabe/paper_notes","url":"https://github.com/AkihikoWatanabe/paper_notes/issues/1740"},{"title":"SFT Memorizes, RL Generalizes. A Comparative Study of Foundation Model… | by Sulbha Jain | Medium","url":"https://medium.com/@sulbha.jindal/sft-memorizes-rl-generalizes-4b7be4d18a99"}]
+
+I found the paper "SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training." Here are the key findings:
+
+## Paper Overview
+
+Supervised fine-tuning (SFT) and reinforcement learning (RL) are widely used post-training techniques for foundation models, but their roles in enhancing model generalization capabilities remain unclear.
+
+## Main Results
+
+RL, especially when trained with an outcome-based reward, generalizes across both rule-based textual and visual variants, while SFT tends to memorize training data and struggles to generalize out-of-distribution scenarios.
+
+## Evaluation Tasks
+
+The researchers introduced GeneralPoints, an arithmetic reasoning card game, and adopted V-IRL, a real-world navigation environment, to assess how models trained with SFT and RL generalize to unseen variants in both textual and visual domains.
+
+## Additional Findings
+
+RL improves the model's underlying visual recognition capabilities, contributing to its enhanced generalization in the visual domain. Additionally, SFT remains essential for effective RL training; SFT stabilizes the model's output format, enabling subsequent RL to achieve its performance gains.
+
+## Publication Details
+
+The paper was published in Proceedings of the 42nd International Conference on Machine Learning (ICML 2025). Note: The paper appears to have been presented at ICML 2025 rather than ICLR 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "562aa71d-6d20-4774-a9cd-231479e7ea09",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "445f3540-d6d0-47bc-99cf-b4238832e3be",
+  "toolUseResult": {
+    "query": "\"SFT Memorizes RL Generalizes\" foundation model post-training ICLR 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QNv4fXeyJjBmS4kPe3L3eo",
+        "content": [
+          {
+            "title": "[2501.17161] SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training",
+            "url": "https://arxiv.org/abs/2501.17161"
+          },
+          {
+            "title": "GitHub - LeslieTrue/SFTvsRL: Official implementation of paper: SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training · GitHub",
+            "url": "https://github.com/LeslieTrue/SFTvsRL"
+          },
+          {
+            "title": "SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training | OpenReview",
+            "url": "https://openreview.net/forum?id=dYur3yabMj"
+          },
+          {
+            "title": "ICML Poster SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training",
+            "url": "https://icml.cc/virtual/2025/poster/44633"
+          },
+          {
+            "title": "SFT Memorizes, RL Generalizes",
+            "url": "https://tianzhechu.com/SFTvsRL/"
+          },
+          {
+            "title": "SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training",
+            "url": "https://arxiv.org/html/2501.17161v1"
+          },
+          {
+            "title": "SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training",
+            "url": "https://proceedings.mlr.press/v267/chu25c.html"
+          },
+          {
+            "title": "Paper page - SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training",
+            "url": "https://huggingface.co/papers/2501.17161"
+          },
+          {
+            "title": "SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training, Tianzhe Chu+, ICML'25 · Issue #1740 · AkihikoWatanabe/paper_notes",
+            "url": "https://github.com/AkihikoWatanabe/paper_notes/issues/1740"
+          },
+          {
+            "title": "SFT Memorizes, RL Generalizes. A Comparative Study of Foundation Model… | by Sulbha Jain | Medium",
+            "url": "https://medium.com/@sulbha.jindal/sft-memorizes-rl-generalizes-4b7be4d18a99"
+          }
+        ]
+      },
+      "I found the paper \"SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training.\" Here are the key findings:\n\n## Paper Overview\n\nSupervised fine-tuning (SFT) and reinforcement learning (RL) are widely used post-training techniques for foundation models, but their roles in enhancing model generalization capabilities remain unclear.\n\n## Main Results\n\nRL, especially when trained with an outcome-based reward, generalizes across both rule-based textual and visual variants, while SFT tends to memorize training data and struggles to generalize out-of-distribution scenarios.\n\n## Evaluation Tasks\n\nThe researchers introduced GeneralPoints, an arithmetic reasoning card game, and adopted V-IRL, a real-world navigation environment, to assess how models trained with SFT and RL generalize to unseen variants in both textual and visual domains.\n\n## Additional Findings\n\nRL improves the model's underlying visual recognition capabilities, contributing to its enhanced generalization in the visual domain. Additionally, SFT remains essential for effective RL training; SFT stabilizes the model's output format, enabling subsequent RL to achieve its performance gains.\n\n## Publication Details\n\nThe paper was published in Proceedings of the 42nd International Conference on Machine Learning (ICML 2025). Note: The paper appears to have been presented at ICML 2025 rather than ICLR 2026."
+    ],
+    "durationSeconds": 6.093522228999995
+  },
+  "sourceToolAssistantUUID": "562aa71d-6d20-4774-a9cd-231479e7ea09",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54 · 2026-05-12T00:06:40.020Z_
+
+```json
+{
+  "parentUuid": "445f3540-d6d0-47bc-99cf-b4238832e3be",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "5752bd04-0a11-4222-87a8-aa39108763cf",
+  "timestamp": "2026-05-12T00:06:40.020Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-12T00:06:42.784Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LLF5gE3Y9BLa5TwYvHgaGM`</summary>
+
+```json
+{
+  "query": "taxonomy error injection agent training planning context memory recovery 2025 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5752bd04-0a11-4222-87a8-aa39108763cf",
+  "isSidechain": false,
+  "requestId": "req_011CawhXbW8JojVrC4KzaQTi",
+  "type": "assistant",
+  "uuid": "7335fbca-a8b2-48ed-95bd-c6b5388a9c96",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QKwZeqLMZDZtpbFbCuBknT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1126,
+      "cache_read_input_tokens": 39866,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1126,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 39866,
+          "cache_creation_input_tokens": 1126,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1126
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-12T00:06:51.123Z_
+
+<details><summary>↩ Tool result · `toolu_01LLF5gE3Y9BLa5TwYvHgaGM`</summary>
+
+```text
+Web search results for query: "taxonomy error injection agent training planning context memory recovery 2025 2026 arXiv"
+
+Links: [{"title":"Graph-based Agent Memory: Taxonomy, Techniques, and Applications","url":"https://arxiv.org/html/2602.05665v1"},{"title":"Anatomy of Agentic Memory: Taxonomy and Empirical Analysis of Evaluation and System Limitations","url":"https://arxiv.org/html/2602.19320v1"},{"title":"MEMORY IN LARGE LANGUAGE MODELS: MECHANISMS, EVALUATION AND EVOLUTION","url":"https://arxiv.org/pdf/2509.18868"},{"title":"Agentic Artificial Intelligence (AI): Architectures, Taxonomies, and","url":"https://arxiv.org/pdf/2601.12560"},{"title":"[2512.13564] Memory in the Age of AI Agents","url":"https://arxiv.org/abs/2512.13564"},{"title":"Memory in the Age of AI Agents [Quick Review]","url":"https://liner.com/review/memory-in-age-ai-agents"},{"title":"Prompt Injection Attacks on Agentic Coding Assistants","url":"https://arxiv.org/pdf/2601.17548"},{"title":"Rethinking Memory in AI: Taxonomy, Operations, Topics, and Future Directions","url":"https://arxiv.org/html/2505.00675v1"},{"title":"ByteRover: Agent-Native Memory Through LLM-Curated Hierarchical Context","url":"https://arxiv.org/html/2604.01599"},{"title":"GitHub - Shichun-Liu/Agent-Memory-Paper-List: The paper list of \"Memory in the Age of AI Agents: A Survey\" · GitHub","url":"https://github.com/Shichun-Liu/Agent-Memory-Paper-List"}]
+
+Based on the web search results, I found several highly relevant arXiv papers from 2025-2026 related to your query about taxonomy, error injection, agent training, planning, context, and memory recovery:
+
+## Key Findings:
+
+**Recent Survey Papers on Agent Memory Taxonomy:**
+
+Graph-based agent memory has emerged as the frontier for 2025–2026 research, transitioning from a passive 'log' of facts to a structured topological model of experience that preserves how information is connected over time.
+
+Representative memory architecture systems (MAG) spanning four taxonomy categories have been evaluated, including systems like LOCOMO, AMem, MemoryOS, Nemori, and MAGMA from 2024-2026.
+
+**Memory Taxonomy Research:**
+
+Traditional taxonomies such as long/short-term memory have proven insufficient to capture the diversity of contemporary agent memory systems, and a finer-grained taxonomy has been proposed that distinguishes factual, experiential, and working memory.
+
+The main thread of memory mechanisms covers Retrieval (R)—Write (W)—Inhibit (I) across the training phase, inference phase, and post-training shaping.
+
+**Prompt Injection and Agent Security:**
+
+A three-dimensional taxonomy has been proposed organizing prompt injection attacks across delivery vectors, attack modalities, and propagation behaviors.
+
+**Agent Architecture and Planning:**
+
+The field has been surveyed through a taxonomy focused on planning, tool use, learning, and collaboration, with an explicit systems architecture covering perception, memory, the agent brain, and action.
+
+The search results reveal a rich landscape of recent arXiv papers (January-April 2026) addressing memory architectures, taxonomies, and security concerns for AI agents.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7335fbca-a8b2-48ed-95bd-c6b5388a9c96",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "771fb0d0-230b-443f-81ab-ad18cfd34b8e",
+  "toolUseResult": {
+    "query": "taxonomy error injection agent training planning context memory recovery 2025 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UDAfTYSKiamYfkchMrrQGj",
+        "content": [
+          {
+            "title": "Graph-based Agent Memory: Taxonomy, Techniques, and Applications",
+            "url": "https://arxiv.org/html/2602.05665v1"
+          },
+          {
+            "title": "Anatomy of Agentic Memory: Taxonomy and Empirical Analysis of Evaluation and System Limitations",
+            "url": "https://arxiv.org/html/2602.19320v1"
+          },
+          {
+            "title": "MEMORY IN LARGE LANGUAGE MODELS: MECHANISMS, EVALUATION AND EVOLUTION",
+            "url": "https://arxiv.org/pdf/2509.18868"
+          },
+          {
+            "title": "Agentic Artificial Intelligence (AI): Architectures, Taxonomies, and",
+            "url": "https://arxiv.org/pdf/2601.12560"
+          },
+          {
+            "title": "[2512.13564] Memory in the Age of AI Agents",
+            "url": "https://arxiv.org/abs/2512.13564"
+          },
+          {
+            "title": "Memory in the Age of AI Agents [Quick Review]",
+            "url": "https://liner.com/review/memory-in-age-ai-agents"
+          },
+          {
+            "title": "Prompt Injection Attacks on Agentic Coding Assistants",
+            "url": "https://arxiv.org/pdf/2601.17548"
+          },
+          {
+            "title": "Rethinking Memory in AI: Taxonomy, Operations, Topics, and Future Directions",
+            "url": "https://arxiv.org/html/2505.00675v1"
+          },
+          {
+            "title": "ByteRover: Agent-Native Memory Through LLM-Curated Hierarchical Context",
+            "url": "https://arxiv.org/html/2604.01599"
+          },
+          {
+            "title": "GitHub - Shichun-Liu/Agent-Memory-Paper-List: The paper list of \"Memory in the Age of AI Agents: A Survey\" · GitHub",
+            "url": "https://github.com/Shichun-Liu/Agent-Memory-Paper-List"
+          }
+        ]
+      },
+      "Based on the web search results, I found several highly relevant arXiv papers from 2025-2026 related to your query about taxonomy, error injection, agent training, planning, context, and memory recovery:\n\n## Key Findings:\n\n**Recent Survey Papers on Agent Memory Taxonomy:**\n\nGraph-based agent memory has emerged as the frontier for 2025–2026 research, transitioning from a passive 'log' of facts to a structured topological model of experience that preserves how information is connected over time.\n\nRepresentative memory architecture systems (MAG) spanning four taxonomy categories have been evaluated, including systems like LOCOMO, AMem, MemoryOS, Nemori, and MAGMA from 2024-2026.\n\n**Memory Taxonomy Research:**\n\nTraditional taxonomies such as long/short-term memory have proven insufficient to capture the diversity of contemporary agent memory systems, and a finer-grained taxonomy has been proposed that distinguishes factual, experiential, and working memory.\n\nThe main thread of memory mechanisms covers Retrieval (R)—Write (W)—Inhibit (I) across the training phase, inference phase, and post-training shaping.\n\n**Prompt Injection and Agent Security:**\n\nA three-dimensional taxonomy has been proposed organizing prompt injection attacks across delivery vectors, attack modalities, and propagation behaviors.\n\n**Agent Architecture and Planning:**\n\nThe field has been surveyed through a taxonomy focused on planning, tool use, learning, and collaboration, with an explicit systems architecture covering perception, memory, the agent brain, and action.\n\nThe search results reveal a rich landscape of recent arXiv papers (January-April 2026) addressing memory architectures, taxonomies, and security concerns for AI agents."
+    ],
+    "durationSeconds": 8.335870138000027
+  },
+  "sourceToolAssistantUUID": "7335fbca-a8b2-48ed-95bd-c6b5388a9c96",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-12T00:06:57.336Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EfBD5DXK9ms37tfiJEdQyv`</summary>
+
+```json
+{
+  "query": "structured error injection training agent trajectories planning errors recovery SFT 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "771fb0d0-230b-443f-81ab-ad18cfd34b8e",
+  "isSidechain": false,
+  "requestId": "req_011CawhYQytRantZVRw1FydL",
+  "type": "assistant",
+  "uuid": "0d6b72a5-89ba-4215-93d5-1f97151e98fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012wffKJNk93WUCydxuDeoTV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 930,
+      "cache_read_input_tokens": 40992,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 930,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 40992,
+          "cache_creation_input_tokens": 930,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 930
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-12T00:07:06.325Z_
+
+<details><summary>↩ Tool result · `toolu_01EfBD5DXK9ms37tfiJEdQyv`</summary>
+
+```text
+Web search results for query: "structured error injection training agent trajectories planning errors recovery SFT 2025 2026"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2512.20745"},{"title":"Best Practices for Multi-Turn RL","url":"https://fireworks.ai/blog/best-practices-for-multi-turn-RL"},{"title":"GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub","url":"https://github.com/tmgthb/Autonomous-Agents"},{"title":"Process Reward Models for LLM Agents: Practical Framework and Directions","url":"https://arxiv.org/html/2502.10325v1"},{"title":"LiteResearcher: A Scalable Agentic RL Training Framework for Deep Research Agent","url":"https://arxiv.org/html/2604.17931v2"},{"title":"Advancing Multi-agent Traffic Simulation via R1-Style ...","url":"https://arxiv.org/pdf/2509.23993"},{"title":"GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub","url":"https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"},{"title":"Inside the Agentic RL Training Loop • Singularity Notes","url":"https://blog.guanghan.ai/post/260213_agentic_rl/"},{"title":"Published as a workshop paper in Lifelong Agent @ ICLR 2026","url":"https://arxiv.org/pdf/2604.09741"},{"title":"[2512.18552] Toward Training Superintelligent Software Agents through Self-Play SWE-RL","url":"https://arxiv.org/abs/2512.18552"}]
+
+I found several relevant research papers and resources related to structured error injection, agent trajectory training, planning errors, recovery, and SFT from 2025-2026. Here are the key findings:
+
+## Key Research Findings
+
+**Error Injection and Recovery in Training:**
+
+Recent work uses structured self-correction traces (diagnose the error → repair the code → re-execute → continue reasoning), with a fraction of negative-to-positive corrections injected to strengthen debugging robustness, forming the foundation for SFT. SFT policies struggle to recover once they deviate from expert trajectories, whereas approaches that actively interact with the environment can correct mistakes.
+
+**Agent Trajectory Training Approaches:**
+
+Systems now employ agentic trajectories with interleaved code execution through a generate–pause–execute–resume loop, yielding hybrid traces composed of chain-of-thought reasoning, inline code snippets, and real-time interpreter feedback.
+
+**Error Recovery in Reinforcement Learning:**
+
+RL naturally supports error recovery: if taking a corrective action after a mistake leads to higher final reward, the policy can learn to do that. RL is usually stacked on top of an SFT-ed model, where SFT gives a warm start and RL teaches the model to adapt, generalize, and self-correct.
+
+**Planning and Error Handling:**
+
+A structured multi-stage approach treats reasoning as an explicit prediction of future consequences before committing to an action.
+
+**Large-Scale Training Systems (2025-2026):**
+
+Recent practical techniques include asynchronous agentic RL at scale, with data processing pipelines that compute rewards, group trajectories by prompt, tokenize multi-turn conversations, compute loss masks and advantages, and filter degenerate trajectories.
+
+Self-play approaches train LLM agents via reinforcement learning to iteratively inject and repair software bugs of increasing complexity, with each bug formally specified by a test patch.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0d6b72a5-89ba-4215-93d5-1f97151e98fe",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "b002f366-099e-4d14-ab52-ca29e2b9fdcf",
+  "toolUseResult": {
+    "query": "structured error injection training agent trajectories planning errors recovery SFT 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012xVPzLKGJ9VXuFshPz4BJp",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2512.20745"
+          },
+          {
+            "title": "Best Practices for Multi-Turn RL",
+            "url": "https://fireworks.ai/blog/best-practices-for-multi-turn-RL"
+          },
+          {
+            "title": "GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub",
+            "url": "https://github.com/tmgthb/Autonomous-Agents"
+          },
+          {
+            "title": "Process Reward Models for LLM Agents: Practical Framework and Directions",
+            "url": "https://arxiv.org/html/2502.10325v1"
+          },
+          {
+            "title": "LiteResearcher: A Scalable Agentic RL Training Framework for Deep Research Agent",
+            "url": "https://arxiv.org/html/2604.17931v2"
+          },
+          {
+            "title": "Advancing Multi-agent Traffic Simulation via R1-Style ...",
+            "url": "https://arxiv.org/pdf/2509.23993"
+          },
+          {
+            "title": "GitHub - blacksnail789521/Agentic-RL-Training-Recipes: Training Recipes for Agentic Reinforcement Learning in LLMs: A Survey · GitHub",
+            "url": "https://github.com/blacksnail789521/Agentic-RL-Training-Recipes"
+          },
+          {
+            "title": "Inside the Agentic RL Training Loop • Singularity Notes",
+            "url": "https://blog.guanghan.ai/post/260213_agentic_rl/"
+          },
+          {
+            "title": "Published as a workshop paper in Lifelong Agent @ ICLR 2026",
+            "url": "https://arxiv.org/pdf/2604.09741"
+          },
+          {
+            "title": "[2512.18552] Toward Training Superintelligent Software Agents through Self-Play SWE-RL",
+            "url": "https://arxiv.org/abs/2512.18552"
+          }
+        ]
+      },
+      "I found several relevant research papers and resources related to structured error injection, agent trajectory training, planning errors, recovery, and SFT from 2025-2026. Here are the key findings:\n\n## Key Research Findings\n\n**Error Injection and Recovery in Training:**\n\nRecent work uses structured self-correction traces (diagnose the error → repair the code → re-execute → continue reasoning), with a fraction of negative-to-positive corrections injected to strengthen debugging robustness, forming the foundation for SFT. SFT policies struggle to recover once they deviate from expert trajectories, whereas approaches that actively interact with the environment can correct mistakes.\n\n**Agent Trajectory Training Approaches:**\n\nSystems now employ agentic trajectories with interleaved code execution through a generate–pause–execute–resume loop, yielding hybrid traces composed of chain-of-thought reasoning, inline code snippets, and real-time interpreter feedback.\n\n**Error Recovery in Reinforcement Learning:**\n\nRL naturally supports error recovery: if taking a corrective action after a mistake leads to higher final reward, the policy can learn to do that. RL is usually stacked on top of an SFT-ed model, where SFT gives a warm start and RL teaches the model to adapt, generalize, and self-correct.\n\n**Planning and Error Handling:**\n\nA structured multi-stage approach treats reasoning as an explicit prediction of future consequences before committing to an action.\n\n**Large-Scale Training Systems (2025-2026):**\n\nRecent practical techniques include asynchronous agentic RL at scale, with data processing pipelines that compute rewards, group trajectories by prompt, tokenize multi-turn conversations, compute loss masks and advantages, and filter degenerate trajectories.\n\nSelf-play approaches train LLM agents via reinforcement learning to iteratively inject and repair software bugs of increasing complexity, with each bug formally specified by a test patch."
+    ],
+    "durationSeconds": 8.981486252000002
+  },
+  "sourceToolAssistantUUID": "0d6b72a5-89ba-4215-93d5-1f97151e98fe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-12T00:07:13.049Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01TmrCL46Ne753yh7dTZu7Ci`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2512.20745",
+  "prompt": "What is this paper about? Extract: title, authors, key contributions. Is this related to error injection for agent training? Does it do structured fault injection into agent trajectories for SFT training?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b002f366-099e-4d14-ab52-ca29e2b9fdcf",
+  "isSidechain": false,
+  "requestId": "req_011CawhZXv8VjWpy1mQ3Vsga",
+  "type": "assistant",
+  "uuid": "0c0d12e7-5b25-43b6-b265-f9058eb0a548",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QBbGj6EDLCkmk1UDpAtkqE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1000,
+      "cache_read_input_tokens": 41922,
+      "output_tokens": 123,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1000,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 123,
+          "cache_read_input_tokens": 41922,
+          "cache_creation_input_tokens": 1000,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1000
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-12T00:07:17.897Z_
+
+<details><summary>↩ Tool result · `toolu_01TmrCL46Ne753yh7dTZu7Ci`</summary>
+
+```text
+# AgentMath Paper Summary
+
+## Title & Authors
+**Title:** "AgentMath: Empowering Mathematical Reasoning for Large Language Models via Tool-Augmented Agent"
+
+**Authors:** Haipeng Luo, Huawen Feng, Qingfeng Sun, Can Xu, Kai Zheng, Yufei Wang, Tao Yang, Han Hu, Yansong Tang
+
+## Key Contributions
+
+The paper introduces three main innovations:
+
+1. **Automated SFT Data Generation:** Converts natural language reasoning into structured tool-use sequences to create training data
+
+2. **Agentic RL Paradigm:** Uses "dynamically interleaved natural language generation with real-time code execution" enabling models to learn tool-use strategies through multi-round feedback
+
+3. **Efficient Training System:** Implements optimization techniques achieving "4-5x speedup" for long-sequence RL training
+
+## Regarding Error Injection
+
+**No, this is not about error injection.** The paper focuses on integrating language models with code interpreters for mathematical reasoning. While it mentions "code refinement and error correction" as emergent capabilities learned through RL, this refers to the model learning to fix its own errors during execution—not structured fault injection into trajectories for training purposes.
+
+The SFT data generation involves converting reasoning into structured format, not injecting faults.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0c0d12e7-5b25-43b6-b265-f9058eb0a548",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "9c52bb4a-94fb-4db6-a10b-b40c88c9d56d",
+  "toolUseResult": {
+    "bytes": 48641,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# AgentMath Paper Summary\n\n## Title & Authors\n**Title:** \"AgentMath: Empowering Mathematical Reasoning for Large Language Models via Tool-Augmented Agent\"\n\n**Authors:** Haipeng Luo, Huawen Feng, Qingfeng Sun, Can Xu, Kai Zheng, Yufei Wang, Tao Yang, Han Hu, Yansong Tang\n\n## Key Contributions\n\nThe paper introduces three main innovations:\n\n1. **Automated SFT Data Generation:** Converts natural language reasoning into structured tool-use sequences to create training data\n\n2. **Agentic RL Paradigm:** Uses \"dynamically interleaved natural language generation with real-time code execution\" enabling models to learn tool-use strategies through multi-round feedback\n\n3. **Efficient Training System:** Implements optimization techniques achieving \"4-5x speedup\" for long-sequence RL training\n\n## Regarding Error Injection\n\n**No, this is not about error injection.** The paper focuses on integrating language models with code interpreters for mathematical reasoning. While it mentions \"code refinement and error correction\" as emergent capabilities learned through RL, this refers to the model learning to fix its own errors during execution—not structured fault injection into trajectories for training purposes.\n\nThe SFT data generation involves converting reasoning into structured format, not injecting faults.",
+    "durationMs": 4845,
+    "url": "https://arxiv.org/abs/2512.20745"
+  },
+  "sourceToolAssistantUUID": "0c0d12e7-5b25-43b6-b265-f9058eb0a548",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-12T00:07:21.234Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Tj64xa4XHwb3pbM1dTvcvC`</summary>
+
+```json
+{
+  "query": "PALADIN arXiv 2509.25238 v2 v3 updated version venue header"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c52bb4a-94fb-4db6-a10b-b40c88c9d56d",
+  "isSidechain": false,
+  "requestId": "req_011CawhaPRRw4Vyy97g1FfsV",
+  "type": "assistant",
+  "uuid": "52645a42-3595-4a5e-90ab-198df553cf4c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VQ75KMjp3dVHkfL6tDjtsF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 443,
+      "cache_read_input_tokens": 42922,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 443,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 42922,
+          "cache_creation_input_tokens": 443,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 443
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-12T00:07:27.132Z_
+
+<details><summary>↩ Tool result · `toolu_01Tj64xa4XHwb3pbM1dTvcvC`</summary>
+
+```text
+Web search results for query: "PALADIN arXiv 2509.25238 v2 v3 updated version venue header"
+
+Links: [{"title":"[2509.25238] PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases","url":"https://arxiv.org/abs/2509.25238"},{"title":"PALADIN: Self-Correcting Language Model Agents to Cure ...","url":"https://arxiv.org/pdf/2509.25238"},{"title":"PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases","url":"https://arxiv.org/html/2509.25238v1"},{"title":"PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases | alphaXiv","url":"https://www.alphaxiv.org/abs/2509.25238"},{"title":"[2509.07287] Paladin: Defending LLM-enabled Phishing Emails with a New Trigger-Tag Paradigm","url":"https://arxiv.org/abs/2509.07287"},{"title":"Paladin: Defending LLM-enabled Phishing Emails with a New Trigger-Tag Paradigm","url":"https://arxiv.org/html/2509.07287v1"},{"title":"[2509.25882] Characterization of Lattice Properties Within Modal Extensions","url":"https://arxiv.org/abs/2509.25882"},{"title":"On the meagerness of the set of irregular bundles on Hopf surfaces","url":"https://arxiv.org/html/2604.25238"},{"title":"[2509.03689v1] From Geostrophic to Magnetically-Damped Turbulence in Liquid Metal Rotating Magnetoconvection","url":"https://arxiv.org/abs/2509.03689v1"},{"title":"[2604.25238] On the meagerness of the set of irregular bundles on Hopf surfaces","url":"https://arxiv.org/abs/2604.25238"}]
+
+Based on the search results, I found information about the PALADIN paper with arXiv ID 2509.25238.
+
+PALADIN is a generalizable framework for equipping language agents with robust failure recovery capabilities, trained on 50,000+ recovery-annotated trajectories constructed via systematic failure injection and expert demonstrations on an enhanced ToolBench dataset.
+
+Regarding the version information you requested:
+
+- The search results show the v1 version exists on arxiv.org/html/2509.25238v1
+- The main abstract page at arxiv.org/abs/2509.25238 appears to be the current/latest version available
+- I did not find specific references to v2 or v3 versions in the search results
+
+Regarding the venue header: Based on the HTML source found in result index 6 for a different but similarly-named paper (the Paladin phishing defense paper 2509.07287), that paper shows a venue header indicating "Network and Distributed System Security (NDSS) Symposium 2026." However, the PALADIN paper with ID 2509.25238 (the tool failure recovery paper) does not show a specific conference/venue header in the available search results, suggesting it may still be a preprint without a confirmed venue assignment or it may be awaiting publication decisions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "52645a42-3595-4a5e-90ab-198df553cf4c",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "3c951f13-f360-46c4-99f2-a41260992641",
+  "toolUseResult": {
+    "query": "PALADIN arXiv 2509.25238 v2 v3 updated version venue header",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DTQtvcxQvphJCRUUXCper4",
+        "content": [
+          {
+            "title": "[2509.25238] PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases",
+            "url": "https://arxiv.org/abs/2509.25238"
+          },
+          {
+            "title": "PALADIN: Self-Correcting Language Model Agents to Cure ...",
+            "url": "https://arxiv.org/pdf/2509.25238"
+          },
+          {
+            "title": "PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases",
+            "url": "https://arxiv.org/html/2509.25238v1"
+          },
+          {
+            "title": "PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases | alphaXiv",
+            "url": "https://www.alphaxiv.org/abs/2509.25238"
+          },
+          {
+            "title": "[2509.07287] Paladin: Defending LLM-enabled Phishing Emails with a New Trigger-Tag Paradigm",
+            "url": "https://arxiv.org/abs/2509.07287"
+          },
+          {
+            "title": "Paladin: Defending LLM-enabled Phishing Emails with a New Trigger-Tag Paradigm",
+            "url": "https://arxiv.org/html/2509.07287v1"
+          },
+          {
+            "title": "[2509.25882] Characterization of Lattice Properties Within Modal Extensions",
+            "url": "https://arxiv.org/abs/2509.25882"
+          },
+          {
+            "title": "On the meagerness of the set of irregular bundles on Hopf surfaces",
+            "url": "https://arxiv.org/html/2604.25238"
+          },
+          {
+            "title": "[2509.03689v1] From Geostrophic to Magnetically-Damped Turbulence in Liquid Metal Rotating Magnetoconvection",
+            "url": "https://arxiv.org/abs/2509.03689v1"
+          },
+          {
+            "title": "[2604.25238] On the meagerness of the set of irregular bundles on Hopf surfaces",
+            "url": "https://arxiv.org/abs/2604.25238"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the PALADIN paper with arXiv ID 2509.25238.\n\nPALADIN is a generalizable framework for equipping language agents with robust failure recovery capabilities, trained on 50,000+ recovery-annotated trajectories constructed via systematic failure injection and expert demonstrations on an enhanced ToolBench dataset.\n\nRegarding the version information you requested:\n\n- The search results show the v1 version exists on arxiv.org/html/2509.25238v1\n- The main abstract page at arxiv.org/abs/2509.25238 appears to be the current/latest version available\n- I did not find specific references to v2 or v3 versions in the search results\n\nRegarding the venue header: Based on the HTML source found in result index 6 for a different but similarly-named paper (the Paladin phishing defense paper 2509.07287), that paper shows a venue header indicating \"Network and Distributed System Security (NDSS) Symposium 2026.\" However, the PALADIN paper with ID 2509.25238 (the tool failure recovery paper) does not show a specific conference/venue header in the available search results, suggesting it may still be a preprint without a confirmed venue assignment or it may be awaiting publication decisions."
+    ],
+    "durationSeconds": 5.894597776000009
+  },
+  "sourceToolAssistantUUID": "52645a42-3595-4a5e-90ab-198df553cf4c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-11 (UTC).**  ## Original idea {   \"title\": \"TaxEI: Structured Non-Tool Error Injection for Agent Recovery Training…",
+  "leafUuid": "3c951f13-f360-46c4-99f2-a41260992641",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise TaxEI with PALADIN venue correction and Wu et al. defusing",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-12T00:08:07.316Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me reconcile the information about PALADIN's venue:
+
+1. The arXiv PDF at https://arxiv.org/pdf/2509.25238 shows "Published as a conference paper at ICLR 2026" in the header
+2. BUT OpenReview forum M2AXTAKXbz shows it was "Desk Rejected" from ICLR 2026
+3. OpenReview forum NVTtoO297p shows it was accepted at "AAAI 2026 Workshop LaMAS" as an oral presentation
+
+
+4. The arXiv header appears to be misleading—the paper was actually desk-rejected from ICLR 2026 and accepted to the AAAI 2026 LaMAS Workshop instead
+
+Now I'm pulling together the key research findings to revise my understanding of PALADIN.
+
+Looking at Wu et al.'s work, they tested smaller models on synthetic tasks using pure chain-of-thought self-correction without any environmental feedback, and found a significant gap between synthetic training and real-world performance—error recognition dropped substantially when moving from the training distribution.
+
+WebArena benchmarks have progressed considerably, with open-weight models now achieving 46-57% success rates, making the earlier 35-40% estimates outdated.
+
+The verl-agent framework uses Apache-2.0 licensing, and while recent research like "SFT Memorizes, RL Generalizes" suggests reinforcement learning has better generalization properties than supervised fine-tuning, the comparison gets more nuanced when considering specific task requirements.
+
+For TaxEI specifically, SFT with structured injection labels offers a supervised curriculum that RL can't directly leverage, and it serves as the essential warm-start before any potential RL phase. PALADIN's approach demonstrated this works well for tool errors, and the DETECT→CLASSIFY→RECOVER structure provides explicit scaffolding that guides the learning process. The core differentiation remains: no one else has tackled taxonomy-guided non-tool error injection for agent training in this way.
+
+Now I'm refining the paper's framing—updating PALADIN's venue to the AAAI 2026 LaMAS Workshop, adjusting WebArena's SOTA numbers upward to 46-57%, and incorporating recent references like the SFT memorization versus RL generalization work and SCoRe. The motivation still holds because planning and context errors persist even at higher success rates, and the gap between proprietary and open-weight models remains substantial. For the method, I'm narrowing the baseline comparison to just PALADIN and Agent-R for feasibility, making GAIA a stretch goal while keeping ALFWorld and WebShop as the core evaluation. The timeline needs to compress to 16 days within a 200 H100-hour budget, so I'm trimming the resource estimates accordingly.
+
+Before finalizing the JSON, I should double-check whether there's any more recent work that directly competes with TaxEI's approach that I might have overlooked.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3c951f13-f360-46c4-99f2-a41260992641",
+  "isSidechain": false,
+  "requestId": "req_011Cawhb5J3gDW3qfDY7uLts",
+  "type": "assistant",
+  "uuid": "1ea5e371-c34b-4c57-abf9-50a41cbe87c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013DE7GUAi3pKtofssY9FKMi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 904,
+      "cache_read_input_tokens": 43365,
+      "output_tokens": 1321,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 904,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1321,
+          "cache_read_input_tokens": 43365,
+          "cache_creation_input_tokens": 904,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 904
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66 · 2026-05-12T00:08:07.318Z_
+
+Now let me search for any very recent concurrent work that might compete directly with TaxEI.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ea5e371-c34b-4c57-abf9-50a41cbe87c0",
+  "isSidechain": false,
+  "requestId": "req_011Cawhb5J3gDW3qfDY7uLts",
+  "type": "assistant",
+  "uuid": "13b2d8ac-7cb8-4108-a7fe-f166760de5c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013DE7GUAi3pKtofssY9FKMi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 904,
+      "cache_read_input_tokens": 43365,
+      "output_tokens": 1321,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 904,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1321,
+          "cache_read_input_tokens": 43365,
+          "cache_creation_input_tokens": 904,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 904
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-12T00:08:07.655Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UCB78kem6QSLtxaUQoAa1e`</summary>
+
+```json
+{
+  "query": "non-tool error injection agent training planning errors context corruption recovery fine-tuning 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "13b2d8ac-7cb8-4108-a7fe-f166760de5c1",
+  "isSidechain": false,
+  "requestId": "req_011Cawhb5J3gDW3qfDY7uLts",
+  "type": "assistant",
+  "uuid": "ac5dfaca-366c-41f0-a4be-f8be08654e1f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013DE7GUAi3pKtofssY9FKMi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 904,
+      "cache_read_input_tokens": 43365,
+      "output_tokens": 1321,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 904,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1321,
+          "cache_read_input_tokens": 43365,
+          "cache_creation_input_tokens": 904,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 904
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-12T00:08:16.041Z_
+
+<details><summary>↩ Tool result · `toolu_01UCB78kem6QSLtxaUQoAa1e`</summary>
+
+```text
+Web search results for query: "non-tool error injection agent training planning errors context corruption recovery fine-tuning 2026"
+
+Links: [{"title":"How Prompt Injection Attacks Compromise AI Agents in 2026","url":"https://atlan.com/know/prompt-injection-attacks-ai-agents/"},{"title":"MCP Context Poisoning [Deep Dive] in Agentic AI 2026","url":"https://techbytes.app/posts/mcp-context-poisoning-adversarial-memory-injection/"},{"title":"OWASP Top 10 for Agents 2026 | DeepTeam by Confident AI - The LLM Red Teaming Framework","url":"https://www.trydeepteam.com/docs/frameworks-owasp-top-10-for-agentic-applications"},{"title":"What's New in Microsoft Foundry Fine-Tuning | April 2026 | Microsoft Foundry Blog","url":"https://devblogs.microsoft.com/foundry/whats-new-in-foundry-finetune-april-2026/"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2512.20745"},{"title":"Conversational Error Recovery with Reasoning Inception","url":"https://arxiv.org/pdf/2602.17022"},{"title":"Prompt Injection Attacks in Large Language Models and AI Agent Systems: A Comprehensive Review of Vulnerabilities, Attack Vectors, and Defense Mechanisms","url":"https://www.mdpi.com/2078-2489/17/1/54"},{"title":"GitHub - iSEngLab/AwesomeLLM4APR: [TOSEM 2026]A Systematic Literature Review on Large Language Models for Automated Program Repair · GitHub","url":"https://github.com/iSEngLab/AwesomeLLM4APR"},{"title":"A Deep Dive into the OWASP Top 10 for Agentic Applications 2026 | NeuralTrust","url":"https://neuraltrust.ai/blog/owasp-top-10-for-agentic-applications-2026"},{"title":"MCP Security Vulnerabilities: How to Prevent Prompt Injection and Tool Poisoning Attacks in 2026 - Practical DevSecOps","url":"https://www.practical-devsecops.com/mcp-security-vulnerabilities/"}]
+
+I've performed the web search for your query on non-tool error injection, agent training, planning errors, context corruption, recovery, and fine-tuning in 2026. Here are the key findings:
+
+## Agent Training and Error Recovery (2026)
+
+Recent research on agentic systems introduced agentic trajectories with interleaved code execution during rollout, constructing trajectories through a generate–pause–execute–resume loop that yields hybrid traces composed of chain-of-thought reasoning, inline code snippets, and real-time interpreter feedback.
+
+## Context Corruption and Poisoning
+
+Research into ContextCrush showed that an MCP server can act as a delivery lane for attacker-controlled instructions, and once poisoned context lands in the model's working memory, the agent can exfiltrate secrets, invoke other tools, or destroy local state.
+
+Memory & Context Poisoning involves injection or leakage of agent memory or contextual state that influences future reasoning or actions, including long-term memory poisoning and context injection.
+
+## Fine-Tuning and Recovery Strategies
+
+Reinforcement Fine-Tuning (RFT) supports tool use through function-calling, but MCP is the preferred approach for production agentic systems, allowing implementation of each tool once and then exposure through both MCP interface and function-calling-compatible interface.
+
+In training methodologies, a small fraction of negative-to-positive corrections is injected to strengthen debugging robustness, with the final instruction set combining validated, tool-augmented trajectories with diagnostic correction traces.
+
+## Defense and Recovery Mechanisms
+
+Organizations can effectively detect and mitigate prompt injection attacks in real time by implementing multi-layered defenses including rigorous input validation and sanitization, deploying specialized MCP security tools, using context isolation techniques to prevent cross-user contamination, and integrating these with incident response plans and continuous staff training.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ac5dfaca-366c-41f0-a4be-f8be08654e1f",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "f32f6e68-21bd-42a0-89f0-2b773837c0b9",
+  "toolUseResult": {
+    "query": "non-tool error injection agent training planning errors context corruption recovery fine-tuning 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01K3N6fEKeyRtWmnzcuQHrgF",
+        "content": [
+          {
+            "title": "How Prompt Injection Attacks Compromise AI Agents in 2026",
+            "url": "https://atlan.com/know/prompt-injection-attacks-ai-agents/"
+          },
+          {
+            "title": "MCP Context Poisoning [Deep Dive] in Agentic AI 2026",
+            "url": "https://techbytes.app/posts/mcp-context-poisoning-adversarial-memory-injection/"
+          },
+          {
+            "title": "OWASP Top 10 for Agents 2026 | DeepTeam by Confident AI - The LLM Red Teaming Framework",
+            "url": "https://www.trydeepteam.com/docs/frameworks-owasp-top-10-for-agentic-applications"
+          },
+          {
+            "title": "What's New in Microsoft Foundry Fine-Tuning | April 2026 | Microsoft Foundry Blog",
+            "url": "https://devblogs.microsoft.com/foundry/whats-new-in-foundry-finetune-april-2026/"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2512.20745"
+          },
+          {
+            "title": "Conversational Error Recovery with Reasoning Inception",
+            "url": "https://arxiv.org/pdf/2602.17022"
+          },
+          {
+            "title": "Prompt Injection Attacks in Large Language Models and AI Agent Systems: A Comprehensive Review of Vulnerabilities, Attack Vectors, and Defense Mechanisms",
+            "url": "https://www.mdpi.com/2078-2489/17/1/54"
+          },
+          {
+            "title": "GitHub - iSEngLab/AwesomeLLM4APR: [TOSEM 2026]A Systematic Literature Review on Large Language Models for Automated Program Repair · GitHub",
+            "url": "https://github.com/iSEngLab/AwesomeLLM4APR"
+          },
+          {
+            "title": "A Deep Dive into the OWASP Top 10 for Agentic Applications 2026 | NeuralTrust",
+            "url": "https://neuraltrust.ai/blog/owasp-top-10-for-agentic-applications-2026"
+          },
+          {
+            "title": "MCP Security Vulnerabilities: How to Prevent Prompt Injection and Tool Poisoning Attacks in 2026 - Practical DevSecOps",
+            "url": "https://www.practical-devsecops.com/mcp-security-vulnerabilities/"
+          }
+        ]
+      },
+      "I've performed the web search for your query on non-tool error injection, agent training, planning errors, context corruption, recovery, and fine-tuning in 2026. Here are the key findings:\n\n## Agent Training and Error Recovery (2026)\n\nRecent research on agentic systems introduced agentic trajectories with interleaved code execution during rollout, constructing trajectories through a generate–pause–execute–resume loop that yields hybrid traces composed of chain-of-thought reasoning, inline code snippets, and real-time interpreter feedback.\n\n## Context Corruption and Poisoning\n\nResearch into ContextCrush showed that an MCP server can act as a delivery lane for attacker-controlled instructions, and once poisoned context lands in the model's working memory, the agent can exfiltrate secrets, invoke other tools, or destroy local state.\n\nMemory & Context Poisoning involves injection or leakage of agent memory or contextual state that influences future reasoning or actions, including long-term memory poisoning and context injection.\n\n## Fine-Tuning and Recovery Strategies\n\nReinforcement Fine-Tuning (RFT) supports tool use through function-calling, but MCP is the preferred approach for production agentic systems, allowing implementation of each tool once and then exposure through both MCP interface and function-calling-compatible interface.\n\nIn training methodologies, a small fraction of negative-to-positive corrections is injected to strengthen debugging robustness, with the final instruction set combining validated, tool-augmented trajectories with diagnostic correction traces.\n\n## Defense and Recovery Mechanisms\n\nOrganizations can effectively detect and mitigate prompt injection attacks in real time by implementing multi-layered defenses including rigorous input validation and sanitization, deploying specialized MCP security tools, using context isolation techniques to prevent cross-user contamination, and integrating these with incident response plans and continuous staff training."
+    ],
+    "durationSeconds": 8.379068940000026
+  },
+  "sourceToolAssistantUUID": "ac5dfaca-366c-41f0-a4be-f8be08654e1f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-12T00:08:18.768Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TXVUqqS6Ks7RTHywhnXVfr`</summary>
+
+```json
+{
+  "query": "agent failure recovery training planning decomposition error self-correction trajectory SFT arXiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f32f6e68-21bd-42a0-89f0-2b773837c0b9",
+  "isSidechain": false,
+  "requestId": "req_011CawhefzSmzJhcL7MnhJJp",
+  "type": "assistant",
+  "uuid": "aa8c3ac5-a22a-41e1-9775-e5593f91840e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CyHgwoFmakP4KGqzymmkbn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2348,
+      "cache_read_input_tokens": 44269,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2348,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 44269,
+          "cache_creation_input_tokens": 2348,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2348
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-12T00:08:28.138Z_
+
+<details><summary>↩ Tool result · `toolu_01TXVUqqS6Ks7RTHywhnXVfr`</summary>
+
+```text
+Web search results for query: "agent failure recovery training planning decomposition error self-correction trajectory SFT arXiv 2026"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2512.20745"},{"title":"Agent-R\\xspace: Training Language Model Agents to Reflect via Iterative Self-Training","url":"https://arxiv.org/html/2501.11425v1"},{"title":"2024-10-7 Training Language Models to Self-Correct via Reinforcement Learning","url":"https://arxiv.org/pdf/2409.12917"},{"title":"Trajectory-Informed Memory Generation for Self-Improving Agent Systems","url":"https://arxiv.org/html/2603.10600v1"},{"title":"CLEANER: Self-Purified Trajectories Boost Agentic Reinforcement Learning","url":"https://arxiv.org/html/2601.15141"},{"title":"From Expert Trajectories to Step-wise Reasoning","url":"https://arxiv.org/pdf/2510.25992"},{"title":"WHERE LLM AGENTS FAIL AND HOW THEY CAN LEARN FROM FAILURES","url":"https://arxiv.org/pdf/2509.25370"},{"title":"[2603.10600] Trajectory-Informed Memory Generation for Self-Improving Agent Systems","url":"https://arxiv.org/abs/2603.10600"},{"title":"[2510.14319] Metacognitive Self-Correction for Multi-Agent System via Prototype-Guided Next-Execution Reconstruction","url":"https://arxiv.org/abs/2510.14319"},{"title":"Technical Report Inference-Time Scaling of Verification: Self-Evolving Deep Re-","url":"https://arxiv.org/pdf/2601.15808"}]
+
+I found several highly relevant papers from arXiv 2026 that address agent failure recovery, training, error self-correction, and trajectory-based methods. Here are the key findings:
+
+## AgentMath (ICLR 2026)
+
+A comprehensive pipeline produces 14k valid self-correction trajectories and constructs a 316k tool-augmented synthetic training set with an average of 8.3 tool calls and 16.9K tokens per sample. The approach uses SFT on curated, synthetic tool-invocation trajectories for initial competence, followed by large-scale RL driven by outcome feedback to incentivize self-corrective tool-use strategies.
+
+## Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training
+
+The method re-collects model-guided revision trajectories and performs SFT to optimize learning, allowing agents to build enhanced self-reflection capabilities and transform from error-prone behaviors to stronger performance. This supports the agent's ability to dynamically recover from errors and learn from experiences, facilitating reflection on actions and continuous performance enhancement.
+
+## CLEANER: Self-Purified Trajectories for Agentic RL
+
+The Similarity-Aware Adaptive Rollback (SAAR) mechanism autonomously constructs clean, purified trajectories by retrospectively replacing failures with successful self-corrections. CLEANER exploits the model's intrinsic self-correction capabilities to eliminate error-contaminated context during data collection, allowing the model to internalize correct reasoning patterns rather than error-recovery loops.
+
+## AgentDebug: Learning from Agent Failures
+
+AgentDebug is a debugging framework that decomposes a trajectory into decision steps, isolates the minimal set of root-cause failures, and provides corrective feedback back to the responsible states or actions. Error propagation—where early mistakes cascade into later failures—is identified as a key bottleneck to robustness.
+
+These papers collectively demonstrate state-of-the-art approaches for training agents to recover from failures through self-correction, trajectory decomposition, and iterative learning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aa8c3ac5-a22a-41e1-9775-e5593f91840e",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "fb32228d-cfd8-40df-a921-6fa4c028cc48",
+  "toolUseResult": {
+    "query": "agent failure recovery training planning decomposition error self-correction trajectory SFT arXiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01A1fE294m6T8huaEnV6EBaE",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2512.20745"
+          },
+          {
+            "title": "Agent-R\\xspace: Training Language Model Agents to Reflect via Iterative Self-Training",
+            "url": "https://arxiv.org/html/2501.11425v1"
+          },
+          {
+            "title": "2024-10-7 Training Language Models to Self-Correct via Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2409.12917"
+          },
+          {
+            "title": "Trajectory-Informed Memory Generation for Self-Improving Agent Systems",
+            "url": "https://arxiv.org/html/2603.10600v1"
+          },
+          {
+            "title": "CLEANER: Self-Purified Trajectories Boost Agentic Reinforcement Learning",
+            "url": "https://arxiv.org/html/2601.15141"
+          },
+          {
+            "title": "From Expert Trajectories to Step-wise Reasoning",
+            "url": "https://arxiv.org/pdf/2510.25992"
+          },
+          {
+            "title": "WHERE LLM AGENTS FAIL AND HOW THEY CAN LEARN FROM FAILURES",
+            "url": "https://arxiv.org/pdf/2509.25370"
+          },
+          {
+            "title": "[2603.10600] Trajectory-Informed Memory Generation for Self-Improving Agent Systems",
+            "url": "https://arxiv.org/abs/2603.10600"
+          },
+          {
+            "title": "[2510.14319] Metacognitive Self-Correction for Multi-Agent System via Prototype-Guided Next-Execution Reconstruction",
+            "url": "https://arxiv.org/abs/2510.14319"
+          },
+          {
+            "title": "Technical Report Inference-Time Scaling of Verification: Self-Evolving Deep Re-",
+            "url": "https://arxiv.org/pdf/2601.15808"
+          }
+        ]
+      },
+      "I found several highly relevant papers from arXiv 2026 that address agent failure recovery, training, error self-correction, and trajectory-based methods. Here are the key findings:\n\n## AgentMath (ICLR 2026)\n\nA comprehensive pipeline produces 14k valid self-correction trajectories and constructs a 316k tool-augmented synthetic training set with an average of 8.3 tool calls and 16.9K tokens per sample. The approach uses SFT on curated, synthetic tool-invocation trajectories for initial competence, followed by large-scale RL driven by outcome feedback to incentivize self-corrective tool-use strategies.\n\n## Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training\n\nThe method re-collects model-guided revision trajectories and performs SFT to optimize learning, allowing agents to build enhanced self-reflection capabilities and transform from error-prone behaviors to stronger performance. This supports the agent's ability to dynamically recover from errors and learn from experiences, facilitating reflection on actions and continuous performance enhancement.\n\n## CLEANER: Self-Purified Trajectories for Agentic RL\n\nThe Similarity-Aware Adaptive Rollback (SAAR) mechanism autonomously constructs clean, purified trajectories by retrospectively replacing failures with successful self-corrections. CLEANER exploits the model's intrinsic self-correction capabilities to eliminate error-contaminated context during data collection, allowing the model to internalize correct reasoning patterns rather than error-recovery loops.\n\n## AgentDebug: Learning from Agent Failures\n\nAgentDebug is a debugging framework that decomposes a trajectory into decision steps, isolates the minimal set of root-cause failures, and provides corrective feedback back to the responsible states or actions. Error propagation—where early mistakes cascade into later failures—is identified as a key bottleneck to robustness.\n\nThese papers collectively demonstrate state-of-the-art approaches for training agents to recover from failures through self-correction, trajectory decomposition, and iterative learning."
+    ],
+    "durationSeconds": 9.365389563999953
+  },
+  "sourceToolAssistantUUID": "aa8c3ac5-a22a-41e1-9775-e5593f91840e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-12T00:08:33.040Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TF6phM9Fg8688WHQtkyfT2`</summary>
+
+```json
+{
+  "query": "AgentRefine ICLR 2025 code available GitHub open source implementation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fb32228d-cfd8-40df-a921-6fa4c028cc48",
+  "isSidechain": false,
+  "requestId": "req_011CawhfZiwWZZoYfBmD655f",
+  "type": "assistant",
+  "uuid": "26083f7f-ae3b-4ef9-8f7f-7c5ae82e0e56",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014qsAdZP7S4akqc676958p7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1004,
+      "cache_read_input_tokens": 46617,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1004,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 46617,
+          "cache_creation_input_tokens": 1004,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1004
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-12T00:08:37.560Z_
+
+<details><summary>↩ Tool result · `toolu_01TF6phM9Fg8688WHQtkyfT2`</summary>
+
+```text
+Web search results for query: "AgentRefine ICLR 2025 code available GitHub open source implementation"
+
+Links: [{"title":"GitHub - Fu-Dayuan/AgentRefine: (ICLR 2025) AgentRefine: Enhancing Agent Generalization through Refinement Tuning","url":"https://github.com/Fu-Dayuan/AgentRefine"},{"title":"GitHub - yinizhilian/ICLR2025-Papers-with-Code: 历年ICLR论文和开源项目合集，包含ICLR2021、ICLR2022、ICLR2023、ICLR2024、ICLR2025.","url":"https://github.com/yinizhilian/ICLR2025-Papers-with-Code"},{"title":"Published as a conference paper at ICLR 2025 AGENTREFINE:","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/a3cc50126338b175e56bb3cad134db0b-Paper-Conference.pdf"},{"title":"ICLR2025-Papers-with-Code/ICLR2024-Papers-with-Code.md at main · yinizhilian/ICLR2025-Papers-with-Code","url":"https://github.com/yinizhilian/ICLR2025-Papers-with-Code/blob/main/ICLR2024-Papers-with-Code.md"},{"title":"ICLR · GitHub","url":"https://github.com/ICLR"},{"title":"Published as a conference paper at ICLR 2025 OPENHANDS: AN OPEN PLATFORM FOR","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/a4b6ad6b48850c0c331d1259fc66a69c-Paper-Conference.pdf"},{"title":"Code Researcher: Deep Research Agent for Large Systems Code and Commit History | OpenReview","url":"https://openreview.net/forum?id=aPOk0OjChf"},{"title":"GitHub - berenslab/iclr-dataset: ICLR dataset · GitHub","url":"https://github.com/berenslab/iclr-dataset"},{"title":"ICLR2025-Papers-with-Code/ICLR2023-Papers-with-Code.md at main · yinizhilian/ICLR2025-Papers-with-Code","url":"https://github.com/yinizhilian/ICLR2025-Papers-with-Code/blob/main/ICLR2023-Papers-with-Code.md"},{"title":"Agentic AI for Scientific Discovery","url":"https://iclragenticai.github.io/"}]
+
+Based on the search results, here's what I found about AgentRefine for ICLR 2025:
+
+## AgentRefine Code Availability
+
+The code is available at https://github.com/Fu-Dayuan/AgentRefine.
+
+## Project Details
+
+AgentRefine is an agent synthesis framework that enables models to learn from observations within trajectories to correct their own errors. AgentRefine significantly outperforms state-of-the-art agent tuning works in terms of generalization capabilities across diverse agent tasks.
+
+## Release Timeline
+
+As of January 2025, the project announced plans to release the model and inference code within one month.
+
+The GitHub repository at https://github.com/Fu-Dayuan/AgentRefine is the official implementation for this ICLR 2025 paper on enhancing agent generalization through refinement tuning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "26083f7f-ae3b-4ef9-8f7f-7c5ae82e0e56",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "5d847055-2371-4acb-916b-f105d72c0d67",
+  "toolUseResult": {
+    "query": "AgentRefine ICLR 2025 code available GitHub open source implementation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018FC7aEQW4GYpJbvKMLrbaY",
+        "content": [
+          {
+            "title": "GitHub - Fu-Dayuan/AgentRefine: (ICLR 2025) AgentRefine: Enhancing Agent Generalization through Refinement Tuning",
+            "url": "https://github.com/Fu-Dayuan/AgentRefine"
+          },
+          {
+            "title": "GitHub - yinizhilian/ICLR2025-Papers-with-Code: 历年ICLR论文和开源项目合集，包含ICLR2021、ICLR2022、ICLR2023、ICLR2024、ICLR2025.",
+            "url": "https://github.com/yinizhilian/ICLR2025-Papers-with-Code"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025 AGENTREFINE:",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/a3cc50126338b175e56bb3cad134db0b-Paper-Conference.pdf"
+          },
+          {
+            "title": "ICLR2025-Papers-with-Code/ICLR2024-Papers-with-Code.md at main · yinizhilian/ICLR2025-Papers-with-Code",
+            "url": "https://github.com/yinizhilian/ICLR2025-Papers-with-Code/blob/main/ICLR2024-Papers-with-Code.md"
+          },
+          {
+            "title": "ICLR · GitHub",
+            "url": "https://github.com/ICLR"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025 OPENHANDS: AN OPEN PLATFORM FOR",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/a4b6ad6b48850c0c331d1259fc66a69c-Paper-Conference.pdf"
+          },
+          {
+            "title": "Code Researcher: Deep Research Agent for Large Systems Code and Commit History | OpenReview",
+            "url": "https://openreview.net/forum?id=aPOk0OjChf"
+          },
+          {
+            "title": "GitHub - berenslab/iclr-dataset: ICLR dataset · GitHub",
+            "url": "https://github.com/berenslab/iclr-dataset"
+          },
+          {
+            "title": "ICLR2025-Papers-with-Code/ICLR2023-Papers-with-Code.md at main · yinizhilian/ICLR2025-Papers-with-Code",
+            "url": "https://github.com/yinizhilian/ICLR2025-Papers-with-Code/blob/main/ICLR2023-Papers-with-Code.md"
+          },
+          {
+            "title": "Agentic AI for Scientific Discovery",
+            "url": "https://iclragenticai.github.io/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about AgentRefine for ICLR 2025:\n\n## AgentRefine Code Availability\n\nThe code is available at https://github.com/Fu-Dayuan/AgentRefine.\n\n## Project Details\n\nAgentRefine is an agent synthesis framework that enables models to learn from observations within trajectories to correct their own errors. AgentRefine significantly outperforms state-of-the-art agent tuning works in terms of generalization capabilities across diverse agent tasks.\n\n## Release Timeline\n\nAs of January 2025, the project announced plans to release the model and inference code within one month.\n\nThe GitHub repository at https://github.com/Fu-Dayuan/AgentRefine is the official implementation for this ICLR 2025 paper on enhancing agent generalization through refinement tuning."
+    ],
+    "durationSeconds": 4.511800978999992
+  },
+  "sourceToolAssistantUUID": "26083f7f-ae3b-4ef9-8f7f-7c5ae82e0e56",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 73_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-11 (UTC).**  ## Original idea {   \"title\": \"TaxEI: Structured Non-Tool Error Injection for Agent Recovery Training…",
+  "leafUuid": "5d847055-2371-4acb-916b-f105d72c0d67",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 74_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise TaxEI with PALADIN venue correction and Wu et al. defusing",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6"
+}
+```
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-12T00:08:44.223Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FkW6VBXnqhuomckb9WHZ5z`</summary>
+
+```json
+{
+  "query": "AgentHER hindsight experience replay LLM agent code GitHub available 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5d847055-2371-4acb-916b-f105d72c0d67",
+  "isSidechain": false,
+  "requestId": "req_011CawhgH2P4yExUzwsouoY2",
+  "type": "assistant",
+  "uuid": "6f9b466c-4bdb-407a-9cd7-394fbe0973dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L6STVzg8HxJRHyweq7ZHME",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 976,
+      "cache_read_input_tokens": 47621,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 976,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 47621,
+          "cache_creation_input_tokens": 976,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 976
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-12T00:08:50.385Z_
+
+<details><summary>↩ Tool result · `toolu_01FkW6VBXnqhuomckb9WHZ5z`</summary>
+
+```text
+Web search results for query: "AgentHER hindsight experience replay LLM agent code GitHub available 2026"
+
+Links: [{"title":"AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling","url":"https://arxiv.org/html/2603.21357v2"},{"title":"[2603.21357] AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling","url":"https://arxiv.org/abs/2603.21357"},{"title":"GitHub - vectorize-io/hindsight: Hindsight: Agent Memory That Learns · GitHub","url":"https://github.com/vectorize-io/hindsight"},{"title":"GitHub - anitiue/Hindsight: An experience-driven self-improvement framework for LLM agents — 基于经验的 LLM Agent 自我改进框架","url":"https://github.com/anitiue/Hindsight"},{"title":"GitHub - AGI-Edgerunners/LLM-Agents-Papers: A repo lists papers related to LLM based agent · GitHub","url":"https://github.com/AGI-Edgerunners/LLM-Agents-Papers"},{"title":"Hindsight - LLM Agent Research","url":"https://lin-guanguo.github.io/llm-memory-research/hindsight.research/"},{"title":"[2505.17716] Get Experience from Practice: LLM Agents with Record & Replay","url":"https://arxiv.org/abs/2505.17716"},{"title":"hindsight/hindsight-api-slim/hindsight_api/engine/providers/litellm_llm.py at main · vectorize-io/hindsight","url":"https://github.com/vectorize-io/hindsight/blob/main/hindsight-api-slim/hindsight_api/engine/providers/litellm_llm.py"},{"title":"llm-agent · GitHub Topics · GitHub","url":"https://github.com/topics/llm-agent"},{"title":"workshop-tailscale-replay-2026/exercises/03_weather_agent at main · temporal-community/workshop-tailscale-replay-2026","url":"https://github.com/temporal-community/workshop-tailscale-replay-2026/tree/main/exercises/03_weather_agent"}]
+
+Based on the web search results, I found relevant information about **AgentHER** and hindsight experience replay for LLM agents:
+
+## AgentHER Overview
+
+AgentHER is a framework that recovers lost training signal by adapting the Hindsight Experience Replay (HER) principle to natural-language agent trajectories for offline data augmentation. The framework works through a four-stage pipeline -- failure classification, outcome extraction, LLM-guided prompt relabeling with confidence gating, and data packaging -- that converts discarded failures into high-quality SFT, DPO, and ShareGPT training data.
+
+## Research Paper and Availability
+
+AgentHER adapts the Hindsight Experience Replay principle to natural-language agent trajectories through a four-stage pipeline that includes failure classification, outcome extraction, LLM-guided prompt relabeling with confidence gating, and data packaging, with both zero-cost rule-based and LLM-judge implementations.
+
+The research paper is available on arXiv (paper 2603.21357) as of March-April 2026. However, based on the search results provided, I did not find a specific GitHub repository for the AgentHER code itself in the results. The search results reference the arXiv paper but do not indicate the availability of public code on GitHub for this specific project.
+
+If you're looking for the actual implementation code, you may want to check the arXiv paper directly or look for any author-associated GitHub repositories, as they may have released the code alongside the publication.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6f9b466c-4bdb-407a-9cd7-394fbe0973dc",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "2bfe4546-74b4-4afd-88bf-485fe6226720",
+  "toolUseResult": {
+    "query": "AgentHER hindsight experience replay LLM agent code GitHub available 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01X2MEdxyiabepvFgD79KiTe",
+        "content": [
+          {
+            "title": "AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling",
+            "url": "https://arxiv.org/html/2603.21357v2"
+          },
+          {
+            "title": "[2603.21357] AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling",
+            "url": "https://arxiv.org/abs/2603.21357"
+          },
+          {
+            "title": "GitHub - vectorize-io/hindsight: Hindsight: Agent Memory That Learns · GitHub",
+            "url": "https://github.com/vectorize-io/hindsight"
+          },
+          {
+            "title": "GitHub - anitiue/Hindsight: An experience-driven self-improvement framework for LLM agents — 基于经验的 LLM Agent 自我改进框架",
+            "url": "https://github.com/anitiue/Hindsight"
+          },
+          {
+            "title": "GitHub - AGI-Edgerunners/LLM-Agents-Papers: A repo lists papers related to LLM based agent · GitHub",
+            "url": "https://github.com/AGI-Edgerunners/LLM-Agents-Papers"
+          },
+          {
+            "title": "Hindsight - LLM Agent Research",
+            "url": "https://lin-guanguo.github.io/llm-memory-research/hindsight.research/"
+          },
+          {
+            "title": "[2505.17716] Get Experience from Practice: LLM Agents with Record & Replay",
+            "url": "https://arxiv.org/abs/2505.17716"
+          },
+          {
+            "title": "hindsight/hindsight-api-slim/hindsight_api/engine/providers/litellm_llm.py at main · vectorize-io/hindsight",
+            "url": "https://github.com/vectorize-io/hindsight/blob/main/hindsight-api-slim/hindsight_api/engine/providers/litellm_llm.py"
+          },
+          {
+            "title": "llm-agent · GitHub Topics · GitHub",
+            "url": "https://github.com/topics/llm-agent"
+          },
+          {
+            "title": "workshop-tailscale-replay-2026/exercises/03_weather_agent at main · temporal-community/workshop-tailscale-replay-2026",
+            "url": "https://github.com/temporal-community/workshop-tailscale-replay-2026/tree/main/exercises/03_weather_agent"
+          }
+        ]
+      },
+      "Based on the web search results, I found relevant information about **AgentHER** and hindsight experience replay for LLM agents:\n\n## AgentHER Overview\n\nAgentHER is a framework that recovers lost training signal by adapting the Hindsight Experience Replay (HER) principle to natural-language agent trajectories for offline data augmentation. The framework works through a four-stage pipeline -- failure classification, outcome extraction, LLM-guided prompt relabeling with confidence gating, and data packaging -- that converts discarded failures into high-quality SFT, DPO, and ShareGPT training data.\n\n## Research Paper and Availability\n\nAgentHER adapts the Hindsight Experience Replay principle to natural-language agent trajectories through a four-stage pipeline that includes failure classification, outcome extraction, LLM-guided prompt relabeling with confidence gating, and data packaging, with both zero-cost rule-based and LLM-judge implementations.\n\nThe research paper is available on arXiv (paper 2603.21357) as of March-April 2026. However, based on the search results provided, I did not find a specific GitHub repository for the AgentHER code itself in the results. The search results reference the arXiv paper but do not indicate the availability of public code on GitHub for this specific project.\n\nIf you're looking for the actual implementation code, you may want to check the arXiv paper directly or look for any author-associated GitHub repositories, as they may have released the code alongside the publication."
+    ],
+    "durationSeconds": 6.157157627000008
+  },
+  "sourceToolAssistantUUID": "6f9b466c-4bdb-407a-9cd7-394fbe0973dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77 · 2026-05-12T00:09:16.282Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the research I need. Let me synthesize:
+
+### Key Research Findings Summary:
+
+1. **PALADIN venue**: Confirmed desk-rejected from ICLR 2026 (OpenReview M2AXTAKXbz). Accepted as oral at AAAI 2026 LaMAS Workshop (OpenReview NVTtoO297p). The arXiv PDF misleadingly has "Published as a conference paper at ICLR 2026" in its header, but this is incorrect. Should cite as "PALADIN (AAAI 2026 LaMAS Workshop)" or "PALADIN (arXiv 2025)".
+
+
+2. **Wu et al. (arXiv 2512.02389)**: Their approach failed on toy tasks with 1B models because they used pure chain-of-thought without environment feedback, creating a distribution mismatch between synthetic and on-policy errors. TaxEI differs fundamentally in using agent trajectories with real environment feedback, scaling to much larger models, tackling multi-step interactive tasks, and leveraging external error detection signals.
+3. **WebArena open-weight SOTA**: Looking at the current performance benchmarks across leading models.
+4. **verl-agent**: Apache-2.0 license is confirmed.
+5. **SFT vs RL**: Recent work shows RL generalizes better than pure SFT, but SFT serves as a crucial warm-start. The key insight for TaxEI is that SFT with structured labels enables a supervised curriculum, and the DETECT→CLASSIFY→RECOVER pipeline provides explicit structure that RL would otherwise need to learn from scratch.
+6. **Baseline availability**: AgentRefine has public code, but AgentHER likely doesn't.
+7. **No direct competitor found**: The gap between existing approaches and what TaxEI offers is becoming clearer.
+
+Now I'm mapping out the revision plan—fixing PALADIN's venue from ICLR 2026 to AAAI 2026 LaMAS Workshop, updating WebArena SOTA numbers, correcting the license, trimming baselines to focus on PALADIN and Agent-R with full reproduction plus AgentRefine/AgentHER for reported results, making GAIA a stretch goal while keeping ALFWorld and WebShop as core benchmarks, and adjusting the timeline and compute budget to stay within 16 days and 200 units.
+
+Generating the revised JSON...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2bfe4546-74b4-4afd-88bf-485fe6226720",
+  "isSidechain": false,
+  "requestId": "req_011CawhhCpu8tmyYy6D3REoX",
+  "type": "assistant",
+  "uuid": "136ff068-a1e5-41c9-a4cc-36a98e746ab1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AQRPbVWJqawFeW9EUtKuGz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1027,
+      "cache_read_input_tokens": 48597,
+      "output_tokens": 8068,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1027,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8068,
+          "cache_read_input_tokens": 48597,
+          "cache_creation_input_tokens": 1027,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1027
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78 · 2026-05-12T00:09:21.046Z_
+
+I now have all the research I need. Let me summarize findings before writing the revision:
+
+**Key findings:**
+- **PALADIN venue**: Confirmed desk-rejected from ICLR 2026 (OpenReview M2AXTAKXbz), accepted as oral at AAAI 2026 LaMAS Workshop (OpenReview NVTtoO297p). The arXiv PDF misleadingly says "ICLR 2026" but this is wrong.
+- **Wu et al.**: Tested only 1B models on toy tasks (multiplication, Sudoku), pure CoT with no environment feedback. Error recognition drops from 94% → 8% on distribution shift. Substantially different from agent trajectory setting.
+- **WebArena SOTA**: Open-weight now 46-57% (Qwen3.6 Plus 57.2%, Qwen3.5 397B 55.8%, etc.)
+- **verl-agent**: Apache-2.0 confirmed
+- **No direct competitor found** for taxonomy-guided non-tool error injection for agent training — the gap remains valid
+- **SFT vs RL**: "SFT Memorizes, RL Generalizes" (ICML 2025) is an important reference; SFT essential as warm-start for RL
+
+Now writing the complete revised JSON:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "136ff068-a1e5-41c9-a4cc-36a98e746ab1",
+  "isSidechain": false,
+  "requestId": "req_011CawhhCpu8tmyYy6D3REoX",
+  "type": "assistant",
+  "uuid": "7789d99e-08b6-4d1e-b2c1-327c27054e20",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AQRPbVWJqawFeW9EUtKuGz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1027,
+      "cache_read_input_tokens": 48597,
+      "output_tokens": 8068,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1027,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8068,
+          "cache_read_input_tokens": 48597,
+          "cache_creation_input_tokens": 1027,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1027
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-12T00:12:13.246Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01KqV259UkjTRczwRWUfabz7`</summary>
+
+```json
+{
+  "file_path": "/tmp/taxei_revision_r4.json",
+  "content": "{\n  \"change_type\": \"minor\",\n  \"title\": \"TaxEI: Structured Non-Tool Error Injection for Agent Recovery Training\",\n  \"core_problem\": \"LLM agents fail frequently at planning and context management — even as open-weight WebArena success rates have risen to 46-57% (Qwen3.6 Plus: 57.2%, DeepSeek V3.2: 48.6%), failure analysis consistently shows planning decomposition errors and context loss account for 40-55% of agent failures across benchmarks (AgentDebug taxonomy, AgenTracer). Yet all training-time error-resilience work targets only tool-level failures or operates without structured error categorization: PALADIN (AAAI 2026 LaMAS Workshop) injects API exceptions and timeouts into 50K+ trajectories for SFT-based recovery, achieving 89.7% tool-error recovery — but planning errors, context corruption, and memory failures remain unaddressed at training time. Agent-R (arXiv 2025) trains recovery via MCTS-based iterative self-training on natural errors but without error categorization, limiting targeted improvement. AgentRefine (ICLR 2025) learns from environment feedback through refinement tuning for generalization but does not inject structured faults. Meanwhile, MAS-FIRE (arXiv 2026) defines a comprehensive taxonomy of 15 fault types including planning and memory categories — but purely for evaluation, not training. Inference-time approaches (AgentDebug, ErrorProbe, SHIELDA) add scaffolding without improving the agent's inherent robustness, while AgenTracer trains a separate diagnostic model to locate errors but does not teach agents to recover from them.\",\n  \"opportunity\": \"PALADIN (AAAI 2026 LaMAS Workshop) demonstrated that training-time error injection with SFT substantially improves tool-failure recovery (+13.6% recovery rate), establishing injection-for-recovery as a viable paradigm. MAS-FIRE (arXiv 2026) defined a systematic fault taxonomy of 15 types covering planning (Inexecutable Plan, Critical Information Loss), memory (Memory Loss, Context Length Violation), reasoning, and action categories — but for evaluation, not training. AgenTracer (arXiv 2025) showed that programmatic fault injection on trajectories can generate high-fidelity failure data and trained a diagnostic model via GRPO — but for error attribution, not recovery. Agent-R (arXiv 2025) trains recovery via MCTS-based self-training, splicing correct paths into failed trajectories (+5.59% on WebShop/ScienceWorld/TextCraft) — but does not categorize errors or target specific failure modes. AgentRefine (ICLR 2025) improves agent generalization through refinement tuning with environment feedback, achieving better perturbation robustness — but operates on natural errors without structured injection. ERL (arXiv 2026) embeds reflection-consolidation into RL training to learn from natural failures (+81% in multi-step environments), but does not inject structured faults or target specific error categories. AgentHER (arXiv 2026) repurposes failed trajectories via hindsight relabeling for +7-12pp SFT/DPO gains but does not inject errors or train category-specific recovery.\\n\\nA potential concern is raised by Wu et al. (arXiv 2512.02389), who found that SFT with synthetic error injection fails to elicit self-correction in language models due to distribution mismatch between synthetic and on-policy errors. However, their study tested only 1B-parameter models on toy tasks (4-digit multiplication, 4×4 Sudoku) using pure chain-of-thought reasoning without any environment feedback — a fundamentally different setting from agent trajectory training. In agent settings, environment feedback provides external error signals (failed actions, unexpected observations) that ground error detection in observable state changes rather than requiring purely introspective self-correction. Indeed, PALADIN demonstrated that SFT with injection works for agent tool-error recovery, directly contradicting Wu et al.'s conclusion when environment grounding is present.\\n\\nThe gap: MAS-FIRE proved that structured fault taxonomies can systematically expose agent weaknesses; PALADIN proved that injection-for-recovery works for tool errors in agent settings; Agent-R proved that training recovery from errors improves performance — but no work has combined structured category-specific injection of non-tool errors (planning, context/memory) with recovery-oriented training. TaxEI bridges this gap by operationalizing MAS-FIRE-style fault categories as training-time injection operators, extending PALADIN's validated paradigm beyond tool errors.\",\n  \"landscape\": \"Training-time approaches: PALADIN (AAAI 2026 LaMAS Workshop, arXiv 2509.25238) injects tool failures (API exceptions, timeouts, hallucinated tools) into 50K+ trajectories and trains recovery via LoRA SFT, achieving +13.6% avg recovery rate — but is limited to tool errors and requires an inference-time exemplar bank. Agent-R (arXiv 2025, ByteDance) uses MCTS to construct error-recovery training pairs by identifying the first error step in failed trajectories and splicing correct paths, achieving +5.59% on WebShop/ScienceWorld/TextCraft via SFT on Llama-3.1-8B — but without error categorization, recovery is unstructured. AgentRefine (ICLR 2025) enables agents to learn from mistakes via environment feedback through refinement tuning, improving generalization and perturbation robustness — but operates on natural errors without structured injection or category targeting. AgenTracer (arXiv 2025) uses LLM-based perturbation operators to corrupt successful trajectories and trains AgenTracer-8B (GRPO) for error diagnosis — achieving up to 14.2% improvement when feeding diagnostic output back to agents, but the agent itself does not learn recovery. ERL (arXiv 2026) integrates experience-reflection-consolidation into RL, learning from naturally-occurring failures for +81% in control tasks and +11% in tool-use — but without structured injection or error categorization. AgentHER (arXiv 2026) converts failed trajectories into training data via hindsight relabeling (+7-12pp on WebArena/ToolBench), a data-efficiency technique complementary to error injection.\\n\\nSFT vs. RL for self-correction: Wu et al. (arXiv 2512.02389) showed that SFT with synthetic error injection fails for pure CoT self-correction in 1B models on toy reasoning tasks, due to distribution mismatch between synthetic and on-policy errors (error recognition dropped from 94% to 8% on distribution-shifted errors). SCoRe (Kumar et al., arXiv 2024) demonstrated that on-policy RL achieves substantially positive intrinsic self-correction (+15.6% on MATH). 'SFT Memorizes, RL Generalizes' (Chu et al., ICML 2025) showed RL generalizes to OOD scenarios where SFT memorizes — but also found SFT essential as a warm-start for RL. Critically, Wu et al.'s negative finding applies to introspective self-correction without environment feedback; in agent settings with environment grounding, PALADIN demonstrated that SFT with injection successfully teaches recovery from tool errors, suggesting the environment feedback loop mitigates the distribution-mismatch concern. TaxEI's held-out operator and AgentErrorBench evaluations directly measure whether this mitigation extends to planning/context errors.\\n\\nEvaluation-time approaches: MAS-FIRE (arXiv 2026) defines a taxonomy of 15 fault types across 7 categories — including Planning (Inexecutable Plan, Critical Information Loss), Memory (Memory Loss, Context Length Violation), Reasoning (Hallucination), and Action faults — injected via prompt modification, response rewriting, and message routing manipulation. It evaluates on 3 MAS architectures and finds that iterative closed-loop designs neutralize 40%+ of faults that collapse linear workflows, but does not use this taxonomy for training. AgentDebug (arXiv 2025) provides modular corrective feedback with AgentErrorTaxonomy covering memory, reflection, planning, action, and system categories, and releases AgentErrorBench (200 expert-annotated failure trajectories on ALFWorld/GAIA/WebShop, Cohen's kappa=0.55) — achieving +26% relative improvement via inference-time feedback. ReliabilityBench (arXiv 2026) evaluates agent reliability across consistency, robustness, and fault tolerance using chaos-engineering-style injection (timeouts, rate limits, schema drift). ErrorProbe (arXiv 2026) does symptom-driven backward tracing with verified error/patch memory. SHIELDA (arXiv 2025) defines 36 exception types across 12 agent artifacts but uses heuristic protocols. Hell or High Water (arXiv 2025) evaluates agentic recovery from external failures, finding that agents struggle to formulate backup plans even in restricted search spaces.\\n\\nKey insight from 'What Do Agents Learn from Trajectory-SFT' (arXiv 2026): trajectory SFT can induce interface shortcutting rather than semantic learning — our error injection approach may counteract this by forcing agents to handle unexpected states rather than memorizing normal-case patterns.\\n\\nThe fundamental gap: MAS-FIRE proved that structured fault taxonomies (including planning and memory categories) systematically expose agent weaknesses at evaluation time. PALADIN proved injection-for-recovery works for tool errors at training time. Agent-R proved that training error recovery improves performance. AgentRefine proved that learning from mistakes improves generalization. Wu et al. showed SFT-based self-correction fails without environment grounding, but PALADIN showed it succeeds with it. No work has combined structured category-specific injection of planning and context/memory errors — aligned with established evaluation taxonomies — with recovery-oriented agent training in environment-grounded settings. TaxEI uniquely provides both the injection taxonomy (operationalizing MAS-FIRE-style fault categories as training operators) and the recovery policy (extending PALADIN's SFT paradigm) in a single pipeline.\",\n  \"approach\": \"We propose TaxEI (Taxonomy-guided Error Injection), a training framework that extends PALADIN's injection-for-recovery paradigm from tool-only errors to planning and context/memory error categories. TaxEI operationalizes fault categories from evaluation frameworks (particularly MAS-FIRE's taxonomy) as concrete injection operators for recovery-oriented SFT, implemented via LangGraph middleware hooks on the verl-agent infrastructure.\\n\\n**Error Injection Operators** (the core technical contribution):\\n\\nWe define 8 injection operators across 2 non-tool error categories, explicitly aligned with MAS-FIRE's intra-agent fault taxonomy:\\n\\n*Planning errors* (4 operators, injected via @before_model middleware modifying plan state; aligned with MAS-FIRE's Planning faults):\\n(P1) Step-order swap: transpose two causally-dependent steps in a decomposed plan (e.g., swap 'pick up knife' and 'go to countertop'). [Aligned with MAS-FIRE: Inexecutable Plan]\\n(P2) Sub-goal deletion: remove a critical intermediate step, leaving an unachievable gap. [Aligned with MAS-FIRE: Critical Information Loss]\\n(P3) Irrelevant sub-goal insertion: inject an unrelated action step (e.g., 'examine painting' during a cooking task). [Novel: not directly in MAS-FIRE]\\n(P4) Goal drift: mid-trajectory, subtly shift the target objective to a related but different goal. [Novel: extends MAS-FIRE's Critical Information Loss to objective-level corruption]\\n\\n*Context/memory errors* (4 operators, injected via custom state modifier on message history; aligned with MAS-FIRE's Memory faults):\\n(C1) Context truncation: remove the earliest k observations from the agent's context, simulating window overflow. [Aligned with MAS-FIRE: Memory Loss / Context Length Violation]\\n(C2) Contradictory fact injection: insert an observation contradicting a previously established fact (e.g., 'the drawer is empty' after the agent saw an item in it). [Novel: extends MAS-FIRE's Memory faults to active corruption]\\n(C3) Stale state replay: repeat an outdated observation as current, simulating failure to track state changes. [Novel: not directly in MAS-FIRE]\\n(C4) Observation masking: replace a critical observation with a null/empty result, simulating environment feedback loss. [Aligned with MAS-FIRE: Memory Loss]\\n\\nKey differentiation from related training-time approaches: (1) vs. PALADIN: extends from tool errors to planning/context errors; (2) vs. Agent-R: uses structured category-specific injection rather than mining natural errors without categorization; (3) vs. AgentRefine: injects synthetic faults into successful trajectories rather than learning from natural environment feedback; (4) vs. AgenTracer: trains recovery policies in the agent itself rather than a separate diagnostic model; (5) vs. Wu et al.: operates in environment-grounded agent settings where external feedback signals provide observable error indicators, unlike pure CoT introspection.\\n\\n**Why SFT first (not RL)**: Beyond compute constraints, there are principled reasons to begin with SFT for taxonomy-guided error recovery. First, TaxEI's structured injection labels (operator category, error location, recovery strategy) enable a supervised curriculum — the DETECT→CLASSIFY→RECOVER format provides explicit training signal that RL would need to discover from scratch through exploration. Second, 'SFT Memorizes, RL Generalizes' (ICML 2025) found SFT essential as a warm-start for RL, suggesting the right order is SFT→RL, not RL alone. Third, the held-out operator evaluation directly tests whether SFT-trained recovery generalizes beyond memorized patterns — if it does, SFT suffices; if not, this provides precisely the evidence needed to motivate RL-based recovery as the next step, creating a clear scientific contribution either way.\\n\\n**Pipeline**:\\n\\n(0) **Teacher Quality Pilot Study**: Before scaling, validate GPT-4o's recovery demonstration quality. Generate 50 recovery demonstrations per operator category (400 total). Two annotators independently evaluate each for: (a) correct error detection, (b) appropriate recovery strategy, (c) successful task continuation. Report precision and inter-annotator agreement per category. If any category falls below 80% precision, apply mitigation: use a stronger reasoning model (o1/o3) for that category's recovery generation, or add human correction for the hardest cases. This pilot is critical because planning-error recovery (e.g., 'what is correct recovery from goal drift?') is inherently more ambiguous than tool-error recovery (retry/switch tool), a concern validated by Hell or High Water (arXiv 2025) which found agents struggle with backup planning.\\n\\n(1) Collect successful trajectories using GPT-4o as the base agent, leveraging verl-agent's existing environment integrations: ~4K from ALFWorld, ~4K from WebShop. Total: ~8K base trajectories. (GAIA is positioned as a stretch goal for camera-ready extension, requiring custom LangGraph environment setup with web search and code execution tools.)\\n\\n(2) Apply injection operators stochastically: each trajectory receives 1-2 injections sampled from the 8 operators, producing ~13K corrupted trajectory variants.\\n\\n(3) Use GPT-4o as the teacher model to generate recovery demonstrations: given the corrupted trajectory up to the injection point, generate the correct recovery action sequence (detect error, classify, recover). This leverages environment grounding — the agent observes the consequences of injected errors through environment feedback, making error detection externally verifiable rather than purely introspective (addressing Wu et al.'s distribution-mismatch concern).\\n\\n(4) Format as SFT data with explicit recovery annotations: [DETECT: error description] -> [CLASSIFY: planning/context + operator type] -> [RECOVER: corrective action].\\n\\n(5) Train Qwen3-8B with LoRA SFT using ms-swift on the ~13K annotated recovery pairs.\\n\\n**Evaluation** (designed to address circular evaluation risk and Wu et al.'s distribution-mismatch concern):\\n\\n(a) **Held-out operator generalization**: Train on 6/8 operators (P1, P2, P3, C1, C3, C4), hold out P4 (goal drift) and C2 (contradictory fact injection) — the two most semantically complex operators. Test recovery on all 8 operators. For held-out operators, evaluate behavioral recovery (can the agent detect something is wrong and take corrective action?) rather than classification accuracy (the agent has never seen these category labels). This directly tests whether SFT-trained recovery generalizes beyond memorized injection patterns, addressing both Wu et al.'s distribution-mismatch concern and the 'SFT Memorizes' critique.\\n\\n(b) **Two-environment evaluation with GAIA stretch**: ALFWorld and WebShop as core environments. Compare against: (i) vanilla ReAct baseline (no error training), (ii) PALADIN-reproduced (tool-error SFT only), (iii) Agent-R (MCTS self-training). AgentRefine and AgentHER results cited from their published papers where environments overlap. GAIA evaluation added in camera-ready if time permits.\\n\\n(c) **Naturally-occurring error evaluation**: Evaluate on AgentErrorBench from AgentDebug (200 expert-annotated failure trajectories: 100 ALFWorld, 50 WebShop, 50 GAIA). This tests whether training on synthetic injections transfers to naturally-occurring planning and context errors — directly addressing whether environment-grounded SFT injection avoids the distribution-mismatch failure Wu et al. observed in pure CoT settings.\\n\\n(d) **Clean task evaluation**: Task success rate on unperturbed tasks across both core environments to verify no regression.\\n\\nMetrics: task success rate under injected errors (controlled), task success rate on clean tasks (regression check), per-category recovery rate (seen vs. unseen operators), recovery rate on AgentErrorBench (natural error transfer). For fair PALADIN comparison: report tool-error recovery (where PALADIN should match or beat TaxEI) alongside planning/context error recovery (where TaxEI should outperform).\\n\\n**OSS codebase**: Built entirely on verl-agent (LangGraph + veRL integration, Apache-2.0 license) with existing ALFWorld and WebShop environments. Injection operators implemented as LangGraph middleware modules. Training via ms-swift with LoRA.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~120h H100 (trajectory collection ~15h across 2 envs, SFT training ~25h, all evaluations incl. held-out/AgentErrorBench ~45h, ablations ~15h, buffer ~20h)\",\n      \"gpu_utilization\": \"Moderate idle (~30%): injection operator implementation, pilot study annotation, and recovery quality review happen off-GPU\",\n      \"timeline\": \"16 days\",\n      \"team\": \"1 researcher\",\n      \"estimated_gpu_cost\": \"$300-$420 at ~$2.50-3.50/hr per H100\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~150h H100 (same core + hyperparameter sweeps on injection rates and LoRA config)\",\n      \"gpu_utilization\": \"~15-20% idle: agent continuously queues training runs and evaluations\",\n      \"timeline\": \"15 days\",\n      \"team\": \"1 researcher, ~1.5h/day (pilot study annotation: 2 days concentrated, then ongoing review of recovery annotation correctness and held-out evaluation analysis)\",\n      \"claude_api_cost\": \"$150-250 (~1200-1800 Opus turns for experiment orchestration and analysis)\",\n      \"estimated_gpu_cost\": \"$375-$525 at ~$2.50-3.50/hr per H100\",\n      \"risk_note\": \"Pilot study may reveal that planning-error recovery quality requires model upgrade (o1/o3) or human correction for specific operators, adding 1-2 days and $100-200 API cost\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~200h H100 (additional: ablations across all 8 operators individually, injection rate sweeps 10-50%, Qwen3-14B comparison, cross-environment transfer analysis, AgentErrorBench deep evaluation)\",\n      \"gpu_utilization\": \"Near-zero idle (~5%): agent parallelizes trajectory generation, training, and evaluation continuously\",\n      \"timeline\": \"12-13 days with 4 concurrent H100s\",\n      \"team\": \"0 (initial setup only: verl-agent environment, ms-swift config, base model download)\",\n      \"claude_api_cost\": \"$250-450 (~2500-3500 Opus turns for full pipeline orchestration)\",\n      \"estimated_gpu_cost\": \"$500-$700 at ~$2.50-3.50/hr per H100\",\n      \"speed_bottleneck\": \"GPT-4o API rate limits for teacher trajectory generation\",\n      \"risk_note\": \"Automated injection operator tuning may over-optimize for easy-to-recover errors; diversity of injections across the 8 operators needs monitoring\"\n    },\n    \"teacher_model_api_cost\": \"$350-650 (GPT-4o for ~8K base trajectories across 2 environments + ~13K recovery demonstrations + pilot study. Per-environment breakdown: ALFWorld ~$150-250 [~4K trajectories, avg 10 successful steps, ~20K tokens/trajectory with growing context], WebShop ~$200-350 [~4K trajectories, avg 8 steps, ~28K tokens/trajectory with longer HTML observations]; recovery demonstrations ~$100-200 [13K demos, avg ~7K context + 1.5K output]. Costs assume GPT-4o at $2.50/M input, $10.00/M output; ~30% savings possible with prompt caching at $1.25/M cached input. If GPT-4o-mini suffices for base trajectory collection in ALFWorld, total drops to $250-500.)\"\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR deadline: May 25, 2026)\",\n    \"AAAI 2027 (expected ~Aug 2026)\",\n    \"ICLR 2027 (expected ~Sep 2026)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases (AAAI 2026 LaMAS Workshop, arXiv 2509.25238)\",\n    \"MAS-FIRE: Fault Injection and Reliability Evaluation for LLM-Based Multi-Agent Systems (arXiv 2602.19843, 2026)\",\n    \"Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training (arXiv 2501.11425, 2025)\",\n    \"AgentRefine: Enhancing Agent Generalization through Refinement Tuning (ICLR 2025, arXiv 2501.01702)\",\n    \"AgenTracer: Who Is Inducing Failure in the LLM Agentic Systems? (arXiv 2509.03312, 2025)\",\n    \"Experiential Reinforcement Learning (arXiv 2602.13949, 2026)\",\n    \"Experiential Reflective Learning for Self-Improving LLM Agents (ICLR 2026 MemAgents Workshop, arXiv 2603.24639)\",\n    \"AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling (arXiv 2603.21357, 2026)\",\n    \"Where LLM Agents Fail and How They can Learn From Failures [AgentDebug/AgentErrorBench] (arXiv 2509.25370, 2025)\",\n    \"What Do Agents Learn from Trajectory-SFT: Semantics or Interfaces? (arXiv 2602.01611, 2026)\",\n    \"SHIELDA: Structured Handling of Exceptions in LLM-Driven Agentic Workflows (arXiv 2025)\",\n    \"Why Do Multi-Agent LLM Systems Fail? (NeurIPS 2025)\",\n    \"Hell or High Water: Evaluating Agentic Recovery from External Failures (arXiv 2508.11027, 2025)\",\n    \"ReliabilityBench: Evaluating LLM Agent Reliability Under Production-Like Stress Conditions (arXiv 2601.06112, 2026)\",\n    \"Synthetic Error Injection Fails to Elicit Self-Correction in Language Models (Wu et al., arXiv 2512.02389, 2025)\",\n    \"Training Language Models to Self-Correct via Reinforcement Learning [SCoRe] (Kumar et al., arXiv 2409.12917, 2024)\",\n    \"SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training (Chu et al., ICML 2025)\"\n  ],\n  \"description\": \"LLM agents suffer from planning decomposition errors and context/memory failures that account for 40-55% of failures across benchmarks, yet training-time error-resilience work either targets only tool-level errors (PALADIN, AAAI 2026 LaMAS Workshop), trains recovery without error categorization (Agent-R, arXiv 2025), or learns from natural errors without structured injection (AgentRefine, ICLR 2025). Meanwhile, MAS-FIRE (arXiv 2026) defined a comprehensive fault taxonomy of 15 types including planning and memory categories — but purely for evaluation. Wu et al. (arXiv 2512.02389) showed SFT with synthetic error injection fails for pure CoT self-correction in 1B models on toy tasks, but their setting lacks environment feedback — a crucial difference, as PALADIN demonstrated SFT injection succeeds for agent tool-error recovery where environment grounding provides external error signals. We propose TaxEI, which bridges the gap by operationalizing evaluation-taxonomy fault categories as training-time injection operators for recovery-oriented SFT in environment-grounded agent settings. TaxEI defines 8 concrete injection operators — 4 for planning errors (step-order swap, sub-goal deletion, irrelevant insertion, goal drift) and 4 for context/memory errors (context truncation, contradictory fact injection, stale state replay, observation masking) — explicitly aligned with MAS-FIRE's fault taxonomy and implemented as LangGraph middleware hooks. The pipeline includes a teacher quality pilot study (400 samples, 2 annotators, per-category precision reporting) to validate GPT-4o's recovery demonstration quality before scaling. Using GPT-4o as teacher, we generate ~13K corrupted-trajectory/recovery-demonstration pairs from ~8K successful trajectories across ALFWorld and WebShop (GAIA as camera-ready stretch goal). Qwen3-8B is trained via LoRA SFT with explicit [DETECT]->[CLASSIFY]->[RECOVER] structure — chosen as SFT-first because structured injection labels enable supervised curriculum that RL would need to discover, and SFT provides the validated warm-start for potential RL extension ('SFT Memorizes, RL Generalizes', ICML 2025). Evaluation addresses both circular evaluation risk and Wu et al.'s distribution-mismatch concern via: (a) held-out operator generalization (train on 6/8 operators, test on 2 unseen), (b) naturally-occurring error transfer (AgentErrorBench: 200 expert-annotated trajectories), and (c) clean task regression checks. Baselines include PALADIN (tool errors, fully reproduced) and Agent-R (MCTS recovery, fully reproduced), with AgentRefine and AgentHER results cited from published numbers. Built on the open-source verl-agent stack (LangGraph + veRL, Apache-2.0). Total compute: ~120-150 H100-hours; teacher API cost: $350-650. RL-based recovery policies (GRPO) positioned as principled future work. Primary targets: EMNLP 2026 ARR, AAAI 2027, ICLR 2027.\",\n  \"project_name\": \"tax_error_inject_agent\",\n  \"source\": \"web_research\"\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7789d99e-08b6-4d1e-b2c1-327c27054e20",
+  "isSidechain": false,
+  "requestId": "req_011CawhhCpu8tmyYy6D3REoX",
+  "type": "assistant",
+  "uuid": "443e4cf1-8b9b-4ec9-bb58-d278de34def0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AQRPbVWJqawFeW9EUtKuGz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1027,
+      "cache_read_input_tokens": 48597,
+      "output_tokens": 8068,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1027,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8068,
+          "cache_read_input_tokens": 48597,
+          "cache_creation_input_tokens": 1027,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1027
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-12T00:12:13.259Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01KqV259UkjTRczwRWUfabz7`</summary>
+
+```text
+Claude requested permissions to write to /tmp/taxei_revision_r4.json, but you haven't granted it yet.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "443e4cf1-8b9b-4ec9-bb58-d278de34def0",
+  "isSidechain": false,
+  "promptId": "ec680491-1b88-4a7f-aee3-68de370a0b1d",
+  "type": "user",
+  "uuid": "123be33c-6873-4660-85bb-e2559f7d2569",
+  "toolUseResult": "Error: Claude requested permissions to write to /tmp/taxei_revision_r4.json, but you haven't granted it yet.",
+  "sourceToolAssistantUUID": "443e4cf1-8b9b-4ec9-bb58-d278de34def0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 81 · 2026-05-12T00:12:13.287Z_
+
+```json
+{
+  "parentUuid": "123be33c-6873-4660-85bb-e2559f7d2569",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "a53685f3-78ab-40a2-87e5-1bfbf3d66edd",
+  "timestamp": "2026-05-12T00:12:13.287Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 82_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-11 (UTC).**  ## Original idea {   \"title\": \"TaxEI: Structured Non-Tool Error Injection for Agent Recovery Training…",
+  "leafUuid": "a53685f3-78ab-40a2-87e5-1bfbf3d66edd",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 83_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise TaxEI with PALADIN venue correction and Wu et al. defusing",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 84 · 2026-05-12T00:15:11.890Z_
+
+Here is the complete revised idea as JSON:
+
+```json
+{
+  "change_type": "minor",
+  "title": "TaxEI: Structured Non-Tool Error Injection for Agent Recovery Training",
+  "core_problem": "LLM agents fail frequently at planning and context management — even as open-weight WebArena success rates have risen to 46-57% (Qwen3.6 Plus: 57.2%, DeepSeek V3.2: 48.6%), failure analysis consistently shows planning decomposition errors and context loss account for 40-55% of agent failures across benchmarks (AgentDebug taxonomy, AgenTracer). Yet all training-time error-resilience work targets only tool-level failures or operates without structured error categorization: PALADIN (AAAI 2026 LaMAS Workshop) injects API exceptions and timeouts into 50K+ trajectories for SFT-based recovery, achieving 89.7% tool-error recovery — but planning errors, context corruption, and memory failures remain unaddressed at training time. Agent-R (arXiv 2025) trains recovery via MCTS-based iterative self-training on natural errors but without error categorization, limiting targeted improvement. AgentRefine (ICLR 2025) learns from environment feedback through refinement tuning for generalization but does not inject structured faults. Meanwhile, MAS-FIRE (arXiv 2026) defines a comprehensive taxonomy of 15 fault types including planning and memory categories — but purely for evaluation, not training. Inference-time approaches (AgentDebug, ErrorProbe, SHIELDA) add scaffolding without improving the agent's inherent robustness, while AgenTracer trains a separate diagnostic model to locate errors but does not teach agents to recover from them.",
+  "opportunity": "PALADIN (AAAI 2026 LaMAS Workshop) demonstrated that training-time error injection with SFT substantially improves tool-failure recovery (+13.6% recovery rate), establishing injection-for-recovery as a viable paradigm. MAS-FIRE (arXiv 2026) defined a systematic fault taxonomy of 15 types covering planning (Inexecutable Plan, Critical Information Loss), memory (Memory Loss, Context Length Violation), reasoning, and action categories — but for evaluation, not training. AgenTracer (arXiv 2025) showed that programmatic fault injection on trajectories can generate high-fidelity failure data and trained a diagnostic model via GRPO — but for error attribution, not recovery. Agent-R (arXiv 2025) trains recovery via MCTS-based self-training, splicing correct paths into failed trajectories (+5.59% on WebShop/ScienceWorld/TextCraft) — but does not categorize errors or target specific failure modes. AgentRefine (ICLR 2025) improves agent generalization through refinement tuning with environment feedback, achieving better perturbation robustness — but operates on natural errors without structured injection. ERL (arXiv 2026) embeds reflection-consolidation into RL training to learn from natural failures (+81% in multi-step environments), but does not inject structured faults or target specific error categories. AgentHER (arXiv 2026) repurposes failed trajectories via hindsight relabeling for +7-12pp SFT/DPO gains but does not inject errors or train category-specific recovery.\n\nA potential concern is raised by Wu et al. (arXiv 2512.02389), who found that SFT with synthetic error injection fails to elicit self-correction in language models due to distribution mismatch between synthetic and on-policy errors. However, their study tested only 1B-parameter models on toy tasks (4-digit multiplication, 4×4 Sudoku) using pure chain-of-thought reasoning without any environment feedback — a fundamentally different setting from agent trajectory training. In agent settings, environment feedback provides external error signals (failed actions, unexpected observations) that ground error detection in observable state changes rather than requiring purely introspective self-correction. Indeed, PALADIN demonstrated that SFT with injection works for agent tool-error recovery, directly contradicting Wu et al.'s conclusion when environment grounding is present.\n\nThe gap: MAS-FIRE proved that structured fault taxonomies can systematically expose agent weaknesses; PALADIN proved that injection-for-recovery works for tool errors in agent settings; Agent-R proved that training recovery from errors improves performance — but no work has combined structured category-specific injection of non-tool errors (planning, context/memory) with recovery-oriented training. TaxEI bridges this gap by operationalizing MAS-FIRE-style fault categories as training-time injection operators, extending PALADIN's validated paradigm beyond tool errors.",
+  "landscape": "Training-time approaches: PALADIN (AAAI 2026 LaMAS Workshop, arXiv 2509.25238) injects tool failures (API exceptions, timeouts, hallucinated tools) into 50K+ trajectories and trains recovery via LoRA SFT, achieving +13.6% avg recovery rate — but is limited to tool errors and requires an inference-time exemplar bank. Agent-R (arXiv 2025, ByteDance) uses MCTS to construct error-recovery training pairs by identifying the first error step in failed trajectories and splicing correct paths, achieving +5.59% on WebShop/ScienceWorld/TextCraft via SFT on Llama-3.1-8B — but without error categorization, recovery is unstructured. AgentRefine (ICLR 2025) enables agents to learn from mistakes via environment feedback through refinement tuning, improving generalization and perturbation robustness — but operates on natural errors without structured injection or category targeting. AgenTracer (arXiv 2025) uses LLM-based perturbation operators to corrupt successful trajectories and trains AgenTracer-8B (GRPO) for error diagnosis — achieving up to 14.2% improvement when feeding diagnostic output back to agents, but the agent itself does not learn recovery. ERL (arXiv 2026) integrates experience-reflection-consolidation into RL, learning from naturally-occurring failures for +81% in control tasks and +11% in tool-use — but without structured injection or error categorization. AgentHER (arXiv 2026) converts failed trajectories into training data via hindsight relabeling (+7-12pp on WebArena/ToolBench), a data-efficiency technique complementary to error injection.\n\nSFT vs. RL for self-correction: Wu et al. (arXiv 2512.02389) showed that SFT with synthetic error injection fails for pure CoT self-correction in 1B models on toy reasoning tasks, due to distribution mismatch between synthetic and on-policy errors (error recognition dropped from 94% to 8% on distribution-shifted errors). SCoRe (Kumar et al., arXiv 2024) demonstrated that on-policy RL achieves substantially positive intrinsic self-correction (+15.6% on MATH). 'SFT Memorizes, RL Generalizes' (Chu et al., ICML 2025) showed RL generalizes to OOD scenarios where SFT memorizes — but also found SFT essential as a warm-start for RL. Critically, Wu et al.'s negative finding applies to introspective self-correction without environment feedback; in agent settings with environment grounding, PALADIN demonstrated that SFT with injection successfully teaches recovery from tool errors, suggesting the environment feedback loop mitigates the distribution-mismatch concern. TaxEI's held-out operator and AgentErrorBench evaluations directly measure whether this mitigation extends to planning/context errors.\n\nEvaluation-time approaches: MAS-FIRE (arXiv 2026) defines a taxonomy of 15 fault types across 7 categories — including Planning (Inexecutable Plan, Critical Information Loss), Memory (Memory Loss, Context Length Violation), Reasoning (Hallucination), and Action faults — injected via prompt modification, response rewriting, and message routing manipulation. It evaluates on 3 MAS architectures and finds that iterative closed-loop designs neutralize 40%+ of faults that collapse linear workflows, but does not use this taxonomy for training. AgentDebug (arXiv 2025) provides modular corrective feedback with AgentErrorTaxonomy covering memory, reflection, planning, action, and system categories, and releases AgentErrorBench (200 expert-annotated failure trajectories on ALFWorld/GAIA/WebShop, Cohen's kappa=0.55) — achieving +26% relative improvement via inference-time feedback. ReliabilityBench (arXiv 2026) evaluates agent reliability across consistency, robustness, and fault tolerance using chaos-engineering-style injection (timeouts, rate limits, schema drift). ErrorProbe (arXiv 2026) does symptom-driven backward tracing with verified error/patch memory. SHIELDA (arXiv 2025) defines 36 exception types across 12 agent artifacts but uses heuristic protocols. Hell or High Water (arXiv 2025) evaluates agentic recovery from external failures, finding that agents struggle to formulate backup plans even in restricted search spaces.\n\nKey insight from 'What Do Agents Learn from Trajectory-SFT' (arXiv 2026): trajectory SFT can induce interface shortcutting rather than semantic learning — our error injection approach may counteract this by forcing agents to handle unexpected states rather than memorizing normal-case patterns.\n\nThe fundamental gap: MAS-FIRE proved that structured fault taxonomies (including planning and memory categories) systematically expose agent weaknesses at evaluation time. PALADIN proved injection-for-recovery works for tool errors at training time. Agent-R proved that training error recovery improves performance. AgentRefine proved that learning from mistakes improves generalization. Wu et al. showed SFT-based self-correction fails without environment grounding, but PALADIN showed it succeeds with it. No work has combined structured category-specific injection of planning and context/memory errors — aligned with established evaluation taxonomies — with recovery-oriented agent training in environment-grounded settings. TaxEI uniquely provides both the injection taxonomy (operationalizing MAS-FIRE-style fault categories as training operators) and the recovery policy (extending PALADIN's SFT paradigm) in a single pipeline.",
+  "approach": "We propose TaxEI (Taxonomy-guided Error Injection), a training framework that extends PALADIN's injection-for-recovery paradigm from tool-only errors to planning and context/memory error categories. TaxEI operationalizes fault categories from evaluation frameworks (particularly MAS-FIRE's taxonomy) as concrete injection operators for recovery-oriented SFT, implemented via LangGraph middleware hooks on the verl-agent infrastructure.\n\n**Error Injection Operators** (the core technical contribution):\n\nWe define 8 injection operators across 2 non-tool error categories, explicitly aligned with MAS-FIRE's intra-agent fault taxonomy:\n\n*Planning errors* (4 operators, injected via @before_model middleware modifying plan state; aligned with MAS-FIRE's Planning faults):\n(P1) Step-order swap: transpose two causally-dependent steps in a decomposed plan (e.g., swap 'pick up knife' and 'go to countertop'). [Aligned with MAS-FIRE: Inexecutable Plan]\n(P2) Sub-goal deletion: remove a critical intermediate step, leaving an unachievable gap. [Aligned with MAS-FIRE: Critical Information Loss]\n(P3) Irrelevant sub-goal insertion: inject an unrelated action step (e.g., 'examine painting' during a cooking task). [Novel: not directly in MAS-FIRE]\n(P4) Goal drift: mid-trajectory, subtly shift the target objective to a related but different goal. [Novel: extends MAS-FIRE's Critical Information Loss to objective-level corruption]\n\n*Context/memory errors* (4 operators, injected via custom state modifier on message history; aligned with MAS-FIRE's Memory faults):\n(C1) Context truncation: remove the earliest k observations from the agent's context, simulating window overflow. [Aligned with MAS-FIRE: Memory Loss / Context Length Violation]\n(C2) Contradictory fact injection: insert an observation contradicting a previously established fact (e.g., 'the drawer is empty' after the agent saw an item in it). [Novel: extends MAS-FIRE's Memory faults to active corruption]\n(C3) Stale state replay: repeat an outdated observation as current, simulating failure to track state changes. [Novel: not directly in MAS-FIRE]\n(C4) Observation masking: replace a critical observation with a null/empty result, simulating environment feedback loss. [Aligned with MAS-FIRE: Memory Loss]\n\nKey differentiation from related training-time approaches: (1) vs. PALADIN: extends from tool errors to planning/context errors; (2) vs. Agent-R: uses structured category-specific injection rather than mining natural errors without categorization; (3) vs. AgentRefine: injects synthetic faults into successful trajectories rather than learning from natural environment feedback; (4) vs. AgenTracer: trains recovery policies in the agent itself rather than a separate diagnostic model; (5) vs. Wu et al.: operates in environment-grounded agent settings where external feedback signals provide observable error indicators, unlike pure CoT introspection.\n\n**Why SFT first (not RL)**: Beyond compute constraints, there are principled reasons to begin with SFT for taxonomy-guided error recovery. First, TaxEI's structured injection labels (operator category, error location, recovery strategy) enable a supervised curriculum — the DETECT→CLASSIFY→RECOVER format provides explicit training signal that RL would need to discover from scratch through exploration. Second, 'SFT Memorizes, RL Generalizes' (ICML 2025) found SFT essential as a warm-start for RL, suggesting the right order is SFT→RL, not RL alone. Third, the held-out operator evaluation directly tests whether SFT-trained recovery generalizes beyond memorized patterns — if it does, SFT suffices; if not, this provides precisely the evidence needed to motivate RL-based recovery as the next step, creating a clear scientific contribution either way.\n\n**Pipeline**:\n\n(0) **Teacher Quality Pilot Study**: Before scaling, validate GPT-4o's recovery demonstration quality. Generate 50 recovery demonstrations per operator category (400 total). Two annotators independently evaluate each for: (a) correct error detection, (b) appropriate recovery strategy, (c) successful task continuation. Report precision and inter-annotator agreement per category. If any category falls below 80% precision, apply mitigation: use a stronger reasoning model (o1/o3) for that category's recovery generation, or add human correction for the hardest cases. This pilot is critical because planning-error recovery (e.g., 'what is correct recovery from goal drift?') is inherently more ambiguous than tool-error recovery (retry/switch tool), a concern validated by Hell or High Water (arXiv 2025) which found agents struggle with backup planning.\n\n(1) Collect successful trajectories using GPT-4o as the base agent, leveraging verl-agent's existing environment integrations: ~4K from ALFWorld, ~4K from WebShop. Total: ~8K base trajectories. (GAIA is positioned as a stretch goal for camera-ready extension, requiring custom LangGraph environment setup with web search and code execution tools.)\n\n(2) Apply injection operators stochastically: each trajectory receives 1-2 injections sampled from the 8 operators, producing ~13K corrupted trajectory variants.\n\n(3) Use GPT-4o as the teacher model to generate recovery demonstrations: given the corrupted trajectory up to the injection point, generate the correct recovery action sequence (detect error, classify, recover). This leverages environment grounding — the agent observes the consequences of injected errors through environment feedback, making error detection externally verifiable rather than purely introspective (addressing Wu et al.'s distribution-mismatch concern).\n\n(4) Format as SFT data with explicit recovery annotations: [DETECT: error description] -> [CLASSIFY: planning/context + operator type] -> [RECOVER: corrective action].\n\n(5) Train Qwen3-8B with LoRA SFT using ms-swift on the ~13K annotated recovery pairs.\n\n**Evaluation** (designed to address circular evaluation risk and Wu et al.'s distribution-mismatch concern):\n\n(a) **Held-out operator generalization**: Train on 6/8 operators (P1, P2, P3, C1, C3, C4), hold out P4 (goal drift) and C2 (contradictory fact injection) — the two most semantically complex operators. Test recovery on all 8 operators. For held-out operators, evaluate behavioral recovery (can the agent detect something is wrong and take corrective action?) rather than classification accuracy (the agent has never seen these category labels). This directly tests whether SFT-trained recovery generalizes beyond memorized injection patterns, addressing both Wu et al.'s distribution-mismatch concern and the 'SFT Memorizes' critique.\n\n(b) **Two-environment evaluation with GAIA stretch**: ALFWorld and WebShop as core environments. Compare against: (i) vanilla ReAct baseline (no error training), (ii) PALADIN-reproduced (tool-error SFT only), (iii) Agent-R (MCTS self-training). AgentRefine and AgentHER results cited from their published papers where environments overlap. GAIA evaluation added in camera-ready if time permits.\n\n(c) **Naturally-occurring error evaluation**: Evaluate on AgentErrorBench from AgentDebug (200 expert-annotated failure trajectories: 100 ALFWorld, 50 WebShop, 50 GAIA). This tests whether training on synthetic injections transfers to naturally-occurring planning and context errors — directly addressing whether environment-grounded SFT injection avoids the distribution-mismatch failure Wu et al. observed in pure CoT settings.\n\n(d) **Clean task evaluation**: Task success rate on unperturbed tasks across both core environments to verify no regression.\n\nMetrics: task success rate under injected errors (controlled), task success rate on clean tasks (regression check), per-category recovery rate (seen vs. unseen operators), recovery rate on AgentErrorBench (natural error transfer). For fair PALADIN comparison: report tool-error recovery (where PALADIN should match or beat TaxEI) alongside planning/context error recovery (where TaxEI should outperform).\n\n**OSS codebase**: Built entirely on verl-agent (LangGraph + veRL integration, Apache-2.0 license) with existing ALFWorld and WebShop environments. Injection operators implemented as LangGraph middleware modules. Training via ms-swift with LoRA.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~120h H100 (trajectory collection ~15h across 2 envs, SFT training ~25h, all evaluations incl. held-out/AgentErrorBench ~45h, ablations ~15h, buffer ~20h)",
+      "gpu_utilization": "Moderate idle (~30%): injection operator implementation, pilot study annotation, and recovery quality review happen off-GPU",
+      "timeline": "16 days",
+      "team": "1 researcher",
+      "estimated_gpu_cost": "$300-$420 at ~$2.50-3.50/hr per H100"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~150h H100 (same core + hyperparameter sweeps on injection rates and LoRA config)",
+      "gpu_utilization": "~15-20% idle: agent continuously queues training runs and evaluations",
+      "timeline": "15 days",
+      "team": "1 researcher, ~1.5h/day (pilot study annotation: 2 days concentrated, then ongoing review of recovery annotation correctness and held-out evaluation analysis)",
+      "claude_api_cost": "$150-250 (~1200-1800 Opus turns for experiment orchestration and analysis)",
+      "estimated_gpu_cost": "$375-$525 at ~$2.50-3.50/hr per H100",
+      "risk_note": "Pilot study may reveal that planning-error recovery quality requires model upgrade (o1/o3) or human correction for specific operators, adding 1-2 days and $100-200 API cost"
+    },
+    "auto_research": {
+      "gpu_hours": "~200h H100 (additional: ablations across all 8 operators individually, injection rate sweeps 10-50%, Qwen3-14B comparison, cross-environment transfer analysis, AgentErrorBench deep evaluation)",
+      "gpu_utilization": "Near-zero idle (~5%): agent parallelizes trajectory generation, training, and evaluation continuously",
+      "timeline": "12-13 days with 4 concurrent H100s",
+      "team": "0 (initial setup only: verl-agent environment, ms-swift config, base model download)",
+      "claude_api_cost": "$250-450 (~2500-3500 Opus turns for full pipeline orchestration)",
+      "estimated_gpu_cost": "$500-$700 at ~$2.50-3.50/hr per H100",
+      "speed_bottleneck": "GPT-4o API rate limits for teacher trajectory generation",
+      "risk_note": "Automated injection operator tuning may over-optimize for easy-to-recover errors; diversity of injections across the 8 operators needs monitoring"
+    },
+    "teacher_model_api_cost": "$350-650 (GPT-4o for ~8K base trajectories across 2 environments + ~13K recovery demonstrations + pilot study. Per-environment breakdown: ALFWorld ~$150-250 [~4K trajectories, avg 10 successful steps, ~20K tokens/trajectory with growing context], WebShop ~$200-350 [~4K trajectories, avg 8 steps, ~28K tokens/trajectory with longer HTML observations]; recovery demonstrations ~$100-200 [13K demos, avg ~7K context + 1.5K output]. Costs assume GPT-4o at $2.50/M input, $10.00/M output; ~30% savings possible with prompt caching at $1.25/M cached input. If GPT-4o-mini suffices for base trajectory collection in ALFWorld, total drops to $250-500.)"
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR deadline: May 25, 2026)",
+    "AAAI 2027 (expected ~Aug 2026)",
+    "ICLR 2027 (expected ~Sep 2026)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "PALADIN: Self-Correcting Language Model Agents to Cure Tool-Failure Cases (AAAI 2026 LaMAS Workshop, arXiv 2509.25238)",
+    "MAS-FIRE: Fault Injection and Reliability Evaluation for LLM-Based Multi-Agent Systems (arXiv 2602.19843, 2026)",
+    "Agent-R: Training Language Model Agents to Reflect via Iterative Self-Training (arXiv 2501.11425, 2025)",
+    "AgentRefine: Enhancing Agent Generalization through Refinement Tuning (ICLR 2025, arXiv 2501.01702)",
+    "AgenTracer: Who Is Inducing Failure in the LLM Agentic Systems? (arXiv 2509.03312, 2025)",
+    "Experiential Reinforcement Learning (arXiv 2602.13949, 2026)",
+    "Experiential Reflective Learning for Self-Improving LLM Agents (ICLR 2026 MemAgents Workshop, arXiv 2603.24639)",
+    "AgentHER: Hindsight Experience Replay for LLM Agent Trajectory Relabeling (arXiv 2603.21357, 2026)",
+    "Where LLM Agents Fail and How They can Learn From Failures [AgentDebug/AgentErrorBench] (arXiv 2509.25370, 2025)",
+    "What Do Agents Learn from Trajectory-SFT: Semantics or Interfaces? (arXiv 2602.01611, 2026)",
+    "SHIELDA: Structured Handling of Exceptions in LLM-Driven Agentic Workflows (arXiv 2025)",
+    "Why Do Multi-Agent LLM Systems Fail? (NeurIPS 2025)",
+    "Hell or High Water: Evaluating Agentic Recovery from External Failures (arXiv 2508.11027, 2025)",
+    "ReliabilityBench: Evaluating LLM Agent Reliability Under Production-Like Stress Conditions (arXiv 2601.06112, 2026)",
+    "Synthetic Error Injection Fails to Elicit Self-Correction in Language Models (Wu et al., arXiv 2512.02389, 2025)",
+    "Training Language Models to Self-Correct via Reinforcement Learning [SCoRe] (Kumar et al., arXiv 2409.12917, 2024)",
+    "SFT Memorizes, RL Generalizes: A Comparative Study of Foundation Model Post-training (Chu et al., ICML 2025)"
+  ],
+  "description": "LLM agents suffer from planning decomposition errors and context/memory failures that account for 40-55% of failures across benchmarks, yet training-time error-resilience work either targets only tool-level errors (PALADIN, AAAI 2026 LaMAS Workshop), trains recovery without error categorization (Agent-R, arXiv 2025), or learns from natural errors without structured injection (AgentRefine, ICLR 2025). Meanwhile, MAS-FIRE (arXiv 2026) defined a comprehensive fault taxonomy of 15 types including planning and memory categories — but purely for evaluation. Wu et al. (arXiv 2512.02389) showed SFT with synthetic error injection fails for pure CoT self-correction in 1B models on toy tasks, but their setting lacks environment feedback — a crucial difference, as PALADIN demonstrated SFT injection succeeds for agent tool-error recovery where environment grounding provides external error signals. We propose TaxEI, which bridges the gap by operationalizing evaluation-taxonomy fault categories as training-time injection operators for recovery-oriented SFT in environment-grounded agent settings. TaxEI defines 8 concrete injection operators — 4 for planning errors (step-order swap, sub-goal deletion, irrelevant insertion, goal drift) and 4 for context/memory errors (context truncation, contradictory fact injection, stale state replay, observation masking) — explicitly aligned with MAS-FIRE's fault taxonomy and implemented as LangGraph middleware hooks. The pipeline includes a teacher quality pilot study (400 samples, 2 annotators, per-category precision reporting) to validate GPT-4o's recovery demonstration quality before scaling. Using GPT-4o as teacher, we generate ~13K corrupted-trajectory/recovery-demonstration pairs from ~8K successful trajectories across ALFWorld and WebShop (GAIA as camera-ready stretch goal). Qwen3-8B is trained via LoRA SFT with explicit [DETECT]->[CLASSIFY]->[RECOVER] structure — chosen as SFT-first because structured injection labels enable supervised curriculum that RL would need to discover, and SFT provides the validated warm-start for potential RL extension ('SFT Memorizes, RL Generalizes', ICML 2025). Evaluation addresses both circular evaluation risk and Wu et al.'s distribution-mismatch concern via: (a) held-out operator generalization (train on 6/8 operators, test on 2 unseen), (b) naturally-occurring error transfer (AgentErrorBench: 200 expert-annotated trajectories), and (c) clean task regression checks. Baselines include PALADIN (tool errors, fully reproduced) and Agent-R (MCTS recovery, fully reproduced), with AgentRefine and AgentHER results cited from published numbers. Built on the open-source verl-agent stack (LangGraph + veRL, Apache-2.0). Total compute: ~120-150 H100-hours; teacher API cost: $350-650. RL-based recovery policies (GRPO) positioned as principled future work. Primary targets: EMNLP 2026 ARR, AAAI 2027, ICLR 2027.",
+  "project_name": "tax_error_inject_agent",
+  "source": "web_research"
+}
+```
+
+---
+
+## Summary of changes addressing each reviewer issue:
+
+1. **PALADIN venue fixed**: Changed from "ICLR 2026" to "AAAI 2026 LaMAS Workshop" throughout all sections (confirmed: desk-rejected from ICLR 2026 per OpenReview M2AXTAKXbz, accepted as oral at LaMAS per OpenReview NVTtoO297p).
+
+2. **Wu et al. cited and defused**: Added to opportunity, landscape, and approach sections with three-pronged argument: (a) Wu et al. tested 1B models on toy tasks (multiplication, Sudoku) with pure CoT and no environment feedback — fundamentally different from agent trajectories; (b) PALADIN already demonstrated SFT+injection works in agent settings with environment grounding; (c) TaxEI's held-out operator and AgentErrorBench evaluations directly measure generalization to unseen distributions.
+
+3. **WebArena SOTA updated**: Changed from "35-40%" to "46-57%" with specific model scores (Qwen3.6 Plus: 57.2%, DeepSeek V3.2: 48.6%) per BenchLM.ai May 2026 snapshot. Motivation reframed: even at higher success rates, planning/context errors remain the dominant failure mode.
+
+4. **Timeline-compute tension resolved**: Trimmed to 2 core environments (ALFWorld + WebShop), GAIA as camera-ready stretch goal. Reduced baselines from 4 fully reproduced to 2 (PALADIN + Agent-R), citing AgentRefine/AgentHER published numbers. Manual: 120h/16 days. HIL: 150h/15 days. Auto: 200h/12-13 days. All configurations now satisfy ≤200 H100-hours AND ≤16 days.
+
+5. **Baseline scope trimmed**: Fully reproduce only PALADIN and Agent-R (the two most important comparisons). AgentRefine and AgentHER cited from published results where environments overlap.
+
+6. **verl-agent license corrected**: Apache-2.0 throughout.
+
+7. **SFT-first approach justified**: Added dedicated "Why SFT first" section with principled arguments: structured labels enable supervised curriculum; SFT is the validated warm-start per "SFT Memorizes, RL Generalizes" (ICML 2025); held-out evaluation creates a win-win — either SFT generalizes (contribution) or it doesn't (motivates RL follow-up, also a contribution). Added SCoRe and ICML 2025 paper to references.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a53685f3-78ab-40a2-87e5-1bfbf3d66edd",
+  "isSidechain": false,
+  "requestId": "req_011CawhxANivom2Fe3w4XqG9",
+  "type": "assistant",
+  "uuid": "6e6b247e-9513-4688-86e9-9fb103cec553",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GwDDa2Z2KY9EqznxtgrGG7",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8216,
+      "cache_read_input_tokens": 49624,
+      "output_tokens": 7521,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8216,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7521,
+          "cache_read_input_tokens": 49624,
+          "cache_creation_input_tokens": 8216,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8216
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-11 (UTC).**  ## Original idea {   \"title\": \"TaxEI: Structured Non-Tool Error Injection for Agent Recovery Training…",
+  "leafUuid": "6e6b247e-9513-4688-86e9-9fb103cec553",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise TaxEI with PALADIN venue correction and Wu et al. defusing",
+  "sessionId": "ead2f84a-5451-46ff-89de-092196b42eb6"
+}
+```
+
+---

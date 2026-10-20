@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "2a11bc6d2f5261c431a5",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [Director 指令] **重启恢复 — 状态确认 + 3 张空闲 GPU 填满** Reviewer 刚做了重启审查，关键信息： - exp_gemma2b_depth：仍在跑（cuda:0，PID 289968，VocabDiv d",
+  "task_key": "c61b73df-0257-4a1d-bab8-2e9cd2fca2df",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/c61b73df-0257-4a1d-bab8-2e9cd2fca2df.jsonl",
+    "occurrence": 1,
+    "bytes": 655125,
+    "sha256": "0a69f2a36f6300e9291a20557a365455dc6f657cb8f1bdd8e6f2fc5c2bf6e2d5"
+  },
+  "statistics": {
+    "messages": 76,
+    "user_turns": 1,
+    "tool_calls": 20,
+    "roles": {
+      "record": 18,
+      "user": 1,
+      "assistant": 18,
+      "tool_call": 20,
+      "tool_result": 19
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2a11bc6d2f5261c431a5-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 74,
+      "chunks": [
+        {
+          "path": "2a11bc6d2f5261c431a5-part-0001.json",
+          "message_count": 59
+        },
+        {
+          "path": "2a11bc6d2f5261c431a5-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-director-3-gpu-reviewer-exp-gemma2b-depth-cuda-0-pid-289968-vocabdiv-d.md"
+}

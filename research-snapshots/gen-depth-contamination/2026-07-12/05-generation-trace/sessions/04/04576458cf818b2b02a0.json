@@ -1,0 +1,1973 @@
+{
+  "schema_version": "1.0",
+  "id": "04576458cf818b2b02a0",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search for very recent papers (April-May 2026) related to world action models (WAMs), video-action models for robotics, ",
+  "task_key": "agent-aa650845b59d1231d",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-aa650845b59d1231d.jsonl",
+    "occurrence": 1,
+    "bytes": 102239,
+    "sha256": "d14b5cf8c660d4c190ee30bb593acafb7d4dc1591b3ed2caeebc437032628989"
+  },
+  "statistics": {
+    "messages": 43,
+    "user_turns": 1,
+    "tool_calls": 18,
+    "roles": {
+      "user": 1,
+      "assistant": 6,
+      "tool_call": 18,
+      "tool_result": 18
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-10T08:47:07.363Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search for very recent papers (April-May 2026) related to world action models (WAMs), video-action models for robotics, or efficient inference in diffusion-based robot policies. I'm specifically looking for any papers that:\n\n1. Propose methods for selectively applying video generation/denoising in robot policies\n2. Propose adaptive computation allocation in WAMs\n3. Study which manipulation phases need more video information\n4. Propose zero-shot task-level routing of computation in robot policies\n\nTry these searches:\n- arxiv.org world action model efficient inference May 2026\n- arxiv.org video action model adaptive computation 2026\n- site:arxiv.org WAM efficient CoRL 2026 robot\n- site:arxiv.org \"video-action model\" efficiency selective 2026\n- site:arxiv.org robot policy adaptive denoising manipulation phases 2026\n- arxiv denoising steps robot policy adaptive 2026\n\nAlso search for any recent papers citing mimic-video (arXiv:2512.15692) or LingBot-VA (arXiv:2601.21998) that propose adaptive approaches.\n\nReport all relevant paper titles, arXiv IDs, and brief descriptions."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "25f4b921-396e-481c-a62b-997ad7472d25",
+            "agentId": "aa650845b59d1231d",
+            "type": "user",
+            "uuid": "d7cd4e94-9f68-4275-86c9-22dc3b5f7c7a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-10T08:47:09.645Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll conduct a comprehensive search for recent papers on world action models, video-action models, and efficient inference in robot policies from April-May 2026."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d7cd4e94-9f68-4275-86c9-22dc3b5f7c7a",
+            "isSidechain": true,
+            "agentId": "aa650845b59d1231d",
+            "requestId": "req_011CatbbfiHLLMZba3NjnGQf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1a34be3f-d757-48bc-b3c3-5e4daf7ede24",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01K7851fEKD2ZFq9ak6YJ2JC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 701,
+                "cache_read_input_tokens": 13791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 701,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-10T08:47:09.708Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QKWbDtW24AC4zbt8NC9TSp",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv world action model efficient inference May 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1a34be3f-d757-48bc-b3c3-5e4daf7ede24",
+            "isSidechain": true,
+            "agentId": "aa650845b59d1231d",
+            "requestId": "req_011CatbbfiHLLMZba3NjnGQf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9401bbf2-ecd3-4233-83a2-6cfd9bc92287",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01K7851fEKD2ZFq9ak6YJ2JC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 701,
+                "cache_read_input_tokens": 13791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 701,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-10T08:47:09.756Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NmD82NTtTK5bYz2oP7HwsM",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv video action model adaptive computation 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9401bbf2-ecd3-4233-83a2-6cfd9bc92287",
+            "isSidechain": true,
+            "agentId": "aa650845b59d1231d",
+            "requestId": "req_011CatbbfiHLLMZba3NjnGQf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a1d4ec2d-f14e-43e9-bde8-7ca80c9eea02",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01K7851fEKD2ZFq9ak6YJ2JC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 701,
+                "cache_read_input_tokens": 13791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 701,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-10T08:47:09.947Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012b6QgjawXdCWgximyiePRX",
+              "name": "WebSearch",
+              "input": {
+                "query": "site:arxiv.org WAM efficient CoRL 2026 robot"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a1d4ec2d-f14e-43e9-bde8-7ca80c9eea02",
+            "isSidechain": true,
+            "agentId": "aa650845b59d1231d",
+            "requestId": "req_011CatbbfiHLLMZba3NjnGQf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "20e72eb6-c9df-4e52-88de-774589dfa0c7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01K7851fEKD2ZFq9ak6YJ2JC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 701,
+                "cache_read_input_tokens": 13791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 701,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-10T08:47:10.118Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DRqtxHe9G79US5wefL3mGz",
+              "name": "WebSearch",
+              "input": {
+                "query": "site:arxiv.org \"video-action model\" efficiency selective 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "20e72eb6-c9df-4e52-88de-774589dfa0c7",
+            "isSidechain": true,
+            "agentId": "aa650845b59d1231d",
+            "requestId": "req_011CatbbfiHLLMZba3NjnGQf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "23c10781-96d7-4516-a14f-62de83cd2a86",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01K7851fEKD2ZFq9ak6YJ2JC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 701,
+                "cache_read_input_tokens": 13791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 701,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-10T08:47:10.126Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015HHV4gqmZvKkVxiHt6gHur",
+              "name": "WebSearch",
+              "input": {
+                "query": "site:arxiv.org robot policy adaptive denoising manipulation phases 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "23c10781-96d7-4516-a14f-62de83cd2a86",
+            "isSidechain": true,
+            "agentId": "aa650845b59d1231d",
+            "requestId": "req_011CatbbfiHLLMZba3NjnGQf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "df35ce3b-adcb-4015-9751-52b396cdee51",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01K7851fEKD2ZFq9ak6YJ2JC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 701,
+                "cache_read_input_tokens": 13791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 701,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-10T08:47:10.292Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RnCfeMqKf8BEM3e98tYS1q",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv denoising steps robot policy adaptive 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "df35ce3b-adcb-4015-9751-52b396cdee51",
+            "isSidechain": true,
+            "agentId": "aa650845b59d1231d",
+            "requestId": "req_011CatbbfiHLLMZba3NjnGQf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1564656d-481e-48d8-bec0-fedfba6341a2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01K7851fEKD2ZFq9ak6YJ2JC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 701,
+                "cache_read_input_tokens": 13791,
+                "output_tokens": 338,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 701
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 338,
+                    "cache_read_input_tokens": 13791,
+                    "cache_creation_input_tokens": 701,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 701,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-10T08:47:13.407Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DRqtxHe9G79US5wefL3mGz",
+              "type": "tool_result",
+              "content": "Web search results for query: \"site:arxiv.org \"video-action model\" efficiency selective 2026\"\n\nLinks: [{\"title\":\"mimic-video: Video-Action Models for Generalizable Robot Control Beyond VLAs\",\"url\":\"https://arxiv.org/html/2512.15692v1\"},{\"title\":\"[2512.15692] mimic-video: Video-Action Models for Generalizable Robot Control Beyond VLAs\",\"url\":\"https://arxiv.org/abs/2512.15692\"}]\n\nI found a relevant result on arxiv.org. Here's what the search returned:\n\nThe paper \"mimic-video: Video-Action Models for Generalizable Robot Control Beyond VLAs\" introduces a novel Video-Action Model (VAM) that pairs a pretrained Internet-scale video model with a flow matching-based action decoder. \n\nThe mimic-video model achieves improved sample efficiency by 10x and convergence speed by 2x compared to traditional VLA architectures. The model includes a decoder serving as an Inverse Dynamics Model (IDM), generating low-level robot actions from the latent representation of video-space action plans.\n\nThis paper was published on December 17, 2025 (arxiv reference 2512.15692).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "23c10781-96d7-4516-a14f-62de83cd2a86",
+            "isSidechain": true,
+            "promptId": "25f4b921-396e-481c-a62b-997ad7472d25",
+            "agentId": "aa650845b59d1231d",
+            "type": "user",
+            "uuid": "2cf32f48-1664-4434-aec3-e89c251985d6",
+            "sourceToolAssistantUUID": "23c10781-96d7-4516-a14f-62de83cd2a86",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-10T08:47:18.227Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NmD82NTtTK5bYz2oP7HwsM",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv video action model adaptive computation 2026\"\n\nLinks: [{\"title\":\"𝐴₁: A Fully Transparent Open-Source, Adaptive and Efficient Truncated Vision-Language-Action Model\",\"url\":\"https://arxiv.org/html/2604.05672\"},{\"title\":\"Advancing Adaptive Multi-Stage Video Anomaly Reasoning: A Benchmark Dataset and Method\",\"url\":\"https://arxiv.org/html/2601.10165v1\"},{\"title\":\"Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising\",\"url\":\"https://arxiv.org/html/2604.26694v2\"},{\"title\":\"Adaptive Vision-Language Model Routing for Computer Use Agents\",\"url\":\"https://arxiv.org/html/2603.12823v1\"},{\"title\":\"[2603.12823] Adaptive Vision-Language Model Routing for Computer Use Agents\",\"url\":\"https://arxiv.org/abs/2603.12823\"},{\"title\":\"[2308.05787] Temporally-Adaptive Models for Efficient Video Understanding\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2308.05787\"},{\"title\":\"Video Generation Models in Robotics: Applications, Research Challenges, Future Directions\",\"url\":\"https://arxiv.org/html/2601.07823v1\"},{\"title\":\"MotuBrain: An Advanced World Action Model for Robot Control\",\"url\":\"https://arxiv.org/html/2604.27792v2\"},{\"title\":\"Not All Frames Deserve Full Computation: Accelerating Autoregressive Video Generation via Selective Computation and Predictive Extrapolation\",\"url\":\"https://arxiv.org/html/2604.02979v1\"},{\"title\":\"AVID: Adapting Video Diffusion Models to World Models\",\"url\":\"https://arxiv.org/html/2410.12822v2\"}]\n\nBased on the search results, here are several recent papers from arXiv that relate to video, action models, and adaptive computation:\n\n## Key Papers Found:\n\n1. **𝐀₁: A Fully Transparent Open-Source, Adaptive and Efficient Truncated Vision-Language-Action Model** - This paper presents a budget-aware adaptive inference scheme that simultaneously reduces redundant VLM computation via early-exit thresholding and cuts iterative action-head overhead via Inter-Layer Truncated Flow Matching with warm-start denoising, achieving substantial end-to-end latency reduction without performance degradation.\n\n2. **Advancing Adaptive Multi-Stage Video Anomaly Reasoning** - The model adaptively generates up to three ordered stages (perception, cognition, and action) according to the type and complexity of the question, omitting unnecessary stages instead of enforcing a fixed-depth reasoning chain.\n\n3. **Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising** - Recent work on unified world action models for robotics.\n\n4. **Adaptive Vision-Language Model Routing for Computer Use Agents** - AVR projects inference cost reductions of up to 78% while staying within 2 percentage points of an all-large-model baseline.\n\n5. **MotuBrain: An Advanced World Action Model for Robot Control** - MotuBrain first adopts UniDiffuser to jointly model and schedule the two continuous modalities, i.e., video and action, so that all interaction patterns between them are captured in a unified generative framework.\n\n6. **Not All Frames Deserve Full Computation: Accelerating Autoregressive Video Generation** - Autoregressive (AR) video diffusion has emerged as a leading paradigm for long-form video generation.\n\nThese papers collectively address themes of adaptive computation, video models, and action prediction in various domains including robotics and computer vision.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a1d4ec2d-f14e-43e9-bde8-7ca80c9eea02",
+            "isSidechain": true,
+            "promptId": "25f4b921-396e-481c-a62b-997ad7472d25",
+            "agentId": "aa650845b59d1231d",
+            "type": "user",
+            "uuid": "4052dc05-466e-4de4-885c-c7307521cd29",
+            "sourceToolAssistantUUID": "a1d4ec2d-f14e-43e9-bde8-7ca80c9eea02",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-10T08:47:19.018Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RnCfeMqKf8BEM3e98tYS1q",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv denoising steps robot policy adaptive 2026\"\n\nLinks: [{\"title\":\"D3P: Dynamic Denoising Diffusion Policy via Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2508.06804v1\"},{\"title\":\"ADPro: a Test-time Adaptive Diffusion Policy via Manifold-constrained Denoising and Task-aware Initialization for Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2508.06266\"},{\"title\":\"Learning When to See and When to Feel: Adaptive Vision-Torque Fusion for Contact-Aware Manipulation\",\"url\":\"https://arxiv.org/html/2604.01414\"},{\"title\":\"D3P: Dynamic Denoising Difusion Policy via Reinforcement Learning Shu’ang Yu\",\"url\":\"https://nicsefc.ee.tsinghua.edu.cn/nics_file/pdf/90eaaadf-c4d8-4aa2-980f-d143a1e121cd.pdf\"},{\"title\":\"Adaptive Diffusion Policy Optimization for Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2505.08376v1\"},{\"title\":\"Adaptive Diffusion Policy Optimization for Robotic Manipulation\",\"url\":\"https://www.arxiv.org/pdf/2505.08376\"},{\"title\":\"TS-DP: Reinforcement Speculative Decoding For Temporal Adaptive Diffusion Policy Acceleration\",\"url\":\"https://arxiv.org/html/2512.15773\"},{\"title\":\"Abstracting Robot Manipulation Skills via Mixture-of- ...\",\"url\":\"https://arxiv.org/pdf/2601.21251\"},{\"title\":\"Two-Steps Diffusion Policy for Robotic Manipulation via Genetic Denoising | OpenReview\",\"url\":\"https://openreview.net/forum?id=YY1MPKBHp7\"},{\"title\":\"[2303.04137] Diffusion Policy: Visuomotor Policy Learning via Action Diffusion\",\"url\":\"https://arxiv.org/abs/2303.04137\"}]\n\nI found several highly relevant papers on arXiv related to adaptive denoising steps in robot policies. Here's a summary of the key research:\n\n## Key Papers Found:\n\n**1. D3P: Dynamic Denoising Diffusion Policy (August 2025)**\nD3P employs a lightweight adaptor to dynamically adjust denoising steps during task execution, assigning more steps to crucial actions and fewer to routine ones. D3P achieves an average 2.2x inference speed-up over baseline methods while maintaining comparable performance, and achieves a 1.9x inference acceleration on a physical robot.\n\n**2. ADPro: Adaptive Diffusion Policy (September 2025)**\nADPro is a test-time adaptation method that introduces geometric manifold constraints to align denoising updates with task-relevant subspaces, guiding denoising along the manipulation manifold.\n\n**3. TS-DP: Temporal-aware Speculative Decoding (December 2025)**\nTS-DP is a framework that accelerates Diffusion Policy by combining efficient draft generation with adaptive scheduling, training a PPO-based scheduler that adaptively tunes speculative parameters over time based on task difficulty. Experiments demonstrate up to 4.17x faster inference with 76% reduction in function evaluations and real-time operation at 25 Hz.\n\n**4. ADPO: Adaptive Diffusion Policy Optimization (May 2025)**\nADPO is a framework designed to accelerate diffusion model-based RL methods using Adaptive Policy Gradient (ADAPG) to enhance diffusion-based RL performance.\n\n**5. Two-Steps Diffusion Policy via Genetic Denoising (September 2025)**\nBy tailoring the denoising process to embodied AI tasks, diffusion policies can operate effectively with as few as 5 neural function evaluations, with a genetic denoising strategy enhancing performance by selecting denoising trajectories with low out-of-distribution risk.\n\nThese papers represent the latest advances in making robot policies more efficient through adaptive denoising mechanisms.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1564656d-481e-48d8-bec0-fedfba6341a2",
+            "isSidechain": true,
+            "promptId": "25f4b921-396e-481c-a62b-997ad7472d25",
+            "agentId": "aa650845b59d1231d",
+            "type": "user",
+            "uuid": "8a2cdc7f-87fc-4656-9996-676e82b88522",
+            "sourceToolAssistantUUID": "1564656d-481e-48d8-bec0-fedfba6341a2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-10T08:47:19.036Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012b6QgjawXdCWgximyiePRX",
+              "type": "tool_result",
+              "content": "Web search results for query: \"site:arxiv.org WAM efficient CoRL 2026 robot\"\n\nLinks: [{\"title\":\"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation\",\"url\":\"https://arxiv.org/html/2605.06481v1\"},{\"title\":\"Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising\",\"url\":\"https://arxiv.org/html/2604.26694v2\"},{\"title\":\"EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields\",\"url\":\"https://arxiv.org/html/2605.06192v1\"},{\"title\":\"MotuBrain: An Advanced World Action Model for Robot Control\",\"url\":\"https://arxiv.org/html/2604.27792v2\"},{\"title\":\"Being-H0.7: A Latent World-Action Model from Egocentric Videos\",\"url\":\"https://arxiv.org/html/2605.00078v1\"},{\"title\":\"[2511.09331] CoRL-MPPI: Enhancing MPPI With Learnable Behaviours For Efficient And Provably-Safe Multi-Robot Collision Avoidance\",\"url\":\"https://arxiv.org/abs/2511.09331\"},{\"title\":\"BridgeSim: Unveiling the OL-CL Gap in End-to-End Autonomous Driving\",\"url\":\"https://arxiv.org/html/2604.10856\"},{\"title\":\"CoRL-MPPI: Enhancing MPPI With Learnable Behaviours For Efficient And Provably-Safe Multi-Robot Collision Avoidance\",\"url\":\"https://arxiv.org/html/2511.09331v2\"},{\"title\":\"CKT-WAM: Parameter-Efficient Context Knowledge Transfer Between World Action Models\",\"url\":\"https://arxiv.org/html/2605.06247v1\"},{\"title\":\"JailWAM: Jailbreaking World Action Models in Robot Control\",\"url\":\"https://arxiv.org/html/2604.05498v1\"}]\n\nBased on the search results, I found several relevant papers on arxiv.org related to WAM (World Action Model) and robot learning, many from the 2026 timeframe and associated with CoRL (Conference on Robot Learning). Here are the key findings:\n\n## Papers Found:\n\n1. **X-WAM: Unified 4D World Action Modeling** - A Unified 4D World Model that unifies real-time robotic action execution and high-fidelity 4D world synthesis (video + 3D reconstruction) in a single framework. Achieves 79.2% and 90.7% average success rate on RoboCasa and RoboTwin 2.0 benchmarks.\n\n2. **Fast-WAM** - A paper examining whether world action models need test-time future imagination.\n\n3. **OA-WAM: Object-Addressable World Action Model** - Fast-WAM is cited as examining do world action models need test-time future imagination.\n\n4. **MotuBrain: An Advanced World Action Model** - Addresses inference latency as a practical concern with world-action models, where jointly denoising video and action latents over many diffusion steps couples two computationally expensive operations.\n\n5. **Being-H0.7: A Latent World-Action Model from Egocentric Videos** - Leads on all five evaluation suites spanning reactive, physical, sequential, and generalization-oriented tasks across all three embodiments.\n\n6. **CKT-WAM: Parameter-Efficient Context Knowledge Transfer Between World Action Models** - Studies efficient knowledge transfer from a stronger teacher WAM to a lightweight student WAM.\n\n7. **EA-WM: Event-Aware Generative World Model** - Addresses event-aware generation in world models for robot manipulation.\n\nMost of these papers represent recent advances in efficient, coordinated robot learning approaches published around 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "20e72eb6-c9df-4e52-88de-774589dfa0c7",
+            "isSidechain": true,
+            "promptId": "25f4b921-396e-481c-a62b-997ad7472d25",
+            "agentId": "aa650845b59d1231d",
+            "type": "user",
+            "uuid": "5adfd22f-23b6-497b-bca5-66b3cd1f2641",
+            "sourceToolAssistantUUID": "20e72eb6-c9df-4e52-88de-774589dfa0c7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-10T08:47:19.750Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QKWbDtW24AC4zbt8NC9TSp",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv world action model efficient inference May 2026\"\n\nLinks: [{\"title\":\"𝐴₁: A Fully Transparent Open-Source, Adaptive and Efficient Truncated Vision-Language-Action Model\",\"url\":\"https://arxiv.org/html/2604.05672\"},{\"title\":\"Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising\",\"url\":\"https://arxiv.org/html/2604.26694v2\"},{\"title\":\"World Model for Robot Learning: A Comprehensive Survey\",\"url\":\"https://arxiv.org/html/2605.00080v1\"},{\"title\":\"Flying by Inference: Active Inference World Models for Adaptive UAV Swarms\",\"url\":\"https://arxiv.org/html/2604.27935v1\"},{\"title\":\"MotuBrain: An Advanced World Action Model for Robot Control\",\"url\":\"https://arxiv.org/html/2604.27792v2\"},{\"title\":\"Real-World Robot Control by Deep Active Inference with a Temporally Hierarchical World Model\",\"url\":\"https://arxiv.org/html/2512.01924\"},{\"title\":\"World Guidance: World Modeling in Condition Space for Action Generation\",\"url\":\"https://arxiv.org/html/2602.22010v1\"},{\"title\":\"Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://arxiv.org/html/2603.16666v2\"},{\"title\":\"EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields\",\"url\":\"https://arxiv.org/html/2605.06192v1\"},{\"title\":\"Being-H0.7: A Latent World-Action Model from Egocentric Videos\",\"url\":\"https://arxiv.org/html/2605.00078v1\"}]\n\nBased on the search results, here are several recent arXiv papers on world action models with efficient inference from May 2026 and surrounding months:\n\n## Key Recent Papers\n\n**1. Unified 4D World Action Modeling (X-WAM)**\nX-WAM is a unified 4D World Action Model that incorporates explicit 3D spatial awareness into the joint video-action modeling paradigm. X-WAM consistently achieves lower completion times across all settings, indicating that asynchronous denoising with real-time chunking enables not only faster inference but also more efficient trajectories with fewer corrective motions.\n\n**2. MotuBrain: Advanced World Action Model**\nMotuBrain builds on a unified video-action backbone and adopts a three-stream Mixture-of-Transformers architecture with text, video, and action streams, using an H-bridge attention design to balance cross-modal interaction and efficiency, while supporting flexible multiview inputs through view-dependent 3D RoPE offsets. The paper includes several efficiency optimizations including adopting a DreamZero-style DiT caching strategy to exploit temporal redundancy across denoising steps.\n\n**3. Being-H0.7: Latent World-Action Model**\nBeing-H0.7 is a latent world-action model that brings future-aware reasoning into VLA-style policies without generating future frames. With latency-aware universal asynchronous chunking (UAC), Being-H variants operate in the 3–4 ms/step regime without adding the burden of test-time future generation.\n\n**4. Fast-WAM: Test-time Efficiency**\nOn real-world robotic tasks, Fast-WAM remains highly effective while running at only 190 ms latency, making it more than 4× faster than existing imagine-then-execute WAM approaches.\n\n**5. A₁: Efficient Vision-Language-Action Model**\nA₁ is a fully open-source and transparent VLA framework designed for low-cost, high-throughput inference without sacrificing manipulation success.\n\nThese papers all focus on addressing inference efficiency challenges in world action models for robot control and manipulation tasks.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9401bbf2-ecd3-4233-83a2-6cfd9bc92287",
+            "isSidechain": true,
+            "promptId": "25f4b921-396e-481c-a62b-997ad7472d25",
+            "agentId": "aa650845b59d1231d",
+            "type": "user",
+            "uuid": "3bd47886-4be8-435e-b3e0-852ac465aede",
+            "sourceToolAssistantUUID": "9401bbf2-ecd3-4233-83a2-6cfd9bc92287",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-10T08:47:19.816Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015HHV4gqmZvKkVxiHt6gHur",
+              "type": "tool_result",
+              "content": "Web search results for query: \"site:arxiv.org robot policy adaptive denoising manipulation phases 2026\"\n\nLinks: [{\"title\":\"ADPro: a Test-time Adaptive Diffusion Policy via Manifold-constrained Denoising and Task-aware Initialization for Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2508.06266\"},{\"title\":\"VADF: Vision-Adaptive Diffusion Policy Framework for Efficient Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2604.15938\"},{\"title\":\"Adaptive Diffusion Policy Optimization for Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2505.08376\"},{\"title\":\"[2508.06266] ADPro: a Test-time Adaptive Diffusion Policy via Manifold-constrained Denoising and Task-aware Initialization for Robotic Manipulation\",\"url\":\"https://arxiv.org/abs/2508.06266\"},{\"title\":\"D3P: Dynamic Denoising Diffusion Policy via Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2508.06804v1\"},{\"title\":\"Learning When to See and When to Feel: Adaptive Vision-Torque Fusion for Contact-Aware Manipulation\",\"url\":\"https://arxiv.org/html/2604.01414\"},{\"title\":\"Two-Steps Diffusion Policy for Robotic Manipulation via Genetic Denoising\",\"url\":\"https://arxiv.org/pdf/2510.21991\"},{\"title\":\"ForeDiffusion: Foresight-Conditioned Diffusion Policy via Future View Construction for Robot Manipulation\",\"url\":\"https://arxiv.org/html/2601.12925\"},{\"title\":\"TS-DP: Reinforcement Speculative Decoding For Temporal Adaptive Diffusion Policy Acceleration\",\"url\":\"https://arxiv.org/html/2512.15773\"},{\"title\":\"On-Device Diffusion Transformer Policy for Efficient Robot Manipulation\",\"url\":\"https://arxiv.org/html/2508.00697\"}]\n\nI found several relevant papers on arxiv.org related to robot policies, adaptive denoising, and manipulation. Here are the key results:\n\n## Top Results:\n\n1. **ADPro: Adaptive Diffusion Policy via Manifold-constrained Denoising** (arxiv 2508.06266)\n   This work proposes the Adaptive Diffusion Policy (ADP), a test-time adaptation method that introduces geometric manifold constraints that align denoising updates with task-relevant subspaces, leveraging the relative pose between the end-effector and target scene.\n\n2. **VADF: Vision-Adaptive Diffusion Policy Framework** (arxiv 2604.15938)\n   This framework uses a Vision Language Model-based planner to generate structured templates with sequential manipulation stages, and employs a Hierarchical Vision Task Segmenter that performs zero-shot task decomposition where simple stages receive shorter denoising budgets for speed, while complex stages obtain more steps for higher precision.\n\n3. **Adaptive Diffusion Policy Optimization (ADPO)** (arxiv 2505.08376)\n   This paper proposes Adam-based Diffusion Policy Optimization (ADPO), a fast algorithmic framework for fine-tuning diffusion-based policies in robotic control tasks using the adaptive gradient descent method.\n\n4. **D3P: Dynamic Denoising Diffusion Policy** (arxiv 2508.06804)\n   This work proposes Dynamic Denoising Diffusion Policy (D3P), a diffusion-based policy that adaptively allocates denoising steps across actions at test time, using a lightweight, state-aware adaptor to allocate the optimal number of denoising steps for each action, jointly optimized via reinforcement learning.\n\n5. **TS-DP: Speculative Decoding For Temporal Adaptive Diffusion Policy** (arxiv 2512.15773)\n   This work presents TS-DP, a temporal-aware speculative decoding framework that accelerates Diffusion Policy by combining efficient draft generation with adaptive scheduling, using a distilled Transformer-based drafter while an RL-based scheduler dynamically adjusts speculative parameters based on task difficulty.\n\nThese papers all focus on adaptive mechanisms in diffusion-based robot manipulation policies with different approaches to optimizing the denoising process.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "df35ce3b-adcb-4015-9751-52b396cdee51",
+            "isSidechain": true,
+            "promptId": "25f4b921-396e-481c-a62b-997ad7472d25",
+            "agentId": "aa650845b59d1231d",
+            "type": "user",
+            "uuid": "be4b0f64-eade-4528-b007-cda3831a5e05",
+            "sourceToolAssistantUUID": "df35ce3b-adcb-4015-9751-52b396cdee51",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-10T08:47:21.180Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search specifically for papers citing mimic-video and LingBot-VA:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be4b0f64-eade-4528-b007-cda3831a5e05",
+            "isSidechain": true,
+            "agentId": "aa650845b59d1231d",
+            "requestId": "req_011CatbcakATM6sLDMfUDzqp",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "da05998c-0ea3-4e9d-868a-0600bedda934",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JZVkB8xa7x7P8okcH6FSMv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1022,
+                "cache_creation_input_tokens": 5405,
+                "cache_read_input_tokens": 14492,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5405,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-10T08:47:21.399Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AxL8vFRFVdMbGTnSpbTbwB",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv mimic-video 2512.15692 citations adaptive"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "da05998c-0ea3-4e9d-868a-0600bedda934",
+            "isSidechain": true,
+            "agentId": "aa650845b59d1231d",
+            "requestId": "req_011CatbcakATM6sLDMfUDzqp",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a3c871d8-a15d-4597-9574-eec22fbb80f8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JZVkB8xa7x7P8okcH6FSMv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1022,
+                "cache_creation_input_tokens": 5405,
+                "cache_read_input_tokens": 14492,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5405,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-10T08:47:21.608Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0143KxZfboxDoKxbsy5Pqc5H",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv LingBot-VA 2601.21998 adaptive efficient"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a3c871d8-a15d-4597-9574-eec22fbb80f8",
+            "isSidechain": true,
+            "agentId": "aa650845b59d1231d",
+            "requestId": "req_011CatbcakATM6sLDMfUDzqp",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fce21853-34b3-4b28-8f19-f77ae8861eb0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JZVkB8xa7x7P8okcH6FSMv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1022,
+                "cache_creation_input_tokens": 5405,
+                "cache_read_input_tokens": 14492,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5405,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-10T08:47:21.832Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DQknKan5GTnkzjjqBTpVBg",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"mimic-video\" arxiv 2026 selective adaptive"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fce21853-34b3-4b28-8f19-f77ae8861eb0",
+            "isSidechain": true,
+            "agentId": "aa650845b59d1231d",
+            "requestId": "req_011CatbcakATM6sLDMfUDzqp",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c1051cf0-37ce-430e-b4ef-cb556cc152e5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JZVkB8xa7x7P8okcH6FSMv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1022,
+                "cache_creation_input_tokens": 5405,
+                "cache_read_input_tokens": 14492,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5405,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-10T08:47:21.994Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LfjDjhhSpwRtSWwnjRoJve",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"LingBot-VA\" arxiv 2026 efficient routing"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c1051cf0-37ce-430e-b4ef-cb556cc152e5",
+            "isSidechain": true,
+            "agentId": "aa650845b59d1231d",
+            "requestId": "req_011CatbcakATM6sLDMfUDzqp",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "89865a02-6a3d-41a3-8cb3-2837c3ce5b86",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JZVkB8xa7x7P8okcH6FSMv",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1022,
+                "cache_creation_input_tokens": 5405,
+                "cache_read_input_tokens": 14492,
+                "output_tokens": 233,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 5405
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1022,
+                    "output_tokens": 233,
+                    "cache_read_input_tokens": 14492,
+                    "cache_creation_input_tokens": 5405,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 5405,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-10T08:47:28.745Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DQknKan5GTnkzjjqBTpVBg",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"mimic-video\" arxiv 2026 selective adaptive\"\n\nLinks: [{\"title\":\"mimic-video: Video-Action Models for Generalizable Robot Control Beyond VLAs\",\"url\":\"https://arxiv.org/html/2512.15692v1\"},{\"title\":\"[2512.15692] mimic-video: Video-Action Models for Generalizable Robot Control Beyond VLAs\",\"url\":\"https://arxiv.org/abs/2512.15692\"},{\"title\":\"mimic-video: Video-Action Models for Generalizable Robot Control Beyond VLAs\",\"url\":\"https://mimic-video.github.io/\"},{\"title\":\"[2505.03729] Visual Imitation Enables Contextual Humanoid Control\",\"url\":\"https://arxiv.org/abs/2505.03729\"},{\"title\":\"GitHub - lucidrains/mimic-video: Implementation of Mimic-Video, Video-Action Models for SOTA Generalizable Robot Control Beyond VLAs · GitHub\",\"url\":\"https://github.com/lucidrains/mimic-video\"},{\"title\":\"MovieCharacter: A Tuning-Free Framework for Controllable Character Video Synthesis\",\"url\":\"https://arxiv.org/html/2410.20974v1\"},{\"title\":\"VideoMimic\",\"url\":\"https://www.videomimic.net/\"},{\"title\":\"Visual Imitation Enables Contextual Humanoid Control\",\"url\":\"https://arxiv.org/html/2505.03729v1\"},{\"title\":\"Disrupting Style Mimicry Attacks on Video Imagery\",\"url\":\"https://arxiv.org/html/2405.06865v1\"},{\"title\":\"mimic-video: Video-Action Models for Generalizable Robot Control Beyond VLAs | Request PDF\",\"url\":\"https://www.researchgate.net/publication/398805687_mimic-video_Video-Action_Models_for_Generalizable_Robot_Control_Beyond_VLAs\"}]\n\nI found results for your search on \"mimic-video\" arxiv 2026 selective adaptive. Here's what the search revealed:\n\n## mimic-video: Video-Action Models for Generalizable Robot Control\n\nmimic-video is a novel Video-Action Model (VAM) that pairs a pretrained Internet-scale video model with a flow matching-based action decoder conditioned on its latent representations.\n\n### Key Innovation\n\nUnlike standard VLAs that must learn physical dynamics from scratch, mimic-video leverages the inherent visual dynamics of a video backbone to isolate the control problem. The framework is instantiated with a pretrained video generation backbone (Cosmos-Predict2), which provides rich physical dynamics priors learned from large-scale video data.\n\n### Mechanism\n\nThe model uses a partial denoising strategy, where the video backbone tracks flow to an intermediate noise level to extract latent visual plans. These representations condition a smaller action decoder, which processes proprioceptive states and predicts action trajectories.\n\n### Performance\n\nThe approach achieves state-of-the-art performance on simulated and real-world robotic manipulation tasks, improving sample efficiency by 10x and convergence speed by 2x compared to traditional VLA architectures.\n\nThe paper was published on arXiv (ID: 2512.15692) in December 2025 by Jonas Pai and collaborators from mimic robotics, Microsoft Zurich, and ETH Zurich.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c1051cf0-37ce-430e-b4ef-cb556cc152e5",
+            "isSidechain": true,
+            "promptId": "25f4b921-396e-481c-a62b-997ad7472d25",
+            "agentId": "aa650845b59d1231d",
+            "type": "user",
+            "uuid": "6630ceb3-08c1-4b97-85ba-7d5b040f604d",
+            "sourceToolAssistantUUID": "c1051cf0-37ce-430e-b4ef-cb556cc152e5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-10T08:47:28.783Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AxL8vFRFVdMbGTnSpbTbwB",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv mimic-video 2512.15692 citations adaptive\"\n\nLinks: [{\"title\":\"[2512.15692] mimic-video: Video-Action Models for Generalizable Robot Control Beyond VLAs\",\"url\":\"https://arxiv.org/abs/2512.15692\"},{\"title\":\"mimic-video: Video-Action Models for Generalizable Robot Control Beyond VLAs | Request PDF\",\"url\":\"https://www.researchgate.net/publication/398805687_mimic-video_Video-Action_Models_for_Generalizable_Robot_Control_Beyond_VLAs\"},{\"title\":\"mimic-video: Video-Action Models for Generalizable Robot Control Beyond VLAs\",\"url\":\"https://arxiv.org/html/2512.15692\"},{\"title\":\"mimic-video: Video-Action Models for Generalizable Robot Control Beyond VLAs\",\"url\":\"https://mimic-video.github.io/\"},{\"title\":\"mimic-video: Video-Action Models for Generalizable Robot Control Beyond VLAs | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2512.15692\"},{\"title\":\"Publications | Elvis Nava\",\"url\":\"https://www.elvisnava.com/publications/\"},{\"title\":\"Mimic-Video: Efficient Robot Control Model | PDF | Applied Mathematics\",\"url\":\"https://www.scribd.com/document/968265710/4\"},{\"title\":\"Embodied AI Reading Notes on X: \\\"mimic-video: Video-Action Models for Generalizable Robot Control Beyond VLAs Project: https://t.co/OPNeiOyAfA Paper: https://t.co/yThBzGGvjK This paper explores using video generation pretraining model as backbone to replace the VLM commonly used in VLA for robot control policy https://t.co/EmxwzMPh8s\\\" / X\",\"url\":\"https://x.com/EmbodiedAIRead/status/2005848252449710263\"},{\"title\":\"Causal World Modeling for Robot Control\",\"url\":\"https://arxiv.org/html/2601.21998v1\"},{\"title\":\"[2512.04540] VideoMem: Enhancing Ultra-Long Video Understanding via Adaptive Memory Management\",\"url\":\"https://arxiv.org/abs/2512.04540\"}]\n\nBased on the search results, here's information about the arxiv paper 2512.15692 on mimic-video:\n\n## Paper Overview\n\nmimic-video is a novel Video-Action Model (VAM) that pairs a pretrained Internet-scale video model with a flow matching-based action decoder. The paper addresses limitations of Vision-Language-Action Models (VLAs) for robotic manipulation, which are built upon vision-language backbones pretrained on static web data but must infer complex physical dynamics and temporal dependencies solely from robot trajectories.\n\n## Key Technical Approach\n\nThe video backbone is finetuned using Low-Rank Adapters (LoRA) on robotics video datasets to align the generalist backbone with the specific visual domain and dynamics of robotic tasks, while preserving its pretrained temporal reasoning capabilities.\n\nThe model adapts the video generation backbone for control via a partial denoising strategy, where the video backbone extracts latent visual plans that condition a smaller action decoder which processes proprioceptive states and predicts action trajectories, with the video and action components operating on independent flow schedules.\n\n## Performance\n\nThe approach demonstrates a 10x improvement in sample efficiency and 2x faster convergence in robotic tasks compared to existing models.\n\n## Authors and Citation\n\nThe paper is by Jonas Pai, Liam Achenbach, Victoriano Montesinos, Benedek Forrai, Oier Mees, and Elvis Nava, published as an arXiv preprint 2512.15692 in 2025.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a3c871d8-a15d-4597-9574-eec22fbb80f8",
+            "isSidechain": true,
+            "promptId": "25f4b921-396e-481c-a62b-997ad7472d25",
+            "agentId": "aa650845b59d1231d",
+            "type": "user",
+            "uuid": "1fd49ef4-3782-4db5-92df-1d33e60d615b",
+            "sourceToolAssistantUUID": "a3c871d8-a15d-4597-9574-eec22fbb80f8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-10T08:47:28.869Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0143KxZfboxDoKxbsy5Pqc5H",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv LingBot-VA 2601.21998 adaptive efficient\"\n\nLinks: [{\"title\":\"[2601.21998] Causal World Modeling for Robot Control\",\"url\":\"https://arxiv.org/abs/2601.21998\"},{\"title\":\"Causal World Modeling for Robot Control\",\"url\":\"https://arxiv.org/html/2601.21998v1\"},{\"title\":\"Causal World Modeling for Robot Control Lin Li∗ Qihang Zhang∗† Yiming Luo∗\",\"url\":\"https://arxiv.org/pdf/2601.21998\"},{\"title\":\"Do World Action Models Generalize Better than VLAs? A Robustness Study\",\"url\":\"https://arxiv.org/html/2603.22078v1\"},{\"title\":\"GitHub - Robbyant/lingbot-va: [RSS 2026] Causal video-action world model for generalist robot control · GitHub\",\"url\":\"https://github.com/robbyant/lingbot-va\"},{\"title\":\"Lingbot-Va Achieves Simultaneous Frame Prediction\",\"url\":\"https://quantumzeitgeist.com/prediction-lingbot-achieves-simultaneous-frame-policy/\"},{\"title\":\"robbyant/lingbot-va-base · Hugging Face\",\"url\":\"https://huggingface.co/robbyant/lingbot-va-base\"},{\"title\":\"A Pragmatic VLA Foundation Model\",\"url\":\"https://arxiv.org/html/2601.18692v1\"},{\"title\":\"Embodied World Models for Robotics Training: How LingBot-VA & Cosmos Policy Enable Robot Reasoning | by Daniel Ikechukwu | Medium\",\"url\":\"https://medium.com/@creed_1732/embodied-world-models-for-robotics-training-how-lingbot-va-cosmos-policy-enable-robot-reasoning-c0c152625dfe\"},{\"title\":\"Reliability-Aware Adaptive Self-Consistency for Efficient Sampling in LLM Reasoning\",\"url\":\"https://arxiv.org/html/2601.02970\"}]\n\nBased on the search results, I found information about the paper arxiv 2601.21998:\n\n## LingBot-VA: Causal World Modeling for Robot Control\n\nLingBot-VA is an autoregressive diffusion framework that learns frame prediction and policy execution simultaneously. The paper, titled \"Causal World Modeling for Robot Control,\" presents a novel approach to robot learning and control.\n\n### Key Design Features\n\nThe model features three carefully crafted designs: (1) a shared latent space, integrating vision and action tokens, driven by a Mixture-of-Transformers (MoT) architecture, (2) a closed-loop rollout mechanism, allowing for ongoing acquisition of environmental feedback with ground-truth observations, (3) an asynchronous inference pipeline, parallelizing action prediction and motor execution to support efficient control.\n\n### Adaptive and Efficient Capabilities\n\nThe causal world modeling approach exhibits long-range temporal memory and strong few-shot adaptation ability. The design includes a dual-stream MoT architecture with asymmetric capacity and introduces a partial denoising strategy combined with asynchronous coordination to enable efficient robotic control.\n\n### Performance Results\n\nThe method demonstrates competitive performance compared to state-of-the-art VLA policies, particularly in long-horizon tasks requiring temporal consistency. LingBot-VA achieved success rates over 90% on the demanding two-arm collaborative benchmark RoboTwin 2.0 and reached 98.5% on the LIBERO long-sequence benchmark.\n\nThe code and models are publicly available, facilitating further research in the robotics community.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fce21853-34b3-4b28-8f19-f77ae8861eb0",
+            "isSidechain": true,
+            "promptId": "25f4b921-396e-481c-a62b-997ad7472d25",
+            "agentId": "aa650845b59d1231d",
+            "type": "user",
+            "uuid": "356012c0-7a8d-4d52-861a-c27befe5cdca",
+            "sourceToolAssistantUUID": "fce21853-34b3-4b28-8f19-f77ae8861eb0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-10T08:47:32.011Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LfjDjhhSpwRtSWwnjRoJve",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"LingBot-VA\" arxiv 2026 efficient routing\"\n\nLinks: [{\"title\":\"GitHub - Robbyant/lingbot-va: [RSS 2026] Causal video-action world model for generalist robot control · GitHub\",\"url\":\"https://github.com/robbyant/lingbot-va\"},{\"title\":\"A Pragmatic VLA Foundation Model\",\"url\":\"https://arxiv.org/html/2601.18692v1\"},{\"title\":\"Do World Action Models Generalize Better than VLAs? A Robustness Study\",\"url\":\"https://arxiv.org/html/2603.22078v1\"},{\"title\":\"Causal World Modeling for Robot Control Lin Li∗ Qihang Zhang∗† Yiming Luo∗\",\"url\":\"https://arxiv.org/pdf/2601.21998\"},{\"title\":\"[2601.18692] A Pragmatic VLA Foundation Model\",\"url\":\"https://arxiv.org/abs/2601.18692\"},{\"title\":\"LingBot-VA: Multilingual Virtual Assistant\",\"url\":\"https://www.emergentmind.com/topics/lingbot-va\"},{\"title\":\"LingBot-Map: 7 Powerful Reasons It Matters\",\"url\":\"https://www.progressiverobot.com/2026/04/25/lingbot-map/\"},{\"title\":\"Causal World Modeling for Robot Control\",\"url\":\"https://arxiv.org/html/2601.21998v1\"},{\"title\":\"[2601.21998] Causal World Modeling for Robot Control\",\"url\":\"https://arxiv.org/abs/2601.21998\"},{\"title\":\"robbyant/lingbot-va-base · Hugging Face\",\"url\":\"https://huggingface.co/robbyant/lingbot-va-base\"}]\n\nBased on the search results, I found information about **LingBot-VA** and its efficient routing approach. Here's what the research shows:\n\n## Overview\n\nLingBot-VA is an autoregressive diffusion framework that learns frame prediction and policy execution simultaneously, featuring a shared latent space integrating vision and action tokens driven by a Mixture-of-Transformers (MoT) architecture, a closed-loop rollout mechanism for environmental feedback, and an asynchronous inference pipeline parallelizing action prediction and motor execution to support efficient control.\n\n## Efficient Routing Mechanisms\n\nLingBot-VA employs two key strategies for computational efficiency:\n\n1. **Noisy History Augmentation**: This training scheme enables partial denoising at inference time. The key insight is that action decoding does not always require pixel-perfect reconstruction; instead, it can rely on robust semantic structures. By training the action decoder to predict from partially noisy latent representations, the computational overhead is significantly reduced while maintaining precise action prediction.\n\n2. **Asynchronous Inference Pipeline**: An asynchronous coordination pipeline overlaps computation with execution: while the robot executes current actions, the world model predicts future visual states and plans subsequent sequences. This parallelized architecture, combined with variable chunk-size training, facilitates high-frequency closed-loop control without compromising prediction quality.\n\n## Performance Results\n\nThe model shows significant promise in long-horizon manipulation, data efficiency in post-training, and strong generalizability to novel configurations.\n\nThe paper is available on arXiv as arXiv:2601.21998.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "89865a02-6a3d-41a3-8cb3-2837c3ce5b86",
+            "isSidechain": true,
+            "promptId": "25f4b921-396e-481c-a62b-997ad7472d25",
+            "agentId": "aa650845b59d1231d",
+            "type": "user",
+            "uuid": "218911c4-a2a5-4467-96d3-180563910370",
+            "sourceToolAssistantUUID": "89865a02-6a3d-41a3-8cb3-2837c3ce5b86",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-10T08:47:33.713Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me search for more specific papers on selective/zero-shot task-level routing:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "218911c4-a2a5-4467-96d3-180563910370",
+            "isSidechain": true,
+            "agentId": "aa650845b59d1231d",
+            "requestId": "req_011CatbdUwh6BP1W7X4B3kEx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3bb8b5cb-4623-4ea0-b55d-5f8cb2d6108e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01L9tyJ4WjrHiAWVboay5duQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4741,
+                "cache_read_input_tokens": 19897,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4741,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-10T08:47:34.169Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BG17SmzLLAeFZZbhD8Ltyt",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv zero-shot task routing robot policy 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3bb8b5cb-4623-4ea0-b55d-5f8cb2d6108e",
+            "isSidechain": true,
+            "agentId": "aa650845b59d1231d",
+            "requestId": "req_011CatbdUwh6BP1W7X4B3kEx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "22f46d93-11c6-4f48-9d7c-ae3762e8952b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01L9tyJ4WjrHiAWVboay5duQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4741,
+                "cache_read_input_tokens": 19897,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4741,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-10T08:47:34.405Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VDiB3KzM1wbsuQtphjgMSW",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv selective video generation robot manipulation 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "22f46d93-11c6-4f48-9d7c-ae3762e8952b",
+            "isSidechain": true,
+            "agentId": "aa650845b59d1231d",
+            "requestId": "req_011CatbdUwh6BP1W7X4B3kEx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "173e45cb-791b-4ec7-bddc-7f31b5daa1fb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01L9tyJ4WjrHiAWVboay5duQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4741,
+                "cache_read_input_tokens": 19897,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4741,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-10T08:47:34.623Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014R3bKKEJmDXnVVjJF9QBFz",
+              "name": "WebSearch",
+              "input": {
+                "query": "VADF vision-adaptive diffusion policy phases 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "173e45cb-791b-4ec7-bddc-7f31b5daa1fb",
+            "isSidechain": true,
+            "agentId": "aa650845b59d1231d",
+            "requestId": "req_011CatbdUwh6BP1W7X4B3kEx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7a8f6296-77e3-4b73-9092-c019693a41f1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01L9tyJ4WjrHiAWVboay5duQ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4741,
+                "cache_read_input_tokens": 19897,
+                "output_tokens": 173,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4741
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 173,
+                    "cache_read_input_tokens": 19897,
+                    "cache_creation_input_tokens": 4741,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4741,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-10T08:47:41.301Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BG17SmzLLAeFZZbhD8Ltyt",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv zero-shot task routing robot policy 2026\"\n\nLinks: [{\"title\":\"Robot Utility Models: General Policies for Zero-Shot Deployment in New Environments\",\"url\":\"https://arxiv.org/html/2409.05865v1\"},{\"title\":\"[2409.05865] Robot Utility Models: General Policies for Zero-Shot Deployment in New Environments\",\"url\":\"https://arxiv.org/abs/2409.05865\"},{\"title\":\"Robotics arXiv Digest — 2026-03-30 - Kiru Park / Vision for Robotics\",\"url\":\"https://www.visionforrobotics.com/robotics-digest/digest_2026-03-30.html\"},{\"title\":\"A framework for robotic manipulation tasks based on multiple zero shot models | Scientific Reports\",\"url\":\"https://www.nature.com/articles/s41598-025-17015-z\"},{\"title\":\"TOPReward: Token Probabilities as Hidden Zero-Shot Rewards for Robotics\",\"url\":\"https://arxiv.org/html/2602.19313v1\"},{\"title\":\"Robot Utility Models: General Policies for Zero-Shot Deployment in New Environments | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/robot-utility-models-general-policies-zero-shot\"},{\"title\":\"𝜋₀: A Vision-Language-Action Flow Model for General Robot Control\",\"url\":\"https://arxiv.org/html/2410.24164v1\"},{\"title\":\"[2602.15922] World Action Models are Zero-shot Policies\",\"url\":\"https://arxiv.org/abs/2602.15922\"},{\"title\":\"Large Reward Models: Generalizable Online Robot Reward Generation with Vision-Language Models\",\"url\":\"https://arxiv.org/html/2603.16065v2\"},{\"title\":\"World Action Models are Zero-shot Policies\",\"url\":\"https://arxiv.org/html/2602.15922v1\"}]\n\nBased on the search results, I found several recent ArXiv papers related to zero-shot robot policies from 2026:\n\n## Key Findings:\n\n**1. Robot Utility Models (RUMs)**\nRobot Utility Models (RUMs) are a framework for training and deploying zero-shot robot policies that can directly generalize to new environments without any finetuning. Multi-modal policies provide a zero-shot success rate of 74.4%, and an mLLM based self-critique and retrying system further improves the success rate by 15.6%.\n\n**2. World Action Models (DreamZero)**\nDreamZero is a World Action Model (WAM) built upon a pretrained video diffusion backbone that learns physical dynamics by predicting future world states and actions, using video as a dense representation of how the world evolves. This results in over 2x improvement in generalization to new tasks and environments compared to state-of-the-art VLAs in real robot experiments.\n\n**3. π₀: Vision-Language-Action Flow Model**\nThis model uses a novel flow matching architecture built on top of a pre-trained vision-language model (VLM) trained on a large and diverse dataset from multiple dexterous robot platforms, including single-arm robots, dual-arm robots, and mobile manipulators.\n\n**4. Large Reward Models (LRMs)**\nLarge Reward Models (LRMs) scale foundation VLMs into dense, frame-level reward generators, enabling efficient closed-loop policy refinement from an initial IL baseline.\n\nThese papers represent significant advances in zero-shot robot policy deployment for 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "22f46d93-11c6-4f48-9d7c-ae3762e8952b",
+            "isSidechain": true,
+            "promptId": "25f4b921-396e-481c-a62b-997ad7472d25",
+            "agentId": "aa650845b59d1231d",
+            "type": "user",
+            "uuid": "efeba1e5-1edb-4b3c-880c-129dc5be3af7",
+            "sourceToolAssistantUUID": "22f46d93-11c6-4f48-9d7c-ae3762e8952b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-10T08:47:41.916Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014R3bKKEJmDXnVVjJF9QBFz",
+              "type": "tool_result",
+              "content": "Web search results for query: \"VADF vision-adaptive diffusion policy phases 2026\"\n\nLinks: [{\"title\":\"VADF: Vision-Adaptive Diffusion Policy Framework for Efficient Robotic Manipulation\",\"url\":\"https://arxiv.org/html/2604.15938\"},{\"title\":\"[2604.15938] VADF: Vision-Adaptive Diffusion Policy Framework for Efficient Robotic Manipulation\",\"url\":\"https://arxiv.org/abs/2604.15938\"},{\"title\":\"(PDF) VADF: Vision-Adaptive Diffusion Policy Framework for Efficient Robotic Manipulation\",\"url\":\"https://www.researchgate.net/publication/403976521_VADF_Vision-Adaptive_Diffusion_Policy_Framework_for_Efficient_Robotic_Manipulation\"},{\"title\":\"VADF: Vision-Adaptive Diffusion Policy Framework for Efficient Robotic Manipulation | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2604.15938\"},{\"title\":\"VADF: Vision-Adaptive Diffusion Framework. VADF introduces a... | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/ADF-Vision-Adaptive-Diffusion-Framework-VADF-introduces-a-dualadaptive-mechanism-for_fig1_403976521\"},{\"title\":\"VADF: Vision-Adaptive Diffusion Policy Framework for ...\",\"url\":\"https://arxiv.org/pdf/2604.15938\"},{\"title\":\"Discrete Diffusion VLA: Bringing Discrete Diffusion to Action Decoding in Vision-Language-Action Policies | OpenReview\",\"url\":\"https://openreview.net/forum?id=YWeNCMxdhM\"},{\"title\":\"Task adaptation of Vision-Language-Action model: 1st Place Solution for the 2025 BEHAVIOR Challenge\",\"url\":\"https://arxiv.org/html/2512.06951v1\"},{\"title\":\"[2510.15530] VO-DP: Semantic-Geometric Adaptive Diffusion Policy for Vision-Only Robotic Manipulation\",\"url\":\"https://arxiv.org/abs/2510.15530\"},{\"title\":\"Efficient Vision-Language-Action Models for Embodied ...\",\"url\":\"https://arxiv.org/pdf/2510.17111\"}]\n\nBased on the search results, here's what I found about VADF (Vision-Adaptive Diffusion Policy Framework):\n\n## Overview\n\nVADF is a vision-driven dual-adaptive framework that significantly reduces convergence steps and achieves early success in inference, with model-agnostic design enabling seamless integration into any diffusion policy architecture.\n\n## Two Main Phases\n\nThe framework operates in two distinct phases:\n\n### 1. Training Phase (ALN - Adaptive Loss Network)\n\nIn the training phase, VADF proposes the Adaptive Loss Network, a lightweight predictor that identifies per-sample reconstruction difficulty in real time. By prioritizing high-loss regions, ALN focuses optimization on hard negatives and critical transitions, significantly accelerating convergence.\n\n### 2. Inference Phase (HVTS - Hierarchical Vision Task Segmenter)\n\nIn the inference phase, VADF presents the Hierarchical Vision Task Segmenter, which performs zero-shot task decomposition to segment actions into semantically meaningful stages. Simple stages receive shorter denoising budgets for speed, while complex stages obtain more steps for higher precision, substantially reducing average cost while increasing success rates.\n\n## Application Example\n\nIn the Adroit-Pen task, the HVTS decomposes the instruction \"Rotate the pen tip upward\" into a three-stage strategy: initial grasp, rotation, and stabilization. Despite complex visual conditions, the Stage Classifier accurately identifies the \"rotation in progress\" stage and maintains stable finger-level control via synchronized step-level scheduling.\n\nThe paper was recently published on arXiv (April 17, 2026) by researchers at Fudan University.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7a8f6296-77e3-4b73-9092-c019693a41f1",
+            "isSidechain": true,
+            "promptId": "25f4b921-396e-481c-a62b-997ad7472d25",
+            "agentId": "aa650845b59d1231d",
+            "type": "user",
+            "uuid": "83b76de5-e4dd-43cc-9d50-1c84909c6f5b",
+            "sourceToolAssistantUUID": "7a8f6296-77e3-4b73-9092-c019693a41f1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-10T08:47:51.718Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VDiB3KzM1wbsuQtphjgMSW",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv selective video generation robot manipulation 2026\"\n\nLinks: [{\"title\":\"[2507.01099] Geometry-aware 4D Video Generation for Robot Manipulation\",\"url\":\"https://arxiv.org/abs/2507.01099\"},{\"title\":\"Video Generation Models in Robotics: Applications, Research Challenges, Future Directions\",\"url\":\"https://arxiv.org/html/2601.07823v1\"},{\"title\":\"RoboVIP: Multi-View Video Generation with Visual Identity Prompting Augments Robot Manipulation - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2026arXiv260105241W/abstract\"},{\"title\":\"Geometry-aware 4D Video Generation for Robot Manipulation\",\"url\":\"https://arxiv.org/html/2507.01099\"},{\"title\":\"Video Generators are Robot Policies\",\"url\":\"https://arxiv.org/html/2508.00795v1\"},{\"title\":\"Rethinking Video Generation Model for the Embodied World\",\"url\":\"https://arxiv.org/html/2601.15282v1\"},{\"title\":\"Gen2Act: Human Video Generation in Novel Scenarios enables Generalizable Robot Manipulation\",\"url\":\"https://arxiv.org/html/2409.16283v1\"},{\"title\":\"[2601.05241] RoboVIP: Multi-View Video Generation with Visual Identity Prompting Augments Robot Manipulation\",\"url\":\"https://arxiv.org/abs/2601.05241\"},{\"title\":\"RoboVIP: Multi-View Video Generation with Visual Identity Prompting Augments Robot Manipulation\",\"url\":\"https://arxiv.org/html/2601.05241\"},{\"title\":\"EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields\",\"url\":\"https://arxiv.org/html/2605.06192v1\"}]\n\nI found several relevant arXiv papers related to video generation for robot manipulation from 2026. Here are the key results:\n\n## Key Papers Found:\n\n1. **Geometry-aware 4D Video Generation for Robot Manipulation** (arXiv:2507.01099)\n   - Proposes a 4D video generation model that enforces multi-view 3D consistency of generated videos by supervising the model with cross-view pointmap alignment during training, enabling it to generate spatio-temporally aligned future video sequences from novel viewpoints\n   - The predicted 4D videos can be used to recover robot end-effector trajectories using an off-the-shelf 6DoF pose tracker, yielding robot manipulation policies that generalize well to novel camera viewpoints\n\n2. **RoboVIP: Multi-View Video Generation with Visual Identity Prompting** (arXiv:2601.05241)\n   - Introduces visual identity prompting, which supplies exemplar images as conditioning inputs to guide the generation of the desired scene setup\n   - Using augmented manipulation data to train downstream vision-language-action and visuomotor policy models yields consistent performance gains in both simulation and real-robot settings\n\n3. **Video Generation Models in Robotics** (arXiv:2601.07823)\n   - A comprehensive review of video generation models and their applications in robotics\n\n4. **Video Generators are Robot Policies** (arXiv:2508.00795)\n   - Uses video generation as a proxy for robot policy learning, proposing Video Policy, a modular framework that combines video and action generation trained end-to-end, demonstrating that learning to generate videos of robot behavior allows for extraction of policies with minimal demonstration data\n\nThese papers explore how selective or conditional video generation can be used to improve robot manipulation through better data augmentation, policy learning, and world modeling.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "173e45cb-791b-4ec7-bddc-7f31b5daa1fb",
+            "isSidechain": true,
+            "promptId": "25f4b921-396e-481c-a62b-997ad7472d25",
+            "agentId": "aa650845b59d1231d",
+            "type": "user",
+            "uuid": "3bea6bba-525f-4d92-9b08-f2dd444389be",
+            "sourceToolAssistantUUID": "173e45cb-791b-4ec7-bddc-7f31b5daa1fb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-10T08:47:53.146Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now let me do a few more targeted searches to ensure comprehensive coverage:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3bea6bba-525f-4d92-9b08-f2dd444389be",
+            "isSidechain": true,
+            "agentId": "aa650845b59d1231d",
+            "requestId": "req_011CatbewBJ2iNjAFefm2GTW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "05b17ea2-091b-42ce-b93f-eab8343cd18f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BmPmgwsrMCtonx5cV7Da8h",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 969,
+                "cache_creation_input_tokens": 1971,
+                "cache_read_input_tokens": 24638,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1971,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-10T08:47:53.637Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019Rmg6NjoUx8BGNzqV7gt8Y",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv \"Not All Frames Deserve Full Computation\" 2604.02979"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "05b17ea2-091b-42ce-b93f-eab8343cd18f",
+            "isSidechain": true,
+            "agentId": "aa650845b59d1231d",
+            "requestId": "req_011CatbewBJ2iNjAFefm2GTW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c3b7e1bb-65ce-4d69-98d8-a884f1ca291f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BmPmgwsrMCtonx5cV7Da8h",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 969,
+                "cache_creation_input_tokens": 1971,
+                "cache_read_input_tokens": 24638,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1971,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-10T08:47:54.045Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Kaiz1h4uMGAptedQQJ9AFt",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv OA-WAM object-addressable world action model 2605.06481"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c3b7e1bb-65ce-4d69-98d8-a884f1ca291f",
+            "isSidechain": true,
+            "agentId": "aa650845b59d1231d",
+            "requestId": "req_011CatbewBJ2iNjAFefm2GTW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c5840408-44cf-45e9-b8a1-575f53aacd1a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BmPmgwsrMCtonx5cV7Da8h",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 969,
+                "cache_creation_input_tokens": 1971,
+                "cache_read_input_tokens": 24638,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1971,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-10T08:47:54.316Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014VGtwMiZ5BeSrnQn21W78S",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv \"World Action Models are Zero-shot Policies\" 2602.15922"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c5840408-44cf-45e9-b8a1-575f53aacd1a",
+            "isSidechain": true,
+            "agentId": "aa650845b59d1231d",
+            "requestId": "req_011CatbewBJ2iNjAFefm2GTW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ae61a83a-e15e-4674-a637-ef2e547fd3ba",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BmPmgwsrMCtonx5cV7Da8h",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 969,
+                "cache_creation_input_tokens": 1971,
+                "cache_read_input_tokens": 24638,
+                "output_tokens": 195,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1971
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 969,
+                    "output_tokens": 195,
+                    "cache_read_input_tokens": 24638,
+                    "cache_creation_input_tokens": 1971,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1971,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-10T08:47:57.569Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019Rmg6NjoUx8BGNzqV7gt8Y",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv \"Not All Frames Deserve Full Computation\" 2604.02979\"\n\nLinks: [{\"title\":\"Not All Frames Deserve Full Computation: Accelerating Autoregressive Video Generation via Selective Computation and Predictive Extrapolation\",\"url\":\"https://arxiv.org/html/2604.02979\"},{\"title\":\"[2604.02979] Not All Frames Deserve Full Computation: Accelerating Autoregressive Video Generation via Selective Computation and Predictive Extrapolation\",\"url\":\"https://arxiv.org/abs/2604.02979\"}]\n\nI found the paper you're looking for. Here are the key details:\n\n**Paper Title:** \"Not All Frames Deserve Full Computation: Accelerating Autoregressive Video Generation via Selective Computation and Predictive Extrapolation\"\n\n**ArXiv ID:** 2604.02979\n\n**Publication Date:** April 3, 2026\n\n**Authors:** Hanshuai Cui, Zhiqing Tang, Zhi Yao, Fanshuai Meng, Weijia Jia, and Wei Zhao from Beijing Normal University and Shenzhen University of Advanced Technology\n\n**Summary:** The paper addresses the computational expense of autoregressive (AR) video diffusion models for long-form video generation. Existing training-free acceleration methods rely on binary cache-or-recompute decisions, overlooking intermediate cases where direct reuse is too coarse yet full recomputation is unnecessary. The authors present SCOPE, a training-free framework that introduces a tri-modal scheduler over cache, predict, and recompute options, where prediction via noise-level Taylor extrapolation fills the gap between reuse and recomputation, along with selective computation that restricts execution to the active frame interval.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c3b7e1bb-65ce-4d69-98d8-a884f1ca291f",
+            "isSidechain": true,
+            "promptId": "25f4b921-396e-481c-a62b-997ad7472d25",
+            "agentId": "aa650845b59d1231d",
+            "type": "user",
+            "uuid": "a6f2d2e5-0dbc-410a-8ec7-8453e19b6e68",
+            "sourceToolAssistantUUID": "c3b7e1bb-65ce-4d69-98d8-a884f1ca291f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-10T08:47:59.939Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014VGtwMiZ5BeSrnQn21W78S",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv \"World Action Models are Zero-shot Policies\" 2602.15922\"\n\nLinks: [{\"title\":\"[2602.15922] World Action Models are Zero-shot Policies\",\"url\":\"https://arxiv.org/abs/2602.15922\"},{\"title\":\"DreamZero: World Action Models are Zero-shot Policies\",\"url\":\"https://dreamzero0.github.io/\"},{\"title\":\"2026-2-19 World Action Models are Zero-shot Policies Seonghyeon Ye† Yunhao Ge*\",\"url\":\"https://arxiv.org/pdf/2602.15922\"},{\"title\":\"World Action Models are Zero-shot Policies | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2602.15922\"},{\"title\":\"Paper page - World Action Models are Zero-shot Policies\",\"url\":\"https://huggingface.co/papers/2602.15922\"},{\"title\":\"World Action Models are Zero-shot Policies\",\"url\":\"https://arxiv.org/html/2602.15922v1\"},{\"title\":\"GitHub - dreamzero0/dreamzero: Code to pretrain, fine-tune, and evaluate DreamZero and run sim & real-world evals · GitHub\",\"url\":\"https://github.com/dreamzero0/dreamzero\"},{\"title\":\"[2602.15922v1] World Action Models are Zero-shot Policies\",\"url\":\"https://arxiv.org/abs/2602.15922v1\"},{\"title\":\"(PDF) World Action Models are Zero-shot Policies\",\"url\":\"https://www.researchgate.net/publication/400930242_World_Action_Models_are_Zero-shot_Policies\"},{\"title\":\"World Action Models as Zero-Shot Policies\",\"url\":\"https://www.emergentmind.com/papers/2602.15922\"}]\n\nI found the paper! Here's what I found about arxiv paper 2602.15922 \"World Action Models are Zero-shot Policies\":\n\nThe paper was submitted on February 17, 2026 and addresses how state-of-the-art Vision-Language-Action (VLA) models excel at semantic generalization but struggle to generalize to unseen physical motions in novel environments.\n\nThe authors introduce DreamZero, a World Action Model (WAM) built upon a pretrained video diffusion backbone. Unlike VLAs, WAMs learn physical dynamics by predicting future world states and actions, using video as a dense representation of how the world evolves.\n\nBy jointly modeling video and action, DreamZero learns diverse skills effectively from heterogeneous robot data without relying on repetitive demonstrations. This results in over 2x improvement in generalization to new tasks and environments compared to state-of-the-art VLAs in real robot experiments.\n\nThe paper has numerous authors from NVIDIA and other institutions, and DreamZero is a 14B World Action Model developed by NVIDIA. You can find the paper at https://arxiv.org/abs/2602.15922, and there's also a project page and GitHub repository available for the code.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ae61a83a-e15e-4674-a637-ef2e547fd3ba",
+            "isSidechain": true,
+            "promptId": "25f4b921-396e-481c-a62b-997ad7472d25",
+            "agentId": "aa650845b59d1231d",
+            "type": "user",
+            "uuid": "b0a72c2e-efe7-46f0-b0d8-316b42302661",
+            "sourceToolAssistantUUID": "ae61a83a-e15e-4674-a637-ef2e547fd3ba",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-10T08:48:04.015Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Kaiz1h4uMGAptedQQJ9AFt",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv OA-WAM object-addressable world action model 2605.06481\"\n\nLinks: [{\"title\":\"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation\",\"url\":\"https://arxiv.org/html/2605.06481v1\"},{\"title\":\"[2605.06222] When to Trust Imagination: Adaptive Action Execution for World Action Models\",\"url\":\"https://arxiv.org/abs/2605.06222\"},{\"title\":\"Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising\",\"url\":\"https://arxiv.org/html/2604.26694v2\"},{\"title\":\"EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields\",\"url\":\"https://arxiv.org/html/2605.06192v1\"},{\"title\":\"Being-H0.7: A Latent World-Action Model from Egocentric Videos\",\"url\":\"https://arxiv.org/html/2605.00078v1\"},{\"title\":\"World Action Models are Zero-shot Policies\",\"url\":\"https://arxiv.org/html/2602.15922v1\"},{\"title\":\"When to Trust Imagination: Adaptive Action Execution for World Action Models\",\"url\":\"https://arxiv.org/html/2605.06222\"},{\"title\":\"DreamZero: World Action Models are Zero-shot Policies\",\"url\":\"https://dreamzero0.github.io/\"},{\"title\":\"CKT-WAM: Parameter-Efficient Context Knowledge Transfer Between World Action Models\",\"url\":\"https://arxiv.org/html/2605.06247v1\"},{\"title\":\"MotuBrain: An Advanced World Action Model for Robot Control\",\"url\":\"https://arxiv.org/html/2604.27792v2\"}]\n\nI found the arXiv paper! Here's what I discovered:\n\nOA-WAM (Object-Addressable World Action Model for Robust Robot Manipulation) is a paper submitted on May 7, 2026, authored by researchers from Tsinghua University, Shanghai Jiao Tong University, and Nanyang Technological University.\n\nThe paper appears to be part of a broader research movement around World Action Models (WAMs) for robotic manipulation. World Action Models are foundation models designed to predict both actions and visual future states in an aligned manner. The \"object-addressable\" aspect of OA-WAM suggests it likely focuses on models that can address and manipulate individual objects in robotic scenes.\n\nYou can access the full paper directly at: https://arxiv.org/html/2605.06481v1 or https://arxiv.org/abs/2605.06481\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c5840408-44cf-45e9-b8a1-575f53aacd1a",
+            "isSidechain": true,
+            "promptId": "25f4b921-396e-481c-a62b-997ad7472d25",
+            "agentId": "aa650845b59d1231d",
+            "type": "user",
+            "uuid": "c08a560d-7175-4919-944a-94593e56ceb5",
+            "sourceToolAssistantUUID": "c5840408-44cf-45e9-b8a1-575f53aacd1a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-10T08:48:05.450Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Let me do one more search to catch any papers on adaptive action execution and related topics:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c08a560d-7175-4919-944a-94593e56ceb5",
+            "isSidechain": true,
+            "agentId": "aa650845b59d1231d",
+            "requestId": "req_011CatbfqmtCcZuekVNZ1hSu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "39351fc3-f13e-4a6b-b57f-14916e670c69",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01YYzcHSRr1TytDTfJgfEXeA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 769,
+                "cache_creation_input_tokens": 2307,
+                "cache_read_input_tokens": 26609,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2307,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-10T08:48:05.666Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Aceg4H2yRV4wXggZLj2gto",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"When to Trust Imagination\" adaptive action execution WAM 2605.06222"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "39351fc3-f13e-4a6b-b57f-14916e670c69",
+            "isSidechain": true,
+            "agentId": "aa650845b59d1231d",
+            "requestId": "req_011CatbfqmtCcZuekVNZ1hSu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9edb8df8-064d-42a2-8113-972472d10ce2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01YYzcHSRr1TytDTfJgfEXeA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 769,
+                "cache_creation_input_tokens": 2307,
+                "cache_read_input_tokens": 26609,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2307,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-10T08:48:06.018Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01472P9pfg5eTdm3ndouxSCf",
+              "name": "WebSearch",
+              "input": {
+                "query": "arxiv \"D3P Dynamic Denoising\" diffusion policy 2508.06804"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9edb8df8-064d-42a2-8113-972472d10ce2",
+            "isSidechain": true,
+            "agentId": "aa650845b59d1231d",
+            "requestId": "req_011CatbfqmtCcZuekVNZ1hSu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ae3d4cf4-e741-40c3-9cc6-95d6661fd5fd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01YYzcHSRr1TytDTfJgfEXeA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 769,
+                "cache_creation_input_tokens": 2307,
+                "cache_read_input_tokens": 26609,
+                "output_tokens": 145,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2307
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 769,
+                    "output_tokens": 145,
+                    "cache_read_input_tokens": 26609,
+                    "cache_creation_input_tokens": 2307,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2307,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-10T08:48:13.082Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Aceg4H2yRV4wXggZLj2gto",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"When to Trust Imagination\" adaptive action execution WAM 2605.06222\"\n\nLinks: [{\"title\":\"[2605.06222] When to Trust Imagination: Adaptive Action Execution for World Action Models\",\"url\":\"https://arxiv.org/abs/2605.06222\"},{\"title\":\"When to Trust Imagination: Adaptive Action Execution for World Action Models\",\"url\":\"https://arxiv.org/html/2605.06222\"},{\"title\":\"Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://arxiv.org/html/2603.16666v1\"},{\"title\":\"[2603.16666] Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://arxiv.org/abs/2603.16666\"},{\"title\":\"(PDF) Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://www.researchgate.net/publication/402613129_Fast-WAM_Do_World_Action_Models_Need_Test-time_Future_Imagination\"},{\"title\":\"Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://yuantianyuan01.github.io/FastWAM/\"},{\"title\":\"Necessity of Test-Time Future Imagination in World Action Models\",\"url\":\"https://www.emergentmind.com/open-problems/necessity-of-test-time-future-imagination-in-wams\"},{\"title\":\"Fast-WAM: Do World Action Models Need Test-time Future Imagination?…\",\"url\":\"https://www.opentrain.ai/papers/fast-wam-do-world-action-models-need-test-time-future-imagination--arxiv-2603.16666/\"},{\"title\":\"[2105.05716v2] Acting upon Imagination: when to trust imagined trajectories in model based reinforcement learning\",\"url\":\"https://arxiv.org/abs/2105.05716v2\"},{\"title\":\"CKT-WAM: Parameter-Efficient Context Knowledge Transfer Between World Action Models\",\"url\":\"https://arxiv.org/html/2605.06247v1\"}]\n\nI found the paper! Here are the key details about \"When to Trust Imagination: Adaptive Action Execution for World Action Models\" (arXiv:2605.06222):\n\n## Overview\n\nThe paper is authored by Rui Wang, Yue Zhang, Jiehong Lin, Kuncheng Luo, Jianan Wang, Zhongrui Wang, and Xiaojuan Qi from Southern University of Science and Technology, The University of Hong Kong, and Astribot.\n\n## Core Problem and Solution\n\nCurrent WAMs typically execute a fixed number of predicted actions after each model inference, leaving the robot blind to whether the imagined future remains consistent with the actual physical rollout. \n\nThe work formulates adaptive WAM execution as a future–reality verification problem: the robot should execute longer when the WAM-predicted future remains reliable, and replan earlier when reality deviates from imagination.\n\n## Main Technical Contribution\n\nThe paper proposes Future Forward Dynamics Causal Attention (FFDC), a lightweight verifier that jointly reasons over predicted future actions, predicted visual dynamics, real observations, and language instructions to estimate whether the remaining action rollout can still be trusted.\n\n## Results\n\nOn the RoboTwin benchmark, the method reduces WAM forward passes by 69.10% and execution time by 34.02%, while improving success rate by 2.54% over the short-chunk baseline; in real-world experiments, it improves success rate by 35%.\n\nThe paper was submitted on May 7, 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9edb8df8-064d-42a2-8113-972472d10ce2",
+            "isSidechain": true,
+            "promptId": "25f4b921-396e-481c-a62b-997ad7472d25",
+            "agentId": "aa650845b59d1231d",
+            "type": "user",
+            "uuid": "da8e3330-e5ab-4dbd-9797-b0e65ebc8992",
+            "sourceToolAssistantUUID": "9edb8df8-064d-42a2-8113-972472d10ce2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-10T08:48:14.831Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01472P9pfg5eTdm3ndouxSCf",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arxiv \"D3P Dynamic Denoising\" diffusion policy 2508.06804\"\n\nLinks: [{\"title\":\"[2508.06804] D3P: Dynamic Denoising Diffusion Policy via Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2508.06804\"},{\"title\":\"D3P: Dynamic Denoising Diffusion Policy via Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2508.06804v1\"},{\"title\":\"D3P: Dynamic Denoising Diffusion Policy via ...\",\"url\":\"https://arxiv.org/pdf/2508.06804\"},{\"title\":\"D3P: Dynamic Denoising Diffusion Policy via Reinforcement Learning | alphaXiv\",\"url\":\"https://www.alphaxiv.org/abs/2508.06804v1\"},{\"title\":\"(PDF) D3P: Dynamic Denoising Diffusion Policy via Reinforcement Learning\",\"url\":\"https://www.researchgate.net/publication/394438722_D3P_Dynamic_Denoising_Diffusion_Policy_via_Reinforcement_Learning\"},{\"title\":\"Structured Denoising Diffusion Models in Discrete State-Spaces | OpenReview\",\"url\":\"https://openreview.net/forum?id=h7-XixPCAL\"},{\"title\":\"Structured Denoising Diffusion Models in Discrete State-Spaces\",\"url\":\"https://arxiv.org/pdf/2107.03006\"},{\"title\":\"[2006.11239] Denoising Diffusion Probabilistic Models\",\"url\":\"https://arxiv.org/abs/2006.11239\"},{\"title\":\"[2107.03006] Structured Denoising Diffusion Models in Discrete State-Spaces\",\"url\":\"https://arxiv.org/abs/2107.03006\"},{\"title\":\"Structured Denoising Diffusion Models in Discrete State-Spaces\",\"url\":\"https://papers.neurips.cc/paper/2021/file/958c530554f78bcd8e97125b70e6973d-Paper.pdf\"}]\n\nBased on the search results, here's information about the arxiv paper 2508.06804:\n\n## D3P: Dynamic Denoising Diffusion Policy via Reinforcement Learning\n\nThe paper was submitted on August 9, 2025, and the authors are Shu-Ang Yu, Feng Gao, Yi Wu, Chao Yu, and Yu Wang.\n\n### Overview\n\nDiffusion policies excel at learning complex action distributions for robotic visuomotor tasks, yet their iterative denoising process poses a major bottleneck for real-time deployment. Robotic tasks often contain a mix of crucial and routine actions, which differ in their impact on task success.\n\n### Proposed Method\n\nD3P is a diffusion-based policy that adaptively allocates denoising steps across actions at test time. D3P uses a lightweight, state-aware adaptor to allocate the optimal number of denoising steps for each action, and jointly optimizes the adaptor and base diffusion policy via reinforcement learning to balance task performance and inference efficiency.\n\n### Results\n\nOn simulated tasks, D3P achieves an averaged 2.2× inference speed-up over baselines without degrading success. Furthermore, D3P demonstrates effectiveness on a physical robot, achieving a 1.9× acceleration over the baseline.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ae3d4cf4-e741-40c3-9cc6-95d6661fd5fd",
+            "isSidechain": true,
+            "promptId": "25f4b921-396e-481c-a62b-997ad7472d25",
+            "agentId": "aa650845b59d1231d",
+            "type": "user",
+            "uuid": "cb49c63a-d441-497a-9f68-f5b277b37dee",
+            "sourceToolAssistantUUID": "ae3d4cf4-e741-40c3-9cc6-95d6661fd5fd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-10T08:48:35.945Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on my comprehensive search, I found an excellent collection of very recent papers (April-May 2026) addressing world action models, video-action models, and efficient inference in robot policies. Here's a complete report organized by research themes:\n\n## Papers Directly Addressing Your Research Interests\n\n### Selective/Adaptive Video Generation in Robot Policies\n\n1. **VADF: Vision-Adaptive Diffusion Policy Framework for Efficient Robotic Manipulation**\n   - arXiv: 2604.15938 (April 17, 2026)\n   - Key contribution: Hierarchical Vision Task Segmenter (HVTS) that performs zero-shot task decomposition to segment actions into manipulation phases. Simple stages receive shorter denoising budgets while complex stages receive more steps for precision.\n   - Directly matches your interests in selective video generation and zero-shot task-level routing\n\n2. **Not All Frames Deserve Full Computation: Accelerating Autoregressive Video Generation via Selective Computation and Predictive Extrapolation**\n   - arXiv: 2604.02979 (April 3, 2026)\n   - Introduces SCOPE framework with tri-modal scheduler offering cache, predict, or recompute options with selective computation restricting execution to active frame intervals\n   - Highly relevant to selective video generation methods\n\n### Adaptive Computation Allocation in WAMs and Diffusion Policies\n\n3. **D3P: Dynamic Denoising Diffusion Policy via Reinforcement Learning**\n   - arXiv: 2508.06804 (August 2025)\n   - Proposes lightweight state-aware adaptor for dynamically allocating denoising steps per action at test time via RL\n   - Achieves 2.2× inference speed-up on simulated tasks and 1.9× on physical robots\n   - Perfect match for adaptive computation allocation\n\n4. **When to Trust Imagination: Adaptive Action Execution for World Action Models**\n   - arXiv: 2605.06222 (May 7, 2026)\n   - Introduces Future Forward Dynamics Causal Attention (FFDC) verifier for adaptive WAM execution\n   - Reduces WAM forward passes by 69.10% and execution time by 34.02% while improving success rate\n   - Addresses when to allocate more/less computation in world action models\n\n5. **TS-DP: Reinforcement Speculative Decoding For Temporal Adaptive Diffusion Policy Acceleration**\n   - arXiv: 2512.15773 (December 2025)\n   - PPO-based scheduler dynamically adjusts speculative parameters based on task difficulty\n   - Achieves up to 4.17× faster inference with 76% reduction in function evaluations\n\n### Zero-Shot Task-Level Routing and Adaptive Approaches\n\n6. **World Action Models are Zero-shot Policies (DreamZero)**\n   - arXiv: 2602.15922 (February 17, 2026)\n   - 14B World Action Model from NVIDIA that achieves 2× improvement in generalization vs VLAs\n   - Demonstrates zero-shot generalization to new tasks and environments\n\n7. **ADPro: A Test-time Adaptive Diffusion Policy via Manifold-constrained Denoising and Task-aware Initialization for Robotic Manipulation**\n   - arXiv: 2508.06266\n   - Geometric manifold constraints for task-aware denoising\n\n### Recent Video-Action Model Approaches\n\n8. **mimic-video: Video-Action Models for Generalizable Robot Control Beyond VLAs**\n   - arXiv: 2512.15692 (December 2025)\n   - Pairs pretrained video backbone with flow matching action decoder using partial denoising strategy\n   - Achieves 10× improvement in sample efficiency and 2× faster convergence\n   - Demonstrates selective denoising approach\n\n9. **Causal World Modeling for Robot Control (LingBot-VA)**\n   - arXiv: 2601.21998 (January 2026)\n   - Autoregressive diffusion framework with shared latent space for vision/action tokens\n   - Features asynchronous inference pipeline parallelizing action prediction and motor execution\n   - Employs noisy history augmentation enabling partial denoising at inference time\n\n### Unified 4D World Action Modeling\n\n10. **Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising**\n    - arXiv: 2604.26694v2 (April 2026)\n    - Incorporates explicit 3D spatial awareness with asynchronous denoising\n    - Achieves lower completion times through real-time chunking and efficient trajectories\n\n### Additional Relevant World Action Models (May 2026)\n\n11. **MotuBrain: An Advanced World Action Model for Robot Control**\n    - arXiv: 2604.27792v2 (April 2026)\n    - Three-stream Mixture-of-Transformers with DreamZero-style DiT caching for temporal redundancy\n    - Addresses inference latency in jointly denoising video and action latents\n\n12. **Being-H0.7: A Latent World-Action Model from Egocentric Videos**\n    - arXiv: 2605.00078v1 (May 2026)\n    - Latency-aware universal asynchronous chunking (UAC) operating at 3-4 ms/step without test-time frame generation\n\n13. **OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation**\n    - arXiv: 2605.06481v1 (May 7, 2026)\n\n14. **EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields**\n    - arXiv: 2605.06192v1 (May 2026)\n\n15. **Fast-WAM: Do World Action Models Need Test-time Future Imagination?**\n    - arXiv: 2603.16666v2 (March 2026)\n    - Achieves 190 ms latency, 4× faster than imagine-then-execute WAM approaches\n\n### Adaptive VLA Models\n\n16. **A₁: A Fully Transparent Open-Source, Adaptive and Efficient Truncated Vision-Language-Action Model**\n    - arXiv: 2604.05672 (April 2026)\n    - Budget-aware adaptive inference with early-exit thresholding and Inter-Layer Truncated Flow Matching with warm-start denoising\n\n## Summary\n\nThe most directly relevant papers for your interests are:\n- **VADF** (zero-shot task decomposition for manipulation phases)\n- **D3P** (adaptive denoising step allocation)\n- **When to Trust Imagination** (adaptive action execution based on future-reality verification)\n- **mimic-video** and **LingBot-VA** (selective denoising strategies in video-action models)\n- **Not All Frames Deserve Full Computation** (selective computation in video generation)\n\nThese papers represent a clear research momentum in April-May 2026 toward efficient, adaptive computation in world action models and video-based robot policies.\n\nSources:\n- [VADF: Vision-Adaptive Diffusion Policy Framework](https://arxiv.org/html/2604.15938)\n- [Not All Frames Deserve Full Computation](https://arxiv.org/html/2604.02979)\n- [D3P: Dynamic Denoising Diffusion Policy](https://arxiv.org/html/2508.06804v1)\n- [When to Trust Imagination: Adaptive Action Execution](https://arxiv.org/html/2605.06222)\n- [TS-DP: Reinforcement Speculative Decoding](https://arxiv.org/html/2512.15773)\n- [World Action Models are Zero-shot Policies (DreamZero)](https://arxiv.org/html/2602.15922v1)\n- [ADPro: Adaptive Diffusion Policy](https://arxiv.org/html/2508.06266)\n- [mimic-video: Video-Action Models](https://arxiv.org/html/2512.15692v1)\n- [Causal World Modeling (LingBot-VA)](https://arxiv.org/html/2601.21998v1)\n- [Unified 4D World Action Modeling with Asynchronous Denoising](https://arxiv.org/html/2604.26694v2)\n- [MotuBrain: Advanced World Action Model](https://arxiv.org/html/2604.27792v2)\n- [Being-H0.7: Latent World-Action Model](https://arxiv.org/html/2605.00078v1)\n- [OA-WAM: Object-Addressable World Action Model](https://arxiv.org/html/2605.06481v1)\n- [EA-WM: Event-Aware Generative World Model](https://arxiv.org/html/2605.06192v1)\n- [Fast-WAM: Do World Action Models Need Test-time Future Imagination?](https://arxiv.org/html/2603.16666v1)\n- [A₁: Adaptive and Efficient Vision-Language-Action Model](https://arxiv.org/html/2604.05672)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cb49c63a-d441-497a-9f68-f5b277b37dee",
+            "isSidechain": true,
+            "agentId": "aa650845b59d1231d",
+            "requestId": "req_011CatbgdykKn4zX6WEJ5cJo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4afe5c01-8b6d-4c8b-9d9b-9d47c813fc61",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "f1eaeb65-0bf6-4df5-8e52-8cd191ae538d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01F22QgDZ4AJWJqhW2qPZ8EF",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2660,
+                "cache_read_input_tokens": 28916,
+                "output_tokens": 2234,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2660
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 2234,
+                    "cache_read_input_tokens": 28916,
+                    "cache_creation_input_tokens": 2660,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2660,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000043"
+        }
+      ],
+      "message_count": 43
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-for-very-recent-papers-april-may-2026-related-to-world-action-models-wa.md"
+}

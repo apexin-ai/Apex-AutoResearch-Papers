@@ -1,0 +1,12844 @@
+# Research conversation: [系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]: Worker worker_review_figure_table_audit_20260518T — Part 1 of 10
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary (July export snapshot)** · Conversation logs
+
+[Transcript overview](../research-conversation-worker-done-worker-review-figure-table-audit-20260518t020337-worker-worker-rev.md) · [Part 2 →](part-002.md) · [Structured JSON](../../../sessions/76/76890c3a0606689628ee.json)
+
+## Before a recorded user message
+
+## Before a recorded user message
+
+2 recorded events
+
+
+### Runtime record
+
+_source line 1 · 2026-05-18T02:11:28.325Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-18T02:11:28.325Z",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "content": "[系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]:\nWorker worker_review_figure_table_audit_20260518T020337 已完成（status=failed），请审查 Agent 的处理结果。"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 2 · 2026-05-18T02:11:28.330Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-18T02:11:28.330Z",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+## Round 1
+
+## Round 1
+
+162 recorded events
+
+
+### User
+
+_source line 3 · 2026-05-18T02:11:28.374Z_
+
+[系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]:
+Worker worker_review_figure_table_audit_20260518T020337 已完成（status=failed），请审查 Agent 的处理结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "c81de203-40be-4258-a61b-3ff03e905b28",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 4 · 2026-05-18T02:11:28.374Z_
+
+```json
+{
+  "parentUuid": "c81de203-40be-4258-a61b-3ff03e905b28",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reviewer_post_to_director",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__tail_training_logs"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reviewer_post_to_director",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__tail_training_logs"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "53169b78-de35-43b1-a16e-63d906c1c96a",
+  "timestamp": "2026-05-18T02:11:28.374Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 5 · 2026-05-18T02:11:28.374Z_
+
+```json
+{
+  "parentUuid": "53169b78-de35-43b1-a16e-63d906c1c96a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "654697e3-f7de-4c58-8c58-398d0714db94",
+  "timestamp": "2026-05-18T02:11:28.374Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 6 · 2026-05-18T02:11:28.374Z_
+
+```json
+{
+  "parentUuid": "654697e3-f7de-4c58-8c58-398d0714db94",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "93fac4b3-fccd-4825-9323-815c196a9485",
+  "timestamp": "2026-05-18T02:11:28.374Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 8 · 2026-05-18T02:11:32.805Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+A worker has completed with status=failed. I need to review what happened. Let me check the registry for this worker's information and understand what went wrong.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "93fac4b3-fccd-4825-9323-815c196a9485",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Du6Hck64tTGo1GXVJs",
+  "type": "assistant",
+  "uuid": "a8a6ccdf-fca6-49af-9f4d-0c89982ba471",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ng7iLsXURoMkAq8LVSx7eZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20696,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 150,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20696,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 150,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 20696,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20696
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 9 · 2026-05-18T02:11:33.307Z_
+
+让我查看这个失败的 worker 的详情。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a8a6ccdf-fca6-49af-9f4d-0c89982ba471",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Du6Hck64tTGo1GXVJs",
+  "type": "assistant",
+  "uuid": "989922b0-f7f6-4e41-bca8-2d2bde4c63da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ng7iLsXURoMkAq8LVSx7eZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20696,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 150,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20696,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 150,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 20696,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20696
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 10 · 2026-05-18T02:11:34.209Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01FT7DER6xMkuTQSXiHCv74f`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "989922b0-f7f6-4e41-bca8-2d2bde4c63da",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Du6Hck64tTGo1GXVJs",
+  "type": "assistant",
+  "uuid": "762475fc-7ac7-47c5-a412-e5562cb69e5e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ng7iLsXURoMkAq8LVSx7eZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 20696,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 150,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 20696,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 150,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 20696,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 20696
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 11 · 2026-05-18T02:11:34.215Z_
+
+<details><summary>↩ Tool result · `toolu_01FT7DER6xMkuTQSXiHCv74f`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "762475fc-7ac7-47c5-a412-e5562cb69e5e",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "afba3cab-09e4-4878-bd92-416ec1db9243",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 34
+  },
+  "sourceToolAssistantUUID": "762475fc-7ac7-47c5-a412-e5562cb69e5e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 12 · 2026-05-18T02:11:37.472Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the registry to find information about this worker/experiment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "afba3cab-09e4-4878-bd92-416ec1db9243",
+  "isSidechain": false,
+  "requestId": "req_011Cb9DuXH2N7LnrCGEEytbr",
+  "type": "assistant",
+  "uuid": "ce88fa32-6134-4e22-a9ab-d658a3f2fd17",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Ma4iJNvzxvqeFDkq87zzd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 512,
+      "cache_read_input_tokens": 32537,
+      "output_tokens": 132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 512,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 132,
+          "cache_read_input_tokens": 32537,
+          "cache_creation_input_tokens": 512,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 512
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 13 · 2026-05-18T02:11:37.888Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_018U5rR7nRmZFjn7xnjDcbnR`</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "limit": 5,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ce88fa32-6134-4e22-a9ab-d658a3f2fd17",
+  "isSidechain": false,
+  "requestId": "req_011Cb9DuXH2N7LnrCGEEytbr",
+  "type": "assistant",
+  "uuid": "d93542fe-1968-4fa7-b7bf-fd8c7c8a5f2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Ma4iJNvzxvqeFDkq87zzd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 512,
+      "cache_read_input_tokens": 32537,
+      "output_tokens": 132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 512,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 132,
+          "cache_read_input_tokens": 32537,
+          "cache_creation_input_tokens": 512,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 512
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 14 · 2026-05-18T02:11:38.203Z_
+
+<details><summary>↩ Tool result · `toolu_018U5rR7nRmZFjn7xnjDcbnR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_wiki_scorer_confound_1b5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T23:18:37.565Z\", \"updated_at\": \"2026-05-18T01:21:43.381Z\", \"hypothesis\": \"Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。\", \"parent\": \"exp_023_domain_ablation\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-17T23:20:01.037Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound_1b5 && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/depth_\\\\${d}.jsonl data/exp_wiki_scorer_confound_1b5/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound_1b5 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound_1b5 --results_dir results/exp_wiki_scorer_confound_1b5 --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"code_commit\": \"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\", \"finished_at\": \"2026-05-18T01:18:40.529Z\", \"training_hours\": 1.98}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound_1b5 && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/depth_\\\\${d}.jsonl data/exp_wiki_scorer_confound_1b5/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound_1b5 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound_1b5 --results_dir results/exp_wiki_scorer_confound_1b5 --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"180543\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_scorer_confound_1b5.log\", \"submitted_at\": \"2026-05-17T23:22:42.473Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 7140.9, \"gpu_hours\": 1.98}, \"pid\": \"180543\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_scorer_confound_1b5.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T01:18:44.039720+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"k_star\": 1, \"confound_verdict\": \"confirmed\", \"auc_0v1\": 0.9729, \"auc_1v2\": 0.5994, \"auc_2v3\": 0.533, \"auc_3v4\": 0.5214, \"auc_4v5\": 0.5068, \"jsd_0v1\": 0.0886, \"ordinal_mae\": 1.2995, \"ordinal_accuracy\": 0.3466}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_scorer_confound_1b5/\", \"completed_at\": \"2026-05-18T01:21:43.381Z\"}, \"exp_wiki_scorer_confound\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T22:35:20.326Z\", \"updated_at\": \"2026-05-17T23:20:31.517Z\", \"hypothesis\": \"Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。\", \"parent\": \"exp_wiki_qwen7b\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-17T22:55:01.348Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\\\${d}.jsonl data/exp_wiki_scorer_confound/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound --results_dir results/exp_wiki_scorer_confound --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"code_commit\": \"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\", \"finished_at\": \"2026-05-17T23:13:55.501Z\", \"training_hours\": 0.32}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\\\${d}.jsonl data/exp_wiki_scorer_confound/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound --results_dir results/exp_wiki_scorer_confound --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"178762\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_scorer_confound.log\", \"submitted_at\": \"2026-05-17T22:55:03.139Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_scorer_confound/\", \"wall_clock_seconds\": 1528.4, \"gpu_hours\": 0.42}, \"pid\": \"178762\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_scorer_confound.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T23:13:58.836236+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"k_star\": 1, \"confound_verdict\": \"confirmed\", \"auc_0v1\": 0.9404, \"auc_1v2\": 0.587, \"auc_2v3\": 0.5456, \"auc_3v4\": 0.525, \"auc_4v5\": 0.5172, \"critical_delta_1v2\": -0.0238}, \"completed_at\": \"2026-05-17T23:20:31.517Z\"}, \"exp_008_retrain_chain\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T19:26:02.931Z\", \"updated_at\": \"2026-05-17T22:30:32.930Z\", \"hypothesis\": \"Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"killed\"}, \"exp_wiki_qwen7b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T16:39:29.006Z\", \"updated_at\": \"2026-05-17T22:24:51.126Z\", \"hypothesis\": \"Cross-scale Wikipedia K* validation: Qwen2.5-7B continuation on Wikipedia 的 K* 是否 = 2？Qwen2.5-1.5B 在 Wikipedia K*=2（唯一维持 K*=2 的模型），Pythia/OLMo/均 K*=1。测试 7B 规模是否仍维持 Qwen 家族在 Wikipedia 上的 K*=2 pattern。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"parent\": \"exp_arXiv_qwen7b\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T17:02:41.963Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --data_dir data/exp_wiki_qwen7b --results_dir results/exp_wiki_qwen7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\", \"code_commit\": \"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\", \"finished_at\": \"2026-05-17T22:21:53.554Z\", \"training_hours\": 5.32}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --data_dir data/exp_wiki_qwen7b --results_dir results/exp_wiki_qwen7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"732600\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_qwen7b.log\", \"submitted_at\": \"2026-05-17T17:02:43.570Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 19327.6, \"gpu_hours\": 5.37}, \"pid\": \"732600\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_qwen7b.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T22:21:56.559363+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"K_star\": 2, \"auc_0v1\": 0.9673, \"auc_1v2\": 0.6108, \"auc_2v3\": 0.5562, \"auc_3v4\": 0.5297, \"auc_4v5\": 0.529, \"jsd_0v1\": 0.083514, \"jsd_1v2\": 0.010991, \"jsd_2v3\": 0.00555, \"jsd_3v4\": 0.004611, \"jsd_4v5\": 0.003894, \"ordinal_mae\": 1.2501, \"ordinal_accuracy\": 0.3532}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_qwen7b\", \"completed_at\": \"2026-05-17T22:24:51.126Z\"}, \"exp_wiki_mistral7b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T14:04:15.959Z\", \"updated_at\": \"2026-05-17T19:53:56.272Z\", \"hypothesis\": \"Mistral-7B Wikipedia K* test: Mistral-7B-v0.3 在 C4 上 K*=1 (text-intrinsic one-wash)。在 Wikipedia domain 上是否仍 K*=1？Pythia/OLMo 在 Wikipedia 均 K*=1，Qwen K*=2。如果 Mistral K*=1 → 确认 one-wash 跨域成立；如果 K*>1 → Wikipedia 有 rescue Mistral 的结构信号（与预期相反）。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"parent\": \"exp_wiki_pythia_v2\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-17T14:05:42.553Z\", \"command\": \"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python3.12 scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-v0___3 --data_dir data/exp_wiki_mistral7b --results_dir results/exp_wiki_mistral7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\", \"code_commit\": \"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\", \"finished_at\": \"2026-05-17T19:50:28.711Z\", \"training_hours\": 5.75}, \"spec\": {\"command\": \"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python3.12 scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-v0___3 --data_dir data/exp_wiki_mistral7b --results_dir results/exp_wiki_mistral7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"data_path\": \"data/exp_wiki_mistral7b\", \"data_count\": 5000, \"model_name\": \"mistralai/Mistral-7B-v0.3\", \"seed\": 42, \"checkpoint_source\": \"pretrained:mistralai/Mistral-7B-v0.3\", \"eval_data\": \"Wikipedia depth 0-5, scorer=Qwen2.5-1.5B\"}, \"pid\": \"41845\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_mistral7b.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T19:50:32.601540+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_mistral7b\", \"metrics\": {\"K_star\": 1, \"ordinal_mae\": 1.3445, \"ordinal_accuracy\": 0.3273, \"auc_0v1\": 0.9607, \"auc_1v2\": 0.5552, \"auc_2v3\": 0.5236, \"auc_3v4\": 0.5181, \"auc_4v5\": 0.5012, \"jsd_0v1\": 0.054134, \"jsd_1v2\": 0.005678, \"jsd_2v3\": 0.003698, \"jsd_3v4\": 0.003459, \"jsd_4v5\": 0.003274}, \"completed_at\": \"2026-05-17T19:53:56.272Z\"}}, \"count\": 5, \"total\": 62, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.298}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d93542fe-1968-4fa7-b7bf-fd8c7c8a5f2d",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "8b827922-c73f-4fe4-b69e-262d763adb61",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_wiki_scorer_confound_1b5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T23:18:37.565Z\\\", \\\"updated_at\\\": \\\"2026-05-18T01:21:43.381Z\\\", \\\"hypothesis\\\": \\\"Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。\\\", \\\"parent\\\": \\\"exp_023_domain_ablation\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-17T23:20:01.037Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound_1b5 && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/depth_\\\\\\\\${d}.jsonl data/exp_wiki_scorer_confound_1b5/depth_\\\\\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound_1b5 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound_1b5 --results_dir results/exp_wiki_scorer_confound_1b5 --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\\\\\"\\\", \\\"code_commit\\\": \\\"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\\\", \\\"finished_at\\\": \\\"2026-05-18T01:18:40.529Z\\\", \\\"training_hours\\\": 1.98}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound_1b5 && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/depth_\\\\\\\\${d}.jsonl data/exp_wiki_scorer_confound_1b5/depth_\\\\\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound_1b5 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound_1b5 --results_dir results/exp_wiki_scorer_confound_1b5 --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"180543\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_wiki_scorer_confound_1b5.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T23:22:42.473Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 7140.9, \\\"gpu_hours\\\": 1.98}, \\\"pid\\\": \\\"180543\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_wiki_scorer_confound_1b5.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T01:18:44.039720+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"k_star\\\": 1, \\\"confound_verdict\\\": \\\"confirmed\\\", \\\"auc_0v1\\\": 0.9729, \\\"auc_1v2\\\": 0.5994, \\\"auc_2v3\\\": 0.533, \\\"auc_3v4\\\": 0.5214, \\\"auc_4v5\\\": 0.5068, \\\"jsd_0v1\\\": 0.0886, \\\"ordinal_mae\\\": 1.2995, \\\"ordinal_accuracy\\\": 0.3466}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_scorer_confound_1b5/\\\", \\\"completed_at\\\": \\\"2026-05-18T01:21:43.381Z\\\"}, \\\"exp_wiki_scorer_confound\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T22:35:20.326Z\\\", \\\"updated_at\\\": \\\"2026-05-17T23:20:31.517Z\\\", \\\"hypothesis\\\": \\\"Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。\\\", \\\"parent\\\": \\\"exp_wiki_qwen7b\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-17T22:55:01.348Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\\\\\\\${d}.jsonl data/exp_wiki_scorer_confound/depth_\\\\\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound --results_dir results/exp_wiki_scorer_confound --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\\\\\"\\\", \\\"code_commit\\\": \\\"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\\\", \\\"finished_at\\\": \\\"2026-05-17T23:13:55.501Z\\\", \\\"training_hours\\\": 0.32}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\\\\\\\${d}.jsonl data/exp_wiki_scorer_confound/depth_\\\\\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound --results_dir results/exp_wiki_scorer_confound --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"178762\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_wiki_scorer_confound.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T22:55:03.139Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_scorer_confound/\\\", \\\"wall_clock_seconds\\\": 1528.4, \\\"gpu_hours\\\": 0.42}, \\\"pid\\\": \\\"178762\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_wiki_scorer_confound.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T23:13:58.836236+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"k_star\\\": 1, \\\"confound_verdict\\\": \\\"confirmed\\\", \\\"auc_0v1\\\": 0.9404, \\\"auc_1v2\\\": 0.587, \\\"auc_2v3\\\": 0.5456, \\\"auc_3v4\\\": 0.525, \\\"auc_4v5\\\": 0.5172, \\\"critical_delta_1v2\\\": -0.0238}, \\\"completed_at\\\": \\\"2026-05-17T23:20:31.517Z\\\"}, \\\"exp_008_retrain_chain\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T19:26:02.931Z\\\", \\\"updated_at\\\": \\\"2026-05-17T22:30:32.930Z\\\", \\\"hypothesis\\\": \\\"Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"exp_wiki_qwen7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T16:39:29.006Z\\\", \\\"updated_at\\\": \\\"2026-05-17T22:24:51.126Z\\\", \\\"hypothesis\\\": \\\"Cross-scale Wikipedia K* validation: Qwen2.5-7B continuation on Wikipedia 的 K* 是否 = 2？Qwen2.5-1.5B 在 Wikipedia K*=2（唯一维持 K*=2 的模型），Pythia/OLMo/均 K*=1。测试 7B 规模是否仍维持 Qwen 家族在 Wikipedia 上的 K*=2 pattern。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"parent\\\": \\\"exp_arXiv_qwen7b\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-17T17:02:41.963Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --data_dir data/exp_wiki_qwen7b --results_dir results/exp_wiki_qwen7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\\\\\"\\\", \\\"code_commit\\\": \\\"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\\\", \\\"finished_at\\\": \\\"2026-05-17T22:21:53.554Z\\\", \\\"training_hours\\\": 5.32}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --data_dir data/exp_wiki_qwen7b --results_dir results/exp_wiki_qwen7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"732600\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_wiki_qwen7b.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T17:02:43.570Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 19327.6, \\\"gpu_hours\\\": 5.37}, \\\"pid\\\": \\\"732600\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_wiki_qwen7b.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T22:21:56.559363+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"K_star\\\": 2, \\\"auc_0v1\\\": 0.9673, \\\"auc_1v2\\\": 0.6108, \\\"auc_2v3\\\": 0.5562, \\\"auc_3v4\\\": 0.5297, \\\"auc_4v5\\\": 0.529, \\\"jsd_0v1\\\": 0.083514, \\\"jsd_1v2\\\": 0.010991, \\\"jsd_2v3\\\": 0.00555, \\\"jsd_3v4\\\": 0.004611, \\\"jsd_4v5\\\": 0.003894, \\\"ordinal_mae\\\": 1.2501, \\\"ordinal_accuracy\\\": 0.3532}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_qwen7b\\\", \\\"completed_at\\\": \\\"2026-05-17T22:24:51.126Z\\\"}, \\\"exp_wiki_mistral7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T14:04:15.959Z\\\", \\\"updated_at\\\": \\\"2026-05-17T19:53:56.272Z\\\", \\\"hypothesis\\\": \\\"Mistral-7B Wikipedia K* test: Mistral-7B-v0.3 在 C4 上 K*=1 (text-intrinsic one-wash)。在 Wikipedia domain 上是否仍 K*=1？Pythia/OLMo 在 Wikipedia 均 K*=1，Qwen K*=2。如果 Mistral K*=1 → 确认 one-wash 跨域成立；如果 K*>1 → Wikipedia 有 rescue Mistral 的结构信号（与预期相反）。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"parent\\\": \\\"exp_wiki_pythia_v2\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-17T14:05:42.553Z\\\", \\\"command\\\": \\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python3.12 scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-v0___3 --data_dir data/exp_wiki_mistral7b --results_dir results/exp_wiki_mistral7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\", \\\"code_commit\\\": \\\"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\\\", \\\"finished_at\\\": \\\"2026-05-17T19:50:28.711Z\\\", \\\"training_hours\\\": 5.75}, \\\"spec\\\": {\\\"command\\\": \\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python3.12 scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-v0___3 --data_dir data/exp_wiki_mistral7b --results_dir results/exp_wiki_mistral7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"data_path\\\": \\\"data/exp_wiki_mistral7b\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"mistralai/Mistral-7B-v0.3\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pretrained:mistralai/Mistral-7B-v0.3\\\", \\\"eval_data\\\": \\\"Wikipedia depth 0-5, scorer=Qwen2.5-1.5B\\\"}, \\\"pid\\\": \\\"41845\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_wiki_mistral7b.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T19:50:32.601540+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_mistral7b\\\", \\\"metrics\\\": {\\\"K_star\\\": 1, \\\"ordinal_mae\\\": 1.3445, \\\"ordinal_accuracy\\\": 0.3273, \\\"auc_0v1\\\": 0.9607, \\\"auc_1v2\\\": 0.5552, \\\"auc_2v3\\\": 0.5236, \\\"auc_3v4\\\": 0.5181, \\\"auc_4v5\\\": 0.5012, \\\"jsd_0v1\\\": 0.054134, \\\"jsd_1v2\\\": 0.005678, \\\"jsd_2v3\\\": 0.003698, \\\"jsd_3v4\\\": 0.003459, \\\"jsd_4v5\\\": 0.003274}, \\\"completed_at\\\": \\\"2026-05-17T19:53:56.272Z\\\"}}, \\\"count\\\": 5, \\\"total\\\": 62, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.298}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_wiki_scorer_confound_1b5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T23:18:37.565Z\", \"updated_at\": \"2026-05-18T01:21:43.381Z\", \"hypothesis\": \"Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。\", \"parent\": \"exp_023_domain_ablation\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-17T23:20:01.037Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound_1b5 && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/depth_\\\\${d}.jsonl data/exp_wiki_scorer_confound_1b5/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound_1b5 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound_1b5 --results_dir results/exp_wiki_scorer_confound_1b5 --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"code_commit\": \"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\", \"finished_at\": \"2026-05-18T01:18:40.529Z\", \"training_hours\": 1.98}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound_1b5 && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/depth_\\\\${d}.jsonl data/exp_wiki_scorer_confound_1b5/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound_1b5 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound_1b5 --results_dir results/exp_wiki_scorer_confound_1b5 --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"180543\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_scorer_confound_1b5.log\", \"submitted_at\": \"2026-05-17T23:22:42.473Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 7140.9, \"gpu_hours\": 1.98}, \"pid\": \"180543\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_scorer_confound_1b5.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T01:18:44.039720+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"k_star\": 1, \"confound_verdict\": \"confirmed\", \"auc_0v1\": 0.9729, \"auc_1v2\": 0.5994, \"auc_2v3\": 0.533, \"auc_3v4\": 0.5214, \"auc_4v5\": 0.5068, \"jsd_0v1\": 0.0886, \"ordinal_mae\": 1.2995, \"ordinal_accuracy\": 0.3466}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_scorer_confound_1b5/\", \"completed_at\": \"2026-05-18T01:21:43.381Z\"}, \"exp_wiki_scorer_confound\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T22:35:20.326Z\", \"updated_at\": \"2026-05-17T23:20:31.517Z\", \"hypothesis\": \"Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。\", \"parent\": \"exp_wiki_qwen7b\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-17T22:55:01.348Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\\\${d}.jsonl data/exp_wiki_scorer_confound/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound --results_dir results/exp_wiki_scorer_confound --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"code_commit\": \"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\", \"finished_at\": \"2026-05-17T23:13:55.501Z\", \"training_hours\": 0.32}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\\\${d}.jsonl data/exp_wiki_scorer_confound/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound --results_dir results/exp_wiki_scorer_confound --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"178762\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_scorer_confound.log\", \"submitted_at\": \"2026-05-17T22:55:03.139Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_scorer_confound/\", \"wall_clock_seconds\": 1528.4, \"gpu_hours\": 0.42}, \"pid\": \"178762\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_scorer_confound.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T23:13:58.836236+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"k_star\": 1, \"confound_verdict\": \"confirmed\", \"auc_0v1\": 0.9404, \"auc_1v2\": 0.587, \"auc_2v3\": 0.5456, \"auc_3v4\": 0.525, \"auc_4v5\": 0.5172, \"critical_delta_1v2\": -0.0238}, \"completed_at\": \"2026-05-17T23:20:31.517Z\"}, \"exp_008_retrain_chain\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T19:26:02.931Z\", \"updated_at\": \"2026-05-17T22:30:32.930Z\", \"hypothesis\": \"Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"killed\"}, \"exp_wiki_qwen7b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T16:39:29.006Z\", \"updated_at\": \"2026-05-17T22:24:51.126Z\", \"hypothesis\": \"Cross-scale Wikipedia K* validation: Qwen2.5-7B continuation on Wikipedia 的 K* 是否 = 2？Qwen2.5-1.5B 在 Wikipedia K*=2（唯一维持 K*=2 的模型），Pythia/OLMo/均 K*=1。测试 7B 规模是否仍维持 Qwen 家族在 Wikipedia 上的 K*=2 pattern。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"parent\": \"exp_arXiv_qwen7b\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T17:02:41.963Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --data_dir data/exp_wiki_qwen7b --results_dir results/exp_wiki_qwen7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\", \"code_commit\": \"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\", \"finished_at\": \"2026-05-17T22:21:53.554Z\", \"training_hours\": 5.32}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --data_dir data/exp_wiki_qwen7b --results_dir results/exp_wiki_qwen7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"732600\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_qwen7b.log\", \"submitted_at\": \"2026-05-17T17:02:43.570Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 19327.6, \"gpu_hours\": 5.37}, \"pid\": \"732600\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_qwen7b.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T22:21:56.559363+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"K_star\": 2, \"auc_0v1\": 0.9673, \"auc_1v2\": 0.6108, \"auc_2v3\": 0.5562, \"auc_3v4\": 0.5297, \"auc_4v5\": 0.529, \"jsd_0v1\": 0.083514, \"jsd_1v2\": 0.010991, \"jsd_2v3\": 0.00555, \"jsd_3v4\": 0.004611, \"jsd_4v5\": 0.003894, \"ordinal_mae\": 1.2501, \"ordinal_accuracy\": 0.3532}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_qwen7b\", \"completed_at\": \"2026-05-17T22:24:51.126Z\"}, \"exp_wiki_mistral7b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T14:04:15.959Z\", \"updated_at\": \"2026-05-17T19:53:56.272Z\", \"hypothesis\": \"Mistral-7B Wikipedia K* test: Mistral-7B-v0.3 在 C4 上 K*=1 (text-intrinsic one-wash)。在 Wikipedia domain 上是否仍 K*=1？Pythia/OLMo 在 Wikipedia 均 K*=1，Qwen K*=2。如果 Mistral K*=1 → 确认 one-wash 跨域成立；如果 K*>1 → Wikipedia 有 rescue Mistral 的结构信号（与预期相反）。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"parent\": \"exp_wiki_pythia_v2\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-17T14:05:42.553Z\", \"command\": \"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python3.12 scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-v0___3 --data_dir data/exp_wiki_mistral7b --results_dir results/exp_wiki_mistral7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\", \"code_commit\": \"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\", \"finished_at\": \"2026-05-17T19:50:28.711Z\", \"training_hours\": 5.75}, \"spec\": {\"command\": \"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python3.12 scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-v0___3 --data_dir data/exp_wiki_mistral7b --results_dir results/exp_wiki_mistral7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"data_path\": \"data/exp_wiki_mistral7b\", \"data_count\": 5000, \"model_name\": \"mistralai/Mistral-7B-v0.3\", \"seed\": 42, \"checkpoint_source\": \"pretrained:mistralai/Mistral-7B-v0.3\", \"eval_data\": \"Wikipedia depth 0-5, scorer=Qwen2.5-1.5B\"}, \"pid\": \"41845\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_mistral7b.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T19:50:32.601540+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_mistral7b\", \"metrics\": {\"K_star\": 1, \"ordinal_mae\": 1.3445, \"ordinal_accuracy\": 0.3273, \"auc_0v1\": 0.9607, \"auc_1v2\": 0.5552, \"auc_2v3\": 0.5236, \"auc_3v4\": 0.5181, \"auc_4v5\": 0.5012, \"jsd_0v1\": 0.054134, \"jsd_1v2\": 0.005678, \"jsd_2v3\": 0.003698, \"jsd_3v4\": 0.003459, \"jsd_4v5\": 0.003274}, \"completed_at\": \"2026-05-17T19:53:56.272Z\"}}, \"count\": 5, \"total\": 62, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.298}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d93542fe-1968-4fa7-b7bf-fd8c7c8a5f2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]: Worker worker_review_figure_table_audit_20260518T020337 已完成（status=failed），请审查 Agent 的处理结果。",
+  "leafUuid": "8b827922-c73f-4fe4-b69e-262d763adb61",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 17 · 2026-05-18T02:11:47.764Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The notification is about a worker named "worker_review_figure_table_audit_20260518T020337" that failed. This doesn't appear to be an experiment in the registry - it's a worker task (likely a review/audit task). Let me check what this worker was doing. The name suggests it was a figure/table audit review task.
+
+Since this is a failed worker and not an experiment, I should look at what happened. Let me check the report or any project files that might have information about this worker's task. Actually, the worker name "review_figure_table_audit" suggests this was a paper review task - auditing figures and tables. 
+
+I need to figure out what went wrong and whether this requires any action on my part. Let me look through the project report and recent artifacts to get more context about what this worker was supposed to do.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b827922-c73f-4fe4-b69e-262d763adb61",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Dup83pvrjRLR7PzSDR",
+  "type": "assistant",
+  "uuid": "7acfb9f9-5f61-4a6d-b8d1-be0f93b109bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JpZjMyPDGQ42sku7WrXUGY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5995,
+      "cache_read_input_tokens": 33049,
+      "output_tokens": 360,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5995,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 360,
+          "cache_read_input_tokens": 33049,
+          "cache_creation_input_tokens": 5995,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5995
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 18 · 2026-05-18T02:11:48.709Z_
+
+这个 worker 名称是 `worker_review_figure_table_audit_20260518T020337`，是一个图表审查任务而非实验。让我检查项目当前状态和论文相关文件来理解背景。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7acfb9f9-5f61-4a6d-b8d1-be0f93b109bd",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Dup83pvrjRLR7PzSDR",
+  "type": "assistant",
+  "uuid": "cf4d94c2-0b98-465e-8508-925e6f34744a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JpZjMyPDGQ42sku7WrXUGY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5995,
+      "cache_read_input_tokens": 33049,
+      "output_tokens": 360,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5995,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 360,
+          "cache_read_input_tokens": 33049,
+          "cache_creation_input_tokens": 5995,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5995
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 19 · 2026-05-18T02:11:49.977Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01MDPuEi6hFiugWGfeG7SHVb`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__reviewer_post_to_director",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cf4d94c2-0b98-465e-8508-925e6f34744a",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Dup83pvrjRLR7PzSDR",
+  "type": "assistant",
+  "uuid": "e65f27de-e82a-4090-8b8b-71ad5b95db40",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JpZjMyPDGQ42sku7WrXUGY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5995,
+      "cache_read_input_tokens": 33049,
+      "output_tokens": 360,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5995,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 360,
+          "cache_read_input_tokens": 33049,
+          "cache_creation_input_tokens": 5995,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5995
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 20 · 2026-05-18T02:11:49.983Z_
+
+<details><summary>↩ Tool result · `toolu_01MDPuEi6hFiugWGfeG7SHVb`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reviewer_post_to_director"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e65f27de-e82a-4090-8b8b-71ad5b95db40",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "6a581e8b-86d7-429a-aafb-35e9096aa48c",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__reviewer_post_to_director"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__reviewer_post_to_director",
+    "total_deferred_tools": 34
+  },
+  "sourceToolAssistantUUID": "e65f27de-e82a-4090-8b8b-71ad5b95db40",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 21 · 2026-05-18T02:11:53.339Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the report to understand the current project state and what this figure/table audit worker was supposed to do.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a581e8b-86d7-429a-aafb-35e9096aa48c",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Dvgt1UE2MLfT9BQrFU",
+  "type": "assistant",
+  "uuid": "aa233685-a9e0-4c2d-a5ad-ef41b13ccc01",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0138XqUwV45GM5HeAQqmdfkw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 917,
+      "cache_read_input_tokens": 39044,
+      "output_tokens": 127,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 917,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 127,
+          "cache_read_input_tokens": 39044,
+          "cache_creation_input_tokens": 917,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 917
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 22 · 2026-05-18T02:11:53.825Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01QzVtijZZQ5jCTC4D1j2BKd`</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa233685-a9e0-4c2d-a5ad-ef41b13ccc01",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Dvgt1UE2MLfT9BQrFU",
+  "type": "assistant",
+  "uuid": "f7c82480-0573-4cd8-b19e-559768e476fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0138XqUwV45GM5HeAQqmdfkw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 917,
+      "cache_read_input_tokens": 39044,
+      "output_tokens": 127,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 917,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 127,
+          "cache_read_input_tokens": 39044,
+          "cache_creation_input_tokens": 917,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 917
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 23 · 2026-05-18T02:11:53.844Z_
+
+<details><summary>↩ Tool result · `toolu_01QzVtijZZQ5jCTC4D1j2BKd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/report.md\", \"content\": \"# Handover — 2026-05-18\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_32b_c4 | Scale-dependent K* on C4: Qwen2.5-32B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 32B scale 是否稳定（已确认 1.5B/7B/8B/14B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. | — | — | — |\\n| exp_14b_c4 | Scale-dependent K* on C4: Qwen2.5-14B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 14B scale 是否稳定（已确认 1.5B/7B/8B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. | — | — | — |\\n\\n## 待处理\\n- exp_008_retrain_chain: Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.（准备中）\\n\\n## 近期结论\\n- **exp_wiki_scorer_confound_1b5** (negative): Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。 ← 基于 exp_023_domain_ablation\\n  [exp_wiki_scorer_confound_1b5 analysis report](/api/workspace-files/projects/gen-depth-contamination/artifacts/exp_wiki_scorer_confound_1b5/report/exp_wiki_scorer_confound_1b5_analysis_a3f1c7_4f91f8.md)\\n- **exp_wiki_scorer_confound** (negative): Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。 ← 基于 exp_wiki_qwen7b\\n  [exp_wiki_scorer_confound_analysis](/api/workspace-files/projects/gen-depth-contamination/artifacts/exp_wiki_scorer_confound/report/exp_wiki_scorer_confound_analysis_1826a9.md)\\n- **exp_wiki_qwen7b** (success): Cross-scale Wikipedia K* validation: Qwen2.5-7B continuation on Wikipedia 的 K* 是否 = 2？Qwen2.5-1.5B 在 Wikipedia K*=2（唯一维持 K*=2 的模型），Pythia/OLMo/均 K*=1。测试 7B 规模是否仍维持 Qwen 家族在 Wikipedia 上的 K*=2 pattern。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. ← 基于 exp_arXiv_qwen7b\\n  [exp_wiki_qwen7b_analysis](/api/workspace-files/projects/gen-depth-contamination/artifacts/exp_wiki_qwen7b/report/exp_wiki_qwen7b_analysis_787c1b.md)\\n\\n## 趋势\\n成功 44 / 负向 6 / 失败 9 / 共 59\\nordinal_accuracy: 0.3532 ↓（近 3 次 success）\\nordinal_mae: 1.2501 ↑（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\ncqa1-22115: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\\nwestd-42896: 无 GPU 信息\\n\\n## 告警\\n- exp-008-retrain-chain: 训练失败 — unknown\\n- exp_009_dose_10pct: 训练失败 — unknown\\n- exp_009_dose_30pct: 训练失败 — unknown\\n- exp_009_dose_50pct: 训练失败 — unknown\\n- exp_009_dose_10pct_v2: 训练失败 — unknown\\n- exp_009_dose_30pct_v2: 训练失败 — unknown\\n- exp_009_dose_50pct_v2: 训练失败 — unknown\\n- exp_wiki_pythia: 训练失败 — unknown\\n- exp_wiki_olmo: 训练失败 — unknown\\n\", \"total_chars\": 3064, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f7c82480-0573-4cd8-b19e-559768e476fb",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "581f86ca-90fc-4e11-b245-f3b8adc86256",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-18\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp_32b_c4 | Scale-dependent K* on C4: Qwen2.5-32B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 32B scale 是否稳定（已确认 1.5B/7B/8B/14B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. | — | — | — |\\\\n| exp_14b_c4 | Scale-dependent K* on C4: Qwen2.5-14B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 14B scale 是否稳定（已确认 1.5B/7B/8B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. | — | — | — |\\\\n\\\\n## 待处理\\\\n- exp_008_retrain_chain: Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.（准备中）\\\\n\\\\n## 近期结论\\\\n- **exp_wiki_scorer_confound_1b5** (negative): Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。 ← 基于 exp_023_domain_ablation\\\\n  [exp_wiki_scorer_confound_1b5 analysis report](/api/workspace-files/projects/gen-depth-contamination/artifacts/exp_wiki_scorer_confound_1b5/report/exp_wiki_scorer_confound_1b5_analysis_a3f1c7_4f91f8.md)\\\\n- **exp_wiki_scorer_confound** (negative): Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。 ← 基于 exp_wiki_qwen7b\\\\n  [exp_wiki_scorer_confound_analysis](/api/workspace-files/projects/gen-depth-contamination/artifacts/exp_wiki_scorer_confound/report/exp_wiki_scorer_confound_analysis_1826a9.md)\\\\n- **exp_wiki_qwen7b** (success): Cross-scale Wikipedia K* validation: Qwen2.5-7B continuation on Wikipedia 的 K* 是否 = 2？Qwen2.5-1.5B 在 Wikipedia K*=2（唯一维持 K*=2 的模型），Pythia/OLMo/均 K*=1。测试 7B 规模是否仍维持 Qwen 家族在 Wikipedia 上的 K*=2 pattern。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. ← 基于 exp_arXiv_qwen7b\\\\n  [exp_wiki_qwen7b_analysis](/api/workspace-files/projects/gen-depth-contamination/artifacts/exp_wiki_qwen7b/report/exp_wiki_qwen7b_analysis_787c1b.md)\\\\n\\\\n## 趋势\\\\n成功 44 / 负向 6 / 失败 9 / 共 59\\\\nordinal_accuracy: 0.3532 ↓（近 3 次 success）\\\\nordinal_mae: 1.2501 ↑（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\ncqa1-22115: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\\\\nwestd-42896: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- exp-008-retrain-chain: 训练失败 — unknown\\\\n- exp_009_dose_10pct: 训练失败 — unknown\\\\n- exp_009_dose_30pct: 训练失败 — unknown\\\\n- exp_009_dose_50pct: 训练失败 — unknown\\\\n- exp_009_dose_10pct_v2: 训练失败 — unknown\\\\n- exp_009_dose_30pct_v2: 训练失败 — unknown\\\\n- exp_009_dose_50pct_v2: 训练失败 — unknown\\\\n- exp_wiki_pythia: 训练失败 — unknown\\\\n- exp_wiki_olmo: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 3064, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/report.md\", \"content\": \"# Handover — 2026-05-18\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_32b_c4 | Scale-dependent K* on C4: Qwen2.5-32B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 32B scale 是否稳定（已确认 1.5B/7B/8B/14B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. | — | — | — |\\n| exp_14b_c4 | Scale-dependent K* on C4: Qwen2.5-14B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 14B scale 是否稳定（已确认 1.5B/7B/8B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. | — | — | — |\\n\\n## 待处理\\n- exp_008_retrain_chain: Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.（准备中）\\n\\n## 近期结论\\n- **exp_wiki_scorer_confound_1b5** (negative): Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。 ← 基于 exp_023_domain_ablation\\n  [exp_wiki_scorer_confound_1b5 analysis report](/api/workspace-files/projects/gen-depth-contamination/artifacts/exp_wiki_scorer_confound_1b5/report/exp_wiki_scorer_confound_1b5_analysis_a3f1c7_4f91f8.md)\\n- **exp_wiki_scorer_confound** (negative): Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。 ← 基于 exp_wiki_qwen7b\\n  [exp_wiki_scorer_confound_analysis](/api/workspace-files/projects/gen-depth-contamination/artifacts/exp_wiki_scorer_confound/report/exp_wiki_scorer_confound_analysis_1826a9.md)\\n- **exp_wiki_qwen7b** (success): Cross-scale Wikipedia K* validation: Qwen2.5-7B continuation on Wikipedia 的 K* 是否 = 2？Qwen2.5-1.5B 在 Wikipedia K*=2（唯一维持 K*=2 的模型），Pythia/OLMo/均 K*=1。测试 7B 规模是否仍维持 Qwen 家族在 Wikipedia 上的 K*=2 pattern。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. ← 基于 exp_arXiv_qwen7b\\n  [exp_wiki_qwen7b_analysis](/api/workspace-files/projects/gen-depth-contamination/artifacts/exp_wiki_qwen7b/report/exp_wiki_qwen7b_analysis_787c1b.md)\\n\\n## 趋势\\n成功 44 / 负向 6 / 失败 9 / 共 59\\nordinal_accuracy: 0.3532 ↓（近 3 次 success）\\nordinal_mae: 1.2501 ↑（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\ncqa1-22115: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\\nwestd-42896: 无 GPU 信息\\n\\n## 告警\\n- exp-008-retrain-chain: 训练失败 — unknown\\n- exp_009_dose_10pct: 训练失败 — unknown\\n- exp_009_dose_30pct: 训练失败 — unknown\\n- exp_009_dose_50pct: 训练失败 — unknown\\n- exp_009_dose_10pct_v2: 训练失败 — unknown\\n- exp_009_dose_30pct_v2: 训练失败 — unknown\\n- exp_009_dose_50pct_v2: 训练失败 — unknown\\n- exp_wiki_pythia: 训练失败 — unknown\\n- exp_wiki_olmo: 训练失败 — unknown\\n\", \"total_chars\": 3064, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f7c82480-0573-4cd8-b19e-559768e476fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 24 · 2026-05-18T02:12:04.322Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The report shows the current project state but doesn't mention the failed worker directly. The worker name "worker_review_figure_table_audit_20260518T020337" suggests it was a task to review/audit figures and tables in the paper. Since it failed, I should check if there's a paper being written and what the worker was supposed to review.
+
+Let me check if there's a paper_framing.md or artifacts related to the paper to understand the context. Also, the worker failed - I need to understand what it was trying to do. Let me look at the paper-related files.
+
+Actually, since this worker "failed" (status=failed), it means the worker itself encountered an error during execution. As a reviewer, my job is to:
+
+
+1. Understand what the worker was trying to do
+2. Assess whether the failure requires any action
+3. Report to the Director if there's anything concerning
+
+The worker name suggests it was auditing figures and tables in the paper. Let me check what paper artifacts exist.
+
+So I need to look through the artifacts to find what paper-related files are there and understand what this audit worker was supposed to validate before it crashed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "581f86ca-90fc-4e11-b245-f3b8adc86256",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Dvy6aCAWtT7C7ssh3b",
+  "type": "assistant",
+  "uuid": "3b952594-33d5-402f-8bf4-0b20f4b75cfc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013tovHuCurk9WiKHCcUeqcB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1892,
+      "cache_read_input_tokens": 39961,
+      "output_tokens": 412,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1892,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 412,
+          "cache_read_input_tokens": 39961,
+          "cache_creation_input_tokens": 1892,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1892
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 25 · 2026-05-18T02:12:04.361Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01R9vSaCJTcC6bE59JnEuBPn`</summary>
+
+```json
+{
+  "pattern": "**/artifacts/**/*figure*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b952594-33d5-402f-8bf4-0b20f4b75cfc",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Dvy6aCAWtT7C7ssh3b",
+  "type": "assistant",
+  "uuid": "2a15a699-7241-4701-9bed-f7c64c81b64f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013tovHuCurk9WiKHCcUeqcB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1892,
+      "cache_read_input_tokens": 39961,
+      "output_tokens": 412,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1892,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 412,
+          "cache_read_input_tokens": 39961,
+          "cache_creation_input_tokens": 1892,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1892
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 26 · 2026-05-18T02:12:04.389Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01SQBv3DzxdScPgLu2NF9Cb3`</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "file": "paper_framing.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2a15a699-7241-4701-9bed-f7c64c81b64f",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Dvy6aCAWtT7C7ssh3b",
+  "type": "assistant",
+  "uuid": "25541dcc-2309-46c6-ba23-1f902bee27d8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013tovHuCurk9WiKHCcUeqcB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1892,
+      "cache_read_input_tokens": 39961,
+      "output_tokens": 412,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1892,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 412,
+          "cache_read_input_tokens": 39961,
+          "cache_creation_input_tokens": 1892,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1892
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 27 · 2026-05-18T02:12:04.396Z_
+
+<details><summary>↩ Tool result · `toolu_01R9vSaCJTcC6bE59JnEuBPn`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/report/figure_plan.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp_003_decoding_ablation/chart/exp003_figure_info.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/intermediate/gen_pipeline_figure.py
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/gen_pipeline_figure.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2a15a699-7241-4701-9bed-f7c64c81b64f",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "6bed956c-1f3c-46a0-8785-96707d0266db",
+  "toolUseResult": {
+    "filenames": [
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/report/figure_plan.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp_003_decoding_ablation/chart/exp003_figure_info.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/intermediate/gen_pipeline_figure.py",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/gen_pipeline_figure.py"
+    ],
+    "durationMs": 28,
+    "numFiles": 4,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "2a15a699-7241-4701-9bed-f7c64c81b64f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 28 · 2026-05-18T02:12:04.409Z_
+
+<details><summary>↩ Tool result · `toolu_01SQBv3DzxdScPgLu2NF9Cb3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper_framing.md\", \"content\": \"# Paper Framing — gen-depth-contamination\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR submission May 25, 2026)\\n- Fallback: EMNLP 2026 Findings\\n- Backup: AAAI 2027 (abstract July 25, paper August 1)\\n\\n## Canonical Experimental Condition\\n\\n**Continuation mode 是 cross-model 结论的基础。**\\n\\n> \\\"We evaluate both generation modes because real-world recursive contamination can arise from either. Our analysis reveals generation mode as a significant confound, leading us to recommend continuation mode as the canonical condition for cross-model comparisons.\\\"\\n\\n| Condition | Pythia↔OLMo | Qwen↔others | 论文定位 |\\n|-----------|-------------|-------------|---------|\\n| Continuation | 90-92% retention | 80-85% retention | **主实验条件** — cross-model claims 的基础 |\\n| Rewrite (instruction) | N/A | 61-63% retention | **upper bound with mode-specific confound** — 仅作 ablation |\\n\\n**原则**：\\n- C1' 的跨模型 claim 必须基于 continuation mode 数据\\n- Rewrite mode 的高 AUC (0.6957 vs cont 0.6114) 是 mode-specific signal amplification，不能作为泛化性证据\\n- mvp-001 (Qwen-rewrite) 定位为 \\\"pilot study demonstrating feasibility\\\"，后续用 continuation mode rigorously validate\\n- cont→rw 89% vs rw→cont 82% 不对称性 → continuation features 是 rewrite 的通用子集\\n\\n## Core Claims (2+1 结构, updated D049/D050)\\n\\n### Primary: C1' (K* Characterization — Domain-Dependent Bounded Saturation)\\n首次系统测量递归合成文本的 generational discrimination boundary K*，demonstrating that K* is low-bounded (≤3) and domain-dependent。\\n\\nDPI 理论证明有限 K*_theory 必然存在（信息论 impossibility boundary）；我们首次在受控实验中测量 K*_empirical，它提供 K*_theory 的保守下界。通过 8 model configurations（5 architecture families, 1B-8B）、3 source domains（C4, Wikipedia, arXiv）、4 decoding strategies 系统表征 K*_empirical 的行为，发现：\\n\\n- **K*∈{1,2,3} at θ=0.60**：K* 是有界的且域依赖的，呈现三级域阶梯：Wikipedia(1) < C4(2) < arXiv(3)\\n- **Web text K*=2 是 dominant mode**（7/8 configurations），展现跨模型架构、跨解码策略的一致性\\n- **Structured academic text (arXiv) K*=3**，经五个模型配置、四个架构族 cross-validate（Qwen-1.5B, Qwen-7B, Pythia-1.4B, LLaMA-8B, Mistral-7B; 5/5 domain-competent models, 100%）\\n- **Wikipedia K*=1 (scorer-controlled)**：全部 6 个模型在 cross-family scorer 控制后均 K*=1。Qwen 生成器在 same-family scorer 下的 K*=2 是 scorer family bias artifact（D060 确认），正文报告 scorer-controlled 值，Appendix 披露 confound 细节\\n- **Mistral-7B K*=1 on C4 but K*=3 on arXiv**：domain-specific one-wash，最强 domain dependence 证据\\n- **Domain 是 K* 的唯一主导因素**：scorer control 后，model scale/architecture/decoding strategy 均不改变域内 K* 一致性\\n- **One-wash laundering effect**：对 web text 和 Wikipedia，单次生成即令文本与更深层合成内容不可区分\\n\\n**子组件：**\\n\\n**(a) K*=2 as dominant mode for web text (7/8 configurations)**\\n> **7/8 model configurations yield K*=2 on C4 web text：**\\n>\\n> | Model | Experiment | AUC 1v2 | 95% CI | CI lower > 0.60? |\\n> |-------|-----------|---------|--------|-----------------|\\n> | Qwen-1.5B-Instruct rewrite | mvp-001 | 0.6957 | [0.6859, 0.7041] | ✅ (+8.6pp) |\\n> | Pythia-1.4B cont | exp-001 | 0.6539 | [0.6454, 0.6630] | ✅ (+4.5pp) |\\n> | Qwen-1.5B base cont | exp-016 | 0.6262 | [0.6168, 0.6353] | ✅ (+1.7pp) |\\n> | Qwen2.5-7B cont | exp-004 | 0.6178 | [0.6079, 0.6261] | ✅ (+0.79pp) |\\n> | OLMo-1B cont | exp-002 | 0.6145 | [0.6045, 0.6247] | ✅ (+0.45pp) |\\n> | LLaMA-3.1-8B cont | exp-018 | 0.6123 | [0.6028, 0.6216] | ✅ (+0.28pp) |\\n> | Qwen-1.5B-Instruct cont | exp-017 | 0.6112 | [0.6015, 0.6213] | ✅ (+0.15pp) |\\n>\\n> *Exception: Mistral-7B cont (exp-019): 1v2=0.5935, CI [0.5835, 0.6032], K*=1*\\n>\\n> *Decoding strategy invariance (exp-003):*\\n> | Decoding | AUC 1v2 | K* |\\n> |----------|---------|-----|\\n> | greedy | 0.6893 | 2 |\\n> | nucleus p=0.9 | 0.6866 | 2 |\\n> | temp=0.7 | 0.6887 | 2 |\\n> | temp=1.2 | 0.7039 | 2 |\\n>\\n> - 7/8 configurations 1v2 CI lower > 0.60, 全部 2v3 CI upper < 0.60\\n> - 4 decoding strategies AUC 1v2 range [0.6866, 0.7039], K* 完全不变\\n> - ⚠️ Qwen-cont 1v2 CI lower=0.6015 极边缘；cross-scorer validation 下降至 K*=1\\n> - ⚠️ θ-sensitivity: θ=0.60 下 7/8 K*=2; θ=0.70 下多数降至 K*=1\\n> - Paper 措辞：\\\"K*=2 emerges as the dominant mode for general web text (7/8 model configurations), demonstrating consistency across diverse architectures and decoding strategies.\\\"\\n\\n**(b) Domain dependence: arXiv K*=3 (5-model cross-validated, D055/D056/D057)**\\n> - **Qwen-1.5B on arXiv** (exp-024): 2v3 AUC=0.6427, CI [0.6275, 0.6575], K*=3 ✅ (+2.75pp)\\n> - **Pythia-1.4B on arXiv** (exp-025): 2v3 AUC=0.6544, CI [0.6401, 0.6688], K*=3 ✅ (+4.01pp)\\n> - **LLaMA-3.1-8B on arXiv** (exp_arXiv_llama8b): 2v3 AUC=0.6215, K*=3 ✅ (+2.15pp)\\n> - **Mistral-7B on arXiv** (exp_arXiv_mistral7b): 2v3 AUC=0.6275, all folds > 0.60, K*=3 ✅ (+2.75pp)\\n> - **Qwen-7B on arXiv** (exp_arXiv_qwen7b): 2v3 AUC=0.6255, all folds > 0.60, K*=3 ✅ (+2.55pp)\\n> - 五个模型配置、四个架构族（1.4B-8B）在 arXiv 上 100% 一致 K*=3（5/5 domain-competent models，仅 OLMo capacity failure）\\n> - OLMo-1B K*=1 (exp_arXiv_olmo): capacity failure — 生成完全出域文本，不影响 domain property claim，作为 \\\"domain competence prerequisite\\\" 分析放 Appendix\\n> - **Mistral C4 K*=1 → arXiv K*=3 是 domain dependence 的最强证据**：同一模型在不同域给出不同 K*，证明 K* 由 domain structure 主导而非 model identity\\n> - **解释**：arXiv 的结构化特征（LaTeX formatting, citation patterns, mathematical notation）提供额外 depth-distinguishing signal，使辨别力多延伸一代\\n> - Sample size: n=2,200 per model\\n> - ⚠️ LLaMA fold 0=0.5969 < θ, bootstrap CI lower 可能接近 0.60 边界。论文措辞用 \\\"K*=3 with boundary pair AUC of 0.62\\\" 而非 \\\"robustly K*=3\\\"\\n> - 论文定位：**domain dependence 是核心发现**——K* 由源文本结构复杂度决定，非纯模型属性。4-model cross-validation 大幅强化证据链\\n\\n**(c) Mistral K*=1 on web text: domain-specific one-wash (D056)**\\n> - Mistral-7B 在 C4 web text 上 1v2 AUC CI lower < 0.60, K*=1\\n> - Cross-scorer validation (exp-022): 使用其他模型 score Mistral 生成的文本，K*=1 maintained → C4 上的 K*=1 是 text-intrinsic（非 scorer artifact）\\n> - **但 Mistral arXiv K*=3 (exp_arXiv_mistral7b) 证明 one-wash 是 domain-specific 而非 model-intrinsic**\\n> - **One-wash laundering**：对 web text 这类 homogeneous 域，Mistral 单次生成即令文本在统计上不可区分于更深层合成；但 structured domains (arXiv) 能 rescue even Mistral from one-wash\\n> - 论文定位：Mistral C4→arXiv 的 K* 跃变（1→3）是 (model × domain) interaction 的典型案例，进一步证明 domain structure 是 K* 的主要决定因素\\n\\n**(d) Cross-model transfer (scorer invariance)**\\n> - Pythia↔OLMo 90-92% accuracy retention → K* 不是 model self-familiarity artifact\\n> - 0v1 AUC > 0.96 across all transfer pairs → binary contamination signal 完全跨模型可迁移\\n> - Cross-scorer validation (exp-022): 11/12 generator×scorer combos yield K*=2 → K* governed by generation process, not scoring model\\n> - Feature ordering: scorer-invariant Spearman ρ > 0.90\\n> - 论文定位：confirms K* is a property of the text/generation process, not the measurement apparatus\\n\\n**(e) Representation dependence of K* (Neural Probe)**\\n> - exp-015 完整 3 模型结果（frozen self-embeddings + MLP probe）:\\n>   - Qwen-cont: K*(neural)=3, 2v3 AUC=0.6159, CI [0.6099, 0.6223], CI lower > 0.60 ✅\\n>   - Pythia-1.4B: K*(neural)=2, 2v3 AUC=0.5963, CI [0.5892, 0.6033], CI lower < 0.60 ❌\\n>   - OLMo-1B: K*(neural)=2, 2v3 AUC=0.5892, CI [0.5818, 0.5965], CI lower < 0.60 ❌\\n> - K*(neural) 是 model-dependent：Qwen K*=3, Pythia/OLMo K*=2\\n> - 15D model-free features 给出一致的 K* across all models，neural probe 给出 model-dependent K*\\n> - Interpretability-deployability tradeoff: model-free features 的 universality 优势在 cross-model 结果下更明显\\n> - 论文定位：validates choice of model-free 15D features for headline characterization\\n\\n**(f) Generation mode analysis (§4.x Analysis subsection)**\\n> - Signal strength: rewrite AUC 1v2=0.6957 vs continuation 0.6114（Δ=+8.4pp）\\n> - Transferability: continuation 80-92% retention vs rewrite 61-63%\\n> - Feature subset: cont→rw 89% > rw→cont 82% → continuation features 是 rewrite 的通用子集\\n> - Interpretation: rewrite mode 的 instruction-following 引入 mode-specific style artifacts，放大 depth signal 但降低跨模型泛化性\\n> - 论文定位：Analysis subsection，不是独立 claim\\n\\n### Secondary: C3 (K*-Aware Data Curation Validation)\\nDomain-appropriate K* correctly predicts optimal curation granularity: for web text (K*=2), binary K*-aware filtering (0.5941 MMLU) outperforms graduated depth weighting (best 0.5892 at α=0.9), surprisal-based selection (0.5894), and DSIR distribution matching (~0.5867, ≈ no-filter level). Dose-response analysis (exp-009 v3, 3 ratios × 3 strategies × 5 seeds) confirms binary filtering maintains consistent advantage across 10%/30%/50% contamination ratios (HellaSwag significantly better at all levels, p≤0.004), while graduated filtering collapses to no-filter baseline performance. K* serves as an actionable curation guideline: the domain-dependent discrimination boundary directly determines the optimal filtering granularity.\\n\\n> ⚠️ Defensive framing constraint (D053): MMLU at 30% ratio p=0.074 不显著, 不能 claim \\\"universally beneficial\\\"。维持 \\\"consistent advantage\\\" 措辞，以 HellaSwag 显著性为主要证据。\\n\\n### Supporting Analysis: Canonical Condition Selection\\nGeneration mode 是 depth estimation 的显著混淆变量。Methodology 段落阐述 continuation mode 作为 canonical condition 的选择及理由（不作为独立 claim）。\\n\\n## Story Spine\\n\\n- **Problem**: Web 数据正被多代递归合成文本污染。当前检测方法将合成文本视为 binary 类别（real vs synthetic），但质量随代际深度非线性退化——首代合成文本与四代合成文本的质量差异巨大却被忽视。\\n- **Existing approaches & gaps**: Binary detectors (DivEye, Min-K%++) 不区分代际；model collapse 文献 (Shumailov et al., Alemohammad et al. 2024, Dohmatob et al. 2024) 描述宏观现象但不提供检测工具；data selection methods (DSIR, D4, DoReMi) 做分布匹配但不估计递归深度；Drayson et al. (2025) 将 binary MGT detection 应用于 importance resampling 以防止 model collapse，是目前最接近的工作。然而这些方法均做二值判断，**不估计文本经历了多少轮递归生成，也不量化辨别能力的饱和边界。**\\n- **Our framing**: 将递归生成建模为 iterated lossy channel，从信息论（DPI）推导出 K* 的必然存在。K* 是首次系统测量的 operational quantity——它告诉数据策展者\\\"在什么深度以下，depth-aware curation 比 binary detection 更有价值\\\"。通过 8 model configurations（5 architecture families, 1B-8B）、3 source domains、4 decoding strategies 系统表征 K*，揭示其 **bounded domain-dependent** 本质：**K*∈{1,2,3}**，形成清晰的三级域阶梯——Wikipedia K*=1（6 models, scorer-controlled），C4 web text K*=2（7/8 configurations），arXiv K*=3（5/5 domain-competent models, 4 architecture families）。Domain 是 K* 的唯一主导因素：scorer confound 控制后，model identity/scale/decoding strategy 均不改变域内一致性。这一发现意味着递归生成信息丧失极快——one to two generation passes suffice to erase distinguishable depth structure（\\\"one-wash laundering\\\" effect）。Domain dependence 为数据治理提供 actionable guidance：源文本的结构复杂度决定了 depth-aware filtering 的适用粒度。\\n- **Headline result template**: \\\"Recursive generation has a bounded discrimination boundary at K*∈{1,2,3}, forming a three-level domain hierarchy: Wikipedia saturates at K*=1 (all 6 models, scorer-controlled), web text at K*=2 (7/8 model configurations, 5 architecture families, 1B-8B), and structured academic text extends to K*=3 (cross-validated across 5 models, 4 architecture families). Domain structural complexity is the sole systematic determinant of K*. Cross-model transfer retention of 80-92% and scorer-invariant feature ordering (ρ>0.90) confirm depth features are text-intrinsic. Domain-appropriate K* correctly predicts optimal curation granularity.\\\"\\n\\n## Anticipated Reviewer Concerns & Responses\\n\\n1. **\\\"K*∈{1,2,3} 范围太小，结论是否 trivial？\\\"** → 恰好相反：K* 的低有界性是核心发现。DPI 理论只保证 K* 有限但不给上界；我们首次实证表明 K*≤3（即递归信息丧失极快），且 domain dependence 揭示了结构化文本如何延缓信息退化。One-wash laundering effect 对 data governance 有直接实践意义。\\n2. **\\\"只基于小模型（≤8B），能推广到更大模型吗？\\\"** → 5 architecture families (1B-8B) 覆盖了当前开源生态的主要架构。DPI 理论保证 K*_theory 对任意规模模型存在。Cross-scorer validation 表明 K* 由生成过程而非评分模型决定。扩展至 13B+/70B+ 是重要 future work。\\n3. **\\\"只是 feature engineering + off-the-shelf classifier，方法贡献弱\\\"** → 贡献在 problem formulation + empirical characterization（首次测量 K*）+ 理论框架（DPI）+ domain-dependent bounded saturation 发现，不是分类器本身。Model-free features 的选择被 cross-model transfer 80-92% 和 scorer invariance 验证为正确设计。\\n4. **\\\"arXiv K*=3 样本量够吗？\\\"** → 五个模型（Qwen-1.5B, Qwen-7B, Pythia-1.4B, LLaMA-8B, Mistral-7B）跨四个架构族均给出 K*=3，每模型 n=2,200，bootstrap CI 确认统计显著。5/5 domain-competent models 100% 一致性排除 model-specific artifact。\\n5. **\\\"Mistral K*=1 是 outlier 还是 systematic？\\\"** → Cross-scorer validation 确认是 text-intrinsic（非 scorer artifact）。Mistral 可能因训练数据/alignment 差异导致生成文本在一代后即失去 depth-distinguishing structure。这强化了 domain/model dependence 的核心论点。\\n6. **\\\"Prompt-chain 不代表真实世界递归污染\\\"** → Prompt-chain 隔离纯文本退化效应（text-intrinsic degradation），是更 generalizable 的实验设计。**exp-008 实证验证**：retrain-chain (Pythia-1.4B LoRA) K*≥4（1v2=0.9484, 2v3=0.8888, 3v4=0\\n\\n... [截断: 省略 2041 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 14041, \"truncated\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "25541dcc-2309-46c6-ba23-1f902bee27d8",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "12daa10b-cd0a-4b9f-910e-6a7e737be5b6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — gen-depth-contamination\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (ARR submission May 25, 2026)\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Backup: AAAI 2027 (abstract July 25, paper August 1)\\\\n\\\\n## Canonical Experimental Condition\\\\n\\\\n**Continuation mode 是 cross-model 结论的基础。**\\\\n\\\\n> \\\\\\\"We evaluate both generation modes because real-world recursive contamination can arise from either. Our analysis reveals generation mode as a significant confound, leading us to recommend continuation mode as the canonical condition for cross-model comparisons.\\\\\\\"\\\\n\\\\n| Condition | Pythia↔OLMo | Qwen↔others | 论文定位 |\\\\n|-----------|-------------|-------------|---------|\\\\n| Continuation | 90-92% retention | 80-85% retention | **主实验条件** — cross-model claims 的基础 |\\\\n| Rewrite (instruction) | N/A | 61-63% retention | **upper bound with mode-specific confound** — 仅作 ablation |\\\\n\\\\n**原则**：\\\\n- C1' 的跨模型 claim 必须基于 continuation mode 数据\\\\n- Rewrite mode 的高 AUC (0.6957 vs cont 0.6114) 是 mode-specific signal amplification，不能作为泛化性证据\\\\n- mvp-001 (Qwen-rewrite) 定位为 \\\\\\\"pilot study demonstrating feasibility\\\\\\\"，后续用 continuation mode rigorously validate\\\\n- cont→rw 89% vs rw→cont 82% 不对称性 → continuation features 是 rewrite 的通用子集\\\\n\\\\n## Core Claims (2+1 结构, updated D049/D050)\\\\n\\\\n### Primary: C1' (K* Characterization — Domain-Dependent Bounded Saturation)\\\\n首次系统测量递归合成文本的 generational discrimination boundary K*，demonstrating that K* is low-bounded (≤3) and domain-dependent。\\\\n\\\\nDPI 理论证明有限 K*_theory 必然存在（信息论 impossibility boundary）；我们首次在受控实验中测量 K*_empirical，它提供 K*_theory 的保守下界。通过 8 model configurations（5 architecture families, 1B-8B）、3 source domains（C4, Wikipedia, arXiv）、4 decoding strategies 系统表征 K*_empirical 的行为，发现：\\\\n\\\\n- **K*∈{1,2,3} at θ=0.60**：K* 是有界的且域依赖的，呈现三级域阶梯：Wikipedia(1) < C4(2) < arXiv(3)\\\\n- **Web text K*=2 是 dominant mode**（7/8 configurations），展现跨模型架构、跨解码策略的一致性\\\\n- **Structured academic text (arXiv) K*=3**，经五个模型配置、四个架构族 cross-validate（Qwen-1.5B, Qwen-7B, Pythia-1.4B, LLaMA-8B, Mistral-7B; 5/5 domain-competent models, 100%）\\\\n- **Wikipedia K*=1 (scorer-controlled)**：全部 6 个模型在 cross-family scorer 控制后均 K*=1。Qwen 生成器在 same-family scorer 下的 K*=2 是 scorer family bias artifact（D060 确认），正文报告 scorer-controlled 值，Appendix 披露 confound 细节\\\\n- **Mistral-7B K*=1 on C4 but K*=3 on arXiv**：domain-specific one-wash，最强 domain dependence 证据\\\\n- **Domain 是 K* 的唯一主导因素**：scorer control 后，model scale/architecture/decoding strategy 均不改变域内 K* 一致性\\\\n- **One-wash laundering effect**：对 web text 和 Wikipedia，单次生成即令文本与更深层合成内容不可区分\\\\n\\\\n**子组件：**\\\\n\\\\n**(a) K*=2 as dominant mode for web text (7/8 configurations)**\\\\n> **7/8 model configurations yield K*=2 on C4 web text：**\\\\n>\\\\n> | Model | Experiment | AUC 1v2 | 95% CI | CI lower > 0.60? |\\\\n> |-------|-----------|---------|--------|-----------------|\\\\n> | Qwen-1.5B-Instruct rewrite | mvp-001 | 0.6957 | [0.6859, 0.7041] | ✅ (+8.6pp) |\\\\n> | Pythia-1.4B cont | exp-001 | 0.6539 | [0.6454, 0.6630] | ✅ (+4.5pp) |\\\\n> | Qwen-1.5B base cont | exp-016 | 0.6262 | [0.6168, 0.6353] | ✅ (+1.7pp) |\\\\n> | Qwen2.5-7B cont | exp-004 | 0.6178 | [0.6079, 0.6261] | ✅ (+0.79pp) |\\\\n> | OLMo-1B cont | exp-002 | 0.6145 | [0.6045, 0.6247] | ✅ (+0.45pp) |\\\\n> | LLaMA-3.1-8B cont | exp-018 | 0.6123 | [0.6028, 0.6216] | ✅ (+0.28pp) |\\\\n> | Qwen-1.5B-Instruct cont | exp-017 | 0.6112 | [0.6015, 0.6213] | ✅ (+0.15pp) |\\\\n>\\\\n> *Exception: Mistral-7B cont (exp-019): 1v2=0.5935, CI [0.5835, 0.6032], K*=1*\\\\n>\\\\n> *Decoding strategy invariance (exp-003):*\\\\n> | Decoding | AUC 1v2 | K* |\\\\n> |----------|---------|-----|\\\\n> | greedy | 0.6893 | 2 |\\\\n> | nucleus p=0.9 | 0.6866 | 2 |\\\\n> | temp=0.7 | 0.6887 | 2 |\\\\n> | temp=1.2 | 0.7039 | 2 |\\\\n>\\\\n> - 7/8 configurations 1v2 CI lower > 0.60, 全部 2v3 CI upper < 0.60\\\\n> - 4 decoding strategies AUC 1v2 range [0.6866, 0.7039], K* 完全不变\\\\n> - ⚠️ Qwen-cont 1v2 CI lower=0.6015 极边缘；cross-scorer validation 下降至 K*=1\\\\n> - ⚠️ θ-sensitivity: θ=0.60 下 7/8 K*=2; θ=0.70 下多数降至 K*=1\\\\n> - Paper 措辞：\\\\\\\"K*=2 emerges as the dominant mode for general web text (7/8 model configurations), demonstrating consistency across diverse architectures and decoding strategies.\\\\\\\"\\\\n\\\\n**(b) Domain dependence: arXiv K*=3 (5-model cross-validated, D055/D056/D057)**\\\\n> - **Qwen-1.5B on arXiv** (exp-024): 2v3 AUC=0.6427, CI [0.6275, 0.6575], K*=3 ✅ (+2.75pp)\\\\n> - **Pythia-1.4B on arXiv** (exp-025): 2v3 AUC=0.6544, CI [0.6401, 0.6688], K*=3 ✅ (+4.01pp)\\\\n> - **LLaMA-3.1-8B on arXiv** (exp_arXiv_llama8b): 2v3 AUC=0.6215, K*=3 ✅ (+2.15pp)\\\\n> - **Mistral-7B on arXiv** (exp_arXiv_mistral7b): 2v3 AUC=0.6275, all folds > 0.60, K*=3 ✅ (+2.75pp)\\\\n> - **Qwen-7B on arXiv** (exp_arXiv_qwen7b): 2v3 AUC=0.6255, all folds > 0.60, K*=3 ✅ (+2.55pp)\\\\n> - 五个模型配置、四个架构族（1.4B-8B）在 arXiv 上 100% 一致 K*=3（5/5 domain-competent models，仅 OLMo capacity failure）\\\\n> - OLMo-1B K*=1 (exp_arXiv_olmo): capacity failure — 生成完全出域文本，不影响 domain property claim，作为 \\\\\\\"domain competence prerequisite\\\\\\\" 分析放 Appendix\\\\n> - **Mistral C4 K*=1 → arXiv K*=3 是 domain dependence 的最强证据**：同一模型在不同域给出不同 K*，证明 K* 由 domain structure 主导而非 model identity\\\\n> - **解释**：arXiv 的结构化特征（LaTeX formatting, citation patterns, mathematical notation）提供额外 depth-distinguishing signal，使辨别力多延伸一代\\\\n> - Sample size: n=2,200 per model\\\\n> - ⚠️ LLaMA fold 0=0.5969 < θ, bootstrap CI lower 可能接近 0.60 边界。论文措辞用 \\\\\\\"K*=3 with boundary pair AUC of 0.62\\\\\\\" 而非 \\\\\\\"robustly K*=3\\\\\\\"\\\\n> - 论文定位：**domain dependence 是核心发现**——K* 由源文本结构复杂度决定，非纯模型属性。4-model cross-validation 大幅强化证据链\\\\n\\\\n**(c) Mistral K*=1 on web text: domain-specific one-wash (D056)**\\\\n> - Mistral-7B 在 C4 web text 上 1v2 AUC CI lower < 0.60, K*=1\\\\n> - Cross-scorer validation (exp-022): 使用其他模型 score Mistral 生成的文本，K*=1 maintained → C4 上的 K*=1 是 text-intrinsic（非 scorer artifact）\\\\n> - **但 Mistral arXiv K*=3 (exp_arXiv_mistral7b) 证明 one-wash 是 domain-specific 而非 model-intrinsic**\\\\n> - **One-wash laundering**：对 web text 这类 homogeneous 域，Mistral 单次生成即令文本在统计上不可区分于更深层合成；但 structured domains (arXiv) 能 rescue even Mistral from one-wash\\\\n> - 论文定位：Mistral C4→arXiv 的 K* 跃变（1→3）是 (model × domain) interaction 的典型案例，进一步证明 domain structure 是 K* 的主要决定因素\\\\n\\\\n**(d) Cross-model transfer (scorer invariance)**\\\\n> - Pythia↔OLMo 90-92% accuracy retention → K* 不是 model self-familiarity artifact\\\\n> - 0v1 AUC > 0.96 across all transfer pairs → binary contamination signal 完全跨模型可迁移\\\\n> - Cross-scorer validation (exp-022): 11/12 generator×scorer combos yield K*=2 → K* governed by generation process, not scoring model\\\\n> - Feature ordering: scorer-invariant Spearman ρ > 0.90\\\\n> - 论文定位：confirms K* is a property of the text/generation process, not the measurement apparatus\\\\n\\\\n**(e) Representation dependence of K* (Neural Probe)**\\\\n> - exp-015 完整 3 模型结果（frozen self-embeddings + MLP probe）:\\\\n>   - Qwen-cont: K*(neural)=3, 2v3 AUC=0.6159, CI [0.6099, 0.6223], CI lower > 0.60 ✅\\\\n>   - Pythia-1.4B: K*(neural)=2, 2v3 AUC=0.5963, CI [0.5892, 0.6033], CI lower < 0.60 ❌\\\\n>   - OLMo-1B: K*(neural)=2, 2v3 AUC=0.5892, CI [0.5818, 0.5965], CI lower < 0.60 ❌\\\\n> - K*(neural) 是 model-dependent：Qwen K*=3, Pythia/OLMo K*=2\\\\n> - 15D model-free features 给出一致的 K* across all models，neural probe 给出 model-dependent K*\\\\n> - Interpretability-deployability tradeoff: model-free features 的 universality 优势在 cross-model 结果下更明显\\\\n> - 论文定位：validates choice of model-free 15D features for headline characterization\\\\n\\\\n**(f) Generation mode analysis (§4.x Analysis subsection)**\\\\n> - Signal strength: rewrite AUC 1v2=0.6957 vs continuation 0.6114（Δ=+8.4pp）\\\\n> - Transferability: continuation 80-92% retention vs rewrite 61-63%\\\\n> - Feature subset: cont→rw 89% > rw→cont 82% → continuation features 是 rewrite 的通用子集\\\\n> - Interpretation: rewrite mode 的 instruction-following 引入 mode-specific style artifacts，放大 depth signal 但降低跨模型泛化性\\\\n> - 论文定位：Analysis subsection，不是独立 claim\\\\n\\\\n### Secondary: C3 (K*-Aware Data Curation Validation)\\\\nDomain-appropriate K* correctly predicts optimal curation granularity: for web text (K*=2), binary K*-aware filtering (0.5941 MMLU) outperforms graduated depth weighting (best 0.5892 at α=0.9), surprisal-based selection (0.5894), and DSIR distribution matching (~0.5867, ≈ no-filter level). Dose-response analysis (exp-009 v3, 3 ratios × 3 strategies × 5 seeds) confirms binary filtering maintains consistent advantage across 10%/30%/50% contamination ratios (HellaSwag significantly better at all levels, p≤0.004), while graduated filtering collapses to no-filter baseline performance. K* serves as an actionable curation guideline: the domain-dependent discrimination boundary directly determines the optimal filtering granularity.\\\\n\\\\n> ⚠️ Defensive framing constraint (D053): MMLU at 30% ratio p=0.074 不显著, 不能 claim \\\\\\\"universally beneficial\\\\\\\"。维持 \\\\\\\"consistent advantage\\\\\\\" 措辞，以 HellaSwag 显著性为主要证据。\\\\n\\\\n### Supporting Analysis: Canonical Condition Selection\\\\nGeneration mode 是 depth estimation 的显著混淆变量。Methodology 段落阐述 continuation mode 作为 canonical condition 的选择及理由（不作为独立 claim）。\\\\n\\\\n## Story Spine\\\\n\\\\n- **Problem**: Web 数据正被多代递归合成文本污染。当前检测方法将合成文本视为 binary 类别（real vs synthetic），但质量随代际深度非线性退化——首代合成文本与四代合成文本的质量差异巨大却被忽视。\\\\n- **Existing approaches & gaps**: Binary detectors (DivEye, Min-K%++) 不区分代际；model collapse 文献 (Shumailov et al., Alemohammad et al. 2024, Dohmatob et al. 2024) 描述宏观现象但不提供检测工具；data selection methods (DSIR, D4, DoReMi) 做分布匹配但不估计递归深度；Drayson et al. (2025) 将 binary MGT detection 应用于 importance resampling 以防止 model collapse，是目前最接近的工作。然而这些方法均做二值判断，**不估计文本经历了多少轮递归生成，也不量化辨别能力的饱和边界。**\\\\n- **Our framing**: 将递归生成建模为 iterated lossy channel，从信息论（DPI）推导出 K* 的必然存在。K* 是首次系统测量的 operational quantity——它告诉数据策展者\\\\\\\"在什么深度以下，depth-aware curation 比 binary detection 更有价值\\\\\\\"。通过 8 model configurations（5 architecture families, 1B-8B）、3 source domains、4 decoding strategies 系统表征 K*，揭示其 **bounded domain-dependent** 本质：**K*∈{1,2,3}**，形成清晰的三级域阶梯——Wikipedia K*=1（6 models, scorer-controlled），C4 web text K*=2（7/8 configurations），arXiv K*=3（5/5 domain-competent models, 4 architecture families）。Domain 是 K* 的唯一主导因素：scorer confound 控制后，model identity/scale/decoding strategy 均不改变域内一致性。这一发现意味着递归生成信息丧失极快——one to two generation passes suffice to erase distinguishable depth structure（\\\\\\\"one-wash laundering\\\\\\\" effect）。Domain dependence 为数据治理提供 actionable guidance：源文本的结构复杂度决定了 depth-aware filtering 的适用粒度。\\\\n- **Headline result template**: \\\\\\\"Recursive generation has a bounded discrimination boundary at K*∈{1,2,3}, forming a three-level domain hierarchy: Wikipedia saturates at K*=1 (all 6 models, scorer-controlled), web text at K*=2 (7/8 model configurations, 5 architecture families, 1B-8B), and structured academic text extends to K*=3 (cross-validated across 5 models, 4 architecture families). Domain structural complexity is the sole systematic determinant of K*. Cross-model transfer retention of 80-92% and scorer-invariant feature ordering (ρ>0.90) confirm depth features are text-intrinsic. Domain-appropriate K* correctly predicts optimal curation granularity.\\\\\\\"\\\\n\\\\n## Anticipated Reviewer Concerns & Responses\\\\n\\\\n1. **\\\\\\\"K*∈{1,2,3} 范围太小，结论是否 trivial？\\\\\\\"** → 恰好相反：K* 的低有界性是核心发现。DPI 理论只保证 K* 有限但不给上界；我们首次实证表明 K*≤3（即递归信息丧失极快），且 domain dependence 揭示了结构化文本如何延缓信息退化。One-wash laundering effect 对 data governance 有直接实践意义。\\\\n2. **\\\\\\\"只基于小模型（≤8B），能推广到更大模型吗？\\\\\\\"** → 5 architecture families (1B-8B) 覆盖了当前开源生态的主要架构。DPI 理论保证 K*_theory 对任意规模模型存在。Cross-scorer validation 表明 K* 由生成过程而非评分模型决定。扩展至 13B+/70B+ 是重要 future work。\\\\n3. **\\\\\\\"只是 feature engineering + off-the-shelf classifier，方法贡献弱\\\\\\\"** → 贡献在 problem formulation + empirical characterization（首次测量 K*）+ 理论框架（DPI）+ domain-dependent bounded saturation 发现，不是分类器本身。Model-free features 的选择被 cross-model transfer 80-92% 和 scorer invariance 验证为正确设计。\\\\n4. **\\\\\\\"arXiv K*=3 样本量够吗？\\\\\\\"** → 五个模型（Qwen-1.5B, Qwen-7B, Pythia-1.4B, LLaMA-8B, Mistral-7B）跨四个架构族均给出 K*=3，每模型 n=2,200，bootstrap CI 确认统计显著。5/5 domain-competent models 100% 一致性排除 model-specific artifact。\\\\n5. **\\\\\\\"Mistral K*=1 是 outlier 还是 systematic？\\\\\\\"** → Cross-scorer validation 确认是 text-intrinsic（非 scorer artifact）。Mistral 可能因训练数据/alignment 差异导致生成文本在一代后即失去 depth-distinguishing structure。这强化了 domain/model dependence 的核心论点。\\\\n6. **\\\\\\\"Prompt-chain 不代表真实世界递归污染\\\\\\\"** → Prompt-chain 隔离纯文本退化效应（text-intrinsic degradation），是更 generalizable 的实验设计。**exp-008 实证验证**：retrain-chain (Pythia-1.4B LoRA) K*≥4（1v2=0.9484, 2v3=0.8888, 3v4=0\\\\n\\\\n... [截断: 省略 2041 字符，传 max_chars=0 获取完整内容]\\\", \\\"total_chars\\\": 14041, \\\"truncated\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper_framing.md\", \"content\": \"# Paper Framing — gen-depth-contamination\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR submission May 25, 2026)\\n- Fallback: EMNLP 2026 Findings\\n- Backup: AAAI 2027 (abstract July 25, paper August 1)\\n\\n## Canonical Experimental Condition\\n\\n**Continuation mode 是 cross-model 结论的基础。**\\n\\n> \\\"We evaluate both generation modes because real-world recursive contamination can arise from either. Our analysis reveals generation mode as a significant confound, leading us to recommend continuation mode as the canonical condition for cross-model comparisons.\\\"\\n\\n| Condition | Pythia↔OLMo | Qwen↔others | 论文定位 |\\n|-----------|-------------|-------------|---------|\\n| Continuation | 90-92% retention | 80-85% retention | **主实验条件** — cross-model claims 的基础 |\\n| Rewrite (instruction) | N/A | 61-63% retention | **upper bound with mode-specific confound** — 仅作 ablation |\\n\\n**原则**：\\n- C1' 的跨模型 claim 必须基于 continuation mode 数据\\n- Rewrite mode 的高 AUC (0.6957 vs cont 0.6114) 是 mode-specific signal amplification，不能作为泛化性证据\\n- mvp-001 (Qwen-rewrite) 定位为 \\\"pilot study demonstrating feasibility\\\"，后续用 continuation mode rigorously validate\\n- cont→rw 89% vs rw→cont 82% 不对称性 → continuation features 是 rewrite 的通用子集\\n\\n## Core Claims (2+1 结构, updated D049/D050)\\n\\n### Primary: C1' (K* Characterization — Domain-Dependent Bounded Saturation)\\n首次系统测量递归合成文本的 generational discrimination boundary K*，demonstrating that K* is low-bounded (≤3) and domain-dependent。\\n\\nDPI 理论证明有限 K*_theory 必然存在（信息论 impossibility boundary）；我们首次在受控实验中测量 K*_empirical，它提供 K*_theory 的保守下界。通过 8 model configurations（5 architecture families, 1B-8B）、3 source domains（C4, Wikipedia, arXiv）、4 decoding strategies 系统表征 K*_empirical 的行为，发现：\\n\\n- **K*∈{1,2,3} at θ=0.60**：K* 是有界的且域依赖的，呈现三级域阶梯：Wikipedia(1) < C4(2) < arXiv(3)\\n- **Web text K*=2 是 dominant mode**（7/8 configurations），展现跨模型架构、跨解码策略的一致性\\n- **Structured academic text (arXiv) K*=3**，经五个模型配置、四个架构族 cross-validate（Qwen-1.5B, Qwen-7B, Pythia-1.4B, LLaMA-8B, Mistral-7B; 5/5 domain-competent models, 100%）\\n- **Wikipedia K*=1 (scorer-controlled)**：全部 6 个模型在 cross-family scorer 控制后均 K*=1。Qwen 生成器在 same-family scorer 下的 K*=2 是 scorer family bias artifact（D060 确认），正文报告 scorer-controlled 值，Appendix 披露 confound 细节\\n- **Mistral-7B K*=1 on C4 but K*=3 on arXiv**：domain-specific one-wash，最强 domain dependence 证据\\n- **Domain 是 K* 的唯一主导因素**：scorer control 后，model scale/architecture/decoding strategy 均不改变域内 K* 一致性\\n- **One-wash laundering effect**：对 web text 和 Wikipedia，单次生成即令文本与更深层合成内容不可区分\\n\\n**子组件：**\\n\\n**(a) K*=2 as dominant mode for web text (7/8 configurations)**\\n> **7/8 model configurations yield K*=2 on C4 web text：**\\n>\\n> | Model | Experiment | AUC 1v2 | 95% CI | CI lower > 0.60? |\\n> |-------|-----------|---------|--------|-----------------|\\n> | Qwen-1.5B-Instruct rewrite | mvp-001 | 0.6957 | [0.6859, 0.7041] | ✅ (+8.6pp) |\\n> | Pythia-1.4B cont | exp-001 | 0.6539 | [0.6454, 0.6630] | ✅ (+4.5pp) |\\n> | Qwen-1.5B base cont | exp-016 | 0.6262 | [0.6168, 0.6353] | ✅ (+1.7pp) |\\n> | Qwen2.5-7B cont | exp-004 | 0.6178 | [0.6079, 0.6261] | ✅ (+0.79pp) |\\n> | OLMo-1B cont | exp-002 | 0.6145 | [0.6045, 0.6247] | ✅ (+0.45pp) |\\n> | LLaMA-3.1-8B cont | exp-018 | 0.6123 | [0.6028, 0.6216] | ✅ (+0.28pp) |\\n> | Qwen-1.5B-Instruct cont | exp-017 | 0.6112 | [0.6015, 0.6213] | ✅ (+0.15pp) |\\n>\\n> *Exception: Mistral-7B cont (exp-019): 1v2=0.5935, CI [0.5835, 0.6032], K*=1*\\n>\\n> *Decoding strategy invariance (exp-003):*\\n> | Decoding | AUC 1v2 | K* |\\n> |----------|---------|-----|\\n> | greedy | 0.6893 | 2 |\\n> | nucleus p=0.9 | 0.6866 | 2 |\\n> | temp=0.7 | 0.6887 | 2 |\\n> | temp=1.2 | 0.7039 | 2 |\\n>\\n> - 7/8 configurations 1v2 CI lower > 0.60, 全部 2v3 CI upper < 0.60\\n> - 4 decoding strategies AUC 1v2 range [0.6866, 0.7039], K* 完全不变\\n> - ⚠️ Qwen-cont 1v2 CI lower=0.6015 极边缘；cross-scorer validation 下降至 K*=1\\n> - ⚠️ θ-sensitivity: θ=0.60 下 7/8 K*=2; θ=0.70 下多数降至 K*=1\\n> - Paper 措辞：\\\"K*=2 emerges as the dominant mode for general web text (7/8 model configurations), demonstrating consistency across diverse architectures and decoding strategies.\\\"\\n\\n**(b) Domain dependence: arXiv K*=3 (5-model cross-validated, D055/D056/D057)**\\n> - **Qwen-1.5B on arXiv** (exp-024): 2v3 AUC=0.6427, CI [0.6275, 0.6575], K*=3 ✅ (+2.75pp)\\n> - **Pythia-1.4B on arXiv** (exp-025): 2v3 AUC=0.6544, CI [0.6401, 0.6688], K*=3 ✅ (+4.01pp)\\n> - **LLaMA-3.1-8B on arXiv** (exp_arXiv_llama8b): 2v3 AUC=0.6215, K*=3 ✅ (+2.15pp)\\n> - **Mistral-7B on arXiv** (exp_arXiv_mistral7b): 2v3 AUC=0.6275, all folds > 0.60, K*=3 ✅ (+2.75pp)\\n> - **Qwen-7B on arXiv** (exp_arXiv_qwen7b): 2v3 AUC=0.6255, all folds > 0.60, K*=3 ✅ (+2.55pp)\\n> - 五个模型配置、四个架构族（1.4B-8B）在 arXiv 上 100% 一致 K*=3（5/5 domain-competent models，仅 OLMo capacity failure）\\n> - OLMo-1B K*=1 (exp_arXiv_olmo): capacity failure — 生成完全出域文本，不影响 domain property claim，作为 \\\"domain competence prerequisite\\\" 分析放 Appendix\\n> - **Mistral C4 K*=1 → arXiv K*=3 是 domain dependence 的最强证据**：同一模型在不同域给出不同 K*，证明 K* 由 domain structure 主导而非 model identity\\n> - **解释**：arXiv 的结构化特征（LaTeX formatting, citation patterns, mathematical notation）提供额外 depth-distinguishing signal，使辨别力多延伸一代\\n> - Sample size: n=2,200 per model\\n> - ⚠️ LLaMA fold 0=0.5969 < θ, bootstrap CI lower 可能接近 0.60 边界。论文措辞用 \\\"K*=3 with boundary pair AUC of 0.62\\\" 而非 \\\"robustly K*=3\\\"\\n> - 论文定位：**domain dependence 是核心发现**——K* 由源文本结构复杂度决定，非纯模型属性。4-model cross-validation 大幅强化证据链\\n\\n**(c) Mistral K*=1 on web text: domain-specific one-wash (D056)**\\n> - Mistral-7B 在 C4 web text 上 1v2 AUC CI lower < 0.60, K*=1\\n> - Cross-scorer validation (exp-022): 使用其他模型 score Mistral 生成的文本，K*=1 maintained → C4 上的 K*=1 是 text-intrinsic（非 scorer artifact）\\n> - **但 Mistral arXiv K*=3 (exp_arXiv_mistral7b) 证明 one-wash 是 domain-specific 而非 model-intrinsic**\\n> - **One-wash laundering**：对 web text 这类 homogeneous 域，Mistral 单次生成即令文本在统计上不可区分于更深层合成；但 structured domains (arXiv) 能 rescue even Mistral from one-wash\\n> - 论文定位：Mistral C4→arXiv 的 K* 跃变（1→3）是 (model × domain) interaction 的典型案例，进一步证明 domain structure 是 K* 的主要决定因素\\n\\n**(d) Cross-model transfer (scorer invariance)**\\n> - Pythia↔OLMo 90-92% accuracy retention → K* 不是 model self-familiarity artifact\\n> - 0v1 AUC > 0.96 across all transfer pairs → binary contamination signal 完全跨模型可迁移\\n> - Cross-scorer validation (exp-022): 11/12 generator×scorer combos yield K*=2 → K* governed by generation process, not scoring model\\n> - Feature ordering: scorer-invariant Spearman ρ > 0.90\\n> - 论文定位：confirms K* is a property of the text/generation process, not the measurement apparatus\\n\\n**(e) Representation dependence of K* (Neural Probe)**\\n> - exp-015 完整 3 模型结果（frozen self-embeddings + MLP probe）:\\n>   - Qwen-cont: K*(neural)=3, 2v3 AUC=0.6159, CI [0.6099, 0.6223], CI lower > 0.60 ✅\\n>   - Pythia-1.4B: K*(neural)=2, 2v3 AUC=0.5963, CI [0.5892, 0.6033], CI lower < 0.60 ❌\\n>   - OLMo-1B: K*(neural)=2, 2v3 AUC=0.5892, CI [0.5818, 0.5965], CI lower < 0.60 ❌\\n> - K*(neural) 是 model-dependent：Qwen K*=3, Pythia/OLMo K*=2\\n> - 15D model-free features 给出一致的 K* across all models，neural probe 给出 model-dependent K*\\n> - Interpretability-deployability tradeoff: model-free features 的 universality 优势在 cross-model 结果下更明显\\n> - 论文定位：validates choice of model-free 15D features for headline characterization\\n\\n**(f) Generation mode analysis (§4.x Analysis subsection)**\\n> - Signal strength: rewrite AUC 1v2=0.6957 vs continuation 0.6114（Δ=+8.4pp）\\n> - Transferability: continuation 80-92% retention vs rewrite 61-63%\\n> - Feature subset: cont→rw 89% > rw→cont 82% → continuation features 是 rewrite 的通用子集\\n> - Interpretation: rewrite mode 的 instruction-following 引入 mode-specific style artifacts，放大 depth signal 但降低跨模型泛化性\\n> - 论文定位：Analysis subsection，不是独立 claim\\n\\n### Secondary: C3 (K*-Aware Data Curation Validation)\\nDomain-appropriate K* correctly predicts optimal curation granularity: for web text (K*=2), binary K*-aware filtering (0.5941 MMLU) outperforms graduated depth weighting (best 0.5892 at α=0.9), surprisal-based selection (0.5894), and DSIR distribution matching (~0.5867, ≈ no-filter level). Dose-response analysis (exp-009 v3, 3 ratios × 3 strategies × 5 seeds) confirms binary filtering maintains consistent advantage across 10%/30%/50% contamination ratios (HellaSwag significantly better at all levels, p≤0.004), while graduated filtering collapses to no-filter baseline performance. K* serves as an actionable curation guideline: the domain-dependent discrimination boundary directly determines the optimal filtering granularity.\\n\\n> ⚠️ Defensive framing constraint (D053): MMLU at 30% ratio p=0.074 不显著, 不能 claim \\\"universally beneficial\\\"。维持 \\\"consistent advantage\\\" 措辞，以 HellaSwag 显著性为主要证据。\\n\\n### Supporting Analysis: Canonical Condition Selection\\nGeneration mode 是 depth estimation 的显著混淆变量。Methodology 段落阐述 continuation mode 作为 canonical condition 的选择及理由（不作为独立 claim）。\\n\\n## Story Spine\\n\\n- **Problem**: Web 数据正被多代递归合成文本污染。当前检测方法将合成文本视为 binary 类别（real vs synthetic），但质量随代际深度非线性退化——首代合成文本与四代合成文本的质量差异巨大却被忽视。\\n- **Existing approaches & gaps**: Binary detectors (DivEye, Min-K%++) 不区分代际；model collapse 文献 (Shumailov et al., Alemohammad et al. 2024, Dohmatob et al. 2024) 描述宏观现象但不提供检测工具；data selection methods (DSIR, D4, DoReMi) 做分布匹配但不估计递归深度；Drayson et al. (2025) 将 binary MGT detection 应用于 importance resampling 以防止 model collapse，是目前最接近的工作。然而这些方法均做二值判断，**不估计文本经历了多少轮递归生成，也不量化辨别能力的饱和边界。**\\n- **Our framing**: 将递归生成建模为 iterated lossy channel，从信息论（DPI）推导出 K* 的必然存在。K* 是首次系统测量的 operational quantity——它告诉数据策展者\\\"在什么深度以下，depth-aware curation 比 binary detection 更有价值\\\"。通过 8 model configurations（5 architecture families, 1B-8B）、3 source domains、4 decoding strategies 系统表征 K*，揭示其 **bounded domain-dependent** 本质：**K*∈{1,2,3}**，形成清晰的三级域阶梯——Wikipedia K*=1（6 models, scorer-controlled），C4 web text K*=2（7/8 configurations），arXiv K*=3（5/5 domain-competent models, 4 architecture families）。Domain 是 K* 的唯一主导因素：scorer confound 控制后，model identity/scale/decoding strategy 均不改变域内一致性。这一发现意味着递归生成信息丧失极快——one to two generation passes suffice to erase distinguishable depth structure（\\\"one-wash laundering\\\" effect）。Domain dependence 为数据治理提供 actionable guidance：源文本的结构复杂度决定了 depth-aware filtering 的适用粒度。\\n- **Headline result template**: \\\"Recursive generation has a bounded discrimination boundary at K*∈{1,2,3}, forming a three-level domain hierarchy: Wikipedia saturates at K*=1 (all 6 models, scorer-controlled), web text at K*=2 (7/8 model configurations, 5 architecture families, 1B-8B), and structured academic text extends to K*=3 (cross-validated across 5 models, 4 architecture families). Domain structural complexity is the sole systematic determinant of K*. Cross-model transfer retention of 80-92% and scorer-invariant feature ordering (ρ>0.90) confirm depth features are text-intrinsic. Domain-appropriate K* correctly predicts optimal curation granularity.\\\"\\n\\n## Anticipated Reviewer Concerns & Responses\\n\\n1. **\\\"K*∈{1,2,3} 范围太小，结论是否 trivial？\\\"** → 恰好相反：K* 的低有界性是核心发现。DPI 理论只保证 K* 有限但不给上界；我们首次实证表明 K*≤3（即递归信息丧失极快），且 domain dependence 揭示了结构化文本如何延缓信息退化。One-wash laundering effect 对 data governance 有直接实践意义。\\n2. **\\\"只基于小模型（≤8B），能推广到更大模型吗？\\\"** → 5 architecture families (1B-8B) 覆盖了当前开源生态的主要架构。DPI 理论保证 K*_theory 对任意规模模型存在。Cross-scorer validation 表明 K* 由生成过程而非评分模型决定。扩展至 13B+/70B+ 是重要 future work。\\n3. **\\\"只是 feature engineering + off-the-shelf classifier，方法贡献弱\\\"** → 贡献在 problem formulation + empirical characterization（首次测量 K*）+ 理论框架（DPI）+ domain-dependent bounded saturation 发现，不是分类器本身。Model-free features 的选择被 cross-model transfer 80-92% 和 scorer invariance 验证为正确设计。\\n4. **\\\"arXiv K*=3 样本量够吗？\\\"** → 五个模型（Qwen-1.5B, Qwen-7B, Pythia-1.4B, LLaMA-8B, Mistral-7B）跨四个架构族均给出 K*=3，每模型 n=2,200，bootstrap CI 确认统计显著。5/5 domain-competent models 100% 一致性排除 model-specific artifact。\\n5. **\\\"Mistral K*=1 是 outlier 还是 systematic？\\\"** → Cross-scorer validation 确认是 text-intrinsic（非 scorer artifact）。Mistral 可能因训练数据/alignment 差异导致生成文本在一代后即失去 depth-distinguishing structure。这强化了 domain/model dependence 的核心论点。\\n6. **\\\"Prompt-chain 不代表真实世界递归污染\\\"** → Prompt-chain 隔离纯文本退化效应（text-intrinsic degradation），是更 generalizable 的实验设计。**exp-008 实证验证**：retrain-chain (Pythia-1.4B LoRA) K*≥4（1v2=0.9484, 2v3=0.8888, 3v4=0\\n\\n... [截断: 省略 2041 字符，传 max_chars=0 获取完整内容]\", \"total_chars\": 14041, \"truncated\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "25541dcc-2309-46c6-ba23-1f902bee27d8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]: Worker worker_review_figure_table_audit_20260518T020337 已完成（status=failed），请审查 Agent 的处理结果。",
+  "leafUuid": "12daa10b-cd0a-4b9f-910e-6a7e737be5b6",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 31 · 2026-05-18T02:12:08.296Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check the figure plan to understand what figures/tables exist in the paper, and also check what the failed worker was trying to do. Let me read the figure plan file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "12daa10b-cd0a-4b9f-910e-6a7e737be5b6",
+  "isSidechain": false,
+  "requestId": "req_011Cb9DwkezVkpFiKyoREMh4",
+  "type": "assistant",
+  "uuid": "5b28bb67-de11-4e88-beb4-b6818f85126e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Amwuf5sizpiqa22qWztQNF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6613,
+      "cache_read_input_tokens": 41853,
+      "output_tokens": 163,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6613,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 163,
+          "cache_read_input_tokens": 41853,
+          "cache_creation_input_tokens": 6613,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6613
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 32 · 2026-05-18T02:12:09.306Z_
+
+让我查看 figure_plan 和论文当前状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b28bb67-de11-4e88-beb4-b6818f85126e",
+  "isSidechain": false,
+  "requestId": "req_011Cb9DwkezVkpFiKyoREMh4",
+  "type": "assistant",
+  "uuid": "9f1c767a-cdd2-4587-8246-e6ab1610e947",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Amwuf5sizpiqa22qWztQNF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6613,
+      "cache_read_input_tokens": 41853,
+      "output_tokens": 163,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6613,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 163,
+          "cache_read_input_tokens": 41853,
+          "cache_creation_input_tokens": 6613,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6613
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 33 · 2026-05-18T02:12:11.168Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01EDvepuB396f4bLaGE9Qm2D`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/report/figure_plan.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9f1c767a-cdd2-4587-8246-e6ab1610e947",
+  "isSidechain": false,
+  "requestId": "req_011Cb9DwkezVkpFiKyoREMh4",
+  "type": "assistant",
+  "uuid": "39dbed7d-64e5-4c09-b347-1794fdb623d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Amwuf5sizpiqa22qWztQNF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6613,
+      "cache_read_input_tokens": 41853,
+      "output_tokens": 163,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6613,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 163,
+          "cache_read_input_tokens": 41853,
+          "cache_creation_input_tokens": 6613,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6613
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 34 · 2026-05-18T02:12:11.191Z_
+
+<details><summary>↩ Tool result · `toolu_01EDvepuB396f4bLaGE9Qm2D`</summary>
+
+```text
+1	# 论文图表方案
+2	
+3	> 项目：gen-depth-contamination
+4	> 目标投稿：EMNLP ARR May 25, 2026
+5	> 最后更新：2026-05-12
+6	
+7	---
+8	
+9	## Fig 1: Method Overview / Pipeline 图
+10	
+11	**类型**：示意图 / flow diagram
+12	
+13	**数据来源**：无数据依赖，纯概念图
+14	
+15	**核心信息**：一图看懂整个方法——从人类文本出发，经过递归 LLM 生成形成不同 depth 的文本，提取统计特征后送入 ordinal depth classifier，最终输出 depth 估计用于 graduated filtering。读者看完应理解 (1) depth chain 的构造方式 (2) 特征提取到分类的 pipeline (3) graduated filtering 的思路。
+16	
+17	**设计要点**：
+18	
+19	- **布局**：左到右水平流程，分三个区域——Corpus Construction / Feature Extraction / Depth-Aware Curation
+20	- **Corpus Construction 区域**：
+21	  - 左起一个 Human Text 方块（X₀），颜色最深（深蓝 #1a5276）
+22	  - 依次经过 LLM 信道符号（▷）连接到 X₁, X₂, ..., X₅
+23	  - 每个 Xₖ 用渐变色编码 depth：depth 0 深蓝 → depth 5 浅蓝/白色，隐喻信息衰减
+24	  - X₀ 到 X₅ 之间画一条从粗到细的灰色箭头，底部标注 "I(X₀; Xₖ) ↓ (DPI)"
+25	- **Feature Extraction 区域**：
+26	  - 三组特征用图标 + 颜色区分：Surprisal (蓝 #2980b9) / Diversity (绿 #27ae60) / Tail-thinning (橙 #e67e22)
+27	  - 简洁的 15-dim feature vector 示意
+28	- **Depth-Aware Curation 区域**：
+29	  - Ordinal Classifier 输出 depth 估计 k̂
+30	  - 底部分支：graduated weight = quality(k̂)/quality(0) → 加权训练数据
+31	  - 与 binary filtering（remove all synthetic）对比的小示意
+32	- **底部信息条**：DPI 理论支撑——"Data Processing Inequality: information about X₀ can only decrease with depth"
+33	- **字体**：标题用 sans-serif bold，标注用 9pt，数学符号用 LaTeX 渲染
+34	- **配色**：以蓝色系为主色调，三组特征颜色贯穿后续所有图表
+35	
+36	**制作工具**：TikZ（LaTeX 原生，与论文排版一致，方便调整尺寸）。如时间不够，matplotlib + 手动布局。
+37	
+38	---
+39	
+40	## Fig 2: Pairwise AUC 随 depth 衰减曲线（核心结果图）
+41	
+42	**类型**：折线图
+43	
+44	**数据来源**：
+45	- P0-9 (全配置特征提取) + P0-10 (LightGBM 5-fold CV)
+46	- 文件：`artifacts/analysis/pairwise_auc_matrix.csv`
+47	- 每个 (model, decoding_strategy) 配置的 pairwise AUC 值
+48	
+49	**核心信息**：depth signal 存在且随深度单调衰减，K* 可精确测量。不同模型/解码策略的衰减速度不同但趋势一致。读者看完应得出：(1) depth 0v1 区分度最高 (2) 衰减是单调的 (3) K* 位置清晰可读。
+50	
+51	**设计要点**：
+52	
+53	- **X 轴**：depth pair (0v1, 1v2, 2v3, 3v4, 4v5)，等间距
+54	- **Y 轴**：AUC，范围 [0.45, 1.0]，0.5 处标注 "random baseline"
+55	- **线条**：
+56	  - 主实验线（Qwen2.5-1.5B × 5 种解码策略）：实线，不同明度的蓝色系
+57	    - D-greedy: 深蓝实线 ●
+58	    - D-p90: 蓝色实线 ■
+59	    - D-p95: 中蓝实线 ▲（MVP 配置，加粗）
+60	    - D-lowT: 浅蓝实线 ◆
+61	    - D-highT: 天蓝实线 ★
+62	  - 跨模型线：虚线
+63	    - Pythia-1.4B (D-p95): 红色虚线 ●
+64	    - OLMo-1B (D-p95): 绿色虚线 ■
+65	    - Qwen2.5-7B (D-p95): 紫色虚线 ▲
+66	- **水平参考线**：AUC=0.60 灰色虚线，右侧标注 "K* threshold"
+67	- **K* 标注**：每条曲线与 0.60 线交叉处用竖向箭头标注 K* 值（如 K*=3）
+68	- **误差带**：5-fold CV 的 ±1 std 用半透明色带
+69	- **图例**：右侧或图下方，按模型分组
+70	
+71	**制作工具**：matplotlib (seaborn style)。代码模板在 `draw-paper-figure` skill 中。
+72	
+73	---
+74	
+75	## Fig 3: JSD 衰减曲线 + 理论预测叠加
+76	
+77	**类型**：折线图（双 panel 或叠加）
+78	
+79	**数据来源**：
+80	- P0-9 特征提取中的 JSD 计算：`artifacts/analysis/jsd_decay.csv`
+81	- 每个配置下 JSD(P_{X_0}, P_{X_k}) 对 k 的值
+82	- 理论预测：Proposition 2 的 ρ^k · d(P_{X_0}, P*) 指数衰减 bound
+83	
+84	**核心信息**：实验观测的 JSD 衰减与信道级联理论（DPI bound）定性一致。指数衰减拟合 vs 多项式衰减拟合的 AIC/BIC 对比验证 Proposition 3 的经验假设。读者看完应得出：(1) MI 确实单调衰减 (2) 衰减速率与解码策略相关 (3) 理论框架有实验支撑。
+85	
+86	**设计要点**：
+87	
+88	- **Panel A — JSD 衰减观测**：
+89	  - X 轴：depth k (0, 1, 2, 3, 4, 5)
+90	  - Y 轴：JSD(P_{X_0}, P_{X_k})，对数刻度可选
+91	  - 多条实线：不同 decoding strategies（复用 Fig 2 配色）
+92	  - 叠加虚线：指数拟合 ρ̂^k · C（用 least squares fit）
+93	  - 标注拟合的 ρ̂ 值和 R² 或 AIC
+94	- **Panel B — 衰减模型对比**：
+95	  - 分组柱状图或表格嵌入
+96	  - X 轴：decoding strategy
+97	  - Y 轴：AIC（越低越好）
+98	  - 两组柱：exponential fit / polynomial fit
+99	  - 颜色：exponential 蓝色 / polynomial 橙色
+100	  - 核心观察：greedy 更符合指数衰减，high-T 可能更接近多项式
+101	- **辅助元素**：
+102	  - Panel A 中用灰色水平带标注 "noise floor"（JSD 值低于此不可靠）
+103	  - 箭头标注 convergence to P*
+104	- **配色**：与 Fig 2 一致
+105	
+106	**制作工具**：matplotlib，subplot(1,2) 布局
+107	
+108	---
+109	
+110	## Fig 4: Feature Importance Ranking
+111	
+112	**类型**：水平柱状图
+113	
+114	**数据来源**：
+115	- P0-10 LightGBM classifier 的 feature importance (gain-based)
+116	- 文件：`artifacts/analysis/feature_importance.csv`
+117	- 15 维特征的 importance 排序
+118	
+119	**核心信息**：哪类特征最 depth-discriminative。读者看完应得出：(1) 三组特征的相对重要性排序 (2) 单个最重要特征是什么 (3) 不同特征组的贡献是互补的还是冗余的。
+120	
+121	**设计要点**：
+122	
+123	- **布局**：水平柱状图，特征名在 Y 轴，importance 在 X 轴
+124	- **排序**：按 importance 降序（最重要的在最上方）
+125	- **颜色编码（贯穿全文）**：
+126	  - Surprisal 组 (9 维): 蓝色系 #2980b9
+127	  - Diversity 组 (3 维): 绿色系 #27ae60
+128	  - Tail-thinning 组 (3 维): 橙色系 #e67e22
+129	- **特征名标注**：
+130	  - 简写 + 全称 tooltip（如 "surp_mean" / "mean token surprisal"）
+131	  - 同组特征用括号分组标注
+132	- **分组分隔线**：在不同颜色组之间用细灰线分隔（如果特征交错排列则不需要）
+133	- **误差条**：5-fold CV 的 importance std
+134	- **右侧标注**：每组特征的累计 importance 百分比
+135	- **图例**：右上角，三色块 + 组名
+136	
+137	**制作工具**：matplotlib (barh)
+138	
+139	---
+140	
+141	## Fig 5: Graduated vs Binary Filtering 下游对比
+142	
+143	**类型**：分组柱状图
+144	
+145	**数据来源**：
+146	- P0-12 下游过滤评估结果
+147	- 文件：`artifacts/downstream/filtering_comparison.csv`
+148	- 4 种过滤策略 × 下游 benchmark 分数
+149	
+150	**核心信息**：graduated filtering 优于 binary filtering 和 no filtering。读者看完应得出：(1) 过滤好于不过滤 (2) graduated > binary (3) 差异具有统计显著性。
+151	
+152	**设计要点**：
+153	
+154	- **X 轴**：filtering 策略，4 组
+155	  - No filter (灰色)
+156	  - Binary (DivEye) (红色)
+157	  - Graduated (本文方法) (蓝色，加粗边框突出)
+158	  - Surplexity (紫色)
+159	- **Y 轴**：Accuracy (%)
+160	- **Panel 布局**：subplot(1,2) 或 subplot(1,3)
+161	  - Panel A: MMLU (5-shot)
+162	  - Panel B: HellaSwag (10-shot)
+163	  - Panel C: XSum ROUGE-L（如果 P1-7 完成）
+164	- **误差条**：bootstrap 95% CI
+165	- **显著性标注**：
+166	  - graduated vs binary: 横线 + * 或 ** 标注 p-value
+167	  - graduated vs no-filter: 同上
+168	- **数值标注**：每个柱顶标注精确值（如 "43.2"）
+169	- **baseline 参考线**：no-filter 的值用灰色水平虚线贯穿
+170	- **如果有多个污染比例**（P1-2 完成时）：
+171	  - 改为 subplot(2,2) 或 subplot(1,3)，每个 panel 一个污染比例
+172	  - 或改为折线图：X 轴=污染比例 (10%/30%/50%), 多条线=不同策略
+173	
+174	**制作工具**：matplotlib (bar + errorbar)
+175	
+176	---
+177	
+178	## Fig 6: Feature Group × Depth 判别力热力图（降解序分析）
+179	
+180	**类型**：热力图
+181	
+182	**数据来源**：
+183	- P0-11 K* + 饱和边界分析
+184	- 文件：`artifacts/analysis/feature_group_saturation.csv`
+185	- 每个 feature group 在每个 depth pair 上的 AUC
+186	
+187	**核心信息**：揭示 "linguistic degradation ordering"——不同语言维度在哪个 depth 率先丧失判别力。读者看完应得出：(1) 哪组特征最先饱和 (2) 哪组特征最晚饱和（最 robust）(3) 饱和顺序是否跨模型一致。
+188	
+189	**设计要点**：
+190	
+191	- **行**：Feature group（Surprisal / Diversity / Tail-thinning），每组可进一步拆分单特征
+192	- **列**：Depth pair (0v1, 1v2, 2v3, 3v4, 4v5)
+193	- **色标**：连续色标 viridis 或 RdYlGn
+194	  - AUC > 0.70: 深绿
+195	  - AUC 0.60-0.70: 黄色
+196	  - AUC < 0.60: 红色（已饱和）
+197	- **cell 标注**：每个 cell 内写 AUC 数值（2 位小数）
+198	- **K* 标注线**：在每行特征组的 K* 位置画竖线或加粗边框
+199	- **面板**：如果做跨模型对比（P0-2, P0-3 数据），可做 subplot(1,3)，每个 panel 一个模型
+200	- **行内排序**：按每组的 K*（或平均 AUC）降序，最 robust 的组在最上方
+201	
+202	**制作工具**：matplotlib (imshow/pcolormesh) 或 seaborn (heatmap)
+203	
+204	---
+205	
+206	## Table 1: 完整 Pairwise AUC 矩阵
+207	
+208	**类型**：表格
+209	
+210	**数据来源**：
+211	- P0-10 所有配置的 pairwise AUC
+212	- 文件：`artifacts/analysis/pairwise_auc_matrix.csv`
+213	
+214	**核心信息**：跨模型 × 跨解码策略的 K* 一致性或差异。读者看完应得出：(1) 每个配置的 K* 是多少 (2) K* 在哪些条件下变化 (3) 整体结论的可靠性。
+215	
+216	**设计要点**：
+217	
+218	- **行**：depth pair (0v1, 1v2, 2v3, 3v4, 4v5)
+219	- **列**：按配置分组
+220	  - Group 1 - Qwen2.5-1.5B 解码消融：Greedy / p=0.9 / p=0.95 / T=0.7 / T=1.2
+221	  - Group 2 - 跨模型 (D-p95)：Qwen-1.5B / Pythia-1.4B / OLMo-1B / Qwen-7B
+222	- **每个 cell**：AUC ± std（5-fold CV）
+223	- **粗体**：AUC > 0.60 的 cell（K* 以内）
+224	- **底行**：K* 值汇总
+225	- **灰色底纹**：AUC < 0.55 的 cell（完全不可分）
+226	- **列头**：简写 + 脚注对应完整配置
+227	- **表格宽度**：如列太多，拆为 Table 1a (解码消融) 和 Table 1b (跨模型)
+228	- **格式**：LaTeX booktabs 风格（三线表）
+229	
+230	**制作工具**：LaTeX tabular (booktabs)，数据由 Python 脚本生成 .tex 片段
+231	
+232	---
+233	
+234	## Fig 7: t-SNE / UMAP 特征空间可视化（篇幅允许时）
+235	
+236	**类型**：散点图
+237	
+238	**数据来源**：
+239	- P0-9 的 15 维特征矩阵
+240	- 文件：`artifacts/analysis/features_all.csv`
+241	- 随机采样每个 depth 500 个样本
+242	
+243	**核心信息**：特征空间中不同 depth 的文本形成可分辨的 cluster，且随 depth 增加 cluster 逐渐重叠。直观展示 depth signal 的强度和饱和。
+244	
+245	**设计要点**：
+246	
+247	- **降维方法**：UMAP（保持全局结构优于 t-SNE）
+248	- **颜色编码**：depth 0-5 使用渐变色标（深蓝→浅蓝→白色，与 Fig 1 一致）
+249	- **点大小**：小（alpha=0.3-0.5），避免遮挡
+250	- **标注**：每个 cluster 中心标注 depth 编号
+251	- **Panel 对比**（可选）：
+252	  - Panel A: 全部 depth 0-5
+253	  - Panel B: 仅 depth 0, 1, 2（清晰可分的部分）
+254	  - Panel C: 仅 depth 3, 4, 5（重叠的部分）
+255	- **轮廓线**：每个 depth 的 KDE 等高线（50% density contour）
+256	- **辅助信息**：标注 cluster 间距与 AUC 的对应关系
+257	
+258	**制作工具**：matplotlib (scatter) + umap-learn
+259	
+260	---
+261	
+262	## Fig 8: Surprisal 分布随 depth 偏移（篇幅允许时）
+263	
+264	**类型**：Ridge plot（岭线图）或 violin plot
+265	
+266	**数据来源**：
+267	- P0-9 特征提取中的 per-document mean surprisal 分布
+268	- 文件：`artifacts/features/surprisal_by_depth.csv`
+269	
+270	**核心信息**：递归生成文本的 surprisal 分布逐代向低 surprisal 偏移，尾部逐渐消失。直观展示 Shumailov et al. 描述的 tail disappearance 现象。
+271	
+272	**设计要点**：
+273	
+274	- **布局**：Ridge plot（垂直堆叠，从上到下 depth 0→5）
+275	- **X 轴**：mean token surprisal（或 mean log-prob 取负）
+276	- **Y 轴**：密度（每个 depth 一条分布曲线）
+277	- **颜色**：与全文 depth 色标一致（深蓝→浅蓝）
+278	- **标注**：
+279	  - 每个分布的 mean 和 std
+280	  - 用箭头标注 tail 消失方向
+281	  - 标注 depth 0 的 heavy tail 区域
+282	- **Panel B（可选）**：叠加 vocabulary entropy 或 type-token ratio 的类似 ridge plot，展示 diversity 维度的同步变化
+283	- **参考线**：depth 0 的 mean 值用竖虚线贯穿所有分布
+284	
+285	**制作工具**：matplotlib (joypy 库) 或 seaborn (kdeplot + offset)
+286	
+287	---
+288	
+289	## Fig 9: Confusion Matrix — Ordinal Classifier（篇幅允许时）
+290	
+291	**类型**：热力图（6×6 混淆矩阵）
+292	
+293	**数据来源**：
+294	- P0-10 ordinal classifier 的 test set predictions
+295	- 文件：`artifacts/analysis/confusion_matrix.csv`
+296	
+297	**核心信息**：分类器的误差集中在相邻 depth（ordinal 特性），远距离混淆极少。K* 以外的 depth 互相混淆严重。
+298	
+299	**设计要点**：
+300	
+301	- **行**：True depth (0-5)
+302	- **列**：Predicted depth (0-5)
+303	- **色标**：单色渐变（白→深蓝），数值越大越深
+304	- **对角线高亮**：正确分类 cell 加粗边框
+305	- **标注**：每个 cell 写百分比值
+306	- **右侧/底部**：per-class precision/recall
+307	- **观察重点**：off-diagonal 的误差是否集中在 ±1 位置（ordinal 结构的证据）
+308	- **K* 分隔线**：在 K* 位置画粗线，标注 "discrimination boundary"
+309	
+310	**制作工具**：matplotlib (imshow) 或 seaborn (heatmap)
+311	
+312	---
+313	
+314	## Table 2: 消融实验汇总（篇幅允许时）
+315	
+316	**类型**：表格
+317	
+318	**数据来源**：
+319	- P0-10 (分类器对比) + P1-3 (ordinal vs multinomial vs regression)
+320	- 文件：`artifacts/analysis/ablation_results.csv`
+321	
+322	**核心信息**：(1) ordinal regression 优于 multinomial classification，证明 depth 有序结构有用 (2) 手工特征 vs. learned representation 的对比 (3) 特征组消融
+323	
+324	**设计要点**：
+325	
+326	- **行**：不同配置
+327	  - Classifier: LightGBM / CORAL / CORN / MLP / LM-embed+MLP
+328	  - Feature set: All 15 / Surprisal only / Diversity only / Tail only / Surprisal+Diversity / ...
+329	  - Classification paradigm: Ordinal / Multinomial / Regression (MAE)
+330	- **列**：
+331	  - Exact accuracy
+332	  - ±1 accuracy（ordinal 评价指标）
+333	  - MAE
+334	  - K* AUC (平均 K* 以内的 pairwise AUC)
+335	- **最佳值粗体**
+336	- **格式**：booktabs 三线表
+337	
+338	**制作工具**：LaTeX tabular
+339	
+340	---
+341	
+342	## Fig 10: Cross-Model / Cross-Scale Transfer（篇幅允许时）
+343	
+344	**类型**：热力图或分组柱状图
+345	
+346	**数据来源**：
+347	- P0-10 的 cross-model evaluation
+348	- 文件：`artifacts/analysis/cross_model_transfer.csv`
+349	- 训练在 model A，测试在 model B 的 accuracy
+350	
+351	**核心信息**：depth classifier 具有跨模型泛化能力（或展示其局限性）。
+352	
+353	**设计要点**：
+354	
+355	- **热力图方案**：
+356	  - 行：训练模型 (Qwen-1.5B / Pythia / OLMo)
+357	  - 列：测试模型 (Qwen-1.5B / Pythia / OLMo / Qwen-7B)
+358	  - Cell：AUC 或 accuracy
+359	  - 对角线（same-model）应最高
+360	- **辅助柱状图**：Qwen-1.5B 训练 → Qwen-7B 测试 的 per-depth-pair AUC，展示 scale transfer
+361	
+362	**制作工具**：matplotlib (imshow + bar)
+363	
+364	---
+365	
+366	## 全局设计规范
+367	
+368	### 配色方案
+369	
+370	| 元素 | 颜色 | Hex |
+371	|------|------|-----|
+372	| Depth 色标 | 深蓝 → 浅蓝 → 白色 | #1a5276 → #5dade2 → #ebf5fb |
+373	| Surprisal 特征组 | 蓝色系 | #2980b9 |
+374	| Diversity 特征组 | 绿色系 | #27ae60 |
+375	| Tail-thinning 特征组 | 橙色系 | #e67e22 |
+376	| K* threshold 线 | 灰色虚线 | #7f8c8d |
+377	| Graduated filtering | 蓝色（本文方法高亮） | #2c3e50 |
+378	| Binary filtering | 红色 | #c0392b |
+379	| No filter | 灰色 | #95a5a6 |
+380	| Surplexity | 紫色 | #8e44ad |
+381	
+382	### 字体和排版
+383	
+384	- 图标题：10pt bold sans-serif
+385	- 轴标签：9pt sans-serif
+386	- 刻度标签：8pt
+387	- 图例：8pt
+388	- 所有数学符号用 LaTeX 渲染（matplotlib 的 `usetex=True` 或 `mathtext`）
+389	- 图片格式：PDF（矢量图，适配 LaTeX）+ PNG（300 dpi，用于 review）
+390	
+391	### 尺寸
+392	
+393	- 单栏图：宽 3.25 in
+394	- 双栏图：宽 6.875 in
+395	- 高度根据内容调整，通常 2-4 in
+396	- 遵循 ACL/EMNLP 模板的图表尺寸限制
+397	
+398	### 制作顺序（按依赖排序）
+399	
+400	| 优先级 | 图表 | 依赖实验 | 何时可开始 |
+401	|--------|------|----------|-----------|
+402	| P0 | Fig 1 (Pipeline) | 无 | 立即 |
+403	| P0 | Fig 2 (AUC 衰减) | P0-10 | Day 5-6 |
+404	| P0 | Table 1 (AUC 矩阵) | P0-10 | Day 5-6 |
+405	| P0 | Fig 4 (Feature Importance) | P0-10 | Day 5-6 |
+406	| P0 | Fig 5 (Filtering 对比) | P0-12 | Day 6-8 |
+407	| P0 | Fig 6 (降解序热力图) | P0-11 | Day 5-6 |
+408	| P1 | Fig 3 (JSD + 理论) | P0-9 | Day 5-6 |
+409	| P1 | Table 2 (消融) | P0-10 + P1-3 | Day 8-9 |
+410	| P2 | Fig 7 (UMAP) | P0-9 | Day 5-6 |
+411	| P2 | Fig 8 (Surprisal ridge) | P0-9 | Day 5-6 |
+412	| P2 | Fig 9 (Confusion matrix) | P0-10 | Day 5-6 |
+413	| P2 | Fig 10 (Cross-model) | P0-10 | Day 5-6 |
+414	
+415	### 路线适配
+416	
+417	- **路线 A (K*≥3)**：所有图表按上述方案执行，Fig 2 展示丰富的衰减曲线，Fig 5 展示 graduated filtering 的显著优势
+418	- **路线 B (K*=2)**：Fig 2 的 K* 标注在 depth 2 处，但配合 Fig 6 的降解序热力图讲故事——saturation boundary 本身是贡献；Fig 5 改为 3-class (human/gen-1/gen-2+) vs binary 对比；Fig 3 的理论拟合用 K*=2 参数化
+419	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "39dbed7d-64e5-4c09-b347-1794fdb623d7",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "62af683e-202d-4923-9c59-14037cdad423",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/report/figure_plan.md",
+      "content": "# 论文图表方案\n\n> 项目：gen-depth-contamination\n> 目标投稿：EMNLP ARR May 25, 2026\n> 最后更新：2026-05-12\n\n---\n\n## Fig 1: Method Overview / Pipeline 图\n\n**类型**：示意图 / flow diagram\n\n**数据来源**：无数据依赖，纯概念图\n\n**核心信息**：一图看懂整个方法——从人类文本出发，经过递归 LLM 生成形成不同 depth 的文本，提取统计特征后送入 ordinal depth classifier，最终输出 depth 估计用于 graduated filtering。读者看完应理解 (1) depth chain 的构造方式 (2) 特征提取到分类的 pipeline (3) graduated filtering 的思路。\n\n**设计要点**：\n\n- **布局**：左到右水平流程，分三个区域——Corpus Construction / Feature Extraction / Depth-Aware Curation\n- **Corpus Construction 区域**：\n  - 左起一个 Human Text 方块（X₀），颜色最深（深蓝 #1a5276）\n  - 依次经过 LLM 信道符号（▷）连接到 X₁, X₂, ..., X₅\n  - 每个 Xₖ 用渐变色编码 depth：depth 0 深蓝 → depth 5 浅蓝/白色，隐喻信息衰减\n  - X₀ 到 X₅ 之间画一条从粗到细的灰色箭头，底部标注 \"I(X₀; Xₖ) ↓ (DPI)\"\n- **Feature Extraction 区域**：\n  - 三组特征用图标 + 颜色区分：Surprisal (蓝 #2980b9) / Diversity (绿 #27ae60) / Tail-thinning (橙 #e67e22)\n  - 简洁的 15-dim feature vector 示意\n- **Depth-Aware Curation 区域**：\n  - Ordinal Classifier 输出 depth 估计 k̂\n  - 底部分支：graduated weight = quality(k̂)/quality(0) → 加权训练数据\n  - 与 binary filtering（remove all synthetic）对比的小示意\n- **底部信息条**：DPI 理论支撑——\"Data Processing Inequality: information about X₀ can only decrease with depth\"\n- **字体**：标题用 sans-serif bold，标注用 9pt，数学符号用 LaTeX 渲染\n- **配色**：以蓝色系为主色调，三组特征颜色贯穿后续所有图表\n\n**制作工具**：TikZ（LaTeX 原生，与论文排版一致，方便调整尺寸）。如时间不够，matplotlib + 手动布局。\n\n---\n\n## Fig 2: Pairwise AUC 随 depth 衰减曲线（核心结果图）\n\n**类型**：折线图\n\n**数据来源**：\n- P0-9 (全配置特征提取) + P0-10 (LightGBM 5-fold CV)\n- 文件：`artifacts/analysis/pairwise_auc_matrix.csv`\n- 每个 (model, decoding_strategy) 配置的 pairwise AUC 值\n\n**核心信息**：depth signal 存在且随深度单调衰减，K* 可精确测量。不同模型/解码策略的衰减速度不同但趋势一致。读者看完应得出：(1) depth 0v1 区分度最高 (2) 衰减是单调的 (3) K* 位置清晰可读。\n\n**设计要点**：\n\n- **X 轴**：depth pair (0v1, 1v2, 2v3, 3v4, 4v5)，等间距\n- **Y 轴**：AUC，范围 [0.45, 1.0]，0.5 处标注 \"random baseline\"\n- **线条**：\n  - 主实验线（Qwen2.5-1.5B × 5 种解码策略）：实线，不同明度的蓝色系\n    - D-greedy: 深蓝实线 ●\n    - D-p90: 蓝色实线 ■\n    - D-p95: 中蓝实线 ▲（MVP 配置，加粗）\n    - D-lowT: 浅蓝实线 ◆\n    - D-highT: 天蓝实线 ★\n  - 跨模型线：虚线\n    - Pythia-1.4B (D-p95): 红色虚线 ●\n    - OLMo-1B (D-p95): 绿色虚线 ■\n    - Qwen2.5-7B (D-p95): 紫色虚线 ▲\n- **水平参考线**：AUC=0.60 灰色虚线，右侧标注 \"K* threshold\"\n- **K* 标注**：每条曲线与 0.60 线交叉处用竖向箭头标注 K* 值（如 K*=3）\n- **误差带**：5-fold CV 的 ±1 std 用半透明色带\n- **图例**：右侧或图下方，按模型分组\n\n**制作工具**：matplotlib (seaborn style)。代码模板在 `draw-paper-figure` skill 中。\n\n---\n\n## Fig 3: JSD 衰减曲线 + 理论预测叠加\n\n**类型**：折线图（双 panel 或叠加）\n\n**数据来源**：\n- P0-9 特征提取中的 JSD 计算：`artifacts/analysis/jsd_decay.csv`\n- 每个配置下 JSD(P_{X_0}, P_{X_k}) 对 k 的值\n- 理论预测：Proposition 2 的 ρ^k · d(P_{X_0}, P*) 指数衰减 bound\n\n**核心信息**：实验观测的 JSD 衰减与信道级联理论（DPI bound）定性一致。指数衰减拟合 vs 多项式衰减拟合的 AIC/BIC 对比验证 Proposition 3 的经验假设。读者看完应得出：(1) MI 确实单调衰减 (2) 衰减速率与解码策略相关 (3) 理论框架有实验支撑。\n\n**设计要点**：\n\n- **Panel A — JSD 衰减观测**：\n  - X 轴：depth k (0, 1, 2, 3, 4, 5)\n  - Y 轴：JSD(P_{X_0}, P_{X_k})，对数刻度可选\n  - 多条实线：不同 decoding strategies（复用 Fig 2 配色）\n  - 叠加虚线：指数拟合 ρ̂^k · C（用 least squares fit）\n  - 标注拟合的 ρ̂ 值和 R² 或 AIC\n- **Panel B — 衰减模型对比**：\n  - 分组柱状图或表格嵌入\n  - X 轴：decoding strategy\n  - Y 轴：AIC（越低越好）\n  - 两组柱：exponential fit / polynomial fit\n  - 颜色：exponential 蓝色 / polynomial 橙色\n  - 核心观察：greedy 更符合指数衰减，high-T 可能更接近多项式\n- **辅助元素**：\n  - Panel A 中用灰色水平带标注 \"noise floor\"（JSD 值低于此不可靠）\n  - 箭头标注 convergence to P*\n- **配色**：与 Fig 2 一致\n\n**制作工具**：matplotlib，subplot(1,2) 布局\n\n---\n\n## Fig 4: Feature Importance Ranking\n\n**类型**：水平柱状图\n\n**数据来源**：\n- P0-10 LightGBM classifier 的 feature importance (gain-based)\n- 文件：`artifacts/analysis/feature_importance.csv`\n- 15 维特征的 importance 排序\n\n**核心信息**：哪类特征最 depth-discriminative。读者看完应得出：(1) 三组特征的相对重要性排序 (2) 单个最重要特征是什么 (3) 不同特征组的贡献是互补的还是冗余的。\n\n**设计要点**：\n\n- **布局**：水平柱状图，特征名在 Y 轴，importance 在 X 轴\n- **排序**：按 importance 降序（最重要的在最上方）\n- **颜色编码（贯穿全文）**：\n  - Surprisal 组 (9 维): 蓝色系 #2980b9\n  - Diversity 组 (3 维): 绿色系 #27ae60\n  - Tail-thinning 组 (3 维): 橙色系 #e67e22\n- **特征名标注**：\n  - 简写 + 全称 tooltip（如 \"surp_mean\" / \"mean token surprisal\"）\n  - 同组特征用括号分组标注\n- **分组分隔线**：在不同颜色组之间用细灰线分隔（如果特征交错排列则不需要）\n- **误差条**：5-fold CV 的 importance std\n- **右侧标注**：每组特征的累计 importance 百分比\n- **图例**：右上角，三色块 + 组名\n\n**制作工具**：matplotlib (barh)\n\n---\n\n## Fig 5: Graduated vs Binary Filtering 下游对比\n\n**类型**：分组柱状图\n\n**数据来源**：\n- P0-12 下游过滤评估结果\n- 文件：`artifacts/downstream/filtering_comparison.csv`\n- 4 种过滤策略 × 下游 benchmark 分数\n\n**核心信息**：graduated filtering 优于 binary filtering 和 no filtering。读者看完应得出：(1) 过滤好于不过滤 (2) graduated > binary (3) 差异具有统计显著性。\n\n**设计要点**：\n\n- **X 轴**：filtering 策略，4 组\n  - No filter (灰色)\n  - Binary (DivEye) (红色)\n  - Graduated (本文方法) (蓝色，加粗边框突出)\n  - Surplexity (紫色)\n- **Y 轴**：Accuracy (%)\n- **Panel 布局**：subplot(1,2) 或 subplot(1,3)\n  - Panel A: MMLU (5-shot)\n  - Panel B: HellaSwag (10-shot)\n  - Panel C: XSum ROUGE-L（如果 P1-7 完成）\n- **误差条**：bootstrap 95% CI\n- **显著性标注**：\n  - graduated vs binary: 横线 + * 或 ** 标注 p-value\n  - graduated vs no-filter: 同上\n- **数值标注**：每个柱顶标注精确值（如 \"43.2\"）\n- **baseline 参考线**：no-filter 的值用灰色水平虚线贯穿\n- **如果有多个污染比例**（P1-2 完成时）：\n  - 改为 subplot(2,2) 或 subplot(1,3)，每个 panel 一个污染比例\n  - 或改为折线图：X 轴=污染比例 (10%/30%/50%), 多条线=不同策略\n\n**制作工具**：matplotlib (bar + errorbar)\n\n---\n\n## Fig 6: Feature Group × Depth 判别力热力图（降解序分析）\n\n**类型**：热力图\n\n**数据来源**：\n- P0-11 K* + 饱和边界分析\n- 文件：`artifacts/analysis/feature_group_saturation.csv`\n- 每个 feature group 在每个 depth pair 上的 AUC\n\n**核心信息**：揭示 \"linguistic degradation ordering\"——不同语言维度在哪个 depth 率先丧失判别力。读者看完应得出：(1) 哪组特征最先饱和 (2) 哪组特征最晚饱和（最 robust）(3) 饱和顺序是否跨模型一致。\n\n**设计要点**：\n\n- **行**：Feature group（Surprisal / Diversity / Tail-thinning），每组可进一步拆分单特征\n- **列**：Depth pair (0v1, 1v2, 2v3, 3v4, 4v5)\n- **色标**：连续色标 viridis 或 RdYlGn\n  - AUC > 0.70: 深绿\n  - AUC 0.60-0.70: 黄色\n  - AUC < 0.60: 红色（已饱和）\n- **cell 标注**：每个 cell 内写 AUC 数值（2 位小数）\n- **K* 标注线**：在每行特征组的 K* 位置画竖线或加粗边框\n- **面板**：如果做跨模型对比（P0-2, P0-3 数据），可做 subplot(1,3)，每个 panel 一个模型\n- **行内排序**：按每组的 K*（或平均 AUC）降序，最 robust 的组在最上方\n\n**制作工具**：matplotlib (imshow/pcolormesh) 或 seaborn (heatmap)\n\n---\n\n## Table 1: 完整 Pairwise AUC 矩阵\n\n**类型**：表格\n\n**数据来源**：\n- P0-10 所有配置的 pairwise AUC\n- 文件：`artifacts/analysis/pairwise_auc_matrix.csv`\n\n**核心信息**：跨模型 × 跨解码策略的 K* 一致性或差异。读者看完应得出：(1) 每个配置的 K* 是多少 (2) K* 在哪些条件下变化 (3) 整体结论的可靠性。\n\n**设计要点**：\n\n- **行**：depth pair (0v1, 1v2, 2v3, 3v4, 4v5)\n- **列**：按配置分组\n  - Group 1 - Qwen2.5-1.5B 解码消融：Greedy / p=0.9 / p=0.95 / T=0.7 / T=1.2\n  - Group 2 - 跨模型 (D-p95)：Qwen-1.5B / Pythia-1.4B / OLMo-1B / Qwen-7B\n- **每个 cell**：AUC ± std（5-fold CV）\n- **粗体**：AUC > 0.60 的 cell（K* 以内）\n- **底行**：K* 值汇总\n- **灰色底纹**：AUC < 0.55 的 cell（完全不可分）\n- **列头**：简写 + 脚注对应完整配置\n- **表格宽度**：如列太多，拆为 Table 1a (解码消融) 和 Table 1b (跨模型)\n- **格式**：LaTeX booktabs 风格（三线表）\n\n**制作工具**：LaTeX tabular (booktabs)，数据由 Python 脚本生成 .tex 片段\n\n---\n\n## Fig 7: t-SNE / UMAP 特征空间可视化（篇幅允许时）\n\n**类型**：散点图\n\n**数据来源**：\n- P0-9 的 15 维特征矩阵\n- 文件：`artifacts/analysis/features_all.csv`\n- 随机采样每个 depth 500 个样本\n\n**核心信息**：特征空间中不同 depth 的文本形成可分辨的 cluster，且随 depth 增加 cluster 逐渐重叠。直观展示 depth signal 的强度和饱和。\n\n**设计要点**：\n\n- **降维方法**：UMAP（保持全局结构优于 t-SNE）\n- **颜色编码**：depth 0-5 使用渐变色标（深蓝→浅蓝→白色，与 Fig 1 一致）\n- **点大小**：小（alpha=0.3-0.5），避免遮挡\n- **标注**：每个 cluster 中心标注 depth 编号\n- **Panel 对比**（可选）：\n  - Panel A: 全部 depth 0-5\n  - Panel B: 仅 depth 0, 1, 2（清晰可分的部分）\n  - Panel C: 仅 depth 3, 4, 5（重叠的部分）\n- **轮廓线**：每个 depth 的 KDE 等高线（50% density contour）\n- **辅助信息**：标注 cluster 间距与 AUC 的对应关系\n\n**制作工具**：matplotlib (scatter) + umap-learn\n\n---\n\n## Fig 8: Surprisal 分布随 depth 偏移（篇幅允许时）\n\n**类型**：Ridge plot（岭线图）或 violin plot\n\n**数据来源**：\n- P0-9 特征提取中的 per-document mean surprisal 分布\n- 文件：`artifacts/features/surprisal_by_depth.csv`\n\n**核心信息**：递归生成文本的 surprisal 分布逐代向低 surprisal 偏移，尾部逐渐消失。直观展示 Shumailov et al. 描述的 tail disappearance 现象。\n\n**设计要点**：\n\n- **布局**：Ridge plot（垂直堆叠，从上到下 depth 0→5）\n- **X 轴**：mean token surprisal（或 mean log-prob 取负）\n- **Y 轴**：密度（每个 depth 一条分布曲线）\n- **颜色**：与全文 depth 色标一致（深蓝→浅蓝）\n- **标注**：\n  - 每个分布的 mean 和 std\n  - 用箭头标注 tail 消失方向\n  - 标注 depth 0 的 heavy tail 区域\n- **Panel B（可选）**：叠加 vocabulary entropy 或 type-token ratio 的类似 ridge plot，展示 diversity 维度的同步变化\n- **参考线**：depth 0 的 mean 值用竖虚线贯穿所有分布\n\n**制作工具**：matplotlib (joypy 库) 或 seaborn (kdeplot + offset)\n\n---\n\n## Fig 9: Confusion Matrix — Ordinal Classifier（篇幅允许时）\n\n**类型**：热力图（6×6 混淆矩阵）\n\n**数据来源**：\n- P0-10 ordinal classifier 的 test set predictions\n- 文件：`artifacts/analysis/confusion_matrix.csv`\n\n**核心信息**：分类器的误差集中在相邻 depth（ordinal 特性），远距离混淆极少。K* 以外的 depth 互相混淆严重。\n\n**设计要点**：\n\n- **行**：True depth (0-5)\n- **列**：Predicted depth (0-5)\n- **色标**：单色渐变（白→深蓝），数值越大越深\n- **对角线高亮**：正确分类 cell 加粗边框\n- **标注**：每个 cell 写百分比值\n- **右侧/底部**：per-class precision/recall\n- **观察重点**：off-diagonal 的误差是否集中在 ±1 位置（ordinal 结构的证据）\n- **K* 分隔线**：在 K* 位置画粗线，标注 \"discrimination boundary\"\n\n**制作工具**：matplotlib (imshow) 或 seaborn (heatmap)\n\n---\n\n## Table 2: 消融实验汇总（篇幅允许时）\n\n**类型**：表格\n\n**数据来源**：\n- P0-10 (分类器对比) + P1-3 (ordinal vs multinomial vs regression)\n- 文件：`artifacts/analysis/ablation_results.csv`\n\n**核心信息**：(1) ordinal regression 优于 multinomial classification，证明 depth 有序结构有用 (2) 手工特征 vs. learned representation 的对比 (3) 特征组消融\n\n**设计要点**：\n\n- **行**：不同配置\n  - Classifier: LightGBM / CORAL / CORN / MLP / LM-embed+MLP\n  - Feature set: All 15 / Surprisal only / Diversity only / Tail only / Surprisal+Diversity / ...\n  - Classification paradigm: Ordinal / Multinomial / Regression (MAE)\n- **列**：\n  - Exact accuracy\n  - ±1 accuracy（ordinal 评价指标）\n  - MAE\n  - K* AUC (平均 K* 以内的 pairwise AUC)\n- **最佳值粗体**\n- **格式**：booktabs 三线表\n\n**制作工具**：LaTeX tabular\n\n---\n\n## Fig 10: Cross-Model / Cross-Scale Transfer（篇幅允许时）\n\n**类型**：热力图或分组柱状图\n\n**数据来源**：\n- P0-10 的 cross-model evaluation\n- 文件：`artifacts/analysis/cross_model_transfer.csv`\n- 训练在 model A，测试在 model B 的 accuracy\n\n**核心信息**：depth classifier 具有跨模型泛化能力（或展示其局限性）。\n\n**设计要点**：\n\n- **热力图方案**：\n  - 行：训练模型 (Qwen-1.5B / Pythia / OLMo)\n  - 列：测试模型 (Qwen-1.5B / Pythia / OLMo / Qwen-7B)\n  - Cell：AUC 或 accuracy\n  - 对角线（same-model）应最高\n- **辅助柱状图**：Qwen-1.5B 训练 → Qwen-7B 测试 的 per-depth-pair AUC，展示 scale transfer\n\n**制作工具**：matplotlib (imshow + bar)\n\n---\n\n## 全局设计规范\n\n### 配色方案\n\n| 元素 | 颜色 | Hex |\n|------|------|-----|\n| Depth 色标 | 深蓝 → 浅蓝 → 白色 | #1a5276 → #5dade2 → #ebf5fb |\n| Surprisal 特征组 | 蓝色系 | #2980b9 |\n| Diversity 特征组 | 绿色系 | #27ae60 |\n| Tail-thinning 特征组 | 橙色系 | #e67e22 |\n| K* threshold 线 | 灰色虚线 | #7f8c8d |\n| Graduated filtering | 蓝色（本文方法高亮） | #2c3e50 |\n| Binary filtering | 红色 | #c0392b |\n| No filter | 灰色 | #95a5a6 |\n| Surplexity | 紫色 | #8e44ad |\n\n### 字体和排版\n\n- 图标题：10pt bold sans-serif\n- 轴标签：9pt sans-serif\n- 刻度标签：8pt\n- 图例：8pt\n- 所有数学符号用 LaTeX 渲染（matplotlib 的 `usetex=True` 或 `mathtext`）\n- 图片格式：PDF（矢量图，适配 LaTeX）+ PNG（300 dpi，用于 review）\n\n### 尺寸\n\n- 单栏图：宽 3.25 in\n- 双栏图：宽 6.875 in\n- 高度根据内容调整，通常 2-4 in\n- 遵循 ACL/EMNLP 模板的图表尺寸限制\n\n### 制作顺序（按依赖排序）\n\n| 优先级 | 图表 | 依赖实验 | 何时可开始 |\n|--------|------|----------|-----------|\n| P0 | Fig 1 (Pipeline) | 无 | 立即 |\n| P0 | Fig 2 (AUC 衰减) | P0-10 | Day 5-6 |\n| P0 | Table 1 (AUC 矩阵) | P0-10 | Day 5-6 |\n| P0 | Fig 4 (Feature Importance) | P0-10 | Day 5-6 |\n| P0 | Fig 5 (Filtering 对比) | P0-12 | Day 6-8 |\n| P0 | Fig 6 (降解序热力图) | P0-11 | Day 5-6 |\n| P1 | Fig 3 (JSD + 理论) | P0-9 | Day 5-6 |\n| P1 | Table 2 (消融) | P0-10 + P1-3 | Day 8-9 |\n| P2 | Fig 7 (UMAP) | P0-9 | Day 5-6 |\n| P2 | Fig 8 (Surprisal ridge) | P0-9 | Day 5-6 |\n| P2 | Fig 9 (Confusion matrix) | P0-10 | Day 5-6 |\n| P2 | Fig 10 (Cross-model) | P0-10 | Day 5-6 |\n\n### 路线适配\n\n- **路线 A (K*≥3)**：所有图表按上述方案执行，Fig 2 展示丰富的衰减曲线，Fig 5 展示 graduated filtering 的显著优势\n- **路线 B (K*=2)**：Fig 2 的 K* 标注在 depth 2 处，但配合 Fig 6 的降解序热力图讲故事——saturation boundary 本身是贡献；Fig 5 改为 3-class (human/gen-1/gen-2+) vs binary 对比；Fig 3 的理论拟合用 K*=2 参数化\n",
+      "numLines": 419,
+      "startLine": 1,
+      "totalLines": 419
+    }
+  },
+  "sourceToolAssistantUUID": "39dbed7d-64e5-4c09-b347-1794fdb623d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 35 · 2026-05-18T02:12:11.197Z_
+
+```json
+{
+  "parentUuid": "62af683e-202d-4923-9c59-14037cdad423",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "a5e30b8a-cb69-40d6-845e-6bca5a0e5aa8",
+  "timestamp": "2026-05-18T02:12:11.197Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]: Worker worker_review_figure_table_audit_20260518T020337 已完成（status=failed），请审查 Agent 的处理结果。",
+  "leafUuid": "a5e30b8a-cb69-40d6-845e-6bca5a0e5aa8",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 38 · 2026-05-18T02:12:21.740Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the context. The failed worker was `worker_review_figure_table_audit_20260518T020337` - it was supposed to audit the figures and tables in the paper. Since it failed (status=failed), I need to assess what's happening.
+
+The project is preparing for EMNLP 2026 ARR submission (May 25, 2026 - that's in 7 days!). The figure_plan.md gives a comprehensive plan for 10 figures/tables.
+
+As a reviewer, my job is to:
+1. Report to Director that this worker failed
+2. Assess whether the failure impacts anything critical
+
+
+3. If the figure/table audit was important, recommend next steps
+
+The worker likely failed for technical reasons rather than a methodology issue, so I should check what paper artifacts currently exist and see if I can conduct an independent audit to report back to the Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a5e30b8a-cb69-40d6-845e-6bca5a0e5aa8",
+  "isSidechain": false,
+  "requestId": "req_011Cb9DxF8kgQUdrFXpEtaGi",
+  "type": "assistant",
+  "uuid": "10fc4e71-6dd5-4380-ac0e-30734db89ae9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EsbACRG3fFZAe9x7DSCkQj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8606,
+      "cache_read_input_tokens": 48466,
+      "output_tokens": 425,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8606,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 425,
+          "cache_read_input_tokens": 48466,
+          "cache_creation_input_tokens": 8606,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8606
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 39 · 2026-05-18T02:12:22.978Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01C693dKgzXpFDpTKRVc5tAm`</summary>
+
+```json
+{
+  "pattern": "**/artifacts/_project/**/*.{tex,pdf,png}",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "10fc4e71-6dd5-4380-ac0e-30734db89ae9",
+  "isSidechain": false,
+  "requestId": "req_011Cb9DxF8kgQUdrFXpEtaGi",
+  "type": "assistant",
+  "uuid": "8517ca02-33b1-45bd-b395-8f2b896fac5a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EsbACRG3fFZAe9x7DSCkQj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8606,
+      "cache_read_input_tokens": 48466,
+      "output_tokens": 425,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8606,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 425,
+          "cache_read_input_tokens": 48466,
+          "cache_creation_input_tokens": 8606,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8606
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 40 · 2026-05-18T02:12:23.021Z_
+
+<details><summary>↩ Tool result · `toolu_01C693dKgzXpFDpTKRVc5tAm`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/auc_heatmap.pdf
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/feature_importance.pdf
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/jsd_decay.pdf
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/fig2_auc_decay.pdf
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/fig3_transfer_heatmap.pdf
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/method.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/experiments_c1.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/fig_summary_auc_decay.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/fig2_auc_decay.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/fig3_transfer_heatmap.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/pipeline_57b998.pdf
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/pipeline.pdf
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/pipeline_652358.pdf
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/fig_kstar_theta.pdf
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/theta_sensitivity_table.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/tab_domain_model_kstar.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/tab_domain_model_kstar_full.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8517ca02-33b1-45bd-b395-8f2b896fac5a",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "4489e7df-ca81-4a17-88ba-94c5cd663142",
+  "toolUseResult": {
+    "filenames": [
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/auc_heatmap.pdf",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/feature_importance.pdf",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/jsd_decay.pdf",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/fig2_auc_decay.pdf",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/fig3_transfer_heatmap.pdf",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/method.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/experiments_c1.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/fig_summary_auc_decay.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/fig2_auc_decay.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/fig3_transfer_heatmap.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/pipeline_57b998.pdf",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/pipeline.pdf",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/pipeline_652358.pdf",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/chart/fig_kstar_theta.pdf",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/theta_sensitivity_table.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/tab_domain_model_kstar.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/tab_domain_model_kstar_full.tex"
+    ],
+    "durationMs": 33,
+    "numFiles": 17,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "8517ca02-33b1-45bd-b395-8f2b896fac5a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 41 · 2026-05-18T02:12:23.593Z_
+
+<details><summary>↩ Tool result · `toolu_01Xw4adq7kULVPAeo4zmfyWN`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig3_transfer_heatmap.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/method.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/experiments_c1.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/discussion_outline.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/discussion_section_info.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/conclusion_section_info.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig3_transfer_heatmap.pdf
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig_s1_auc_decay_ci.pdf
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/discussion_v2.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/abstract_v2.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp_015_neural_probe/paper/neural_probe_analysis.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp-006/paper/c3_contingency_versions.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/acl.sty
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/acl_natbib.bst
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p11.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_filtering_main.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_alpha_sweep.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p6.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p13.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p14.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p15.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p16.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p12.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p17.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig_kstar_theta.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_pairwise_significance.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig_filtering_strategies.pdf
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig_filtering_strategies.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/integration_templates.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_crossscorer.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p18.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p19.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper/figures/fig2_auc_decay.pdf
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper/figures/fig_kstar_theta.pdf
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper/figures/fig2_auc_decay.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.pdf
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig_kstar_theta.pdf
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p7.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p9.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p10.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p8.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/theta_sensitivity_table.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.bbl
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.blg
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/pipeline.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.fls
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.fdb_latexmk
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/pipeline.pdf
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig_jsd_decay.pdf
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig_jsd_decay.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/semantic_ablation_table_info.md
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/tab_domain_model_kstar.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/tab_domain_model_kstar_full.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.aux
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.out
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.pdf
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_domain_model_kstar.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/conclusion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/method.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_domain_model_kstar_full.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/introduction.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p1.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p2.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p3.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p4.png
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p5.png
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eca23dfa-7bd5-4ffc-8ae5-f898d62734a1",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "e89932c4-9f02-4153-9b67-cefbecaa978b",
+  "toolUseResult": {
+    "filenames": [
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig3_transfer_heatmap.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/method.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/experiments_c1.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/discussion_outline.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/discussion_section_info.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/conclusion_section_info.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig3_transfer_heatmap.pdf",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig_s1_auc_decay_ci.pdf",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/discussion_v2.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/abstract_v2.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp_015_neural_probe/paper/neural_probe_analysis.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp-006/paper/c3_contingency_versions.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/acl.sty",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/acl_natbib.bst",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p11.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_filtering_main.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_alpha_sweep.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p6.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p13.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p14.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p15.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p16.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p12.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p17.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig_kstar_theta.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_pairwise_significance.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig_filtering_strategies.pdf",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig_filtering_strategies.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/integration_templates.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_crossscorer.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p18.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p19.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper/figures/fig2_auc_decay.pdf",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper/figures/fig_kstar_theta.pdf",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper/figures/fig2_auc_decay.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.pdf",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig_kstar_theta.pdf",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p7.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p9.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p10.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p8.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/theta_sensitivity_table.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.bbl",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.blg",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/pipeline.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.fls",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.fdb_latexmk",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/pipeline.pdf",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig_jsd_decay.pdf",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig_jsd_decay.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/semantic_ablation_table_info.md",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/tab_domain_model_kstar.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/tab_domain_model_kstar_full.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.aux",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.out",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.pdf",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.log",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_domain_model_kstar.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/conclusion.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/method.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_domain_model_kstar_full.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/introduction.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p1.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p2.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p3.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p4.png",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p5.png"
+    ],
+    "durationMs": 30,
+    "numFiles": 76,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "eca23dfa-7bd5-4ffc-8ae5-f898d62734a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 42 · 2026-05-18T02:12:23.555Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01Xw4adq7kULVPAeo4zmfyWN`</summary>
+
+```json
+{
+  "pattern": "**/paper/**",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4489e7df-ca81-4a17-88ba-94c5cd663142",
+  "isSidechain": false,
+  "requestId": "req_011Cb9DxF8kgQUdrFXpEtaGi",
+  "type": "assistant",
+  "uuid": "eca23dfa-7bd5-4ffc-8ae5-f898d62734a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EsbACRG3fFZAe9x7DSCkQj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8606,
+      "cache_read_input_tokens": 48466,
+      "output_tokens": 425,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8606,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 425,
+          "cache_read_input_tokens": 48466,
+          "cache_creation_input_tokens": 8606,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8606
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 43 · 2026-05-18T02:12:34.327Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, there are substantial paper artifacts. The paper is at `docs/paper/` with main.tex, main.pdf, multiple tex sections, figures, and tables. PDF images are already rendered (main_p1.png through main_p19.png).
+
+Since the `worker_review_figure_table_audit_20260518T020337` failed, I should:
+1. Check if the paper's figures and tables have any obvious issues by looking at a few key ones
+2. Report to Director about the worker failure and whether anything needs attention
+
+Let me quickly look at the main.tex to understand how figures/tables are integrated, and check a couple of the PDF images to assess quality. 
+
+Now I need to prioritize my review—since the worker failed, I should inform the Director about that and do a spot check on figure and table quality myself. Let me examine one of the rendered pages that likely has figures and cross-check a key table against the registry data to catch any inconsistencies.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e89932c4-9f02-4153-9b67-cefbecaa978b",
+  "isSidechain": false,
+  "requestId": "req_011Cb9DyAbgS9giuREaQCbZg",
+  "type": "assistant",
+  "uuid": "af5419fa-96cc-4e2f-ae1b-83660c8e5e6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ji3KjzY1onVevezvpZGYXJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4443,
+      "cache_read_input_tokens": 57072,
+      "output_tokens": 467,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4443,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 467,
+          "cache_read_input_tokens": 57072,
+          "cache_creation_input_tokens": 4443,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4443
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 44 · 2026-05-18T02:12:34.328Z_
+
+让我查看论文 PDF 渲染页面和关键表格来独立评估图表质量。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af5419fa-96cc-4e2f-ae1b-83660c8e5e6f",
+  "isSidechain": false,
+  "requestId": "req_011Cb9DyAbgS9giuREaQCbZg",
+  "type": "assistant",
+  "uuid": "69b63955-9716-4f3c-87dd-912e6948f152",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ji3KjzY1onVevezvpZGYXJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4443,
+      "cache_read_input_tokens": 57072,
+      "output_tokens": 467,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4443,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 467,
+          "cache_read_input_tokens": 57072,
+          "cache_creation_input_tokens": 4443,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4443
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 45 · 2026-05-18T02:12:35.158Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0181zbXaKSnk7RviK9cyqj5t`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p6.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "69b63955-9716-4f3c-87dd-912e6948f152",
+  "isSidechain": false,
+  "requestId": "req_011Cb9DyAbgS9giuREaQCbZg",
+  "type": "assistant",
+  "uuid": "c3e6951b-a132-499d-bd47-7f7b3683f508",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ji3KjzY1onVevezvpZGYXJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4443,
+      "cache_read_input_tokens": 57072,
+      "output_tokens": 467,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4443,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 467,
+          "cache_read_input_tokens": 57072,
+          "cache_creation_input_tokens": 4443,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4443
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 46 · 2026-05-18T02:12:35.505Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01TjYYdw2dD8UiJXBp3z4Qun`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_domain_model_kstar.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c3e6951b-a132-499d-bd47-7f7b3683f508",
+  "isSidechain": false,
+  "requestId": "req_011Cb9DyAbgS9giuREaQCbZg",
+  "type": "assistant",
+  "uuid": "26d02f3e-fc40-426d-a77a-cea41b6b6893",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ji3KjzY1onVevezvpZGYXJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4443,
+      "cache_read_input_tokens": 57072,
+      "output_tokens": 467,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4443,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 467,
+          "cache_read_input_tokens": 57072,
+          "cache_creation_input_tokens": 4443,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4443
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 47 · 2026-05-18T02:12:35.522Z_
+
+<details><summary>↩ Tool result · `toolu_01TjYYdw2dD8UiJXBp3z4Qun`</summary>
+
+```text
+1	\begin{table}[t]
+2	\centering
+3	\caption{Generative depth $K^*$ across domains and models (scorer: Qwen2.5-1.5B, $\theta{=}0.60$). Bold values indicate the dominant mode per domain. $K^*$ is remarkably consistent within each domain: C4 yields $K^*{=}2$, arXiv yields $K^*{=}3$, and Wikipedia yields $K^*{=}1$, confirming that generative depth is domain-dependent and low-bounded.}
+4	\label{tab:domain_model_kstar}
+5	{\small
+6	\begin{tabular}{llccc}
+7	\toprule
+8	\textbf{Model} & \textbf{Size} & \textbf{C4}~$K^*$ & \textbf{arXiv}~$K^*$ & \textbf{Wiki}~$K^*$ \\
+9	\midrule
+10	Qwen2.5       & 1.5B & \textbf{2} & \textbf{3} & \textbf{1}\textsuperscript{$\dagger$} \\
+11	Qwen2.5       & 7B   & \textbf{2} & \textbf{3} & \textbf{1}\textsuperscript{$\dagger$} \\
+12	Pythia        & 1.4B & \textbf{2} & \textbf{3} & \textbf{1} \\
+13	LLaMA-3.1    & 8B   & \textbf{2} & \textbf{3} & \textbf{1} \\
+14	Mistral       & 7B   & 1\textsuperscript{$\ddagger$} & \textbf{3} & \textbf{1} \\
+15	OLMo          & 1B   & \textbf{2} & 1\textsuperscript{$*$} & \textbf{1} \\
+16	\midrule
+17	\textit{Dominant} & & \textbf{2} & \textbf{3} & \textbf{1} \\
+18	\bottomrule
+19	\end{tabular}
+20	}
+21	\vspace{2pt}
+22	
+23	{\footnotesize
+24	\textsuperscript{$\dagger$}Scorer artifact: Qwen-1.5B scorer yields $K^*{=}2$; Pythia scorer yields $K^*{=}1$ (see \S\ref{sec:crossscorer}).\\
+25	\textsuperscript{$\ddagger$}Domain-specific one-wash: AUC(1v2)${=}0.594{<}\theta$; arXiv rescues to $K^*{=}3$. Cross-scorer validated: Pythia-1.4B also yields $K^*{=}1$ (AUC${=}0.570$).\\
+26	\textsuperscript{$*$}Capacity failure: OLMo-1B generates out-of-domain text on arXiv.
+27	}
+28	\end{table}
+29	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "26d02f3e-fc40-426d-a77a-cea41b6b6893",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "5b6cd56c-eae9-45b7-8813-a3ac30107b03",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_domain_model_kstar.tex",
+      "content": "\\begin{table}[t]\n\\centering\n\\caption{Generative depth $K^*$ across domains and models (scorer: Qwen2.5-1.5B, $\\theta{=}0.60$). Bold values indicate the dominant mode per domain. $K^*$ is remarkably consistent within each domain: C4 yields $K^*{=}2$, arXiv yields $K^*{=}3$, and Wikipedia yields $K^*{=}1$, confirming that generative depth is domain-dependent and low-bounded.}\n\\label{tab:domain_model_kstar}\n{\\small\n\\begin{tabular}{llccc}\n\\toprule\n\\textbf{Model} & \\textbf{Size} & \\textbf{C4}~$K^*$ & \\textbf{arXiv}~$K^*$ & \\textbf{Wiki}~$K^*$ \\\\\n\\midrule\nQwen2.5       & 1.5B & \\textbf{2} & \\textbf{3} & \\textbf{1}\\textsuperscript{$\\dagger$} \\\\\nQwen2.5       & 7B   & \\textbf{2} & \\textbf{3} & \\textbf{1}\\textsuperscript{$\\dagger$} \\\\\nPythia        & 1.4B & \\textbf{2} & \\textbf{3} & \\textbf{1} \\\\\nLLaMA-3.1    & 8B   & \\textbf{2} & \\textbf{3} & \\textbf{1} \\\\\nMistral       & 7B   & 1\\textsuperscript{$\\ddagger$} & \\textbf{3} & \\textbf{1} \\\\\nOLMo          & 1B   & \\textbf{2} & 1\\textsuperscript{$*$} & \\textbf{1} \\\\\n\\midrule\n\\textit{Dominant} & & \\textbf{2} & \\textbf{3} & \\textbf{1} \\\\\n\\bottomrule\n\\end{tabular}\n}\n\\vspace{2pt}\n\n{\\footnotesize\n\\textsuperscript{$\\dagger$}Scorer artifact: Qwen-1.5B scorer yields $K^*{=}2$; Pythia scorer yields $K^*{=}1$ (see \\S\\ref{sec:crossscorer}).\\\\\n\\textsuperscript{$\\ddagger$}Domain-specific one-wash: AUC(1v2)${=}0.594{<}\\theta$; arXiv rescues to $K^*{=}3$. Cross-scorer validated: Pythia-1.4B also yields $K^*{=}1$ (AUC${=}0.570$).\\\\\n\\textsuperscript{$*$}Capacity failure: OLMo-1B generates out-of-domain text on arXiv.\n}\n\\end{table}\n",
+      "numLines": 29,
+      "startLine": 1,
+      "totalLines": 29
+    }
+  },
+  "sourceToolAssistantUUID": "26d02f3e-fc40-426d-a77a-cea41b6b6893",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]: Worker worker_review_figure_table_audit_20260518T020337 已完成（status=failed），请审查 Agent 的处理结果。",
+  "leafUuid": "5b6cd56c-eae9-45b7-8813-a3ac30107b03",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 50 · 2026-05-18T02:12:36.181Z_
+
+<details><summary>↩ Tool result · `toolu_0181zbXaKSnk7RviK9cyqj5t`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c3e6951b-a132-499d-bd47-7f7b3683f508",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "8f21c0af-dc7a-477f-afdb-60b29fbfe833",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 540767
+    }
+  },
+  "sourceToolAssistantUUID": "c3e6951b-a132-499d-bd47-7f7b3683f508",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]: Worker worker_review_figure_table_audit_20260518T020337 已完成（status=failed），请审查 Agent 的处理结果。",
+  "leafUuid": "8f21c0af-dc7a-477f-afdb-60b29fbfe833",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 52_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 53 · 2026-05-18T02:12:41.932Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me look at several more pages and tables to do a thorough figure/table audit. Let me also check the main.tex to understand the full paper structure, look at more rendered pages, and verify the data consistency.
+
+Let me look at the pages that likely contain figures (the main figure pages).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8f21c0af-dc7a-477f-afdb-60b29fbfe833",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Dz63NFWLkj3JM94E4M",
+  "type": "assistant",
+  "uuid": "90863e77-5769-42c7-8b9b-baff1b7bfaed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MrGBZjpk7kojcsHu2iZfMs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 862,
+      "cache_creation_input_tokens": 855,
+      "cache_read_input_tokens": 61515,
+      "output_tokens": 434,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 855,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 862,
+          "output_tokens": 434,
+          "cache_read_input_tokens": 61515,
+          "cache_creation_input_tokens": 855,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 855
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 54 · 2026-05-18T02:12:42.499Z_
+
+让我继续检查更多论文页面，特别是包含图表的关键页面。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "90863e77-5769-42c7-8b9b-baff1b7bfaed",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Dz63NFWLkj3JM94E4M",
+  "type": "assistant",
+  "uuid": "ff05392b-5a02-4a06-b2a4-b7285ab68087",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MrGBZjpk7kojcsHu2iZfMs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 862,
+      "cache_creation_input_tokens": 855,
+      "cache_read_input_tokens": 61515,
+      "output_tokens": 434,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 855,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 862,
+          "output_tokens": 434,
+          "cache_read_input_tokens": 61515,
+          "cache_creation_input_tokens": 855,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 855
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 55 · 2026-05-18T02:12:43.107Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_013wHZVogcn6bBmK9johF7F4`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p1.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ff05392b-5a02-4a06-b2a4-b7285ab68087",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Dz63NFWLkj3JM94E4M",
+  "type": "assistant",
+  "uuid": "7320c9e8-a918-4a85-a400-19d81af2ada4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MrGBZjpk7kojcsHu2iZfMs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 862,
+      "cache_creation_input_tokens": 855,
+      "cache_read_input_tokens": 61515,
+      "output_tokens": 434,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 855,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 862,
+          "output_tokens": 434,
+          "cache_read_input_tokens": 61515,
+          "cache_creation_input_tokens": 855,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 855
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 56 · 2026-05-18T02:12:43.553Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Tq7zFiduswin5DuNcuMnvp`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p3.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7320c9e8-a918-4a85-a400-19d81af2ada4",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Dz63NFWLkj3JM94E4M",
+  "type": "assistant",
+  "uuid": "e19f4218-03a4-4723-9986-dd7135448f1e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MrGBZjpk7kojcsHu2iZfMs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 862,
+      "cache_creation_input_tokens": 855,
+      "cache_read_input_tokens": 61515,
+      "output_tokens": 434,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 855,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 862,
+          "output_tokens": 434,
+          "cache_read_input_tokens": 61515,
+          "cache_creation_input_tokens": 855,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 855
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 57 · 2026-05-18T02:12:43.998Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01KCDgeEgwBoZQpvcMj4kD5z`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p4.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e19f4218-03a4-4723-9986-dd7135448f1e",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Dz63NFWLkj3JM94E4M",
+  "type": "assistant",
+  "uuid": "0405b7b1-1600-4966-8865-e06f5d03e29a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MrGBZjpk7kojcsHu2iZfMs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 862,
+      "cache_creation_input_tokens": 855,
+      "cache_read_input_tokens": 61515,
+      "output_tokens": 434,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 855,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 862,
+          "output_tokens": 434,
+          "cache_read_input_tokens": 61515,
+          "cache_creation_input_tokens": 855,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 855
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 58 · 2026-05-18T02:12:44.790Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01SZTMmePFH7hxwygBPHy5LP`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p5.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0405b7b1-1600-4966-8865-e06f5d03e29a",
+  "isSidechain": false,
+  "requestId": "req_011Cb9Dz63NFWLkj3JM94E4M",
+  "type": "assistant",
+  "uuid": "9f6d54d1-e4e3-4565-b0cb-69cf91f3d3f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MrGBZjpk7kojcsHu2iZfMs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 862,
+      "cache_creation_input_tokens": 855,
+      "cache_read_input_tokens": 61515,
+      "output_tokens": 434,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 855,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 862,
+          "output_tokens": 434,
+          "cache_read_input_tokens": 61515,
+          "cache_creation_input_tokens": 855,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 855
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 59 · 2026-05-18T02:12:47.735Z_
+
+<details><summary>↩ Tool result · `toolu_013wHZVogcn6bBmK9johF7F4`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7320c9e8-a918-4a85-a400-19d81af2ada4",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "2b4f6be5-e5b0-451d-876d-6b7557aa71b0",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 633921
+    }
+  },
+  "sourceToolAssistantUUID": "7320c9e8-a918-4a85-a400-19d81af2ada4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 60 · 2026-05-18T02:12:48.360Z_
+
+<details><summary>↩ Tool result · `toolu_01Tq7zFiduswin5DuNcuMnvp`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e19f4218-03a4-4723-9986-dd7135448f1e",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "8bdc9778-161e-4175-a5d8-0c7d9b96b354",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 583465
+    }
+  },
+  "sourceToolAssistantUUID": "e19f4218-03a4-4723-9986-dd7135448f1e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 61_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]: Worker worker_review_figure_table_audit_20260518T020337 已完成（status=failed），请审查 Agent 的处理结果。",
+  "leafUuid": "8bdc9778-161e-4175-a5d8-0c7d9b96b354",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]: Worker worker_review_figure_table_audit_20260518T020337 已完成（status=failed），请审查 Agent 的处理结果。",
+  "leafUuid": "be0ca126-90e3-4cdb-8d9f-00de66d697f3",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 65 · 2026-05-18T02:12:48.651Z_
+
+<details><summary>↩ Tool result · `toolu_01KCDgeEgwBoZQpvcMj4kD5z`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0405b7b1-1600-4966-8865-e06f5d03e29a",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "be0ca126-90e3-4cdb-8d9f-00de66d697f3",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 580482
+    }
+  },
+  "sourceToolAssistantUUID": "0405b7b1-1600-4966-8865-e06f5d03e29a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]: Worker worker_review_figure_table_audit_20260518T020337 已完成（status=failed），请审查 Agent 的处理结果。",
+  "leafUuid": "be0ca126-90e3-4cdb-8d9f-00de66d697f3",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 67_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 68 · 2026-05-18T02:12:48.927Z_
+
+<details><summary>↩ Tool result · `toolu_01SZTMmePFH7hxwygBPHy5LP`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9f6d54d1-e4e3-4565-b0cb-69cf91f3d3f1",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "547308ad-fdec-4275-99ba-9feb2b3c5320",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 648308
+    }
+  },
+  "sourceToolAssistantUUID": "9f6d54d1-e4e3-4565-b0cb-69cf91f3d3f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 69 · 2026-05-18T02:12:48.936Z_
+
+```json
+{
+  "parentUuid": "547308ad-fdec-4275-99ba-9feb2b3c5320",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "32a4bbbd-35f2-4547-b69e-dd2304963c05",
+  "timestamp": "2026-05-18T02:12:48.936Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 70_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]: Worker worker_review_figure_table_audit_20260518T020337 已完成（status=failed），请审查 Agent 的处理结果。",
+  "leafUuid": "32a4bbbd-35f2-4547-b69e-dd2304963c05",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 71_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 72 · 2026-05-18T02:12:53.368Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me continue examining the paper pages to get a full picture of figures and tables. Let me check the remaining pages.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32a4bbbd-35f2-4547-b69e-dd2304963c05",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E12ZJJTowa9y8CaL41",
+  "type": "assistant",
+  "uuid": "7036437c-82ac-42a0-b620-8c5985934c6e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A5G4WEVx9tmirU3m1bzHJU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2938,
+      "cache_read_input_tokens": 62370,
+      "output_tokens": 368,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2938,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 368,
+          "cache_read_input_tokens": 62370,
+          "cache_creation_input_tokens": 2938,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2938
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 73 · 2026-05-18T02:12:53.975Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_017GCnyEGzoGAvasapB8dfdR`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p7.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7036437c-82ac-42a0-b620-8c5985934c6e",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E12ZJJTowa9y8CaL41",
+  "type": "assistant",
+  "uuid": "617ce1b8-0753-45bd-8215-d1ae34545eb3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A5G4WEVx9tmirU3m1bzHJU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2938,
+      "cache_read_input_tokens": 62370,
+      "output_tokens": 368,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2938,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 368,
+          "cache_read_input_tokens": 62370,
+          "cache_creation_input_tokens": 2938,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2938
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 74 · 2026-05-18T02:12:54.372Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Y3WEL8ddHQQYSsmgT2VD3R`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p8.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "617ce1b8-0753-45bd-8215-d1ae34545eb3",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E12ZJJTowa9y8CaL41",
+  "type": "assistant",
+  "uuid": "1fbd08f2-26da-4fa4-b76d-5e1768ec0ed5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A5G4WEVx9tmirU3m1bzHJU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2938,
+      "cache_read_input_tokens": 62370,
+      "output_tokens": 368,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2938,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 368,
+          "cache_read_input_tokens": 62370,
+          "cache_creation_input_tokens": 2938,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2938
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 75 · 2026-05-18T02:12:54.759Z_
+
+<details><summary>↩ Tool result · `toolu_017GCnyEGzoGAvasapB8dfdR`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "617ce1b8-0753-45bd-8215-d1ae34545eb3",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "8a208c2d-635b-46fc-af13-2ab6cd8454f3",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 491881
+    }
+  },
+  "sourceToolAssistantUUID": "617ce1b8-0753-45bd-8215-d1ae34545eb3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 76 · 2026-05-18T02:12:55.161Z_
+
+<details><summary>↩ Tool result · `toolu_01Y3WEL8ddHQQYSsmgT2VD3R`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1fbd08f2-26da-4fa4-b76d-5e1768ec0ed5",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "e7a051bc-b8b0-4cf8-a980-933194a17f74",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 548349
+    }
+  },
+  "sourceToolAssistantUUID": "1fbd08f2-26da-4fa4-b76d-5e1768ec0ed5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 77 · 2026-05-18T02:12:55.262Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Bb81HUmznqPQ8oGMMAaArp`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p9.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e7a051bc-b8b0-4cf8-a980-933194a17f74",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E12ZJJTowa9y8CaL41",
+  "type": "assistant",
+  "uuid": "15deecc8-32e4-4ca9-a937-a9c4b7d730e4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A5G4WEVx9tmirU3m1bzHJU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2938,
+      "cache_read_input_tokens": 62370,
+      "output_tokens": 368,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2938,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 368,
+          "cache_read_input_tokens": 62370,
+          "cache_creation_input_tokens": 2938,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2938
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 78 · 2026-05-18T02:12:55.607Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01GE7AecwiMmq92pwzEsCgv6`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p2.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "15deecc8-32e4-4ca9-a937-a9c4b7d730e4",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E12ZJJTowa9y8CaL41",
+  "type": "assistant",
+  "uuid": "10768601-0041-4d92-bcad-eadf92ba30ce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A5G4WEVx9tmirU3m1bzHJU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2938,
+      "cache_read_input_tokens": 62370,
+      "output_tokens": 368,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2938,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 368,
+          "cache_read_input_tokens": 62370,
+          "cache_creation_input_tokens": 2938,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2938
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 79_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]: Worker worker_review_figure_table_audit_20260518T020337 已完成（status=failed），请审查 Agent 的处理结果。",
+  "leafUuid": "10768601-0041-4d92-bcad-eadf92ba30ce",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 80_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 81 · 2026-05-18T02:12:56.321Z_
+
+<details><summary>↩ Tool result · `toolu_01Bb81HUmznqPQ8oGMMAaArp`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "15deecc8-32e4-4ca9-a937-a9c4b7d730e4",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "6309945b-d33f-409c-9e8a-5a254ca453a8",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 555928
+    }
+  },
+  "sourceToolAssistantUUID": "15deecc8-32e4-4ca9-a937-a9c4b7d730e4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 82_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]: Worker worker_review_figure_table_audit_20260518T020337 已完成（status=failed），请审查 Agent 的处理结果。",
+  "leafUuid": "6309945b-d33f-409c-9e8a-5a254ca453a8",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 83_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 84 · 2026-05-18T02:12:57.270Z_
+
+<details><summary>↩ Tool result · `toolu_01GE7AecwiMmq92pwzEsCgv6`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "10768601-0041-4d92-bcad-eadf92ba30ce",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "3b3e7a7a-fd88-43de-b09f-44be1f13b398",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 717893
+    }
+  },
+  "sourceToolAssistantUUID": "10768601-0041-4d92-bcad-eadf92ba30ce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]: Worker worker_review_figure_table_audit_20260518T020337 已完成（status=failed），请审查 Agent 的处理结果。",
+  "leafUuid": "3b3e7a7a-fd88-43de-b09f-44be1f13b398",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 87 · 2026-05-18T02:13:00.568Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me look at more pages to see if there are more figures and tables, particularly in appendix pages.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b3e7a7a-fd88-43de-b09f-44be1f13b398",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E1eBvCXM4XpG8MYhj8",
+  "type": "assistant",
+  "uuid": "dfa095f9-d457-49e6-9182-41fe24f241e4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014VS54YUtuaUC32UqR26zSB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1907,
+      "cache_read_input_tokens": 65308,
+      "output_tokens": 314,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1907,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 314,
+          "cache_read_input_tokens": 65308,
+          "cache_creation_input_tokens": 1907,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1907
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 88 · 2026-05-18T02:13:01.058Z_
+
+让我继续检查 appendix 页面和关键表格的数据一致性。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dfa095f9-d457-49e6-9182-41fe24f241e4",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E1eBvCXM4XpG8MYhj8",
+  "type": "assistant",
+  "uuid": "696ccbac-7642-4842-a2f5-faa58721bf68",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014VS54YUtuaUC32UqR26zSB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1907,
+      "cache_read_input_tokens": 65308,
+      "output_tokens": 314,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1907,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 314,
+          "cache_read_input_tokens": 65308,
+          "cache_creation_input_tokens": 1907,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1907
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 89 · 2026-05-18T02:13:02.110Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01JGYbZKwMiCjgY4mz57wraX`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p10.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "696ccbac-7642-4842-a2f5-faa58721bf68",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E1eBvCXM4XpG8MYhj8",
+  "type": "assistant",
+  "uuid": "0abd23a0-fb6e-4e7e-bf10-80b02bd49738",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014VS54YUtuaUC32UqR26zSB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1907,
+      "cache_read_input_tokens": 65308,
+      "output_tokens": 314,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1907,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 314,
+          "cache_read_input_tokens": 65308,
+          "cache_creation_input_tokens": 1907,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1907
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 90 · 2026-05-18T02:13:02.545Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01C8Jck1pjqicAEjbjrzn9cD`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p11.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0abd23a0-fb6e-4e7e-bf10-80b02bd49738",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E1eBvCXM4XpG8MYhj8",
+  "type": "assistant",
+  "uuid": "55f4ee0a-df20-4a1a-83b3-af856fae7c84",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014VS54YUtuaUC32UqR26zSB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1907,
+      "cache_read_input_tokens": 65308,
+      "output_tokens": 314,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1907,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 314,
+          "cache_read_input_tokens": 65308,
+          "cache_creation_input_tokens": 1907,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1907
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 91 · 2026-05-18T02:13:02.551Z_
+
+<details><summary>↩ Tool result · `toolu_01JGYbZKwMiCjgY4mz57wraX`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/png"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0abd23a0-fb6e-4e7e-bf10-80b02bd49738",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "212b286d-22f2-43cc-9551-87b483831183",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/png",
+      "originalSize": 361499
+    }
+  },
+  "sourceToolAssistantUUID": "0abd23a0-fb6e-4e7e-bf10-80b02bd49738",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 92 · 2026-05-18T02:13:02.921Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_016c9hZC99FZLyne9v7ioZS2`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p12.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "212b286d-22f2-43cc-9551-87b483831183",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E1eBvCXM4XpG8MYhj8",
+  "type": "assistant",
+  "uuid": "6a3f7c3e-fac0-44cc-bb85-4176fbc30c3c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014VS54YUtuaUC32UqR26zSB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1907,
+      "cache_read_input_tokens": 65308,
+      "output_tokens": 314,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1907,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 314,
+          "cache_read_input_tokens": 65308,
+          "cache_creation_input_tokens": 1907,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1907
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 93 · 2026-05-18T02:13:02.943Z_
+
+<details><summary>↩ Tool result · `toolu_016c9hZC99FZLyne9v7ioZS2`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/png"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6a3f7c3e-fac0-44cc-bb85-4176fbc30c3c",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "abca6253-c7c1-4369-b48f-676c8007f385",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/png",
+      "originalSize": 47523,
+      "dimensions": {
+        "originalWidth": 1241,
+        "originalHeight": 1754,
+        "displayWidth": 1241,
+        "displayHeight": 1754
+      }
+    }
+  },
+  "sourceToolAssistantUUID": "6a3f7c3e-fac0-44cc-bb85-4176fbc30c3c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 94_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]: Worker worker_review_figure_table_audit_20260518T020337 已完成（status=failed），请审查 Agent 的处理结果。",
+  "leafUuid": "abca6253-c7c1-4369-b48f-676c8007f385",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 95_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 96 · 2026-05-18T02:13:04.022Z_
+
+<details><summary>↩ Tool result · `toolu_01C8Jck1pjqicAEjbjrzn9cD`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "55f4ee0a-df20-4a1a-83b3-af856fae7c84",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "c1a4530a-f6f0-4c60-be6a-046039a1b3e1",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 501808
+    }
+  },
+  "sourceToolAssistantUUID": "55f4ee0a-df20-4a1a-83b3-af856fae7c84",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 97_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]: Worker worker_review_figure_table_audit_20260518T020337 已完成（status=failed），请审查 Agent 的处理结果。",
+  "leafUuid": "c1a4530a-f6f0-4c60-be6a-046039a1b3e1",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 98_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 99 · 2026-05-18T02:13:08.645Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check more appendix pages and look at more critical tables. Let me also verify the data in Table 4 (domain × model K* table) against registry data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c1a4530a-f6f0-4c60-be6a-046039a1b3e1",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E291X63yZkCDfPcfC8",
+  "type": "assistant",
+  "uuid": "88d2042f-1433-4cde-8bea-1a02dde00753",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018tZNhFakp2TkPMr81fYFE8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1587,
+      "cache_creation_input_tokens": 923,
+      "cache_read_input_tokens": 67215,
+      "output_tokens": 382,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 923,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1587,
+          "output_tokens": 382,
+          "cache_read_input_tokens": 67215,
+          "cache_creation_input_tokens": 923,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 923
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 100 · 2026-05-18T02:13:09.152Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01YW4pbUJxu8Qp2JQRvZfYSg`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p13.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "88d2042f-1433-4cde-8bea-1a02dde00753",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E291X63yZkCDfPcfC8",
+  "type": "assistant",
+  "uuid": "851781ce-8508-4b02-b8a0-97421d82e1c7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018tZNhFakp2TkPMr81fYFE8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1587,
+      "cache_creation_input_tokens": 923,
+      "cache_read_input_tokens": 67215,
+      "output_tokens": 382,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 923,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1587,
+          "output_tokens": 382,
+          "cache_read_input_tokens": 67215,
+          "cache_creation_input_tokens": 923,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 923
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 101 · 2026-05-18T02:13:09.813Z_
+
+<details><summary>↩ Tool result · `toolu_01YW4pbUJxu8Qp2JQRvZfYSg`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "851781ce-8508-4b02-b8a0-97421d82e1c7",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "e61df4f1-dad3-4662-8730-da8a0c4a7d7c",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 527683
+    }
+  },
+  "sourceToolAssistantUUID": "851781ce-8508-4b02-b8a0-97421d82e1c7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 102 · 2026-05-18T02:13:10.087Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01SAsMZ4NLoF5JL8RcvAt58c`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p14.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e61df4f1-dad3-4662-8730-da8a0c4a7d7c",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E291X63yZkCDfPcfC8",
+  "type": "assistant",
+  "uuid": "08908e20-dc60-4d93-a510-c20d447d410d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018tZNhFakp2TkPMr81fYFE8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1587,
+      "cache_creation_input_tokens": 923,
+      "cache_read_input_tokens": 67215,
+      "output_tokens": 382,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 923,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1587,
+          "output_tokens": 382,
+          "cache_read_input_tokens": 67215,
+          "cache_creation_input_tokens": 923,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 923
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 103 · 2026-05-18T02:13:10.532Z_
+
+<details><summary>↩ Tool result · `toolu_01SAsMZ4NLoF5JL8RcvAt58c`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/png"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "08908e20-dc60-4d93-a510-c20d447d410d",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "bfd844a1-6eb0-4ce4-be27-ac5554e0122a",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/png",
+      "originalSize": 348340
+    }
+  },
+  "sourceToolAssistantUUID": "08908e20-dc60-4d93-a510-c20d447d410d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 104 · 2026-05-18T02:13:10.889Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0197Abt4t2MgvGpFhmFUf6Xm`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p15.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bfd844a1-6eb0-4ce4-be27-ac5554e0122a",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E291X63yZkCDfPcfC8",
+  "type": "assistant",
+  "uuid": "d6640718-6790-4315-a290-1c1fc5b33848",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018tZNhFakp2TkPMr81fYFE8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1587,
+      "cache_creation_input_tokens": 923,
+      "cache_read_input_tokens": 67215,
+      "output_tokens": 382,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 923,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1587,
+          "output_tokens": 382,
+          "cache_read_input_tokens": 67215,
+          "cache_creation_input_tokens": 923,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 923
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 105 · 2026-05-18T02:13:11.104Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Qh1P6YRsGJ78SQpsYgsBu2`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p16.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d6640718-6790-4315-a290-1c1fc5b33848",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E291X63yZkCDfPcfC8",
+  "type": "assistant",
+  "uuid": "c5e60988-1a44-4593-807f-d03427609c46",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018tZNhFakp2TkPMr81fYFE8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1587,
+      "cache_creation_input_tokens": 923,
+      "cache_read_input_tokens": 67215,
+      "output_tokens": 382,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 923,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1587,
+          "output_tokens": 382,
+          "cache_read_input_tokens": 67215,
+          "cache_creation_input_tokens": 923,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 923
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 106_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]: Worker worker_review_figure_table_audit_20260518T020337 已完成（status=failed），请审查 Agent 的处理结果。",
+  "leafUuid": "c5e60988-1a44-4593-807f-d03427609c46",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 107_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 108 · 2026-05-18T02:13:12.082Z_
+
+<details><summary>↩ Tool result · `toolu_0197Abt4t2MgvGpFhmFUf6Xm`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d6640718-6790-4315-a290-1c1fc5b33848",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "046d1c0c-be1d-474d-8aee-efb49f802279",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 474287
+    }
+  },
+  "sourceToolAssistantUUID": "d6640718-6790-4315-a290-1c1fc5b33848",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 109_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]: Worker worker_review_figure_table_audit_20260518T020337 已完成（status=failed），请审查 Agent 的处理结果。",
+  "leafUuid": "9d7665e3-6bb0-474b-8c65-5bb25fc745b9",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 110_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 111 · 2026-05-18T02:13:12.205Z_
+
+<details><summary>↩ Tool result · `toolu_01Qh1P6YRsGJ78SQpsYgsBu2`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c5e60988-1a44-4593-807f-d03427609c46",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "7b530973-11c3-4528-8817-6b52ba58f865",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 532998
+    }
+  },
+  "sourceToolAssistantUUID": "c5e60988-1a44-4593-807f-d03427609c46",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 112 · 2026-05-18T02:13:12.210Z_
+
+```json
+{
+  "parentUuid": "7b530973-11c3-4528-8817-6b52ba58f865",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "9d7665e3-6bb0-474b-8c65-5bb25fc745b9",
+  "timestamp": "2026-05-18T02:13:12.210Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 113_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]: Worker worker_review_figure_table_audit_20260518T020337 已完成（status=failed），请审查 Agent 的处理结果。",
+  "leafUuid": "9d7665e3-6bb0-474b-8c65-5bb25fc745b9",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 114_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 115 · 2026-05-18T02:13:15.855Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the remaining pages and then verify some key data points against registry.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9d7665e3-6bb0-474b-8c65-5bb25fc745b9",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E2k4Ao4uEdVaruHB4p",
+  "type": "assistant",
+  "uuid": "1f0d95a9-ed61-45e6-a50a-b1e5acacedb2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LheyBURDjn376TbvJ7ZSU2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3451,
+      "cache_read_input_tokens": 68138,
+      "output_tokens": 282,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3451,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 282,
+          "cache_read_input_tokens": 68138,
+          "cache_creation_input_tokens": 3451,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3451
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 116 · 2026-05-18T02:13:16.477Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Lt8F3eqo1YTJzC6FbTVh4R`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p17.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1f0d95a9-ed61-45e6-a50a-b1e5acacedb2",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E2k4Ao4uEdVaruHB4p",
+  "type": "assistant",
+  "uuid": "41cbd362-d50f-4101-86dd-b400c0b856b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LheyBURDjn376TbvJ7ZSU2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3451,
+      "cache_read_input_tokens": 68138,
+      "output_tokens": 282,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3451,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 282,
+          "cache_read_input_tokens": 68138,
+          "cache_creation_input_tokens": 3451,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3451
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 117 · 2026-05-18T02:13:16.999Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012H6pZgzkuCbPQXbHppSqNz`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p18.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "41cbd362-d50f-4101-86dd-b400c0b856b3",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E2k4Ao4uEdVaruHB4p",
+  "type": "assistant",
+  "uuid": "6a019ca7-f088-47eb-b8d0-ce91de739c0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LheyBURDjn376TbvJ7ZSU2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3451,
+      "cache_read_input_tokens": 68138,
+      "output_tokens": 282,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3451,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 282,
+          "cache_read_input_tokens": 68138,
+          "cache_creation_input_tokens": 3451,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3451
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 118 · 2026-05-18T02:13:17.129Z_
+
+<details><summary>↩ Tool result · `toolu_01Lt8F3eqo1YTJzC6FbTVh4R`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "41cbd362-d50f-4101-86dd-b400c0b856b3",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "36a4ac5b-c91a-49c4-89f6-1d01d18c47c4",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 548323
+    }
+  },
+  "sourceToolAssistantUUID": "41cbd362-d50f-4101-86dd-b400c0b856b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 119 · 2026-05-18T02:13:17.479Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01AbNwgFK8TbjEKYL6eidbEg`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_pdf_images/main_p19.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "36a4ac5b-c91a-49c4-89f6-1d01d18c47c4",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E2k4Ao4uEdVaruHB4p",
+  "type": "assistant",
+  "uuid": "72bc587c-6b34-4c4e-9f9f-5c7fe173fe02",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LheyBURDjn376TbvJ7ZSU2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3451,
+      "cache_read_input_tokens": 68138,
+      "output_tokens": 282,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3451,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 282,
+          "cache_read_input_tokens": 68138,
+          "cache_creation_input_tokens": 3451,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3451
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 120 · 2026-05-18T02:13:17.575Z_
+
+<details><summary>↩ Tool result · `toolu_01AbNwgFK8TbjEKYL6eidbEg`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/png"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "72bc587c-6b34-4c4e-9f9f-5c7fe173fe02",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "dc004d53-f42c-4e23-96ef-cfcc91916c44",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/png",
+      "originalSize": 66929,
+      "dimensions": {
+        "originalWidth": 1241,
+        "originalHeight": 1754,
+        "displayWidth": 1241,
+        "displayHeight": 1754
+      }
+    }
+  },
+  "sourceToolAssistantUUID": "72bc587c-6b34-4c4e-9f9f-5c7fe173fe02",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 121_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]: Worker worker_review_figure_table_audit_20260518T020337 已完成（status=failed），请审查 Agent 的处理结果。",
+  "leafUuid": "dc004d53-f42c-4e23-96ef-cfcc91916c44",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 122_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 123 · 2026-05-18T02:13:17.802Z_
+
+<details><summary>↩ Tool result · `toolu_012H6pZgzkuCbPQXbHppSqNz`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6a019ca7-f088-47eb-b8d0-ce91de739c0e",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "b0e0e86d-d485-4ad1-90f7-29220da999ba",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 545546
+    }
+  },
+  "sourceToolAssistantUUID": "6a019ca7-f088-47eb-b8d0-ce91de739c0e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 124_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]: Worker worker_review_figure_table_audit_20260518T020337 已完成（status=failed），请审查 Agent 的处理结果。",
+  "leafUuid": "b0e0e86d-d485-4ad1-90f7-29220da999ba",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 125_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 126 · 2026-05-18T02:13:22.561Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive view of the paper. Let me now verify some key data against the registry. Let me focus on verifying:
+
+1. Table 4 (Domain × Model K*) against registry data
+2. Check specific figures for visual issues
+3. Check tables for formatting issues
+
+Let me also get more registry data to cross-reference the table values.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0e0e86d-d485-4ad1-90f7-29220da999ba",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E39wrLSiQ6i9jfzKpp",
+  "type": "assistant",
+  "uuid": "b05565c1-c83f-4587-867c-9985409258fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012f5r7Fee3U9ERfwMwj5Jd9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1587,
+      "cache_creation_input_tokens": 1053,
+      "cache_read_input_tokens": 71589,
+      "output_tokens": 270,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1053,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1587,
+          "output_tokens": 270,
+          "cache_read_input_tokens": 71589,
+          "cache_creation_input_tokens": 1053,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1053
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 127 · 2026-05-18T02:13:23.540Z_
+
+现在让我交叉验证关键表格数据。查看更多 registry 数据来核实 Table 4 中的 K* 值。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b05565c1-c83f-4587-867c-9985409258fc",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E39wrLSiQ6i9jfzKpp",
+  "type": "assistant",
+  "uuid": "91473888-fc6f-42b9-9777-db2f6bb3e2df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012f5r7Fee3U9ERfwMwj5Jd9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1587,
+      "cache_creation_input_tokens": 1053,
+      "cache_read_input_tokens": 71589,
+      "output_tokens": 270,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1053,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1587,
+          "output_tokens": 270,
+          "cache_read_input_tokens": 71589,
+          "cache_creation_input_tokens": 1053,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1053
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 128 · 2026-05-18T02:13:24.659Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Ty7M9yc5kt45Bkxm3txQKn`</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "limit": 0,
+  "fields": [
+    "status",
+    "hypothesis",
+    "conclusion",
+    "metrics"
+  ],
+  "filters": {
+    "status": "DONE"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "91473888-fc6f-42b9-9777-db2f6bb3e2df",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E39wrLSiQ6i9jfzKpp",
+  "type": "assistant",
+  "uuid": "e337c906-123d-40c7-961b-151b625b8ea4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012f5r7Fee3U9ERfwMwj5Jd9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1587,
+      "cache_creation_input_tokens": 1053,
+      "cache_read_input_tokens": 71589,
+      "output_tokens": 270,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1053,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1587,
+          "output_tokens": 270,
+          "cache_read_input_tokens": 71589,
+          "cache_creation_input_tokens": 1053,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1053
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 129 · 2026-05-18T02:13:24.952Z_
+
+<details><summary>↩ Tool result · `toolu_01Ty7M9yc5kt45Bkxm3txQKn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_wiki_scorer_confound_1b5\": {\"status\": \"DONE\", \"hypothesis\": \"Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。\", \"conclusion\": \"negative\", \"metrics\": {\"k_star\": 1, \"confound_verdict\": \"confirmed\", \"auc_0v1\": 0.9729, \"auc_1v2\": 0.5994, \"auc_2v3\": 0.533, \"auc_3v4\": 0.5214, \"auc_4v5\": 0.5068, \"jsd_0v1\": 0.0886, \"ordinal_mae\": 1.2995, \"ordinal_accuracy\": 0.3466}}, \"exp_wiki_scorer_confound\": {\"status\": \"DONE\", \"hypothesis\": \"Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。\", \"conclusion\": \"negative\", \"metrics\": {\"k_star\": 1, \"confound_verdict\": \"confirmed\", \"auc_0v1\": 0.9404, \"auc_1v2\": 0.587, \"auc_2v3\": 0.5456, \"auc_3v4\": 0.525, \"auc_4v5\": 0.5172, \"critical_delta_1v2\": -0.0238}}, \"exp_wiki_qwen7b\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-scale Wikipedia K* validation: Qwen2.5-7B continuation on Wikipedia 的 K* 是否 = 2？Qwen2.5-1.5B 在 Wikipedia K*=2（唯一维持 K*=2 的模型），Pythia/OLMo/均 K*=1。测试 7B 规模是否仍维持 Qwen 家族在 Wikipedia 上的 K*=2 pattern。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"success\", \"metrics\": {\"K_star\": 2, \"auc_0v1\": 0.9673, \"auc_1v2\": 0.6108, \"auc_2v3\": 0.5562, \"auc_3v4\": 0.5297, \"auc_4v5\": 0.529, \"jsd_0v1\": 0.083514, \"jsd_1v2\": 0.010991, \"jsd_2v3\": 0.00555, \"jsd_3v4\": 0.004611, \"jsd_4v5\": 0.003894, \"ordinal_mae\": 1.2501, \"ordinal_accuracy\": 0.3532}}, \"exp_wiki_mistral7b\": {\"status\": \"DONE\", \"hypothesis\": \"Mistral-7B Wikipedia K* test: Mistral-7B-v0.3 在 C4 上 K*=1 (text-intrinsic one-wash)。在 Wikipedia domain 上是否仍 K*=1？Pythia/OLMo 在 Wikipedia 均 K*=1，Qwen K*=2。如果 Mistral K*=1 → 确认 one-wash 跨域成立；如果 K*>1 → Wikipedia 有 rescue Mistral 的结构信号（与预期相反）。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"success\", \"metrics\": {\"K_star\": 1, \"ordinal_mae\": 1.3445, \"ordinal_accuracy\": 0.3273, \"auc_0v1\": 0.9607, \"auc_1v2\": 0.5552, \"auc_2v3\": 0.5236, \"auc_3v4\": 0.5181, \"auc_4v5\": 0.5012, \"jsd_0v1\": 0.054134, \"jsd_1v2\": 0.005678, \"jsd_2v3\": 0.003698, \"jsd_3v4\": 0.003459, \"jsd_4v5\": 0.003274}}, \"exp_wiki_llama8b\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-scale Wikipedia K* validation: LLaMA-3.1-8B continuation on Wikipedia 的 K* 是否 = 2？Pythia-1.4B K*=1, Qwen-1.5B K*=2, OLMo-1B K*=1。测试 8B scale 是否能在 Wikipedia 均质 domain 上维持 K*=2（scale 是否是决定因素）。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"negative\", \"metrics\": {\"K_star\": 1, \"ordinal_mae\": 1.2954, \"ordinal_accuracy\": 0.3313, \"auc_0v1\": 0.9316, \"auc_1v2\": 0.5954, \"auc_2v3\": 0.5392, \"auc_3v4\": 0.5221, \"auc_4v5\": 0.5212, \"jsd_0v1\": 0.06169, \"jsd_1v2\": 0.00931}}, \"exp_arXiv_qwen7b\": {\"status\": \"DONE\", \"hypothesis\": \"Qwen2.5-7B on arXiv abstracts will yield K*=3, validating that structured domain K*=3 is stable within the Qwen family across scales (1.5B vs 7B)\", \"metrics\": {\"k_star\": 3, \"pairwise_auc\": {\"0v1\": 0.983, \"1v2\": 0.835, \"2v3\": 0.626, \"3v4\": 0.544, \"4v5\": 0.513}, \"pairwise_jsd\": {\"0v1\": 0.1656, \"1v2\": 0.0668, \"2v3\": 0.0156, \"3v4\": 0.0089, \"4v5\": 0.0061}, \"ordinal_mae\": 0.9, \"ordinal_accuracy\": 0.446}, \"conclusion\": \"success\"}, \"exp_arXiv_mistral7b\": {\"status\": \"DONE\", \"hypothesis\": \"Mistral-7B arXiv K* test: Mistral-7B-v0.3 在 C4 上 K*=1 (one-wash model)。在 arXiv structured domain 上是否仍 K*=1？如果 K*=1 → 确认 Mistral 的 one-wash 是 text-intrinsic (与 domain 无关)；如果 K*>1 → domain complexity 可以 rescue one-wash models，K* 同时受 model 和 domain 驱动。2200 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"success\", \"metrics\": {\"k_star\": 3, \"pairwise_auc\": {\"0v1\": 0.9848, \"1v2\": 0.8201, \"2v3\": 0.6275, \"3v4\": 0.5295, \"4v5\": 0.5295}, \"jsd\": {\"0v1\": 0.14249, \"1v2\": 0.076232, \"2v3\": 0.018972, \"3v4\": 0.009908, \"4v5\": 0.008877}, \"ordinal_mae\": 0.8958, \"ordinal_accuracy\": 0.4474, \"top_features\": [\"freq_entropy\", \"surp_std\", \"surp_d1_skew\", \"surp_mean\", \"surp_d2_mean\"]}}, \"exp_arXiv_llama8b\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-architecture arXiv K* validation: LLaMA-3.1-8B continuation on arXiv abstracts 的 K* 是否 = 3？验证 structured domain K*=3 在大模型（8B scale）上是否成立，排除小模型 capacity artifact。2200 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"success\", \"metrics\": {\"K_star\": 3, \"auc_0v1\": 0.9754, \"auc_1v2\": 0.8447, \"auc_2v3\": 0.6215, \"auc_3v4\": 0.5362, \"auc_4v5\": 0.5331, \"jsd_0v1\": 0.1296, \"jsd_1v2\": 0.0785, \"jsd_2v3\": 0.0177, \"ordinal_acc\": 0.4549, \"ordinal_mae\": 0.8806}}, \"exp_wiki_pythia_v2\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-model Wikipedia K* validation (v2 fix): Pythia-1.4B continuation on Wikipedia 的 K* 是否 = 2？使用独立 data_dir 避免 v1 的 data reuse bug，让 pipeline 用 Pythia 重新生成 depth 1-5。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"negative\", \"metrics\": {\"K_star\": 1, \"auc_0v1\": 0.975, \"auc_1v2\": 0.5846, \"auc_2v3\": 0.5445, \"auc_3v4\": 0.5205, \"auc_4v5\": 0.5168, \"jsd_0v1\": 0.080065, \"jsd_1v2\": 0.007773, \"ordinal_acc\": 0.3503}}, \"exp_wiki_olmo_v2\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-model Wikipedia K* validation (v2 fix): OLMo-1B continuation on Wikipedia 的 K* 是否 = 2？使用独立 data_dir 避免 v1 的 data reuse bug，让 pipeline 用 OLMo 重新生成 depth 1-5。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"negative\", \"metrics\": {\"K_star\": 1, \"auc_0v1\": 0.9932, \"auc_1v2\": 0.4986, \"auc_2v3\": 0.5012, \"auc_3v4\": 0.5057, \"auc_4v5\": 0.5009, \"jsd_0v1\": 0.1688, \"ordinal_acc\": 0.3227}}, \"exp_arXiv_olmo\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-model arXiv K* validation: OLMo-1B continuation on arXiv abstracts 的 K* 是否 = 3（与 exp-024 Qwen 和 exp-025 Pythia 一致）？验证 structured domain K*=3 跨第三个模型架构（OLMo）的稳定性。2200 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"negative\", \"metrics\": {\"K_star\": 1, \"auc_0v1\": 0.9958, \"auc_1v2\": 0.5034, \"auc_2v3\": 0.5069, \"auc_3v4\": 0.5021, \"auc_4v5\": 0.5037, \"jsd_0v1\": 0.329, \"ordinal_acc\": 0.33}}, \"exp_wiki_olmo\": {\"status\": \"DONE\", \"hypothesis\": \"OLMo-1B continuation on Wikipedia domain will show K*=2 depth saturation pattern consistent with Qwen2.5-1.5B, demonstrating cross-model generality of the distinguishability decay phenomenon.\", \"conclusion\": \"failed\"}, \"exp_wiki_pythia\": {\"status\": \"DONE\", \"hypothesis\": \"Pythia-1.4B continuation on Wikipedia domain will show K*=2 depth saturation pattern consistent with Qwen2.5-1.5B, demonstrating cross-model generality of the distinguishability decay phenomenon.\", \"conclusion\": \"failed\"}, \"exp_009_dose_response\": {\"status\": \"DONE\", \"hypothesis\": \"Contamination dose-response: 在 10%/30%/50% synthetic injection 比例下，graduated filtering 相对 binary filtering 的收益是否随 contamination 增加而扩大？验证 C3 (graduated filtering superiority) 在不同 contamination severity 下的 robustness。3 ratios × 3 strategies (no-filter/binary/graduated) × 5 seeds, continued pretraining Qwen2.5-1.5B, eval MMLU+HellaSwag.\", \"metrics\": {\"total_runs\": 45, \"seeds\": 5, \"ratios\": [0.1, 0.3, 0.5], \"strategies\": [\"no_filter\", \"binary_ours\", \"graduated\"], \"cross_ratio_finding\": \"Binary filtering consistently best across all ratios. Graduated filtering = no_filter at every ratio. Effect size of binary advantage increases with contamination ratio (HellaSwag delta: 10%=+0.38pp, 30%=+0.61pp, 50%=+0.51pp). Original C3 hypothesis (graduated > binary) rejected.\", \"gpu_hours_total\": 9.9}, \"conclusion\": \"success\"}, \"exp_009_dose_50pct_v3\": {\"status\": \"DONE\", \"hypothesis\": \"50% synthetic injection 下 graduated filtering 应展现最大优势 >=2pp MMLU（v3: fix OOM, auto batch + offline）。半数数据为合成时 binary 激进丢弃导致数据饥饿。\", \"metrics\": {\"seeds\": 5, \"strategies\": 3, \"total_runs\": 15, \"mean_std\": {\"no_filter\": {\"mmlu\": \"0.6063±0.0013\", \"hellaswag\": \"0.6680±0.0005\"}, \"binary_ours\": {\"mmlu\": \"0.6088±0.0011\", \"hellaswag\": \"0.6731±0.0004\"}, \"graduated\": {\"mmlu\": \"0.6062±0.0009\", \"hellaswag\": \"0.6679±0.0002\"}}, \"paired_ttest\": {\"binary_vs_nofilter\": {\"delta_mmlu\": 0.0025, \"p_mmlu\": 0.0377, \"delta_hellaswag\": 0.0051, \"p_hellaswag\": 2e-05}, \"graduated_vs_binary\": {\"delta_mmlu\": -0.0026, \"p_mmlu\": 0.0257, \"delta_hellaswag\": -0.0052, \"p_hellaswag\": 3e-05}, \"graduated_vs_nofilter\": {\"delta_mmlu\": -0.0001, \"p_mmlu\": 0.89, \"delta_hellaswag\": -0.0001, \"p_hellaswag\": 0.706}}, \"key_finding\": \"Binary significantly best (HellaSwag p<0.001). Graduated = no_filter exactly.\"}, \"conclusion\": \"success\"}, \"exp_009_dose_30pct_v3\": {\"status\": \"DONE\", \"hypothesis\": \"30% synthetic injection 下 graduated filtering 优势应 >=1pp MMLU（v3: fix OOM, auto batch + offline）。更高污染率下 binary 丢弃更多可用 gen-1 数据。\", \"metrics\": {\"seeds\": 5, \"strategies\": 3, \"total_runs\": 15, \"mean_std\": {\"no_filter\": {\"mmlu\": \"0.6069±0.0007\", \"hellaswag\": \"0.6664±0.0020\"}, \"binary_ours\": {\"mmlu\": \"0.6082±0.0012\", \"hellaswag\": \"0.6725±0.0007\"}, \"graduated\": {\"mmlu\": \"0.6072±0.0008\", \"hellaswag\": \"0.6665±0.0014\"}}, \"paired_ttest\": {\"binary_vs_nofilter\": {\"delta_mmlu\": 0.0013, \"p_mmlu\": 0.0739, \"delta_hellaswag\": 0.0061, \"p_hellaswag\": 0.0036}, \"graduated_vs_binary\": {\"delta_mmlu\": -0.001, \"p_mmlu\": 0.3018, \"delta_hellaswag\": -0.006, \"p_hellaswag\": 0.0009}, \"graduated_vs_nofilter\": {\"delta_mmlu\": 0.0003, \"p_mmlu\": 0.6638, \"delta_hellaswag\": 0.0002, \"p_hellaswag\": 0.6646}}, \"key_finding\": \"Binary best on HellaSwag (p=0.004). Graduated = no_filter.\"}, \"conclusion\": \"success\"}, \"exp_009_dose_10pct_v3\": {\"status\": \"DONE\", \"hypothesis\": \"10% synthetic injection 下 graduated filtering 应比 binary 保留 >=0.5pp MMLU（v3: fix OOM, auto batch + offline）。低污染时 gen-1 有训练价值，binary 全丢造成数据损失。\", \"metrics\": {\"seeds\": 5, \"strategies\": 3, \"total_runs\": 15, \"mean_std\": {\"no_filter\": {\"mmlu\": \"0.6058±0.0002\", \"hellaswag\": \"0.6689±0.0007\"}, \"binary_ours\": {\"mmlu\": \"0.6079±0.0005\", \"hellaswag\": \"0.6727±0.0008\"}, \"graduated\": {\"mmlu\": \"0.6066±0.0011\", \"hellaswag\": \"0.6700±0.0015\"}}, \"paired_ttest\": {\"binary_vs_nofilter\": {\"delta_mmlu\": 0.0021, \"p_mmlu\": 0.001, \"delta_hellaswag\": 0.0038, \"p_hellaswag\": 0.0017}, \"graduated_vs_binary\": {\"delta_mmlu\": -0.0014, \"p_mmlu\": 0.0917, \"delta_hellaswag\": -0.0027, \"p_hellaswag\": 0.0399}, \"graduated_vs_nofilter\": {\"delta_mmlu\": 0.0008, \"p_mmlu\": 0.2706, \"delta_hellaswag\": 0.0011, \"p_hellaswag\": 0.0611}}, \"key_finding\": \"Binary best. Graduated ≈ no_filter.\"}, \"conclusion\": \"success\"}, \"exp_027_retrain_bootstrap\": {\"status\": \"DONE\", \"hypothesis\": \"Retrain-chain 的 pairwise AUC（0v1 到 3v4）在 10000-iteration bootstrap 95% CI 下均显著高于 θ=0.60，确认 K*≥4 具有统计严格性。\", \"metrics\": {\"bootstrap_iterations\": 10000, \"pairs\": {\"0v1\": {\"auc_point\": 0.9847, \"ci_lower\": 0.9828, \"ci_upper\": 0.9864, \"perm_p\": 0.0001, \"ci_lower_gt_theta\": true}, \"1v2\": {\"auc_point\": 0.9482, \"ci_lower\": 0.9443, \"ci_upper\": 0.952, \"perm_p\": 0.0001, \"ci_lower_gt_theta\": true}, \"2v3\": {\"auc_point\": 0.8885, \"ci_lower\": 0.8829, \"ci_upper\": 0.894, \"perm_p\": 0.0001, \"ci_lower_gt_theta\": true}, \"3v4\": {\"auc_point\": 0.7977, \"ci_lower\": 0.7903, \"ci_upper\": 0.8051, \"perm_p\": 0.0001, \"ci_lower_gt_theta\": true}}, \"key_finding\": \"All 4 retrain-chain pairwise AUCs have CI_lower >> theta=0.60 (min CI_lower=0.7903). K*>=4 statistically confirmed with p<0.001.\"}, \"conclusion\": \"success\"}, \"exp_026_feature_stability_v2\": {\"status\": \"DONE\", \"hypothesis\": \"Prompt-chain K*=2 边界对 feature 子集选择 robust：即使从 15D 中随机抽取 5/8/10 维子集，Pythia-1.4B prompt-chain 1v2 AUC（baseline ~0.654）仍 > θ=0.60，证明 K*=2 不依赖特定特征组合。\", \"metrics\": {\"data_source\": \"exp_001_pythia prompt-chain (K*=2)\", \"results\": {\"15D\": {\"num_tested\": 1, \"num_pass\": 1, \"min_1v2_auc\": 0.6262, \"mean_1v2_auc\": 0.6262}, \"10D\": {\"num_tested\": 5, \"num_pass\": 5, \"min_1v2_auc\": 0.6153, \"mean_1v2_auc\": 0.6191}, \"8D\": {\"num_tested\": 5, \"num_pass\": 5, \"min_1v2_auc\": 0.6056, \"mean_1v2_auc\": 0.6159}, \"5D\": {\"num_tested\": 5, \"num_pass\": 2, \"min_1v2_auc\": 0.5856, \"mean_1v2_auc\": 0.5998}, \"3D_top3\": {\"num_tested\": 1, \"num_pass\": 0, \"min_1v2_auc\": 0.5871, \"mean_1v2_auc\": 0.5871}}, \"key_finding\": \"8+ features sufficient for robust K*=2 (all pass θ=0.60). 5D fragile (2/5 pass). Top-3 alone fails. Feature diversity matters at the K* boundary.\"}, \"conclusion\": \"success\"}, \"exp_026_feature_stability\": {\"status\": \"DONE\", \"hypothesis\": \"K*=2 对 feature 子集选择 robust：即使从 15D 特征中随机抽取 5/8/10 维子集，1v2 AUC 仍 > θ=0.60，证明 K* 边界不依赖特定特征组合（ad-hoc feature 防御）。\", \"metrics\": {\"data_source\": \"exp_016_qwen_base (prompt-chain, K*=2)\", \"results\": {\"15D\": {\"num_tested\": 1, \"num_kstar_2\": 1, \"min_1v2_auc\": 0.6262, \"mean_1v2_auc\": 0.6262}, \"10D\": {\"num_tested\": 5, \"num_kstar_2\": 5, \"min_1v2_auc\": 0.6153, \"mean_1v2_auc\": 0.6191}, \"8D\": {\"num_tested\": 5, \"num_kstar_2\": 5, \"min_1v2_auc\": 0.6056, \"mean_1v2_auc\": 0.6159}, \"5D\": {\"num_tested\": 5, \"num_kstar_2\": 2, \"min_1v2_auc\": 0.5856, \"mean_1v2_auc\": 0.5998}, \"3D_top3\": {\"num_tested\": 1, \"num_kstar_2\": 0, \"min_1v2_auc\": 0.5871, \"mean_1v2_auc\": 0.5871}}, \"all_above_theta\": false, \"key_finding\": \"Feature selection MATTERS at K*=2 boundary. 15D/10D/8D all robust (min 1v2 AUC > 0.60). 5D random subsets: only 2/5 pass θ=0.60 (min=0.5856). Top-3 features alone (0.5871) fail θ. Contrast with retrain-chain (K*=4) where all subsets trivially passed (min=0.8314).\", \"previous_run_note\": \"v1 used retrain-chain data (K*=4), where all subsets trivially passed with min 1v2 AUC=0.8314. v2 uses prompt-chain data (K*=2) to test boundary robustness.\"}, \"conclusion\": \"success\"}, \"exp_027\": {\"status\": \"DONE\", \"hypothesis\": \"Document-level bootstrap CI (10000 iterations) on exp-008 v2 retrain-chain data will confirm that all 4 pairwise AUCs have CI_lower > theta=0.60, supporting K*>=4 with statistical significance.\", \"conclusion\": \"success\", \"metrics\": {\"kstar_ci\": 4, \"0v1_auc\": 0.9847, \"0v1_ci\": [0.9828, 0.9864], \"0v1_perm_p\": 0.0001, \"1v2_auc\": 0.9482, \"1v2_ci\": [0.9443, 0.952], \"1v2_perm_p\": 0.0001, \"2v3_auc\": 0.8885, \"2v3_ci\": [0.8829, 0.894], \"2v3_perm_p\": 0.0001, \"3v4_auc\": 0.7977, \"3v4_ci\": [0.7903, 0.8051], \"3v4_perm_p\": 0.0001, \"all_ci_lower_above_theta\": true}}, \"exp_005_degradation\": {\"status\": \"DONE\", \"metrics\": {\"cross_model_kendall_tau_by_first_auc\": {\"Pythia_vs_OLMo\": 0.733, \"Pythia_vs_Qwen_rewrite\": 0.467, \"Pythia_vs_Qwen_cont\": 0.695, \"OLMo_vs_Qwen_rewrite\": 0.429, \"OLMo_vs_Qwen_cont\": 0.543, \"Qwen_rewrite_vs_Qwen_cont\": 0.733}, \"cross_model_kendall_tau_by_avg_auc\": {\"Pythia_vs_OLMo\": 0.8476, \"Pythia_vs_Qwen_cont\": 0.7524, \"OLMo_vs_Qwen_cont\": 0.6762}, \"cross_model_spearman_rho_single_feature_auc\": {\"Pythia_vs_OLMo\": 0.95, \"Pythia_vs_Qwen_cont\": 0.9143, \"OLMo_vs_Qwen_cont\": 0.85, \"metric_definition\": \"Spearman ρ on per-feature AUC rankings (each feature independently classifies depth pairs)\"}, \"4model_tau_mean_continuation_by_first_auc\": 0.657, \"4model_tau_mean_all_by_first_auc\": 0.6, \"generation_mode_delta\": {\"Pythia_vs_Qwen\": \"+0.228\", \"OLMo_vs_Qwen\": \"+0.114\"}, \"top3_features_ranking_by_first_auc\": {\"Pythia\": [\"surp_d1_std\", \"surp_d2_std\", \"surp_std\"], \"OLMo\": [\"surp_std\", \"surp_d1_std\", \"surp_d2_std\"], \"Qwen_rewrite\": [\"freq_entropy\", \"surp_std\", \"surp_d1_std\"], \"Qwen_cont\": [\"surp_d1_std\", \"surp_std\", \"surp_d2_std\"]}, \"shared_top_discriminators\": \"surp_d1_std, surp_std, surp_d2_std shared across all architectures (single-feature AUC ranking)\", \"degradation_ordering_consistency\": \"Strong cross-model consistency (ρ≥0.85) on single-feature AUC ranking under controlled generation mode.\", \"residual_architecture_effect\": \"Qwen-cont vs OLMo (τ=0.54 by_first_auc) still lower than Pythia vs OLMo (τ=0.73), ~30-40% of ordering divergence from architecture\", \"limitation_1v2_weakness\": \"depth-pair level consistency weakest at 1v2 (τ~0.37), near-generational feature importance ordering varies more across models\"}, \"conclusion\": \"success\", \"hypothesis\": \"递归生成文本在统计特征空间中呈现单调退化趋势（如 perplexity 上升、词汇多样性下降），且退化速率在 K*=2 后显著减缓，这解释了为什么分类器在深代后失去区分力。\"}, \"exp_024_arxiv_domain\": {\"status\": \"DONE\", \"hypothesis\": \"Domain ablation: arXiv abstracts 数据下 K*=2 是否成立？验证 K* 跨数据域（C4 vs Wikipedia vs arXiv）的稳定性。Qwen2.5-1.5B base, continuation, nucleus p=0.95 T=1.0, 5K docs, depth 0-5。\", \"metrics\": {\"K_star\": 3, \"pairwise_auc\": {\"0v1\": 0.9946, \"1v2\": 0.858, \"2v3\": 0.6427, \"3v4\": 0.5437, \"4v5\": 0.5294}, \"bootstrap_ci\": {\"0v1\": {\"auc\": 0.9946, \"ci_lower\": 0.9929, \"ci_upper\": 0.9961, \"perm_p\": 0.0001}, \"1v2\": {\"auc\": 0.858, \"ci_lower\": 0.848, \"ci_upper\": 0.8679, \"perm_p\": 0.0001}, \"2v3\": {\"auc\": 0.6427, \"ci_lower\": 0.6275, \"ci_upper\": 0.6575, \"perm_p\": 0.0001}, \"3v4\": {\"auc\": 0.5437, \"ci_lower\": 0.5276, \"ci_upper\": 0.5598, \"perm_p\": 0.0001}, \"4v5\": {\"auc\": 0.5294, \"ci_lower\": 0.5133, \"ci_upper\": 0.5455, \"perm_p\": 0.0006}}, \"bootstrap_resamples\": 10000, \"permutation_resamples\": 10000, \"key_finding\": \"arXiv domain K*=3 (CI-confirmed). 2v3 CI lower=0.6275 > θ=0.60. First condition with K*>2. 1v2 AUC=0.858 far exceeds C4/Wiki (~0.61-0.69).\"}, \"conclusion\": \"success\"}, \"exp_017_qwen_continuation\": {\"status\": \"DONE\", \"hypothesis\": \"Continuation mode 的 K* 应等于 rewrite mode（K*=2），因为 K* 饱和边界是递归生成的文本固有属性，与生成模式（续写 vs 改写）无关——两种模式在深代时都收敛到相同的统计吸引子。\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9972, \"1v2\": 0.6114, \"2v3\": 0.5609, \"3v4\": 0.5408, \"4v5\": 0.5139}, \"pairwise_jsd\": {\"0v1\": 0.28627, \"1v2\": 0.005107, \"2v3\": 0.003603, \"3v4\": 0.003395, \"4v5\": 0.003085}, \"ordinal_mae\": 1.1547, \"ordinal_accuracy\": 0.3819, \"top3_features\": [\"freq_entropy\", \"surp_mean\", \"surp_std\"]}, \"conclusion\": \"success\"}, \"exp_012_binary_confidence\": {\"status\": \"DONE\", \"hypothesis\": \"Binary detector confidence（DivEye log-PPL、Binoculars ratio）与 true generational depth 相关性弱（Spearman rho < 0.3），因为这些检测器将所有合成文本折叠为单一类别，无法区分 gen-1 和 gen-3+，暴露 binary 范式的信息损失。\", \"conclusion\": \"success\", \"metrics\": {\"n_samples\": 500, \"generators\": [\"qwen-rewrite\", \"pythia-1.4b\", \"olmo-1b\", \"qwen-cont\"], \"6class_accuracy\": {\"qwen-rewrite\": 0.1987, \"pythia-1.4b\": 0.1303, \"olmo-1b\": 0.127, \"qwen-cont\": 0.1833, \"random_baseline\": 0.1667}, \"spearman_rho\": {\"qwen-rewrite\": {\"log_ppl_ref\": -0.1233, \"log_ppl_obs\": 0.0815, \"ppl_ratio\": 0.1185}, \"pythia-1.4b\": {\"log_ppl_ref\": -0.2972, \"log_ppl_obs\": -0.4529, \"ppl_ratio\": -0.392}, \"olmo-1b\": {\"log_ppl_ref\": -0.378, \"log_ppl_obs\": -0.4614, \"ppl_ratio\": -0.4068}, \"qwen-cont\": {\"log_ppl_ref\": -0.3887, \"log_ppl_obs\": -0.162, \"ppl_ratio\": -0.058}}, \"binary_detector_kstar\": 1, \"obd_kstar\": 2, \"auc_non_monotonic\": true, \"key_finding\": \"Binary detectors (DivEye/Binoculars) K*≈1 vs OBD K*=2. 6-class accuracy ≤0.199 (random=0.167). Spearman |ρ|=0.06-0.46 (statistically significant but practically weak). AUC non-monotonic — binary detectors cannot maintain depth ordering. Confirms binary confidence ≠ depth estimation.\"}}, \"exp_C_permutation_10k\": {\"status\": \"DONE\", \"hypothesis\": \"10K permutation resamples 不应改变任何 K* 结论（所有 p < 0.01 的 pair 仍应 p < 0.01），确认 500 resamples 已有足够精度，K*=2 结论的统计基础稳固。\", \"conclusion\": \"success\", \"metrics\": {\"resamples\": 10000, \"all_boundary_pairs_p\": \"<0.0001\", \"key_finding\": \"10K permutation confirms all boundary p-values well below 0.01. FR-11 resolved.\"}}, \"exp_002_olmo_depth\": {\"status\": \"DONE\", \"hypothesis\": \"K* 跨模型一致性验证：OLMo-1B 在相同种子数据和解码策略下的 K* 是否与 Qwen2.5-1.5B 一致（K*=2）\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.997, \"1v2\": 0.6146, \"2v3\": 0.5497, \"3v4\": 0.509, \"4v5\": 0.5044}, \"pairwise_auc_std\": {\"0v1\": 0.0004, \"1v2\": 0.0029, \"2v3\": 0.004, \"3v4\": 0.0084, \"4v5\": 0.0136}, \"pairwise_jsd\": {\"0v1\": 0.23941, \"1v2\": 0.012972, \"2v3\": 0.00735, \"3v4\": 0.003968, \"4v5\": 0.003851}, \"ordinal_mae\": 1.1813, \"ordinal_accuracy\": 0.3685, \"top_features\": [\"surp_d1_mean\", \"surp_d1_skew\", \"freq_kurtosis\", \"surp_d2_mean\", \"surp_mean\"]}, \"conclusion\": \"success\"}, \"exp_009_dose_50pct_v2\": {\"status\": \"DONE\", \"hypothesis\": \"50% synthetic injection 下 graduated filtering 应展现最大优势 >=2pp MMLU（v2: fix HF mirror）。机制同 v1：半数数据为合成时 binary 激进丢弃导致数据饥饿。\", \"conclusion\": \"failed\"}, \"exp_009_dose_30pct_v2\": {\"status\": \"DONE\", \"hypothesis\": \"30% synthetic injection 下 graduated filtering 优势应 >=1pp MMLU（v2: fix HF mirror）。机制同 v1：更高污染率下 binary 丢弃更多可用 gen-1 数据。\", \"conclusion\": \"failed\"}, \"exp_009_dose_10pct_v2\": {\"status\": \"DONE\", \"hypothesis\": \"10% synthetic injection 下 graduated filtering 应比 binary 保留 >=0.5pp MMLU（v2: fix HF mirror）。机制同 v1：低污染时 gen-1 有训练价值，binary 全丢造成数据损失。\", \"conclusion\": \"failed\"}, \"exp_009_dose_50pct\": {\"status\": \"DONE\", \"hypothesis\": \"50% synthetic injection 下，graduated filtering 应展现最大优势（>=2pp MMLU），因为半数数据为合成时 binary filtering 的激进丢弃导致严重数据饥饿，而 graduated 保留 gen-1 维持训练集规模。\", \"conclusion\": \"failed\"}, \"exp_009_dose_30pct\": {\"status\": \"DONE\", \"hypothesis\": \"30% synthetic injection 下，graduated filtering 优势应大于 10% 场景（>=1pp MMLU），因为更高污染率意味着 binary filtering 丢弃更多可用 gen-1 数据，而 graduated 仅移除 gen-2+ 有害部分。\", \"conclusion\": \"failed\"}, \"exp_009_dose_10pct\": {\"status\": \"DONE\", \"hypothesis\": \"10% synthetic injection 下，graduated filtering 应比 binary filtering 保留更多 MMLU 性能（>=0.5pp），因为低污染场景中 gen-1 文本仍有训练价值，binary 全部丢弃造成不必要的数据损失。\", \"conclusion\": \"failed\"}, \"exp_kstar_theta\": {\"status\": \"DONE\", \"hypothesis\": \"K*(θ) 曲线在 θ∈[0.55,0.65] 存在 plateau（K* 对阈值不敏感），且 Cohen's h 在 depth=K* 到 depth=K*+1 间降至 < 0.2（小效应量），为 θ=0.60 提供非任意性理论依据。\", \"conclusion\": \"success\", \"metrics\": {\"output_files\": [\"kstar_theta_curve.pdf (32KB)\", \"kstar_theta_curve.png (335KB)\"], \"models\": [\"Qwen-rewrite\", \"Pythia\", \"OLMo\", \"Qwen-cont\"], \"depth_pairs\": 5, \"key_finding\": \"All 4 models show AUC ≥0.993 at 0v1, decaying to ~0.50-0.53 at 4v5. θ=0.60 is justified as natural K*=2 boundary across all models. FR-1 Critical resolved.\"}}, \"exp_022_cross_scorer_matrix\": {\"status\": \"DONE\", \"hypothesis\": \"Self-scoring（generator=scorer）的 K* 和 pairwise AUC 应与 cross-scoring（generator≠scorer）差异 < 0.02，证明 K*=2 不是 scorer-generator familiarity artifact，而是文本本身的可区分性边界。\", \"conclusion\": \"success\", \"metrics\": {\"total_combos\": 12, \"completed\": 12, \"K_star_distribution\": {\"K2\": 11, \"K1\": 1}, \"matrix\": {\"pythia_greedy×olmo\": {\"K_star\": 2, \"1v2\": 0.8811}, \"pythia_greedy×pythia\": {\"K_star\": 2, \"1v2\": 0.8838}, \"pythia_greedy×qwen_base\": {\"K_star\": 2, \"1v2\": 0.8814}, \"pythia_greedy×qwen_instruct\": {\"K_star\": 2, \"1v2\": 0.8818}, \"qwen_base×olmo\": {\"K_star\": 2, \"1v2\": 0.6047}, \"qwen_base×pythia\": {\"K_star\": 2, \"1v2\": 0.617}, \"qwen_base×qwen_base\": {\"K_star\": 2, \"1v2\": 0.6262}, \"qwen_base×qwen_instruct\": {\"K_star\": 2, \"1v2\": 0.6273}, \"qwen_cont256×olmo\": {\"K_star\": 2, \"1v2\": 0.6028}, \"qwen_cont256×pythia\": {\"K_star\": 1, \"1v2\": 0.5979}, \"qwen_cont256×qwen_base\": {\"K_star\": 2, \"1v2\": 0.6282}, \"qwen_cont256×qwen_instruct\": {\"K_star\": 2, \"1v2\": 0.6072}}, \"key_finding\": \"Scorer independence confirmed: K*=2 in 11/12 combos. Only exception: qwen_cont256×pythia (1v2=0.5979, borderline). Pythia-greedy 1v2~0.88 due to repetition collapse. Scorer choice Δ1v2 < 0.025 within each generator.\"}}, \"exp_008_retrain_chain_v2\": {\"status\": \"DONE\", \"hypothesis\": \"Retrain-chain ecological validity (v2, fix: labels padding bug): Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"k_star\": \">=4\", \"pairwise_auc\": {\"0v1\": 0.9847, \"1v2\": 0.9484, \"2v3\": 0.8888, \"3v4\": 0.7982}, \"pairwise_jsd\": {\"0v1\": 0.17, \"1v2\": 0.12, \"2v3\": 0.064, \"3v4\": 0.04}, \"key_finding\": \"Retrain-chain K*>=4, all pairs AUC>>0.60. LoRA adaptation artifacts make generations highly distinguishable. Prompt-chain K*=2 is text-intrinsic boundary.\"}, \"conclusion\": \"success\"}, \"exp-008-retrain-chain\": {\"status\": \"DONE\", \"hypothesis\": \"Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"failed\"}, \"exp_025_pythia_arxiv\": {\"status\": \"DONE\", \"hypothesis\": \"Domain × model interaction: Pythia-1.4B on arXiv data 的 K* 是否与 exp-024 (Qwen on arXiv, K*=?) 一致？验证 arXiv domain effect 跨模型一致性，排除 Qwen-specific artifact。Pythia-1.4B continuation, nucleus p=0.95 T=1.0, 2200 docs, depth 0-5, scorer=Qwen2.5-1.5B base。\", \"metrics\": {\"k_star\": 3, \"pairwise_auc\": {\"0v1\": 0.9877, \"1v2\": 0.8047, \"2v3\": 0.6545, \"3v4\": 0.5507, \"4v5\": 0.5287}, \"pairwise_jsd\": {\"0v1\": 0.171338, \"1v2\": 0.057344, \"2v3\": 0.019524, \"3v4\": 0.009917, \"4v5\": 0.008846}, \"bootstrap_ci\": {\"0v1\": {\"auc\": 0.9876, \"ci_lower\": 0.9851, \"ci_upper\": 0.99, \"perm_p\": 0.0001}, \"1v2\": {\"auc\": 0.8047, \"ci_lower\": 0.7934, \"ci_upper\": 0.8162, \"perm_p\": 0.0001}, \"2v3\": {\"auc\": 0.6544, \"ci_lower\": 0.6401, \"ci_upper\": 0.6688, \"perm_p\": 0.0001}, \"3v4\": {\"auc\": 0.55, \"ci_lower\": 0.534, \"ci_upper\": 0.5657, \"perm_p\": 0.0001}, \"4v5\": {\"auc\": 0.5284, \"ci_lower\": 0.5122, \"ci_upper\": 0.5443, \"perm_p\": 0.001}}, \"bootstrap_resamples\": 10000, \"permutation_resamples\": 10000, \"n_samples\": 2200, \"top_features\": [\"freq_entropy\", \"surp_std\", \"surp_mean\", \"surp_d1_skew\", \"surp_d1_mean\"], \"ordinal\": {\"MAE\": 0.8518, \"Accuracy\": 0.4545}, \"key_finding\": \"Pythia-1.4B on arXiv yields K*=3, identical to exp-024 (Qwen on arXiv). 2v3 CI lower=0.6401 > θ=0.60. Domain saturation depth is model-invariant for arXiv.\"}, \"conclusion\": \"success\"}, \"exp_020_pythia_decoding\": {\"status\": \"DONE\", \"hypothesis\": \"Pythia-1.4B 解码消融：4 个 decoding config (greedy/nuc p=0.9/T=0.7/T=1.2) 的 K* 是否一致？与 exp-003 (Qwen) 平行，验证 decoding 效应跨模型一致性。C4 5K, depth 0-5。\", \"conclusion\": \"success\", \"metrics\": {\"greedy\": {\"K_star\": 2, \"auc\": {\"0v1\": 0.9992, \"1v2\": 0.8838, \"2v3\": 0.5342, \"3v4\": 0.5228, \"4v5\": 0.5162}}, \"nuc09\": {\"K_star\": 2, \"auc\": {\"0v1\": 0.9948, \"1v2\": 0.677, \"2v3\": 0.5549, \"3v4\": 0.5299, \"4v5\": 0.5013}}, \"t07\": {\"K_star\": 2, \"auc\": {\"0v1\": 0.9965, \"1v2\": 0.7265, \"2v3\": 0.5941, \"3v4\": 0.5698, \"4v5\": 0.5284}}, \"t12\": {\"K_star\": 2, \"auc\": {\"0v1\": 0.9933, \"1v2\": 0.6172, \"2v3\": 0.5226, \"3v4\": 0.517, \"4v5\": 0.5051}}}}, \"exp_021_length_ablation\": {\"status\": \"DONE\", \"hypothesis\": \"文本长度消融：128/256/512 tokens 下 K* 是否稳定？验证 K*=2 不依赖于 256-token 固定长度设定。Qwen2.5-1.5B (base) continuation, C4 5K, depth 0-5。\", \"conclusion\": \"success\", \"metrics\": {\"128tok\": {\"K_star\": 2, \"1v2_auc\": 0.6219}, \"256tok\": {\"K_star\": 2, \"1v2_auc\": 0.6282}, \"512tok\": {\"K_star\": 2, \"1v2_auc\": 0.6073}, \"all_K_star_2\": true, \"bootstrap_ci\": {\"512tok_1v2\": {\"auc\": 0.6073, \"ci_lower\": 0.5979, \"ci_upper\": 0.6166, \"perm_p\": 0.0001, \"verdict\": \"BORDERLINE\"}}}}, \"exp_018_llama8b_depth\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-family K* 验证：LLaMA-3.1-8B continuation mode 的 K* 是否 = 2？首次超出 Qwen 家族，验证 K* universality 跨模型架构。C4 5K, depth 0-5, scorer=Qwen2.5-1.5B base。\", \"conclusion\": \"success\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9225, \"1v2\": 0.6123, \"2v3\": 0.5274, \"3v4\": 0.5138, \"4v5\": 0.5097}, \"jsd\": {\"0v1\": 0.077, \"1v2\": 0.012, \"2v3\": 0.005}, \"bootstrap_ci\": {\"0v1\": {\"auc\": 0.9224, \"ci_lower\": 0.9174, \"ci_upper\": 0.9272, \"perm_p\": 0.0001}, \"1v2\": {\"auc\": 0.6123, \"ci_lower\": 0.6028, \"ci_upper\": 0.6216, \"perm_p\": 0.0001}, \"2v3\": {\"auc\": 0.5273, \"ci_lower\": 0.5169, \"ci_upper\": 0.5378, \"perm_p\": 0.0001}, \"3v4\": {\"auc\": 0.5168, \"ci_lower\": 0.5062, \"ci_upper\": 0.5275, \"perm_p\": 0.0037}, \"4v5\": {\"auc\": 0.5159, \"ci_lower\": 0.5052, \"ci_upper\": 0.5268, \"perm_p\": 0.0035}}, \"bootstrap_resamples\": 10000, \"permutation_resamples\": 10000}}, \"exp_023_domain_ablation\": {\"status\": \"DONE\", \"hypothesis\": \"Domain ablation: Wikipedia 数据下 K*=2 是否成立？验证 K* 跨数据域（C4 vs Wikipedia）的稳定性。Qwen2.5-1.5B base, continuation, nucleus p=0.95 T=1.0, 5K docs, depth 0-5。\", \"conclusion\": \"success\", \"metrics\": {\"K_star\": 2, \"1v2_auc\": 0.6193, \"2v3_auc\": 0.5498, \"all_folds_above_060\": true, \"top_feature\": \"freq_entropy\", \"ordinal_accuracy\": 0.377}}, \"exp_019b_mistral_cross_scorer\": {\"status\": \"DONE\", \"hypothesis\": \"排除 self-scorer 因素：Mistral-7B depth chain 用 Qwen2.5-1.5B-base 评分后 K* 是否=2？如果 K*=2 则 exp-019 的 K*=1 是 self-scorer artifact；如果 K*=1 则是 Mistral 生成文本的固有特性。\", \"conclusion\": \"success\", \"metrics\": {\"k_star\": 1, \"pairwise_auc\": {\"0v1\": 0.9209, \"1v2\": 0.5695, \"2v3\": 0.5335, \"3v4\": 0.514, \"4v5\": 0.5184}, \"bootstrap_ci\": {\"0v1\": {\"mean\": 0.9209, \"ci_lower\": 0.9189, \"ci_upper\": 0.9229, \"pass_060\": true}, \"1v2\": {\"mean\": 0.5696, \"ci_lower\": 0.5645, \"ci_upper\": 0.5746, \"pass_060\": false}, \"2v3\": {\"mean\": 0.5335, \"ci_lower\": 0.5283, \"ci_upper\": 0.5382, \"pass_060\": false}, \"3v4\": {\"mean\": 0.514, \"ci_lower\": 0.5063, \"ci_upper\": 0.5213, \"pass_060\": false}, \"4v5\": {\"mean\": 0.5183, \"ci_lower\": 0.5128, \"ci_upper\": 0.5244, \"pass_060\": false}}, \"jsd\": {\"0v1\": 0.08355, \"1v2\": 0.007642, \"2v3\": 0.004752, \"3v4\": 0.004255, \"4v5\": 0.003758}, \"ordinal_mae\": 1.3737, \"ordinal_accuracy\": 0.3179, \"top3_features\": [\"freq_entropy\", \"surp_d1_skew\", \"surp_d1_mean\"], \"key_finding\": \"Cross-scorer (Qwen-1.5B scoring Mistral text) confirms K*=1. 1v2 AUC=0.5695 (self-scorer was 0.5935) — cross-scorer LOWER, not higher. Mistral K*=1 is genuine (inherent to Mistral generations), NOT a self-scorer artifact.\"}}, \"exp_019_mistral7b_depth\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-family K* 验证：Mistral-7B-v0.3 continuation mode 的 K* 是否 = 2？第二个非 Qwen 家族模型。C4 5K, depth 0-5, scorer=Mistral-7B-v0.3 (self-scorer)。与 exp-001/002/017 self-scoring 方法一致，exp_A_alt_scorer 已证明 scorer 不影响 K*。\", \"conclusion\": \"success\", \"metrics\": {\"k_star\": 1, \"pairwise_auc\": {\"0v1\": 0.9843, \"1v2\": 0.5935, \"2v3\": 0.5402, \"3v4\": 0.5232, \"4v5\": 0.5181}, \"bootstrap_ci_1v2\": {\"ci_lower\": 0.5835, \"ci_upper\": 0.6032, \"p_auc_leq_060\": 0.9017}, \"jsd\": {\"0v1\": 0.124194, \"1v2\": 0.008051, \"2v3\": 0.005047, \"3v4\": 0.004516, \"4v5\": 0.004109}, \"ordinal_mae\": 1.2275, \"ordinal_accuracy\": 0.3567, \"top3_features\": [\"freq_entropy\", \"surp_d1_skew\", \"surp_d1_mean\"]}}, \"exp_016_base_vs_instruct\": {\"status\": \"DONE\", \"hypothesis\": \"Base vs Instruct K* 对比：Qwen2.5-1.5B (base) continuation mode 的 K* 是否与 exp-017 (Instruct continuation, K*=2) 一致？封堵 \\\"K*=2 是 instruct-tuning 副产物\\\" 攻击面。唯一变量 = base vs instruct。\", \"conclusion\": \"success\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.987, \"1v2\": 0.6262, \"2v3\": 0.5496, \"3v4\": 0.5294, \"4v5\": 0.5182}, \"pairwise_auc_std\": {\"0v1\": 0.0015, \"1v2\": 0.0152, \"2v3\": 0.0067, \"3v4\": 0.0132, \"4v5\": 0.0139}, \"pairwise_jsd\": {\"0v1\": 0.163726, \"1v2\": 0.01081, \"2v3\": 0.005311, \"3v4\": 0.003942, \"4v5\": 0.003522}, \"ordinal_mae\": 1.1691, \"ordinal_accuracy\": 0.3719, \"top_features\": [\"freq_entropy\", \"surp_std\", \"surp_d1_skew\", \"surp_d1_mean\", \"surp_mean\"], \"n_samples\": 30000, \"bootstrap_ci\": {\"0v1\": {\"auc\": 0.987, \"ci_lower\": 0.9853, \"ci_upper\": 0.9885, \"perm_p\": 0.0001}, \"1v2\": {\"auc\": 0.626, \"ci_lower\": 0.6168, \"ci_upper\": 0.6353, \"perm_p\": 0.0001}, \"2v3\": {\"auc\": 0.5496, \"ci_lower\": 0.5397, \"ci_upper\": 0.56, \"perm_p\": 0.0001}, \"3v4\": {\"auc\": 0.5293, \"ci_lower\": 0.5188, \"ci_upper\": 0.5399, \"perm_p\": 0.0001}, \"4v5\": {\"auc\": 0.5181, \"ci_lower\": 0.5075, \"ci_upper\": 0.5288, \"perm_p\": 0.0016}}, \"bootstrap_resamples\": 10000, \"permutation_resamples\": 10000, \"key_finding\": \"K*=2 for base model confirmed with bootstrap CI. 1v2 AUC=0.626, 95% CI=[0.6168, 0.6353], CI lower=0.6168 > θ=0.60 (PASS). All pairs significant (p≤0.0016). Fold 0 1v2=0.5963 is an outlier but aggregate CI robustly above threshold. Base 1v2 CI [0.6168, 0.6353] overlaps with Instruct 1v2 CI [0.6015, 0.6213] — no significant base-vs-instruct difference.\"}}, \"exp_003_decoding_ablation\": {\"status\": \"DONE\", \"hypothesis\": \"解码策略调控 K*：不同 top_p/temperature 设置是否改变饱和边界（greedy→更低 K*? 高温度→更高 K*?）\", \"metrics\": {\"K_star\": 2, \"K_star_robust\": true, \"bootstrap_ci\": {\"config1_greedy\": {\"0v1\": {\"auc\": 0.9796, \"ci\": [0.9772, 0.982], \"perm_p\": 0}, \"1v2\": {\"auc\": 0.6892, \"ci\": [0.6802, 0.6982], \"perm_p\": 0}, \"2v3\": {\"auc\": 0.5612, \"ci\": [0.5517, 0.5705], \"perm_p\": 0}, \"3v4\": {\"auc\": 0.5405, \"ci\": [0.5308, 0.5502], \"perm_p\": 0}, \"4v5\": {\"auc\": 0.5137, \"ci\": [0.5033, 0.5238], \"perm_p\": 0.0082}}, \"config2_nuc09\": {\"0v1\": {\"auc\": 0.9945, \"ci\": [0.9934, 0.9956], \"perm_p\": 0}, \"1v2\": {\"auc\": 0.6862, \"ci\": [0.6774, 0.6951], \"perm_p\": 0}, \"2v3\": {\"auc\": 0.5917, \"ci\": [0.5824, 0.601], \"perm_p\": 0, \"note\": \"CI upper crosses theta=0.60\"}, \"3v4\": {\"auc\": 0.5468, \"ci\": [0.5369, 0.5568], \"perm_p\": 0}, \"4v5\": {\"auc\": 0.5066, \"ci\": [0.4959, 0.5173], \"perm_p\": 0.1199}}, \"config3_t07\": {\"0v1\": {\"auc\": 0.9877, \"ci\": [0.9857, 0.9896], \"perm_p\": 0}, \"1v2\": {\"auc\": 0.6885, \"ci\": [0.6797, 0.697], \"perm_p\": 0}, \"2v3\": {\"auc\": 0.5901, \"ci\": [0.5806, 0.5996], \"perm_p\": 0}, \"3v4\": {\"auc\": 0.539, \"ci\": [0.5288, 0.5493], \"perm_p\": 0}, \"4v5\": {\"auc\": 0.5348, \"ci\": [0.5243, 0.5454], \"perm_p\": 0}}, \"config4_t12\": {\"0v1\": {\"auc\": 0.9982, \"ci\": [0.9975, 0.9987], \"perm_p\": 0}, \"1v2\": {\"auc\": 0.7037, \"ci\": [0.6945, 0.7126], \"perm_p\": 0}, \"2v3\": {\"auc\": 0.582, \"ci\": [0.5722, 0.5917], \"perm_p\": 0}, \"3v4\": {\"auc\": 0.5293, \"ci\": [0.5185, 0.5399], \"perm_p\": 0}, \"4v5\": {\"auc\": 0.5237, \"ci\": [0.5132, 0.5347], \"perm_p\": 0.0001}}, \"resamples\": 10000, \"method\": \"GroupKFold(5) OOF + doc-level bootstrap + label permutation\"}}, \"conclusion\": \"success\"}, \"exp_004_7b_crossscale\": {\"status\": \"DONE\", \"hypothesis\": \"K*=2 在 7B scale 下是否成立？Qwen2.5-7B continuation mode, C4 5K seeds, scorer=Qwen2.5-1.5B。Reviewer R2 Critical: 现有实验仅 ≤1.5B\", \"conclusion\": \"success\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9644, \"1v2\": 0.6178, \"2v3\": 0.546, \"3v4\": 0.5225, \"4v5\": 0.5091}, \"pairwise_auc_std\": {\"0v1\": 0.0034, \"1v2\": 0.0081, \"2v3\": 0.0028, \"3v4\": 0.0113, \"4v5\": 0.0052}, \"bootstrap_ci\": {\"0v1\": {\"auc\": 0.9638, \"ci_lower\": 0.9607, \"ci_upper\": 0.9665, \"perm_p\": 0.0001}, \"1v2\": {\"auc\": 0.6168, \"ci_lower\": 0.6079, \"ci_upper\": 0.6261, \"perm_p\": 0.0001}, \"2v3\": {\"auc\": 0.5492, \"ci_lower\": 0.5388, \"ci_upper\": 0.5594, \"perm_p\": 0.0001}, \"3v4\": {\"auc\": 0.5276, \"ci_lower\": 0.517, \"ci_upper\": 0.5375, \"perm_p\": 0.0001}, \"4v5\": {\"auc\": 0.5085, \"ci_lower\": 0.4988, \"ci_upper\": 0.5191, \"perm_p\": 0.0676}}, \"bootstrap_resamples\": 1000, \"permutation_resamples\": 10000, \"pairwise_jsd\": {\"0v1\": 0.127422, \"1v2\": 0.010114, \"2v3\": 0.004798, \"3v4\": 0.004821, \"4v5\": 0.003335}, \"ordinal_mae\": 1.2156, \"ordinal_accuracy\": 0.3523, \"top_features\": [\"freq_entropy\", \"surp_d1_skew\", \"surp_std\", \"surp_d1_mean\", \"surp_mean\"], \"key_finding\": \"K*=2 confirmed at 7B scale with bootstrap CI. 1v2 CI lower=0.6079>0.60 (robust). 2v3 CI upper=0.5594<0.60. 4v5 only non-significant pair (p=0.0676). FR-4 Warning resolved.\"}}, \"exp_E_paired_stats\": {\"status\": \"DONE\", \"hypothesis\": \"C3 filtering 策略间差异是否统计显著？Holm-Bonferroni 多重比较校正 + Cohen's d 效应量（FR-5 Warning）\", \"conclusion\": \"success\", \"metrics\": {\"mmlu_significant_pairs\": \"8/15\", \"hellaswag_significant_pairs\": \"9/15\", \"binary_ours_vs_all_mmlu\": \"all significant\", \"max_cohen_d_mmlu\": 10.8, \"max_cohen_d_hellaswag\": 8.98, \"graduated_a09_vs_dsir_corrected_p\": 0.0523, \"cohen_d_method\": \"d_av (Lakens 2013)\", \"key_finding\": \"binary-ours significantly outperforms all alternatives on MMLU. On HellaSwag, binary-ours and graduated_a0.9 tied (p=1.0). FR-5 resolved. Holm-Bonferroni cummax bug fixed: MMLU 10/15→8/15. Cohen's d changed to d_av.\", \"bugfix_note\": \"Holm-Bonferroni cummax variable was never updated, causing 2 MMLU pairs to be incorrectly marked significant (graduated_a0.9 vs no-filter, surprisal vs dsir). Cohen's d changed from d_z to d_av (Lakens 2013).\"}}, \"exp_D_obd_n500\": {\"status\": \"DONE\", \"hypothesis\": \"OBD-LightGBM 在 N=500 子集上 accuracy 是否仍高于 LLM baselines？验证样本量匹配下的公平比较（FR-12 Warning）\", \"conclusion\": \"success\", \"metrics\": {\"obd_accuracy_final\": 0.38, \"obd_ci\": [0.34, 0.422], \"mcnemar_vs_gpt55_p\": 0.0809, \"mcnemar_vs_claude_p\": 0.0693, \"mcnemar_significant\": false, \"multi_seed_std\": 0, \"per_depth\": {\"d0\": 0.96, \"d1\": 0.39, \"d2\": 0.14, \"d3\": 0.19, \"d4\": 0.22}, \"prob_merge_accuracy\": 0.444, \"prob_merge_d4_bias\": 0.8, \"note\": \"v2 logic (6-class argmax, no capping/merge) + seed=42. McNemar not significant — supports discussion.tex narrative\"}}, \"exp_B_14d_ablation\": {\"status\": \"DONE\", \"hypothesis\": \"移除 self_BLEU（14D vs 15D）后 K*=2 是否稳定？排除 self_BLEU information leakage（FR-3 Critical）\", \"conclusion\": \"success\", \"metrics\": {\"result\": \"K*=2 stable across all 4 models after removing self_BLEU (14D)\", \"key_finding\": \"self_BLEU removal does not change K* boundary. FR-3 resolved.\"}}, \"exp_A_alt_scorer\": {\"status\": \"DONE\", \"hypothesis\": \"替代 scorer (Pythia-1.4B, OLMo-1B) 计算 surprisal features 时，K*=2 是否仍成立？验证 K* 不依赖 scorer-generator 匹配（FR-2 Critical）\", \"conclusion\": \"success\", \"metrics\": {\"pythia_qwen_rw\": {\"k_star\": 2, \"auc_0v1\": 0.9923, \"auc_1v2\": 0.7012, \"auc_2v3\": 0.587, \"mae\": 1.006, \"accuracy\": 0.417, \"spearman_rho_vs_baseline\": 0.906}, \"pythia_qwen_cont\": {\"k_star\": 1, \"auc_0v1\": 0.99, \"auc_1v2\": 0.5923, \"auc_2v3\": null, \"mae\": 1.216, \"accuracy\": 0.371, \"spearman_rho_vs_baseline\": 0.942}, \"olmo_qwen_rw\": {\"k_star\": 2, \"auc_0v1\": 0.9918, \"auc_1v2\": 0.6947, \"auc_2v3\": null, \"mae\": 1.016, \"accuracy\": 0.413, \"spearman_rho_vs_baseline\": 0.92}, \"olmo_qwen_cont\": {\"k_star\": 1, \"auc_0v1\": 0.989, \"auc_1v2\": 0.5858, \"auc_2v3\": null, \"mae\": 1.229, \"accuracy\": 0.368, \"spearman_rho_vs_baseline\": 0.902}, \"key_finding\": \"K* splits by generator data, not scorer: Qwen-RW→K*=2, Qwen-cont→K*=1 (cross-scorer). Feature importance ρ≥0.90 across all 4 conditions confirms scorer independence of feature ranking.\"}}, \"exp_015_neural_probe\": {\"status\": \"DONE\", \"hypothesis\": \"Learned representations (frozen LLM → MLP) 的 K* 是否高于 hand-crafted 15D features？若 K*_neural > K*_15D，说明 15D projection 是 K*=2 的部分原因；若相同，加强 information-theoretic impossibility 论证\", \"conclusion\": \"success\", \"metrics\": {\"pythia\": {\"k_star_neural\": 2, \"k_star_lgbm\": 2, \"accuracy\": 0.3892, \"pairwise_auc\": {\"0v1\": 0.966, \"1v2\": 0.676, \"2v3\": 0.596, \"3v4\": 0.555, \"4v5\": 0.532}}, \"olmo\": {\"k_star_neural\": 2, \"k_star_lgbm\": 2, \"accuracy\": 0.3729, \"pairwise_auc\": {\"0v1\": 0.95, \"1v2\": 0.657, \"2v3\": 0.589, \"3v4\": 0.547, \"4v5\": 0.53}}, \"qwen_cont\": {\"k_star_neural\": 3, \"k_star_lgbm\": 2, \"accuracy\": 0.4368, \"pairwise_auc\": {\"0v1\": 0.988, \"1v2\": 0.702, \"2v3\": 0.616, \"3v4\": 0.59, \"4v5\": 0.566}}, \"key_finding\": \"Neural probe K*_neural=2 for Pythia and OLMo (same as 15D), K*_neural=3 only for Qwen-cont (self-scorer). 2v3 AUC improved in all models vs LightGBM but only Qwen-cont crosses θ=0.60. K*=2 is robust for cross-model probes.\"}}, \"exp_006_graduated_filtering\": {\"status\": \"DONE\", \"hypothesis\": \"K*-aware graduated filtering (exploiting human/gen-1/gen-2+ trichotomy) yields better downstream LM quality than binary filtering on MMLU and HellaSwag. 6 strategies × 5 seeds × α sweep.\", \"conclusion\": \"success\", \"metrics\": {\"total_runs\": 51, \"binary_ours\": {\"mmlu\": \"0.5941±0.0008\", \"hellaswag\": \"0.6701±0.0006\"}, \"binary_drayson\": {\"mmlu\": \"0.5913±0.0009\", \"hellaswag\": \"0.6691±0.0004\"}, \"surprisal\": {\"mmlu\": \"0.5894±0.0009\", \"hellaswag\": \"0.6641±0.0006\"}, \"graduated_a09\": {\"mmlu\": \"0.5892±0.0008\", \"hellaswag\": \"0.6701±0.0007\"}, \"graduated_a07\": {\"mmlu\": \"0.5892±0.0014\", \"hellaswag\": \"0.6695±0.0004\"}, \"graduated_a05\": {\"mmlu\": \"0.5880±0.0013\", \"hellaswag\": \"0.6687±0.0008\"}, \"graduated_a03\": {\"mmlu\": \"0.5877±0.0013\", \"hellaswag\": \"0.6669±0.0005\"}, \"graduated_a01\": {\"mmlu\": \"0.5873±0.0019\", \"hellaswag\": \"0.6640±0.0009\"}, \"dsir\": {\"mmlu\": \"0.5869±0.0003\", \"hellaswag\": \"0.6631±0.0007\"}, \"no_filter\": {\"mmlu\": \"0.5865±0.0010\", \"hellaswag\": \"0.6638±0.0008\"}, \"base_model\": {\"mmlu\": \"0.6018\", \"hellaswag\": \"0.6821\"}, \"best_strategy\": \"binary-ours\", \"key_finding\": \"binary-ours is best filtering strategy. All strategies degrade vs base_model. Graduated α monotonically increasing confirms K*=2 boundary. DSIR below all other strategies except no-filter.\"}}, \"exp_007_bootstrap_ci\": {\"status\": \"DONE\", \"hypothesis\": \"K* 统计严谨性验证：bootstrap 95% CI 和 permutation test 确认 K*=2 在三个模型族上统计显著\", \"metrics\": {\"qwen_rewrite\": {\"0v1\": {\"auc\": 0.9956, \"ci_lower\": 0.9946, \"ci_upper\": 0.9965, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6955, \"ci_lower\": 0.6859, \"ci_upper\": 0.7041, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5893, \"ci_lower\": 0.5795, \"ci_upper\": 0.5991, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5435, \"ci_lower\": 0.5333, \"ci_upper\": 0.5551, \"perm_p\": 0.002}, \"4v5\": {\"auc\": 0.534, \"ci_lower\": 0.5238, \"ci_upper\": 0.5448, \"perm_p\": 0.002}}, \"pythia_cont\": {\"0v1\": {\"auc\": 0.9932, \"ci_lower\": 0.9921, \"ci_upper\": 0.9943, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6539, \"ci_lower\": 0.6454, \"ci_upper\": 0.663, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5514, \"ci_lower\": 0.5417, \"ci_upper\": 0.5628, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5152, \"ci_lower\": 0.5041, \"ci_upper\": 0.526, \"perm_p\": 0.006}, \"4v5\": {\"auc\": 0.5136, \"ci_lower\": 0.5021, \"ci_upper\": 0.5249, \"perm_p\": 0.008}}, \"olmo_cont\": {\"0v1\": {\"auc\": 0.997, \"ci_lower\": 0.9964, \"ci_upper\": 0.9975, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6145, \"ci_lower\": 0.6045, \"ci_upper\": 0.6247, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5496, \"ci_lower\": 0.5399, \"ci_upper\": 0.5596, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5091, \"ci_lower\": 0.4973, \"ci_upper\": 0.52, \"perm_p\": 0.064}, \"4v5\": {\"auc\": 0.5045, \"ci_lower\": 0.4932, \"ci_upper\": 0.515, \"perm_p\": 0.232}}, \"qwen_cont\": {\"0v1\": {\"auc\": 0.9971, \"ci_lower\": 0.9963, \"ci_upper\": 0.9978, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6112, \"ci_lower\": 0.6015, \"ci_upper\": 0.6213, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5609, \"ci_lower\": 0.5511, \"ci_upper\": 0.5712, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5409, \"ci_lower\": 0.5308, \"ci_upper\": 0.5508, \"perm_p\": 0.002}, \"4v5\": {\"auc\": 0.5141, \"ci_lower\": 0.5035, \"ci_upper\": 0.5255, \"perm_p\": 0.006}}, \"k_star_robust\": true, \"all_1v2_ci_lower_above_060\": true, \"most_marginal\": \"Qwen-cont CI lower=0.6015, only 0.0015 above threshold\"}, \"conclusion\": \"success\"}, \"exp_011_llm_zeroshot\": {\"status\": \"DONE\", \"hypothesis\": \"Frontier LLMs (GPT-5.5, Claude Opus 4.6) cannot reliably estimate generational depth via zero-shot prompting, motivating the need for specialized statistical methods\", \"metrics\": {\"gpt55_5class_acc\": 0.332, \"gpt55_mae\": 1.102, \"gpt55_spearman\": 0.383, \"gpt55_binary_acc\": 0.878, \"claude_5class_acc\": 0.331, \"claude_mae\": 1.15, \"claude_spearman\": 0.416, \"claude_binary_acc\": 0.882, \"odb_baseline_5class_acc\": 0.386, \"odb_baseline_mae\": 1.107, \"gpt55_per_depth_acc\": {\"depth_0\": 0.77, \"depth_1\": 0.19, \"depth_2\": 0.38, \"depth_3\": 0.24, \"depth_4\": 0.08}, \"claude_per_depth_acc\": {\"depth_0\": 0.69, \"depth_1\": 0.21, \"depth_2\": 0.28, \"depth_3\": 0.101, \"depth_4\": 0.37}, \"n_samples_per_model\": 500, \"key_finding\": \"Both frontier LLMs (GPT-5.5, Claude Opus 4.6) perform WORSE than OBD-LightGBM on 5-class depth estimation (~33% vs 38.6% acc). Binary human/AI detection is high (~88%) but fine-grained depth discrimination fails.\"}, \"conclusion\": \"success\"}, \"exp_013_cross_transfer\": {\"status\": \"DONE\", \"hypothesis\": \"Depth signal 是文本固有属性还是 model self-familiarity artifact？4×4 cross-model transfer matrix 测试分类器跨模型泛化能力\", \"metrics\": {\"accuracy_matrix\": {\"Qwen_rw→Qwen_rw\": 0.4229, \"Qwen_rw→Pythia\": 0.259, \"Qwen_rw→OLMo\": 0.2653, \"Qwen_rw→Qwen_cont\": 0.3466, \"Pythia→Qwen_rw\": 0.2718, \"Pythia→Pythia\": 0.3856, \"Pythia→OLMo\": 0.3531, \"Pythia→Qwen_cont\": 0.3287, \"OLMo→Qwen_rw\": 0.2768, \"OLMo→Pythia\": 0.345, \"OLMo→OLMo\": 0.3822, \"OLMo→Qwen_cont\": 0.3244, \"Qwen_cont→Qwen_rw\": 0.344, \"Qwen_cont→Pythia\": 0.3284, \"Qwen_cont→OLMo\": 0.3112, \"Qwen_cont→Qwen_cont\": 0.3875}, \"transfer_retention_accuracy\": {\"Pythia↔OLMo\": \"91-92%\", \"Qwen_rw→Pythia/OLMo\": \"61-63%\", \"Qwen_cont↔Pythia\": \"83-85%\", \"Qwen_cont↔OLMo\": \"80-85%\"}, \"transfer_retention_tau\": {\"Pythia↔OLMo\": \"85-86%\", \"Qwen_rw→Pythia/OLMo\": \"45-50%\", \"Qwen_cont↔others\": \"68-83%\"}, \"mean_pw_auc_matrix\": {\"within_avg\": 0.6099, \"cross_avg\": 0.5905, \"0v1_cross_all_above\": 0.96}, \"key_finding\": \"depth signal ≈ 70-85% text-intrinsic + 15-30% model self-familiarity. Binary contamination detection (0v1) highly transferable (>0.96 AUC). Fine-grained depth transfer depends on model family similarity. Qwen-rewrite overfits style features; Qwen-cont transfers much better.\"}, \"conclusion\": \"success\"}, \"exp_010_ordinal_baseline\": {\"status\": \"DONE\", \"hypothesis\": \"Ordinal structure improves depth classification: ordinal methods should outperform unordered multiclass on MAE\", \"metrics\": {\"qwen_rewrite\": {\"obd_lgbm\": {\"accuracy\": 0.4229, \"mae\": 0.9836, \"tau_b\": 0.5518, \"mean_pw_auc\": 0.6214}, \"multiclass_lgbm\": {\"accuracy\": 0.4182, \"mae\": 1.0163, \"tau_b\": 0.5367, \"mean_pw_auc\": 0.6246}, \"ordinal_logreg\": {\"accuracy\": 0.3636, \"mae\": 0.9105, \"tau_b\": 0.563, \"mean_pw_auc\": 0.5022}}, \"pythia\": {\"obd_lgbm\": {\"accuracy\": 0.3856, \"mae\": 1.1072, \"tau_b\": 0.4745, \"mean_pw_auc\": 0.6055}, \"multiclass_lgbm\": {\"accuracy\": 0.3832, \"mae\": 1.1399, \"tau_b\": 0.4622, \"mean_pw_auc\": 0.6062}, \"ordinal_logreg\": {\"accuracy\": 0.3179, \"mae\": 1.022, \"tau_b\": 0.49, \"mean_pw_auc\": 0.4767}}, \"olmo\": {\"obd_lgbm\": {\"accuracy\": 0.3822, \"mae\": 1.1469, \"tau_b\": 0.4683, \"mean_pw_auc\": 0.6015}, \"multiclass_lgbm\": {\"accuracy\": 0.3685, \"mae\": 1.1813, \"tau_b\": 0.4497, \"mean_pw_auc\": 0.5974}, \"ordinal_logreg\": {\"accuracy\": 0.3265, \"mae\": 1.0352, \"tau_b\": 0.4656, \"mean_pw_auc\": 0.4859}}}, \"conclusion\": \"success\"}, \"exp_001_pythia_depth\": {\"status\": \"DONE\", \"hypothesis\": \"K* 跨模型一致性验证：Pythia-1.4B 在相同种子数据和解码策略下的 K* 是否与 Qwen2.5-1.5B 一致（K*=2）\", \"conclusion\": \"success\", \"metrics\": {\"pairwise_auc\": {\"0v1\": 0.9932, \"1v2\": 0.6539, \"2v3\": 0.5515, \"3v4\": 0.5153, \"4v5\": 0.5135}, \"pairwise_auc_std\": {\"0v1\": 0.0007, \"1v2\": 0.0069, \"2v3\": 0.0137, \"3v4\": 0.0084, \"4v5\": 0.0078}, \"pairwise_jsd\": {\"0v1\": 0.2142, \"1v2\": 0.014, \"2v3\": 0.0051, \"3v4\": 0.0033, \"4v5\": 0.0031}, \"k_star\": 2, \"ordinal_mae\": 1.14, \"ordinal_accuracy\": 0.383}}, \"mvp_pilot_sat_v1\": {\"status\": \"DONE\", \"hypothesis\": \"递归生成文本在统计特征空间上存在可分辨的代际差异，且差异随深度呈系统性趋势（K* ≥ 3）\", \"conclusion\": \"success\", \"metrics\": {\"pairwise_auc\": {\"0v1\": 0.9956, \"1v2\": 0.6957, \"2v3\": 0.5893, \"3v4\": 0.5434, \"4v5\": 0.5343}, \"pairwise_auc_std\": {\"0v1\": 0.0005, \"1v2\": 0.0072, \"2v3\": 0.012, \"3v4\": 0.0053, \"4v5\": 0.0091}, \"pairwise_jsd\": {\"0v1\": 0.2669, \"1v2\": 0.0163, \"2v3\": 0.0069, \"3v4\": 0.0047, \"4v5\": 0.0041}, \"k_star\": 2, \"ordinal_mae\": 1.0163, \"ordinal_accuracy\": 0.4182}}}, \"count\": 59, \"total\": 59, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2745}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e337c906-123d-40c7-961b-151b625b8ea4",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "5e3e4a1f-ae90-483a-9698-e1d8a42403c7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_wiki_scorer_confound_1b5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"k_star\\\": 1, \\\"confound_verdict\\\": \\\"confirmed\\\", \\\"auc_0v1\\\": 0.9729, \\\"auc_1v2\\\": 0.5994, \\\"auc_2v3\\\": 0.533, \\\"auc_3v4\\\": 0.5214, \\\"auc_4v5\\\": 0.5068, \\\"jsd_0v1\\\": 0.0886, \\\"ordinal_mae\\\": 1.2995, \\\"ordinal_accuracy\\\": 0.3466}}, \\\"exp_wiki_scorer_confound\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"k_star\\\": 1, \\\"confound_verdict\\\": \\\"confirmed\\\", \\\"auc_0v1\\\": 0.9404, \\\"auc_1v2\\\": 0.587, \\\"auc_2v3\\\": 0.5456, \\\"auc_3v4\\\": 0.525, \\\"auc_4v5\\\": 0.5172, \\\"critical_delta_1v2\\\": -0.0238}}, \\\"exp_wiki_qwen7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Cross-scale Wikipedia K* validation: Qwen2.5-7B continuation on Wikipedia 的 K* 是否 = 2？Qwen2.5-1.5B 在 Wikipedia K*=2（唯一维持 K*=2 的模型），Pythia/OLMo/均 K*=1。测试 7B 规模是否仍维持 Qwen 家族在 Wikipedia 上的 K*=2 pattern。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"K_star\\\": 2, \\\"auc_0v1\\\": 0.9673, \\\"auc_1v2\\\": 0.6108, \\\"auc_2v3\\\": 0.5562, \\\"auc_3v4\\\": 0.5297, \\\"auc_4v5\\\": 0.529, \\\"jsd_0v1\\\": 0.083514, \\\"jsd_1v2\\\": 0.010991, \\\"jsd_2v3\\\": 0.00555, \\\"jsd_3v4\\\": 0.004611, \\\"jsd_4v5\\\": 0.003894, \\\"ordinal_mae\\\": 1.2501, \\\"ordinal_accuracy\\\": 0.3532}}, \\\"exp_wiki_mistral7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Mistral-7B Wikipedia K* test: Mistral-7B-v0.3 在 C4 上 K*=1 (text-intrinsic one-wash)。在 Wikipedia domain 上是否仍 K*=1？Pythia/OLMo 在 Wikipedia 均 K*=1，Qwen K*=2。如果 Mistral K*=1 → 确认 one-wash 跨域成立；如果 K*>1 → Wikipedia 有 rescue Mistral 的结构信号（与预期相反）。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"K_star\\\": 1, \\\"ordinal_mae\\\": 1.3445, \\\"ordinal_accuracy\\\": 0.3273, \\\"auc_0v1\\\": 0.9607, \\\"auc_1v2\\\": 0.5552, \\\"auc_2v3\\\": 0.5236, \\\"auc_3v4\\\": 0.5181, \\\"auc_4v5\\\": 0.5012, \\\"jsd_0v1\\\": 0.054134, \\\"jsd_1v2\\\": 0.005678, \\\"jsd_2v3\\\": 0.003698, \\\"jsd_3v4\\\": 0.003459, \\\"jsd_4v5\\\": 0.003274}}, \\\"exp_wiki_llama8b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Cross-scale Wikipedia K* validation: LLaMA-3.1-8B continuation on Wikipedia 的 K* 是否 = 2？Pythia-1.4B K*=1, Qwen-1.5B K*=2, OLMo-1B K*=1。测试 8B scale 是否能在 Wikipedia 均质 domain 上维持 K*=2（scale 是否是决定因素）。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"K_star\\\": 1, \\\"ordinal_mae\\\": 1.2954, \\\"ordinal_accuracy\\\": 0.3313, \\\"auc_0v1\\\": 0.9316, \\\"auc_1v2\\\": 0.5954, \\\"auc_2v3\\\": 0.5392, \\\"auc_3v4\\\": 0.5221, \\\"auc_4v5\\\": 0.5212, \\\"jsd_0v1\\\": 0.06169, \\\"jsd_1v2\\\": 0.00931}}, \\\"exp_arXiv_qwen7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Qwen2.5-7B on arXiv abstracts will yield K*=3, validating that structured domain K*=3 is stable within the Qwen family across scales (1.5B vs 7B)\\\", \\\"metrics\\\": {\\\"k_star\\\": 3, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.983, \\\"1v2\\\": 0.835, \\\"2v3\\\": 0.626, \\\"3v4\\\": 0.544, \\\"4v5\\\": 0.513}, \\\"pairwise_jsd\\\": {\\\"0v1\\\": 0.1656, \\\"1v2\\\": 0.0668, \\\"2v3\\\": 0.0156, \\\"3v4\\\": 0.0089, \\\"4v5\\\": 0.0061}, \\\"ordinal_mae\\\": 0.9, \\\"ordinal_accuracy\\\": 0.446}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_arXiv_mistral7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Mistral-7B arXiv K* test: Mistral-7B-v0.3 在 C4 上 K*=1 (one-wash model)。在 arXiv structured domain 上是否仍 K*=1？如果 K*=1 → 确认 Mistral 的 one-wash 是 text-intrinsic (与 domain 无关)；如果 K*>1 → domain complexity 可以 rescue one-wash models，K* 同时受 model 和 domain 驱动。2200 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"k_star\\\": 3, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9848, \\\"1v2\\\": 0.8201, \\\"2v3\\\": 0.6275, \\\"3v4\\\": 0.5295, \\\"4v5\\\": 0.5295}, \\\"jsd\\\": {\\\"0v1\\\": 0.14249, \\\"1v2\\\": 0.076232, \\\"2v3\\\": 0.018972, \\\"3v4\\\": 0.009908, \\\"4v5\\\": 0.008877}, \\\"ordinal_mae\\\": 0.8958, \\\"ordinal_accuracy\\\": 0.4474, \\\"top_features\\\": [\\\"freq_entropy\\\", \\\"surp_std\\\", \\\"surp_d1_skew\\\", \\\"surp_mean\\\", \\\"surp_d2_mean\\\"]}}, \\\"exp_arXiv_llama8b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Cross-architecture arXiv K* validation: LLaMA-3.1-8B continuation on arXiv abstracts 的 K* 是否 = 3？验证 structured domain K*=3 在大模型（8B scale）上是否成立，排除小模型 capacity artifact。2200 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"K_star\\\": 3, \\\"auc_0v1\\\": 0.9754, \\\"auc_1v2\\\": 0.8447, \\\"auc_2v3\\\": 0.6215, \\\"auc_3v4\\\": 0.5362, \\\"auc_4v5\\\": 0.5331, \\\"jsd_0v1\\\": 0.1296, \\\"jsd_1v2\\\": 0.0785, \\\"jsd_2v3\\\": 0.0177, \\\"ordinal_acc\\\": 0.4549, \\\"ordinal_mae\\\": 0.8806}}, \\\"exp_wiki_pythia_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Cross-model Wikipedia K* validation (v2 fix): Pythia-1.4B continuation on Wikipedia 的 K* 是否 = 2？使用独立 data_dir 避免 v1 的 data reuse bug，让 pipeline 用 Pythia 重新生成 depth 1-5。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"K_star\\\": 1, \\\"auc_0v1\\\": 0.975, \\\"auc_1v2\\\": 0.5846, \\\"auc_2v3\\\": 0.5445, \\\"auc_3v4\\\": 0.5205, \\\"auc_4v5\\\": 0.5168, \\\"jsd_0v1\\\": 0.080065, \\\"jsd_1v2\\\": 0.007773, \\\"ordinal_acc\\\": 0.3503}}, \\\"exp_wiki_olmo_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Cross-model Wikipedia K* validation (v2 fix): OLMo-1B continuation on Wikipedia 的 K* 是否 = 2？使用独立 data_dir 避免 v1 的 data reuse bug，让 pipeline 用 OLMo 重新生成 depth 1-5。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"K_star\\\": 1, \\\"auc_0v1\\\": 0.9932, \\\"auc_1v2\\\": 0.4986, \\\"auc_2v3\\\": 0.5012, \\\"auc_3v4\\\": 0.5057, \\\"auc_4v5\\\": 0.5009, \\\"jsd_0v1\\\": 0.1688, \\\"ordinal_acc\\\": 0.3227}}, \\\"exp_arXiv_olmo\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Cross-model arXiv K* validation: OLMo-1B continuation on arXiv abstracts 的 K* 是否 = 3（与 exp-024 Qwen 和 exp-025 Pythia 一致）？验证 structured domain K*=3 跨第三个模型架构（OLMo）的稳定性。2200 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"K_star\\\": 1, \\\"auc_0v1\\\": 0.9958, \\\"auc_1v2\\\": 0.5034, \\\"auc_2v3\\\": 0.5069, \\\"auc_3v4\\\": 0.5021, \\\"auc_4v5\\\": 0.5037, \\\"jsd_0v1\\\": 0.329, \\\"ordinal_acc\\\": 0.33}}, \\\"exp_wiki_olmo\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"OLMo-1B continuation on Wikipedia domain will show K*=2 depth saturation pattern consistent with Qwen2.5-1.5B, demonstrating cross-model generality of the distinguishability decay phenomenon.\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_wiki_pythia\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Pythia-1.4B continuation on Wikipedia domain will show K*=2 depth saturation pattern consistent with Qwen2.5-1.5B, demonstrating cross-model generality of the distinguishability decay phenomenon.\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_009_dose_response\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Contamination dose-response: 在 10%/30%/50% synthetic injection 比例下，graduated filtering 相对 binary filtering 的收益是否随 contamination 增加而扩大？验证 C3 (graduated filtering superiority) 在不同 contamination severity 下的 robustness。3 ratios × 3 strategies (no-filter/binary/graduated) × 5 seeds, continued pretraining Qwen2.5-1.5B, eval MMLU+HellaSwag.\\\", \\\"metrics\\\": {\\\"total_runs\\\": 45, \\\"seeds\\\": 5, \\\"ratios\\\": [0.1, 0.3, 0.5], \\\"strategies\\\": [\\\"no_filter\\\", \\\"binary_ours\\\", \\\"graduated\\\"], \\\"cross_ratio_finding\\\": \\\"Binary filtering consistently best across all ratios. Graduated filtering = no_filter at every ratio. Effect size of binary advantage increases with contamination ratio (HellaSwag delta: 10%=+0.38pp, 30%=+0.61pp, 50%=+0.51pp). Original C3 hypothesis (graduated > binary) rejected.\\\", \\\"gpu_hours_total\\\": 9.9}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_009_dose_50pct_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"50% synthetic injection 下 graduated filtering 应展现最大优势 >=2pp MMLU（v3: fix OOM, auto batch + offline）。半数数据为合成时 binary 激进丢弃导致数据饥饿。\\\", \\\"metrics\\\": {\\\"seeds\\\": 5, \\\"strategies\\\": 3, \\\"total_runs\\\": 15, \\\"mean_std\\\": {\\\"no_filter\\\": {\\\"mmlu\\\": \\\"0.6063±0.0013\\\", \\\"hellaswag\\\": \\\"0.6680±0.0005\\\"}, \\\"binary_ours\\\": {\\\"mmlu\\\": \\\"0.6088±0.0011\\\", \\\"hellaswag\\\": \\\"0.6731±0.0004\\\"}, \\\"graduated\\\": {\\\"mmlu\\\": \\\"0.6062±0.0009\\\", \\\"hellaswag\\\": \\\"0.6679±0.0002\\\"}}, \\\"paired_ttest\\\": {\\\"binary_vs_nofilter\\\": {\\\"delta_mmlu\\\": 0.0025, \\\"p_mmlu\\\": 0.0377, \\\"delta_hellaswag\\\": 0.0051, \\\"p_hellaswag\\\": 2e-05}, \\\"graduated_vs_binary\\\": {\\\"delta_mmlu\\\": -0.0026, \\\"p_mmlu\\\": 0.0257, \\\"delta_hellaswag\\\": -0.0052, \\\"p_hellaswag\\\": 3e-05}, \\\"graduated_vs_nofilter\\\": {\\\"delta_mmlu\\\": -0.0001, \\\"p_mmlu\\\": 0.89, \\\"delta_hellaswag\\\": -0.0001, \\\"p_hellaswag\\\": 0.706}}, \\\"key_finding\\\": \\\"Binary significantly best (HellaSwag p<0.001). Graduated = no_filter exactly.\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_009_dose_30pct_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"30% synthetic injection 下 graduated filtering 优势应 >=1pp MMLU（v3: fix OOM, auto batch + offline）。更高污染率下 binary 丢弃更多可用 gen-1 数据。\\\", \\\"metrics\\\": {\\\"seeds\\\": 5, \\\"strategies\\\": 3, \\\"total_runs\\\": 15, \\\"mean_std\\\": {\\\"no_filter\\\": {\\\"mmlu\\\": \\\"0.6069±0.0007\\\", \\\"hellaswag\\\": \\\"0.6664±0.0020\\\"}, \\\"binary_ours\\\": {\\\"mmlu\\\": \\\"0.6082±0.0012\\\", \\\"hellaswag\\\": \\\"0.6725±0.0007\\\"}, \\\"graduated\\\": {\\\"mmlu\\\": \\\"0.6072±0.0008\\\", \\\"hellaswag\\\": \\\"0.6665±0.0014\\\"}}, \\\"paired_ttest\\\": {\\\"binary_vs_nofilter\\\": {\\\"delta_mmlu\\\": 0.0013, \\\"p_mmlu\\\": 0.0739, \\\"delta_hellaswag\\\": 0.0061, \\\"p_hellaswag\\\": 0.0036}, \\\"graduated_vs_binary\\\": {\\\"delta_mmlu\\\": -0.001, \\\"p_mmlu\\\": 0.3018, \\\"delta_hellaswag\\\": -0.006, \\\"p_hellaswag\\\": 0.0009}, \\\"graduated_vs_nofilter\\\": {\\\"delta_mmlu\\\": 0.0003, \\\"p_mmlu\\\": 0.6638, \\\"delta_hellaswag\\\": 0.0002, \\\"p_hellaswag\\\": 0.6646}}, \\\"key_finding\\\": \\\"Binary best on HellaSwag (p=0.004). Graduated = no_filter.\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_009_dose_10pct_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"10% synthetic injection 下 graduated filtering 应比 binary 保留 >=0.5pp MMLU（v3: fix OOM, auto batch + offline）。低污染时 gen-1 有训练价值，binary 全丢造成数据损失。\\\", \\\"metrics\\\": {\\\"seeds\\\": 5, \\\"strategies\\\": 3, \\\"total_runs\\\": 15, \\\"mean_std\\\": {\\\"no_filter\\\": {\\\"mmlu\\\": \\\"0.6058±0.0002\\\", \\\"hellaswag\\\": \\\"0.6689±0.0007\\\"}, \\\"binary_ours\\\": {\\\"mmlu\\\": \\\"0.6079±0.0005\\\", \\\"hellaswag\\\": \\\"0.6727±0.0008\\\"}, \\\"graduated\\\": {\\\"mmlu\\\": \\\"0.6066±0.0011\\\", \\\"hellaswag\\\": \\\"0.6700±0.0015\\\"}}, \\\"paired_ttest\\\": {\\\"binary_vs_nofilter\\\": {\\\"delta_mmlu\\\": 0.0021, \\\"p_mmlu\\\": 0.001, \\\"delta_hellaswag\\\": 0.0038, \\\"p_hellaswag\\\": 0.0017}, \\\"graduated_vs_binary\\\": {\\\"delta_mmlu\\\": -0.0014, \\\"p_mmlu\\\": 0.0917, \\\"delta_hellaswag\\\": -0.0027, \\\"p_hellaswag\\\": 0.0399}, \\\"graduated_vs_nofilter\\\": {\\\"delta_mmlu\\\": 0.0008, \\\"p_mmlu\\\": 0.2706, \\\"delta_hellaswag\\\": 0.0011, \\\"p_hellaswag\\\": 0.0611}}, \\\"key_finding\\\": \\\"Binary best. Graduated ≈ no_filter.\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_027_retrain_bootstrap\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Retrain-chain 的 pairwise AUC（0v1 到 3v4）在 10000-iteration bootstrap 95% CI 下均显著高于 θ=0.60，确认 K*≥4 具有统计严格性。\\\", \\\"metrics\\\": {\\\"bootstrap_iterations\\\": 10000, \\\"pairs\\\": {\\\"0v1\\\": {\\\"auc_point\\\": 0.9847, \\\"ci_lower\\\": 0.9828, \\\"ci_upper\\\": 0.9864, \\\"perm_p\\\": 0.0001, \\\"ci_lower_gt_theta\\\": true}, \\\"1v2\\\": {\\\"auc_point\\\": 0.9482, \\\"ci_lower\\\": 0.9443, \\\"ci_upper\\\": 0.952, \\\"perm_p\\\": 0.0001, \\\"ci_lower_gt_theta\\\": true}, \\\"2v3\\\": {\\\"auc_point\\\": 0.8885, \\\"ci_lower\\\": 0.8829, \\\"ci_upper\\\": 0.894, \\\"perm_p\\\": 0.0001, \\\"ci_lower_gt_theta\\\": true}, \\\"3v4\\\": {\\\"auc_point\\\": 0.7977, \\\"ci_lower\\\": 0.7903, \\\"ci_upper\\\": 0.8051, \\\"perm_p\\\": 0.0001, \\\"ci_lower_gt_theta\\\": true}}, \\\"key_finding\\\": \\\"All 4 retrain-chain pairwise AUCs have CI_lower >> theta=0.60 (min CI_lower=0.7903). K*>=4 statistically confirmed with p<0.001.\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_feature_stability_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Prompt-chain K*=2 边界对 feature 子集选择 robust：即使从 15D 中随机抽取 5/8/10 维子集，Pythia-1.4B prompt-chain 1v2 AUC（baseline ~0.654）仍 > θ=0.60，证明 K*=2 不依赖特定特征组合。\\\", \\\"metrics\\\": {\\\"data_source\\\": \\\"exp_001_pythia prompt-chain (K*=2)\\\", \\\"results\\\": {\\\"15D\\\": {\\\"num_tested\\\": 1, \\\"num_pass\\\": 1, \\\"min_1v2_auc\\\": 0.6262, \\\"mean_1v2_auc\\\": 0.6262}, \\\"10D\\\": {\\\"num_tested\\\": 5, \\\"num_pass\\\": 5, \\\"min_1v2_auc\\\": 0.6153, \\\"mean_1v2_auc\\\": 0.6191}, \\\"8D\\\": {\\\"num_tested\\\": 5, \\\"num_pass\\\": 5, \\\"min_1v2_auc\\\": 0.6056, \\\"mean_1v2_auc\\\": 0.6159}, \\\"5D\\\": {\\\"num_tested\\\": 5, \\\"num_pass\\\": 2, \\\"min_1v2_auc\\\": 0.5856, \\\"mean_1v2_auc\\\": 0.5998}, \\\"3D_top3\\\": {\\\"num_tested\\\": 1, \\\"num_pass\\\": 0, \\\"min_1v2_auc\\\": 0.5871, \\\"mean_1v2_auc\\\": 0.5871}}, \\\"key_finding\\\": \\\"8+ features sufficient for robust K*=2 (all pass θ=0.60). 5D fragile (2/5 pass). Top-3 alone fails. Feature diversity matters at the K* boundary.\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_026_feature_stability\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"K*=2 对 feature 子集选择 robust：即使从 15D 特征中随机抽取 5/8/10 维子集，1v2 AUC 仍 > θ=0.60，证明 K* 边界不依赖特定特征组合（ad-hoc feature 防御）。\\\", \\\"metrics\\\": {\\\"data_source\\\": \\\"exp_016_qwen_base (prompt-chain, K*=2)\\\", \\\"results\\\": {\\\"15D\\\": {\\\"num_tested\\\": 1, \\\"num_kstar_2\\\": 1, \\\"min_1v2_auc\\\": 0.6262, \\\"mean_1v2_auc\\\": 0.6262}, \\\"10D\\\": {\\\"num_tested\\\": 5, \\\"num_kstar_2\\\": 5, \\\"min_1v2_auc\\\": 0.6153, \\\"mean_1v2_auc\\\": 0.6191}, \\\"8D\\\": {\\\"num_tested\\\": 5, \\\"num_kstar_2\\\": 5, \\\"min_1v2_auc\\\": 0.6056, \\\"mean_1v2_auc\\\": 0.6159}, \\\"5D\\\": {\\\"num_tested\\\": 5, \\\"num_kstar_2\\\": 2, \\\"min_1v2_auc\\\": 0.5856, \\\"mean_1v2_auc\\\": 0.5998}, \\\"3D_top3\\\": {\\\"num_tested\\\": 1, \\\"num_kstar_2\\\": 0, \\\"min_1v2_auc\\\": 0.5871, \\\"mean_1v2_auc\\\": 0.5871}}, \\\"all_above_theta\\\": false, \\\"key_finding\\\": \\\"Feature selection MATTERS at K*=2 boundary. 15D/10D/8D all robust (min 1v2 AUC > 0.60). 5D random subsets: only 2/5 pass θ=0.60 (min=0.5856). Top-3 features alone (0.5871) fail θ. Contrast with retrain-chain (K*=4) where all subsets trivially passed (min=0.8314).\\\", \\\"previous_run_note\\\": \\\"v1 used retrain-chain data (K*=4), where all subsets trivially passed with min 1v2 AUC=0.8314. v2 uses prompt-chain data (K*=2) to test boundary robustness.\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_027\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Document-level bootstrap CI (10000 iterations) on exp-008 v2 retrain-chain data will confirm that all 4 pairwise AUCs have CI_lower > theta=0.60, supporting K*>=4 with statistical significance.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"kstar_ci\\\": 4, \\\"0v1_auc\\\": 0.9847, \\\"0v1_ci\\\": [0.9828, 0.9864], \\\"0v1_perm_p\\\": 0.0001, \\\"1v2_auc\\\": 0.9482, \\\"1v2_ci\\\": [0.9443, 0.952], \\\"1v2_perm_p\\\": 0.0001, \\\"2v3_auc\\\": 0.8885, \\\"2v3_ci\\\": [0.8829, 0.894], \\\"2v3_perm_p\\\": 0.0001, \\\"3v4_auc\\\": 0.7977, \\\"3v4_ci\\\": [0.7903, 0.8051], \\\"3v4_perm_p\\\": 0.0001, \\\"all_ci_lower_above_theta\\\": true}}, \\\"exp_005_degradation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"cross_model_kendall_tau_by_first_auc\\\": {\\\"Pythia_vs_OLMo\\\": 0.733, \\\"Pythia_vs_Qwen_rewrite\\\": 0.467, \\\"Pythia_vs_Qwen_cont\\\": 0.695, \\\"OLMo_vs_Qwen_rewrite\\\": 0.429, \\\"OLMo_vs_Qwen_cont\\\": 0.543, \\\"Qwen_rewrite_vs_Qwen_cont\\\": 0.733}, \\\"cross_model_kendall_tau_by_avg_auc\\\": {\\\"Pythia_vs_OLMo\\\": 0.8476, \\\"Pythia_vs_Qwen_cont\\\": 0.7524, \\\"OLMo_vs_Qwen_cont\\\": 0.6762}, \\\"cross_model_spearman_rho_single_feature_auc\\\": {\\\"Pythia_vs_OLMo\\\": 0.95, \\\"Pythia_vs_Qwen_cont\\\": 0.9143, \\\"OLMo_vs_Qwen_cont\\\": 0.85, \\\"metric_definition\\\": \\\"Spearman ρ on per-feature AUC rankings (each feature independently classifies depth pairs)\\\"}, \\\"4model_tau_mean_continuation_by_first_auc\\\": 0.657, \\\"4model_tau_mean_all_by_first_auc\\\": 0.6, \\\"generation_mode_delta\\\": {\\\"Pythia_vs_Qwen\\\": \\\"+0.228\\\", \\\"OLMo_vs_Qwen\\\": \\\"+0.114\\\"}, \\\"top3_features_ranking_by_first_auc\\\": {\\\"Pythia\\\": [\\\"surp_d1_std\\\", \\\"surp_d2_std\\\", \\\"surp_std\\\"], \\\"OLMo\\\": [\\\"surp_std\\\", \\\"surp_d1_std\\\", \\\"surp_d2_std\\\"], \\\"Qwen_rewrite\\\": [\\\"freq_entropy\\\", \\\"surp_std\\\", \\\"surp_d1_std\\\"], \\\"Qwen_cont\\\": [\\\"surp_d1_std\\\", \\\"surp_std\\\", \\\"surp_d2_std\\\"]}, \\\"shared_top_discriminators\\\": \\\"surp_d1_std, surp_std, surp_d2_std shared across all architectures (single-feature AUC ranking)\\\", \\\"degradation_ordering_consistency\\\": \\\"Strong cross-model consistency (ρ≥0.85) on single-feature AUC ranking under controlled generation mode.\\\", \\\"residual_architecture_effect\\\": \\\"Qwen-cont vs OLMo (τ=0.54 by_first_auc) still lower than Pythia vs OLMo (τ=0.73), ~30-40% of ordering divergence from architecture\\\", \\\"limitation_1v2_weakness\\\": \\\"depth-pair level consistency weakest at 1v2 (τ~0.37), near-generational feature importance ordering varies more across models\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"hypothesis\\\": \\\"递归生成文本在统计特征空间中呈现单调退化趋势（如 perplexity 上升、词汇多样性下降），且退化速率在 K*=2 后显著减缓，这解释了为什么分类器在深代后失去区分力。\\\"}, \\\"exp_024_arxiv_domain\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Domain ablation: arXiv abstracts 数据下 K*=2 是否成立？验证 K* 跨数据域（C4 vs Wikipedia vs arXiv）的稳定性。Qwen2.5-1.5B base, continuation, nucleus p=0.95 T=1.0, 5K docs, depth 0-5。\\\", \\\"metrics\\\": {\\\"K_star\\\": 3, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9946, \\\"1v2\\\": 0.858, \\\"2v3\\\": 0.6427, \\\"3v4\\\": 0.5437, \\\"4v5\\\": 0.5294}, \\\"bootstrap_ci\\\": {\\\"0v1\\\": {\\\"auc\\\": 0.9946, \\\"ci_lower\\\": 0.9929, \\\"ci_upper\\\": 0.9961, \\\"perm_p\\\": 0.0001}, \\\"1v2\\\": {\\\"auc\\\": 0.858, \\\"ci_lower\\\": 0.848, \\\"ci_upper\\\": 0.8679, \\\"perm_p\\\": 0.0001}, \\\"2v3\\\": {\\\"auc\\\": 0.6427, \\\"ci_lower\\\": 0.6275, \\\"ci_upper\\\": 0.6575, \\\"perm_p\\\": 0.0001}, \\\"3v4\\\": {\\\"auc\\\": 0.5437, \\\"ci_lower\\\": 0.5276, \\\"ci_upper\\\": 0.5598, \\\"perm_p\\\": 0.0001}, \\\"4v5\\\": {\\\"auc\\\": 0.5294, \\\"ci_lower\\\": 0.5133, \\\"ci_upper\\\": 0.5455, \\\"perm_p\\\": 0.0006}}, \\\"bootstrap_resamples\\\": 10000, \\\"permutation_resamples\\\": 10000, \\\"key_finding\\\": \\\"arXiv domain K*=3 (CI-confirmed). 2v3 CI lower=0.6275 > θ=0.60. First condition with K*>2. 1v2 AUC=0.858 far exceeds C4/Wiki (~0.61-0.69).\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_017_qwen_continuation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Continuation mode 的 K* 应等于 rewrite mode（K*=2），因为 K* 饱和边界是递归生成的文本固有属性，与生成模式（续写 vs 改写）无关——两种模式在深代时都收敛到相同的统计吸引子。\\\", \\\"metrics\\\": {\\\"k_star\\\": 2, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9972, \\\"1v2\\\": 0.6114, \\\"2v3\\\": 0.5609, \\\"3v4\\\": 0.5408, \\\"4v5\\\": 0.5139}, \\\"pairwise_jsd\\\": {\\\"0v1\\\": 0.28627, \\\"1v2\\\": 0.005107, \\\"2v3\\\": 0.003603, \\\"3v4\\\": 0.003395, \\\"4v5\\\": 0.003085}, \\\"ordinal_mae\\\": 1.1547, \\\"ordinal_accuracy\\\": 0.3819, \\\"top3_features\\\": [\\\"freq_entropy\\\", \\\"surp_mean\\\", \\\"surp_std\\\"]}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_012_binary_confidence\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Binary detector confidence（DivEye log-PPL、Binoculars ratio）与 true generational depth 相关性弱（Spearman rho < 0.3），因为这些检测器将所有合成文本折叠为单一类别，无法区分 gen-1 和 gen-3+，暴露 binary 范式的信息损失。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n_samples\\\": 500, \\\"generators\\\": [\\\"qwen-rewrite\\\", \\\"pythia-1.4b\\\", \\\"olmo-1b\\\", \\\"qwen-cont\\\"], \\\"6class_accuracy\\\": {\\\"qwen-rewrite\\\": 0.1987, \\\"pythia-1.4b\\\": 0.1303, \\\"olmo-1b\\\": 0.127, \\\"qwen-cont\\\": 0.1833, \\\"random_baseline\\\": 0.1667}, \\\"spearman_rho\\\": {\\\"qwen-rewrite\\\": {\\\"log_ppl_ref\\\": -0.1233, \\\"log_ppl_obs\\\": 0.0815, \\\"ppl_ratio\\\": 0.1185}, \\\"pythia-1.4b\\\": {\\\"log_ppl_ref\\\": -0.2972, \\\"log_ppl_obs\\\": -0.4529, \\\"ppl_ratio\\\": -0.392}, \\\"olmo-1b\\\": {\\\"log_ppl_ref\\\": -0.378, \\\"log_ppl_obs\\\": -0.4614, \\\"ppl_ratio\\\": -0.4068}, \\\"qwen-cont\\\": {\\\"log_ppl_ref\\\": -0.3887, \\\"log_ppl_obs\\\": -0.162, \\\"ppl_ratio\\\": -0.058}}, \\\"binary_detector_kstar\\\": 1, \\\"obd_kstar\\\": 2, \\\"auc_non_monotonic\\\": true, \\\"key_finding\\\": \\\"Binary detectors (DivEye/Binoculars) K*≈1 vs OBD K*=2. 6-class accuracy ≤0.199 (random=0.167). Spearman |ρ|=0.06-0.46 (statistically significant but practically weak). AUC non-monotonic — binary detectors cannot maintain depth ordering. Confirms binary confidence ≠ depth estimation.\\\"}}, \\\"exp_C_permutation_10k\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"10K permutation resamples 不应改变任何 K* 结论（所有 p < 0.01 的 pair 仍应 p < 0.01），确认 500 resamples 已有足够精度，K*=2 结论的统计基础稳固。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"resamples\\\": 10000, \\\"all_boundary_pairs_p\\\": \\\"<0.0001\\\", \\\"key_finding\\\": \\\"10K permutation confirms all boundary p-values well below 0.01. FR-11 resolved.\\\"}}, \\\"exp_002_olmo_depth\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"K* 跨模型一致性验证：OLMo-1B 在相同种子数据和解码策略下的 K* 是否与 Qwen2.5-1.5B 一致（K*=2）\\\", \\\"metrics\\\": {\\\"k_star\\\": 2, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.997, \\\"1v2\\\": 0.6146, \\\"2v3\\\": 0.5497, \\\"3v4\\\": 0.509, \\\"4v5\\\": 0.5044}, \\\"pairwise_auc_std\\\": {\\\"0v1\\\": 0.0004, \\\"1v2\\\": 0.0029, \\\"2v3\\\": 0.004, \\\"3v4\\\": 0.0084, \\\"4v5\\\": 0.0136}, \\\"pairwise_jsd\\\": {\\\"0v1\\\": 0.23941, \\\"1v2\\\": 0.012972, \\\"2v3\\\": 0.00735, \\\"3v4\\\": 0.003968, \\\"4v5\\\": 0.003851}, \\\"ordinal_mae\\\": 1.1813, \\\"ordinal_accuracy\\\": 0.3685, \\\"top_features\\\": [\\\"surp_d1_mean\\\", \\\"surp_d1_skew\\\", \\\"freq_kurtosis\\\", \\\"surp_d2_mean\\\", \\\"surp_mean\\\"]}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_009_dose_50pct_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"50% synthetic injection 下 graduated filtering 应展现最大优势 >=2pp MMLU（v2: fix HF mirror）。机制同 v1：半数数据为合成时 binary 激进丢弃导致数据饥饿。\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_009_dose_30pct_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"30% synthetic injection 下 graduated filtering 优势应 >=1pp MMLU（v2: fix HF mirror）。机制同 v1：更高污染率下 binary 丢弃更多可用 gen-1 数据。\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_009_dose_10pct_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"10% synthetic injection 下 graduated filtering 应比 binary 保留 >=0.5pp MMLU（v2: fix HF mirror）。机制同 v1：低污染时 gen-1 有训练价值，binary 全丢造成数据损失。\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_009_dose_50pct\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"50% synthetic injection 下，graduated filtering 应展现最大优势（>=2pp MMLU），因为半数数据为合成时 binary filtering 的激进丢弃导致严重数据饥饿，而 graduated 保留 gen-1 维持训练集规模。\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_009_dose_30pct\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"30% synthetic injection 下，graduated filtering 优势应大于 10% 场景（>=1pp MMLU），因为更高污染率意味着 binary filtering 丢弃更多可用 gen-1 数据，而 graduated 仅移除 gen-2+ 有害部分。\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_009_dose_10pct\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"10% synthetic injection 下，graduated filtering 应比 binary filtering 保留更多 MMLU 性能（>=0.5pp），因为低污染场景中 gen-1 文本仍有训练价值，binary 全部丢弃造成不必要的数据损失。\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_kstar_theta\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"K*(θ) 曲线在 θ∈[0.55,0.65] 存在 plateau（K* 对阈值不敏感），且 Cohen's h 在 depth=K* 到 depth=K*+1 间降至 < 0.2（小效应量），为 θ=0.60 提供非任意性理论依据。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"output_files\\\": [\\\"kstar_theta_curve.pdf (32KB)\\\", \\\"kstar_theta_curve.png (335KB)\\\"], \\\"models\\\": [\\\"Qwen-rewrite\\\", \\\"Pythia\\\", \\\"OLMo\\\", \\\"Qwen-cont\\\"], \\\"depth_pairs\\\": 5, \\\"key_finding\\\": \\\"All 4 models show AUC ≥0.993 at 0v1, decaying to ~0.50-0.53 at 4v5. θ=0.60 is justified as natural K*=2 boundary across all models. FR-1 Critical resolved.\\\"}}, \\\"exp_022_cross_scorer_matrix\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Self-scoring（generator=scorer）的 K* 和 pairwise AUC 应与 cross-scoring（generator≠scorer）差异 < 0.02，证明 K*=2 不是 scorer-generator familiarity artifact，而是文本本身的可区分性边界。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_combos\\\": 12, \\\"completed\\\": 12, \\\"K_star_distribution\\\": {\\\"K2\\\": 11, \\\"K1\\\": 1}, \\\"matrix\\\": {\\\"pythia_greedy×olmo\\\": {\\\"K_star\\\": 2, \\\"1v2\\\": 0.8811}, \\\"pythia_greedy×pythia\\\": {\\\"K_star\\\": 2, \\\"1v2\\\": 0.8838}, \\\"pythia_greedy×qwen_base\\\": {\\\"K_star\\\": 2, \\\"1v2\\\": 0.8814}, \\\"pythia_greedy×qwen_instruct\\\": {\\\"K_star\\\": 2, \\\"1v2\\\": 0.8818}, \\\"qwen_base×olmo\\\": {\\\"K_star\\\": 2, \\\"1v2\\\": 0.6047}, \\\"qwen_base×pythia\\\": {\\\"K_star\\\": 2, \\\"1v2\\\": 0.617}, \\\"qwen_base×qwen_base\\\": {\\\"K_star\\\": 2, \\\"1v2\\\": 0.6262}, \\\"qwen_base×qwen_instruct\\\": {\\\"K_star\\\": 2, \\\"1v2\\\": 0.6273}, \\\"qwen_cont256×olmo\\\": {\\\"K_star\\\": 2, \\\"1v2\\\": 0.6028}, \\\"qwen_cont256×pythia\\\": {\\\"K_star\\\": 1, \\\"1v2\\\": 0.5979}, \\\"qwen_cont256×qwen_base\\\": {\\\"K_star\\\": 2, \\\"1v2\\\": 0.6282}, \\\"qwen_cont256×qwen_instruct\\\": {\\\"K_star\\\": 2, \\\"1v2\\\": 0.6072}}, \\\"key_finding\\\": \\\"Scorer independence confirmed: K*=2 in 11/12 combos. Only exception: qwen_cont256×pythia (1v2=0.5979, borderline). Pythia-greedy 1v2~0.88 due to repetition collapse. Scorer choice Δ1v2 < 0.025 within each generator.\\\"}}, \\\"exp_008_retrain_chain_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Retrain-chain ecological validity (v2, fix: labels padding bug): Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"metrics\\\": {\\\"k_star\\\": \\\">=4\\\", \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9847, \\\"1v2\\\": 0.9484, \\\"2v3\\\": 0.8888, \\\"3v4\\\": 0.7982}, \\\"pairwise_jsd\\\": {\\\"0v1\\\": 0.17, \\\"1v2\\\": 0.12, \\\"2v3\\\": 0.064, \\\"3v4\\\": 0.04}, \\\"key_finding\\\": \\\"Retrain-chain K*>=4, all pairs AUC>>0.60. LoRA adaptation artifacts make generations highly distinguishable. Prompt-chain K*=2 is text-intrinsic boundary.\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-008-retrain-chain\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp_025_pythia_arxiv\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Domain × model interaction: Pythia-1.4B on arXiv data 的 K* 是否与 exp-024 (Qwen on arXiv, K*=?) 一致？验证 arXiv domain effect 跨模型一致性，排除 Qwen-specific artifact。Pythia-1.4B continuation, nucleus p=0.95 T=1.0, 2200 docs, depth 0-5, scorer=Qwen2.5-1.5B base。\\\", \\\"metrics\\\": {\\\"k_star\\\": 3, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9877, \\\"1v2\\\": 0.8047, \\\"2v3\\\": 0.6545, \\\"3v4\\\": 0.5507, \\\"4v5\\\": 0.5287}, \\\"pairwise_jsd\\\": {\\\"0v1\\\": 0.171338, \\\"1v2\\\": 0.057344, \\\"2v3\\\": 0.019524, \\\"3v4\\\": 0.009917, \\\"4v5\\\": 0.008846}, \\\"bootstrap_ci\\\": {\\\"0v1\\\": {\\\"auc\\\": 0.9876, \\\"ci_lower\\\": 0.9851, \\\"ci_upper\\\": 0.99, \\\"perm_p\\\": 0.0001}, \\\"1v2\\\": {\\\"auc\\\": 0.8047, \\\"ci_lower\\\": 0.7934, \\\"ci_upper\\\": 0.8162, \\\"perm_p\\\": 0.0001}, \\\"2v3\\\": {\\\"auc\\\": 0.6544, \\\"ci_lower\\\": 0.6401, \\\"ci_upper\\\": 0.6688, \\\"perm_p\\\": 0.0001}, \\\"3v4\\\": {\\\"auc\\\": 0.55, \\\"ci_lower\\\": 0.534, \\\"ci_upper\\\": 0.5657, \\\"perm_p\\\": 0.0001}, \\\"4v5\\\": {\\\"auc\\\": 0.5284, \\\"ci_lower\\\": 0.5122, \\\"ci_upper\\\": 0.5443, \\\"perm_p\\\": 0.001}}, \\\"bootstrap_resamples\\\": 10000, \\\"permutation_resamples\\\": 10000, \\\"n_samples\\\": 2200, \\\"top_features\\\": [\\\"freq_entropy\\\", \\\"surp_std\\\", \\\"surp_mean\\\", \\\"surp_d1_skew\\\", \\\"surp_d1_mean\\\"], \\\"ordinal\\\": {\\\"MAE\\\": 0.8518, \\\"Accuracy\\\": 0.4545}, \\\"key_finding\\\": \\\"Pythia-1.4B on arXiv yields K*=3, identical to exp-024 (Qwen on arXiv). 2v3 CI lower=0.6401 > θ=0.60. Domain saturation depth is model-invariant for arXiv.\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_020_pythia_decoding\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Pythia-1.4B 解码消融：4 个 decoding config (greedy/nuc p=0.9/T=0.7/T=1.2) 的 K* 是否一致？与 exp-003 (Qwen) 平行，验证 decoding 效应跨模型一致性。C4 5K, depth 0-5。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"greedy\\\": {\\\"K_star\\\": 2, \\\"auc\\\": {\\\"0v1\\\": 0.9992, \\\"1v2\\\": 0.8838, \\\"2v3\\\": 0.5342, \\\"3v4\\\": 0.5228, \\\"4v5\\\": 0.5162}}, \\\"nuc09\\\": {\\\"K_star\\\": 2, \\\"auc\\\": {\\\"0v1\\\": 0.9948, \\\"1v2\\\": 0.677, \\\"2v3\\\": 0.5549, \\\"3v4\\\": 0.5299, \\\"4v5\\\": 0.5013}}, \\\"t07\\\": {\\\"K_star\\\": 2, \\\"auc\\\": {\\\"0v1\\\": 0.9965, \\\"1v2\\\": 0.7265, \\\"2v3\\\": 0.5941, \\\"3v4\\\": 0.5698, \\\"4v5\\\": 0.5284}}, \\\"t12\\\": {\\\"K_star\\\": 2, \\\"auc\\\": {\\\"0v1\\\": 0.9933, \\\"1v2\\\": 0.6172, \\\"2v3\\\": 0.5226, \\\"3v4\\\": 0.517, \\\"4v5\\\": 0.5051}}}}, \\\"exp_021_length_ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"文本长度消融：128/256/512 tokens 下 K* 是否稳定？验证 K*=2 不依赖于 256-token 固定长度设定。Qwen2.5-1.5B (base) continuation, C4 5K, depth 0-5。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"128tok\\\": {\\\"K_star\\\": 2, \\\"1v2_auc\\\": 0.6219}, \\\"256tok\\\": {\\\"K_star\\\": 2, \\\"1v2_auc\\\": 0.6282}, \\\"512tok\\\": {\\\"K_star\\\": 2, \\\"1v2_auc\\\": 0.6073}, \\\"all_K_star_2\\\": true, \\\"bootstrap_ci\\\": {\\\"512tok_1v2\\\": {\\\"auc\\\": 0.6073, \\\"ci_lower\\\": 0.5979, \\\"ci_upper\\\": 0.6166, \\\"perm_p\\\": 0.0001, \\\"verdict\\\": \\\"BORDERLINE\\\"}}}}, \\\"exp_018_llama8b_depth\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Cross-family K* 验证：LLaMA-3.1-8B continuation mode 的 K* 是否 = 2？首次超出 Qwen 家族，验证 K* universality 跨模型架构。C4 5K, depth 0-5, scorer=Qwen2.5-1.5B base。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"k_star\\\": 2, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9225, \\\"1v2\\\": 0.6123, \\\"2v3\\\": 0.5274, \\\"3v4\\\": 0.5138, \\\"4v5\\\": 0.5097}, \\\"jsd\\\": {\\\"0v1\\\": 0.077, \\\"1v2\\\": 0.012, \\\"2v3\\\": 0.005}, \\\"bootstrap_ci\\\": {\\\"0v1\\\": {\\\"auc\\\": 0.9224, \\\"ci_lower\\\": 0.9174, \\\"ci_upper\\\": 0.9272, \\\"perm_p\\\": 0.0001}, \\\"1v2\\\": {\\\"auc\\\": 0.6123, \\\"ci_lower\\\": 0.6028, \\\"ci_upper\\\": 0.6216, \\\"perm_p\\\": 0.0001}, \\\"2v3\\\": {\\\"auc\\\": 0.5273, \\\"ci_lower\\\": 0.5169, \\\"ci_upper\\\": 0.5378, \\\"perm_p\\\": 0.0001}, \\\"3v4\\\": {\\\"auc\\\": 0.5168, \\\"ci_lower\\\": 0.5062, \\\"ci_upper\\\": 0.5275, \\\"perm_p\\\": 0.0037}, \\\"4v5\\\": {\\\"auc\\\": 0.5159, \\\"ci_lower\\\": 0.5052, \\\"ci_upper\\\": 0.5268, \\\"perm_p\\\": 0.0035}}, \\\"bootstrap_resamples\\\": 10000, \\\"permutation_resamples\\\": 10000}}, \\\"exp_023_domain_ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Domain ablation: Wikipedia 数据下 K*=2 是否成立？验证 K* 跨数据域（C4 vs Wikipedia）的稳定性。Qwen2.5-1.5B base, continuation, nucleus p=0.95 T=1.0, 5K docs, depth 0-5。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"K_star\\\": 2, \\\"1v2_auc\\\": 0.6193, \\\"2v3_auc\\\": 0.5498, \\\"all_folds_above_060\\\": true, \\\"top_feature\\\": \\\"freq_entropy\\\", \\\"ordinal_accuracy\\\": 0.377}}, \\\"exp_019b_mistral_cross_scorer\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"排除 self-scorer 因素：Mistral-7B depth chain 用 Qwen2.5-1.5B-base 评分后 K* 是否=2？如果 K*=2 则 exp-019 的 K*=1 是 self-scorer artifact；如果 K*=1 则是 Mistral 生成文本的固有特性。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"k_star\\\": 1, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9209, \\\"1v2\\\": 0.5695, \\\"2v3\\\": 0.5335, \\\"3v4\\\": 0.514, \\\"4v5\\\": 0.5184}, \\\"bootstrap_ci\\\": {\\\"0v1\\\": {\\\"mean\\\": 0.9209, \\\"ci_lower\\\": 0.9189, \\\"ci_upper\\\": 0.9229, \\\"pass_060\\\": true}, \\\"1v2\\\": {\\\"mean\\\": 0.5696, \\\"ci_lower\\\": 0.5645, \\\"ci_upper\\\": 0.5746, \\\"pass_060\\\": false}, \\\"2v3\\\": {\\\"mean\\\": 0.5335, \\\"ci_lower\\\": 0.5283, \\\"ci_upper\\\": 0.5382, \\\"pass_060\\\": false}, \\\"3v4\\\": {\\\"mean\\\": 0.514, \\\"ci_lower\\\": 0.5063, \\\"ci_upper\\\": 0.5213, \\\"pass_060\\\": false}, \\\"4v5\\\": {\\\"mean\\\": 0.5183, \\\"ci_lower\\\": 0.5128, \\\"ci_upper\\\": 0.5244, \\\"pass_060\\\": false}}, \\\"jsd\\\": {\\\"0v1\\\": 0.08355, \\\"1v2\\\": 0.007642, \\\"2v3\\\": 0.004752, \\\"3v4\\\": 0.004255, \\\"4v5\\\": 0.003758}, \\\"ordinal_mae\\\": 1.3737, \\\"ordinal_accuracy\\\": 0.3179, \\\"top3_features\\\": [\\\"freq_entropy\\\", \\\"surp_d1_skew\\\", \\\"surp_d1_mean\\\"], \\\"key_finding\\\": \\\"Cross-scorer (Qwen-1.5B scoring Mistral text) confirms K*=1. 1v2 AUC=0.5695 (self-scorer was 0.5935) — cross-scorer LOWER, not higher. Mistral K*=1 is genuine (inherent to Mistral generations), NOT a self-scorer artifact.\\\"}}, \\\"exp_019_mistral7b_depth\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Cross-family K* 验证：Mistral-7B-v0.3 continuation mode 的 K* 是否 = 2？第二个非 Qwen 家族模型。C4 5K, depth 0-5, scorer=Mistral-7B-v0.3 (self-scorer)。与 exp-001/002/017 self-scoring 方法一致，exp_A_alt_scorer 已证明 scorer 不影响 K*。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"k_star\\\": 1, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9843, \\\"1v2\\\": 0.5935, \\\"2v3\\\": 0.5402, \\\"3v4\\\": 0.5232, \\\"4v5\\\": 0.5181}, \\\"bootstrap_ci_1v2\\\": {\\\"ci_lower\\\": 0.5835, \\\"ci_upper\\\": 0.6032, \\\"p_auc_leq_060\\\": 0.9017}, \\\"jsd\\\": {\\\"0v1\\\": 0.124194, \\\"1v2\\\": 0.008051, \\\"2v3\\\": 0.005047, \\\"3v4\\\": 0.004516, \\\"4v5\\\": 0.004109}, \\\"ordinal_mae\\\": 1.2275, \\\"ordinal_accuracy\\\": 0.3567, \\\"top3_features\\\": [\\\"freq_entropy\\\", \\\"surp_d1_skew\\\", \\\"surp_d1_mean\\\"]}}, \\\"exp_016_base_vs_instruct\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Base vs Instruct K* 对比：Qwen2.5-1.5B (base) continuation mode 的 K* 是否与 exp-017 (Instruct continuation, K*=2) 一致？封堵 \\\\\\\"K*=2 是 instruct-tuning 副产物\\\\\\\" 攻击面。唯一变量 = base vs instruct。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"k_star\\\": 2, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.987, \\\"1v2\\\": 0.6262, \\\"2v3\\\": 0.5496, \\\"3v4\\\": 0.5294, \\\"4v5\\\": 0.5182}, \\\"pairwise_auc_std\\\": {\\\"0v1\\\": 0.0015, \\\"1v2\\\": 0.0152, \\\"2v3\\\": 0.0067, \\\"3v4\\\": 0.0132, \\\"4v5\\\": 0.0139}, \\\"pairwise_jsd\\\": {\\\"0v1\\\": 0.163726, \\\"1v2\\\": 0.01081, \\\"2v3\\\": 0.005311, \\\"3v4\\\": 0.003942, \\\"4v5\\\": 0.003522}, \\\"ordinal_mae\\\": 1.1691, \\\"ordinal_accuracy\\\": 0.3719, \\\"top_features\\\": [\\\"freq_entropy\\\", \\\"surp_std\\\", \\\"surp_d1_skew\\\", \\\"surp_d1_mean\\\", \\\"surp_mean\\\"], \\\"n_samples\\\": 30000, \\\"bootstrap_ci\\\": {\\\"0v1\\\": {\\\"auc\\\": 0.987, \\\"ci_lower\\\": 0.9853, \\\"ci_upper\\\": 0.9885, \\\"perm_p\\\": 0.0001}, \\\"1v2\\\": {\\\"auc\\\": 0.626, \\\"ci_lower\\\": 0.6168, \\\"ci_upper\\\": 0.6353, \\\"perm_p\\\": 0.0001}, \\\"2v3\\\": {\\\"auc\\\": 0.5496, \\\"ci_lower\\\": 0.5397, \\\"ci_upper\\\": 0.56, \\\"perm_p\\\": 0.0001}, \\\"3v4\\\": {\\\"auc\\\": 0.5293, \\\"ci_lower\\\": 0.5188, \\\"ci_upper\\\": 0.5399, \\\"perm_p\\\": 0.0001}, \\\"4v5\\\": {\\\"auc\\\": 0.5181, \\\"ci_lower\\\": 0.5075, \\\"ci_upper\\\": 0.5288, \\\"perm_p\\\": 0.0016}}, \\\"bootstrap_resamples\\\": 10000, \\\"permutation_resamples\\\": 10000, \\\"key_finding\\\": \\\"K*=2 for base model confirmed with bootstrap CI. 1v2 AUC=0.626, 95% CI=[0.6168, 0.6353], CI lower=0.6168 > θ=0.60 (PASS). All pairs significant (p≤0.0016). Fold 0 1v2=0.5963 is an outlier but aggregate CI robustly above threshold. Base 1v2 CI [0.6168, 0.6353] overlaps with Instruct 1v2 CI [0.6015, 0.6213] — no significant base-vs-instruct difference.\\\"}}, \\\"exp_003_decoding_ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"解码策略调控 K*：不同 top_p/temperature 设置是否改变饱和边界（greedy→更低 K*? 高温度→更高 K*?）\\\", \\\"metrics\\\": {\\\"K_star\\\": 2, \\\"K_star_robust\\\": true, \\\"bootstrap_ci\\\": {\\\"config1_greedy\\\": {\\\"0v1\\\": {\\\"auc\\\": 0.9796, \\\"ci\\\": [0.9772, 0.982], \\\"perm_p\\\": 0}, \\\"1v2\\\": {\\\"auc\\\": 0.6892, \\\"ci\\\": [0.6802, 0.6982], \\\"perm_p\\\": 0}, \\\"2v3\\\": {\\\"auc\\\": 0.5612, \\\"ci\\\": [0.5517, 0.5705], \\\"perm_p\\\": 0}, \\\"3v4\\\": {\\\"auc\\\": 0.5405, \\\"ci\\\": [0.5308, 0.5502], \\\"perm_p\\\": 0}, \\\"4v5\\\": {\\\"auc\\\": 0.5137, \\\"ci\\\": [0.5033, 0.5238], \\\"perm_p\\\": 0.0082}}, \\\"config2_nuc09\\\": {\\\"0v1\\\": {\\\"auc\\\": 0.9945, \\\"ci\\\": [0.9934, 0.9956], \\\"perm_p\\\": 0}, \\\"1v2\\\": {\\\"auc\\\": 0.6862, \\\"ci\\\": [0.6774, 0.6951], \\\"perm_p\\\": 0}, \\\"2v3\\\": {\\\"auc\\\": 0.5917, \\\"ci\\\": [0.5824, 0.601], \\\"perm_p\\\": 0, \\\"note\\\": \\\"CI upper crosses theta=0.60\\\"}, \\\"3v4\\\": {\\\"auc\\\": 0.5468, \\\"ci\\\": [0.5369, 0.5568], \\\"perm_p\\\": 0}, \\\"4v5\\\": {\\\"auc\\\": 0.5066, \\\"ci\\\": [0.4959, 0.5173], \\\"perm_p\\\": 0.1199}}, \\\"config3_t07\\\": {\\\"0v1\\\": {\\\"auc\\\": 0.9877, \\\"ci\\\": [0.9857, 0.9896], \\\"perm_p\\\": 0}, \\\"1v2\\\": {\\\"auc\\\": 0.6885, \\\"ci\\\": [0.6797, 0.697], \\\"perm_p\\\": 0}, \\\"2v3\\\": {\\\"auc\\\": 0.5901, \\\"ci\\\": [0.5806, 0.5996], \\\"perm_p\\\": 0}, \\\"3v4\\\": {\\\"auc\\\": 0.539, \\\"ci\\\": [0.5288, 0.5493], \\\"perm_p\\\": 0}, \\\"4v5\\\": {\\\"auc\\\": 0.5348, \\\"ci\\\": [0.5243, 0.5454], \\\"perm_p\\\": 0}}, \\\"config4_t12\\\": {\\\"0v1\\\": {\\\"auc\\\": 0.9982, \\\"ci\\\": [0.9975, 0.9987], \\\"perm_p\\\": 0}, \\\"1v2\\\": {\\\"auc\\\": 0.7037, \\\"ci\\\": [0.6945, 0.7126], \\\"perm_p\\\": 0}, \\\"2v3\\\": {\\\"auc\\\": 0.582, \\\"ci\\\": [0.5722, 0.5917], \\\"perm_p\\\": 0}, \\\"3v4\\\": {\\\"auc\\\": 0.5293, \\\"ci\\\": [0.5185, 0.5399], \\\"perm_p\\\": 0}, \\\"4v5\\\": {\\\"auc\\\": 0.5237, \\\"ci\\\": [0.5132, 0.5347], \\\"perm_p\\\": 0.0001}}, \\\"resamples\\\": 10000, \\\"method\\\": \\\"GroupKFold(5) OOF + doc-level bootstrap + label permutation\\\"}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_004_7b_crossscale\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"K*=2 在 7B scale 下是否成立？Qwen2.5-7B continuation mode, C4 5K seeds, scorer=Qwen2.5-1.5B。Reviewer R2 Critical: 现有实验仅 ≤1.5B\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"k_star\\\": 2, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9644, \\\"1v2\\\": 0.6178, \\\"2v3\\\": 0.546, \\\"3v4\\\": 0.5225, \\\"4v5\\\": 0.5091}, \\\"pairwise_auc_std\\\": {\\\"0v1\\\": 0.0034, \\\"1v2\\\": 0.0081, \\\"2v3\\\": 0.0028, \\\"3v4\\\": 0.0113, \\\"4v5\\\": 0.0052}, \\\"bootstrap_ci\\\": {\\\"0v1\\\": {\\\"auc\\\": 0.9638, \\\"ci_lower\\\": 0.9607, \\\"ci_upper\\\": 0.9665, \\\"perm_p\\\": 0.0001}, \\\"1v2\\\": {\\\"auc\\\": 0.6168, \\\"ci_lower\\\": 0.6079, \\\"ci_upper\\\": 0.6261, \\\"perm_p\\\": 0.0001}, \\\"2v3\\\": {\\\"auc\\\": 0.5492, \\\"ci_lower\\\": 0.5388, \\\"ci_upper\\\": 0.5594, \\\"perm_p\\\": 0.0001}, \\\"3v4\\\": {\\\"auc\\\": 0.5276, \\\"ci_lower\\\": 0.517, \\\"ci_upper\\\": 0.5375, \\\"perm_p\\\": 0.0001}, \\\"4v5\\\": {\\\"auc\\\": 0.5085, \\\"ci_lower\\\": 0.4988, \\\"ci_upper\\\": 0.5191, \\\"perm_p\\\": 0.0676}}, \\\"bootstrap_resamples\\\": 1000, \\\"permutation_resamples\\\": 10000, \\\"pairwise_jsd\\\": {\\\"0v1\\\": 0.127422, \\\"1v2\\\": 0.010114, \\\"2v3\\\": 0.004798, \\\"3v4\\\": 0.004821, \\\"4v5\\\": 0.003335}, \\\"ordinal_mae\\\": 1.2156, \\\"ordinal_accuracy\\\": 0.3523, \\\"top_features\\\": [\\\"freq_entropy\\\", \\\"surp_d1_skew\\\", \\\"surp_std\\\", \\\"surp_d1_mean\\\", \\\"surp_mean\\\"], \\\"key_finding\\\": \\\"K*=2 confirmed at 7B scale with bootstrap CI. 1v2 CI lower=0.6079>0.60 (robust). 2v3 CI upper=0.5594<0.60. 4v5 only non-significant pair (p=0.0676). FR-4 Warning resolved.\\\"}}, \\\"exp_E_paired_stats\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"C3 filtering 策略间差异是否统计显著？Holm-Bonferroni 多重比较校正 + Cohen's d 效应量（FR-5 Warning）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"mmlu_significant_pairs\\\": \\\"8/15\\\", \\\"hellaswag_significant_pairs\\\": \\\"9/15\\\", \\\"binary_ours_vs_all_mmlu\\\": \\\"all significant\\\", \\\"max_cohen_d_mmlu\\\": 10.8, \\\"max_cohen_d_hellaswag\\\": 8.98, \\\"graduated_a09_vs_dsir_corrected_p\\\": 0.0523, \\\"cohen_d_method\\\": \\\"d_av (Lakens 2013)\\\", \\\"key_finding\\\": \\\"binary-ours significantly outperforms all alternatives on MMLU. On HellaSwag, binary-ours and graduated_a0.9 tied (p=1.0). FR-5 resolved. Holm-Bonferroni cummax bug fixed: MMLU 10/15→8/15. Cohen's d changed to d_av.\\\", \\\"bugfix_note\\\": \\\"Holm-Bonferroni cummax variable was never updated, causing 2 MMLU pairs to be incorrectly marked significant (graduated_a0.9 vs no-filter, surprisal vs dsir). Cohen's d changed from d_z to d_av (Lakens 2013).\\\"}}, \\\"exp_D_obd_n500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"OBD-LightGBM 在 N=500 子集上 accuracy 是否仍高于 LLM baselines？验证样本量匹配下的公平比较（FR-12 Warning）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"obd_accuracy_final\\\": 0.38, \\\"obd_ci\\\": [0.34, 0.422], \\\"mcnemar_vs_gpt55_p\\\": 0.0809, \\\"mcnemar_vs_claude_p\\\": 0.0693, \\\"mcnemar_significant\\\": false, \\\"multi_seed_std\\\": 0, \\\"per_depth\\\": {\\\"d0\\\": 0.96, \\\"d1\\\": 0.39, \\\"d2\\\": 0.14, \\\"d3\\\": 0.19, \\\"d4\\\": 0.22}, \\\"prob_merge_accuracy\\\": 0.444, \\\"prob_merge_d4_bias\\\": 0.8, \\\"note\\\": \\\"v2 logic (6-class argmax, no capping/merge) + seed=42. McNemar not significant — supports discussion.tex narrative\\\"}}, \\\"exp_B_14d_ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"移除 self_BLEU（14D vs 15D）后 K*=2 是否稳定？排除 self_BLEU information leakage（FR-3 Critical）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"result\\\": \\\"K*=2 stable across all 4 models after removing self_BLEU (14D)\\\", \\\"key_finding\\\": \\\"self_BLEU removal does not change K* boundary. FR-3 resolved.\\\"}}, \\\"exp_A_alt_scorer\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"替代 scorer (Pythia-1.4B, OLMo-1B) 计算 surprisal features 时，K*=2 是否仍成立？验证 K* 不依赖 scorer-generator 匹配（FR-2 Critical）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pythia_qwen_rw\\\": {\\\"k_star\\\": 2, \\\"auc_0v1\\\": 0.9923, \\\"auc_1v2\\\": 0.7012, \\\"auc_2v3\\\": 0.587, \\\"mae\\\": 1.006, \\\"accuracy\\\": 0.417, \\\"spearman_rho_vs_baseline\\\": 0.906}, \\\"pythia_qwen_cont\\\": {\\\"k_star\\\": 1, \\\"auc_0v1\\\": 0.99, \\\"auc_1v2\\\": 0.5923, \\\"auc_2v3\\\": null, \\\"mae\\\": 1.216, \\\"accuracy\\\": 0.371, \\\"spearman_rho_vs_baseline\\\": 0.942}, \\\"olmo_qwen_rw\\\": {\\\"k_star\\\": 2, \\\"auc_0v1\\\": 0.9918, \\\"auc_1v2\\\": 0.6947, \\\"auc_2v3\\\": null, \\\"mae\\\": 1.016, \\\"accuracy\\\": 0.413, \\\"spearman_rho_vs_baseline\\\": 0.92}, \\\"olmo_qwen_cont\\\": {\\\"k_star\\\": 1, \\\"auc_0v1\\\": 0.989, \\\"auc_1v2\\\": 0.5858, \\\"auc_2v3\\\": null, \\\"mae\\\": 1.229, \\\"accuracy\\\": 0.368, \\\"spearman_rho_vs_baseline\\\": 0.902}, \\\"key_finding\\\": \\\"K* splits by generator data, not scorer: Qwen-RW→K*=2, Qwen-cont→K*=1 (cross-scorer). Feature importance ρ≥0.90 across all 4 conditions confirms scorer independence of feature ranking.\\\"}}, \\\"exp_015_neural_probe\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Learned representations (frozen LLM → MLP) 的 K* 是否高于 hand-crafted 15D features？若 K*_neural > K*_15D，说明 15D projection 是 K*=2 的部分原因；若相同，加强 information-theoretic impossibility 论证\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pythia\\\": {\\\"k_star_neural\\\": 2, \\\"k_star_lgbm\\\": 2, \\\"accuracy\\\": 0.3892, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.966, \\\"1v2\\\": 0.676, \\\"2v3\\\": 0.596, \\\"3v4\\\": 0.555, \\\"4v5\\\": 0.532}}, \\\"olmo\\\": {\\\"k_star_neural\\\": 2, \\\"k_star_lgbm\\\": 2, \\\"accuracy\\\": 0.3729, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.95, \\\"1v2\\\": 0.657, \\\"2v3\\\": 0.589, \\\"3v4\\\": 0.547, \\\"4v5\\\": 0.53}}, \\\"qwen_cont\\\": {\\\"k_star_neural\\\": 3, \\\"k_star_lgbm\\\": 2, \\\"accuracy\\\": 0.4368, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.988, \\\"1v2\\\": 0.702, \\\"2v3\\\": 0.616, \\\"3v4\\\": 0.59, \\\"4v5\\\": 0.566}}, \\\"key_finding\\\": \\\"Neural probe K*_neural=2 for Pythia and OLMo (same as 15D), K*_neural=3 only for Qwen-cont (self-scorer). 2v3 AUC improved in all models vs LightGBM but only Qwen-cont crosses θ=0.60. K*=2 is robust for cross-model probes.\\\"}}, \\\"exp_006_graduated_filtering\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"K*-aware graduated filtering (exploiting human/gen-1/gen-2+ trichotomy) yields better downstream LM quality than binary filtering on MMLU and HellaSwag. 6 strategies × 5 seeds × α sweep.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"total_runs\\\": 51, \\\"binary_ours\\\": {\\\"mmlu\\\": \\\"0.5941±0.0008\\\", \\\"hellaswag\\\": \\\"0.6701±0.0006\\\"}, \\\"binary_drayson\\\": {\\\"mmlu\\\": \\\"0.5913±0.0009\\\", \\\"hellaswag\\\": \\\"0.6691±0.0004\\\"}, \\\"surprisal\\\": {\\\"mmlu\\\": \\\"0.5894±0.0009\\\", \\\"hellaswag\\\": \\\"0.6641±0.0006\\\"}, \\\"graduated_a09\\\": {\\\"mmlu\\\": \\\"0.5892±0.0008\\\", \\\"hellaswag\\\": \\\"0.6701±0.0007\\\"}, \\\"graduated_a07\\\": {\\\"mmlu\\\": \\\"0.5892±0.0014\\\", \\\"hellaswag\\\": \\\"0.6695±0.0004\\\"}, \\\"graduated_a05\\\": {\\\"mmlu\\\": \\\"0.5880±0.0013\\\", \\\"hellaswag\\\": \\\"0.6687±0.0008\\\"}, \\\"graduated_a03\\\": {\\\"mmlu\\\": \\\"0.5877±0.0013\\\", \\\"hellaswag\\\": \\\"0.6669±0.0005\\\"}, \\\"graduated_a01\\\": {\\\"mmlu\\\": \\\"0.5873±0.0019\\\", \\\"hellaswag\\\": \\\"0.6640±0.0009\\\"}, \\\"dsir\\\": {\\\"mmlu\\\": \\\"0.5869±0.0003\\\", \\\"hellaswag\\\": \\\"0.6631±0.0007\\\"}, \\\"no_filter\\\": {\\\"mmlu\\\": \\\"0.5865±0.0010\\\", \\\"hellaswag\\\": \\\"0.6638±0.0008\\\"}, \\\"base_model\\\": {\\\"mmlu\\\": \\\"0.6018\\\", \\\"hellaswag\\\": \\\"0.6821\\\"}, \\\"best_strategy\\\": \\\"binary-ours\\\", \\\"key_finding\\\": \\\"binary-ours is best filtering strategy. All strategies degrade vs base_model. Graduated α monotonically increasing confirms K*=2 boundary. DSIR below all other strategies except no-filter.\\\"}}, \\\"exp_007_bootstrap_ci\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"K* 统计严谨性验证：bootstrap 95% CI 和 permutation test 确认 K*=2 在三个模型族上统计显著\\\", \\\"metrics\\\": {\\\"qwen_rewrite\\\": {\\\"0v1\\\": {\\\"auc\\\": 0.9956, \\\"ci_lower\\\": 0.9946, \\\"ci_upper\\\": 0.9965, \\\"perm_p\\\": 0.002}, \\\"1v2\\\": {\\\"auc\\\": 0.6955, \\\"ci_lower\\\": 0.6859, \\\"ci_upper\\\": 0.7041, \\\"perm_p\\\": 0.002}, \\\"2v3\\\": {\\\"auc\\\": 0.5893, \\\"ci_lower\\\": 0.5795, \\\"ci_upper\\\": 0.5991, \\\"perm_p\\\": 0.002}, \\\"3v4\\\": {\\\"auc\\\": 0.5435, \\\"ci_lower\\\": 0.5333, \\\"ci_upper\\\": 0.5551, \\\"perm_p\\\": 0.002}, \\\"4v5\\\": {\\\"auc\\\": 0.534, \\\"ci_lower\\\": 0.5238, \\\"ci_upper\\\": 0.5448, \\\"perm_p\\\": 0.002}}, \\\"pythia_cont\\\": {\\\"0v1\\\": {\\\"auc\\\": 0.9932, \\\"ci_lower\\\": 0.9921, \\\"ci_upper\\\": 0.9943, \\\"perm_p\\\": 0.002}, \\\"1v2\\\": {\\\"auc\\\": 0.6539, \\\"ci_lower\\\": 0.6454, \\\"ci_upper\\\": 0.663, \\\"perm_p\\\": 0.002}, \\\"2v3\\\": {\\\"auc\\\": 0.5514, \\\"ci_lower\\\": 0.5417, \\\"ci_upper\\\": 0.5628, \\\"perm_p\\\": 0.002}, \\\"3v4\\\": {\\\"auc\\\": 0.5152, \\\"ci_lower\\\": 0.5041, \\\"ci_upper\\\": 0.526, \\\"perm_p\\\": 0.006}, \\\"4v5\\\": {\\\"auc\\\": 0.5136, \\\"ci_lower\\\": 0.5021, \\\"ci_upper\\\": 0.5249, \\\"perm_p\\\": 0.008}}, \\\"olmo_cont\\\": {\\\"0v1\\\": {\\\"auc\\\": 0.997, \\\"ci_lower\\\": 0.9964, \\\"ci_upper\\\": 0.9975, \\\"perm_p\\\": 0.002}, \\\"1v2\\\": {\\\"auc\\\": 0.6145, \\\"ci_lower\\\": 0.6045, \\\"ci_upper\\\": 0.6247, \\\"perm_p\\\": 0.002}, \\\"2v3\\\": {\\\"auc\\\": 0.5496, \\\"ci_lower\\\": 0.5399, \\\"ci_upper\\\": 0.5596, \\\"perm_p\\\": 0.002}, \\\"3v4\\\": {\\\"auc\\\": 0.5091, \\\"ci_lower\\\": 0.4973, \\\"ci_upper\\\": 0.52, \\\"perm_p\\\": 0.064}, \\\"4v5\\\": {\\\"auc\\\": 0.5045, \\\"ci_lower\\\": 0.4932, \\\"ci_upper\\\": 0.515, \\\"perm_p\\\": 0.232}}, \\\"qwen_cont\\\": {\\\"0v1\\\": {\\\"auc\\\": 0.9971, \\\"ci_lower\\\": 0.9963, \\\"ci_upper\\\": 0.9978, \\\"perm_p\\\": 0.002}, \\\"1v2\\\": {\\\"auc\\\": 0.6112, \\\"ci_lower\\\": 0.6015, \\\"ci_upper\\\": 0.6213, \\\"perm_p\\\": 0.002}, \\\"2v3\\\": {\\\"auc\\\": 0.5609, \\\"ci_lower\\\": 0.5511, \\\"ci_upper\\\": 0.5712, \\\"perm_p\\\": 0.002}, \\\"3v4\\\": {\\\"auc\\\": 0.5409, \\\"ci_lower\\\": 0.5308, \\\"ci_upper\\\": 0.5508, \\\"perm_p\\\": 0.002}, \\\"4v5\\\": {\\\"auc\\\": 0.5141, \\\"ci_lower\\\": 0.5035, \\\"ci_upper\\\": 0.5255, \\\"perm_p\\\": 0.006}}, \\\"k_star_robust\\\": true, \\\"all_1v2_ci_lower_above_060\\\": true, \\\"most_marginal\\\": \\\"Qwen-cont CI lower=0.6015, only 0.0015 above threshold\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_011_llm_zeroshot\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Frontier LLMs (GPT-5.5, Claude Opus 4.6) cannot reliably estimate generational depth via zero-shot prompting, motivating the need for specialized statistical methods\\\", \\\"metrics\\\": {\\\"gpt55_5class_acc\\\": 0.332, \\\"gpt55_mae\\\": 1.102, \\\"gpt55_spearman\\\": 0.383, \\\"gpt55_binary_acc\\\": 0.878, \\\"claude_5class_acc\\\": 0.331, \\\"claude_mae\\\": 1.15, \\\"claude_spearman\\\": 0.416, \\\"claude_binary_acc\\\": 0.882, \\\"odb_baseline_5class_acc\\\": 0.386, \\\"odb_baseline_mae\\\": 1.107, \\\"gpt55_per_depth_acc\\\": {\\\"depth_0\\\": 0.77, \\\"depth_1\\\": 0.19, \\\"depth_2\\\": 0.38, \\\"depth_3\\\": 0.24, \\\"depth_4\\\": 0.08}, \\\"claude_per_depth_acc\\\": {\\\"depth_0\\\": 0.69, \\\"depth_1\\\": 0.21, \\\"depth_2\\\": 0.28, \\\"depth_3\\\": 0.101, \\\"depth_4\\\": 0.37}, \\\"n_samples_per_model\\\": 500, \\\"key_finding\\\": \\\"Both frontier LLMs (GPT-5.5, Claude Opus 4.6) perform WORSE than OBD-LightGBM on 5-class depth estimation (~33% vs 38.6% acc). Binary human/AI detection is high (~88%) but fine-grained depth discrimination fails.\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_013_cross_transfer\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Depth signal 是文本固有属性还是 model self-familiarity artifact？4×4 cross-model transfer matrix 测试分类器跨模型泛化能力\\\", \\\"metrics\\\": {\\\"accuracy_matrix\\\": {\\\"Qwen_rw→Qwen_rw\\\": 0.4229, \\\"Qwen_rw→Pythia\\\": 0.259, \\\"Qwen_rw→OLMo\\\": 0.2653, \\\"Qwen_rw→Qwen_cont\\\": 0.3466, \\\"Pythia→Qwen_rw\\\": 0.2718, \\\"Pythia→Pythia\\\": 0.3856, \\\"Pythia→OLMo\\\": 0.3531, \\\"Pythia→Qwen_cont\\\": 0.3287, \\\"OLMo→Qwen_rw\\\": 0.2768, \\\"OLMo→Pythia\\\": 0.345, \\\"OLMo→OLMo\\\": 0.3822, \\\"OLMo→Qwen_cont\\\": 0.3244, \\\"Qwen_cont→Qwen_rw\\\": 0.344, \\\"Qwen_cont→Pythia\\\": 0.3284, \\\"Qwen_cont→OLMo\\\": 0.3112, \\\"Qwen_cont→Qwen_cont\\\": 0.3875}, \\\"transfer_retention_accuracy\\\": {\\\"Pythia↔OLMo\\\": \\\"91-92%\\\", \\\"Qwen_rw→Pythia/OLMo\\\": \\\"61-63%\\\", \\\"Qwen_cont↔Pythia\\\": \\\"83-85%\\\", \\\"Qwen_cont↔OLMo\\\": \\\"80-85%\\\"}, \\\"transfer_retention_tau\\\": {\\\"Pythia↔OLMo\\\": \\\"85-86%\\\", \\\"Qwen_rw→Pythia/OLMo\\\": \\\"45-50%\\\", \\\"Qwen_cont↔others\\\": \\\"68-83%\\\"}, \\\"mean_pw_auc_matrix\\\": {\\\"within_avg\\\": 0.6099, \\\"cross_avg\\\": 0.5905, \\\"0v1_cross_all_above\\\": 0.96}, \\\"key_finding\\\": \\\"depth signal ≈ 70-85% text-intrinsic + 15-30% model self-familiarity. Binary contamination detection (0v1) highly transferable (>0.96 AUC). Fine-grained depth transfer depends on model family similarity. Qwen-rewrite overfits style features; Qwen-cont transfers much better.\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_010_ordinal_baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Ordinal structure improves depth classification: ordinal methods should outperform unordered multiclass on MAE\\\", \\\"metrics\\\": {\\\"qwen_rewrite\\\": {\\\"obd_lgbm\\\": {\\\"accuracy\\\": 0.4229, \\\"mae\\\": 0.9836, \\\"tau_b\\\": 0.5518, \\\"mean_pw_auc\\\": 0.6214}, \\\"multiclass_lgbm\\\": {\\\"accuracy\\\": 0.4182, \\\"mae\\\": 1.0163, \\\"tau_b\\\": 0.5367, \\\"mean_pw_auc\\\": 0.6246}, \\\"ordinal_logreg\\\": {\\\"accuracy\\\": 0.3636, \\\"mae\\\": 0.9105, \\\"tau_b\\\": 0.563, \\\"mean_pw_auc\\\": 0.5022}}, \\\"pythia\\\": {\\\"obd_lgbm\\\": {\\\"accuracy\\\": 0.3856, \\\"mae\\\": 1.1072, \\\"tau_b\\\": 0.4745, \\\"mean_pw_auc\\\": 0.6055}, \\\"multiclass_lgbm\\\": {\\\"accuracy\\\": 0.3832, \\\"mae\\\": 1.1399, \\\"tau_b\\\": 0.4622, \\\"mean_pw_auc\\\": 0.6062}, \\\"ordinal_logreg\\\": {\\\"accuracy\\\": 0.3179, \\\"mae\\\": 1.022, \\\"tau_b\\\": 0.49, \\\"mean_pw_auc\\\": 0.4767}}, \\\"olmo\\\": {\\\"obd_lgbm\\\": {\\\"accuracy\\\": 0.3822, \\\"mae\\\": 1.1469, \\\"tau_b\\\": 0.4683, \\\"mean_pw_auc\\\": 0.6015}, \\\"multiclass_lgbm\\\": {\\\"accuracy\\\": 0.3685, \\\"mae\\\": 1.1813, \\\"tau_b\\\": 0.4497, \\\"mean_pw_auc\\\": 0.5974}, \\\"ordinal_logreg\\\": {\\\"accuracy\\\": 0.3265, \\\"mae\\\": 1.0352, \\\"tau_b\\\": 0.4656, \\\"mean_pw_auc\\\": 0.4859}}}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_001_pythia_depth\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"K* 跨模型一致性验证：Pythia-1.4B 在相同种子数据和解码策略下的 K* 是否与 Qwen2.5-1.5B 一致（K*=2）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9932, \\\"1v2\\\": 0.6539, \\\"2v3\\\": 0.5515, \\\"3v4\\\": 0.5153, \\\"4v5\\\": 0.5135}, \\\"pairwise_auc_std\\\": {\\\"0v1\\\": 0.0007, \\\"1v2\\\": 0.0069, \\\"2v3\\\": 0.0137, \\\"3v4\\\": 0.0084, \\\"4v5\\\": 0.0078}, \\\"pairwise_jsd\\\": {\\\"0v1\\\": 0.2142, \\\"1v2\\\": 0.014, \\\"2v3\\\": 0.0051, \\\"3v4\\\": 0.0033, \\\"4v5\\\": 0.0031}, \\\"k_star\\\": 2, \\\"ordinal_mae\\\": 1.14, \\\"ordinal_accuracy\\\": 0.383}}, \\\"mvp_pilot_sat_v1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"递归生成文本在统计特征空间上存在可分辨的代际差异，且差异随深度呈系统性趋势（K* ≥ 3）\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9956, \\\"1v2\\\": 0.6957, \\\"2v3\\\": 0.5893, \\\"3v4\\\": 0.5434, \\\"4v5\\\": 0.5343}, \\\"pairwise_auc_std\\\": {\\\"0v1\\\": 0.0005, \\\"1v2\\\": 0.0072, \\\"2v3\\\": 0.012, \\\"3v4\\\": 0.0053, \\\"4v5\\\": 0.0091}, \\\"pairwise_jsd\\\": {\\\"0v1\\\": 0.2669, \\\"1v2\\\": 0.0163, \\\"2v3\\\": 0.0069, \\\"3v4\\\": 0.0047, \\\"4v5\\\": 0.0041}, \\\"k_star\\\": 2, \\\"ordinal_mae\\\": 1.0163, \\\"ordinal_accuracy\\\": 0.4182}}}, \\\"count\\\": 59, \\\"total\\\": 59, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2745}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_wiki_scorer_confound_1b5\": {\"status\": \"DONE\", \"hypothesis\": \"Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。\", \"conclusion\": \"negative\", \"metrics\": {\"k_star\": 1, \"confound_verdict\": \"confirmed\", \"auc_0v1\": 0.9729, \"auc_1v2\": 0.5994, \"auc_2v3\": 0.533, \"auc_3v4\": 0.5214, \"auc_4v5\": 0.5068, \"jsd_0v1\": 0.0886, \"ordinal_mae\": 1.2995, \"ordinal_accuracy\": 0.3466}}, \"exp_wiki_scorer_confound\": {\"status\": \"DONE\", \"hypothesis\": \"Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。\", \"conclusion\": \"negative\", \"metrics\": {\"k_star\": 1, \"confound_verdict\": \"confirmed\", \"auc_0v1\": 0.9404, \"auc_1v2\": 0.587, \"auc_2v3\": 0.5456, \"auc_3v4\": 0.525, \"auc_4v5\": 0.5172, \"critical_delta_1v2\": -0.0238}}, \"exp_wiki_qwen7b\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-scale Wikipedia K* validation: Qwen2.5-7B continuation on Wikipedia 的 K* 是否 = 2？Qwen2.5-1.5B 在 Wikipedia K*=2（唯一维持 K*=2 的模型），Pythia/OLMo/均 K*=1。测试 7B 规模是否仍维持 Qwen 家族在 Wikipedia 上的 K*=2 pattern。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"success\", \"metrics\": {\"K_star\": 2, \"auc_0v1\": 0.9673, \"auc_1v2\": 0.6108, \"auc_2v3\": 0.5562, \"auc_3v4\": 0.5297, \"auc_4v5\": 0.529, \"jsd_0v1\": 0.083514, \"jsd_1v2\": 0.010991, \"jsd_2v3\": 0.00555, \"jsd_3v4\": 0.004611, \"jsd_4v5\": 0.003894, \"ordinal_mae\": 1.2501, \"ordinal_accuracy\": 0.3532}}, \"exp_wiki_mistral7b\": {\"status\": \"DONE\", \"hypothesis\": \"Mistral-7B Wikipedia K* test: Mistral-7B-v0.3 在 C4 上 K*=1 (text-intrinsic one-wash)。在 Wikipedia domain 上是否仍 K*=1？Pythia/OLMo 在 Wikipedia 均 K*=1，Qwen K*=2。如果 Mistral K*=1 → 确认 one-wash 跨域成立；如果 K*>1 → Wikipedia 有 rescue Mistral 的结构信号（与预期相反）。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"success\", \"metrics\": {\"K_star\": 1, \"ordinal_mae\": 1.3445, \"ordinal_accuracy\": 0.3273, \"auc_0v1\": 0.9607, \"auc_1v2\": 0.5552, \"auc_2v3\": 0.5236, \"auc_3v4\": 0.5181, \"auc_4v5\": 0.5012, \"jsd_0v1\": 0.054134, \"jsd_1v2\": 0.005678, \"jsd_2v3\": 0.003698, \"jsd_3v4\": 0.003459, \"jsd_4v5\": 0.003274}}, \"exp_wiki_llama8b\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-scale Wikipedia K* validation: LLaMA-3.1-8B continuation on Wikipedia 的 K* 是否 = 2？Pythia-1.4B K*=1, Qwen-1.5B K*=2, OLMo-1B K*=1。测试 8B scale 是否能在 Wikipedia 均质 domain 上维持 K*=2（scale 是否是决定因素）。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"negative\", \"metrics\": {\"K_star\": 1, \"ordinal_mae\": 1.2954, \"ordinal_accuracy\": 0.3313, \"auc_0v1\": 0.9316, \"auc_1v2\": 0.5954, \"auc_2v3\": 0.5392, \"auc_3v4\": 0.5221, \"auc_4v5\": 0.5212, \"jsd_0v1\": 0.06169, \"jsd_1v2\": 0.00931}}, \"exp_arXiv_qwen7b\": {\"status\": \"DONE\", \"hypothesis\": \"Qwen2.5-7B on arXiv abstracts will yield K*=3, validating that structured domain K*=3 is stable within the Qwen family across scales (1.5B vs 7B)\", \"metrics\": {\"k_star\": 3, \"pairwise_auc\": {\"0v1\": 0.983, \"1v2\": 0.835, \"2v3\": 0.626, \"3v4\": 0.544, \"4v5\": 0.513}, \"pairwise_jsd\": {\"0v1\": 0.1656, \"1v2\": 0.0668, \"2v3\": 0.0156, \"3v4\": 0.0089, \"4v5\": 0.0061}, \"ordinal_mae\": 0.9, \"ordinal_accuracy\": 0.446}, \"conclusion\": \"success\"}, \"exp_arXiv_mistral7b\": {\"status\": \"DONE\", \"hypothesis\": \"Mistral-7B arXiv K* test: Mistral-7B-v0.3 在 C4 上 K*=1 (one-wash model)。在 arXiv structured domain 上是否仍 K*=1？如果 K*=1 → 确认 Mistral 的 one-wash 是 text-intrinsic (与 domain 无关)；如果 K*>1 → domain complexity 可以 rescue one-wash models，K* 同时受 model 和 domain 驱动。2200 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"success\", \"metrics\": {\"k_star\": 3, \"pairwise_auc\": {\"0v1\": 0.9848, \"1v2\": 0.8201, \"2v3\": 0.6275, \"3v4\": 0.5295, \"4v5\": 0.5295}, \"jsd\": {\"0v1\": 0.14249, \"1v2\": 0.076232, \"2v3\": 0.018972, \"3v4\": 0.009908, \"4v5\": 0.008877}, \"ordinal_mae\": 0.8958, \"ordinal_accuracy\": 0.4474, \"top_features\": [\"freq_entropy\", \"surp_std\", \"surp_d1_skew\", \"surp_mean\", \"surp_d2_mean\"]}}, \"exp_arXiv_llama8b\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-architecture arXiv K* validation: LLaMA-3.1-8B continuation on arXiv abstracts 的 K* 是否 = 3？验证 structured domain K*=3 在大模型（8B scale）上是否成立，排除小模型 capacity artifact。2200 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"success\", \"metrics\": {\"K_star\": 3, \"auc_0v1\": 0.9754, \"auc_1v2\": 0.8447, \"auc_2v3\": 0.6215, \"auc_3v4\": 0.5362, \"auc_4v5\": 0.5331, \"jsd_0v1\": 0.1296, \"jsd_1v2\": 0.0785, \"jsd_2v3\": 0.0177, \"ordinal_acc\": 0.4549, \"ordinal_mae\": 0.8806}}, \"exp_wiki_pythia_v2\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-model Wikipedia K* validation (v2 fix): Pythia-1.4B continuation on Wikipedia 的 K* 是否 = 2？使用独立 data_dir 避免 v1 的 data reuse bug，让 pipeline 用 Pythia 重新生成 depth 1-5。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"negative\", \"metrics\": {\"K_star\": 1, \"auc_0v1\": 0.975, \"auc_1v2\": 0.5846, \"auc_2v3\": 0.5445, \"auc_3v4\": 0.5205, \"auc_4v5\": 0.5168, \"jsd_0v1\": 0.080065, \"jsd_1v2\": 0.007773, \"ordinal_acc\": 0.3503}}, \"exp_wiki_olmo_v2\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-model Wikipedia K* validation (v2 fix): OLMo-1B continuation on Wikipedia 的 K* 是否 = 2？使用独立 data_dir 避免 v1 的 data reuse bug，让 pipeline 用 OLMo 重新生成 depth 1-5。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"negative\", \"metrics\": {\"K_star\": 1, \"auc_0v1\": 0.9932, \"auc_1v2\": 0.4986, \"auc_2v3\": 0.5012, \"auc_3v4\": 0.5057, \"auc_4v5\": 0.5009, \"jsd_0v1\": 0.1688, \"ordinal_acc\": 0.3227}}, \"exp_arXiv_olmo\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-model arXiv K* validation: OLMo-1B continuation on arXiv abstracts 的 K* 是否 = 3（与 exp-024 Qwen 和 exp-025 Pythia 一致）？验证 structured domain K*=3 跨第三个模型架构（OLMo）的稳定性。2200 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"negative\", \"metrics\": {\"K_star\": 1, \"auc_0v1\": 0.9958, \"auc_1v2\": 0.5034, \"auc_2v3\": 0.5069, \"auc_3v4\": 0.5021, \"auc_4v5\": 0.5037, \"jsd_0v1\": 0.329, \"ordinal_acc\": 0.33}}, \"exp_wiki_olmo\": {\"status\": \"DONE\", \"hypothesis\": \"OLMo-1B continuation on Wikipedia domain will show K*=2 depth saturation pattern consistent with Qwen2.5-1.5B, demonstrating cross-model generality of the distinguishability decay phenomenon.\", \"conclusion\": \"failed\"}, \"exp_wiki_pythia\": {\"status\": \"DONE\", \"hypothesis\": \"Pythia-1.4B continuation on Wikipedia domain will show K*=2 depth saturation pattern consistent with Qwen2.5-1.5B, demonstrating cross-model generality of the distinguishability decay phenomenon.\", \"conclusion\": \"failed\"}, \"exp_009_dose_response\": {\"status\": \"DONE\", \"hypothesis\": \"Contamination dose-response: 在 10%/30%/50% synthetic injection 比例下，graduated filtering 相对 binary filtering 的收益是否随 contamination 增加而扩大？验证 C3 (graduated filtering superiority) 在不同 contamination severity 下的 robustness。3 ratios × 3 strategies (no-filter/binary/graduated) × 5 seeds, continued pretraining Qwen2.5-1.5B, eval MMLU+HellaSwag.\", \"metrics\": {\"total_runs\": 45, \"seeds\": 5, \"ratios\": [0.1, 0.3, 0.5], \"strategies\": [\"no_filter\", \"binary_ours\", \"graduated\"], \"cross_ratio_finding\": \"Binary filtering consistently best across all ratios. Graduated filtering = no_filter at every ratio. Effect size of binary advantage increases with contamination ratio (HellaSwag delta: 10%=+0.38pp, 30%=+0.61pp, 50%=+0.51pp). Original C3 hypothesis (graduated > binary) rejected.\", \"gpu_hours_total\": 9.9}, \"conclusion\": \"success\"}, \"exp_009_dose_50pct_v3\": {\"status\": \"DONE\", \"hypothesis\": \"50% synthetic injection 下 graduated filtering 应展现最大优势 >=2pp MMLU（v3: fix OOM, auto batch + offline）。半数数据为合成时 binary 激进丢弃导致数据饥饿。\", \"metrics\": {\"seeds\": 5, \"strategies\": 3, \"total_runs\": 15, \"mean_std\": {\"no_filter\": {\"mmlu\": \"0.6063±0.0013\", \"hellaswag\": \"0.6680±0.0005\"}, \"binary_ours\": {\"mmlu\": \"0.6088±0.0011\", \"hellaswag\": \"0.6731±0.0004\"}, \"graduated\": {\"mmlu\": \"0.6062±0.0009\", \"hellaswag\": \"0.6679±0.0002\"}}, \"paired_ttest\": {\"binary_vs_nofilter\": {\"delta_mmlu\": 0.0025, \"p_mmlu\": 0.0377, \"delta_hellaswag\": 0.0051, \"p_hellaswag\": 2e-05}, \"graduated_vs_binary\": {\"delta_mmlu\": -0.0026, \"p_mmlu\": 0.0257, \"delta_hellaswag\": -0.0052, \"p_hellaswag\": 3e-05}, \"graduated_vs_nofilter\": {\"delta_mmlu\": -0.0001, \"p_mmlu\": 0.89, \"delta_hellaswag\": -0.0001, \"p_hellaswag\": 0.706}}, \"key_finding\": \"Binary significantly best (HellaSwag p<0.001). Graduated = no_filter exactly.\"}, \"conclusion\": \"success\"}, \"exp_009_dose_30pct_v3\": {\"status\": \"DONE\", \"hypothesis\": \"30% synthetic injection 下 graduated filtering 优势应 >=1pp MMLU（v3: fix OOM, auto batch + offline）。更高污染率下 binary 丢弃更多可用 gen-1 数据。\", \"metrics\": {\"seeds\": 5, \"strategies\": 3, \"total_runs\": 15, \"mean_std\": {\"no_filter\": {\"mmlu\": \"0.6069±0.0007\", \"hellaswag\": \"0.6664±0.0020\"}, \"binary_ours\": {\"mmlu\": \"0.6082±0.0012\", \"hellaswag\": \"0.6725±0.0007\"}, \"graduated\": {\"mmlu\": \"0.6072±0.0008\", \"hellaswag\": \"0.6665±0.0014\"}}, \"paired_ttest\": {\"binary_vs_nofilter\": {\"delta_mmlu\": 0.0013, \"p_mmlu\": 0.0739, \"delta_hellaswag\": 0.0061, \"p_hellaswag\": 0.0036}, \"graduated_vs_binary\": {\"delta_mmlu\": -0.001, \"p_mmlu\": 0.3018, \"delta_hellaswag\": -0.006, \"p_hellaswag\": 0.0009}, \"graduated_vs_nofilter\": {\"delta_mmlu\": 0.0003, \"p_mmlu\": 0.6638, \"delta_hellaswag\": 0.0002, \"p_hellaswag\": 0.6646}}, \"key_finding\": \"Binary best on HellaSwag (p=0.004). Graduated = no_filter.\"}, \"conclusion\": \"success\"}, \"exp_009_dose_10pct_v3\": {\"status\": \"DONE\", \"hypothesis\": \"10% synthetic injection 下 graduated filtering 应比 binary 保留 >=0.5pp MMLU（v3: fix OOM, auto batch + offline）。低污染时 gen-1 有训练价值，binary 全丢造成数据损失。\", \"metrics\": {\"seeds\": 5, \"strategies\": 3, \"total_runs\": 15, \"mean_std\": {\"no_filter\": {\"mmlu\": \"0.6058±0.0002\", \"hellaswag\": \"0.6689±0.0007\"}, \"binary_ours\": {\"mmlu\": \"0.6079±0.0005\", \"hellaswag\": \"0.6727±0.0008\"}, \"graduated\": {\"mmlu\": \"0.6066±0.0011\", \"hellaswag\": \"0.6700±0.0015\"}}, \"paired_ttest\": {\"binary_vs_nofilter\": {\"delta_mmlu\": 0.0021, \"p_mmlu\": 0.001, \"delta_hellaswag\": 0.0038, \"p_hellaswag\": 0.0017}, \"graduated_vs_binary\": {\"delta_mmlu\": -0.0014, \"p_mmlu\": 0.0917, \"delta_hellaswag\": -0.0027, \"p_hellaswag\": 0.0399}, \"graduated_vs_nofilter\": {\"delta_mmlu\": 0.0008, \"p_mmlu\": 0.2706, \"delta_hellaswag\": 0.0011, \"p_hellaswag\": 0.0611}}, \"key_finding\": \"Binary best. Graduated ≈ no_filter.\"}, \"conclusion\": \"success\"}, \"exp_027_retrain_bootstrap\": {\"status\": \"DONE\", \"hypothesis\": \"Retrain-chain 的 pairwise AUC（0v1 到 3v4）在 10000-iteration bootstrap 95% CI 下均显著高于 θ=0.60，确认 K*≥4 具有统计严格性。\", \"metrics\": {\"bootstrap_iterations\": 10000, \"pairs\": {\"0v1\": {\"auc_point\": 0.9847, \"ci_lower\": 0.9828, \"ci_upper\": 0.9864, \"perm_p\": 0.0001, \"ci_lower_gt_theta\": true}, \"1v2\": {\"auc_point\": 0.9482, \"ci_lower\": 0.9443, \"ci_upper\": 0.952, \"perm_p\": 0.0001, \"ci_lower_gt_theta\": true}, \"2v3\": {\"auc_point\": 0.8885, \"ci_lower\": 0.8829, \"ci_upper\": 0.894, \"perm_p\": 0.0001, \"ci_lower_gt_theta\": true}, \"3v4\": {\"auc_point\": 0.7977, \"ci_lower\": 0.7903, \"ci_upper\": 0.8051, \"perm_p\": 0.0001, \"ci_lower_gt_theta\": true}}, \"key_finding\": \"All 4 retrain-chain pairwise AUCs have CI_lower >> theta=0.60 (min CI_lower=0.7903). K*>=4 statistically confirmed with p<0.001.\"}, \"conclusion\": \"success\"}, \"exp_026_feature_stability_v2\": {\"status\": \"DONE\", \"hypothesis\": \"Prompt-chain K*=2 边界对 feature 子集选择 robust：即使从 15D 中随机抽取 5/8/10 维子集，Pythia-1.4B prompt-chain 1v2 AUC（baseline ~0.654）仍 > θ=0.60，证明 K*=2 不依赖特定特征组合。\", \"metrics\": {\"data_source\": \"exp_001_pythia prompt-chain (K*=2)\", \"results\": {\"15D\": {\"num_tested\": 1, \"num_pass\": 1, \"min_1v2_auc\": 0.6262, \"mean_1v2_auc\": 0.6262}, \"10D\": {\"num_tested\": 5, \"num_pass\": 5, \"min_1v2_auc\": 0.6153, \"mean_1v2_auc\": 0.6191}, \"8D\": {\"num_tested\": 5, \"num_pass\": 5, \"min_1v2_auc\": 0.6056, \"mean_1v2_auc\": 0.6159}, \"5D\": {\"num_tested\": 5, \"num_pass\": 2, \"min_1v2_auc\": 0.5856, \"mean_1v2_auc\": 0.5998}, \"3D_top3\": {\"num_tested\": 1, \"num_pass\": 0, \"min_1v2_auc\": 0.5871, \"mean_1v2_auc\": 0.5871}}, \"key_finding\": \"8+ features sufficient for robust K*=2 (all pass θ=0.60). 5D fragile (2/5 pass). Top-3 alone fails. Feature diversity matters at the K* boundary.\"}, \"conclusion\": \"success\"}, \"exp_026_feature_stability\": {\"status\": \"DONE\", \"hypothesis\": \"K*=2 对 feature 子集选择 robust：即使从 15D 特征中随机抽取 5/8/10 维子集，1v2 AUC 仍 > θ=0.60，证明 K* 边界不依赖特定特征组合（ad-hoc feature 防御）。\", \"metrics\": {\"data_source\": \"exp_016_qwen_base (prompt-chain, K*=2)\", \"results\": {\"15D\": {\"num_tested\": 1, \"num_kstar_2\": 1, \"min_1v2_auc\": 0.6262, \"mean_1v2_auc\": 0.6262}, \"10D\": {\"num_tested\": 5, \"num_kstar_2\": 5, \"min_1v2_auc\": 0.6153, \"mean_1v2_auc\": 0.6191}, \"8D\": {\"num_tested\": 5, \"num_kstar_2\": 5, \"min_1v2_auc\": 0.6056, \"mean_1v2_auc\": 0.6159}, \"5D\": {\"num_tested\": 5, \"num_kstar_2\": 2, \"min_1v2_auc\": 0.5856, \"mean_1v2_auc\": 0.5998}, \"3D_top3\": {\"num_tested\": 1, \"num_kstar_2\": 0, \"min_1v2_auc\": 0.5871, \"mean_1v2_auc\": 0.5871}}, \"all_above_theta\": false, \"key_finding\": \"Feature selection MATTERS at K*=2 boundary. 15D/10D/8D all robust (min 1v2 AUC > 0.60). 5D random subsets: only 2/5 pass θ=0.60 (min=0.5856). Top-3 features alone (0.5871) fail θ. Contrast with retrain-chain (K*=4) where all subsets trivially passed (min=0.8314).\", \"previous_run_note\": \"v1 used retrain-chain data (K*=4), where all subsets trivially passed with min 1v2 AUC=0.8314. v2 uses prompt-chain data (K*=2) to test boundary robustness.\"}, \"conclusion\": \"success\"}, \"exp_027\": {\"status\": \"DONE\", \"hypothesis\": \"Document-level bootstrap CI (10000 iterations) on exp-008 v2 retrain-chain data will confirm that all 4 pairwise AUCs have CI_lower > theta=0.60, supporting K*>=4 with statistical significance.\", \"conclusion\": \"success\", \"metrics\": {\"kstar_ci\": 4, \"0v1_auc\": 0.9847, \"0v1_ci\": [0.9828, 0.9864], \"0v1_perm_p\": 0.0001, \"1v2_auc\": 0.9482, \"1v2_ci\": [0.9443, 0.952], \"1v2_perm_p\": 0.0001, \"2v3_auc\": 0.8885, \"2v3_ci\": [0.8829, 0.894], \"2v3_perm_p\": 0.0001, \"3v4_auc\": 0.7977, \"3v4_ci\": [0.7903, 0.8051], \"3v4_perm_p\": 0.0001, \"all_ci_lower_above_theta\": true}}, \"exp_005_degradation\": {\"status\": \"DONE\", \"metrics\": {\"cross_model_kendall_tau_by_first_auc\": {\"Pythia_vs_OLMo\": 0.733, \"Pythia_vs_Qwen_rewrite\": 0.467, \"Pythia_vs_Qwen_cont\": 0.695, \"OLMo_vs_Qwen_rewrite\": 0.429, \"OLMo_vs_Qwen_cont\": 0.543, \"Qwen_rewrite_vs_Qwen_cont\": 0.733}, \"cross_model_kendall_tau_by_avg_auc\": {\"Pythia_vs_OLMo\": 0.8476, \"Pythia_vs_Qwen_cont\": 0.7524, \"OLMo_vs_Qwen_cont\": 0.6762}, \"cross_model_spearman_rho_single_feature_auc\": {\"Pythia_vs_OLMo\": 0.95, \"Pythia_vs_Qwen_cont\": 0.9143, \"OLMo_vs_Qwen_cont\": 0.85, \"metric_definition\": \"Spearman ρ on per-feature AUC rankings (each feature independently classifies depth pairs)\"}, \"4model_tau_mean_continuation_by_first_auc\": 0.657, \"4model_tau_mean_all_by_first_auc\": 0.6, \"generation_mode_delta\": {\"Pythia_vs_Qwen\": \"+0.228\", \"OLMo_vs_Qwen\": \"+0.114\"}, \"top3_features_ranking_by_first_auc\": {\"Pythia\": [\"surp_d1_std\", \"surp_d2_std\", \"surp_std\"], \"OLMo\": [\"surp_std\", \"surp_d1_std\", \"surp_d2_std\"], \"Qwen_rewrite\": [\"freq_entropy\", \"surp_std\", \"surp_d1_std\"], \"Qwen_cont\": [\"surp_d1_std\", \"surp_std\", \"surp_d2_std\"]}, \"shared_top_discriminators\": \"surp_d1_std, surp_std, surp_d2_std shared across all architectures (single-feature AUC ranking)\", \"degradation_ordering_consistency\": \"Strong cross-model consistency (ρ≥0.85) on single-feature AUC ranking under controlled generation mode.\", \"residual_architecture_effect\": \"Qwen-cont vs OLMo (τ=0.54 by_first_auc) still lower than Pythia vs OLMo (τ=0.73), ~30-40% of ordering divergence from architecture\", \"limitation_1v2_weakness\": \"depth-pair level consistency weakest at 1v2 (τ~0.37), near-generational feature importance ordering varies more across models\"}, \"conclusion\": \"success\", \"hypothesis\": \"递归生成文本在统计特征空间中呈现单调退化趋势（如 perplexity 上升、词汇多样性下降），且退化速率在 K*=2 后显著减缓，这解释了为什么分类器在深代后失去区分力。\"}, \"exp_024_arxiv_domain\": {\"status\": \"DONE\", \"hypothesis\": \"Domain ablation: arXiv abstracts 数据下 K*=2 是否成立？验证 K* 跨数据域（C4 vs Wikipedia vs arXiv）的稳定性。Qwen2.5-1.5B base, continuation, nucleus p=0.95 T=1.0, 5K docs, depth 0-5。\", \"metrics\": {\"K_star\": 3, \"pairwise_auc\": {\"0v1\": 0.9946, \"1v2\": 0.858, \"2v3\": 0.6427, \"3v4\": 0.5437, \"4v5\": 0.5294}, \"bootstrap_ci\": {\"0v1\": {\"auc\": 0.9946, \"ci_lower\": 0.9929, \"ci_upper\": 0.9961, \"perm_p\": 0.0001}, \"1v2\": {\"auc\": 0.858, \"ci_lower\": 0.848, \"ci_upper\": 0.8679, \"perm_p\": 0.0001}, \"2v3\": {\"auc\": 0.6427, \"ci_lower\": 0.6275, \"ci_upper\": 0.6575, \"perm_p\": 0.0001}, \"3v4\": {\"auc\": 0.5437, \"ci_lower\": 0.5276, \"ci_upper\": 0.5598, \"perm_p\": 0.0001}, \"4v5\": {\"auc\": 0.5294, \"ci_lower\": 0.5133, \"ci_upper\": 0.5455, \"perm_p\": 0.0006}}, \"bootstrap_resamples\": 10000, \"permutation_resamples\": 10000, \"key_finding\": \"arXiv domain K*=3 (CI-confirmed). 2v3 CI lower=0.6275 > θ=0.60. First condition with K*>2. 1v2 AUC=0.858 far exceeds C4/Wiki (~0.61-0.69).\"}, \"conclusion\": \"success\"}, \"exp_017_qwen_continuation\": {\"status\": \"DONE\", \"hypothesis\": \"Continuation mode 的 K* 应等于 rewrite mode（K*=2），因为 K* 饱和边界是递归生成的文本固有属性，与生成模式（续写 vs 改写）无关——两种模式在深代时都收敛到相同的统计吸引子。\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9972, \"1v2\": 0.6114, \"2v3\": 0.5609, \"3v4\": 0.5408, \"4v5\": 0.5139}, \"pairwise_jsd\": {\"0v1\": 0.28627, \"1v2\": 0.005107, \"2v3\": 0.003603, \"3v4\": 0.003395, \"4v5\": 0.003085}, \"ordinal_mae\": 1.1547, \"ordinal_accuracy\": 0.3819, \"top3_features\": [\"freq_entropy\", \"surp_mean\", \"surp_std\"]}, \"conclusion\": \"success\"}, \"exp_012_binary_confidence\": {\"status\": \"DONE\", \"hypothesis\": \"Binary detector confidence（DivEye log-PPL、Binoculars ratio）与 true generational depth 相关性弱（Spearman rho < 0.3），因为这些检测器将所有合成文本折叠为单一类别，无法区分 gen-1 和 gen-3+，暴露 binary 范式的信息损失。\", \"conclusion\": \"success\", \"metrics\": {\"n_samples\": 500, \"generators\": [\"qwen-rewrite\", \"pythia-1.4b\", \"olmo-1b\", \"qwen-cont\"], \"6class_accuracy\": {\"qwen-rewrite\": 0.1987, \"pythia-1.4b\": 0.1303, \"olmo-1b\": 0.127, \"qwen-cont\": 0.1833, \"random_baseline\": 0.1667}, \"spearman_rho\": {\"qwen-rewrite\": {\"log_ppl_ref\": -0.1233, \"log_ppl_obs\": 0.0815, \"ppl_ratio\": 0.1185}, \"pythia-1.4b\": {\"log_ppl_ref\": -0.2972, \"log_ppl_obs\": -0.4529, \"ppl_ratio\": -0.392}, \"olmo-1b\": {\"log_ppl_ref\": -0.378, \"log_ppl_obs\": -0.4614, \"ppl_ratio\": -0.4068}, \"qwen-cont\": {\"log_ppl_ref\": -0.3887, \"log_ppl_obs\": -0.162, \"ppl_ratio\": -0.058}}, \"binary_detector_kstar\": 1, \"obd_kstar\": 2, \"auc_non_monotonic\": true, \"key_finding\": \"Binary detectors (DivEye/Binoculars) K*≈1 vs OBD K*=2. 6-class accuracy ≤0.199 (random=0.167). Spearman |ρ|=0.06-0.46 (statistically significant but practically weak). AUC non-monotonic — binary detectors cannot maintain depth ordering. Confirms binary confidence ≠ depth estimation.\"}}, \"exp_C_permutation_10k\": {\"status\": \"DONE\", \"hypothesis\": \"10K permutation resamples 不应改变任何 K* 结论（所有 p < 0.01 的 pair 仍应 p < 0.01），确认 500 resamples 已有足够精度，K*=2 结论的统计基础稳固。\", \"conclusion\": \"success\", \"metrics\": {\"resamples\": 10000, \"all_boundary_pairs_p\": \"<0.0001\", \"key_finding\": \"10K permutation confirms all boundary p-values well below 0.01. FR-11 resolved.\"}}, \"exp_002_olmo_depth\": {\"status\": \"DONE\", \"hypothesis\": \"K* 跨模型一致性验证：OLMo-1B 在相同种子数据和解码策略下的 K* 是否与 Qwen2.5-1.5B 一致（K*=2）\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.997, \"1v2\": 0.6146, \"2v3\": 0.5497, \"3v4\": 0.509, \"4v5\": 0.5044}, \"pairwise_auc_std\": {\"0v1\": 0.0004, \"1v2\": 0.0029, \"2v3\": 0.004, \"3v4\": 0.0084, \"4v5\": 0.0136}, \"pairwise_jsd\": {\"0v1\": 0.23941, \"1v2\": 0.012972, \"2v3\": 0.00735, \"3v4\": 0.003968, \"4v5\": 0.003851}, \"ordinal_mae\": 1.1813, \"ordinal_accuracy\": 0.3685, \"top_features\": [\"surp_d1_mean\", \"surp_d1_skew\", \"freq_kurtosis\", \"surp_d2_mean\", \"surp_mean\"]}, \"conclusion\": \"success\"}, \"exp_009_dose_50pct_v2\": {\"status\": \"DONE\", \"hypothesis\": \"50% synthetic injection 下 graduated filtering 应展现最大优势 >=2pp MMLU（v2: fix HF mirror）。机制同 v1：半数数据为合成时 binary 激进丢弃导致数据饥饿。\", \"conclusion\": \"failed\"}, \"exp_009_dose_30pct_v2\": {\"status\": \"DONE\", \"hypothesis\": \"30% synthetic injection 下 graduated filtering 优势应 >=1pp MMLU（v2: fix HF mirror）。机制同 v1：更高污染率下 binary 丢弃更多可用 gen-1 数据。\", \"conclusion\": \"failed\"}, \"exp_009_dose_10pct_v2\": {\"status\": \"DONE\", \"hypothesis\": \"10% synthetic injection 下 graduated filtering 应比 binary 保留 >=0.5pp MMLU（v2: fix HF mirror）。机制同 v1：低污染时 gen-1 有训练价值，binary 全丢造成数据损失。\", \"conclusion\": \"failed\"}, \"exp_009_dose_50pct\": {\"status\": \"DONE\", \"hypothesis\": \"50% synthetic injection 下，graduated filtering 应展现最大优势（>=2pp MMLU），因为半数数据为合成时 binary filtering 的激进丢弃导致严重数据饥饿，而 graduated 保留 gen-1 维持训练集规模。\", \"conclusion\": \"failed\"}, \"exp_009_dose_30pct\": {\"status\": \"DONE\", \"hypothesis\": \"30% synthetic injection 下，graduated filtering 优势应大于 10% 场景（>=1pp MMLU），因为更高污染率意味着 binary filtering 丢弃更多可用 gen-1 数据，而 graduated 仅移除 gen-2+ 有害部分。\", \"conclusion\": \"failed\"}, \"exp_009_dose_10pct\": {\"status\": \"DONE\", \"hypothesis\": \"10% synthetic injection 下，graduated filtering 应比 binary filtering 保留更多 MMLU 性能（>=0.5pp），因为低污染场景中 gen-1 文本仍有训练价值，binary 全部丢弃造成不必要的数据损失。\", \"conclusion\": \"failed\"}, \"exp_kstar_theta\": {\"status\": \"DONE\", \"hypothesis\": \"K*(θ) 曲线在 θ∈[0.55,0.65] 存在 plateau（K* 对阈值不敏感），且 Cohen's h 在 depth=K* 到 depth=K*+1 间降至 < 0.2（小效应量），为 θ=0.60 提供非任意性理论依据。\", \"conclusion\": \"success\", \"metrics\": {\"output_files\": [\"kstar_theta_curve.pdf (32KB)\", \"kstar_theta_curve.png (335KB)\"], \"models\": [\"Qwen-rewrite\", \"Pythia\", \"OLMo\", \"Qwen-cont\"], \"depth_pairs\": 5, \"key_finding\": \"All 4 models show AUC ≥0.993 at 0v1, decaying to ~0.50-0.53 at 4v5. θ=0.60 is justified as natural K*=2 boundary across all models. FR-1 Critical resolved.\"}}, \"exp_022_cross_scorer_matrix\": {\"status\": \"DONE\", \"hypothesis\": \"Self-scoring（generator=scorer）的 K* 和 pairwise AUC 应与 cross-scoring（generator≠scorer）差异 < 0.02，证明 K*=2 不是 scorer-generator familiarity artifact，而是文本本身的可区分性边界。\", \"conclusion\": \"success\", \"metrics\": {\"total_combos\": 12, \"completed\": 12, \"K_star_distribution\": {\"K2\": 11, \"K1\": 1}, \"matrix\": {\"pythia_greedy×olmo\": {\"K_star\": 2, \"1v2\": 0.8811}, \"pythia_greedy×pythia\": {\"K_star\": 2, \"1v2\": 0.8838}, \"pythia_greedy×qwen_base\": {\"K_star\": 2, \"1v2\": 0.8814}, \"pythia_greedy×qwen_instruct\": {\"K_star\": 2, \"1v2\": 0.8818}, \"qwen_base×olmo\": {\"K_star\": 2, \"1v2\": 0.6047}, \"qwen_base×pythia\": {\"K_star\": 2, \"1v2\": 0.617}, \"qwen_base×qwen_base\": {\"K_star\": 2, \"1v2\": 0.6262}, \"qwen_base×qwen_instruct\": {\"K_star\": 2, \"1v2\": 0.6273}, \"qwen_cont256×olmo\": {\"K_star\": 2, \"1v2\": 0.6028}, \"qwen_cont256×pythia\": {\"K_star\": 1, \"1v2\": 0.5979}, \"qwen_cont256×qwen_base\": {\"K_star\": 2, \"1v2\": 0.6282}, \"qwen_cont256×qwen_instruct\": {\"K_star\": 2, \"1v2\": 0.6072}}, \"key_finding\": \"Scorer independence confirmed: K*=2 in 11/12 combos. Only exception: qwen_cont256×pythia (1v2=0.5979, borderline). Pythia-greedy 1v2~0.88 due to repetition collapse. Scorer choice Δ1v2 < 0.025 within each generator.\"}}, \"exp_008_retrain_chain_v2\": {\"status\": \"DONE\", \"hypothesis\": \"Retrain-chain ecological validity (v2, fix: labels padding bug): Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"k_star\": \">=4\", \"pairwise_auc\": {\"0v1\": 0.9847, \"1v2\": 0.9484, \"2v3\": 0.8888, \"3v4\": 0.7982}, \"pairwise_jsd\": {\"0v1\": 0.17, \"1v2\": 0.12, \"2v3\": 0.064, \"3v4\": 0.04}, \"key_finding\": \"Retrain-chain K*>=4, all pairs AUC>>0.60. LoRA adaptation artifacts make generations highly distinguishable. Prompt-chain K*=2 is text-intrinsic boundary.\"}, \"conclusion\": \"success\"}, \"exp-008-retrain-chain\": {\"status\": \"DONE\", \"hypothesis\": \"Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"failed\"}, \"exp_025_pythia_arxiv\": {\"status\": \"DONE\", \"hypothesis\": \"Domain × model interaction: Pythia-1.4B on arXiv data 的 K* 是否与 exp-024 (Qwen on arXiv, K*=?) 一致？验证 arXiv domain effect 跨模型一致性，排除 Qwen-specific artifact。Pythia-1.4B continuation, nucleus p=0.95 T=1.0, 2200 docs, depth 0-5, scorer=Qwen2.5-1.5B base。\", \"metrics\": {\"k_star\": 3, \"pairwise_auc\": {\"0v1\": 0.9877, \"1v2\": 0.8047, \"2v3\": 0.6545, \"3v4\": 0.5507, \"4v5\": 0.5287}, \"pairwise_jsd\": {\"0v1\": 0.171338, \"1v2\": 0.057344, \"2v3\": 0.019524, \"3v4\": 0.009917, \"4v5\": 0.008846}, \"bootstrap_ci\": {\"0v1\": {\"auc\": 0.9876, \"ci_lower\": 0.9851, \"ci_upper\": 0.99, \"perm_p\": 0.0001}, \"1v2\": {\"auc\": 0.8047, \"ci_lower\": 0.7934, \"ci_upper\": 0.8162, \"perm_p\": 0.0001}, \"2v3\": {\"auc\": 0.6544, \"ci_lower\": 0.6401, \"ci_upper\": 0.6688, \"perm_p\": 0.0001}, \"3v4\": {\"auc\": 0.55, \"ci_lower\": 0.534, \"ci_upper\": 0.5657, \"perm_p\": 0.0001}, \"4v5\": {\"auc\": 0.5284, \"ci_lower\": 0.5122, \"ci_upper\": 0.5443, \"perm_p\": 0.001}}, \"bootstrap_resamples\": 10000, \"permutation_resamples\": 10000, \"n_samples\": 2200, \"top_features\": [\"freq_entropy\", \"surp_std\", \"surp_mean\", \"surp_d1_skew\", \"surp_d1_mean\"], \"ordinal\": {\"MAE\": 0.8518, \"Accuracy\": 0.4545}, \"key_finding\": \"Pythia-1.4B on arXiv yields K*=3, identical to exp-024 (Qwen on arXiv). 2v3 CI lower=0.6401 > θ=0.60. Domain saturation depth is model-invariant for arXiv.\"}, \"conclusion\": \"success\"}, \"exp_020_pythia_decoding\": {\"status\": \"DONE\", \"hypothesis\": \"Pythia-1.4B 解码消融：4 个 decoding config (greedy/nuc p=0.9/T=0.7/T=1.2) 的 K* 是否一致？与 exp-003 (Qwen) 平行，验证 decoding 效应跨模型一致性。C4 5K, depth 0-5。\", \"conclusion\": \"success\", \"metrics\": {\"greedy\": {\"K_star\": 2, \"auc\": {\"0v1\": 0.9992, \"1v2\": 0.8838, \"2v3\": 0.5342, \"3v4\": 0.5228, \"4v5\": 0.5162}}, \"nuc09\": {\"K_star\": 2, \"auc\": {\"0v1\": 0.9948, \"1v2\": 0.677, \"2v3\": 0.5549, \"3v4\": 0.5299, \"4v5\": 0.5013}}, \"t07\": {\"K_star\": 2, \"auc\": {\"0v1\": 0.9965, \"1v2\": 0.7265, \"2v3\": 0.5941, \"3v4\": 0.5698, \"4v5\": 0.5284}}, \"t12\": {\"K_star\": 2, \"auc\": {\"0v1\": 0.9933, \"1v2\": 0.6172, \"2v3\": 0.5226, \"3v4\": 0.517, \"4v5\": 0.5051}}}}, \"exp_021_length_ablation\": {\"status\": \"DONE\", \"hypothesis\": \"文本长度消融：128/256/512 tokens 下 K* 是否稳定？验证 K*=2 不依赖于 256-token 固定长度设定。Qwen2.5-1.5B (base) continuation, C4 5K, depth 0-5。\", \"conclusion\": \"success\", \"metrics\": {\"128tok\": {\"K_star\": 2, \"1v2_auc\": 0.6219}, \"256tok\": {\"K_star\": 2, \"1v2_auc\": 0.6282}, \"512tok\": {\"K_star\": 2, \"1v2_auc\": 0.6073}, \"all_K_star_2\": true, \"bootstrap_ci\": {\"512tok_1v2\": {\"auc\": 0.6073, \"ci_lower\": 0.5979, \"ci_upper\": 0.6166, \"perm_p\": 0.0001, \"verdict\": \"BORDERLINE\"}}}}, \"exp_018_llama8b_depth\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-family K* 验证：LLaMA-3.1-8B continuation mode 的 K* 是否 = 2？首次超出 Qwen 家族，验证 K* universality 跨模型架构。C4 5K, depth 0-5, scorer=Qwen2.5-1.5B base。\", \"conclusion\": \"success\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9225, \"1v2\": 0.6123, \"2v3\": 0.5274, \"3v4\": 0.5138, \"4v5\": 0.5097}, \"jsd\": {\"0v1\": 0.077, \"1v2\": 0.012, \"2v3\": 0.005}, \"bootstrap_ci\": {\"0v1\": {\"auc\": 0.9224, \"ci_lower\": 0.9174, \"ci_upper\": 0.9272, \"perm_p\": 0.0001}, \"1v2\": {\"auc\": 0.6123, \"ci_lower\": 0.6028, \"ci_upper\": 0.6216, \"perm_p\": 0.0001}, \"2v3\": {\"auc\": 0.5273, \"ci_lower\": 0.5169, \"ci_upper\": 0.5378, \"perm_p\": 0.0001}, \"3v4\": {\"auc\": 0.5168, \"ci_lower\": 0.5062, \"ci_upper\": 0.5275, \"perm_p\": 0.0037}, \"4v5\": {\"auc\": 0.5159, \"ci_lower\": 0.5052, \"ci_upper\": 0.5268, \"perm_p\": 0.0035}}, \"bootstrap_resamples\": 10000, \"permutation_resamples\": 10000}}, \"exp_023_domain_ablation\": {\"status\": \"DONE\", \"hypothesis\": \"Domain ablation: Wikipedia 数据下 K*=2 是否成立？验证 K* 跨数据域（C4 vs Wikipedia）的稳定性。Qwen2.5-1.5B base, continuation, nucleus p=0.95 T=1.0, 5K docs, depth 0-5。\", \"conclusion\": \"success\", \"metrics\": {\"K_star\": 2, \"1v2_auc\": 0.6193, \"2v3_auc\": 0.5498, \"all_folds_above_060\": true, \"top_feature\": \"freq_entropy\", \"ordinal_accuracy\": 0.377}}, \"exp_019b_mistral_cross_scorer\": {\"status\": \"DONE\", \"hypothesis\": \"排除 self-scorer 因素：Mistral-7B depth chain 用 Qwen2.5-1.5B-base 评分后 K* 是否=2？如果 K*=2 则 exp-019 的 K*=1 是 self-scorer artifact；如果 K*=1 则是 Mistral 生成文本的固有特性。\", \"conclusion\": \"success\", \"metrics\": {\"k_star\": 1, \"pairwise_auc\": {\"0v1\": 0.9209, \"1v2\": 0.5695, \"2v3\": 0.5335, \"3v4\": 0.514, \"4v5\": 0.5184}, \"bootstrap_ci\": {\"0v1\": {\"mean\": 0.9209, \"ci_lower\": 0.9189, \"ci_upper\": 0.9229, \"pass_060\": true}, \"1v2\": {\"mean\": 0.5696, \"ci_lower\": 0.5645, \"ci_upper\": 0.5746, \"pass_060\": false}, \"2v3\": {\"mean\": 0.5335, \"ci_lower\": 0.5283, \"ci_upper\": 0.5382, \"pass_060\": false}, \"3v4\": {\"mean\": 0.514, \"ci_lower\": 0.5063, \"ci_upper\": 0.5213, \"pass_060\": false}, \"4v5\": {\"mean\": 0.5183, \"ci_lower\": 0.5128, \"ci_upper\": 0.5244, \"pass_060\": false}}, \"jsd\": {\"0v1\": 0.08355, \"1v2\": 0.007642, \"2v3\": 0.004752, \"3v4\": 0.004255, \"4v5\": 0.003758}, \"ordinal_mae\": 1.3737, \"ordinal_accuracy\": 0.3179, \"top3_features\": [\"freq_entropy\", \"surp_d1_skew\", \"surp_d1_mean\"], \"key_finding\": \"Cross-scorer (Qwen-1.5B scoring Mistral text) confirms K*=1. 1v2 AUC=0.5695 (self-scorer was 0.5935) — cross-scorer LOWER, not higher. Mistral K*=1 is genuine (inherent to Mistral generations), NOT a self-scorer artifact.\"}}, \"exp_019_mistral7b_depth\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-family K* 验证：Mistral-7B-v0.3 continuation mode 的 K* 是否 = 2？第二个非 Qwen 家族模型。C4 5K, depth 0-5, scorer=Mistral-7B-v0.3 (self-scorer)。与 exp-001/002/017 self-scoring 方法一致，exp_A_alt_scorer 已证明 scorer 不影响 K*。\", \"conclusion\": \"success\", \"metrics\": {\"k_star\": 1, \"pairwise_auc\": {\"0v1\": 0.9843, \"1v2\": 0.5935, \"2v3\": 0.5402, \"3v4\": 0.5232, \"4v5\": 0.5181}, \"bootstrap_ci_1v2\": {\"ci_lower\": 0.5835, \"ci_upper\": 0.6032, \"p_auc_leq_060\": 0.9017}, \"jsd\": {\"0v1\": 0.124194, \"1v2\": 0.008051, \"2v3\": 0.005047, \"3v4\": 0.004516, \"4v5\": 0.004109}, \"ordinal_mae\": 1.2275, \"ordinal_accuracy\": 0.3567, \"top3_features\": [\"freq_entropy\", \"surp_d1_skew\", \"surp_d1_mean\"]}}, \"exp_016_base_vs_instruct\": {\"status\": \"DONE\", \"hypothesis\": \"Base vs Instruct K* 对比：Qwen2.5-1.5B (base) continuation mode 的 K* 是否与 exp-017 (Instruct continuation, K*=2) 一致？封堵 \\\"K*=2 是 instruct-tuning 副产物\\\" 攻击面。唯一变量 = base vs instruct。\", \"conclusion\": \"success\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.987, \"1v2\": 0.6262, \"2v3\": 0.5496, \"3v4\": 0.5294, \"4v5\": 0.5182}, \"pairwise_auc_std\": {\"0v1\": 0.0015, \"1v2\": 0.0152, \"2v3\": 0.0067, \"3v4\": 0.0132, \"4v5\": 0.0139}, \"pairwise_jsd\": {\"0v1\": 0.163726, \"1v2\": 0.01081, \"2v3\": 0.005311, \"3v4\": 0.003942, \"4v5\": 0.003522}, \"ordinal_mae\": 1.1691, \"ordinal_accuracy\": 0.3719, \"top_features\": [\"freq_entropy\", \"surp_std\", \"surp_d1_skew\", \"surp_d1_mean\", \"surp_mean\"], \"n_samples\": 30000, \"bootstrap_ci\": {\"0v1\": {\"auc\": 0.987, \"ci_lower\": 0.9853, \"ci_upper\": 0.9885, \"perm_p\": 0.0001}, \"1v2\": {\"auc\": 0.626, \"ci_lower\": 0.6168, \"ci_upper\": 0.6353, \"perm_p\": 0.0001}, \"2v3\": {\"auc\": 0.5496, \"ci_lower\": 0.5397, \"ci_upper\": 0.56, \"perm_p\": 0.0001}, \"3v4\": {\"auc\": 0.5293, \"ci_lower\": 0.5188, \"ci_upper\": 0.5399, \"perm_p\": 0.0001}, \"4v5\": {\"auc\": 0.5181, \"ci_lower\": 0.5075, \"ci_upper\": 0.5288, \"perm_p\": 0.0016}}, \"bootstrap_resamples\": 10000, \"permutation_resamples\": 10000, \"key_finding\": \"K*=2 for base model confirmed with bootstrap CI. 1v2 AUC=0.626, 95% CI=[0.6168, 0.6353], CI lower=0.6168 > θ=0.60 (PASS). All pairs significant (p≤0.0016). Fold 0 1v2=0.5963 is an outlier but aggregate CI robustly above threshold. Base 1v2 CI [0.6168, 0.6353] overlaps with Instruct 1v2 CI [0.6015, 0.6213] — no significant base-vs-instruct difference.\"}}, \"exp_003_decoding_ablation\": {\"status\": \"DONE\", \"hypothesis\": \"解码策略调控 K*：不同 top_p/temperature 设置是否改变饱和边界（greedy→更低 K*? 高温度→更高 K*?）\", \"metrics\": {\"K_star\": 2, \"K_star_robust\": true, \"bootstrap_ci\": {\"config1_greedy\": {\"0v1\": {\"auc\": 0.9796, \"ci\": [0.9772, 0.982], \"perm_p\": 0}, \"1v2\": {\"auc\": 0.6892, \"ci\": [0.6802, 0.6982], \"perm_p\": 0}, \"2v3\": {\"auc\": 0.5612, \"ci\": [0.5517, 0.5705], \"perm_p\": 0}, \"3v4\": {\"auc\": 0.5405, \"ci\": [0.5308, 0.5502], \"perm_p\": 0}, \"4v5\": {\"auc\": 0.5137, \"ci\": [0.5033, 0.5238], \"perm_p\": 0.0082}}, \"config2_nuc09\": {\"0v1\": {\"auc\": 0.9945, \"ci\": [0.9934, 0.9956], \"perm_p\": 0}, \"1v2\": {\"auc\": 0.6862, \"ci\": [0.6774, 0.6951], \"perm_p\": 0}, \"2v3\": {\"auc\": 0.5917, \"ci\": [0.5824, 0.601], \"perm_p\": 0, \"note\": \"CI upper crosses theta=0.60\"}, \"3v4\": {\"auc\": 0.5468, \"ci\": [0.5369, 0.5568], \"perm_p\": 0}, \"4v5\": {\"auc\": 0.5066, \"ci\": [0.4959, 0.5173], \"perm_p\": 0.1199}}, \"config3_t07\": {\"0v1\": {\"auc\": 0.9877, \"ci\": [0.9857, 0.9896], \"perm_p\": 0}, \"1v2\": {\"auc\": 0.6885, \"ci\": [0.6797, 0.697], \"perm_p\": 0}, \"2v3\": {\"auc\": 0.5901, \"ci\": [0.5806, 0.5996], \"perm_p\": 0}, \"3v4\": {\"auc\": 0.539, \"ci\": [0.5288, 0.5493], \"perm_p\": 0}, \"4v5\": {\"auc\": 0.5348, \"ci\": [0.5243, 0.5454], \"perm_p\": 0}}, \"config4_t12\": {\"0v1\": {\"auc\": 0.9982, \"ci\": [0.9975, 0.9987], \"perm_p\": 0}, \"1v2\": {\"auc\": 0.7037, \"ci\": [0.6945, 0.7126], \"perm_p\": 0}, \"2v3\": {\"auc\": 0.582, \"ci\": [0.5722, 0.5917], \"perm_p\": 0}, \"3v4\": {\"auc\": 0.5293, \"ci\": [0.5185, 0.5399], \"perm_p\": 0}, \"4v5\": {\"auc\": 0.5237, \"ci\": [0.5132, 0.5347], \"perm_p\": 0.0001}}, \"resamples\": 10000, \"method\": \"GroupKFold(5) OOF + doc-level bootstrap + label permutation\"}}, \"conclusion\": \"success\"}, \"exp_004_7b_crossscale\": {\"status\": \"DONE\", \"hypothesis\": \"K*=2 在 7B scale 下是否成立？Qwen2.5-7B continuation mode, C4 5K seeds, scorer=Qwen2.5-1.5B。Reviewer R2 Critical: 现有实验仅 ≤1.5B\", \"conclusion\": \"success\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9644, \"1v2\": 0.6178, \"2v3\": 0.546, \"3v4\": 0.5225, \"4v5\": 0.5091}, \"pairwise_auc_std\": {\"0v1\": 0.0034, \"1v2\": 0.0081, \"2v3\": 0.0028, \"3v4\": 0.0113, \"4v5\": 0.0052}, \"bootstrap_ci\": {\"0v1\": {\"auc\": 0.9638, \"ci_lower\": 0.9607, \"ci_upper\": 0.9665, \"perm_p\": 0.0001}, \"1v2\": {\"auc\": 0.6168, \"ci_lower\": 0.6079, \"ci_upper\": 0.6261, \"perm_p\": 0.0001}, \"2v3\": {\"auc\": 0.5492, \"ci_lower\": 0.5388, \"ci_upper\": 0.5594, \"perm_p\": 0.0001}, \"3v4\": {\"auc\": 0.5276, \"ci_lower\": 0.517, \"ci_upper\": 0.5375, \"perm_p\": 0.0001}, \"4v5\": {\"auc\": 0.5085, \"ci_lower\": 0.4988, \"ci_upper\": 0.5191, \"perm_p\": 0.0676}}, \"bootstrap_resamples\": 1000, \"permutation_resamples\": 10000, \"pairwise_jsd\": {\"0v1\": 0.127422, \"1v2\": 0.010114, \"2v3\": 0.004798, \"3v4\": 0.004821, \"4v5\": 0.003335}, \"ordinal_mae\": 1.2156, \"ordinal_accuracy\": 0.3523, \"top_features\": [\"freq_entropy\", \"surp_d1_skew\", \"surp_std\", \"surp_d1_mean\", \"surp_mean\"], \"key_finding\": \"K*=2 confirmed at 7B scale with bootstrap CI. 1v2 CI lower=0.6079>0.60 (robust). 2v3 CI upper=0.5594<0.60. 4v5 only non-significant pair (p=0.0676). FR-4 Warning resolved.\"}}, \"exp_E_paired_stats\": {\"status\": \"DONE\", \"hypothesis\": \"C3 filtering 策略间差异是否统计显著？Holm-Bonferroni 多重比较校正 + Cohen's d 效应量（FR-5 Warning）\", \"conclusion\": \"success\", \"metrics\": {\"mmlu_significant_pairs\": \"8/15\", \"hellaswag_significant_pairs\": \"9/15\", \"binary_ours_vs_all_mmlu\": \"all significant\", \"max_cohen_d_mmlu\": 10.8, \"max_cohen_d_hellaswag\": 8.98, \"graduated_a09_vs_dsir_corrected_p\": 0.0523, \"cohen_d_method\": \"d_av (Lakens 2013)\", \"key_finding\": \"binary-ours significantly outperforms all alternatives on MMLU. On HellaSwag, binary-ours and graduated_a0.9 tied (p=1.0). FR-5 resolved. Holm-Bonferroni cummax bug fixed: MMLU 10/15→8/15. Cohen's d changed to d_av.\", \"bugfix_note\": \"Holm-Bonferroni cummax variable was never updated, causing 2 MMLU pairs to be incorrectly marked significant (graduated_a0.9 vs no-filter, surprisal vs dsir). Cohen's d changed from d_z to d_av (Lakens 2013).\"}}, \"exp_D_obd_n500\": {\"status\": \"DONE\", \"hypothesis\": \"OBD-LightGBM 在 N=500 子集上 accuracy 是否仍高于 LLM baselines？验证样本量匹配下的公平比较（FR-12 Warning）\", \"conclusion\": \"success\", \"metrics\": {\"obd_accuracy_final\": 0.38, \"obd_ci\": [0.34, 0.422], \"mcnemar_vs_gpt55_p\": 0.0809, \"mcnemar_vs_claude_p\": 0.0693, \"mcnemar_significant\": false, \"multi_seed_std\": 0, \"per_depth\": {\"d0\": 0.96, \"d1\": 0.39, \"d2\": 0.14, \"d3\": 0.19, \"d4\": 0.22}, \"prob_merge_accuracy\": 0.444, \"prob_merge_d4_bias\": 0.8, \"note\": \"v2 logic (6-class argmax, no capping/merge) + seed=42. McNemar not significant — supports discussion.tex narrative\"}}, \"exp_B_14d_ablation\": {\"status\": \"DONE\", \"hypothesis\": \"移除 self_BLEU（14D vs 15D）后 K*=2 是否稳定？排除 self_BLEU information leakage（FR-3 Critical）\", \"conclusion\": \"success\", \"metrics\": {\"result\": \"K*=2 stable across all 4 models after removing self_BLEU (14D)\", \"key_finding\": \"self_BLEU removal does not change K* boundary. FR-3 resolved.\"}}, \"exp_A_alt_scorer\": {\"status\": \"DONE\", \"hypothesis\": \"替代 scorer (Pythia-1.4B, OLMo-1B) 计算 surprisal features 时，K*=2 是否仍成立？验证 K* 不依赖 scorer-generator 匹配（FR-2 Critical）\", \"conclusion\": \"success\", \"metrics\": {\"pythia_qwen_rw\": {\"k_star\": 2, \"auc_0v1\": 0.9923, \"auc_1v2\": 0.7012, \"auc_2v3\": 0.587, \"mae\": 1.006, \"accuracy\": 0.417, \"spearman_rho_vs_baseline\": 0.906}, \"pythia_qwen_cont\": {\"k_star\": 1, \"auc_0v1\": 0.99, \"auc_1v2\": 0.5923, \"auc_2v3\": null, \"mae\": 1.216, \"accuracy\": 0.371, \"spearman_rho_vs_baseline\": 0.942}, \"olmo_qwen_rw\": {\"k_star\": 2, \"auc_0v1\": 0.9918, \"auc_1v2\": 0.6947, \"auc_2v3\": null, \"mae\": 1.016, \"accuracy\": 0.413, \"spearman_rho_vs_baseline\": 0.92}, \"olmo_qwen_cont\": {\"k_star\": 1, \"auc_0v1\": 0.989, \"auc_1v2\": 0.5858, \"auc_2v3\": null, \"mae\": 1.229, \"accuracy\": 0.368, \"spearman_rho_vs_baseline\": 0.902}, \"key_finding\": \"K* splits by generator data, not scorer: Qwen-RW→K*=2, Qwen-cont→K*=1 (cross-scorer). Feature importance ρ≥0.90 across all 4 conditions confirms scorer independence of feature ranking.\"}}, \"exp_015_neural_probe\": {\"status\": \"DONE\", \"hypothesis\": \"Learned representations (frozen LLM → MLP) 的 K* 是否高于 hand-crafted 15D features？若 K*_neural > K*_15D，说明 15D projection 是 K*=2 的部分原因；若相同，加强 information-theoretic impossibility 论证\", \"conclusion\": \"success\", \"metrics\": {\"pythia\": {\"k_star_neural\": 2, \"k_star_lgbm\": 2, \"accuracy\": 0.3892, \"pairwise_auc\": {\"0v1\": 0.966, \"1v2\": 0.676, \"2v3\": 0.596, \"3v4\": 0.555, \"4v5\": 0.532}}, \"olmo\": {\"k_star_neural\": 2, \"k_star_lgbm\": 2, \"accuracy\": 0.3729, \"pairwise_auc\": {\"0v1\": 0.95, \"1v2\": 0.657, \"2v3\": 0.589, \"3v4\": 0.547, \"4v5\": 0.53}}, \"qwen_cont\": {\"k_star_neural\": 3, \"k_star_lgbm\": 2, \"accuracy\": 0.4368, \"pairwise_auc\": {\"0v1\": 0.988, \"1v2\": 0.702, \"2v3\": 0.616, \"3v4\": 0.59, \"4v5\": 0.566}}, \"key_finding\": \"Neural probe K*_neural=2 for Pythia and OLMo (same as 15D), K*_neural=3 only for Qwen-cont (self-scorer). 2v3 AUC improved in all models vs LightGBM but only Qwen-cont crosses θ=0.60. K*=2 is robust for cross-model probes.\"}}, \"exp_006_graduated_filtering\": {\"status\": \"DONE\", \"hypothesis\": \"K*-aware graduated filtering (exploiting human/gen-1/gen-2+ trichotomy) yields better downstream LM quality than binary filtering on MMLU and HellaSwag. 6 strategies × 5 seeds × α sweep.\", \"conclusion\": \"success\", \"metrics\": {\"total_runs\": 51, \"binary_ours\": {\"mmlu\": \"0.5941±0.0008\", \"hellaswag\": \"0.6701±0.0006\"}, \"binary_drayson\": {\"mmlu\": \"0.5913±0.0009\", \"hellaswag\": \"0.6691±0.0004\"}, \"surprisal\": {\"mmlu\": \"0.5894±0.0009\", \"hellaswag\": \"0.6641±0.0006\"}, \"graduated_a09\": {\"mmlu\": \"0.5892±0.0008\", \"hellaswag\": \"0.6701±0.0007\"}, \"graduated_a07\": {\"mmlu\": \"0.5892±0.0014\", \"hellaswag\": \"0.6695±0.0004\"}, \"graduated_a05\": {\"mmlu\": \"0.5880±0.0013\", \"hellaswag\": \"0.6687±0.0008\"}, \"graduated_a03\": {\"mmlu\": \"0.5877±0.0013\", \"hellaswag\": \"0.6669±0.0005\"}, \"graduated_a01\": {\"mmlu\": \"0.5873±0.0019\", \"hellaswag\": \"0.6640±0.0009\"}, \"dsir\": {\"mmlu\": \"0.5869±0.0003\", \"hellaswag\": \"0.6631±0.0007\"}, \"no_filter\": {\"mmlu\": \"0.5865±0.0010\", \"hellaswag\": \"0.6638±0.0008\"}, \"base_model\": {\"mmlu\": \"0.6018\", \"hellaswag\": \"0.6821\"}, \"best_strategy\": \"binary-ours\", \"key_finding\": \"binary-ours is best filtering strategy. All strategies degrade vs base_model. Graduated α monotonically increasing confirms K*=2 boundary. DSIR below all other strategies except no-filter.\"}}, \"exp_007_bootstrap_ci\": {\"status\": \"DONE\", \"hypothesis\": \"K* 统计严谨性验证：bootstrap 95% CI 和 permutation test 确认 K*=2 在三个模型族上统计显著\", \"metrics\": {\"qwen_rewrite\": {\"0v1\": {\"auc\": 0.9956, \"ci_lower\": 0.9946, \"ci_upper\": 0.9965, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6955, \"ci_lower\": 0.6859, \"ci_upper\": 0.7041, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5893, \"ci_lower\": 0.5795, \"ci_upper\": 0.5991, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5435, \"ci_lower\": 0.5333, \"ci_upper\": 0.5551, \"perm_p\": 0.002}, \"4v5\": {\"auc\": 0.534, \"ci_lower\": 0.5238, \"ci_upper\": 0.5448, \"perm_p\": 0.002}}, \"pythia_cont\": {\"0v1\": {\"auc\": 0.9932, \"ci_lower\": 0.9921, \"ci_upper\": 0.9943, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6539, \"ci_lower\": 0.6454, \"ci_upper\": 0.663, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5514, \"ci_lower\": 0.5417, \"ci_upper\": 0.5628, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5152, \"ci_lower\": 0.5041, \"ci_upper\": 0.526, \"perm_p\": 0.006}, \"4v5\": {\"auc\": 0.5136, \"ci_lower\": 0.5021, \"ci_upper\": 0.5249, \"perm_p\": 0.008}}, \"olmo_cont\": {\"0v1\": {\"auc\": 0.997, \"ci_lower\": 0.9964, \"ci_upper\": 0.9975, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6145, \"ci_lower\": 0.6045, \"ci_upper\": 0.6247, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5496, \"ci_lower\": 0.5399, \"ci_upper\": 0.5596, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5091, \"ci_lower\": 0.4973, \"ci_upper\": 0.52, \"perm_p\": 0.064}, \"4v5\": {\"auc\": 0.5045, \"ci_lower\": 0.4932, \"ci_upper\": 0.515, \"perm_p\": 0.232}}, \"qwen_cont\": {\"0v1\": {\"auc\": 0.9971, \"ci_lower\": 0.9963, \"ci_upper\": 0.9978, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6112, \"ci_lower\": 0.6015, \"ci_upper\": 0.6213, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5609, \"ci_lower\": 0.5511, \"ci_upper\": 0.5712, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5409, \"ci_lower\": 0.5308, \"ci_upper\": 0.5508, \"perm_p\": 0.002}, \"4v5\": {\"auc\": 0.5141, \"ci_lower\": 0.5035, \"ci_upper\": 0.5255, \"perm_p\": 0.006}}, \"k_star_robust\": true, \"all_1v2_ci_lower_above_060\": true, \"most_marginal\": \"Qwen-cont CI lower=0.6015, only 0.0015 above threshold\"}, \"conclusion\": \"success\"}, \"exp_011_llm_zeroshot\": {\"status\": \"DONE\", \"hypothesis\": \"Frontier LLMs (GPT-5.5, Claude Opus 4.6) cannot reliably estimate generational depth via zero-shot prompting, motivating the need for specialized statistical methods\", \"metrics\": {\"gpt55_5class_acc\": 0.332, \"gpt55_mae\": 1.102, \"gpt55_spearman\": 0.383, \"gpt55_binary_acc\": 0.878, \"claude_5class_acc\": 0.331, \"claude_mae\": 1.15, \"claude_spearman\": 0.416, \"claude_binary_acc\": 0.882, \"odb_baseline_5class_acc\": 0.386, \"odb_baseline_mae\": 1.107, \"gpt55_per_depth_acc\": {\"depth_0\": 0.77, \"depth_1\": 0.19, \"depth_2\": 0.38, \"depth_3\": 0.24, \"depth_4\": 0.08}, \"claude_per_depth_acc\": {\"depth_0\": 0.69, \"depth_1\": 0.21, \"depth_2\": 0.28, \"depth_3\": 0.101, \"depth_4\": 0.37}, \"n_samples_per_model\": 500, \"key_finding\": \"Both frontier LLMs (GPT-5.5, Claude Opus 4.6) perform WORSE than OBD-LightGBM on 5-class depth estimation (~33% vs 38.6% acc). Binary human/AI detection is high (~88%) but fine-grained depth discrimination fails.\"}, \"conclusion\": \"success\"}, \"exp_013_cross_transfer\": {\"status\": \"DONE\", \"hypothesis\": \"Depth signal 是文本固有属性还是 model self-familiarity artifact？4×4 cross-model transfer matrix 测试分类器跨模型泛化能力\", \"metrics\": {\"accuracy_matrix\": {\"Qwen_rw→Qwen_rw\": 0.4229, \"Qwen_rw→Pythia\": 0.259, \"Qwen_rw→OLMo\": 0.2653, \"Qwen_rw→Qwen_cont\": 0.3466, \"Pythia→Qwen_rw\": 0.2718, \"Pythia→Pythia\": 0.3856, \"Pythia→OLMo\": 0.3531, \"Pythia→Qwen_cont\": 0.3287, \"OLMo→Qwen_rw\": 0.2768, \"OLMo→Pythia\": 0.345, \"OLMo→OLMo\": 0.3822, \"OLMo→Qwen_cont\": 0.3244, \"Qwen_cont→Qwen_rw\": 0.344, \"Qwen_cont→Pythia\": 0.3284, \"Qwen_cont→OLMo\": 0.3112, \"Qwen_cont→Qwen_cont\": 0.3875}, \"transfer_retention_accuracy\": {\"Pythia↔OLMo\": \"91-92%\", \"Qwen_rw→Pythia/OLMo\": \"61-63%\", \"Qwen_cont↔Pythia\": \"83-85%\", \"Qwen_cont↔OLMo\": \"80-85%\"}, \"transfer_retention_tau\": {\"Pythia↔OLMo\": \"85-86%\", \"Qwen_rw→Pythia/OLMo\": \"45-50%\", \"Qwen_cont↔others\": \"68-83%\"}, \"mean_pw_auc_matrix\": {\"within_avg\": 0.6099, \"cross_avg\": 0.5905, \"0v1_cross_all_above\": 0.96}, \"key_finding\": \"depth signal ≈ 70-85% text-intrinsic + 15-30% model self-familiarity. Binary contamination detection (0v1) highly transferable (>0.96 AUC). Fine-grained depth transfer depends on model family similarity. Qwen-rewrite overfits style features; Qwen-cont transfers much better.\"}, \"conclusion\": \"success\"}, \"exp_010_ordinal_baseline\": {\"status\": \"DONE\", \"hypothesis\": \"Ordinal structure improves depth classification: ordinal methods should outperform unordered multiclass on MAE\", \"metrics\": {\"qwen_rewrite\": {\"obd_lgbm\": {\"accuracy\": 0.4229, \"mae\": 0.9836, \"tau_b\": 0.5518, \"mean_pw_auc\": 0.6214}, \"multiclass_lgbm\": {\"accuracy\": 0.4182, \"mae\": 1.0163, \"tau_b\": 0.5367, \"mean_pw_auc\": 0.6246}, \"ordinal_logreg\": {\"accuracy\": 0.3636, \"mae\": 0.9105, \"tau_b\": 0.563, \"mean_pw_auc\": 0.5022}}, \"pythia\": {\"obd_lgbm\": {\"accuracy\": 0.3856, \"mae\": 1.1072, \"tau_b\": 0.4745, \"mean_pw_auc\": 0.6055}, \"multiclass_lgbm\": {\"accuracy\": 0.3832, \"mae\": 1.1399, \"tau_b\": 0.4622, \"mean_pw_auc\": 0.6062}, \"ordinal_logreg\": {\"accuracy\": 0.3179, \"mae\": 1.022, \"tau_b\": 0.49, \"mean_pw_auc\": 0.4767}}, \"olmo\": {\"obd_lgbm\": {\"accuracy\": 0.3822, \"mae\": 1.1469, \"tau_b\": 0.4683, \"mean_pw_auc\": 0.6015}, \"multiclass_lgbm\": {\"accuracy\": 0.3685, \"mae\": 1.1813, \"tau_b\": 0.4497, \"mean_pw_auc\": 0.5974}, \"ordinal_logreg\": {\"accuracy\": 0.3265, \"mae\": 1.0352, \"tau_b\": 0.4656, \"mean_pw_auc\": 0.4859}}}, \"conclusion\": \"success\"}, \"exp_001_pythia_depth\": {\"status\": \"DONE\", \"hypothesis\": \"K* 跨模型一致性验证：Pythia-1.4B 在相同种子数据和解码策略下的 K* 是否与 Qwen2.5-1.5B 一致（K*=2）\", \"conclusion\": \"success\", \"metrics\": {\"pairwise_auc\": {\"0v1\": 0.9932, \"1v2\": 0.6539, \"2v3\": 0.5515, \"3v4\": 0.5153, \"4v5\": 0.5135}, \"pairwise_auc_std\": {\"0v1\": 0.0007, \"1v2\": 0.0069, \"2v3\": 0.0137, \"3v4\": 0.0084, \"4v5\": 0.0078}, \"pairwise_jsd\": {\"0v1\": 0.2142, \"1v2\": 0.014, \"2v3\": 0.0051, \"3v4\": 0.0033, \"4v5\": 0.0031}, \"k_star\": 2, \"ordinal_mae\": 1.14, \"ordinal_accuracy\": 0.383}}, \"mvp_pilot_sat_v1\": {\"status\": \"DONE\", \"hypothesis\": \"递归生成文本在统计特征空间上存在可分辨的代际差异，且差异随深度呈系统性趋势（K* ≥ 3）\", \"conclusion\": \"success\", \"metrics\": {\"pairwise_auc\": {\"0v1\": 0.9956, \"1v2\": 0.6957, \"2v3\": 0.5893, \"3v4\": 0.5434, \"4v5\": 0.5343}, \"pairwise_auc_std\": {\"0v1\": 0.0005, \"1v2\": 0.0072, \"2v3\": 0.012, \"3v4\": 0.0053, \"4v5\": 0.0091}, \"pairwise_jsd\": {\"0v1\": 0.2669, \"1v2\": 0.0163, \"2v3\": 0.0069, \"3v4\": 0.0047, \"4v5\": 0.0041}, \"k_star\": 2, \"ordinal_mae\": 1.0163, \"ordinal_accuracy\": 0.4182}}}, \"count\": 59, \"total\": 59, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2745}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e337c906-123d-40c7-961b-151b625b8ea4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 130_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]: Worker worker_review_figure_table_audit_20260518T020337 已完成（status=failed），请审查 Agent 的处理结果。",
+  "leafUuid": "5e3e4a1f-ae90-483a-9698-e1d8a42403c7",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 131_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 132 · 2026-05-18T02:15:01.190Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive view of the paper and registry data. Let me do my independent figure/table audit and report findings to the Director. Let me compile my observations:
+
+## Visual Review of Paper (19 pages)
+
+### Figures identified:
+1. **Figure 1 (p3)**: Pipeline diagram - Generational depth estimation pipeline. Looks clean, colored boxes for each stage, simple horizontal flow.
+2. **Figure 2 (p4)**: Pairwise AUC decay across depth pairs - line chart with 6 model configurations. Has K* threshold dashed line at 0.60.
+
+
+3. **Figure 3 (p4)**: K*_empirical θ sensitivity curve - Shows how K* changes with θ threshold for 6 configurations.
+4. **Figure 4 (p5)**: Cross-model transfer heatmap - 6×6 accuracy matrix. Color-coded.
+5. **Figure 5 (p7)**: Downstream filtering performance - appears to be referenced in the text on p7.
+
+Let me recheck the page layout more carefully. Page 3 has the pipeline diagram and experimental configurations table. Page 4 contains the pairwise AUC results with confidence intervals, the AUC decay curves, and the sensitivity analysis. Page 5 starts with the transfer learning heatmap.
+
+Now I'm mapping out the rest of the document. Page 5 also has the domain and model K* values, page 7 shows downstream filtering results, and the appendix pages contain the neural probe architecture details, per-depth recall metrics, dataset statistics, and various validation tables including pairwise AUC confidence intervals, cross-scorer validation, and graduated filtering results.
+
+Let me verify Table 4 on page 5, which breaks down K* values across different domains and model sizes. I can see Qwen2.5 1.5B has K*=2 for C4, and I need to check the arXiv values.
+
+Checking the K* values across models... I'm checking the arXiv results for the remaining models and seeing some interesting patterns with the Wikipedia experiments—there's a scorer confound issue where using different scorers (Qwen vs Pythia) changes the K* values, which I need to track carefully for the table.
+
+Now I'm verifying Table 2's pairwise AUC values and spot-checking against the registry entries, finding minor rounding differences that are acceptable. probably fine since Table 2 shows .6955 with CI [.686, .704] and registry shows .6957 — close enough.
+- Pythia 1v2: 0.6539 → registry exp_001_pythia_depth shows 0.6539 ✓
+- OLMo 1v2: registry exp_002_olmo_depth shows 0.6146 → Table 2 shows .6145 with CI (.605, .625). The actual value from exp_007_bootstrap_ci for olmo_cont shows 1v2 AUC=0.6145, CI [0.6045, 0.6247] ✓
+
+**3. Visual Issues**
+
+Looking at the rendered pages:
+
+- **p1 (Abstract + Intro)**: Clean, no visual issues visible
+- **p2 (Related Work + Method)**: Clean text
+- **p3 (Method + Table 1 + Figure 1)**: Figure 1's pipeline diagram is clear and Table 1 reads well
+- **p4 (Table 2 + Figure 2 + Figure 3)**: Table 2 is dense but legible, and both figures display nicely with clear legends and readable elements despite the page density
+- **p5 (Table 3 + Figure 4 + Table 4)**: The transfer heatmap has good color coding, and all tables are readable with clear footnotes
+- **p6 (Discussion**
+
+I'm verifying the numerical values match between the tables and the registry data, spot-checking a few key results. The Llama 2 and Pythia numbers align well, and the OLMo bootstrap confidence intervals check out. Now I'm scanning through the rendered pages to assess the overall visual presentation and layout. Looking more closely at the footnote on page 4, there's definitely a formatting issue with "0v16" that doesn't make sense in context—it's likely a typo or OCR error, possibly meant to be "0v1" or similar. The "6" at the end of the footnote also appears misplaced, suggesting a collision between the footnote marker and the actual text.
+
+Let me check the LaTeX source to see what Table 2 actually says, since the low-resolution image makes it hard to read the exact notation. I'm also noticing that Figure 2's y-axis ranges from 0.5 to 1.0 with the 0.60 threshold clearly marked, and some of the curves are quite close together which could affect readability. I should verify the page count too—it looks like 19 pages total, which I need to confirm is within EMNLP 2026 limits.
+
+Looking at the structure more carefully, the main content appears to span pages 1-7, with references starting around page 8 and the appendix beginning around page 10. Since references typically don't count toward the page limit for ARR submissions, the main body seems to fit comfortably within the 8-page allowance for long papers.
+
+Now I'm checking the data in Table 2 to verify its accuracy.  Looking at the Qwen-7B column specifically, the paper mentions an AUC of 0.6178 for the 1v2 comparison, which matches what I see in the registry data, though the bootstrap confidence interval suggests some variation. The table values are a bit hard to read precisely from the image resolution, but the overall structure looks consistent with what's reported. The figures all appear to be rendered cleanly with proper legends and color coding, and the captions seem complete, though I'm still checking the details on Table 4's caption about the scorer specifications.
+
+Comparing the actual paper against the original figure plan, there's a mismatch—the plan outlined 10 figures but the paper has fewer. I can see the pipeline diagram, AUC decay chart, what looks like a θ sensitivity curve instead of the planned JSD decay, and the transfer heatmap. Some figures like the downstream filtering one appear to have moved to the appendix, and not all of the planned figures 6-10 made it into the final version. This kind of evolution is typical as papers develop, so it's not necessarily a problem.
+
+I'm checking the figures directory and confirming that the filtering strategies figure and JSD decay figure both exist as PDFs and PNGs. Looking more closely at Figure 3 on page 4, it's actually the θ sensitivity analysis showing how AUC varies across different depth pairs as the threshold changes—all configurations converge nicely. This is a key figure supporting the paper's main arguments.
+
+Now I'm scanning through for em-dashes since the writing guidelines recommend avoiding them.
+
+I'm also verifying the claim about 7 out of 8 model configurations achieving K*=2 on C4 by checking each experiment: Qwen-1.5B Instruct, Pythia-1.4B, Qwen-1.5B base, Qwen2.5-7B, OLMo-1B, and LLaMA-3.1-8B all show K*=2, and I'm working through the complete list to confirm the count. So that accounts for all 8 configurations across the different model families and scales. Seven of them show K*=2 on C4, which checks out. The larger models like Qwen2.5-14B and Qwen2.5-32B are still running, so they'll be added to the table once complete. For Wikipedia, the paper mentions all 6 models achieved K*=1 under scorer control, and I'm tracking down the specific experiment details for each one.
+
+Now I'm compiling my audit findings since the worker's attempt didn't go through. The data consistency checks out—all the K* values in Table 4 match what's in the registry—and the figures are clear and readable overall.
+
+I'm noticing some formatting issues though: Table 9 on page 12 has a severe float placement problem where it only takes up about a fifth of the page, leaving massive whitespace, and there's a potential readability issue with the Qwen-7B footnote in Table 2. The figure numbering also differs from the original plan, though the paper adapted it reasonably well.
+
+I should focus on what I can actually verify as a reviewer and prepare my findings for the Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5e3e4a1f-ae90-483a-9698-e1d8a42403c7",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E3gnzLPrQoj3Xxv7EL",
+  "type": "assistant",
+  "uuid": "7430d8c5-1739-4711-979d-85c50598a735",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WWKBubz6Tjg4L3A1jH9h9S",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 27236,
+      "cache_read_input_tokens": 72642,
+      "output_tokens": 5149,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27236,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5149,
+          "cache_read_input_tokens": 72642,
+          "cache_creation_input_tokens": 27236,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27236
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 133 · 2026-05-18T02:15:01.193Z_
+
+让我检查论文 tex 文件中是否存在 em-dash 违规和其他写作规范问题。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7430d8c5-1739-4711-979d-85c50598a735",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E3gnzLPrQoj3Xxv7EL",
+  "type": "assistant",
+  "uuid": "ded8588a-6b92-415e-8455-ec1d9e9a5ff5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WWKBubz6Tjg4L3A1jH9h9S",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 27236,
+      "cache_read_input_tokens": 72642,
+      "output_tokens": 5149,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27236,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5149,
+          "cache_read_input_tokens": 72642,
+          "cache_creation_input_tokens": 27236,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27236
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 134 · 2026-05-18T02:15:02.489Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_017KKhr55ggd8CyPHC9odVU8`</summary>
+
+```json
+{
+  "pattern": "—",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper",
+  "glob": "*.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ded8588a-6b92-415e-8455-ec1d9e9a5ff5",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E3gnzLPrQoj3Xxv7EL",
+  "type": "assistant",
+  "uuid": "d1782cc4-22ba-49cf-8ce6-33ef24db6d49",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WWKBubz6Tjg4L3A1jH9h9S",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 27236,
+      "cache_read_input_tokens": 72642,
+      "output_tokens": 5149,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27236,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5149,
+          "cache_read_input_tokens": 72642,
+          "cache_creation_input_tokens": 27236,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27236
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 135 · 2026-05-18T02:15:04.167Z_
+
+<details><summary>↩ Tool result · `toolu_012xQvp2sY55dSfvu2EUssgh`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:31:Generator     & 3  & ---  & ---  & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:32:Scorer        & 3  & ---  & ---  & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:33:Depth-Pair    & 4  & ---  & ---  & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:34:Gen$\times$Scorer & 9 & --- & --- & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:35:Gen$\times$Depth  & 12 & --- & --- & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:36:Scorer$\times$Depth & 12 & --- & --- & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:236:Qwen-1.5B (base) & Qwen & ---  & .619 & .550 & 2$^\dagger$ & Qwen-1.5B \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:237:Qwen-1.5B (base) & Qwen & ---  & .599 & ---  & 1 & Pythia-1.4B \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:239:Qwen-7B          & Qwen & ---  & .587 & ---  & 1 & Pythia-1.4B \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_domain_model_kstar_full.tex:12:Qwen2.5       & 1.5B & \textbf{2} & 0.6262~(1v2) & \textbf{3} & 0.6427~(2v3) & \textbf{1}\textsuperscript{$\dagger$} & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_domain_model_kstar_full.tex:13:Qwen2.5       & 7B   & \textbf{2} & 0.6178~(1v2) & \textbf{3} & 0.6255~(2v3) & \textbf{1}\textsuperscript{$\dagger$} & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_domain_model_kstar_full.tex:14:Pythia        & 1.4B & \textbf{2} & 0.6539~(1v2) & \textbf{3} & 0.6544~(2v3) & \textbf{1} & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_domain_model_kstar_full.tex:15:LLaMA-3.1    & 8B   & \textbf{2} & 0.6123~(1v2) & \textbf{3} & 0.6215~(2v3) & \textbf{1} & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_domain_model_kstar_full.tex:16:Mistral       & 7B   & 1\textsuperscript{$\ddagger$} & 0.594~(1v2) & \textbf{3} & 0.6275~(2v3) & \textbf{1} & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_domain_model_kstar_full.tex:17:OLMo          & 1B   & \textbf{2} & 0.6145~(1v2) & 1\textsuperscript{$*$} & --- & \textbf{1} & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_crossscorer.tex:6:% --- Qwen-RW block ---
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_crossscorer.tex:7:Qwen-1.5B (self) & Qwen-RW & 2 & --- & 0.6955 & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_crossscorer.tex:11:% --- Qwen-cont block ---
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_crossscorer.tex:12:Qwen-1.5B (self) & Qwen-cont & 2 & --- & 0.6112 & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_crossscorer.tex:16:% --- Qwen-7B cross-scale block ---
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_crossscorer.tex:17:Qwen-1.5B        & Qwen-7B-cont & 2 & 0.9644 & 0.6178 & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:414:    0 vs.\ 1 & --- & --- & --- & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:415:    1 vs.\ 2 & --- & --- & --- & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:417:    2 vs.\ 3 & --- & --- & --- & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:418:    3 vs.\ 4 & --- & --- & --- & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:419:    4 vs.\ 5 & --- & --- & --- & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:421:    $\Kempirical$ & --- & --- & --- & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:436:    0 vs.\ 1 & --- & --- & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:437:    1 vs.\ 2 & --- & --- & ---$^\dagger$ \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:439:    2 vs.\ 3 & --- & --- & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:440:    3 vs.\ 4 & --- & --- & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:441:    4 vs.\ 5 & --- & --- & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:459:    0 vs.\ 1 & --- & --- & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:460:    1 vs.\ 2 & --- & --- & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:462:    2 vs.\ 3 & --- & --- & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:463:    3 vs.\ 4 & --- & --- & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:464:    4 vs.\ 5 & --- & --- & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:466:    $\Kempirical$ & --- & --- & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:485:    Qwen-1.5B (base)   & Continuation & 2 & --- & --- & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:486:    Pythia-1.4B         & Continuation & 2 & --- & --- & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:487:    OLMo-1B             & Continuation & 2 & --- & --- & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:488:    Qwen-7B             & Continuation & 2 & --- & --- & --- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:489:    Mistral-7B          & Continuation & 1 & --- & --- & --- \\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d89745d1-8f8d-4678-ac3d-9e98d962baf1",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "8e5d62b4-a36c-408d-a029-0fa754ddb346",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:31:Generator     & 3  & ---  & ---  & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:32:Scorer        & 3  & ---  & ---  & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:33:Depth-Pair    & 4  & ---  & ---  & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:34:Gen$\\times$Scorer & 9 & --- & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:35:Gen$\\times$Depth  & 12 & --- & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:36:Scorer$\\times$Depth & 12 & --- & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:236:Qwen-1.5B (base) & Qwen & ---  & .619 & .550 & 2$^\\dagger$ & Qwen-1.5B \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:237:Qwen-1.5B (base) & Qwen & ---  & .599 & ---  & 1 & Pythia-1.4B \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:239:Qwen-7B          & Qwen & ---  & .587 & ---  & 1 & Pythia-1.4B \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_domain_model_kstar_full.tex:12:Qwen2.5       & 1.5B & \\textbf{2} & 0.6262~(1v2) & \\textbf{3} & 0.6427~(2v3) & \\textbf{1}\\textsuperscript{$\\dagger$} & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_domain_model_kstar_full.tex:13:Qwen2.5       & 7B   & \\textbf{2} & 0.6178~(1v2) & \\textbf{3} & 0.6255~(2v3) & \\textbf{1}\\textsuperscript{$\\dagger$} & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_domain_model_kstar_full.tex:14:Pythia        & 1.4B & \\textbf{2} & 0.6539~(1v2) & \\textbf{3} & 0.6544~(2v3) & \\textbf{1} & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_domain_model_kstar_full.tex:15:LLaMA-3.1    & 8B   & \\textbf{2} & 0.6123~(1v2) & \\textbf{3} & 0.6215~(2v3) & \\textbf{1} & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_domain_model_kstar_full.tex:16:Mistral       & 7B   & 1\\textsuperscript{$\\ddagger$} & 0.594~(1v2) & \\textbf{3} & 0.6275~(2v3) & \\textbf{1} & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_domain_model_kstar_full.tex:17:OLMo          & 1B   & \\textbf{2} & 0.6145~(1v2) & 1\\textsuperscript{$*$} & --- & \\textbf{1} & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_crossscorer.tex:6:% --- Qwen-RW block ---\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_crossscorer.tex:7:Qwen-1.5B (self) & Qwen-RW & 2 & --- & 0.6955 & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_crossscorer.tex:11:% --- Qwen-cont block ---\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_crossscorer.tex:12:Qwen-1.5B (self) & Qwen-cont & 2 & --- & 0.6112 & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_crossscorer.tex:16:% --- Qwen-7B cross-scale block ---\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_crossscorer.tex:17:Qwen-1.5B        & Qwen-7B-cont & 2 & 0.9644 & 0.6178 & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:414:    0 vs.\\ 1 & --- & --- & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:415:    1 vs.\\ 2 & --- & --- & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:417:    2 vs.\\ 3 & --- & --- & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:418:    3 vs.\\ 4 & --- & --- & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:419:    4 vs.\\ 5 & --- & --- & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:421:    $\\Kempirical$ & --- & --- & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:436:    0 vs.\\ 1 & --- & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:437:    1 vs.\\ 2 & --- & --- & ---$^\\dagger$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:439:    2 vs.\\ 3 & --- & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:440:    3 vs.\\ 4 & --- & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:441:    4 vs.\\ 5 & --- & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:459:    0 vs.\\ 1 & --- & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:460:    1 vs.\\ 2 & --- & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:462:    2 vs.\\ 3 & --- & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:463:    3 vs.\\ 4 & --- & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:464:    4 vs.\\ 5 & --- & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:466:    $\\Kempirical$ & --- & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:485:    Qwen-1.5B (base)   & Continuation & 2 & --- & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:486:    Pythia-1.4B         & Continuation & 2 & --- & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:487:    OLMo-1B             & Continuation & 2 & --- & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:488:    Qwen-7B             & Continuation & 2 & --- & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:489:    Mistral-7B          & Continuation & 1 & --- & --- & --- \\\\",
+    "numLines": 43
+  },
+  "sourceToolAssistantUUID": "d89745d1-8f8d-4678-ac3d-9e98d962baf1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 136 · 2026-05-18T02:15:02.509Z_
+
+<details><summary>↩ Tool result · `toolu_017KKhr55ggd8CyPHC9odVU8`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex:1:% EMNLP 2026 Main — ARR May 2026
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d1782cc4-22ba-49cf-8ce6-33ef24db6d49",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "8dd19f55-5105-4854-9c71-c3103d8c34a6",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex:1:% EMNLP 2026 Main — ARR May 2026",
+    "numLines": 1
+  },
+  "sourceToolAssistantUUID": "d1782cc4-22ba-49cf-8ce6-33ef24db6d49",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 137 · 2026-05-18T02:15:03.433Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01U95jcSnJtF1noF3j5kMLp1`</summary>
+
+```json
+{
+  "pattern": " – ",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper",
+  "glob": "*.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8dd19f55-5105-4854-9c71-c3103d8c34a6",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E3gnzLPrQoj3Xxv7EL",
+  "type": "assistant",
+  "uuid": "d8371c63-c4e3-4501-b84b-770671e03222",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WWKBubz6Tjg4L3A1jH9h9S",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 27236,
+      "cache_read_input_tokens": 72642,
+      "output_tokens": 5149,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27236,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5149,
+          "cache_read_input_tokens": 72642,
+          "cache_creation_input_tokens": 27236,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27236
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 138 · 2026-05-18T02:15:03.445Z_
+
+<details><summary>↩ Tool result · `toolu_01U95jcSnJtF1noF3j5kMLp1`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d8371c63-c4e3-4501-b84b-770671e03222",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "4f2a1de6-b9e4-401c-ab81-2ba2ab295977",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  },
+  "sourceToolAssistantUUID": "d8371c63-c4e3-4501-b84b-770671e03222",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 139 · 2026-05-18T02:15:04.150Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_012xQvp2sY55dSfvu2EUssgh`</summary>
+
+```json
+{
+  "pattern": "---",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper",
+  "glob": "*.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4f2a1de6-b9e4-401c-ab81-2ba2ab295977",
+  "isSidechain": false,
+  "requestId": "req_011Cb9E3gnzLPrQoj3Xxv7EL",
+  "type": "assistant",
+  "uuid": "d89745d1-8f8d-4678-ac3d-9e98d962baf1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WWKBubz6Tjg4L3A1jH9h9S",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 27236,
+      "cache_read_input_tokens": 72642,
+      "output_tokens": 5149,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27236,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5149,
+          "cache_read_input_tokens": 72642,
+          "cache_creation_input_tokens": 27236,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27236
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 140_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]: Worker worker_review_figure_table_audit_20260518T020337 已完成（status=failed），请审查 Agent 的处理结果。",
+  "leafUuid": "8e5d62b4-a36c-408d-a029-0fa754ddb346",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 141_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 142 · 2026-05-18T02:15:10.153Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good findings:
+1. The main.tex has a comment with em-dash (`% EMNLP 2026 Main — ARR May 2026`), but comments don't render so it's fine.
+2. No inline em-dashes (—) or en-dashes ( – ) in the body text of the paper.
+3. The `---` in tables are used as placeholder dashes for missing data (standard LaTeX convention rendering as em-dash), which is appropriate usage.
+
+Let me also check for the `--` en-dash pattern in the tex files which could be used as explanatory dashes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8e5d62b4-a36c-408d-a029-0fa754ddb346",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EB15GuurQDwQ4qMPiN",
+  "type": "assistant",
+  "uuid": "f303003f-1e92-4657-b93b-4a44dcd85a56",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N3Gdoyg7KpSVhxhtoWBLeV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8358,
+      "cache_read_input_tokens": 99878,
+      "output_tokens": 290,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8358,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 290,
+          "cache_read_input_tokens": 99878,
+          "cache_creation_input_tokens": 8358,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8358
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 143 · 2026-05-18T02:15:10.978Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01P91jFWxoDX6ygPuPenQCKq`</summary>
+
+```json
+{
+  "pattern": " -- ",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper",
+  "glob": "*.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f303003f-1e92-4657-b93b-4a44dcd85a56",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EB15GuurQDwQ4qMPiN",
+  "type": "assistant",
+  "uuid": "fb966531-2631-41ee-af66-a7dd3fb16d61",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N3Gdoyg7KpSVhxhtoWBLeV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8358,
+      "cache_read_input_tokens": 99878,
+      "output_tokens": 290,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8358,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 290,
+          "cache_read_input_tokens": 99878,
+          "cache_creation_input_tokens": 8358,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8358
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 144 · 2026-05-18T02:15:10.995Z_
+
+<details><summary>↩ Tool result · `toolu_01P91jFWxoDX6ygPuPenQCKq`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:106:    0v1 & .9956 & & .9932 & & .9970 & & .9971 & & .9638 & [.961,\,.967] & .987 & [.985,\,.989] & -- & -- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:107:    1v2 & .6955 & [.686,\,.704]\rlap{$^*$} & .6539 & [.645,\,.663]\rlap{$^*$} & .6145 & [.605,\,.625]\rlap{$^*$} & .6112 & [.602,\,.621]\rlap{$^*$} & .6168 & [.608,\,.626]\rlap{$^*$} & .626 & [.617,\,.635]\rlap{$^*$} & -- & -- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:108:    2v3 & .5893 & [.580,\,.599] & .5514 & [.542,\,.563] & .5496 & [.540,\,.560] & .5609 & [.551,\,.571] & .5492 & [.539,\,.559] & .550 & [.540,\,.560] & -- & -- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:109:    3v4 & .5435 & & .5152 & & .5091 & & .5409 & & .5276 & & .529 & [.519,\,.540] & -- & -- \\
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:110:    4v5 & .5340 & & .5136 & & .5045 & & .5141 & & .5085 & & .518 & [.508,\,.529] & -- & -- \\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fb966531-2631-41ee-af66-a7dd3fb16d61",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "eae7c9a5-eb9c-4ce5-8efb-25ffecebcf0b",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:106:    0v1 & .9956 & & .9932 & & .9970 & & .9971 & & .9638 & [.961,\\,.967] & .987 & [.985,\\,.989] & -- & -- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:107:    1v2 & .6955 & [.686,\\,.704]\\rlap{$^*$} & .6539 & [.645,\\,.663]\\rlap{$^*$} & .6145 & [.605,\\,.625]\\rlap{$^*$} & .6112 & [.602,\\,.621]\\rlap{$^*$} & .6168 & [.608,\\,.626]\\rlap{$^*$} & .626 & [.617,\\,.635]\\rlap{$^*$} & -- & -- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:108:    2v3 & .5893 & [.580,\\,.599] & .5514 & [.542,\\,.563] & .5496 & [.540,\\,.560] & .5609 & [.551,\\,.571] & .5492 & [.539,\\,.559] & .550 & [.540,\\,.560] & -- & -- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:109:    3v4 & .5435 & & .5152 & & .5091 & & .5409 & & .5276 & & .529 & [.519,\\,.540] & -- & -- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:110:    4v5 & .5340 & & .5136 & & .5045 & & .5141 & & .5085 & & .518 & [.508,\\,.529] & -- & -- \\\\",
+    "numLines": 5
+  },
+  "sourceToolAssistantUUID": "fb966531-2631-41ee-af66-a7dd3fb16d61",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 145 · 2026-05-18T02:15:11.041Z_
+
+```json
+{
+  "parentUuid": "eae7c9a5-eb9c-4ce5-8efb-25ffecebcf0b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "75cb8d17-b36f-4c07-a34e-e88025fe134b",
+  "timestamp": "2026-05-18T02:15:11.041Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 146 · 2026-05-18T02:15:25.832Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `--` in the appendix table is used as a placeholder for missing data in tables (standard LaTeX convention rendering as en-dash), which is acceptable. Not an explanatory dash usage.
+
+Let me now check if there are any `-ing` phrase endings or other AI writing patterns in the main text.
+
+Actually, I should also verify the Qwen2.5-7B arXiv AUC number. Table 4 (full version, tab_domain_model_kstar_full.tex) shows Qwen-7B arXiv boundary AUC as 0.6255 (2v3). 
+
+The registry shows 0.626 for the same metric, which appears to be a rounded version of 0.6255 — the difference is just a rounding artifact where the more precise four-decimal value gets stored as three decimals in the registry.
+
+Now checking the other models: Mistral's arXiv results match at 0.6275, LLaMA matches at 0.6215, and Pythia matches at 0.6544 across both the registry and table. All the values are consistent. Let me now look at the appendix tables to verify those entries as well.
+
+Looking through the appendix file around lines 414-489, I'm noticing a lot of `---` placeholders scattered throughout — these appear to be unfilled table cells, which could be a real problem if this data was supposed to be populated.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "75cb8d17-b36f-4c07-a34e-e88025fe134b",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EBW7md1Qpnf8zrDPLX",
+  "type": "assistant",
+  "uuid": "34949f5d-ea7d-46a9-a0d1-8038dc0f294e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011YhzbqBywKEvEG5obbiarb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1020,
+      "cache_read_input_tokens": 108236,
+      "output_tokens": 708,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1020,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 708,
+          "cache_read_input_tokens": 108236,
+          "cache_creation_input_tokens": 1020,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1020
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 147 · 2026-05-18T02:15:25.833Z_
+
+让我检查 appendix 中的占位符表格是否有实际数据缺失。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "34949f5d-ea7d-46a9-a0d1-8038dc0f294e",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EBW7md1Qpnf8zrDPLX",
+  "type": "assistant",
+  "uuid": "127078be-ba0c-4efb-9a08-b1b5f8a50475",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011YhzbqBywKEvEG5obbiarb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1020,
+      "cache_read_input_tokens": 108236,
+      "output_tokens": 708,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1020,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 708,
+          "cache_read_input_tokens": 108236,
+          "cache_creation_input_tokens": 1020,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1020
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 148 · 2026-05-18T02:15:25.939Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Xh2HCqqfie883noAvP2Mr5`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex",
+  "offset": 400,
+  "limit": 100
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "127078be-ba0c-4efb-9a08-b1b5f8a50475",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EBW7md1Qpnf8zrDPLX",
+  "type": "assistant",
+  "uuid": "3ac9854f-be11-431b-979f-4057e705acf6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011YhzbqBywKEvEG5obbiarb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1020,
+      "cache_read_input_tokens": 108236,
+      "output_tokens": 708,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1020,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 708,
+          "cache_read_input_tokens": 108236,
+          "cache_creation_input_tokens": 1020,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1020
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 149 · 2026-05-18T02:15:25.947Z_
+
+<details><summary>↩ Tool result · `toolu_01Xh2HCqqfie883noAvP2Mr5`</summary>
+
+```text
+400	    \bottomrule
+401	  \end{tabular}
+402	\end{table*}
+403	
+404	%%% Table S10: Pythia Decoding Ablation (exp-020)
+405	\begin{table*}[t]
+406	  \centering
+407	  \small
+408	  \caption{Pairwise $\auc$ with bootstrap 95\% CIs across depth pairs for Pythia-1.4B under four decoding configurations (Exp-020; 10{,}000 bootstrap resamples). Complements Table~\ref{tab:s2_decoding} (Qwen-rewrite) with a second model family. $^\dagger$Greedy decoding triggers repetition collapse in Pythia-1.4B (4-gram repeat rate: $d_0{=}0.01 \to d_1{=}0.72$), inflating 0v1 and 1v2 AUC via lexical degeneracy rather than depth-discriminative features.}
+409	  \label{tab:s10_pythia_decoding}
+410	  \begin{tabular}{lcccc}
+411	    \toprule
+412	    \textbf{Depth Pair} & \textbf{Greedy}$^\dagger$ & \textbf{Nuc $p{=}0.9$, $T{=}1.0$} & \textbf{Nuc $p{=}0.95$, $T{=}0.7$} & \textbf{Nuc $p{=}0.95$, $T{=}1.2$} \\
+413	    \midrule
+414	    0 vs.\ 1 & --- & --- & --- & --- \\
+415	    1 vs.\ 2 & --- & --- & --- & --- \\
+416	    \cmidrule(lr){1-5}
+417	    2 vs.\ 3 & --- & --- & --- & --- \\
+418	    3 vs.\ 4 & --- & --- & --- & --- \\
+419	    4 vs.\ 5 & --- & --- & --- & --- \\
+420	    \midrule
+421	    $\Kempirical$ & --- & --- & --- & --- \\
+422	    \bottomrule
+423	  \end{tabular}
+424	\end{table*}
+425	
+426	%%% Table S11: Length Ablation (exp-021)
+427	\begin{table*}[t]
+428	  \centering
+429	  \small
+430	  \caption{Pairwise $\auc$ across depth pairs for three segment lengths (Exp-021; Qwen2.5-1.5B base, continuation mode). $\Kempirical{=}2$ is confirmed for 128 and 256 tokens; 512 tokens yields point estimate $\Kempirical{=}2$ but the 1v2 bootstrap CI lower bound falls marginally below $\theta$.}
+431	  \label{tab:s11_length_ablation}
+432	  \begin{tabular}{lccc}
+433	    \toprule
+434	    \textbf{Depth Pair} & \textbf{128 tokens} & \textbf{256 tokens} & \textbf{512 tokens} \\
+435	    \midrule
+436	    0 vs.\ 1 & --- & --- & --- \\
+437	    1 vs.\ 2 & --- & --- & ---$^\dagger$ \\
+438	    \cmidrule(lr){1-4}
+439	    2 vs.\ 3 & --- & --- & --- \\
+440	    3 vs.\ 4 & --- & --- & --- \\
+441	    4 vs.\ 5 & --- & --- & --- \\
+442	    \midrule
+443	    $\Kempirical$ & 2 & 2 & 2$^\dagger$ \\
+444	    \bottomrule
+445	    \multicolumn{4}{l}{\footnotesize $^\dagger$CI $[0.5979,\,0.6166]$; lower bound ${<}\theta{=}0.60$.}
+446	  \end{tabular}
+447	\end{table*}
+448	
+449	%%% Table S12: Domain Ablation
+450	\begin{table*}[t]
+451	  \centering
+452	  \small
+453	  \caption{Pairwise $\auc$ across depth pairs for three text domains (Qwen2.5-1.5B-Instruct, continuation mode). Tests generalization of $\Kempirical{=}2$ beyond C4 web text to structured and technical domains.}
+454	  \label{tab:s12_domain_ablation}
+455	  \begin{tabular}{lccc}
+456	    \toprule
+457	    \textbf{Depth Pair} & \textbf{C4 (web)} & \textbf{Wikipedia} & \textbf{arXiv} \\
+458	    \midrule
+459	    0 vs.\ 1 & --- & --- & --- \\
+460	    1 vs.\ 2 & --- & --- & --- \\
+461	    \cmidrule(lr){1-4}
+462	    2 vs.\ 3 & --- & --- & --- \\
+463	    3 vs.\ 4 & --- & --- & --- \\
+464	    4 vs.\ 5 & --- & --- & --- \\
+465	    \midrule
+466	    $\Kempirical$ & --- & --- & --- \\
+467	    \bottomrule
+468	  \end{tabular}
+469	\end{table*}
+470	
+471	%%% Table S13: Scorer Sensitivity Analysis
+472	\begin{table*}[t]
+473	  \centering
+474	  \small
+475	  \caption{Scorer sensitivity: $\Kempirical$ under self-scoring vs.\ cross-scoring. Self-scorer uses the generator's own model family for feature extraction; cross-scorer uses alternative models (Pythia-1.4B, OLMo-1B). $\Kempirical$ agreement across scorer conditions indicates the boundary is governed by the generation process. Cross-scoring reduces $\Kempirical$ only for the most marginal self-scorer condition (Qwen-continuation).}
+476	  \label{tab:s13_scorer_sensitivity}
+477	  \begin{tabular}{lccccc}
+478	    \toprule
+479	    & & \multicolumn{3}{c}{\textbf{Scorer}} & \\
+480	    \cmidrule(lr){3-5}
+481	    \textbf{Generator} & \textbf{Mode} & \textbf{Self} & \textbf{Pythia} & \textbf{OLMo} & \textbf{Agreement} \\
+482	    \midrule
+483	    Qwen-1.5B-Instruct & Rewrite      & 2 & 2 & 2 & \checkmark \\
+484	    Qwen-1.5B-Instruct & Continuation & 2 & 1 & 1 & $\times$ \\
+485	    Qwen-1.5B (base)   & Continuation & 2 & --- & --- & --- \\
+486	    Pythia-1.4B         & Continuation & 2 & --- & --- & --- \\
+487	    OLMo-1B             & Continuation & 2 & --- & --- & --- \\
+488	    Qwen-7B             & Continuation & 2 & --- & --- & --- \\
+489	    Mistral-7B          & Continuation & 1 & --- & --- & --- \\
+490	    \bottomrule
+491	  \end{tabular}
+492	\end{table*}
+493	
+494	\clearpage
+495	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3ac9854f-be11-431b-979f-4057e705acf6",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "60dd869d-2e4e-48d1-8114-9691a3f67a0d",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex",
+      "content": "    \\bottomrule\n  \\end{tabular}\n\\end{table*}\n\n%%% Table S10: Pythia Decoding Ablation (exp-020)\n\\begin{table*}[t]\n  \\centering\n  \\small\n  \\caption{Pairwise $\\auc$ with bootstrap 95\\% CIs across depth pairs for Pythia-1.4B under four decoding configurations (Exp-020; 10{,}000 bootstrap resamples). Complements Table~\\ref{tab:s2_decoding} (Qwen-rewrite) with a second model family. $^\\dagger$Greedy decoding triggers repetition collapse in Pythia-1.4B (4-gram repeat rate: $d_0{=}0.01 \\to d_1{=}0.72$), inflating 0v1 and 1v2 AUC via lexical degeneracy rather than depth-discriminative features.}\n  \\label{tab:s10_pythia_decoding}\n  \\begin{tabular}{lcccc}\n    \\toprule\n    \\textbf{Depth Pair} & \\textbf{Greedy}$^\\dagger$ & \\textbf{Nuc $p{=}0.9$, $T{=}1.0$} & \\textbf{Nuc $p{=}0.95$, $T{=}0.7$} & \\textbf{Nuc $p{=}0.95$, $T{=}1.2$} \\\\\n    \\midrule\n    0 vs.\\ 1 & --- & --- & --- & --- \\\\\n    1 vs.\\ 2 & --- & --- & --- & --- \\\\\n    \\cmidrule(lr){1-5}\n    2 vs.\\ 3 & --- & --- & --- & --- \\\\\n    3 vs.\\ 4 & --- & --- & --- & --- \\\\\n    4 vs.\\ 5 & --- & --- & --- & --- \\\\\n    \\midrule\n    $\\Kempirical$ & --- & --- & --- & --- \\\\\n    \\bottomrule\n  \\end{tabular}\n\\end{table*}\n\n%%% Table S11: Length Ablation (exp-021)\n\\begin{table*}[t]\n  \\centering\n  \\small\n  \\caption{Pairwise $\\auc$ across depth pairs for three segment lengths (Exp-021; Qwen2.5-1.5B base, continuation mode). $\\Kempirical{=}2$ is confirmed for 128 and 256 tokens; 512 tokens yields point estimate $\\Kempirical{=}2$ but the 1v2 bootstrap CI lower bound falls marginally below $\\theta$.}\n  \\label{tab:s11_length_ablation}\n  \\begin{tabular}{lccc}\n    \\toprule\n    \\textbf{Depth Pair} & \\textbf{128 tokens} & \\textbf{256 tokens} & \\textbf{512 tokens} \\\\\n    \\midrule\n    0 vs.\\ 1 & --- & --- & --- \\\\\n    1 vs.\\ 2 & --- & --- & ---$^\\dagger$ \\\\\n    \\cmidrule(lr){1-4}\n    2 vs.\\ 3 & --- & --- & --- \\\\\n    3 vs.\\ 4 & --- & --- & --- \\\\\n    4 vs.\\ 5 & --- & --- & --- \\\\\n    \\midrule\n    $\\Kempirical$ & 2 & 2 & 2$^\\dagger$ \\\\\n    \\bottomrule\n    \\multicolumn{4}{l}{\\footnotesize $^\\dagger$CI $[0.5979,\\,0.6166]$; lower bound ${<}\\theta{=}0.60$.}\n  \\end{tabular}\n\\end{table*}\n\n%%% Table S12: Domain Ablation\n\\begin{table*}[t]\n  \\centering\n  \\small\n  \\caption{Pairwise $\\auc$ across depth pairs for three text domains (Qwen2.5-1.5B-Instruct, continuation mode). Tests generalization of $\\Kempirical{=}2$ beyond C4 web text to structured and technical domains.}\n  \\label{tab:s12_domain_ablation}\n  \\begin{tabular}{lccc}\n    \\toprule\n    \\textbf{Depth Pair} & \\textbf{C4 (web)} & \\textbf{Wikipedia} & \\textbf{arXiv} \\\\\n    \\midrule\n    0 vs.\\ 1 & --- & --- & --- \\\\\n    1 vs.\\ 2 & --- & --- & --- \\\\\n    \\cmidrule(lr){1-4}\n    2 vs.\\ 3 & --- & --- & --- \\\\\n    3 vs.\\ 4 & --- & --- & --- \\\\\n    4 vs.\\ 5 & --- & --- & --- \\\\\n    \\midrule\n    $\\Kempirical$ & --- & --- & --- \\\\\n    \\bottomrule\n  \\end{tabular}\n\\end{table*}\n\n%%% Table S13: Scorer Sensitivity Analysis\n\\begin{table*}[t]\n  \\centering\n  \\small\n  \\caption{Scorer sensitivity: $\\Kempirical$ under self-scoring vs.\\ cross-scoring. Self-scorer uses the generator's own model family for feature extraction; cross-scorer uses alternative models (Pythia-1.4B, OLMo-1B). $\\Kempirical$ agreement across scorer conditions indicates the boundary is governed by the generation process. Cross-scoring reduces $\\Kempirical$ only for the most marginal self-scorer condition (Qwen-continuation).}\n  \\label{tab:s13_scorer_sensitivity}\n  \\begin{tabular}{lccccc}\n    \\toprule\n    & & \\multicolumn{3}{c}{\\textbf{Scorer}} & \\\\\n    \\cmidrule(lr){3-5}\n    \\textbf{Generator} & \\textbf{Mode} & \\textbf{Self} & \\textbf{Pythia} & \\textbf{OLMo} & \\textbf{Agreement} \\\\\n    \\midrule\n    Qwen-1.5B-Instruct & Rewrite      & 2 & 2 & 2 & \\checkmark \\\\\n    Qwen-1.5B-Instruct & Continuation & 2 & 1 & 1 & $\\times$ \\\\\n    Qwen-1.5B (base)   & Continuation & 2 & --- & --- & --- \\\\\n    Pythia-1.4B         & Continuation & 2 & --- & --- & --- \\\\\n    OLMo-1B             & Continuation & 2 & --- & --- & --- \\\\\n    Qwen-7B             & Continuation & 2 & --- & --- & --- \\\\\n    Mistral-7B          & Continuation & 1 & --- & --- & --- \\\\\n    \\bottomrule\n  \\end{tabular}\n\\end{table*}\n\n\\clearpage\n",
+      "numLines": 96,
+      "startLine": 400,
+      "totalLines": 495
+    }
+  },
+  "sourceToolAssistantUUID": "3ac9854f-be11-431b-979f-4057e705acf6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 150 · 2026-05-18T02:15:36.777Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is a significant finding. The appendix contains **multiple tables with unfilled placeholder data** (`---` everywhere). Specifically:
+
+1. **Table S10 (Pythia Decoding Ablation, exp-020)**: ALL cells are `---` placeholders. The registry has the data (exp_020_pythia_decoding with complete AUC values).
+
+2. **Table S11 (Length Ablation, exp-021)**: Most cells are `---` placeholders except the K* row. The registry has data (exp_021_length_ablation).
+
+
+3. **Table S12 (Domain Ablation)** and **Table S13 (Scorer Sensitivity)** are similarly empty—all or most cells are placeholders, though the completed experiments exist in the registry. This is critical with the paper deadline just 7 days away, as the appendix is essentially a skeleton waiting to be populated with the actual results.
+
+Let me scan through the rest of the appendix to see what other sections might be missing data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "60dd869d-2e4e-48d1-8114-9691a3f67a0d",
+  "isSidechain": false,
+  "requestId": "req_011Cb9ECbpMP514rJPZ46uhP",
+  "type": "assistant",
+  "uuid": "f4cfcc38-4603-4ae7-b6ab-6a44363f78e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MzcaLwK8yPFy4Txq7Ajtee",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2733,
+      "cache_read_input_tokens": 109256,
+      "output_tokens": 585,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2733,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 585,
+          "cache_read_input_tokens": 109256,
+          "cache_creation_input_tokens": 2733,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2733
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 151 · 2026-05-18T02:15:36.779Z_
+
+这是重大发现。让我检查 appendix 中有多少个未填充的占位表格。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f4cfcc38-4603-4ae7-b6ab-6a44363f78e8",
+  "isSidechain": false,
+  "requestId": "req_011Cb9ECbpMP514rJPZ46uhP",
+  "type": "assistant",
+  "uuid": "e119d770-e7d3-48d7-a0bf-a02a8d0d1067",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MzcaLwK8yPFy4Txq7Ajtee",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2733,
+      "cache_read_input_tokens": 109256,
+      "output_tokens": 585,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2733,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 585,
+          "cache_read_input_tokens": 109256,
+          "cache_creation_input_tokens": 2733,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2733
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 152 · 2026-05-18T02:15:37.001Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Qc2MUaSz2SUAURUjGGxmGk`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex",
+  "offset": 0,
+  "limit": 100
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e119d770-e7d3-48d7-a0bf-a02a8d0d1067",
+  "isSidechain": false,
+  "requestId": "req_011Cb9ECbpMP514rJPZ46uhP",
+  "type": "assistant",
+  "uuid": "7abaa773-8d53-4bc3-9898-52125455f40f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MzcaLwK8yPFy4Txq7Ajtee",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2733,
+      "cache_read_input_tokens": 109256,
+      "output_tokens": 585,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2733,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 585,
+          "cache_read_input_tokens": 109256,
+          "cache_creation_input_tokens": 2733,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2733
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 153 · 2026-05-18T02:15:37.756Z_
+
+<details><summary>↩ Tool result · `toolu_01JdDFDV6r8tzq6bdzfWtp6x`</summary>
+
+```text
+0	\section{Extended Discussion}
+1	\label{sec:extended_discussion}
+2	
+3	\subsection{Theoretical Implications of $\Kempirical = 2$}
+4	
+5	The DPI guarantees a finite $\Ktheory$; for general web text, $\Kempirical \leq 2$ across all 8 configurations (1B--8B, 5 families), while structured domains (arXiv) yield $\Kempirical{=}3$, aligning with model collapse convergence~\cite{shumailov2024collapse, dohmatob2024model, alemohammad2024selfconsuming}.
+6	Decoding strategy modestly affects signal strength (1v2 $\auc \in [0.6866, 0.7039]$) but does not shift the boundary.
+7	
+8	\subsection{Cross-Model Transfer Implications}
+9	
+10	Cross-model classification retains 80--92\% accuracy with scorer-invariant feature rankings ($\rho > 0.90$), enabling single-classifier deployment across generators.
+11	Absolute discriminability at the $\Kempirical$ boundary is scorer-sensitive: alternative scorers reduce Qwen-continuation $\Kempirical$ from 2 to 1, while rewrite-mode $\Kempirical = 2$ is preserved.
+12	Model family similarity modulates transfer (Pythia$\leftrightarrow$OLMo: 90--92\% vs.\ Qwen-cont$\leftrightarrow$OLMo: 80--85\%).
+13	
+14	\begin{minipage}{\columnwidth}
+15	\centering
+16	\captionof{table}{Cross-scorer validation on Qwen-generated text. Alternative scorers (Pythia-1.4B, OLMo-1B) preserve feature ranking ($\rho > 0.90$) and rewrite-mode $\Kempirical = 2$, but reduce continuation-mode $\Kempirical$ from 2 to 1.}
+17	\label{tab:crossscorer}
+18	\resizebox{\columnwidth}{!}{\input{tables/tab_crossscorer}}
+19	\end{minipage}
+20	
+21	\begin{table}[h]
+22	\centering
+23	\small
+24	\caption{Three-way ANOVA (Generator $\times$ Scorer $\times$ Depth-Pair) on per-fold pairwise $\auc$ values. DV = per-fold AUC; $N{=}400$ (16 cells $\times$ 5 folds $\times$ 5 depth-pairs). The non-significant Scorer main effect is consistent with scorer independence of depth discrimination.}
+25	\label{tab:anova_crossscorer}
+26	\begin{tabular}{lrrrr}
+27	\toprule
+28	\textbf{Source} & \textbf{df} & $F$ & $p$ & $\eta^2_p$ \\
+29	\midrule
+30	Generator     & 3  & ---  & ---  & --- \\
+31	Scorer        & 3  & ---  & ---  & --- \\
+32	Depth-Pair    & 4  & ---  & ---  & --- \\
+33	Gen$\times$Scorer & 9 & --- & --- & --- \\
+34	Gen$\times$Depth  & 12 & --- & --- & --- \\
+35	Scorer$\times$Depth & 12 & --- & --- & --- \\
+36	Residual      & $\approx$356 & & & \\
+37	\bottomrule
+38	\end{tabular}
+39	\end{table}
+40	
+41	\subsection{Feature Importance Across Decoding Strategies}
+42	
+43	Feature importance ordering varies across decoding strategies: greedy and $T{=}0.7$ share highly correlated rankings ($\rho = 0.914$), while greedy vs.\ $T{=}1.2$ yields lower correlation ($\rho = 0.53$, nonsignificant after Bonferroni).
+44	The depth boundary is robust but the optimal feature subset is strategy-dependent.
+45	
+46	\subsection{Scale and Neural Probe}
+47	\label{sec:extended_neural_probe}
+48	
+49	Cross-scale validation supports $\Kempirical = 2$ from 1.5B through 8B: Qwen-7B (1v2 $\auc = 0.6168$ $[0.608, 0.626]$) and LLaMA-3.1-8B (1v2 $\auc = 0.6123$, 0v1 $= 0.9225$) both exceed $\theta$, with progressively lower 0v1 signal consistent with larger models generating more human-like text. Scaling to 13B+ remains open.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "21a6cd94-243e-4396-ae57-fd2a9d575202",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "441c1871-e272-4687-b14b-436653833cf4",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+      "content": "\\section{Extended Discussion}\n\\label{sec:extended_discussion}\n\n\\subsection{Theoretical Implications of $\\Kempirical = 2$}\n\nThe DPI guarantees a finite $\\Ktheory$; for general web text, $\\Kempirical \\leq 2$ across all 8 configurations (1B--8B, 5 families), while structured domains (arXiv) yield $\\Kempirical{=}3$, aligning with model collapse convergence~\\cite{shumailov2024collapse, dohmatob2024model, alemohammad2024selfconsuming}.\nDecoding strategy modestly affects signal strength (1v2 $\\auc \\in [0.6866, 0.7039]$) but does not shift the boundary.\n\n\\subsection{Cross-Model Transfer Implications}\n\nCross-model classification retains 80--92\\% accuracy with scorer-invariant feature rankings ($\\rho > 0.90$), enabling single-classifier deployment across generators.\nAbsolute discriminability at the $\\Kempirical$ boundary is scorer-sensitive: alternative scorers reduce Qwen-continuation $\\Kempirical$ from 2 to 1, while rewrite-mode $\\Kempirical = 2$ is preserved.\nModel family similarity modulates transfer (Pythia$\\leftrightarrow$OLMo: 90--92\\% vs.\\ Qwen-cont$\\leftrightarrow$OLMo: 80--85\\%).\n\n\\begin{minipage}{\\columnwidth}\n\\centering\n\\captionof{table}{Cross-scorer validation on Qwen-generated text. Alternative scorers (Pythia-1.4B, OLMo-1B) preserve feature ranking ($\\rho > 0.90$) and rewrite-mode $\\Kempirical = 2$, but reduce continuation-mode $\\Kempirical$ from 2 to 1.}\n\\label{tab:crossscorer}\n\\resizebox{\\columnwidth}{!}{\\input{tables/tab_crossscorer}}\n\\end{minipage}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Three-way ANOVA (Generator $\\times$ Scorer $\\times$ Depth-Pair) on per-fold pairwise $\\auc$ values. DV = per-fold AUC; $N{=}400$ (16 cells $\\times$ 5 folds $\\times$ 5 depth-pairs). The non-significant Scorer main effect is consistent with scorer independence of depth discrimination.}\n\\label{tab:anova_crossscorer}\n\\begin{tabular}{lrrrr}\n\\toprule\n\\textbf{Source} & \\textbf{df} & $F$ & $p$ & $\\eta^2_p$ \\\\\n\\midrule\nGenerator     & 3  & ---  & ---  & --- \\\\\nScorer        & 3  & ---  & ---  & --- \\\\\nDepth-Pair    & 4  & ---  & ---  & --- \\\\\nGen$\\times$Scorer & 9 & --- & --- & --- \\\\\nGen$\\times$Depth  & 12 & --- & --- & --- \\\\\nScorer$\\times$Depth & 12 & --- & --- & --- \\\\\nResidual      & $\\approx$356 & & & \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Feature Importance Across Decoding Strategies}\n\nFeature importance ordering varies across decoding strategies: greedy and $T{=}0.7$ share highly correlated rankings ($\\rho = 0.914$), while greedy vs.\\ $T{=}1.2$ yields lower correlation ($\\rho = 0.53$, nonsignificant after Bonferroni).\nThe depth boundary is robust but the optimal feature subset is strategy-dependent.\n\n\\subsection{Scale and Neural Probe}\n\\label{sec:extended_neural_probe}\n\nCross-scale validation supports $\\Kempirical = 2$ from 1.5B through 8B: Qwen-7B (1v2 $\\auc = 0.6168$ $[0.608, 0.626]$) and LLaMA-3.1-8B (1v2 $\\auc = 0.6123$, 0v1 $= 0.9225$) both exceed $\\theta$, with progressively lower 0v1 signal consistent with larger models generating more human-like text. Scaling to 13B+ remains open.",
+      "numLines": 50,
+      "startLine": 0,
+      "totalLines": 254
+    }
+  },
+  "sourceToolAssistantUUID": "21a6cd94-243e-4396-ae57-fd2a9d575202",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 154 · 2026-05-18T02:15:37.019Z_
+
+<details><summary>↩ Tool result · `toolu_01Qc2MUaSz2SUAURUjGGxmGk`</summary>
+
+```text
+0	\appendix
+1	\section{Supplementary Figures}
+2	
+3	\begin{figure}[t]
+4	\centering
+5	\includegraphics[width=\columnwidth]{figures/fig_filtering_strategies.pdf}
+6	\caption{Downstream performance of all filtering strategies (5 seeds, $\pm$1 std). Binary-ours (green) minimizes MMLU degradation; graduated $\alpha$ sweep shows monotonic convergence toward binary. Dashed line: base model (no fine-tuning).}
+7	\label{fig:filtering_strategies}
+8	\end{figure}
+9	
+10	\begin{figure}[t]
+11	  \centering
+12	  \includegraphics[width=\columnwidth]{figures/fig_s1_auc_decay_ci.pdf}
+13	  \caption{Pairwise $\auc$ decay curves for five model-mode configurations with bootstrap 95\% confidence intervals. Error bars computed from 1{,}000 bootstrap resamples. The shaded region marks the $\Kempirical=2$ boundary where $\auc$ drops below $\theta=0.60$. This figure complements Figure~\ref{fig:auc_decay} in the main text by showing statistical uncertainty for each measurement point.}
+14	  \label{fig:s1_auc_decay_ci}
+15	\end{figure}
+16	
+17	\section{Supplementary Tables}
+18	
+19	%%% Feature ranking table (moved from main text)
+20	\begin{table}[t]
+21	\centering
+22	\small
+23	\caption{Top-3 features by single-feature $\auc$ ranking. Bold: shared across all continuation-mode models. Spearman $\rho$ (continuation pairs): Pythia--OLMo 0.95, Pythia--Qwen-cont 0.91, OLMo--Qwen-cont 0.85.}
+24	\label{tab:top_features}
+25	\begin{tabular}{cllll}
+26	\toprule
+27	Rank & Pythia & OLMo & Qwen-rw & Qwen-cont \\
+28	\midrule
+29	1 & \textbf{\texttt{surp\_d1\_std}} & \textbf{\texttt{surp\_std}} & \texttt{freq\_entropy} & \textbf{\texttt{surp\_d1\_std}} \\
+30	2 & \textbf{\texttt{surp\_d2\_std}} & \textbf{\texttt{surp\_d1\_std}} & \textbf{\texttt{surp\_std}} & \textbf{\texttt{surp\_std}} \\
+31	3 & \textbf{\texttt{surp\_std}} & \textbf{\texttt{surp\_d2\_std}} & \textbf{\texttt{surp\_d1\_std}} & \textbf{\texttt{surp\_d2\_std}} \\
+32	\bottomrule
+33	\end{tabular}
+34	\end{table}
+35	
+36	%%% Table S1: Cross-Transfer Confusion Matrix (exp-013)
+37	\begin{table*}[t]
+38	  \centering
+39	  \caption{Cross-model transfer accuracy matrix. Each cell reports the six-class depth classification accuracy of a detector trained on one model's outputs (row) and evaluated on another model's outputs (column). Diagonal entries (\textbf{bold}) indicate within-model performance. Transfer retention is computed as the ratio of off-diagonal accuracy to the geometric mean of the two corresponding diagonal entries.}
+40	  \label{tab:s1_transfer}
+41	  \begin{tabular}{lcccc}
+42	    \toprule
+43	    \multirow{2}{*}{\textbf{Train Model}} & \multicolumn{4}{c}{\textbf{Test Model}} \\
+44	    \cmidrule(lr){2-5}
+45	    & Qwen-rw & Pythia & OLMo & Qwen-cont \\
+46	    \midrule
+47	    Qwen-rw   & \textbf{0.4229} & 0.2590 & 0.2653 & 0.3466 \\
+48	    Pythia    & 0.2718 & \textbf{0.3856} & 0.3531 & 0.3287 \\
+49	    OLMo      & 0.2768 & 0.3450 & \textbf{0.3822} & 0.3244 \\
+50	    Qwen-cont & 0.3440 & 0.3284 & 0.3112 & \textbf{0.3875} \\
+51	    \bottomrule
+52	  \end{tabular}
+53	  \vspace{4pt}
+54	
+55	  \footnotesize
+56	  \textit{Transfer retention} between models $A$ and $B$ is defined as $\frac{1}{2}\bigl(\frac{\mathrm{acc}(A \to B)}{\sqrt{\mathrm{acc}(A \to A) \cdot \mathrm{acc}(B \to B)}} + \frac{\mathrm{acc}(B \to A)}{\sqrt{\mathrm{acc}(A \to A) \cdot \mathrm{acc}(B \to B)}}\bigr)$.
+57	  Notable pairs: Pythia$\leftrightarrow$OLMo 91--92\%, Qwen-cont$\leftrightarrow$Pythia 83--85\%, Qwen-cont$\leftrightarrow$OLMo 80--85\%, Qwen-rw$\to$Pythia/OLMo 61--63\%.
+58	\end{table*}
+59	
+60	%%% Table S2: Decoding Ablation AUC (exp-003)
+61	\begin{table*}[t]
+62	  \centering
+63	  \caption{Pairwise AUC with bootstrap 95\% CIs across depth pairs for four decoding configurations (all using Qwen2.5-1.5B-Instruct in rewrite mode; 10{,}000 bootstrap resamples). The horizontal rule between depth pairs 1\,vs.\,2 and 2\,vs.\,3 marks the empirical detectability boundary $\Kempirical=2$. Bottom rows report cross-configuration Spearman $\rho$ on per-feature discriminative-power rankings.}
+64	  \label{tab:s2_decoding}
+65	  \footnotesize
+66	  \begin{tabular}{lcccc}
+67	    \toprule
+68	    \textbf{Depth Pair} & \textbf{Greedy} & \textbf{Nuc $p{=}0.9$, $T{=}1.0$} & \textbf{Nuc $p{=}0.95$, $T{=}0.7$} & \textbf{Nuc $p{=}0.95$, $T{=}1.2$} \\
+69	    \midrule
+70	    0 vs.\ 1 & $.980\;[.977,\,.982]$ & $.995\;[.993,\,.996]$ & $.988\;[.986,\,.990]$ & $.998\;[.998,\,.999]$ \\
+71	    1 vs.\ 2 & $.689\;[.680,\,.698]$ & $.687\;[.677,\,.695]$ & $.689\;[.680,\,.697]$ & $.704\;[.695,\,.713]$ \\
+72	    \cmidrule(lr){1-5}
+73	    2 vs.\ 3 & $.561\;[.552,\,.571]$ & $.592\;[.582,\,.601]$\rlap{$^\dagger$} & $.590\;[.581,\,.600]$ & $.582\;[.572,\,.592]$ \\
+74	    3 vs.\ 4 & $.540\;[.531,\,.550]$ & $.547\;[.537,\,.557]$ & $.539\;[.529,\,.549]$ & $.529\;[.519,\,.540]$ \\
+75	    4 vs.\ 5 & $.514\;[.503,\,.524]$ & $.507\;[.496,\,.517]^{\ddagger}$ & $.535\;[.524,\,.545]$ & $.524\;[.513,\,.535]$ \\
+76	    \midrule
+77	    \multicolumn{5}{l}{\textbf{Cross-config feature Spearman $\rho$}} \\
+78	    \midrule
+79	    \multicolumn{2}{l}{Greedy vs.\ Nuc $p{=}0.9$} & 0.600 &
+80	    \multicolumn{1}{l}{Nuc $p{=}0.9$ vs.\ $T{=}0.7$} & 0.782 \\
+81	    \multicolumn{2}{l}{Greedy vs.\ $T{=}0.7$} & 0.914 &
+82	    \multicolumn{1}{l}{Nuc $p{=}0.9$ vs.\ $T{=}1.2$} & 0.893 \\
+83	    \multicolumn{2}{l}{Greedy vs.\ $T{=}1.2$} & 0.532 &
+84	    \multicolumn{1}{l}{$T{=}0.7$ vs.\ $T{=}1.2$} & 0.668 \\
+85	    \bottomrule
+86	    \multicolumn{5}{l}{${}^{\dagger}$\,CI upper bound (0.601) marginally exceeds $\theta{=}0.60$ by 0.001.} \\
+87	    \multicolumn{5}{l}{${}^{\ddagger}$\,Permutation $p = 0.12$ (not significant). All other pairs $p < 0.01$.}
+88	  \end{tabular}
+89	\end{table*}
+90	
+91	%%% Table S2b: Extended K* CI (all models including new additions)
+92	\begin{table*}[t]
+93	  \centering
+94	  \footnotesize
+95	  \caption{Extended pairwise $\auc$ with bootstrap 95\% CIs for all model configurations including new additions.
+96	  This table extends Table~\ref{tab:kstar_ci} in the main text with Qwen-base, LLaMA-8B, and Mistral-7B configurations.
+97	  $\Kempirical = 2$ is confirmed across all conditions at $\theta{=}0.60$.}
+98	  \label{tab:kstar_ci_extended}
+99	  \begin{tabular}{lcccccccccccccc}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7abaa773-8d53-4bc3-9898-52125455f40f",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "7bdac0d5-124a-4d88-8eb4-c5081dbbff7c",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex",
+      "content": "\\appendix\n\\section{Supplementary Figures}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_filtering_strategies.pdf}\n\\caption{Downstream performance of all filtering strategies (5 seeds, $\\pm$1 std). Binary-ours (green) minimizes MMLU degradation; graduated $\\alpha$ sweep shows monotonic convergence toward binary. Dashed line: base model (no fine-tuning).}\n\\label{fig:filtering_strategies}\n\\end{figure}\n\n\\begin{figure}[t]\n  \\centering\n  \\includegraphics[width=\\columnwidth]{figures/fig_s1_auc_decay_ci.pdf}\n  \\caption{Pairwise $\\auc$ decay curves for five model-mode configurations with bootstrap 95\\% confidence intervals. Error bars computed from 1{,}000 bootstrap resamples. The shaded region marks the $\\Kempirical=2$ boundary where $\\auc$ drops below $\\theta=0.60$. This figure complements Figure~\\ref{fig:auc_decay} in the main text by showing statistical uncertainty for each measurement point.}\n  \\label{fig:s1_auc_decay_ci}\n\\end{figure}\n\n\\section{Supplementary Tables}\n\n%%% Feature ranking table (moved from main text)\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Top-3 features by single-feature $\\auc$ ranking. Bold: shared across all continuation-mode models. Spearman $\\rho$ (continuation pairs): Pythia--OLMo 0.95, Pythia--Qwen-cont 0.91, OLMo--Qwen-cont 0.85.}\n\\label{tab:top_features}\n\\begin{tabular}{cllll}\n\\toprule\nRank & Pythia & OLMo & Qwen-rw & Qwen-cont \\\\\n\\midrule\n1 & \\textbf{\\texttt{surp\\_d1\\_std}} & \\textbf{\\texttt{surp\\_std}} & \\texttt{freq\\_entropy} & \\textbf{\\texttt{surp\\_d1\\_std}} \\\\\n2 & \\textbf{\\texttt{surp\\_d2\\_std}} & \\textbf{\\texttt{surp\\_d1\\_std}} & \\textbf{\\texttt{surp\\_std}} & \\textbf{\\texttt{surp\\_std}} \\\\\n3 & \\textbf{\\texttt{surp\\_std}} & \\textbf{\\texttt{surp\\_d2\\_std}} & \\textbf{\\texttt{surp\\_d1\\_std}} & \\textbf{\\texttt{surp\\_d2\\_std}} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n%%% Table S1: Cross-Transfer Confusion Matrix (exp-013)\n\\begin{table*}[t]\n  \\centering\n  \\caption{Cross-model transfer accuracy matrix. Each cell reports the six-class depth classification accuracy of a detector trained on one model's outputs (row) and evaluated on another model's outputs (column). Diagonal entries (\\textbf{bold}) indicate within-model performance. Transfer retention is computed as the ratio of off-diagonal accuracy to the geometric mean of the two corresponding diagonal entries.}\n  \\label{tab:s1_transfer}\n  \\begin{tabular}{lcccc}\n    \\toprule\n    \\multirow{2}{*}{\\textbf{Train Model}} & \\multicolumn{4}{c}{\\textbf{Test Model}} \\\\\n    \\cmidrule(lr){2-5}\n    & Qwen-rw & Pythia & OLMo & Qwen-cont \\\\\n    \\midrule\n    Qwen-rw   & \\textbf{0.4229} & 0.2590 & 0.2653 & 0.3466 \\\\\n    Pythia    & 0.2718 & \\textbf{0.3856} & 0.3531 & 0.3287 \\\\\n    OLMo      & 0.2768 & 0.3450 & \\textbf{0.3822} & 0.3244 \\\\\n    Qwen-cont & 0.3440 & 0.3284 & 0.3112 & \\textbf{0.3875} \\\\\n    \\bottomrule\n  \\end{tabular}\n  \\vspace{4pt}\n\n  \\footnotesize\n  \\textit{Transfer retention} between models $A$ and $B$ is defined as $\\frac{1}{2}\\bigl(\\frac{\\mathrm{acc}(A \\to B)}{\\sqrt{\\mathrm{acc}(A \\to A) \\cdot \\mathrm{acc}(B \\to B)}} + \\frac{\\mathrm{acc}(B \\to A)}{\\sqrt{\\mathrm{acc}(A \\to A) \\cdot \\mathrm{acc}(B \\to B)}}\\bigr)$.\n  Notable pairs: Pythia$\\leftrightarrow$OLMo 91--92\\%, Qwen-cont$\\leftrightarrow$Pythia 83--85\\%, Qwen-cont$\\leftrightarrow$OLMo 80--85\\%, Qwen-rw$\\to$Pythia/OLMo 61--63\\%.\n\\end{table*}\n\n%%% Table S2: Decoding Ablation AUC (exp-003)\n\\begin{table*}[t]\n  \\centering\n  \\caption{Pairwise AUC with bootstrap 95\\% CIs across depth pairs for four decoding configurations (all using Qwen2.5-1.5B-Instruct in rewrite mode; 10{,}000 bootstrap resamples). The horizontal rule between depth pairs 1\\,vs.\\,2 and 2\\,vs.\\,3 marks the empirical detectability boundary $\\Kempirical=2$. Bottom rows report cross-configuration Spearman $\\rho$ on per-feature discriminative-power rankings.}\n  \\label{tab:s2_decoding}\n  \\footnotesize\n  \\begin{tabular}{lcccc}\n    \\toprule\n    \\textbf{Depth Pair} & \\textbf{Greedy} & \\textbf{Nuc $p{=}0.9$, $T{=}1.0$} & \\textbf{Nuc $p{=}0.95$, $T{=}0.7$} & \\textbf{Nuc $p{=}0.95$, $T{=}1.2$} \\\\\n    \\midrule\n    0 vs.\\ 1 & $.980\\;[.977,\\,.982]$ & $.995\\;[.993,\\,.996]$ & $.988\\;[.986,\\,.990]$ & $.998\\;[.998,\\,.999]$ \\\\\n    1 vs.\\ 2 & $.689\\;[.680,\\,.698]$ & $.687\\;[.677,\\,.695]$ & $.689\\;[.680,\\,.697]$ & $.704\\;[.695,\\,.713]$ \\\\\n    \\cmidrule(lr){1-5}\n    2 vs.\\ 3 & $.561\\;[.552,\\,.571]$ & $.592\\;[.582,\\,.601]$\\rlap{$^\\dagger$} & $.590\\;[.581,\\,.600]$ & $.582\\;[.572,\\,.592]$ \\\\\n    3 vs.\\ 4 & $.540\\;[.531,\\,.550]$ & $.547\\;[.537,\\,.557]$ & $.539\\;[.529,\\,.549]$ & $.529\\;[.519,\\,.540]$ \\\\\n    4 vs.\\ 5 & $.514\\;[.503,\\,.524]$ & $.507\\;[.496,\\,.517]^{\\ddagger}$ & $.535\\;[.524,\\,.545]$ & $.524\\;[.513,\\,.535]$ \\\\\n    \\midrule\n    \\multicolumn{5}{l}{\\textbf{Cross-config feature Spearman $\\rho$}} \\\\\n    \\midrule\n    \\multicolumn{2}{l}{Greedy vs.\\ Nuc $p{=}0.9$} & 0.600 &\n    \\multicolumn{1}{l}{Nuc $p{=}0.9$ vs.\\ $T{=}0.7$} & 0.782 \\\\\n    \\multicolumn{2}{l}{Greedy vs.\\ $T{=}0.7$} & 0.914 &\n    \\multicolumn{1}{l}{Nuc $p{=}0.9$ vs.\\ $T{=}1.2$} & 0.893 \\\\\n    \\multicolumn{2}{l}{Greedy vs.\\ $T{=}1.2$} & 0.532 &\n    \\multicolumn{1}{l}{$T{=}0.7$ vs.\\ $T{=}1.2$} & 0.668 \\\\\n    \\bottomrule\n    \\multicolumn{5}{l}{${}^{\\dagger}$\\,CI upper bound (0.601) marginally exceeds $\\theta{=}0.60$ by 0.001.} \\\\\n    \\multicolumn{5}{l}{${}^{\\ddagger}$\\,Permutation $p = 0.12$ (not significant). All other pairs $p < 0.01$.}\n  \\end{tabular}\n\\end{table*}\n\n%%% Table S2b: Extended K* CI (all models including new additions)\n\\begin{table*}[t]\n  \\centering\n  \\footnotesize\n  \\caption{Extended pairwise $\\auc$ with bootstrap 95\\% CIs for all model configurations including new additions.\n  This table extends Table~\\ref{tab:kstar_ci} in the main text with Qwen-base, LLaMA-8B, and Mistral-7B configurations.\n  $\\Kempirical = 2$ is confirmed across all conditions at $\\theta{=}0.60$.}\n  \\label{tab:kstar_ci_extended}\n  \\begin{tabular}{lcccccccccccccc}",
+      "numLines": 100,
+      "startLine": 0,
+      "totalLines": 495
+    }
+  },
+  "sourceToolAssistantUUID": "7abaa773-8d53-4bc3-9898-52125455f40f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 155 · 2026-05-18T02:15:37.750Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01JdDFDV6r8tzq6bdzfWtp6x`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+  "offset": 0,
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7bdac0d5-124a-4d88-8eb4-c5081dbbff7c",
+  "isSidechain": false,
+  "requestId": "req_011Cb9ECbpMP514rJPZ46uhP",
+  "type": "assistant",
+  "uuid": "21a6cd94-243e-4396-ae57-fd2a9d575202",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MzcaLwK8yPFy4Txq7Ajtee",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2733,
+      "cache_read_input_tokens": 109256,
+      "output_tokens": 585,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2733,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 585,
+          "cache_read_input_tokens": 109256,
+          "cache_creation_input_tokens": 2733,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2733
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 156_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_review_figure_table_audit_20260518T020337]: Worker worker_review_figure_table_audit_20260518T020337 已完成（status=failed），请审查 Agent 的处理结果。",
+  "leafUuid": "441c1871-e272-4687-b14b-436653833cf4",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 157_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 158 · 2026-05-18T02:15:59.964Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture. Let me compile my findings:
+
+### Critical Issues
+
+1. **Multiple appendix tables with placeholder data (---)**:
+   - **Table S10 (Pythia Decoding Ablation, exp-020)**: ALL data cells are `---`. Registry has complete data.
+   - **Table S11 (Length Ablation, exp-021)**: Most cells `---`. Registry has data.
+   - **Table S12 (Domain Ablation)**: ALL cells `---`. Registry has data.
+   - **Table S13 (Scorer Sensitivity)**: Rows for Qwen-base, Pythia, OLMo, Qwen-7B, Mistral all `---`.
+   - **ANOVA table (appendix_extended.tex)**: All F, p, and η² values are missing as well.
+
+These tables have proper captions and labels with some referenced in the main text, but the data hasn't been populated despite the experiments being complete. With the May 25 deadline just a week away, these unfilled tables could signal incomplete work.
+
+2. **Page 12 (Table 9)**: Massive whitespace issue where the table sits at the bottom with roughly 70% blank space above—a LaTeX float positioning problem that needs correction.
+
+### Warning Issues
+
+3
+
+. **Appendix table (appendix.tex lines 106-110)**: The extended CI table has two unpopulated columns for additional model configurations.
+
+4. **Missing figures against original plan**: The May 12 figure plan outlined 10 figures/tables, but several haven't materialized—Feature Importance, JSD decay with theory overlay, confusion matrix, and UMAP visualization are notably absent. With a week remaining, I need to prioritize which of these are essential.
+
+### Info
+
+5. **Table 4 verification**: All K* values match the registry data exactly. ✓
+
+6. **Dash usage**: No em-dash or en-dash violations found in the tex files.
+
+7. **Data placeholders**: The `---` entries in tables are legitimate missing data markers, not rendering issues. ✓
+
+8. **Figure quality**: The pipeline, AUC decay, transfer heatmap, θ sensitivity, and filtering strategies figures are all clear and well-formatted.
+
+9. **Page count**: The main body sections fit comfortably within the 8-page limit.
+
+Now I'm ready to draft the report for the Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "441c1871-e272-4687-b14b-436653833cf4",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EDUc3RqJoi6VuDF25D",
+  "type": "assistant",
+  "uuid": "ff27c4a1-e356-4936-b00c-90f91c17ac52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qtt4bGH1sBZdiPRVy2cMNr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4716,
+      "cache_read_input_tokens": 111989,
+      "output_tokens": 1887,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4716,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1887,
+          "cache_read_input_tokens": 111989,
+          "cache_creation_input_tokens": 4716,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4716
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 159 · 2026-05-18T02:15:59.969Z_
+
+现在我已经完成了独立的图表审查。让我向 Director 报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ff27c4a1-e356-4936-b00c-90f91c17ac52",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EDUc3RqJoi6VuDF25D",
+  "type": "assistant",
+  "uuid": "acf2a015-3036-4a42-9433-e5b733c59305",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qtt4bGH1sBZdiPRVy2cMNr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4716,
+      "cache_read_input_tokens": 111989,
+      "output_tokens": 1887,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4716,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1887,
+          "cache_read_input_tokens": 111989,
+          "cache_creation_input_tokens": 4716,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4716
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 160 · 2026-05-18T02:16:23.311Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director · `toolu_01FXwENCQrpQ4yUzGnrjtxA1`</summary>
+
+```json
+{
+  "text": "## 图表审查报告（独立审查，替代失败的 worker_review_figure_table_audit_20260518T020337）\n\n**背景**: Worker 状态为 failed，Reviewer 独立完成图表审查。已逐页查看 main.pdf 全部 19 页渲染图像，交叉验证表格数据与 registry，检查 LaTeX 源码。\n\n---\n\n### [severity: critical] Appendix 存在多个占位符表格，数据完全空缺\n\n以下 appendix 表格结构完整（caption、label 已写好，部分正文有引用），但数据全部为 `---` 占位符：\n\n1. **Table S10** (appendix.tex L405-424, Pythia Decoding Ablation, exp-020): 全部 AUC/K* 均为 `---`。registry 有完整数据（greedy K*=2 AUC 1v2=0.8838, nuc09 K*=2 AUC 1v2=0.677, t07 K*=2, t12 K*=2）\n2. **Table S11** (appendix.tex L427-447, Length Ablation, exp-021): 除 K* 行外全部 `---`。registry 有数据（128tok 1v2=0.6219, 256tok=0.6282, 512tok=0.6073）\n3. **Table S12** (appendix.tex L450-469, Domain Ablation): 全部 `---`。registry 有 C4/Wiki/arXiv 数据\n4. **Table S13** (appendix.tex L472-492, Scorer Sensitivity): 6 行中 5 行（Qwen-base, Pythia, OLMo, Qwen-7B, Mistral）全为 `---`\n5. **ANOVA table** (appendix_extended.tex L21-39): F/p/η² 全为 `---`\n6. **Extended CI table** (appendix.tex L91-110): 最后两列全为 `--`\n\n**影响**: 审稿人翻到 appendix 看到空表会严重质疑论文完成度。距提交 7 天，数据已在 registry 中，属于\"有数据未填\"而非\"缺实验\"。\n\n**建议**: 紧急安排 Worker 从 registry 提取数据填充这些表格。优先 S10/S12/S13（正文引用或对主要 claim 有支撑作用的表格）。\n\n---\n\n### [severity: warning] Page 12 (Table 9) 严重 LaTeX float 问题\n\nTable 9（Per-depth recall）被排在页面底部，上方约 70% 为空白。这是 LaTeX float 排版问题，在 appendix 中虽不致命，但审稿人观感差。\n\n**建议**: 调整 float 参数或合并相邻表格消除大片空白。\n\n---\n\n### [severity: info] 正面发现\n\n- **Table 4 (Domain × Model K*) 数据一致性**: 6 个模型 × 3 个域全部与 registry 核实一致（C4: 5/6 K*=2 + Mistral K*=1; arXiv: 5/5 K*=3 + OLMo capacity failure; Wiki: 6/6 K*=1 scorer-controlled）\n- **正文图表质量良好**: Fig 1 (pipeline)、Fig 2 (AUC decay)、Fig 3 (θ sensitivity)、Fig 4 (transfer heatmap) 清晰可读，色彩方案一致\n- **无 em-dash/en-dash 违规**: 全文 tex 文件检查通过，正文行文中无解释性破折号\n- **主体内容在 8 页限制内**: Section 1-7 + Conclusion + Limitations 在 page 1-8 内完成\n- **Table 2 (Pairwise AUC with CI) 抽查**: Qwen-rw 1v2=0.6955, Pythia 1v2=0.6539, OLMo 1v2=0.6145 与 registry 一致",
+  "project": "gen-depth-contamination"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "acf2a015-3036-4a42-9433-e5b733c59305",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EDUc3RqJoi6VuDF25D",
+  "type": "assistant",
+  "uuid": "96c611f3-4aac-4b41-af83-d04f58154afe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qtt4bGH1sBZdiPRVy2cMNr",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4716,
+      "cache_read_input_tokens": 111989,
+      "output_tokens": 1887,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4716,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1887,
+          "cache_read_input_tokens": 111989,
+          "cache_creation_input_tokens": 4716,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4716
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 161 · 2026-05-18T02:16:27.300Z_
+
+<details><summary>↩ Tool result · `toolu_01FXwENCQrpQ4yUzGnrjtxA1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "96c611f3-4aac-4b41-af83-d04f58154afe",
+  "isSidechain": false,
+  "promptId": "dcb9bdf7-2d7d-42a8-89a4-daaa9bec3719",
+  "type": "user",
+  "uuid": "39d7d42d-7e12-47cb-9dfe-7f5f7fcdf148",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "96c611f3-4aac-4b41-af83-d04f58154afe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 162_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 163 · 2026-05-18T02:16:37.766Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-18T02:16:37.766Z",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "content": "[服务器重启后首条消息] 当前日期: 2026-05-18。服务器刚重启，项目状态可能已更新。在处理审查请求前，**先读取 registry.yaml 和 report.md** 获取最新实验状态，不要依赖对话历史中的状态信息。\n\n**审查请求：** [系统通知 — worker_done:worker_review_figure_audit_v2_20260518T021002]:\nWorker worker_review_figure_audit_v2_20260518T021002 已完成（status=failed），请审查 Agent 的处理结果。"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 164 · 2026-05-18T02:16:37.767Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-18T02:16:37.767Z",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+## Round 2
+
+## Round 2
+
+2 recorded events
+
+
+### User
+
+_source line 165 · 2026-05-18T02:16:37.758Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "39d7d42d-7e12-47cb-9dfe-7f5f7fcdf148",
+  "isSidechain": false,
+  "promptId": "865ff729-313e-4186-979e-2649458c55cd",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "5a5788f0-cad1-4188-9f49-b6f4dcabe3b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 166 · 2026-05-18T02:16:37.758Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5a5788f0-cad1-4188-9f49-b6f4dcabe3b0",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "1f03306e-a84d-4b28-afd3-ba529ded5143",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "4429333d-ffd5-4dc2-8069-6689f2186891",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 3
+
+## Round 3
+
+19 recorded events
+
+
+### User
+
+_source line 167 · 2026-05-18T02:16:37.892Z_
+
+[服务器重启后首条消息] 当前日期: 2026-05-18。服务器刚重启，项目状态可能已更新。在处理审查请求前，**先读取 registry.yaml 和 report.md** 获取最新实验状态，不要依赖对话历史中的状态信息。
+
+**审查请求：** [系统通知 — worker_done:worker_review_figure_audit_v2_20260518T021002]:
+Worker worker_review_figure_audit_v2_20260518T021002 已完成（status=failed），请审查 Agent 的处理结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1f03306e-a84d-4b28-afd3-ba529ded5143",
+  "isSidechain": false,
+  "promptId": "865ff729-313e-4186-979e-2649458c55cd",
+  "type": "user",
+  "uuid": "da9765dd-e733-4402-97c9-cba2421ac540",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 168 · 2026-05-18T02:16:42.438Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Server restarted, need to refresh state. Another figure audit worker failed (v2 this time). Let me read the latest registry and report first, then assess.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "da9765dd-e733-4402-97c9-cba2421ac540",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EHuT8uwVtUkAN2B8e3",
+  "type": "assistant",
+  "uuid": "088fdb6b-d4f2-4061-82b0-259ad837f394",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JKkQgGYXrQ4huUEQ671VtP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 191,
+      "cache_read_input_tokens": 118665,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 191,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 118665,
+          "cache_creation_input_tokens": 191,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 191
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 169 · 2026-05-18T02:16:43.052Z_
+
+服务器重启后刷新状态，先读取最新 registry 和 report。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "088fdb6b-d4f2-4061-82b0-259ad837f394",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EHuT8uwVtUkAN2B8e3",
+  "type": "assistant",
+  "uuid": "a54b31d8-dff2-4424-954c-bdcb3d4031e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JKkQgGYXrQ4huUEQ671VtP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 191,
+      "cache_read_input_tokens": 118665,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 191,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 118665,
+          "cache_creation_input_tokens": 191,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 191
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 170 · 2026-05-18T02:16:43.980Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VWLWhZjJTfM77Wz9X3Nh6A`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__reviewer_post_to_director",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a54b31d8-dff2-4424-954c-bdcb3d4031e0",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EHuT8uwVtUkAN2B8e3",
+  "type": "assistant",
+  "uuid": "f6a84dd5-9f81-41a6-88bf-790e06aa6290",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JKkQgGYXrQ4huUEQ671VtP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 191,
+      "cache_read_input_tokens": 118665,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 191,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 118665,
+          "cache_creation_input_tokens": 191,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 191
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 171 · 2026-05-18T02:16:43.987Z_
+
+<details><summary>↩ Tool result · `toolu_01VWLWhZjJTfM77Wz9X3Nh6A`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reviewer_post_to_director"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f6a84dd5-9f81-41a6-88bf-790e06aa6290",
+  "isSidechain": false,
+  "promptId": "865ff729-313e-4186-979e-2649458c55cd",
+  "type": "user",
+  "uuid": "5a73bd0f-5897-4b63-b59b-a5340e8c4eb1",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__reviewer_post_to_director"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__reviewer_post_to_director",
+    "total_deferred_tools": 34
+  },
+  "sourceToolAssistantUUID": "f6a84dd5-9f81-41a6-88bf-790e06aa6290",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 172 · 2026-05-18T02:16:44.024Z_
+
+```json
+{
+  "parentUuid": "5a73bd0f-5897-4b63-b59b-a5340e8c4eb1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "25c4f244-2d07-4b0b-922f-0ed786d7e9fe",
+  "timestamp": "2026-05-18T02:16:44.024Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 173 · 2026-05-18T02:16:48.642Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01FjyKkxgr9eYCjBGhq8sad5`</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "25c4f244-2d07-4b0b-922f-0ed786d7e9fe",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EJMeEMmn3sAy5fKfZf",
+  "type": "assistant",
+  "uuid": "d536ff30-d8ce-4486-a02c-392cd61a4b8e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JggZBqAYQZMEFJsXcmZB9M",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1187,
+      "cache_read_input_tokens": 118856,
+      "output_tokens": 188,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1187,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 188,
+          "cache_read_input_tokens": 118856,
+          "cache_creation_input_tokens": 1187,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1187
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 174 · 2026-05-18T02:16:48.662Z_
+
+<details><summary>↩ Tool result · `toolu_01FjyKkxgr9eYCjBGhq8sad5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/report.md\", \"content\": \"# Handover — 2026-05-18\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_32b_c4 | Scale-dependent K* on C4: Qwen2.5-32B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 32B scale 是否稳定（已确认 1.5B/7B/8B/14B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. | — | — | — |\\n| exp_14b_c4 | Scale-dependent K* on C4: Qwen2.5-14B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 14B scale 是否稳定（已确认 1.5B/7B/8B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. | — | — | — |\\n\\n## 待处理\\n- exp_arXiv_qwen1b5_crossscorer（准备中）\\n- exp_arXiv_qwen7b_crossscorer（准备中）\\n- exp_008_retrain_chain: Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.（准备中）\\n\\n## 近期结论\\n- **exp_wiki_scorer_confound_1b5** (negative): Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。 ← 基于 exp_023_domain_ablation\\n  [exp_wiki_scorer_confound_1b5 analysis report](/api/workspace-files/projects/gen-depth-contamination/artifacts/exp_wiki_scorer_confound_1b5/report/exp_wiki_scorer_confound_1b5_analysis_a3f1c7_4f91f8.md)\\n- **exp_wiki_scorer_confound** (negative): Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。 ← 基于 exp_wiki_qwen7b\\n  [exp_wiki_scorer_confound_analysis](/api/workspace-files/projects/gen-depth-contamination/artifacts/exp_wiki_scorer_confound/report/exp_wiki_scorer_confound_analysis_1826a9.md)\\n- **exp_wiki_qwen7b** (success): Cross-scale Wikipedia K* validation: Qwen2.5-7B continuation on Wikipedia 的 K* 是否 = 2？Qwen2.5-1.5B 在 Wikipedia K*=2（唯一维持 K*=2 的模型），Pythia/OLMo/均 K*=1。测试 7B 规模是否仍维持 Qwen 家族在 Wikipedia 上的 K*=2 pattern。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. ← 基于 exp_arXiv_qwen7b\\n  [exp_wiki_qwen7b_analysis](/api/workspace-files/projects/gen-depth-contamination/artifacts/exp_wiki_qwen7b/report/exp_wiki_qwen7b_analysis_787c1b.md)\\n\\n## 趋势\\n成功 44 / 负向 6 / 失败 9 / 共 59\\nordinal_accuracy: 0.3532 ↓（近 3 次 success）\\nordinal_mae: 1.2501 ↑（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\ncqa1-22115: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\\nwestd-42896: 无 GPU 信息\\n\\n## 告警\\n- exp-008-retrain-chain: 训练失败 — unknown\\n- exp_009_dose_10pct: 训练失败 — unknown\\n- exp_009_dose_30pct: 训练失败 — unknown\\n- exp_009_dose_50pct: 训练失败 — unknown\\n- exp_009_dose_10pct_v2: 训练失败 — unknown\\n- exp_009_dose_30pct_v2: 训练失败 — unknown\\n- exp_009_dose_50pct_v2: 训练失败 — unknown\\n- exp_wiki_pythia: 训练失败 — unknown\\n- exp_wiki_olmo: 训练失败 — unknown\\n\", \"total_chars\": 3137, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d536ff30-d8ce-4486-a02c-392cd61a4b8e",
+  "isSidechain": false,
+  "promptId": "865ff729-313e-4186-979e-2649458c55cd",
+  "type": "user",
+  "uuid": "bed50efa-3586-48bc-85c0-96d3b82fc04a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-18\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp_32b_c4 | Scale-dependent K* on C4: Qwen2.5-32B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 32B scale 是否稳定（已确认 1.5B/7B/8B/14B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. | — | — | — |\\\\n| exp_14b_c4 | Scale-dependent K* on C4: Qwen2.5-14B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 14B scale 是否稳定（已确认 1.5B/7B/8B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. | — | — | — |\\\\n\\\\n## 待处理\\\\n- exp_arXiv_qwen1b5_crossscorer（准备中）\\\\n- exp_arXiv_qwen7b_crossscorer（准备中）\\\\n- exp_008_retrain_chain: Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.（准备中）\\\\n\\\\n## 近期结论\\\\n- **exp_wiki_scorer_confound_1b5** (negative): Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。 ← 基于 exp_023_domain_ablation\\\\n  [exp_wiki_scorer_confound_1b5 analysis report](/api/workspace-files/projects/gen-depth-contamination/artifacts/exp_wiki_scorer_confound_1b5/report/exp_wiki_scorer_confound_1b5_analysis_a3f1c7_4f91f8.md)\\\\n- **exp_wiki_scorer_confound** (negative): Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。 ← 基于 exp_wiki_qwen7b\\\\n  [exp_wiki_scorer_confound_analysis](/api/workspace-files/projects/gen-depth-contamination/artifacts/exp_wiki_scorer_confound/report/exp_wiki_scorer_confound_analysis_1826a9.md)\\\\n- **exp_wiki_qwen7b** (success): Cross-scale Wikipedia K* validation: Qwen2.5-7B continuation on Wikipedia 的 K* 是否 = 2？Qwen2.5-1.5B 在 Wikipedia K*=2（唯一维持 K*=2 的模型），Pythia/OLMo/均 K*=1。测试 7B 规模是否仍维持 Qwen 家族在 Wikipedia 上的 K*=2 pattern。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. ← 基于 exp_arXiv_qwen7b\\\\n  [exp_wiki_qwen7b_analysis](/api/workspace-files/projects/gen-depth-contamination/artifacts/exp_wiki_qwen7b/report/exp_wiki_qwen7b_analysis_787c1b.md)\\\\n\\\\n## 趋势\\\\n成功 44 / 负向 6 / 失败 9 / 共 59\\\\nordinal_accuracy: 0.3532 ↓（近 3 次 success）\\\\nordinal_mae: 1.2501 ↑（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\ncqa1-22115: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\\\\nwestd-42896: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- exp-008-retrain-chain: 训练失败 — unknown\\\\n- exp_009_dose_10pct: 训练失败 — unknown\\\\n- exp_009_dose_30pct: 训练失败 — unknown\\\\n- exp_009_dose_50pct: 训练失败 — unknown\\\\n- exp_009_dose_10pct_v2: 训练失败 — unknown\\\\n- exp_009_dose_30pct_v2: 训练失败 — unknown\\\\n- exp_009_dose_50pct_v2: 训练失败 — unknown\\\\n- exp_wiki_pythia: 训练失败 — unknown\\\\n- exp_wiki_olmo: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 3137, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/report.md\", \"content\": \"# Handover — 2026-05-18\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_32b_c4 | Scale-dependent K* on C4: Qwen2.5-32B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 32B scale 是否稳定（已确认 1.5B/7B/8B/14B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. | — | — | — |\\n| exp_14b_c4 | Scale-dependent K* on C4: Qwen2.5-14B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 14B scale 是否稳定（已确认 1.5B/7B/8B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. | — | — | — |\\n\\n## 待处理\\n- exp_arXiv_qwen1b5_crossscorer（准备中）\\n- exp_arXiv_qwen7b_crossscorer（准备中）\\n- exp_008_retrain_chain: Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.（准备中）\\n\\n## 近期结论\\n- **exp_wiki_scorer_confound_1b5** (negative): Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。 ← 基于 exp_023_domain_ablation\\n  [exp_wiki_scorer_confound_1b5 analysis report](/api/workspace-files/projects/gen-depth-contamination/artifacts/exp_wiki_scorer_confound_1b5/report/exp_wiki_scorer_confound_1b5_analysis_a3f1c7_4f91f8.md)\\n- **exp_wiki_scorer_confound** (negative): Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。 ← 基于 exp_wiki_qwen7b\\n  [exp_wiki_scorer_confound_analysis](/api/workspace-files/projects/gen-depth-contamination/artifacts/exp_wiki_scorer_confound/report/exp_wiki_scorer_confound_analysis_1826a9.md)\\n- **exp_wiki_qwen7b** (success): Cross-scale Wikipedia K* validation: Qwen2.5-7B continuation on Wikipedia 的 K* 是否 = 2？Qwen2.5-1.5B 在 Wikipedia K*=2（唯一维持 K*=2 的模型），Pythia/OLMo/均 K*=1。测试 7B 规模是否仍维持 Qwen 家族在 Wikipedia 上的 K*=2 pattern。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B. ← 基于 exp_arXiv_qwen7b\\n  [exp_wiki_qwen7b_analysis](/api/workspace-files/projects/gen-depth-contamination/artifacts/exp_wiki_qwen7b/report/exp_wiki_qwen7b_analysis_787c1b.md)\\n\\n## 趋势\\n成功 44 / 负向 6 / 失败 9 / 共 59\\nordinal_accuracy: 0.3532 ↓（近 3 次 success）\\nordinal_mae: 1.2501 ↑（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\ncqa1-22115: 空闲 cuda:0, cuda:1, cuda:2, cuda:3\\nwestd-42896: 无 GPU 信息\\n\\n## 告警\\n- exp-008-retrain-chain: 训练失败 — unknown\\n- exp_009_dose_10pct: 训练失败 — unknown\\n- exp_009_dose_30pct: 训练失败 — unknown\\n- exp_009_dose_50pct: 训练失败 — unknown\\n- exp_009_dose_10pct_v2: 训练失败 — unknown\\n- exp_009_dose_30pct_v2: 训练失败 — unknown\\n- exp_009_dose_50pct_v2: 训练失败 — unknown\\n- exp_wiki_pythia: 训练失败 — unknown\\n- exp_wiki_olmo: 训练失败 — unknown\\n\", \"total_chars\": 3137, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d536ff30-d8ce-4486-a02c-392cd61a4b8e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 175 · 2026-05-18T02:16:49.117Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01GZf91EuyenfhKa6jnydqRj`</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "limit": 5,
+  "fields": [
+    "status",
+    "hypothesis",
+    "conclusion",
+    "metrics",
+    "updated_at"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bed50efa-3586-48bc-85c0-96d3b82fc04a",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EJMeEMmn3sAy5fKfZf",
+  "type": "assistant",
+  "uuid": "c29529b5-ac58-4839-9b77-e649fb08b0f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JggZBqAYQZMEFJsXcmZB9M",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1187,
+      "cache_read_input_tokens": 118856,
+      "output_tokens": 188,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1187,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 188,
+          "cache_read_input_tokens": 118856,
+          "cache_creation_input_tokens": 1187,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1187
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 176 · 2026-05-18T02:16:49.446Z_
+
+<details><summary>↩ Tool result · `toolu_01GZf91EuyenfhKa6jnydqRj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_arXiv_qwen1b5_crossscorer\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-18T02:14:23.959Z\", \"hypothesis\": \"arXiv cross-scorer validation (1.5B): Pythia-1.4B scorer 重评 Qwen-1.5B arXiv depth 0-5 文本。验证 arXiv K*=3 在 1.5B scale 也是 scorer-independent。原 2v3 AUC=0.6427。\"}, \"exp_arXiv_qwen7b_crossscorer\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-18T02:14:20.196Z\", \"hypothesis\": \"arXiv cross-scorer validation (7B): 用 Pythia-1.4B 替代 Qwen-1.5B scorer 重评 Qwen-7B arXiv depth 0-5 文本。D060 发现 Wiki 上 Qwen scorer 有 family bias (K*=2→1)。如果 arXiv 2v3 AUC 仍 ≥0.60 → K*=3 is scorer-independent；如果 <0.60 → arXiv 也有 scorer confound。\"}, \"exp_wiki_scorer_confound_1b5\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-18T01:21:43.381Z\", \"hypothesis\": \"Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。\", \"conclusion\": \"negative\", \"metrics\": {\"k_star\": 1, \"confound_verdict\": \"confirmed\", \"auc_0v1\": 0.9729, \"auc_1v2\": 0.5994, \"auc_2v3\": 0.533, \"auc_3v4\": 0.5214, \"auc_4v5\": 0.5068, \"jsd_0v1\": 0.0886, \"ordinal_mae\": 1.2995, \"ordinal_accuracy\": 0.3466}}, \"exp_wiki_scorer_confound\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-17T23:20:31.517Z\", \"hypothesis\": \"Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。\", \"conclusion\": \"negative\", \"metrics\": {\"k_star\": 1, \"confound_verdict\": \"confirmed\", \"auc_0v1\": 0.9404, \"auc_1v2\": 0.587, \"auc_2v3\": 0.5456, \"auc_3v4\": 0.525, \"auc_4v5\": 0.5172, \"critical_delta_1v2\": -0.0238}}, \"exp_008_retrain_chain\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-17T22:30:32.930Z\", \"hypothesis\": \"Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"killed\"}}, \"count\": 5, \"total\": 64, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3178}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c29529b5-ac58-4839-9b77-e649fb08b0f7",
+  "isSidechain": false,
+  "promptId": "865ff729-313e-4186-979e-2649458c55cd",
+  "type": "user",
+  "uuid": "5adbff5a-a45d-4d61-b3eb-0964fe90ee9c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_arXiv_qwen1b5_crossscorer\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-18T02:14:23.959Z\\\", \\\"hypothesis\\\": \\\"arXiv cross-scorer validation (1.5B): Pythia-1.4B scorer 重评 Qwen-1.5B arXiv depth 0-5 文本。验证 arXiv K*=3 在 1.5B scale 也是 scorer-independent。原 2v3 AUC=0.6427。\\\"}, \\\"exp_arXiv_qwen7b_crossscorer\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-18T02:14:20.196Z\\\", \\\"hypothesis\\\": \\\"arXiv cross-scorer validation (7B): 用 Pythia-1.4B 替代 Qwen-1.5B scorer 重评 Qwen-7B arXiv depth 0-5 文本。D060 发现 Wiki 上 Qwen scorer 有 family bias (K*=2→1)。如果 arXiv 2v3 AUC 仍 ≥0.60 → K*=3 is scorer-independent；如果 <0.60 → arXiv 也有 scorer confound。\\\"}, \\\"exp_wiki_scorer_confound_1b5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-18T01:21:43.381Z\\\", \\\"hypothesis\\\": \\\"Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"k_star\\\": 1, \\\"confound_verdict\\\": \\\"confirmed\\\", \\\"auc_0v1\\\": 0.9729, \\\"auc_1v2\\\": 0.5994, \\\"auc_2v3\\\": 0.533, \\\"auc_3v4\\\": 0.5214, \\\"auc_4v5\\\": 0.5068, \\\"jsd_0v1\\\": 0.0886, \\\"ordinal_mae\\\": 1.2995, \\\"ordinal_accuracy\\\": 0.3466}}, \\\"exp_wiki_scorer_confound\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-17T23:20:31.517Z\\\", \\\"hypothesis\\\": \\\"Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"k_star\\\": 1, \\\"confound_verdict\\\": \\\"confirmed\\\", \\\"auc_0v1\\\": 0.9404, \\\"auc_1v2\\\": 0.587, \\\"auc_2v3\\\": 0.5456, \\\"auc_3v4\\\": 0.525, \\\"auc_4v5\\\": 0.5172, \\\"critical_delta_1v2\\\": -0.0238}}, \\\"exp_008_retrain_chain\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-17T22:30:32.930Z\\\", \\\"hypothesis\\\": \\\"Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"count\\\": 5, \\\"total\\\": 64, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3178}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_arXiv_qwen1b5_crossscorer\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-18T02:14:23.959Z\", \"hypothesis\": \"arXiv cross-scorer validation (1.5B): Pythia-1.4B scorer 重评 Qwen-1.5B arXiv depth 0-5 文本。验证 arXiv K*=3 在 1.5B scale 也是 scorer-independent。原 2v3 AUC=0.6427。\"}, \"exp_arXiv_qwen7b_crossscorer\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-18T02:14:20.196Z\", \"hypothesis\": \"arXiv cross-scorer validation (7B): 用 Pythia-1.4B 替代 Qwen-1.5B scorer 重评 Qwen-7B arXiv depth 0-5 文本。D060 发现 Wiki 上 Qwen scorer 有 family bias (K*=2→1)。如果 arXiv 2v3 AUC 仍 ≥0.60 → K*=3 is scorer-independent；如果 <0.60 → arXiv 也有 scorer confound。\"}, \"exp_wiki_scorer_confound_1b5\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-18T01:21:43.381Z\", \"hypothesis\": \"Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。\", \"conclusion\": \"negative\", \"metrics\": {\"k_star\": 1, \"confound_verdict\": \"confirmed\", \"auc_0v1\": 0.9729, \"auc_1v2\": 0.5994, \"auc_2v3\": 0.533, \"auc_3v4\": 0.5214, \"auc_4v5\": 0.5068, \"jsd_0v1\": 0.0886, \"ordinal_mae\": 1.2995, \"ordinal_accuracy\": 0.3466}}, \"exp_wiki_scorer_confound\": {\"status\": \"DONE\", \"updated_at\": \"2026-05-17T23:20:31.517Z\", \"hypothesis\": \"Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。\", \"conclusion\": \"negative\", \"metrics\": {\"k_star\": 1, \"confound_verdict\": \"confirmed\", \"auc_0v1\": 0.9404, \"auc_1v2\": 0.587, \"auc_2v3\": 0.5456, \"auc_3v4\": 0.525, \"auc_4v5\": 0.5172, \"critical_delta_1v2\": -0.0238}}, \"exp_008_retrain_chain\": {\"status\": \"PREPARING\", \"updated_at\": \"2026-05-17T22:30:32.930Z\", \"hypothesis\": \"Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"killed\"}}, \"count\": 5, \"total\": 64, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3178}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c29529b5-ac58-4839-9b77-e649fb08b0f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 177_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[服务器重启后首条消息] 当前日期: 2026-05-18。服务器刚重启，项目状态可能已更新。在处理审查请求前，**先读取 registry.yaml 和 report.md** 获取最新实验状态，不要依赖对话历史中的状态信息。  **审查请求：** [系统通知 — worker_done:worker_review_figure_audit_v2_20260518T021002]: Worker…",
+  "leafUuid": "5adbff5a-a45d-4d61-b3eb-0964fe90ee9c",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 178_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 179 · 2026-05-18T02:17:03.389Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The state is similar to before my last report. Two new experiments are PREPARING (arXiv cross-scorer validations), and the two scale experiments (14B, 32B) are still running. The total went from 62 to 64 experiments.
+
+The second figure audit worker (v2) also failed. I already filed a comprehensive figure/table audit report to the Director earlier in this conversation. The key findings were:
+1. [critical] Multiple appendix tables with placeholder data (---) 
+2. [warning] Page 12 float issue
+3. [info] Main tables verified correctly
+
+Since this is v2 of the same worker and it also failed, the Director needs to know. 
+
+I'll send a brief update noting the v2 failure and referencing my earlier audit, since the server restart might have pushed that report out of the Director's immediate context.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5adbff5a-a45d-4d61-b3eb-0964fe90ee9c",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EJksEM93kvVdijs6j5",
+  "type": "assistant",
+  "uuid": "d034ad2a-7cb7-4bcd-b6ab-f2652569e22f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QXskemUMJD1abxHiTWSPRK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3316,
+      "cache_read_input_tokens": 120043,
+      "output_tokens": 767,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3316,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 767,
+          "cache_read_input_tokens": 120043,
+          "cache_creation_input_tokens": 3316,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3316
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 180 · 2026-05-18T02:17:04.304Z_
+
+状态与之前基本一致：2 个 scale 实验运行中（14B/32B），2 个 arXiv cross-scorer 实验准备中，总实验数 64。纸面文件无变化。
+
+这是第二个图表审查 worker 连续失败。我在本次会话早些时候已完成独立图表审查并提交了报告，核心发现不变。向 Director 发送简要更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d034ad2a-7cb7-4bcd-b6ab-f2652569e22f",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EJksEM93kvVdijs6j5",
+  "type": "assistant",
+  "uuid": "c74bdaa9-f621-4953-ad93-fc3b6b8f1679",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QXskemUMJD1abxHiTWSPRK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3316,
+      "cache_read_input_tokens": 120043,
+      "output_tokens": 767,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3316,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 767,
+          "cache_read_input_tokens": 120043,
+          "cache_creation_input_tokens": 3316,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3316
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 181 · 2026-05-18T02:17:12.266Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director · `toolu_012UC9dmM4Tin7722SuGkXgb`</summary>
+
+```json
+{
+  "text": "[severity: warning] 第二个图表审查 worker (worker_review_figure_audit_v2_20260518T021002) 也 failed。\n\n本次会话早些时候 Reviewer 已独立完成全文图表审查（逐页审阅 19 页 PDF + registry 交叉验证 + LaTeX 源码检查），核心发现已提交：\n\n1. **[critical] Appendix 6 个表格数据未填充**（S10/S11/S12/S13/ANOVA/Extended CI），实验数据已在 registry 中，需紧急从 registry 提取填入\n2. **[warning] Page 12 (Table 9) LaTeX float 排版问题**，70% 页面空白\n3. **[info] 正文图表数据一致性验证通过**，Table 4 全部 K* 值与 registry 吻合，无 em-dash 违规\n\nWorker 连续两次失败建议排查原因（可能是工具权限或环境问题），但审查结论不受影响——上述发现基于 Reviewer 独立核实，不依赖 Worker 产出。",
+  "project": "gen-depth-contamination"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c74bdaa9-f621-4953-ad93-fc3b6b8f1679",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EJksEM93kvVdijs6j5",
+  "type": "assistant",
+  "uuid": "95a68f60-82f8-4082-a178-f6dae40104b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QXskemUMJD1abxHiTWSPRK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3316,
+      "cache_read_input_tokens": 120043,
+      "output_tokens": 767,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3316,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 767,
+          "cache_read_input_tokens": 120043,
+          "cache_creation_input_tokens": 3316,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3316
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 182 · 2026-05-18T02:17:16.143Z_
+
+<details><summary>↩ Tool result · `toolu_012UC9dmM4Tin7722SuGkXgb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "95a68f60-82f8-4082-a178-f6dae40104b0",
+  "isSidechain": false,
+  "promptId": "865ff729-313e-4186-979e-2649458c55cd",
+  "type": "user",
+  "uuid": "0834c974-cb93-4cac-9a8c-2e3bfd5e5ba3",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "95a68f60-82f8-4082-a178-f6dae40104b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 183_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 184 · 2026-05-18T02:17:23.964Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-18T02:17:23.964Z",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "content": "[系统通知 — worker_done:worker_submit_arXiv_cross_scorer_pair_20260518T021326]:\nWorker worker_submit_arXiv_cross_scorer_pair_20260518T021326 已完成（status=done），请审查 Agent 的处理结果。"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 185 · 2026-05-18T02:17:23.965Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-18T02:17:23.965Z",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+## Round 4
+
+## Round 4
+
+2 recorded events
+
+
+### User
+
+_source line 186 · 2026-05-18T02:17:23.955Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0834c974-cb93-4cac-9a8c-2e3bfd5e5ba3",
+  "isSidechain": false,
+  "promptId": "be30f262-2842-4330-9c6b-cc1cd51b6a8b",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "ee7a45b2-5a67-4799-a01b-88afa19fe547",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 187 · 2026-05-18T02:17:23.955Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee7a45b2-5a67-4799-a01b-88afa19fe547",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "0707ef60-426b-45a8-9fe5-4caa8e5e8ce0",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "8904caf2-04d0-4a10-9955-fef325de12a7",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 5
+
+## Round 5
+
+41 recorded events
+
+
+### User
+
+_source line 188 · 2026-05-18T02:17:24.098Z_
+
+[系统通知 — worker_done:worker_submit_arXiv_cross_scorer_pair_20260518T021326]:
+Worker worker_submit_arXiv_cross_scorer_pair_20260518T021326 已完成（status=done），请审查 Agent 的处理结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0707ef60-426b-45a8-9fe5-4caa8e5e8ce0",
+  "isSidechain": false,
+  "promptId": "be30f262-2842-4330-9c6b-cc1cd51b6a8b",
+  "type": "user",
+  "uuid": "840f11bd-b2c4-4fda-9c27-379006e35af3",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 189 · 2026-05-18T02:17:30.992Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+A worker that submitted the arXiv cross-scorer pair experiments has completed successfully. Let me check the registry to see what happened with these experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "840f11bd-b2c4-4fda-9c27-379006e35af3",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EMK913PebuHD3Q5nHR",
+  "type": "assistant",
+  "uuid": "f4597ff2-a630-4d56-8574-96df8273c5de",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Kv2xDcpiV9nDfess4FM2i",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 95,
+      "cache_read_input_tokens": 124199,
+      "output_tokens": 181,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 95,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 181,
+          "cache_read_input_tokens": 124199,
+          "cache_creation_input_tokens": 95,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 95
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 190 · 2026-05-18T02:17:31.883Z_
+
+Worker 完成了 arXiv cross-scorer 实验的提交。让我查看 registry 最新状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f4597ff2-a630-4d56-8574-96df8273c5de",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EMK913PebuHD3Q5nHR",
+  "type": "assistant",
+  "uuid": "c9d10523-78de-4781-ab5e-525639f7a96f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Kv2xDcpiV9nDfess4FM2i",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 95,
+      "cache_read_input_tokens": 124199,
+      "output_tokens": 181,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 95,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 181,
+          "cache_read_input_tokens": 124199,
+          "cache_creation_input_tokens": 95,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 95
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 191 · 2026-05-18T02:17:32.522Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01S9HXvEJBDF3ohTdXBtdr1k`</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "limit": 4,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c9d10523-78de-4781-ab5e-525639f7a96f",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EMK913PebuHD3Q5nHR",
+  "type": "assistant",
+  "uuid": "e6cd9a28-2dbc-457f-80f7-a815c93b453c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Kv2xDcpiV9nDfess4FM2i",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 95,
+      "cache_read_input_tokens": 124199,
+      "output_tokens": 181,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 95,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 181,
+          "cache_read_input_tokens": 124199,
+          "cache_creation_input_tokens": 95,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 95
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 192 · 2026-05-18T02:17:33.084Z_
+
+<details><summary>↩ Tool result · `toolu_01S9HXvEJBDF3ohTdXBtdr1k`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_arXiv_qwen1b5_crossscorer\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T02:13:56.083Z\", \"updated_at\": \"2026-05-18T02:14:23.959Z\", \"hypothesis\": \"arXiv cross-scorer validation (1.5B): Pythia-1.4B scorer 重评 Qwen-1.5B arXiv depth 0-5 文本。验证 arXiv K*=3 在 1.5B scale 也是 scorer-independent。原 2v3 AUC=0.6427。\", \"parent\": \"exp_wiki_scorer_confound\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_arXiv_qwen1b5_crossscorer && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_\\\\${d}.jsonl data/exp_arXiv_qwen1b5_crossscorer/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_arXiv_qwen1b5_crossscorer && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_arXiv_qwen1b5_crossscorer --results_dir results/exp_arXiv_qwen1b5_crossscorer --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"190644\", \"log_path\": \"~/runs/gen-depth-contamination/exp_arXiv_qwen1b5_crossscorer.log\", \"submitted_at\": \"2026-05-18T02:14:23.657Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp_arXiv_qwen7b_crossscorer\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T02:13:55.051Z\", \"updated_at\": \"2026-05-18T02:14:20.196Z\", \"hypothesis\": \"arXiv cross-scorer validation (7B): 用 Pythia-1.4B 替代 Qwen-1.5B scorer 重评 Qwen-7B arXiv depth 0-5 文本。D060 发现 Wiki 上 Qwen scorer 有 family bias (K*=2→1)。如果 arXiv 2v3 AUC 仍 ≥0.60 → K*=3 is scorer-independent；如果 <0.60 → arXiv 也有 scorer confound。\", \"parent\": \"exp_wiki_scorer_confound\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_arXiv_qwen7b_crossscorer && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_qwen7b/depth_\\\\${d}.jsonl data/exp_arXiv_qwen7b_crossscorer/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_arXiv_qwen7b_crossscorer && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_arXiv_qwen7b_crossscorer --results_dir results/exp_arXiv_qwen7b_crossscorer --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"190498\", \"log_path\": \"~/runs/gen-depth-contamination/exp_arXiv_qwen7b_crossscorer.log\", \"submitted_at\": \"2026-05-18T02:14:19.924Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp_wiki_scorer_confound_1b5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T23:18:37.565Z\", \"updated_at\": \"2026-05-18T01:21:43.381Z\", \"hypothesis\": \"Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。\", \"parent\": \"exp_023_domain_ablation\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-17T23:20:01.037Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound_1b5 && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/depth_\\\\${d}.jsonl data/exp_wiki_scorer_confound_1b5/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound_1b5 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound_1b5 --results_dir results/exp_wiki_scorer_confound_1b5 --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"code_commit\": \"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\", \"finished_at\": \"2026-05-18T01:18:40.529Z\", \"training_hours\": 1.98}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound_1b5 && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/depth_\\\\${d}.jsonl data/exp_wiki_scorer_confound_1b5/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound_1b5 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound_1b5 --results_dir results/exp_wiki_scorer_confound_1b5 --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"180543\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_scorer_confound_1b5.log\", \"submitted_at\": \"2026-05-17T23:22:42.473Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 7140.9, \"gpu_hours\": 1.98}, \"pid\": \"180543\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_scorer_confound_1b5.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T01:18:44.039720+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"k_star\": 1, \"confound_verdict\": \"confirmed\", \"auc_0v1\": 0.9729, \"auc_1v2\": 0.5994, \"auc_2v3\": 0.533, \"auc_3v4\": 0.5214, \"auc_4v5\": 0.5068, \"jsd_0v1\": 0.0886, \"ordinal_mae\": 1.2995, \"ordinal_accuracy\": 0.3466}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_scorer_confound_1b5/\", \"completed_at\": \"2026-05-18T01:21:43.381Z\"}, \"exp_wiki_scorer_confound\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T22:35:20.326Z\", \"updated_at\": \"2026-05-17T23:20:31.517Z\", \"hypothesis\": \"Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。\", \"parent\": \"exp_wiki_qwen7b\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-17T22:55:01.348Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\\\${d}.jsonl data/exp_wiki_scorer_confound/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound --results_dir results/exp_wiki_scorer_confound --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"code_commit\": \"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\", \"finished_at\": \"2026-05-17T23:13:55.501Z\", \"training_hours\": 0.32}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\\\${d}.jsonl data/exp_wiki_scorer_confound/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound --results_dir results/exp_wiki_scorer_confound --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"178762\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_scorer_confound.log\", \"submitted_at\": \"2026-05-17T22:55:03.139Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_scorer_confound/\", \"wall_clock_seconds\": 1528.4, \"gpu_hours\": 0.42}, \"pid\": \"178762\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_scorer_confound.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T23:13:58.836236+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"k_star\": 1, \"confound_verdict\": \"confirmed\", \"auc_0v1\": 0.9404, \"auc_1v2\": 0.587, \"auc_2v3\": 0.5456, \"auc_3v4\": 0.525, \"auc_4v5\": 0.5172, \"critical_delta_1v2\": -0.0238}, \"completed_at\": \"2026-05-17T23:20:31.517Z\"}}, \"count\": 4, \"total\": 64, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5313}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e6cd9a28-2dbc-457f-80f7-a815c93b453c",
+  "isSidechain": false,
+  "promptId": "be30f262-2842-4330-9c6b-cc1cd51b6a8b",
+  "type": "user",
+  "uuid": "4003d01c-fbb3-4597-ab08-9443245eec8e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_arXiv_qwen1b5_crossscorer\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T02:13:56.083Z\\\", \\\"updated_at\\\": \\\"2026-05-18T02:14:23.959Z\\\", \\\"hypothesis\\\": \\\"arXiv cross-scorer validation (1.5B): Pythia-1.4B scorer 重评 Qwen-1.5B arXiv depth 0-5 文本。验证 arXiv K*=3 在 1.5B scale 也是 scorer-independent。原 2v3 AUC=0.6427。\\\", \\\"parent\\\": \\\"exp_wiki_scorer_confound\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_arXiv_qwen1b5_crossscorer && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_\\\\\\\\${d}.jsonl data/exp_arXiv_qwen1b5_crossscorer/depth_\\\\\\\\${d}.jsonl; done && mkdir -p results/exp_arXiv_qwen1b5_crossscorer && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_arXiv_qwen1b5_crossscorer --results_dir results/exp_arXiv_qwen1b5_crossscorer --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"190644\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_arXiv_qwen1b5_crossscorer.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T02:14:23.657Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"exp_arXiv_qwen7b_crossscorer\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T02:13:55.051Z\\\", \\\"updated_at\\\": \\\"2026-05-18T02:14:20.196Z\\\", \\\"hypothesis\\\": \\\"arXiv cross-scorer validation (7B): 用 Pythia-1.4B 替代 Qwen-1.5B scorer 重评 Qwen-7B arXiv depth 0-5 文本。D060 发现 Wiki 上 Qwen scorer 有 family bias (K*=2→1)。如果 arXiv 2v3 AUC 仍 ≥0.60 → K*=3 is scorer-independent；如果 <0.60 → arXiv 也有 scorer confound。\\\", \\\"parent\\\": \\\"exp_wiki_scorer_confound\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_arXiv_qwen7b_crossscorer && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_qwen7b/depth_\\\\\\\\${d}.jsonl data/exp_arXiv_qwen7b_crossscorer/depth_\\\\\\\\${d}.jsonl; done && mkdir -p results/exp_arXiv_qwen7b_crossscorer && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_arXiv_qwen7b_crossscorer --results_dir results/exp_arXiv_qwen7b_crossscorer --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"190498\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_arXiv_qwen7b_crossscorer.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T02:14:19.924Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"exp_wiki_scorer_confound_1b5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T23:18:37.565Z\\\", \\\"updated_at\\\": \\\"2026-05-18T01:21:43.381Z\\\", \\\"hypothesis\\\": \\\"Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。\\\", \\\"parent\\\": \\\"exp_023_domain_ablation\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-17T23:20:01.037Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound_1b5 && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/depth_\\\\\\\\${d}.jsonl data/exp_wiki_scorer_confound_1b5/depth_\\\\\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound_1b5 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound_1b5 --results_dir results/exp_wiki_scorer_confound_1b5 --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\\\\\"\\\", \\\"code_commit\\\": \\\"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\\\", \\\"finished_at\\\": \\\"2026-05-18T01:18:40.529Z\\\", \\\"training_hours\\\": 1.98}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound_1b5 && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/depth_\\\\\\\\${d}.jsonl data/exp_wiki_scorer_confound_1b5/depth_\\\\\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound_1b5 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound_1b5 --results_dir results/exp_wiki_scorer_confound_1b5 --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"180543\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_wiki_scorer_confound_1b5.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T23:22:42.473Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 7140.9, \\\"gpu_hours\\\": 1.98}, \\\"pid\\\": \\\"180543\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_wiki_scorer_confound_1b5.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T01:18:44.039720+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"k_star\\\": 1, \\\"confound_verdict\\\": \\\"confirmed\\\", \\\"auc_0v1\\\": 0.9729, \\\"auc_1v2\\\": 0.5994, \\\"auc_2v3\\\": 0.533, \\\"auc_3v4\\\": 0.5214, \\\"auc_4v5\\\": 0.5068, \\\"jsd_0v1\\\": 0.0886, \\\"ordinal_mae\\\": 1.2995, \\\"ordinal_accuracy\\\": 0.3466}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_scorer_confound_1b5/\\\", \\\"completed_at\\\": \\\"2026-05-18T01:21:43.381Z\\\"}, \\\"exp_wiki_scorer_confound\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T22:35:20.326Z\\\", \\\"updated_at\\\": \\\"2026-05-17T23:20:31.517Z\\\", \\\"hypothesis\\\": \\\"Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。\\\", \\\"parent\\\": \\\"exp_wiki_qwen7b\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-17T22:55:01.348Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\\\\\\\${d}.jsonl data/exp_wiki_scorer_confound/depth_\\\\\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound --results_dir results/exp_wiki_scorer_confound --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\\\\\"\\\", \\\"code_commit\\\": \\\"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\\\", \\\"finished_at\\\": \\\"2026-05-17T23:13:55.501Z\\\", \\\"training_hours\\\": 0.32}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\\\\\\\${d}.jsonl data/exp_wiki_scorer_confound/depth_\\\\\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound --results_dir results/exp_wiki_scorer_confound --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"178762\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_wiki_scorer_confound.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T22:55:03.139Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_scorer_confound/\\\", \\\"wall_clock_seconds\\\": 1528.4, \\\"gpu_hours\\\": 0.42}, \\\"pid\\\": \\\"178762\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_wiki_scorer_confound.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T23:13:58.836236+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"k_star\\\": 1, \\\"confound_verdict\\\": \\\"confirmed\\\", \\\"auc_0v1\\\": 0.9404, \\\"auc_1v2\\\": 0.587, \\\"auc_2v3\\\": 0.5456, \\\"auc_3v4\\\": 0.525, \\\"auc_4v5\\\": 0.5172, \\\"critical_delta_1v2\\\": -0.0238}, \\\"completed_at\\\": \\\"2026-05-17T23:20:31.517Z\\\"}}, \\\"count\\\": 4, \\\"total\\\": 64, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5313}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_arXiv_qwen1b5_crossscorer\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T02:13:56.083Z\", \"updated_at\": \"2026-05-18T02:14:23.959Z\", \"hypothesis\": \"arXiv cross-scorer validation (1.5B): Pythia-1.4B scorer 重评 Qwen-1.5B arXiv depth 0-5 文本。验证 arXiv K*=3 在 1.5B scale 也是 scorer-independent。原 2v3 AUC=0.6427。\", \"parent\": \"exp_wiki_scorer_confound\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_arXiv_qwen1b5_crossscorer && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_\\\\${d}.jsonl data/exp_arXiv_qwen1b5_crossscorer/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_arXiv_qwen1b5_crossscorer && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_arXiv_qwen1b5_crossscorer --results_dir results/exp_arXiv_qwen1b5_crossscorer --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"190644\", \"log_path\": \"~/runs/gen-depth-contamination/exp_arXiv_qwen1b5_crossscorer.log\", \"submitted_at\": \"2026-05-18T02:14:23.657Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp_arXiv_qwen7b_crossscorer\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T02:13:55.051Z\", \"updated_at\": \"2026-05-18T02:14:20.196Z\", \"hypothesis\": \"arXiv cross-scorer validation (7B): 用 Pythia-1.4B 替代 Qwen-1.5B scorer 重评 Qwen-7B arXiv depth 0-5 文本。D060 发现 Wiki 上 Qwen scorer 有 family bias (K*=2→1)。如果 arXiv 2v3 AUC 仍 ≥0.60 → K*=3 is scorer-independent；如果 <0.60 → arXiv 也有 scorer confound。\", \"parent\": \"exp_wiki_scorer_confound\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_arXiv_qwen7b_crossscorer && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_qwen7b/depth_\\\\${d}.jsonl data/exp_arXiv_qwen7b_crossscorer/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_arXiv_qwen7b_crossscorer && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_arXiv_qwen7b_crossscorer --results_dir results/exp_arXiv_qwen7b_crossscorer --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"190498\", \"log_path\": \"~/runs/gen-depth-contamination/exp_arXiv_qwen7b_crossscorer.log\", \"submitted_at\": \"2026-05-18T02:14:19.924Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp_wiki_scorer_confound_1b5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T23:18:37.565Z\", \"updated_at\": \"2026-05-18T01:21:43.381Z\", \"hypothesis\": \"Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。\", \"parent\": \"exp_023_domain_ablation\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-17T23:20:01.037Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound_1b5 && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/depth_\\\\${d}.jsonl data/exp_wiki_scorer_confound_1b5/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound_1b5 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound_1b5 --results_dir results/exp_wiki_scorer_confound_1b5 --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"code_commit\": \"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\", \"finished_at\": \"2026-05-18T01:18:40.529Z\", \"training_hours\": 1.98}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound_1b5 && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/depth_\\\\${d}.jsonl data/exp_wiki_scorer_confound_1b5/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound_1b5 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound_1b5 --results_dir results/exp_wiki_scorer_confound_1b5 --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"180543\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_scorer_confound_1b5.log\", \"submitted_at\": \"2026-05-17T23:22:42.473Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 7140.9, \"gpu_hours\": 1.98}, \"pid\": \"180543\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_scorer_confound_1b5.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T01:18:44.039720+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"k_star\": 1, \"confound_verdict\": \"confirmed\", \"auc_0v1\": 0.9729, \"auc_1v2\": 0.5994, \"auc_2v3\": 0.533, \"auc_3v4\": 0.5214, \"auc_4v5\": 0.5068, \"jsd_0v1\": 0.0886, \"ordinal_mae\": 1.2995, \"ordinal_accuracy\": 0.3466}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_scorer_confound_1b5/\", \"completed_at\": \"2026-05-18T01:21:43.381Z\"}, \"exp_wiki_scorer_confound\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T22:35:20.326Z\", \"updated_at\": \"2026-05-17T23:20:31.517Z\", \"hypothesis\": \"Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。\", \"parent\": \"exp_wiki_qwen7b\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-17T22:55:01.348Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\\\${d}.jsonl data/exp_wiki_scorer_confound/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound --results_dir results/exp_wiki_scorer_confound --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"code_commit\": \"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\", \"finished_at\": \"2026-05-17T23:13:55.501Z\", \"training_hours\": 0.32}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\\\${d}.jsonl data/exp_wiki_scorer_confound/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound --results_dir results/exp_wiki_scorer_confound --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"178762\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_scorer_confound.log\", \"submitted_at\": \"2026-05-17T22:55:03.139Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_scorer_confound/\", \"wall_clock_seconds\": 1528.4, \"gpu_hours\": 0.42}, \"pid\": \"178762\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_scorer_confound.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T23:13:58.836236+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"k_star\": 1, \"confound_verdict\": \"confirmed\", \"auc_0v1\": 0.9404, \"auc_1v2\": 0.587, \"auc_2v3\": 0.5456, \"auc_3v4\": 0.525, \"auc_4v5\": 0.5172, \"critical_delta_1v2\": -0.0238}, \"completed_at\": \"2026-05-17T23:20:31.517Z\"}}, \"count\": 4, \"total\": 64, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5313}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e6cd9a28-2dbc-457f-80f7-a815c93b453c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 193_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_submit_arXiv_cross_scorer_pair_20260518T021326]: Worker worker_submit_arXiv_cross_scorer_pair_20260518T021326 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "4003d01c-fbb3-4597-ab08-9443245eec8e",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 194_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 195 · 2026-05-18T02:18:21.468Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The worker successfully submitted two arXiv cross-scorer experiments:
+
+1. **exp_arXiv_qwen7b_crossscorer**: Running on cuda:0, PID 190498, using Pythia-1.4B scorer to rescore Qwen-7B arXiv text
+2. **exp_arXiv_qwen1b5_crossscorer**: Running on cuda:1, PID 190644, using Pythia-1.4B scorer to rescore Qwen-1.5B arXiv text
+
+Both are in PREPARING status with PIDs assigned and jobs submitted. Let me verify:
+
+
+I'm checking the GPU allocation against the project's available resources. The server has all four GPUs (cuda:0 through cuda:3) available, so the assignments to cuda:0 and cuda:1 should be fine.
+
+Looking at the experiment setup, both runs follow the same pattern: they're using the Pythia-1.4B scorer with symlinked data from prior experiments, continuation mode, and consistent parameters across 5000 samples. This mirrors the Wiki scorer confound experiments that tested whether K*=2 was actually a Qwen artifact, and now they're checking if arXiv's K*=3 holds up across different scorers.
+
+I need to verify the data symlinks are correct—specifically that exp_arXiv_qwen1b5_crossscorer is actually pulling from the right Qwen-1.5B arXiv experiment directory.
+
+The key concern is whether `--model_path` pointing to the generator models (Qwen-1.5B and Qwen-7B) causes issues in a re-scoring pipeline where we're only swapping in the Pythia scorer, since the data is already generated and we're just re-extracting features. Looking at the previous scorer confound experiments, they followed this exact same pattern—symlinked data with a different model and scorer specified—and completed successfully with the expected K* values, so the pipeline should handle this correctly. The spec looks complete: command, server, GPUs, PIDs, and log paths are all recorded.
+
+Some fields like seed and data_count are missing, but for cross-scorer experiments without training involved, those aren't as critical. The Wiki scorer confound experiments had similarly sparse specs and worked fine. The GPU allocation also checks out—the server has all four GPUs available to this project, so cuda:0 and cuda:1 are valid.
+
+There's a timing issue though: the report shows the 14B and 32B experiments as running, but lists all GPUs as idle, which doesn't add up. They could be on a different server, queued but not started, or the report could be outdated. Without direct access, I can't verify if there's a GPU conflict, but I should keep an eye on this when the new experiments start.
+
+Now I'm ready to write up my review. The submission looks solid—experiments follow the established scorer confound pattern, GPU allocation is reasonable, and the spec is minimal but fine for scoring-only work. The key thing is these will tell us whether the arXiv K*=3 claim needs the same scorer-controlled footnote as the Wiki results. This is mostly informational—the setup looks correct.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4003d01c-fbb3-4597-ab08-9443245eec8e",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EMyTr7mEuN58wSMehJ",
+  "type": "assistant",
+  "uuid": "99715cbf-4c24-4197-ae3b-b4f8d8388772",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lq6PDbmWZcbHssn3hrJEM3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4750,
+      "cache_read_input_tokens": 124294,
+      "output_tokens": 2129,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4750,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2129,
+          "cache_read_input_tokens": 124294,
+          "cache_creation_input_tokens": 4750,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4750
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 196 · 2026-05-18T02:18:21.558Z_
+
+两个 arXiv cross-scorer 实验已提交到 cqa1-22115。让我做快速合规检查。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "99715cbf-4c24-4197-ae3b-b4f8d8388772",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EMyTr7mEuN58wSMehJ",
+  "type": "assistant",
+  "uuid": "0e06327f-4bfb-44a1-ae09-7752bc0141d8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lq6PDbmWZcbHssn3hrJEM3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4750,
+      "cache_read_input_tokens": 124294,
+      "output_tokens": 2129,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4750,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2129,
+          "cache_read_input_tokens": 124294,
+          "cache_creation_input_tokens": 4750,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4750
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 197 · 2026-05-18T02:18:21.562Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_018mJZrsQCZiwckNkVfpsYH2`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0e06327f-4bfb-44a1-ae09-7752bc0141d8",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EMyTr7mEuN58wSMehJ",
+  "type": "assistant",
+  "uuid": "e3cc2081-512c-4413-8cbe-18aa279a8b0f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lq6PDbmWZcbHssn3hrJEM3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4750,
+      "cache_read_input_tokens": 124294,
+      "output_tokens": 2129,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4750,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2129,
+          "cache_read_input_tokens": 124294,
+          "cache_creation_input_tokens": 4750,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4750
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 198 · 2026-05-18T02:18:21.578Z_
+
+<details><summary>↩ Tool result · `toolu_018mJZrsQCZiwckNkVfpsYH2`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e3cc2081-512c-4413-8cbe-18aa279a8b0f",
+  "isSidechain": false,
+  "promptId": "be30f262-2842-4330-9c6b-cc1cd51b6a8b",
+  "type": "user",
+  "uuid": "347616a5-5f65-42bb-b887-9af82caa6ff2",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 34
+  },
+  "sourceToolAssistantUUID": "e3cc2081-512c-4413-8cbe-18aa279a8b0f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 199 · 2026-05-18T02:18:26.445Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011WFBK1D8a5beXm7SpjHJZ6`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "347616a5-5f65-42bb-b887-9af82caa6ff2",
+  "isSidechain": false,
+  "requestId": "req_011Cb9ERZ9yBsrxcfQK4VV5W",
+  "type": "assistant",
+  "uuid": "dc2f2a19-f8d5-43de-b05a-a453ece8decc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XYUVgCNTZ343m4v8YbAqBJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2463,
+      "cache_read_input_tokens": 129044,
+      "output_tokens": 134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2463,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 134,
+          "cache_read_input_tokens": 129044,
+          "cache_creation_input_tokens": 2463,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2463
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 200 · 2026-05-18T02:18:27.552Z_
+
+<details><summary>↩ Tool result · `toolu_011WFBK1D8a5beXm7SpjHJZ6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 %, 0 MiB, 24564 MiB\\n1, 0 %, 0 MiB, 24564 MiB\\n2, 0 %, 0 MiB, 24564 MiB\\n3, 0 %, 0 MiB, 24564 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dc2f2a19-f8d5-43de-b05a-a453ece8decc",
+  "isSidechain": false,
+  "promptId": "be30f262-2842-4330-9c6b-cc1cd51b6a8b",
+  "type": "user",
+  "uuid": "a1bef510-fedf-4bcc-ab5d-fe590ca187a0",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 0 MiB, 24564 MiB\\\\n1, 0 %, 0 MiB, 24564 MiB\\\\n2, 0 %, 0 MiB, 24564 MiB\\\\n3, 0 %, 0 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 0 %, 0 MiB, 24564 MiB\\n1, 0 %, 0 MiB, 24564 MiB\\n2, 0 %, 0 MiB, 24564 MiB\\n3, 0 %, 0 MiB, 24564 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"
+    }
+  },
+  "sourceToolAssistantUUID": "dc2f2a19-f8d5-43de-b05a-a453ece8decc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 201 · 2026-05-18T02:18:27.559Z_
+
+```json
+{
+  "parentUuid": "a1bef510-fedf-4bcc-ab5d-fe590ca187a0",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "38582ffe-1fed-455b-92e2-8f299f32e032",
+  "timestamp": "2026-05-18T02:18:27.559Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 202 · 2026-05-18T02:18:35.569Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All 4 GPUs on cqa1-22115 are showing 0% utilization and 0 MiB memory used. This is concerning because:
+
+1. Two experiments were just submitted (exp_arXiv_qwen7b_crossscorer on cuda:0, exp_arXiv_qwen1b5_crossscorer on cuda:1) with PIDs 190498 and 190644
+2. But no GPU is being used at all
+
+This could mean:
+- The jobs were submitted via tmux but haven't started loading the models yet (takes time to start Python, load libraries, then load models onto GPU)
+
+
+- The jobs might have failed immediately or the tmux sessions aren't actually running
+
+I need to verify whether these processes are still active and check the logs to see what happened.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "38582ffe-1fed-455b-92e2-8f299f32e032",
+  "isSidechain": false,
+  "requestId": "req_011Cb9ERzQWWTfaQR8RRKY4e",
+  "type": "assistant",
+  "uuid": "3631308a-520d-4322-9747-1014b15be1e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PwcmC83PqtzuiZEo9JEQHo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 404,
+      "cache_read_input_tokens": 131507,
+      "output_tokens": 338,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 404,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 338,
+          "cache_read_input_tokens": 131507,
+          "cache_creation_input_tokens": 404,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 404
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 203 · 2026-05-18T02:18:35.571Z_
+
+GPU 全部空闲。实验刚提交，让我检查进程是否实际运行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3631308a-520d-4322-9747-1014b15be1e7",
+  "isSidechain": false,
+  "requestId": "req_011Cb9ERzQWWTfaQR8RRKY4e",
+  "type": "assistant",
+  "uuid": "3fe9a3b9-e9da-4e01-ba24-acbf8e1f3059",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PwcmC83PqtzuiZEo9JEQHo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 404,
+      "cache_read_input_tokens": 131507,
+      "output_tokens": 338,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 404,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 338,
+          "cache_read_input_tokens": 131507,
+          "cache_creation_input_tokens": 404,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 404
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 204 · 2026-05-18T02:18:36.292Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018aAAg6ohy4BgGCgTYEjFrY`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ps aux --no-headers -p 190498,190644",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3fe9a3b9-e9da-4e01-ba24-acbf8e1f3059",
+  "isSidechain": false,
+  "requestId": "req_011Cb9ERzQWWTfaQR8RRKY4e",
+  "type": "assistant",
+  "uuid": "d0660c76-5e7b-4af6-ac98-e73449673b45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PwcmC83PqtzuiZEo9JEQHo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 404,
+      "cache_read_input_tokens": 131507,
+      "output_tokens": 338,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 404,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 338,
+          "cache_read_input_tokens": 131507,
+          "cache_creation_input_tokens": 404,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 404
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 205 · 2026-05-18T02:18:36.697Z_
+
+<details><summary>↩ Tool result · `toolu_018aAAg6ohy4BgGCgTYEjFrY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root          1  0.0  0.0   4476  3412 ?        Ss   May17   0:00 bash /init/boot/boot.sh\\nroot        800  2.9  0.0 721824 22420 ?        Sl   May17  35:50 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        812  0.0  0.0 4147852 80296 ?       Sl   May17   0:52 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        814  0.0  0.0 199056 114028 ?       S    May17   0:02 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        819  0.0  0.0  15444  9204 ?        S    May17   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        820  0.2  0.0 6377656 103736 ?      Sl   May17   3:33 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        821  0.0  0.0 2573300 19708 ?       Sl   May17   0:16 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        823  0.0  0.0 2351400 19540 ?       Sl   May17   0:44 proxy -c /init/proxy/proxy.ini\\nroot        924  0.0  0.0 26177944 12012 ?      Sl   May17   1:06 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_rpc53qlv/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_rpc53qlv/startup_error\\nroot     190360  0.0  0.0  16692 10500 ?        Ss   10:11   0:00 sshd: root@notty\\nroot     191733  0.2  0.0  16692 10624 ?        Ss   10:18   0:00 sshd: root@notty\\nroot     191761  0.0  0.0   7064  1572 ?        Rs   10:18   0:00 ps aux --no-headers -p 190498,190644\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d0660c76-5e7b-4af6-ac98-e73449673b45",
+  "isSidechain": false,
+  "promptId": "be30f262-2842-4330-9c6b-cc1cd51b6a8b",
+  "type": "user",
+  "uuid": "d3d094da-e709-4d68-82ea-addb73906350",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root          1  0.0  0.0   4476  3412 ?        Ss   May17   0:00 bash /init/boot/boot.sh\\\\nroot        800  2.9  0.0 721824 22420 ?        Sl   May17  35:50 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        812  0.0  0.0 4147852 80296 ?       Sl   May17   0:52 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        814  0.0  0.0 199056 114028 ?       S    May17   0:02 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        819  0.0  0.0  15444  9204 ?        S    May17   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        820  0.2  0.0 6377656 103736 ?      Sl   May17   3:33 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        821  0.0  0.0 2573300 19708 ?       Sl   May17   0:16 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot        823  0.0  0.0 2351400 19540 ?       Sl   May17   0:44 proxy -c /init/proxy/proxy.ini\\\\nroot        924  0.0  0.0 26177944 12012 ?      Sl   May17   1:06 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_rpc53qlv/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_rpc53qlv/startup_error\\\\nroot     190360  0.0  0.0  16692 10500 ?        Ss   10:11   0:00 sshd: root@notty\\\\nroot     191733  0.2  0.0  16692 10624 ?        Ss   10:18   0:00 sshd: root@notty\\\\nroot     191761  0.0  0.0   7064  1572 ?        Rs   10:18   0:00 ps aux --no-headers -p 190498,190644\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"root          1  0.0  0.0   4476  3412 ?        Ss   May17   0:00 bash /init/boot/boot.sh\\nroot        800  2.9  0.0 721824 22420 ?        Sl   May17  35:50 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        812  0.0  0.0 4147852 80296 ?       Sl   May17   0:52 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        814  0.0  0.0 199056 114028 ?       S    May17   0:02 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        819  0.0  0.0  15444  9204 ?        S    May17   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        820  0.2  0.0 6377656 103736 ?      Sl   May17   3:33 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        821  0.0  0.0 2573300 19708 ?       Sl   May17   0:16 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        823  0.0  0.0 2351400 19540 ?       Sl   May17   0:44 proxy -c /init/proxy/proxy.ini\\nroot        924  0.0  0.0 26177944 12012 ?      Sl   May17   1:06 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_rpc53qlv/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_rpc53qlv/startup_error\\nroot     190360  0.0  0.0  16692 10500 ?        Ss   10:11   0:00 sshd: root@notty\\nroot     191733  0.2  0.0  16692 10624 ?        Ss   10:18   0:00 sshd: root@notty\\nroot     191761  0.0  0.0   7064  1572 ?        Rs   10:18   0:00 ps aux --no-headers -p 190498,190644\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d0660c76-5e7b-4af6-ac98-e73449673b45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 206_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_submit_arXiv_cross_scorer_pair_20260518T021326]: Worker worker_submit_arXiv_cross_scorer_pair_20260518T021326 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "d3d094da-e709-4d68-82ea-addb73906350",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 207_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 208 · 2026-05-18T02:18:43.107Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `ps aux` command with `-p 190498,190644` did NOT find those PIDs. The output is showing all processes (ignoring the -p filter, likely because those PIDs don't exist anymore). Neither PID 190498 nor PID 190644 appears in the output.
+
+This means the submitted jobs have already died/exited. Let me check the tmux sessions and logs to understand what happened.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d3d094da-e709-4d68-82ea-addb73906350",
+  "isSidechain": false,
+  "requestId": "req_011Cb9ESfQYLzTipsJoxeJhB",
+  "type": "assistant",
+  "uuid": "f8d52299-e9c8-4dc7-93d8-44dbd62e362f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NEj12dvoK6fxEdnaJV5vps",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1132,
+      "cache_read_input_tokens": 131911,
+      "output_tokens": 395,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1132,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 395,
+          "cache_read_input_tokens": 131911,
+          "cache_creation_input_tokens": 1132,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1132
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 209 · 2026-05-18T02:18:44.071Z_
+
+PID 190498 和 190644 已不存在。实验可能已失败。检查 tmux 和日志。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f8d52299-e9c8-4dc7-93d8-44dbd62e362f",
+  "isSidechain": false,
+  "requestId": "req_011Cb9ESfQYLzTipsJoxeJhB",
+  "type": "assistant",
+  "uuid": "bc44e577-35b6-43d2-93be-c548c47831aa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NEj12dvoK6fxEdnaJV5vps",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1132,
+      "cache_read_input_tokens": 131911,
+      "output_tokens": 395,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1132,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 395,
+          "cache_read_input_tokens": 131911,
+          "cache_creation_input_tokens": 1132,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1132
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 210 · 2026-05-18T02:18:45.624Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01H6qGXVSx7Vpws6g8cXPpCp`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "tail -50 /root/runs/gen-depth-contamination/exp_arXiv_qwen7b_crossscorer.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bc44e577-35b6-43d2-93be-c548c47831aa",
+  "isSidechain": false,
+  "requestId": "req_011Cb9ESfQYLzTipsJoxeJhB",
+  "type": "assistant",
+  "uuid": "5e800ee2-dc34-4907-acd0-21cfd30be795",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NEj12dvoK6fxEdnaJV5vps",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1132,
+      "cache_read_input_tokens": 131911,
+      "output_tokens": 395,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1132,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 395,
+          "cache_read_input_tokens": 131911,
+          "cache_creation_input_tokens": 1132,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1132
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 211 · 2026-05-18T02:18:45.792Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012mBwGhiHfmJvmenyHvEtPa`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "tail -50 /root/runs/gen-depth-contamination/exp_arXiv_qwen1b5_crossscorer.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5e800ee2-dc34-4907-acd0-21cfd30be795",
+  "isSidechain": false,
+  "requestId": "req_011Cb9ESfQYLzTipsJoxeJhB",
+  "type": "assistant",
+  "uuid": "b34c0690-a601-4920-8351-d675e1002bb9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NEj12dvoK6fxEdnaJV5vps",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1132,
+      "cache_read_input_tokens": 131911,
+      "output_tokens": 395,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1132,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 395,
+          "cache_read_input_tokens": 131911,
+          "cache_creation_input_tokens": 1132,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1132
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 212 · 2026-05-18T02:18:46.041Z_
+
+<details><summary>↩ Tool result · `toolu_01H6qGXVSx7Vpws6g8cXPpCp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\", line 1688, in load_dataset\\n    builder_instance = load_dataset_builder(\\n                       ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\", line 1315, in load_dataset_builder\\n    dataset_module = dataset_module_factory(\\n                     ^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\", line 1207, in dataset_module_factory\\n    raise e1 from None\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\", line 1160, in dataset_module_factory\\n    api.hf_hub_download(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 88, in _inner_fn\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/hf_api.py\\\", line 6188, in hf_hub_download\\n    return hf_hub_download(\\n           ^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 88, in _inner_fn\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 997, in hf_hub_download\\n    return _hf_hub_download_to_cache_dir(\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1130, in _hf_hub_download_to_cache_dir\\n    _get_metadata_or_catch_error(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1669, in _get_metadata_or_catch_error\\n    metadata = get_hf_file_metadata(\\n               ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 88, in _inner_fn\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1591, in get_hf_file_metadata\\n    response = _httpx_follow_relative_redirects_with_backoff(\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\", line 685, in _httpx_follow_relative_redirects_with_backoff\\n    response = http_backoff(\\n               ^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\", line 559, in http_backoff\\n    return next(\\n           ^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\", line 467, in _http_backoff_base\\n    response = client.request(method=method, url=url, **kwargs)\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py\\\", line 825, in request\\n    return self.send(request, auth=auth, follow_redirects=follow_redirects)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py\\\", line 901, in send\\n    raise RuntimeError(\\\"Cannot send a request, as the client has been closed.\\\")\\nRuntimeError: Cannot send a request, as the client has been closed.\\nEXIT_CODE=1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5e800ee2-dc34-4907-acd0-21cfd30be795",
+  "isSidechain": false,
+  "promptId": "be30f262-2842-4330-9c6b-cc1cd51b6a8b",
+  "type": "user",
+  "uuid": "53572445-b491-43a7-a6c6-704ccaaa9fd8",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\\\\\", line 1688, in load_dataset\\\\n    builder_instance = load_dataset_builder(\\\\n                       ^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\\\\\", line 1315, in load_dataset_builder\\\\n    dataset_module = dataset_module_factory(\\\\n                     ^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\\\\\", line 1207, in dataset_module_factory\\\\n    raise e1 from None\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\\\\\", line 1160, in dataset_module_factory\\\\n    api.hf_hub_download(\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\\\\\", line 88, in _inner_fn\\\\n    return fn(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/hf_api.py\\\\\\\", line 6188, in hf_hub_download\\\\n    return hf_hub_download(\\\\n           ^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\\\\\", line 88, in _inner_fn\\\\n    return fn(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\\\\\", line 997, in hf_hub_download\\\\n    return _hf_hub_download_to_cache_dir(\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\\\\\", line 1130, in _hf_hub_download_to_cache_dir\\\\n    _get_metadata_or_catch_error(\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\\\\\", line 1669, in _get_metadata_or_catch_error\\\\n    metadata = get_hf_file_metadata(\\\\n               ^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\\\\\", line 88, in _inner_fn\\\\n    return fn(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\\\\\", line 1591, in get_hf_file_metadata\\\\n    response = _httpx_follow_relative_redirects_with_backoff(\\\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\\\\\", line 685, in _httpx_follow_relative_redirects_with_backoff\\\\n    response = http_backoff(\\\\n               ^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\\\\\", line 559, in http_backoff\\\\n    return next(\\\\n           ^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\\\\\", line 467, in _http_backoff_base\\\\n    response = client.request(method=method, url=url, **kwargs)\\\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py\\\\\\\", line 825, in request\\\\n    return self.send(request, auth=auth, follow_redirects=follow_redirects)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py\\\\\\\", line 901, in send\\\\n    raise RuntimeError(\\\\\\\"Cannot send a request, as the client has been closed.\\\\\\\")\\\\nRuntimeError: Cannot send a request, as the client has been closed.\\\\nEXIT_CODE=1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\", line 1688, in load_dataset\\n    builder_instance = load_dataset_builder(\\n                       ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\", line 1315, in load_dataset_builder\\n    dataset_module = dataset_module_factory(\\n                     ^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\", line 1207, in dataset_module_factory\\n    raise e1 from None\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\", line 1160, in dataset_module_factory\\n    api.hf_hub_download(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 88, in _inner_fn\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/hf_api.py\\\", line 6188, in hf_hub_download\\n    return hf_hub_download(\\n           ^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 88, in _inner_fn\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 997, in hf_hub_download\\n    return _hf_hub_download_to_cache_dir(\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1130, in _hf_hub_download_to_cache_dir\\n    _get_metadata_or_catch_error(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1669, in _get_metadata_or_catch_error\\n    metadata = get_hf_file_metadata(\\n               ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 88, in _inner_fn\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1591, in get_hf_file_metadata\\n    response = _httpx_follow_relative_redirects_with_backoff(\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\", line 685, in _httpx_follow_relative_redirects_with_backoff\\n    response = http_backoff(\\n               ^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\", line 559, in http_backoff\\n    return next(\\n           ^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\", line 467, in _http_backoff_base\\n    response = client.request(method=method, url=url, **kwargs)\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py\\\", line 825, in request\\n    return self.send(request, auth=auth, follow_redirects=follow_redirects)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py\\\", line 901, in send\\n    raise RuntimeError(\\\"Cannot send a request, as the client has been closed.\\\")\\nRuntimeError: Cannot send a request, as the client has been closed.\\nEXIT_CODE=1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  },
+  "sourceToolAssistantUUID": "5e800ee2-dc34-4907-acd0-21cfd30be795",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 213 · 2026-05-18T02:18:46.518Z_
+
+<details><summary>↩ Tool result · `toolu_012mBwGhiHfmJvmenyHvEtPa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\", line 1688, in load_dataset\\n    builder_instance = load_dataset_builder(\\n                       ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\", line 1315, in load_dataset_builder\\n    dataset_module = dataset_module_factory(\\n                     ^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\", line 1207, in dataset_module_factory\\n    raise e1 from None\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\", line 1160, in dataset_module_factory\\n    api.hf_hub_download(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 88, in _inner_fn\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/hf_api.py\\\", line 6188, in hf_hub_download\\n    return hf_hub_download(\\n           ^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 88, in _inner_fn\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 997, in hf_hub_download\\n    return _hf_hub_download_to_cache_dir(\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1130, in _hf_hub_download_to_cache_dir\\n    _get_metadata_or_catch_error(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1669, in _get_metadata_or_catch_error\\n    metadata = get_hf_file_metadata(\\n               ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 88, in _inner_fn\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1591, in get_hf_file_metadata\\n    response = _httpx_follow_relative_redirects_with_backoff(\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\", line 685, in _httpx_follow_relative_redirects_with_backoff\\n    response = http_backoff(\\n               ^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\", line 559, in http_backoff\\n    return next(\\n           ^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\", line 467, in _http_backoff_base\\n    response = client.request(method=method, url=url, **kwargs)\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py\\\", line 825, in request\\n    return self.send(request, auth=auth, follow_redirects=follow_redirects)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py\\\", line 901, in send\\n    raise RuntimeError(\\\"Cannot send a request, as the client has been closed.\\\")\\nRuntimeError: Cannot send a request, as the client has been closed.\\nEXIT_CODE=1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b34c0690-a601-4920-8351-d675e1002bb9",
+  "isSidechain": false,
+  "promptId": "be30f262-2842-4330-9c6b-cc1cd51b6a8b",
+  "type": "user",
+  "uuid": "0c45347d-b023-4ab3-a3b6-5248157ea004",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\\\\\", line 1688, in load_dataset\\\\n    builder_instance = load_dataset_builder(\\\\n                       ^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\\\\\", line 1315, in load_dataset_builder\\\\n    dataset_module = dataset_module_factory(\\\\n                     ^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\\\\\", line 1207, in dataset_module_factory\\\\n    raise e1 from None\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\\\\\", line 1160, in dataset_module_factory\\\\n    api.hf_hub_download(\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\\\\\", line 88, in _inner_fn\\\\n    return fn(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/hf_api.py\\\\\\\", line 6188, in hf_hub_download\\\\n    return hf_hub_download(\\\\n           ^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\\\\\", line 88, in _inner_fn\\\\n    return fn(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\\\\\", line 997, in hf_hub_download\\\\n    return _hf_hub_download_to_cache_dir(\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\\\\\", line 1130, in _hf_hub_download_to_cache_dir\\\\n    _get_metadata_or_catch_error(\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\\\\\", line 1669, in _get_metadata_or_catch_error\\\\n    metadata = get_hf_file_metadata(\\\\n               ^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\\\\\", line 88, in _inner_fn\\\\n    return fn(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\\\\\", line 1591, in get_hf_file_metadata\\\\n    response = _httpx_follow_relative_redirects_with_backoff(\\\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\\\\\", line 685, in _httpx_follow_relative_redirects_with_backoff\\\\n    response = http_backoff(\\\\n               ^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\\\\\", line 559, in http_backoff\\\\n    return next(\\\\n           ^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\\\\\", line 467, in _http_backoff_base\\\\n    response = client.request(method=method, url=url, **kwargs)\\\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py\\\\\\\", line 825, in request\\\\n    return self.send(request, auth=auth, follow_redirects=follow_redirects)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py\\\\\\\", line 901, in send\\\\n    raise RuntimeError(\\\\\\\"Cannot send a request, as the client has been closed.\\\\\\\")\\\\nRuntimeError: Cannot send a request, as the client has been closed.\\\\nEXIT_CODE=1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\", line 1688, in load_dataset\\n    builder_instance = load_dataset_builder(\\n                       ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\", line 1315, in load_dataset_builder\\n    dataset_module = dataset_module_factory(\\n                     ^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\", line 1207, in dataset_module_factory\\n    raise e1 from None\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\", line 1160, in dataset_module_factory\\n    api.hf_hub_download(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 88, in _inner_fn\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/hf_api.py\\\", line 6188, in hf_hub_download\\n    return hf_hub_download(\\n           ^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 88, in _inner_fn\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 997, in hf_hub_download\\n    return _hf_hub_download_to_cache_dir(\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1130, in _hf_hub_download_to_cache_dir\\n    _get_metadata_or_catch_error(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1669, in _get_metadata_or_catch_error\\n    metadata = get_hf_file_metadata(\\n               ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 88, in _inner_fn\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1591, in get_hf_file_metadata\\n    response = _httpx_follow_relative_redirects_with_backoff(\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\", line 685, in _httpx_follow_relative_redirects_with_backoff\\n    response = http_backoff(\\n               ^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\", line 559, in http_backoff\\n    return next(\\n           ^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\", line 467, in _http_backoff_base\\n    response = client.request(method=method, url=url, **kwargs)\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py\\\", line 825, in request\\n    return self.send(request, auth=auth, follow_redirects=follow_redirects)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py\\\", line 901, in send\\n    raise RuntimeError(\\\"Cannot send a request, as the client has been closed.\\\")\\nRuntimeError: Cannot send a request, as the client has been closed.\\nEXIT_CODE=1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  },
+  "sourceToolAssistantUUID": "b34c0690-a601-4920-8351-d675e1002bb9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 214 · 2026-05-18T02:18:55.418Z_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Both experiments failed with the same error:
+```
+RuntimeError: Cannot send a request, as the client has been closed.
+```
+
+This is an HTTP client error from the `huggingface_hub` library during `hf_hub_download`. The pipeline is trying to load a dataset via the HuggingFace datasets library, which attempts to download something from the HF Hub, but the HTTP client connection is closed.
+
+This is likely because:
+1. The server might have network issues or HF Hub access is blocked
+2. The `datasets` library is trying to download a dataset definition even though the data is already symlinked locally
+
+
+3. The `load_dataset()` call is attempting to reach HF Hub even for local data, which could indicate a network connectivity or rate limiting issue
+
+Let me look at the full traceback from the beginning to see what dataset it was actually trying to load.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0c45347d-b023-4ab3-a3b6-5248157ea004",
+  "isSidechain": false,
+  "requestId": "req_011Cb9ETPPf2vYgV44FhTpir",
+  "type": "assistant",
+  "uuid": "b8da5824-3692-40ff-a054-473d31b134d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014jtsSn3MJ6h7LvV64cTZ95",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3036,
+      "cache_read_input_tokens": 133043,
+      "output_tokens": 422,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3036,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 422,
+          "cache_read_input_tokens": 133043,
+          "cache_creation_input_tokens": 3036,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3036
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 215 · 2026-05-18T02:18:55.484Z_
+
+两个实验都失败了——HuggingFace Hub HTTP 客户端连接错误。让我查看完整错误上下文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b8da5824-3692-40ff-a054-473d31b134d3",
+  "isSidechain": false,
+  "requestId": "req_011Cb9ETPPf2vYgV44FhTpir",
+  "type": "assistant",
+  "uuid": "931ba03a-46d3-49b1-b0d6-869e04229005",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014jtsSn3MJ6h7LvV64cTZ95",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3036,
+      "cache_read_input_tokens": 133043,
+      "output_tokens": 422,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3036,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 422,
+          "cache_read_input_tokens": 133043,
+          "cache_creation_input_tokens": 3036,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3036
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 216 · 2026-05-18T02:18:56.011Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01C2qHTYURqh72QiFs4QbWBJ`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "head -80 /root/runs/gen-depth-contamination/exp_arXiv_qwen7b_crossscorer.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "931ba03a-46d3-49b1-b0d6-869e04229005",
+  "isSidechain": false,
+  "requestId": "req_011Cb9ETPPf2vYgV44FhTpir",
+  "type": "assistant",
+  "uuid": "4b2a93e6-7f35-4e49-b7f6-fbeaffa1a271",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014jtsSn3MJ6h7LvV64cTZ95",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3036,
+      "cache_read_input_tokens": 133043,
+      "output_tokens": 422,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3036,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 422,
+          "cache_read_input_tokens": 133043,
+          "cache_creation_input_tokens": 3036,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3036
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 217_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_submit_arXiv_cross_scorer_pair_20260518T021326]: Worker worker_submit_arXiv_cross_scorer_pair_20260518T021326 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "4b2a93e6-7f35-4e49-b7f6-fbeaffa1a271",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 218_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 219 · 2026-05-18T02:18:56.435Z_
+
+<details><summary>↩ Tool result · `toolu_01C2qHTYURqh72QiFs4QbWBJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"10:14:21 [INFO] Model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B\\n10:14:21 [INFO] Data dir: data/exp_arXiv_qwen7b_crossscorer\\n10:14:21 [INFO] Samples: 5000, Max depth: 5\\n10:14:21 [INFO] Decoding: do_sample=True, top_p=0.95, temperature=1.0\\n10:14:21 [INFO] Generation mode: continuation\\n10:14:21 [INFO] Max new tokens: 256\\n10:14:21 [INFO] Scorer: /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79\\n10:14:24 [INFO] Loading tokenizer ...\\n10:14:25 [INFO] Loading model ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n10:14:25 [WARNING] Skipping import of cpp extensions due to incompatible torch version. Please upgrade to torch >= 2.11.0 (found 2.8.0+cu128).\\n\\rLoading weights:   0%|          | 0/339 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/339 [00:00<02:16,  2.48it/s]\\rLoading weights:   3%|▎         | 10/339 [00:00<00:14, 23.33it/s]\\rLoading weights:   5%|▌         | 18/339 [00:00<00:08, 37.39it/s]\\rLoading weights:   7%|▋         | 24/339 [00:00<00:09, 34.35it/s]\\rLoading weights:   9%|▊         | 29/339 [00:00<00:09, 34.34it/s]\\rLoading weights:  12%|█▏        | 40/339 [00:01<00:06, 44.32it/s]\\rLoading weights:  15%|█▌        | 52/339 [00:01<00:06, 42.53it/s]\\rLoading weights:  19%|█▉        | 64/339 [00:01<00:06, 45.25it/s]\\rLoading weights:  22%|██▏       | 76/339 [00:01<00:06, 43.02it/s]\\rLoading weights:  26%|██▌       | 88/339 [00:02<00:05, 41.97it/s]\\rLoading weights:  29%|██▉       | 100/339 [00:02<00:06, 39.81it/s]\\rLoading weights:  33%|███▎      | 112/339 [00:02<00:05, 41.58it/s]\\rLoading weights:  37%|███▋      | 124/339 [00:03<00:05, 40.31it/s]\\rLoading weights:  38%|███▊      | 129/339 [00:03<00:05, 39.94it/s]\\rLoading weights:  40%|████      | 136/339 [00:03<00:05, 40.38it/s]\\rLoading weights:  42%|████▏     | 141/339 [00:03<00:04, 41.00it/s]\\rLoading weights:  44%|████▎     | 148/339 [00:03<00:04, 39.18it/s]\\rLoading weights:  45%|████▍     | 152/339 [00:03<00:05, 37.11it/s]\\rLoading weights:  47%|████▋     | 160/339 [00:04<00:04, 39.14it/s]\\rLoading weights:  48%|████▊     | 164/339 [00:04<00:04, 35.65it/s]\\rLoading weights:  51%|█████     | 172/339 [00:04<00:04, 40.56it/s]\\rLoading weights:  52%|█████▏    | 177/339 [00:04<00:04, 39.90it/s]\\rLoading weights:  54%|█████▍    | 184/339 [00:04<00:04, 32.56it/s]\\rLoading weights:  56%|█████▌    | 189/339 [00:04<00:04, 35.65it/s]\\rLoading weights:  58%|█████▊    | 196/339 [00:05<00:03, 37.29it/s]\\rLoading weights:  59%|█████▉    | 200/339 [00:05<00:03, 34.86it/s]\\rLoading weights:  61%|██████▏   | 208/339 [00:05<00:03, 34.01it/s]\\rLoading weights:  63%|██████▎   | 212/339 [00:05<00:03, 33.60it/s]\\rLoading weights:  65%|██████▍   | 220/339 [00:05<00:03, 32.81it/s]\\rLoading weights:  68%|████��█▊   | 232/339 [00:06<00:03, 34.58it/s]\\rLoading weights:  72%|███████▏  | 243/339 [00:06<00:02, 45.65it/s]\\rLoading weights:  73%|███████▎  | 249/339 [00:06<00:02, 30.68it/s]\\rLoading weights:  76%|███████▌  | 256/339 [00:06<00:02, 30.23it/s]\\rLoading weights:  77%|███████▋  | 260/339 [00:07<00:02, 29.54it/s]\\rLoading weights:  79%|███████▉  | 268/339 [00:07<00:02, 30.01it/s]\\rLoading weights:  82%|████████▏ | 279/339 [00:07<00:01, 41.59it/s]\\rLoading weights:  84%|████████▍ | 285/339 [00:07<00:01, 30.35it/s]\\rLoading weights:  86%|████████▌ | 292/339 [00:08<00:01, 28.73it/s]\\rLoading weights:  87%|████████▋ | 296/339 [00:08<00:01, 27.08it/s]\\rLoading weights:  90%|████████▉ | 304/339 [00:08<00:01, 30.82it/s]\\rLoading weights:  91%|█████████ | 308/339 [00:08<00:01, 28.26it/s]\\rLoading weights:  93%|██��██████▎| 316/339 [00:09<00:00, 25.93it/s]\\rLoading weights:  94%|█████████▍| 319/339 [00:09<00:00, 24.33it/s]\\rLoading weights:  97%|█████████▋| 328/339 [00:09<00:00, 26.36it/s]\\rLoading weights:  98%|█████████▊| 331/339 [00:09<00:00, 25.92it/s]\\rLoading weights: 100%|██████████| 339/339 [00:09<00:00, 35.02it/s]\\n10:14:38 [INFO] Model loaded on cuda:0\\n10:14:38 [INFO] ======================================== Step 2: Seed Data =============\\n\\n... [截断: 输出过长，省略 653 字符] ...\\n\\nnai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/c4.py\\nRetrying in 1s [Retry 1/5].\\n10:16:09 [WARNING] Retrying in 1s [Retry 1/5].\\nTraceback (most recent call last):\\n  File \\\"/root/autodl-tmp/gen-depth-contamination/scripts/run_pipeline.py\\\", line 730, in &lt;module>\\n    main()\\n  File \\\"/root/autodl-tmp/gen-depth-contamination/scripts/run_pipeline.py\\\", line 694, in main\\n    prepare_seed_data(tokenizer, data_dir, args.num_samples, max_tokens=args.max_new_tokens)\\n  File \\\"/root/autodl-tmp/gen-depth-contamination/scripts/run_pipeline.py\\\", line 88, in prepare_seed_data\\n    ds = load_dataset(\\\"allenai/c4\\\", \\\"en\\\", split=\\\"validation\\\", streaming=True)\\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\", line 1688, in load_dataset\\n    builder_instance = load_dataset_builder(\\n                       ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\", line 1315, in load_dataset_builder\\n    dataset_module = dataset_module_factory(\\n                     ^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\", line 1207, in dataset_module_factory\\n    raise e1 from None\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\", line 1160, in dataset_module_factory\\n    api.hf_hub_download(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 88, in _inner_fn\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/hf_api.py\\\", line 6188, in hf_hub_download\\n    return hf_hub_download(\\n           ^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 88, in _inner_fn\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 997, in hf_hub_download\\n    return _hf_hub_download_to_cache_dir(\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1130, in _hf_hub_download_to_cache_dir\\n    _get_metadata_or_catch_error(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1669, in _get_metadata_or_catch_error\\n    metadata = get_hf_file_metadata(\\n               ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 88, in _inner_fn\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1591, in get_hf_file_metadata\\n    response = _httpx_follow_relative_redirects_with_backoff(\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\", line 685, in _httpx_follow_relative_redirects_with_backoff\\n    response = http_backoff(\\n               ^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\", line 559, in http_backoff\\n    return next(\\n           ^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\", line 467, in _http_backoff_base\\n    response = client.request(method=method, url=url, **kwargs)\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py\\\", line 825, in request\\n    return self.send(request, auth=auth, follow_redirects=follow_redirects)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py\\\", line 901, in send\\n    raise RuntimeError(\\\"Cannot send a request, as the client has been closed.\\\")\\nRuntimeError: Cannot send a request, as the client has been closed.\\nEXIT_CODE=1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4b2a93e6-7f35-4e49-b7f6-fbeaffa1a271",
+  "isSidechain": false,
+  "promptId": "be30f262-2842-4330-9c6b-cc1cd51b6a8b",
+  "type": "user",
+  "uuid": "c59d0c64-3f25-4261-b9e3-2bebc2d8119b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"10:14:21 [INFO] Model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B\\\\n10:14:21 [INFO] Data dir: data/exp_arXiv_qwen7b_crossscorer\\\\n10:14:21 [INFO] Samples: 5000, Max depth: 5\\\\n10:14:21 [INFO] Decoding: do_sample=True, top_p=0.95, temperature=1.0\\\\n10:14:21 [INFO] Generation mode: continuation\\\\n10:14:21 [INFO] Max new tokens: 256\\\\n10:14:21 [INFO] Scorer: /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79\\\\n10:14:24 [INFO] Loading tokenizer ...\\\\n10:14:25 [INFO] Loading model ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n10:14:25 [WARNING] Skipping import of cpp extensions due to incompatible torch version. Please upgrade to torch >= 2.11.0 (found 2.8.0+cu128).\\\\n\\\\rLoading weights:   0%|          | 0/339 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/339 [00:00<02:16,  2.48it/s]\\\\rLoading weights:   3%|▎         | 10/339 [00:00<00:14, 23.33it/s]\\\\rLoading weights:   5%|▌         | 18/339 [00:00<00:08, 37.39it/s]\\\\rLoading weights:   7%|▋         | 24/339 [00:00<00:09, 34.35it/s]\\\\rLoading weights:   9%|▊         | 29/339 [00:00<00:09, 34.34it/s]\\\\rLoading weights:  12%|█▏        | 40/339 [00:01<00:06, 44.32it/s]\\\\rLoading weights:  15%|█▌        | 52/339 [00:01<00:06, 42.53it/s]\\\\rLoading weights:  19%|█▉        | 64/339 [00:01<00:06, 45.25it/s]\\\\rLoading weights:  22%|██▏       | 76/339 [00:01<00:06, 43.02it/s]\\\\rLoading weights:  26%|██▌       | 88/339 [00:02<00:05, 41.97it/s]\\\\rLoading weights:  29%|██▉       | 100/339 [00:02<00:06, 39.81it/s]\\\\rLoading weights:  33%|███▎      | 112/339 [00:02<00:05, 41.58it/s]\\\\rLoading weights:  37%|███▋      | 124/339 [00:03<00:05, 40.31it/s]\\\\rLoading weights:  38%|███▊      | 129/339 [00:03<00:05, 39.94it/s]\\\\rLoading weights:  40%|████      | 136/339 [00:03<00:05, 40.38it/s]\\\\rLoading weights:  42%|████▏     | 141/339 [00:03<00:04, 41.00it/s]\\\\rLoading weights:  44%|████▎     | 148/339 [00:03<00:04, 39.18it/s]\\\\rLoading weights:  45%|████▍     | 152/339 [00:03<00:05, 37.11it/s]\\\\rLoading weights:  47%|████▋     | 160/339 [00:04<00:04, 39.14it/s]\\\\rLoading weights:  48%|████▊     | 164/339 [00:04<00:04, 35.65it/s]\\\\rLoading weights:  51%|█████     | 172/339 [00:04<00:04, 40.56it/s]\\\\rLoading weights:  52%|█████▏    | 177/339 [00:04<00:04, 39.90it/s]\\\\rLoading weights:  54%|█████▍    | 184/339 [00:04<00:04, 32.56it/s]\\\\rLoading weights:  56%|█████▌    | 189/339 [00:04<00:04, 35.65it/s]\\\\rLoading weights:  58%|█████▊    | 196/339 [00:05<00:03, 37.29it/s]\\\\rLoading weights:  59%|█████▉    | 200/339 [00:05<00:03, 34.86it/s]\\\\rLoading weights:  61%|██████▏   | 208/339 [00:05<00:03, 34.01it/s]\\\\rLoading weights:  63%|██████▎   | 212/339 [00:05<00:03, 33.60it/s]\\\\rLoading weights:  65%|██████▍   | 220/339 [00:05<00:03, 32.81it/s]\\\\rLoading weights:  68%|████��█▊   | 232/339 [00:06<00:03, 34.58it/s]\\\\rLoading weights:  72%|███████▏  | 243/339 [00:06<00:02, 45.65it/s]\\\\rLoading weights:  73%|███████▎  | 249/339 [00:06<00:02, 30.68it/s]\\\\rLoading weights:  76%|███████▌  | 256/339 [00:06<00:02, 30.23it/s]\\\\rLoading weights:  77%|███████▋  | 260/339 [00:07<00:02, 29.54it/s]\\\\rLoading weights:  79%|███████▉  | 268/339 [00:07<00:02, 30.01it/s]\\\\rLoading weights:  82%|████████▏ | 279/339 [00:07<00:01, 41.59it/s]\\\\rLoading weights:  84%|████████▍ | 285/339 [00:07<00:01, 30.35it/s]\\\\rLoading weights:  86%|████████▌ | 292/339 [00:08<00:01, 28.73it/s]\\\\rLoading weights:  87%|████████▋ | 296/339 [00:08<00:01, 27.08it/s]\\\\rLoading weights:  90%|████████▉ | 304/339 [00:08<00:01, 30.82it/s]\\\\rLoading weights:  91%|█████████ | 308/339 [00:08<00:01, 28.26it/s]\\\\rLoading weights:  93%|██��██████▎| 316/339 [00:09<00:00, 25.93it/s]\\\\rLoading weights:  94%|█████████▍| 319/339 [00:09<00:00, 24.33it/s]\\\\rLoading weights:  97%|█████████▋| 328/339 [00:09<00:00, 26.36it/s]\\\\rLoading weights:  98%|█████████▊| 331/339 [00:09<00:00, 25.92it/s]\\\\rLoading weights: 100%|██████████| 339/339 [00:09<00:00, 35.02it/s]\\\\n10:14:38 [INFO] Model loaded on cuda:0\\\\n10:14:38 [INFO] ======================================== Step 2: Seed Data =============\\\\n\\\\n... [截断: 输出过长，省略 653 字符] ...\\\\n\\\\nnai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/c4.py\\\\nRetrying in 1s [Retry 1/5].\\\\n10:16:09 [WARNING] Retrying in 1s [Retry 1/5].\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/autodl-tmp/gen-depth-contamination/scripts/run_pipeline.py\\\\\\\", line 730, in &lt;module>\\\\n    main()\\\\n  File \\\\\\\"/root/autodl-tmp/gen-depth-contamination/scripts/run_pipeline.py\\\\\\\", line 694, in main\\\\n    prepare_seed_data(tokenizer, data_dir, args.num_samples, max_tokens=args.max_new_tokens)\\\\n  File \\\\\\\"/root/autodl-tmp/gen-depth-contamination/scripts/run_pipeline.py\\\\\\\", line 88, in prepare_seed_data\\\\n    ds = load_dataset(\\\\\\\"allenai/c4\\\\\\\", \\\\\\\"en\\\\\\\", split=\\\\\\\"validation\\\\\\\", streaming=True)\\\\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\\\\\", line 1688, in load_dataset\\\\n    builder_instance = load_dataset_builder(\\\\n                       ^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\\\\\", line 1315, in load_dataset_builder\\\\n    dataset_module = dataset_module_factory(\\\\n                     ^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\\\\\", line 1207, in dataset_module_factory\\\\n    raise e1 from None\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\\\\\", line 1160, in dataset_module_factory\\\\n    api.hf_hub_download(\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\\\\\", line 88, in _inner_fn\\\\n    return fn(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/hf_api.py\\\\\\\", line 6188, in hf_hub_download\\\\n    return hf_hub_download(\\\\n           ^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\\\\\", line 88, in _inner_fn\\\\n    return fn(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\\\\\", line 997, in hf_hub_download\\\\n    return _hf_hub_download_to_cache_dir(\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\\\\\", line 1130, in _hf_hub_download_to_cache_dir\\\\n    _get_metadata_or_catch_error(\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\\\\\", line 1669, in _get_metadata_or_catch_error\\\\n    metadata = get_hf_file_metadata(\\\\n               ^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\\\\\", line 88, in _inner_fn\\\\n    return fn(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\\\\\", line 1591, in get_hf_file_metadata\\\\n    response = _httpx_follow_relative_redirects_with_backoff(\\\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\\\\\", line 685, in _httpx_follow_relative_redirects_with_backoff\\\\n    response = http_backoff(\\\\n               ^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\\\\\", line 559, in http_backoff\\\\n    return next(\\\\n           ^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\\\\\", line 467, in _http_backoff_base\\\\n    response = client.request(method=method, url=url, **kwargs)\\\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py\\\\\\\", line 825, in request\\\\n    return self.send(request, auth=auth, follow_redirects=follow_redirects)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py\\\\\\\", line 901, in send\\\\n    raise RuntimeError(\\\\\\\"Cannot send a request, as the client has been closed.\\\\\\\")\\\\nRuntimeError: Cannot send a request, as the client has been closed.\\\\nEXIT_CODE=1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"10:14:21 [INFO] Model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B\\n10:14:21 [INFO] Data dir: data/exp_arXiv_qwen7b_crossscorer\\n10:14:21 [INFO] Samples: 5000, Max depth: 5\\n10:14:21 [INFO] Decoding: do_sample=True, top_p=0.95, temperature=1.0\\n10:14:21 [INFO] Generation mode: continuation\\n10:14:21 [INFO] Max new tokens: 256\\n10:14:21 [INFO] Scorer: /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79\\n10:14:24 [INFO] Loading tokenizer ...\\n10:14:25 [INFO] Loading model ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n10:14:25 [WARNING] Skipping import of cpp extensions due to incompatible torch version. Please upgrade to torch >= 2.11.0 (found 2.8.0+cu128).\\n\\rLoading weights:   0%|          | 0/339 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/339 [00:00<02:16,  2.48it/s]\\rLoading weights:   3%|▎         | 10/339 [00:00<00:14, 23.33it/s]\\rLoading weights:   5%|▌         | 18/339 [00:00<00:08, 37.39it/s]\\rLoading weights:   7%|▋         | 24/339 [00:00<00:09, 34.35it/s]\\rLoading weights:   9%|▊         | 29/339 [00:00<00:09, 34.34it/s]\\rLoading weights:  12%|█▏        | 40/339 [00:01<00:06, 44.32it/s]\\rLoading weights:  15%|█▌        | 52/339 [00:01<00:06, 42.53it/s]\\rLoading weights:  19%|█▉        | 64/339 [00:01<00:06, 45.25it/s]\\rLoading weights:  22%|██▏       | 76/339 [00:01<00:06, 43.02it/s]\\rLoading weights:  26%|██▌       | 88/339 [00:02<00:05, 41.97it/s]\\rLoading weights:  29%|██▉       | 100/339 [00:02<00:06, 39.81it/s]\\rLoading weights:  33%|███▎      | 112/339 [00:02<00:05, 41.58it/s]\\rLoading weights:  37%|███▋      | 124/339 [00:03<00:05, 40.31it/s]\\rLoading weights:  38%|███▊      | 129/339 [00:03<00:05, 39.94it/s]\\rLoading weights:  40%|████      | 136/339 [00:03<00:05, 40.38it/s]\\rLoading weights:  42%|████▏     | 141/339 [00:03<00:04, 41.00it/s]\\rLoading weights:  44%|████▎     | 148/339 [00:03<00:04, 39.18it/s]\\rLoading weights:  45%|████▍     | 152/339 [00:03<00:05, 37.11it/s]\\rLoading weights:  47%|████▋     | 160/339 [00:04<00:04, 39.14it/s]\\rLoading weights:  48%|████▊     | 164/339 [00:04<00:04, 35.65it/s]\\rLoading weights:  51%|█████     | 172/339 [00:04<00:04, 40.56it/s]\\rLoading weights:  52%|█████▏    | 177/339 [00:04<00:04, 39.90it/s]\\rLoading weights:  54%|█████▍    | 184/339 [00:04<00:04, 32.56it/s]\\rLoading weights:  56%|█████▌    | 189/339 [00:04<00:04, 35.65it/s]\\rLoading weights:  58%|█████▊    | 196/339 [00:05<00:03, 37.29it/s]\\rLoading weights:  59%|█████▉    | 200/339 [00:05<00:03, 34.86it/s]\\rLoading weights:  61%|██████▏   | 208/339 [00:05<00:03, 34.01it/s]\\rLoading weights:  63%|██████▎   | 212/339 [00:05<00:03, 33.60it/s]\\rLoading weights:  65%|██████▍   | 220/339 [00:05<00:03, 32.81it/s]\\rLoading weights:  68%|████��█▊   | 232/339 [00:06<00:03, 34.58it/s]\\rLoading weights:  72%|███████▏  | 243/339 [00:06<00:02, 45.65it/s]\\rLoading weights:  73%|███████▎  | 249/339 [00:06<00:02, 30.68it/s]\\rLoading weights:  76%|███████▌  | 256/339 [00:06<00:02, 30.23it/s]\\rLoading weights:  77%|███████▋  | 260/339 [00:07<00:02, 29.54it/s]\\rLoading weights:  79%|███████▉  | 268/339 [00:07<00:02, 30.01it/s]\\rLoading weights:  82%|████████▏ | 279/339 [00:07<00:01, 41.59it/s]\\rLoading weights:  84%|████████▍ | 285/339 [00:07<00:01, 30.35it/s]\\rLoading weights:  86%|████████▌ | 292/339 [00:08<00:01, 28.73it/s]\\rLoading weights:  87%|████████▋ | 296/339 [00:08<00:01, 27.08it/s]\\rLoading weights:  90%|████████▉ | 304/339 [00:08<00:01, 30.82it/s]\\rLoading weights:  91%|█████████ | 308/339 [00:08<00:01, 28.26it/s]\\rLoading weights:  93%|██��██████▎| 316/339 [00:09<00:00, 25.93it/s]\\rLoading weights:  94%|█████████▍| 319/339 [00:09<00:00, 24.33it/s]\\rLoading weights:  97%|█████████▋| 328/339 [00:09<00:00, 26.36it/s]\\rLoading weights:  98%|█████████▊| 331/339 [00:09<00:00, 25.92it/s]\\rLoading weights: 100%|██████████| 339/339 [00:09<00:00, 35.02it/s]\\n10:14:38 [INFO] Model loaded on cuda:0\\n10:14:38 [INFO] ======================================== Step 2: Seed Data =============\\n\\n... [截断: 输出过长，省略 653 字符] ...\\n\\nnai/c4/resolve/1588ec454efa1a09f29cd18ddd04fe05fc8653a2/c4.py\\nRetrying in 1s [Retry 1/5].\\n10:16:09 [WARNING] Retrying in 1s [Retry 1/5].\\nTraceback (most recent call last):\\n  File \\\"/root/autodl-tmp/gen-depth-contamination/scripts/run_pipeline.py\\\", line 730, in &lt;module>\\n    main()\\n  File \\\"/root/autodl-tmp/gen-depth-contamination/scripts/run_pipeline.py\\\", line 694, in main\\n    prepare_seed_data(tokenizer, data_dir, args.num_samples, max_tokens=args.max_new_tokens)\\n  File \\\"/root/autodl-tmp/gen-depth-contamination/scripts/run_pipeline.py\\\", line 88, in prepare_seed_data\\n    ds = load_dataset(\\\"allenai/c4\\\", \\\"en\\\", split=\\\"validation\\\", streaming=True)\\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\", line 1688, in load_dataset\\n    builder_instance = load_dataset_builder(\\n                       ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\", line 1315, in load_dataset_builder\\n    dataset_module = dataset_module_factory(\\n                     ^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\", line 1207, in dataset_module_factory\\n    raise e1 from None\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/datasets/load.py\\\", line 1160, in dataset_module_factory\\n    api.hf_hub_download(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 88, in _inner_fn\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/hf_api.py\\\", line 6188, in hf_hub_download\\n    return hf_hub_download(\\n           ^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 88, in _inner_fn\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 997, in hf_hub_download\\n    return _hf_hub_download_to_cache_dir(\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1130, in _hf_hub_download_to_cache_dir\\n    _get_metadata_or_catch_error(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1669, in _get_metadata_or_catch_error\\n    metadata = get_hf_file_metadata(\\n               ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\", line 88, in _inner_fn\\n    return fn(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py\\\", line 1591, in get_hf_file_metadata\\n    response = _httpx_follow_relative_redirects_with_backoff(\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\", line 685, in _httpx_follow_relative_redirects_with_backoff\\n    response = http_backoff(\\n               ^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\", line 559, in http_backoff\\n    return next(\\n           ^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_http.py\\\", line 467, in _http_backoff_base\\n    response = client.request(method=method, url=url, **kwargs)\\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py\\\", line 825, in request\\n    return self.send(request, auth=auth, follow_redirects=follow_redirects)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/httpx/_client.py\\\", line 901, in send\\n    raise RuntimeError(\\\"Cannot send a request, as the client has been closed.\\\")\\nRuntimeError: Cannot send a request, as the client has been closed.\\nEXIT_CODE=1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4b2a93e6-7f35-4e49-b7f6-fbeaffa1a271",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 220 · 2026-05-18T02:19:12.616Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see the full error. The pipeline:
+
+1. Successfully loaded the Qwen-7B model on cuda:0
+2. Got to "Step 2: Seed Data"
+3. Called `prepare_seed_data()` which calls `load_dataset("allenai/c4", "en", split="validation", streaming=True)`
+4. This failed because it tried to download from HF Hub and the HTTP client closed
+
+The root cause is clear: the pipeline's `prepare_seed_data` function is trying to download C4 data from HuggingFace Hub, but the data should already be available since it's symlinked from existing experiments.
+
+
+The issue is that `prepare_seed_data()` runs unconditionally before checking whether the depth files already exist from the symlinks. The cross-scorer experiments set up symlinks for the depth data but the pipeline still attempts to download C4 regardless, which fails due to network issues. Previous successful scorer confound experiments used the same symlink pattern, so this might be a network connectivity problem rather than a design flaw.
+
+The fix could involve skipping seed data preparation when all depth files are already present, setting the offline mode flag, or restoring network access—I should report this to the Director since both experiments failed with the same error and the arXiv cross-scorer validation is critical for the paper's claims.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c59d0c64-3f25-4261-b9e3-2bebc2d8119b",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EU7maTzePuXjwdpZX3",
+  "type": "assistant",
+  "uuid": "3b3df4fb-993b-4dbc-8132-cb29bc8903e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UZrefqzm8knokNgkBkj8Ws",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4139,
+      "cache_read_input_tokens": 136079,
+      "output_tokens": 1364,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4139,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1364,
+          "cache_read_input_tokens": 136079,
+          "cache_creation_input_tokens": 4139,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4139
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 221 · 2026-05-18T02:19:13.303Z_
+
+根因清楚了。两个实验都因同一代码路径问题失败——pipeline 无条件调用 `prepare_seed_data()` 尝试从 HF Hub 下载 C4，即使数据已通过 symlink 存在。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b3df4fb-993b-4dbc-8132-cb29bc8903e9",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EU7maTzePuXjwdpZX3",
+  "type": "assistant",
+  "uuid": "64d7ca94-7d7c-43af-a62d-56698fe8fec2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UZrefqzm8knokNgkBkj8Ws",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4139,
+      "cache_read_input_tokens": 136079,
+      "output_tokens": 1364,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4139,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1364,
+          "cache_read_input_tokens": 136079,
+          "cache_creation_input_tokens": 4139,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4139
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 222 · 2026-05-18T02:19:28.327Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director · `toolu_01WUUoh5RgYbwnynd5kE2ZTA`</summary>
+
+````json
+{
+  "text": "## 审查报告 — exp_arXiv_qwen7b_crossscorer / exp_arXiv_qwen1b5_crossscorer\n\n**结论**: CRITICAL\n\n### 发现\n\n- [severity: critical] **两个 arXiv cross-scorer 实验均已失败（EXIT_CODE=1）**，PID 不存在，GPU 全部空闲。\n\n  **根因**: `run_pipeline.py:88` 的 `prepare_seed_data()` 无条件调用 `load_dataset(\"allenai/c4\", \"en\", split=\"validation\", streaming=True)`，即使 data_dir 中已有完整 depth_0-5.jsonl symlinks。HF Hub 连接失败导致 `RuntimeError: Cannot send a request, as the client has been closed.`\n\n  **证据**: 两个 log 文件完全相同的 traceback:\n  ```\n  scripts/run_pipeline.py:88  prepare_seed_data()\n  → datasets.load_dataset(\"allenai/c4\") \n  → hf_hub_download → httpx client closed\n  ```\n\n  **注意**: 之前的 Wiki scorer confound 实验（exp_wiki_scorer_confound / _1b5）使用相同 symlink 模式成功运行过，说明当时 HF Hub 可达或有本地缓存。当前要么网络不通，要么缓存失效。\n\n- [severity: info] **GPU 分配合规**: cuda:0 (7B) 和 cuda:1 (1.5B) 均在项目范围内。模型加载成功（7B 模型已加载到 cuda:0），在 seed data 阶段才崩溃。\n\n### 建议\n\n修复方案（任选其一）：\n1. **在 `prepare_seed_data()` 入口加条件检查**：如果 `data_dir/depth_0.jsonl` 已存在，跳过下载（推荐，最小改动）\n2. **环境变量**：提交命令中加 `HF_DATASETS_OFFLINE=1`，强制 datasets 库使用本地缓存\n3. **网络排查**：检查 cqa1-22115 到 HF Hub 的连接（`curl -I https://huggingface.co`）\n\n这两个实验是 arXiv K*=3 scorer-independence 验证，直接影响论文 C1' claim 的可信度（D060 已确认 Wiki 有 scorer confound，arXiv 是否也有？）。建议尽快修复重跑。",
+  "project": "gen-depth-contamination"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "64d7ca94-7d7c-43af-a62d-56698fe8fec2",
+  "isSidechain": false,
+  "requestId": "req_011Cb9EU7maTzePuXjwdpZX3",
+  "type": "assistant",
+  "uuid": "57d7059e-35ab-4cab-ad25-cd3ff229ca89",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UZrefqzm8knokNgkBkj8Ws",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4139,
+      "cache_read_input_tokens": 136079,
+      "output_tokens": 1364,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4139,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1364,
+          "cache_read_input_tokens": 136079,
+          "cache_creation_input_tokens": 4139,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4139
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 223_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[系统通知 — worker_done:worker_submit_arXiv_cross_scorer_pair_20260518T021326]: Worker worker_submit_arXiv_cross_scorer_pair_20260518T021326 已完成（status=done），请审查 Agent 的处理结果。",
+  "leafUuid": "57d7059e-35ab-4cab-ad25-cd3ff229ca89",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 224_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 225 · 2026-05-18T02:19:32.889Z_
+
+<details><summary>↩ Tool result · `toolu_01WUUoh5RgYbwnynd5kE2ZTA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "57d7059e-35ab-4cab-ad25-cd3ff229ca89",
+  "isSidechain": false,
+  "promptId": "be30f262-2842-4330-9c6b-cc1cd51b6a8b",
+  "type": "user",
+  "uuid": "6e655c3e-cd66-44f5-97a1-38a09af6cfce",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "57d7059e-35ab-4cab-ad25-cd3ff229ca89",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 226_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 227 · 2026-05-18T02:19:40.636Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-18T02:19:40.636Z",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "content": "[系统通知 — cron:on_failed:exp_arXiv_qwen7b_crossscorer]:\n实验 exp_arXiv_qwen7b_crossscorer failed，请审查。"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 228 · 2026-05-18T02:19:40.636Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-18T02:19:40.636Z",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+## Round 6
+
+## Round 6
+
+2 recorded events
+
+
+### User
+
+_source line 229 · 2026-05-18T02:19:40.625Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6e655c3e-cd66-44f5-97a1-38a09af6cfce",
+  "isSidechain": false,
+  "promptId": "a1e92a3d-2bc9-42c1-abe7-85a3a9349788",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "729a0b67-282f-47f0-a708-00496ed20ef7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 230 · 2026-05-18T02:19:40.625Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "729a0b67-282f-47f0-a708-00496ed20ef7",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "3496d331-596a-4280-8744-70271f085a43",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "708a1d11-dafa-4558-9ec7-e3c8a67a7af5",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 7
+
+## Round 7
+
+5 recorded events
+
+
+### User
+
+_source line 231 · 2026-05-18T02:19:40.758Z_
+
+[系统通知 — cron:on_failed:exp_arXiv_qwen7b_crossscorer]:
+实验 exp_arXiv_qwen7b_crossscorer failed，请审查。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3496d331-596a-4280-8744-70271f085a43",
+  "isSidechain": false,
+  "promptId": "a1e92a3d-2bc9-42c1-abe7-85a3a9349788",
+  "type": "user",
+  "uuid": "9b22fa94-408e-448d-87ac-0317ee968374",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 232 · 2026-05-18T02:19:40.757Z_
+
+```json
+{
+  "parentUuid": "9b22fa94-408e-448d-87ac-0317ee968374",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "050c8a2e-a478-42c0-a9bc-b5dc5c59a4ac",
+  "timestamp": "2026-05-18T02:19:40.757Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 233_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review failed audit worker process",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 234 · 2026-05-18T02:19:50.164Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-18T02:19:50.164Z",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "content": "[系统通知 — cron:on_failed:exp_arXiv_qwen1b5_crossscorer]:\n实验 exp_arXiv_qwen1b5_crossscorer failed，请审查。"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 235 · 2026-05-18T02:19:50.164Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-18T02:19:50.164Z",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77"
+}
+```
+
+---
+
+
+## Round 8
+
+## Round 8
+
+2 recorded events
+
+
+### User
+
+_source line 236 · 2026-05-18T02:19:50.154Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "050c8a2e-a478-42c0-a9bc-b5dc5c59a4ac",
+  "isSidechain": false,
+  "promptId": "3b7bb0d3-aa66-407a-8ebe-573595a20162",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "42247c12-1f4c-4ede-99fe-f6ec154e4ffb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 237 · 2026-05-18T02:19:50.154Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42247c12-1f4c-4ede-99fe-f6ec154e4ffb",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "0189a0ae-2abe-400f-91ed-3a562685b1da",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/reviewer_08f7237f",
+  "sessionId": "a2467265-a8a0-4891-894f-f0cdf7b4bd77",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "072394dc-0b76-4829-9bd6-9e821683ba63",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 9
+
+## Round 9
+
+5 recorded events

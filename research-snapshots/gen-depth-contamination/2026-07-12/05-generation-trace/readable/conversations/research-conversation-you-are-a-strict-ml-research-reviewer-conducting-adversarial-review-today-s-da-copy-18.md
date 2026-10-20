@@ -1,0 +1,7448 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-10 (UTC).** Your job: indep
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 105
+- **Recorded user turns:** 1
+- **Tool calls:** 30
+- **Original source:** `logs/chats/exported-trajectories/account-2/be743a6c-4246-47fb-a8a7-fb63365f1381.jsonl`
+- **Structured JSON:** [`1edb421542273e250b23.json`](../../sessions/1e/1edb421542273e250b23.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T17:54:13.102Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T17:54:13.102Z",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-10 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: CoRL 2026 (Austin, Nov 9-12, 2026). Abstract deadline 2026-05-26 (17 days); paper deadline 2026-05-29 (20 days).\n\nDirection: World Action Models (WAMs) — joint world modeling and action prediction in a unified architecture, often built on video diffusion priors. In-scope: unified video+action prediction, MoT (Mixture-of-Transformers) architectures with text/video/action streams, WMs that double as policies via inverse dynamics on imagined futures, action-conditioned video diffusion as policy.\n\nRecent landscape (do not duplicate): UniVLA, DreamVLA, GigaBrain-0.5M, DiT4DiT, MotuBrain, video-diffusion-as-policy lines. WAMs are the hottest CoRL 2026 area — high competition but high reward.\n\nContribution type: METHOD ONLY. New unified architecture, new training scheme that fuses world prediction and action prediction, new inference algorithm extracting actions from imagined futures.\n\nSIM-ONLY MITIGATION: WAM papers at CoRL routinely use sim envs since the method depends on data scale, not real-robot deployment. Use LIBERO/ManiSkill as primary and frame contribution as architectural.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. Most challenging budget — video models are heavy. Strategies: (a) fine-tune an open video WM (Cosmos releases, OpenSora, CogVideoX) with action conditioning, (b) distill a large WAM into a smaller one, (c) propose a method that requires only small additional training on top of an existing WAM, (d) propose an inference-time method that needs no training.\n2. Time: ≤20 days. Build on HF Diffusers, OpenSora, NVIDIA Cosmos repos.\n3. Eval: LIBERO, ManiSkill 2/3, RoboCasa for closed-loop control + video prediction quality (PSNR/SSIM/FVD on action-conditioned futures). Compare against UniVLA / DreamVLA / DiT4DiT lineage if open releases exist.\n\nLook for: efficient action-conditioning of video diffusion, latent WAMs that bypass pixel decoding, methods that share representations across world and action streams. Avoid: trivial action-token prepending without architectural insight.\n\nTag: direction=world_action_model, contribution_type=method. target_venues=[\"CoRL 2026\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 1/10)\n{\n  \"title\": \"Video-Branch Classifier-Free Guidance for WAM Action Denoising\",\n  \"core_problem\": \"In unified WAMs, the video branch's contribution to action prediction is implicit and uncontrolled — how can we explicitly amplify world model insight during action generation without expensive test-time planning or search?\",\n  \"opportunity\": \"CFG is a proven technique for amplifying conditional signals in diffusion models (text→image), but has never been applied to the video→action direction within a WAM. Fast-WAM (March 2026) showed video generation isn't needed at test time, but this leaves open whether amplifying video feature influence could yield BETTER actions. Training with video-branch dropout enables CFG-style inference: a_guided = a_videofree + w*(a_joint - a_videofree). This is extremely cheap (one extra forward pass, ~50 H100-hours for fine-tuning), directly builds on open-source WAMs (UWM/Motus), and provides a tunable 'world model reliance dial.'\",\n  \"landscape\": \"CFG-DP (Oct 2025) applies CFG to diffusion policies conditioned on timestep/task-phase — fundamentally different since it doesn't involve video features. Fast-WAM (March 2026) removes video generation entirely at inference, using only backbone features from the current frame. DreamZero-Flash (Feb 2026) uses asymmetric noise during training but doesn't apply CFG at inference. Being-H0.7 uses latent queries but no guidance amplification. The video-to-action CFG direction is completely unexplored: zero directly related papers found. The key differentiator is that this method can be layered on ANY existing WAM without architectural changes — only requiring video-dropout fine-tuning and modified inference. UPDATE May 2026: Vid2World (ICLR 2026) applies CFG in the OPPOSITE direction — amplifying action conditioning for video generation via action dropout. This validates CFG within WAMs but leaves the video→action direction untouched. GigaWorld-Policy (March 2026) explicitly prevents video tokens from influencing action tokens via causal masking at inference, the opposite philosophy from amplifying video influence. MotuBrain (April 2026) freezes the video branch and caches KV pairs for action denoising — efficient but offers no tunable guidance. X-WAM (April 2026) uses asynchronous noise sampling for faster action decoding but does not explore guidance amplification. No concurrent work found applying CFG in the video→action direction with dropout-based training.\",\n  \"approach\": \"Fine-tune an existing open-source WAM (UWM, codebase at github.com/WEIRDLabUW/unified-world-model) with stochastic video-branch dropout: during training, zero out video-branch features (by setting the video diffusion timestep to pure noise) with probability p in {0.1, 0.15, 0.2} while keeping action denoising active, teaching the model to predict actions both with and without world-model context. At inference, apply classifier-free guidance in the video→action direction: a_guided = a_videofree + w * (a_joint - a_videofree), where w > 1 amplifies the video branch's contribution to action generation. Systematically sweep guidance scale w in [1.0, 3.0] and dropout rate p on LIBERO (4 task suites, publicly available on HuggingFace) and RoboTwin 2.0 benchmarks to characterize the 'world model reliance dial.' Analyze where guidance helps most (complex spatial reasoning, long-horizon tasks) versus where it hurts (simple pick-and-place), and investigate feature-space geometry to understand what information the video branch contributes to action denoising — this per-task analysis is a key differentiator from Vid2World, which applies CFG only in the opposite action→video direction.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~80-120h H100\",\n      \"gpu_utilization\": \"Low (20-30% effective utilization). Human writes video-dropout modification, debugs UWM integration, manually launches each guidance-scale sweep, and analyzes results between runs. GPUs idle during code iteration, debugging, and result analysis — typical for single-researcher academic workflow.\",\n      \"timeline\": \"2-4 months\",\n      \"team\": \"1-2 researchers\",\n      \"estimated_gpu_cost\": \"$200-360 (at ~$2.50-3.00/H100-hr spot pricing, May 2026 market rate)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~120-180h H100\",\n      \"gpu_utilization\": \"Moderate (50-65%). Agent implements video-dropout code modifications, auto-generates sweep configs, queues experiments, and drafts analysis. GPU idle only during human approval gates (~30min/day). More total hours than manual due to broader ablation coverage (dropout schedule variants, per-task guidance tuning).\",\n      \"timeline\": \"3-6 weeks\",\n      \"team\": \"1 researcher, ~30min/day check-in for experiment approval and direction-setting\",\n      \"claude_api_cost\": \"$80-200 (estimated ~800-2000 Opus turns for code generation, experiment design, result analysis, and paper drafting)\",\n      \"estimated_gpu_cost\": \"$300-540\",\n      \"risk_note\": \"Correctly implementing video-branch dropout in UWM's shared transformer backbone requires understanding the independent diffusion timestep mechanism — agent may need human guidance on architecture internals to avoid silently breaking the video-action coupling.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~300-500h H100 (exhaustive sweeps: 3 dropout rates × 10 guidance scales × 4 LIBERO suites × 3 seeds = 360 eval configs, plus ablations on Motus and RoboTwin)\",\n      \"gpu_utilization\": \"Near-zero idle (>95%). Agent runs 24/7 experiment loop: generates configs, launches training, monitors convergence, queues next experiment immediately upon completion. No human wait time.\",\n      \"timeline\": \"5-10 days with 4-8 GPUs available concurrently\",\n      \"team\": \"0 (initial setup only, ~2 hours)\",\n      \"claude_api_cost\": \"$250-500 (estimated ~2500-5000 Opus turns for full pipeline: code implementation, experiment orchestration, failure recovery, analysis, paper writing)\",\n      \"estimated_gpu_cost\": \"$750-1500\",\n      \"speed_bottleneck\": \"GPU count — with only 1-2 GPUs, the 360+ eval configurations serialize to ~3-4 weeks; with 8 GPUs, parallelism brings this to under a week. Secondary bottleneck is API key throughput for rapid experiment-analysis-redesign cycles.\",\n      \"risk_note\": \"Agent may over-explore unproductive guidance scale regions or fail to recognize when negative results (guidance hurting performance) are actually interesting findings worth reporting rather than bugs to fix. Risk of generating a large sweep without identifying the meaningful signal.\"\n    }\n  },\n  \"target_venues\": [\n    \"CoRL 2026 (deadline May 28, 2026 — tight but feasible for this lightweight method; robotics-focused venue, ideal fit)\",\n    \"ICLR 2027 (deadline Sep 24, 2026 — primary target; sufficient time for thorough evaluation and real-world experiments)\",\n    \"AAAI 2027 (deadline Aug 2, 2026 — fallback option with broader AI audience)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Classifier-Free Diffusion Guidance (NeurIPS 2021 Workshop)\",\n    \"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets (RSS 2025)\",\n    \"Motus: A Unified Latent Action World Model (arXiv 2025)\",\n    \"Fast-WAM: Do World Action Models Need Test-time Future Imagination? (arXiv 2026)\",\n    \"World Action Models are Zero-shot Policies [DreamZero] (arXiv 2026)\",\n    \"Vid2World: Crafting Video Diffusion Models to Interactive World Models (ICLR 2026)\",\n    \"Enhancing Diffusion Policy with Classifier-Free Guidance for Temporal Robotic Tasks [CFG-DP] (arXiv 2025)\",\n    \"Being-H0.7: A Latent World-Action Model from Egocentric Videos (arXiv 2026)\"\n  ],\n  \"description\": \"We propose Video-Branch Classifier-Free Guidance (VB-CFG), a method to explicitly amplify world-model insights during action generation in unified World-Action Models. While CFG is well-established for text-to-image generation and has been applied to the action-to-video direction (Vid2World, ICLR 2026), the reverse direction — amplifying video features during action denoising — remains completely unexplored. Our approach requires only lightweight fine-tuning: we add stochastic video-branch dropout to an existing open-source WAM (UWM or Motus), teaching the model to predict actions both with and without video context. At inference, a guidance scale w controls world-model reliance: a_guided = a_videofree + w*(a_joint - a_videofree). This layers onto any WAM without architectural changes, requiring only ~50-100 H100-hours for fine-tuning. We evaluate on LIBERO and RoboTwin 2.0 benchmarks, sweeping guidance scale and dropout rate to characterize when world-model amplification helps (spatial reasoning, long-horizon tasks) versus hurts. The key contribution is a near-zero-cost inference-time knob providing explicit, tunable control over how much a robot policy relies on its learned world model, complementing Fast-WAM's finding that video generation is unnecessary at test time by showing that video feature amplification may be beneficial.\",\n  \"project_name\": \"video_branch_cfg_wam\",\n  \"source\": \"web_research\"\n}\n\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T17:54:13.124Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T17:54:13.124Z",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381"
+}
+```
+
+---
+
+## Round 1
+
+103 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T17:54:13.215Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-10 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: CoRL 2026 (Austin, Nov 9-12, 2026). Abstract deadline 2026-05-26 (17 days); paper deadline 2026-05-29 (20 days).
+
+Direction: World Action Models (WAMs) — joint world modeling and action prediction in a unified architecture, often built on video diffusion priors. In-scope: unified video+action prediction, MoT (Mixture-of-Transformers) architectures with text/video/action streams, WMs that double as policies via inverse dynamics on imagined futures, action-conditioned video diffusion as policy.
+
+Recent landscape (do not duplicate): UniVLA, DreamVLA, GigaBrain-0.5M, DiT4DiT, MotuBrain, video-diffusion-as-policy lines. WAMs are the hottest CoRL 2026 area — high competition but high reward.
+
+Contribution type: METHOD ONLY. New unified architecture, new training scheme that fuses world prediction and action prediction, new inference algorithm extracting actions from imagined futures.
+
+SIM-ONLY MITIGATION: WAM papers at CoRL routinely use sim envs since the method depends on data scale, not real-robot deployment. Use LIBERO/ManiSkill as primary and frame contribution as architectural.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. Most challenging budget — video models are heavy. Strategies: (a) fine-tune an open video WM (Cosmos releases, OpenSora, CogVideoX) with action conditioning, (b) distill a large WAM into a smaller one, (c) propose a method that requires only small additional training on top of an existing WAM, (d) propose an inference-time method that needs no training.
+2. Time: ≤20 days. Build on HF Diffusers, OpenSora, NVIDIA Cosmos repos.
+3. Eval: LIBERO, ManiSkill 2/3, RoboCasa for closed-loop control + video prediction quality (PSNR/SSIM/FVD on action-conditioned futures). Compare against UniVLA / DreamVLA / DiT4DiT lineage if open releases exist.
+
+Look for: efficient action-conditioning of video diffusion, latent WAMs that bypass pixel decoding, methods that share representations across world and action streams. Avoid: trivial action-token prepending without architectural insight.
+
+Tag: direction=world_action_model, contribution_type=method. target_venues=["CoRL 2026"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 1/10)
+{
+  "title": "Video-Branch Classifier-Free Guidance for WAM Action Denoising",
+  "core_problem": "In unified WAMs, the video branch's contribution to action prediction is implicit and uncontrolled — how can we explicitly amplify world model insight during action generation without expensive test-time planning or search?",
+  "opportunity": "CFG is a proven technique for amplifying conditional signals in diffusion models (text→image), but has never been applied to the video→action direction within a WAM. Fast-WAM (March 2026) showed video generation isn't needed at test time, but this leaves open whether amplifying video feature influence could yield BETTER actions. Training with video-branch dropout enables CFG-style inference: a_guided = a_videofree + w*(a_joint - a_videofree). This is extremely cheap (one extra forward pass, ~50 H100-hours for fine-tuning), directly builds on open-source WAMs (UWM/Motus), and provides a tunable 'world model reliance dial.'",
+  "landscape": "CFG-DP (Oct 2025) applies CFG to diffusion policies conditioned on timestep/task-phase — fundamentally different since it doesn't involve video features. Fast-WAM (March 2026) removes video generation entirely at inference, using only backbone features from the current frame. DreamZero-Flash (Feb 2026) uses asymmetric noise during training but doesn't apply CFG at inference. Being-H0.7 uses latent queries but no guidance amplification. The video-to-action CFG direction is completely unexplored: zero directly related papers found. The key differentiator is that this method can be layered on ANY existing WAM without architectural changes — only requiring video-dropout fine-tuning and modified inference. UPDATE May 2026: Vid2World (ICLR 2026) applies CFG in the OPPOSITE direction — amplifying action conditioning for video generation via action dropout. This validates CFG within WAMs but leaves the video→action direction untouched. GigaWorld-Policy (March 2026) explicitly prevents video tokens from influencing action tokens via causal masking at inference, the opposite philosophy from amplifying video influence. MotuBrain (April 2026) freezes the video branch and caches KV pairs for action denoising — efficient but offers no tunable guidance. X-WAM (April 2026) uses asynchronous noise sampling for faster action decoding but does not explore guidance amplification. No concurrent work found applying CFG in the video→action direction with dropout-based training.",
+  "approach": "Fine-tune an existing open-source WAM (UWM, codebase at github.com/WEIRDLabUW/unified-world-model) with stochastic video-branch dropout: during training, zero out video-branch features (by setting the video diffusion timestep to pure noise) with probability p in {0.1, 0.15, 0.2} while keeping action denoising active, teaching the model to predict actions both with and without world-model context. At inference, apply classifier-free guidance in the video→action direction: a_guided = a_videofree + w * (a_joint - a_videofree), where w > 1 amplifies the video branch's contribution to action generation. Systematically sweep guidance scale w in [1.0, 3.0] and dropout rate p on LIBERO (4 task suites, publicly available on HuggingFace) and RoboTwin 2.0 benchmarks to characterize the 'world model reliance dial.' Analyze where guidance helps most (complex spatial reasoning, long-horizon tasks) versus where it hurts (simple pick-and-place), and investigate feature-space geometry to understand what information the video branch contributes to action denoising — this per-task analysis is a key differentiator from Vid2World, which applies CFG only in the opposite action→video direction.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~80-120h H100",
+      "gpu_utilization": "Low (20-30% effective utilization). Human writes video-dropout modification, debugs UWM integration, manually launches each guidance-scale sweep, and analyzes results between runs. GPUs idle during code iteration, debugging, and result analysis — typical for single-researcher academic workflow.",
+      "timeline": "2-4 months",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "$200-360 (at ~$2.50-3.00/H100-hr spot pricing, May 2026 market rate)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~120-180h H100",
+      "gpu_utilization": "Moderate (50-65%). Agent implements video-dropout code modifications, auto-generates sweep configs, queues experiments, and drafts analysis. GPU idle only during human approval gates (~30min/day). More total hours than manual due to broader ablation coverage (dropout schedule variants, per-task guidance tuning).",
+      "timeline": "3-6 weeks",
+      "team": "1 researcher, ~30min/day check-in for experiment approval and direction-setting",
+      "claude_api_cost": "$80-200 (estimated ~800-2000 Opus turns for code generation, experiment design, result analysis, and paper drafting)",
+      "estimated_gpu_cost": "$300-540",
+      "risk_note": "Correctly implementing video-branch dropout in UWM's shared transformer backbone requires understanding the independent diffusion timestep mechanism — agent may need human guidance on architecture internals to avoid silently breaking the video-action coupling."
+    },
+    "auto_research": {
+      "gpu_hours": "~300-500h H100 (exhaustive sweeps: 3 dropout rates × 10 guidance scales × 4 LIBERO suites × 3 seeds = 360 eval configs, plus ablations on Motus and RoboTwin)",
+      "gpu_utilization": "Near-zero idle (>95%). Agent runs 24/7 experiment loop: generates configs, launches training, monitors convergence, queues next experiment immediately upon completion. No human wait time.",
+      "timeline": "5-10 days with 4-8 GPUs available concurrently",
+      "team": "0 (initial setup only, ~2 hours)",
+      "claude_api_cost": "$250-500 (estimated ~2500-5000 Opus turns for full pipeline: code implementation, experiment orchestration, failure recovery, analysis, paper writing)",
+      "estimated_gpu_cost": "$750-1500",
+      "speed_bottleneck": "GPU count — with only 1-2 GPUs, the 360+ eval configurations serialize to ~3-4 weeks; with 8 GPUs, parallelism brings this to under a week. Secondary bottleneck is API key throughput for rapid experiment-analysis-redesign cycles.",
+      "risk_note": "Agent may over-explore unproductive guidance scale regions or fail to recognize when negative results (guidance hurting performance) are actually interesting findings worth reporting rather than bugs to fix. Risk of generating a large sweep without identifying the meaningful signal."
+    }
+  },
+  "target_venues": [
+    "CoRL 2026 (deadline May 28, 2026 — tight but feasible for this lightweight method; robotics-focused venue, ideal fit)",
+    "ICLR 2027 (deadline Sep 24, 2026 — primary target; sufficient time for thorough evaluation and real-world experiments)",
+    "AAAI 2027 (deadline Aug 2, 2026 — fallback option with broader AI audience)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Classifier-Free Diffusion Guidance (NeurIPS 2021 Workshop)",
+    "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets (RSS 2025)",
+    "Motus: A Unified Latent Action World Model (arXiv 2025)",
+    "Fast-WAM: Do World Action Models Need Test-time Future Imagination? (arXiv 2026)",
+    "World Action Models are Zero-shot Policies [DreamZero] (arXiv 2026)",
+    "Vid2World: Crafting Video Diffusion Models to Interactive World Models (ICLR 2026)",
+    "Enhancing Diffusion Policy with Classifier-Free Guidance for Temporal Robotic Tasks [CFG-DP] (arXiv 2025)",
+    "Being-H0.7: A Latent World-Action Model from Egocentric Videos (arXiv 2026)"
+  ],
+  "description": "We propose Video-Branch Classifier-Free Guidance (VB-CFG), a method to explicitly amplify world-model insights during action generation in unified World-Action Models. While CFG is well-established for text-to-image generation and has been applied to the action-to-video direction (Vid2World, ICLR 2026), the reverse direction — amplifying video features during action denoising — remains completely unexplored. Our approach requires only lightweight fine-tuning: we add stochastic video-branch dropout to an existing open-source WAM (UWM or Motus), teaching the model to predict actions both with and without video context. At inference, a guidance scale w controls world-model reliance: a_guided = a_videofree + w*(a_joint - a_videofree). This layers onto any WAM without architectural changes, requiring only ~50-100 H100-hours for fine-tuning. We evaluate on LIBERO and RoboTwin 2.0 benchmarks, sweeping guidance scale and dropout rate to characterize when world-model amplification helps (spatial reasoning, long-horizon tasks) versus hurts. The key contribution is a near-zero-cost inference-time knob providing explicit, tunable control over how much a robot policy relies on its learned world model, complementing Fast-WAM's finding that video generation is unnecessary at test time by showing that video feature amplification may be beneficial.",
+  "project_name": "video_branch_cfg_wam",
+  "source": "web_research"
+}
+
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "b089a527-9adf-4a94-a902-fe93b3f236bf",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T17:54:13.209Z_
+
+```json
+{
+  "parentUuid": "b089a527-9adf-4a94-a902-fe93b3f236bf",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "65734ff4-09aa-4074-94cb-930f3009576b",
+  "timestamp": "2026-05-10T17:54:13.209Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T17:54:13.210Z_
+
+```json
+{
+  "parentUuid": "65734ff4-09aa-4074-94cb-930f3009576b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "26584fd2-f2b4-4492-b832-7cfea9cadb6d",
+  "timestamp": "2026-05-10T17:54:13.210Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "26584fd2-f2b4-4492-b832-7cfea9cadb6d",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reviewer: Video-Branch CFG for WAM Action Denoising",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-10T17:54:20.105Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this idea about "Video-Branch Classifier-Free Guidance for WAM Action Denoising." I need to independently verify the claims, check for competing work, assess feasibility, and determine if this meets the user's requirements for CoRL 2026.
+
+Let me start by searching for the key claims and references:
+
+1. First, verify the key references exist and are accurately described
+2. Check for competing/concurrent work that might overlap
+3. Verify the feasibility claims (UWM codebase, compute requirements)
+4. Assess novelty given the current landscape
+
+Let me begin my research.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "26584fd2-f2b4-4492-b832-7cfea9cadb6d",
+  "isSidechain": false,
+  "requestId": "req_011CauKKRQFr9KpXV567Ui33",
+  "type": "assistant",
+  "uuid": "280db12c-30fe-4ad4-9b98-3d9ce5be1712",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TiMuBPxgXHtMEE6Bqp5AhA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11782,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 259,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 259,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 11782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-10T17:54:20.591Z_
+
+I'll conduct a thorough independent review of this idea. Let me start by verifying the key claims and searching for competing work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "280db12c-30fe-4ad4-9b98-3d9ce5be1712",
+  "isSidechain": false,
+  "requestId": "req_011CauKKRQFr9KpXV567Ui33",
+  "type": "assistant",
+  "uuid": "2e00cd9c-791a-4591-84ce-95ed16239959",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TiMuBPxgXHtMEE6Bqp5AhA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11782,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 259,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 259,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 11782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T17:54:21.094Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01EYQDiThhD8JQsefS7STFjL`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e00cd9c-791a-4591-84ce-95ed16239959",
+  "isSidechain": false,
+  "requestId": "req_011CauKKRQFr9KpXV567Ui33",
+  "type": "assistant",
+  "uuid": "93256e5e-2586-4f05-a410-84c79dc63cbd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TiMuBPxgXHtMEE6Bqp5AhA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11782,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 259,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 259,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 11782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-10T17:54:21.100Z_
+
+<details><summary>↩ Tool result · `toolu_01EYQDiThhD8JQsefS7STFjL`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "93256e5e-2586-4f05-a410-84c79dc63cbd",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "23958834-ad17-47ea-adb6-170b41421712",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "93256e5e-2586-4f05-a410-84c79dc63cbd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-10T17:54:27.277Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start my research by verifying the key claims in this idea. I'll search for:
+
+1. The UWM (Unified World Models) paper and its codebase
+2. Vid2World and its use of CFG in the action→video direction
+3. Fast-WAM paper
+4. Whether anyone has applied CFG in the video→action direction
+5. CoRL 2026 deadlines
+6. Competing work in WAMs from 2026
+
+Let me begin with multiple parallel searches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "23958834-ad17-47ea-adb6-170b41421712",
+  "isSidechain": false,
+  "requestId": "req_011CauKKzTrEs7WUeKN64Cyd",
+  "type": "assistant",
+  "uuid": "ab19a234-f472-42d5-957a-ee1e60a36afe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A9fwQL9ZeeTMdPNnYzjebm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1279,
+      "cache_read_input_tokens": 23586,
+      "output_tokens": 344,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1279,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 344,
+          "cache_read_input_tokens": 23586,
+          "cache_creation_input_tokens": 1279,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1279
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-10T17:54:27.766Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DJJqCnWGWFNn72bTuqWcfT`</summary>
+
+```json
+{
+  "query": "Unified World Models UWM coupling video action diffusion RSS 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ab19a234-f472-42d5-957a-ee1e60a36afe",
+  "isSidechain": false,
+  "requestId": "req_011CauKKzTrEs7WUeKN64Cyd",
+  "type": "assistant",
+  "uuid": "7e97b4f4-a3cc-4ea7-ae1b-0a1b79b8797b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A9fwQL9ZeeTMdPNnYzjebm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1279,
+      "cache_read_input_tokens": 23586,
+      "output_tokens": 344,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1279,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 344,
+          "cache_read_input_tokens": 23586,
+          "cache_creation_input_tokens": 1279,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1279
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-10T17:54:28.269Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0146WUiEaqtfVFLPaETfC8tu`</summary>
+
+```json
+{
+  "query": "Vid2World crafting video diffusion interactive world models ICLR 2026 classifier-free guidance"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7e97b4f4-a3cc-4ea7-ae1b-0a1b79b8797b",
+  "isSidechain": false,
+  "requestId": "req_011CauKKzTrEs7WUeKN64Cyd",
+  "type": "assistant",
+  "uuid": "b61458a9-8a22-41a6-8186-b8aa1da77584",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A9fwQL9ZeeTMdPNnYzjebm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1279,
+      "cache_read_input_tokens": 23586,
+      "output_tokens": 344,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1279,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 344,
+          "cache_read_input_tokens": 23586,
+          "cache_creation_input_tokens": 1279,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1279
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-10T17:54:28.791Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JWMGaDQdbyFZCmhjzSwNam`</summary>
+
+```json
+{
+  "query": "Fast-WAM world action models test-time future imagination 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b61458a9-8a22-41a6-8186-b8aa1da77584",
+  "isSidechain": false,
+  "requestId": "req_011CauKKzTrEs7WUeKN64Cyd",
+  "type": "assistant",
+  "uuid": "6529757c-d92c-4053-9e10-a2d28205827e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A9fwQL9ZeeTMdPNnYzjebm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1279,
+      "cache_read_input_tokens": 23586,
+      "output_tokens": 344,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1279,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 344,
+          "cache_read_input_tokens": 23586,
+          "cache_creation_input_tokens": 1279,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1279
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-10T17:54:29.045Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CvBZ8FKLVDixxXUTRCXT2f`</summary>
+
+```json
+{
+  "query": "CoRL 2026 submission deadline Austin"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6529757c-d92c-4053-9e10-a2d28205827e",
+  "isSidechain": false,
+  "requestId": "req_011CauKKzTrEs7WUeKN64Cyd",
+  "type": "assistant",
+  "uuid": "0480f6e6-ed0e-49e8-a0be-147f875d4ff2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A9fwQL9ZeeTMdPNnYzjebm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1279,
+      "cache_read_input_tokens": 23586,
+      "output_tokens": 344,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1279,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 344,
+          "cache_read_input_tokens": 23586,
+          "cache_creation_input_tokens": 1279,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1279
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-10T17:54:32.746Z_
+
+<details><summary>↩ Tool result · `toolu_01CvBZ8FKLVDixxXUTRCXT2f`</summary>
+
+```text
+Web search results for query: "CoRL 2026 submission deadline Austin"
+
+Links: [{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"CoRL LaTeX Template | Robot Learning Conference Format | Underleaf","url":"https://www.underleaf.ai/templates/corl"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"CoRL — The Conference on Robot Learning | Austin 2026-11-10 | Tadqiq.uz","url":"https://tadqiq.uz/en/xalqaro-konferensiyalar/corl"},{"title":"AI & ML Conference Deadlines 2026–2027","url":"https://trybibby.com/conference-deadlines"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"Robot Learning Foundation","url":"https://www.robot-learning.org/"},{"title":"CoRL 2026 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"}]
+
+Based on the search results, here's the information about CoRL 2026 submission deadlines in Austin:
+
+The abstract submission deadline is May 26, 2026 11:59 UTC and the paper submission deadline is May 29, 2026 11:59 UTC. CoRL 2026 will be held in Austin, Texas, US, with the conference dates being November 9-12, 2026 at JW Marriott Austin, 110 E 2nd St, Austin, TX 78701.
+
+The deadlines are final, and accommodations cannot be made for missing the abstract deadline or paper deadline. Papers may be submitted through OpenReview.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0480f6e6-ed0e-49e8-a0be-147f875d4ff2",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "1a314bc9-f974-48bc-8446-8d0a9ea1529b",
+  "toolUseResult": {
+    "query": "CoRL 2026 submission deadline Austin",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01A2QecU4146VixpJEmaheAv",
+        "content": [
+          {
+            "title": "Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"
+          },
+          {
+            "title": "CoRL LaTeX Template | Robot Learning Conference Format | Underleaf",
+            "url": "https://www.underleaf.ai/templates/corl"
+          },
+          {
+            "title": "CoRL 2026",
+            "url": "https://www.corl.org/"
+          },
+          {
+            "title": "Conference on Robot Learning (@corl_conf) / Posts / X",
+            "url": "https://x.com/corl_conf"
+          },
+          {
+            "title": "CoRL 2026 - Call for Papers",
+            "url": "https://www.corl.org/contributions/call-for-papers"
+          },
+          {
+            "title": "CoRL — The Conference on Robot Learning | Austin 2026-11-10 | Tadqiq.uz",
+            "url": "https://tadqiq.uz/en/xalqaro-konferensiyalar/corl"
+          },
+          {
+            "title": "AI & ML Conference Deadlines 2026–2027",
+            "url": "https://trybibby.com/conference-deadlines"
+          },
+          {
+            "title": "CoRL 2026 - Instruction for Authors",
+            "url": "https://www.corl.org/contributions/instruction-for-authors"
+          },
+          {
+            "title": "Robot Learning Foundation",
+            "url": "https://www.robot-learning.org/"
+          },
+          {
+            "title": "CoRL 2026 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about CoRL 2026 submission deadlines in Austin:\n\nThe abstract submission deadline is May 26, 2026 11:59 UTC and the paper submission deadline is May 29, 2026 11:59 UTC. CoRL 2026 will be held in Austin, Texas, US, with the conference dates being November 9-12, 2026 at JW Marriott Austin, 110 E 2nd St, Austin, TX 78701.\n\nThe deadlines are final, and accommodations cannot be made for missing the abstract deadline or paper deadline. Papers may be submitted through OpenReview."
+    ],
+    "durationSeconds": 3.698555786000001
+  },
+  "sourceToolAssistantUUID": "0480f6e6-ed0e-49e8-a0be-147f875d4ff2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-10T17:54:35.260Z_
+
+<details><summary>↩ Tool result · `toolu_01DJJqCnWGWFNn72bTuqWcfT`</summary>
+
+```text
+Web search results for query: "Unified World Models UWM coupling video action diffusion RSS 2025"
+
+Links: [{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://weirdlabuw.github.io/uwm/"},{"title":"[2504.02792] Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://arxiv.org/abs/2504.02792"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://arxiv.org/html/2504.02792v1"},{"title":"[PDF] Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Unified-World-Models:-Coupling-Video-and-Action-for-Zhu-Yu/514b9977bdb57f6e9586461f36fcf6467a775b3c"},{"title":"GitHub - WEIRDLabUW/unified-world-model: Unfied World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://github.com/WEIRDLabUW/unified-world-model"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | Request PDF","url":"https://www.researchgate.net/publication/395371959_Unified_World_Models_Coupling_Video_and_Action_Diffusion_for_Pretraining_on_Large_Robotic_Datasets"},{"title":"Paper page - Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://huggingface.co/papers/2504.02792"},{"title":"[2504.02792v1] Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://arxiv.org/abs/2504.02792v1"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets [Quick Review]","url":"https://liner.com/review/unified-world-models-coupling-video-and-action-diffusion-for-pretraining"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | alphaXiv","url":"https://www.alphaxiv.org/overview/2504.02792v1"}]
+
+## Search Results for "Unified World Models UWM coupling video action diffusion RSS 2025"
+
+I found comprehensive information about this research. Here are the key findings:
+
+### Overview
+Unified World Model (UWM) is a multimodal diffusion transformer that uses separate diffusion timesteps for actions and videos to flexibly learn policies, forward dynamics, inverse dynamics, and video prediction models from both robot and video data.
+
+### Publication Details
+The research was authored by Chuning Zhu, Raymond Yu, Siyuan Feng, Benjamin Burchfiel, Paarth Shah, and Abhishek Gupta, and was published in the Proceedings of Robotics: Science and Systems (RSS) 2025.
+
+### Research Problem and Solution
+Imitation learning has emerged as a promising approach for building generalist robots, but its potential is limited by the need for high-quality expert demonstrations. Meanwhile, there's an abundance of video data capturing diverse real-world interactions that current methods typically cannot utilize due to missing action annotations. To address this, the researchers introduced Unified World Models (UWM), a framework that allows for leveraging both video and action data for policy learning.
+
+### Technical Approach
+A UWM integrates an action diffusion process and a video diffusion process within a unified transformer architecture, where independent diffusion timesteps govern each modality.
+
+### Key Results
+Through simulated and real-world experiments, UWM enables effective pretraining on large-scale multitask robot datasets with both dynamics and action predictions, resulting in more generalizable and robust policies than imitation learning, and naturally facilitates learning from action-free video data through independent control of modality-specific diffusion timesteps, further improving the performance of finetuned policies.
+
+Additional resources are available at the official project website and GitHub repository for those interested in the code and further details.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7e97b4f4-a3cc-4ea7-ae1b-0a1b79b8797b",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "263cc747-22a8-49ea-a003-4d560d29874a",
+  "toolUseResult": {
+    "query": "Unified World Models UWM coupling video action diffusion RSS 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014CP4YVqycpMFymtkotHi48",
+        "content": [
+          {
+            "title": "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets",
+            "url": "https://weirdlabuw.github.io/uwm/"
+          },
+          {
+            "title": "[2504.02792] Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets",
+            "url": "https://arxiv.org/abs/2504.02792"
+          },
+          {
+            "title": "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets",
+            "url": "https://arxiv.org/html/2504.02792v1"
+          },
+          {
+            "title": "[PDF] Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Unified-World-Models:-Coupling-Video-and-Action-for-Zhu-Yu/514b9977bdb57f6e9586461f36fcf6467a775b3c"
+          },
+          {
+            "title": "GitHub - WEIRDLabUW/unified-world-model: Unfied World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets",
+            "url": "https://github.com/WEIRDLabUW/unified-world-model"
+          },
+          {
+            "title": "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | Request PDF",
+            "url": "https://www.researchgate.net/publication/395371959_Unified_World_Models_Coupling_Video_and_Action_Diffusion_for_Pretraining_on_Large_Robotic_Datasets"
+          },
+          {
+            "title": "Paper page - Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets",
+            "url": "https://huggingface.co/papers/2504.02792"
+          },
+          {
+            "title": "[2504.02792v1] Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets",
+            "url": "https://arxiv.org/abs/2504.02792v1"
+          },
+          {
+            "title": "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets [Quick Review]",
+            "url": "https://liner.com/review/unified-world-models-coupling-video-and-action-diffusion-for-pretraining"
+          },
+          {
+            "title": "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2504.02792v1"
+          }
+        ]
+      },
+      "## Search Results for \"Unified World Models UWM coupling video action diffusion RSS 2025\"\n\nI found comprehensive information about this research. Here are the key findings:\n\n### Overview\nUnified World Model (UWM) is a multimodal diffusion transformer that uses separate diffusion timesteps for actions and videos to flexibly learn policies, forward dynamics, inverse dynamics, and video prediction models from both robot and video data.\n\n### Publication Details\nThe research was authored by Chuning Zhu, Raymond Yu, Siyuan Feng, Benjamin Burchfiel, Paarth Shah, and Abhishek Gupta, and was published in the Proceedings of Robotics: Science and Systems (RSS) 2025.\n\n### Research Problem and Solution\nImitation learning has emerged as a promising approach for building generalist robots, but its potential is limited by the need for high-quality expert demonstrations. Meanwhile, there's an abundance of video data capturing diverse real-world interactions that current methods typically cannot utilize due to missing action annotations. To address this, the researchers introduced Unified World Models (UWM), a framework that allows for leveraging both video and action data for policy learning.\n\n### Technical Approach\nA UWM integrates an action diffusion process and a video diffusion process within a unified transformer architecture, where independent diffusion timesteps govern each modality.\n\n### Key Results\nThrough simulated and real-world experiments, UWM enables effective pretraining on large-scale multitask robot datasets with both dynamics and action predictions, resulting in more generalizable and robust policies than imitation learning, and naturally facilitates learning from action-free video data through independent control of modality-specific diffusion timesteps, further improving the performance of finetuned policies.\n\nAdditional resources are available at the official project website and GitHub repository for those interested in the code and further details."
+    ],
+    "durationSeconds": 7.487849588000001
+  },
+  "sourceToolAssistantUUID": "7e97b4f4-a3cc-4ea7-ae1b-0a1b79b8797b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-10T17:54:37.108Z_
+
+<details><summary>↩ Tool result · `toolu_01JWMGaDQdbyFZCmhjzSwNam`</summary>
+
+```text
+Web search results for query: "Fast-WAM world action models test-time future imagination 2026"
+
+Links: [{"title":"[2603.16666] Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://arxiv.org/abs/2603.16666"},{"title":"Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://yuantianyuan01.github.io/FastWAM/"},{"title":"GitHub - yuantianyuan01/FastWAM: Official codebase for Fast-WAM: Do World Action Models Need Test-time Future Imagination? · GitHub","url":"https://github.com/yuantianyuan01/FastWAM"},{"title":"Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://arxiv.org/html/2603.16666v1"},{"title":"(PDF) Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://www.researchgate.net/publication/402613129_Fast-WAM_Do_World_Action_Models_Need_Test-time_Future_Imagination"},{"title":"Fast-WAM: Do World Action Models Need Test-time Future Imagination? | alphaXiv","url":"https://www.alphaxiv.org/resources/2603.16666v2"},{"title":"[2605.06222] When to Trust Imagination: Adaptive Action Execution for World Action Models","url":"https://arxiv.org/abs/2605.06222"},{"title":"When to Trust Imagination: Adaptive Action Execution for World Action Models","url":"https://arxiv.org/html/2605.06222"},{"title":"Fast-WAM: Do World Action Models Need Test-time Future Imagination?…","url":"https://www.opentrain.ai/papers/fast-wam-do-world-action-models-need-test-time-future-imagination--arxiv-2603.16666/"},{"title":"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation","url":"https://arxiv.org/html/2605.06481v1"}]
+
+Based on the search results, I found comprehensive information about Fast-WAM:
+
+## Fast-WAM: Do World Action Models Need Test-time Future Imagination?
+
+World Action Models (WAMs) have emerged as a promising alternative to Vision-Language-Action (VLA) models for embodied control because they explicitly model how visual observations may evolve under action. Most existing WAMs follow an imagine-then-execute paradigm, incurring substantial test-time latency from iterative video denoising, yet it remains unclear whether explicit future imagination is actually necessary for strong action performance.
+
+Fast-WAM is a WAM architecture that retains video co-training during training but skips future prediction at test time. Fast-WAM keeps video co-training during training but removes explicit future generation at inference time, enabling direct action generation from latent world representations in a single forward pass.
+
+### Key Findings
+
+Fast-WAM remains competitive with imagine-then-execute variants, while removing video co-training causes a much larger performance drop. These results suggest that the main value of video prediction in WAMs may lie in improving world representations during training rather than generating future observations at test time.
+
+### Performance
+
+Fast-WAM achieves competitive results with state-of-the-art methods both on simulation benchmarks (LIBERO and RoboTwin) and real-world tasks, without embodied pretraining. It runs in real time with 190ms latency, over 4× faster than existing imagine-then-execute WAMs.
+
+The paper was authored by Tianyuan Yuan, Zibin Dong, Yicheng Liu, and Hang Zhao, with the preprint available on arXiv as paper 2603.16666 (posted in March 2026).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6529757c-d92c-4053-9e10-a2d28205827e",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "39494d52-be6c-4cb2-afb4-3f37d78b1380",
+  "toolUseResult": {
+    "query": "Fast-WAM world action models test-time future imagination 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019cDnR1muoNddxdTobjuZJB",
+        "content": [
+          {
+            "title": "[2603.16666] Fast-WAM: Do World Action Models Need Test-time Future Imagination?",
+            "url": "https://arxiv.org/abs/2603.16666"
+          },
+          {
+            "title": "Fast-WAM: Do World Action Models Need Test-time Future Imagination?",
+            "url": "https://yuantianyuan01.github.io/FastWAM/"
+          },
+          {
+            "title": "GitHub - yuantianyuan01/FastWAM: Official codebase for Fast-WAM: Do World Action Models Need Test-time Future Imagination? · GitHub",
+            "url": "https://github.com/yuantianyuan01/FastWAM"
+          },
+          {
+            "title": "Fast-WAM: Do World Action Models Need Test-time Future Imagination?",
+            "url": "https://arxiv.org/html/2603.16666v1"
+          },
+          {
+            "title": "(PDF) Fast-WAM: Do World Action Models Need Test-time Future Imagination?",
+            "url": "https://www.researchgate.net/publication/402613129_Fast-WAM_Do_World_Action_Models_Need_Test-time_Future_Imagination"
+          },
+          {
+            "title": "Fast-WAM: Do World Action Models Need Test-time Future Imagination? | alphaXiv",
+            "url": "https://www.alphaxiv.org/resources/2603.16666v2"
+          },
+          {
+            "title": "[2605.06222] When to Trust Imagination: Adaptive Action Execution for World Action Models",
+            "url": "https://arxiv.org/abs/2605.06222"
+          },
+          {
+            "title": "When to Trust Imagination: Adaptive Action Execution for World Action Models",
+            "url": "https://arxiv.org/html/2605.06222"
+          },
+          {
+            "title": "Fast-WAM: Do World Action Models Need Test-time Future Imagination?…",
+            "url": "https://www.opentrain.ai/papers/fast-wam-do-world-action-models-need-test-time-future-imagination--arxiv-2603.16666/"
+          },
+          {
+            "title": "OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation",
+            "url": "https://arxiv.org/html/2605.06481v1"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about Fast-WAM:\n\n## Fast-WAM: Do World Action Models Need Test-time Future Imagination?\n\nWorld Action Models (WAMs) have emerged as a promising alternative to Vision-Language-Action (VLA) models for embodied control because they explicitly model how visual observations may evolve under action. Most existing WAMs follow an imagine-then-execute paradigm, incurring substantial test-time latency from iterative video denoising, yet it remains unclear whether explicit future imagination is actually necessary for strong action performance.\n\nFast-WAM is a WAM architecture that retains video co-training during training but skips future prediction at test time. Fast-WAM keeps video co-training during training but removes explicit future generation at inference time, enabling direct action generation from latent world representations in a single forward pass.\n\n### Key Findings\n\nFast-WAM remains competitive with imagine-then-execute variants, while removing video co-training causes a much larger performance drop. These results suggest that the main value of video prediction in WAMs may lie in improving world representations during training rather than generating future observations at test time.\n\n### Performance\n\nFast-WAM achieves competitive results with state-of-the-art methods both on simulation benchmarks (LIBERO and RoboTwin) and real-world tasks, without embodied pretraining. It runs in real time with 190ms latency, over 4× faster than existing imagine-then-execute WAMs.\n\nThe paper was authored by Tianyuan Yuan, Zibin Dong, Yicheng Liu, and Hang Zhao, with the preprint available on arXiv as paper 2603.16666 (posted in March 2026)."
+    ],
+    "durationSeconds": 8.314142756
+  },
+  "sourceToolAssistantUUID": "6529757c-d92c-4053-9e10-a2d28205827e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "39494d52-be6c-4cb2-afb4-3f37d78b1380",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reviewer: Video-Branch CFG for WAM Action Denoising",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381"
+}
+```
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-10T17:54:38.254Z_
+
+<details><summary>↩ Tool result · `toolu_0146WUiEaqtfVFLPaETfC8tu`</summary>
+
+```text
+Web search results for query: "Vid2World crafting video diffusion interactive world models ICLR 2026 classifier-free guidance"
+
+Links: [{"title":"GitHub - thuml/Vid2World: Official repository for \"Vid2World: Crafting Video Diffusion Models to Interactive World Models\" (ICLR 2026), https://arxiv.org/abs/2505.14357 · GitHub","url":"https://github.com/thuml/Vid2World"},{"title":"[2505.14357] Vid2World: Crafting Video Diffusion Models to Interactive World Models","url":"https://arxiv.org/abs/2505.14357"},{"title":"Vid2World: Crafting Video Diffusion Models to Interactive World Models | OpenReview","url":"https://openreview.net/forum?id=pFyzqbUiF9"},{"title":"Vid2World: Crafting Video Diffusion Models to Interactive World Models","url":"https://knightnemo.github.io/vid2world/"},{"title":"Vid2World: CRAFTING VIDEO DIFFUSION MODELS","url":"https://openreview.net/pdf/e7c87863a09f2a379c849aea1295fac09cf343a3.pdf"},{"title":"Vid2World: Crafting Video Diffusion Models to Interactive World Models","url":"https://arxiv.org/html/2505.14357v2"},{"title":"Vid2World: Crafting Video Diffusion Models to Interactive ...","url":"https://arxiv.org/pdf/2505.14357"},{"title":"Paper page - Vid2World: Crafting Video Diffusion Models to Interactive World Models","url":"https://huggingface.co/papers/2505.14357"},{"title":"Vid2World: Crafting Video Diffusion Models to Interactive World Models | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/vid2world-crafting-video-diffusion-models-interactive-world"},{"title":"Vid2World: Crafting Video Diffusion Models to Interactive World Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250514357H/abstract"}]
+
+I found comprehensive information about Vid2World! Here are the key findings:
+
+## Overview
+
+Vid2World has been accepted by ICLR 2026. Vid2World is a general approach for leveraging and transferring pre-trained video diffusion models into interactive world models.
+
+## Core Approach
+
+Vid2World systematically explores video diffusion causalization, reshaping both the architecture and training objective of pre-trained models to enable autoregressive generation. Additionally, it incorporates a causal action guidance mechanism to enhance action controllability in the resulting interactive world models.
+
+## Technical Components
+
+**Video Diffusion Causalization**: Vid2World re-architects the pretrained diffusion backbone so that each frame is generated from past context only. From the architectural perspective, it applies causal masks to temporal attention layers, and explore novel weight transfer mechanisms for temporal convolution layers.
+
+**Causal Action Guidance**: To make the causal model responsive to fine-grained actions, Vid2World extends classifier-free guidance to sequential settings. Each action is encoded with a lightweight MLP and added at its corresponding frame; during training the action is independently dropped with fixed probability, forcing the network to learn both conditional and unconditional score functions.
+
+## Experimental Results
+
+Extensive experiments across multiple domains, including robot manipulation, 3D game simulation, and open-world navigation, demonstrate that our method offers a scalable and effective pathway for repurposing highly capable video diffusion models into interactive world models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b61458a9-8a22-41a6-8186-b8aa1da77584",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "0c6224cd-cda4-46fe-9011-a08a6b786ec2",
+  "toolUseResult": {
+    "query": "Vid2World crafting video diffusion interactive world models ICLR 2026 classifier-free guidance",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RrDXrbyM9m4pLEdVRAibCp",
+        "content": [
+          {
+            "title": "GitHub - thuml/Vid2World: Official repository for \"Vid2World: Crafting Video Diffusion Models to Interactive World Models\" (ICLR 2026), https://arxiv.org/abs/2505.14357 · GitHub",
+            "url": "https://github.com/thuml/Vid2World"
+          },
+          {
+            "title": "[2505.14357] Vid2World: Crafting Video Diffusion Models to Interactive World Models",
+            "url": "https://arxiv.org/abs/2505.14357"
+          },
+          {
+            "title": "Vid2World: Crafting Video Diffusion Models to Interactive World Models | OpenReview",
+            "url": "https://openreview.net/forum?id=pFyzqbUiF9"
+          },
+          {
+            "title": "Vid2World: Crafting Video Diffusion Models to Interactive World Models",
+            "url": "https://knightnemo.github.io/vid2world/"
+          },
+          {
+            "title": "Vid2World: CRAFTING VIDEO DIFFUSION MODELS",
+            "url": "https://openreview.net/pdf/e7c87863a09f2a379c849aea1295fac09cf343a3.pdf"
+          },
+          {
+            "title": "Vid2World: Crafting Video Diffusion Models to Interactive World Models",
+            "url": "https://arxiv.org/html/2505.14357v2"
+          },
+          {
+            "title": "Vid2World: Crafting Video Diffusion Models to Interactive ...",
+            "url": "https://arxiv.org/pdf/2505.14357"
+          },
+          {
+            "title": "Paper page - Vid2World: Crafting Video Diffusion Models to Interactive World Models",
+            "url": "https://huggingface.co/papers/2505.14357"
+          },
+          {
+            "title": "Vid2World: Crafting Video Diffusion Models to Interactive World Models | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/vid2world-crafting-video-diffusion-models-interactive-world"
+          },
+          {
+            "title": "Vid2World: Crafting Video Diffusion Models to Interactive World Models - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250514357H/abstract"
+          }
+        ]
+      },
+      "I found comprehensive information about Vid2World! Here are the key findings:\n\n## Overview\n\nVid2World has been accepted by ICLR 2026. Vid2World is a general approach for leveraging and transferring pre-trained video diffusion models into interactive world models.\n\n## Core Approach\n\nVid2World systematically explores video diffusion causalization, reshaping both the architecture and training objective of pre-trained models to enable autoregressive generation. Additionally, it incorporates a causal action guidance mechanism to enhance action controllability in the resulting interactive world models.\n\n## Technical Components\n\n**Video Diffusion Causalization**: Vid2World re-architects the pretrained diffusion backbone so that each frame is generated from past context only. From the architectural perspective, it applies causal masks to temporal attention layers, and explore novel weight transfer mechanisms for temporal convolution layers.\n\n**Causal Action Guidance**: To make the causal model responsive to fine-grained actions, Vid2World extends classifier-free guidance to sequential settings. Each action is encoded with a lightweight MLP and added at its corresponding frame; during training the action is independently dropped with fixed probability, forcing the network to learn both conditional and unconditional score functions.\n\n## Experimental Results\n\nExtensive experiments across multiple domains, including robot manipulation, 3D game simulation, and open-world navigation, demonstrate that our method offers a scalable and effective pathway for repurposing highly capable video diffusion models into interactive world models."
+    ],
+    "durationSeconds": 9.982623925
+  },
+  "sourceToolAssistantUUID": "b61458a9-8a22-41a6-8186-b8aa1da77584",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-10T17:54:47.142Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I've confirmed:
+1. UWM is real, published at RSS 2025, with a GitHub repo at github.com/WEIRDLabUW/unified-world-model
+2. Vid2World is real, accepted at ICLR 2026, and it uses CFG in the action→video direction (action dropout during training, then CFG at inference to enhance action controllability for video generation)
+3. Fast-WAM is real, posted March 2026, showing video co-training helps but explicit future generation at test-time is not needed
+4. CoRL 2026 deadlines confirmed: abstract May 26, paper May 29, 2026 in Austin
+
+
+5. Now I need to dig into whether CFG has been applied in the reverse direction for video-to-action, find the CFG-DP paper, look for other competing approaches in world action modeling, and check what's available in the UWM codebase and how it's structured.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0c6224cd-cda4-46fe-9011-a08a6b786ec2",
+  "isSidechain": false,
+  "requestId": "req_011CauKMFDdvAZQdqQhwticD",
+  "type": "assistant",
+  "uuid": "11a37548-ce3a-4096-bdf7-f129ad6a3c5f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019WmPmsrkQUUpcK8rzRzwcE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1566,
+      "cache_creation_input_tokens": 2361,
+      "cache_read_input_tokens": 24865,
+      "output_tokens": 430,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2361,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1566,
+          "output_tokens": 430,
+          "cache_read_input_tokens": 24865,
+          "cache_creation_input_tokens": 2361,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2361
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-10T17:54:47.143Z_
+
+Good. Key references and CoRL 2026 deadlines confirmed. Now let me search for competing work and verify the novelty claim that CFG in the video→action direction is unexplored.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "11a37548-ce3a-4096-bdf7-f129ad6a3c5f",
+  "isSidechain": false,
+  "requestId": "req_011CauKMFDdvAZQdqQhwticD",
+  "type": "assistant",
+  "uuid": "f64f48b7-6f50-464a-92d4-429dd9546b96",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019WmPmsrkQUUpcK8rzRzwcE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1566,
+      "cache_creation_input_tokens": 2361,
+      "cache_read_input_tokens": 24865,
+      "output_tokens": 430,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2361,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1566,
+          "output_tokens": 430,
+          "cache_read_input_tokens": 24865,
+          "cache_creation_input_tokens": 2361,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2361
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-10T17:54:47.468Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CtGQ2fY5R3cZU7qaKvFR33`</summary>
+
+```json
+{
+  "query": "classifier-free guidance diffusion policy action generation robot manipulation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f64f48b7-6f50-464a-92d4-429dd9546b96",
+  "isSidechain": false,
+  "requestId": "req_011CauKMFDdvAZQdqQhwticD",
+  "type": "assistant",
+  "uuid": "a9b75585-20ec-4c86-9984-375200e3fd82",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019WmPmsrkQUUpcK8rzRzwcE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1566,
+      "cache_creation_input_tokens": 2361,
+      "cache_read_input_tokens": 24865,
+      "output_tokens": 430,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2361,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1566,
+          "output_tokens": 430,
+          "cache_read_input_tokens": 24865,
+          "cache_creation_input_tokens": 2361,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2361
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-10T17:54:48.469Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Pjx8ag9JcLzfg54pRC1WGw`</summary>
+
+```json
+{
+  "query": "video branch dropout world action model action denoising guidance 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a9b75585-20ec-4c86-9984-375200e3fd82",
+  "isSidechain": false,
+  "requestId": "req_011CauKMFDdvAZQdqQhwticD",
+  "type": "assistant",
+  "uuid": "eddfb27d-19a8-4137-bbdc-1242311933c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019WmPmsrkQUUpcK8rzRzwcE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1566,
+      "cache_creation_input_tokens": 2361,
+      "cache_read_input_tokens": 24865,
+      "output_tokens": 430,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2361,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1566,
+          "output_tokens": 430,
+          "cache_read_input_tokens": 24865,
+          "cache_creation_input_tokens": 2361,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2361
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-10T17:54:48.767Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LPmFtZZ91dEsdRv5ebYmco`</summary>
+
+```json
+{
+  "query": "\"world action model\" amplify video features action prediction 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eddfb27d-19a8-4137-bbdc-1242311933c5",
+  "isSidechain": false,
+  "requestId": "req_011CauKMFDdvAZQdqQhwticD",
+  "type": "assistant",
+  "uuid": "15c0746b-b4fa-40a3-9903-86db1734c55d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019WmPmsrkQUUpcK8rzRzwcE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1566,
+      "cache_creation_input_tokens": 2361,
+      "cache_read_input_tokens": 24865,
+      "output_tokens": 430,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2361,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1566,
+          "output_tokens": 430,
+          "cache_read_input_tokens": 24865,
+          "cache_creation_input_tokens": 2361,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2361
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-10T17:54:53.993Z_
+
+<details><summary>↩ Tool result · `toolu_01CtGQ2fY5R3cZU7qaKvFR33`</summary>
+
+```text
+Web search results for query: "classifier-free guidance diffusion policy action generation robot manipulation 2025 2026"
+
+Links: [{"title":"Frontiers | Diffusion models for robotic manipulation: a survey","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full"},{"title":"Enhancing Diffusion Policy with Classifier-Free Guidance for Temporal Robotic Tasks","url":"https://arxiv.org/html/2510.09786v1"},{"title":"Diffusion models for robotic manipulation: a survey - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12454101/"},{"title":"A Survey on Diffusion Policy for Robotic Manipulation: Taxonomy, Analysis, and Future Directions | TechRxiv","url":"https://www.techrxiv.org/doi/full/10.36227/techrxiv.174378343.39356214/v1"},{"title":"On-Device Diffusion Transformer Policy for Efficient Robot Manipulation","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Wu_On-Device_Diffusion_Transformer_Policy_for_Efficient_Robot_Manipulation_ICCV_2025_paper.pdf"},{"title":"Hierarchical Diffusion Policy: Manipulation Trajectory Generation via Contact Guidance | IEEE Transactions on Robotics","url":"https://dl.acm.org/doi/10.1109/TRO.2025.3547272"},{"title":"Diffusion policy: Visuomotor policy learning via action diffusion - Cheng Chi, Zhenjia Xu, Siyuan Feng, Eric Cousineau, Yilun Du, Benjamin Burchfiel, Russ Tedrake, Shuran Song, 2025","url":"https://journals.sagepub.com/doi/full/10.1177/02783649241273668"},{"title":"Diffusion Policy: Visuomotor Policy Learning via Action Diffusion","url":"https://diffusion-policy.cs.columbia.edu/"},{"title":"Diffusion policy: : Visuomotor policy learning via action diffusion: International Journal of Robotics Research: Vol 44, No 10-11","url":"https://dl.acm.org/doi/10.1177/02783649241273668"},{"title":"Diffusion Trajectory-guided Policy: A Novel Framework for Long-Horizon Robot Manipulation | OpenReview","url":"https://openreview.net/forum?id=VaoeAi5CW8"}]
+
+I found several highly relevant results on classifier-free guidance in diffusion policies for robot manipulation from 2025-2026. Here's what the search returned:
+
+## Key Findings
+
+**Recent Survey and Guidance Approaches:**
+
+Classifier-free guidance has been introduced where a conditional and an unconditional diffusion model per constraint are trained in parallel, which represents an advancement over traditional classifier guidance methods that require additional computational cost and separate model training.
+
+**Current Applications in Robot Manipulation:**
+
+A novel framework enhances diffusion policy by integrating Classifier-Free Guidance (CFG) with conditional and unconditional models, leveraging timestep inputs to track task progression and ensure precise cycle termination for temporal robotic tasks.
+
+**Broader Context of Diffusion Policies:**
+
+Diffusion models have recently emerged as a promising approach in robotics, especially in robot manipulations, leveraging a probabilistic framework with ability to model multi-modal distributions and robustness to high-dimensional spaces for grasp learning, trajectory planning, and data augmentation.
+
+A comprehensive taxonomy covers diffusion strategies that incorporate classifier (free) guidance along with reinforcement learning, equivariance, accelerated sampling strategies, and integration with self-supervised learning.
+
+The research shows active development in this area as of 2025-2026, with multiple approaches building on classifier-free guidance for improving robotic manipulation task performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a9b75585-20ec-4c86-9984-375200e3fd82",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "b3cda298-65e2-414c-85e9-f0f5aae0aeb9",
+  "toolUseResult": {
+    "query": "classifier-free guidance diffusion policy action generation robot manipulation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011XGLAhkN4MWaCcioWB3aq2",
+        "content": [
+          {
+            "title": "Frontiers | Diffusion models for robotic manipulation: a survey",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full"
+          },
+          {
+            "title": "Enhancing Diffusion Policy with Classifier-Free Guidance for Temporal Robotic Tasks",
+            "url": "https://arxiv.org/html/2510.09786v1"
+          },
+          {
+            "title": "Diffusion models for robotic manipulation: a survey - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12454101/"
+          },
+          {
+            "title": "A Survey on Diffusion Policy for Robotic Manipulation: Taxonomy, Analysis, and Future Directions | TechRxiv",
+            "url": "https://www.techrxiv.org/doi/full/10.36227/techrxiv.174378343.39356214/v1"
+          },
+          {
+            "title": "On-Device Diffusion Transformer Policy for Efficient Robot Manipulation",
+            "url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Wu_On-Device_Diffusion_Transformer_Policy_for_Efficient_Robot_Manipulation_ICCV_2025_paper.pdf"
+          },
+          {
+            "title": "Hierarchical Diffusion Policy: Manipulation Trajectory Generation via Contact Guidance | IEEE Transactions on Robotics",
+            "url": "https://dl.acm.org/doi/10.1109/TRO.2025.3547272"
+          },
+          {
+            "title": "Diffusion policy: Visuomotor policy learning via action diffusion - Cheng Chi, Zhenjia Xu, Siyuan Feng, Eric Cousineau, Yilun Du, Benjamin Burchfiel, Russ Tedrake, Shuran Song, 2025",
+            "url": "https://journals.sagepub.com/doi/full/10.1177/02783649241273668"
+          },
+          {
+            "title": "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion",
+            "url": "https://diffusion-policy.cs.columbia.edu/"
+          },
+          {
+            "title": "Diffusion policy: : Visuomotor policy learning via action diffusion: International Journal of Robotics Research: Vol 44, No 10-11",
+            "url": "https://dl.acm.org/doi/10.1177/02783649241273668"
+          },
+          {
+            "title": "Diffusion Trajectory-guided Policy: A Novel Framework for Long-Horizon Robot Manipulation | OpenReview",
+            "url": "https://openreview.net/forum?id=VaoeAi5CW8"
+          }
+        ]
+      },
+      "I found several highly relevant results on classifier-free guidance in diffusion policies for robot manipulation from 2025-2026. Here's what the search returned:\n\n## Key Findings\n\n**Recent Survey and Guidance Approaches:**\n\nClassifier-free guidance has been introduced where a conditional and an unconditional diffusion model per constraint are trained in parallel, which represents an advancement over traditional classifier guidance methods that require additional computational cost and separate model training.\n\n**Current Applications in Robot Manipulation:**\n\nA novel framework enhances diffusion policy by integrating Classifier-Free Guidance (CFG) with conditional and unconditional models, leveraging timestep inputs to track task progression and ensure precise cycle termination for temporal robotic tasks.\n\n**Broader Context of Diffusion Policies:**\n\nDiffusion models have recently emerged as a promising approach in robotics, especially in robot manipulations, leveraging a probabilistic framework with ability to model multi-modal distributions and robustness to high-dimensional spaces for grasp learning, trajectory planning, and data augmentation.\n\nA comprehensive taxonomy covers diffusion strategies that incorporate classifier (free) guidance along with reinforcement learning, equivariance, accelerated sampling strategies, and integration with self-supervised learning.\n\nThe research shows active development in this area as of 2025-2026, with multiple approaches building on classifier-free guidance for improving robotic manipulation task performance."
+    ],
+    "durationSeconds": 6.519173068000003
+  },
+  "sourceToolAssistantUUID": "a9b75585-20ec-4c86-9984-375200e3fd82",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-10T17:54:56.481Z_
+
+<details><summary>↩ Tool result · `toolu_01Pjx8ag9JcLzfg54pRC1WGw`</summary>
+
+```text
+Web search results for query: "video branch dropout world action model action denoising guidance 2026"
+
+Links: [{"title":"Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising","url":"https://arxiv.org/html/2604.26694v2"},{"title":"Unified Video Action Model | Request PDF","url":"https://www.researchgate.net/publication/395361978_Unified_Video_Action_Model"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | Request PDF","url":"https://www.researchgate.net/publication/395371959_Unified_World_Models_Coupling_Video_and_Action_Diffusion_for_Pretraining_on_Large_Robotic_Datasets"},{"title":"EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields","url":"https://arxiv.org/html/2605.06192v1"},{"title":"MotuBrain: An Advanced World Action Model for Robot Control","url":"https://arxiv.org/html/2604.27792v2"},{"title":"Being-H0.7: A Latent World-Action Model from Egocentric Videos","url":"https://arxiv.org/html/2605.00078v1"},{"title":"Controllable Video Generation: A Survey","url":"https://arxiv.org/html/2507.16869v2"},{"title":"GitHub - YanjieZe/Paper-List: A paper list of my history reading. Robotics, Learning, Vision. · GitHub","url":"https://github.com/YanjieZe/Paper-List"},{"title":"World Action Models are Zero-shot Policies (arXiv:2602.15922v1) - ScienceStack","url":"https://www.sciencestack.ai/paper/2602.15922"},{"title":"ArXiv CS.CV Papers (Image/Video Generation) - February 12, 2026","url":"https://www.aha-time.com/arxiv_daily_aigc/daily_html/2026_02_12.html"}]
+
+Based on the web search results, I found several recent research papers from 2026 that are highly relevant to your query about video, branch dropout, world action models, action denoising, and guidance. Here are the key findings:
+
+## Key Research Papers (2026)
+
+**X-WAM: Unified 4D World Action Modeling**
+
+X-WAM is a Unified 4D World Model that unifies real-time robotic action execution and high-fidelity 4D world synthesis (video + 3D reconstruction) in a single framework. X-WAM imagines the future world by predicting multi-view RGB-D videos, and obtains spatial information efficiently through a lightweight structural adaptation: replicating the final few blocks of the pretrained Diffusion Transformer into a dedicated depth prediction branch.
+
+X-WAM proposes Asynchronous Noise Sampling (ANS) to jointly optimize generation quality and action decoding efficiency, which improves training efficiency while maximizing both action decoding speed and video generation quality.
+
+**MotuBrain: Advanced World Action Model**
+
+MotuBrain introduces a three-stream Mixture-of-Transformers (MoT) architecture with a text stream, a video stream, and an action stream. For models trained with V2A attention, the video stream is prevented from attending to action tokens, while the action stream can still attend to visual and language context, enabling an efficient inference schedule.
+
+**EA-WM: Event-Aware Generative World Model**
+
+EA-WM is an event-aware robotic video world model conditioned on Structured Kinematic-to-Visual Action Fields (KVAFs).
+
+These papers represent cutting-edge research in unified video-action modeling with sophisticated denoising and guidance mechanisms for robotic control applications.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eddfb27d-19a8-4137-bbdc-1242311933c5",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "7524dc92-db9e-4f4c-8545-f963e3ea369f",
+  "toolUseResult": {
+    "query": "video branch dropout world action model action denoising guidance 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EUVGH8waVDKSRkDh1ZjUQY",
+        "content": [
+          {
+            "title": "Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising",
+            "url": "https://arxiv.org/html/2604.26694v2"
+          },
+          {
+            "title": "Unified Video Action Model | Request PDF",
+            "url": "https://www.researchgate.net/publication/395361978_Unified_Video_Action_Model"
+          },
+          {
+            "title": "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | Request PDF",
+            "url": "https://www.researchgate.net/publication/395371959_Unified_World_Models_Coupling_Video_and_Action_Diffusion_for_Pretraining_on_Large_Robotic_Datasets"
+          },
+          {
+            "title": "EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields",
+            "url": "https://arxiv.org/html/2605.06192v1"
+          },
+          {
+            "title": "MotuBrain: An Advanced World Action Model for Robot Control",
+            "url": "https://arxiv.org/html/2604.27792v2"
+          },
+          {
+            "title": "Being-H0.7: A Latent World-Action Model from Egocentric Videos",
+            "url": "https://arxiv.org/html/2605.00078v1"
+          },
+          {
+            "title": "Controllable Video Generation: A Survey",
+            "url": "https://arxiv.org/html/2507.16869v2"
+          },
+          {
+            "title": "GitHub - YanjieZe/Paper-List: A paper list of my history reading. Robotics, Learning, Vision. · GitHub",
+            "url": "https://github.com/YanjieZe/Paper-List"
+          },
+          {
+            "title": "World Action Models are Zero-shot Policies (arXiv:2602.15922v1) - ScienceStack",
+            "url": "https://www.sciencestack.ai/paper/2602.15922"
+          },
+          {
+            "title": "ArXiv CS.CV Papers (Image/Video Generation) - February 12, 2026",
+            "url": "https://www.aha-time.com/arxiv_daily_aigc/daily_html/2026_02_12.html"
+          }
+        ]
+      },
+      "Based on the web search results, I found several recent research papers from 2026 that are highly relevant to your query about video, branch dropout, world action models, action denoising, and guidance. Here are the key findings:\n\n## Key Research Papers (2026)\n\n**X-WAM: Unified 4D World Action Modeling**\n\nX-WAM is a Unified 4D World Model that unifies real-time robotic action execution and high-fidelity 4D world synthesis (video + 3D reconstruction) in a single framework. X-WAM imagines the future world by predicting multi-view RGB-D videos, and obtains spatial information efficiently through a lightweight structural adaptation: replicating the final few blocks of the pretrained Diffusion Transformer into a dedicated depth prediction branch.\n\nX-WAM proposes Asynchronous Noise Sampling (ANS) to jointly optimize generation quality and action decoding efficiency, which improves training efficiency while maximizing both action decoding speed and video generation quality.\n\n**MotuBrain: Advanced World Action Model**\n\nMotuBrain introduces a three-stream Mixture-of-Transformers (MoT) architecture with a text stream, a video stream, and an action stream. For models trained with V2A attention, the video stream is prevented from attending to action tokens, while the action stream can still attend to visual and language context, enabling an efficient inference schedule.\n\n**EA-WM: Event-Aware Generative World Model**\n\nEA-WM is an event-aware robotic video world model conditioned on Structured Kinematic-to-Visual Action Fields (KVAFs).\n\nThese papers represent cutting-edge research in unified video-action modeling with sophisticated denoising and guidance mechanisms for robotic control applications."
+    ],
+    "durationSeconds": 8.009734928000006
+  },
+  "sourceToolAssistantUUID": "eddfb27d-19a8-4137-bbdc-1242311933c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-10T17:54:56.536Z_
+
+<details><summary>↩ Tool result · `toolu_01LPmFtZZ91dEsdRv5ebYmco`</summary>
+
+```text
+Web search results for query: ""world action model" amplify video features action prediction 2026"
+
+Links: [{"title":"Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising","url":"https://arxiv.org/html/2604.26694v2"},{"title":"[2602.15922] World Action Models are Zero-shot Policies","url":"https://arxiv.org/abs/2602.15922"},{"title":"DreamZero: World Action Models are Zero-shot Policies","url":"https://dreamzero0.github.io/"},{"title":"EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields","url":"https://arxiv.org/html/2605.06192v1"},{"title":"MotuBrain: An Advanced World Action Model for Robot Control","url":"https://arxiv.org/html/2604.27792v2"},{"title":"[2603.16666] Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://arxiv.org/abs/2603.16666"},{"title":"Action-Conditioned Video World Model","url":"https://www.emergentmind.com/topics/action-conditioned-video-world-model"},{"title":"GitHub - starVLA/starVLA: StarVLA: A Lego-like Codebase for Vision-Language-Action Model Developing · GitHub","url":"https://github.com/starVLA/starVLA"},{"title":"World Action Models are Zero-shot Policies","url":"https://arxiv.org/html/2602.15922v1"},{"title":"Video-Action Models: Are video model backbones the future of VLAs? | Elvis Nava","url":"https://www.elvisnava.com/posts/2026_01_06_video_backbones/"}]
+
+Based on the search results, I found several relevant research developments from 2026 related to world action models and video-based action prediction:
+
+## Key Findings:
+
+**World Action Models (WAMs)** have emerged as a major research direction in 2026. DreamZero is a World Action Model built upon a pretrained video diffusion backbone that learns physical dynamics by predicting future world states and actions, using video as a dense representation of how the world evolves.
+
+**Advanced Unified Approaches:**
+X-WAM is a Unified 4D World Model that unifies real-time robotic action execution and high-fidelity 4D world synthesis (video + 3D reconstruction) in a single framework.
+
+**Performance Improvements:**
+By jointly modeling video and action, DreamZero learns diverse skills effectively from heterogeneous robot data, resulting in over 2x improvement in generalization to new tasks and environments compared to state-of-the-art VLAs in real robot experiments.
+
+**Real-time Execution:**
+Through model and system optimizations, a 14B autoregressive video diffusion model can perform real-time closed-loop control at 7Hz.
+
+**Architectural Innovations:**
+World Action Models unify visual dynamics and action prediction within a single, jointly optimized objective, and unlike the VGM+IDM pipeline, which decouples forecasting from action inference, WAMs simultaneously predict future visual states and actions in an aligned manner.
+
+The 2026 research landscape shows a significant shift toward integrating video prediction capabilities directly with action generation, moving beyond traditional Vision-Language-Action models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "15c0746b-b4fa-40a3-9903-86db1734c55d",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "2d49d9a9-79b4-4084-a9b9-4212de87ae09",
+  "toolUseResult": {
+    "query": "\"world action model\" amplify video features action prediction 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01St3LZKsiEaU3U8Kgu28KNd",
+        "content": [
+          {
+            "title": "Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising",
+            "url": "https://arxiv.org/html/2604.26694v2"
+          },
+          {
+            "title": "[2602.15922] World Action Models are Zero-shot Policies",
+            "url": "https://arxiv.org/abs/2602.15922"
+          },
+          {
+            "title": "DreamZero: World Action Models are Zero-shot Policies",
+            "url": "https://dreamzero0.github.io/"
+          },
+          {
+            "title": "EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields",
+            "url": "https://arxiv.org/html/2605.06192v1"
+          },
+          {
+            "title": "MotuBrain: An Advanced World Action Model for Robot Control",
+            "url": "https://arxiv.org/html/2604.27792v2"
+          },
+          {
+            "title": "[2603.16666] Fast-WAM: Do World Action Models Need Test-time Future Imagination?",
+            "url": "https://arxiv.org/abs/2603.16666"
+          },
+          {
+            "title": "Action-Conditioned Video World Model",
+            "url": "https://www.emergentmind.com/topics/action-conditioned-video-world-model"
+          },
+          {
+            "title": "GitHub - starVLA/starVLA: StarVLA: A Lego-like Codebase for Vision-Language-Action Model Developing · GitHub",
+            "url": "https://github.com/starVLA/starVLA"
+          },
+          {
+            "title": "World Action Models are Zero-shot Policies",
+            "url": "https://arxiv.org/html/2602.15922v1"
+          },
+          {
+            "title": "Video-Action Models: Are video model backbones the future of VLAs? | Elvis Nava",
+            "url": "https://www.elvisnava.com/posts/2026_01_06_video_backbones/"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant research developments from 2026 related to world action models and video-based action prediction:\n\n## Key Findings:\n\n**World Action Models (WAMs)** have emerged as a major research direction in 2026. DreamZero is a World Action Model built upon a pretrained video diffusion backbone that learns physical dynamics by predicting future world states and actions, using video as a dense representation of how the world evolves.\n\n**Advanced Unified Approaches:**\nX-WAM is a Unified 4D World Model that unifies real-time robotic action execution and high-fidelity 4D world synthesis (video + 3D reconstruction) in a single framework.\n\n**Performance Improvements:**\nBy jointly modeling video and action, DreamZero learns diverse skills effectively from heterogeneous robot data, resulting in over 2x improvement in generalization to new tasks and environments compared to state-of-the-art VLAs in real robot experiments.\n\n**Real-time Execution:**\nThrough model and system optimizations, a 14B autoregressive video diffusion model can perform real-time closed-loop control at 7Hz.\n\n**Architectural Innovations:**\nWorld Action Models unify visual dynamics and action prediction within a single, jointly optimized objective, and unlike the VGM+IDM pipeline, which decouples forecasting from action inference, WAMs simultaneously predict future visual states and actions in an aligned manner.\n\nThe 2026 research landscape shows a significant shift toward integrating video prediction capabilities directly with action generation, moving beyond traditional Vision-Language-Action models."
+    ],
+    "durationSeconds": 7.766133828999998
+  },
+  "sourceToolAssistantUUID": "15c0746b-b4fa-40a3-9903-86db1734c55d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31 · 2026-05-10T17:54:56.539Z_
+
+```json
+{
+  "parentUuid": "2d49d9a9-79b4-4084-a9b9-4212de87ae09",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "dcdff1ca-9621-4c01-843b-21896f65bfed",
+  "timestamp": "2026-05-10T17:54:56.539Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "dcdff1ca-9621-4c01-843b-21896f65bfed",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reviewer: Video-Branch CFG for WAM Action Denoising",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381"
+}
+```
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-10T17:55:08.793Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key findings so far:
+1. UWM is confirmed real with GitHub repo
+2. Vid2World uses CFG in action→video direction (action dropout, then guidance at inference to amplify action conditioning for better video generation)
+3. Fast-WAM is confirmed — shows video co-training helps representations but explicit video generation at test-time isn't needed
+4. CoRL 2026: abstract May 26, paper May 29 ✓
+5. X-WAM uses Asynchronous Noise Sampling for speed, not guidance
+6. MotuBrain prevents video from attending to action tokens (opposite direction from amplifying)
+
+
+7. CFG-DP applies CFG to diffusion policies conditioned on timestep/task-phase
+
+Now I need to dig deeper into whether the video-to-action CFG direction is truly unexplored — checking if X-WAM, MotuBrain's inference-time freezing, or the "When to Trust Imagination" paper already cover similar ground. I'm also questioning the compute feasibility claim about fine-tuning UWM with video-branch dropout in 50-100 H100-hours.
+
+I should search through recent WAM literature to see if any concurrent work addresses this directly.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dcdff1ca-9621-4c01-843b-21896f65bfed",
+  "isSidechain": false,
+  "requestId": "req_011CauKNbNNT1NwNcCycdyJS",
+  "type": "assistant",
+  "uuid": "165db877-cd59-4696-a971-e17657990904",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J2D1Mh2zj9AeqBDJS2uVJg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4920,
+      "cache_read_input_tokens": 27226,
+      "output_tokens": 497,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4920,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 497,
+          "cache_read_input_tokens": 27226,
+          "cache_creation_input_tokens": 4920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4920
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-10T17:55:08.816Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013s1BJFQ3fRSKKBUrd5bf8x`</summary>
+
+```json
+{
+  "query": "\"When to Trust Imagination\" adaptive action execution world action models 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "165db877-cd59-4696-a971-e17657990904",
+  "isSidechain": false,
+  "requestId": "req_011CauKNbNNT1NwNcCycdyJS",
+  "type": "assistant",
+  "uuid": "fe874ece-668a-4ca0-9d73-d123c69d7fb6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J2D1Mh2zj9AeqBDJS2uVJg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4920,
+      "cache_read_input_tokens": 27226,
+      "output_tokens": 497,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4920,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 497,
+          "cache_read_input_tokens": 27226,
+          "cache_creation_input_tokens": 4920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4920
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-10T17:55:08.822Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01M3GiifcVgHK3Agrc4sb9cf`</summary>
+
+```json
+{
+  "query": "GigaWorld-Policy world action model causal masking video action tokens 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fe874ece-668a-4ca0-9d73-d123c69d7fb6",
+  "isSidechain": false,
+  "requestId": "req_011CauKNbNNT1NwNcCycdyJS",
+  "type": "assistant",
+  "uuid": "0a1e5adb-33e3-4c6d-890e-856ea1d7c47f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J2D1Mh2zj9AeqBDJS2uVJg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4920,
+      "cache_read_input_tokens": 27226,
+      "output_tokens": 497,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4920,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 497,
+          "cache_read_input_tokens": 27226,
+          "cache_creation_input_tokens": 4920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4920
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-10T17:55:09.250Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TJX71PDQCShKQCxpfpY76A`</summary>
+
+```json
+{
+  "query": "Motus unified latent action world model architecture 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a1e5adb-33e3-4c6d-890e-856ea1d7c47f",
+  "isSidechain": false,
+  "requestId": "req_011CauKNbNNT1NwNcCycdyJS",
+  "type": "assistant",
+  "uuid": "1dfc59f7-b048-4dc0-a002-7824c6f85cb7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J2D1Mh2zj9AeqBDJS2uVJg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4920,
+      "cache_read_input_tokens": 27226,
+      "output_tokens": 497,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4920,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 497,
+          "cache_read_input_tokens": 27226,
+          "cache_creation_input_tokens": 4920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4920
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-10T17:55:14.769Z_
+
+<details><summary>↩ Tool result · `toolu_01M3GiifcVgHK3Agrc4sb9cf`</summary>
+
+```text
+Web search results for query: "GigaWorld-Policy world action model causal masking video action tokens 2026"
+
+Links: [{"title":"GigaWorld-Policy","url":"https://gigaai-research.github.io/GigaWorld-Policy/"},{"title":"[2603.17240] GigaWorld-Policy: An Efficient Action-Centered World--Action Model","url":"https://arxiv.org/abs/2603.17240"},{"title":"GigaWorld-Policy: An Efficient Action-Centered World–Action Model","url":"https://arxiv.org/html/2603.17240v1"},{"title":"Paper page - GigaWorld-Policy: An Efficient Action-Centered World--Action Model","url":"https://huggingface.co/papers/2603.17240"},{"title":"GigaWorld-Policy: An Efficient Action-Centered World--Action Model - AI for Dummies - Understand the Latest AI Papers in Simple Terms","url":"https://ai-search.io/papers/gigaworld-policy-an-efficient-action-centered-world-action-model"},{"title":"GigaWorld-Policy: An Efficient Action-Centered World--Action Model | Takara TLDR","url":"https://tldr.takara.ai/p/2603.17240"},{"title":"GitHub - open-gigaai/giga-world-policy: GigaWorld-Policy: An Efficient Action-Centered World–Action Model","url":"https://github.com/open-gigaai/giga-world-policy"},{"title":"GigaWorld-Policy Framework","url":"https://www.emergentmind.com/topics/gigaworld-policy"},{"title":"GigaWorld-Policy: An Efficient Action-Centered World--Action Model | alphaXiv","url":"https://www.alphaxiv.org/abs/2603.17240"},{"title":"GigaWorld-Policy: An Efficient Action-Centered World--Action Model: Analysis, Review & Summary | Paperium","url":"https://paperium.net/article/library/15843/gigaworld-policy-an-efficient-action-centered-world-action-model"}]
+
+Based on the search results, here's what I found about GigaWorld-Policy:
+
+## Overview
+
+GigaWorld-Policy is an action-centered World-Action Model (WAM) initialized from pre-trained video generation backbones that learns 2D pixel-action dynamics while enabling efficient action decoding, with optional video generation.
+
+## Core Technology: Causal Masking and Action Tokens
+
+GigaWorld-Policy is implemented as a causal sequence model that represents action tokens and future-visual tokens under a causal mask. With a causal design that prevents future-video tokens from influencing action tokens, explicit future-video generation is optional at inference time, allowing faster action prediction.
+
+## How It Works
+
+The model predicts future action sequences conditioned on the current observation and simultaneously generates future videos conditioned on the predicted actions and the same observation. The policy is supervised by both action prediction and video generation, providing richer learning signals and encouraging physically plausible actions through visual-dynamics constraints.
+
+## Performance and Key Benefits
+
+Compared with mainstream WAMs (such as Motus and Cosmos Policy), GigaWorld-Policy achieves a 10× inference speedup without sacrificing policy quality, meeting the real-time requirements of high-frequency closed-loop robot control. The model was published in March 2026 according to the arXiv metadata.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0a1e5adb-33e3-4c6d-890e-856ea1d7c47f",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "98a8b42a-7ffe-4087-99fc-0b7290e4daf4",
+  "toolUseResult": {
+    "query": "GigaWorld-Policy world action model causal masking video action tokens 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014EwFcQU85W7DQ45WSt5wNa",
+        "content": [
+          {
+            "title": "GigaWorld-Policy",
+            "url": "https://gigaai-research.github.io/GigaWorld-Policy/"
+          },
+          {
+            "title": "[2603.17240] GigaWorld-Policy: An Efficient Action-Centered World--Action Model",
+            "url": "https://arxiv.org/abs/2603.17240"
+          },
+          {
+            "title": "GigaWorld-Policy: An Efficient Action-Centered World–Action Model",
+            "url": "https://arxiv.org/html/2603.17240v1"
+          },
+          {
+            "title": "Paper page - GigaWorld-Policy: An Efficient Action-Centered World--Action Model",
+            "url": "https://huggingface.co/papers/2603.17240"
+          },
+          {
+            "title": "GigaWorld-Policy: An Efficient Action-Centered World--Action Model - AI for Dummies - Understand the Latest AI Papers in Simple Terms",
+            "url": "https://ai-search.io/papers/gigaworld-policy-an-efficient-action-centered-world-action-model"
+          },
+          {
+            "title": "GigaWorld-Policy: An Efficient Action-Centered World--Action Model | Takara TLDR",
+            "url": "https://tldr.takara.ai/p/2603.17240"
+          },
+          {
+            "title": "GitHub - open-gigaai/giga-world-policy: GigaWorld-Policy: An Efficient Action-Centered World–Action Model",
+            "url": "https://github.com/open-gigaai/giga-world-policy"
+          },
+          {
+            "title": "GigaWorld-Policy Framework",
+            "url": "https://www.emergentmind.com/topics/gigaworld-policy"
+          },
+          {
+            "title": "GigaWorld-Policy: An Efficient Action-Centered World--Action Model | alphaXiv",
+            "url": "https://www.alphaxiv.org/abs/2603.17240"
+          },
+          {
+            "title": "GigaWorld-Policy: An Efficient Action-Centered World--Action Model: Analysis, Review & Summary | Paperium",
+            "url": "https://paperium.net/article/library/15843/gigaworld-policy-an-efficient-action-centered-world-action-model"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about GigaWorld-Policy:\n\n## Overview\n\nGigaWorld-Policy is an action-centered World-Action Model (WAM) initialized from pre-trained video generation backbones that learns 2D pixel-action dynamics while enabling efficient action decoding, with optional video generation.\n\n## Core Technology: Causal Masking and Action Tokens\n\nGigaWorld-Policy is implemented as a causal sequence model that represents action tokens and future-visual tokens under a causal mask. With a causal design that prevents future-video tokens from influencing action tokens, explicit future-video generation is optional at inference time, allowing faster action prediction.\n\n## How It Works\n\nThe model predicts future action sequences conditioned on the current observation and simultaneously generates future videos conditioned on the predicted actions and the same observation. The policy is supervised by both action prediction and video generation, providing richer learning signals and encouraging physically plausible actions through visual-dynamics constraints.\n\n## Performance and Key Benefits\n\nCompared with mainstream WAMs (such as Motus and Cosmos Policy), GigaWorld-Policy achieves a 10× inference speedup without sacrificing policy quality, meeting the real-time requirements of high-frequency closed-loop robot control. The model was published in March 2026 according to the arXiv metadata."
+    ],
+    "durationSeconds": 5.944740342999998
+  },
+  "sourceToolAssistantUUID": "0a1e5adb-33e3-4c6d-890e-856ea1d7c47f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-10T17:55:14.881Z_
+
+<details><summary>↩ Tool result · `toolu_01TJX71PDQCShKQCxpfpY76A`</summary>
+
+```text
+Web search results for query: "Motus unified latent action world model architecture 2025"
+
+Links: [{"title":"GitHub - thu-ml/Motus: Official code of Motus: A Unified Latent Action World Model · GitHub","url":"https://github.com/thu-ml/Motus"},{"title":"[2512.13030] Motus: A Unified Latent Action World Model","url":"https://arxiv.org/abs/2512.13030"},{"title":"Motus: A Unified Latent Action World Model","url":"https://motus-robotics.github.io/motus"},{"title":"Motus: A Unified Latent Action World Model","url":"https://arxiv.org/pdf/2512.13030"},{"title":"Motus: A Unified Latent Action World Model | alphaXiv","url":"https://www.alphaxiv.org/resources/2512.13030v1"},{"title":"Motus: A Unified Latent Action World Model | Request PDF","url":"https://www.researchgate.net/publication/398721535_Motus_A_Unified_Latent_Action_World_Model"},{"title":"motus-robotics/Motus · Hugging Face","url":"https://huggingface.co/motus-robotics/Motus"},{"title":"Paper page - Motus: A Unified Latent Action World Model","url":"https://huggingface.co/papers/2512.13030"},{"title":"Motus/README.md at main · thu-ml/Motus","url":"https://github.com/thu-ml/Motus/blob/main/README.md"},{"title":"Motus: A Unified Latent Action World Model | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/arxiv/2512.13030"}]
+
+Based on the search results, here's comprehensive information about Motus:
+
+## Overview
+
+Motus is a unified latent action world model that leverages existing general pretrained models and rich, sharable motion information.
+
+## Architecture
+
+Motus introduces a Mixture-of-Transformer (MoT) architecture to integrate three experts (i.e., understanding, video generation, and action) and adopts a UniDiffuser-style scheduler to enable flexible switching between different modeling modes (i.e., world models, vision-language-action models, inverse dynamics models, video generation models, and video-action joint prediction models).
+
+## Key Technical Components
+
+Motus further leverages the optical flow to learn latent actions and adopts a recipe with three-phase training pipeline and six-layer data pyramid, thereby extracting pixel-level "delta action" and enabling large-scale action pretraining.
+
+## Performance Results
+
+Experiments show that Motus achieves superior performance against state-of-the-art methods in both simulation (a +15% improvement over X-VLA and a +45% improvement over Pi0.5) and real-world scenarios(improved by +11~48%), demonstrating unified modeling of all functionalities and priors significantly benefits downstream robotic tasks.
+
+## Research Team
+
+The research comes from researchers at Tsinghua University and Peking University, and the initial release of Motus with pretrained checkpoints and training code was made on 2025-12-16. The paper has been published on arXiv (2512.13030), with official code available on GitHub.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1dfc59f7-b048-4dc0-a002-7824c6f85cb7",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "7421072d-7d33-4bc8-82d4-509583e79d26",
+  "toolUseResult": {
+    "query": "Motus unified latent action world model architecture 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WvxkBZ7PoCLLTsrWc1DLcz",
+        "content": [
+          {
+            "title": "GitHub - thu-ml/Motus: Official code of Motus: A Unified Latent Action World Model · GitHub",
+            "url": "https://github.com/thu-ml/Motus"
+          },
+          {
+            "title": "[2512.13030] Motus: A Unified Latent Action World Model",
+            "url": "https://arxiv.org/abs/2512.13030"
+          },
+          {
+            "title": "Motus: A Unified Latent Action World Model",
+            "url": "https://motus-robotics.github.io/motus"
+          },
+          {
+            "title": "Motus: A Unified Latent Action World Model",
+            "url": "https://arxiv.org/pdf/2512.13030"
+          },
+          {
+            "title": "Motus: A Unified Latent Action World Model | alphaXiv",
+            "url": "https://www.alphaxiv.org/resources/2512.13030v1"
+          },
+          {
+            "title": "Motus: A Unified Latent Action World Model | Request PDF",
+            "url": "https://www.researchgate.net/publication/398721535_Motus_A_Unified_Latent_Action_World_Model"
+          },
+          {
+            "title": "motus-robotics/Motus · Hugging Face",
+            "url": "https://huggingface.co/motus-robotics/Motus"
+          },
+          {
+            "title": "Paper page - Motus: A Unified Latent Action World Model",
+            "url": "https://huggingface.co/papers/2512.13030"
+          },
+          {
+            "title": "Motus/README.md at main · thu-ml/Motus",
+            "url": "https://github.com/thu-ml/Motus/blob/main/README.md"
+          },
+          {
+            "title": "Motus: A Unified Latent Action World Model | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/arxiv/2512.13030"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about Motus:\n\n## Overview\n\nMotus is a unified latent action world model that leverages existing general pretrained models and rich, sharable motion information.\n\n## Architecture\n\nMotus introduces a Mixture-of-Transformer (MoT) architecture to integrate three experts (i.e., understanding, video generation, and action) and adopts a UniDiffuser-style scheduler to enable flexible switching between different modeling modes (i.e., world models, vision-language-action models, inverse dynamics models, video generation models, and video-action joint prediction models).\n\n## Key Technical Components\n\nMotus further leverages the optical flow to learn latent actions and adopts a recipe with three-phase training pipeline and six-layer data pyramid, thereby extracting pixel-level \"delta action\" and enabling large-scale action pretraining.\n\n## Performance Results\n\nExperiments show that Motus achieves superior performance against state-of-the-art methods in both simulation (a +15% improvement over X-VLA and a +45% improvement over Pi0.5) and real-world scenarios(improved by +11~48%), demonstrating unified modeling of all functionalities and priors significantly benefits downstream robotic tasks.\n\n## Research Team\n\nThe research comes from researchers at Tsinghua University and Peking University, and the initial release of Motus with pretrained checkpoints and training code was made on 2025-12-16. The paper has been published on arXiv (2512.13030), with official code available on GitHub."
+    ],
+    "durationSeconds": 5.627914400000002
+  },
+  "sourceToolAssistantUUID": "1dfc59f7-b048-4dc0-a002-7824c6f85cb7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-10T17:55:17.532Z_
+
+<details><summary>↩ Tool result · `toolu_013s1BJFQ3fRSKKBUrd5bf8x`</summary>
+
+```text
+Web search results for query: ""When to Trust Imagination" adaptive action execution world action models 2026"
+
+Links: [{"title":"[2605.06222] When to Trust Imagination: Adaptive Action Execution for World Action Models","url":"https://arxiv.org/abs/2605.06222"},{"title":"When to Trust Imagination: Adaptive Action Execution for World Action Models","url":"https://arxiv.org/html/2605.06222"},{"title":"[2603.16666] Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://arxiv.org/abs/2603.16666"},{"title":"Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models","url":"https://arxiv.org/html/2601.08955v2"},{"title":"Fast-WAM: Do World Action Models Need Test-time Future Imagination? (Mar 2026) - YouTube","url":"https://www.youtube.com/watch?v=Andhx2GX5eA"},{"title":"Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://yuantianyuan01.github.io/FastWAM/"},{"title":"A Step Toward World Models: A Survey on Robotic Manipulation","url":"https://arxiv.org/html/2511.02097v1"},{"title":"Necessity of Test-Time Future Imagination in World Action Models","url":"https://www.emergentmind.com/open-problems/necessity-of-test-time-future-imagination-in-wams"},{"title":"(PDF) Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://www.researchgate.net/publication/402613129_Fast-WAM_Do_World_Action_Models_Need_Test-time_Future_Imagination"},{"title":"World Model for Robot Learning: A Comprehensive Survey","url":"https://arxiv.org/html/2605.00080v1"}]
+
+I found relevant research results for your query. Here's what I discovered:
+
+## "When to Trust Imagination: Adaptive Action Execution for World Action Models"
+
+This paper introduces World Action Models (WAMs), which jointly predict future visual observations and future actions, but addresses a key problem: current WAMs typically execute a fixed number of predicted actions after each model inference, leaving the robot blind to whether the imagined future remains consistent with the actual physical rollout.
+
+### Core Contribution
+
+The work formulates adaptive WAM execution as a future-reality verification problem: the robot should execute longer when the WAM-predicted future remains reliable, and replan earlier when reality deviates from imagination.
+
+### The FFDC Solution
+
+The authors propose Future Forward Dynamics Causal Attention (FFDC), a lightweight verifier that jointly reasons over predicted future actions, predicted visual dynamics, real observations, and language instructions to estimate whether the remaining action rollout can still be trusted.
+
+### Key Results
+
+Experiments on the RoboTwin benchmark and in the real world demonstrate that the method achieves a strong robustness-efficiency trade-off: on RoboTwin, it reduces WAM forward passes by 69.10% and execution time by 34.02%, while improving success rate by 2.54% over the short-chunk baseline; in real-world experiments, it improves success rate by 35%.
+
+The paper was posted to arXiv on May 7, 2026, and addresses a fundamental challenge in robotic manipulation where different task phases require different levels of adaptive replanning based on prediction reliability.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fe874ece-668a-4ca0-9d73-d123c69d7fb6",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "9bd6544e-c3a2-4ce7-8222-43bb8a7d05b7",
+  "toolUseResult": {
+    "query": "\"When to Trust Imagination\" adaptive action execution world action models 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0113jHMpPHqJrZmh9dT6T7HF",
+        "content": [
+          {
+            "title": "[2605.06222] When to Trust Imagination: Adaptive Action Execution for World Action Models",
+            "url": "https://arxiv.org/abs/2605.06222"
+          },
+          {
+            "title": "When to Trust Imagination: Adaptive Action Execution for World Action Models",
+            "url": "https://arxiv.org/html/2605.06222"
+          },
+          {
+            "title": "[2603.16666] Fast-WAM: Do World Action Models Need Test-time Future Imagination?",
+            "url": "https://arxiv.org/abs/2603.16666"
+          },
+          {
+            "title": "Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models",
+            "url": "https://arxiv.org/html/2601.08955v2"
+          },
+          {
+            "title": "Fast-WAM: Do World Action Models Need Test-time Future Imagination? (Mar 2026) - YouTube",
+            "url": "https://www.youtube.com/watch?v=Andhx2GX5eA"
+          },
+          {
+            "title": "Fast-WAM: Do World Action Models Need Test-time Future Imagination?",
+            "url": "https://yuantianyuan01.github.io/FastWAM/"
+          },
+          {
+            "title": "A Step Toward World Models: A Survey on Robotic Manipulation",
+            "url": "https://arxiv.org/html/2511.02097v1"
+          },
+          {
+            "title": "Necessity of Test-Time Future Imagination in World Action Models",
+            "url": "https://www.emergentmind.com/open-problems/necessity-of-test-time-future-imagination-in-wams"
+          },
+          {
+            "title": "(PDF) Fast-WAM: Do World Action Models Need Test-time Future Imagination?",
+            "url": "https://www.researchgate.net/publication/402613129_Fast-WAM_Do_World_Action_Models_Need_Test-time_Future_Imagination"
+          },
+          {
+            "title": "World Model for Robot Learning: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2605.00080v1"
+          }
+        ]
+      },
+      "I found relevant research results for your query. Here's what I discovered:\n\n## \"When to Trust Imagination: Adaptive Action Execution for World Action Models\"\n\nThis paper introduces World Action Models (WAMs), which jointly predict future visual observations and future actions, but addresses a key problem: current WAMs typically execute a fixed number of predicted actions after each model inference, leaving the robot blind to whether the imagined future remains consistent with the actual physical rollout.\n\n### Core Contribution\n\nThe work formulates adaptive WAM execution as a future-reality verification problem: the robot should execute longer when the WAM-predicted future remains reliable, and replan earlier when reality deviates from imagination.\n\n### The FFDC Solution\n\nThe authors propose Future Forward Dynamics Causal Attention (FFDC), a lightweight verifier that jointly reasons over predicted future actions, predicted visual dynamics, real observations, and language instructions to estimate whether the remaining action rollout can still be trusted.\n\n### Key Results\n\nExperiments on the RoboTwin benchmark and in the real world demonstrate that the method achieves a strong robustness-efficiency trade-off: on RoboTwin, it reduces WAM forward passes by 69.10% and execution time by 34.02%, while improving success rate by 2.54% over the short-chunk baseline; in real-world experiments, it improves success rate by 35%.\n\nThe paper was posted to arXiv on May 7, 2026, and addresses a fundamental challenge in robotic manipulation where different task phases require different levels of adaptive replanning based on prediction reliability."
+    ],
+    "durationSeconds": 8.713306150000005
+  },
+  "sourceToolAssistantUUID": "fe874ece-668a-4ca0-9d73-d123c69d7fb6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-10T17:55:37.134Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent. Now I have a much clearer picture of the landscape:
+
+1. **GigaWorld-Policy (March 2026)**: Uses causal masking to PREVENT future-video tokens from influencing action tokens at inference. This is indeed the "opposite philosophy" from VB-CFG which wants to AMPLIFY video features during action generation.
+
+2. **MotuBrain (April 2026)**: Freezes video stream and caches KV pairs for action denoising. Also doesn't amplify - just uses frozen features.
+
+3. **When to Trust Imagination (May 2026)**: About adaptive execution length - determining how many predicted actions to trust. 
+
+4. **Fast-WAM (March 2026)**: Removes video generation at test time but retains benefits from video co-training during training. The key insight here is that video prediction's real value lies in shaping the learned representations, not in generating explicit future frames.
+
+This actually sets up an interesting tension with the proposed VB-CFG approach. Fast-WAM demonstrates you don't need video generation at inference time, yet VB-CFG argues that amplifying video features can still improve action prediction even without explicit video generation. Now I'm trying to understand what "video branch dropout" actually means in UWM's architecture and whether it's truly about guidance amplification or something else entirely.
+
+In UWM, video and action tokens are processed jointly within a single transformer, but they have independent diffusion timesteps. When you drop the video branch, you could be doing a few different things—setting the video diffusion to pure noise so video tokens become uninformative, zeroing out video features entirely, or masking attention between action and video tokens. The generator's suggestion of pure noise makes sense because it would force the model to predict actions without world model context, but I need to verify if this approach is actually novel or if similar techniques already exist. I should also check whether Vid2World's dropout-on-actions strategy could achieve something similar more directly.
+
+Now I'm thinking through the practical constraints: the claim is around 50-100 H100-hours for fine-tuning, but UWM requires pretraining on large datasets first. The real question is whether you can just add dropout during fine-tuning on LIBERO or if you'd need to retrain significant portions of the model. I should look more closely at Vid2World's CFG approach and dig deeper into UWM's architecture to understand the feasibility better.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9bd6544e-c3a2-4ce7-8222-43bb8a7d05b7",
+  "isSidechain": false,
+  "requestId": "req_011CauKQ99quaZ7UNBGvfJf7",
+  "type": "assistant",
+  "uuid": "2f734e77-f16c-47e7-b0ab-bd279dc048fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TF5qrzdyAGQPqSYxSeKjNf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1711,
+      "cache_creation_input_tokens": 1373,
+      "cache_read_input_tokens": 32146,
+      "output_tokens": 1007,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1373,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1711,
+          "output_tokens": 1007,
+          "cache_read_input_tokens": 32146,
+          "cache_creation_input_tokens": 1373,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1373
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-10T17:55:39.205Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01MtuoSibjb4ayUb4bZpcKfk`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2505.14357",
+  "prompt": "Extract the detailed methodology of how Vid2World uses classifier-free guidance. Specifically: (1) What is dropped out during training? (2) How is the guidance applied at inference? (3) What guidance scales are used? (4) What is the formula for the guided score? I need the exact mechanism to compare with a proposed method that applies CFG in the reverse direction (video→action instead of action→video)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f734e77-f16c-47e7-b0ab-bd279dc048fc",
+  "isSidechain": false,
+  "requestId": "req_011CauKQ99quaZ7UNBGvfJf7",
+  "type": "assistant",
+  "uuid": "002fa4b3-2707-4364-a2b0-37152a1d4a79",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TF5qrzdyAGQPqSYxSeKjNf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1711,
+      "cache_creation_input_tokens": 1373,
+      "cache_read_input_tokens": 32146,
+      "output_tokens": 1007,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1373,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1711,
+          "output_tokens": 1007,
+          "cache_read_input_tokens": 32146,
+          "cache_creation_input_tokens": 1373,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1373
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-10T17:55:41.843Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01BBvGWTDMtVE7MkPfnV9USR`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2504.02792",
+  "prompt": "Extract the architecture details of UWM: (1) How are video and action diffusion processes coupled? (2) What are \"independent diffusion timesteps\"? (3) How do video and action tokens interact within the transformer? (4) What happens when video timestep is set to maximum noise (pure noise)? (5) What compute was needed for training/fine-tuning? I need to assess whether adding \"video branch dropout\" to this architecture is trivially simple or requires significant engineering."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "002fa4b3-2707-4364-a2b0-37152a1d4a79",
+  "isSidechain": false,
+  "requestId": "req_011CauKQ99quaZ7UNBGvfJf7",
+  "type": "assistant",
+  "uuid": "f1b51e80-f929-4ebb-a8e2-b3224d57263f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TF5qrzdyAGQPqSYxSeKjNf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1711,
+      "cache_creation_input_tokens": 1373,
+      "cache_read_input_tokens": 32146,
+      "output_tokens": 1007,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1373,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1711,
+          "output_tokens": 1007,
+          "cache_read_input_tokens": 32146,
+          "cache_creation_input_tokens": 1373,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1373
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "f1b51e80-f929-4ebb-a8e2-b3224d57263f",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reviewer: Video-Branch CFG for WAM Action Denoising",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381"
+}
+```
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-10T17:55:43.633Z_
+
+<details><summary>↩ Tool result · `toolu_01MtuoSibjb4ayUb4bZpcKfk`</summary>
+
+```text
+# Response
+
+Based on the provided webpage content, I cannot extract the specific technical details you've requested about Vid2World's classifier-free guidance implementation.
+
+The abstract and metadata shown describe the paper's general approach: "incorporates a causal action guidance mechanism to enhance action controllability," but the webpage does not contain the detailed methodology sections that would specify:
+
+1. What training components are dropped out
+2. The inference-time guidance application procedure
+3. Specific guidance scale values
+4. The exact mathematical formula for guided scores
+
+To obtain these technical specifications, you would need to access the full paper PDF or HTML version linked on the arXiv page (arXiv:2505.14357v3). The abstract alone does not provide sufficient implementation details for the classifier-free guidance mechanism or for conducting the comparative analysis with reverse-direction CFG that you're planning.
+
+I recommend reviewing the paper's methodology section directly for the precise mathematical formulations and hyperparameter choices necessary for your comparison work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "002fa4b3-2707-4364-a2b0-37152a1d4a79",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "3718c09e-271d-4d1a-b471-d52932e4971c",
+  "toolUseResult": {
+    "bytes": 47097,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Response\n\nBased on the provided webpage content, I cannot extract the specific technical details you've requested about Vid2World's classifier-free guidance implementation.\n\nThe abstract and metadata shown describe the paper's general approach: \"incorporates a causal action guidance mechanism to enhance action controllability,\" but the webpage does not contain the detailed methodology sections that would specify:\n\n1. What training components are dropped out\n2. The inference-time guidance application procedure\n3. Specific guidance scale values\n4. The exact mathematical formula for guided scores\n\nTo obtain these technical specifications, you would need to access the full paper PDF or HTML version linked on the arXiv page (arXiv:2505.14357v3). The abstract alone does not provide sufficient implementation details for the classifier-free guidance mechanism or for conducting the comparative analysis with reverse-direction CFG that you're planning.\n\nI recommend reviewing the paper's methodology section directly for the precise mathematical formulations and hyperparameter choices necessary for your comparison work.",
+    "durationMs": 4422,
+    "url": "https://arxiv.org/abs/2505.14357"
+  },
+  "sourceToolAssistantUUID": "002fa4b3-2707-4364-a2b0-37152a1d4a79",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-10T17:55:46.479Z_
+
+<details><summary>↩ Tool result · `toolu_01BBvGWTDMtVE7MkPfnV9USR`</summary>
+
+```text
+# UWM Architecture Analysis
+
+Based on the provided content, I can only offer limited architectural details, as the abstract doesn't fully address your technical questions:
+
+## What the Abstract Reveals
+
+**Coupling mechanism:** The framework "integrates an action diffusion process and a video diffusion process within a unified transformer architecture, where independent diffusion timesteps govern each modality."
+
+**Independent timesteps:** The abstract indicates that "by controlling each diffusion timestep, UWM can flexibly represent a policy, a forward dynamics, an inverse dynamics, and a video generator," suggesting timesteps enable mode-switching rather than traditional sequential denoising.
+
+**Video-action interaction & noise behavior:** The abstract doesn't specify token interaction mechanisms or what occurs when video timestep reaches maximum noise.
+
+**Computational requirements:** No training/fine-tuning compute details are provided in this excerpt.
+
+## Assessment Limitation
+
+The abstract confirms modular diffusion process design ("independent diffusion timesteps") but lacks sufficient architectural depth to evaluate whether adding video branch dropout would be trivial or complex. You'd need to consult the full paper (available via the PDF link provided) to assess engineering complexity—specifically examining the transformer layer organization, how timestep conditioning is implemented, and whether video processing is sufficiently decoupled from action processing to allow isolated dropout application.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f1b51e80-f929-4ebb-a8e2-b3224d57263f",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "d46ea83f-515f-4519-8784-f68471429970",
+  "toolUseResult": {
+    "bytes": 48990,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# UWM Architecture Analysis\n\nBased on the provided content, I can only offer limited architectural details, as the abstract doesn't fully address your technical questions:\n\n## What the Abstract Reveals\n\n**Coupling mechanism:** The framework \"integrates an action diffusion process and a video diffusion process within a unified transformer architecture, where independent diffusion timesteps govern each modality.\"\n\n**Independent timesteps:** The abstract indicates that \"by controlling each diffusion timestep, UWM can flexibly represent a policy, a forward dynamics, an inverse dynamics, and a video generator,\" suggesting timesteps enable mode-switching rather than traditional sequential denoising.\n\n**Video-action interaction & noise behavior:** The abstract doesn't specify token interaction mechanisms or what occurs when video timestep reaches maximum noise.\n\n**Computational requirements:** No training/fine-tuning compute details are provided in this excerpt.\n\n## Assessment Limitation\n\nThe abstract confirms modular diffusion process design (\"independent diffusion timesteps\") but lacks sufficient architectural depth to evaluate whether adding video branch dropout would be trivial or complex. You'd need to consult the full paper (available via the PDF link provided) to assess engineering complexity—specifically examining the transformer layer organization, how timestep conditioning is implemented, and whether video processing is sufficiently decoupled from action processing to allow isolated dropout application.",
+    "durationMs": 4634,
+    "url": "https://arxiv.org/abs/2504.02792"
+  },
+  "sourceToolAssistantUUID": "f1b51e80-f929-4ebb-a8e2-b3224d57263f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48 · 2026-05-10T17:55:51.094Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need to access the full HTML/PDF versions for more details. Let me try the HTML versions which tend to have more content available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d46ea83f-515f-4519-8784-f68471429970",
+  "isSidechain": false,
+  "requestId": "req_011CauKSGuySF2CEsaoQ3ViT",
+  "type": "assistant",
+  "uuid": "1b5ed82d-dc7c-4496-b6bc-3a38ca070d14",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018vkhXWdjV3DtG8ooH5CY4p",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3266,
+      "cache_read_input_tokens": 33519,
+      "output_tokens": 428,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3266,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 428,
+          "cache_read_input_tokens": 33519,
+          "cache_creation_input_tokens": 3266,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3266
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-10T17:55:54.378Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01BbkBUDnR74kzGm9gLAFdkD`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2505.14357v2",
+  "prompt": "Find and extract the exact details of the classifier-free guidance mechanism in Vid2World. I need: (1) The exact formula for guided generation (with the guidance scale), (2) What probability is used for action dropout during training, (3) How the unconditional score is computed (what exactly is dropped/masked), (4) What guidance scales work best. Look for sections about \"Causal Action Guidance\" or \"CFG\" or \"guidance scale\"."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1b5ed82d-dc7c-4496-b6bc-3a38ca070d14",
+  "isSidechain": false,
+  "requestId": "req_011CauKSGuySF2CEsaoQ3ViT",
+  "type": "assistant",
+  "uuid": "3c111eb4-d6b6-4838-a7cd-2ea2a0b7400f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018vkhXWdjV3DtG8ooH5CY4p",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3266,
+      "cache_read_input_tokens": 33519,
+      "output_tokens": 428,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3266,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 428,
+          "cache_read_input_tokens": 33519,
+          "cache_creation_input_tokens": 3266,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3266
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-10T17:55:57.542Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_013SSkwExjiAQ3Bxz54DNvHq`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2504.02792v1",
+  "prompt": "Extract the detailed architecture of UWM. I need: (1) How video tokens and action tokens are arranged in the transformer, (2) The exact role of independent diffusion timesteps - what does setting video timestep to T_max (pure noise) do to video tokens? (3) How are video and action modalities coupled in the attention mechanism? (4) Training compute requirements (GPU hours, hardware). (5) Any details about how the model behaves when one modality is at pure noise while the other is being denoised. This is critical for understanding whether \"video branch dropout\" via pure-noise timestep is feasible."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3c111eb4-d6b6-4838-a7cd-2ea2a0b7400f",
+  "isSidechain": false,
+  "requestId": "req_011CauKSGuySF2CEsaoQ3ViT",
+  "type": "assistant",
+  "uuid": "ee84de48-2cec-48e4-bda7-b968fca61a48",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018vkhXWdjV3DtG8ooH5CY4p",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3266,
+      "cache_read_input_tokens": 33519,
+      "output_tokens": 428,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3266,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 428,
+          "cache_read_input_tokens": 33519,
+          "cache_creation_input_tokens": 3266,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3266
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-10T17:55:59.201Z_
+
+<details><summary>↩ Tool result · `toolu_01BbkBUDnR74kzGm9gLAFdkD`</summary>
+
+```text
+# Classifier-Free Guidance Details in Vid2World
+
+## 1. Guided Generation Formula
+
+The exact formula for guided generation is:
+
+> "ϵguided=(1+λ)⋅ϵcond−λ⋅ϵucond"
+
+where λ ∈ ℝ+ represents the guidance scale parameter.
+
+## 2. Action Dropout Probability
+
+The training process uses action dropout where:
+
+> "a~t is independently dropped with a fixed probability p"
+
+However, the specific numerical value of p is **not explicitly stated** in the provided content.
+
+## 3. Unconditional Score Computation
+
+The unconditional score function masks the most recent action:
+
+> "ϵucond=ϵθ([𝐱τkτ]τ≤t,[𝐚τ<t−1,∅],[kτ]τ≤t)"
+
+This means the model predicts the noise while treating the current frame's action as empty/masked (∅), allowing the model to learn what happens without that action signal.
+
+## 4. Optimal Guidance Scales
+
+The document does **not provide explicit recommendations** for which guidance scales work best. The paper introduces the mechanism and notes that varying λ provides "test-time flexibility of controlling responsiveness," but no specific optimal values are reported in the sections provided.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3c111eb4-d6b6-4838-a7cd-2ea2a0b7400f",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "7fc820e0-6b26-4afc-af7b-da2af7faf69f",
+  "toolUseResult": {
+    "bytes": 430750,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Classifier-Free Guidance Details in Vid2World\n\n## 1. Guided Generation Formula\n\nThe exact formula for guided generation is:\n\n> \"ϵguided=(1+λ)⋅ϵcond−λ⋅ϵucond\"\n\nwhere λ ∈ ℝ+ represents the guidance scale parameter.\n\n## 2. Action Dropout Probability\n\nThe training process uses action dropout where:\n\n> \"a~t is independently dropped with a fixed probability p\"\n\nHowever, the specific numerical value of p is **not explicitly stated** in the provided content.\n\n## 3. Unconditional Score Computation\n\nThe unconditional score function masks the most recent action:\n\n> \"ϵucond=ϵθ([𝐱τkτ]τ≤t,[𝐚τ<t−1,∅],[kτ]τ≤t)\"\n\nThis means the model predicts the noise while treating the current frame's action as empty/masked (∅), allowing the model to learn what happens without that action signal.\n\n## 4. Optimal Guidance Scales\n\nThe document does **not provide explicit recommendations** for which guidance scales work best. The paper introduces the mechanism and notes that varying λ provides \"test-time flexibility of controlling responsiveness,\" but no specific optimal values are reported in the sections provided.",
+    "durationMs": 4820,
+    "url": "https://arxiv.org/html/2505.14357v2"
+  },
+  "sourceToolAssistantUUID": "3c111eb4-d6b6-4838-a7cd-2ea2a0b7400f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-10T17:56:06.626Z_
+
+<details><summary>↩ Tool result · `toolu_013SSkwExjiAQ3Bxz54DNvHq`</summary>
+
+```text
+# UWM Architecture Analysis
+
+## 1. Token Arrangement in Transformer
+
+The paper describes a unified transformer architecture where tokens are concatenated sequentially. Specifically, the model processes:
+
+- **Action embeddings**: obtained by encoding action chunks "per-timestep using a shallow MLP"
+- **Image patch embeddings**: latent images are converted to "(28,28,4)" format, then "patchified using a spatiotemporal patchifier of size (4,4,2)"
+
+These are "concatenated with the action embeddings and passed into the transformer backbone." The exact spatial ordering isn't explicitly specified beyond this concatenation approach.
+
+## 2. Independent Diffusion Timesteps Mechanism
+
+When the video diffusion timestep is set to T (maximum noise):
+
+The model approximates "𝔼[ϵ_a, ϵ_o′ | o, a_t_a, o'_T]" which reduces to marginalization since "o'_T is approximately an isotropic Gaussian," effectively becoming "𝔼[ϵ_a | o, a_t_a]." This represents the policy distribution p(a|o), where the noisy video signal is essentially discarded.
+
+Conversely, setting the video timestep to 0 conditions on clean observations, enabling inverse dynamics or forward dynamics modes.
+
+## 3. Cross-Modality Coupling in Attention
+
+The paper identifies a critical design choice: "register tokens which allows for better multi-modal feature sharing." The authors hypothesize these "can store information from either modality, which can then be retrieved in subsequent transformer layers," serving as an intermediary communication channel between distinct modalities since "all output embeddings of the diffusion transformer are meaningful noise predictions."
+
+The conditioning mechanism uses "Adaptive Layer Normalization (AdaLN)" to incorporate timestep information and current observations.
+
+## 4. Training Compute Requirements
+
+The paper explicitly states: "Training Compute" section in Appendix mentions compute details, but the provided excerpt only references "A-A3 Training Compute" without disclosing specific GPU hours or hardware specifications in the main text.
+
+## 5. Behavior During Modality Masking
+
+When one modality is at pure noise while denoising the other, the model operates in a marginalization mode. Setting video timestep to T while denoising actions creates a scenario where the transformer must generate action noise predictions "conditioned on" essentially random image information. The joint score network still receives both inputs but the video signal carries no meaningful information about the data distribution.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ee84de48-2cec-48e4-bda7-b968fca61a48",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "ffda96a3-f56b-4233-88c0-e077907bab73",
+  "toolUseResult": {
+    "bytes": 854934,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# UWM Architecture Analysis\n\n## 1. Token Arrangement in Transformer\n\nThe paper describes a unified transformer architecture where tokens are concatenated sequentially. Specifically, the model processes:\n\n- **Action embeddings**: obtained by encoding action chunks \"per-timestep using a shallow MLP\"\n- **Image patch embeddings**: latent images are converted to \"(28,28,4)\" format, then \"patchified using a spatiotemporal patchifier of size (4,4,2)\"\n\nThese are \"concatenated with the action embeddings and passed into the transformer backbone.\" The exact spatial ordering isn't explicitly specified beyond this concatenation approach.\n\n## 2. Independent Diffusion Timesteps Mechanism\n\nWhen the video diffusion timestep is set to T (maximum noise):\n\nThe model approximates \"𝔼[ϵ_a, ϵ_o′ | o, a_t_a, o'_T]\" which reduces to marginalization since \"o'_T is approximately an isotropic Gaussian,\" effectively becoming \"𝔼[ϵ_a | o, a_t_a].\" This represents the policy distribution p(a|o), where the noisy video signal is essentially discarded.\n\nConversely, setting the video timestep to 0 conditions on clean observations, enabling inverse dynamics or forward dynamics modes.\n\n## 3. Cross-Modality Coupling in Attention\n\nThe paper identifies a critical design choice: \"register tokens which allows for better multi-modal feature sharing.\" The authors hypothesize these \"can store information from either modality, which can then be retrieved in subsequent transformer layers,\" serving as an intermediary communication channel between distinct modalities since \"all output embeddings of the diffusion transformer are meaningful noise predictions.\"\n\nThe conditioning mechanism uses \"Adaptive Layer Normalization (AdaLN)\" to incorporate timestep information and current observations.\n\n## 4. Training Compute Requirements\n\nThe paper explicitly states: \"Training Compute\" section in Appendix mentions compute details, but the provided excerpt only references \"A-A3 Training Compute\" without disclosing specific GPU hours or hardware specifications in the main text.\n\n## 5. Behavior During Modality Masking\n\nWhen one modality is at pure noise while denoising the other, the model operates in a marginalization mode. Setting video timestep to T while denoising actions creates a scenario where the transformer must generate action noise predictions \"conditioned on\" essentially random image information. The joint score network still receives both inputs but the video signal carries no meaningful information about the data distribution.",
+    "durationMs": 9083,
+    "url": "https://arxiv.org/html/2504.02792v1"
+  },
+  "sourceToolAssistantUUID": "ee84de48-2cec-48e4-bda7-b968fca61a48",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-10T17:56:51.722Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is very valuable! Now I understand the architecture:
+
+1. **UWM Architecture**: Video tokens and action tokens are concatenated and processed through a shared transformer. Independent diffusion timesteps mean each modality can be at different noise levels. When video timestep = T (pure noise), the video tokens are essentially isotropic Gaussian noise and carry no information.
+
+2. **UWM's natural mode**: When video timestep = T and action timestep < T, the model just does pure action prediction (policy p(a|o)). When both are at intermediate timesteps, the model jointly denoises both.
+
+3. **Vid2World's CFG**: Uses formula ϵ_guided = (1+λ)·ϵ_cond - λ·ϵ_ucond, where the unconditional score masks the action input. So it amplifies the action signal for better video generation.
+   
+The proposed VB-CFG approach wants to flip this—during training, occasionally set video timestep to T while still training action denoising, then at inference use a guided prediction that interpolates between video-free and joint predictions. But here's the thing: UWM already naturally supports this behavior through its independent timestep sampling. The real question is whether the current training procedure actually exercises this regime where video is pure noise while actions are being denoised.
+
+Looking at how UWM samples timesteps during training, if it truly samples (t_video, t_action) pairs independently from a uniform distribution, then the model should already be learning to predict actions both with and without video context. The explicit dropout might be redundant—the model could already be implicitly learning this through the natural variation in timestep combinations. But this hinges on the exact sampling strategy UWM uses, and I need to verify whether it actually covers all these configurations or if there are constraints that would make explicit dropout necessary. during training, you can have any combination of (t_video, t_action). But do they actually sample all combinations uniformly? Or do they focus on specific modes?
+
+If UWM trains with uniform sampling of independent timesteps, then video-at-T is already a training configuration, and the model already knows how to predict actions both with and without video context. In that case, VB-CFG wouldn't need any fine-tuning at all — you could just apply the guidance formula at inference time on a pre-trained UWM!
+
+But wait, that would make the proposed "fine-tuning with dropout" unnecessary. Which is actually BETTER for the paper — if you can apply CFG directly on a pre-trained UWM without any fine-tuning, that's a zero-cost method. But the generator didn't realize this possibility.
+
+The key issue is whether the model has learned a sufficiently good unconditional distribution just from naturally encountering cases where video information is absent or nearly absent. In continuous timestep sampling, t_video=T has zero probability, but values close to T would give nearly-unconditional predictions. So UWM should have some capability here already. The real question is whether explicit dropout training improves this enough to justify the fine-tuning cost, or if CFG works well enough directly on the pre-trained model.
+
+This is actually a testable hypothesis: compare direct CFG applied to a pre-trained UWM versus CFG applied to a dropout-fine-tuned version.
+
+Now thinking about novelty — applying CFG in the video-to-action direction is interesting because it reverses the typical conditioning flow. Vid2World goes action-to-video, so going the opposite direction isn't obvious. And CFG usually amplifies a conditioning signal, but here it's amplifying a co-generation signal from the video branch rather than traditional conditioning. Fast-WAM showed video isn't needed at test time, but VB-CFG proposes a middle ground where video features can be selectively amplified for harder tasks.
+
+The technique itself — dropout during training plus CFG at inference — is fairly standard, though.
+
+For CoRL, the "world model reliance dial" framing is compelling as a practical tool for controlling how much the robot depends on its learned model, with per-task analysis of when amplification helps. But I'm questioning the depth of the contribution.
+
+The core issue is whether applying CFG in a new direction within an existing architecture constitutes a meaningful advance, and whether the empirical results will be strong enough to support publication. I should look into what competing work exists in this space.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ffda96a3-f56b-4233-88c0-e077907bab73",
+  "isSidechain": false,
+  "requestId": "req_011CauKTmKnpi7uMFDMGyXCj",
+  "type": "assistant",
+  "uuid": "4053cb0e-d6a4-41f6-a457-a8df2d88d52b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PtWGGd4DAXZ37fw4grNRJa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1374,
+      "cache_read_input_tokens": 36785,
+      "output_tokens": 1648,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1374,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1648,
+          "cache_read_input_tokens": 36785,
+          "cache_creation_input_tokens": 1374,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1374
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-10T17:56:51.733Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MJfbcUKUNdWytroPbcZHVS`</summary>
+
+```json
+{
+  "query": "UWM unified world model training procedure timestep sampling independent diffusion"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4053cb0e-d6a4-41f6-a457-a8df2d88d52b",
+  "isSidechain": false,
+  "requestId": "req_011CauKTmKnpi7uMFDMGyXCj",
+  "type": "assistant",
+  "uuid": "2873dd5d-4a01-4fbb-8735-0583df48edeb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PtWGGd4DAXZ37fw4grNRJa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1374,
+      "cache_read_input_tokens": 36785,
+      "output_tokens": 1648,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1374,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1648,
+          "cache_read_input_tokens": 36785,
+          "cache_creation_input_tokens": 1374,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1374
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-10T17:56:52.227Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012ZsDXJRFeu9NnLk5n5Ed5y`</summary>
+
+```json
+{
+  "query": "classifier-free guidance conditional generation amplify conditioning signal world model 2025 2026 robotics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2873dd5d-4a01-4fbb-8735-0583df48edeb",
+  "isSidechain": false,
+  "requestId": "req_011CauKTmKnpi7uMFDMGyXCj",
+  "type": "assistant",
+  "uuid": "f864d62a-df11-4f66-8d04-e1ab8c2b77cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PtWGGd4DAXZ37fw4grNRJa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1374,
+      "cache_read_input_tokens": 36785,
+      "output_tokens": 1648,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1374,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1648,
+          "cache_read_input_tokens": 36785,
+          "cache_creation_input_tokens": 1374,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1374
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-10T17:56:52.735Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HMJ6ir1GSLUFnnCdDR2fur`</summary>
+
+```json
+{
+  "query": "LIBERO benchmark success rate state of the art 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f864d62a-df11-4f66-8d04-e1ab8c2b77cb",
+  "isSidechain": false,
+  "requestId": "req_011CauKTmKnpi7uMFDMGyXCj",
+  "type": "assistant",
+  "uuid": "e6bb79da-b6c1-4fd0-a0d6-b6da94abea68",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PtWGGd4DAXZ37fw4grNRJa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1374,
+      "cache_read_input_tokens": 36785,
+      "output_tokens": 1648,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1374,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1648,
+          "cache_read_input_tokens": 36785,
+          "cache_creation_input_tokens": 1374,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1374
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "e6bb79da-b6c1-4fd0-a0d6-b6da94abea68",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reviewer: Video-Branch CFG for WAM Action Denoising",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381"
+}
+```
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-10T17:56:57.950Z_
+
+<details><summary>↩ Tool result · `toolu_01MJfbcUKUNdWytroPbcZHVS`</summary>
+
+```text
+Web search results for query: "UWM unified world model training procedure timestep sampling independent diffusion"
+
+Links: [{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://weirdlabuw.github.io/uwm/"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://arxiv.org/html/2504.02792v1"},{"title":"[2504.02792] Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://arxiv.org/abs/2504.02792"},{"title":"Paper page - Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://huggingface.co/papers/2504.02792"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets [Quick Review]","url":"https://liner.com/review/unified-world-models-coupling-video-and-action-diffusion-for-pretraining"},{"title":"[PDF] Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Unified-World-Models:-Coupling-Video-and-Action-for-Zhu-Yu/514b9977bdb57f6e9586461f36fcf6467a775b3c"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | Toyota Research Institute","url":"https://www.tri.global/research/unified-world-models-coupling-video-and-action-diffusion-pretraining-large-robotic"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets - Paper Detail","url":"https://deeplearn.org/arxiv/593122/unified-world-models:-coupling-video-and-action-diffusion-for-pretraining-on-large-robotic-datasets"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets · Robotics: Science and Systems","url":"https://roboticsconference.org/program/papers/15/"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | alphaXiv","url":"https://www.alphaxiv.org/overview/2504.02792/metadata"}]
+
+Based on the search results, here's what I found about the UWM (Unified World Models) training procedure regarding timestep sampling and independent diffusion:
+
+## Training Procedure with Independent Timestep Sampling
+
+During training, the timesteps are sampled independently at random, exposing the model to different combinations of image and action noises. More specifically, on robot trajectories, the diffusion timesteps for actions and next observations are sampled independently at random.
+
+## Architecture and Modality Independence
+
+A UWM integrates an action diffusion process and a video diffusion process within a unified transformer architecture, where independent diffusion timesteps govern each modality.
+
+## Inference Flexibility
+
+The independent timestep sampling enables flexible inference capabilities. During inference, UWMs enable flexible sampling from various distributions by manipulating the diffusion timesteps independently. This allows for flexible sampling from a number of distributions simply by manipulating the diffusion timesteps independently at inference time.
+
+## Training Data Diversity
+
+UWM can be trained on (o, a, o') triplets from robot trajectories as well as (o, o') tuples from action-free videos, using random noise for masking. This training approach allows the model to learn from both action-annotated robot data and unannotated video data.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2873dd5d-4a01-4fbb-8735-0583df48edeb",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "6c45551e-2505-495c-ab33-b6208b9d277a",
+  "toolUseResult": {
+    "query": "UWM unified world model training procedure timestep sampling independent diffusion",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BwZAffbjfa13d18DksZccx",
+        "content": [
+          {
+            "title": "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets",
+            "url": "https://weirdlabuw.github.io/uwm/"
+          },
+          {
+            "title": "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets",
+            "url": "https://arxiv.org/html/2504.02792v1"
+          },
+          {
+            "title": "[2504.02792] Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets",
+            "url": "https://arxiv.org/abs/2504.02792"
+          },
+          {
+            "title": "Paper page - Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets",
+            "url": "https://huggingface.co/papers/2504.02792"
+          },
+          {
+            "title": "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets [Quick Review]",
+            "url": "https://liner.com/review/unified-world-models-coupling-video-and-action-diffusion-for-pretraining"
+          },
+          {
+            "title": "[PDF] Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Unified-World-Models:-Coupling-Video-and-Action-for-Zhu-Yu/514b9977bdb57f6e9586461f36fcf6467a775b3c"
+          },
+          {
+            "title": "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | Toyota Research Institute",
+            "url": "https://www.tri.global/research/unified-world-models-coupling-video-and-action-diffusion-pretraining-large-robotic"
+          },
+          {
+            "title": "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets - Paper Detail",
+            "url": "https://deeplearn.org/arxiv/593122/unified-world-models:-coupling-video-and-action-diffusion-for-pretraining-on-large-robotic-datasets"
+          },
+          {
+            "title": "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets · Robotics: Science and Systems",
+            "url": "https://roboticsconference.org/program/papers/15/"
+          },
+          {
+            "title": "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2504.02792/metadata"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the UWM (Unified World Models) training procedure regarding timestep sampling and independent diffusion:\n\n## Training Procedure with Independent Timestep Sampling\n\nDuring training, the timesteps are sampled independently at random, exposing the model to different combinations of image and action noises. More specifically, on robot trajectories, the diffusion timesteps for actions and next observations are sampled independently at random.\n\n## Architecture and Modality Independence\n\nA UWM integrates an action diffusion process and a video diffusion process within a unified transformer architecture, where independent diffusion timesteps govern each modality.\n\n## Inference Flexibility\n\nThe independent timestep sampling enables flexible inference capabilities. During inference, UWMs enable flexible sampling from various distributions by manipulating the diffusion timesteps independently. This allows for flexible sampling from a number of distributions simply by manipulating the diffusion timesteps independently at inference time.\n\n## Training Data Diversity\n\nUWM can be trained on (o, a, o') triplets from robot trajectories as well as (o, o') tuples from action-free videos, using random noise for masking. This training approach allows the model to learn from both action-annotated robot data and unannotated video data."
+    ],
+    "durationSeconds": 6.2061228209999975
+  },
+  "sourceToolAssistantUUID": "2873dd5d-4a01-4fbb-8735-0583df48edeb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-10T17:56:59.270Z_
+
+<details><summary>↩ Tool result · `toolu_012ZsDXJRFeu9NnLk5n5Ed5y`</summary>
+
+```text
+Web search results for query: "classifier-free guidance conditional generation amplify conditioning signal world model 2025 2026 robotics"
+
+Links: [{"title":"[2207.12598] Classifier-Free Diffusion Guidance","url":"https://arxiv.org/abs/2207.12598"},{"title":"Classifier-Free Guidance (CFG)","url":"https://apxml.com/courses/intro-diffusion-models/chapter-6-conditional-generation-diffusion/classifier-free-guidance"},{"title":"Rethinking Classifier-Free Guidance for Diffusion Models","url":"https://arxiv.org/pdf/2407.02687"},{"title":"No Training, No Problem: Rethinking Classifier-Free Guidance for Diffusion Models | OpenReview","url":"https://openreview.net/forum?id=b3CzCCCILJ"},{"title":"Enhancing Diffusion Policy with Classifier-Free Guidance for Temporal Robotic Tasks","url":"https://arxiv.org/html/2510.09786v1"},{"title":"An overview of classifier-free guidance for diffusion models | AI Summer","url":"https://theaisummer.com/classifier-free-guidance/"},{"title":"Implementing Classifier-Free Guidance","url":"https://apxml.com/courses/intro-diffusion-models/chapter-6-conditional-generation-diffusion/implementing-classifier-free-guidance"},{"title":"Classifier-Free Diffusion Guidance","url":"https://openreview.net/pdf?id=qw8AKxfYbI"},{"title":"[2505.19210] Towards Understanding the Mechanisms of Classifier-Free Guidance","url":"https://arxiv.org/abs/2505.19210"},{"title":"CLASSIFIER-FREE DIFFUSION GUIDANCE Jonathan Ho & Tim Salimans","url":"https://arxiv.org/pdf/2207.12598"}]
+
+I found relevant information about classifier-free guidance (CFG) in conditional generation. Here are the key findings from my search:
+
+## Classifier-Free Guidance Overview
+
+Classifier-free guidance (CFG) has become the standard method for enhancing the quality of conditional diffusion models. CFG offers an elegant and effective alternative that achieves conditional generation without needing an external classifier.
+
+## How CFG Amplifies Conditioning Signals
+
+Linear CFG improves generation quality via three distinct components: (i) a mean-shift term that approximately steers samples in the direction of class means, (ii) a positive Contrastive Principal Components (CPC) term that amplifies class-specific features, and (iii) a negative CPC term that suppresses generic features prevalent in unconditional data.
+
+When the guidance scale w > 1, we extrapolate along the guidance direction, pushing the generation more strongly towards the condition. Higher values enforce the condition more strongly, which can improve alignment but may lead to saturation, artifacts, or reduced diversity in the generated samples.
+
+## CFG in Robotics (2025)
+
+There's recent work applying CFG to robotic tasks. A Classifier-Free Guidance-Based Diffusion Policy (CFG-DP) integrates CFG with conditional and unconditional models. Specifically, CFG leverages timestep inputs to track task progression and ensure precise cycle termination, dynamically adjusting action predictions based on task phase using a guidance factor tuned to balance temporal coherence and action accuracy.
+
+Would you like me to search for more specific information about world models or other aspects of this topic?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f864d62a-df11-4f66-8d04-e1ab8c2b77cb",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "ad7f4e77-e5af-4c87-9ee2-c20f3f0841aa",
+  "toolUseResult": {
+    "query": "classifier-free guidance conditional generation amplify conditioning signal world model 2025 2026 robotics",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KRauxNnyYRZ81MQBqQ77KB",
+        "content": [
+          {
+            "title": "[2207.12598] Classifier-Free Diffusion Guidance",
+            "url": "https://arxiv.org/abs/2207.12598"
+          },
+          {
+            "title": "Classifier-Free Guidance (CFG)",
+            "url": "https://apxml.com/courses/intro-diffusion-models/chapter-6-conditional-generation-diffusion/classifier-free-guidance"
+          },
+          {
+            "title": "Rethinking Classifier-Free Guidance for Diffusion Models",
+            "url": "https://arxiv.org/pdf/2407.02687"
+          },
+          {
+            "title": "No Training, No Problem: Rethinking Classifier-Free Guidance for Diffusion Models | OpenReview",
+            "url": "https://openreview.net/forum?id=b3CzCCCILJ"
+          },
+          {
+            "title": "Enhancing Diffusion Policy with Classifier-Free Guidance for Temporal Robotic Tasks",
+            "url": "https://arxiv.org/html/2510.09786v1"
+          },
+          {
+            "title": "An overview of classifier-free guidance for diffusion models | AI Summer",
+            "url": "https://theaisummer.com/classifier-free-guidance/"
+          },
+          {
+            "title": "Implementing Classifier-Free Guidance",
+            "url": "https://apxml.com/courses/intro-diffusion-models/chapter-6-conditional-generation-diffusion/implementing-classifier-free-guidance"
+          },
+          {
+            "title": "Classifier-Free Diffusion Guidance",
+            "url": "https://openreview.net/pdf?id=qw8AKxfYbI"
+          },
+          {
+            "title": "[2505.19210] Towards Understanding the Mechanisms of Classifier-Free Guidance",
+            "url": "https://arxiv.org/abs/2505.19210"
+          },
+          {
+            "title": "CLASSIFIER-FREE DIFFUSION GUIDANCE Jonathan Ho & Tim Salimans",
+            "url": "https://arxiv.org/pdf/2207.12598"
+          }
+        ]
+      },
+      "I found relevant information about classifier-free guidance (CFG) in conditional generation. Here are the key findings from my search:\n\n## Classifier-Free Guidance Overview\n\nClassifier-free guidance (CFG) has become the standard method for enhancing the quality of conditional diffusion models. CFG offers an elegant and effective alternative that achieves conditional generation without needing an external classifier.\n\n## How CFG Amplifies Conditioning Signals\n\nLinear CFG improves generation quality via three distinct components: (i) a mean-shift term that approximately steers samples in the direction of class means, (ii) a positive Contrastive Principal Components (CPC) term that amplifies class-specific features, and (iii) a negative CPC term that suppresses generic features prevalent in unconditional data.\n\nWhen the guidance scale w > 1, we extrapolate along the guidance direction, pushing the generation more strongly towards the condition. Higher values enforce the condition more strongly, which can improve alignment but may lead to saturation, artifacts, or reduced diversity in the generated samples.\n\n## CFG in Robotics (2025)\n\nThere's recent work applying CFG to robotic tasks. A Classifier-Free Guidance-Based Diffusion Policy (CFG-DP) integrates CFG with conditional and unconditional models. Specifically, CFG leverages timestep inputs to track task progression and ensure precise cycle termination, dynamically adjusting action predictions based on task phase using a guidance factor tuned to balance temporal coherence and action accuracy.\n\nWould you like me to search for more specific information about world models or other aspects of this topic?"
+    ],
+    "durationSeconds": 7.039760069000011
+  },
+  "sourceToolAssistantUUID": "f864d62a-df11-4f66-8d04-e1ab8c2b77cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-10T17:57:00.227Z_
+
+<details><summary>↩ Tool result · `toolu_01HMJ6ir1GSLUFnnCdDR2fur`</summary>
+
+```text
+Web search results for query: "LIBERO benchmark success rate state of the art 2026"
+
+Links: [{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of ...","url":"https://arxiv.org/pdf/2510.03827"},{"title":"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning","url":"https://www.cs.utexas.edu/~pstone/Papers/bib2html-links/liu_zhu_NeurIPS2023.pdf"},{"title":"LIBERO: simulation benchmark for the study of lifelong robot learning | by Deepthi Karkada | Medium","url":"https://medium.com/@deepkarkada/libero-simulation-benchmark-for-the-study-of-lifelong-robot-learning-583b786a96f6"},{"title":"[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/abs/2510.13626"},{"title":"Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://huggingface.co/papers/2510.13626"},{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization","url":"https://arxiv.org/html/2510.03827v1"},{"title":"LIBERO Benchmark: Vision-Language-Action in Robotics","url":"https://www.emergentmind.com/topics/libero"},{"title":"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning","url":"https://papers.neurips.cc/paper_files/paper/2023/file/8c3c666820ea055a77726d66fc7d447f-Paper-Datasets_and_Benchmarks.pdf"},{"title":"Libero-Object Benchmark","url":"https://www.emergentmind.com/topics/libero-object-benchmark"}]
+
+Based on the search results, here's what I found about LIBERO benchmark success rates and state-of-the-art performance in 2026:
+
+## Standard LIBERO Benchmark Performance
+
+State-of-the-art models achieve success rates above 90% on the standard LIBERO benchmark, making it the dominant evaluation metric for vision-language-action (VLA) models in robotics.
+
+## State-of-the-Art Models
+
+One of the most recent state-of-the-art results comes from the LIBERO-Plus study: A method achieves the highest overall success rate (79.6%), outperforming all baseline models across nearly all perturbation types. Additionally, it exhibits a dramatic improvement in camera view robustness (92.8%), surpassing the next best model by 37.2 percentage points.
+
+## Important Caveats About Reported Scores
+
+However, recent research reveals significant limitations in how these high success rates should be interpreted:
+
+Despite achieving over 90% on the standard LIBERO benchmark, the reported scores reflect rote recall rather than genuine task understanding. This is a critical finding from the LIBERO-PRO evaluation suite, which shows that models exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations.
+
+The key takeaway is that while headline success rates on standard LIBERO exceed 90%, these benchmarks may not fully capture model robustness and generalization under real-world conditions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e6bb79da-b6c1-4fd0-a0d6-b6da94abea68",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "9c69fa18-06d5-4284-b419-81929d819f5c",
+  "toolUseResult": {
+    "query": "LIBERO benchmark success rate state of the art 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0172rDJsePdBm9Bd6iaKRWWe",
+        "content": [
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "LIBERO-PRO: Towards Robust and Fair Evaluation of ...",
+            "url": "https://arxiv.org/pdf/2510.03827"
+          },
+          {
+            "title": "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning",
+            "url": "https://www.cs.utexas.edu/~pstone/Papers/bib2html-links/liu_zhu_NeurIPS2023.pdf"
+          },
+          {
+            "title": "LIBERO: simulation benchmark for the study of lifelong robot learning | by Deepthi Karkada | Medium",
+            "url": "https://medium.com/@deepkarkada/libero-simulation-benchmark-for-the-study-of-lifelong-robot-learning-583b786a96f6"
+          },
+          {
+            "title": "[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/abs/2510.13626"
+          },
+          {
+            "title": "Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://huggingface.co/papers/2510.13626"
+          },
+          {
+            "title": "LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization",
+            "url": "https://arxiv.org/html/2510.03827v1"
+          },
+          {
+            "title": "LIBERO Benchmark: Vision-Language-Action in Robotics",
+            "url": "https://www.emergentmind.com/topics/libero"
+          },
+          {
+            "title": "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning",
+            "url": "https://papers.neurips.cc/paper_files/paper/2023/file/8c3c666820ea055a77726d66fc7d447f-Paper-Datasets_and_Benchmarks.pdf"
+          },
+          {
+            "title": "Libero-Object Benchmark",
+            "url": "https://www.emergentmind.com/topics/libero-object-benchmark"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about LIBERO benchmark success rates and state-of-the-art performance in 2026:\n\n## Standard LIBERO Benchmark Performance\n\nState-of-the-art models achieve success rates above 90% on the standard LIBERO benchmark, making it the dominant evaluation metric for vision-language-action (VLA) models in robotics.\n\n## State-of-the-Art Models\n\nOne of the most recent state-of-the-art results comes from the LIBERO-Plus study: A method achieves the highest overall success rate (79.6%), outperforming all baseline models across nearly all perturbation types. Additionally, it exhibits a dramatic improvement in camera view robustness (92.8%), surpassing the next best model by 37.2 percentage points.\n\n## Important Caveats About Reported Scores\n\nHowever, recent research reveals significant limitations in how these high success rates should be interpreted:\n\nDespite achieving over 90% on the standard LIBERO benchmark, the reported scores reflect rote recall rather than genuine task understanding. This is a critical finding from the LIBERO-PRO evaluation suite, which shows that models exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations.\n\nThe key takeaway is that while headline success rates on standard LIBERO exceed 90%, these benchmarks may not fully capture model robustness and generalization under real-world conditions."
+    ],
+    "durationSeconds": 7.489698471999989
+  },
+  "sourceToolAssistantUUID": "e6bb79da-b6c1-4fd0-a0d6-b6da94abea68",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 62 · 2026-05-10T17:57:00.232Z_
+
+```json
+{
+  "parentUuid": "9c69fa18-06d5-4284-b419-81929d819f5c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0eda45df-e2ff-44d1-a5af-0485645f0a2e",
+  "timestamp": "2026-05-10T17:57:00.232Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-10T17:57:24.232Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is a critical finding. Let me digest this:
+
+**UWM's timestep sampling is already independent and random**: "On robot trajectories, the diffusion timesteps for actions and next observations are sampled independently at random."
+
+This means that during UWM training, there are ALREADY cases where video timestep is near T (pure noise) while action timestep is at various levels. The model has ALREADY been exposed to predicting actions without video context (video at pure noise) AND predicting actions with video context (video at intermediate timesteps).
+
+**Implication for the proposed VB-CFG method**: If UWM already samples all combinations of (t_video, t_action) independently during training, then the model ALREADY knows how to predict actions both with and without video features. This means:
+
+
+- I might not need the proposed "video-branch dropout fine-tuning" at all
+- I could potentially just apply CFG directly on a pre-trained UWM by comparing predictions with video at intermediate timesteps versus video at pure noise
+
+But there's a subtlety here: in standard CFG, you explicitly train with null conditioning dropped at some probability p, whereas in UWM the video timestep varies continuously. While t_video=T is technically possible during training, it may not be sampled frequently enough to create a truly robust unconditional model. In continuous diffusion, timesteps are typically sampled uniformly, so the probability of hitting exactly T might be too low to give CFG the strong signal it needs.
+
+So adding explicit dropout with probability p=0.1-0.2 would actually strengthen the model's ability to predict actions without video, similar to how standard CFG training works. The reviewer should recognize that VB-CFG might work without fine-tuning on a pre-trained UWM since independent timestep sampling already provides some video-free signal, but the fine-tuning just amplifies this capability—which is actually a positive for the paper since it suggests a natural ablation study.
+
+Now I'm noticing another relevant paper appeared: "No Training, No Problem: Rethinking Classifier-Free Guidance for Diffusion Models" which proposes CFG without training-time dropout, so I should look into that. I'm also thinking about the LIBERO benchmark—if VB-CFG only provides marginal improvements like 91% to 93%, that might not be compelling enough, but if it helps on harder tasks or improves robustness, that's more interesting. Let me search for that CFG paper, check the RoboTwin benchmark details, and see if there are any concurrent WAM papers from May 2026.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0eda45df-e2ff-44d1-a5af-0485645f0a2e",
+  "isSidechain": false,
+  "requestId": "req_011CauKXiaxMerufT7ad2RfJ",
+  "type": "assistant",
+  "uuid": "972fb74c-6deb-48d7-a1a5-311e10916a5d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CcssN9KLvuoCRprVZzk5Y3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4507,
+      "cache_read_input_tokens": 38159,
+      "output_tokens": 949,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4507,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 949,
+          "cache_read_input_tokens": 38159,
+          "cache_creation_input_tokens": 4507,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4507
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-10T17:57:24.243Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SoggniDR9eq4A4pzTZJJv1`</summary>
+
+```json
+{
+  "query": "\"No Training No Problem\" rethinking classifier-free guidance without training 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "972fb74c-6deb-48d7-a1a5-311e10916a5d",
+  "isSidechain": false,
+  "requestId": "req_011CauKXiaxMerufT7ad2RfJ",
+  "type": "assistant",
+  "uuid": "24b5d006-da8a-4627-b08a-82180eeaf18c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CcssN9KLvuoCRprVZzk5Y3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4507,
+      "cache_read_input_tokens": 38159,
+      "output_tokens": 949,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4507,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 949,
+          "cache_read_input_tokens": 38159,
+          "cache_creation_input_tokens": 4507,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4507
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-10T17:57:24.252Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015MTrrVEJW2Lj8bUyuVUKh1`</summary>
+
+```json
+{
+  "query": "RoboTwin benchmark 2.0 world action model evaluation 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "24b5d006-da8a-4627-b08a-82180eeaf18c",
+  "isSidechain": false,
+  "requestId": "req_011CauKXiaxMerufT7ad2RfJ",
+  "type": "assistant",
+  "uuid": "b6ee0d22-edab-4d20-a6da-0eeec986656d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CcssN9KLvuoCRprVZzk5Y3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4507,
+      "cache_read_input_tokens": 38159,
+      "output_tokens": 949,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4507,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 949,
+          "cache_read_input_tokens": 38159,
+          "cache_creation_input_tokens": 4507,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4507
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-10T17:57:24.255Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UGep68Mcro2eHTkMY3xonH`</summary>
+
+```json
+{
+  "query": "world action model new method arXiv May 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b6ee0d22-edab-4d20-a6da-0eeec986656d",
+  "isSidechain": false,
+  "requestId": "req_011CauKXiaxMerufT7ad2RfJ",
+  "type": "assistant",
+  "uuid": "449a45c2-2022-4620-b221-3d4198b1eb3c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CcssN9KLvuoCRprVZzk5Y3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4507,
+      "cache_read_input_tokens": 38159,
+      "output_tokens": 949,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4507,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 949,
+          "cache_read_input_tokens": 38159,
+          "cache_creation_input_tokens": 4507,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4507
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 67_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "449a45c2-2022-4620-b221-3d4198b1eb3c",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 68_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reviewer: Video-Branch CFG for WAM Action Denoising",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381"
+}
+```
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-10T17:57:27.971Z_
+
+<details><summary>↩ Tool result · `toolu_01SoggniDR9eq4A4pzTZJJv1`</summary>
+
+```text
+Web search results for query: ""No Training No Problem" rethinking classifier-free guidance without training 2024 2025"
+
+No links found.
+
+Based on the search results, I found information about a recent research paper:
+
+"No Training No Problem" is a paper that presents a novel approach to rethinking classifier-free guidance in diffusion models without requiring training. The research addresses how to implement guidance mechanisms in diffusion models more efficiently, moving away from traditional training-based approaches. This work appears to be part of the emerging research in 2024-2025 focused on improving the efficiency and flexibility of guidance methods in generative AI models.
+
+The paper's title reflects its core contribution—enabling classifier-free guidance techniques without needing to train additional models or classifiers, which represents an interesting shift in how guidance can be implemented in diffusion-based generative models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "24b5d006-da8a-4627-b08a-82180eeaf18c",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "c6cad4ad-d0c6-4b50-86dd-83ade0653fba",
+  "toolUseResult": {
+    "query": "\"No Training No Problem\" rethinking classifier-free guidance without training 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ARwz6ZYRsHBnmTCor79u4P",
+        "content": []
+      },
+      "Based on the search results, I found information about a recent research paper:\n\n\"No Training No Problem\" is a paper that presents a novel approach to rethinking classifier-free guidance in diffusion models without requiring training. The research addresses how to implement guidance mechanisms in diffusion models more efficiently, moving away from traditional training-based approaches. This work appears to be part of the emerging research in 2024-2025 focused on improving the efficiency and flexibility of guidance methods in generative AI models.\n\nThe paper's title reflects its core contribution—enabling classifier-free guidance techniques without needing to train additional models or classifiers, which represents an interesting shift in how guidance can be implemented in diffusion-based generative models."
+    ],
+    "durationSeconds": 3.7222757050000075
+  },
+  "sourceToolAssistantUUID": "24b5d006-da8a-4627-b08a-82180eeaf18c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-10T17:57:31.243Z_
+
+<details><summary>↩ Tool result · `toolu_01UGep68Mcro2eHTkMY3xonH`</summary>
+
+```text
+Web search results for query: "world action model new method arXiv May 2026"
+
+Links: [{"title":"DreamZero: World Action Models are Zero-shot Policies","url":"https://dreamzero0.github.io/"},{"title":"World Action Models are Zero-shot Policies","url":"https://arxiv.org/html/2602.15922v1"},{"title":"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation","url":"https://arxiv.org/html/2605.06481v1"},{"title":"[2603.16666] Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://arxiv.org/abs/2603.16666"},{"title":"MotuBrain: An Advanced World Action Model for Robot Control","url":"https://arxiv.org/html/2604.27792v2"},{"title":"Explore | alphaXiv","url":"https://www.alphaxiv.org/"},{"title":"EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields","url":"https://arxiv.org/html/2605.06192v1"},{"title":"LATENT STATE DESIGN FOR WORLD MODELS UNDER SUFFICIENCY CONSTRAINTS A PREPRINT","url":"https://arxiv.org/pdf/2605.01694"},{"title":"Do World Action Models Generalize Better than VLAs? A Robustness Study","url":"https://arxiv.org/html/2603.22078v1"},{"title":"[2506.21539] WorldVLA: Towards Autoregressive Action World Model","url":"https://arxiv.org/abs/2506.21539"}]
+
+Based on the search results, here are several new World Action Model methods from arXiv in May 2026:
+
+## Key Papers from May 2026:
+
+1. **OA-WAM: Object-Addressable World Action Model** (May 7, 2026)
+   OA-WAM is an Object-Addressable World Action Model for robust robot manipulation. It addresses the issue that most existing WAM methods represent the predicted world as holistic images, video-token streams, or global latents—making it hard for the action decoder to locate a specific target object when an instruction refers to it.
+
+2. **FFDC-WAM: When to Trust Imagination** (May 7, 2026)
+   FFDC-WAM is a framework that enables World Action Models to adaptively execute actions by continuously verifying their predicted future observations against real-world sensory input.
+
+3. **MotuBrain: An Advanced World Action Model** (May 1, 2026)
+   MotuBrain adopts UniDiffuser to jointly model and schedule two continuous modalities, i.e., video and action, so that all interaction patterns between them are captured in a unified generative framework.
+
+4. **EA-WM: Event-Aware Generative World Model** (May 7, 2026)
+   EA-WM leverages pretrained video diffusion models as a foundation for robotic world models, while recent world-action models jointly optimize future videos and actions.
+
+These papers represent recent advances in making world action models more efficient, robust, and interpretable for robotic control applications.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "449a45c2-2022-4620-b221-3d4198b1eb3c",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "c3c3afde-59ca-4170-ba19-95be42a54f31",
+  "toolUseResult": {
+    "query": "world action model new method arXiv May 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015b2yqtJG2z1dx6D2J6uq8q",
+        "content": [
+          {
+            "title": "DreamZero: World Action Models are Zero-shot Policies",
+            "url": "https://dreamzero0.github.io/"
+          },
+          {
+            "title": "World Action Models are Zero-shot Policies",
+            "url": "https://arxiv.org/html/2602.15922v1"
+          },
+          {
+            "title": "OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation",
+            "url": "https://arxiv.org/html/2605.06481v1"
+          },
+          {
+            "title": "[2603.16666] Fast-WAM: Do World Action Models Need Test-time Future Imagination?",
+            "url": "https://arxiv.org/abs/2603.16666"
+          },
+          {
+            "title": "MotuBrain: An Advanced World Action Model for Robot Control",
+            "url": "https://arxiv.org/html/2604.27792v2"
+          },
+          {
+            "title": "Explore | alphaXiv",
+            "url": "https://www.alphaxiv.org/"
+          },
+          {
+            "title": "EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields",
+            "url": "https://arxiv.org/html/2605.06192v1"
+          },
+          {
+            "title": "LATENT STATE DESIGN FOR WORLD MODELS UNDER SUFFICIENCY CONSTRAINTS A PREPRINT",
+            "url": "https://arxiv.org/pdf/2605.01694"
+          },
+          {
+            "title": "Do World Action Models Generalize Better than VLAs? A Robustness Study",
+            "url": "https://arxiv.org/html/2603.22078v1"
+          },
+          {
+            "title": "[2506.21539] WorldVLA: Towards Autoregressive Action World Model",
+            "url": "https://arxiv.org/abs/2506.21539"
+          }
+        ]
+      },
+      "Based on the search results, here are several new World Action Model methods from arXiv in May 2026:\n\n## Key Papers from May 2026:\n\n1. **OA-WAM: Object-Addressable World Action Model** (May 7, 2026)\n   OA-WAM is an Object-Addressable World Action Model for robust robot manipulation. It addresses the issue that most existing WAM methods represent the predicted world as holistic images, video-token streams, or global latents—making it hard for the action decoder to locate a specific target object when an instruction refers to it.\n\n2. **FFDC-WAM: When to Trust Imagination** (May 7, 2026)\n   FFDC-WAM is a framework that enables World Action Models to adaptively execute actions by continuously verifying their predicted future observations against real-world sensory input.\n\n3. **MotuBrain: An Advanced World Action Model** (May 1, 2026)\n   MotuBrain adopts UniDiffuser to jointly model and schedule two continuous modalities, i.e., video and action, so that all interaction patterns between them are captured in a unified generative framework.\n\n4. **EA-WM: Event-Aware Generative World Model** (May 7, 2026)\n   EA-WM leverages pretrained video diffusion models as a foundation for robotic world models, while recent world-action models jointly optimize future videos and actions.\n\nThese papers represent recent advances in making world action models more efficient, robust, and interpretable for robotic control applications."
+    ],
+    "durationSeconds": 6.986825517999998
+  },
+  "sourceToolAssistantUUID": "449a45c2-2022-4620-b221-3d4198b1eb3c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-10T17:57:35.985Z_
+
+<details><summary>↩ Tool result · `toolu_015MTrrVEJW2Lj8bUyuVUKh1`</summary>
+
+```text
+Web search results for query: "RoboTwin benchmark 2.0 world action model evaluation 2026"
+
+Links: [{"title":"RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong Domain Randomization for Robust Bimanual Robotic Manipulation | OpenReview","url":"https://openreview.net/forum?id=vAPIIscwc7"},{"title":"[2506.18088] RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong Domain Randomization for Robust Bimanual Robotic Manipulation","url":"https://arxiv.org/abs/2506.18088"},{"title":"RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong","url":"https://robogen-iros.github.io/accepted/9_RoboTwin_2_0_A_Scalable_Data.pdf"},{"title":"GitHub - Robbyant/lingbot-va: [RSS 2026] Causal video-action world model for generalist robot control · GitHub","url":"https://github.com/robbyant/lingbot-va"},{"title":"dWorldEval: Scalable Robotic Policy Evaluation via Discrete Diffusion World Model","url":"https://arxiv.org/html/2604.22152v1"},{"title":"RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong Domain Randomization for Robust Bimanual Robotic Manipulation","url":"https://arxiv.org/html/2506.18088v1"},{"title":"WorldArena: A Unified Benchmark for Evaluating Perception","url":"https://arxiv.org/pdf/2602.08971"},{"title":"MotuBrain World Model Tops Two Global Benchmarks — A Breakthrough in Robot Intelligence - DeepInsightAI","url":"https://deepinsightai.io/motubrain-world-model/"},{"title":"X-VLA/evaluation/robotwin-2.0/README.md at main · 2toinf/X-VLA","url":"https://github.com/2toinf/X-VLA/blob/main/evaluation/robotwin-2.0/README.md"},{"title":"JailWAM: Jailbreaking World Action Models in Robot Control","url":"https://arxiv.org/html/2604.05498v1"}]
+
+Based on the search results, I found comprehensive information about RoboTwin 2.0 and world action model evaluation in 2026:
+
+## RoboTwin 2.0 Overview
+
+RoboTwin 2.0 is a scalable framework for automated diverse synthetic data generation and unified evaluation for bimanual manipulation. The framework includes RoboTwin-OD, an object library of 731 instances across 147 categories with semantic and manipulation labels.
+
+## Key Capabilities and Results
+
+Vision-language-action models trained with RoboTwin 2.0's synthetic data achieve 367% performance improvements in the few-shot setting and 228% improvements in the zero-shot setting, relative to a 10-demo real-only baseline. The framework evaluates multiple policies across 50 tasks with two difficulty settings, establishing a comprehensive benchmark to study policy performance.
+
+## Domain Randomization and Scale
+
+To improve sim-to-real transfer, RoboTwin 2.0 applies structured domain randomization over five factors (clutter, lighting, background, tabletop height, language instructions). The framework is instantiated across 50 dual-arm tasks and five robot embodiments.
+
+## World Action Model Evaluation
+
+In 2026, RoboTwin 2.0 evaluates robot task execution and generalization ability, where MotuBrain reached 95.8 and 96.1 in Clean and Randomized settings respectively, ranking first. LingBot-VA unifies future frame prediction and action inference within an autoregressive video-action framework, achieving state-of-the-art performance on the RoboTwin 2.0 benchmark.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b6ee0d22-edab-4d20-a6da-0eeec986656d",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "7e0778ca-0fbd-4cfb-86ff-e28bbfb74159",
+  "toolUseResult": {
+    "query": "RoboTwin benchmark 2.0 world action model evaluation 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RR9K6qpSKt1nfT7Q9HGZhA",
+        "content": [
+          {
+            "title": "RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong Domain Randomization for Robust Bimanual Robotic Manipulation | OpenReview",
+            "url": "https://openreview.net/forum?id=vAPIIscwc7"
+          },
+          {
+            "title": "[2506.18088] RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong Domain Randomization for Robust Bimanual Robotic Manipulation",
+            "url": "https://arxiv.org/abs/2506.18088"
+          },
+          {
+            "title": "RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong",
+            "url": "https://robogen-iros.github.io/accepted/9_RoboTwin_2_0_A_Scalable_Data.pdf"
+          },
+          {
+            "title": "GitHub - Robbyant/lingbot-va: [RSS 2026] Causal video-action world model for generalist robot control · GitHub",
+            "url": "https://github.com/robbyant/lingbot-va"
+          },
+          {
+            "title": "dWorldEval: Scalable Robotic Policy Evaluation via Discrete Diffusion World Model",
+            "url": "https://arxiv.org/html/2604.22152v1"
+          },
+          {
+            "title": "RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong Domain Randomization for Robust Bimanual Robotic Manipulation",
+            "url": "https://arxiv.org/html/2506.18088v1"
+          },
+          {
+            "title": "WorldArena: A Unified Benchmark for Evaluating Perception",
+            "url": "https://arxiv.org/pdf/2602.08971"
+          },
+          {
+            "title": "MotuBrain World Model Tops Two Global Benchmarks — A Breakthrough in Robot Intelligence - DeepInsightAI",
+            "url": "https://deepinsightai.io/motubrain-world-model/"
+          },
+          {
+            "title": "X-VLA/evaluation/robotwin-2.0/README.md at main · 2toinf/X-VLA",
+            "url": "https://github.com/2toinf/X-VLA/blob/main/evaluation/robotwin-2.0/README.md"
+          },
+          {
+            "title": "JailWAM: Jailbreaking World Action Models in Robot Control",
+            "url": "https://arxiv.org/html/2604.05498v1"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about RoboTwin 2.0 and world action model evaluation in 2026:\n\n## RoboTwin 2.0 Overview\n\nRoboTwin 2.0 is a scalable framework for automated diverse synthetic data generation and unified evaluation for bimanual manipulation. The framework includes RoboTwin-OD, an object library of 731 instances across 147 categories with semantic and manipulation labels.\n\n## Key Capabilities and Results\n\nVision-language-action models trained with RoboTwin 2.0's synthetic data achieve 367% performance improvements in the few-shot setting and 228% improvements in the zero-shot setting, relative to a 10-demo real-only baseline. The framework evaluates multiple policies across 50 tasks with two difficulty settings, establishing a comprehensive benchmark to study policy performance.\n\n## Domain Randomization and Scale\n\nTo improve sim-to-real transfer, RoboTwin 2.0 applies structured domain randomization over five factors (clutter, lighting, background, tabletop height, language instructions). The framework is instantiated across 50 dual-arm tasks and five robot embodiments.\n\n## World Action Model Evaluation\n\nIn 2026, RoboTwin 2.0 evaluates robot task execution and generalization ability, where MotuBrain reached 95.8 and 96.1 in Clean and Randomized settings respectively, ranking first. LingBot-VA unifies future frame prediction and action inference within an autoregressive video-action framework, achieving state-of-the-art performance on the RoboTwin 2.0 benchmark."
+    ],
+    "durationSeconds": 11.73124567199999
+  },
+  "sourceToolAssistantUUID": "b6ee0d22-edab-4d20-a6da-0eeec986656d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72 · 2026-05-10T17:57:48.981Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Several critical findings:
+
+1. **LingBot-VA** (RSS 2026): "Causal video-action world model for generalist robot control" - this is a new paper I need to check, appearing to be accepted at RSS 2026.
+
+2. **OA-WAM** (May 7, 2026): Object-addressable WAM - not directly competing with VB-CFG.
+
+3. **MotuBrain**: Tops RoboTwin 2.0 benchmarks with scores of 95.8 and 96.1.
+
+
+4. **"Do World Action Models Generalize Better than VLAs? A Robustness Study"** - this directly addresses the core comparison I'm trying to understand.
+
+Now I'm realizing a potential issue with my approach: UWM's uniform independent timestep sampling might already function as implicit video dropout during training, which means adding explicit dropout during fine-tuning could be redundant. If that's the case, I might achieve the same effect just by applying CFG at inference on the pre-trained model without the fine-tuning step. I need to investigate whether any existing work explicitly discusses modality amplification during dropout scenarios.
+
+I should also revisit the "No Training, No Problem" paper since it demonstrates CFG working without training-time dropout—that could simplify VB-CFG significantly by eliminating the fine-tuning requirement altogether. Let me check the OA-WAM paper and scan for other concurrent work in this space.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7e0778ca-0fbd-4cfb-86ff-e28bbfb74159",
+  "isSidechain": false,
+  "requestId": "req_011CauKaM7DH8x3rdJGapxx4",
+  "type": "assistant",
+  "uuid": "689c25ad-d10c-4d1c-a1ae-ef27f7794b8b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WKkkPSNDmfhgrxs37SAoFf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 823,
+      "cache_creation_input_tokens": 2187,
+      "cache_read_input_tokens": 42666,
+      "output_tokens": 550,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2187,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 823,
+          "output_tokens": 550,
+          "cache_read_input_tokens": 42666,
+          "cache_creation_input_tokens": 2187,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2187
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-10T17:57:49.007Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014h5cL67whm1XzYbQhyfpmo`</summary>
+
+```json
+{
+  "query": "OA-WAM object-addressable world action model May 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "689c25ad-d10c-4d1c-a1ae-ef27f7794b8b",
+  "isSidechain": false,
+  "requestId": "req_011CauKaM7DH8x3rdJGapxx4",
+  "type": "assistant",
+  "uuid": "53af5ded-893c-4c3c-868d-c8416ab3655a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WKkkPSNDmfhgrxs37SAoFf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 823,
+      "cache_creation_input_tokens": 2187,
+      "cache_read_input_tokens": 42666,
+      "output_tokens": 550,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2187,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 823,
+          "output_tokens": 550,
+          "cache_read_input_tokens": 42666,
+          "cache_creation_input_tokens": 2187,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2187
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-10T17:57:49.035Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SxNKEhs6JcYzc6rahr8CwA`</summary>
+
+```json
+{
+  "query": "multimodal diffusion guidance amplify one modality during another denoising cross-modal guidance 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "53af5ded-893c-4c3c-868d-c8416ab3655a",
+  "isSidechain": false,
+  "requestId": "req_011CauKaM7DH8x3rdJGapxx4",
+  "type": "assistant",
+  "uuid": "41d9220f-97df-4253-b727-0a5cc4694fe1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WKkkPSNDmfhgrxs37SAoFf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 823,
+      "cache_creation_input_tokens": 2187,
+      "cache_read_input_tokens": 42666,
+      "output_tokens": 550,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2187,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 823,
+          "output_tokens": 550,
+          "cache_read_input_tokens": 42666,
+          "cache_creation_input_tokens": 2187,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2187
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-10T17:57:49.038Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KY9kJNwGCN9vAeS5ozQzYB`</summary>
+
+```json
+{
+  "query": "unified diffusion model independent timestep modality dropout classifier free guidance"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "41d9220f-97df-4253-b727-0a5cc4694fe1",
+  "isSidechain": false,
+  "requestId": "req_011CauKaM7DH8x3rdJGapxx4",
+  "type": "assistant",
+  "uuid": "7653105c-3851-4c61-bb9a-c7865a6f0445",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WKkkPSNDmfhgrxs37SAoFf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 823,
+      "cache_creation_input_tokens": 2187,
+      "cache_read_input_tokens": 42666,
+      "output_tokens": 550,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2187,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 823,
+          "output_tokens": 550,
+          "cache_read_input_tokens": 42666,
+          "cache_creation_input_tokens": 2187,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2187
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-10T17:57:55.946Z_
+
+<details><summary>↩ Tool result · `toolu_014h5cL67whm1XzYbQhyfpmo`</summary>
+
+```text
+Web search results for query: "OA-WAM object-addressable world action model May 2026 arxiv"
+
+Links: [{"title":"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation","url":"https://arxiv.org/html/2605.06481v1"},{"title":"Robotics","url":"https://arxiv.org/list/cs.RO/recent"},{"title":"World Action Models are Zero-shot Policies","url":"https://arxiv.org/html/2602.15922v1"},{"title":"[2603.16666] Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://arxiv.org/abs/2603.16666"},{"title":"Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://arxiv.org/html/2603.16666v2"},{"title":"Do World Action Models Generalize Better than VLAs? A Robustness Study","url":"https://arxiv.org/html/2603.22078v1"},{"title":"MotuBrain: An Advanced World Action Model for Robot Control","url":"https://arxiv.org/html/2604.27792v2"},{"title":"DreamZero: World Action Models are Zero-shot Policies","url":"https://dreamzero0.github.io/"},{"title":"EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields","url":"https://arxiv.org/html/2605.06192v1"},{"title":"Fast-WAM: Do World Action Models Need Test-time Future Imagination?…","url":"https://www.opentrain.ai/papers/fast-wam-do-world-action-models-need-test-time-future-imagination--arxiv-2603.16666/"}]
+
+Based on the search results, I found information about OA-WAM:
+
+OA-WAM (Object-Addressable World Action Model) was submitted to arXiv on May 7, 2026, and is designed for robust robot manipulation.
+
+The paper addresses a limitation in existing World Action Models (WAM) that represent the predicted world as holistic images, video-token streams, or global latents—making it difficult for the action decoder to locate a specific target object when an instruction refers to it, since under novel scene shifts the relevant object often remains visible while holistic tokens entangle its identity with surrounding context.
+
+OA-WAM separates "which object to act on" from "what that object currently is" at the tensor level, providing an intervenable object-level interface without introducing extra tokens.
+
+The model matches state-of-the-art VLA and WAM baselines on LIBERO benchmark tests, and sets new state-of-the-art results on the geometric axes of LIBERO-Plus. The results demonstrate that explicitly organizing a world model as addressable object states is an effective path toward more robust robot manipulation under scene perturbations.
+
+The paper is authored by researchers from Tsinghua University, Shanghai Jiao Tong University, and Nanyang Technological University, with the arXiv identifier 2605.06481.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "53af5ded-893c-4c3c-868d-c8416ab3655a",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "daa786f4-376b-4734-8c24-98365feab1ee",
+  "toolUseResult": {
+    "query": "OA-WAM object-addressable world action model May 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PphwCz88WG6DTeLB8LnAuH",
+        "content": [
+          {
+            "title": "OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation",
+            "url": "https://arxiv.org/html/2605.06481v1"
+          },
+          {
+            "title": "Robotics",
+            "url": "https://arxiv.org/list/cs.RO/recent"
+          },
+          {
+            "title": "World Action Models are Zero-shot Policies",
+            "url": "https://arxiv.org/html/2602.15922v1"
+          },
+          {
+            "title": "[2603.16666] Fast-WAM: Do World Action Models Need Test-time Future Imagination?",
+            "url": "https://arxiv.org/abs/2603.16666"
+          },
+          {
+            "title": "Fast-WAM: Do World Action Models Need Test-time Future Imagination?",
+            "url": "https://arxiv.org/html/2603.16666v2"
+          },
+          {
+            "title": "Do World Action Models Generalize Better than VLAs? A Robustness Study",
+            "url": "https://arxiv.org/html/2603.22078v1"
+          },
+          {
+            "title": "MotuBrain: An Advanced World Action Model for Robot Control",
+            "url": "https://arxiv.org/html/2604.27792v2"
+          },
+          {
+            "title": "DreamZero: World Action Models are Zero-shot Policies",
+            "url": "https://dreamzero0.github.io/"
+          },
+          {
+            "title": "EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields",
+            "url": "https://arxiv.org/html/2605.06192v1"
+          },
+          {
+            "title": "Fast-WAM: Do World Action Models Need Test-time Future Imagination?…",
+            "url": "https://www.opentrain.ai/papers/fast-wam-do-world-action-models-need-test-time-future-imagination--arxiv-2603.16666/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about OA-WAM:\n\nOA-WAM (Object-Addressable World Action Model) was submitted to arXiv on May 7, 2026, and is designed for robust robot manipulation.\n\nThe paper addresses a limitation in existing World Action Models (WAM) that represent the predicted world as holistic images, video-token streams, or global latents—making it difficult for the action decoder to locate a specific target object when an instruction refers to it, since under novel scene shifts the relevant object often remains visible while holistic tokens entangle its identity with surrounding context.\n\nOA-WAM separates \"which object to act on\" from \"what that object currently is\" at the tensor level, providing an intervenable object-level interface without introducing extra tokens.\n\nThe model matches state-of-the-art VLA and WAM baselines on LIBERO benchmark tests, and sets new state-of-the-art results on the geometric axes of LIBERO-Plus. The results demonstrate that explicitly organizing a world model as addressable object states is an effective path toward more robust robot manipulation under scene perturbations.\n\nThe paper is authored by researchers from Tsinghua University, Shanghai Jiao Tong University, and Nanyang Technological University, with the arXiv identifier 2605.06481."
+    ],
+    "durationSeconds": 6.934944236999989
+  },
+  "sourceToolAssistantUUID": "53af5ded-893c-4c3c-868d-c8416ab3655a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-10T17:57:56.362Z_
+
+<details><summary>↩ Tool result · `toolu_01KY9kJNwGCN9vAeS5ozQzYB`</summary>
+
+```text
+Web search results for query: "unified diffusion model independent timestep modality dropout classifier free guidance"
+
+Links: [{"title":"Unified Multimodal Discrete Diffusion","url":"https://arxiv.org/html/2503.20853v1"},{"title":"An overview of classifier-free guidance for diffusion models | AI Summer","url":"https://theaisummer.com/classifier-free-guidance/"},{"title":"Guidance: a cheat code for diffusion models – Sander Dieleman","url":"https://sander.ai/2022/05/26/guidance.html"},{"title":"[2207.12598] Classifier-Free Diffusion Guidance","url":"https://arxiv.org/abs/2207.12598"},{"title":"[2503.20853] Unified Multimodal Discrete Diffusion - ar5iv - arXiv","url":"https://ar5iv.labs.arxiv.org/html/2503.20853"},{"title":"[2512.07184] UniDiff: A Unified Diffusion Framework for Multimodal Time Series Forecasting","url":"https://arxiv.org/abs/2512.07184"},{"title":"No Training, No Problem: Rethinking Classifier-Free Guidance for Diffusion Models | Disney Research Studios","url":"https://studios.disneyresearch.com/2025/04/23/no-training-no-problem-rethinking-diffusion-guidance-for-diffusion-models/"},{"title":"Implementing Classifier-Free Guidance","url":"https://apxml.com/courses/intro-diffusion-models/chapter-6-conditional-generation-diffusion/implementing-classifier-free-guidance"},{"title":"One Transformer Fits All Distributions in Multi-Modal Diffusion at Scale","url":"https://proceedings.mlr.press/v202/bao23a/bao23a.pdf"},{"title":"An overview of classifier-free diffusion guidance: impaired model guidance with a bad version of itself (part 2) | AI Summer","url":"https://theaisummer.com/classifier-free-guidance-part-2/"}]
+
+I've found comprehensive search results related to your query. Here are the key findings:
+
+## Unified Diffusion Models for Multimodal Generation
+
+Recent work explores a discrete diffusion formulation for jointly modeling text and image modalities with a unified set of hyperparameters, proposing a unified architecture that jointly tokenizes text and images and uses full self-attention to learn to map a masked token sequence to a clean token sequence by sampling from a joint vocabulary of text and image tokens.
+
+## Independent Timestep Handling
+
+Some unified diffusion approaches input individual timesteps in different modalities and predict the noise of all modalities instead of a single modality, allowing them to perform all kinds of generation in the same way as bespoken diffusion models.
+
+## Modality Dropout for Classifier-Free Guidance
+
+To enable classifier-free guidance, modalities are dropped with 10% probability during training. For multimodal models, both modalities are dropped while for autoregressive baselines only the first modality in the input sequence is dropped.
+
+This approach sets all tokens of a random modality to be mask tokens with a probability of 0.1, allowing the model to learn unconditional likelihood for image and text modality.
+
+## Timestep Guidance Extensions
+
+By leveraging the time-step information encoded in all diffusion networks, there is an extension of classifier-free guidance called timestep guidance (TSG), which can be applied to any diffusion model, including unconditional ones.
+
+The search results highlight recent advances in unified multimodal diffusion models that treat multiple modalities with consistent frameworks while using modality dropout and classifier-free guidance techniques to improve generation quality and diversity.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7653105c-3851-4c61-bb9a-c7865a6f0445",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "d1f8cda9-01d8-4169-bfd9-8f84f88132b5",
+  "toolUseResult": {
+    "query": "unified diffusion model independent timestep modality dropout classifier free guidance",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Xe6j4WYvXpoDgXdooU8Myd",
+        "content": [
+          {
+            "title": "Unified Multimodal Discrete Diffusion",
+            "url": "https://arxiv.org/html/2503.20853v1"
+          },
+          {
+            "title": "An overview of classifier-free guidance for diffusion models | AI Summer",
+            "url": "https://theaisummer.com/classifier-free-guidance/"
+          },
+          {
+            "title": "Guidance: a cheat code for diffusion models – Sander Dieleman",
+            "url": "https://sander.ai/2022/05/26/guidance.html"
+          },
+          {
+            "title": "[2207.12598] Classifier-Free Diffusion Guidance",
+            "url": "https://arxiv.org/abs/2207.12598"
+          },
+          {
+            "title": "[2503.20853] Unified Multimodal Discrete Diffusion - ar5iv - arXiv",
+            "url": "https://ar5iv.labs.arxiv.org/html/2503.20853"
+          },
+          {
+            "title": "[2512.07184] UniDiff: A Unified Diffusion Framework for Multimodal Time Series Forecasting",
+            "url": "https://arxiv.org/abs/2512.07184"
+          },
+          {
+            "title": "No Training, No Problem: Rethinking Classifier-Free Guidance for Diffusion Models | Disney Research Studios",
+            "url": "https://studios.disneyresearch.com/2025/04/23/no-training-no-problem-rethinking-diffusion-guidance-for-diffusion-models/"
+          },
+          {
+            "title": "Implementing Classifier-Free Guidance",
+            "url": "https://apxml.com/courses/intro-diffusion-models/chapter-6-conditional-generation-diffusion/implementing-classifier-free-guidance"
+          },
+          {
+            "title": "One Transformer Fits All Distributions in Multi-Modal Diffusion at Scale",
+            "url": "https://proceedings.mlr.press/v202/bao23a/bao23a.pdf"
+          },
+          {
+            "title": "An overview of classifier-free diffusion guidance: impaired model guidance with a bad version of itself (part 2) | AI Summer",
+            "url": "https://theaisummer.com/classifier-free-guidance-part-2/"
+          }
+        ]
+      },
+      "I've found comprehensive search results related to your query. Here are the key findings:\n\n## Unified Diffusion Models for Multimodal Generation\n\nRecent work explores a discrete diffusion formulation for jointly modeling text and image modalities with a unified set of hyperparameters, proposing a unified architecture that jointly tokenizes text and images and uses full self-attention to learn to map a masked token sequence to a clean token sequence by sampling from a joint vocabulary of text and image tokens.\n\n## Independent Timestep Handling\n\nSome unified diffusion approaches input individual timesteps in different modalities and predict the noise of all modalities instead of a single modality, allowing them to perform all kinds of generation in the same way as bespoken diffusion models.\n\n## Modality Dropout for Classifier-Free Guidance\n\nTo enable classifier-free guidance, modalities are dropped with 10% probability during training. For multimodal models, both modalities are dropped while for autoregressive baselines only the first modality in the input sequence is dropped.\n\nThis approach sets all tokens of a random modality to be mask tokens with a probability of 0.1, allowing the model to learn unconditional likelihood for image and text modality.\n\n## Timestep Guidance Extensions\n\nBy leveraging the time-step information encoded in all diffusion networks, there is an extension of classifier-free guidance called timestep guidance (TSG), which can be applied to any diffusion model, including unconditional ones.\n\nThe search results highlight recent advances in unified multimodal diffusion models that treat multiple modalities with consistent frameworks while using modality dropout and classifier-free guidance techniques to improve generation quality and diversity."
+    ],
+    "durationSeconds": 7.321823887000006
+  },
+  "sourceToolAssistantUUID": "7653105c-3851-4c61-bb9a-c7865a6f0445",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 78_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "d1f8cda9-01d8-4169-bfd9-8f84f88132b5",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 79_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reviewer: Video-Branch CFG for WAM Action Denoising",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381"
+}
+```
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-10T17:57:56.851Z_
+
+<details><summary>↩ Tool result · `toolu_01SxNKEhs6JcYzc6rahr8CwA`</summary>
+
+```text
+Web search results for query: "multimodal diffusion guidance amplify one modality during another denoising cross-modal guidance 2025 2026"
+
+Links: [{"title":"Multimodal diffusion framework for collaborative text image audio generation and applications | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-05794-4"},{"title":"Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Lv_Rethinking_Cross-Modal_Interaction_in_Multimodal_Diffusion_Transformers_ICCV_2025_paper.pdf"},{"title":"MMDISCO: MULTI-MODAL DISCRIMINATOR-GUIDED ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/86c1fd74fa25bd6be0072937803e0bd1-Paper-Conference.pdf"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/45f0d179ef7e10eb7366550cd4e574ae-Paper-Conference.pdf"},{"title":"DiffMM: Multi-Modal Diffusion Model for Recommendation | Proceedings of the 32nd ACM International Conference on Multimedia","url":"https://dl.acm.org/doi/10.1145/3664647.3681498"},{"title":"Frontiers | Diffusion models for robotic manipulation: a survey","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full"},{"title":"Multimodal diffusion framework for collaborative text image audio generation and applications - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12216180/"},{"title":"Unified Multimodal Understanding and Generation Models: Advances, Challenges, and Opportunities","url":"https://arxiv.org/html/2505.02567v6"},{"title":"Multi-View Multi-Modal Diffusion Model","url":"https://www.emergentmind.com/topics/multi-view-multi-modal-diffusion-model"},{"title":"Unbiased Missing-modality Multimodal Learning","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Dai_Unbiased_Missing-modality_Multimodal_Learning_ICCV_2025_paper.pdf"}]
+
+Based on my web search, I found several recent papers and frameworks addressing multimodal diffusion guidance and cross-modal interactions from 2025-2026:
+
+## Key Research Areas
+
+**Cross-Modal Conditioning and Guidance:**
+
+Recent work introduces Hierarchical Cross-modal Alignment Networks and Cross-modal Conditional Diffusion Models that enable flexible generation pathways through conditional embedding and attention-guided mechanisms, implementing cross-modal mutual guidance and consistency optimization to ensure semantic coherence across generated modalities.
+
+**Dual-Branch Diffusion Processes:**
+
+Recent models incorporate cross-modal conditioning where different modality latents attend to each other at each timestep during denoising, enabling semantic alignment between the modalities throughout the denoising trajectory. By coupling diffusion chains and introducing explicit cross-modal interactions, these approaches enable coherent and controllable multimodal generation from pure noise.
+
+**Modality-Specific Denoising:**
+
+During the reverse process, models jointly denoise text and image latents using two modality-specific denoisers: a Transformer-based text denoiser and a UNet-based image denoiser.
+
+**Attention Reweighting Across Modalities:**
+
+A notable innovation is the ability to "reweight" the attention across modalities or views, either statically or adaptively, accommodating the imbalance and variable importance inherent to diverse information sources.
+
+**Decoupled Noise Schedules:**
+
+Recent approaches propose multimodal diffusion processes operating directly in the native state space of each modality, with decoupled noise schedules per modality, enabling asynchronous conditioning in joint- or partially conditioned generative scenarios.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "41d9220f-97df-4253-b727-0a5cc4694fe1",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "e9c347a6-4444-49e8-ad8d-4ffc50729caf",
+  "toolUseResult": {
+    "query": "multimodal diffusion guidance amplify one modality during another denoising cross-modal guidance 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013qPw6RPh8q9sYimQeCnWR2",
+        "content": [
+          {
+            "title": "Multimodal diffusion framework for collaborative text image audio generation and applications | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-025-05794-4"
+          },
+          {
+            "title": "Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers",
+            "url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Lv_Rethinking_Cross-Modal_Interaction_in_Multimodal_Diffusion_Transformers_ICCV_2025_paper.pdf"
+          },
+          {
+            "title": "MMDISCO: MULTI-MODAL DISCRIMINATOR-GUIDED ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/86c1fd74fa25bd6be0072937803e0bd1-Paper-Conference.pdf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/45f0d179ef7e10eb7366550cd4e574ae-Paper-Conference.pdf"
+          },
+          {
+            "title": "DiffMM: Multi-Modal Diffusion Model for Recommendation | Proceedings of the 32nd ACM International Conference on Multimedia",
+            "url": "https://dl.acm.org/doi/10.1145/3664647.3681498"
+          },
+          {
+            "title": "Frontiers | Diffusion models for robotic manipulation: a survey",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full"
+          },
+          {
+            "title": "Multimodal diffusion framework for collaborative text image audio generation and applications - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12216180/"
+          },
+          {
+            "title": "Unified Multimodal Understanding and Generation Models: Advances, Challenges, and Opportunities",
+            "url": "https://arxiv.org/html/2505.02567v6"
+          },
+          {
+            "title": "Multi-View Multi-Modal Diffusion Model",
+            "url": "https://www.emergentmind.com/topics/multi-view-multi-modal-diffusion-model"
+          },
+          {
+            "title": "Unbiased Missing-modality Multimodal Learning",
+            "url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Dai_Unbiased_Missing-modality_Multimodal_Learning_ICCV_2025_paper.pdf"
+          }
+        ]
+      },
+      "Based on my web search, I found several recent papers and frameworks addressing multimodal diffusion guidance and cross-modal interactions from 2025-2026:\n\n## Key Research Areas\n\n**Cross-Modal Conditioning and Guidance:**\n\nRecent work introduces Hierarchical Cross-modal Alignment Networks and Cross-modal Conditional Diffusion Models that enable flexible generation pathways through conditional embedding and attention-guided mechanisms, implementing cross-modal mutual guidance and consistency optimization to ensure semantic coherence across generated modalities.\n\n**Dual-Branch Diffusion Processes:**\n\nRecent models incorporate cross-modal conditioning where different modality latents attend to each other at each timestep during denoising, enabling semantic alignment between the modalities throughout the denoising trajectory. By coupling diffusion chains and introducing explicit cross-modal interactions, these approaches enable coherent and controllable multimodal generation from pure noise.\n\n**Modality-Specific Denoising:**\n\nDuring the reverse process, models jointly denoise text and image latents using two modality-specific denoisers: a Transformer-based text denoiser and a UNet-based image denoiser.\n\n**Attention Reweighting Across Modalities:**\n\nA notable innovation is the ability to \"reweight\" the attention across modalities or views, either statically or adaptively, accommodating the imbalance and variable importance inherent to diverse information sources.\n\n**Decoupled Noise Schedules:**\n\nRecent approaches propose multimodal diffusion processes operating directly in the native state space of each modality, with decoupled noise schedules per modality, enabling asynchronous conditioning in joint- or partially conditioned generative scenarios."
+    ],
+    "durationSeconds": 7.813443037999997
+  },
+  "sourceToolAssistantUUID": "41d9220f-97df-4253-b727-0a5cc4694fe1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81 · 2026-05-10T17:58:29.058Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Critically important finding: **"No Training, No Problem: Rethinking Classifier-Free Guidance for Diffusion Models"** from Disney Research Studios (2025). This paper proposes CFG without training-time dropout. Let me check this paper more carefully.
+
+Also critical: **UniDiffuser** (One Transformer Fits All, ICML 2023) - this is the base architecture for Motus, and it already uses:
+- Independent timesteps per modality
+- Modality dropout with 10% probability for CFG
+
+So the concept of modality dropout + CFG in multi-modal diffusion is ALREADY established in UniDiffuser. 
+
+The key question is whether this has been applied specifically to the video→action direction in WAMs. Looking at the progression: UniDiffuser (2023) established modality dropout + CFG for multi-modal diffusion, Vid2World (ICLR 2026) applied action dropout + CFG for action→video generation, and the proposed approach applies video dropout + CFG for the reverse direction (video→action) in world models. So the novelty hinges on applying an existing technique in a new directional context within WAMs.
+
+For CoRL 2026 acceptance, this could work if the empirical results show significant improvements on challenging tasks and the analysis clearly demonstrates when guidance helps versus hurts and what the video branch contributes to action prediction. However, the technical novelty is fundamentally limited—it's applying a known technique in a different direction. I should also verify whether Motus already does this with UniDiffuser-style scheduling and video dropout, which would make the contribution even more incremental. I'm also checking if "Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers" from ICCV 2025 covers similar ground.
+
+Looking at the bigger picture, the strengths are clear: it's a well-defined contribution built on solid foundations, computationally efficient, provides a useful control mechanism for world model reliance, and requires no architectural changes. But the weaknesses are significant—low technical novelty since this is essentially reversing CFG within an existing WAM, UniDiffuser already established modality dropout and CFG for multi-modal diffusion, and the entire empirical contribution hinges on whether the results are actually interesting. There's also the risk that guidance might not produce meaningful improvements.
+
+The fundamental tension is that Fast-WAM demonstrated video generation at test time is unnecessary, with video's value coming from training-time representation learning. If video features at inference are already well-utilized in joint denoising and not informationally additive beyond observation encoding, then amplifying them via CFG could just cause oversaturation or artifacts in action space. This is what the paper would need to convincingly address. The method is feasible within the CoRL timeline with realistic compute requirements and an open-source codebase to build on, though the tight deadline does add pressure.
+
+Looking at the overall assessment, novelty and impact both land around 2-3 out of 5 since this applies an existing technique in a new direction, while feasibility and clarity are stronger at 4 out of 5. That averages to roughly 3-3.25, which falls short of the 4.0 threshold needed to move forward. Before making a final call, I should do a few more targeted searches to make sure I'm not missing something important.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e9c347a6-4444-49e8-ad8d-4ffc50729caf",
+  "isSidechain": false,
+  "requestId": "req_011CauKbtUP3tyovTX83tBG4",
+  "type": "assistant",
+  "uuid": "17cf37d5-7712-48f2-b5b6-c173ac35ff21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016ep62fZQHixzYLNM4W9yyt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 915,
+      "cache_creation_input_tokens": 3214,
+      "cache_read_input_tokens": 44853,
+      "output_tokens": 1328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3214,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 915,
+          "output_tokens": 1328,
+          "cache_read_input_tokens": 44853,
+          "cache_creation_input_tokens": 3214,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3214
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-10T17:58:30.421Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01WUBaDoLmkd9WVDSmQUqHv5`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2604.27792v2",
+  "prompt": "Extract MotuBrain's architecture details relevant to video-action interaction. Specifically: (1) Does MotuBrain train with any form of modality dropout? (2) How does the video stream interact with the action stream during inference? (3) Does it use classifier-free guidance in any direction? (4) What is the \"V2A attention\" and how does it work? (5) What are its LIBERO benchmark results?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "17cf37d5-7712-48f2-b5b6-c173ac35ff21",
+  "isSidechain": false,
+  "requestId": "req_011CauKbtUP3tyovTX83tBG4",
+  "type": "assistant",
+  "uuid": "ee134b4f-22dd-402d-a1d1-db20ce0f5a9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016ep62fZQHixzYLNM4W9yyt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 915,
+      "cache_creation_input_tokens": 3214,
+      "cache_read_input_tokens": 44853,
+      "output_tokens": 1328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3214,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 915,
+          "output_tokens": 1328,
+          "cache_read_input_tokens": 44853,
+          "cache_creation_input_tokens": 3214,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3214
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-10T17:58:30.866Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01R5aDoZqv1zDFj1KMXNiAxA`</summary>
+
+```json
+{
+  "query": "UniDiffuser one transformer fits all distributions modality dropout probability classifier free guidance video action"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee134b4f-22dd-402d-a1d1-db20ce0f5a9e",
+  "isSidechain": false,
+  "requestId": "req_011CauKbtUP3tyovTX83tBG4",
+  "type": "assistant",
+  "uuid": "5e6cc96d-1645-4752-b6f7-0bdf3650c738",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016ep62fZQHixzYLNM4W9yyt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 915,
+      "cache_creation_input_tokens": 3214,
+      "cache_read_input_tokens": 44853,
+      "output_tokens": 1328,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3214,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 915,
+          "output_tokens": 1328,
+          "cache_read_input_tokens": 44853,
+          "cache_creation_input_tokens": 3214,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3214
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-10T17:58:35.505Z_
+
+<details><summary>↩ Tool result · `toolu_01WUBaDoLmkd9WVDSmQUqHv5`</summary>
+
+```text
+# MotuBrain Architecture: Video-Action Interaction Details
+
+## (1) Modality Dropout
+
+Yes, MotuBrain implements multiview dropout during pre-training. The document states: "for multiview data, we randomly drop auxiliary views with probability 0.1 during pre-training" to help the model adapt to varying camera configurations.
+
+## (2) Video-Action Interaction During Inference
+
+The streams interact through a strategic approach. During non-autoregressive inference, both modalities denoise jointly. However, MotuBrain employs V2A-style asymmetric attention where "action tokens attend to video and language tokens, while video tokens never attend to action tokens."
+
+## (3) Classifier-Free Guidance
+
+Yes, the document mentions guidance was applied: "using classifier-free guidance to improve instruction-following capability" during WorldArena evaluations at high resolution.
+
+## (4) V2A Attention Mechanism
+
+V2A (Vision-to-Action) attention creates asymmetric dependencies enabling efficient inference. The mechanism works as follows: after an initial "joint denoising prefix," the video stream freezes while "the action stream continues to update while attending to the cached visual-language context." This allows action-only inference without explicitly generating future video frames.
+
+## (5) LIBERO Benchmark Results
+
+The document does not mention LIBERO benchmark results. Evaluations focus on RoboTwin 2.0, WorldArena, and real-world humanoid manipulation tasks instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ee134b4f-22dd-402d-a1d1-db20ce0f5a9e",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "0b7b2f8d-3bab-46f1-b12b-60d1c25b1004",
+  "toolUseResult": {
+    "bytes": 356774,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# MotuBrain Architecture: Video-Action Interaction Details\n\n## (1) Modality Dropout\n\nYes, MotuBrain implements multiview dropout during pre-training. The document states: \"for multiview data, we randomly drop auxiliary views with probability 0.1 during pre-training\" to help the model adapt to varying camera configurations.\n\n## (2) Video-Action Interaction During Inference\n\nThe streams interact through a strategic approach. During non-autoregressive inference, both modalities denoise jointly. However, MotuBrain employs V2A-style asymmetric attention where \"action tokens attend to video and language tokens, while video tokens never attend to action tokens.\"\n\n## (3) Classifier-Free Guidance\n\nYes, the document mentions guidance was applied: \"using classifier-free guidance to improve instruction-following capability\" during WorldArena evaluations at high resolution.\n\n## (4) V2A Attention Mechanism\n\nV2A (Vision-to-Action) attention creates asymmetric dependencies enabling efficient inference. The mechanism works as follows: after an initial \"joint denoising prefix,\" the video stream freezes while \"the action stream continues to update while attending to the cached visual-language context.\" This allows action-only inference without explicitly generating future video frames.\n\n## (5) LIBERO Benchmark Results\n\nThe document does not mention LIBERO benchmark results. Evaluations focus on RoboTwin 2.0, WorldArena, and real-world humanoid manipulation tasks instead.",
+    "durationMs": 5077,
+    "url": "https://arxiv.org/html/2604.27792v2"
+  },
+  "sourceToolAssistantUUID": "ee134b4f-22dd-402d-a1d1-db20ce0f5a9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-10T17:58:36.010Z_
+
+<details><summary>↩ Tool result · `toolu_01R5aDoZqv1zDFj1KMXNiAxA`</summary>
+
+```text
+Web search results for query: "UniDiffuser one transformer fits all distributions modality dropout probability classifier free guidance video action"
+
+Links: [{"title":"[2303.06555] One Transformer Fits All Distributions in Multi-Modal Diffusion at Scale","url":"https://arxiv.org/abs/2303.06555"},{"title":"One Transformer Fits All Distributions in Multi-Modal Diffusion at Scale","url":"https://proceedings.mlr.press/v202/bao23a/bao23a.pdf"},{"title":"GitHub - thu-ml/unidiffuser: Code and models for the paper \"One Transformer Fits All Distributions in Multi-Modal Diffusion\" · GitHub","url":"https://github.com/thu-ml/unidiffuser"},{"title":"[Quick Review] One Transformer Fits All Distributions in Multi-Modal Diffusion at Scale","url":"https://liner.com/review/one-transformer-fits-all-distributions-in-multimodal-diffusion-at-scale"},{"title":"One Transformer Fits All Distributions in Multi-Modal Diffusion at Scale | OpenReview","url":"https://openreview.net/forum?id=Urp3atR1Z3"},{"title":"One transformer fits all distributions in multi-modal diffusion at scale | Proceedings of the 40th International Conference on Machine Learning","url":"https://dl.acm.org/doi/10.5555/3618408.3618480"},{"title":"One Transformer Fits All Distributions in Multi-Modal Diffusion at Scale","url":"https://www.researchgate.net/publication/369199002_One_Transformer_Fits_All_Distributions_in_Multi-Modal_Diffusion_at_Scale"},{"title":"UniDiffuser","url":"https://huggingface.co/docs/diffusers/v0.18.2/en/api/pipelines/unidiffuser"},{"title":"unidiffuser/README.md at main · thu-ml/unidiffuser","url":"https://github.com/thu-ml/unidiffuser/blob/main/README.md"},{"title":"diffusers/docs/source/en/api/pipelines/unidiffuser.md at main · huggingface/diffusers","url":"https://github.com/huggingface/diffusers/blob/main/docs/source/en/api/pipelines/unidiffuser.md"}]
+
+I found comprehensive information about UniDiffuser. Here are the key findings:
+
+## UniDiffuser: One Transformer Fits All Distributions in Multi-Modal Diffusion
+
+UniDiffuser is a unified diffusion framework designed to fit all distributions relevant to a set of multi-modal data in one model.
+
+### Core Concept
+
+The key insight is that learning diffusion models for marginal, conditional, and joint distributions can be unified as predicting the noise in the perturbed data, where the perturbation levels (timesteps) can be different for different modalities. UniDiffuser learns all distributions simultaneously with a minimal modification to the original diffusion model by perturbing data in all modalities instead of a single modality, inputting individual timesteps in different modalities, and predicting the noise of all modalities instead of a single modality.
+
+### Architecture
+
+UniDiffuser is parameterized by a transformer for diffusion models to handle input types of different modalities. UniDiffuser employs a variation of transformer, called U-ViT, which parameterizes the joint noise prediction network.
+
+### Capabilities and Guidance
+
+Implemented on large-scale paired image-text data, UniDiffuser is able to perform image, text, text-to-image, image-to-text, and image-text pair generation. UniDiffuser inherently supports classifier-free guidance for both conditional and joint sampling without requiring null tokens or modifying the training process.
+
+### Performance
+
+UniDiffuser is able to produce perceptually realistic samples in all tasks and its quantitative results (e.g., the FID and CLIP score) are superior to existing general-purpose models but also comparable to bespoken models (e.g., Stable Diffusion and DALL-E 2) in representative tasks like text-to-image generation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5e6cc96d-1645-4752-b6f7-0bdf3650c738",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "dfb65580-d78e-4d92-89a1-b57afe5ecf52",
+  "toolUseResult": {
+    "query": "UniDiffuser one transformer fits all distributions modality dropout probability classifier free guidance video action",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0154AHZfVd2R61Y9AuEQVGB8",
+        "content": [
+          {
+            "title": "[2303.06555] One Transformer Fits All Distributions in Multi-Modal Diffusion at Scale",
+            "url": "https://arxiv.org/abs/2303.06555"
+          },
+          {
+            "title": "One Transformer Fits All Distributions in Multi-Modal Diffusion at Scale",
+            "url": "https://proceedings.mlr.press/v202/bao23a/bao23a.pdf"
+          },
+          {
+            "title": "GitHub - thu-ml/unidiffuser: Code and models for the paper \"One Transformer Fits All Distributions in Multi-Modal Diffusion\" · GitHub",
+            "url": "https://github.com/thu-ml/unidiffuser"
+          },
+          {
+            "title": "[Quick Review] One Transformer Fits All Distributions in Multi-Modal Diffusion at Scale",
+            "url": "https://liner.com/review/one-transformer-fits-all-distributions-in-multimodal-diffusion-at-scale"
+          },
+          {
+            "title": "One Transformer Fits All Distributions in Multi-Modal Diffusion at Scale | OpenReview",
+            "url": "https://openreview.net/forum?id=Urp3atR1Z3"
+          },
+          {
+            "title": "One transformer fits all distributions in multi-modal diffusion at scale | Proceedings of the 40th International Conference on Machine Learning",
+            "url": "https://dl.acm.org/doi/10.5555/3618408.3618480"
+          },
+          {
+            "title": "One Transformer Fits All Distributions in Multi-Modal Diffusion at Scale",
+            "url": "https://www.researchgate.net/publication/369199002_One_Transformer_Fits_All_Distributions_in_Multi-Modal_Diffusion_at_Scale"
+          },
+          {
+            "title": "UniDiffuser",
+            "url": "https://huggingface.co/docs/diffusers/v0.18.2/en/api/pipelines/unidiffuser"
+          },
+          {
+            "title": "unidiffuser/README.md at main · thu-ml/unidiffuser",
+            "url": "https://github.com/thu-ml/unidiffuser/blob/main/README.md"
+          },
+          {
+            "title": "diffusers/docs/source/en/api/pipelines/unidiffuser.md at main · huggingface/diffusers",
+            "url": "https://github.com/huggingface/diffusers/blob/main/docs/source/en/api/pipelines/unidiffuser.md"
+          }
+        ]
+      },
+      "I found comprehensive information about UniDiffuser. Here are the key findings:\n\n## UniDiffuser: One Transformer Fits All Distributions in Multi-Modal Diffusion\n\nUniDiffuser is a unified diffusion framework designed to fit all distributions relevant to a set of multi-modal data in one model.\n\n### Core Concept\n\nThe key insight is that learning diffusion models for marginal, conditional, and joint distributions can be unified as predicting the noise in the perturbed data, where the perturbation levels (timesteps) can be different for different modalities. UniDiffuser learns all distributions simultaneously with a minimal modification to the original diffusion model by perturbing data in all modalities instead of a single modality, inputting individual timesteps in different modalities, and predicting the noise of all modalities instead of a single modality.\n\n### Architecture\n\nUniDiffuser is parameterized by a transformer for diffusion models to handle input types of different modalities. UniDiffuser employs a variation of transformer, called U-ViT, which parameterizes the joint noise prediction network.\n\n### Capabilities and Guidance\n\nImplemented on large-scale paired image-text data, UniDiffuser is able to perform image, text, text-to-image, image-to-text, and image-text pair generation. UniDiffuser inherently supports classifier-free guidance for both conditional and joint sampling without requiring null tokens or modifying the training process.\n\n### Performance\n\nUniDiffuser is able to produce perceptually realistic samples in all tasks and its quantitative results (e.g., the FID and CLIP score) are superior to existing general-purpose models but also comparable to bespoken models (e.g., Stable Diffusion and DALL-E 2) in representative tasks like text-to-image generation."
+    ],
+    "durationSeconds": 5.1405747019999835
+  },
+  "sourceToolAssistantUUID": "5e6cc96d-1645-4752-b6f7-0bdf3650c738",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "dfb65580-d78e-4d92-89a1-b57afe5ecf52",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 87_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reviewer: Video-Branch CFG for WAM Action Denoising",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381"
+}
+```
+
+---
+
+### Assistant
+
+_source line 88 · 2026-05-10T17:59:06.121Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is very critical! Let me think about what I've found:
+
+**UniDiffuser (ICML 2023)** - the foundational architecture used by Motus:
+- Uses independent timesteps per modality
+- **Inherently supports classifier-free guidance for both conditional and joint sampling WITHOUT requiring null tokens or modifying the training process**
+- Perturbs data in all modalities simultaneously with potentially different noise levels
+- Can perform conditional generation in either direction (text→image, image→text)
+
+**MotuBrain** (April 2026) - a recent WAM based on UniDiffuser:
+- Uses V2A (Vision-to-Action) attention where action tokens attend to video tokens but NOT vice versa
+
+
+- Applies classifier-free guidance to strengthen instruction-following, though primarily for language conditioning rather than video-action
+- Caches video KV pairs during action inference to avoid recomputing the frozen video stream
+
+Here's the crucial realization: since UniDiffuser natively supports CFG for any conditional distribution without training modifications, and Motus builds on this architecture, I can already apply CFG in the video→action direction by freezing the video timestep at T while denoising actions. This means the capability exists without any additional training—the proposed video-branch dropout fine-tuning would just be an optional refinement.
+
+But I need to clarify the actual mechanism: UniDiffuser's CFG works by comparing the joint prediction (both modalities at intermediate timesteps) against the marginal prediction (video frozen at T, action at intermediate t), using that difference as guidance. This is subtly different from standard dropout-based CFG training, and I'm not sure if anyone's actually validated this approach on Motus yet, especially given MotuBrain's V2A attention constraints where video tokens don't attend to actions. So the VB-CFG approach is really just applying an existing capability of UniDiffuser/Motus—evaluating noise predictions at different video timesteps—and testing whether classifier-free guidance helps in that direction. The actual novelty boils down to an empirical observation that CFG works here, plus maybe some fine-tuning with dropout to improve it, which feels more like an engineering study than a fundamental contribution.
+
+That said, there are some redeeming qualities: nobody's actually demonstrated this works empirically, the "world model reliance dial" framing is intuitive and practical, and the analysis of when guidance helps could be genuinely insightful. The connection to Fast-WAM is also intellectually satisfying—if video features help during training, why not amplify them at test time? But from a pure technical standpoint, the novelty is quite limited.
+
+For CoRL 2026, this could still land if the empirical results are strong on hard tasks and the analysis goes deep, but there's real risk here given the low technical novelty.
+
+I should also check whether the "No Training, No Problem" paper from Disney Research already covers this—they explicitly showed you can do classifier-free guidance without dropout training, which might overlap with what I'm proposing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dfb65580-d78e-4d92-89a1-b57afe5ecf52",
+  "isSidechain": false,
+  "requestId": "req_011CauKemhvBK4YKQpYJvqDc",
+  "type": "assistant",
+  "uuid": "432f5e28-3a2a-44e5-8e66-5129120b44e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VBFcKxsVL6wMnKPJEso18h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3635,
+      "cache_read_input_tokens": 48067,
+      "output_tokens": 1456,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3635,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1456,
+          "cache_read_input_tokens": 48067,
+          "cache_creation_input_tokens": 3635,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3635
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-10T17:59:06.142Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_018jTiepSuRAhXYeepaPpnWc`</summary>
+
+```json
+{
+  "url": "https://studios.disneyresearch.com/2025/04/23/no-training-no-problem-rethinking-diffusion-guidance-for-diffusion-models/",
+  "prompt": "Extract the key claim and method of this paper. Does it show that classifier-free guidance can work without dropout training? What is the main finding? How does it relate to applying CFG on models that weren't explicitly trained with conditioning dropout?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "432f5e28-3a2a-44e5-8e66-5129120b44e3",
+  "isSidechain": false,
+  "requestId": "req_011CauKemhvBK4YKQpYJvqDc",
+  "type": "assistant",
+  "uuid": "774e6024-e9f3-47d5-b19a-73c419c88890",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VBFcKxsVL6wMnKPJEso18h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3635,
+      "cache_read_input_tokens": 48067,
+      "output_tokens": 1456,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3635,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1456,
+          "cache_read_input_tokens": 48067,
+          "cache_creation_input_tokens": 3635,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3635
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-10T17:59:06.454Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PxTJhPLzivXicDEJLNaAXy`</summary>
+
+```json
+{
+  "query": "Fast-WAM video features action prediction value test time versus training time UWM ablation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "774e6024-e9f3-47d5-b19a-73c419c88890",
+  "isSidechain": false,
+  "requestId": "req_011CauKemhvBK4YKQpYJvqDc",
+  "type": "assistant",
+  "uuid": "b265f61c-4a82-489f-997c-a5f533786bfe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VBFcKxsVL6wMnKPJEso18h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3635,
+      "cache_read_input_tokens": 48067,
+      "output_tokens": 1456,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3635,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1456,
+          "cache_read_input_tokens": 48067,
+          "cache_creation_input_tokens": 3635,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3635
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-10T17:59:11.155Z_
+
+<details><summary>↩ Tool result · `toolu_018jTiepSuRAhXYeepaPpnWc`</summary>
+
+```text
+# Key Findings on Classifier-Free Guidance
+
+**Main Claim:**
+The paper proposes that conditional diffusion models can achieve classifier-free guidance (CFG) benefits "without the need for any special training procedures." This directly addresses CFG's limitation of requiring dropout-based training.
+
+**Core Methods:**
+1. **Independent Condition Guidance (ICG)**: Provides CFG-level performance without special training, applicable to both new models and pretrained ones during inference.
+
+2. **Timestep Guidance (TSG)**: Extends CFG-like improvements to unconditional models by leveraging timestep information already present in diffusion networks.
+
+**Main Finding:**
+The research demonstrates that "ICG matches the performance of standard CFG across various conditional diffusion models" while eliminating training requirements. Additionally, TSG "improves generation quality in a manner similar to CFG, without relying on any conditional information."
+
+**Significance for Pre-trained Models:**
+Yes—this work is particularly relevant for applying CFG-style guidance to existing models not trained with conditioning dropout, since ICG "can be applied during inference on any pretrained conditional model," circumventing the need for retraining.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "774e6024-e9f3-47d5-b19a-73c419c88890",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "72536b33-3a9a-4541-ac61-d57e1b5a217d",
+  "toolUseResult": {
+    "bytes": 58421,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Key Findings on Classifier-Free Guidance\n\n**Main Claim:**\nThe paper proposes that conditional diffusion models can achieve classifier-free guidance (CFG) benefits \"without the need for any special training procedures.\" This directly addresses CFG's limitation of requiring dropout-based training.\n\n**Core Methods:**\n1. **Independent Condition Guidance (ICG)**: Provides CFG-level performance without special training, applicable to both new models and pretrained ones during inference.\n\n2. **Timestep Guidance (TSG)**: Extends CFG-like improvements to unconditional models by leveraging timestep information already present in diffusion networks.\n\n**Main Finding:**\nThe research demonstrates that \"ICG matches the performance of standard CFG across various conditional diffusion models\" while eliminating training requirements. Additionally, TSG \"improves generation quality in a manner similar to CFG, without relying on any conditional information.\"\n\n**Significance for Pre-trained Models:**\nYes—this work is particularly relevant for applying CFG-style guidance to existing models not trained with conditioning dropout, since ICG \"can be applied during inference on any pretrained conditional model,\" circumventing the need for retraining.",
+    "durationMs": 5008,
+    "url": "https://studios.disneyresearch.com/2025/04/23/no-training-no-problem-rethinking-diffusion-guidance-for-diffusion-models/"
+  },
+  "sourceToolAssistantUUID": "774e6024-e9f3-47d5-b19a-73c419c88890",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-10T17:59:13.124Z_
+
+<details><summary>↩ Tool result · `toolu_01PxTJhPLzivXicDEJLNaAXy`</summary>
+
+```text
+Web search results for query: "Fast-WAM video features action prediction value test time versus training time UWM ablation"
+
+Links: [{"title":"Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://arxiv.org/html/2603.16666v1"},{"title":"[2603.16666] Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://arxiv.org/abs/2603.16666"},{"title":"Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://yuantianyuan01.github.io/FastWAM/"},{"title":"Paper page - Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://huggingface.co/papers/2603.16666"},{"title":"(PDF) Fast-WAM: Do World Action Models Need Test-time Future Imagination?","url":"https://www.researchgate.net/publication/402613129_Fast-WAM_Do_World_Action_Models_Need_Test-time_Future_Imagination"},{"title":"Fast-WAM: Do World Action Models Need Test-time Future Imagination?…","url":"https://www.opentrain.ai/papers/fast-wam-do-world-action-models-need-test-time-future-imagination--arxiv-2603.16666/"},{"title":"Fast-WAM: Rethinking Test-Time Imagination","url":"https://www.emergentmind.com/papers/2603.16666"},{"title":"Fast-WAM: Do World Action Models Need Test-time Future Imagination? - PULRC Portal","url":"https://lrc.perdanauniversity.edu.my/sdi/fast-wam-do-world-action-models-need-test-time-future-imagination/"},{"title":"Necessity of Test-Time Future Imagination in World Action Models","url":"https://www.emergentmind.com/open-problems/necessity-of-test-time-future-imagination-in-wams"},{"title":"Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising","url":"https://arxiv.org/html/2604.26694v2"}]
+
+Based on the search results, I found relevant information about Fast-WAM and its comparison of training-time versus test-time contributions:
+
+## Key Findings:
+
+Fast-WAM addresses whether World Action Models (WAMs) need explicit future imagination at test time, or whether their benefit comes primarily from video modeling during training, by proposing a WAM architecture that retains video co-training during training but skips future prediction at test time.
+
+### Ablation Results:
+
+Fast-WAM remains competitive with imagine-then-execute variants, while removing video co-training causes a much larger performance drop. More specifically, disabling video co-training during training results in a significantly larger performance drop than skipping test-time imagination—demonstrating that co-training with video prediction is essential, while explicit future imagination at inference is not.
+
+### Performance and Efficiency:
+
+The main value of video prediction in WAMs may lie in improving world representations during training rather than generating future observations at test time. Fast-WAM achieves competitive results with state-of-the-art methods on simulation benchmarks (LIBERO and RoboTwin) and real-world tasks without embodied pretraining, and runs in real time with 190ms latency, over 4× faster than existing imagine-then-execute WAMs.
+
+The research demonstrates that the critical contribution of video prediction in WAMs is during training (forming better representations) rather than during inference (generating future observations).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b265f61c-4a82-489f-997c-a5f533786bfe",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "77a0101d-f27b-414e-9666-8e70db17fa3c",
+  "toolUseResult": {
+    "query": "Fast-WAM video features action prediction value test time versus training time UWM ablation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FNPFkUbzwaYZv5JoghshbG",
+        "content": [
+          {
+            "title": "Fast-WAM: Do World Action Models Need Test-time Future Imagination?",
+            "url": "https://arxiv.org/html/2603.16666v1"
+          },
+          {
+            "title": "[2603.16666] Fast-WAM: Do World Action Models Need Test-time Future Imagination?",
+            "url": "https://arxiv.org/abs/2603.16666"
+          },
+          {
+            "title": "Fast-WAM: Do World Action Models Need Test-time Future Imagination?",
+            "url": "https://yuantianyuan01.github.io/FastWAM/"
+          },
+          {
+            "title": "Paper page - Fast-WAM: Do World Action Models Need Test-time Future Imagination?",
+            "url": "https://huggingface.co/papers/2603.16666"
+          },
+          {
+            "title": "(PDF) Fast-WAM: Do World Action Models Need Test-time Future Imagination?",
+            "url": "https://www.researchgate.net/publication/402613129_Fast-WAM_Do_World_Action_Models_Need_Test-time_Future_Imagination"
+          },
+          {
+            "title": "Fast-WAM: Do World Action Models Need Test-time Future Imagination?…",
+            "url": "https://www.opentrain.ai/papers/fast-wam-do-world-action-models-need-test-time-future-imagination--arxiv-2603.16666/"
+          },
+          {
+            "title": "Fast-WAM: Rethinking Test-Time Imagination",
+            "url": "https://www.emergentmind.com/papers/2603.16666"
+          },
+          {
+            "title": "Fast-WAM: Do World Action Models Need Test-time Future Imagination? - PULRC Portal",
+            "url": "https://lrc.perdanauniversity.edu.my/sdi/fast-wam-do-world-action-models-need-test-time-future-imagination/"
+          },
+          {
+            "title": "Necessity of Test-Time Future Imagination in World Action Models",
+            "url": "https://www.emergentmind.com/open-problems/necessity-of-test-time-future-imagination-in-wams"
+          },
+          {
+            "title": "Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising",
+            "url": "https://arxiv.org/html/2604.26694v2"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about Fast-WAM and its comparison of training-time versus test-time contributions:\n\n## Key Findings:\n\nFast-WAM addresses whether World Action Models (WAMs) need explicit future imagination at test time, or whether their benefit comes primarily from video modeling during training, by proposing a WAM architecture that retains video co-training during training but skips future prediction at test time.\n\n### Ablation Results:\n\nFast-WAM remains competitive with imagine-then-execute variants, while removing video co-training causes a much larger performance drop. More specifically, disabling video co-training during training results in a significantly larger performance drop than skipping test-time imagination—demonstrating that co-training with video prediction is essential, while explicit future imagination at inference is not.\n\n### Performance and Efficiency:\n\nThe main value of video prediction in WAMs may lie in improving world representations during training rather than generating future observations at test time. Fast-WAM achieves competitive results with state-of-the-art methods on simulation benchmarks (LIBERO and RoboTwin) and real-world tasks without embodied pretraining, and runs in real time with 190ms latency, over 4× faster than existing imagine-then-execute WAMs.\n\nThe research demonstrates that the critical contribution of video prediction in WAMs is during training (forming better representations) rather than during inference (generating future observations)."
+    ],
+    "durationSeconds": 6.666973434999993
+  },
+  "sourceToolAssistantUUID": "b265f61c-4a82-489f-997c-a5f533786bfe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 93 · 2026-05-10T17:59:13.128Z_
+
+```json
+{
+  "parentUuid": "77a0101d-f27b-414e-9666-8e70db17fa3c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "1b1f55db-dff6-4191-9262-acaa19938cd9",
+  "timestamp": "2026-05-10T17:59:13.128Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 94 · 2026-05-10T17:59:40.371Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a very clear picture. Let me synthesize:
+
+**Critical finding: "No Training, No Problem" (ICG)**
+This paper shows that CFG can be applied to ANY pre-trained conditional model without dropout training. This means you could potentially apply VB-CFG to UWM/Motus without ANY fine-tuning at all, using ICG. This makes the proposed "dropout fine-tuning" step even less necessary.
+
+**Fast-WAM key insight:**
+The value of video is in TRAINING-TIME representation learning, not test-time generation. 
+
+**Critical concern for VB-CFG:**
+If Fast-WAM is right that video prediction mainly helps during training by improving representations, then amplifying video features at test time through CFG could actually amplify noise rather than useful signal—the representations have already captured what matters, and pushing them harder might degrade performance, especially at higher guidance scales. This is a real risk that needs addressing.
+
+The paper should grapple with whether CFG in the video→action direction actually helps, given Fast-WAM's evidence that it might not.
+
+**Novelty: 2/5**
+Modality dropout plus CFG is already established in UniDiffuser, and Vid2World already applies CFG within world models for action→video generation. Models like Motus support this by design, and "No Training, No Problem" shows you don't even need the dropout training. The actual contribution boils down to testing CFG in the reverse direction—a straightforward experiment.
+
+**Feasibility: 4/5**
+The approach is computationally efficient and well-defined, with the UWM codebase and LIBERO dataset readily available.
+
+**Clarity: 4/5**
+The work is clearly motivated and well-positioned against Fast-WAM and Vid2World, though it overlooks UniDiffuser's native CFG support and the implications of "No Training, No Problem."
+
+**Impact: 2/5**
+Negative results would yield a finding that video CFG doesn't help—publishable but niche. Positive results would be incremental gains on already-strong baselines. The "world model reliance dial" concept is interesting but probably not transformative, especially since Fast-WAM already demonstrated that video isn't necessary at test time, making this direction questionable.
+
+Overall score: 3.0/5—well short of the 4.0 bar needed.
+
+The core problem is that UniDiffuser already has cross-modal CFG built in, so applying it in the video-to-action direction isn't particularly novel. "No Training, No Problem" suggests the proposed fine-tuning might be redundant. Fast-WAM's finding that video's value lies in training rather than inference poses a real risk that amplifying video at test time won't move the needle. What's being proposed reads more like an empirical study than a method contribution—essentially testing an existing technique in a new direction. And with LIBERO scores already above 90%, even positive results would likely be marginal.
+
+To make this work, I'd need to reframe the contribution around UniDiffuser's existing CFG capabilities rather than treating it as novel, and find a way to address the fundamental concern that video features may not help at inference time.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1b1f55db-dff6-4191-9262-acaa19938cd9",
+  "isSidechain": false,
+  "requestId": "req_011CauKhWQzdz4WVbHwD9wxX",
+  "type": "assistant",
+  "uuid": "47f52897-e3ac-4476-8246-7050d0740149",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015uX6wVz1rVc6w3xegN56Q2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2756,
+      "cache_read_input_tokens": 51702,
+      "output_tokens": 1164,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2756,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1164,
+          "cache_read_input_tokens": 51702,
+          "cache_creation_input_tokens": 2756,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2756
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 95 · 2026-05-10T17:59:40.741Z_
+
+Let me do one more round of targeted searches to verify the novelty claim more carefully and check for any concurrent work I might have missed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "47f52897-e3ac-4476-8246-7050d0740149",
+  "isSidechain": false,
+  "requestId": "req_011CauKhWQzdz4WVbHwD9wxX",
+  "type": "assistant",
+  "uuid": "5251ec4b-8a9d-4dfc-8b8a-56e611cacbc8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015uX6wVz1rVc6w3xegN56Q2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2756,
+      "cache_read_input_tokens": 51702,
+      "output_tokens": 1164,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2756,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1164,
+          "cache_read_input_tokens": 51702,
+          "cache_creation_input_tokens": 2756,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2756
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-10T17:59:41.680Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Dn6ijgCKeCXZ5duT75qWNm`</summary>
+
+```json
+{
+  "query": "site:arxiv.org \"video branch\" OR \"video stream\" guidance action prediction diffusion robot 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5251ec4b-8a9d-4dfc-8b8a-56e611cacbc8",
+  "isSidechain": false,
+  "requestId": "req_011CauKhWQzdz4WVbHwD9wxX",
+  "type": "assistant",
+  "uuid": "cb64d2fa-0e5d-4a2b-b9c2-8805280bf644",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015uX6wVz1rVc6w3xegN56Q2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2756,
+      "cache_read_input_tokens": 51702,
+      "output_tokens": 1164,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2756,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1164,
+          "cache_read_input_tokens": 51702,
+          "cache_creation_input_tokens": 2756,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2756
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-10T17:59:42.027Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UnK24ZFcVgjkbSc6Ks3SZq`</summary>
+
+```json
+{
+  "query": "cross-modal classifier-free guidance multi-modal diffusion amplify modality conditioning 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cb64d2fa-0e5d-4a2b-b9c2-8805280bf644",
+  "isSidechain": false,
+  "requestId": "req_011CauKhWQzdz4WVbHwD9wxX",
+  "type": "assistant",
+  "uuid": "2b6298ff-5f6c-442d-8a76-e5b91ee89c0f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015uX6wVz1rVc6w3xegN56Q2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2756,
+      "cache_read_input_tokens": 51702,
+      "output_tokens": 1164,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2756,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1164,
+          "cache_read_input_tokens": 51702,
+          "cache_creation_input_tokens": 2756,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2756
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 98_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "2b6298ff-5f6c-442d-8a76-e5b91ee89c0f",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 99_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reviewer: Video-Branch CFG for WAM Action Denoising",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381"
+}
+```
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-10T17:59:49.069Z_
+
+<details><summary>↩ Tool result · `toolu_01Dn6ijgCKeCXZ5duT75qWNm`</summary>
+
+```text
+Web search results for query: "site:arxiv.org "video branch" OR "video stream" guidance action prediction diffusion robot 2026"
+
+Links: [{"title":"MotuBrain: An Advanced World Action Model for Robot Control","url":"https://arxiv.org/html/2604.27792v2"},{"title":"EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields","url":"https://arxiv.org/html/2605.06192v1"},{"title":"Vidarc: Embodied Video Diffusion Model for Closed-loop Control","url":"https://arxiv.org/html/2512.17661"},{"title":"Lifelong Learning of Video Diffusion Models From a Single Video Stream","url":"https://arxiv.org/html/2406.04814v3"}]
+
+I've completed the web search for your query. Here are the results:
+
+The search found several relevant papers on arxiv.org related to video-based action prediction and robot control with diffusion models:
+
+1. **MotuBrain: An Advanced World Action Model for Robot Control** (from 1 week ago)
+   - Features a three-stream Mixture-of-Transformers architecture with a text stream, a video stream, and an action stream
+   - The video and action streams are trained with flow matching, predicting velocity fields of video latents and action tokens
+
+2. **EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields** (from 3 days ago)
+   - Augments a diffusion-transformer backbone with a dedicated KVAF branch and interval-based bidirectional fusion
+   - Designed to generate future robot videos that are visually plausible and consistent with commanded robot motion and interactions
+
+3. **Vidarc: Embodied Video Diffusion Model for Closed-loop Control** (from December 2025)
+   - Presents an autoregressive embodied video diffusion approach augmented by a masked inverse dynamics model
+   - Grounds video predictions with action-relevant masks and incorporates real-time feedback through cached autoregressive generation for fast, accurate closed-loop control
+
+4. **Lifelong Learning of Video Diffusion Models From a Single Video Stream** (from July 2025)
+   - Focuses on learning video diffusion models continuously from streaming video data
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cb64d2fa-0e5d-4a2b-b9c2-8805280bf644",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "90cb4222-8fe4-4983-bd61-cfb13d427522",
+  "toolUseResult": {
+    "query": "site:arxiv.org \"video branch\" OR \"video stream\" guidance action prediction diffusion robot 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ViW86NfJFuPMyHYFdTQfbD",
+        "content": [
+          {
+            "title": "MotuBrain: An Advanced World Action Model for Robot Control",
+            "url": "https://arxiv.org/html/2604.27792v2"
+          },
+          {
+            "title": "EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields",
+            "url": "https://arxiv.org/html/2605.06192v1"
+          },
+          {
+            "title": "Vidarc: Embodied Video Diffusion Model for Closed-loop Control",
+            "url": "https://arxiv.org/html/2512.17661"
+          },
+          {
+            "title": "Lifelong Learning of Video Diffusion Models From a Single Video Stream",
+            "url": "https://arxiv.org/html/2406.04814v3"
+          }
+        ]
+      },
+      "I've completed the web search for your query. Here are the results:\n\nThe search found several relevant papers on arxiv.org related to video-based action prediction and robot control with diffusion models:\n\n1. **MotuBrain: An Advanced World Action Model for Robot Control** (from 1 week ago)\n   - Features a three-stream Mixture-of-Transformers architecture with a text stream, a video stream, and an action stream\n   - The video and action streams are trained with flow matching, predicting velocity fields of video latents and action tokens\n\n2. **EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields** (from 3 days ago)\n   - Augments a diffusion-transformer backbone with a dedicated KVAF branch and interval-based bidirectional fusion\n   - Designed to generate future robot videos that are visually plausible and consistent with commanded robot motion and interactions\n\n3. **Vidarc: Embodied Video Diffusion Model for Closed-loop Control** (from December 2025)\n   - Presents an autoregressive embodied video diffusion approach augmented by a masked inverse dynamics model\n   - Grounds video predictions with action-relevant masks and incorporates real-time feedback through cached autoregressive generation for fast, accurate closed-loop control\n\n4. **Lifelong Learning of Video Diffusion Models From a Single Video Stream** (from July 2025)\n   - Focuses on learning video diffusion models continuously from streaming video data"
+    ],
+    "durationSeconds": 7.3830418519999945
+  },
+  "sourceToolAssistantUUID": "cb64d2fa-0e5d-4a2b-b9c2-8805280bf644",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-10T17:59:54.058Z_
+
+<details><summary>↩ Tool result · `toolu_01UnK24ZFcVgjkbSc6Ks3SZq`</summary>
+
+```text
+Web search results for query: "cross-modal classifier-free guidance multi-modal diffusion amplify modality conditioning 2025 2026"
+
+Links: [{"title":"MMDISCO: MULTI-MODAL DISCRIMINATOR-GUIDED ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/86c1fd74fa25bd6be0072937803e0bd1-Paper-Conference.pdf"},{"title":"Classifier-Free Guided Diffusion Models","url":"https://www.emergentmind.com/topics/classifier-free-guided-diffusion-models"},{"title":"Multi-modal Diffusion Model with Dual-Cross-Attention for Multi-Omics Data Generation and Translation | bioRxiv","url":"https://www.biorxiv.org/content/10.1101/2025.02.27.640020v4.full"},{"title":"Multimodal Classifier-Free Guidance (m-cfg)","url":"https://www.emergentmind.com/topics/multimodal-classifier-free-guidance-m-cfg"},{"title":"Temporally-Aligned Diffusion Features for Cross-Modal Audio ...","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Haji-Ali_AV-Link_Temporally-Aligned_Diffusion_Features_for_Cross-Modal_Audio-Video_Generation_ICCV_2025_paper.pdf"},{"title":"Source-free cross-modality medical image synthesis with diffusion priors | Journal of King Saud University Computer and Information Sciences | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s44443-025-00200-5"},{"title":"Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Lv_Rethinking_Cross-Modal_Interaction_in_Multimodal_Diffusion_Transformers_ICCV_2025_paper.pdf"},{"title":"Multi-modal conditional diffusion model using signed distance functions for metal-organic frameworks generation | Nature Communications","url":"https://www.nature.com/articles/s41467-024-55390-9"},{"title":"Multimodal diffusion framework for collaborative text image audio generation and applications | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-05794-4"},{"title":"An overview of classifier-free guidance for diffusion models | AI Summer","url":"https://theaisummer.com/classifier-free-guidance/"}]
+
+I've completed the web search for your query about cross-modal classifier-free guidance in multi-modal diffusion models. Here's a summary of the relevant findings:
+
+## Key Research Areas
+
+**Multimodal Classifier-Free Guidance (m-CFG)**
+
+Analysis of masked discrete diffusion models demonstrates that m-cfg "tilts" the transition dynamics, leading to amplification of modality-specific regions and suppression of ambiguous, shared features. Independently fused embeddings or joint representations can encode the relative importance of each modality's guidance, enabling extension to multimodal settings.
+
+**Recent Advances (2025-2026)**
+
+Theoretical analysis formalizes "generative distortion"—the mismatch between the CFG sampling distribution and the true conditional distribution—and identifies that vanilla CFG induces mean shifts and variance shrinkage, particularly problematic in high-dimensional, multi-modal settings.
+
+Multimodal guidance (e.g., text-to-audio, text-to-video, and text-to-image) improves both fidelity to conditioning signals and sample diversity compared to vanilla CFG.
+
+**Cross-Modal Audio-Video Generation**
+
+Recent work includes systems like MMDISCO and AV-Link that enable classifier-free guidance by feeding conditional text into models with text dropout rates for audio-video alignment and generation.
+
+**Multi-Modal Diffusion Frameworks**
+
+A Hierarchical Cross-modal Alignment Network establishes unified representations while preserving modality-specific characteristics, with cross-modal mutual guidance and consistency optimization to ensure semantic coherence across generated modalities.
+
+The search results show active research in this area with multiple recent papers and applications spanning audio-visual generation, medical imaging, and multi-modal content creation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2b6298ff-5f6c-442d-8a76-e5b91ee89c0f",
+  "isSidechain": false,
+  "promptId": "c7c3fc0c-e90b-4259-8e0d-2f008f0b4f06",
+  "type": "user",
+  "uuid": "4d2da39f-20ad-4376-b67c-cc72ec7eb1f0",
+  "toolUseResult": {
+    "query": "cross-modal classifier-free guidance multi-modal diffusion amplify modality conditioning 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KgandqnSNLSDvDRfb9JGgN",
+        "content": [
+          {
+            "title": "MMDISCO: MULTI-MODAL DISCRIMINATOR-GUIDED ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/86c1fd74fa25bd6be0072937803e0bd1-Paper-Conference.pdf"
+          },
+          {
+            "title": "Classifier-Free Guided Diffusion Models",
+            "url": "https://www.emergentmind.com/topics/classifier-free-guided-diffusion-models"
+          },
+          {
+            "title": "Multi-modal Diffusion Model with Dual-Cross-Attention for Multi-Omics Data Generation and Translation | bioRxiv",
+            "url": "https://www.biorxiv.org/content/10.1101/2025.02.27.640020v4.full"
+          },
+          {
+            "title": "Multimodal Classifier-Free Guidance (m-cfg)",
+            "url": "https://www.emergentmind.com/topics/multimodal-classifier-free-guidance-m-cfg"
+          },
+          {
+            "title": "Temporally-Aligned Diffusion Features for Cross-Modal Audio ...",
+            "url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Haji-Ali_AV-Link_Temporally-Aligned_Diffusion_Features_for_Cross-Modal_Audio-Video_Generation_ICCV_2025_paper.pdf"
+          },
+          {
+            "title": "Source-free cross-modality medical image synthesis with diffusion priors | Journal of King Saud University Computer and Information Sciences | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s44443-025-00200-5"
+          },
+          {
+            "title": "Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers",
+            "url": "https://openaccess.thecvf.com/content/ICCV2025/papers/Lv_Rethinking_Cross-Modal_Interaction_in_Multimodal_Diffusion_Transformers_ICCV_2025_paper.pdf"
+          },
+          {
+            "title": "Multi-modal conditional diffusion model using signed distance functions for metal-organic frameworks generation | Nature Communications",
+            "url": "https://www.nature.com/articles/s41467-024-55390-9"
+          },
+          {
+            "title": "Multimodal diffusion framework for collaborative text image audio generation and applications | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-025-05794-4"
+          },
+          {
+            "title": "An overview of classifier-free guidance for diffusion models | AI Summer",
+            "url": "https://theaisummer.com/classifier-free-guidance/"
+          }
+        ]
+      },
+      "I've completed the web search for your query about cross-modal classifier-free guidance in multi-modal diffusion models. Here's a summary of the relevant findings:\n\n## Key Research Areas\n\n**Multimodal Classifier-Free Guidance (m-CFG)**\n\nAnalysis of masked discrete diffusion models demonstrates that m-cfg \"tilts\" the transition dynamics, leading to amplification of modality-specific regions and suppression of ambiguous, shared features. Independently fused embeddings or joint representations can encode the relative importance of each modality's guidance, enabling extension to multimodal settings.\n\n**Recent Advances (2025-2026)**\n\nTheoretical analysis formalizes \"generative distortion\"—the mismatch between the CFG sampling distribution and the true conditional distribution—and identifies that vanilla CFG induces mean shifts and variance shrinkage, particularly problematic in high-dimensional, multi-modal settings.\n\nMultimodal guidance (e.g., text-to-audio, text-to-video, and text-to-image) improves both fidelity to conditioning signals and sample diversity compared to vanilla CFG.\n\n**Cross-Modal Audio-Video Generation**\n\nRecent work includes systems like MMDISCO and AV-Link that enable classifier-free guidance by feeding conditional text into models with text dropout rates for audio-video alignment and generation.\n\n**Multi-Modal Diffusion Frameworks**\n\nA Hierarchical Cross-modal Alignment Network establishes unified representations while preserving modality-specific characteristics, with cross-modal mutual guidance and consistency optimization to ensure semantic coherence across generated modalities.\n\nThe search results show active research in this area with multiple recent papers and applications spanning audio-visual generation, medical imaging, and multi-modal content creation."
+    ],
+    "durationSeconds": 12.028850855000027
+  },
+  "sourceToolAssistantUUID": "2b6298ff-5f6c-442d-8a76-e5b91ee89c0f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 102 · 2026-05-10T18:00:09.305Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me finalize my assessment. I've done thorough research and found:
+
+**Key novelty concerns:**
+1. **UniDiffuser (ICML 2023)**: Already supports cross-modal CFG by design when you perturb one modality to T while denoising another. This is the foundation of Motus.
+2. **"No Training, No Problem" (ICLR 2025)**: Shows CFG works without dropout training on any conditional model.
+3. **Multimodal CFG (m-CFG)**: Already an established concept in the diffusion literature, with theoretical analysis of how it amplifies modality-specific regions.
+
+
+4. **Vid2World (ICLR 2026)**: Already applies CFG within a WAM in the action→video direction.
+
+So VB-CFG is really just taking this well-established cross-modal CFG technique and flipping the direction to work video→action within WAMs—the technical novelty is quite limited.
+
+**Key feasibility/risk concerns:**
+The Fast-WAM results suggest video features matter primarily during training, not at test time, which could undermine the core assumption that amplifying video features during generation would actually help. There's also a genuine risk this approach simply won't produce meaningful improvements in action generation.
+
+**Verdict: REVISE**
+
+The experimental design is sound and computationally feasible, but the novelty falls short for CoRL—it's essentially applying an existing technique to a new direction without sufficient technical depth or conceptual insight. Combined with Fast-WAM's findings challenging the underlying hypothesis and the ceiling effect on already high LIBERO scores, this reads more as an experiment than a method contribution. I should write up a detailed review explaining these concerns.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d2da39f-20ad-4376-b67c-cc72ec7eb1f0",
+  "isSidechain": false,
+  "requestId": "req_011CauKkXR6vfcRhfKc2VcAA",
+  "type": "assistant",
+  "uuid": "a6f60a01-7446-4209-a8c4-ce0bea27431d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XWjuFsj5AiUqE3P6625SN9",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2829,
+      "cache_read_input_tokens": 54458,
+      "output_tokens": 2007,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2829,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2007,
+          "cache_read_input_tokens": 54458,
+          "cache_creation_input_tokens": 2829,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2829
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 103 · 2026-05-10T18:00:39.241Z_
+
+I've completed my thorough investigation. Let me now synthesize my findings into a final assessment.
+
+Key findings from my research:
+1. **UniDiffuser (ICML 2023)** — the foundational architecture for Motus — already inherently supports cross-modal CFG without any training modification, by evaluating noise predictions at different timesteps per modality.
+2. **"No Training, No Problem" (ICLR 2025)** explicitly demonstrates that CFG works on any pre-trained conditional model without dropout training.
+3. **Fast-WAM's central finding** is that video features' value lies in training-time representation learning, NOT test-time generation — directly challenging the hypothesis that amplifying video features at inference helps.
+4. **Multimodal CFG (m-CFG)** is already an established concept with theoretical analysis of how it amplifies modality-specific regions in multi-modal diffusion.
+5. No competing work applying CFG in the exact video→action direction was found, but this is because the technique is already a trivial capability of UniDiffuser-style models.
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 2, "rationale": "Cross-modal CFG is a built-in capability of UniDiffuser-style architectures (ICML 2023) that Motus directly inherits. Vid2World (ICLR 2026) already applies CFG within WAMs. The proposal is essentially 'try CFG in the other direction' — an obvious experiment on existing infrastructure, not a new method. 'No Training, No Problem' (ICLR 2025) further shows dropout fine-tuning is unnecessary."},
+    "feasibility": {"score": 4, "rationale": "Well-defined, lightweight, builds on available open-source code (UWM GitHub), realistic compute/timeline for CoRL. The main risk is that the fundamental hypothesis may be wrong (Fast-WAM shows video features' value is in training, not inference), leading to negative or marginal results on LIBERO where SOTA is already >90%."},
+    "clarity": {"score": 4, "rationale": "The framing is clear and well-motivated, the 'world model reliance dial' concept is intuitive, and the positioning relative to Fast-WAM and Vid2World is well-articulated. However, it misses the critical connection to UniDiffuser's built-in CFG support and the ICG literature."},
+    "impact": {"score": 2, "rationale": "If positive results: marginal improvement on already-saturated LIBERO benchmark. If negative: a confirmatory finding that aligns with Fast-WAM (video features don't help at test time). Neither outcome is likely to be transformative. The 'tunable dial' concept is nice but may not change how practitioners use WAMs."}
+  },
+  "issues": [
+    "UniDiffuser (ICML 2023), the foundation of Motus, already supports cross-modal CFG by design — setting video timestep to T while denoising actions gives the 'unconditional' score. This means VB-CFG can be applied to pre-trained Motus/UWM with ZERO training, making the proposed 'dropout fine-tuning' unnecessary rather than a contribution.",
+    "Fast-WAM (March 2026) demonstrated that video prediction's value lies in training-time representation learning, not test-time features. This directly challenges VB-CFG's core hypothesis that amplifying video features at inference improves actions — if the learned representations already encode world knowledge, amplifying video tokens may amplify noise rather than signal.",
+    "'No Training, No Problem: Rethinking Classifier-Free Guidance' (ICLR 2025) shows CFG works on any pre-trained conditional model without dropout training, further reducing the proposed dropout fine-tuning from 'lightweight contribution' to 'unnecessary overhead.'",
+    "LIBERO benchmark is already saturated (>90% success rate for SOTA methods like MotuBrain). Marginal improvements will not be compelling for CoRL reviewers. RoboTwin 2.0 scores also show MotuBrain at 95-96 in both clean and randomized settings.",
+    "The contribution as described is an empirical study ('does CFG in video→action direction help?'), not a method paper. The user's requirement explicitly asks for 'METHOD ONLY: new unified architecture, new training scheme, new inference algorithm.' Trying an existing technique in a new direction doesn't qualify as a new inference algorithm.",
+    "Vid2World (ICLR 2026) already establishes CFG within WAMs. Applying it in the reverse direction is the obvious next experiment — exactly the kind of 'trivial action-token prepending without architectural insight' the user asked to avoid."
+  ],
+  "feedback": "The core observation (video features could be selectively amplified during action denoising) is valid but insufficiently novel for CoRL as a standalone method. To save this direction, consider: (1) **Add genuine technical depth** — propose adaptive per-timestep guidance (guidance scale that changes during the action denoising trajectory), per-token guidance (different video tokens contribute differently), or latent-subspace guidance that operates on identified action-relevant video feature dimensions rather than the full video branch. (2) **Confront the Fast-WAM tension directly** — frame the contribution as 'understanding when and how video features help action prediction' with a mechanistic analysis (which video dimensions encode safety-relevant vs. efficiency-relevant information), going beyond simple guidance scale sweeps. (3) **Target harder benchmarks** — LIBERO is too saturated; use LIBERO-Plus with perturbations, or focus on out-of-distribution generalization where world-model amplification could plausibly help. (4) **Acknowledge UniDiffuser's inherent CFG support** — include zero-shot CFG (no fine-tuning) as a baseline and position dropout training as providing sharper conditional/unconditional separation. (5) **Consider combining with adaptive execution** — merge with the 'When to Trust Imagination' insight to propose adaptive guidance scales based on task difficulty or prediction confidence. This would be a genuine novel inference algorithm rather than a parameter sweep.",
+  "reason": "Cross-modal CFG in video→action direction is already a built-in capability of UniDiffuser-based WAMs (Motus), not a new method — the contribution reduces to an empirical study of a known technique, with high risk of negative results given Fast-WAM's finding that video features' value is in training, not inference."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a6f60a01-7446-4209-a8c4-ce0bea27431d",
+  "isSidechain": false,
+  "requestId": "req_011CauKkXR6vfcRhfKc2VcAA",
+  "type": "assistant",
+  "uuid": "f84048d1-c6fb-4f1c-b432-e174f756481d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XWjuFsj5AiUqE3P6625SN9",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2829,
+      "cache_read_input_tokens": 54458,
+      "output_tokens": 2007,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2829,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2007,
+          "cache_read_input_tokens": 54458,
+          "cache_creation_input_tokens": 2829,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2829
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 104_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "f84048d1-c6fb-4f1c-b432-e174f756481d",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 105_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Reviewer: Video-Branch CFG for WAM Action Denoising",
+  "sessionId": "be743a6c-4246-47fb-a8a7-fb63365f1381"
+}
+```
+
+---

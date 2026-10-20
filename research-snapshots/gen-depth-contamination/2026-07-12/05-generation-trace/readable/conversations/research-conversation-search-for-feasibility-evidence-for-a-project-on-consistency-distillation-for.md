@@ -1,0 +1,4477 @@
+# Research conversation: Search for feasibility evidence for a project on "consistency distillation for world-action models" (joint video+action 
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 71
+- **Recorded user turns:** 1
+- **Tool calls:** 31
+- **Original source:** `logs/chats/exported-trajectories/account-3/agent-aaa6ba3cd4726a233.jsonl`
+- **Structured JSON:** [`3bea79c92a61ea8d660f.json`](../../sessions/3b/3bea79c92a61ea8d660f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+71 recorded events
+
+### User
+
+_source line 1 · 2026-05-10T17:27:20.300Z_
+
+Search for feasibility evidence for a project on "consistency distillation for world-action models" (joint video+action generation in robotics/embodied AI). I need:
+
+## 1. Existing implementations on GitHub
+Search for:
+- "github.com consistency distillation diffusion"
+- "github.com consistency models implementation"
+- "github.com world action model"
+- "github.com video diffusion distillation"
+- "github.com Wan2.1 distillation"
+- "latent consistency models github"
+
+Report what open-source implementations exist that could serve as building blocks.
+
+## 2. Datasets
+Search for:
+- What datasets do world-action models typically train on? (e.g., Open X-Embodiment, RLBench, CALVIN, etc.)
+- "world action model training data"
+- "robot manipulation video action dataset"
+- Check if these datasets are publicly available on HuggingFace or similar
+
+## 3. Compute requirements for similar work
+Search for:
+- "consistency distillation training cost GPU hours"
+- "video diffusion model distillation compute requirements"
+- What compute did papers like TMD or consistency models papers report using?
+- Typical GPU requirements for training/distilling 14B parameter video models
+
+## 4. Current SOTA open-source video generation models (2025-2026)
+Search for:
+- "best open source video generation model 2026"
+- "SOTA open source video diffusion 2026"
+- What are the current top open-source video generation models being used as backbones?
+
+Report all findings with sources.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "47243d2b-89b2-496f-b69a-2d75d43d1904",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T17:27:20.304Z_
+
+```json
+{
+  "parentUuid": "47243d2b-89b2-496f-b69a-2d75d43d1904",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "73975bf1-fffb-4cb2-adf0-23fc5e6899b6",
+  "timestamp": "2026-05-10T17:27:20.304Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-10T17:27:22.820Z_
+
+
+
+I'll conduct a comprehensive feasibility search across all four areas simultaneously. Let me start by loading the web search and fetch tools.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "73975bf1-fffb-4cb2-adf0-23fc5e6899b6",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHGWFeFMjsWjqQLVVxa",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "87ebe666-0029-4a47-becf-9d3c06570afe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011bd641orPKrJJ71VqmwCVA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 895,
+      "cache_read_input_tokens": 7304,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 895,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-10T17:27:23.418Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_018YYFu8Mzy1c844CZhzoR8s`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "87ebe666-0029-4a47-becf-9d3c06570afe",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHGWFeFMjsWjqQLVVxa",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "fb58bf1d-a70e-4143-9037-5c0e33204e07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011bd641orPKrJJ71VqmwCVA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 895,
+      "cache_read_input_tokens": 7304,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 895,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-10T17:27:23.422Z_
+
+<details><summary>↩ Tool result · `toolu_018YYFu8Mzy1c844CZhzoR8s`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fb58bf1d-a70e-4143-9037-5c0e33204e07",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "439ddc57-73b0-4426-8592-a608c10028a0",
+  "sourceToolAssistantUUID": "fb58bf1d-a70e-4143-9037-5c0e33204e07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6 · 2026-05-10T17:27:26.321Z_
+
+
+
+Now let me launch all the searches in parallel across the four areas.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "439ddc57-73b0-4426-8592-a608c10028a0",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHGk2ciApCAMjCKwjYd",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3d05434c-d290-4712-a438-3aa95ae47c7c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012dCtG5cyAJLh7n8K3tTVph",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1916,
+      "cache_read_input_tokens": 8199,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1916,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-10T17:27:26.915Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SUb5VkUTa7rXxHKLyAEDsS`</summary>
+
+```json
+{
+  "query": "consistency distillation diffusion models GitHub implementation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3d05434c-d290-4712-a438-3aa95ae47c7c",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHGk2ciApCAMjCKwjYd",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d9efc851-575f-4537-8e2b-01fa12a29312",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012dCtG5cyAJLh7n8K3tTVph",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1916,
+      "cache_read_input_tokens": 8199,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1916,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-10T17:27:27.298Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UF9FRoaJHELVWf9k6KLAg2`</summary>
+
+```json
+{
+  "query": "consistency models implementation GitHub open source"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d9efc851-575f-4537-8e2b-01fa12a29312",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHGk2ciApCAMjCKwjYd",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "89df0362-976b-4512-97d7-ed25ce4c110b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012dCtG5cyAJLh7n8K3tTVph",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1916,
+      "cache_read_input_tokens": 8199,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1916,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-10T17:27:27.751Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012PqoNebaQuNCjNKJ4HzWQ3`</summary>
+
+```json
+{
+  "query": "world action model robotics GitHub implementation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89df0362-976b-4512-97d7-ed25ce4c110b",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHGk2ciApCAMjCKwjYd",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0927ad71-4317-4dea-a263-9b11364fb0c8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012dCtG5cyAJLh7n8K3tTVph",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1916,
+      "cache_read_input_tokens": 8199,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1916,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T17:27:28.690Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018P4QvdkVVdhyzxeBesuP5v`</summary>
+
+```json
+{
+  "query": "video diffusion distillation GitHub 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0927ad71-4317-4dea-a263-9b11364fb0c8",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHGk2ciApCAMjCKwjYd",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e4209222-f79a-4279-8d28-49478d2454a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012dCtG5cyAJLh7n8K3tTVph",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1916,
+      "cache_read_input_tokens": 8199,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1916,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-10T17:27:29.159Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Enu5JGra4QzkwTxWb3D674`</summary>
+
+```json
+{
+  "query": "Wan2.1 distillation GitHub"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e4209222-f79a-4279-8d28-49478d2454a6",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHGk2ciApCAMjCKwjYd",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "19c35cfd-9f96-4d8d-bedd-1d77b319b41e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012dCtG5cyAJLh7n8K3tTVph",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1916,
+      "cache_read_input_tokens": 8199,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1916,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-10T17:27:29.504Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XPrGZ8z5yH8J49KUDki2X7`</summary>
+
+```json
+{
+  "query": "latent consistency models GitHub implementation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "19c35cfd-9f96-4d8d-bedd-1d77b319b41e",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHGk2ciApCAMjCKwjYd",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "35afb308-2229-4b8a-9ec6-a3fc6265464f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012dCtG5cyAJLh7n8K3tTVph",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1916,
+      "cache_read_input_tokens": 8199,
+      "output_tokens": 288,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1916
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 288,
+          "cache_read_input_tokens": 8199,
+          "cache_creation_input_tokens": 1916,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1916,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-10T17:27:34.265Z_
+
+<details><summary>↩ Tool result · `toolu_01SUb5VkUTa7rXxHKLyAEDsS`</summary>
+
+```text
+Web search results for query: "consistency distillation diffusion models GitHub implementation"
+
+Links: [{"title":"GitHub - cloneofsimo/consistency_models: Unofficial Implementation of Consistency Models in pytorch","url":"https://github.com/cloneofsimo/consistency_models"},{"title":"diffusers/examples/consistency_distillation/README.md at main · huggingface/diffusers","url":"https://github.com/huggingface/diffusers/blob/main/examples/consistency_distillation/README.md"},{"title":"GitHub - crowsonkb/consistency-models: A JAX implementation of the continuous time formulation of Consistency Models","url":"https://github.com/crowsonkb/consistency-models"},{"title":"GitHub - openai/consistency_models: Official repo for consistency models. · GitHub","url":"https://github.com/openai/consistency_models"},{"title":"GitHub - smsharma/consistency-models: Implementation of Consistency Models (Song et al 2023) for few-step image generation in Jax.","url":"https://github.com/smsharma/consistency-models"},{"title":"GitHub - theunnecessarythings/consistency-models: Unofficial Implementation of Consistency Models in Pytorch","url":"https://github.com/sreerajr000/consistency-models"},{"title":"GitHub - mbreuss/consistency_models_toy_task: Unofficial minimal implementation of consistency models (CM) proposed by Song et al. 2023 on a 1D toy task in pytorch","url":"https://github.com/mbreuss/consistency_models_toy_task"},{"title":"GitHub - Kinyugo/consistency_models: A mini-library for training consistency models.","url":"https://github.com/Kinyugo/consistency_models"},{"title":"Consistency Policy: Accelerated Visuomotor Policies via Consistency Distillation","url":"https://consistency-policy.github.io/"},{"title":"GitHub - Bai-YT/ConsistencyTTA: ConsistencyTTA: Accelerating Diffusion-Based Text-to-Audio Generation with Consistency Distillation","url":"https://github.com/Bai-YT/ConsistencyTTA"}]
+
+Based on the search results, here are several GitHub implementations for consistency distillation on diffusion models:
+
+## Official Implementations
+
+OpenAI's official repository contains the codebase for Consistency Models implemented in PyTorch and supports consistency distillation, consistency training, and several sampling and editing algorithms. The repository is available at [github.com/openai/consistency_models](https://github.com/openai/consistency_models).
+
+Hugging Face's Diffusers library provides Latent Consistency Models (LCMs), a method to distill latent diffusion models, with examples demonstrating how to use latent consistency distillation to distill stable-diffusion-v1.5 for inference with few timesteps. This is available at [github.com/huggingface/diffusers](https://github.com/huggingface/diffusers/blob/main/examples/consistency_distillation/README.md).
+
+## Community Implementations
+
+crowsonkb's repository is a JAX implementation of the continuous time formulation of Consistency Models, which allows distillation of a diffusion model into a single-step generative model ([github.com/crowsonkb/consistency-models](https://github.com/crowsonkb/consistency-models)).
+
+smsharma's implementation in Jax includes consistency models for few-step generation, achieving state-of-the-art performance in one- and few-step generation, outperforming existing techniques distilling diffusion models ([github.com/smsharma/consistency-models](https://github.com/smsharma/consistency-models)).
+
+Kinyugo's library is a general-purpose training and inference library for Consistency Models introduced by OpenAI ([github.com/Kinyugo/consistency_models](https://github.com/Kinyugo/consistency_models)).
+
+mbreuss's repository contains implementations for both Consistency Distillation (CD) and Consistency Training (CT) on 1D toy tasks ([github.com/mbreuss/consistency_models_toy_task](https://github.com/mbreuss/consistency_models_toy_task)).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d9efc851-575f-4537-8e2b-01fa12a29312",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "2093894d-cae2-4c4c-822e-2bb4ad65a06f",
+  "sourceToolAssistantUUID": "d9efc851-575f-4537-8e2b-01fa12a29312",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-10T17:27:35.617Z_
+
+<details><summary>↩ Tool result · `toolu_012PqoNebaQuNCjNKJ4HzWQ3`</summary>
+
+```text
+Web search results for query: "world action model robotics GitHub implementation"
+
+Links: [{"title":"GitHub - leggedrobotics/robotic_world_model: Repository for our papers: Robotic World Model: A Neural Network Simulator for Robust Policy Optimization in Robotics and Uncertainty-Aware Robotic World Model Makes Offline Model-Based Reinforcement Learning Work on Real Robots · GitHub","url":"https://github.com/leggedrobotics/robotic_world_model"},{"title":"GitHub - LMD0311/Awesome-World-Model: Collect some World Models for Autonomous Driving (and Robotic, etc.) papers. · GitHub","url":"https://github.com/LMD0311/Awesome-World-Model"},{"title":"GitHub - operator22th/awesome-world-models-for-robots: Awesome World Model for Robotics Papers · GitHub","url":"https://github.com/operator22th/awesome-world-models-for-robots"},{"title":"GitHub - leofan90/Awesome-World-Models: A comprehensive list of papers for the definition of World Models and using World Models for General Video Generation, Embodied AI, and Autonomous Driving, including papers, codes, and related websites. · GitHub","url":"https://github.com/leofan90/Awesome-World-Models"},{"title":"GitHub - unitreerobotics/unifolm-world-model-action · GitHub","url":"https://github.com/unitreerobotics/unifolm-world-model-action"},{"title":"Robotics World Modeling","url":"https://robot-world-modeling.github.io/"},{"title":"World Models | Rohit Bandaru","url":"https://rohitbandaru.github.io/blog/World-Models/"},{"title":"GitHub - NTUMARS/Awesome-World-Model-for-Robotics-Policy · GitHub","url":"https://github.com/NTUMARS/Awesome-World-Model-for-Robotics-Policy"},{"title":"GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub","url":"https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"},{"title":"GitHub - Robert-gyj/Ctrl-World: ICLR 2026 Paper: Ctrl-World · GitHub","url":"https://github.com/Robert-gyj/Ctrl-World"}]
+
+Based on the search results, here are several notable world action model robotics implementations available on GitHub:
+
+## Key Implementations
+
+**1. Robotic World Model (leggedrobotics)**
+This is a repository for papers on "Robotic World Model: A Neural Network Simulator for Robust Policy Optimization in Robotics" and "Uncertainty-Aware Robotic World Model Makes Offline Model-Based Reinforcement Learning Work on Real Robots". It supports training a model-based policy from imagined rollouts, with both online training (continuously collecting environment interactions) and offline training (relying on static dynamics models).
+
+**2. UnifoLM-WMA-0 (Unitree Robotics)**
+UnifoLM-WMA-0 is an open-source world-model–action architecture for general-purpose robot learning, with a core component being a world-model capable of understanding physical interactions between robots and environments, operating as both a simulation engine and policy enhancement tool. The training and inference code along with model weights were released in September 2025.
+
+**3. Ctrl-World (ICLR 2026)**
+Ctrl-World is an action-conditioned world model compatible with modern VLA policies and enables policy-in-the-loop rollouts entirely in imagination, which can be used to evaluate and improve the instruction following ability of VLA.
+
+## Resource Collections
+
+A world model is a computer program that can imagine how the world evolves in response to an agent's behavior, with potential to enable safe, reliable, and intelligent robots in a wide variety of scenarios. There are several curated lists on GitHub documenting recent world models for robotics research, including papers and implementations from 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0927ad71-4317-4dea-a263-9b11364fb0c8",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "781d3407-cb81-4880-b2ff-d28365cfc48f",
+  "sourceToolAssistantUUID": "0927ad71-4317-4dea-a263-9b11364fb0c8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-10T17:27:35.655Z_
+
+<details><summary>↩ Tool result · `toolu_01UF9FRoaJHELVWf9k6KLAg2`</summary>
+
+```text
+Web search results for query: "consistency models implementation GitHub open source"
+
+Links: [{"title":"GitHub - openai/consistency_models: Official repo for consistency models. · GitHub","url":"https://github.com/openai/consistency_models"},{"title":"GitHub - cloneofsimo/consistency_models: Unofficial Implementation of Consistency Models in pytorch","url":"https://github.com/cloneofsimo/consistency_models"},{"title":"GitHub - Kinyugo/consistency_models: A mini-library for training consistency models.","url":"https://github.com/Kinyugo/consistency_models"},{"title":"GitHub - smsharma/consistency-models: Implementation of Consistency Models (Song et al 2023) for few-step image generation in Jax.","url":"https://github.com/smsharma/consistency-models"},{"title":"GitHub - junhsss/consistency-models: A Toolkit for OpenAI's Consistency Models.","url":"https://github.com/junhsss/consistency-models"},{"title":"GitHub - quantumiracle/Consistency_Model_For_Reinforcement_Learning: Official implementation for: Consistency Models as a Rich and Efficient Policy Class for Reinforcement Learning ICLR'24","url":"https://github.com/quantumiracle/Consistency_Model_For_Reinforcement_Learning"},{"title":"GitHub - locuslab/ect: Consistency Models Made Easy","url":"https://github.com/locuslab/ect"},{"title":"GitHub - mbreuss/consistency_models_toy_task: Unofficial minimal implementation of consistency models (CM) proposed by Song et al. 2023 on a 1D toy task in pytorch","url":"https://github.com/mbreuss/consistency_models_toy_task"},{"title":"GitHub - G-U-N/Awesome-Consistency-Models: Awesome List of Consistency Models · GitHub","url":"https://github.com/G-U-N/Awesome-Consistency-Models"},{"title":"consistency-models · GitHub Topics · GitHub","url":"https://github.com/topics/consistency-models"}]
+
+## Search Results: Consistency Models Implementation on GitHub
+
+I found several open-source GitHub repositories implementing consistency models. Here are the key ones:
+
+### Official Implementation
+The official OpenAI repository contains the codebase for Consistency Models, implemented using PyTorch for conducting large-scale experiments on ImageNet-64, LSUN Bedroom-256, and LSUN Cat-256. The modifications have enabled support for consistency distillation, consistency training, as well as several sampling and editing algorithms discussed in the paper.
+
+### Community Implementations
+
+1. **Kinyugo/consistency_models**: A general purpose training and inference library for Consistency Models introduced in the paper "Consistency Models" by OpenAI. Consistency Models are a new family of generative models that achieve high sample quality without adversarial training. They support fast one-step generation by design, while still allowing for few-step sampling to trade compute for sample quality.
+
+2. **smsharma/consistency-models**: Implementation of Consistency Models, a class of diffusion-adjacent models introduced in Song et al (2023), in Jax.
+
+3. **junhsss/consistency-models**: A Toolkit for OpenAI's Consistency Models that is self-contained with the training logic and all necessary schedules, and can be trained with PyTorch Lightning's Trainer.
+
+4. **locuslab/ect**: Pytorch implementation for Easy Consistency Tuning (ECT). ECT unlocks state-of-the-art (SoTA) few-step generative abilities through a simple yet principled approach.
+
+5. **Consistency Models for RL**: Official implementation for: Consistency Models as a Rich and Efficient Policy Class for Reinforcement Learning ICLR'24
+
+There's also an Awesome List repository curating consistency models research, with papers sorted by publication year and focusing on key contributions in consistency models and related advancements.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "89df0362-976b-4512-97d7-ed25ce4c110b",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "648b587c-1c9d-4e99-a772-096d89d445bb",
+  "sourceToolAssistantUUID": "89df0362-976b-4512-97d7-ed25ce4c110b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-10T17:27:35.836Z_
+
+<details><summary>↩ Tool result · `toolu_01Enu5JGra4QzkwTxWb3D674`</summary>
+
+```text
+Web search results for query: "Wan2.1 distillation GitHub"
+
+Links: [{"title":"Video generation distillation · Issue #223 · Wan-Video/Wan2.1","url":"https://github.com/Wan-Video/Wan2.1/issues/223"},{"title":"GitHub - azuresky03/distill_wan2.1","url":"https://github.com/azuresky03/distill_wan2.1"},{"title":"Wan 2.1 / Wan2.2 Lightning & Sparse Distillation & Tiny VAE Acceleration Methods · Issue #12146 · huggingface/diffusers","url":"https://github.com/huggingface/diffusers/issues/12146"},{"title":"GitHub - ModelTC/Wan2.2-Lightning: Wan2.2-Lightning: Speed up wan2.2 model with distillation · GitHub","url":"https://github.com/ModelTC/Wan2.2-Lightning"},{"title":"GitHub - Wan-Video/Wan2.2: Wan: Open and Advanced Large-Scale Video Generative Models · GitHub","url":"https://github.com/Wan-Video/Wan2.2"},{"title":"lightx2v/Wan2.1-Distill-Models · Hugging Face","url":"https://huggingface.co/lightx2v/Wan2.1-Distill-Models"},{"title":"lightx2v/Wan2.2-Distill-Models · Hugging Face","url":"https://huggingface.co/lightx2v/Wan2.2-Distill-Models"},{"title":"GitHub - linnanwang/Wan2.2-Lightning: Wan2.2-Lightning: Speed up wan2.2 model with distillation · GitHub","url":"https://github.com/linnanwang/Wan2.2-Lightning"},{"title":"Question about the i2v 14b model: Distillation or not? · Issue #115 · Wan-Video/Wan2.1","url":"https://github.com/Wan-Video/Wan2.1/issues/115"},{"title":"FastWan: Generating a 5-Second Video in 5 Seconds via Sparse Distillation | Hao AI Lab @ UCSD","url":"https://haoailab.com/blogs/fastvideo_post_training/"}]
+
+Based on the search results, here's what I found regarding Wan2.1 distillation on GitHub:
+
+## Key GitHub Projects
+
+**1. distill_wan2.1 (azuresky03): Focuses on the distillation and post-training processes for the Wan2.1 model, with all data processing, training and inference code along with model weights being open-sourced.**
+
+The project applies Distribution Matching Distillation (DMD) to optimize the model, implemented according to concepts from DRaFT.
+
+**2. Wan2.2-Lightning: A GitHub project focused on speeding up the wan2.2 model with distillation**, which also has applications relevant to Wan2.1.
+
+**3. FastVideo: Includes distilled Wan models with sparse attention that significantly speed up inference time.**
+
+## Technical Approaches
+
+Sparse distillation is the first method to jointly train sparse attention and denoising step distillation in a unified framework. LightX2V includes 4-step inference for Wan2.1 via LoRAs and FastVideo enables 3-step inference via distillation for Wan2.1.
+
+These projects demonstrate various distillation techniques for making Wan2.1 models more efficient while maintaining generation quality.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "19c35cfd-9f96-4d8d-bedd-1d77b319b41e",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "97f9cc19-0979-4838-bc97-dd71f7ae09d1",
+  "sourceToolAssistantUUID": "19c35cfd-9f96-4d8d-bedd-1d77b319b41e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-10T17:27:36.482Z_
+
+<details><summary>↩ Tool result · `toolu_01XPrGZ8z5yH8J49KUDki2X7`</summary>
+
+```text
+Web search results for query: "latent consistency models GitHub implementation"
+
+Links: [{"title":"GitHub - luosiallen/latent-consistency-model: Latent Consistency Models: Synthesizing High-Resolution Images with Few-Step Inference · GitHub","url":"https://github.com/luosiallen/latent-consistency-model"},{"title":"Latent Consistency Models: Synthesizing High-Resolution Images with Few-step Inference","url":"https://latent-consistency-models.github.io/"},{"title":"GitHub - radames/Real-Time-Latent-Consistency-Model: App showcasing multiple real-time diffusion models pipelines with Diffusers · GitHub","url":"https://github.com/radames/Real-Time-Latent-Consistency-Model"},{"title":"GitHub - replicate/latent-consistency-model: Run Latent Consistency Models on your Mac · GitHub","url":"https://github.com/replicate/latent-consistency-model"},{"title":"GitHub - camenduru/latent-consistency-model-colab","url":"https://github.com/camenduru/latent-consistency-model-colab"},{"title":"GitHub - 0xbitches/sd-webui-lcm: Latent Consistency Model for AUTOMATIC1111 Stable Diffusion WebUI · GitHub","url":"https://github.com/0xbitches/sd-webui-lcm"},{"title":"latent-consistency-model/main.py at main · replicate/latent-consistency-model","url":"https://github.com/replicate/latent-consistency-model/blob/main/main.py"},{"title":"GitHub - Kinyugo/consistency_models: A mini-library for training consistency models.","url":"https://github.com/Kinyugo/consistency_models"},{"title":"Real-Time Latent Consistency Model | Hacker News","url":"https://news.ycombinator.com/item?id=38073734"},{"title":"Improved Training Technique for Latent Consistency Models | OpenReview","url":"https://openreview.net/forum?id=PQjZes6vFV"}]
+
+Based on the search results, here are the main GitHub implementations for Latent Consistency Models:
+
+## Primary Implementation
+
+The official GitHub repository is luosiallen/latent-consistency-model: "Latent Consistency Models: Synthesizing High-Resolution Images with Few-Step Inference". Latent Consistency Models are supported in the Diffusers library, and you can use them directly through there.
+
+## Key Features
+
+By distilling classifier-free guidance into the model's input, LCM can generate high-quality images in very short inference time. Latent consistency models can generate images much faster, needing only 4 to 8 steps for a good image (compared to 25 to 50 steps).
+
+## Other Notable Implementations
+
+1. **Real-Time Implementation**: radames/Real-Time-Latent-Consistency-Model showcases Latent Consistency Model using Diffusers with a MJPEG stream server.
+
+2. **Replicate Version**: You can run Latent Consistency Models in the cloud on Replicate, but it's also possible to run it locally.
+
+3. **WebUI Integration**: 0xbitches/sd-webui-lcm aims to integrate Latent Consistency Model into AUTOMATIC1111 Stable Diffusion WebUI.
+
+4. **General Consistency Models**: Kinyugo/consistency_models is a general purpose training and inference library for Consistency Models introduced in the paper "Consistency Models" by OpenAI.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "35afb308-2229-4b8a-9ec6-a3fc6265464f",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "c5a0c85c-5384-4a00-b73e-4422835db009",
+  "sourceToolAssistantUUID": "35afb308-2229-4b8a-9ec6-a3fc6265464f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-10T17:27:38.274Z_
+
+<details><summary>↩ Tool result · `toolu_018P4QvdkVVdhyzxeBesuP5v`</summary>
+
+```text
+Web search results for query: "video diffusion distillation GitHub 2025 2026"
+
+Links: [{"title":"GitHub - NVlabs/rcm: [ICLR 2026] rCM: SOTA JVP-Based Diffusion Distillation & Few-Step Video Generation & Scaling Up sCM/MeanFlow · GitHub","url":"https://github.com/NVlabs/rcm"},{"title":"GitHub - OpenImagingLab/FlashVSR: [CVPR 2026] Towards Real-Time Diffusion-Based Streaming Video Super-Resolution — An efficient one-step diffusion framework for streaming VSR with locality-constrained sparse attention and a tiny conditional decoder.","url":"https://github.com/OpenImagingLab/FlashVSR"},{"title":"GitHub - thu-ml/Causal-Forcing: [ICML 2026] Official codebase for \"Causal Forcing: Autoregressive Diffusion Distillation Done Right for High-Quality Real-Time Interactive Video Generation\" · GitHub","url":"https://github.com/thu-ml/Causal-Forcing"},{"title":"GitHub - Vchitect/DCM: [ICCV2025] DCM: Dual-Expert Consistency Model for Efficient and High-Quality Video Generation · GitHub","url":"https://github.com/Vchitect/DCM"},{"title":"GitHub - nv-tlabs/lyra: Project Lyra: Open Generative 3D World Models · GitHub","url":"https://github.com/nv-tlabs/lyra"},{"title":"Dual-Expert Consistency Model for Efficient and High-Quality Video Generation","url":"https://vchitect.github.io/DCM/"},{"title":"From Slow Bidirectional to Fast Autoregressive Video Diffusion Models","url":"https://causvid.github.io/"},{"title":"VideoScene: Distilling Video Diffusion Model to Generate 3D Scenes in One Step","url":"https://hanyang-21.github.io/VideoScene/"},{"title":"GitHub - showlab/Awesome-Video-Diffusion: A curated list of recent diffusion models for video generation, editing, and various other applications. · GitHub","url":"https://github.com/showlab/Awesome-Video-Diffusion"},{"title":"GitHub - CompVis/distilldift: DistillDIFT: Distillation of Diffusion Features for Semantic Correspondence (WACV 2025)","url":"https://github.com/CompVis/distilldift"}]
+
+I found several relevant GitHub repositories related to video diffusion distillation from 2025-2026. Here are the key findings:
+
+## Recent Video Diffusion Distillation Projects
+
+**rCM (ICLR 2026)**
+Scales up continuous-time consistency distillation (e.g., sCM/MeanFlow) to 10B+ parameter video diffusion models. Provides open-sourced FlashAttention-2 Jacobian-vector product (JVP) kernel with support for parallelisms like FSDP/CP. Available at: https://github.com/NVlabs/rcm
+
+**FlashVSR (CVPR 2026)**
+FlashVSR runs at ∼17 FPS for 768 × 1408 videos on a single A100 GPU by combining three complementary innovations: (i) a train-friendly three-stage distillation pipeline that enables streaming super-resolution, (ii) locality-constrained sparse attention that cuts redundant computation while bridging the train–test resolution gap, and (iii) a tiny conditional decoder that accelerates reconstruction without sacrificing quality. Available at: https://github.com/OpenImagingLab/FlashVSR
+
+**Causal Forcing (ICML 2026)**
+Causal Forcing significantly outperforms Self Forcing in both visual quality and motion dynamics, while keeping the same training budget and inference efficiency—enabling real-time, streaming video generation on a single RTX 4090. Available at: https://github.com/thu-ml/Causal-Forcing
+
+**DCM - Dual-Expert Consistency Model (ICCV 2025)**
+A parameter-efficient Dual-Expert Consistency Model (DCM), where a semantic expert focuses on learning semantic layout and motion, while a detail expert specializes in fine detail refinement. Available at: https://github.com/Vchitect/DCM
+
+**VideoScene (CVPR 2025)**
+VideoScene distills the video diffusion model to generate 3D scenes in one step, aiming to build an efficient and effective tool to bridge the gap from video to 3D. Specifically, it designs a 3D-aware leap flow distillation strategy to leap over time-consuming redundant information and train a dynamic denoising policy network to adaptively determine the optimal leap timestep during inference.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e4209222-f79a-4279-8d28-49478d2454a6",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "8fb71f71-321d-4ea7-be17-22c0d5d46b43",
+  "sourceToolAssistantUUID": "e4209222-f79a-4279-8d28-49478d2454a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-10T17:27:42.169Z_
+
+Good, now let me search for datasets and compute requirements.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8fb71f71-321d-4ea7-be17-22c0d5d46b43",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHHq7VUpGDhHdZL5YyW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8a082858-5eaa-4be0-8a05-d406c679c658",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GdjCzW9xuAgCxNStjK9uTz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1812,
+      "cache_creation_input_tokens": 4565,
+      "cache_read_input_tokens": 10115,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4565,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-10T17:27:42.652Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Y2JgnzgtZjzdPwZJqiKKvu`</summary>
+
+```json
+{
+  "query": "Open X-Embodiment dataset robot manipulation publicly available"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8a082858-5eaa-4be0-8a05-d406c679c658",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHHq7VUpGDhHdZL5YyW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2d3268b7-113e-43dc-8f2c-0b2da87726f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GdjCzW9xuAgCxNStjK9uTz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1812,
+      "cache_creation_input_tokens": 4565,
+      "cache_read_input_tokens": 10115,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4565,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-10T17:27:43.577Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MWJR3kr5c4NYFGGwgkircp`</summary>
+
+```json
+{
+  "query": "world action model training dataset robot video action pairs 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d3268b7-113e-43dc-8f2c-0b2da87726f4",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHHq7VUpGDhHdZL5YyW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7c82557d-ad46-420b-82b7-11c047727420",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GdjCzW9xuAgCxNStjK9uTz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1812,
+      "cache_creation_input_tokens": 4565,
+      "cache_read_input_tokens": 10115,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4565,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-10T17:27:44.049Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WCxNZUhq9ABtYnvMscU7Rc`</summary>
+
+```json
+{
+  "query": "CALVIN RLBench robot manipulation dataset download"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7c82557d-ad46-420b-82b7-11c047727420",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHHq7VUpGDhHdZL5YyW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6c3173b3-8d93-4ca6-ae44-af9b29182a0a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GdjCzW9xuAgCxNStjK9uTz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1812,
+      "cache_creation_input_tokens": 4565,
+      "cache_read_input_tokens": 10115,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4565,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-10T17:27:44.989Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01G6F1BQ2yQm45S8PEPwHjMg`</summary>
+
+```json
+{
+  "query": "consistency distillation training cost GPU hours compute requirements"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6c3173b3-8d93-4ca6-ae44-af9b29182a0a",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHHq7VUpGDhHdZL5YyW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4be39828-7b73-4ac3-a117-745ac230c5a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GdjCzW9xuAgCxNStjK9uTz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1812,
+      "cache_creation_input_tokens": 4565,
+      "cache_read_input_tokens": 10115,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4565,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-10T17:27:45.461Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013uBMy7mL68j6fpMZJSn4Sr`</summary>
+
+```json
+{
+  "query": "video diffusion model distillation compute requirements GPU training"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4be39828-7b73-4ac3-a117-745ac230c5a9",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHHq7VUpGDhHdZL5YyW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "573f197e-b1e6-4469-a845-7c654f928f08",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GdjCzW9xuAgCxNStjK9uTz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1812,
+      "cache_creation_input_tokens": 4565,
+      "cache_read_input_tokens": 10115,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 4565,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-10T17:27:46.037Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01849JRSZXu1EnQPugkLKEZS`</summary>
+
+```json
+{
+  "query": "best open source video generation model 2025 2026 SOTA"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "573f197e-b1e6-4469-a845-7c654f928f08",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHHq7VUpGDhHdZL5YyW",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8b88ba4f-3aa7-4380-a00c-7affb2e94784",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GdjCzW9xuAgCxNStjK9uTz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1812,
+      "cache_creation_input_tokens": 4565,
+      "cache_read_input_tokens": 10115,
+      "output_tokens": 303,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 4565
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1812,
+          "output_tokens": 303,
+          "cache_read_input_tokens": 10115,
+          "cache_creation_input_tokens": 4565,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 4565,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-10T17:27:51.712Z_
+
+<details><summary>↩ Tool result · `toolu_01G6F1BQ2yQm45S8PEPwHjMg`</summary>
+
+```text
+Web search results for query: "consistency distillation training cost GPU hours compute requirements"
+
+Links: [{"title":"Model distillation with compute: How to set it up","url":"https://nebius.com/blog/posts/model-distillation-with-compute-setup"},{"title":"Latent Consistency Models: Training Fast Diffusion Models | Mercity Research","url":"https://www.mercity.ai/blog-post/lcm-lora-distillation-training-fast-diffusion-models/"},{"title":"Benchmarking Distilled Language Models: Performance ...","url":"https://arxiv.org/pdf/2602.20164"},{"title":"How Much Does LLM Training Cost? | Galileo","url":"https://galileo.ai/blog/llm-model-training-cost"},{"title":"DeepSeek FAQ – Stratechery by Ben Thompson","url":"https://stratechery.com/2025/deepseek-faq/"},{"title":"Consistency Model Training: Distillation Approach","url":"https://apxml.com/courses/advanced-diffusion-architectures/chapter-5-consistency-models/consistency-training-distillation"},{"title":"Distill or Annotate? Cost-Efficient Fine-Tuning of Compact ...","url":"https://aclanthology.org/2023.acl-long.622.pdf"},{"title":"The concept behind distilling an LLM","url":"https://nebius.com/blog/posts/concept-behind-distilling-llm"},{"title":"What is the cost of training large language models?","url":"https://www.cudocompute.com/blog/what-is-the-cost-of-training-large-language-models"},{"title":"Knowledge Distillation | Meta Intelligence","url":"https://www.meta-intelligence.tech/en/insight-distillation"}]
+
+Based on the search results, here are the key findings about consistency distillation training costs and GPU hour requirements:
+
+## Specific GPU Hour Requirements
+
+Latent Consistency Models (LCM) training requires only 32 A100 GPU hours (approximately $100 in cloud costs) to generate high-quality 768x768 images.
+
+For more complex scenarios, a complete LCM training run of 1,600 steps took approximately 4 hours and cost around $8-10 at typical cloud rates on an NVIDIA A100 with 80GB of VRAM.
+
+## Inference Cost Savings
+
+The compute savings from consistency distillation are substantial. For batch generation at scale, 10,000 images at 50 steps costs roughly 70 GPU hours; at 4 steps, about 6 GPU hours—a 10× reduction in compute costs.
+
+## Memory Requirements
+
+LCM training is particularly memory-intensive because it requires holding both the teacher and student models in memory simultaneously, with LoRA rank 96 applied to extensive target modules and a batch size of 128 requiring roughly 70GB of the available 80GB.
+
+## Broader Distillation Context
+
+More generally, creating a highly capable 8B parameter model via distillation requires approximately 622 H100 GPU-hours, a reduction of over 2,000 times compared to training its vanilla counterpart from scratch.
+
+The efficiency gains make consistency distillation a practical approach for deploying fast generative models with minimal computational overhead compared to training from scratch.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4be39828-7b73-4ac3-a117-745ac230c5a9",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "c4e682b4-c4de-4600-9767-692be346cf79",
+  "sourceToolAssistantUUID": "4be39828-7b73-4ac3-a117-745ac230c5a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-10T17:27:51.817Z_
+
+<details><summary>↩ Tool result · `toolu_01WCxNZUhq9ABtYnvMscU7Rc`</summary>
+
+```text
+Web search results for query: "CALVIN RLBench robot manipulation dataset download"
+
+Links: [{"title":"GitHub - mees/calvin: CALVIN - A benchmark for Language-Conditioned Policy Learning for Long-Horizon Robot Manipulation Tasks · GitHub","url":"https://github.com/mees/calvin"},{"title":"calvin/dataset/README.md at main · mees/calvin","url":"https://github.com/mees/calvin/blob/main/dataset/README.md"},{"title":"CALVIN Dataset: Language & Vision Robotics","url":"https://www.emergentmind.com/topics/calvin-dataset"},{"title":"[2112.03227] CALVIN: A Benchmark for Language-Conditioned Policy Learning for Long-Horizon Robot Manipulation Tasks","url":"https://arxiv.org/abs/2112.03227"},{"title":"hqfang/rlbench-18-tasks · Datasets at Hugging Face","url":"https://huggingface.co/datasets/hqfang/rlbench-18-tasks"},{"title":"RLBench: The Robot Learning Benchmark & Learning Environment","url":"https://arxiv.org/pdf/1909.12271"},{"title":"GitHub - stepjam/RLBench: A large-scale benchmark and learning environment. · GitHub","url":"https://github.com/stepjam/RLBench"},{"title":"RoboCerebra: A Large-scale Benchmark for Long-horizon ...","url":"https://arxiv.org/pdf/2506.06677"},{"title":"RH20T: A Comprehensive Robotic Dataset for Learning Diverse Skills in One-Shot","url":"https://rh20t.github.io/"},{"title":"VLMbench: A Compositional Benchmark for Vision-and-Language Manipulation","url":"https://proceedings.neurips.cc/paper_files/paper/2022/file/04543a88eae2683133c1acbef5a6bf77-Paper-Datasets_and_Benchmarks.pdf"}]
+
+Based on the search results, here's information about the CALVIN and RLBench robot manipulation datasets:
+
+## CALVIN Dataset
+
+CALVIN (Composing Actions from Language and Vision) is an open-source simulated benchmark to learn long-horizon language-conditioned tasks. CALVIN tasks are more complex in terms of sequence length, action space, and language than existing vision-and-language task datasets and supports flexible specification of sensor suites.
+
+**Download Information:**
+To set up CALVIN, you clone the repository with `git clone --recurse-submodules https://github.com/mees/calvin.git`, create a conda environment with Python 3.8, and run the installation script. The dataset can then be downloaded by choosing which split you want (D, ABC, or ABCD).
+
+The official repository is available at: https://github.com/mees/calvin
+
+## RLBench Dataset
+
+RLBench is an ambitious large-scale benchmark and learning environment designed to facilitate research in vision-guided manipulation research areas, including reinforcement learning, imitation learning, multi-task learning, geometric computer vision, and few-shot learning. The benchmark features 100 completely unique, hand-designed tasks ranging in difficulty, from simple target reaching and door opening, to longer multi-stage tasks, such as opening an oven and placing a tray in it.
+
+**Download Information:**
+The RLBench dataset for 18 tasks is available on Hugging Face, as downloading large files from Google Drive via terminal can be problematic. You can find it at: https://huggingface.co/datasets/hqfang/rlbench-18-tasks
+
+The official RLBench repository is at: https://github.com/stepjam/RLBench
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6c3173b3-8d93-4ca6-ae44-af9b29182a0a",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "c3d3ef00-d2ce-40e2-84e1-dd885f952845",
+  "sourceToolAssistantUUID": "6c3173b3-8d93-4ca6-ae44-af9b29182a0a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-10T17:27:51.970Z_
+
+<details><summary>↩ Tool result · `toolu_01MWJR3kr5c4NYFGGwgkircp`</summary>
+
+```text
+Web search results for query: "world action model training dataset robot video action pairs 2025"
+
+Links: [{"title":"1X World Model | From Video to Action: A New Way Robots Learn","url":"https://www.1x.tech/discover/world-model-self-learning"},{"title":"Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising","url":"https://arxiv.org/html/2604.26694v2"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://weirdlabuw.github.io/uwm/"},{"title":"MotuBrain: An Advanced World Action Model for Robot Control","url":"https://arxiv.org/html/2604.27792v2"},{"title":"Causal World Modeling for Robot Control","url":"https://arxiv.org/html/2601.21998v1"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | Request PDF","url":"https://www.researchgate.net/publication/395371959_Unified_World_Models_Coupling_Video_and_Action_Diffusion_for_Pretraining_on_Large_Robotic_Datasets"},{"title":"World Action Models are Zero-shot Policies","url":"https://arxiv.org/html/2602.15922v1"},{"title":"World Model for Robot Learning: A Comprehensive Survey","url":"https://arxiv.org/html/2605.00080v1"},{"title":"EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields","url":"https://arxiv.org/html/2605.06192v1"},{"title":"RoboAlign-R1: Distilled Multimodal Reward Alignment for Robot Video World Models","url":"https://arxiv.org/html/2605.03821"}]
+
+I've completed the web search. Here are the key findings related to world action model training datasets and robot video action pairs from 2025:
+
+## Major Recent Developments
+
+**1. Unified World Models (UWM)**
+UWM is a framework that allows for leveraging both video and action data for policy learning. UWM naturally integrates unlabeled videos into training by treating the missing actions as noise, unlocking previously inaccessible datasets.
+
+**2. X-WAM Dataset Scale**
+The data spans both real-robot and simulated environments, totaling over 1.49 million episodes and approximately 5,874 hours. The unified 4D model is trained on over 5,800 hours of data, encompassing both real-robot and simulated datasets spanning diverse manipulation tasks, with all datasets undergoing preprocessing and filtering.
+
+**3. 1X World Model (1XWM)**
+1XWM is a video-pretrained world model integrated into NEO as a robot policy, deriving robot actions from text-conditioned video generation rather than directly predicting action trajectories from static image-language input. The NEO post-training dataset contains primarily high quality pick-and-place data (98.5%), filtered for table top manipulation with hands in view.
+
+**4. MotuBrain**
+MotuBrain achieves the best average success rate on RoboTwin, reaching 95.8% in clean scenes and 96.1% in randomized scenes, and is the only model on the leaderboard whose average score exceeds 95% under randomized evaluation.
+
+These systems represent the state-of-the-art in training action models on robot video data with video-action pair datasets in 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7c82557d-ad46-420b-82b7-11c047727420",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "e4ba8d18-79d3-4c78-b0c7-48ea6c48e3de",
+  "sourceToolAssistantUUID": "7c82557d-ad46-420b-82b7-11c047727420",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-10T17:27:53.520Z_
+
+<details><summary>↩ Tool result · `toolu_01Y2JgnzgtZjzdPwZJqiKKvu`</summary>
+
+```text
+Web search results for query: "Open X-Embodiment dataset robot manipulation publicly available"
+
+Links: [{"title":"[2310.08864] Open X-Embodiment: Robotic Learning Datasets and RT-X Models","url":"https://arxiv.org/abs/2310.08864"},{"title":"Open X-Embodiment: Robotic Learning Datasets and RT-X Models","url":"https://robotics-transformer-x.github.io/"},{"title":"GitHub - google-deepmind/open_x_embodiment · GitHub","url":"https://github.com/google-deepmind/open_x_embodiment"},{"title":"jxu124/OpenX-Embodiment · Datasets at Hugging Face","url":"https://huggingface.co/datasets/jxu124/OpenX-Embodiment"},{"title":"Open X-Embodiment Dataset","url":"https://www.emergentmind.com/topics/open-x-embodiment-dataset"},{"title":"(PDF) Open X-Embodiment: Robotic Learning Datasets and RT-X Models","url":"https://www.researchgate.net/publication/382982173_Open_X-Embodiment_Robotic_Learning_Datasets_and_RT-X_Models"},{"title":"NeurIPS Open X-Embodiment: Robotic Learning Datasets and RT-X Models","url":"https://neurips.cc/virtual/2023/77259"},{"title":"Open X-Embodiment: Robotic Learning Datasets and RT-X Models","url":"https://arxiv.org/html/2310.08864v4"},{"title":"Open X-Embodiment: Robotic Learning Datasets and RT-X Models","url":"https://autolab.berkeley.edu/assets/publications/media/Open_X_Embodiment__Robotic_Learning_Datasets_and_RT_X_Models%20(1).pdf"},{"title":"Open X-Embodiment: Robotic Learning Datasets and RT-X Models : Open X-Embodiment Collaboration0 | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/10611477"}]
+
+I found comprehensive information about the Open X-Embodiment dataset. Here are the key findings:
+
+## Overview
+The Open X-Embodiment Dataset is the largest open-source real robot dataset to date, containing 1M+ real robot trajectories spanning 22 robot embodiments, from single robot arms to bi-manual robots and quadrupeds.
+
+## Dataset Composition
+The dataset was assembled from 22 different robots collected through a collaboration between 21 institutions, demonstrating 527 skills (160,266 tasks). The dataset was constructed by pooling 60 existing robot datasets from 34 robotic research labs around the world.
+
+## Purpose and Models
+Open X-Embodiment aims to provide all open-sourced robotic data in the same unified format, for easy downstream consumption. A high-capacity model trained on this data, called RT-X, exhibits positive transfer and improves the capabilities of multiple robots by leveraging experience from other platforms.
+
+## Accessibility
+The list of datasets included as part of the open-sourcing effort and their metadata is provided in a dataset spreadsheet. The dataset is available on GitHub (google-deepmind/open_x_embodiment) and also on Hugging Face, making it publicly accessible for researchers.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2d3268b7-113e-43dc-8f2c-0b2da87726f4",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "95b79584-6f09-410b-923d-462196b0ceff",
+  "sourceToolAssistantUUID": "2d3268b7-113e-43dc-8f2c-0b2da87726f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-10T17:27:55.401Z_
+
+<details><summary>↩ Tool result · `toolu_013uBMy7mL68j6fpMZJSn4Sr`</summary>
+
+```text
+Web search results for query: "video diffusion model distillation compute requirements GPU training"
+
+Links: [{"title":"Accelerating Diffusion Models with an Open, Plug-and-Play Offering | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/accelerating-diffusion-models-with-an-open-plug-and-play-offering/"},{"title":"Model distillation with compute: How to set it up","url":"https://nebius.com/blog/posts/model-distillation-with-compute-setup"},{"title":"GVD: Guiding Video Diffusion Model for Scalable Video Distillation","url":"https://arxiv.org/html/2507.22360"},{"title":"Diffusion Adversarial Post-Training for One-Step Video Generation | OpenReview","url":"https://openreview.net/forum?id=AAgzsnhc28"},{"title":"Fast and Memory-Efficient Video Diffusion Using Streamlined Inference","url":"https://arxiv.org/html/2411.01171v1"},{"title":"[2507.22360v1] GVD: Guiding Video Diffusion Model for Scalable Video Distillation","url":"https://arxiv.org/abs/2507.22360v1"},{"title":"GPD: Guided Progressive Distillation for Fast and High-Quality Video Generation","url":"https://arxiv.org/html/2602.01814"},{"title":"Optimizing Transformer-Based Diffusion Models for Video Generation with NVIDIA TensorRT | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/optimizing-transformer-based-diffusion-models-for-video-generation-with-nvidia-tensorrt/"},{"title":"What are the computational requirements for training a diffusion model?","url":"https://milvus.io/ai-quick-reference/what-are-the-computational-requirements-for-training-a-diffusion-model"},{"title":"VideoScene: Distilling Video Diffusion Model to Generate 3D Scenes in One Step","url":"https://arxiv.org/html/2504.01956v1"}]
+
+Based on the search results, here's what I found about video diffusion model distillation compute requirements and GPU training:
+
+## Key Compute Challenges
+
+Video diffusion models are orders of magnitude more computationally demanding due to the temporal dimension. Generating a single video can take minutes to hours, making real-time video generation, interactive editing, and world modeling for agent training challenging.
+
+## GPU Requirements for Training
+
+Training a diffusion model on high-resolution images often necessitates GPUs like NVIDIA A100 or H100 with 40-80GB of VRAM to handle large batch sizes and model parameters. For video distillation specifically, recent examples include:
+
+- A 14B Wan2.1 T2V model was successfully distilled into a few-step generator using DMD2, achieving convergence in 16 hours on 64 NVIDIA H100 GPUs.
+- Training was conducted on 8 NVIDIA A100 (80G) GPUs in two days.
+
+## Multi-GPU Training Importance
+
+For organizations distilling large models or conducting distillation at enterprise scale, a single GPU is rarely sufficient. Multi-GPU training allows workloads to be distributed across devices, enabling larger batch sizes, faster processing and the ability to handle teacher models that exceed single-GPU memory limits.
+
+## Speedup Achievements
+
+Demonstrations show 10x to 100x sampling speedups with maintained quality. One method achieves high-quality videos in just 6 steps compared to the original 48 steps—an 8× speedup.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "573f197e-b1e6-4469-a845-7c654f928f08",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "ec16d536-8699-4ac4-b89c-6493c6e95c8f",
+  "sourceToolAssistantUUID": "573f197e-b1e6-4469-a845-7c654f928f08",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-10T17:27:56.290Z_
+
+<details><summary>↩ Tool result · `toolu_01849JRSZXu1EnQPugkLKEZS`</summary>
+
+```text
+Web search results for query: "best open source video generation model 2025 2026 SOTA"
+
+Links: [{"title":"Ultimate Guide - The Top Open Source Video Generation Models in 2026","url":"https://www.siliconflow.com/articles/en/best-open-source-video-generation-models-2025"},{"title":"Top 5 Open Source Video Generation Models - KDnuggets","url":"https://www.kdnuggets.com/top-5-open-source-video-generation-models"},{"title":"Best Open Source AI Video Generation Models in 2026 | Pixazo","url":"https://www.pixazo.ai/blog/best-open-source-ai-video-generation-models"},{"title":"7 Best Open Source Video Generation Models in 2026 [Updated February] | Hyperstack","url":"https://www.hyperstack.cloud/blog/case-study/best-open-source-video-generation-models"},{"title":"Ultimate Guide - The Top Open Source AI Video Generation Models in 2026","url":"https://www.siliconflow.com/articles/en/best-open-source-models-for-video-to-text-transcription"},{"title":"31 Open-Source AI Video Models: Free Tools to Make Videos in 2026 — AI Free Forever","url":"https://aifreeforever.com/blog/open-source-ai-video-models-free-tools-to-make-videos"},{"title":"Five Open-Source Models for Video Generation | by Mayur Jain | MLWorks | Medium","url":"https://medium.com/mlworks/five-open-source-models-for-video-generation-608ce4fe8698"},{"title":"Ultimate Guide - The Fastest Open Source Video Generation Models in 2026","url":"https://www.siliconflow.com/articles/en/fastest-open-source-video-generation-models"},{"title":"Best Video Generation AI Models in 2026 - Pinggy","url":"https://pinggy.io/blog/best_video_generation_ai_models/"},{"title":"State of open video generation models in Diffusers","url":"https://huggingface.co/blog/video_gen"}]
+
+Based on the search results, here are the best open-source video generation models in 2025-2026 and their state-of-the-art capabilities:
+
+## Top Models
+
+Some of the top open-source AI video generation models in 2026 include SkyReels V1, LTXVideo, Mochi 1, HunyuanVideo, Wan 2.1, MAGI-1 and Waver 1.0.
+
+### Key Leaders by Use Case
+
+**For Cinematic Quality:**
+Wan2.2-T2V-A14B is the top choice for text-to-video generation with cinematic style control. Wan 2.2 is widely regarded as one of the most cinematic open-source video generation models currently available, built on a Mixture-of-Experts diffusion backbone.
+
+**For Image-to-Video:**
+Wan2.2-I2V-A14B excels at complex motion handling, while Wan2.1-I2V-14B-720P-Turbo is best for fast HD video generation.
+
+**For Efficiency:**
+HunyuanVideo 1.5, released by Tencent in November 2025, achieves state-of-the-art visual quality and motion coherence with only 8.3 billion parameters. Professional evaluation results show HunyuanVideo outperforming previous state-of-the-art models including Runway Gen-3 and Luma 1.6.
+
+**For SOTA with Permissive Licensing:**
+If you want a permissive, hackable state-of-the-art (SOTA) preview with modern motion and a clear research roadmap: Mochi 1 (10B AsymmDiT + AsymmVAE, Apache 2.0)
+
+**For Real-Time Performance:**
+If you care about real-time I2V and editability with upscalers and ComfyUI workflows: LTX-Video
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8b88ba4f-3aa7-4380-a00c-7affb2e94784",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "9243979a-0b47-4223-bb2b-fc4a2b88c65a",
+  "sourceToolAssistantUUID": "8b88ba4f-3aa7-4380-a00c-7affb2e94784",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-10T17:27:59.465Z_
+
+Now let me get more specific details on compute requirements and some additional searches.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9243979a-0b47-4223-bb2b-fc4a2b88c65a",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHKA9kDjb89UZZWswQb",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "06b4d33a-93de-4366-a065-c4b8a7e956e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XA4yuvN6tRSrd98vsnJAng",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7638,
+      "cache_read_input_tokens": 14680,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7638,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-10T17:28:00.584Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CZoKuWV9FQdZMjuEjgXnug`</summary>
+
+```json
+{
+  "query": "rCM NVIDIA consistency distillation 10B video model compute training details GPU"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "06b4d33a-93de-4366-a065-c4b8a7e956e1",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHKA9kDjb89UZZWswQb",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "21170de9-8c48-4ed0-8078-94d7a37ee84e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XA4yuvN6tRSrd98vsnJAng",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7638,
+      "cache_read_input_tokens": 14680,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7638,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-10T17:28:01.483Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MHptRWfyAMA8xCDSyoToiy`</summary>
+
+```json
+{
+  "query": "Unified World Models UWM video action diffusion training compute dataset"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "21170de9-8c48-4ed0-8078-94d7a37ee84e",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHKA9kDjb89UZZWswQb",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f8cd5c9e-d031-4a95-9512-f0aa1d276f68",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XA4yuvN6tRSrd98vsnJAng",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7638,
+      "cache_read_input_tokens": 14680,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7638,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-10T17:28:01.943Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RJJyd9anxWVyeojzTu77Nd`</summary>
+
+```json
+{
+  "query": "consistency policy robotics visuomotor distillation training details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f8cd5c9e-d031-4a95-9512-f0aa1d276f68",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHKA9kDjb89UZZWswQb",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b0484c41-8ecc-4562-8f52-efcd68a25527",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XA4yuvN6tRSrd98vsnJAng",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7638,
+      "cache_read_input_tokens": 14680,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7638,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-10T17:28:02.941Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DdpCVr89KB4v5ix5rDQ9de`</summary>
+
+```json
+{
+  "query": "HunyuanVideo open source parameters architecture 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0484c41-8ecc-4562-8f52-efcd68a25527",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHKA9kDjb89UZZWswQb",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "210c0df2-f89a-4c83-bf6d-7099096e296f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XA4yuvN6tRSrd98vsnJAng",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7638,
+      "cache_read_input_tokens": 14680,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7638,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-10T17:28:03.881Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NyBGRN8kUtFttbxch9TTNh`</summary>
+
+```json
+{
+  "query": "FastVideo Wan2.1 distillation sparse 64 H100 training details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "210c0df2-f89a-4c83-bf6d-7099096e296f",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHKA9kDjb89UZZWswQb",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1dcfaef8-83cc-4b3b-bc40-d95b77dec144",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XA4yuvN6tRSrd98vsnJAng",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7638,
+      "cache_read_input_tokens": 14680,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7638,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-10T17:28:04.439Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KyGD17CQfyx3oLSXiBEk2V`</summary>
+
+```json
+{
+  "query": "DCM dual expert consistency model video generation training compute"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1dcfaef8-83cc-4b3b-bc40-d95b77dec144",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHKA9kDjb89UZZWswQb",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "11e9ee8d-d211-43b0-a7ee-07ed2bb91c45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XA4yuvN6tRSrd98vsnJAng",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7638,
+      "cache_read_input_tokens": 14680,
+      "output_tokens": 325,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 7638
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 325,
+          "cache_read_input_tokens": 14680,
+          "cache_creation_input_tokens": 7638,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 7638,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-10T17:28:08.357Z_
+
+<details><summary>↩ Tool result · `toolu_01CZoKuWV9FQdZMjuEjgXnug`</summary>
+
+```text
+Web search results for query: "rCM NVIDIA consistency distillation 10B video model compute training details GPU"
+
+Links: [{"title":"GitHub - NVlabs/rcm: [ICLR 2026] rCM: SOTA JVP-Based Diffusion Distillation & Few-Step Video Generation & Scaling Up sCM/MeanFlow · GitHub","url":"https://github.com/NVlabs/rcm"},{"title":"Large Scale Diffusion Distillation via Score-Regularized Continuous-Time Consistency","url":"https://arxiv.org/html/2510.08431v1"},{"title":"Preprint LARGE SCALE DIFFUSION DISTILLATION VIA SCORE-","url":"https://arxiv.org/pdf/2510.08431"},{"title":"Large Scale Diffusion Distillation via Score-Regularized Continuous-Time Consistency | OpenReview","url":"https://openreview.net/forum?id=2uNlM353RI"},{"title":"Accelerating Diffusion Models with an Open, Plug-and-Play Offering | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/accelerating-diffusion-models-with-an-open-plug-and-play-offering/"},{"title":"MUG-V 10B: High-efficiency Training Pipeline for Large Video Generation Models","url":"https://arxiv.org/html/2510.17519"},{"title":"Model Quantization: Post-Training Quantization Using NVIDIA Model Optimizer | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/model-quantization-post-training-quantization-using-nvidia-model-optimizer/"},{"title":"Consistency Models Made Easy","url":"https://arxiv.org/html/2406.14548"},{"title":"Distillation — NVIDIA NeMo Framework User Guide","url":"https://docs.nvidia.com/nemo-framework/user-guide/24.09/model-optimization/distillation/distillation.html"},{"title":"[2512.16093] TurboDiffusion: Accelerating Video Diffusion Models by 100-200 Times","url":"https://arxiv.org/abs/2512.16093"}]
+
+I found relevant information about rCM, NVIDIA's consistency distillation approach for video models. Here are the key details:
+
+## Overview
+
+rCM scales up continuous-time consistency distillation to 10B+ parameter video diffusion models. This work represents the first effort to scale up continuous-time consistency distillation to general application-level image and video diffusion models.
+
+## Technical Infrastructure
+
+rCM developed a parallelism-compatible FlashAttention-2 JVP kernel, enabling sCM training on models with over 10 billion parameters and high-dimensional video tasks. The implementation builds on the Cosmos-Predict2 codebase, with infrastructure support from FSDP2, Ulysses CP, and selective activation checkpointing (SAC).
+
+## Training Details
+
+rCM distilled Cosmos-Predict2 T2I models (0.6B, 2B, 14B) and Wan2.1 T2V models (1.3B, 14B). The work leveraged curated data from NVIDIA (2025), supplemented with synthetic data generated by Wan2.1 T2V 14B for Wan distillation.
+
+## Performance
+
+The distilled models generate high-fidelity samples in only 1-4 steps, accelerating diffusion sampling by 15×-50×. For stability on 10B+ models and video tasks, rCM enforces FP32 precision for all time embedding layers.
+
+The code is available on GitHub at https://github.com/NVlabs/rcm.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "21170de9-8c48-4ed0-8078-94d7a37ee84e",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "76a4cf7d-b60b-4f72-a922-9476d4167152",
+  "sourceToolAssistantUUID": "21170de9-8c48-4ed0-8078-94d7a37ee84e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-10T17:28:08.578Z_
+
+<details><summary>↩ Tool result · `toolu_01MHptRWfyAMA8xCDSyoToiy`</summary>
+
+```text
+Web search results for query: "Unified World Models UWM video action diffusion training compute dataset"
+
+Links: [{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://weirdlabuw.github.io/uwm/"},{"title":"[2504.02792] Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://arxiv.org/abs/2504.02792"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://arxiv.org/html/2504.02792v1"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | alphaXiv","url":"https://www.alphaxiv.org/overview/2504.02792v1"},{"title":"Paper page - Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://huggingface.co/papers/2504.02792"},{"title":"GitHub - WEIRDLabUW/unified-world-model: Unfied World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://github.com/WEIRDLabUW/unified-world-model"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets [Quick Review]","url":"https://liner.com/review/unified-world-models-coupling-video-and-action-diffusion-for-pretraining"},{"title":"[2504.02792v1] Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://arxiv.org/abs/2504.02792v1"},{"title":"[PDF] Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Unified-World-Models:-Coupling-Video-and-Action-for-Zhu-Yu/514b9977bdb57f6e9586461f36fcf6467a775b3c"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | Request PDF","url":"https://www.researchgate.net/publication/395371959_Unified_World_Models_Coupling_Video_and_Action_Diffusion_for_Pretraining_on_Large_Robotic_Datasets"}]
+
+Based on the search results, here's what I found about Unified World Models (UWM):
+
+## Overview
+
+Unified World Models (UWM) is a framework that allows for leveraging both video and action data for policy learning, specifically integrating an action diffusion process and a video diffusion process within a unified transformer architecture, where independent diffusion timesteps govern each modality.
+
+## Architecture & Training
+
+UWM combines video and action diffusion in one transformer, with separate timesteps for each modality, and can be trained on (o, a, o') triplets from robot trajectories as well as (o, o') tuples from action-free videos, using random noise for masking.
+
+On action-free videos, the model treats missing actions as fully noised, manually setting the action diffusion timestep to T, which encourages the model to rely on visual cues and learn robust representations, even in the absence of explicit action labels.
+
+## Capabilities & Performance
+
+By controlling each diffusion timestep, UWM can flexibly represent a policy, a forward dynamics, an inverse dynamics, and a video generator.
+
+When pretrained on a subset of the DROID dataset and finetuned to diverse downstream tasks, UWM outperforms baseline models in both in-distribution (ID) and out-of-distribution (OOD) settings.
+
+## Datasets
+
+UWM is evaluated on a subset of the DROID dataset for pretraining. It is also tested on LIBERO, a robotic manipulation benchmark containing 100 robotic manipulation tasks, using 90 for pretraining and 5 for evaluation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f8cd5c9e-d031-4a95-9512-f0aa1d276f68",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "708219aa-48f3-4468-be82-c3c22a12a841",
+  "sourceToolAssistantUUID": "f8cd5c9e-d031-4a95-9512-f0aa1d276f68",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-10T17:28:08.895Z_
+
+<details><summary>↩ Tool result · `toolu_01RJJyd9anxWVyeojzTu77Nd`</summary>
+
+```text
+Web search results for query: "consistency policy robotics visuomotor distillation training details"
+
+Links: [{"title":"Consistency Policy: Accelerated Visuomotor Policies via Consistency Distillation","url":"https://consistency-policy.github.io/"},{"title":"[2405.07503] Consistency Policy: Accelerated Visuomotor Policies via Consistency Distillation","url":"https://arxiv.org/abs/2405.07503"},{"title":"GitHub - Aaditya-Prasad/consistency-policy: [RSS 2024] Consistency Policy: Accelerated Visuomotor Policies via Consistency Distillation · GitHub","url":"https://github.com/Aaditya-Prasad/consistency-policy"},{"title":"Consistency Policy","url":"https://www.roboticsproceedings.org/rss20/p071.pdf"},{"title":"Consistency Policy: Accelerated Visuomotor Policies via Consistency Distillation | Request PDF","url":"https://www.researchgate.net/publication/383906109_Consistency_Policy_Accelerated_Visuomotor_Policies_via_Consistency_Distillation"},{"title":"[PDF] Consistency Policy: Accelerated Visuomotor Policies via Consistency Distillation | Semantic Scholar","url":"https://www.semanticscholar.org/paper/3246fcf7925946a043f391666aaab3f6905f5df7"},{"title":"Consistency Policy: Accelerated Visuomotor Policies via Consistency Distillation | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/consistency-policy-accelerated-visuomotor-policies-via-consistency"},{"title":"Consistency Policy: Accelerated Visuomotor Policies via Consistency Distillation | alphaXiv","url":"https://www.alphaxiv.org/abs/2405.07503v2"},{"title":"Consistency Policy: Accelerated Visuomotor Control","url":"https://www.emergentmind.com/papers/2405.07503"},{"title":"One-Step Diffusion Policy: Fast Visuomotor Policies via Diffusion Distillation | OpenReview","url":"https://openreview.net/forum?id=Z85EoYQhCs"}]
+
+Based on the search results, here's what I found about Consistency Policy and visuomotor distillation training:
+
+## Overview
+
+A Consistency Policy is distilled from a pretrained Diffusion Policy by enforcing self-consistency along the Diffusion Policy's learned trajectories. Consistency Policy is a faster and similarly powerful alternative to Diffusion Policy for learning visuomotor robot control.
+
+## Training Details
+
+The training process involves a teacher-student framework:
+
+The approach replaces the diffusion frameworks that Diffusion Policy employs with EDM (an analogous multi-step framework more commonly used for consistency distillation), then distills using an adaptation of the Consistency Trajectory Model (CTM) objective.
+
+Key design decisions include the specific choice of consistency objective, reduced initial sample variance, and the choice of preset chaining steps.
+
+## Implementation Insights
+
+From the GitHub repository, it is heavily recommended to warm-start the student policy with the teacher checkpoint, which only requires setting the EDM to the same path as the teacher checkpoint. Increasing the number of bins increases training convergence time as well as the accuracy of the converged model, though both of these effects vary in size.
+
+## Performance
+
+Consistency Policy speeds up inference by an order of magnitude compared to the fastest alternative method and maintains competitive success rates. Additionally, the Consistency Policy training procedure is robust to the quality of the pre-trained Diffusion Policy, which is a useful property for practitioners.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b0484c41-8ecc-4562-8f52-efcd68a25527",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "03a27465-4251-4257-ac2b-134f120d128c",
+  "sourceToolAssistantUUID": "b0484c41-8ecc-4562-8f52-efcd68a25527",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-10T17:28:10.857Z_
+
+<details><summary>↩ Tool result · `toolu_01DdpCVr89KB4v5ix5rDQ9de`</summary>
+
+```text
+Web search results for query: "HunyuanVideo open source parameters architecture 2025"
+
+Links: [{"title":"GitHub - Tencent-Hunyuan/HunyuanVideo: HunyuanVideo: A Systematic Framework For Large Video Generation Model · GitHub","url":"https://github.com/Tencent-Hunyuan/HunyuanVideo"},{"title":"GitHub - Tencent-Hunyuan/HunyuanVideo-1.5: HunyuanVideo-1.5: A leading lightweight video generation model · GitHub","url":"https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5"},{"title":"tencent/HunyuanVideo-I2V · Hugging Face","url":"https://huggingface.co/tencent/HunyuanVideo-I2V"},{"title":"HunyuanVideo 1.5 Technical Report","url":"https://arxiv.org/html/2511.18870v1"},{"title":"[2511.18870] HunyuanVideo 1.5 Technical Report","url":"https://arxiv.org/abs/2511.18870"},{"title":"HunyuanVideo 1.5 Complete Guide - Consumer GPU AI Video Generation 2025 | Apatero Blog - Open Source AI & Programming Tutorials","url":"https://apatero.com/blog/hunyuanvideo-15-complete-guide-consumer-gpu-2025"},{"title":"HunyuanVideo 1.5 – Open-Source Video Synthesis Model","url":"https://www.emergentmind.com/topics/hunyuanvideo-1-5"},{"title":"Hunyuan Video | Free Online AI Video Generation Tool","url":"https://www.hunyuanvideo.org/"},{"title":"HunyuanVideo 1.5 : AI Video Generation in Consumer GPU | by Mehul Gupta | Data Science in Your Pocket | Medium","url":"https://medium.com/data-science-in-your-pocket/hunyuanvideo-1-5-ai-video-generation-in-consumer-gpu-a5d431589837"},{"title":"[2412.03603] HunyuanVideo: A Systematic Framework For Large Video Generative Models","url":"https://arxiv.org/abs/2412.03603"}]
+
+Based on the search results, here's what I found about HunyuanVideo's open source parameters and architecture:
+
+## HunyuanVideo Versions and Parameters
+
+HunyuanVideo is an open-source video foundation model that exhibits performance in video generation comparable to, if not superior to, leading closed-source models.
+
+There are two main versions:
+
+**Original HunyuanVideo:** The original model has over 13 billion parameters, making it the largest among all open-source models.
+
+**HunyuanVideo 1.5:** HunyuanVideo 1.5 achieves state-of-the-art visual quality and motion coherence with only 8.3 billion parameters, enabling efficient inference on consumer-grade GPUs.
+
+## Architecture Overview
+
+HunyuanVideo is trained on a spatial-temporally compressed latent space through a Causal 3D VAE. Text prompts are encoded using a large language model, and used as conditions. The generative model produces an output latent, which is then decoded to images or videos through the 3D VAE decoder.
+
+For HunyuanVideo 1.5 specifically: The first stage employs a Unified Diffusion Transformer (DiT) that supports both text-to-video and image-to-video generation, producing initial video sequences with resolutions from 480p to 720p and durations of 5 to 10 seconds. The second stage utilizes a dedicated Video Super-Resolution Network to upscale the outputs to 1080p.
+
+## Key Architectural Features
+
+HunyuanVideo 1.5 features an advanced DiT architecture with selective and sliding tile attention (SSTA), enhanced bilingual understanding through glyph-aware text encoding, progressive pre-training and post-training, and an efficient video super-resolution network.
+
+The pipeline consists of an 8.3B parameter Diffusion Transformer (DiT) core that operates on 3D causal VAE latents.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "210c0df2-f89a-4c83-bf6d-7099096e296f",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "650931c1-2793-4dcb-a2a7-9ee22b607b60",
+  "sourceToolAssistantUUID": "210c0df2-f89a-4c83-bf6d-7099096e296f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-10T17:28:11.533Z_
+
+<details><summary>↩ Tool result · `toolu_01NyBGRN8kUtFttbxch9TTNh`</summary>
+
+```text
+Web search results for query: "FastVideo Wan2.1 distillation sparse 64 H100 training details"
+
+Links: [{"title":"FastWan: Generating a 5-Second Video in 5 Seconds via Sparse Distillation | Hao AI Lab @ UCSD","url":"https://haoailab.com/blogs/fastvideo_post_training/"},{"title":"GitHub - hao-ai-lab/FastVideo: A unified inference and post-training framework for accelerated video generation. · GitHub","url":"https://github.com/hao-ai-lab/FastVideo"},{"title":"FastVideo","url":"https://hao-ai-lab.github.io/FastVideo/"},{"title":"GitHub - Wan-Video/Wan2.2: Wan: Open and Advanced Large-Scale Video Generative Models · GitHub","url":"https://github.com/Wan-Video/Wan2.2"},{"title":"DMD - FastVideo","url":"https://hao-ai-lab.github.io/FastVideo/distillation/dmd/"},{"title":"GitHub - hao-ai-lab/FastVideo: A unified inference and post-training framework for accelerated video generation.","url":"https://github.com/hao-ai-lab/FastVideo/tree/main"},{"title":"FastVideo/FastWan2.1-T2V-1.3B-Diffusers · Hugging Face","url":"https://huggingface.co/FastVideo/FastWan2.1-T2V-1.3B-Diffusers"},{"title":"AIAny - FastVideo","url":"https://aiany.app/item/fastvideo"},{"title":"Wan 2.1 / Wan2.2 Lightning & Sparse Distillation & Tiny VAE Acceleration Methods · Issue #12146 · huggingface/diffusers","url":"https://github.com/huggingface/diffusers/issues/12146"},{"title":"Fastwan AI - Next-Generation Video Generation in Seconds","url":"https://fastwan.app/"}]
+
+Based on the search results, here are the key training details for FastVideo Wan2.1 distillation with sparse attention on 64 H100 GPUs:
+
+## Training Configuration
+
+The sparse distillation for Wan2.1-T2V-1.3B was performed on 64 H200 GPUs for 4k steps, totaling 768 GPU hours. (Note: The search results refer to H200 GPUs rather than H100s for this specific training run.)
+
+## Technical Details
+
+The training approach uses a technique called sparse distillation that jointly integrates DMD (Distribution Matching Distillation) and VSA (Video Sparse Attention) in a single training process, combining the benefits of both distillation to shorten diffusion steps and sparse attention to reduce attention computation.
+
+During training, the sparse-distilled student takes a noisy video input and performs one denoising step with VSA, producing the current output. While the student model adopts video sparse attention for efficiency, both the real and fake score functions remain full-attention to ensure high-fidelity supervision during training.
+
+## Data and Cost
+
+Wan2.1-T2V-14B was used to produce 600k 480P videos and 250k 720P videos for the synthetic dataset. With a cloud pricing of $3.39/H200/hour, the FastWan2.1-T2V-1.3B model can be reproduced with a $2603 budget.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1dcfaef8-83cc-4b3b-bc40-d95b77dec144",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "8ba96c07-4dcf-4c72-a795-0a07bf3ed672",
+  "sourceToolAssistantUUID": "1dcfaef8-83cc-4b3b-bc40-d95b77dec144",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-10T17:28:12.165Z_
+
+<details><summary>↩ Tool result · `toolu_01KyGD17CQfyx3oLSXiBEk2V`</summary>
+
+```text
+Web search results for query: "DCM dual expert consistency model video generation training compute"
+
+Links: [{"title":"GitHub - Vchitect/DCM: [ICCV2025] DCM: Dual-Expert Consistency Model for Efficient and High-Quality Video Generation · GitHub","url":"https://github.com/Vchitect/DCM"},{"title":"Dual-Expert Consistency Model for Efficient and High-Quality Video Generation","url":"https://vchitect.github.io/DCM/"},{"title":"[2506.03123] Dual-Expert Consistency Model for Efficient and High-Quality Video Generation","url":"https://arxiv.org/abs/2506.03123"},{"title":"DCM: Dual-Expert Consistency Model for Efficient and High-Quality Video Generation","url":"https://arxiv.org/html/2506.03123v1"},{"title":"Paper page - DCM: Dual-Expert Consistency Model for Efficient and High-Quality Video Generation","url":"https://huggingface.co/papers/2506.03123"},{"title":"[2506.03123v1] DCM: Dual-Expert Consistency Model for Efficient and High-Quality Video Generation","url":"http://arxiv.org/abs/2506.03123v1"},{"title":"Dual-Expert Consistency Model for Efﬁcient and High-Quality Video Generation","url":"https://openaccess.thecvf.com/content/ICCV2025/papers/Lv_Dual-Expert_Consistency_Model_for_Efficient_and_High-Quality_Video_Generation_ICCV_2025_paper.pdf"},{"title":"DCM: Dual-Expert Consistency Model for Efficient and High-Quality Video Generation - Paper Detail","url":"https://deeplearn.org/arxiv/614430/dcm:-dual-expert-consistency-model-for-efficient-and-high-quality-video-generation"},{"title":"DCM: Dual-Expert Consistency Model for Efficient and High-Quality Video Generation | Request PDF","url":"https://www.researchgate.net/publication/392372286_DCM_Dual-Expert_Consistency_Model_for_Efficient_and_High-Quality_Video_Generation"},{"title":"DCM: Dual-Expert Consistency Model for Efficient and High-Quality Video Generation - YouTube","url":"https://www.youtube.com/watch?v=mR3FxybGeB0"}]
+
+## Search Results Summary
+
+I found comprehensive information about the DCM (Dual-Expert Consistency Model) for efficient video generation. Here's what the research reveals:
+
+### Overview
+DCM addresses the computational overhead of diffusion models for video synthesis by applying consistency models to accelerate diffusion models, though directly applying them to video diffusion models often results in severe degradation of temporal consistency and appearance details.
+
+### Key Technical Innovation
+The paper identifies a key conflicting learning dynamics during the distillation process: there is a significant discrepancy in the optimization gradients and loss contributions across different timesteps, which prevents the distilled student model from achieving an optimal state, leading to compromised temporal consistency and degraded appearance details.
+
+To address this issue, DCM proposes a parameter-efficient approach where a semantic expert focuses on learning semantic layout and motion while a detail expert handles fine details. The model freezes the semantic expert and introduces a new set of timestep-dependent layers, incorporating LoRA into the linear layers of the attention blocks, which are then fine-tuned on the detail refinement trajectory, achieving visual results comparable to those with two separate experts.
+
+### Training and Optimization
+In the semantic learning stage, the model trains on high-noise samples with consistency loss and temporal coherence loss. In the detail learning stage, it is trained on low-noise samples where only the newly added layers and LoRA are updated, with learning objectives including consistency loss, GAN loss, and Feature Matching loss.
+
+### Performance
+The approach achieves state-of-the-art visual quality with significantly reduced sampling steps, demonstrating the effectiveness of expert specialization in video diffusion model distillation. The model achieves 10× faster inference and produces high-quality generation, with inference accelerated from 1500s to 120s.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "11e9ee8d-d211-43b0-a7ee-07ed2bb91c45",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "74821702-2a08-4583-9955-cf385230919f",
+  "sourceToolAssistantUUID": "11e9ee8d-d211-43b0-a7ee-07ed2bb91c45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-10T17:28:14.980Z_
+
+Let me get a few more specific details on compute and datasets.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "74821702-2a08-4583-9955-cf385230919f",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHLL2qp62rkbgt1Eurz",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "71d277d8-a24c-408b-827f-4880428ca71d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JG7DtgZQUnBnuK6fRHZihZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6231,
+      "cache_read_input_tokens": 22318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 6231,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-10T17:28:17.491Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019wewpSzKHSjvxhJcque5Yh`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2510.08431",
+  "prompt": "Extract the specific compute requirements: how many GPUs, what type of GPUs, how many GPU hours, what datasets were used, and how long training took for the rCM distillation experiments. Also report model sizes distilled."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "71d277d8-a24c-408b-827f-4880428ca71d",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHLL2qp62rkbgt1Eurz",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "be27772c-ec73-4ae9-bb9f-fce6340dfc31",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JG7DtgZQUnBnuK6fRHZihZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6231,
+      "cache_read_input_tokens": 22318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 6231,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-10T17:28:19.374Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01WnoxtC3Sd8qfR18Qj8WmpA`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2504.02792",
+  "prompt": "Extract the training compute requirements: how many GPUs, how long training took, what datasets were used for pretraining and evaluation, and model architecture size for UWM (Unified World Models)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "be27772c-ec73-4ae9-bb9f-fce6340dfc31",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHLL2qp62rkbgt1Eurz",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4d292fdb-983f-4bca-ad73-679f6e5605a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JG7DtgZQUnBnuK6fRHZihZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6231,
+      "cache_read_input_tokens": 22318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 6231,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-10T17:28:19.903Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011wwXfW9aefQ9uUxQ81GVdG`</summary>
+
+```json
+{
+  "query": "DROID dataset robot manipulation publicly available download size"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d292fdb-983f-4bca-ad73-679f6e5605a5",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHLL2qp62rkbgt1Eurz",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c1241955-b3c7-4c55-a1f0-6ca80766ba05",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JG7DtgZQUnBnuK6fRHZihZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6231,
+      "cache_read_input_tokens": 22318,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 6231,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-10T17:28:20.535Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YBFGfjvUL1SEnxi9i4uu5i`</summary>
+
+```json
+{
+  "query": "Causal Forcing video diffusion distillation training compute GPUs"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c1241955-b3c7-4c55-a1f0-6ca80766ba05",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHLL2qp62rkbgt1Eurz",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "192a8289-30d9-4599-a2d9-790a12ea9cda",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JG7DtgZQUnBnuK6fRHZihZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6231,
+      "cache_read_input_tokens": 22318,
+      "output_tokens": 343,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 6231
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 343,
+          "cache_read_input_tokens": 22318,
+          "cache_creation_input_tokens": 6231,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 6231,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-10T17:28:21.565Z_
+
+<details><summary>↩ Tool result · `toolu_019wewpSzKHSjvxhJcque5Yh`</summary>
+
+```text
+# Compute Requirements Analysis
+
+Based on the provided arXiv page content, **specific compute requirements are not detailed**. The abstract and metadata available do not include:
+
+- Number or type of GPUs used
+- GPU hours expended
+- Training duration
+- Specific datasets employed
+- Detailed model sizes for distilled variants
+
+## What Is Mentioned
+
+The paper references validation on "large-scale models (Cosmos-Predict2, Wan2.1) up to 14B parameters and 5-second videos" with distilled models generating "high-fidelity samples in only 1∼4 steps, accelerating diffusion sampling by 15×∼50×."
+
+The authors note development of a "parallelism-compatible FlashAttention-2 JVP kernel, enabling sCM training on models with over 10 billion parameters," but computational resource details remain unspecified in this abstract.
+
+**To obtain complete compute specifications, you would need to access the full PDF or HTML paper version.**
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "be27772c-ec73-4ae9-bb9f-fce6340dfc31",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "966e498b-70ee-4614-bedc-70bc59055d10",
+  "sourceToolAssistantUUID": "be27772c-ec73-4ae9-bb9f-fce6340dfc31",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-10T17:28:23.110Z_
+
+<details><summary>↩ Tool result · `toolu_01WnoxtC3Sd8qfR18Qj8WmpA`</summary>
+
+```text
+# Training Compute Requirements for UWM
+
+Based on the provided arXiv page content, I cannot extract the specific training compute requirements you requested.
+
+**What's missing from this excerpt:**
+
+The page content provided only includes the paper's abstract and metadata. The abstract mentions that UWM "enables effective pretraining on large-scale multitask robot datasets" and facilitates "learning from action-free video data," but it does not contain:
+
+- GPU count or hardware specifications
+- Training duration/time
+- Specific dataset names or sizes used for pretraining and evaluation
+- Model architecture dimensions (parameters, layers, etc.)
+
+**To find this information**, you would need to access the full PDF or HTML version of the paper (available via the links on this page), where such implementation details are typically found in the Methods, Experiments, or Appendix sections.
+
+The abstract only indicates they worked with "large robotic datasets" and conducted "simulated and real-world experiments," but quantitative details are not provided in this excerpt.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4d292fdb-983f-4bca-ad73-679f6e5605a5",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "5cad60df-7672-4d59-8c47-9293d70e2b83",
+  "sourceToolAssistantUUID": "4d292fdb-983f-4bca-ad73-679f6e5605a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-10T17:28:26.083Z_
+
+<details><summary>↩ Tool result · `toolu_011wwXfW9aefQ9uUxQ81GVdG`</summary>
+
+```text
+Web search results for query: "DROID dataset robot manipulation publicly available download size"
+
+Links: [{"title":"DROID: A Large-Scale In-the-Wild Robot Manipulation Dataset","url":"https://droid-dataset.github.io/"},{"title":"GitHub - droid-dataset/droid_policy_learning: DROID Policy Learning and Evaluation · GitHub","url":"https://github.com/droid-dataset/droid_policy_learning"},{"title":"cadene/droid · Datasets at Hugging Face","url":"https://huggingface.co/datasets/cadene/droid"},{"title":"The DROID Dataset | DROID Docs","url":"https://droid-dataset.github.io/droid/the-droid-dataset"},{"title":"[2403.12945] DROID: A Large-Scale In-The-Wild Robot Manipulation Dataset","url":"https://arxiv.org/abs/2403.12945"},{"title":"A Large-Scale In-The-Wild Robot Manipulation Dataset","url":"https://www.roboticsproceedings.org/rss20/p120.pdf"},{"title":"DROID: A Large-Scale In-The-Wild Robot Manipulation Dataset https://droid-dataset.github.io","url":"https://arxiv.org/html/2403.12945v2"},{"title":"DROID: A Large-Scale In-The-Wild Robot Manipulation Dataset","url":"https://autolab.berkeley.edu/assets/publications/media/2024-RSS-DROID.pdf"},{"title":"GitHub - droid-dataset/droid: Distributed Robot Interaction Dataset. · GitHub","url":"https://github.com/droid-dataset/droid"},{"title":"DROID A Large-Scale in-The-Wild Robot Manipulation Dataset | PDF | Robot | Robotics","url":"https://www.scribd.com/document/885374941/DROID-a-Large-Scale-in-The-Wild-Robot-Manipulation-Dataset"}]
+
+Based on the search results, here's the information about the DROID dataset:
+
+## Dataset Overview
+
+DROID (Distributed Robot Interaction Dataset) is a diverse robot manipulation dataset with 76k demonstration trajectories or 350h of interaction data, collected across 564 scenes and 86 tasks by 50 data collectors in North America, Asia, and Europe over the course of 12 months.
+
+## Public Availability and Download
+
+The full dataset is open sourced, along with code for policy training and a detailed guide for reproducing the robot hardware setup. The DROID dataset is hosted on a Google cloud bucket and can be downloaded by installing the gsutil package.
+
+## Download Sizes
+
+The dataset is available in multiple versions:
+- Full DROID dataset in RLDS format: 1.7TB
+- Example 100 episodes from the DROID dataset in RLDS for debugging: 2GB
+- Raw DROID dataset in stereo HD, stored as MP4 videos: 8.7TB
+- Raw DROID dataset, non-stereo HD video only: 5.6TB
+
+Additionally, an alternative version has been ported from Tensorflow Dataset format (2TB) to LeRobotDataset format (400GB).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c1241955-b3c7-4c55-a1f0-6ca80766ba05",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "6c2f3cbd-d2f1-40e9-9958-7110b5b148a3",
+  "sourceToolAssistantUUID": "c1241955-b3c7-4c55-a1f0-6ca80766ba05",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-10T17:28:26.271Z_
+
+<details><summary>↩ Tool result · `toolu_01YBFGfjvUL1SEnxi9i4uu5i`</summary>
+
+```text
+Web search results for query: "Causal Forcing video diffusion distillation training compute GPUs"
+
+Links: [{"title":"GitHub - thu-ml/Causal-Forcing: [ICML 2026] Official codebase for \"Causal Forcing: Autoregressive Diffusion Distillation Done Right for High-Quality Real-Time Interactive Video Generation\" · GitHub","url":"https://github.com/thu-ml/Causal-Forcing"},{"title":"[2602.02214] Causal Forcing: Autoregressive Diffusion Distillation Done Right for High-Quality Real-Time Interactive Video Generation","url":"https://arxiv.org/abs/2602.02214"},{"title":"From Slow Bidirectional to Fast Causal Video Generators","url":"https://arxiv.org/html/2412.07772v1"},{"title":"Accelerating Diffusion Models with an Open, Plug-and-Play Offering | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/accelerating-diffusion-models-with-an-open-plug-and-play-offering/"},{"title":"Causal Forcing: Autoregressive Diffusion Distillation Done Right for High-Quality Real-Time Interactive Video Generation","url":"https://arxiv.org/html/2602.02214v1"},{"title":"From Slow Bidirectional to Fast Autoregressive Video Diffusion Models","url":"https://causvid.github.io/"},{"title":"Autoregressive Video Diffusion","url":"https://www.emergentmind.com/topics/autoregressive-video-diffusion"},{"title":"arXiv:2412.07772v2 [cs.CV] 6 Jan 2025","url":"https://causvid.github.io/causvid_paper.pdf"},{"title":"Paper page - Causal Forcing: Autoregressive Diffusion Distillation Done Right for High-Quality Real-Time Interactive Video Generation","url":"https://huggingface.co/papers/2602.02214"},{"title":"zhuhz22/Causal-Forcing · Hugging Face","url":"https://huggingface.co/zhuhz22/Causal-Forcing"}]
+
+I found comprehensive information about Causal Forcing and video diffusion distillation. Here's a summary of the key findings:
+
+## Causal Forcing Overview
+
+Causal Forcing addresses the challenge of distilling pretrained bidirectional video diffusion models into few-step autoregressive (AR) models by using an AR teacher for ODE initialization, thereby bridging the architectural gap that occurs when full attention is replaced by causal attention.
+
+## Key Technical Approach
+
+The method involves first training an AR diffusion model using teacher forcing, and then performing causal ODE distillation by sampling the teacher's PF-ODE trajectories to train the AR student. Following this, a Distribution Matching Distillation (DMD) stage is applied to obtain a few-step AR student, enabling efficient real-time video generation.
+
+## Training Architecture and Compute Requirements
+
+The training process uses distributed training with commands like `torchrun --nnodes=8 --nproc_per_node=8` for large-scale GPU training across multiple nodes. Recent optimizations in April 2026 improved the Stage 2 consistency distillation infrastructure for 3× faster training.
+
+## Performance and Efficiency
+
+The method outperforms Self Forcing (SOTA baseline) by 19.3% in Dynamic Degree, 8.7% in VisionReward, and 16.7% in Instruction Following. Causal Forcing maintains the same training budget and inference efficiency while enabling real-time streaming video generation on a single RTX 4090 GPU.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "192a8289-30d9-4599-a2d9-790a12ea9cda",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "41748f67-7bd5-4e0f-97ae-13c33e9cbc41",
+  "sourceToolAssistantUUID": "192a8289-30d9-4599-a2d9-790a12ea9cda",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54 · 2026-05-10T17:28:29.495Z_
+
+Let me fetch more details on the rCM paper and get additional data on compute requirements.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "41748f67-7bd5-4e0f-97ae-13c33e9cbc41",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHMNGovFT7f6Le7M9wG",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6e16d96c-8873-40cb-92b4-27c46580383e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015q9KPjC9u39krJYG5fgTf8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2667,
+      "cache_read_input_tokens": 28549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2667,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-10T17:28:32.889Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01JcSHEJmmZU9bxZ9Xzij2X1`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2510.08431v1",
+  "prompt": "Extract ALL training compute details: number of GPUs, GPU type, total GPU hours, training duration, batch size, datasets used, and any cost estimates. Focus on the experiments section and appendix. Report numbers for each model size (0.6B, 2B, 14B for image and 1.3B, 14B for video)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6e16d96c-8873-40cb-92b4-27c46580383e",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHMNGovFT7f6Le7M9wG",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7cb76545-5acc-405e-937b-183883d236a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015q9KPjC9u39krJYG5fgTf8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2667,
+      "cache_read_input_tokens": 28549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2667,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-10T17:28:34.188Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_018Zx8rFfkiASEQL5KcA5eQp`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2504.02792v1",
+  "prompt": "Extract ALL training compute details: number of GPUs, GPU type, training duration, batch size, datasets used, model architecture dimensions (parameter count). Focus on the experiments/implementation section. Report what datasets were used for pretraining and evaluation."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7cb76545-5acc-405e-937b-183883d236a7",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHMNGovFT7f6Le7M9wG",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "97b3ea3e-5fc2-461c-a43e-9eb1896c8d3a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015q9KPjC9u39krJYG5fgTf8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2667,
+      "cache_read_input_tokens": 28549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2667,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-10T17:28:35.202Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QJzqNPBaNvJF1pwT6ZzmSB`</summary>
+
+```json
+{
+  "query": "\"14B video model\" distillation training \"GPU hours\" OR \"GPU-hours\" OR \"A100\" OR \"H100\" compute cost 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97b3ea3e-5fc2-461c-a43e-9eb1896c8d3a",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHMNGovFT7f6Le7M9wG",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "495bdfab-f8af-4ac8-a043-7c22f3860e37",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015q9KPjC9u39krJYG5fgTf8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2667,
+      "cache_read_input_tokens": 28549,
+      "output_tokens": 364,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2667
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 364,
+          "cache_read_input_tokens": 28549,
+          "cache_creation_input_tokens": 2667,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2667,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-10T17:28:38.805Z_
+
+<details><summary>↩ Tool result · `toolu_01JcSHEJmmZU9bxZ9Xzij2X1`</summary>
+
+```text
+# Training Compute Details for rCM
+
+Based on the paper content, here are the training specifications extracted:
+
+## Hardware & Infrastructure
+The paper specifies using **H100 GPUs** for evaluation testing (mentioned for throughput measurement), though the exact GPU type for training is not explicitly stated. The implementation uses "FSDP2, Ulysses CP, and selective activation checkpointing (SAC)" for distributed training infrastructure.
+
+## Training Configuration by Model
+
+**Cosmos-Predict2 T2I:**
+- 0.6B: 80k iterations, batch size 1024
+- 2B: 30k iterations, batch size 512
+- 14B: 25k iterations, batch size 256
+
+**Wan2.1 T2V:**
+- 1.3B: 10k iterations, batch size 256
+- 14B: 10k iterations, batch size 64
+
+## Critical Limitations
+
+**The paper does not provide:**
+- Total GPU hours or wall-clock training duration
+- Number of GPUs used in distributed training
+- Cost estimates in dollars
+- Total FLOPs or computational requirements
+
+The authors note they used "curated data from NVIDIA...supplemented with synthetic data generated by Wan2.1 T2V 14B for Wan distillation" but do not quantify dataset sizes or training data volumes.
+
+## Infrastructure Highlights
+
+The work emphasizes custom development of "a FlashAttention-2 JVP kernel" and network restructuring for FSDP compatibility, indicating significant engineering effort, though computational costs remain undisclosed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7cb76545-5acc-405e-937b-183883d236a7",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "e8fe6461-9ae7-4f5e-99f4-2ec9553cc66a",
+  "sourceToolAssistantUUID": "7cb76545-5acc-405e-937b-183883d236a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-10T17:28:39.965Z_
+
+<details><summary>↩ Tool result · `toolu_018Zx8rFfkiASEQL5KcA5eQp`</summary>
+
+```text
+# Training Compute and Dataset Details from "Unified World Models"
+
+## Training Compute
+
+The paper provides limited explicit compute details. In Appendix -A3 (Training Compute), specifics are referenced but the actual content appears truncated in the provided excerpt. The document mentions "100K steps" for pretraining across experiments, but GPU specifications, batch sizes, and training duration in wall-clock time are not clearly stated in the available text.
+
+## Datasets Used
+
+**Pretraining Datasets:**
+- **DROID Dataset**: A curated subset of 2,000 trajectories from the larger DROID dataset, consisting of "robot trajectories collected across various institutions and operators, covering a large variety of tasks, camera positions and backgrounds in natural settings"
+- **Action-free Video Data**: An additional 2,000 trajectories from the DROID dataset used for co-training without action annotations
+
+**Evaluation Datasets:**
+- **Real Robot Tasks**: Five custom manipulation tasks (Stack-Bowls, Block-Cabinet, Paper-Towel, Hang-Towel, Rice-Cooker) with task-specific expert demonstrations collected via teleoperation
+- **LIBERO Benchmark**: Evaluated on LIBERO-100, utilizing 90 training environments (LIBERO-90) for pretraining and 10 evaluation environments (LIBERO-10) for testing
+
+## Model Architecture
+
+The paper mentions a "diffusion transformer" architecture but does not provide explicit parameter counts. Key components include ResNet-18 encoders, frozen SDXL VAE, and transformer blocks with adaptive layer normalization conditioning.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "97b3ea3e-5fc2-461c-a43e-9eb1896c8d3a",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "42153c0e-dd6d-44ec-bebd-eb5da733759d",
+  "sourceToolAssistantUUID": "97b3ea3e-5fc2-461c-a43e-9eb1896c8d3a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-10T17:28:43.709Z_
+
+<details><summary>↩ Tool result · `toolu_01QJzqNPBaNvJF1pwT6ZzmSB`</summary>
+
+```text
+Web search results for query: ""14B video model" distillation training "GPU hours" OR "GPU-hours" OR "A100" OR "H100" compute cost 2025"
+
+Links: [{"title":"NVIDIA H100 Price Guide 2026: GPU Costs, Cloud Pricing & Buy vs Rent | Jarvis Labs Blog | Jarvis Labs","url":"https://jarvislabs.ai/blog/h100-price"},{"title":"GPU Computing for AI Training: Complete Hardware and Optimization Guide","url":"https://helpforce.ai/news/gpu-computing-ai-training-hardware-guide-2025"},{"title":"Best GPUs for LLM training in 2025 | WhiteFiber","url":"https://www.whitefiber.com/compare/best-gpus-for-llm-training-in-2025"},{"title":"NVIDIA A100 GPU Price Guide (2025) - Cloud Rental & Purchase Costs | AI FAQ | Jarvis Labs","url":"https://jarvislabs.ai/ai-faqs/nvidia-a100-gpu-price"},{"title":"Pick the Best GPU for AI Workflows (2026)","url":"https://www.thundercompute.com/blog/how-to-choose-right-gpu-ai-workloads"},{"title":"Best GPU for local LLM Inference and Training – 2026 [Updated] | BIZON","url":"https://bizon-tech.com/blog/best-gpu-llm-training-inference"},{"title":"NVIDIA A100 GPU Price in 2026: Cost Per Hour, Cloud Pricing & Specs | Jarvis Labs Blog | Jarvis Labs","url":"https://jarvislabs.ai/blog/a100-price"},{"title":"NVIDIA H100: The Best GPU for LLM Training Today","url":"https://cyfuture.ai/blog/why-nvidia-h100-for-llm-training"},{"title":"AI Inference Cost Economics in 2026: GPU FinOps Playbook | Spheron Blog","url":"https://www.spheron.network/blog/ai-inference-cost-economics-2026/"},{"title":"How Much Do GPU Cloud Platforms Cost for AI Startups in 2026?","url":"https://www.gmicloud.ai/en/blog/how-much-do-gpu-cloud-platforms-cost-for-ai-startups-in-2026"}]
+
+Based on the search results, here's what I found regarding 14B video model distillation training and compute costs:
+
+## Model Distillation Cost Economics
+
+Distillation is the highest-impact model change for cost reduction. If a 70B model handles tasks that a 14B or 8B model manages adequately, distillation cuts GPU requirements by 4-8x.
+
+For a concrete example relevant to your query: The cost comparison shows 70B on 8x H100 at $19.20/hr versus 14B on 2x H100 at $4.80/hr for comparable throughput on the target task.
+
+## GPU Compute Costs for 14B Model Training
+
+For medium models (13-30B parameters), training costs are $500-$3,000 using 4 H100s for 50-200 hours.
+
+For cloud GPU pricing specifically: H100 cloud pricing is approximately $5-8/hour, while A100s cost $2-5/hour.
+
+## Video Model Considerations
+
+The search results focus primarily on language models rather than video models specifically. However, the distillation principles and GPU cost metrics apply similarly—knowledge distillation and other efficient architectures often yield 2-5x efficiency improvements, equivalent to adding GPUs but at zero cost.
+
+The results don't contain specific research papers or technical documentation about 14B video model distillation training costs published in 2025. For more targeted information, you may want to search academic publications or technical reports from major AI labs that focus specifically on video model research.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "495bdfab-f8af-4ac8-a043-7c22f3860e37",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "44505243-89bd-4e60-a11a-c2c3abf2dbd4",
+  "sourceToolAssistantUUID": "495bdfab-f8af-4ac8-a043-7c22f3860e37",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-10T17:28:46.668Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NYoL6247C4V5vfXyEhSf8q`</summary>
+
+```json
+{
+  "query": "Wan2.1 14B consistency distillation rCM training GPU count nodes"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "44505243-89bd-4e60-a11a-c2c3abf2dbd4",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHNesj5ksPFdPXP5f8P",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "bdf0d986-1ea5-4850-8e1f-8893ab1df931",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ExMYJRUs14mx8u4vkDFCdK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2101,
+      "cache_read_input_tokens": 31216,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2101,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-10T17:28:47.587Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TTogS2RAJQJYNRqu1Hbgxd`</summary>
+
+```json
+{
+  "query": "robot video action dataset HuggingFace 2025 2026 embodied AI"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bdf0d986-1ea5-4850-8e1f-8893ab1df931",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHNesj5ksPFdPXP5f8P",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3bd31689-e1df-4b1d-b79f-7b1376baecf5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ExMYJRUs14mx8u4vkDFCdK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2101,
+      "cache_read_input_tokens": 31216,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2101,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-10T17:28:48.250Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0182H3FH6t6iTTtLduSjeQ2u`</summary>
+
+```json
+{
+  "query": "SkyReels MAGI-1 open source video generation model architecture 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3bd31689-e1df-4b1d-b79f-7b1376baecf5",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHNesj5ksPFdPXP5f8P",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "70f3e847-f165-456f-83aa-6a821bdb50ef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ExMYJRUs14mx8u4vkDFCdK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2101,
+      "cache_read_input_tokens": 31216,
+      "output_tokens": 177,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2101
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 177,
+          "cache_read_input_tokens": 31216,
+          "cache_creation_input_tokens": 2101,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2101,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-10T17:28:52.623Z_
+
+<details><summary>↩ Tool result · `toolu_01NYoL6247C4V5vfXyEhSf8q`</summary>
+
+```text
+Web search results for query: "Wan2.1 14B consistency distillation rCM training GPU count nodes"
+
+Links: [{"title":"GitHub - NVlabs/rcm: [ICLR 2026] rCM: SOTA JVP-Based Diffusion Distillation & Few-Step Video Generation & Scaling Up sCM/MeanFlow · GitHub","url":"https://github.com/NVlabs/rcm"},{"title":"Phr00t/WAN2.2-14B-Rapid-AllInOne · Hugging Face","url":"https://huggingface.co/Phr00t/WAN2.2-14B-Rapid-AllInOne"},{"title":"Wan-AI/Wan2.1-T2V-14B · Hugging Face","url":"https://huggingface.co/Wan-AI/Wan2.1-T2V-14B"},{"title":"Wan-AI/Wan2.2-I2V-A14B · Hugging Face","url":"https://huggingface.co/Wan-AI/Wan2.2-I2V-A14B"},{"title":"Large Scale Diffusion Distillation via Score-Regularized Continuous-Time Consistency | OpenReview","url":"https://openreview.net/forum?id=2uNlM353RI"},{"title":"--- base_model: - Wan-AI/Wan2.2-I2V-A14B - Wan-AI/Wan2.2-T2V-A14B tags: - wan","url":"https://huggingface.co/api/resolve-cache/models/Phr00t/WAN2.2-14B-Rapid-AllInOne/30e803babc766d791f140b197aa7bf7f18f6e36d/README.md?download=true&etag=%22eea2f76c843dbe8717fee34c106395739d8ece0e%22"},{"title":"Wan-AI/Wan2.2-Animate-14B · Hugging Face","url":"https://huggingface.co/Wan-AI/Wan2.2-Animate-14B"},{"title":"TurboDiffusion: Accelerating Video Diffusion Models by 100–200 Times","url":"https://arxiv.org/html/2512.16093v1"},{"title":"Large Scale Diffusion Distillation via Score-Regularized Continuous-Time Consistency","url":"https://arxiv.org/html/2510.08431v1"},{"title":"Overnight, Sora's Myth Shattered: H200 Single Graphics Card Generates Image in 5 Secs, All - Chinese Open - source AI Project Sets Video Circle Ablaze","url":"https://eu.36kr.com/en/p/3412444076494465"}]
+
+I found relevant information about Wan2.1 14B consistency distillation rCM training. Here are the key findings:
+
+## Key Information
+
+The rCM (score-regularized continuous-time consistency model) was validated on large-scale models including Wan2.1 up to 14B parameters and 5-second videos.
+
+Regarding training infrastructure:
+
+The implementation for rCM training builds on the Cosmos-Predict2 codebase, with infrastructure support from FSDP2, Ulysses CP, and selective activation checkpointing (SAC).
+
+For context parallel requirements, Ulysses CP requires that the CP size is a factor of num_heads (40 for Wan2.1 14B).
+
+Regarding sparse distillation training (a related approach), the sparse distillation of Wan2.1-T2V-1.3B runs for 4000 steps on 64 H200 GPUs, consuming a total of 768 GPU hours, though this is for the 1.3B model rather than the 14B version.
+
+The search results indicate that the technical infrastructure for rCM training includes distributed training frameworks (FSDP2), context parallelism (Ulysses CP), and activation checkpointing, but specific GPU count and node configuration details for the 14B rCM training are not explicitly stated in the available results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bdf0d986-1ea5-4850-8e1f-8893ab1df931",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "52fa24c3-8794-40f8-94da-c4792af95af0",
+  "sourceToolAssistantUUID": "bdf0d986-1ea5-4850-8e1f-8893ab1df931",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-10T17:28:54.967Z_
+
+<details><summary>↩ Tool result · `toolu_0182H3FH6t6iTTtLduSjeQ2u`</summary>
+
+```text
+Web search results for query: "SkyReels MAGI-1 open source video generation model architecture 2026"
+
+Links: [{"title":"7 Best Open Source Video Generation Models in 2026 [Updated February] | Hyperstack","url":"https://www.hyperstack.cloud/blog/case-study/best-open-source-video-generation-models"},{"title":"MAGI-1 | Open-Source Autoregressive Diffusion Video Model","url":"https://magi-1.ai/"},{"title":"GitHub - SandAI-org/MAGI-1: MAGI-1: Autoregressive Video Generation at Scale · GitHub","url":"https://github.com/SandAI-org/MAGI-1"},{"title":"sand-ai/MAGI-1 · Hugging Face","url":"https://huggingface.co/sand-ai/MAGI-1"},{"title":"Sand AI Open-Sources MAGI-1 Video Generation Model: Infinite Scalability, High Fidelity","url":"https://www.aibase.com/news/17391"},{"title":"What is Magi AI? Understand Sand AI open-source autoregressive video model in 5 minutes - Apiyi.com Blog","url":"https://help.apiyi.com/en/magi-1-sand-ai-autoregressive-video-model-introduction-en.html"},{"title":"MAGI-1: Best AI Video Generation model, beats OpenAI Sora, Kling | by Mehul Gupta | Data Science in Your Pocket | Medium","url":"https://medium.com/data-science-in-your-pocket/magi-1-best-ai-video-generation-model-beats-openai-sora-kling-ac3d04b6432b"},{"title":"GitHub - SkyworkAI/SkyReels-V2: SkyReels-V2: Infinite-length Film Generative model · GitHub","url":"https://github.com/SkyworkAI/SkyReels-V2"},{"title":"Magi-1: Groundbreaking Open Source AI Video Generation Model","url":"https://www.toolify.ai/ai-news/magi1-groundbreaking-open-source-ai-video-generation-model-3384472"},{"title":"[2505.13211] MAGI-1: Autoregressive Video Generation at Scale","url":"https://arxiv.org/abs/2505.13211"}]
+
+Based on the web search results, here's comprehensive information about MAGI-1's open-source video generation model architecture:
+
+## Overview
+
+MAGI-1 is a world model that generates videos by autoregressively predicting a sequence of video chunks, defined as fixed-length segments of consecutive frames. MAGI-1 was first open-sourced on April 21, 2025, and iterated to Magi-1.1 in 2026.
+
+## Architecture Details
+
+MAGI-1 is based on a diffusion transformer architecture, incorporating technological innovations such as block causal attention, parallel attention blocks, and Sandwich normalization. More specifically, it uses a Variational autoencoder (VAE) with transformer-based architecture, providing 8x spatial and 4x temporal compression.
+
+The model generates videos by predicting them one piece at a time — specifically, in fixed-length segments of 24 frames (roughly one second of video at 24fps).
+
+## Key Technical Features
+
+Trained to denoise per-chunk noise that increases monotonically over time, MAGI-1 enables causal temporal modeling and naturally supports streaming generation. MAGI-1 further supports controllable generation via chunk-wise prompting, enabling smooth scene transitions, long-horizon synthesis, and fine-grained text-driven control.
+
+The largest variant of MAGI-1 comprises 24 billion parameters and supports context lengths of up to 4 million tokens, demonstrating the scalability and robustness of the approach.
+
+## Open-Source Availability
+
+The code, weights, and inference tools are all available on GitHub and Hugging Face under the Apache 2.0 license.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "70f3e847-f165-456f-83aa-6a821bdb50ef",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "2fc33c17-f108-4335-b93b-9d742a686d8a",
+  "sourceToolAssistantUUID": "70f3e847-f165-456f-83aa-6a821bdb50ef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-10T17:28:56.755Z_
+
+<details><summary>↩ Tool result · `toolu_01TTogS2RAJQJYNRqu1Hbgxd`</summary>
+
+```text
+Web search results for query: "robot video action dataset HuggingFace 2025 2026 embodied AI"
+
+Links: [{"title":"ropedia-ai/xperience-10m · Datasets at Hugging Face","url":"https://huggingface.co/datasets/ropedia-ai/xperience-10m"},{"title":"Paper page - X-Humanoid: Robotize Human Videos to Generate Humanoid Videos at Scale","url":"https://huggingface.co/papers/2512.04537"},{"title":"LeRobotDataset - Hugging Face Robotics Course","url":"https://huggingface.co/learn/robotics-course/en/unit1/3"},{"title":"openvla/openvla-7b · Hugging Face","url":"https://huggingface.co/openvla/openvla-7b"},{"title":"agibot-world/AgiBotWorld2026 · Datasets at Hugging Face","url":"https://huggingface.co/datasets/agibot-world/AgiBotWorld2026"},{"title":"SHREC - a MIT-personal-robots Collection","url":"https://huggingface.co/collections/MIT-personal-robots/shrec"},{"title":"x-humanoid-robomind/RoboMIND · Datasets at Hugging Face","url":"https://huggingface.co/datasets/x-humanoid-robomind/RoboMIND"},{"title":"Video Analysis - Action Recognition & Understanding - a mindchain Collection","url":"https://huggingface.co/collections/mindchain/video-analysis-action-recognition-and-understanding"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=video-generation-based+embodied+world+models"},{"title":"agibot-world (AgiBot World)","url":"https://huggingface.co/agibot-world"}]
+
+Based on the search results, here are several notable robot video action datasets on HuggingFace related to embodied AI from 2025-2026:
+
+## Major Datasets
+
+**Xperience-10M** - A large-scale egocentric multimodal dataset of human experience for embodied AI, robotics, world models, and spatial intelligence. It contains 10 million experiences (interaction) and 10,000 hours of synchronized first-person recordings with six video streams, audio, stereo depth, camera pose, hand mocap, full-body mocap, IMU, and hierarchical language annotations.
+
+**AGIBOT WORLD 2026** - The dataset is collected from 100% real-world environments, covering commercial spaces, home, and other general-purpose scenarios, and provides developers with structured, accurately annotated, high-quality data collected on the AGIBOT G2 robot platform.
+
+**RoboMIND V2.0** - A comprehensive dataset featuring 107k real-world demonstration trajectories spanning 479 distinct tasks and involving 96 unique object classes. The dataset integrates teleoperation data from multiple robotic embodiments, comprising 52,926 trajectories from the Franka Emika Panda single-arm robot, 19,152 trajectories from the Tien Kung humanoid robot, 10,629 trajectories from the AgileX Cobot Magic V2.0 dual-arm robot, and 25,170 trajectories from the UR-5e single-arm robot.
+
+**X-Humanoid Dataset** - Generates a new large-scale dataset of over 3.6 million "robotized" humanoid video frames from 60 hours of Ego-Exo4D videos.
+
+**RoVid-X** - The largest open-source robotic dataset for video generation with 4 million annotated video clips, covering thousands of tasks and enriched with comprehensive physical property annotations.
+
+These datasets represent the cutting edge of embodied AI research, providing diverse robot manipulation, interaction, and vision-language-action training data.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3bd31689-e1df-4b1d-b79f-7b1376baecf5",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "46fcc650-8786-4e73-afa8-3d1df9763f20",
+  "sourceToolAssistantUUID": "3bd31689-e1df-4b1d-b79f-7b1376baecf5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-10T17:29:00.274Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NsGj5SDfijgM3mbDPb12FP`</summary>
+
+```json
+{
+  "query": "world action model consistency distillation robotics joint video action generation paper 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "46fcc650-8786-4e73-afa8-3d1df9763f20",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHPcin4rMA4p2SkDuN8",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e012974d-8f68-4a8c-8014-2a87b2cfd836",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VUnJw1QYT9SUyuMppDMU8j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1019,
+      "cache_creation_input_tokens": 2229,
+      "cache_read_input_tokens": 33317,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2229,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-10T17:29:00.959Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Y4Cd3aAuDH3GKwrjrZpv7g`</summary>
+
+```json
+{
+  "query": "Wan2.2 open source video model architecture parameters MoE 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e012974d-8f68-4a8c-8014-2a87b2cfd836",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHPcin4rMA4p2SkDuN8",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d838b23d-df57-4719-8c40-34d2e7dac86a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VUnJw1QYT9SUyuMppDMU8j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1019,
+      "cache_creation_input_tokens": 2229,
+      "cache_read_input_tokens": 33317,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2229,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-10T17:29:06.326Z_
+
+<details><summary>↩ Tool result · `toolu_01Y4Cd3aAuDH3GKwrjrZpv7g`</summary>
+
+```text
+Web search results for query: "Wan2.2 open source video model architecture parameters MoE 2026"
+
+Links: [{"title":"GitHub - Wan-Video/Wan2.2: Wan: Open and Advanced Large-Scale Video Generative Models · GitHub","url":"https://github.com/Wan-Video/Wan2.2"},{"title":"Wan2.2 - Open Source MoE Video Generation | Every Shot, Wan Take | wan22.io","url":"https://wan22.io/"},{"title":"What Is Wan 2.2 Video? Open-Source AI Video with LoRA Support | MindStudio","url":"https://www.mindstudio.ai/blog/what-is-wan-2-2-video-open-source"},{"title":"Wan2.2 - Open-Source MoE Video Generation Model Deep Dive","url":"https://wan2.video/wan2.2"},{"title":"GitHub - Oyelowo/wan2.2: Wan: Open and Advanced Large-Scale Video Generative Models","url":"https://github.com/Oyelowo/wan2.2"},{"title":"Wan2.2 Video Generation ComfyUI Official Native Workflow Example - ComfyUI","url":"https://docs.comfy.org/tutorials/video/wan/wan2_2"},{"title":"GitHub - edosuseno/wan2.2: Wan: Open and Advanced Large-Scale Video Generative Models","url":"https://github.com/edosuseno/wan2.2"},{"title":"Wan 2.2 Explained: A New Approach to AI Video Generation","url":"https://vast.ai/article/wan-2-2-explained-new-approach-ai-video-generation"},{"title":"GitHub - 3QWNC/wan2.2: Wan: Open and Advanced Large-Scale Video Generative Models","url":"https://github.com/3QWNC/wan2.2"},{"title":"Wan-AI/Wan2.2-TI2V-5B · Hugging Face","url":"https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B"}]
+
+I've found comprehensive information about Wan2.2. Here are the key findings:
+
+## Architecture & Parameters
+
+Wan2.2 introduces a Mixture-of-Experts (MoE) architecture into video diffusion models, separating the denoising process cross timesteps with specialized powerful expert models to enlarge overall model capacity while maintaining the same computational cost.
+
+The A14B model series adopts a two-expert design: a high-noise expert for the early stages focusing on overall layout, and a low-noise expert for the later stages refining video details. Each expert model has about 14B parameters, resulting in a total of 27B parameters but only 14B active parameters per step.
+
+## Model Variants
+
+In addition to the 27B MoE models, a 5B dense model, i.e., TI2V-5B, is released.
+
+## Key Innovations
+
+Compared to Wan2.1, Wan2.2 is trained on a significantly larger data, with +65.6% more images and +83.2% more videos.
+
+Wan2.2 incorporates meticulously curated aesthetic data, complete with detailed labels for lighting, composition, contrast, color tone, and more, allowing for more precise and controllable cinematic style generation.
+
+## Expert Switching Mechanism
+
+The transition point between the two experts is determined by the signal-to-noise ratio (SNR), a metric that decreases monotonically as the denoising step progresses.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d838b23d-df57-4719-8c40-34d2e7dac86a",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "43af8b13-64ee-4458-a494-ade741d10a64",
+  "sourceToolAssistantUUID": "d838b23d-df57-4719-8c40-34d2e7dac86a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-10T17:29:10.197Z_
+
+<details><summary>↩ Tool result · `toolu_01NsGj5SDfijgM3mbDPb12FP`</summary>
+
+```text
+Web search results for query: "world action model consistency distillation robotics joint video action generation paper 2025 2026"
+
+Links: [{"title":"World Action Models are Zero-shot Policies","url":"https://arxiv.org/html/2602.15922v1"},{"title":"MotuBrain: An Advanced World Action Model for Robot Control","url":"https://arxiv.org/html/2604.27792v2"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://arxiv.org/html/2504.02792v1"},{"title":"Published as a conference paper at ICLR 2025 PRE-TRAINED VIDEO GENERATIVE","url":"https://openreview.net/pdf?id=oTYF8WUadL"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | Request PDF","url":"https://www.researchgate.net/publication/395371959_Unified_World_Models_Coupling_Video_and_Action_Diffusion_for_Pretraining_on_Large_Robotic_Datasets"},{"title":"EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields","url":"https://arxiv.org/html/2605.06192v1"},{"title":"GitHub - LMD0311/Awesome-World-Model: Collect some World Models for Autonomous Driving (and Robotic, etc.) papers. · GitHub","url":"https://github.com/LMD0311/Awesome-World-Model"},{"title":"Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising","url":"https://arxiv.org/html/2604.26694v2"},{"title":"World Model for Robot Learning: A Comprehensive Survey","url":"https://arxiv.org/html/2605.00080v1"},{"title":"Action-Conditioned Video World Model","url":"https://www.emergentmind.com/topics/action-conditioned-video-world-model"}]
+
+Based on the web search results, here are several recent papers on world action models, consistency, distillation, and joint video-action generation for robotics from 2025-2026:
+
+## Key Papers Found:
+
+**1. World Action Models are Zero-shot Policies (DreamZero)**
+DreamZero jointly generates video and action, with predicted actions closely aligning with the generated video. This approach shifts action learning from dense state–action imitation to inverse dynamics—aligning motor commands with predicted visual futures.
+
+**2. MotuBrain: An Advanced World Action Model for Robot Control**
+MotuBrain first adopts UniDiffuser to jointly model and schedule the two continuous modalities, i.e., video and action, so that all interaction patterns between them are captured in a unified generative framework. The system includes a post-training pipeline with sparse adaptation and step distillation.
+
+**3. Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets**
+A UWM consists of a coupled score model that predicts action scores and future image scores, conditioned on the current image and corresponding diffusion timesteps that are separate for next-observation and action. During training, the timesteps are sampled independently at random.
+
+**4. EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields**
+EA-WM jointly models KVAF and video streams through event-aware bidirectional fusion, allowing the model to better follow action-induced motion cues. As a result, EA-WM generates more accurate gripper-object contact relations and maintains more physically plausible robot poses, demonstrating stronger action-consistent future video generation.
+
+**5. Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising (X-WAM)**
+X-WAM consistently outperforms all baselines on RoboCasa and RoboTwin 2.0 benchmarks while producing superior 4D reconstruction and generation across both visual and geometric metrics.
+
+These papers represent the latest advances in combining video generation with action prediction for robot learning, emphasizing joint modeling, consistency, and distillation techniques.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e012974d-8f68-4a8c-8014-2a87b2cfd836",
+  "isSidechain": true,
+  "promptId": "05875e35-bdc6-4525-ae4b-d53310be5d59",
+  "agentId": "aaa6ba3cd4726a233",
+  "type": "user",
+  "uuid": "33f126e7-c789-4be5-9617-a2c26d5bf833",
+  "sourceToolAssistantUUID": "e012974d-8f68-4a8c-8014-2a87b2cfd836",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-10T17:31:00.461Z_
+
+I now have comprehensive data across all four areas. Here is the full feasibility report.
+
+---
+
+# Feasibility Report: Consistency Distillation for World-Action Models
+
+## 1. Existing Open-Source Implementations (Building Blocks)
+
+### Consistency Distillation Frameworks
+
+- **[OpenAI Consistency Models](https://github.com/openai/consistency_models)** -- Official PyTorch codebase supporting consistency distillation (CD) and consistency training (CT) on ImageNet-64, LSUN Bedroom-256, LSUN Cat-256. The canonical reference implementation.
+- **[HuggingFace Diffusers - Latent Consistency Distillation](https://github.com/huggingface/diffusers/blob/main/examples/consistency_distillation/README.md)** -- Production-grade LCM distillation pipeline integrated into diffusers; includes examples for distilling Stable Diffusion v1.5 for few-step inference.
+- **[luosiallen/latent-consistency-model](https://github.com/luosiallen/latent-consistency-model)** -- Official LCM repo. Synthesizes high-resolution images in 4-8 steps (vs. 25-50). Foundational for extending to video.
+- **[locuslab/ect](https://github.com/locuslab/ect)** -- "Easy Consistency Tuning" (ECT), a simpler training recipe achieving SOTA few-step generation.
+- **[NVlabs/rCM](https://github.com/NVlabs/rcm)** [ICLR 2026] -- **Critically relevant.** First work scaling continuous-time consistency distillation to 10B+ parameter video diffusion models (Cosmos-Predict2 14B, Wan2.1 14B). Includes a custom FlashAttention-2 JVP kernel with FSDP/CP parallelism support. Generates high-fidelity video in 1-4 steps (15-50x speedup). Open-sourced code.
+
+### Video Diffusion Distillation
+
+- **[Vchitect/DCM](https://github.com/Vchitect/DCM)** [ICCV 2025] -- Dual-Expert Consistency Model for video. Splits distillation into semantic expert (layout/motion) and detail expert (fine refinement with LoRA). 10x faster inference.
+- **[thu-ml/Causal-Forcing](https://github.com/thu-ml/Causal-Forcing)** [ICML 2026] -- Autoregressive diffusion distillation for real-time streaming video generation. Uses AR teacher + ODE distillation + DMD. Runs on a single RTX 4090 at inference. Training uses 8 nodes x 8 GPUs.
+- **[hao-ai-lab/FastVideo](https://github.com/hao-ai-lab/FastVideo)** -- Unified post-training framework. Distilled Wan2.1-T2V-1.3B and 14B using DMD2 + sparse attention. FastWan2.1-1.3B: 64 H200 GPUs, 768 GPU-hours, ~$2,603 cost.
+- **[azuresky03/distill_wan2.1](https://github.com/azuresky03/distill_wan2.1)** -- DMD-based distillation for Wan2.1, all code and weights open-sourced.
+- **[ModelTC/Wan2.2-Lightning](https://github.com/ModelTC/Wan2.2-Lightning)** -- Distillation speedup for Wan2.2.
+
+### World-Action Models (Joint Video + Action)
+
+- **[WEIRDLabUW/unified-world-model](https://github.com/WEIRDLabUW/unified-world-model)** -- **Directly relevant.** UWM couples video diffusion and action diffusion in a unified transformer with independent per-modality timesteps. Can ingest action-free video by treating missing actions as noise. Pretrained on DROID, evaluated on LIBERO.
+- **[unitreerobotics/unifolm-world-model-action](https://github.com/unitreerobotics/unifolm-world-model-action)** -- Unitree's UnifoLM-WMA-0: open-source world-model-action architecture for general robot learning. Code + weights released September 2025.
+- **[Robert-gyj/Ctrl-World](https://github.com/Robert-gyj/Ctrl-World)** [ICLR 2026] -- Action-conditioned world model compatible with modern VLA policies; enables policy-in-the-loop imagined rollouts.
+- **[Aaditya-Prasad/consistency-policy](https://github.com/Aaditya-Prasad/consistency-policy)** [RSS 2024] -- **Key building block.** Consistency Policy distills Diffusion Policy into a fast visuomotor policy via consistency distillation. Demonstrates order-of-magnitude inference speedup. Directly applies consistency distillation to robot action generation.
+- **[quantumiracle/Consistency_Model_For_Reinforcement_Learning](https://github.com/quantumiracle/Consistency_Model_For_Reinforcement_Learning)** [ICLR 2024] -- Consistency models as policy class for RL.
+
+### Relevant Papers Without Code Yet
+
+- **DreamZero** ("World Action Models are Zero-shot Policies") -- Jointly generates video and action, with actions aligned to visual futures via inverse dynamics.
+- **MotuBrain** -- Joint video+action modeling via UniDiffuser with sparse adaptation and step distillation. Achieves 95.8%+ on RoboTwin.
+- **X-WAM** ("Unified 4D World Action Modeling") -- Trained on 5,800+ hours across real and simulated data.
+
+---
+
+## 2. Datasets
+
+### Primary Datasets for World-Action Model Training
+
+| Dataset | Size | Content | Availability |
+|---------|------|---------|--------------|
+| **Open X-Embodiment** | 1M+ trajectories, 22 robot types, 527 skills | Real robot data pooled from 60 datasets across 34 labs | [GitHub](https://github.com/google-deepmind/open_x_embodiment), [HuggingFace](https://huggingface.co/datasets/jxu124/OpenX-Embodiment) |
+| **DROID** | 76k trajectories, 350h, 564 scenes, 86 tasks | In-the-wild manipulation by 50 collectors across 3 continents | [HuggingFace](https://huggingface.co/datasets/cadene/droid) (400GB LeRobot format; 1.7TB RLDS) |
+| **CALVIN** | Simulated, long-horizon | Language-conditioned manipulation benchmark | [GitHub](https://github.com/mees/calvin) |
+| **RLBench** | 100 tasks, simulated | Vision-guided manipulation benchmark | [GitHub](https://github.com/stepjam/RLBench), [HuggingFace](https://huggingface.co/datasets/hqfang/rlbench-18-tasks) |
+| **LIBERO** | 100 tasks, simulated | Robotic manipulation benchmark | Used by UWM for pretraining (90 tasks) and eval (10 tasks) |
+| **AgiBotWorld 2026** | Real-world, 100% real environments | Commercial/home scenarios on AGIBOT G2 platform | [HuggingFace](https://huggingface.co/datasets/agibot-world/AgiBotWorld2026) |
+| **RoboMIND V2.0** | 107k trajectories, 479 tasks, 96 object classes | Multi-embodiment teleoperation (Franka, humanoid, dual-arm, UR-5e) | [HuggingFace](https://huggingface.co/datasets/x-humanoid-robomind/RoboMIND) |
+| **Xperience-10M** | 10M experiences, 10,000 hours | Egocentric multimodal (6 video streams, audio, depth, mocap) | [HuggingFace](https://huggingface.co/datasets/ropedia-ai/xperience-10m) |
+| **RoVid-X** | 4M annotated video clips | Largest open-source robotic video dataset | Available on HuggingFace |
+
+All major datasets are publicly available. UWM specifically demonstrated that action-free video data can be integrated by treating missing actions as noise, which means large-scale unlabeled robot video datasets are also usable.
+
+---
+
+## 3. Compute Requirements
+
+### Consistency Distillation Benchmarks
+
+| Work | Model Size | GPU Hardware | Duration / GPU-Hours | Cost Estimate |
+|------|-----------|-------------|---------------------|---------------|
+| **LCM (image)** | ~1B (SD 1.5) | A100 80GB | 32 A100 GPU-hours | ~$100 |
+| **LCM-LoRA (image)** | ~1B | 1x A100 80GB | 4 hours / 1,600 steps | ~$8-10 |
+| **FastWan (1.3B video)** | 1.3B | 64x H200 | 768 GPU-hours (4k steps) | ~$2,603 |
+| **FastWan (14B video)** | 14B | 64x H100 | 16 hours on 64 GPUs = ~1,024 GPU-hours | ~$5,000-8,000 est. |
+| **rCM (14B video)** | 14B (Wan2.1) | H100s w/ FSDP2+CP | 10k iterations, batch 64 | Not disclosed (likely multi-thousand GPU-hours) |
+| **rCM (14B image)** | 14B (Cosmos) | H100s | 25k iterations, batch 256 | Not disclosed |
+| **Causal Forcing** | Large video model | 8 nodes x 8 GPUs (64 GPUs) | Multi-day training | Not disclosed |
+| **DCM** | Video model | Multi-GPU | Not disclosed | Not disclosed |
+
+### Key Observations on Compute
+
+- **For a 14B video model distillation**, expect roughly **1,000-5,000 H100 GPU-hours** based on interpolating from FastVideo/rCM data. At cloud rates of ~$3-5/H100/hour, this translates to **$3,000-$25,000** for the distillation phase alone.
+- **Memory**: Distillation requires holding both teacher and student models simultaneously. For 14B parameter models, this necessitates multi-GPU setups (FSDP, context parallelism). rCM enforces FP32 for time embedding layers on 10B+ models for stability.
+- **Training the base world-action model from scratch** would be far more expensive. UWM used 100k steps of pretraining; X-WAM was trained on 5,800+ hours of data. Full training of a 14B video model is estimated at hundreds of thousands to millions of GPU-hours.
+- **The distillation approach is dramatically cheaper** -- typically 100-1000x less compute than training the teacher model from scratch.
+
+---
+
+## 4. Current SOTA Open-Source Video Generation Models (2025-2026)
+
+### Tier 1: Leading Backbones
+
+| Model | Parameters | Architecture | License | Key Strength |
+|-------|-----------|-------------|---------|-------------|
+| **Wan2.2-A14B** | 27B total (14B active, 2-expert MoE) | MoE Diffusion Transformer + Causal 3D VAE | Open | Top cinematic quality; high-noise + low-noise expert split by SNR; trained on 83% more video data than Wan2.1 |
+| **Wan2.1-14B** | 14B | Dense Diffusion Transformer | Open | Widely used backbone for distillation (rCM, FastVideo, distill_wan2.1). Proven distillation target. |
+| **HunyuanVideo 1.5** | 8.3B | DiT with selective/sliding tile attention + 3D Causal VAE | Open | SOTA quality at smaller size; runs on consumer GPUs; 2-stage pipeline (generation + super-resolution) |
+| **MAGI-1** | Up to 24B | Autoregressive Diffusion Transformer with block causal attention | Apache 2.0 | Chunk-wise autoregressive generation (24 frames/chunk); supports 4M token context; streaming generation; permissive license |
+
+### Tier 2: Notable Models
+
+| Model | Key Feature |
+|-------|------------|
+| **SkyReels-V2** | Infinite-length film generation |
+| **LTX-Video** | Real-time I2V, ComfyUI-friendly |
+| **Mochi 1** (10B) | Apache 2.0, AsymmDiT architecture, hackable |
+| **CogVideoX** | Open-source from Zhipu AI |
+
+### Most Suitable Backbones for This Project
+
+For consistency distillation of a world-action model, the most promising backbone choices are:
+
+1. **Wan2.1-14B** -- Already has proven distillation recipes (rCM, FastVideo, distill_wan2.1). The rCM work specifically distilled this model to 1-4 step generation. Best ecosystem support for distillation.
+2. **Wan2.2-A14B** -- Next-gen MoE variant with the same active compute. Wan2.2-Lightning distillation already exists. The MoE expert split (high-noise vs low-noise) is architecturally aligned with DCM's dual-expert consistency approach.
+3. **HunyuanVideo 1.5** (8.3B) -- More compute-efficient backbone if GPU budget is constrained.
+4. **MAGI-1** -- The autoregressive chunk-based design is naturally suited to world model applications (sequential prediction), but less mature distillation ecosystem.
+
+---
+
+## Feasibility Assessment Summary
+
+**The project is feasible.** Every major building block exists in open source:
+
+1. **Consistency distillation for large video models** is proven at 14B scale (rCM distilled Wan2.1-14B to 1-4 steps).
+2. **Joint video+action diffusion** is established (UWM, DreamZero, MotuBrain, X-WAM).
+3. **Consistency distillation for robot action policies** is proven (Consistency Policy, RSS 2024).
+4. **The gap** is that no one has yet published a system that applies consistency distillation specifically to a joint video+action world model. The individual components (video consistency distillation + joint video-action modeling) both exist but have not been combined in a single system.
+
+**Estimated compute for the distillation phase**: 1,000-5,000 H100 GPU-hours ($3,000-$25,000 at cloud rates), assuming a 14B-class backbone. A smaller backbone (1.3B-5B) could be distilled for under $3,000.
+
+**Recommended starting point**: Fork UWM's unified video+action diffusion framework, use Wan2.1-14B as the video backbone (or HunyuanVideo 1.5 for lower cost), and apply rCM's consistency distillation recipe. Pretrain on DROID + Open X-Embodiment + action-free video data.
+
+Sources:
+- [OpenAI Consistency Models](https://github.com/openai/consistency_models)
+- [HuggingFace Diffusers LCM](https://github.com/huggingface/diffusers/blob/main/examples/consistency_distillation/README.md)
+- [Latent Consistency Model](https://github.com/luosiallen/latent-consistency-model)
+- [rCM - NVIDIA (ICLR 2026)](https://github.com/NVlabs/rcm)
+- [rCM Paper](https://arxiv.org/abs/2510.08431)
+- [DCM - Dual-Expert Consistency Model](https://github.com/Vchitect/DCM)
+- [Causal Forcing (ICML 2026)](https://github.com/thu-ml/Causal-Forcing)
+- [FastVideo / FastWan](https://github.com/hao-ai-lab/FastVideo)
+- [FastWan Blog Post](https://haoailab.com/blogs/fastvideo_post_training/)
+- [distill_wan2.1](https://github.com/azuresky03/distill_wan2.1)
+- [Wan2.2-Lightning](https://github.com/ModelTC/Wan2.2-Lightning)
+- [Wan2.1 Distill Models on HuggingFace](https://huggingface.co/lightx2v/Wan2.1-Distill-Models)
+- [Unified World Models (UWM)](https://github.com/WEIRDLabUW/unified-world-model)
+- [UWM Paper](https://arxiv.org/abs/2504.02792)
+- [Consistency Policy (RSS 2024)](https://github.com/Aaditya-Prasad/consistency-policy)
+- [Consistency Models for RL (ICLR 2024)](https://github.com/quantumiracle/Consistency_Model_For_Reinforcement_Learning)
+- [UnifoLM-WMA (Unitree)](https://github.com/unitreerobotics/unifolm-world-model-action)
+- [Ctrl-World (ICLR 2026)](https://github.com/Robert-gyj/Ctrl-World)
+- [ECT - Easy Consistency Tuning](https://github.com/locuslab/ect)
+- [DreamZero Paper](https://arxiv.org/html/2602.15922v1)
+- [MotuBrain Paper](https://arxiv.org/html/2604.27792v2)
+- [X-WAM Paper](https://arxiv.org/html/2604.26694v2)
+- [Open X-Embodiment](https://github.com/google-deepmind/open_x_embodiment)
+- [Open X-Embodiment on HuggingFace](https://huggingface.co/datasets/jxu124/OpenX-Embodiment)
+- [DROID Dataset](https://droid-dataset.github.io/)
+- [DROID on HuggingFace](https://huggingface.co/datasets/cadene/droid)
+- [CALVIN](https://github.com/mees/calvin)
+- [RLBench](https://github.com/stepjam/RLBench)
+- [RLBench on HuggingFace](https://huggingface.co/datasets/hqfang/rlbench-18-tasks)
+- [AgiBotWorld 2026](https://huggingface.co/datasets/agibot-world/AgiBotWorld2026)
+- [RoboMIND](https://huggingface.co/datasets/x-humanoid-robomind/RoboMIND)
+- [Xperience-10M](https://huggingface.co/datasets/ropedia-ai/xperience-10m)
+- [Wan2.2 GitHub](https://github.com/Wan-Video/Wan2.2)
+- [HunyuanVideo](https://github.com/Tencent-Hunyuan/HunyuanVideo)
+- [HunyuanVideo 1.5](https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5)
+- [MAGI-1](https://github.com/SandAI-org/MAGI-1)
+- [SkyReels-V2](https://github.com/SkyworkAI/SkyReels-V2)
+- [Awesome World Models for Robots](https://github.com/operator22th/awesome-world-models-for-robots)
+- [Awesome Consistency Models](https://github.com/G-U-N/Awesome-Consistency-Models)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "33f126e7-c789-4be5-9617-a2c26d5bf833",
+  "isSidechain": true,
+  "agentId": "aaa6ba3cd4726a233",
+  "requestId": "req_011CauHQc6qw2TMX85EgEbxX",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5de36abe-ff6a-476a-a3d9-7e09996b4816",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3b069ed3-b020-4199-91be-4ffe6c60afff",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PjpKMNX2FZYs8rHJmAbZbZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 905,
+      "cache_creation_input_tokens": 2206,
+      "cache_read_input_tokens": 35546,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2206,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---

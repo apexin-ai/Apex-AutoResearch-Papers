@@ -1,0 +1,2697 @@
+# Research conversation: You are helping with an ML paper review. I need to verify several things: 1. **CoRL 2026 deadline**: Search for "CoRL 20
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 44
+- **Recorded user turns:** 1
+- **Tool calls:** 18
+- **Original source:** `logs/chats/exported-trajectories/account-2/agent-ad4fbe427fc0fbed8.jsonl`
+- **Structured JSON:** [`509a70480d6a34198566.json`](../../sessions/50/509a70480d6a34198566.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+44 recorded events
+
+### User
+
+_source line 1 · 2026-05-10T18:44:59.357Z_
+
+You are helping with an ML paper review. I need to verify several things:
+
+1. **CoRL 2026 deadline**: Search for "CoRL 2026 submission deadline" or "CoRL 2026 call for papers" to verify the abstract and paper deadlines.
+
+2. **DreamZero tail quality**: Search for any discussion of DreamZero's failure modes, quality degradation on hard samples, or OOD performance. Try:
+   - "DreamZero failure" or "DreamZero quality degradation"
+   - "velocity caching failure modes diffusion"
+   - "fixed threshold caching error accumulation"
+   - Read DreamZero's limitations section if accessible
+
+3. **LESA paper**: Search for "LESA learnable stage-aware diffusion 2026" to verify this reference exists.
+
+4. **Block-wise Adaptive Caching (BAC)**: Search for "block-wise adaptive caching diffusion policy" or arXiv 2506.13456 to verify.
+
+5. **Being-H0.7**: Search for "Being-H0.7 latent world action model 2026" to verify this reference.
+
+6. **RoboTwin 2.0**: Search for "RoboTwin 2.0 benchmark" to verify it exists and is publicly available.
+
+7. **Any work combining PPO with diffusion caching decisions**: Search for "reinforcement learning diffusion caching" or "PPO adaptive caching transformer"
+
+Report what you find for each item.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "3fd0ddd3-18ac-453f-a240-34c6589c33da",
+  "agentId": "ad4fbe427fc0fbed8",
+  "type": "user",
+  "uuid": "73843ad6-c2b8-4025-b01f-6d0968ae6b5a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T18:44:59.359Z_
+
+```json
+{
+  "parentUuid": "73843ad6-c2b8-4025-b01f-6d0968ae6b5a",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "abbc82bf-ed98-45ac-926a-c5ac35eeb8a5",
+  "timestamp": "2026-05-10T18:44:59.359Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-10T18:45:02.809Z_
+
+
+
+I'll search for all of these items in parallel using web search. Let me first load the WebSearch tool schema.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "abbc82bf-ed98-45ac-926a-c5ac35eeb8a5",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "requestId": "req_011CauPBwsKKC3NuE1wxQdmp",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4b10b589-d5ca-467f-b21e-fca13b28c2e4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EahhTgjpHyvhDsZZKRCVPD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 898,
+      "cache_read_input_tokens": 8223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 898,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-10T18:45:03.079Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_016tK3NFm2hku4DF1GC7Rdzv`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b10b589-d5ca-467f-b21e-fca13b28c2e4",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "requestId": "req_011CauPBwsKKC3NuE1wxQdmp",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1eb8efd5-3388-4c59-b9ec-b9485e076fa3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EahhTgjpHyvhDsZZKRCVPD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 898,
+      "cache_read_input_tokens": 8223,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 898,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-10T18:45:03.083Z_
+
+<details><summary>↩ Tool result · `toolu_016tK3NFm2hku4DF1GC7Rdzv`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1eb8efd5-3388-4c59-b9ec-b9485e076fa3",
+  "isSidechain": true,
+  "promptId": "3fd0ddd3-18ac-453f-a240-34c6589c33da",
+  "agentId": "ad4fbe427fc0fbed8",
+  "type": "user",
+  "uuid": "0d04a0a4-597c-43ce-9639-5c4da1a5056f",
+  "sourceToolAssistantUUID": "1eb8efd5-3388-4c59-b9ec-b9485e076fa3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6 · 2026-05-10T18:45:06.028Z_
+
+
+
+Now let me run all the searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d04a0a4-597c-43ce-9639-5c4da1a5056f",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "requestId": "req_011CauPCEm4v8LiNAYDkC9go",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9ed48533-c722-436d-9b59-fa9da96d1e5d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018oEfum2VcLv9WynFbTB8Ks",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1914,
+      "cache_read_input_tokens": 9121,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1914,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-10T18:45:06.577Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018hCBt4jLv3RUw79DUwn6en`</summary>
+
+```json
+{
+  "query": "CoRL 2026 submission deadline call for papers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9ed48533-c722-436d-9b59-fa9da96d1e5d",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "requestId": "req_011CauPCEm4v8LiNAYDkC9go",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8c306c53-9bbc-4b95-b359-c75f398ea2f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018oEfum2VcLv9WynFbTB8Ks",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1914,
+      "cache_read_input_tokens": 9121,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1914,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-10T18:45:07.548Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013Y1ehftk48QY8p17nqEgaf`</summary>
+
+```json
+{
+  "query": "DreamZero failure modes quality degradation hard samples"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c306c53-9bbc-4b95-b359-c75f398ea2f5",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "requestId": "req_011CauPCEm4v8LiNAYDkC9go",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "356d787d-dffd-4c67-bf66-1b334b0977c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018oEfum2VcLv9WynFbTB8Ks",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1914,
+      "cache_read_input_tokens": 9121,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1914,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-10T18:45:07.982Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011p2R13yqJxmu2EBwHtfDTJ`</summary>
+
+```json
+{
+  "query": "DreamZero velocity caching failure modes diffusion"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "356d787d-dffd-4c67-bf66-1b334b0977c9",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "requestId": "req_011CauPCEm4v8LiNAYDkC9go",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "774550c0-6268-4f6f-91f2-1aa5c233a8b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018oEfum2VcLv9WynFbTB8Ks",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1914,
+      "cache_read_input_tokens": 9121,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1914,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T18:45:08.922Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01R71DmUvCeaptvXZLQqQsRL`</summary>
+
+```json
+{
+  "query": "LESA learnable stage-aware diffusion 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "774550c0-6268-4f6f-91f2-1aa5c233a8b9",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "requestId": "req_011CauPCEm4v8LiNAYDkC9go",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "aac67148-4582-4f61-aa4d-6781dab8f1a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018oEfum2VcLv9WynFbTB8Ks",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1914,
+      "cache_read_input_tokens": 9121,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1914,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-10T18:45:09.435Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CrcjxMoGEkUnP6uXyCMwim`</summary>
+
+```json
+{
+  "query": "block-wise adaptive caching diffusion policy arXiv 2506.13456"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aac67148-4582-4f61-aa4d-6781dab8f1a8",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "requestId": "req_011CauPCEm4v8LiNAYDkC9go",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e21a79b2-2435-4775-8791-74b88c7007dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018oEfum2VcLv9WynFbTB8Ks",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1914,
+      "cache_read_input_tokens": 9121,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1914,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-10T18:45:10.350Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0173QTjec2xWXcituB9AKxZg`</summary>
+
+```json
+{
+  "query": "Being-H0.7 latent world action model 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e21a79b2-2435-4775-8791-74b88c7007dd",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "requestId": "req_011CauPCEm4v8LiNAYDkC9go",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "e4a6db84-d802-44b6-af71-abb5261dd3b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018oEfum2VcLv9WynFbTB8Ks",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1914,
+      "cache_read_input_tokens": 9121,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1914,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-10T18:45:10.979Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016E7AvYH487q8UJqd14QNfS`</summary>
+
+```json
+{
+  "query": "RoboTwin 2.0 benchmark"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e4a6db84-d802-44b6-af71-abb5261dd3b6",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "requestId": "req_011CauPCEm4v8LiNAYDkC9go",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0ac06f04-709c-40e7-9214-657443dd56b7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018oEfum2VcLv9WynFbTB8Ks",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1914,
+      "cache_read_input_tokens": 9121,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1914,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-10T18:45:11.325Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011GBp5LtVD6zJ7vPJsQR6ts`</summary>
+
+```json
+{
+  "query": "reinforcement learning PPO adaptive caching diffusion transformer"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ac06f04-709c-40e7-9214-657443dd56b7",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "requestId": "req_011CauPCEm4v8LiNAYDkC9go",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "10cab601-0cc8-4282-84fc-53ffc9360d7c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018oEfum2VcLv9WynFbTB8Ks",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1914,
+      "cache_read_input_tokens": 9121,
+      "output_tokens": 402,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1914
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 402,
+          "cache_read_input_tokens": 9121,
+          "cache_creation_input_tokens": 1914,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1914,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-10T18:45:12.392Z_
+
+<details><summary>↩ Tool result · `toolu_018hCBt4jLv3RUw79DUwn6en`</summary>
+
+```text
+Web search results for query: "CoRL 2026 submission deadline call for papers"
+
+Links: [{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"Robot Learning Foundation","url":"https://www.robot-learning.org/"},{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"CoRL 2026 - Contributions","url":"https://www.corl.org/contributions"},{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf?lang=en"},{"title":"CoRL 2026 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"},{"title":"CoRL 2026 - Annoucements","url":"https://www.corl.org/annoucements"},{"title":"Refactor conference data · huggingface/ai-deadlines at f3cc2d7","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f3cc2d74f8283ae00d3005ff7cca51dd26540377"}]
+
+Based on the search results, here's the information about CoRL 2026:
+
+## CoRL 2026 Call for Papers
+
+The Call for Papers and key dates are now available for CoRL 2026. The Conference on Robot Learning (CoRL) is an annual international conference focusing on the intersection of robotics and machine learning, and CoRL 2026 will be held in Austin, Texas, US.
+
+### Key Deadlines
+
+Abstract submission is due May 25, and full paper submission is due May 28. The conference itself will be held November 9-12 in Austin, TX.
+
+### Submission Requirements
+
+Papers may be submitted through OpenReview. The page limit is 8 pages for the main paper, with acknowledgments, references, and appendix not counting toward the page limit.
+
+All submissions should include a Limitations section, explicitly describing limiting assumptions, failure modes, and other limitations of the results and experiments.
+
+For more details on submission guidelines and requirements, you can visit the official CoRL 2026 website at corl.org or the OpenReview submission portal.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8c306c53-9bbc-4b95-b359-c75f398ea2f5",
+  "isSidechain": true,
+  "promptId": "3fd0ddd3-18ac-453f-a240-34c6589c33da",
+  "agentId": "ad4fbe427fc0fbed8",
+  "type": "user",
+  "uuid": "ce859187-994f-48fd-9988-d33c610d6879",
+  "sourceToolAssistantUUID": "8c306c53-9bbc-4b95-b359-c75f398ea2f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-10T18:45:13.876Z_
+
+<details><summary>↩ Tool result · `toolu_013Y1ehftk48QY8p17nqEgaf`</summary>
+
+```text
+Web search results for query: "DreamZero failure modes quality degradation hard samples"
+
+Links: [{"title":"GitHub - dreamzero0/dreamzero: Code to pretrain, fine-tune, and evaluate DreamZero and run sim & real-world evals · GitHub","url":"https://github.com/dreamzero0/dreamzero"},{"title":"Bayesian zero-failure reliability demonstration tests: Sample size estimation and its limitation | Journal of Mechanical Science and Technology | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s12206-025-2409-1"},{"title":"DreamZero: World Action Models are Zero-shot Policies","url":"https://dreamzero0.github.io/"},{"title":"Reliability analysis of electronic devices with multiple competing failure modes involving performance aging degradation | Request PDF","url":"https://www.researchgate.net/publication/229672905_Reliability_analysis_of_electronic_devices_with_multiple_competing_failure_modes_involving_performance_aging_degradation"},{"title":"Zero Defect Manufacturing: How to Achieve It Effortlessly?","url":"https://www.qualityze.com/blogs/zero-defect-manufacturing"},{"title":"Aerospace Electronics Failure Modes — PatSnap Eureka | PatSnap","url":"https://www.patsnap.com/resources/blog/rd-blog/aerospace-electronics-failure-modes-patsnap-eureka/"},{"title":"Detecting AI Agent Failure Modes in Production: A Framework for Observability-Driven Diagnosis | Latitude","url":"https://latitude.so/blog/ai-agent-failure-detection-guide"},{"title":"Failure Modes and Degradation Mechanisms of Thyristors Under Combined Electric and Thermal Stress","url":"https://www.mdpi.com/1996-1073/19/8/1999"},{"title":"2026-2-4 World Action Models are Zero-shot Policies Seonghyeon Ye† Yunhao Ge*","url":"https://dreamzero0.github.io/DreamZero.pdf"},{"title":"From Signal Degradation to Computation Collapse: Uncovering the Two Failure Modes of LLM Quantization","url":"https://arxiv.org/html/2604.19884"}]
+
+Based on the search results, I found information about DreamZero, which is a World Action Model for robotics. However, the search results don't contain specific details about "failure modes," "quality degradation," or "hard samples" as they relate to DreamZero specifically.
+
+From the available results, here's what I can tell you about DreamZero:
+
+DreamZero is a World Action Model that jointly predicts actions and videos, achieving strong zero-shot performance on unseen tasks. While state-of-the-art Vision-Language-Action (VLA) models excel at semantic generalization but struggle to generalize to unseen physical motions in novel environments, DreamZero is a World Action Model built upon a pretrained video diffusion backbone that learns physical dynamics by jointly predicting future world states and actions, using video as a dense representation of how the world evolves.
+
+However, the search results provided do not include detailed technical analysis of DreamZero's failure modes, quality degradation patterns, or performance on hard samples. To get this specific information, you may want to:
+
+1. Check the full DreamZero research paper directly (referenced in the results as arxiv 2602.15922)
+2. Look at the official DreamZero GitHub repository documentation
+3. Search specifically for the DreamZero research paper's analysis sections on failure cases and limitations
+
+Would you like me to search for more specific information about DreamZero's limitations or failure cases?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "356d787d-dffd-4c67-bf66-1b334b0977c9",
+  "isSidechain": true,
+  "promptId": "3fd0ddd3-18ac-453f-a240-34c6589c33da",
+  "agentId": "ad4fbe427fc0fbed8",
+  "type": "user",
+  "uuid": "482893a8-2df9-406d-a7f6-1e3cd423b631",
+  "sourceToolAssistantUUID": "356d787d-dffd-4c67-bf66-1b334b0977c9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-10T18:45:15.171Z_
+
+<details><summary>↩ Tool result · `toolu_011p2R13yqJxmu2EBwHtfDTJ`</summary>
+
+```text
+Web search results for query: "DreamZero velocity caching failure modes diffusion"
+
+Links: [{"title":"DreamZero: World Action Models are Zero-shot Policies","url":"https://dreamzero0.github.io/"},{"title":"GitHub - horseee/DeepCache: [CVPR 2024] DeepCache: Accelerating Diffusion Models for Free · GitHub","url":"https://github.com/horseee/DeepCache"},{"title":"A Survey on Cache Methods in Diffusion Models: Toward Efficient Multi-Modal Generation","url":"https://arxiv.org/html/2510.19755v1"},{"title":"GitHub - dreamzero0/dreamzero: Code to pretrain, fine-tune, and evaluate DreamZero and run sim & real-world evals · GitHub","url":"https://github.com/dreamzero0/dreamzero"},{"title":"Lost in Diffusion: Uncovering Hallucination Patterns and Failure Modes in Diffusion Large Language Models","url":"https://arxiv.org/html/2604.10556"},{"title":"Diffusion Caching for Fast Inference","url":"https://www.emergentmind.com/topics/diffusion-caching"},{"title":"Memory Monitoring Explained: Pressure, Caching, and Failure Modes in Production - BlueGrid.io : BlueGrid.io","url":"https://bluegrid.io/blog/memory-monitoring-explained-pressure-caching-and-failure-modes-in-production/"},{"title":"GitHub - NVlabs/Fast-dLLM: Official implementation of \"Fast-dLLM: Training-free Acceleration of Diffusion LLM by Enabling KV Cache and Parallel Decoding\" · GitHub","url":"https://github.com/NVlabs/Fast-dLLM"},{"title":"A Survey on Cache Methods in Diffusion Models","url":"https://arxiv.org/pdf/2510.19755"},{"title":"Cache Me if You Can: Accelerating Diffusion Models through Block Caching","url":"https://fwmb.github.io/blockcaching/"}]
+
+Based on the search results, I found information related to your query, though the specific combination of "DreamZero velocity caching failure modes" doesn't appear to be a single published work. Instead, here's what the search uncovered:
+
+## DreamZero
+
+DreamZero is a World Action Model that jointly predicts actions and videos, achieving strong zero-shot performance on unseen tasks. DreamZero achieves real-time inference at 150ms per action chunk—enabling 7Hz closed-loop control. The system uses diffusion-based inference as part of its architecture.
+
+## Velocity and Feature Tracking in Diffusion Caching
+
+The concept of "velocity" in diffusion models appears in research on diffusion caching acceleration. Through Principal Component Analysis (PCA), researchers observed that both features and their temporal derivatives (i.e., the "velocity" of feature changes along trajectories) present stable patterns. This relates to how diffusion models can be accelerated by tracking feature evolution over denoising timesteps.
+
+## Caching Failure Modes in Diffusion Models
+
+Research on diffusion caching shows that existing cache-based acceleration methods for diffusion models commonly assume high similarity between adjacent timestep features, but this assumption often fails at high acceleration ratios, leading to rapid degradation of feature similarity as caching frequency increases.
+
+If you're looking for more specific technical details about a particular paper or system combining these concepts, I'd recommend checking recent arXiv preprints or the GitHub repositories for DreamZero and related diffusion acceleration projects.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "774550c0-6268-4f6f-91f2-1aa5c233a8b9",
+  "isSidechain": true,
+  "promptId": "3fd0ddd3-18ac-453f-a240-34c6589c33da",
+  "agentId": "ad4fbe427fc0fbed8",
+  "type": "user",
+  "uuid": "ede70242-c2db-4aea-95de-34cf82bf7b94",
+  "sourceToolAssistantUUID": "774550c0-6268-4f6f-91f2-1aa5c233a8b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-10T18:45:16.598Z_
+
+<details><summary>↩ Tool result · `toolu_01CrcjxMoGEkUnP6uXyCMwim`</summary>
+
+```text
+Web search results for query: "block-wise adaptive caching diffusion policy arXiv 2506.13456"
+
+Links: [{"title":"[2506.13456] Block-wise Adaptive Caching for Accelerating Diffusion Policy","url":"https://arxiv.org/abs/2506.13456"},{"title":"Block-wise Adaptive Caching for Accelerating Diffusion Policy","url":"https://arxiv.org/html/2506.13456"},{"title":"(PDF) Block-wise Adaptive Caching for Accelerating Diffusion Policy","url":"https://www.researchgate.net/publication/392736206_Block-wise_Adaptive_Caching_for_Accelerating_Diffusion_Policy"},{"title":"Block-wise Adaptive Caching for Accelerating Diffusion Policy | OpenReview","url":"https://openreview.net/forum?id=c6ZWfQLOWD"},{"title":"BWCache: Accelerating Video Diffusion Transformers through Block-Wise Caching","url":"https://arxiv.org/html/2509.13789v1"},{"title":"Singular Proxies for Adaptive Caching in Diffusion Language Models","url":"https://arxiv.org/html/2602.02544"},{"title":"2025-10-1 FAST-DLLM V2: Efficient Block-Diffusion LLM Chengyue Wu1,2 Hao Zhang2","url":"https://arxiv.org/pdf/2509.26328"},{"title":"Cache Me if You Can: Accelerating Diffusion Models through Block Caching","url":"https://fwmb.github.io/blockcaching/"},{"title":"BLOCK-WISE ADAPTIVE CACHING FOR ACCELERATING ...","url":"https://openreview.net/pdf/630048567a76c6f55c3d346407904a2231b7fbf3.pdf"},{"title":"Cache Me if You Can: Accelerating Diffusion Models through Block Caching","url":"https://arxiv.org/html/2312.03209v2"}]
+
+I found information about the paper "Block-wise Adaptive Caching for Accelerating Diffusion Policy" (arXiv 2506.13456). Here are the key details:
+
+## Overview
+
+Block-wise Adaptive Caching (BAC) is a method to accelerate Diffusion Policy by caching intermediate action features.
+
+## Problem Being Addressed
+
+Diffusion Policy has demonstrated strong visuomotor modeling capabilities, but its high computational cost renders it impractical for real-time robotic control. Despite huge redundancy across repetitive denoising steps, existing diffusion acceleration techniques fail to generalize to Diffusion Policy due to fundamental architectural and data divergences.
+
+## Solution
+
+BAC achieves lossless action generation acceleration by adaptively updating and reusing cached features at the block level, based on a key observation that feature similarities vary non-uniformly across timesteps and blocks.
+
+## Technical Approach
+
+To operationalize this insight, the method proposes the Adaptive Caching Scheduler, designed to identify optimal update timesteps by maximizing the global feature similarities between cached and skipped features.
+
+## Paper Details
+
+The paper was submitted on June 16, 2025, with authors including Kangye Ji, Yuan Meng, Hanyun Cui, Ye Li, Shengjia Hua, Lei Chen, and Zhi Wang.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e21a79b2-2435-4775-8791-74b88c7007dd",
+  "isSidechain": true,
+  "promptId": "3fd0ddd3-18ac-453f-a240-34c6589c33da",
+  "agentId": "ad4fbe427fc0fbed8",
+  "type": "user",
+  "uuid": "551d47b2-ec25-4003-aeb1-2c156f68c6c8",
+  "sourceToolAssistantUUID": "e21a79b2-2435-4775-8791-74b88c7007dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-10T18:45:18.162Z_
+
+<details><summary>↩ Tool result · `toolu_016E7AvYH487q8UJqd14QNfS`</summary>
+
+```text
+Web search results for query: "RoboTwin 2.0 benchmark"
+
+Links: [{"title":"RoboTwin 2.0","url":"https://robotwin-platform.github.io/"},{"title":"[2506.18088] RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong Domain Randomization for Robust Bimanual Robotic Manipulation","url":"https://arxiv.org/abs/2506.18088"},{"title":"RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong Domain Randomization for Robust Bimanual Robotic Manipulation | OpenReview","url":"https://openreview.net/forum?id=vAPIIscwc7"},{"title":"Paper page - RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong Domain Randomization for Robust Bimanual Robotic Manipulation","url":"https://huggingface.co/papers/2506.18088"},{"title":"GitHub - RoboTwin-Platform/RoboTwin: RoboTwin 2.0 Offical Repo · GitHub","url":"https://github.com/robotwin-Platform/RoboTwin"},{"title":"RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong Domain Randomization for Robust Bimanual Robotic Manipulation","url":"https://arxiv.org/html/2506.18088v2"},{"title":"RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong","url":"https://robogen-iros.github.io/accepted/9_RoboTwin_2_0_A_Scalable_Data.pdf"},{"title":"RoboTwin 2.0: Scalable Synthetic Data Generation and Benchmark Design for Dual-Arm Manipulation Robots | AI-SCHOLAR | AI: (Artificial Intelligence) Articles and technical information media","url":"https://ai-scholar.tech/en/articles/llm-paper/robotwin-2.0"},{"title":"[Literature Review] RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong Domain Randomization for Robust Bimanual Robotic Manipulation","url":"https://www.themoonlight.io/en/review/robotwin-20-a-scalable-data-generator-and-benchmark-with-strong-domain-randomization-for-robust-bimanual-robotic-manipulation"},{"title":"(PDF) RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong Domain Randomization for Robust Bimanual Robotic Manipulation","url":"https://www.researchgate.net/publication/392941279_RoboTwin_20_A_Scalable_Data_Generator_and_Benchmark_with_Strong_Domain_Randomization_for_Robust_Bimanual_Robotic_Manipulation"}]
+
+Based on the search results, here's what I found about RoboTwin 2.0 benchmark:
+
+## Overview
+
+RoboTwin 2.0 is a scalable framework for automated, large-scale generation of diverse and realistic data, together with unified evaluation protocols for dual-arm manipulation.
+
+## Key Components
+
+RoboTwin 2.0 integrates an expert data generation pipeline with a 50-task benchmark built on the RoboTwin Object Dataset (731 objects, 147 categories). A multimodal language agent automates task program synthesis, while flexible dual-arm configurations enable large-scale, diverse data collection.
+
+## Domain Randomization
+
+To improve sim-to-real transfer, RoboTwin 2.0 incorporates structured domain randomization along five axes: clutter, lighting, background, tabletop height and language instructions.
+
+## Benchmark Results
+
+The benchmark includes evaluations across multiple policy models. It yields a 10.9% gain in code generation success rate. For policy learning performance, with a mix of large-scale synthetic data and only 10 real demonstrations, a vision–language–action (VLA) model achieves a 367% relative improvement over the 10-demo baseline. Even without real data, zero-shot models trained solely on synthetic data obtain a 228% relative gain.
+
+## Benchmark Tasks and Robots
+
+RoboTwin 2.0 provides a set of 50 dual-arm manipulation tasks supporting data collection and evaluation across five distinct robot platforms (Aloha-AgileX, ARX-X5, Piper, Franka, UR5).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0ac06f04-709c-40e7-9214-657443dd56b7",
+  "isSidechain": true,
+  "promptId": "3fd0ddd3-18ac-453f-a240-34c6589c33da",
+  "agentId": "ad4fbe427fc0fbed8",
+  "type": "user",
+  "uuid": "75d2f5e8-2592-4362-8b45-1334bfdf0ab8",
+  "sourceToolAssistantUUID": "0ac06f04-709c-40e7-9214-657443dd56b7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-10T18:45:19.805Z_
+
+<details><summary>↩ Tool result · `toolu_011GBp5LtVD6zJ7vPJsQR6ts`</summary>
+
+```text
+Web search results for query: "reinforcement learning PPO adaptive caching diffusion transformer"
+
+Links: [{"title":"FastCache: Fast Caching for Diffusion Transformer Through Learnable Linear Approximation","url":"https://arxiv.org/html/2505.20353v1"},{"title":"TS-DP: Reinforcement Speculative Decoding For Temporal Adaptive Diffusion Policy Acceleration","url":"https://arxiv.org/html/2512.15773"},{"title":"[2406.01733] Learning-to-Cache: Accelerating Diffusion Transformer via Layer Caching","url":"https://arxiv.org/abs/2406.01733"},{"title":"GitHub - horseee/learning-to-cache: [NeurIPS 2024] Learning-to-Cache: Accelerating Diffusion Transformer via Layer Caching","url":"https://github.com/horseee/learning-to-cache"},{"title":"T-CacheNet: Transformer-based Deep Reinforcement Learning for Next-Generation Internet Content Caching | Proceedings of the 2024 13th International Conference on Networks, Communication and Computing","url":"https://dl.acm.org/doi/10.1145/3711650.3711652"},{"title":"NeurIPS Poster Learning-to-Cache: Accelerating Diffusion Transformer via Layer Caching","url":"https://neurips.cc/virtual/2024/poster/94605"},{"title":"AirLLM: Diffusion Policy-based Adaptive LoRA for Remote ...","url":"https://arxiv.org/pdf/2507.11515"},{"title":"Diffusion Policy Policy Optimization | OpenReview","url":"https://openreview.net/forum?id=mEpqHvbD2h"},{"title":"DIFFUSION POLICY POLICY OPTIMIZATION","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/c0749c39aaff9e9e4c91f7118bf21b1e-Paper-Conference.pdf"},{"title":"Training Diffusion Models with Reinforcement Learning","url":"https://rl-diffusion.github.io/"}]
+
+I've performed the web search for your query. Here's a summary of the relevant research findings:
+
+## Key Results
+
+**Temporal-aware Reinforcement-based Speculative Diffusion Policy (TS-DP)**
+
+The most directly relevant result combines all your search terms. A PPO-based scheduler was trained to formulate diffusion policy execution as a Markov process and adaptively tune speculative parameters over time to dynamically adjust computation based on task difficulty. The framework uses a distilled Transformer-based drafter to replace expensive base-model denoising calls, while an RL-based scheduler dynamically adjusts speculative parameters based on task difficulty to maintain accuracy and maximize efficiency.
+
+**Adaptive Caching in Diffusion Transformers**
+
+Several approaches address caching optimization:
+
+1. **FastCache**: Uses spatial-aware token selection that adaptively filters redundant tokens based on hidden state saliency, and a transformer-level cache that reuses latent activations across timesteps when changes are statistically insignificant.
+
+2. **Learning-to-Cache (L2C)**: Learns to conduct caching in a dynamic manner for diffusion transformers. For U-ViT-H/2, it removes up to 93.68% of computation in cache steps (46.84% for all steps), with less than 0.01 drop in FID.
+
+**PPO and Diffusion Policies**
+
+Diffusion Policy Policy Optimization (DPPO) is a framework for fine-tuning diffusion-based policies in continuous control and robot learning tasks using policy gradient methods from reinforcement learning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "10cab601-0cc8-4282-84fc-53ffc9360d7c",
+  "isSidechain": true,
+  "promptId": "3fd0ddd3-18ac-453f-a240-34c6589c33da",
+  "agentId": "ad4fbe427fc0fbed8",
+  "type": "user",
+  "uuid": "904758bf-9a5d-4498-8fae-d09eca9ad34b",
+  "sourceToolAssistantUUID": "10cab601-0cc8-4282-84fc-53ffc9360d7c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-10T18:45:20.583Z_
+
+<details><summary>↩ Tool result · `toolu_0173QTjec2xWXcituB9AKxZg`</summary>
+
+```text
+Web search results for query: "Being-H0.7 latent world action model 2026"
+
+Links: [{"title":"Being-H0.7: A Latent World-Action Model from Egocentric Videos","url":"https://arxiv.org/html/2605.00078v1"},{"title":"Being-H0.7: A Latent World-Action Model from ... - BeingBeyond","url":"https://research.beingbeyond.com/being-h07"},{"title":"GitHub - BeingBeyond/Being-H: Being-H is BeingBeyond's family of human-centric embodied foundation models. · GitHub","url":"https://github.com/BeingBeyond/Being-H"},{"title":"BeingBeyond Unveils World's Most Powerful Model: Embodied Industry Enters the \"Brain Era\"","url":"https://eu.36kr.com/en/p/3766161393369609"},{"title":"Beijing's BeingBeyond Releases the Most Powerful Embodied World Model: Sweeping Six Major Benchmarks with 200,000 Hours of Human Video","url":"https://chinaresearchcollective.substack.com/p/beijings-beingbeyond-releases-the"},{"title":"Hierarchical Planning with Latent World Models","url":"https://arxiv.org/html/2604.03208v1"},{"title":"LeWorldModel and the Case for Stable Latent World Models | by Adnan Masood, PhD. | Apr, 2026 | Medium","url":"https://medium.com/@adnanmasood/leworldmodel-and-the-case-for-stable-latent-world-models-0e4c33ca0f3c"},{"title":"Being-H0.5: Scaling Human-Centric Robot Learning for Cross-Embodiment Generalization","url":"https://arxiv.org/html/2601.12993v1"},{"title":"GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub","url":"https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln"},{"title":"Do World Action Models Generalize Better than VLAs? A Robustness Study","url":"https://arxiv.org/html/2603.22078v1"}]
+
+Based on the search results, here's what I found about Being-H0.7:
+
+## Overview
+
+Being-H0.7 is a latent world-action model that brings future-aware reasoning into VLA-style policies without generating future frames.
+
+## Architecture and Design
+
+Being-H0.7 inserts learnable latent queries between perception and action as a compact reasoning interface, and trains them with a future-informed dual-branch design: a deployable prior branch infers latent states from the current context, while a training-only posterior branch replaces the queries with embeddings from future observations. Jointly aligning the two branches at the latent reasoning space leads the prior branch to reason future-aware, action-useful structure from current observations alone.
+
+## Training Data
+
+Being-H0.7 is trained on 200,000 hours of egocentric human videos together with 15,000 hours of robot demonstrations.
+
+## Performance
+
+Experiments across six simulation benchmarks and diverse real-world tasks show that Being-H0.7 achieves state-of-the-art or comparable performance, combining the predictive benefits of world models with the efficiency and deployability of direct VLA policies.
+
+## Real-World Evaluation
+
+In the real world, Being-H0.7 is evaluated on three robot platforms across 12 challenging tasks covering dynamic scenes, physical reasoning, motion reasoning, long-horizon execution, and generalization. Being-H0.7 leads all five ability-oriented suites, including tasks such as catching a fast rolling ball, pouring into a moving container, folding garments, scanning and sorting packages on a conveyor, and hammering a nail.
+
+## Efficiency
+
+With latency-aware universal asynchronous chunking (UAC), Being-H variants operate in the 3–4 ms/step regime without adding the burden of test-time future generation.
+
+The model was published on April 14, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e4a6db84-d802-44b6-af71-abb5261dd3b6",
+  "isSidechain": true,
+  "promptId": "3fd0ddd3-18ac-453f-a240-34c6589c33da",
+  "agentId": "ad4fbe427fc0fbed8",
+  "type": "user",
+  "uuid": "90069685-c42c-43c5-aaba-948a6556197a",
+  "sourceToolAssistantUUID": "e4a6db84-d802-44b6-af71-abb5261dd3b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-10T18:45:21.319Z_
+
+<details><summary>↩ Tool result · `toolu_01R71DmUvCeaptvXZLQqQsRL`</summary>
+
+```text
+Web search results for query: "LESA learnable stage-aware diffusion 2026"
+
+Links: [{"title":"LESA: Learnable Stage-Aware Predictors for Diffusion Model Acceleration","url":"https://arxiv.org/html/2602.20497"},{"title":"[2602.20497] LESA: Learnable Stage-Aware Predictors for Diffusion Model Acceleration","url":"https://arxiv.org/abs/2602.20497"},{"title":"Chang Zou's scientific contributions","url":"https://www.researchgate.net/scientific-contributions/Chang-Zou-2301431228"},{"title":"Learning-to-Cache: Accelerating Diffusion Transformer via Layer Caching | Request PDF","url":"https://www.researchgate.net/publication/397212934_Learning-to-Cache_Accelerating_Diffusion_Transformer_via_Layer_Caching"},{"title":"ICLR 2026: 12 papers on making AI systems reliable, efficient, and secure","url":"https://lambda.ai/blog/iclr-2026-12-papers"},{"title":"Inference-stage Adaptation-projection Strategy Adapts Diffusion...","url":"https://arxiv.org/abs/2509.11621"},{"title":"State of the Art on Diffusion Models for Visual Computing","url":"https://web.stanford.edu/~gordonwz/DiffusionSTAR.pdf"},{"title":"GitHub - wangkai930418/awesome-diffusion-categorized: collection of diffusion model papers categorized by their subareas · GitHub","url":"https://github.com/wangkai930418/awesome-diffusion-categorized"},{"title":"Build software better, together","url":"https://github.com/topics/iclr2026"},{"title":"GitHub - moatifbutt/awesome-diffusion-iclr-2025: List of diffusion related active submissions on OpenReview for ICLR 2025. · GitHub","url":"https://github.com/moatifbutt/awesome-diffusion-iclr-2025"}]
+
+Based on the search results, here's what I found about LESA:
+
+LESA is a stage-aware learnable predictor built on a two-stage training strategy designed to address limitations in predictable feature caching by adapting to the stage-dependent dynamics of diffusion models.
+
+The framework partitions the denoising trajectory into distinct stages and equips each with a dedicated KAN-based temporal predictor, learning stage-specific temporal feature evolution instead of relying on fixed heuristics.
+
+**Key Technical Details:**
+
+The approach leverages a Kolmogorov-Arnold Network (KAN) to accurately learn temporal feature mappings from data and introduces a multi-stage, multi-expert architecture that assigns specialized predictors to different noise-level stages.
+
+The method proposes a two-stage training methodology that begins with ground-truth guided training to learn denoising dynamics and progresses to closed-loop autoregressive training to build robustness against prediction drift.
+
+**Performance:**
+
+Experiments on image and video generation demonstrate that LESA maintains higher perceptual quality and competitive performance even at 6.25× acceleration, validating that modeling stage-specific dynamics is an effective approach for efficient diffusion acceleration.
+
+The paper was submitted on February 24, 2026, and represents recent research in diffusion model acceleration for image and video generation tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aac67148-4582-4f61-aa4d-6781dab8f1a8",
+  "isSidechain": true,
+  "promptId": "3fd0ddd3-18ac-453f-a240-34c6589c33da",
+  "agentId": "ad4fbe427fc0fbed8",
+  "type": "user",
+  "uuid": "54a975d9-c2ae-49cc-826a-a57edf57cd2f",
+  "sourceToolAssistantUUID": "aac67148-4582-4f61-aa4d-6781dab8f1a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-10T18:45:26.365Z_
+
+Let me get more specific details on a few items. I'll fetch the CoRL 2026 call for papers page for exact deadlines, check the DreamZero paper's limitations section, and look more closely at the TS-DP paper.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "54a975d9-c2ae-49cc-826a-a57edf57cd2f",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "requestId": "req_011CauPDZcfnMcf4KvET6zzA",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "18af9ffb-c40e-4b9e-8f74-576e9b67f81c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JfFNQ7oyzD6ndqQnisdfeG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3994,
+      "cache_creation_input_tokens": 3767,
+      "cache_read_input_tokens": 11035,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3767,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-10T18:45:27.795Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015wMF76JptCGiMhSBZBoCn5`</summary>
+
+```json
+{
+  "url": "https://www.corl.org/contributions/call-for-papers",
+  "prompt": "Extract the exact abstract submission deadline and full paper submission deadline dates for CoRL 2026, including time zones if listed."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "18af9ffb-c40e-4b9e-8f74-576e9b67f81c",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "requestId": "req_011CauPDZcfnMcf4KvET6zzA",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c4747c78-e1bc-4827-a7c2-428903f5821e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JfFNQ7oyzD6ndqQnisdfeG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3994,
+      "cache_creation_input_tokens": 3767,
+      "cache_read_input_tokens": 11035,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3767,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-10T18:45:30.151Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_012o7GAaMHJZq2r4vDZhk1eE`</summary>
+
+```json
+{
+  "url": "https://dreamzero0.github.io/DreamZero.pdf",
+  "prompt": "Find and extract any limitations section, failure modes, quality degradation discussion, OOD performance issues, or discussion of tail quality / hard samples. Also look for any discussion of caching, velocity caching, or fixed threshold issues."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c4747c78-e1bc-4827-a7c2-428903f5821e",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "requestId": "req_011CauPDZcfnMcf4KvET6zzA",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0a38791a-4ce1-4a77-99b1-e0f0f432c95f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JfFNQ7oyzD6ndqQnisdfeG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3994,
+      "cache_creation_input_tokens": 3767,
+      "cache_read_input_tokens": 11035,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3767,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-10T18:45:30.605Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_012o7GAaMHJZq2r4vDZhk1eE`</summary>
+
+```text
+maxContentLength size of 10485760 exceeded
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0a38791a-4ce1-4a77-99b1-e0f0f432c95f",
+  "isSidechain": true,
+  "promptId": "3fd0ddd3-18ac-453f-a240-34c6589c33da",
+  "agentId": "ad4fbe427fc0fbed8",
+  "type": "user",
+  "uuid": "8374c693-c62c-4f00-9af8-91c43edb267e",
+  "toolUseResult": "Error: maxContentLength size of 10485760 exceeded",
+  "sourceToolAssistantUUID": "0a38791a-4ce1-4a77-99b1-e0f0f432c95f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-10T18:45:30.806Z_
+
+<details><summary>↩ Tool result · `toolu_015wMF76JptCGiMhSBZBoCn5`</summary>
+
+```text
+Based on the web page content provided, the specific abstract submission deadline and full paper submission deadline dates for CoRL 2026 are not listed. 
+
+The page states: "For paper submission format and timeline, see: [Instruction for Authors](/contributions/instruction-for-authors)" but the actual deadline dates are not included in the Call for Papers content shown.
+
+To find these deadlines, you would need to visit the "Instruction for Authors" page linked in the document.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c4747c78-e1bc-4827-a7c2-428903f5821e",
+  "isSidechain": true,
+  "promptId": "3fd0ddd3-18ac-453f-a240-34c6589c33da",
+  "agentId": "ad4fbe427fc0fbed8",
+  "type": "user",
+  "uuid": "ef9ec2a9-09e9-4ff7-86c8-007a3ed960da",
+  "sourceToolAssistantUUID": "c4747c78-e1bc-4827-a7c2-428903f5821e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-10T18:45:32.035Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_011GuspR5fgRDEddkJHKXmnL`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2512.15773",
+  "prompt": "Extract details about the TS-DP paper: does it use PPO specifically? Does it combine reinforcement learning with diffusion caching decisions? What RL algorithm is used for the adaptive scheduler?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef9ec2a9-09e9-4ff7-86c8-007a3ed960da",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "requestId": "req_011CauPDZcfnMcf4KvET6zzA",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0de682f3-d425-419e-a909-6d0dbff59c71",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JfFNQ7oyzD6ndqQnisdfeG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3994,
+      "cache_creation_input_tokens": 3767,
+      "cache_read_input_tokens": 11035,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3767,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-10T18:45:32.505Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016vHfvyk3LUAWN6AnNDvjyb`</summary>
+
+```json
+{
+  "query": "\"DreamZero\" limitations \"out of distribution\" OR \"OOD\" OR \"tail\" OR \"hard samples\" OR \"failure\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0de682f3-d425-419e-a909-6d0dbff59c71",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "requestId": "req_011CauPDZcfnMcf4KvET6zzA",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "55b7a0dc-d183-458d-b055-b5444fb99ec1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JfFNQ7oyzD6ndqQnisdfeG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3994,
+      "cache_creation_input_tokens": 3767,
+      "cache_read_input_tokens": 11035,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3767,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-10T18:45:33.205Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01E6vY8rq8vi8L1VFmDhPHSw`</summary>
+
+```json
+{
+  "query": "\"fixed threshold caching\" \"error accumulation\" diffusion policy robotics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "55b7a0dc-d183-458d-b055-b5444fb99ec1",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "requestId": "req_011CauPDZcfnMcf4KvET6zzA",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "63990877-d138-4f74-8eb5-e059b0368f81",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JfFNQ7oyzD6ndqQnisdfeG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3994,
+      "cache_creation_input_tokens": 3767,
+      "cache_read_input_tokens": 11035,
+      "output_tokens": 500,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3767
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3994,
+          "output_tokens": 500,
+          "cache_read_input_tokens": 11035,
+          "cache_creation_input_tokens": 3767,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3767,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-10T18:45:36.081Z_
+
+<details><summary>↩ Tool result · `toolu_011GuspR5fgRDEddkJHKXmnL`</summary>
+
+```text
+# TS-DP Paper Details
+
+Based on the provided content, I cannot definitively answer your specific questions about the paper's implementation details.
+
+**What the abstract reveals:**
+
+The paper does mention "an RL-based scheduler" that "adjusts speculative parameters to maintain accuracy while improving efficiency" in response to time-varying task difficulty. However, the abstract does not specify:
+
+- Whether PPO (Proximal Policy Optimization) is the specific algorithm employed
+- The exact nature of how reinforcement learning interfaces with diffusion model caching decisions
+- Which particular RL algorithm powers the adaptive scheduler
+
+The abstract states the framework achieves "up to 4.17 times faster inference with over 94% accepted drafts," indicating the speculative decoding approach is effective, but technical algorithmic details would require consulting the full paper PDF or HTML version rather than just this landing page summary.
+
+To obtain these specific implementation details, you would need to access the complete paper through the provided links (PDF or HTML versions).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0de682f3-d425-419e-a909-6d0dbff59c71",
+  "isSidechain": true,
+  "promptId": "3fd0ddd3-18ac-453f-a240-34c6589c33da",
+  "agentId": "ad4fbe427fc0fbed8",
+  "type": "user",
+  "uuid": "ca2c22b3-2fae-47a6-9aa9-4b55fc9fa5ec",
+  "sourceToolAssistantUUID": "0de682f3-d425-419e-a909-6d0dbff59c71",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-10T18:45:41.923Z_
+
+<details><summary>↩ Tool result · `toolu_01E6vY8rq8vi8L1VFmDhPHSw`</summary>
+
+```text
+Web search results for query: ""fixed threshold caching" "error accumulation" diffusion policy robotics"
+
+Links: [{"title":"Accelerating Frequency Domain Diffusion Models with Error-Feedback Event-Driven Caching","url":"https://arxiv.org/html/2604.22901"},{"title":"ERTACache: Error Rectification and Timesteps Adjustment for Efficient Diffusion","url":"https://arxiv.org/html/2508.21091"},{"title":"Preprint. Under Review DICACHE: LET DIFFUSION MODEL DETERMINE ITS OWN CACHE","url":"https://arxiv.org/pdf/2508.17356"},{"title":"Block-wise Adaptive Caching for Accelerating Diffusion Policy | OpenReview","url":"https://openreview.net/forum?id=c6ZWfQLOWD"},{"title":"Block-wise Adaptive Caching for Accelerating Diffusion Policy","url":"https://arxiv.org/html/2506.13456"},{"title":"000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019","url":"https://openreview.net/pdf/dcdfee796180abb4760a8e43231c269ce4387992.pdf"},{"title":"A Survey on Cache Methods in Diffusion Models","url":"https://arxiv.org/pdf/2510.19755"},{"title":"ATTENTION IS ALL YOU NEED FOR KV CACHE IN DIFFUSION LLMS","url":"https://arxiv.org/pdf/2510.14973"},{"title":"Diffusion Caching for Fast Inference","url":"https://www.emergentmind.com/topics/diffusion-caching"},{"title":"Compose Your Policies! Improving Diffusion-based or Flow-based Robot Policies via Test-time Distribution-level Composition","url":"https://arxiv.org/html/2510.01068"}]
+
+Based on the search results, here's what I found about fixed threshold caching and error accumulation in diffusion policy robotics:
+
+## Key Findings
+
+Block-wise Adaptive Caching (BAC) is a method to accelerate Diffusion Policy by caching intermediate action features, achieving lossless action generation acceleration by adaptively updating and reusing cached features at the block level, based on the observation that feature similarities vary non-uniformly across timesteps and blocks.
+
+### The Problem with Fixed Thresholds
+
+Naive caching fails catastrophically: cached features drift over diffusion steps, causing error accumulation that degrades sample quality beyond acceptable thresholds. Fixed-period policies recompute when nothing has changed and miss updates precisely when rapid semantic revisions occur.
+
+### Error Accumulation Mechanisms
+
+The low-frequency threshold should be set to 100-200 steps for optimal speedup-quality tradeoff (too small increases overhead, too large allows error accumulation). Additionally, cache-induced degradation has two dominant error modes: feature shift error, introduced by inaccuracies in the reused model outputs; and step amplification error, which arises from the temporal compounding of small errors due to fixed timestep schedules.
+
+### Addressing Error Accumulation
+
+To mitigate error accumulation issues, the Bubbling Union Algorithm truncates errors by updating the upstream blocks with significant caching errors before downstream FFNs. BAC achieves up to 3× inference speedup for robotics applications.
+
+The research shows that dynamic or adaptive caching strategies outperform fixed threshold approaches in managing error accumulation while maintaining quality in diffusion-based robotic control systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "63990877-d138-4f74-8eb5-e059b0368f81",
+  "isSidechain": true,
+  "promptId": "3fd0ddd3-18ac-453f-a240-34c6589c33da",
+  "agentId": "ad4fbe427fc0fbed8",
+  "type": "user",
+  "uuid": "240811f4-4840-48ec-8a85-01b65a3d8623",
+  "sourceToolAssistantUUID": "63990877-d138-4f74-8eb5-e059b0368f81",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-10T18:45:42.496Z_
+
+<details><summary>↩ Tool result · `toolu_016vHfvyk3LUAWN6AnNDvjyb`</summary>
+
+```text
+Web search results for query: ""DreamZero" limitations "out of distribution" OR "OOD" OR "tail" OR "hard samples" OR "failure""
+
+Links: [{"title":"2026-2-4 World Action Models are Zero-shot Policies Seonghyeon Ye† Yunhao Ge*","url":"https://dreamzero0.github.io/DreamZero.pdf"},{"title":"GitHub - dreamzero0/dreamzero: Code to pretrain, fine-tune, and evaluate DreamZero and run sim & real-world evals · GitHub","url":"https://github.com/dreamzero0/dreamzero"},{"title":"Failures of Uncertainty Estimation on Out-Of-Distribution Samples:","url":"http://www.gatsby.ucl.ac.uk/~balaji/udl2021/accepted-papers/UDL2021-paper-020.pdf"},{"title":"Understanding Failures in Out-of-Distribution Detection with Deep Generative Models - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC9295254/"},{"title":"Dreaming the Unseen: World Model-regularized Diffusion Policy for Out-of-Distribution Robustness","url":"https://arxiv.org/html/2603.21017v1"},{"title":"Generalized Out-of-Distribution Detection: A Survey","url":"https://arxiv.org/html/2110.11334v3"},{"title":"Rethinking Out-of-Distribution Detection on Imbalanced Data Distribution","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/c554c1305b8f4f993db4738a9c633d14-Paper-Conference.pdf"},{"title":"Limitations of Out-of-Distribution Detection in 3D Medical Image Segmentation - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC10532230/"},{"title":"A Unified Survey on Anomaly, Novelty, Open-Set, and Out of-Distribution Detection: Solutions and Future Challenges | OpenReview","url":"https://openreview.net/forum?id=aRtjVZvbpK"},{"title":"EDGE: Unknown-aware Multi-label Learning by Energy Distribution Gap Expansion","url":"https://arxiv.org/html/2412.07499"}]
+
+Based on the search results, I found information about DreamZero but the results primarily contain general information about OOD detection and limitations rather than specific limitations of DreamZero itself. Let me search more specifically for DreamZero's limitations and failure cases.
+
+Links: [{"title":"DreamZero: World Action Models are Zero-shot Policies","url":"https://dreamzero0.github.io/"},{"title":"World Action Models as Zero-Shot Policies","url":"https://www.emergentmind.com/papers/2602.15922"},{"title":"GitHub - dreamzero0/dreamzero: Code to pretrain, fine-tune, and evaluate DreamZero and run sim & real-world evals · GitHub","url":"https://github.com/dreamzero0/dreamzero"},{"title":"2026-2-4 World Action Models are Zero-shot Policies Seonghyeon Ye† Yunhao Ge*","url":"https://dreamzero0.github.io/DreamZero.pdf"},{"title":"(PDF) World Action Models are Zero-shot Policies","url":"https://www.researchgate.net/publication/400930242_World_Action_Models_are_Zero-shot_Policies"},{"title":"World Action Models are Zero-shot Policies | alphaXiv","url":"https://www.alphaxiv.org/overview/2602.15922v1"},{"title":"NVIDIA's Two Papers Unveil New Paradigm for Embodied Intelligence Post-VLA","url":"https://eu.36kr.com/en/p/3678616267874953"},{"title":"[2602.15922] World Action Models are Zero-shot Policies","url":"https://arxiv.org/abs/2602.15922"},{"title":"Paper page - World Action Models are Zero-shot Policies","url":"https://huggingface.co/papers/2602.15922"},{"title":"The Limitations and Failure Cases of DreamLLM: How Far Can it Go? | HackerNoon","url":"https://hackernoon.com/the-limitations-and-failure-cases-of-dreamllm-how-far-can-it-go"}]
+
+Based on my search results, I found specific information about DreamZero's limitations. Here's what I discovered:
+
+## DreamZero Limitations and Failure Modes
+
+DreamZero has limited sensing modalities, with research needed to evaluate integrating tactile/force/FT sensors, depth/point clouds, and audio to assess whether joint modeling of non-visual world state further improves generalization and contact-rich skills.
+
+Action representation choices remain underexplored, requiring comparison of relative joints vs velocities vs operational-space Cartesian commands vs torque to quantify impacts on stability, contact handling, and generalization.
+
+DreamZero faces control frequency and latency constraints, with concerns about performance on high-speed or force-sensitive tasks that require >50–100 Hz control and potential degradation from its 7 Hz action updates and chunked execution.
+
+The model lacks formal stability or safety guarantees for asynchronous closed-loop execution, with a need to analyze worst-case delays, missed deadlines, and staleness of action chunks.
+
+A failure mode taxonomy is missing from DreamZero's current documentation.
+
+Language grounding depth has not been evaluated, leaving questions about compositional generalization like unseen verb–object pairings, multi-step instructions, negation, and spatial prepositions.
+
+Continual learning and catastrophic forgetting remain concerns, with a need to measure retention of zero-shot generalization after embodiment adaptation and task-specific post-training.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "55b7a0dc-d183-458d-b055-b5444fb99ec1",
+  "isSidechain": true,
+  "promptId": "3fd0ddd3-18ac-453f-a240-34c6589c33da",
+  "agentId": "ad4fbe427fc0fbed8",
+  "type": "user",
+  "uuid": "0b2ed385-eec9-402d-b418-d8fc19437fdf",
+  "sourceToolAssistantUUID": "55b7a0dc-d183-458d-b055-b5444fb99ec1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-10T18:45:46.456Z_
+
+Let me fetch the CoRL instruction page for exact dates, and look at the TS-DP full paper for RL algorithm details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0b2ed385-eec9-402d-b418-d8fc19437fdf",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "requestId": "req_011CauPF8FEhaSFqAJuVnnva",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d134344d-7a0d-4d64-9eca-fb982b1ac301",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B93CxHjjEHXhwtWsbye2T2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 893,
+      "cache_creation_input_tokens": 6355,
+      "cache_read_input_tokens": 14802,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 6355,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-10T18:45:48.546Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01TpwppM9qDMCdbKGkAyKtUQ`</summary>
+
+```json
+{
+  "url": "https://www.corl.org/contributions/instruction-for-authors",
+  "prompt": "Extract all submission deadline dates for CoRL 2026 including abstract deadline, paper deadline, supplementary materials deadline, and any other key dates. Include exact dates and time zones."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d134344d-7a0d-4d64-9eca-fb982b1ac301",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "requestId": "req_011CauPF8FEhaSFqAJuVnnva",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "864f81d5-ef13-4b4d-a7cb-0bc17bd60d8f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B93CxHjjEHXhwtWsbye2T2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 893,
+      "cache_creation_input_tokens": 6355,
+      "cache_read_input_tokens": 14802,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 6355,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-10T18:45:50.326Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01NAQi7CzGG3x4uUwCtifGyz`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2512.15773",
+  "prompt": "Does this paper use PPO (Proximal Policy Optimization) specifically? What RL algorithm is used for the adaptive scheduler? Does it combine RL with diffusion caching decisions? Extract specific details about the reinforcement learning method used."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "864f81d5-ef13-4b4d-a7cb-0bc17bd60d8f",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "requestId": "req_011CauPF8FEhaSFqAJuVnnva",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9d476108-b9bd-45ba-8f6c-f52ea2985565",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B93CxHjjEHXhwtWsbye2T2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 893,
+      "cache_creation_input_tokens": 6355,
+      "cache_read_input_tokens": 14802,
+      "output_tokens": 264,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 6355
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 893,
+          "output_tokens": 264,
+          "cache_read_input_tokens": 14802,
+          "cache_creation_input_tokens": 6355,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 6355,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-10T18:45:52.619Z_
+
+<details><summary>↩ Tool result · `toolu_01TpwppM9qDMCdbKGkAyKtUQ`</summary>
+
+```text
+# CoRL 2026 Submission Deadlines
+
+Based on the provided content, the document includes a "Key Dates" section but **does not list specific deadline dates with times**. The page only notes:
+
+> "Please note that the paper submission deadline is Thursday (5/28) EOD rather than Friday!"
+
+This indicates the paper submission closes on May 28th at end-of-day, but the document lacks:
+- Abstract submission deadline (mentioned as a distinct deadline but no date given)
+- Rebuttal deadline date
+- Camera-ready submission deadline specifics (only states "Oct 12, 2026 (23:59 Anywhere on Earth)")
+- Other key dates
+
+The camera-ready deadline is the only fully specified date provided: **October 12, 2026 at 23:59 AOE** (Anywhere on Earth).
+
+To obtain complete submission deadlines, you would need to consult the full CoRL 2026 timeline on the official conference website or OpenReview platform.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "864f81d5-ef13-4b4d-a7cb-0bc17bd60d8f",
+  "isSidechain": true,
+  "promptId": "3fd0ddd3-18ac-453f-a240-34c6589c33da",
+  "agentId": "ad4fbe427fc0fbed8",
+  "type": "user",
+  "uuid": "e86baffe-e4ee-46ef-ba77-14746c716c20",
+  "sourceToolAssistantUUID": "864f81d5-ef13-4b4d-a7cb-0bc17bd60d8f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-10T18:45:55.504Z_
+
+<details><summary>↩ Tool result · `toolu_01NAQi7CzGG3x4uUwCtifGyz`</summary>
+
+```text
+# RL Algorithm in TS-DP
+
+Yes, the paper explicitly uses **PPO (Proximal Policy Optimization)** for the adaptive scheduler.
+
+## Key Details:
+
+**Algorithm Choice:**
+The authors state: "We adopt a RL–based scheduler implemented with Proximal Policy Optimization (PPO), as it provides stable policy updates and efficient adaptation to continuous task variations."
+
+**Network Architecture:**
+The scheduler uses separate encoding streams for observations, actions, and task progress. Features are aggregated via an MLP, with CNN encoding for image observations and MLP encoding for state vectors.
+
+**Purpose:**
+The PPO-based scheduler dynamically adjusts three speculative decoding parameters:
+- Sigma scale (standard deviation adjustment)
+- Acceptance threshold (rejection tolerance)
+- Draft step configurations for different denoising stages
+
+**Integration with Diffusion:**
+The scheduler operates **in parallel with the observation encoder**, adding no extra inference latency. It formulates the speculative decoding process as a Markov chain and adjusts parameters based on end-effector velocity and task phase complexity—not diffusion caching decisions specifically.
+
+**Reward Design:**
+The system uses dual rewards: final task completion rewards and intermediate efficiency rewards based on draft acceptance ratios, encouraging both accuracy and speedup simultaneously.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9d476108-b9bd-45ba-8f6c-f52ea2985565",
+  "isSidechain": true,
+  "promptId": "3fd0ddd3-18ac-453f-a240-34c6589c33da",
+  "agentId": "ad4fbe427fc0fbed8",
+  "type": "user",
+  "uuid": "733c37ff-22c4-4bd0-b473-48ff1ae8517f",
+  "sourceToolAssistantUUID": "9d476108-b9bd-45ba-8f6c-f52ea2985565",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-10T18:46:00.163Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01C2Q2ia7NCnecb9SK3PW4N8`</summary>
+
+```json
+{
+  "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf",
+  "prompt": "Extract the exact CoRL 2026 deadline dates listed in this commit, including abstract deadline, paper deadline, and any other dates with times and time zones."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "733c37ff-22c4-4bd0-b473-48ff1ae8517f",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "requestId": "req_011CauPG5khHX94opVegRmED",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5b3cd3b8-8634-4a3a-82a9-54450fddded7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TTciWEJrKBzSk6F3WvVgK6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1722,
+      "cache_read_input_tokens": 21157,
+      "output_tokens": 147,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1722
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 147,
+          "cache_read_input_tokens": 21157,
+          "cache_creation_input_tokens": 1722,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1722,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-10T18:46:02.754Z_
+
+<details><summary>↩ Tool result · `toolu_01C2Q2ia7NCnecb9SK3PW4N8`</summary>
+
+```text
+# CoRL 2026 Deadline Dates
+
+Based on the commit, here are the exact deadline dates for CoRL 2026:
+
+## Submission Deadlines
+
+1. **Abstract Submission Deadline**
+   - Date: May 26, 2026
+   - Time: 11:59:00 UTC
+   - Format: `2026-05-26 11:59:00`
+
+2. **Paper Submission Deadline**
+   - Date: May 29, 2026
+   - Time: 11:59:00 UTC
+   - Format: `2026-05-29 11:59:00`
+
+## Conference Dates
+
+- **Full Conference Dates**: November 9-12, 2026
+- **Schedule Details**:
+  - Workshops: November 9
+  - Main Conference: November 10-12
+- **Venue**: JW Marriott Austin, 110 E 2nd St, Austin, TX 78701
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5b3cd3b8-8634-4a3a-82a9-54450fddded7",
+  "isSidechain": true,
+  "promptId": "3fd0ddd3-18ac-453f-a240-34c6589c33da",
+  "agentId": "ad4fbe427fc0fbed8",
+  "type": "user",
+  "uuid": "c7df168c-7c11-49b3-9e0f-27bc66307612",
+  "sourceToolAssistantUUID": "5b3cd3b8-8634-4a3a-82a9-54450fddded7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-10T18:46:20.515Z_
+
+Now I have all the data needed. Let me also check one more thing -- the exact dates from the CoRL website vs. the HuggingFace deadlines tracker show a slight discrepancy, so let me verify.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c7df168c-7c11-49b3-9e0f-27bc66307612",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "requestId": "req_011CauPGcnFgR88BgTY7HsQi",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "be90c424-229e-4027-ab6c-93192ef73b30",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Upym7XXaRNtdruBzA6urLU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 380,
+      "cache_read_input_tokens": 22879,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 380,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-10T18:46:21.106Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EFa1cSez5HPnx3t2fUqcAV`</summary>
+
+```json
+{
+  "query": "CoRL 2026 abstract deadline \"May 25\" OR \"May 26\" paper deadline \"May 28\" OR \"May 29\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "be90c424-229e-4027-ab6c-93192ef73b30",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "requestId": "req_011CauPGcnFgR88BgTY7HsQi",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "380acf3b-a96c-4b66-bb9b-0a82e6ae2772",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Upym7XXaRNtdruBzA6urLU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 380,
+      "cache_read_input_tokens": 22879,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 380,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-10T18:46:27.211Z_
+
+<details><summary>↩ Tool result · `toolu_01EFa1cSez5HPnx3t2fUqcAV`</summary>
+
+```text
+Web search results for query: "CoRL 2026 abstract deadline "May 25" OR "May 26" paper deadline "May 28" OR "May 29""
+
+Links: [{"title":"Update CoRL 2026 conference details · huggingface/ai-deadlines at 0ba012a","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/0ba012abbc2f4e96e0072f99fd68649bfc69d9cf"},{"title":"CoRL 2026 - Instruction for Authors","url":"https://www.corl.org/contributions/instruction-for-authors"},{"title":"CoRL 2026","url":"https://www.corl.org/"},{"title":"CoRL 2026 - Call for Papers","url":"https://www.corl.org/contributions/call-for-papers"},{"title":"CoRL 2026 Conference | OpenReview","url":"https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference"},{"title":"AI Conference Deadlines","url":"https://mldeadlines.com/"},{"title":"Conference on Robot Learning (@corl_conf) / Posts / X","url":"https://x.com/corl_conf"},{"title":"Refactor conference data · huggingface/ai-deadlines at f3cc2d7","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/f3cc2d74f8283ae00d3005ff7cca51dd26540377"},{"title":"AI Deadlines – AI Conference Call For Paper Deadlines","url":"http://aideadlines.org/"},{"title":"CoRL 2026 | OpenReview","url":"https://openreview.net/group?id=robot-learning.org/CoRL/2026"}]
+
+Based on the search results, I found information about CoRL 2026 submission deadlines:
+
+The abstract submission deadline is May 26, 2026 at 11:59 UTC, and the paper submission deadline is May 29, 2026 at 11:59 UTC.
+
+However, there's a discrepancy in the sources: One source notes that the paper submission deadline is Thursday (5/28) EOD rather than Friday, while another mentions May 25 for abstract submission and May 28 for full paper submission.
+
+The most recent and authoritative source (from the official CoRL website's instructions for authors) indicates that the paper deadline is May 28, though multiple sources list May 29 as well. The deadlines are final, and the conference cannot make any accommodations for missing the abstract deadline or paper deadline.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "380acf3b-a96c-4b66-bb9b-0a82e6ae2772",
+  "isSidechain": true,
+  "promptId": "3fd0ddd3-18ac-453f-a240-34c6589c33da",
+  "agentId": "ad4fbe427fc0fbed8",
+  "type": "user",
+  "uuid": "520d6ebe-fef5-4bd2-a456-954121f863f9",
+  "sourceToolAssistantUUID": "380acf3b-a96c-4b66-bb9b-0a82e6ae2772",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-10T18:47:30.285Z_
+
+Here is my complete report on all seven items:
+
+---
+
+## 1. CoRL 2026 Deadline
+
+**Verified -- CoRL 2026 is real.** The conference will be held November 9-12, 2026, at JW Marriott Austin, TX.
+
+Deadlines have some minor discrepancy across sources:
+- The **official CoRL website** instruction page notes "the paper submission deadline is Thursday (5/28) EOD rather than Friday," which implies **abstract ~May 25, paper May 28**.
+- The **HuggingFace ai-deadlines tracker** lists abstract May 26 at 11:59 UTC and paper May 29 at 11:59 UTC (possibly a one-day-off transcription error, or timezone conversion artifact since the official site uses AOE for some deadlines).
+- Camera-ready deadline is explicitly **October 12, 2026 at 23:59 AOE**.
+
+**Bottom line:** The abstract deadline is around May 25-26, and the paper deadline is around May 28-29, 2026. For exact times, consult the [official CoRL 2026 instructions page](https://www.corl.org/contributions/instruction-for-authors) or [OpenReview](https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference). Given today is May 10, the deadlines are roughly 2-3 weeks away.
+
+---
+
+## 2. DreamZero Tail Quality / Failure Modes
+
+**DreamZero is a real paper** (arXiv 2602.15922, Feb 2026) -- "World Action Models are Zero-shot Policies" by Seonghyeon Ye, Yunhao Ge, et al. It is a world action model built on a pretrained video diffusion backbone that jointly predicts future world states and actions.
+
+Regarding specific failure modes and tail quality:
+- **Control frequency limitations:** DreamZero runs at ~7 Hz (150ms per action chunk). The paper acknowledges concerns about performance on high-speed or force-sensitive tasks requiring >50-100 Hz control, and potential degradation from chunked execution latency.
+- **No formal failure mode taxonomy** is documented in the current paper.
+- **No stability/safety guarantees** for asynchronous closed-loop execution; worst-case delays, missed deadlines, and staleness of action chunks are not analyzed.
+- **Language grounding depth** is not evaluated (compositional generalization, negation, spatial prepositions).
+- **Catastrophic forgetting** after embodiment adaptation and task-specific post-training is a known concern.
+- **Sensing modality limitations:** Only visual input; no tactile/force/depth/audio integration evaluated.
+
+I could **not** find specific discussion of "velocity caching failure modes" or "fixed threshold caching error accumulation" as they relate to DreamZero specifically. DreamZero uses diffusion-based inference but the paper does not appear to discuss caching-related degradation as a primary concern. The "fixed threshold caching" error accumulation problem is discussed in the broader diffusion caching literature (see BAC below), not in DreamZero specifically.
+
+---
+
+## 3. LESA Paper
+
+**Verified -- LESA is real.** "LESA: Learnable Stage-Aware Predictors for Diffusion Model Acceleration" (arXiv [2602.20497](https://arxiv.org/abs/2602.20497), submitted February 24, 2026).
+
+Key details:
+- Partitions the denoising trajectory into distinct stages with dedicated KAN-based (Kolmogorov-Arnold Network) temporal predictors per stage.
+- Uses a two-stage training methodology: ground-truth guided training followed by closed-loop autoregressive training for robustness against prediction drift.
+- Achieves up to 6.25x acceleration while maintaining perceptual quality.
+- Focuses on image and video generation (not robotics policy specifically).
+
+---
+
+## 4. Block-wise Adaptive Caching (BAC)
+
+**Verified -- BAC is real.** "Block-wise Adaptive Caching for Accelerating Diffusion Policy" (arXiv [2506.13456](https://arxiv.org/abs/2506.13456), submitted June 16, 2025).
+
+Key details:
+- Authors: Kangye Ji, Yuan Meng, Hanyun Cui, Ye Li, Shengjia Hua, Lei Chen, Zhi Wang.
+- Achieves lossless action generation acceleration by adaptively updating and reusing cached features at the block level.
+- Uses an "Adaptive Caching Scheduler" to identify optimal update timesteps by maximizing global feature similarities.
+- Addresses the problem that fixed-period caching "recomputes when nothing has changed and misses updates precisely when rapid semantic revisions occur."
+- Identifies two dominant error modes: **feature shift error** (inaccuracies in reused model outputs) and **step amplification error** (temporal compounding of small errors from fixed timestep schedules).
+- Uses a "Bubbling Union Algorithm" to truncate errors by updating upstream blocks with significant caching errors before downstream FFNs.
+- Achieves up to 3x inference speedup for robotics applications.
+- Also available on [OpenReview](https://openreview.net/forum?id=c6ZWfQLOWD).
+
+---
+
+## 5. Being-H0.7
+
+**Verified -- Being-H0.7 is real.** "Being-H0.7: A Latent World-Action Model from Egocentric Videos" (arXiv [2605.00078](https://arxiv.org/abs/2605.00078), published ~April 14, 2026, by BeingBeyond).
+
+Key details:
+- Inserts learnable latent queries between perception and action as a compact reasoning interface.
+- Uses a dual-branch design: a deployable prior branch infers latent states from current context, while a training-only posterior branch uses embeddings from future observations.
+- Trained on 200,000 hours of egocentric human videos plus 15,000 hours of robot demonstrations.
+- Achieves state-of-the-art or comparable performance across six simulation benchmarks and diverse real-world tasks.
+- Operates at 3-4 ms/step with latency-aware universal asynchronous chunking (UAC).
+- Evaluated on three robot platforms across 12 challenging real-world tasks.
+- Has a [project page](https://research.beingbeyond.com/being-h07) and [GitHub repo](https://github.com/BeingBeyond/Being-H).
+
+---
+
+## 6. RoboTwin 2.0
+
+**Verified -- RoboTwin 2.0 is real and publicly available.** "RoboTwin 2.0: A Scalable Data Generator and Benchmark with Strong Domain Randomization for Robust Bimanual Robotic Manipulation" (arXiv [2506.18088](https://arxiv.org/abs/2506.18088)).
+
+Key details:
+- 50-task benchmark built on the RoboTwin Object Dataset (731 objects, 147 categories).
+- Supports five distinct robot platforms (Aloha-AgileX, ARX-X5, Piper, Franka, UR5).
+- Integrates structured domain randomization along five axes: clutter, lighting, background, tabletop height, and language instructions.
+- Has a [project page](https://robotwin-platform.github.io/) and [GitHub repo](https://github.com/robotwin-Platform/RoboTwin).
+- Also on [OpenReview](https://openreview.net/forum?id=vAPIIscwc7) and [HuggingFace](https://huggingface.co/papers/2506.18088).
+
+---
+
+## 7. PPO + Diffusion Caching Decisions
+
+**Partially verified -- related work exists but with a nuance.** The closest match is:
+
+**TS-DP (Temporal-aware Reinforcement-based Speculative Diffusion Policy)** (arXiv [2512.15773](https://arxiv.org/abs/2512.15773), Dec 2025). This paper explicitly uses **PPO** for an adaptive scheduler that dynamically adjusts speculative decoding parameters for diffusion policy inference:
+- The scheduler adjusts sigma scale, acceptance threshold, and draft step configurations based on task difficulty.
+- It uses dual rewards: final task completion + intermediate efficiency (draft acceptance ratio).
+- However, the paper frames this as **speculative decoding acceleration**, not "caching" per se. The PPO scheduler adjusts speculative parameters (acceptance thresholds, draft steps) rather than directly making cache/recompute decisions.
+
+Other related work:
+- **Learning-to-Cache (L2C)** ([NeurIPS 2024](https://arxiv.org/abs/2406.01733)) learns dynamic caching for diffusion transformers but uses a learned router, not PPO/RL.
+- **DPPO (Diffusion Policy Policy Optimization)** ([ICLR 2025](https://proceedings.iclr.cc/paper_files/paper/2025/file/c0749c39aaff9e9e4c91f7118bf21b1e-Paper-Conference.pdf)) uses PPO to fine-tune diffusion policies, but for task performance, not caching decisions.
+
+**Bottom line:** No paper was found that combines PPO specifically with block-level or layer-level cache/recompute decisions in diffusion models. TS-DP is the closest (PPO for adaptive inference acceleration of diffusion policies), but it targets speculative decoding parameters, not caching. If the paper under review claims to be the first to use PPO for diffusion caching decisions specifically, that claim appears plausible based on current literature.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "520d6ebe-fef5-4bd2-a456-954121f863f9",
+  "isSidechain": true,
+  "agentId": "ad4fbe427fc0fbed8",
+  "requestId": "req_011CauPJRMidDZ8F5pjMBEEN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d27f8f12-5ce0-4344-adb0-2d42aeea7b98",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "0c2b0106-0381-4bbe-9b82-9ec3c390f9ce",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015sYsJGUYcaBxZQPTtHsFxj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 805,
+      "cache_read_input_tokens": 23259,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 805,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    }
+  }
+}
+```
+
+</details>
+
+---

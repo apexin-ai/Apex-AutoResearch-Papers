@@ -1,0 +1,1301 @@
+{
+  "schema_version": "1.0",
+  "id": "636f4ffa44b01a38977f",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to check two specific fixes in the paper tex files for the gen-depth-contamination project. 1. **W1: η²_p Cohen c",
+  "task_key": "agent-a025f90856bb6fc38",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a025f90856bb6fc38.jsonl",
+    "occurrence": 1,
+    "bytes": 69956,
+    "sha256": "accf15487583c67768f6e9f128ce3069fc1e82ab281ce105268a2b9cf6234ecf"
+  },
+  "statistics": {
+    "messages": 26,
+    "user_turns": 1,
+    "tool_calls": 9,
+    "roles": {
+      "user": 1,
+      "assistant": 7,
+      "tool_call": 9,
+      "tool_result": 9
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T07:19:48.315Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to check two specific fixes in the paper tex files for the gen-depth-contamination project.\n\n1. **W1: η²_p Cohen convention** - Search in `discussion.tex` under `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex` for any mention of η² (eta squared) or Cohen convention. Check if the text properly qualifies the effect size interpretation.\n\n2. **W2: S12 caption same-family scorer** - Search in `appendix_extended.tex` under `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex` for \"Tab S12\" or \"tab:wiki_domain\" table and check if the caption mentions \"same-family scorer\" or similar qualifier.\n\n3. Also check `main.tex` at `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex` - just report how many pages of main content there are (look for sections structure, where References/appendix begins).\n\nReport the exact text found for each item."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "e8a11292-a9d6-4137-ae7d-e6fc34f3ac44",
+            "agentId": "a025f90856bb6fc38",
+            "type": "user",
+            "uuid": "e726f05c-b0ce-4912-9797-1b8d8eb7afeb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T07:19:50.494Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you check these three specific items in the paper tex files. Let me read each file and search for the relevant content."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e726f05c-b0ce-4912-9797-1b8d8eb7afeb",
+            "isSidechain": true,
+            "agentId": "a025f90856bb6fc38",
+            "requestId": "req_011Cb9dQoRsBPJcAMH1nEsNs",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f017cba4-a30d-4fb0-8d53-8cbc203bb0bf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017h1Lb7WPjYiq8Xd31dTJFD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 32674,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 32674,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T07:19:50.661Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PZBHq2gcGUdyvpjqU3Zuxc",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f017cba4-a30d-4fb0-8d53-8cbc203bb0bf",
+            "isSidechain": true,
+            "agentId": "a025f90856bb6fc38",
+            "requestId": "req_011Cb9dQoRsBPJcAMH1nEsNs",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4f42b847-2c4d-4872-9ee6-3207f350f289",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017h1Lb7WPjYiq8Xd31dTJFD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 32674,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 32674,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T07:19:50.693Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PZBHq2gcGUdyvpjqU3Zuxc",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\\label{sec:why_kstar}\n4\t\\label{sec:one_wash}\n5\t\\label{sec:negative_graduated}\n6\t\\label{sec:repr_dependence}\n7\t\\label{sec:boundary_cases}\n8\t\\label{sec:length_confound}\n9\t\n10\t\\begin{figure}[t]\n11\t\\centering\n12\t\\includegraphics[width=\\columnwidth]{figures/fig_jsd_decay.pdf}\n13\t\\caption{Token-level JSD between adjacent depth pairs on log scale. Blue band: min-max range across 7 C4 models with $\\Kempirical{=}2$; dashed purple: Mistral-7B ($\\Kempirical{=}1$, cross-scorer validated); green: arXiv Pythia ($\\Kempirical{=}3$); dotted red: retrain-chain ($\\Kempirical{\\geq}4$). C4 models exhibit a sharp cliff ($\\lambda \\approx 2.2$--$3.5$), while arXiv decays gradually ($\\lambda \\approx 1.0$) and retrain-chain shows no cliff ($\\lambda = 0.285$).}\n14\t\\label{fig:jsd_decay}\n15\t\\end{figure}\n16\t\n17\t\\paragraph{One-wash laundering (web text).}\n18\tFor general web text, $\\Kempirical{=}2$ reflects concentrated information loss: 0v1 is near-trivially separable ($\\auc \\geq 0.92$), 1v2 drops by ${\\sim}$30\\,pp, and 2v3 falls below $\\theta$.\n19\tA single generation pass renders text indistinguishable from multiply recycled content, limiting depth-aware curation to a binary boundary.\n20\tConverging evidence supports a data-intrinsic interpretation: OBD achieves 96\\% depth-0 recall but only 14--22\\% for depths 2--4; frontier LLMs show 8--38\\% (McNemar $p > 0.05$ vs.\\ OBD; Table~\\ref{tab:s3_llm_zeroshot}).\n21\t\n22\t\\paragraph{JSD decay and the discrimination boundary.}\n23\tToken-level JSD between adjacent generations reveals two distinct decay regimes (Figure~\\ref{fig:jsd_decay}): C4 models exhibit a sharp cliff (0v1 JSD exceeds 1v2 by 6--56$\\times$, median ${\\sim}$15$\\times$) followed by rapid convergence to a noise floor, while arXiv decays ${\\sim}$3$\\times$ slower ($\\lambda \\approx 1.0$ vs.\\ $2.9$).\n24\tCross-model consistency within each domain indicates that the contraction rate of $G_\\delta$ is governed by domain structure rather than model architecture; the retrain-chain exhibits a fundamentally different profile ($\\lambda = 0.285$, no sharp cliff), reflecting model-adaptation artifacts rather than text-intrinsic loss.\n25\tDetailed decay rates and domain comparisons appear in Appendix~\\ref{sec:jsd_extended}.\n26\t\n27\t\\paragraph{Graduated filtering failure.}\n28\tFor web text, 2v3 $\\auc < \\theta$ across all model configurations, so depth assignments for $d \\geq 2$ approximate random labels; graduated weighting injects noise, explaining convergence toward binary at high $\\alpha$ (Appendix~\\ref{sec:extended_limitations}).\n29\tDSIR fails differently: bigram hashing captures domain shift but not depth-correlated signatures.\n30\tThis pattern persists across contamination ratios (10--50\\%; Appendix~\\ref{sec:dose_response}), indicating the failure is structural rather than severity-dependent.\n31\t\n32\t\\paragraph{Representation dependence.}\n33\t$\\Kempirical$ is representation-dependent: frozen Qwen embeddings yield $\\Kempirical^{\\text{neural}} = 3$, while Pythia and OLMo match the 15D boundary at $\\Kempirical^{\\text{neural}} = 2$ (Table~\\ref{tab:neural_probe_crossmodel}).\n34\tThe 15D features trade one depth level of sensitivity for cross-model consistency (7/8 configurations $\\Kempirical{\\leq}2$), making them the preferred operational choice.\n35\tCross-scorer validation is consistent with $\\Kempirical$ being governed by the generation operator rather than the scoring model ($\\rho > 0.90$ feature ranking preservation; length confound ruled out in Appendix~\\ref{sec:extended_limitations}), though $\\Kempirical^{\\text{neural}}{=}3$ for Qwen indicates that representation choice can modulate the boundary.\n36\t\n37\t\\paragraph{Domain dependence of $\\Kempirical$.}\n38\tC4 web text consistently yields $\\Kempirical{=}2$ (7/8 model configurations), while structured academic text (arXiv) yields $\\Kempirical{=}3$ across five models spanning four architecture families (Section~\\ref{sec:cross_domain}).\n39\tDomain-specific stylistic constraints amplify per-generation distributional shift, making contamination in structured corpora trackable to greater depth.\n40\tWith scorer confound controlled (same-family Qwen scoring inflates $\\Kempirical$ by +1 on Wikipedia), all six models yield $\\Kempirical{=}1$ on Wikipedia (Appendix~\\ref{sec:wiki_domain}), producing a uniform domain ordering: arXiv ($\\Kempirical{=}3$) $>$ C4 ($\\Kempirical{=}2$) $>$ Wikipedia ($\\Kempirical{=}1$).\n41\tSource-domain structural complexity is the sole factor that systematically shifts $\\Kempirical$ across all tested model configurations.\n42\t\n43\t\\paragraph{Prompt-chain vs.\\ retrain-chain $\\Kempirical$.}\n44\tRetrain-chain experiments (Pythia-1.4B LoRA) yield $\\Kempirical{\\geq}4$ (Table~\\ref{tab:retrain_ci}), far exceeding the prompt-chain boundary of $\\Kempirical{=}2$.\n45\tThe two boundaries address distinct operational questions: prompt-chain $\\Kempirical{=}2$ measures text-level information decay (the relevant boundary for data curation on wild web text), while retrain-chain $\\Kempirical{\\geq}4$ reflects model-adaptation artifacts that accumulate across fine-tuning iterations (Appendix~\\ref{sec:extended_limitations}).\n46\t\n47\t\\paragraph{Boundary cases and scale effect.}\n48\tOf 8 C4 configurations, 7 yield $\\Kempirical{=}2$; Mistral-7B ($\\Kempirical{=}1$; 1v2 $\\auc = 0.594$) is the sole exception, validating $\\theta{=}0.60$ as an effective discriminator.\n49\tMistral's cross-domain profile ($\\Kempirical{=}3$ on arXiv despite $\\Kempirical{=}1$ on C4) reinforces the domain-governed interpretation; scale trends and detailed boundary analysis appear in Appendix~\\ref{sec:boundary_extended}.\n50\t\n51\t\\paragraph{Scorer sensitivity.}\n52\t$\\Kempirical$ can depend on scorer family: on Wikipedia, Qwen generators scored by Qwen-1.5B yield $\\Kempirical{=}2$, but cross-family scoring with Pythia-1.4B reduces this to $\\Kempirical{=}1$ ($\\Delta = -2.4$\\,pp; Appendix~\\ref{sec:wiki_domain}).\n53\tOn C4, cross-scorer validation preserves feature rankings ($\\rho > 0.90$) and $\\Kempirical$ for 6/8 configurations (Section~\\ref{sec:transfer}).\n54\tScorer sensitivity is thus domain-dependent and inversely related to domain structural complexity: arXiv (3/4 generators preserve $\\Kempirical{=}3$) is more robust than Wikipedia (0/2 retain $\\Kempirical{=}2$).\n55\tWe recommend cross-family scorer validation as a standard robustness check for $\\Kempirical$ claims on new domains.\n56\t\n57\t\\paragraph{Practical implications.}\n58\t$\\Kempirical$ translates directly into curation policy.\n59\tFor web text ($\\Kempirical{=}2$), graduated depth weighting beyond this boundary injects noise, validating binary filtering as optimal (Section~\\ref{sec:filtering}); for arXiv ($\\Kempirical{=}3$), an additional depth level carries discriminative signal that binary filtering discards.\n60\tThe domain ordering (arXiv $>$ C4 $>$ Wikipedia) implies that mixed-domain corpora require domain-stratified filtering rather than a uniform depth threshold.\n61\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4f42b847-2c4d-4872-9ee6-3207f350f289",
+            "isSidechain": true,
+            "promptId": "e8a11292-a9d6-4137-ae7d-e6fc34f3ac44",
+            "agentId": "a025f90856bb6fc38",
+            "type": "user",
+            "uuid": "6ec8516f-0be4-4ebc-bebb-a86d61be6b49",
+            "sourceToolAssistantUUID": "4f42b847-2c4d-4872-9ee6-3207f350f289",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T07:19:51.012Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016qQHfR6gtiJWV7BuDncbsR",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6ec8516f-0be4-4ebc-bebb-a86d61be6b49",
+            "isSidechain": true,
+            "agentId": "a025f90856bb6fc38",
+            "requestId": "req_011Cb9dQoRsBPJcAMH1nEsNs",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9bb44ca7-f66e-4534-9886-f272c9898a43",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017h1Lb7WPjYiq8Xd31dTJFD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 32674,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 32674,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T07:19:51.021Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016qQHfR6gtiJWV7BuDncbsR",
+              "type": "tool_result",
+              "content": "1\t\\section{Extended Analysis and Limitations}\n2\t\\label{sec:extended_discussion}\n3\t\n4\tThis section provides supporting tables for cross-scorer validation (Tables~\\ref{tab:crossscorer}--\\ref{tab:anova_crossscorer}), followed by extended limitations, ablation studies, and domain-specific analyses.\n5\t\n6\t\\noindent\\begin{minipage}{\\columnwidth}\n7\t\\centering\n8\t\\captionof{table}{Cross-scorer validation on Qwen-generated text. Alternative scorers (Pythia-1.4B, OLMo-1B) preserve feature ranking ($\\rho > 0.90$) and rewrite-mode $\\Kempirical = 2$, but reduce continuation-mode $\\Kempirical$ from 2 to 1.}\n9\t\\label{tab:crossscorer}\n10\t\\resizebox{\\columnwidth}{!}{\\input{tables/tab_crossscorer}}\n11\t\\end{minipage}\n12\t\n13\t\\begin{table}[h]\n14\t\\centering\n15\t\\small\n16\t\\caption{Three-way ANOVA (Generator $\\times$ Scorer $\\times$ Depth-Pair) on per-fold pairwise $\\auc$ values (Type~II SS). DV = per-fold AUC; $N{=}300$ (12 cells $\\times$ 5 folds $\\times$ 5 depth-pairs; 3 generators $\\times$ 4 scorers). Scorer is statistically significant ($p < .001$) but has a small effect size ($\\eta^2_p = 0.19$) relative to Depth-Pair ($\\eta^2_p = 1.00$) and Generator ($\\eta^2_p = 0.89$), indicating that scorer choice has a detectable but practically minor influence on depth discrimination. While $\\eta^2_p = 0.19$ exceeds Cohen's (1988) threshold for a large effect, the Scorer contribution is approximately 5$\\times$ smaller than Generator ($\\eta^2_p = 0.89$) and dwarfed by Depth-Pair ($\\eta^2_p = 1.00$), supporting its characterization as practically minor in this context.}\n17\t\\label{tab:anova_crossscorer}\n18\t\\begin{tabular}{lrrrr}\n19\t\\toprule\n20\t\\textbf{Source} & \\textbf{df} & $F$ & $p$ & $\\eta^2_p$ \\\\\n21\t\\midrule\n22\tGenerator     & 2  & 926.8  & ${<}.001$  & .885 \\\\\n23\tScorer        & 3  & 19.02  & ${<}.001$  & .192 \\\\\n24\tDepth-Pair    & 4  & 24736  & ${<}.001$  & .998 \\\\\n25\tGen$\\times$Scorer & 6 & 8.16 & ${<}.001$ & .170 \\\\\n26\tGen$\\times$Depth  & 8 & 993.7 & ${<}.001$ & .971 \\\\\n27\tScorer$\\times$Depth & 12 & 2.45 & .005 & .109 \\\\\n28\tResidual      & 240 & & & \\\\\n29\t\\bottomrule\n30\t\\end{tabular}\n31\t\\end{table}\n32\t\n33\t\\subsection{Extended Limitations}\n34\t\\label{sec:extended_limitations}\n35\t\n36\t\\emph{Prompt-chain versus retrain-chain.}\n37\tRetrain-chain validation (Pythia-1.4B LoRA, 5 generations) yields $\\Kempirical{\\geq}4$ (Table~\\ref{tab:retrain_ci}), far exceeding prompt-chain $\\Kempirical{=}2$.\n38\tAll pairwise CIs have lower bounds well above $\\theta{=}0.60$ ($p < 0.001$), statistically confirming $\\Kempirical{\\geq}4$.\n39\tThe elevated signal arises from cumulative model-adaptation artifacts (vocabulary narrowing, repetition bias) rather than text-intrinsic degradation; prompt-chain $\\Kempirical$ is the operationally relevant boundary for data curation.\n40\t\n41\t\\begin{table}[h]\n42\t\\centering\n43\t\\small\n44\t\\caption{Retrain-chain pairwise $\\auc$ with bootstrap 95\\% CIs (Pythia-1.4B LoRA, 5 generations). All CI lower bounds $\\gg \\theta{=}0.60$.}\n45\t\\label{tab:retrain_ci}\n46\t\\begin{tabular}{lccc}\n47\t\\toprule\n48\t\\textbf{Pair} & $\\auc$ & \\textbf{95\\% CI} & $p$ \\\\\n49\t\\midrule\n50\t0v1 & 0.9842 & $[0.9823,\\,0.9860]$ & ${<}0.001$ \\\\\n51\t1v2 & 0.9471 & $[0.9432,\\,0.9509]$ & ${<}0.001$ \\\\\n52\t2v3 & 0.8888 & $[0.8832,\\,0.8943]$ & ${<}0.001$ \\\\\n53\t3v4 & 0.7994 & $[0.7920,\\,0.8067]$ & ${<}0.001$ \\\\\n54\t\\bottomrule\n55\t\\end{tabular}\n56\t\\end{table}\n57\t\n58\t\\emph{Threshold sensitivity.}\n59\tTable~\\ref{tab:theta_sensitivity} reports $\\Kempirical$ across $\\theta \\in [0.55, 0.70]$ for representative configurations including arXiv and cross-scorer conditions.\n60\tQwen-continuation's 1v2 CI lower bound exceeds $\\theta$ by only 0.2\\,pp; all ten boundary comparisons yield permutation $p < 0.001$.\n61\t\n62\t\\begin{table}[h]\n63\t\\centering\n64\t\\small\n65\t\\caption{$\\Kempirical$ as a function of $\\theta$ across conditions. The \\textbf{domain ordering} (arXiv $>$ web $\\geq$ cross-scorer) and \\textbf{bounded range} ($\\Kempirical{\\leq}4$) are preserved across $\\theta \\in [0.55, 0.70]$. The headline result (web $\\Kempirical{=}2$, arXiv $\\Kempirical{=}3$) holds for $\\theta \\in [0.575, 0.625]$.}\n66\t\\label{tab:theta_sensitivity}\n67\t\\resizebox{\\columnwidth}{!}{%\n68\t\\begin{tabular}{llcccc}\n69\t\\toprule\n70\t\\textbf{Condition} & \\textbf{Config} & $\\theta{=}0.55$ & $\\theta{=}0.60$ & $\\theta{=}0.625$ & $\\theta{=}0.70$ \\\\\n71\t\\midrule\n72\tC4 (web) & Qwen-rw      & 3 & 2 & 2 & 1 \\\\\n73\tC4 (web) & Pythia       & 2 & 2 & 2 & 1 \\\\\n74\tC4 (web) & OLMo         & 2 & 2 & 1 & 1 \\\\\n75\tC4 (web) & Qwen-cont    & 3 & 2 & 2 & 1 \\\\\n76\tC4 (web) & Qwen-7B      & 2 & 2 & 2 & 1 \\\\\n77\tC4 (web) & Mistral-7B   & 1 & 1 & 1 & 1 \\\\\n78\t\\midrule\n79\tarXiv    & Qwen-1.5B-base (cont.) & 4 & 3 & 3 & 2 \\\\\n80\tarXiv    & Pythia-1.4B (cont.)    & 4 & 3 & 3 & 2 \\\\\n81\t\\midrule\n82\tCross-scorer & Qwen-cont/Pythia-scored & 2 & 1 & 1 & 1 \\\\\n83\tCross-scorer & Qwen-cont/OLMo-scored   & 2 & 1 & 1 & 1 \\\\\n84\t\\bottomrule\n85\t\\end{tabular}}\n86\t\\end{table}\n87\t\n88\t\\emph{Structural confound: token length.}\n89\tIn continuation mode the generation prompt is discarded, so all depths $\\geq 1$ consist entirely of machine-generated tokens and the 1v2 boundary compares texts differing only in conditioning context (human-authored vs.\\ machine-generated prompt), not structural composition.\n90\tDepth~0 texts average ${\\sim}$191 subword tokens (C4 truncation), while depth~1+ texts average 193--256 tokens depending on model (Table~\\ref{tab:token_length}).\n91\tThis asymmetry is directionally opposite to a length-inflation confound: shorter depth-0 texts provide less feature-extraction context, making 0v1 discrimination harder, not easier.\n92\tWithin depths 1--5, mean token counts are stable (within-model range $\\leq$ 4 tokens for all configurations except Qwen-continuation at 6 tokens), so the pairwise comparisons underlying $\\Kempirical{=}2$ are unaffected by length.\n93\tEOS truncation rates are similarly depth-stable within each model: Qwen-rewrite 7--11\\%, Pythia 34--36\\%, OLMo $<$1\\%, Qwen-continuation 17--20\\%, Qwen-7B 45--47\\%.\n94\tModels with the highest truncation (Pythia, Qwen-7B) still yield $\\Kempirical{=}2$ with the same step-function AUC decay pattern as low-truncation models (Table~\\ref{tab:kstar_ci}), confirming that EOS truncation does not drive the boundary.\n95\t\n96\t\\emph{Graduated filtering.}\n97\tAll $\\alpha$ values (0.1--0.9) underperform binary-ours on MMLU ($\\alpha{=}0.1$: 0.5873; $\\alpha{=}0.9$: 0.5892 vs.\\ 0.5941); at $\\alpha{=}0.9$, HellaSwag matches exactly (0.6701).\n98\tBinary-ours significantly outperforms all alternatives on MMLU ($p_{\\text{corr}} \\leq 0.021$); Graduated$_{0.9}$ is indistinguishable on HellaSwag ($p = 1.00$) but worse on MMLU ($p_{\\text{corr}} = 0.011$).\n99\t\\label{tab:pairwise_significance}\n100\t\n101\t\\subsection{Dose-Response: Contamination Ratio Effect}\n102\t\\label{sec:dose_response}\n103\t\n104\tThe main filtering experiments (Section~\\ref{sec:filtering}) use 100\\% synthetic data to maximize effect size.\n105\tTo characterize behavior at lower contamination ratios, we mix synthetic depths 1--5 with clean C4 at 10\\%, 30\\%, and 50\\% contamination (Qwen-1.5B continuation, 5 seeds each; Table~\\ref{tab:dose_response}).\n106\t\n107\t\\begin{table}[h]\n108\t\\centering\n109\t\\small\n110\t\\caption{MMLU and HellaSwag by contamination ratio and filtering strategy (5 seeds, mean $\\pm$ std). Base model MMLU: 0.6018. Binary filtering retains a significant advantage on HellaSwag across all ratios ($p \\leq 0.004$, Holm-Bonferroni corrected).}\n111\t\\label{tab:dose_response}\n112\t\\resizebox{\\columnwidth}{!}{%\n113\t\\begin{tabular}{lcccccc}\n114\t\\toprule\n115\t& \\multicolumn{2}{c}{\\textbf{10\\%}} & \\multicolumn{2}{c}{\\textbf{30\\%}} & \\multicolumn{2}{c}{\\textbf{50\\%}} \\\\\n116\t\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\\cmidrule(lr){6-7}\n117\t\\textbf{Strategy} & MMLU & HellaSwag & MMLU & HellaSwag & MMLU & HellaSwag \\\\\n118\t\\midrule\n119\tNo-filter   & $.6058{\\pm}.0002$ & $.6689{\\pm}.0006$ & $.6069{\\pm}.0007$ & $.6664{\\pm}.0018$ & $.6063{\\pm}.0012$ & $.6680{\\pm}.0005$ \\\\\n120\tBinary-ours & $\\mathbf{.6079{\\pm}.0004}$ & $\\mathbf{.6727{\\pm}.0007}$ & $\\mathbf{.6082{\\pm}.0011}$ & $\\mathbf{.6725{\\pm}.0006}$ & $\\mathbf{.6088{\\pm}.0009}$ & $\\mathbf{.6731{\\pm}.0004}$ \\\\\n121\tGraduated   & $.6066{\\pm}.0010$ & $.6700{\\pm}.0014$ & $.6072{\\pm}.0008$ & $.6665{\\pm}.0012$ & $.6062{\\pm}.0008$ & $.6679{\\pm}.0001$ \\\\\n122\t\\bottomrule\n123\t\\end{tabular}}\n124\t\\end{table}\n125\t\n126\tAt all tested ratios (10--50\\%), no-filter MMLU remains above the base model (0.6018), indicating that synthetic data at these proportions is net-beneficial rather than harmful.\n127\tBinary filtering consistently improves over no-filter, with HellaSwag differences significant across all ratios ($p \\leq 0.004$, Holm-Bonferroni corrected).\n128\tMMLU differences are smaller and significant only at 10\\% after correction ($p = 0.001$).\n129\tGraduated weighting is indistinguishable from no-filter at all ratios (MMLU $p \\geq 0.27$; HellaSwag $p \\geq 0.06$), confirming that depth assignments beyond $\\Kempirical$ inject noise regardless of contamination severity.\n130\tEffect sizes diminish 3--6$\\times$ relative to the 100\\% setting (Section~\\ref{sec:filtering}), but the strategy ordering (binary $>$ graduated $\\approx$ no-filter) is preserved.\n131\t\n132\t\\subsection{Feature Subset Stability}\n133\t\\label{sec:feature_subset}\n134\t\n135\tTo test whether $\\Kempirical{=}2$ depends on the specific 15D feature combination, we evaluate random feature subsets of varying size on Pythia-1.4B prompt-chain data (Table~\\ref{tab:feature_subset}).\n136\t\n137\t\\begin{table}[h]\n138\t\\centering\n139\t\\small\n140\t\\caption{1v2 $\\auc$ by feature subset size (Pythia-1.4B). $\\Kempirical{=}2$ ($\\auc > \\theta{=}0.60$) is robust at $\\geq$8 features.}\n141\t\\label{tab:feature_subset}\n142\t\\begin{tabular}{lcccc}\n143\t\\toprule\n144\t\\textbf{Subset} & \\textbf{Tested} & \\textbf{Pass} & \\textbf{Min $\\auc$} & \\textbf{Mean $\\auc$} \\\\\n145\t\\midrule\n146\t15D (full) & 1 & 1 & 0.6262 & 0.6262 \\\\\n147\t10D        & 5 & 5 & 0.6153 & 0.6191 \\\\\n148\t8D         & 5 & 5 & 0.6056 & 0.6159 \\\\\n149\t5D         & 5 & 2 & 0.5856 & 0.5998 \\\\\n150\t3D (top-3) & 1 & 0 & 0.5871 & 0.5871 \\\\\n151\t\\bottomrule\n152\t\\end{tabular}\n153\t\\end{table}\n154\t\n155\t$\\Kempirical{=}2$ holds for all subsets of size $\\geq$8 (10/10 pass, min $\\auc = 0.6056$), becomes fragile at 5D (2/5 pass), and fails at 3D (top-3 surprisal features alone: $\\auc = 0.5871 < \\theta$).\n156\tThe boundary does not depend on any specific feature combination but requires sufficient dimensionality ($\\geq$8) to capture the multi-faceted distributional shift between generations 1 and 2.\n157\t\n158\t\\subsection{self\\_BLEU Feature Independence}\n159\t\\label{sec:selfbleu_ablation}\n160\t\n161\tTo verify that $\\Kempirical$ does not depend on the self\\_BLEU feature (which may reflect stylistic repetition rather than depth-correlated degradation), we compare 15D and 14D (self\\_BLEU removed) classifiers across four model configurations (Table~\\ref{tab:selfbleu_ablation}).\n162\t\n163\t\\begin{table}[h]\n164\t\\centering\n165\t\\small\n166\t\\caption{15D vs.\\ 14D (self\\_BLEU removed) 1v2 $\\auc$ with bootstrap 95\\% CIs. Removing self\\_BLEU does not change $\\Kempirical$ for any configuration. Maximum $|\\Delta\\auc| = 0.0031$, within bootstrap CI width (${\\sim}0.018$).}\n167\t\\label{tab:selfbleu_ablation}\n168\t\\resizebox{\\columnwidth}{!}{%\n169\t\\begin{tabular}{lcccc}\n170\t\\toprule\n171\t\\textbf{Model} & $\\Kempirical$ & \\textbf{15D $\\auc$ [CI]} & \\textbf{14D $\\auc$ [CI]} & $\\Delta$ \\\\\n172\t\\midrule\n173\tQwen-base   & 2/2 & $.6288$ $[.620,\\,.638]$ & $.6258$ $[.616,\\,.635]$ & $-.0031$ \\\\\n174\tPythia-1.4B  & 2/2 & $.8840$ $[.878,\\,.890]$ & $.8830$ $[.876,\\,.889]$ & $-.0010$ \\\\\n175\tLLaMA-8B     & 2/2 & $.6075$ $[.598,\\,.617]$ & $.6074$ $[.598,\\,.617]$ & $-.0001$ \\\\\n176\tMistral-7B   & 1/1 & $.5902$ $[.580,\\,.600]$ & $.5903$ $[.580,\\,.600]$ & $+.0002$ \\\\\n177\t\\bottomrule\n178\t\\end{tabular}}\n179\t\\end{table}\n180\t\n181\tAll four configurations preserve their $\\Kempirical$ under 14D, with negligible AUC change ($|\\Delta| \\leq 0.003$).\n182\tThe self\\_BLEU feature contributes minimally to the depth boundary; $\\Kempirical{=}2$ is driven by surprisal and entropy features rather than lexical repetition statistics.\n183\t\n184\t\\subsection{Wikipedia Domain: Scorer Confound Resolution}\n185\t\\label{sec:wiki_domain}\n186\t\n187\tUnder same-family scoring (Qwen-1.5B scorer), Wikipedia $\\Kempirical$ appeared to exhibit model-family dependence: Qwen generators (1.5B and 7B) yielded $\\Kempirical{=}2$, while all four non-Qwen models yielded $\\Kempirical{=}1$ (Table~\\ref{tab:wiki_domain}).\n188\tA scorer confound ablation resolves this apparent split.\n189\tRescoring the same Qwen-7B Wikipedia text with Pythia-1.4B reduces 1v2 $\\auc$ from $0.611$ to $0.587$ ($\\Delta = -2.4$\\,pp), dropping $\\Kempirical$ from 2 to 1.\n190\tWith the scorer confound controlled, all six models yield $\\Kempirical{=}1$ on Wikipedia, and the domain ordering simplifies to: arXiv ($\\Kempirical{=}3$) $>$ C4 ($\\Kempirical{=}2$) $>$ Wikipedia ($\\Kempirical{=}1$).\n191\t\n192\t\\begin{table}[h]\n193\t\\centering\n194\t\\small\n195\t\\caption{Wikipedia pairwise $\\auc$ across 6 models. $^\\dagger$Qwen rows use same-family scorer (Qwen-1.5B); cross-family scoring (Pythia-1.4B) reduces Qwen-7B to $\\Kempirical{=}1$ ($\\Delta = -2.4$\\,pp), resolving the apparent family split.}\n196\t\\label{tab:wiki_domain}\n197\t\\resizebox{\\columnwidth}{!}{%\n198\t\\begin{tabular}{llccccc}\n199\t\\toprule\n200\t\\textbf{Model} & \\textbf{Family} & \\textbf{0v1} & \\textbf{1v2} & \\textbf{2v3} & $\\Kempirical$ & \\textbf{Scorer} \\\\\n201\t\\midrule\n202\tQwen-1.5B (base) & Qwen & ---  & .619 & .550 & 2$^\\dagger$ & Qwen-1.5B \\\\\n203\tQwen-1.5B (base) & Qwen & ---  & .599 & ---  & 1 & Pythia-1.4B \\\\\n204\tQwen-7B          & Qwen & .967 & .611 & .556 & 2$^\\dagger$ & Qwen-1.5B \\\\\n205\tQwen-7B          & Qwen & ---  & .587 & ---  & 1 & Pythia-1.4B \\\\\n206\t\\midrule\n207\tPythia-1.4B   & non-Qwen & .975 & .585 & .545 & 1 & Qwen-1.5B \\\\\n208\tOLMo-1B       & non-Qwen & .993 & .499 & .501 & 1 & Qwen-1.5B \\\\\n209\tLLaMA-3.1-8B  & non-Qwen & .932 & .595 & .539 & 1 & Qwen-1.5B \\\\\n210\tMistral-7B    & non-Qwen & .961 & .555 & .524 & 1 & Qwen-1.5B \\\\\n211\t\\bottomrule\n212\t\\multicolumn{7}{l}{\\footnotesize $^\\dagger$Same-family scorer; cross-family scoring yields $\\Kempirical{=}1$.}\n213\t\\end{tabular}}\n214\t\\end{table}\n215\t\n216\t\\paragraph{Per-fold transparency.}\n217\tFor Qwen-1.5B, cross-family scoring (Pythia-1.4B) yields $\\auc$(1v2) $= 0.5994$, with per-fold values $[0.596, 0.606, 0.600, 0.603, 0.592]$ (2/5 folds marginally above $\\theta = 0.60$).\n218\tThe aggregate mean falls below $\\theta$, confirming $\\Kempirical{=}1$.\n219\tFor Qwen-7B, the corresponding $\\auc$ drops further to $0.587$.\n220\t\n221\t\\subsection{ArXiv Cross-Scorer Bootstrap CIs}\n222\t\\label{sec:arxiv_crossscorer_ci}\n223\t\n224\t\\begin{table}[h]\n225\t\\centering\n226\t\\small\n227\t\\caption{Bootstrap 95\\% CI for arXiv cross-scorer (Pythia-1.4B) 2v3 boundary $\\auc$ (10{,}000 resamples). Point estimates classify 3/4 generators as $\\Kempirical{=}3$; strict CI lower-bound criterion confirms 2/4.}\n228\t\\label{tab:arxiv_crossscorer_ci}\n229\t\\resizebox{\\columnwidth}{!}{%\n230\t\\begin{tabular}{lccc}\n231\t\\toprule\n232\t\\textbf{Generator} & \\textbf{2v3 $\\auc$} & \\textbf{95\\% CI} & \\textbf{CI lower $> \\theta$} \\\\\n233\t\\midrule\n234\tQwen-1.5B    & 0.632 & $[0.617,\\,0.646]$ & Yes \\\\\n235\tLLaMA-3.1-8B & 0.620 & $[0.605,\\,0.636]$ & Yes (0.5\\,pp margin) \\\\\n236\tMistral-7B   & 0.608 & $[0.593,\\,0.622]$ & No \\\\\n237\tQwen-7B      & 0.599 & $[0.584,\\,0.613]$ & No \\\\\n238\t\\bottomrule\n239\t\\end{tabular}}\n240\t\\end{table}\n241\t\n242\t\\subsection{JSD Decay Analysis}\n243\t\\label{sec:jsd_extended}\n244\t\n245\tThe token-level JSD between adjacent generations reveals two distinct decay regimes (Figure~\\ref{fig:jsd_decay}).\n246\tFor C4 web text, 0v1 JSD exceeds 1v2 by 6--56$\\times$ across all 7 models with $\\Kempirical{=}2$ (median cliff ratio ${\\sim}$15$\\times$), and subsequent pairs converge to a noise floor of ${\\sim}$0.003--0.005.\n247\tFitting $\\jsd(k, k{+}1) \\propto e^{-\\lambda k}$ yields $\\lambda \\approx 2.2$--$3.5$ for C4 (mean ${\\approx}\\,2.9$), consistent with rapid mixing of $G_\\delta$ toward its stationary distribution.\n248\tThese decay rates represent qualitative characterizations from 5-point curves rather than precise estimates.\n249\tThe empirical decay rate $\\lambda$ is consistent within each domain but varies across domains: C4 yields $\\lambda \\approx 2.9$, Wikipedia $\\lambda \\approx 3.1$ (excluding OLMo, whose $\\lambda = 6.3$ reflects a capacity-limited collapse: 0v1 $\\jsd = 0.169$ with near-complete information loss at the first step, making the exponential fit unreliable), and arXiv $\\lambda \\approx 1.0$.\n250\tThis cross-model consistency indicates that the contraction rate of $G_\\delta$ is governed primarily by the structure of the input domain rather than the model architecture.\n251\tArXiv text decays ${\\sim}$3$\\times$ slower than C4 ($\\lambda \\approx 1.0$ vs.\\ $2.9$), with a correspondingly higher convergence floor (${\\sim}$0.007--0.009 vs.\\ ${\\sim}$0.003--0.004).\n252\tFormulaic structural features (LaTeX formatting, citation patterns, section templates) degrade more slowly under autoregressive generation and supply persistent depth-distinguishing signal, explaining the elevated $\\Kempirical{=}3$.\n253\tThe retrain-chain exhibits a fundamentally different profile: $\\lambda = 0.285$ with a cliff ratio of only 1.31$\\times$ and no sharp drop between adjacent pairs.\n254\tThis gradual, sustained divergence reflects cumulative model-adaptation artifacts rather than text-intrinsic information loss, further supporting the distinction between prompt-chain and retrain-chain $\\Kempirical$ (Appendix~\\ref{sec:boundary_extended}).\n255\t\n256\t\\subsection{Boundary Cases and Scale Effect}\n257\t\\label{sec:boundary_extended}\n258\t\n259\tOf 8 tested model configurations on C4, 7 yield $\\Kempirical{=}2$; Mistral-7B is the sole sub-2 exception ($\\Kempirical{=}1$; 1v2 $\\auc = 0.594$, CI $[0.584, 0.603]$), validating $\\theta{=}0.60$ as an effective discriminator (gap: $0.594$ vs.\\ $0.611$--$0.696$).\n260\tMistral's cross-domain profile reinforces the domain-governed interpretation: despite $\\Kempirical{=}1$ on both C4 and Wikipedia, it yields $\\Kempirical{=}3$ on arXiv (1v2 $\\auc = 0.820$, 2v3 $= 0.628$), and this profile persists under cross-scorer validation (Pythia-1.4B scorer: C4 $\\Kempirical{=}1$, arXiv $\\Kempirical{=}3$ (2v3 $\\auc = 0.608$, CI $[0.593, 0.622]$)), indicating that domain structural complexity can rescue even web-text one-wash generators (Table~\\ref{tab:domain_kstar}).\n261\tLarger models produce more human-like text, reducing 0v1 JSD: 0.16--0.29 at $\\leq$1.5B, 0.077--0.13 at 7--8B (LLaMA-3.1-8B, Qwen-7B, Mistral-7B).\n262\tThis trend suggests that models at 13B+ may increasingly yield $\\Kempirical{=}1$; this speculative prediction warrants future verification.\n263\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9bb44ca7-f66e-4534-9886-f272c9898a43",
+            "isSidechain": true,
+            "promptId": "e8a11292-a9d6-4137-ae7d-e6fc34f3ac44",
+            "agentId": "a025f90856bb6fc38",
+            "type": "user",
+            "uuid": "99dced77-1d6a-4219-9d65-a65db47b5533",
+            "sourceToolAssistantUUID": "9bb44ca7-f66e-4534-9886-f272c9898a43",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T07:19:51.062Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QTu54z91RVzVFAx7SCb92D",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "99dced77-1d6a-4219-9d65-a65db47b5533",
+            "isSidechain": true,
+            "agentId": "a025f90856bb6fc38",
+            "requestId": "req_011Cb9dQoRsBPJcAMH1nEsNs",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cc90bd15-b7e4-4e91-950e-3461f385e69c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017h1Lb7WPjYiq8Xd31dTJFD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 32674,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 32674,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T07:19:51.109Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QTu54z91RVzVFAx7SCb92D",
+              "type": "tool_result",
+              "content": "1\t% EMNLP 2026 Main — ARR May 2026\n2\t% Generational Depth Contamination\n3\t\\documentclass[11pt]{article}\n4\t\\usepackage[review]{acl}\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{amsmath}\n12\t\\usepackage{amssymb}\n13\t\\usepackage{booktabs}\n14\t\\usepackage{multirow}\n15\t\\usepackage{enumitem}\n16\t\\usepackage{subcaption}\n17\t\\usepackage[section]{placeins}\n18\t\n19\t\\newcommand{\\Kstar}{{K^*}}\n20\t\\newcommand{\\Kempirical}{{K^*_{\\text{empirical}}}}\n21\t\\newcommand{\\Ktheory}{{K^*_{\\text{theory}}}}\n22\t\\newcommand{\\auc}{\\text{AUC}}\n23\t\\newcommand{\\jsd}{\\text{JSD}}\n24\t\n25\t\\title{Generational Depth Estimation of Recursive Synthetic Text:\\\\Measuring the Discrimination Boundary}\n26\t\n27\t\\author{Anonymous}\n28\t\n29\t\\begin{document}\n30\t\\maketitle\n31\t\n32\t% === Abstract ===\n33\t\\begin{abstract}\n34\tWeb-scale corpora are increasingly contaminated by recursive synthetic content, yet no method estimates a document's generational depth.\n35\tWe measure the discrimination boundary $\\Kempirical$ (the maximum depth at which adjacent generations remain distinguishable) using 15 statistical features and an OBD-LightGBM classifier.\n36\tAcross 8 model configurations (5 architecture families, 1B--8B), 3 source domains, and 4 decoding strategies, $\\Kempirical \\in \\{1, 2, 3\\}$ at $\\theta{=}0.60$ (Cohen's $h{\\approx}0.20$): general web text yields $\\Kempirical{=}2$ as the dominant mode (7/8 configurations), while structured academic text (arXiv) yields $\\Kempirical{=}3$, validated across five models and four architecture families.\n37\tA single generation pass suffices to render general web text indistinguishable from deeper synthetic content, a \\emph{one-wash laundering} effect.\n38\tModel-free statistical features enable 80--92\\% cross-model transfer among continuation-mode generators with scorer-invariant feature ordering ($\\rho > 0.90$), and cross-scorer validation is consistent with $\\Kempirical$ being governed by the generation process rather than the scoring model.\n39\tDownstream, domain-appropriate $\\Kempirical$ correctly predicts optimal curation granularity: when contamination causes detectable quality loss, binary filtering minimizes degradation most effectively for web text.\n40\t\\end{abstract}\n41\t\n42\t% === Section 1: Introduction ===\n43\t\\input{introduction}\n44\t\n45\t% === Section 2: Related Work ===\n46\t\\input{related_work}\n47\t\n48\t% === Section 3: Method ===\n49\t\\input{method}\n50\t\n51\t% === Section 4: Experiments ===\n52\t\\input{experiments_c1}\n53\t\n54\t% === Section 5: K*-Aware Data Filtering ===\n55\t\\input{experiments_c3}\n56\t\n57\t% === Section 6: Discussion ===\n58\t\\input{discussion}\n59\t\n60\t% === Section 7: Conclusion ===\n61\t\\input{conclusion}\n62\t\n63\t% === Limitations (ACL required, unnumbered) ===\n64\t\\clearpage\n65\t\\section*{Limitations}\n66\t\n67\tOur findings are bounded by:\n68\t(1)~\\emph{Scope}: model scale $\\leq$8B (5 architecture families), English text (C4, Wikipedia, arXiv), four decoding strategies; arXiv $\\Kempirical{=}3$ is confirmed with five models across four architecture families but with reduced sample size ($n{=}2{,}200$ per model).\n69\t(2)~\\emph{Protocol}: prompt-chain (isolates text-intrinsic degradation); retrain-chain yields $\\Kempirical{\\geq}4$ (Pythia-1.4B LoRA; Appendix~\\ref{sec:extended_limitations}), reflecting additional model-adaptation artifacts beyond text-level information loss.\n70\t(3)~\\emph{Threshold}: $\\Kempirical$ ranges from 2--3 at $\\theta{=}0.55$ to 1 at $\\theta{=}0.70$; 7/8 configurations yield $\\Kempirical{=}2$ at $\\theta{=}0.60$ (Mistral-7B: $\\Kempirical{=}1$).\n71\t(4)~\\emph{Marginal boundary}: Qwen-continuation's 1v2 CI lower bound exceeds $\\theta$ by only 0.002; cross-scorer validation drops this to $\\Kempirical{=}1$ (Section~\\ref{sec:transfer}). LLaMA-3.1-8B represents the most marginal $\\Kempirical{=}2$ assignment, with the 1v2 CI lower bound within 0.3 percentage points of $\\theta$.\n72\t(5)~\\emph{Feature set}: the 15D features yield a feature-set-specific lower bound ($\\Ktheory$ may be strictly higher); neural probe $\\Kempirical$ is model-dependent ($3$ for Qwen, $2$ for Pythia/OLMo).\n73\t(6)~\\emph{Segment length}: $\\Kempirical{=}2$ confirmed for 128 and 256 tokens (CI lower $> \\theta$); 512 tokens yields point estimate $\\Kempirical{=}2$ but CI lower marginally below $\\theta$ ($0.5979$), indicating the boundary weakens at longer generation lengths.\n74\t(7)~\\emph{Curation applicability}: the practical benefit of $\\Kstar$-aware curation scales with contamination severity; graduated weighting converges to no-filter performance at all tested ratios (10--50\\%), while binary filtering retains a consistent advantage (Appendix~\\ref{sec:dose_response}).\n75\tAdditional limitations (cross-model scoring sensitivity, feature ranking variability at the 1v2 boundary, structural composition confound analysis) appear in Appendix~\\ref{sec:extended_limitations}.\n76\t\n77\t% === Ethics Statement (ACL required, unnumbered) ===\n78\t\\section*{Ethics Statement}\n79\t\n80\tGenerational depth estimation is intended for data curation and corpus auditing, positive-sum applications that improve training data quality.\n81\tOur experiments use publicly available corpora (C4, Wikipedia, arXiv abstracts) and do not involve personally identifiable information.\n82\tA potential dual-use concern is that depth estimation techniques could inform adversarial strategies to evade detection (e.g., by calibrating rewriting to mimic earlier-generation statistics); we note that this risk is shared by all detection research and that the binary detection boundary ($\\auc \\geq 0.96$ at 0v1) remains robust.\n83\tCode and generated corpora will be released upon acceptance to facilitate reproducibility.\n84\t\n85\t\\bibliography{references}\n86\t\n87\t\\input{appendix}\n88\t\\input{appendix_extended}\n89\t\n90\t\\end{document}\n91\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cc90bd15-b7e4-4e91-950e-3461f385e69c",
+            "isSidechain": true,
+            "promptId": "e8a11292-a9d6-4137-ae7d-e6fc34f3ac44",
+            "agentId": "a025f90856bb6fc38",
+            "type": "user",
+            "uuid": "d75dc70d-ce20-4c00-bc7d-99a026951955",
+            "sourceToolAssistantUUID": "cc90bd15-b7e4-4e91-950e-3461f385e69c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T07:19:53.258Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for the specific mentions in these files more carefully:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d75dc70d-ce20-4c00-bc7d-99a026951955",
+            "isSidechain": true,
+            "agentId": "a025f90856bb6fc38",
+            "requestId": "req_011Cb9dR23dnSMdPLE7yLdLn",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d2a7098e-de5c-4d1a-8e3c-8e33f84caf9a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ENoqQS9dPKefQpkyHkgNGT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 13140,
+                "cache_read_input_tokens": 32674,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 13140,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T07:19:54.438Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0183TSuzAszvTkMMMCyAaXG9",
+              "name": "Grep",
+              "input": {
+                "pattern": "η²|eta squared|Cohen.*convention",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d2a7098e-de5c-4d1a-8e3c-8e33f84caf9a",
+            "isSidechain": true,
+            "agentId": "a025f90856bb6fc38",
+            "requestId": "req_011Cb9dR23dnSMdPLE7yLdLn",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b4bed964-1c5f-4ab3-af47-6914b775d23a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ENoqQS9dPKefQpkyHkgNGT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 13140,
+                "cache_read_input_tokens": 32674,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 13140,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T07:19:54.465Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0183TSuzAszvTkMMMCyAaXG9",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b4bed964-1c5f-4ab3-af47-6914b775d23a",
+            "isSidechain": true,
+            "promptId": "e8a11292-a9d6-4137-ae7d-e6fc34f3ac44",
+            "agentId": "a025f90856bb6fc38",
+            "type": "user",
+            "uuid": "8c2a5b3c-e1aa-49a1-ae95-1fcad768f62e",
+            "sourceToolAssistantUUID": "b4bed964-1c5f-4ab3-af47-6914b775d23a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T07:19:55.009Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0114MZJmJdPY1X5Bo53Rioyy",
+              "name": "Grep",
+              "input": {
+                "pattern": "Tab S12|tab:wiki_domain|same-family scorer",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8c2a5b3c-e1aa-49a1-ae95-1fcad768f62e",
+            "isSidechain": true,
+            "agentId": "a025f90856bb6fc38",
+            "requestId": "req_011Cb9dR23dnSMdPLE7yLdLn",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "17595dff-67d5-4f41-ad2d-a5016af60835",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01ENoqQS9dPKefQpkyHkgNGT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 13140,
+                "cache_read_input_tokens": 32674,
+                "output_tokens": 268,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 13140
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 268,
+                    "cache_read_input_tokens": 32674,
+                    "cache_creation_input_tokens": 13140,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 13140,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T07:19:55.028Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0114MZJmJdPY1X5Bo53Rioyy",
+              "type": "tool_result",
+              "content": "187:Under same-family scoring (Qwen-1.5B scorer), Wikipedia $\\Kempirical$ appeared to exhibit model-family dependence: Qwen generators (1.5B and 7B) yielded $\\Kempirical{=}2$, while all four non-Qwen models yielded $\\Kempirical{=}1$ (Table~\\ref{tab:wiki_domain}).\n195:\\caption{Wikipedia pairwise $\\auc$ across 6 models. $^\\dagger$Qwen rows use same-family scorer (Qwen-1.5B); cross-family scoring (Pythia-1.4B) reduces Qwen-7B to $\\Kempirical{=}1$ ($\\Delta = -2.4$\\,pp), resolving the apparent family split.}\n196:\\label{tab:wiki_domain}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "17595dff-67d5-4f41-ad2d-a5016af60835",
+            "isSidechain": true,
+            "promptId": "e8a11292-a9d6-4137-ae7d-e6fc34f3ac44",
+            "agentId": "a025f90856bb6fc38",
+            "type": "user",
+            "uuid": "7fcb07c5-10d7-4ac6-b013-11514fb629cb",
+            "sourceToolAssistantUUID": "17595dff-67d5-4f41-ad2d-a5016af60835",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T07:19:57.156Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good! Now let me search for eta squared and Cohen more broadly in discussion.tex:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7fcb07c5-10d7-4ac6-b013-11514fb629cb",
+            "isSidechain": true,
+            "agentId": "a025f90856bb6fc38",
+            "requestId": "req_011Cb9dRHzLG7fuHPorEJtZc",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "15abfefd-13a1-4b13-8fc1-93104c6f37ac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011ccJManAsxHXS18bUktYG9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 537,
+                "cache_read_input_tokens": 45814,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 537,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T07:19:57.356Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Cb1FuiEiSKKe2AmzeNmLs7",
+              "name": "Grep",
+              "input": {
+                "pattern": "eta|Cohen",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "15abfefd-13a1-4b13-8fc1-93104c6f37ac",
+            "isSidechain": true,
+            "agentId": "a025f90856bb6fc38",
+            "requestId": "req_011Cb9dRHzLG7fuHPorEJtZc",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2efa70e6-2cbc-4a9a-b714-e937b72c58e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011ccJManAsxHXS18bUktYG9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 537,
+                "cache_read_input_tokens": 45814,
+                "output_tokens": 144,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 537
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 144,
+                    "cache_read_input_tokens": 45814,
+                    "cache_creation_input_tokens": 537,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 537,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T07:19:57.375Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Cb1FuiEiSKKe2AmzeNmLs7",
+              "type": "tool_result",
+              "content": "18:For general web text, $\\Kempirical{=}2$ reflects concentrated information loss: 0v1 is near-trivially separable ($\\auc \\geq 0.92$), 1v2 drops by ${\\sim}$30\\,pp, and 2v3 falls below $\\theta$.\n20:Converging evidence supports a data-intrinsic interpretation: OBD achieves 96\\% depth-0 recall but only 14--22\\% for depths 2--4; frontier LLMs show 8--38\\% (McNemar $p > 0.05$ vs.\\ OBD; Table~\\ref{tab:s3_llm_zeroshot}).\n25:Detailed decay rates and domain comparisons appear in Appendix~\\ref{sec:jsd_extended}.\n28:For web text, 2v3 $\\auc < \\theta$ across all model configurations, so depth assignments for $d \\geq 2$ approximate random labels; graduated weighting injects noise, explaining convergence toward binary at high $\\alpha$ (Appendix~\\ref{sec:extended_limitations}).\n48:Of 8 C4 configurations, 7 yield $\\Kempirical{=}2$; Mistral-7B ($\\Kempirical{=}1$; 1v2 $\\auc = 0.594$) is the sole exception, validating $\\theta{=}0.60$ as an effective discriminator.\n49:Mistral's cross-domain profile ($\\Kempirical{=}3$ on arXiv despite $\\Kempirical{=}1$ on C4) reinforces the domain-governed interpretation; scale trends and detailed boundary analysis appear in Appendix~\\ref{sec:boundary_extended}.\n54:Scorer sensitivity is thus domain-dependent and inversely related to domain structural complexity: arXiv (3/4 generators preserve $\\Kempirical{=}3$) is more robust than Wikipedia (0/2 retain $\\Kempirical{=}2$)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2efa70e6-2cbc-4a9a-b714-e937b72c58e3",
+            "isSidechain": true,
+            "promptId": "e8a11292-a9d6-4137-ae7d-e6fc34f3ac44",
+            "agentId": "a025f90856bb6fc38",
+            "type": "user",
+            "uuid": "5f9b42d8-0f89-4ee3-9c96-d0648355096a",
+            "sourceToolAssistantUUID": "2efa70e6-2cbc-4a9a-b714-e937b72c58e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T07:19:59.404Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The eta squared discussion is not in discussion.tex. Let me check where it actually is - it appears to be in appendix_extended.tex:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5f9b42d8-0f89-4ee3-9c96-d0648355096a",
+            "isSidechain": true,
+            "agentId": "a025f90856bb6fc38",
+            "requestId": "req_011Cb9dRUTsmGRYyes78xjWa",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9a2591da-ad5b-4803-9a62-440b254bbeac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UYsgL1gr5pfQcNrpZk8hdi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 647,
+                "cache_read_input_tokens": 46351,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 647,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T07:19:59.855Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N5ocZnJ3Wto6kkwFgv3zQ7",
+              "name": "Grep",
+              "input": {
+                "pattern": "η|Cohen|eta.*squared",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9a2591da-ad5b-4803-9a62-440b254bbeac",
+            "isSidechain": true,
+            "agentId": "a025f90856bb6fc38",
+            "requestId": "req_011Cb9dRUTsmGRYyes78xjWa",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "bd5de4f9-95bb-4cfd-a011-139116f8e73f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01UYsgL1gr5pfQcNrpZk8hdi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 647,
+                "cache_read_input_tokens": 46351,
+                "output_tokens": 164,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 647
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 164,
+                    "cache_read_input_tokens": 46351,
+                    "cache_creation_input_tokens": 647,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 647,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T07:19:59.885Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N5ocZnJ3Wto6kkwFgv3zQ7",
+              "type": "tool_result",
+              "content": "16:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bd5de4f9-95bb-4cfd-a011-139116f8e73f",
+            "isSidechain": true,
+            "promptId": "e8a11292-a9d6-4137-ae7d-e6fc34f3ac44",
+            "agentId": "a025f90856bb6fc38",
+            "type": "user",
+            "uuid": "ce2689a7-ba41-4be8-a260-cf279c9cef21",
+            "sourceToolAssistantUUID": "bd5de4f9-95bb-4cfd-a011-139116f8e73f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T07:20:02.956Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the specific section around line 16 in appendix_extended.tex to see the full Cohen convention text:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ce2689a7-ba41-4be8-a260-cf279c9cef21",
+            "isSidechain": true,
+            "agentId": "a025f90856bb6fc38",
+            "requestId": "req_011Cb9dRemVcCvmmZPbADkch",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c725aa53-e97a-4e16-9280-a1485f89e1c2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SeJMaSs2s7E6jGhV4BYmGD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 185,
+                "cache_read_input_tokens": 46998,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 185,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T07:20:03.332Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NMwN52KW2v4cbCHsQU9a5x",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+                "offset": 13,
+                "limit": 20
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c725aa53-e97a-4e16-9280-a1485f89e1c2",
+            "isSidechain": true,
+            "agentId": "a025f90856bb6fc38",
+            "requestId": "req_011Cb9dRemVcCvmmZPbADkch",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "67672bb3-5c06-408d-a202-7bda458cad9c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SeJMaSs2s7E6jGhV4BYmGD",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 185,
+                "cache_read_input_tokens": 46998,
+                "output_tokens": 152,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 185
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 152,
+                    "cache_read_input_tokens": 46998,
+                    "cache_creation_input_tokens": 185,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 185,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T07:20:03.342Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NMwN52KW2v4cbCHsQU9a5x",
+              "type": "tool_result",
+              "content": "13\t\\begin{table}[h]\n14\t\\centering\n15\t\\small\n16\t\\caption{Three-way ANOVA (Generator $\\times$ Scorer $\\times$ Depth-Pair) on per-fold pairwise $\\auc$ values (Type~II SS). DV = per-fold AUC; $N{=}300$ (12 cells $\\times$ 5 folds $\\times$ 5 depth-pairs; 3 generators $\\times$ 4 scorers). Scorer is statistically significant ($p < .001$) but has a small effect size ($\\eta^2_p = 0.19$) relative to Depth-Pair ($\\eta^2_p = 1.00$) and Generator ($\\eta^2_p = 0.89$), indicating that scorer choice has a detectable but practically minor influence on depth discrimination. While $\\eta^2_p = 0.19$ exceeds Cohen's (1988) threshold for a large effect, the Scorer contribution is approximately 5$\\times$ smaller than Generator ($\\eta^2_p = 0.89$) and dwarfed by Depth-Pair ($\\eta^2_p = 1.00$), supporting its characterization as practically minor in this context.}\n17\t\\label{tab:anova_crossscorer}\n18\t\\begin{tabular}{lrrrr}\n19\t\\toprule\n20\t\\textbf{Source} & \\textbf{df} & $F$ & $p$ & $\\eta^2_p$ \\\\\n21\t\\midrule\n22\tGenerator     & 2  & 926.8  & ${<}.001$  & .885 \\\\\n23\tScorer        & 3  & 19.02  & ${<}.001$  & .192 \\\\\n24\tDepth-Pair    & 4  & 24736  & ${<}.001$  & .998 \\\\\n25\tGen$\\times$Scorer & 6 & 8.16 & ${<}.001$ & .170 \\\\\n26\tGen$\\times$Depth  & 8 & 993.7 & ${<}.001$ & .971 \\\\\n27\tScorer$\\times$Depth & 12 & 2.45 & .005 & .109 \\\\\n28\tResidual      & 240 & & & \\\\\n29\t\\bottomrule\n30\t\\end{tabular}\n31\t\\end{table}\n32\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "67672bb3-5c06-408d-a202-7bda458cad9c",
+            "isSidechain": true,
+            "promptId": "e8a11292-a9d6-4137-ae7d-e6fc34f3ac44",
+            "agentId": "a025f90856bb6fc38",
+            "type": "user",
+            "uuid": "b217f219-70d8-4f9f-8114-4383a5aee31d",
+            "sourceToolAssistantUUID": "67672bb3-5c06-408d-a202-7bda458cad9c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T07:20:05.769Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me check main.tex to understand the page structure. Let me search for where the main content ends and appendix begins:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b217f219-70d8-4f9f-8114-4383a5aee31d",
+            "isSidechain": true,
+            "agentId": "a025f90856bb6fc38",
+            "requestId": "req_011Cb9dRuiAWKfNeh9KeiuVg",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4b040cfb-017d-41f1-96b5-315d8490e9a9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018cvQ97d2L2WAo24CKxPYYc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 776,
+                "cache_read_input_tokens": 47183,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 776,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T07:20:06.369Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015bV9GWChNDfuYyzsLmzinw",
+              "name": "Grep",
+              "input": {
+                "pattern": "\\\\input\\{|\\\\clearpage|References|\\\\section\\*|\\\\appendix",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4b040cfb-017d-41f1-96b5-315d8490e9a9",
+            "isSidechain": true,
+            "agentId": "a025f90856bb6fc38",
+            "requestId": "req_011Cb9dRuiAWKfNeh9KeiuVg",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "187b2edc-3508-4c0c-963e-8ef4c40e07e6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018cvQ97d2L2WAo24CKxPYYc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 776,
+                "cache_read_input_tokens": 47183,
+                "output_tokens": 171,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 776
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 171,
+                    "cache_read_input_tokens": 47183,
+                    "cache_creation_input_tokens": 776,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 776,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T07:20:06.391Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015bV9GWChNDfuYyzsLmzinw",
+              "type": "tool_result",
+              "content": "43:\\input{introduction}\n46:\\input{related_work}\n49:\\input{method}\n52:\\input{experiments_c1}\n55:\\input{experiments_c3}\n58:\\input{discussion}\n61:\\input{conclusion}\n64:\\clearpage\n65:\\section*{Limitations}\n78:\\section*{Ethics Statement}\n87:\\input{appendix}\n88:\\input{appendix_extended}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "187b2edc-3508-4c0c-963e-8ef4c40e07e6",
+            "isSidechain": true,
+            "promptId": "e8a11292-a9d6-4137-ae7d-e6fc34f3ac44",
+            "agentId": "a025f90856bb6fc38",
+            "type": "user",
+            "uuid": "8489fd1a-86bd-4b31-962e-e6114b4dfd48",
+            "sourceToolAssistantUUID": "187b2edc-3508-4c0c-963e-8ef4c40e07e6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T07:20:17.785Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect. Now let me provide a comprehensive summary based on my findings:\n\n## Report on Paper Tex Files Verification\n\n### 1. **W1: η²_p Cohen convention (discussion.tex)**\n\n**Status: NOT FOUND in discussion.tex**\n\nThe η² (eta squared) and Cohen convention discussion is **NOT located in discussion.tex**. Instead, it appears in **appendix_extended.tex** in the table caption for Table 4 (ANOVA table).\n\n**Exact text found in appendix_extended.tex (lines 16):**\n```\n\\caption{Three-way ANOVA (Generator $\\times$ Scorer $\\times$ Depth-Pair) on per-fold pairwise $\\auc$ values (Type~II SS). DV = per-fold AUC; $N{=}300$ (12 cells $\\times$ 5 folds $\\times$ 5 depth-pairs; 3 generators $\\times$ 4 scorers). Scorer is statistically significant ($p < .001$) but has a small effect size ($\\eta^2_p = 0.19$) relative to Depth-Pair ($\\eta^2_p = 1.00$) and Generator ($\\eta^2_p = 0.89$), indicating that scorer choice has a detectable but practically minor influence on depth discrimination. While $\\eta^2_p = 0.19$ exceeds Cohen's (1988) threshold for a large effect, the Scorer contribution is approximately 5$\\times$ smaller than Generator ($\\eta^2_p = 0.89$) and dwarfed by Depth-Pair ($\\eta^2_p = 1.00$), supporting its characterization as practically minor in this context.}\n```\n\nThe text **properly qualifies** the effect size interpretation by:\n- Citing Cohen's (1988) threshold explicitly\n- Acknowledging the numerical threshold exceedance\n- But contextualizing it within comparative effect sizes (5x smaller than Generator, dwarfed by Depth-Pair)\n- Concluding with domain-specific interpretation (\"practically minor in this context\")\n\n---\n\n### 2. **W2: S12 caption same-family scorer (appendix_extended.tex)**\n\n**Status: FOUND**\n\nThe table caption for Table S12 (tab:wiki_domain) is on **line 195** of appendix_extended.tex and **DOES mention \"same-family scorer\"**.\n\n**Exact caption text:**\n```\n\\caption{Wikipedia pairwise $\\auc$ across 6 models. $^\\dagger$Qwen rows use same-family scorer (Qwen-1.5B); cross-family scoring (Pythia-1.4B) reduces Qwen-7B to $\\Kempirical{=}1$ ($\\Delta = -2.4$\\,pp), resolving the apparent family split.}\n```\n\nThe caption explicitly states \"same-family scorer (Qwen-1.5B)\" and clearly explains the distinction with \"cross-family scoring\" as the qualifier contrast.\n\n---\n\n### 3. **main.tex structure - Page count assessment**\n\nThe paper's main content structure in main.tex is organized as follows:\n\n**Main sections (lines 43-61):**\n1. `\\input{introduction}` (Section 1)\n2. `\\input{related_work}` (Section 2)\n3. `\\input{method}` (Section 3)\n4. `\\input{experiments_c1}` (Section 4: Experiments)\n5. `\\input{experiments_c3}` (Section 5: K*-Aware Data Filtering)\n6. `\\input{discussion}` (Section 6)\n7. `\\input{conclusion}` (Section 7)\n\n**Transition points:**\n- Line 64: `\\clearpage` (hard break before Limitations)\n- Lines 65-75: `\\section*{Limitations}` (ACL required, unnumbered)\n- Lines 78-84: `\\section*{Ethics Statement}` (ACL required, unnumbered)\n- Line 87: `\\input{appendix}` (start of appendix)\n- Line 88: `\\input{appendix_extended}` (extended appendix)\n- Line 85: `\\bibliography{references}` (appears before appendix sections)\n\n**Assessment:** The main content consists of 7 numbered sections (Introduction through Conclusion) plus 2 standard ACL requirement sections (Limitations and Ethics). The bibliography and appendices begin after line 84. Without counting pages in the compiled PDF, the structure indicates a typical EMNLP conference paper format with 6-7 pages of main content before appendices."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8489fd1a-86bd-4b31-962e-e6114b4dfd48",
+            "isSidechain": true,
+            "agentId": "a025f90856bb6fc38",
+            "requestId": "req_011Cb9dS8WrTqB57xW81XxzK",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "47c522a9-6f5f-4d04-854f-e0fa68772547",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_2bb8bf55",
+            "sessionId": "056fa8f0-e88a-4612-9cd2-0376596cd791",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "eventual-wibbling-boot",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015RKM3fP5SWEGXzSgxKdtQ5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 280,
+                "cache_read_input_tokens": 47959,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 280,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        }
+      ],
+      "message_count": 26
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-check-two-specific-fixes-in-the-paper-tex-files-for-the-gen-depth-co.md"
+}

@@ -1,0 +1,1019 @@
+{
+  "schema_version": "1.0",
+  "id": "6fca930075fd41d03c8e",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search for any recent (2025-2026) work on adaptive inference, self-correction, or quality-floor mechanisms for world act",
+  "task_key": "agent-a66a773aec16120e1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a66a773aec16120e1.jsonl",
+    "occurrence": 1,
+    "bytes": 65269,
+    "sha256": "354fbeec105dfe27d01a034cfc9ae44bcbddcc2520c3c5830987aa42d89040ba"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 1,
+    "tool_calls": 10,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 10,
+      "tool_result": 10
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-10T20:01:32.962Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search for any recent (2025-2026) work on adaptive inference, self-correction, or quality-floor mechanisms for world action models or multi-modal diffusion that the proposal might have missed. This is the most critical search — I need to find competing/concurrent work.\n\nUse WebSearch with these queries:\n1. \"adaptive denoising world action model 2026\"\n2. \"cross-modal convergence diffusion inference acceleration 2026\"\n3. \"self-correcting diffusion inference robotics 2026\"\n4. \"quality floor diffusion policy robot 2026\"\n5. \"per-modality adaptive step allocation video action diffusion\"\n6. \"extension mechanism denoising diffusion steps quality\"\n7. \"site:arxiv.org world action model adaptive inference 2026\"\n8. \"multi-modal diffusion adaptive caching cross-modal\"\n\nAlso search for:\n9. \"D3P dynamic denoising diffusion policy PPO\" to verify D3P claims\n10. \"DA-SIP difficulty aware stochastic interpolant\" to verify DA-SIP claims\n\nReport all findings, especially any papers that propose cross-modal disagreement signals or extension mechanisms within diffusion denoising."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "0b10807c-7db1-4e3e-afe2-5ed671a76021",
+            "agentId": "a66a773aec16120e1",
+            "type": "user",
+            "uuid": "4a08db21-9253-4ab5-a671-a9a33fa1be70",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-10T20:01:34.939Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll conduct a comprehensive search for recent work on adaptive inference, self-correction, and quality-floor mechanisms for world action models and diffusion. Let me run all these searches in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4a08db21-9253-4ab5-a671-a9a33fa1be70",
+            "isSidechain": true,
+            "agentId": "a66a773aec16120e1",
+            "requestId": "req_011CauV2ZMBdKv4pHZoL4jkm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "dbb0d51e-beaf-488d-808f-eba72b834302",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QdQxN6Z57oEuv1AaNAAzZz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 695,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 695,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-10T20:01:35.091Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015GMqowrQsxSJoKLikLQFU9",
+              "name": "WebSearch",
+              "input": {
+                "query": "adaptive denoising world action model 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dbb0d51e-beaf-488d-808f-eba72b834302",
+            "isSidechain": true,
+            "agentId": "a66a773aec16120e1",
+            "requestId": "req_011CauV2ZMBdKv4pHZoL4jkm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f1e58f50-6f46-48d6-a301-e4f2e545ed8c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QdQxN6Z57oEuv1AaNAAzZz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 695,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 695,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-10T20:01:35.256Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019dFJxs2XRPRDt2MrpB9uCt",
+              "name": "WebSearch",
+              "input": {
+                "query": "cross-modal convergence diffusion inference acceleration 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f1e58f50-6f46-48d6-a301-e4f2e545ed8c",
+            "isSidechain": true,
+            "agentId": "a66a773aec16120e1",
+            "requestId": "req_011CauV2ZMBdKv4pHZoL4jkm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "bc978f81-467d-46a1-8171-9854f54e43c2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QdQxN6Z57oEuv1AaNAAzZz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 695,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 695,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-10T20:01:35.428Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EQ2rhAjxiR26JLqovHX3XF",
+              "name": "WebSearch",
+              "input": {
+                "query": "self-correcting diffusion inference robotics 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bc978f81-467d-46a1-8171-9854f54e43c2",
+            "isSidechain": true,
+            "agentId": "a66a773aec16120e1",
+            "requestId": "req_011CauV2ZMBdKv4pHZoL4jkm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7955f548-e56c-486e-8d91-6e95ffe091e2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QdQxN6Z57oEuv1AaNAAzZz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 695,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 695,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-10T20:01:35.457Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GW5asywYTAshxQKkkwxyiw",
+              "name": "WebSearch",
+              "input": {
+                "query": "quality floor diffusion policy robot 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7955f548-e56c-486e-8d91-6e95ffe091e2",
+            "isSidechain": true,
+            "agentId": "a66a773aec16120e1",
+            "requestId": "req_011CauV2ZMBdKv4pHZoL4jkm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8efda52a-36a0-469b-b210-ff8fc445b467",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QdQxN6Z57oEuv1AaNAAzZz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 695,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 695,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-10T20:01:35.614Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WnL4AJ6VcT9mqcqNzkhyx4",
+              "name": "WebSearch",
+              "input": {
+                "query": "per-modality adaptive step allocation video action diffusion"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8efda52a-36a0-469b-b210-ff8fc445b467",
+            "isSidechain": true,
+            "agentId": "a66a773aec16120e1",
+            "requestId": "req_011CauV2ZMBdKv4pHZoL4jkm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c11d8dd5-13a3-449a-a342-76914ee30f17",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QdQxN6Z57oEuv1AaNAAzZz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 695,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 695,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-10T20:01:35.628Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015QmzAMbKdTUEJz5UefDofi",
+              "name": "WebSearch",
+              "input": {
+                "query": "extension mechanism denoising diffusion steps quality"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c11d8dd5-13a3-449a-a342-76914ee30f17",
+            "isSidechain": true,
+            "agentId": "a66a773aec16120e1",
+            "requestId": "req_011CauV2ZMBdKv4pHZoL4jkm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e174e423-8439-4fb1-afca-29949e83a754",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QdQxN6Z57oEuv1AaNAAzZz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 695,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 695,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-10T20:01:35.839Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01U8MLTGGtLSZiHzePGrrmw7",
+              "name": "WebSearch",
+              "input": {
+                "query": "site:arxiv.org world action model adaptive inference 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e174e423-8439-4fb1-afca-29949e83a754",
+            "isSidechain": true,
+            "agentId": "a66a773aec16120e1",
+            "requestId": "req_011CauV2ZMBdKv4pHZoL4jkm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4f77c0fd-bc09-417a-aa3b-acbf34d7839f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QdQxN6Z57oEuv1AaNAAzZz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 695,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 695,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-10T20:01:35.954Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017ogPsMK6e7tZ4KigMRHT8D",
+              "name": "WebSearch",
+              "input": {
+                "query": "multi-modal diffusion adaptive caching cross-modal"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4f77c0fd-bc09-417a-aa3b-acbf34d7839f",
+            "isSidechain": true,
+            "agentId": "a66a773aec16120e1",
+            "requestId": "req_011CauV2ZMBdKv4pHZoL4jkm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "07b5eb69-5687-4f3f-a617-e6a2d9fdbe3a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QdQxN6Z57oEuv1AaNAAzZz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 695,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 695,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-10T20:01:36.174Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HX9FFumFBU45SKWpYVKsx5",
+              "name": "WebSearch",
+              "input": {
+                "query": "D3P dynamic denoising diffusion policy PPO"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "07b5eb69-5687-4f3f-a617-e6a2d9fdbe3a",
+            "isSidechain": true,
+            "agentId": "a66a773aec16120e1",
+            "requestId": "req_011CauV2ZMBdKv4pHZoL4jkm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d3a6a586-386d-4b6b-9d3a-4c919116cd45",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QdQxN6Z57oEuv1AaNAAzZz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 695,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 695,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-10T20:01:36.239Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AcMfDAMjXEFjTfo7pPcQHD",
+              "name": "WebSearch",
+              "input": {
+                "query": "DA-SIP difficulty aware stochastic interpolant"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d3a6a586-386d-4b6b-9d3a-4c919116cd45",
+            "isSidechain": true,
+            "agentId": "a66a773aec16120e1",
+            "requestId": "req_011CauV2ZMBdKv4pHZoL4jkm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e0509aad-aedd-496f-a4ee-eabcd38d1905",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QdQxN6Z57oEuv1AaNAAzZz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 695,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 695,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-10T20:01:42.187Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GW5asywYTAshxQKkkwxyiw",
+              "type": "tool_result",
+              "content": "Web search results for query: \"quality floor diffusion policy robot 2026\"\n\nLinks: [{\"title\":\"Diffusion Policy: Visuomotor Policy Learning via Action Diffusion\",\"url\":\"https://diffusion-policy.cs.columbia.edu/\"},{\"title\":\"Diffusion Policy:\",\"url\":\"https://www.roboticsproceedings.org/rss19/p026.pdf\"},{\"title\":\"A Survey on Diffusion Policy for Robotic Manipulation: Taxonomy, Analysis, and Future Directions | TechRxiv\",\"url\":\"https://www.techrxiv.org/doi/full/10.36227/techrxiv.174378343.39356214/v1\"},{\"title\":\"Frontiers | Diffusion models for robotic manipulation: a survey\",\"url\":\"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full\"},{\"title\":\"GitHub - showlab/Awesome-Robotics-Diffusion: A curated list of recent robot learning papers incorporating diffusion models for robotics tasks. · GitHub\",\"url\":\"https://github.com/showlab/Awesome-Robotics-Diffusion\"},{\"title\":\"Diffusion Trajectory-guided Policy: A Novel Framework for Long-Horizon Robot Manipulation | OpenReview\",\"url\":\"https://openreview.net/forum?id=VaoeAi5CW8\"},{\"title\":\"A Survey on Diffusion Policy for Robotic Manipulation\",\"url\":\"https://www.techrxiv.org/users/908014/articles/1282755/master/file/data/TPAMI/TPAMI.pdf\"},{\"title\":\"Diffusion models for robotic manipulation: a survey - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC12454101/\"},{\"title\":\"Diffusion policy: : Visuomotor policy learning via action diffusion: International Journal of Robotics Research: Vol 44, No 10-11\",\"url\":\"https://dl.acm.org/doi/10.1177/02783649241273668\"},{\"title\":\"GitHub - real-stanford/diffusion_policy: [RSS 2023] Diffusion Policy Visuomotor Policy Learning via Action Diffusion · GitHub\",\"url\":\"https://github.com/real-stanford/diffusion_policy\"}]\n\nBased on the search results, here's what I found about diffusion policy for robot manipulation:\n\n## Diffusion Policy Overview\n\nDiffusion Policy consistently outperforms existing state-of-the-art robot learning methods with an average improvement of 46.9% across 12 different tasks from 4 different robot manipulation benchmarks.\n\nThe diffusion formulation yields powerful advantages when used for robot policies, including gracefully handling multimodal action distributions, being suitable for high-dimensional action spaces, and exhibiting impressive training stability.\n\n## Recent Research Developments\n\nSince 2022, numerous research studies have explored diffusion policies for robotic manipulation, demonstrating superior performance compared to traditional methods in various tasks. Recent surveys and research from 2025-2026 indicate this is a rapidly evolving field.\n\n## Technical Architecture\n\nThe most frequently employed architecture is the Temporal U-Net, which was further adapted by Chi et al. (2023) in their CNN-based Diffusion Policy (DP) for robotic manipulation.\n\n## Current Research Directions\n\nRecent work includes approaches for handling mixed-quality demonstrations in robotic manipulation via segment-level selection and optimization, as well as constraint satisfaction methods. The Diffusion Trajectory-guided Policy (DTP) framework generates task-relevant trajectories through a diffusion model to guide policy learning for long-horizon tasks.\n\nThe search results show that diffusion policy research is actively being conducted as of 2025-2026, with applications spanning various robot manipulation tasks.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8efda52a-36a0-469b-b210-ff8fc445b467",
+            "isSidechain": true,
+            "promptId": "0b10807c-7db1-4e3e-afe2-5ed671a76021",
+            "agentId": "a66a773aec16120e1",
+            "type": "user",
+            "uuid": "765d9286-7791-40cc-a794-23044c085818",
+            "sourceToolAssistantUUID": "8efda52a-36a0-469b-b210-ff8fc445b467",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-10T20:01:42.871Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019dFJxs2XRPRDt2MrpB9uCt",
+              "type": "tool_result",
+              "content": "Web search results for query: \"cross-modal convergence diffusion inference acceleration 2026\"\n\nLinks: [{\"title\":\"A multi-modal diffusion model with dual-cross-attention for multi-omics data generation and translation | Nature Communications\",\"url\":\"https://www.nature.com/articles/s41467-026-71744-x\"},{\"title\":\"Theoretical Framework, Technical Evolution, and Future Prospects of Cross-Modal Mapping and Controllable Image Generation Under Multi-Source Heterogeneous Collaboration\",\"url\":\"https://www.mdpi.com/1424-8220/26/10/2972\"},{\"title\":\"Graphics & Geometric Computing Group | CS, Tsinghua Univ.\",\"url\":\"https://cg.cs.tsinghua.edu.cn/research_main.htm\"},{\"title\":\"Cross-Attention Makes Inference Cumbersome in Text-to-Image Diffusion Models\",\"url\":\"https://arxiv.org/html/2404.02747v1\"},{\"title\":\"Accelerating Diffusion-based Text-to-Speech Model Training\",\"url\":\"https://www.isca-archive.org/interspeech_2025/choi25c_interspeech.pdf\"},{\"title\":\"Multi-modal LLMs, Diffusions, and the Unification\",\"url\":\"https://mn.cs.tsinghua.edu.cn/xinwang/PDF/papers/2025_Multi-modal%20Generative%20AI%20Multi-modal%20LLMs%20Diffusions%20and%20the%20Unification.pdf\"},{\"title\":\"DifTraj: Diffusion Inspired by Intrinsic Intention and Extrinsic ...\",\"url\":\"https://www.ijcai.org/proceedings/2024/0125.pdf\"},{\"title\":\"Downloads 2024\",\"url\":\"https://iclr.cc/Downloads/2024\"},{\"title\":\"Downloads 2024\",\"url\":\"https://icml.cc/Downloads/2024\"},{\"title\":\"Challenges and Research Directions for Large Language ...\",\"url\":\"https://arxiv.org/pdf/2601.05047\"}]\n\nBased on the web search results, here are the key findings related to cross-modal convergence, diffusion inference acceleration in 2026:\n\n## Recent Research Developments (2026)\n\nThe rapid evolution of diffusion models has shifted visual synthesis from text-only inputs to precisely controlled generation driven by multi-source heterogeneous sensor signals (e.g., audio, 3D, and physiological data). A systematic review of cross-modal mapping and controllable generation under multi-source collaboration is now available.\n\n### Cross-Modal Convergence\n\nResearch has found that cross-attention outputs converge to a fixed point during diffusion model inference, leading to the development of Tgate—a training-free method that caches the cross-attention output once it converges and keeps it fixed during remaining inference steps.\n\n### Inference Acceleration\n\nTgate can reduce 65T Multiple-Accumulate Operations (MACs) per image and eliminate 0.5B parameters in the fidelity-improving stage, resulting in a reduction of around 50% in latency compared to the baseline model (SDXL) without training costs.\n\n### Architectural Evolution\n\nResearch analyzes mechanisms in a backbone-agnostic manner, delineating the architectural transition from legacy U-Net dependencies to scalable architectures like Diffusion Transformers (DiTs).\n\n### Multi-Modal Applications\n\nResearchers developed scDiffusion-X, a multimodal generative diffusion model that generates realistic single-cell multi-omics data, enables cross-modality prediction, and reveals gene regulatory relationships.\n\nThese developments represent significant progress in making diffusion models more efficient and capable of handling multiple modalities simultaneously.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bc978f81-467d-46a1-8171-9854f54e43c2",
+            "isSidechain": true,
+            "promptId": "0b10807c-7db1-4e3e-afe2-5ed671a76021",
+            "agentId": "a66a773aec16120e1",
+            "type": "user",
+            "uuid": "336c273e-b0ac-4e58-b1c3-db5be30fc631",
+            "sourceToolAssistantUUID": "bc978f81-467d-46a1-8171-9854f54e43c2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-10T20:01:43.111Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WnL4AJ6VcT9mqcqNzkhyx4",
+              "type": "tool_result",
+              "content": "Web search results for query: \"per-modality adaptive step allocation video action diffusion\"\n\nLinks: [{\"title\":\"AdaDiff: Adaptive Step Selection for Fast Diffusion Models\",\"url\":\"https://arxiv.org/html/2311.14768v2\"},{\"title\":\"AdaDiff: Adaptive Step Selection for Fast Diffusion Models\",\"url\":\"https://ojs.aaai.org/index.php/AAAI/article/download/33075/35230\"},{\"title\":\"[2311.14768] AdaDiff: Adaptive Step Selection for Fast Diffusion Models\",\"url\":\"https://arxiv.org/abs/2311.14768\"},{\"title\":\"OmniVDiff: Omni Controllable Video Diffusion for Generation and Understanding\",\"url\":\"https://arxiv.org/html/2504.10825\"},{\"title\":\"[2309.17074] AdaDiff: Accelerating Diffusion Models through Step-Wise Adaptive Computation\",\"url\":\"https://arxiv.org/abs/2309.17074\"},{\"title\":\"One-Step Diffusion Policy: Fast Visuomotor Policies via Diffusion Distillation | OpenReview\",\"url\":\"https://openreview.net/forum?id=Z85EoYQhCs\"},{\"title\":\"Diffusion Policy: Visuomotor Policy Learning via Action Diffusion .\",\"url\":\"https://diffusion-policy.cs.columbia.edu/diffusion_policy_ijrr.pdf\"},{\"title\":\"GitHub - real-stanford/diffusion_policy: [RSS 2023] Diffusion Policy Visuomotor Policy Learning via Action Diffusion · GitHub\",\"url\":\"https://github.com/real-stanford/diffusion_policy\"},{\"title\":\"AdaDiff: Adaptive Step Selection for Fast Diffusion Models | Proceedings of the AAAI Conference on Artificial Intelligence\",\"url\":\"https://ojs.aaai.org/index.php/AAAI/article/view/33075\"},{\"title\":\"Diffusion policy: Visuomotor policy learning via action diffusion\",\"url\":\"https://www.researchgate.net/publication/384857010_Diffusion_policy_Visuomotor_policy_learning_via_action_diffusion\"}]\n\nBased on the search results, I found relevant information about adaptive step allocation in diffusion models. The primary work that matches your query is **AdaDiff: Adaptive Step Selection for Fast Diffusion Models**.\n\n## Key Findings:\n\nAdaDiff is a lightweight framework designed to learn instance-specific step usage policies, which are optimized using a policy gradient method to maximize a carefully designed reward function, balancing inference time and generation quality.\n\n### Performance Results:\n\nThe approach achieves similar visual quality compared to the baseline using a fixed 50 denoising steps while reducing inference time by at least 33%, going as high as 40%.\n\nFor video generation tasks specifically, compared to ModelScope's fixed 50-step outputs, AdaDiff not only enhances video quality but also reduces the generation time per video by 35.8%.\n\n### Adaptive Step Allocation Strategy:\n\nAdaDiff allocates more steps to more informative prompts and fewer steps to simpler prompts. This represents a departure from traditional \"one-size-fits-all\" approaches, where denoising steps are sample-specific conditioned on the richness of input texts.\n\nThe research demonstrates that AdaDiff is applicable to both image and video generation, making it a versatile approach for improving diffusion model efficiency across different modalities.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c11d8dd5-13a3-449a-a342-76914ee30f17",
+            "isSidechain": true,
+            "promptId": "0b10807c-7db1-4e3e-afe2-5ed671a76021",
+            "agentId": "a66a773aec16120e1",
+            "type": "user",
+            "uuid": "e990988a-55bf-486a-bc40-cb1dbc18b38a",
+            "sourceToolAssistantUUID": "c11d8dd5-13a3-449a-a342-76914ee30f17",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-10T20:01:43.386Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HX9FFumFBU45SKWpYVKsx5",
+              "type": "tool_result",
+              "content": "Web search results for query: \"D3P dynamic denoising diffusion policy PPO\"\n\nLinks: [{\"title\":\"D3P: Dynamic Denoising Diffusion Policy via Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2508.06804v1\"},{\"title\":\"Denoising Diffusion Policy Optimization\",\"url\":\"https://www.emergentmind.com/topics/denoising-diffusion-policy-optimization-ddpo\"},{\"title\":\"[2508.06804] D3P: Dynamic Denoising Diffusion Policy via Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2508.06804\"},{\"title\":\"D3P: Dynamic Denoising Diffusion Policy via Reinforcement Learning | alphaXiv\",\"url\":\"https://www.alphaxiv.org/abs/2508.06804v1\"},{\"title\":\"D3P: Dynamic Denoising Diffusion Policy via ...\",\"url\":\"https://arxiv.org/pdf/2508.06804\"},{\"title\":\"(PDF) D3P: Dynamic Denoising Diffusion Policy via Reinforcement Learning\",\"url\":\"https://www.researchgate.net/publication/394438722_D3P_Dynamic_Denoising_Diffusion_Policy_via_Reinforcement_Learning\"},{\"title\":\"Diffusion Policy Policy Optimization\",\"url\":\"https://diffusion-ppo.github.io/\"},{\"title\":\"DIFFUSION POLICY POLICY OPTIMIZATION\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/c0749c39aaff9e9e4c91f7118bf21b1e-Paper-Conference.pdf\"},{\"title\":\"Denoising Diffusion Policy Optimization · Hugging Face\",\"url\":\"https://huggingface.co/docs/trl/main/en/ddpo_trainer\"},{\"title\":\"GitHub - irom-princeton/dppo: Official implementation of Diffusion Policy Policy Optimization, arxiv 2024 · GitHub\",\"url\":\"https://github.com/irom-princeton/dppo\"}]\n\nBased on the search results, here's what I found about D3P, Dynamic Denoising Diffusion Policy with PPO:\n\n## D3P: Dynamic Denoising Diffusion Policy\n\nD3P is a diffusion policy that dynamically adjusts the number of denoising steps during task execution. The D3P architecture consists of a standard noise predicting network that serves as the base diffusion policy, and a lightweight adaptor designed to predict the noise-level strides based on the current observation, which eventually adapts the number of denoising steps for the current action.\n\n## Motivation and Key Insight\n\nWhile existing acceleration methods apply a fixed number of denoising steps per action, implicitly treating all actions as equally important, robotic tasks often contain a mix of crucial and routine actions, which differ in their impact on task success.\n\n## Training with Reinforcement Learning\n\nReinforcement learning is used with a two-layer partially observable Markov decision process (POMDP) to jointly train both the base diffusion policy and the adaptor. Specifically, a base policy is fine-tuned with DPPO to maximize task success, while the lightweight adaptor is trained from scratch with PPO.\n\n## Performance Results\n\nD3P achieves a 1.9× acceleration in inference speed against a normal fixed-step diffusion policy on physical robots. For crucial actions such as grasping and aligning, D3P increases its denoising steps to 8 and 6, while for simpler motions, it reduces the step count to as low as 3.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d3a6a586-386d-4b6b-9d3a-4c919116cd45",
+            "isSidechain": true,
+            "promptId": "0b10807c-7db1-4e3e-afe2-5ed671a76021",
+            "agentId": "a66a773aec16120e1",
+            "type": "user",
+            "uuid": "527768a1-3960-4f28-a218-38643fb921f4",
+            "sourceToolAssistantUUID": "d3a6a586-386d-4b6b-9d3a-4c919116cd45",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-10T20:01:43.533Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015GMqowrQsxSJoKLikLQFU9",
+              "type": "tool_result",
+              "content": "Web search results for query: \"adaptive denoising world action model 2026\"\n\nLinks: [{\"title\":\"Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising\",\"url\":\"https://arxiv.org/html/2604.26694v2\"},{\"title\":\"𝐴₁: A Fully Transparent Open-Source, Adaptive and Efficient Truncated Vision-Language-Action Model\",\"url\":\"https://arxiv.org/html/2604.05672\"},{\"title\":\"World Action Models are Zero-shot Policies\",\"url\":\"https://arxiv.org/html/2602.15922v1\"},{\"title\":\"Unified Video Action Model | Request PDF\",\"url\":\"https://www.researchgate.net/publication/395361978_Unified_Video_Action_Model\"},{\"title\":\"MotuBrain: An Advanced World Action Model for Robot Control\",\"url\":\"https://arxiv.org/html/2604.27792v2\"},{\"title\":\"Astra: General Interactive World Model with Autoregressive Denoising\",\"url\":\"https://arxiv.org/html/2512.08931\"},{\"title\":\"[2512.08931] Astra: General Interactive World Model with Autoregressive Denoising\",\"url\":\"https://arxiv.org/abs/2512.08931\"},{\"title\":\"GitHub - LMD0311/Awesome-World-Model: Collect some World Models for Autonomous Driving (and Robotic, etc.) papers. · GitHub\",\"url\":\"https://github.com/LMD0311/Awesome-World-Model\"},{\"title\":\"[2603.16666] Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://arxiv.org/abs/2603.16666\"},{\"title\":\"Action-Conditioned Video World Model\",\"url\":\"https://www.emergentmind.com/topics/action-conditioned-video-world-model\"}]\n\nBased on the search results, here are several recent research papers and projects on adaptive denoising world action models from 2026:\n\n## Key Papers and Projects:\n\n**1. X-WAM: Unified 4D World Action Modeling**\nX-WAM is a Unified 4D World Model that unifies real-time robotic action execution and high-fidelity 4D world synthesis (video + 3D reconstruction) in a single framework. The model proposes Asynchronous Noise Sampling (ANS) to jointly optimize generation quality and action decoding efficiency, applying a specialized asynchronous denoising schedule during inference.\n\n**2. Astra: General Interactive World Model**\nAstra adopts an autoregressive denoising framework, which integrates the long-horizon modeling of autoregression with the high-fidelity synthesis of diffusion. The model introduces an action-aware adapter that directly injects action signals into the denoising process, and develops a mixture of action experts that dynamically routes heterogeneous action modalities.\n\n**3. MotuBrain: Advanced World Action Model**\nMotuBrain develops a systems-oriented inference stack including denoising-step reduction, compilation with CUDA-graph-friendly execution, FP8 quantization, and DiT caching, delivering more than 50x end-to-end speedup over the naive baseline.\n\n**4. A₁: Adaptive Vision-Language-Action Model**\nA₁ equips models with a budget-aware adaptive inference mechanism, computing actions at intermediate VLM layers and performing an action-consistency test to decide whether to terminate early, achieving substantial end-to-end latency reduction.\n\nThese models represent recent advances in combining video generation with adaptive denoising techniques for improved robotic control and action prediction.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f1e58f50-6f46-48d6-a301-e4f2e545ed8c",
+            "isSidechain": true,
+            "promptId": "0b10807c-7db1-4e3e-afe2-5ed671a76021",
+            "agentId": "a66a773aec16120e1",
+            "type": "user",
+            "uuid": "6ee9ef66-883b-4105-91e4-940a9c0e546b",
+            "sourceToolAssistantUUID": "f1e58f50-6f46-48d6-a301-e4f2e545ed8c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-10T20:01:43.856Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01U8MLTGGtLSZiHzePGrrmw7",
+              "type": "tool_result",
+              "content": "Web search results for query: \"site:arxiv.org world action model adaptive inference 2026\"\n\nLinks: [{\"title\":\"When to Trust Imagination: Adaptive Action Execution for World Action Models\",\"url\":\"https://arxiv.org/html/2605.06222\"},{\"title\":\"Flying by Inference: Active Inference World Models for Adaptive UAV Swarms\",\"url\":\"https://arxiv.org/html/2604.27935v1\"},{\"title\":\"[2605.06222] When to Trust Imagination: Adaptive Action Execution for World Action Models\",\"url\":\"https://arxiv.org/abs/2605.06222\"},{\"title\":\"Do World Action Models Generalize Better than VLAs? A Robustness Study\",\"url\":\"https://arxiv.org/html/2603.22078v1\"},{\"title\":\"𝐴₁: A Fully Transparent Open-Source, Adaptive and Efficient Truncated Vision-Language-Action Model\",\"url\":\"https://arxiv.org/html/2604.05672\"},{\"title\":\"Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising\",\"url\":\"https://arxiv.org/html/2604.26694v2\"},{\"title\":\"[2603.16666] Fast-WAM: Do World Action Models Need Test-time Future Imagination?\",\"url\":\"https://arxiv.org/abs/2603.16666\"},{\"title\":\"Being-H0.7: A Latent World-Action Model from Egocentric Videos\",\"url\":\"https://arxiv.org/html/2605.00078v1\"},{\"title\":\"A Comprehensive Survey on World Models for Embodied AI\",\"url\":\"https://arxiv.org/html/2510.16732v1\"},{\"title\":\"[2604.14732] World-Value-Action Model: Implicit Planning for Vision-Language-Action Systems\",\"url\":\"https://arxiv.org/abs/2604.14732\"}]\n\nI found several relevant research papers on arXiv related to world action models and adaptive inference from 2026. Here are the key results:\n\n## Primary Results:\n\n1. **\"When to Trust Imagination: Adaptive Action Execution for World Action Models\"** - The paper formulates adaptive WAM execution as a future–reality verification problem: the robot should execute longer when the WAM-predicted future remains reliable, and replan earlier when reality deviates from imagination. The method reduces WAM forward passes by 69.10% and execution time by 34.02%, while improving success rate by 2.54% over the short-chunk baseline; in real-world experiments, it improves success rate by 35%.\n\n2. **\"Flying by Inference: Active Inference World Models for Adaptive UAV Swarms\"** - This paper presents an expert-guided active-inference-inspired framework for adaptive UAV swarm trajectory planning, converting multi-UAV trajectory design from a repeated combinatorial optimization problem into a hierarchical probabilistic inference problem.\n\n3. **\"Do World Action Models Generalize Better than VLAs? A Robustness Study\"** - A comprehensive comparison of world action model architectures and their generalization properties.\n\n4. **\"X-WAM: Unified 4D World Action Modeling\"** - The paper proposes Asynchronous Noise Sampling (ANS) to jointly optimize generation quality and action decoding efficiency, applying a specialized asynchronous denoising schedule during inference.\n\n5. **\"Fast-WAM: Do World Action Models Need Test-time Future Imagination?\"** - The paper proposes Fast-WAM, a WAM architecture that retains video co-training during training but skips future prediction at test time.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4f77c0fd-bc09-417a-aa3b-acbf34d7839f",
+            "isSidechain": true,
+            "promptId": "0b10807c-7db1-4e3e-afe2-5ed671a76021",
+            "agentId": "a66a773aec16120e1",
+            "type": "user",
+            "uuid": "9c5699d7-c3b6-4b23-bc78-440dbb86506e",
+            "sourceToolAssistantUUID": "4f77c0fd-bc09-417a-aa3b-acbf34d7839f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-10T20:01:44.037Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EQ2rhAjxiR26JLqovHX3XF",
+              "type": "tool_result",
+              "content": "Web search results for query: \"self-correcting diffusion inference robotics 2026\"\n\nLinks: [{\"title\":\"Frontiers | Diffusion models for robotic manipulation: a survey\",\"url\":\"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/full\"},{\"title\":\"Diffusion models for robotic manipulation: a survey - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC12454101/\"},{\"title\":\"Diffusion Model in Robotics: A Comprehensive Review by Linxin Bai, Chenkang Du, Liangjing Shao, Xiaobo Yang, Xinrong Chen :: SSRN\",\"url\":\"https://papers.ssrn.com/sol3/Delivery.cfm/df28019c-c464-43dc-984d-21d6d8716696-MECA.pdf?abstractid=5237963&mirid=1\"},{\"title\":\"The State Of LLMs 2025: Progress, Progress, and Predictions\",\"url\":\"https://magazine.sebastianraschka.com/p/state-of-llms-2025\"},{\"title\":\"GitHub - mbreuss/diffusion-literature-for-robotics: Summary of key papers and blogs about diffusion models to learn about the topic. Detailed list of all published diffusion robotics papers. · GitHub\",\"url\":\"https://github.com/mbreuss/diffusion-literature-for-robotics\"},{\"title\":\"Diffusion models for robotic manipulation: a survey - PubMed\",\"url\":\"https://pubmed.ncbi.nlm.nih.gov/40995149/\"},{\"title\":\"Diffusion Policy: Visuomotor Policy Learning via Action Diffusion\",\"url\":\"https://diffusion-policy.cs.columbia.edu/\"},{\"title\":\"GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub\",\"url\":\"https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln\"},{\"title\":\"Robotics: Science and Systems 2023\",\"url\":\"https://www.roboticsproceedings.org/rss19/p026.pdf\"},{\"title\":\"Diffusion models for robotic manipulation: a survey\",\"url\":\"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/pdf\"}]\n\nBased on the search results, I found relevant information about diffusion models and robotics in 2025-2026. Here are the key findings:\n\n## Diffusion Models in Robotics (2025-2026)\n\nSince 2022, there has been a noticeable increase in the implementation of diffusion probabilistic models within the field of robotic manipulation. These models are applied across various tasks, including trajectory planning and grasp prediction.\n\n### Recent Developments\n\nThere are several methods regarding sampling speed, specifically for applications in robotic manipulation. Notable approaches include:\n\n- Chen K. et al. (2024) samples from a more informed distribution than a Gaussian, pointing out that even initial distributions approximated with simple heuristics result in better sample quality, especially when using few diffusion steps or when only a limited amount of data is available.\n\n- Others use teacher–student distillation techniques, where pretrained diffusion models serve as teachers, guiding student models to operate with larger denoising steps while preserving consistency with the teacher's results at smaller steps.\n\n### 2026 Research Directions\n\nThe search results indicate active research in 2026, including recent work on vision-language-action models for embodied AI tasks, such as CycleVLA: Proactive Self-Correcting Vision-Language-Action Models via Subtask Backtracking and Minimum Bayes Risk Decoding.\n\nThe field continues to focus on improving inference speed, real-time control capabilities, and multimodal action generation for robotic manipulation tasks.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7955f548-e56c-486e-8d91-6e95ffe091e2",
+            "isSidechain": true,
+            "promptId": "0b10807c-7db1-4e3e-afe2-5ed671a76021",
+            "agentId": "a66a773aec16120e1",
+            "type": "user",
+            "uuid": "427e4fdc-03a8-45a7-869a-94bcdd113bc7",
+            "sourceToolAssistantUUID": "7955f548-e56c-486e-8d91-6e95ffe091e2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-10T20:01:44.402Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015QmzAMbKdTUEJz5UefDofi",
+              "type": "tool_result",
+              "content": "Web search results for query: \"extension mechanism denoising diffusion steps quality\"\n\nLinks: [{\"title\":\"StepSaver: Predicting Minimum Denoising Steps for Diffusion Model Image Generation\",\"url\":\"https://arxiv.org/html/2408.02054v1\"},{\"title\":\"Transformers Learn the Optimal DDPM Denoiser for Multi-Token GMMs\",\"url\":\"https://www.catalyzex.com/paper/transformers-learn-the-optimal-ddpm-denoiser\"},{\"title\":\"Real-World Denoising Through Diffusion Model | DigitalOcean\",\"url\":\"https://www.digitalocean.com/community/tutorials/denoising-via-diffusion-model\"},{\"title\":\"Introduction to Diffusion Models for Machine Learning | SuperAnnotate\",\"url\":\"https://www.superannotate.com/blog/diffusion-models\"},{\"title\":\"Denoising Diffusion Step-aware Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=c43FGk8Pcg\"},{\"title\":\"How to Use Stable Diffusion's Multi-Diffusion Extension for Image Upscaling - Next Diffusion\",\"url\":\"https://www.nextdiffusion.ai/tutorials/upscale-and-add-detail-locally-with-stable-diffusion\"},{\"title\":\"Watch Your Step: Information Injection in Diffusion Models via Shadow Timestep Embedding\",\"url\":\"https://arxiv.org/html/2605.00935\"},{\"title\":\"Aman's AI Journal • Primers • Diffusion Models\",\"url\":\"https://aman.ai/primers/ai/diffusion-models/\"},{\"title\":\"Improved Denoising Diffusion Probabilistic Models\",\"url\":\"https://proceedings.mlr.press/v139/nichol21a/nichol21a.pdf\"},{\"title\":\"Latent Diffusion Models: Components and Denoising Steps | Victor Dibia\",\"url\":\"https://victordibia.com/blog/stable-diffusion-denoising/\"}]\n\nBased on the search results, I found several relevant findings about extension mechanisms, denoising, diffusion steps, and quality:\n\n## Key Findings:\n\n**Denoising Steps and Image Quality:**\nA higher number of steps generally leads to finer details and better image quality, but requires more computational resources and time. The number of denoising steps determines the number of iterations the model takes to convert the noise to an image.\n\n**Step-Aware Design for Efficiency:**\nA framework called Denoising Diffusion Step-aware Models (DDSM) employs a spectrum of neural networks whose sizes are adapted according to the importance of each generative step, which effectively circumvents redundant computational efforts, particularly in less critical steps, thereby enhancing the efficiency of the diffusion model. DDSM achieves computational savings of 49% for CIFAR-10, 61% for CelebA-HQ, 59% for LSUN-bedroom, 71% for AFHQ, and 76% for ImageNet, all without compromising the generation quality.\n\n**Scheduler Role:**\nThe scheduler algorithm plays a critical role in quality of generated images by managing how much noise is introduced to the input image at each stage of the denoising procedure, and then iteratively execute multiple steps to transform a noisy image into a clear one.\n\n**Alternative Approaches:**\nThere is an alternative method called Denoising Diffusion Implicit Model (DDIM) that stands out for its efficiency and quality, needing fewer steps to create clear images from noisy data.\n\nThe search results suggest that extensions and mechanisms for optimizing diffusion steps involve using step-aware neural networks and efficient schedulers to maintain quality while reducing computational cost.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e174e423-8439-4fb1-afca-29949e83a754",
+            "isSidechain": true,
+            "promptId": "0b10807c-7db1-4e3e-afe2-5ed671a76021",
+            "agentId": "a66a773aec16120e1",
+            "type": "user",
+            "uuid": "3003c6c4-2b2e-410a-9332-77867a3f8475",
+            "sourceToolAssistantUUID": "e174e423-8439-4fb1-afca-29949e83a754",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-10T20:01:44.516Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017ogPsMK6e7tZ4KigMRHT8D",
+              "type": "tool_result",
+              "content": "Web search results for query: \"multi-modal diffusion adaptive caching cross-modal\"\n\nLinks: [{\"title\":\"A Survey on Cache Methods in Diffusion Models\",\"url\":\"https://arxiv.org/pdf/2510.19755\"},{\"title\":\"A Survey on Cache Methods in Diffusion Models: Toward Efficient Multi-Modal Generation\",\"url\":\"https://arxiv.org/html/2510.19755v1\"},{\"title\":\"[Literature Review] A Survey on Cache Methods in Diffusion Models: Toward Efficient Multi-Modal Generation\",\"url\":\"https://www.themoonlight.io/en/review/a-survey-on-cache-methods-in-diffusion-models-toward-efficient-multi-modal-generation\"},{\"title\":\"[2510.19755] A Survey on Cache Methods in Diffusion Models: Toward Efficient Multi-Modal Generation\",\"url\":\"https://arxiv.org/abs/2510.19755\"},{\"title\":\"A multi-modal diffusion model with dual-cross-attention for multi-omics data generation and translation | Nature Communications\",\"url\":\"https://www.nature.com/articles/s41467-026-71744-x\"},{\"title\":\"Diffusion Caching for Fast Inference\",\"url\":\"https://www.emergentmind.com/topics/diffusion-caching\"},{\"title\":\"Adaptive Caching for Faster Video Generation with Diffusion Transformers\",\"url\":\"https://adacache-dit.github.io/clarity/adacache_meta.pdf\"},{\"title\":\"Block-wise Adaptive Caching for Accelerating Diffusion Policy\",\"url\":\"https://arxiv.org/html/2506.13456\"},{\"title\":\"Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers\",\"url\":\"https://openaccess.thecvf.com/content/ICCV2025/papers/Lv_Rethinking_Cross-Modal_Interaction_in_Multimodal_Diffusion_Transformers_ICCV_2025_paper.pdf\"},{\"title\":\"MMDit: Multimodal Diffusion Transformers\",\"url\":\"https://www.emergentmind.com/topics/multimodal-diffusion-transformers-mmdit\"}]\n\nBased on the search results, here's what I found regarding multi-modal diffusion adaptive caching and cross-modal techniques:\n\n## Key Topics Found\n\n### 1. **Diffusion Caching for Efficient Multi-Modal Generation**\n\nDiffusion Caching offers a promising training-free, architecture-agnostic, and efficient inference paradigm, with its core mechanism identifying and reusing intrinsic computational redundancies in the diffusion process. Existing methods still face limitations in terms of cache consistency, generalization, memory efficiency, and cross-platform adaptability, particularly in high-resolution image and long-sequence video generation tasks.\n\n### 2. **Adaptive Caching Strategies**\n\nCaching methods are categorized into Static and Dynamic paradigms, with Dynamic Caching further divided into Timestep-Adaptive, Layer-Adaptive, Predictive, and Hybrid strategies. LazyDiT introduces a linear predictor before each Transformer layer to learn a similarity function, and experiments demonstrate that LazyDiT maintains comparable generation quality even when skipping approximately 50% of layer computations.\n\n### 3. **Multimodal Diffusion Transformers (MMDit)**\n\nMultimodal Diffusion Transformers extend diffusion models with transformer backbones to integrate heterogeneous modalities like images, text, audio, and video, employing joint token representations, adaptive conditioning, and cross-modal loss integration.\n\n### 4. **Cross-Modal Attention Methods**\n\nA Dual-Cross-Attention module can adaptively capture intricate, hidden relationships between molecular modalities, offering a more flexible and interpretable approach than existing integration strategies.\n\n### 5. **Future Directions**\n\nFuture research is focusing on adaptive cache intervals informed by online error signals, learning-to-cache or meta-cache schedulers, and extending diffusion caching to real-time multimodal, interactive, and large-scale applications.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "07b5eb69-5687-4f3f-a617-e6a2d9fdbe3a",
+            "isSidechain": true,
+            "promptId": "0b10807c-7db1-4e3e-afe2-5ed671a76021",
+            "agentId": "a66a773aec16120e1",
+            "type": "user",
+            "uuid": "0feb9838-be4a-41af-8792-742a5e612e61",
+            "sourceToolAssistantUUID": "07b5eb69-5687-4f3f-a617-e6a2d9fdbe3a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-10T20:01:44.754Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AcMfDAMjXEFjTfo7pPcQHD",
+              "type": "tool_result",
+              "content": "Web search results for query: \"DA-SIP difficulty aware stochastic interpolant\"\n\nLinks: [{\"title\":\"Dynamic Test-Time Compute Scaling in Control Policy: Difficulty-Aware Stochastic Interpolant Policy | OpenReview\",\"url\":\"https://openreview.net/forum?id=oDoPiR8wZJ\"},{\"title\":\"NeurIPS Poster Dynamic Test-Time Compute Scaling in Control Policy: Difficulty-Aware Stochastic Interpolant Policy\",\"url\":\"https://neurips.cc/virtual/2025/poster/116060\"},{\"title\":\"[2511.20906] Dynamic Test-Time Compute Scaling in Control Policy: Difficulty-Aware Stochastic Interpolant Policy\",\"url\":\"https://arxiv.org/abs/2511.20906\"},{\"title\":\"Dynamic Test-Time Compute Scaling in Control Policy: Difficulty-Aware Stochastic Interpolant Policy\",\"url\":\"https://arxiv.org/html/2511.20906v1\"},{\"title\":\"Difficulty-Aware Stochastic Interpolant Policy\",\"url\":\"https://openreview.net/pdf/7a30c2c968c8780bf3b856c68fafd01463d929dd.pdf\"},{\"title\":\"GitHub - ryaninkook/DASIP: DASIP introduces a Stochastic Interpolant (SI) framework that unifies diffusion and flow based model formulations for robotics imitation learning. It uses a difficulty classifier to analyze observations in real-time and dynamically selects an optimal inference configuration triple. · GitHub\",\"url\":\"https://github.com/ryaninkook/DASIP\"},{\"title\":\"(PDF) Dynamic Test-Time Compute Scaling in Control Policy: Difficulty-Aware Stochastic Interpolant Policy\",\"url\":\"https://www.researchgate.net/publication/398025928_Dynamic_Test-Time_Compute_Scaling_in_Control_Policy_Difficulty-Aware_Stochastic_Interpolant_Policy/fulltext/6927c21ca130337711bfaae1/Dynamic-Test-Time-Compute-Scaling-in-Control-Policy-Difficulty-Aware-Stochastic-Interpolant-Policy.pdf?origin=scientificContributions\"},{\"title\":\"Diff-Control Policy for Adaptive RL\",\"url\":\"https://www.emergentmind.com/topics/diff-control-policy\"},{\"title\":\"dblp: Eric Vanden-Eijnden\",\"url\":\"https://dblp.org/pid/88/7927.html\"},{\"title\":\"SiT: Exploring Flow and Diffusion-based Generative Models with Scalable Interpolant Transformers\",\"url\":\"https://arxiv.org/html/2401.08740v1\"}]\n\nBased on the search results, here's what I found about DA-SIP (Difficulty-Aware Stochastic Interpolant Policy):\n\n## Overview\n\nDA-SIP is a framework that enables robotic controllers to adaptively adjust their integration horizon in real-time based on task difficulty. Diffusion- and flow-based policies deliver state-of-the-art performance on long-horizon robotic manipulation and imitation-learning tasks, but these controllers employ a fixed inference budget at every control step, regardless of task complexity, leading to computational inefficiency for simple subtasks while potentially underperforming on challenging ones.\n\n## Technical Approach\n\nThe approach employs a difficulty classifier that analyzes RGB-D observations to dynamically select the step budget, the optimal solver variant, and ODE/SDE integration at each control cycle. DA-SIP builds upon the stochastic interpolant formulation to provide a unified framework that unlocks diverse training and inference configurations for diffusion- and flow-based policies.\n\n## Key Features\n\nThe system uses three complementary difficulty classifiers: (i) a lightweight CNN designed for efficiency, (ii) a few-shot vision-language model (VLM) prompted with exemplar images, and (iii) a few-shot VLM fine-tuned on collected data.\n\nFor a three-level difficulty system, configurations map difficulty levels to balance performance and compute cost: Easy (N=5, Euler, ODE) for minimal computation for coarse motions, Medium (N=10, Heun, ODE) for moderate resources for approach phases, and Hard (N=20, RK4, SDE) for maximum computation for precision tasks.\n\n## Performance Results\n\nDA-SIP achieves 2.6-4.4x reduction in total computation time while maintaining task success rates comparable to fixed maximum-computation baselines.\n\nThe paper was published at NeurIPS 2025 by Inkook Chun and collaborators, with code available on GitHub.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e0509aad-aedd-496f-a4ee-eabcd38d1905",
+            "isSidechain": true,
+            "promptId": "0b10807c-7db1-4e3e-afe2-5ed671a76021",
+            "agentId": "a66a773aec16120e1",
+            "type": "user",
+            "uuid": "3c8ad85d-e704-4d89-8592-7bf14b1f2d41",
+            "sourceToolAssistantUUID": "e0509aad-aedd-496f-a4ee-eabcd38d1905",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-10T20:02:12.654Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Comprehensive Search Results: Adaptive Inference and Quality-Floor Mechanisms\n\nI've conducted an extensive search across 10 queries targeting recent work on adaptive inference, self-correction, and quality-floor mechanisms. Here are my key findings:\n\n---\n\n## CRITICAL FINDINGS - Direct Competitors and Concurrent Work\n\n### 1. **DA-SIP (Difficulty-Aware Stochastic Interpolant Policy)** - NeurIPS 2025\n- **URL**: https://arxiv.org/abs/2511.20906\n- **Critical Discovery**: This is a **direct competitor approach** that addresses the same problem space\n- **What it does**: Uses a difficulty classifier to analyze RGB-D observations in real-time and dynamically selects:\n  - Step budget (N=5 for Easy, N=10 for Medium, N=20 for Hard)\n  - Optimal solver variant (Euler, Heun, RK4)\n  - ODE/SDE integration selection\n- **Results**: Achieves **2.6-4.4x reduction in total computation time** while maintaining task success rates\n- **Key difference from proposal**: Uses difficulty classification rather than cross-modal disagreement signals, but achieves similar goals of adaptive step allocation based on task state\n- **GitHub**: https://github.com/ryaninkook/DASIP\n\n### 2. **D3P (Dynamic Denoising Diffusion Policy)** - August 2025\n- **URL**: https://arxiv.org/abs/2508.06804\n- **Critical Discovery**: Another **concurrent adaptive denoising approach** using PPO\n- **What it does**: Dynamically adjusts denoising steps during task execution using a lightweight adaptor that predicts noise-level strides based on current observations\n- **Training**: Fine-tunes base policy with DPPO, trains adaptor with PPO\n- **Results**: Achieves **1.9x acceleration** in inference speed on physical robots\n- **Adaptation strategy**: Increases steps to 8 for grasping, 6 for alignment, reduces to 3 for simple motions\n- **Key difference**: Doesn't use cross-modal signals but directly learns step adaptation via RL\n\n### 3. **When to Trust Imagination: Adaptive Action Execution for WAM** - 2026\n- **URL**: https://arxiv.org/abs/2605.06222\n- **What it does**: Formulates adaptive WAM execution as future-reality verification—extends execution when WAM predictions are reliable, replans when reality deviates\n- **Results**: \n  - Reduces WAM forward passes by 69.10%\n  - Reduces execution time by 34.02%\n  - Improves success rate by 2.54% over baseline\n  - Real-world: 35% success rate improvement\n- **Key mechanism**: Monitors prediction-reality alignment to decide extension/replan—closest to \"quality floor\" concept\n- **Relevant**: This uses model confidence/verification as the adaptive signal\n\n---\n\n## HIGHLY RELEVANT ADAPTIVE/EFFICIENCY WORK\n\n### 4. **Block-wise Adaptive Caching for Accelerating Diffusion Policy** - 2025\n- **URL**: https://arxiv.org/html/2506.13456\n- **What it does**: Applies adaptive caching specifically to diffusion policies\n- **Relevance**: Shows caching-based optimization is actively being explored for diffusion policies\n\n### 5. **AdaDiff: Adaptive Step Selection for Fast Diffusion Models** - 2024/2025\n- **URL**: https://arxiv.org/abs/2311.14768\n- **What it does**: Learns instance-specific step usage policies using policy gradient methods\n- **Results**: \n  - 33-40% inference time reduction\n  - 35.8% reduction for video generation\n  - Allocates more steps to complex prompts, fewer to simple ones\n- **Relevance**: Demonstrates the viability of sample-adaptive step selection\n\n### 6. **A Survey on Cache Methods in Diffusion Models** - October 2025\n- **URL**: https://arxiv.org/abs/2510.19755\n- **Scope**: Comprehensive review of caching strategies for multi-modal diffusion\n- **Categories identified**:\n  - Timestep-Adaptive caching\n  - Layer-Adaptive caching\n  - Predictive and Hybrid strategies\n- **LazyDiT mentioned**: Linear predictor learns similarity function, skips ~50% of layer computations\n- **Highly relevant**: Surveys the entire landscape of efficiency mechanisms in diffusion\n\n---\n\n## CROSS-MODAL AND CONVERGENCE WORK\n\n### 7. **Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers** - ICCV 2025\n- **URL**: https://openaccess.thecvf.com/content/ICCV2025/papers/Lv_Rethinking_Cross-Modal_Interaction_in_Multimodal_Diffusion_Transformers_ICCV2025_paper.pdf\n- **What it does**: Analyzes cross-modal interaction mechanisms in multimodal diffusion transformers\n- **Relevance**: Directly addresses how different modalities interact during diffusion\n\n### 8. **A Survey on Cross-Modal Mapping Under Multi-Source Collaboration** - 2026\n- Shows that cross-attention outputs **converge to fixed points** during diffusion inference\n- Mentions **Tgate**: Training-free caching method that caches cross-attention once convergence detected\n- Results: 50% latency reduction, eliminates 0.5B parameters\n\n### 9. **Denoising Diffusion Step-aware Models (DDSM)**\n- **URL**: https://openreview.net/forum?id=c43FGk8Pcg\n- **What it does**: Adapts neural network sizes per step based on step importance\n- **Results**: 49-76% computational savings without quality loss\n- **Relevance**: Step-aware efficiency optimization approach\n\n---\n\n## RECENT WORLD ACTION MODELS WITH ADAPTIVE MECHANISMS\n\n### 10. **X-WAM: Unified 4D World Action Modeling** - 2026\n- **URL**: https://arxiv.org/abs/2604.26694\n- **What it does**: Proposes **Asynchronous Noise Sampling (ANS)** for joint optimization of generation quality and action decoding efficiency\n- **Key feature**: Specialized asynchronous denoising schedule during inference\n- **Relevance**: Demonstrates adaptive denoising scheduling for WAMs\n\n### 11. **MotuBrain: Advanced World Action Model** - 2026\n- **URL**: https://arxiv.org/abs/2604.27792\n- **What it does**: Systems-oriented inference stack including:\n  - Denoising-step reduction\n  - CUDA-graph-friendly compilation\n  - FP8 quantization\n  - DiT caching\n- **Results**: **50x end-to-end speedup**\n- **Relevance**: Practical implementation of efficiency mechanisms for WAMs\n\n### 12. **Astra: General Interactive World Model** - December 2025\n- **URL**: https://arxiv.org/abs/2512.08931\n- **What it does**: Autoregressive denoising with action-aware adapters and mixture of action experts\n- **Key feature**: Dynamically routes heterogeneous action modalities\n- **Relevance**: Multimodal routing during generation\n\n### 13. **Fast-WAM: Do World Action Models Need Test-time Future Imagination?** - 2026\n- **URL**: https://arxiv.org/abs/2603.16666\n- **What it does**: Skips future prediction at test time while retaining video co-training\n- **Relevance**: Extreme case of test-time optimization\n\n### 14. **A₁: Adaptive and Efficient Vision-Language-Action Model** - 2026\n- **URL**: https://arxiv.org/html/2604.05672\n- **What it does**: \n  - Budget-aware adaptive inference\n  - Action-consistency test to decide early termination\n  - Computes actions at intermediate VLM layers\n- **Relevance**: Early exit mechanism for action models\n\n---\n\n## SELF-CORRECTION AND VERIFICATION\n\n### 15. **CycleVLA: Proactive Self-Correcting Vision-Language-Action Models** - 2026\n- **What it does**: Subtask backtracking and minimum Bayes risk decoding\n- **Relevance**: Self-correction mechanism for VLAs\n\n---\n\n## KEY GAPS IN THE SEARCH\n\n**Not Found** (based on these searches):\n- No papers explicitly proposing **cross-modal disagreement signals** as the primary quality assessment mechanism for early termination\n- No work explicitly calling the approach a \"quality floor\" mechanism within diffusion denoising\n- No papers on **per-modality step allocation based on cross-modal variance** specifically\n\n---\n\n## COMPETITIVE LANDSCAPE SUMMARY\n\nThe most directly competitive work is:\n1. **DA-SIP** (difficulty classification + dynamic step budget) - NeurIPS 2025\n2. **D3P** (adaptive steps via RL with learned adaptor) - August 2025\n3. **AdaDiff** (adaptive step selection via policy gradient) - 2024/2025\n\nThese all solve the same problem (reducing inference steps adaptively) but use **different signals**:\n- DA-SIP: Difficulty classifier on observations\n- D3P: RL-learned adaptor from observations\n- AdaDiff: Policy gradient on prompt complexity\n- **Your proposal**: Cross-modal disagreement + extension mechanism\n\nThe novelty would be in the **cross-modal disagreement signal** and the **extension mechanism within denoising**, which I did not find explicitly proposed in concurrent work.\n\n---\n\n## Sources:\n- [D3P: Dynamic Denoising Diffusion Policy](https://arxiv.org/abs/2508.06804)\n- [DA-SIP: Difficulty-Aware Stochastic Interpolant Policy](https://arxiv.org/abs/2511.20906)\n- [When to Trust Imagination: Adaptive Action Execution for WAM](https://arxiv.org/abs/2605.06222)\n- [AdaDiff: Adaptive Step Selection for Fast Diffusion Models](https://arxiv.org/abs/2311.14768)\n- [A Survey on Cache Methods in Diffusion Models](https://arxiv.org/abs/2510.19755)\n- [X-WAM: Unified 4D World Action Modeling](https://arxiv.org/abs/2604.26694)\n- [MotuBrain: Advanced World Action Model](https://arxiv.org/abs/2604.27792)\n- [Astra: General Interactive World Model](https://arxiv.org/abs/2512.08931)\n- [Fast-WAM](https://arxiv.org/abs/2603.16666)\n- [A₁: Adaptive Vision-Language-Action Model](https://arxiv.org/html/2604.05672)\n- [Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers](https://openaccess.thecvf.com/content/ICCV2025/papers/Lv_Rethinking_Cross-Modal_Interaction_in_Multimodal_Diffusion_Transformers_ICCV2025_paper.pdf)\n- [Denoising Diffusion Step-aware Models](https://openreview.net/forum?id=c43FGk8Pcg)\n- [Block-wise Adaptive Caching for Accelerating Diffusion Policy](https://arxiv.org/html/2506.13456)\n- [DASIP GitHub](https://github.com/ryaninkook/DASIP)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3c8ad85d-e704-4d89-8592-7bf14b1f2d41",
+            "isSidechain": true,
+            "agentId": "a66a773aec16120e1",
+            "requestId": "req_011CauV3SAs3h2rko3WoxLKX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ddd8a62f-9ec9-4922-9227-8ee1ae294e81",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "87e66718-9306-4544-9247-17f254af92d0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017ZN4jf439i6yEGcjuzq7WR",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 10805,
+                "cache_read_input_tokens": 16848,
+                "output_tokens": 2795,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 10805
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 2795,
+                    "cache_read_input_tokens": 16848,
+                    "cache_creation_input_tokens": 10805,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 10805,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-for-any-recent-2025-2026-work-on-adaptive-inference-self-correction-or.md"
+}

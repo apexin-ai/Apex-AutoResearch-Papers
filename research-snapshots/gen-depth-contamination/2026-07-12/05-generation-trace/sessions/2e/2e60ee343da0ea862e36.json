@@ -1,0 +1,1830 @@
+{
+  "schema_version": "1.0",
+  "id": "2e60ee343da0ea862e36",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search the codebase for \"submit_dream_review_report\" — it might be a Python function, an MCP tool handler, or referenced",
+  "task_key": "agent-ab2395d53af5bcdca",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-ab2395d53af5bcdca.jsonl",
+    "occurrence": 1,
+    "bytes": 165837,
+    "sha256": "940ae28588dbe00cc945d52e677c67530612c2adf02a821b5e941dbca9a6353f"
+  },
+  "statistics": {
+    "messages": 36,
+    "user_turns": 1,
+    "tool_calls": 13,
+    "roles": {
+      "user": 1,
+      "assistant": 9,
+      "tool_call": 13,
+      "tool_result": 13
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-12T20:38:09.776Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search the codebase for \"submit_dream_review_report\" — it might be a Python function, an MCP tool handler, or referenced in any config/skill file. Search in /home/ubuntu/agent-ml-research/ and /home/ubuntu/.agent-ml-research-idea_gen_0509_7/. Return all file paths and the relevant code snippets showing how this function works (what it writes, where, what parameters it takes)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "a542fdf3-735d-4549-af74-dd35edd5f0cc",
+            "agentId": "ab2395d53af5bcdca",
+            "type": "user",
+            "uuid": "c1704c28-4b23-4ab0-bb0b-b724cb83c995",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-12T20:38:11.107Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for \"submit_dream_review_report\" across the specified directories."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c1704c28-4b23-4ab0-bb0b-b724cb83c995",
+            "isSidechain": true,
+            "agentId": "ab2395d53af5bcdca",
+            "requestId": "req_011CayKSL6jGUtsQUZZjUYUH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "259f133d-2f57-4b50-a6df-3ac058415341",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01LnE2GsvdTSBjYHQZWMhLuq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 524,
+                "cache_read_input_tokens": 35367,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 524,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-12T20:38:11.733Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012NVMutH3LbeUr9iTruWSwP",
+              "name": "Grep",
+              "input": {
+                "pattern": "submit_dream_review_report",
+                "path": "/home/ubuntu/agent-ml-research",
+                "output_mode": "files_with_matches"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "259f133d-2f57-4b50-a6df-3ac058415341",
+            "isSidechain": true,
+            "agentId": "ab2395d53af5bcdca",
+            "requestId": "req_011CayKSL6jGUtsQUZZjUYUH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "eaad22eb-c0ac-45fb-9ff8-57854ddb2416",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01LnE2GsvdTSBjYHQZWMhLuq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 524,
+                "cache_read_input_tokens": 35367,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 524,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-12T20:38:11.790Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012NVMutH3LbeUr9iTruWSwP",
+              "type": "tool_result",
+              "content": "Found 19 files\n/home/ubuntu/agent-ml-research/tests/test_dream_isolation_full.py\n/home/ubuntu/agent-ml-research/docs/plans/DREAM_FEEDBACK_ACTION_PROTOCOL.md\n/home/ubuntu/agent-ml-research/core/tools/dream.py\n/home/ubuntu/agent-ml-research/core/session_server.py\n/home/ubuntu/agent-ml-research/core/mcp_server.py\n/home/ubuntu/agent-ml-research/core/session_claude_md.py\n/home/ubuntu/agent-ml-research/tests/test_dream_review_visible.py\n/home/ubuntu/agent-ml-research/tests/test_dream_review_artifacts_isolation.py\n/home/ubuntu/agent-ml-research/tests/test_dream_review_full.py\n/home/ubuntu/agent-ml-research/tests/test_dream_review_report_delivery.py\n/home/ubuntu/agent-ml-research/tests/test_dream_review_session_isolation.py\n/home/ubuntu/agent-ml-research/tests/test_dream_review_simple.py\n/home/ubuntu/agent-ml-research/skills/global/dream-review-full.skill.md\n/home/ubuntu/agent-ml-research/skills/global/dream-review-simple.skill.md\n/home/ubuntu/agent-ml-research/docs/plans/DREAM_AGENT_DESIGN.md\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py\n/home/ubuntu/agent-ml-research/core/tool_registry.py\n/home/ubuntu/agent-ml-research/TEST.md\n/home/ubuntu/agent-ml-research/PROGRESS.md"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eaad22eb-c0ac-45fb-9ff8-57854ddb2416",
+            "isSidechain": true,
+            "promptId": "a542fdf3-735d-4549-af74-dd35edd5f0cc",
+            "agentId": "ab2395d53af5bcdca",
+            "type": "user",
+            "uuid": "920fd509-8bbe-4c71-8398-818a1aba8f3f",
+            "sourceToolAssistantUUID": "eaad22eb-c0ac-45fb-9ff8-57854ddb2416",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-12T20:38:11.929Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GKwQq5ZmzYurbCuv3ZUZTF",
+              "name": "Grep",
+              "input": {
+                "pattern": "submit_dream_review_report",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7",
+                "output_mode": "files_with_matches"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "920fd509-8bbe-4c71-8398-818a1aba8f3f",
+            "isSidechain": true,
+            "agentId": "ab2395d53af5bcdca",
+            "requestId": "req_011CayKSL6jGUtsQUZZjUYUH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f27b2970-e3ad-40c3-a47a-dbace7a8d7c1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01LnE2GsvdTSBjYHQZWMhLuq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 524,
+                "cache_read_input_tokens": 35367,
+                "output_tokens": 225,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 524
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 225,
+                    "cache_read_input_tokens": 35367,
+                    "cache_creation_input_tokens": 524,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 524,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-12T20:38:11.958Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GKwQq5ZmzYurbCuv3ZUZTF",
+              "type": "tool_result",
+              "content": "Found 1 file\nartifacts/dream_reports/dream_20260512T200328/logs/review_best.log"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f27b2970-e3ad-40c3-a47a-dbace7a8d7c1",
+            "isSidechain": true,
+            "promptId": "a542fdf3-735d-4549-af74-dd35edd5f0cc",
+            "agentId": "ab2395d53af5bcdca",
+            "type": "user",
+            "uuid": "d09abff6-ba02-41d6-a1ad-91760b7e8c30",
+            "sourceToolAssistantUUID": "f27b2970-e3ad-40c3-a47a-dbace7a8d7c1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-12T20:38:13.122Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read the key implementation files to understand how this function works:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d09abff6-ba02-41d6-a1ad-91760b7e8c30",
+            "isSidechain": true,
+            "agentId": "ab2395d53af5bcdca",
+            "requestId": "req_011CayKSVDfQ6xQs2WTAgfSH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f660a707-cda9-4373-946d-3cf766805046",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01GPcJFfgqcepRUdqMyyVVBd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1575,
+                "cache_read_input_tokens": 35891,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1575,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-12T20:38:13.339Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KNe2Tj24zWtDGuNFvCyyh1",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/core/tools/dream.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f660a707-cda9-4373-946d-3cf766805046",
+            "isSidechain": true,
+            "agentId": "ab2395d53af5bcdca",
+            "requestId": "req_011CayKSVDfQ6xQs2WTAgfSH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "be082f04-2318-4df4-bbce-a71f8fa62c1a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01GPcJFfgqcepRUdqMyyVVBd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1575,
+                "cache_read_input_tokens": 35891,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1575,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-12T20:38:13.597Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KNe2Tj24zWtDGuNFvCyyh1",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Dream Tool — async two-phase imagined-experiment simulator.\n2\t\n3\tEnd-to-end pipeline (see ``docs/plans/DREAM_AGENT_DESIGN.md`` §7.1):\n4\t\n5\t    dream_simulate()          # sync entry — registers + spawns orchestrator,\n6\t        │                     # returns DreamHandle immediately\n7\t        ▼\n8\t    _run_dream_pipeline()     # async orchestrator (independent OS process):\n9\t        │\n10\t        ├─ _collect_context()      # framing.md + plan + registry → str\n11\t        ├─ _define_tiers()         # Phase 1 — 1 subprocess, 3 tier defs\n12\t        ├─ for tier in tiers:\n13\t        │     ├─ _elaborate_scenario()  # Phase 2 per-tier subprocess\n14\t        │     ├─ _write_dream_paper()   # Paper Agent (Dream mode) — emits PDF\n15\t        │     └─ _submit_to_review()    # Group C Dream review\n16\t        ├─ _persist_report()       # writes meta.yaml + symlink latest →\n17\t        └─ dispatch_dream_done()   # inject Director session + A-group summary\n18\t\n19\tStatus is mirrored at every step into ``dream_registry.yaml`` so callers can\n20\tpoll via :func:`get_dream_status` even across BE restarts. Failures inside any\n21\tsub-step degrade the corresponding tier (set ``error`` on its\n22\t``DreamScenarioResult``) but keep the remaining tiers running — never abort\n23\tthe whole pipeline because one subprocess crashed.\n24\t\n25\tThis module deliberately keeps the LLM calls behind small functions so tests\n26\tcan stub them with :func:`unittest.mock.patch`. Anything that hits the file\n27\tsystem goes through :mod:`core.paths` — no hard-coded ``~/.agent-ml-research``.\n28\t\"\"\"\n29\t\n30\tfrom __future__ import annotations\n31\t\n32\timport asyncio\n33\timport hashlib\n34\timport json\n35\timport logging\n36\timport os\n37\timport re\n38\timport sys\n39\timport threading\n40\tfrom contextlib import suppress\n41\tfrom datetime import datetime, timezone\n42\tfrom pathlib import Path\n43\tfrom typing import Any, Iterable\n44\t\n45\timport yaml\n46\t\n47\tfrom core import dream_registry as _registry\n48\tfrom core import paths as _paths\n49\tfrom core.dream_types import (\n50\t    DreamHandle,\n51\t    DreamInput,\n52\t    DreamOutput,\n53\t    DreamScenarioResult,\n54\t    ImaginedExperiment,\n55\t    ImaginedScenario,\n56\t    TierDefinition,\n57\t    TierDefinitions,\n58\t    WhatIfExperiment,\n59\t)\n60\tfrom core.tools.result import ToolResult\n61\t\n62\tlogger = logging.getLogger(__name__)\n63\t\n64\t\n65\t# ---------------------------------------------------------------------------\n66\t# Constants\n67\t# ---------------------------------------------------------------------------\n68\t\n69\tTIERS: tuple[str, str, str] = (\"best\", \"median\", \"worst\")\n70\t\n71\t# Hard timeouts so a stuck Claude subprocess never freezes the pipeline.\n72\t_PHASE1_TIMEOUT_S = 600     # 10 min: defining three tiers is short-form\n73\t_PHASE2_TIMEOUT_S = 1800    # 30 min: per-tier elaboration is longer\n74\t_WRITE_TIMEOUT_S = 5400     # 90 min: Paper Agent Dream mode\n75\t_REVIEW_TIMEOUT_S = 3600    # 60 min: Group C Dream review\n76\t\n77\t# Cap on YAML retries when the LLM emits malformed output.\n78\t_YAML_PARSE_RETRIES = 1\n79\t\n80\t\n81\t# ---------------------------------------------------------------------------\n82\t# Helpers\n83\t# ---------------------------------------------------------------------------\n84\t\n85\t\n86\tdef _now_iso() -> str:\n87\t    return datetime.now(timezone.utc).strftime(\"%Y%m%dT%H%M%S\")\n88\t\n89\t\n90\tdef _new_dream_id() -> str:\n91\t    return f\"dream_{_now_iso()}\"\n92\t\n93\t\n94\tdef _extract_yaml_block(text: str) -> str:\n95\t    \"\"\"Pull the first ```yaml fenced block (or the raw text) out of a string.\n96\t\n97\t    LLM output often wraps YAML in markdown fences; without stripping them\n98\t    ``yaml.safe_load`` fails on the leading \"```yaml\" line.\n99\t    \"\"\"\n100\t    if not text:\n101\t        return \"\"\n102\t    m = re.search(r\"```(?:yaml|yml)?\\s*\\n(.*?)```\", text, re.DOTALL | re.IGNORECASE)\n103\t    if m:\n104\t        return m.group(1).strip()\n105\t    return text.strip()\n106\t\n107\t\n108\tdef _read_framing(project: str) -> str:\n109\t    \"\"\"Return the contents of ``paper_framing.md`` or an empty string.\"\"\"\n110\t    path = _paths.resolve_project_file(project, \"paper_framing.md\")\n111\t    if not path.exists():\n112\t        return \"\"\n113\t    try:\n114\t        return path.read_text(encoding=\"utf-8\")\n115\t    except OSError:\n116\t        logger.warning(\"[dream] could not read framing %s\", path, exc_info=True)\n117\t        return \"\"\n118\t\n119\t\n120\tdef _read_plan(project: str) -> list[dict[str, Any]]:\n121\t    \"\"\"Read experiment_plan.yaml entries with live registry status overlaid.\"\"\"\n122\t    try:\n123\t        from core.tools.experiment_plan import read_experiment_plan_with_status\n124\t    except Exception:\n125\t        return []\n126\t    res = read_experiment_plan_with_status(project)\n127\t    if not res.success or not res.data:\n128\t        return []\n129\t    return list(res.data.get(\"experiments\") or [])\n130\t\n131\t\n132\tdef _read_registry_summary(project: str) -> list[dict[str, Any]]:\n133\t    \"\"\"Compact registry view for context — only the fields Dream needs.\"\"\"\n134\t    try:\n135\t        from core.tools.registry import get_registry_path\n136\t    except Exception:\n137\t        return []\n138\t    path = get_registry_path(project)\n139\t    if not path.exists():\n140\t        return []\n141\t    try:\n142\t        data = yaml.safe_load(path.read_text(encoding=\"utf-8\")) or {}\n143\t    except Exception:\n144\t        logger.warning(\"[dream] could not parse registry %s\", path, exc_info=True)\n145\t        return []\n146\t    out: list[dict[str, Any]] = []\n147\t    for exp_id, entry in (data.get(\"experiments\") or {}).items():\n148\t        if not isinstance(entry, dict):\n149\t            continue\n150\t        out.append({\n151\t            \"exp_id\": exp_id,\n152\t            \"name\": entry.get(\"name\", \"\"),\n153\t            \"status\": entry.get(\"status\", \"\"),\n154\t            \"conclusion\": entry.get(\"conclusion\", \"\"),\n155\t            \"metrics\": entry.get(\"metrics\", {}),\n156\t        })\n157\t    return out\n158\t\n159\t\n160\tdef _project_dream_config(project: str) -> dict[str, Any]:\n161\t    \"\"\"Best-effort fetch of project-level Dream defaults (review_visible etc.).\"\"\"\n162\t    try:\n163\t        from core.tools.project_config import get_dream_config\n164\t    except Exception:\n165\t        return {}\n166\t    try:\n167\t        return get_dream_config(project) or {}\n168\t    except Exception:\n169\t        return {}\n170\t\n171\t\n172\t# ---------------------------------------------------------------------------\n173\t# Smart skip + trend tracking (DREAM_AGENT_DESIGN §8.4 + §4-5/4-6)\n174\t# ---------------------------------------------------------------------------\n175\t\n176\t# Experiment statuses whose presence/results \"count\" as research progress for\n177\t# smart_skip purposes. Anything earlier in the pipeline (PREPARING/QUEUED) is\n178\t# still in-flight and doesn't change the conclusions a Dream would draw.\n179\t_SMART_SKIP_RELEVANT_STATUSES = (\"ANALYZING\", \"DONE\", \"DEPLOYING\", \"DEPLOYED\")\n180\t\n181\t\n182\tdef _canonical_metric_fingerprint(metrics: Any) -> Any:\n183\t    \"\"\"Return a JSON-safe, deterministic view of an experiment's metrics.\n184\t\n185\t    YAML reads can yield ``None`` / nested dicts in arbitrary key order; the\n186\t    hash must not flip just because the YAML writer reordered keys. We sort\n187\t    keys recursively and coerce non-primitive values to ``repr`` so the\n188\t    fingerprint is stable across runs and Python versions.\n189\t    \"\"\"\n190\t    if metrics is None:\n191\t        return None\n192\t    if isinstance(metrics, dict):\n193\t        return {k: _canonical_metric_fingerprint(metrics[k]) for k in sorted(metrics)}\n194\t    if isinstance(metrics, (list, tuple)):\n195\t        return [_canonical_metric_fingerprint(v) for v in metrics]\n196\t    if isinstance(metrics, (str, int, float, bool)):\n197\t        return metrics\n198\t    return repr(metrics)\n199\t\n200\t\n201\tdef _context_fingerprint(\n202\t    *,\n203\t    project: str,\n204\t    what_if: list[WhatIfExperiment] | list[dict] | None = None,\n205\t) -> dict[str, Any]:\n206\t    \"\"\"Build the structured input that ``_compute_context_hash`` hashes.\n207\t\n208\t    Includes only the fields a Dream actually reads:\n209\t      • paper_framing.md raw text\n210\t      • experiment_plan.yaml entries (read via plan helper so registry status\n211\t        is overlaid)\n212\t      • registry entries in statuses that affect Dream conclusions (ANALYZING\n213\t        and later); their metrics fingerprint is included\n214\t      • the what_if list (so two cron calls with identical framing but\n215\t        different what_if don't accidentally share a hash)\n216\t    \"\"\"\n217\t    framing = _read_framing(project)\n218\t    plan = _read_plan(project)\n219\t    registry = _read_registry_summary(project)\n220\t    relevant_reg = [\n221\t        {\n222\t            \"exp_id\": e.get(\"exp_id\", \"\"),\n223\t            \"status\": e.get(\"status\", \"\"),\n224\t            \"conclusion\": e.get(\"conclusion\", \"\"),\n225\t            \"metrics\": _canonical_metric_fingerprint(e.get(\"metrics\")),\n226\t        }\n227\t        for e in registry\n228\t        if str(e.get(\"status\", \"\")).upper() in _SMART_SKIP_RELEVANT_STATUSES\n229\t    ]\n230\t    relevant_reg.sort(key=lambda e: e[\"exp_id\"])\n231\t\n232\t    what_if_list: list[dict[str, Any]] = []\n233\t    for w in (what_if or []):\n234\t        if isinstance(w, WhatIfExperiment):\n235\t            what_if_list.append(w.to_dict())\n236\t        elif isinstance(w, dict):\n237\t            what_if_list.append(dict(w))\n238\t    what_if_list.sort(key=lambda d: d.get(\"name\", \"\"))\n239\t\n240\t    return {\n241\t        \"framing\": framing,\n242\t        \"experiment_plan\": plan,\n243\t        \"registry\": relevant_reg,\n244\t        \"what_if\": what_if_list,\n245\t    }\n246\t\n247\t\n248\tdef _compute_context_hash(\n249\t    project: str,\n250\t    *,\n251\t    what_if: list[WhatIfExperiment] | list[dict] | None = None,\n252\t) -> str:\n253\t    \"\"\"SHA-256 of the canonical context fingerprint.\n254\t\n255\t    Used for smart_skip: when this hash equals the hash recorded on the most\n256\t    recent ``done`` dream, the research state hasn't changed and a re-run\n257\t    would just burn pool quota.\n258\t    \"\"\"\n259\t    fp = _context_fingerprint(project=project, what_if=what_if)\n260\t    blob = json.dumps(fp, sort_keys=True, ensure_ascii=False, default=str).encode(\"utf-8\")\n261\t    return hashlib.sha256(blob).hexdigest()\n262\t\n263\t\n264\tdef should_skip_dream(\n265\t    project: str,\n266\t    *,\n267\t    what_if: list[dict] | None = None,\n268\t) -> ToolResult:\n269\t    \"\"\"Decide whether to skip a Dream run because nothing has changed.\n270\t\n271\t    Compares the current context hash against the most recent ``done`` dream\n272\t    in the registry. Mirrors the heuristic in ``dream-cron.skill.md``:\n273\t\n274\t      • No prior ``done`` dream → don't skip (let the cron run).\n275\t      • Prior dream's ``context_hash`` matches → skip; surface its id so the\n276\t        Director can reuse its report.\n277\t      • Hash differs → don't skip.\n278\t\n279\t    Returns:\n280\t        ToolResult.data = {\n281\t            \"skip\": bool,\n282\t            \"reason\": \"context_unchanged\" | \"context_changed\" | \"no_prior_dream\"\n283\t                      | \"smart_skip_disabled\",\n284\t            \"current_hash\": str,\n285\t            \"last_dream_id\": str,         # populated when skip=True\n286\t            \"last_dream_dir\": str,        # absolute path\n287\t            \"last_completed_at\": str,\n288\t        }\n289\t    \"\"\"\n290\t    if not project:\n291\t        return ToolResult(success=False, error=\"project is required\")\n292\t\n293\t    cfg = _project_dream_config(project)\n294\t    if not bool(cfg.get(\"smart_skip\", True)):\n295\t        return ToolResult(\n296\t            success=True,\n297\t            data={\n298\t                \"skip\": False,\n299\t                \"reason\": \"smart_skip_disabled\",\n300\t                \"current_hash\": \"\",\n301\t            },\n302\t        )\n303\t\n304\t    current_hash = _compute_context_hash(project, what_if=[\n305\t        WhatIfExperiment.from_dict(w) for w in (what_if or [])\n306\t    ])\n307\t\n308\t    # Find the latest 'done' dream — list_dreams returns newest first.\n309\t    dreams = _registry.list_dreams(project, status=\"done\")\n310\t    if not dreams:\n311\t        return ToolResult(\n312\t            success=True,\n313\t            data={\n314\t                \"skip\": False,\n315\t                \"reason\": \"no_prior_dream\",\n316\t                \"current_hash\": current_hash,\n317\t            },\n318\t        )\n319\t    prior = dreams[0]\n320\t    prior_hash = prior.get(\"context_hash\") or \"\"\n321\t\n322\t    if prior_hash and prior_hash == current_hash:\n323\t        return ToolResult(\n324\t            success=True,\n325\t            data={\n326\t                \"skip\": True,\n327\t                \"reason\": \"context_unchanged\",\n328\t                \"current_hash\": current_hash,\n329\t                \"last_dream_id\": prior.get(\"dream_id\", \"\"),\n330\t                \"last_dream_dir\": str(\n331\t                    _paths.dream_report_dir(project, prior.get(\"dream_id\", \"\"))\n332\t                ) if prior.get(\"dream_id\") else \"\",\n333\t                \"last_completed_at\": prior.get(\"updated_at\") or prior.get(\"started_at\") or \"\",\n334\t            },\n335\t        )\n336\t\n337\t    return ToolResult(\n338\t        success=True,\n339\t        data={\n340\t            \"skip\": False,\n341\t            \"reason\": \"context_changed\",\n342\t            \"current_hash\": current_hash,\n343\t            \"last_dream_id\": prior.get(\"dream_id\", \"\"),\n344\t            \"last_completed_at\": prior.get(\"updated_at\") or prior.get(\"started_at\") or \"\",\n345\t        },\n346\t    )\n347\t\n348\t\n349\tdef _summarize_meta_for_trend(meta: dict[str, Any]) -> dict[str, Any]:\n350\t    \"\"\"Strip a dream's meta.yaml to the fields that matter for trend tracking.\n351\t\n352\t    Predictions are reduced to ``{tier: {experiment_name: expected_results}}``\n353\t    so the delta diff can highlight which numbers moved between dreams.\n354\t    \"\"\"\n355\t    scenarios = meta.get(\"scenarios\") or []\n356\t    per_tier: dict[str, dict[str, Any]] = {}\n357\t    for s in scenarios:\n358\t        if not isinstance(s, dict):\n359\t            continue\n360\t        tier = s.get(\"tier\") or \"\"\n361\t        if not tier:\n362\t            continue\n363\t        exps_pred: dict[str, dict[str, Any]] = {}\n364\t        for exp in s.get(\"imagined_experiments\") or []:\n365\t            if not isinstance(exp, dict):\n366\t                continue\n367\t            name = exp.get(\"name\") or \"\"\n368\t            if not name:\n369\t                continue\n370\t            exps_pred[name] = dict(exp.get(\"expected_results\") or {})\n371\t        per_tier[tier] = {\n372\t            \"n_experiments\": len(s.get(\"imagined_experiments\") or []),\n373\t            \"pdf_path\": s.get(\"pdf_path\", \"\"),\n374\t            \"error\": s.get(\"error\", \"\"),\n375\t            \"predictions\": exps_pred,\n376\t        }\n377\t    return {\n378\t        \"dream_id\": meta.get(\"dream_id\", \"\"),\n379\t        \"created_at\": meta.get(\"created_at\", \"\"),\n380\t        \"venue\": meta.get(\"venue\", \"\"),\n381\t        \"focus\": meta.get(\"focus\", \"\"),\n382\t        \"review_mode\": meta.get(\"review_mode\", \"\"),\n383\t        \"what_if\": meta.get(\"what_if\") or [],\n384\t        \"tiers\": per_tier,\n385\t    }\n386\t\n387\t\n388\tdef _diff_predictions(prev: dict[str, Any], curr: dict[str, Any]) -> dict[str, Any]:\n389\t    \"\"\"Compare two ``_summarize_meta_for_trend`` results, return per-tier deltas.\n390\t\n391\t    For each tier, returns the experiments whose ``expected_results`` differ\n392\t    between the two dreams (added / removed / changed). Useful to see \"what\n393\t    moved\" without re-reading two full meta.yaml files.\n394\t    \"\"\"\n395\t    out: dict[str, Any] = {}\n396\t    tiers = set(prev.get(\"tiers\", {})) | set(curr.get(\"tiers\", {}))\n397\t    for tier in sorted(tiers):\n398\t        prev_preds = (prev.get(\"tiers\", {}).get(tier) or {}).get(\"predictions\", {})\n399\t        curr_preds = (curr.get(\"tiers\", {}).get(tier) or {}).get(\"predictions\", {})\n400\t        added = sorted(set(curr_preds) - set(prev_preds))\n401\t        removed = sorted(set(prev_preds) - set(curr_preds))\n402\t        changed: list[dict[str, Any]] = []\n403\t        for name in sorted(set(prev_preds) & set(curr_preds)):\n404\t            if prev_preds[name] != curr_preds[name]:\n405\t                changed.append({\n406\t                    \"experiment\": name,\n407\t                    \"before\": prev_preds[name],\n408\t                    \"after\": curr_preds[name],\n409\t                })\n410\t        if added or removed or changed:\n411\t            out[tier] = {\"added\": added, \"removed\": removed, \"changed\": changed}\n412\t    return out\n413\t\n414\t\n415\tdef get_dream_trend(project: str, limit: int = 5) -> ToolResult:\n416\t    \"\"\"Return the last ``limit`` completed dreams + per-tier prediction deltas.\n417\t\n418\t    Reads each dream's persisted ``meta.yaml`` so the trend reflects the\n419\t    actual reports, not just registry status. Failed / incomplete dreams are\n420\t    included so the Director can see \"predictions stalled here\".\n421\t\n422\t    Returns:\n423\t        ToolResult.data = {\n424\t            \"trend\": [<summary>, ...],   # newest first\n425\t            \"deltas\": [                   # consecutive-pair diffs\n426\t                {\"from\": <older_id>, \"to\": <newer_id>, \"diff\": {...}}, ...\n427\t            ],\n428\t        }\n429\t    \"\"\"\n430\t    if not project:\n431\t        return ToolResult(success=False, error=\"project is required\")\n432\t    if not isinstance(limit, int) or limit <= 0:\n433\t        return ToolResult(success=False, error=\"limit must be a positive int\")\n434\t\n435\t    # Pull all dreams (any status), keep registry order which is newest-first.\n436\t    dreams = _registry.list_dreams(project)\n437\t    trend: list[dict[str, Any]] = []\n438\t    for entry in dreams:\n439\t        if len(trend) >= limit:\n440\t            break\n441\t        dream_id = entry.get(\"dream_id\", \"\")\n442\t        if not dream_id:\n443\t            continue\n444\t        meta_path = _paths.dream_report_dir(project, dream_id) / \"meta.yaml\"\n445\t        if not meta_path.exists():\n446\t            # Dream registered but report not yet written (still imagining,\n447\t            # or crashed). Surface the registry state so the trend is honest.\n448\t            trend.append({\n449\t                \"dream_id\": dream_id,\n450\t                \"created_at\": entry.get(\"started_at\", \"\"),\n451\t                \"status\": entry.get(\"status\", \"\"),\n452\t                \"error\": entry.get(\"error\") or \"\",\n453\t                \"tiers\": {},\n454\t            })\n455\t            continue\n456\t        try:\n457\t            meta = yaml.safe_load(meta_path.read_text(encoding=\"utf-8\")) or {}\n458\t        except Exception:\n459\t            logger.warning(\"[dream] could not parse meta.yaml for %s\", dream_id, exc_info=True)\n460\t            continue\n461\t        summary = _summarize_meta_for_trend(meta)\n462\t        summary[\"status\"] = entry.get(\"status\", \"done\")\n463\t        trend.append(summary)\n464\t\n465\t    # Consecutive deltas: pair newer (index i) with older (index i+1).\n466\t    deltas: list[dict[str, Any]] = []\n467\t    for i in range(len(trend) - 1):\n468\t        newer, older = trend[i], trend[i + 1]\n469\t        if not newer.get(\"tiers\") or not older.get(\"tiers\"):\n470\t            continue\n471\t        diff = _diff_predictions(older, newer)\n472\t        if diff:\n473\t            deltas.append({\n474\t                \"from\": older.get(\"dream_id\", \"\"),\n475\t                \"to\": newer.get(\"dream_id\", \"\"),\n476\t                \"diff\": diff,\n477\t            })\n478\t\n479\t    return ToolResult(success=True, data={\"trend\": trend, \"deltas\": deltas})\n480\t\n481\t\n482\t# ---------------------------------------------------------------------------\n483\t# Step 1 — _collect_context (2-3)\n484\t# ---------------------------------------------------------------------------\n485\t\n486\t\n487\tdef _collect_context(\n488\t    *,\n489\t    project: str,\n490\t    what_if: list[WhatIfExperiment] | None = None,\n491\t    venue: str = \"\",\n492\t    focus: str = \"\",\n493\t) -> dict[str, Any]:\n494\t    \"\"\"Assemble all read-only inputs for Phase 1/2.\n495\t\n496\t    Returns a dict so callers can pass it to the LLM prompts verbatim and so\n497\t    tests can assert on individual fields. Never raises — missing files\n498\t    degrade to empty strings/lists. Validation (e.g. \"framing must exist\") is\n499\t    the caller's job, not this collector's.\n500\t    \"\"\"\n501\t    framing = _read_framing(project)\n502\t    plan = _read_plan(project)\n503\t    registry = _read_registry_summary(project)\n504\t    dream_cfg = _project_dream_config(project)\n505\t\n506\t    return {\n507\t        \"project\": project,\n508\t        \"venue\": venue or \"\",\n509\t        \"focus\": focus or \"\",\n510\t        \"framing\": framing,\n511\t        \"experiment_plan\": plan,\n512\t        \"registry\": registry,\n513\t        \"what_if\": [w.to_dict() if isinstance(w, WhatIfExperiment) else dict(w) for w in (what_if or [])],\n514\t        \"dream_config\": dream_cfg,\n515\t    }\n516\t\n517\t\n518\t# ---------------------------------------------------------------------------\n519\t# Prompts (kept as module-level constants so they can be inspected in tests)\n520\t# ---------------------------------------------------------------------------\n521\t\n522\t\n523\t_PHASE1_PROMPT = \"\"\"你是一位经验丰富的 ML 研究者。基于以下研究信息，为 Dream 模拟定义三档场景。\n524\t\n525\t你需要同时定义 best / median / worst 三档：\n526\t1. 每档的核心假设（哪些假设成立/不成立）\n527\t2. 每档的关键实验指标预期范围（确保 best ≥ median ≥ worst 一致性）\n528\t3. 每档的论文叙事方向——\n529\t   - best: 原始 framing 可以支撑\n530\t   - median: 需要怎么调整 claims\n531\t   - worst: 需要怎么重构 story（可能从 method paper 变成 analysis paper）\n532\t\n533\t三档的具体含义不预设——根据这个研究的 paper_framing、已有数据和方法特性\n534\t自行判断。但必须确保三档之间的数字和叙事逻辑一致。\n535\t\n536\t# Project context\n537\t{context_block}\n538\t\n539\t# 输出格式（YAML，仅输出一个 ```yaml 块，不要任何额外说明文字）\n540\t\n541\t```yaml\n542\ttiers:\n543\t  best:\n544\t    meaning: \"...\"\n545\t    key_assumptions: [...]\n546\t    number_ranges: {{metric_a: [low, high], metric_b: [...]}}\n547\t    narrative_direction: \"...\"\n548\t  median:\n549\t    meaning: \"...\"\n550\t    ...\n551\t  worst:\n552\t    meaning: \"...\"\n553\t    ...\n554\t```\n555\t\"\"\"\n556\t\n557\t\n558\t_PHASE2_PROMPT = \"\"\"你是一位经验丰富的 ML 研究者。Phase 1 已定义了 {tier} 档的含义：\n559\t\n560\t含义：{meaning}\n561\t核心假设：{assumptions}\n562\t关键指标范围：{number_ranges}\n563\t叙事方向：{narrative_direction}\n564\t\n565\t基于以上定义，对 experiment_plan 中每个 planned 实验展开详细数据。\n566\t每条预测都必须给出 result_rationale —— 解释为什么在这个档位下会得到这样的结果。\n567\t\n568\t# Project context\n569\t{context_block}\n570\t\n571\t# 输出格式（YAML，仅输出一个 ```yaml 块）\n572\t\n573\t```yaml\n574\ttier: {tier}\n575\tnarrative_guidance: \"...\"\n576\timagined_experiments:\n577\t  - name: \"...\"\n578\t    plan_id: \"...\"\n579\t    description: \"...\"\n580\t    expected_results: {{metric: value, ...}}\n581\t    result_rationale: \"...\"\n582\t    tables: []\n583\t    figures_description: []\n584\t    analysis: \"...\"\n585\t```\n586\t\"\"\"\n587\t\n588\t\n589\tdef _context_block(context: dict[str, Any]) -> str:\n590\t    \"\"\"Serialize the collected context into a single LLM-readable block.\"\"\"\n591\t    lines: list[str] = []\n592\t    lines.append(f\"project: {context.get('project', '')}\")\n593\t    if context.get(\"venue\"):\n594\t        lines.append(f\"venue: {context['venue']}\")\n595\t    if context.get(\"focus\"):\n596\t        lines.append(f\"focus: {context['focus']}\")\n597\t    framing = context.get(\"framing\") or \"\"\n598\t    if framing:\n599\t        lines.append(\"\\n## paper_framing.md\\n\")\n600\t        lines.append(framing)\n601\t    plan = context.get(\"experiment_plan\") or []\n602\t    if plan:\n603\t        lines.append(\"\\n## experiment_plan (with registry status)\\n\")\n604\t        lines.append(yaml.safe_dump(plan, allow_unicode=True, sort_keys=False))\n605\t    registry = context.get(\"registry\") or []\n606\t    if registry:\n607\t        lines.append(\"\\n## registry (completed experiments)\\n\")\n608\t        lines.append(yaml.safe_dump(registry, allow_unicode=True, sort_keys=False))\n609\t    what_if = context.get(\"what_if\") or []\n610\t    if what_if:\n611\t        lines.append(\"\\n## what_if (hypothetical experiments — additive)\\n\")\n612\t        lines.append(yaml.safe_dump(what_if, allow_unicode=True, sort_keys=False))\n613\t    return \"\\n\".join(lines).strip()\n614\t\n615\t\n616\t# ---------------------------------------------------------------------------\n617\t# LLM subprocess (Claude-pool aware)\n618\t# ---------------------------------------------------------------------------\n619\t\n620\t\n621\tdef _run_llm(prompt: str, *, project: str, timeout_s: int, log_path: Path | None = None) -> str:\n622\t    \"\"\"Run a Claude subprocess with the same Pool/Backend wiring as workers.\n623\t\n624\t    Returns the raw stdout text. Subprocess timeout is enforced; on timeout\n625\t    the process is killed and an empty string is returned (callers should\n626\t    treat empty output as a parse failure).\n627\t\n628\t    The function is synchronous so tests can patch it without dealing with\n629\t    asyncio; the orchestrator wraps it with ``asyncio.to_thread`` to keep\n630\t    Phase 2 parallelism cheap.\n631\t    \"\"\"\n632\t    from core.backends import get_backend\n633\t    from core.model_resolver import resolve_model_for_session\n634\t\n635\t    backend = get_backend(project=project or None)\n636\t    if not backend.pool_enabled():\n637\t        raise RuntimeError(\"Dream requires Claude pool to be enabled.\")\n638\t    config_dir = backend.pool_select()\n639\t    if not config_dir:\n640\t        raise RuntimeError(\"Dream could not acquire a pool account — none healthy.\")\n641\t    cmd = backend.build_command(\n642\t        prompt=prompt,\n643\t        mcp_config=None,\n644\t        model=resolve_model_for_session(project=project or None),\n645\t    )\n646\t    env = backend.make_env(config_dir=config_dir)\n647\t    backend.prepare_mcp(None, env=env, cwd=str(_paths.WORKSPACE_ROOT))\n648\t\n649\t    if log_path is not None:\n650\t        log_path.parent.mkdir(parents=True, exist_ok=True)\n651\t        log_fh = log_path.open(\"wb\")\n652\t    else:\n653\t        log_fh = None\n654\t\n655\t    try:\n656\t        import subprocess  # local import keeps top-of-file noise down\n657\t        proc = subprocess.Popen(\n658\t            cmd,\n659\t            stdout=subprocess.PIPE if log_fh is None else log_fh,\n660\t            stderr=subprocess.STDOUT,\n661\t            env=env,\n662\t            cwd=str(_paths.WORKSPACE_ROOT),\n663\t            start_new_session=True,\n664\t        )\n665\t        try:\n666\t            stdout_bytes, _ = proc.communicate(timeout=timeout_s)\n667\t        except subprocess.TimeoutExpired:\n668\t            logger.warning(\"[dream] LLM subprocess pid=%s timed out after %ds\", proc.pid, timeout_s)\n669\t            with suppress(ProcessLookupError):\n670\t                proc.kill()\n671\t                proc.communicate()\n672\t            return \"\"\n673\t        if log_fh is not None:\n674\t            # log was streamed directly to the file — read it back\n675\t            with suppress(OSError):\n676\t                stdout_bytes = log_path.read_bytes()\n677\t    finally:\n678\t        if log_fh is not None:\n679\t            log_fh.close()\n680\t\n681\t    text = (stdout_bytes or b\"\").decode(\"utf-8\", errors=\"replace\")\n682\t    # The backend writes stream-json; extract the final assistant text so the\n683\t    # caller's YAML parser sees the actual content, not envelope frames.\n684\t    final = backend.extract_last_assistant_text(text) if text else \"\"\n685\t    return final or text\n686\t\n687\t\n688\t# ---------------------------------------------------------------------------\n689\t# Phase 1 — _define_tiers (2-4)\n690\t# ---------------------------------------------------------------------------\n691\t\n692\t\n693\tdef _validate_tier_definitions(data: Any) -> TierDefinitions:\n694\t    \"\"\"Strict parse for Phase 1 output — raises ValueError on shape errors.\"\"\"\n695\t    if not isinstance(data, dict):\n696\t        raise ValueError(\"Phase 1 output must be a mapping\")\n697\t    tiers_raw = data.get(\"tiers\")\n698\t    if not isinstance(tiers_raw, dict):\n699\t        raise ValueError(\"Phase 1 output missing 'tiers' mapping\")\n700\t    tiers: dict[str, TierDefinition] = {}\n701\t    for name in TIERS:\n702\t        entry = tiers_raw.get(name)\n703\t        if not isinstance(entry, dict):\n704\t            raise ValueError(f\"Phase 1 missing tier '{name}'\")\n705\t        tiers[name] = TierDefinition.from_dict({\"tier\": name, **entry})\n706\t    return TierDefinitions(tiers=tiers)\n707\t\n708\t\n709\tdef _define_tiers(context: dict[str, Any], *, log_dir: Path | None = None) -> TierDefinitions:\n710\t    \"\"\"Phase 1: single subprocess, three coherent tier definitions.\n711\t\n712\t    Retries once on YAML parse failure. On persistent failure raises\n713\t    ``ValueError`` so the orchestrator can mark the dream as failed without\n714\t    burning further token budget.\n715\t    \"\"\"\n716\t    prompt = _PHASE1_PROMPT.format(context_block=_context_block(context))\n717\t    last_err: Exception | None = None\n718\t    for attempt in range(_YAML_PARSE_RETRIES + 1):\n719\t        log_path = (log_dir / f\"phase1_attempt{attempt}.log\") if log_dir else None\n720\t        try:\n721\t            raw = _run_llm(\n722\t                prompt,\n723\t                project=context.get(\"project\", \"\"),\n724\t                timeout_s=_PHASE1_TIMEOUT_S,\n725\t                log_path=log_path,\n726\t            )\n727\t        except Exception as e:\n728\t            last_err = e\n729\t            logger.warning(\"[dream] Phase 1 subprocess failed (attempt %d): %s\", attempt, e)\n730\t            continue\n731\t        if not raw:\n732\t            last_err = ValueError(\"Phase 1 LLM returned empty output\")\n733\t            continue\n734\t        try:\n735\t            data = yaml.safe_load(_extract_yaml_block(raw))\n736\t            return _validate_tier_definitions(data)\n737\t        except Exception as e:\n738\t            last_err = e\n739\t            logger.warning(\"[dream] Phase 1 parse failed (attempt %d): %s\", attempt, e)\n740\t    raise ValueError(f\"Phase 1 failed: {last_err}\")\n741\t\n742\t\n743\t# ---------------------------------------------------------------------------\n744\t# Phase 2 — _elaborate_scenario (2-5)\n745\t# ---------------------------------------------------------------------------\n746\t\n747\t\n748\tdef _validate_imagined_scenario(data: Any, *, tier: str) -> ImaginedScenario:\n749\t    if not isinstance(data, dict):\n750\t        raise ValueError(\"Phase 2 output must be a mapping\")\n751\t    if data.get(\"tier\") and data[\"tier\"] != tier:\n752\t        raise ValueError(f\"Phase 2 tier mismatch (expected {tier!r}, got {data.get('tier')!r})\")\n753\t    exps_raw = data.get(\"imagined_experiments\")\n754\t    if not isinstance(exps_raw, list) or not exps_raw:\n755\t        raise ValueError(\"Phase 2 missing 'imagined_experiments'\")\n756\t    experiments: list[ImaginedExperiment] = []\n757\t    for entry in exps_raw:\n758\t        if not isinstance(entry, dict):\n759\t            raise ValueError(\"imagined_experiments contains non-dict entry\")\n760\t        if not entry.get(\"name\"):\n761\t            raise ValueError(\"imagined_experiment missing 'name'\")\n762\t        if not entry.get(\"result_rationale\"):\n763\t            raise ValueError(f\"imagined_experiment '{entry.get('name')}' missing result_rationale\")\n764\t        experiments.append(ImaginedExperiment.from_dict(entry))\n765\t    return ImaginedScenario(\n766\t        tier=tier,\n767\t        imagined_experiments=experiments,\n768\t        narrative_guidance=data.get(\"narrative_guidance\", \"\") or \"\",\n769\t    )\n770\t\n771\t\n772\tdef _elaborate_scenario(\n773\t    context: dict[str, Any],\n774\t    tier_def: TierDefinition,\n775\t    *,\n776\t    log_dir: Path | None = None,\n777\t) -> ImaginedScenario:\n778\t    \"\"\"Phase 2: expand one tier into a full ImaginedScenario.\n779\t\n780\t    Raises on persistent parse failure — orchestrator catches and marks the\n781\t    tier's DreamScenarioResult.error, the other tiers continue.\n782\t    \"\"\"\n783\t    prompt = _PHASE2_PROMPT.format(\n784\t        tier=tier_def.tier,\n785\t        meaning=tier_def.meaning,\n786\t        assumptions=tier_def.key_assumptions,\n787\t        number_ranges=tier_def.number_ranges,\n788\t        narrative_direction=tier_def.narrative_direction,\n789\t        context_block=_context_block(context),\n790\t    )\n791\t    last_err: Exception | None = None\n792\t    for attempt in range(_YAML_PARSE_RETRIES + 1):\n793\t        log_path = (log_dir / f\"phase2_{tier_def.tier}_attempt{attempt}.log\") if log_dir else None\n794\t        try:\n795\t            raw = _run_llm(\n796\t                prompt,\n797\t                project=context.get(\"project\", \"\"),\n798\t                timeout_s=_PHASE2_TIMEOUT_S,\n799\t                log_path=log_path,\n800\t            )\n801\t        except Exception as e:\n802\t            last_err = e\n803\t            continue\n804\t        if not raw:\n805\t            last_err = ValueError(\"Phase 2 LLM returned empty output\")\n806\t            continue\n807\t        try:\n808\t            data = yaml.safe_load(_extract_yaml_block(raw))\n809\t            return _validate_imagined_scenario(data, tier=tier_def.tier)\n810\t        except Exception as e:\n811\t            last_err = e\n812\t            logger.warning(\"[dream] Phase 2 %s parse failed (attempt %d): %s\", tier_def.tier, attempt, e)\n813\t    raise ValueError(f\"Phase 2 ({tier_def.tier}) failed: {last_err}\")\n814\t\n815\t\n816\t# ---------------------------------------------------------------------------\n817\t# Step 3 — _write_dream_paper (2-6)\n818\t# ---------------------------------------------------------------------------\n819\t\n820\t\n821\tdef _imagined_to_experiment_data(scenario: ImaginedScenario) -> list[dict[str, Any]]:\n822\t    \"\"\"Convert ImaginedExperiments into ExperimentData-shaped dicts.\n823\t\n824\t    Paper Agent treats real + imagined identically (see Dream design §5.5), so\n825\t    we expose them through the same shape. ``analysis`` rolls together the\n826\t    rationale plus any free-form notes; per design ``result_rationale`` is\n827\t    Director-facing not paper-facing.\n828\t    \"\"\"\n829\t    out: list[dict[str, Any]] = []\n830\t    for e in scenario.imagined_experiments:\n831\t        analysis_parts = [e.analysis or \"\", e.result_rationale or \"\"]\n832\t        out.append({\n833\t            \"name\": e.name,\n834\t            \"description\": e.description,\n835\t            \"results\": dict(e.expected_results or {}),\n836\t            \"tables\": list(e.tables or []),\n837\t            \"figures\": [],  # Dream skips conceptual figures; matplotlib renders inside Paper Agent\n838\t            \"analysis\": \"\\n\\n\".join(p for p in analysis_parts if p),\n839\t        })\n840\t    return out\n841\t\n842\t\n843\tdef _write_dream_paper(\n844\t    *,\n845\t    dream_id: str,\n846\t    project: str,\n847\t    tier: str,\n848\t    scenario: ImaginedScenario,\n849\t    framing: str,\n850\t    venue: str,\n851\t    real_experiments: list[dict[str, Any]] | None = None,\n852\t    writing_visible: bool = True,\n853\t) -> Path:\n854\t    \"\"\"Spawn a Paper Agent (Dream mode) subprocess and return the PDF path.\n855\t\n856\t    The Paper Agent is a Claude subprocess with a reduced MCP tool whitelist\n857\t    (no provenance, no Reviewer). It writes into ``$DREAM_OUTPUT_DIR``, which\n858\t    is set by this function and consumed by paper-agent.md's prompt logic.\n859\t\n860\t    Returns the *expected* PDF path even on failure — caller checks existence.\n861\t    \"\"\"\n862\t    output_dir = _paths.dream_report_dir(project, dream_id) / tier\n863\t    output_dir.mkdir(parents=True, exist_ok=True)\n864\t\n865\t    # Persist the imagined scenario alongside the eventual PDF so reviewers\n866\t    # can audit Dream's predictions independent of the rendered paper.\n867\t    (output_dir / \"imagined_experiments.yaml\").write_text(\n868\t        yaml.safe_dump(\n869\t            {\n870\t                \"tier\": scenario.tier,\n871\t                \"narrative_guidance\": scenario.narrative_guidance,\n872\t                \"imagined_experiments\": [e.to_dict() for e in scenario.imagined_experiments],\n873\t            },\n874\t            allow_unicode=True,\n875\t            sort_keys=False,\n876\t        ),\n877\t        encoding=\"utf-8\",\n878\t    )\n879\t\n880\t    experiment_data = _imagined_to_experiment_data(scenario)\n881\t    if real_experiments:\n882\t        experiment_data = list(real_experiments) + experiment_data\n883\t\n884\t    # Hand the data to Paper Agent via a sidecar JSON so we don't blow up the\n885\t    # CLI prompt size. paper-agent.md is updated to look for this file.\n886\t    (output_dir / \"experiment_data.json\").write_text(\n887\t        json.dumps(experiment_data, ensure_ascii=False, indent=2),\n888\t        encoding=\"utf-8\",\n889\t    )\n890\t\n891\t    # Resolve LaTeX template for the venue so Paper Agent can \\input it.\n892\t    template_hint = \"\"\n893\t    if venue:\n894\t        tpl_dir = Path(\"templates/latex\") / venue.lower().replace(\" \", \"\")\n895\t        matches = sorted(tpl_dir.glob(\"*.sty\")) + sorted(tpl_dir.glob(\"*.cls\")) if tpl_dir.exists() else []\n896\t        if matches:\n897\t            template_hint = f\"LaTeX 模板目录：{tpl_dir}（包含 {', '.join(m.name for m in matches[:3])}）\\n\"\n898\t\n899\t    prompt = (\n900\t        f\"你是 Paper Agent（Dream 模式）。任务：为 dream_id={dream_id} tier={tier} \"\n901\t        f\"生成一篇完整的模拟论文。\\n\\n\"\n902\t        f\"## 关键规则\\n\"\n903\t        f\"1. 用 **Write 工具** 把 LaTeX 源码写入 `{output_dir}/paper.tex`\\n\"\n904\t        f\"2. 用 **Bash 工具** 编译：`cd {output_dir} && pdflatex -interaction=nonstopmode paper.tex && \"\n905\t        f\"pdflatex -interaction=nonstopmode paper.tex`\\n\"\n906\t        f\"3. 所有文件只写入 `{output_dir}/`，禁止写入其他目录\\n\"\n907\t        f\"4. 直接写完整 LaTeX 全文（\\\\documentclass ... \\\\end{{document}}），不要输出 YAML/JSON/Markdown\\n\"\n908\t        f\"5. 不走 5 步流水线，不 spawn Worker，不调 Director API——一次性写完\\n\\n\"\n909\t        f\"## 输入\\n\"\n910\t        f\"- 实验数据（JSON）：`{output_dir / 'experiment_data.json'}`（先 Read 此文件）\\n\"\n911\t        f\"- Venue：{venue or '默认'}\\n\"\n912\t        f\"{template_hint}\"\n913\t        f\"- Narrative guidance：{scenario.narrative_guidance}\\n\"\n914\t        f\"- paper_framing.md 节选：\\n{framing[:4000]}\\n\\n\"\n915\t        f\"## 质量目标\\n\"\n916\t        f\"\\\"够审\\\"级——让审稿人能评判 idea 和实验设计，不是投稿质量。\"\n917\t        f\"包含 Abstract、Introduction、Method、Experiments、Conclusion。\"\n918\t        f\"每个定量 claim 基于 experiment_data.json 中的数据，不得编造数字。\"\n919\t    )\n920\t\n921\t    # Re-uses the worker subprocess path because Paper Agent in Dream mode is\n922\t    # ergonomically a Worker (one-shot, no Director routing) — but the env\n923\t    # var DREAM_OUTPUT_DIR keys the Dream-mode behavior in paper-agent.md.\n924\t    os.environ.pop(\"DREAM_OUTPUT_DIR\", None)  # never leak across calls\n925\t    env_overrides = {\n926\t        \"DREAM_OUTPUT_DIR\": str(output_dir),\n927\t        \"DREAM_WRITING_VISIBLE\": \"true\" if writing_visible else \"false\",\n928\t    }\n929\t    log_path = _paths.dream_report_dir(project, dream_id) / \"logs\" / f\"paper_agent_{tier}.log\"\n930\t    log_path.parent.mkdir(parents=True, exist_ok=True)\n931\t\n932\t    try:\n933\t        _run_paper_agent_subprocess(\n934\t            prompt=prompt,\n935\t            project=project,\n936\t            env_overrides=env_overrides,\n937\t            log_path=log_path,\n938\t            timeout_s=_WRITE_TIMEOUT_S,\n939\t        )\n940\t    except Exception:\n941\t        logger.exception(\"[dream] paper agent subprocess failed for tier=%s\", tier)\n942\t\n943\t    return output_dir / \"paper.pdf\"\n944\t\n945\t\n946\tdef _run_paper_agent_subprocess(\n947\t    *,\n948\t    prompt: str,\n949\t    project: str,\n950\t    env_overrides: dict[str, str],\n951\t    log_path: Path,\n952\t    timeout_s: int,\n953\t) -> None:\n954\t    \"\"\"Thin wrapper around _run_llm that injects extra env vars.\n955\t\n956\t    Paper Agent mode requires DREAM_OUTPUT_DIR; we don't want to pollute the\n957\t    process-wide env, so this helper exposes the override mechanism while\n958\t    keeping _run_llm reusable for plain LLM calls.\n959\t    \"\"\"\n960\t    from core.backends import get_backend\n961\t    from core.model_resolver import resolve_model_for_session\n962\t    import subprocess\n963\t\n964\t    backend = get_backend(project=project or None)\n965\t    if not backend.pool_enabled():\n966\t        raise RuntimeError(\"Paper Agent (Dream) requires Claude pool to be enabled.\")\n967\t    config_dir = backend.pool_select()\n968\t    if not config_dir:\n969\t        raise RuntimeError(\"Paper Agent (Dream) could not acquire a pool account — none healthy.\")\n970\t    cmd = backend.build_command(\n971\t        prompt=prompt,\n972\t        mcp_config=None,\n973\t        model=resolve_model_for_session(project=project or None),\n974\t        max_turns=30,\n975\t    )\n976\t    env = backend.make_env(config_dir=config_dir)\n977\t    env.update(env_overrides)\n978\t    backend.prepare_mcp(None, env=env, cwd=str(_paths.project_dir(project) if project else _paths.WORKSPACE_ROOT))\n979\t\n980\t    log_path.parent.mkdir(parents=True, exist_ok=True)\n981\t    with log_path.open(\"wb\") as log_fh:\n982\t        proc = subprocess.Popen(\n983\t            cmd, stdout=log_fh, stderr=subprocess.STDOUT,\n984\t            env=env, cwd=str(_paths.project_dir(project) if project else _paths.WORKSPACE_ROOT),\n985\t            start_new_session=True,\n986\t        )\n987\t        try:\n988\t            proc.wait(timeout=timeout_s)\n989\t        except subprocess.TimeoutExpired:\n990\t            with suppress(ProcessLookupError):\n991\t                proc.kill()\n992\t                proc.wait()\n993\t            raise RuntimeError(f\"Paper Agent (Dream) timed out after {timeout_s}s\")\n994\t\n995\t\n996\t# ---------------------------------------------------------------------------\n997\t# Step 4 — _submit_to_review (placeholder until Phase 3 lands)\n998\t# ---------------------------------------------------------------------------\n999\t\n1000\t\n1001\tdef _build_dream_review_dispatch_prompt(\n1002\t    *,\n1003\t    dream_id: str,\n1004\t    project: str,\n1005\t    tier: str,\n1006\t    pdf_path: Path,\n1007\t    review_mode: str,\n1008\t    review_visible: bool,\n1009\t) -> str:\n1010\t    \"\"\"Compose the Dream Review Director boot prompt.\n1011\t\n1012\t    Includes everything the Director needs without an extra Director-to-\n1013\t    Reviewer chat round: dream_id (sans prefix for the submission tool),\n1014\t    PDF path, tier, mode, visibility, and the exact submission call so the\n1015\t    subprocess can complete in one Claude turn.\n1016\t    \"\"\"\n1017\t    dream_id_bare = dream_id.removeprefix(\"dream_\")\n1018\t    if review_mode == \"simple\":\n1019\t        skill_hint = (\n1020\t            \" 使用 `dream-review-simple` skill 的 dispatch 模板（1 Reviewer 全面覆盖，\"\n1021\t            \"跳过 Step 2 交叉分享 + Step 3 收敛）。\"\n1022\t        )\n1023\t    else:\n1024\t        skill_hint = (\n1025\t            \" 使用 `dream-review-full` skill 的 dispatch 模板（2 Reviewers：R1 方法+实验、\"\n1026\t            \"R2 新颖性+相关工作；完整 roundtable：Step 1 独立 → Step 2 交叉分享 → \"\n1027\t            \"Step 3 收敛 → Step 4 综合）。\"\n1028\t        )\n1029\t    return (\n1030\t        f\"[DREAM Review Director — {tier} 档]\\n\"\n1031\t        f\"dream_id={dream_id_bare} | tier={tier} | review_mode={review_mode} | \"\n1032\t        f\"review_visible={review_visible}\\n\"\n1033\t        f\"PDF: {pdf_path}\\n\\n\"\n1034\t        f\"任务：对上述 PDF 进行 {review_mode} 模式审稿。{skill_hint}\\n\"\n1035\t        f\"完成后必须调用 `submit_dream_review_report(report, project=\"\n1036\t        f\"\\\"{project}\\\", tier=\\\"{tier}\\\", dream_id=\\\"{dream_id_bare}\\\", \"\n1037\t        f\"review_visible={review_visible})` —— 报告会写入 \"\n1038\t        f\"dream_reports/{dream_id}/{tier}/review_report.md，编排进程通过 \"\n1039\t        f\"subprocess 退出读取它。\\n\"\n1040\t        f\"不要调用 submit_review_report_to_research_director / update_review_issues / \"\n1041\t        f\"request_external_review —— 这些工具不在 Dream Review Director 白名单内。\\n\"\n1042\t    )\n1043\t\n1044\t\n1045\tdef _run_dream_review_director_subprocess(\n1046\t    *,\n1047\t    prompt: str,\n1048\t    project: str,\n1049\t    dream_id: str,\n1050\t    tier: str,\n1051\t    log_path: Path,\n1052\t    timeout_s: int,\n1053\t) -> None:\n1054\t    \"\"\"Spawn a Dream-mode Review Director subprocess for one tier.\n1055\t\n1056\t    Mirrors ``_run_paper_agent_subprocess``: pool-aware Claude CLI, isolated\n1057\t    session via env, output streamed to ``log_path``. Returns when the\n1058\t    subprocess exits (success or timeout). The submitted review report is\n1059\t    persisted to disk by the subprocess via ``submit_dream_review_report``;\n1060\t    the caller reads that file after we return.\n1061\t    \"\"\"\n1062\t    from core.backends import get_backend\n1063\t    from core.model_resolver import resolve_model_for_session\n1064\t    from core.session_server import _ensure_dream_review_director_mcp_config\n1065\t    import subprocess\n1066\t\n1067\t    backend = get_backend(project=project or None)\n1068\t    if not backend.pool_enabled():\n1069\t        raise RuntimeError(\"Dream Review Director requires Claude pool to be enabled.\")\n1070\t    config_dir = backend.pool_select()\n1071\t    if not config_dir:\n1072\t        raise RuntimeError(\"Dream Review Director could not acquire a pool account — none healthy.\")\n1073\t    mcp_config = _ensure_dream_review_director_mcp_config()\n1074\t    cmd = backend.build_command(\n1075\t        prompt=prompt,\n1076\t        mcp_config=mcp_config,\n1077\t        model=resolve_model_for_session(project=project or None),\n1078\t    )\n1079\t    env = backend.make_env(config_dir=config_dir)\n1080\t    # Surface key context to the subprocess for any tool that wants to read it\n1081\t    env[\"DREAM_ID\"] = dream_id\n1082\t    env[\"DREAM_TIER\"] = tier\n1083\t    backend.prepare_mcp(\n1084\t        mcp_config,\n1085\t        env=env,\n1086\t        cwd=str(_paths.project_dir(project) if project else _paths.WORKSPACE_ROOT),\n1087\t    )\n1088\t\n1089\t    log_path.parent.mkdir(parents=True, exist_ok=True)\n1090\t    with log_path.open(\"wb\") as log_fh:\n1091\t        proc = subprocess.Popen(\n1092\t            cmd, stdout=log_fh, stderr=subprocess.STDOUT,\n1093\t            env=env,\n1094\t            cwd=str(_paths.project_dir(project) if project else _paths.WORKSPACE_ROOT),\n1095\t            start_new_session=True,\n1096\t        )\n1097\t        try:\n1098\t            proc.wait(timeout=timeout_s)\n1099\t        except subprocess.TimeoutExpired:\n1100\t            with suppress(ProcessLookupError):\n1101\t                proc.kill()\n1102\t                proc.wait()\n1103\t            raise RuntimeError(f\"Dream Review Director timed out after {timeout_s}s\")\n1104\t\n1105\t\n1106\tdef _ensure_review_chat_id(project: str) -> str:\n1107\t    \"\"\"Ensure project has a review_chat_id (Group C), creating one if needed.\n1108\t\n1109\t    Mirrors the Group C bootstrap logic in ``core/approvals/hooks.py``.\n1110\t    Returns the review_chat_id (existing or newly created). Returns empty\n1111\t    string if creation fails (caller degrades gracefully).\n1112\t    \"\"\"\n1113\t    from core.tools.project_config import load_review_chat_id, save_project_submission_config\n1114\t\n1115\t    existing = load_review_chat_id(project)\n1116\t    if existing:\n1117\t        return existing\n1118\t\n1119\t    from core.tools.feishu import create_chat, get_chat_members\n1120\t    from core.tools.project_config import load_project_config\n1121\t\n1122\t    result = load_project_config(project, section=\"feishu\")\n1123\t    feishu = result.data.get(\"config\", {}).get(\"feishu\", {}) if result.success else {}\n1124\t    research_chat_id = feishu.get(\"chat_id\", \"\")\n1125\t\n1126\t    group_name = f\"{project}-审稿群\"\n1127\t    member_ids = get_chat_members(research_chat_id) if research_chat_id else []\n1128\t    review_chat_id = create_chat(group_name, user_id_list=member_ids or None)\n1129\t    if not review_chat_id:\n1130\t        logger.error(\"[dream] failed to create Group C for project=%s\", project)\n1131\t        return \"\"\n1132\t\n1133\t    save_result = save_project_submission_config(project, review_chat_id)\n1134\t    if not save_result.success:\n1135\t        logger.error(\n1136\t            \"[dream] created Group C (chat_id=%s) but failed to save config: %s\",\n1137\t            review_chat_id, save_result.error,\n1138\t        )\n1139\t    else:\n1140\t        logger.info(\"[dream] auto-created Group C for project=%s: %s\", project, review_chat_id)\n1141\t    return review_chat_id\n1142\t\n1143\t\n1144\tdef _submit_to_review(\n1145\t    *,\n1146\t    dream_id: str,\n1147\t    project: str,\n1148\t    tier: str,\n1149\t    pdf_path: Path,\n1150\t    review_mode: str,\n1151\t    review_visible: bool,\n1152\t) -> str:\n1153\t    \"\"\"Submit one Dream PDF to Group C review and return the report text.\n1154\t\n1155\t    Spawns a Dream-mode Review Director subprocess (independent session_key\n1156\t    in the ``feishu:group:{review_chat_id}:dream_{id}:director`` namespace).\n1157\t    The subprocess writes the consolidated report to\n1158\t    ``dream_reports/{dream_id}/{tier}/review_report.md`` via\n1159\t    ``submit_dream_review_report``; we read that file once the subprocess\n1160\t    exits and return its content.\n1161\t\n1162\t    Falls back to a stub report if (a) no PDF was produced or (b) we cannot\n1163\t    acquire a pool account. The pipeline can still continue for the other\n1164\t    tiers either way — ``_persist_report`` records the missing review as an\n1165\t    error on the tier's ``DreamScenarioResult``.\n1166\t    \"\"\"\n1167\t    if review_visible:\n1168\t        _ensure_review_chat_id(project)\n1169\t\n1170\t    output_dir = _paths.dream_report_dir(project, dream_id) / tier\n1171\t    report_path = output_dir / \"review_report.md\"\n1172\t    output_dir.mkdir(parents=True, exist_ok=True)\n1173\t\n1174\t    if not pdf_path.exists():\n1175\t        report_path.write_text(\n1176\t            f\"# [Dream Review — {tier}]\\n\\n\"\n1177\t            f\"Status: skipped (paper PDF not produced)\\n\",\n1178\t            encoding=\"utf-8\",\n1179\t        )\n1180\t        return report_path.read_text(encoding=\"utf-8\")\n1181\t\n1182\t    prompt = _build_dream_review_dispatch_prompt(\n1183\t        dream_id=dream_id, project=project, tier=tier, pdf_path=pdf_path,\n1184\t        review_mode=review_mode, review_visible=review_visible,\n1185\t    )\n1186\t    log_path = _paths.dream_report_dir(project, dream_id) / \"logs\" / f\"review_{tier}.log\"\n1187\t    try:\n1188\t        _run_dream_review_director_subprocess(\n1189\t            prompt=prompt, project=project, dream_id=dream_id, tier=tier,\n1190\t            log_path=log_path, timeout_s=_REVIEW_TIMEOUT_S,\n1191\t        )\n1192\t    except Exception as exc:\n1193\t        logger.exception(\"[dream] review subprocess failed for tier=%s\", tier)\n1194\t        # Persist a minimal failure stub so callers always have something\n1195\t        # to read. The orchestrator records the error on the scenario via\n1196\t        # the calling ``_run_dream_pipeline`` exception handler.\n1197\t        if not report_path.exists():\n1198\t            report_path.write_text(\n1199\t                f\"# [Dream Review — {tier}]\\n\\n\"\n1200\t                f\"Status: failed ({exc})\\n\",\n1201\t                encoding=\"utf-8\",\n1202\t            )\n1203\t        return report_path.read_text(encoding=\"utf-8\")\n1204\t\n1205\t    # Subprocess exited cleanly. If submit_dream_review_report was called the\n1206\t    # file is on disk; otherwise leave a clear marker for the orchestrator.\n1207\t    if not report_path.exists():\n1208\t        report_path.write_text(\n1209\t            f\"# [Dream Review — {tier}]\\n\\n\"\n1210\t            f\"Status: subprocess exited but no report was submitted\\n\",\n1211\t            encoding=\"utf-8\",\n1212\t        )\n1213\t    return report_path.read_text(encoding=\"utf-8\")\n1214\t\n1215\t\n1216\t# ---------------------------------------------------------------------------\n1217\t# Step 5 — _persist_report (2-7)\n1218\t# ---------------------------------------------------------------------------\n1219\t\n1220\t\n1221\tdef _persist_report(\n1222\t    *,\n1223\t    dream_id: str,\n1224\t    project: str,\n1225\t    dream_input: DreamInput,\n1226\t    scenarios: dict[str, ImaginedScenario],\n1227\t    pdf_paths: dict[str, Path],\n1228\t    reviews: dict[str, str],\n1229\t    errors: dict[str, str],\n1230\t    tier_defs: TierDefinitions | None = None,\n1231\t) -> DreamOutput:\n1232\t    \"\"\"Write meta.yaml + per-tier review files; build the DreamOutput.\n1233\t\n1234\t    Symlink ``latest`` → this dream's directory so callers (Director, A-group\n1235\t    summary) can always point at the most recent run without knowing its id.\n1236\t    \"\"\"\n1237\t    root = _paths.dream_report_dir(project, dream_id)\n1238\t    root.mkdir(parents=True, exist_ok=True)\n1239\t    (root / \"logs\").mkdir(exist_ok=True)\n1240\t\n1241\t    results: list[DreamScenarioResult] = []\n1242\t    for tier in TIERS:\n1243\t        scenario = scenarios.get(tier)\n1244\t        pdf = pdf_paths.get(tier)\n1245\t        results.append(\n1246\t            DreamScenarioResult(\n1247\t                tier=tier,\n1248\t                pdf_path=str(pdf) if pdf and pdf.exists() else \"\",\n1249\t                imagined_experiments=list(scenario.imagined_experiments) if scenario else [],\n1250\t                review_report=reviews.get(tier, \"\"),\n1251\t                error=errors.get(tier, \"\"),\n1252\t            )\n1253\t        )\n1254\t\n1255\t    meta = {\n1256\t        \"dream_id\": dream_id,\n1257\t        \"project\": project,\n1258\t        \"venue\": dream_input.venue,\n1259\t        \"focus\": dream_input.focus,\n1260\t        \"review_mode\": dream_input.review_mode,\n1261\t        \"review_visible\": dream_input.review_visible,\n1262\t        \"writing_visible\": dream_input.writing_visible,\n1263\t        \"what_if\": [w.to_dict() for w in dream_input.what_if],\n1264\t        \"tier_definitions\": tier_defs.to_dict() if tier_defs else {},\n1265\t        \"scenarios\": [r.to_dict() for r in results],\n1266\t        \"created_at\": datetime.now(timezone.utc).isoformat(timespec=\"seconds\"),\n1267\t    }\n1268\t    (root / \"meta.yaml\").write_text(\n1269\t        yaml.safe_dump(meta, allow_unicode=True, sort_keys=False),\n1270\t        encoding=\"utf-8\",\n1271\t    )\n1272\t\n1273\t    # `latest` symlink — best-effort; non-POSIX FS without symlinks is fine.\n1274\t    latest = _paths.dream_reports_dir(project) / \"latest\"\n1275\t    with suppress(OSError):\n1276\t        if latest.is_symlink() or latest.exists():\n1277\t            latest.unlink()\n1278\t        latest.symlink_to(root)\n1279\t\n1280\t    return DreamOutput(dream_id=dream_id, scenarios=results)\n1281\t\n1282\t\n1283\t# ---------------------------------------------------------------------------\n1284\t# Pipeline (2-9)\n1285\t# ---------------------------------------------------------------------------\n1286\t\n1287\t\n1288\tdef _run_dream_pipeline(\n1289\t    dream_input: DreamInput,\n1290\t    dream_id: str,\n1291\t    *,\n1292\t    director_session_key: str = \"\",\n1293\t    chat_id: str = \"\",\n1294\t    operational_chat_id: str = \"\",\n1295\t) -> DreamOutput:\n1296\t    \"\"\"Run the full Dream pipeline (sync, runs inside the orchestrator process).\n1297\t\n1298\t    The orchestrator is started by ``dream_simulate`` via ``multiprocessing``\n1299\t    (start_new_session=True) so it survives BE restarts. ``dream_registry``\n1300\t    is the only state shared with the parent — every transition is committed\n1301\t    there so ``get_dream_status`` returns truthful progress.\n1302\t    \"\"\"\n1303\t    project = dream_input.project\n1304\t    log_dir = _paths.dream_report_dir(project, dream_id) / \"logs\"\n1305\t    log_dir.mkdir(parents=True, exist_ok=True)\n1306\t\n1307\t    scenarios: dict[str, ImaginedScenario] = {}\n1308\t    pdf_paths: dict[str, Path] = {}\n1309\t    reviews: dict[str, str] = {}\n1310\t    errors: dict[str, str] = {}\n1311\t    tier_defs: TierDefinitions | None = None\n1312\t\n1313\t    _card_kwargs = dict(\n1314\t        dream_id=dream_id, project=project,\n1315\t        venue=dream_input.venue, focus=dream_input.focus,\n1316\t        review_mode=dream_input.review_mode,\n1317\t    )\n1318\t    _activity: list[tuple[str, str]] = []\n1319\t\n1320\t    def _log_activity(label: str, detail: str) -> None:\n1321\t        _activity.append((label, detail))\n1322\t\n1323\t    def _patch_card(phase: str, stages: list[str] | None = None, error: str = \"\") -> None:\n1324\t        try:\n1325\t            from core.tools.dream_card import patch_dream_card\n1326\t            patch_dream_card(\n1327\t                phase=phase, stages_completed=stages, error=error,\n1328\t                activity=_activity, **_card_kwargs,\n1329\t            )\n1330\t        except Exception:\n1331\t            logger.debug(\"[dream:%s] card patch failed\", dream_id, exc_info=True)\n1332\t\n1333\t    _PHASE_LABEL = {\n1334\t        \"pending\": \"⏳ 启动\",\n1335\t        \"imagining\": \"🔮 想象中\",\n1336\t        \"writing\": \"✍️ 写作中\",\n1337\t        \"reviewing\": \"🔍 审阅中\",\n1338\t        \"done\": \"✅ 完成\",\n1339\t        \"failed\": \"❌ 失败\",\n1340\t    }\n1341\t    _ops_notified_phases: set[str] = set()\n1342\t\n1343\t    def _notify_ops(phase: str, error: str = \"\") -> None:\n1344\t        if not operational_chat_id or phase in _ops_notified_phases:\n1345\t            return\n1346\t        _ops_notified_phases.add(phase)\n1347\t        label = _PHASE_LABEL.get(phase, phase)\n1348\t        text = f\"[Dream {dream_id}] {project} — {label}\"\n1349\t        if error:\n1350\t            text += f\"\\n{error[:300]}\"\n1351\t        try:\n1352\t            from core.tools.feishu import send_message\n1353\t            send_message(chat_id=operational_chat_id, text=text)\n1354\t        except Exception:\n1355\t            logger.debug(\"[dream:%s] ops notify failed\", dream_id, exc_info=True)\n1356\t\n1357\t    # --- 0. Collect context ---\n1358\t    _log_activity(\"Context\", \"收集项目上下文 (framing + plan + registry)\")\n1359\t    _patch_card(\"pending\")\n1360\t    _notify_ops(\"pending\")\n1361\t    try:\n1362\t        context = _collect_context(\n1363\t            project=project,\n1364\t            what_if=dream_input.what_if,\n1365\t            venue=dream_input.venue,\n1366\t            focus=dream_input.focus,\n1367\t        )\n1368\t        framing = context.get(\"framing\", \"\") or \"\"\n1369\t        real_experiments = []  # real ExperimentData injection deferred to Phase 5 mapping\n1370\t        _log_activity(\"Context\", \"上下文收集完成\")\n1371\t    except Exception as e:\n1372\t        logger.exception(\"[dream:%s] context collection failed\", dream_id)\n1373\t        _registry.mark_status(project, dream_id, \"failed\", error=f\"context: {e}\")\n1374\t        _patch_card(\"failed\", error=f\"context: {e}\")\n1375\t        _notify_ops(\"failed\", error=f\"context: {e}\")\n1376\t        return _persist_report(\n1377\t            dream_id=dream_id, project=project, dream_input=dream_input,\n1378\t            scenarios={}, pdf_paths={}, reviews={}, errors={\"_pipeline\": str(e)},\n1379\t        )\n1380\t\n1381\t    # --- 1. Phase 1: tier definitions ---\n1382\t    _registry.mark_status(project, dream_id, \"imagining\")\n1383\t    _log_activity(\"Phase1\", \"LLM 生成三档场景定义 (best/median/worst) …\")\n1384\t    _patch_card(\"imagining\")\n1385\t    _notify_ops(\"imagining\")\n1386\t    try:\n1387\t        tier_defs = _define_tiers(context, log_dir=log_dir)\n1388\t        _log_activity(\"Phase1\", \"三档场景定义完成 ✓\")\n1389\t        _patch_card(\"imagining\")\n1390\t    except Exception as e:\n1391\t        logger.exception(\"[dream:%s] Phase 1 failed\", dream_id)\n1392\t        _registry.mark_status(project, dream_id, \"failed\", error=f\"phase1: {e}\")\n1393\t        _patch_card(\"failed\", error=f\"phase1: {e}\")\n1394\t        _notify_ops(\"failed\", error=f\"phase1: {e}\")\n1395\t        return _persist_report(\n1396\t            dream_id=dream_id, project=project, dream_input=dream_input,\n1397\t            scenarios={}, pdf_paths={}, reviews={},\n1398\t            errors={t: f\"phase1: {e}\" for t in TIERS},\n1399\t        )\n1400\t\n1401\t    # --- 2. Phase 2 per tier (sequential is fine here; parallelism is a perf\n1402\t    #       optimization, not a correctness requirement; pool can be tight). ---\n1403\t    for tier in TIERS:\n1404\t        tdef = tier_defs.get(tier)\n1405\t        if tdef is None:\n1406\t            errors[tier] = \"tier definition missing\"\n1407\t            continue\n1408\t        _log_activity(\"Phase2\", f\"展开 {tier} 场景 …\")\n1409\t        _patch_card(\"imagining\")\n1410\t        try:\n1411\t            scenarios[tier] = _elaborate_scenario(context, tdef, log_dir=log_dir)\n1412\t            n_exp = len(scenarios[tier].imagined_experiments)\n1413\t            _log_activity(\"Phase2\", f\"{tier} 场景完成 ({n_exp} experiments) ✓\")\n1414\t        except Exception as e:\n1415\t            errors[tier] = f\"phase2: {e}\"\n1416\t            _log_activity(\"Phase2\", f\"{tier} 场景失败: {str(e)[:80]}\")\n1417\t            logger.warning(\"[dream:%s] Phase 2 %s failed: %s\", dream_id, tier, e)\n1418\t\n1419\t    _registry.mark_stage_complete(project, dream_id, \"imagine\")\n1420\t\n1421\t    # --- 3. Write papers ---\n1422\t    _registry.mark_status(project, dream_id, \"writing\")\n1423\t    _patch_card(\"writing\", [\"imagine\"])\n1424\t    _notify_ops(\"writing\")\n1425\t    for tier, scenario in scenarios.items():\n1426\t        _log_activity(\"Paper\", f\"写作 {tier} 模拟论文 …\")\n1427\t        _patch_card(\"writing\", [\"imagine\"])\n1428\t        try:\n1429\t            pdf_paths[tier] = _write_dream_paper(\n1430\t                dream_id=dream_id,\n1431\t                project=project,\n1432\t                tier=tier,\n1433\t                scenario=scenario,\n1434\t                framing=framing,\n1435\t                venue=dream_input.venue,\n1436\t                real_experiments=real_experiments,\n1437\t                writing_visible=dream_input.writing_visible,\n1438\t            )\n1439\t            _log_activity(\"Paper\", f\"{tier} 论文完成 ✓\")\n1440\t        except Exception as e:\n1441\t            errors[tier] = (errors.get(tier, \"\") + f\" | write: {e}\").strip(\" |\")\n1442\t            _log_activity(\"Paper\", f\"{tier} 写作失败: {str(e)[:80]}\")\n1443\t            logger.warning(\"[dream:%s] write %s failed: %s\", dream_id, tier, e)\n1444\t    _registry.mark_stage_complete(project, dream_id, \"write\")\n1445\t\n1446\t    # --- 4. Review ---\n1447\t    _registry.mark_status(project, dream_id, \"reviewing\")\n1448\t    _patch_card(\"reviewing\", [\"imagine\", \"write\"])\n1449\t    _notify_ops(\"reviewing\")\n1450\t    for tier, pdf in pdf_paths.items():\n1451\t        _log_activity(\"Review\", f\"审阅 {tier} 论文 ({dream_input.review_mode}) …\")\n1452\t        _patch_card(\"reviewing\", [\"imagine\", \"write\"])\n1453\t        try:\n1454\t            reviews[tier] = _submit_to_review(\n1455\t                dream_id=dream_id, project=project, tier=tier,\n1456\t                pdf_path=pdf,\n1457\t                review_mode=dream_input.review_mode,\n1458\t                review_visible=dream_input.review_visible,\n1459\t            )\n1460\t            _log_activity(\"Review\", f\"{tier} 审阅完成 ✓\")\n1461\t        except Exception as e:\n1462\t            errors[tier] = (errors.get(tier, \"\") + f\" | review: {e}\").strip(\" |\")\n1463\t            _log_activity(\"Review\", f\"{tier} 审阅失败: {str(e)[:80]}\")\n1464\t            logger.warning(\"[dream:%s] review %s failed: %s\", dream_id, tier, e)\n1465\t    _registry.mark_stage_complete(project, dream_id, \"review\")\n1466\t\n1467\t    # --- 5. Persist + done ---\n1468\t    out = _persist_report(\n1469\t        dream_id=dream_id, project=project, dream_input=dream_input,\n1470\t        scenarios=scenarios, pdf_paths=pdf_paths, reviews=reviews,\n1471\t        errors=errors, tier_defs=tier_defs,\n1472\t    )\n1473\t    has_any_success = any(s.pdf_path and not s.error for s in out.scenarios)\n1474\t    final_status = \"done\" if has_any_success else \"failed\"\n1475\t    _registry.mark_status(\n1476\t        project, dream_id, final_status,\n1477\t        error=None if final_status == \"done\" else \"all tiers failed\",\n1478\t    )\n1479\t    _log_activity(\"Done\" if final_status == \"done\" else \"Failed\",\n1480\t                  \"3-tier 模拟完成\" if final_status == \"done\" else \"全部 tier 失败\")\n1481\t    _patch_card(\n1482\t        final_status,\n1483\t        [\"imagine\", \"write\", \"review\"],\n1484\t        error=\"\" if final_status == \"done\" else \"all tiers failed\",\n1485\t    )\n1486\t    _notify_ops(final_status, error=\"\" if final_status == \"done\" else \"all tiers failed\")\n1487\t\n1488\t    try:\n1489\t        dispatch_dream_done(\n1490\t            dream_id=dream_id, project=project,\n1491\t            director_session_key=director_session_key, chat_id=chat_id,\n1492\t            operational_chat_id=operational_chat_id,\n1493\t            output=out,\n1494\t        )\n1495\t    except Exception:\n1496\t        logger.exception(\"[dream:%s] dispatch_dream_done failed\", dream_id)\n1497\t\n1498\t    return out\n1499\t\n1500\t\n1501\t# ---------------------------------------------------------------------------\n1502\t# dispatch_dream_done (2-10)\n1503\t# ---------------------------------------------------------------------------\n1504\t\n1505\t\n1506\t_DREAM_ACTION_PROTOCOL = \"\"\"\\\n1507\t## 行动要求（硬约束，收到本消息后必须执行，不得\"已知悉\"跳过）\n1508\t\n1509\t### 1. 阅读完整报告\n1510\t逐一 read_local_file 上述三份 review_report.md。不要只看本消息的评分摘要——\\\n1511\t完整审稿意见在报告文件中。\n1512\t\n1513\t### 2. 分析审稿意见\n1514\tRead skills/global/dream-report-action.skill.md，按 skill 中的分类方法处理。\n1515\t\n1516\t核心原则——Dream 的实验数据是想象的，审稿意见分两类：\n1517\t- **通用建议**（缺 baseline/benchmark、引用不足、方法描述不清、framing 逻辑漏洞）\\\n1518\t——不依赖实验数据，直接有效，应认真对待\n1519\t- **数据依赖建议**（claim 太强/太弱、实验效果不 convincing）\\\n1520\t——高度依赖想象数据，必须跨三档对比后再判断\n1521\t\n1522\t### 3. 跨档对比（数据依赖建议的判定规则）\n1523\t- **三档一致**指出的问题 → 结构性问题，必须处理\n1524\t- **三档不一致** → 该意见取决于实验结果好坏，\\\n1525\t不要因某一档的想象数据就急于调整 claim——先记录为观察项\n1526\t- **仅单档出现**的 claim 强弱意见 → 记录但不行动\n1527\t\n1528\t### 4. 持久化\n1529\t- **确认行动项**（通用建议 + 三档一致的结构性问题）：\\\n1530\t直接修改 paper_framing.md / experiment_plan.yaml + 更新 ROADMAP 近期任务\n1531\t- **整体判断**：log_decision 记录（proceed / adjust / re-dream + 完整分析）\n1532\t- **观察项**（模棱两可、待真实实验验证的）：\\\n1533\tlog_decision 中写明\"待验证\"，ROADMAP 近期任务加 [Dream 观察] 条目，\\\n1534\t标注具体观察什么指标、关联哪个实验、什么条件下需要行动\n1535\t\n1536\t### 5. 向 A 群汇报\n1537\tdirector_reply_to_user 发送分析结论：\n1538\t1. 三档评分总结\n1539\t2. 发现了哪些必须处理的问题 + 已采取/计划采取的行动\n1540\t3. 记录了哪些观察项\n1541\t4. 下一步行动计划\n1542\t\n1543\t### 处理态度\n1544\t该处理的果断处理，模棱两可的先记录等真实实验再定。\\\n1545\t但也不要因为\"数据是想象的\"就全盘忽视——通用建议和三档一致的问题是实打实的。\n1546\t\"\"\"\n1547\t\n1548\t\n1549\tdef _extract_overall_score(review_report: str) -> str:\n1550\t    \"\"\"Extract overall_score from review_report.md YAML frontmatter.\n1551\t\n1552\t    Returns the score string, or \"N/A\" if not found or parse fails.\n1553\t    \"\"\"\n1554\t    if not review_report or \"---\" not in review_report:\n1555\t        return \"N/A\"\n1556\t    parts = review_report.split(\"---\", 2)\n1557\t    if len(parts) < 3:\n1558\t        return \"N/A\"\n1559\t    try:\n1560\t        fm = yaml.safe_load(parts[1])\n1561\t        if isinstance(fm, dict):\n1562\t            score = fm.get(\"overall_score\", \"\")\n1563\t            return score if score else \"N/A\"\n1564\t    except Exception:\n1565\t        pass\n1566\t    return \"N/A\"\n1567\t\n1568\t\n1569\tdef _summarize_for_director(output: DreamOutput, project: str) -> str:\n1570\t    \"\"\"Structured summary + action protocol for Director session injection.\"\"\"\n1571\t    lines = [f\"[DREAM {output.dream_id}] 完成 — 三档审稿报告就绪\", \"\"]\n1572\t\n1573\t    lines.append(\"## 评分概览\")\n1574\t    for s in output.scenarios:\n1575\t        if s.error:\n1576\t            lines.append(f\"- {s.tier}: 失败 ({s.error})\")\n1577\t            continue\n1578\t        n = len(s.imagined_experiments)\n1579\t        score = _extract_overall_score(s.review_report)\n1580\t        lines.append(f\"- {s.tier}: {score}（{n} 个想象实验）\")\n1581\t    lines.append(\"\")\n1582\t\n1583\t    lines.append(\"## 完整报告路径\")\n1584\t    for tier in TIERS:\n1585\t        lines.append(\n1586\t            f\"- projects/{project}/artifacts/\"\n1587\t            f\"dream_reports/{output.dream_id}/{tier}/review_report.md\"\n1588\t        )\n1589\t    lines.append(\"\")\n1590\t\n1591\t    lines.append(_DREAM_ACTION_PROTOCOL)\n1592\t\n1593\t    return \"\\n\".join(lines)\n1594\t\n1595\t\n1596\tdef _group_a_brief(output: DreamOutput) -> str:\n1597\t    \"\"\"Brief completion notification for Group A (user-facing).\"\"\"\n1598\t    lines = [f\"[DREAM {output.dream_id}] 模拟完成\"]\n1599\t    for s in output.scenarios:\n1600\t        if s.error:\n1601\t            lines.append(f\"  {s.tier}: 失败\")\n1602\t            continue\n1603\t        score = _extract_overall_score(s.review_report)\n1604\t        lines.append(f\"  {s.tier}: {score}\")\n1605\t    lines.append(\"\")\n1606\t    lines.append(\"Director 正在分析审稿意见，稍后汇报行动方案。\")\n1607\t    return \"\\n\".join(lines)\n1608\t\n1609\t\n1610\tdef dispatch_dream_done(\n1611\t    *,\n1612\t    dream_id: str,\n1613\t    project: str,\n1614\t    director_session_key: str = \"\",\n1615\t    chat_id: str = \"\",\n1616\t    operational_chat_id: str = \"\",\n1617\t    output: DreamOutput,\n1618\t) -> None:\n1619\t    \"\"\"Inject the Dream summary back to Director + post to Group A + Group B.\n1620\t\n1621\t    Director receives a structured summary with action protocol;\n1622\t    Group A receives a brief notification (detailed analysis comes\n1623\t    later via director_reply_to_user).\n1624\t    \"\"\"\n1625\t    # 1. Director session injection — detailed summary with action protocol.\n1626\t    if director_session_key:\n1627\t        director_msg = _summarize_for_director(output, project)\n1628\t        try:\n1629\t            from core.session_server import get_server\n1630\t            server = get_server()\n1631\t            if server._started:\n1632\t                server.send_sync(\n1633\t                    project=project,\n1634\t                    message=director_msg,\n1635\t                    reply_fn=lambda _t: None,\n1636\t                    session_key=director_session_key,\n1637\t                    source=\"dream\",\n1638\t                )\n1639\t        except Exception:\n1640\t            logger.exception(\"[dream:%s] director injection failed\", dream_id)\n1641\t\n1642\t    # 2. Group A — brief notification.\n1643\t    if chat_id:\n1644\t        brief = _group_a_brief(output)\n1645\t        try:\n1646\t            from core.tools.feishu import send_message\n1647\t            send_message(chat_id=chat_id, text=brief)\n1648\t        except Exception:\n1649\t            logger.exception(\"[dream:%s] feishu summary failed\", dream_id)\n1650\t\n1651\t    # 3. Group B — brief notification (ops-facing).\n1652\t    if operational_chat_id and operational_chat_id != chat_id:\n1653\t        brief = _group_a_brief(output)\n1654\t        try:\n1655\t            from core.tools.feishu import send_message\n1656\t            send_message(chat_id=operational_chat_id, text=brief)\n1657\t        except Exception:\n1658\t            logger.exception(\"[dream:%s] ops summary failed\", dream_id)\n1659\t\n1660\t\n1661\t# ---------------------------------------------------------------------------\n1662\t# Public entry points\n1663\t# ---------------------------------------------------------------------------\n1664\t\n1665\t\n1666\tdef dream_simulate(\n1667\t    project: str,\n1668\t    *,\n1669\t    what_if: list[dict[str, Any]] | None = None,\n1670\t    venue: str = \"\",\n1671\t    focus: str = \"\",\n1672\t    review_mode: str = \"simple\",\n1673\t    review_visible: bool | None = None,\n1674\t    writing_visible: bool | None = None,\n1675\t    smart_skip: bool = False,\n1676\t    director_session_key: str = \"\",\n1677\t    chat_id: str = \"\",\n1678\t    operational_chat_id: str = \"\",\n1679\t) -> ToolResult:\n1680\t    \"\"\"Kick off a Dream run. Returns a DreamHandle immediately.\n1681\t\n1682\t    Pre-flight checks (see DREAM_AGENT_DESIGN.md §8.3 / §8.4):\n1683\t      • ``paper_framing.md`` exists\n1684\t      • ``experiment_plan.yaml`` exists\n1685\t      • no over-the-limit concurrent dream is running\n1686\t      • when ``smart_skip=True``, reuse the last completed dream if the\n1687\t        research context (framing + plan + registry metrics) is unchanged\n1688\t\n1689\t    On success, registers the dream in ``dream_registry`` and spawns a\n1690\t    detached orchestrator process (``start_new_session=True``) that runs\n1691\t    ``_run_dream_pipeline``. The orchestrator is independent of the BE — a\n1692\t    BE restart does not abort the dream, and ``get_dream_status`` keeps\n1693\t    working across restarts because state lives in the registry.\n1694\t    \"\"\"\n1695\t    if not project:\n1696\t        return ToolResult(success=False, error=\"project is required\")\n1697\t\n1698\t    # Pre-flight: framing + plan must exist (Director hasn't done Post-MVP).\n1699\t    framing_path = _paths.resolve_project_file(project, \"paper_framing.md\")\n1700\t    plan_path = _paths.resolve_project_file(project, \"experiment_plan.yaml\")\n1701\t    if not framing_path.exists():\n1702\t        return ToolResult(\n1703\t            success=False,\n1704\t            error=\"paper_framing.md 不存在，请先完成 Post-MVP framing。\",\n1705\t        )\n1706\t    if not plan_path.exists():\n1707\t        return ToolResult(\n1708\t            success=False,\n1709\t            error=\"experiment_plan.yaml 不存在，请先制定 plan。\",\n1710\t        )\n1711\t\n1712\t    if not operational_chat_id:\n1713\t        try:\n1714\t            from core.session_claude_md import _load_operational_chat_id\n1715\t            operational_chat_id = _load_operational_chat_id(project)\n1716\t        except Exception:\n1717\t            pass\n1718\t\n1719\t    # Concurrency: respect dream config `max_concurrent_dreams`.\n1720\t    cfg = _project_dream_config(project)\n1721\t    max_concurrent = int(cfg.get(\"max_concurrent_dreams\", 1) or 1)\n1722\t    if _registry.count_active(project) >= max_concurrent:\n1723\t        return ToolResult(\n1724\t            success=False,\n1725\t            error=f\"已有 {_registry.count_active(project)} 个 Dream 在运行（上限 {max_concurrent}）\",\n1726\t        )\n1727\t\n1728\t    # Smart-skip: if the caller opted in (cron / heuristic Director) and the\n1729\t    # research context hasn't changed since the last `done` dream, return that\n1730\t    # dream's handle instead of spawning a new orchestrator.\n1731\t    if smart_skip:\n1732\t        skip_result = should_skip_dream(project, what_if=what_if)\n1733\t        if skip_result.success and (skip_result.data or {}).get(\"skip\"):\n1734\t            data = skip_result.data or {}\n1735\t            handle = DreamHandle(\n1736\t                dream_id=data.get(\"last_dream_id\", \"\"),\n1737\t                status=\"done\",\n1738\t            )\n1739\t            payload = handle.to_dict()\n1740\t            payload[\"skipped\"] = True\n1741\t            payload[\"skip_reason\"] = data.get(\"reason\", \"\")\n1742\t            payload[\"last_dream_dir\"] = data.get(\"last_dream_dir\", \"\")\n1743\t            return ToolResult(success=True, data=payload)\n1744\t\n1745\t    # Resolve defaults from project config.\n1746\t    if review_visible is None:\n1747\t        review_visible = bool(cfg.get(\"review_visible\", True))\n1748\t    if writing_visible is None:\n1749\t        writing_visible = bool(cfg.get(\"writing_visible\", True))\n1750\t\n1751\t    what_if_objs = [WhatIfExperiment.from_dict(w) for w in (what_if or [])]\n1752\t    dream_input = DreamInput(\n1753\t        project=project,\n1754\t        what_if=what_if_objs,\n1755\t        venue=venue,\n1756\t        focus=focus,\n1757\t        review_mode=review_mode,\n1758\t        review_visible=review_visible,\n1759\t        writing_visible=writing_visible,\n1760\t    )\n1761\t\n1762\t    # Capture the context hash up front so trend/skip checks have a stable\n1763\t    # baseline even if framing/plan files change while the dream is running.\n1764\t    context_hash = _compute_context_hash(project, what_if=what_if_objs)\n1765\t\n1766\t    dream_id = _new_dream_id()\n1767\t    _registry.register(\n1768\t        dream_id=dream_id,\n1769\t        project=project,\n1770\t        review_mode=review_mode,\n1771\t        review_visible=review_visible,\n1772\t        writing_visible=writing_visible,\n1773\t        venue=venue,\n1774\t        focus=focus,\n1775\t        what_if=[w.to_dict() for w in what_if_objs],\n1776\t        status=\"pending\",\n1777\t        chat_id=chat_id,\n1778\t    )\n1779\t    _registry.update(project, dream_id, context_hash=context_hash)\n1780\t\n1781\t    # Send live progress card to Group A.\n1782\t    try:\n1783\t        from core.tools.dream_card import send_dream_card\n1784\t        entry = _registry.get(project, dream_id)\n1785\t        send_dream_card(\n1786\t            dream_id=dream_id,\n1787\t            project=project,\n1788\t            chat_id=chat_id,\n1789\t            phase=\"pending\",\n1790\t            venue=venue,\n1791\t            focus=focus,\n1792\t            review_mode=review_mode,\n1793\t            started_at=(entry or {}).get(\"started_at\", \"\"),\n1794\t        )\n1795\t    except Exception:\n1796\t        logger.warning(\"[dream:%s] failed to send initial card\", dream_id, exc_info=True)\n1797\t\n1798\t    # Launch orchestrator in a detached process. We use multiprocessing so the\n1799\t    # child inherits the module state (registry path, workspace root) without\n1800\t    # re-discovering them from env. ``start_new_session=True`` is the Python\n1801\t    # multiprocessing analog — `daemon=False` + detached session keeps it\n1802\t    # alive after BE shutdown.\n1803\t    pid = _spawn_pipeline_process(\n1804\t        dream_input=dream_input,\n1805\t        dream_id=dream_id,\n1806\t        director_session_key=director_session_key,\n1807\t        chat_id=chat_id,\n1808\t        operational_chat_id=operational_chat_id,\n1809\t    )\n1810\t    _registry.update(project, dream_id, pid=pid)\n1811\t\n1812\t    handle = DreamHandle(dream_id=dream_id, status=\"pending\")\n1813\t    return ToolResult(success=True, data=handle.to_dict())\n1814\t\n1815\t\n1816\tdef _spawn_pipeline_process(\n1817\t    *,\n1818\t    dream_input: DreamInput,\n1819\t    dream_id: str,\n1820\t    director_session_key: str,\n1821\t    chat_id: str,\n1822\t    operational_chat_id: str = \"\",\n1823\t) -> int | None:\n1824\t    \"\"\"Spawn the orchestrator. Returns the child pid (or None in tests).\n1825\t\n1826\t    Implemented with ``subprocess.Popen`` (not multiprocessing) so the child\n1827\t    is a fully detached OS process — multiprocessing would attach signal\n1828\t    handlers to the parent loop and tear the child down on BE exit.\n1829\t    \"\"\"\n1830\t    import subprocess\n1831\t\n1832\t    payload = {\n1833\t        \"dream_id\": dream_id,\n1834\t        \"dream_input\": dream_input.to_dict(),\n1835\t        \"director_session_key\": director_session_key,\n1836\t        \"chat_id\": chat_id,\n1837\t        \"operational_chat_id\": operational_chat_id,\n1838\t    }\n1839\t    runner = _paths.REPO_ROOT / \"core\" / \"tools\" / \"dream_runner.py\"\n1840\t    if not runner.exists():\n1841\t        # Fall back to in-process thread when the runner script is missing\n1842\t        # (used by unit tests that mock _run_dream_pipeline).\n1843\t        t = threading.Thread(\n1844\t            target=_run_dream_pipeline,\n1845\t            args=(dream_input, dream_id),\n1846\t            kwargs={\n1847\t                \"director_session_key\": director_session_key,\n1848\t                \"chat_id\": chat_id,\n1849\t                \"operational_chat_id\": operational_chat_id,\n1850\t            },\n1851\t            daemon=True,\n1852\t            name=f\"dream-{dream_id}\",\n1853\t        )\n1854\t        t.start()\n1855\t        return None\n1856\t\n1857\t    py = sys.executable\n1858\t    proc = subprocess.Popen(\n1859\t        [py, str(runner)],\n1860\t        stdin=subprocess.PIPE,\n1861\t        stdout=subprocess.DEVNULL,\n1862\t        stderr=subprocess.DEVNULL,\n1863\t        start_new_session=True,\n1864\t        env={**os.environ},\n1865\t    )\n1866\t    proc.stdin.write(json.dumps(payload).encode(\"utf-8\"))\n1867\t    proc.stdin.close()\n1868\t    return proc.pid\n1869\t\n1870\t\n1871\tdef get_dream_status(project: str, dream_id: str) -> ToolResult:\n1872\t    \"\"\"Read the current state of one Dream from the registry.\n1873\t\n1874\t    Returns the full registry entry (status / stages_completed / error / pid)\n1875\t    so Director can decide whether to wait, cancel, or move on. Does not\n1876\t    block — the orchestrator updates the registry asynchronously.\n1877\t    \"\"\"\n1878\t    if not project or not dream_id:\n1879\t        return ToolResult(success=False, error=\"project and dream_id are required\")\n1880\t    entry = _registry.get(project, dream_id)\n1881\t    if not entry:\n1882\t        return ToolResult(success=False, error=f\"dream_id {dream_id!r} not found in {project!r}\")\n1883\t    return ToolResult(success=True, data=entry)\n1884\t\n1885\t\n1886\t__all__ = [\n1887\t    \"dream_simulate\",\n1888\t    \"get_dream_status\",\n1889\t    \"should_skip_dream\",\n1890\t    \"get_dream_trend\",\n1891\t    \"dispatch_dream_done\",\n1892\t    \"_collect_context\",\n1893\t    \"_compute_context_hash\",\n1894\t    \"_context_fingerprint\",\n1895\t    \"_define_tiers\",\n1896\t    \"_elaborate_scenario\",\n1897\t    \"_write_dream_paper\",\n1898\t    \"_submit_to_review\",\n1899\t    \"_persist_report\",\n1900\t    \"_run_dream_pipeline\",\n1901\t    \"_extract_yaml_block\",\n1902\t    \"_imagined_to_experiment_data\",\n1903\t    \"_summarize_for_director\",\n1904\t    \"_summarize_meta_for_trend\",\n1905\t    \"_diff_predictions\",\n1906\t]\n1907\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "be082f04-2318-4df4-bbce-a71f8fa62c1a",
+            "isSidechain": true,
+            "promptId": "a542fdf3-735d-4549-af74-dd35edd5f0cc",
+            "agentId": "ab2395d53af5bcdca",
+            "type": "user",
+            "uuid": "e5786485-1eea-444a-a89b-6515b9ec3232",
+            "sourceToolAssistantUUID": "be082f04-2318-4df4-bbce-a71f8fa62c1a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-12T20:38:13.647Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CXTyksAd1EdiDWnXzuv2TJ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/core/mcp_server.py",
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e5786485-1eea-444a-a89b-6515b9ec3232",
+            "isSidechain": true,
+            "agentId": "ab2395d53af5bcdca",
+            "requestId": "req_011CayKSVDfQ6xQs2WTAgfSH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a1a0856f-b042-4020-99f2-8dccf078cf36",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01GPcJFfgqcepRUdqMyyVVBd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1575,
+                "cache_read_input_tokens": 35891,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1575,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-12T20:38:13.655Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CXTyksAd1EdiDWnXzuv2TJ",
+              "type": "tool_result",
+              "content": "1\t\"\"\"MCP Server — exposes SSH, W&B, and Registry tools via the Model Context Protocol.\n2\t\n3\tUsage:\n4\t    python -m core.mcp_server          # stdio transport (default, for Claude Code)\n5\t    python -m core.mcp_server --sse    # SSE transport (for remote clients)\n6\t\"\"\"\n7\t\n8\tfrom __future__ import annotations\n9\t\n10\timport json\n11\timport logging\n12\timport os\n13\tfrom dataclasses import asdict\n14\tfrom pathlib import Path\n15\tfrom typing import Any\n16\t\n17\tlogger = logging.getLogger(__name__)\n18\t\n19\tfrom mcp.server.fastmcp import FastMCP\n20\t\n21\tfrom core.tools import (\n22\t    artifacts as artifacts_mod,\n23\t    architecture as architecture_mod,\n24\t    clone_repo as clone_repo_mod,\n25\t    cron, feishu, feishu_group as feishu_group_mod,\n26\t    external_review as external_review_mod,\n27\t    file_parser as file_parser_mod,\n28\t    gpu_monitor as gpu_monitor_mod,\n29\t    image_tools as image_tools_mod,\n30\t    model_registry as model_registry_mod,\n31\t    oss_backup, pai_eas, s3_backup,\n32\t    project_config, registry, ssh, wandb_client, workspace,\n33\t    worker as worker_mod,\n34\t)\n35\t\n36\t# ---------------------------------------------------------------------------\n37\t# Server instance\n38\t# ---------------------------------------------------------------------------\n39\t\n40\tmcp = FastMCP(\n41\t    \"agent-ml-research\",\n42\t    instructions=\"ML research experiment management tools\",\n43\t)\n44\t\n45\t\n46\tdef _tool_result_to_str(result: ssh.ToolResult) -> str:\n47\t    \"\"\"Convert a ToolResult dataclass to a JSON string for MCP response.\"\"\"\n48\t    return json.dumps(asdict(result), ensure_ascii=False, default=str)\n49\t\n50\t\n51\t# ---------------------------------------------------------------------------\n52\t# Chat routing helpers — resolve target chat_id from env + project config\n53\t# ---------------------------------------------------------------------------\n54\t\n55\tdef _get_session_chat_id() -> str:\n56\t    \"\"\"获取当前 session 绑定的群 chat_id（环境变量注入）。\"\"\"\n57\t    return os.environ.get(\"AGENT_ML_SESSION_CHAT_ID\", \"\")\n58\t\n59\t\n60\tdef _get_session_project() -> str:\n61\t    \"\"\"获取当前 session 绑定的项目名。\"\"\"\n62\t    return os.environ.get(\"AGENT_ML_SESSION_PROJECT\", \"\")\n63\t\n64\t\n65\tdef _resolve_user_group_chat(project: str = \"\") -> str:\n66\t    \"\"\"解析 A群 (user-facing group) chat_id。\n67\t\n68\t    用于目标固定发到 A群 的工具（approval_card, result_card 等）。\n69\t    无项目或单群模式时 fallback 到 session 所在群。\n70\t    \"\"\"\n71\t    if not project:\n72\t        project = _get_session_project()\n73\t    if project:\n74\t        try:\n75\t            from core.tools.project_config import load_project_config\n76\t            result = load_project_config(project)\n77\t            if result.success:\n78\t                user_chat = result.data.get(\"config\", {}).get(\"feishu\", {}).get(\"chat_id\", \"\")\n79\t                if user_chat:\n80\t                    return user_chat\n81\t        except Exception:\n82\t            pass\n83\t    return _get_session_chat_id()\n84\t\n85\t\n86\tdef _resolve_ops_chat(project: str = \"\") -> str:\n87\t    \"\"\"解析 B群 (operational_chat_id)，无则 fallback 到 A群。\"\"\"\n88\t    if not project:\n89\t        project = _get_session_project()\n90\t    if project:\n91\t        try:\n92\t            from core.tools.project_config import load_project_config\n93\t            result = load_project_config(project)\n94\t            if result.success:\n95\t                feishu_cfg = result.data.get(\"config\", {}).get(\"feishu\", {})\n96\t                return (\n97\t                    feishu_cfg.get(\"operational_chat_id\")\n98\t                    or feishu_cfg.get(\"chat_id\", \"\")\n99\t                )\n100\t        except Exception:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a1a0856f-b042-4020-99f2-8dccf078cf36",
+            "isSidechain": true,
+            "promptId": "a542fdf3-735d-4549-af74-dd35edd5f0cc",
+            "agentId": "ab2395d53af5bcdca",
+            "type": "user",
+            "uuid": "efc3a0c2-82c4-4363-83cc-df56ec791121",
+            "sourceToolAssistantUUID": "a1a0856f-b042-4020-99f2-8dccf078cf36",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-12T20:38:14.069Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P9Hj7TnPfqx5GK7n1yr4mo",
+              "name": "Grep",
+              "input": {
+                "pattern": "def submit_dream_review_report",
+                "path": "/home/ubuntu/agent-ml-research/core",
+                "output_mode": "content",
+                "context": 30
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "efc3a0c2-82c4-4363-83cc-df56ec791121",
+            "isSidechain": true,
+            "agentId": "ab2395d53af5bcdca",
+            "requestId": "req_011CayKSVDfQ6xQs2WTAgfSH",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1192decd-b5ed-410b-aee0-a8c7f6e5d1fd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01GPcJFfgqcepRUdqMyyVVBd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1575,
+                "cache_read_input_tokens": 35891,
+                "output_tokens": 263,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1575
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 263,
+                    "cache_read_input_tokens": 35891,
+                    "cache_creation_input_tokens": 1575,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1575,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-12T20:38:14.092Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P9Hj7TnPfqx5GK7n1yr4mo",
+              "type": "tool_result",
+              "content": "/home/ubuntu/agent-ml-research/core/mcp_server.py-4883-            This guard prevents the \"I forgot R3\" attention-drift bug.\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4884-        cross_response_reviewer_ids: REQUIRED list of integer reviewer IDs\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4885-            who have completed Step 2 cross-sharing — i.e. received other\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4886-            reviewers' reports and submitted [AGREE]/[REBUT] responses\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4887-            (e.g. [1, 2, 3]).  The tool rejects submission if any active\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4888-            reviewer is missing, ensuring cross-validation happened before\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4889-            the report is finalized.\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4890-        overall_score: Overall assessment (e.g. \"strong reject\", \"borderline\").\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4891-        review_chat_id: Group C chat_id for visibility (optional).\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4892-        force_resubmit: Default False — if a report for the current round\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4893-            already exists (i.e. you previously called this tool successfully\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4894-            for the same round), the call is REJECTED with the existing\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4895-            report's path so you don't re-trigger Director's processing\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4896-            protocol with conflicting content.  Pass True ONLY when you\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4897-            intentionally want to replace the prior submission (e.g. caught\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4898-            a Step 2 gap and re-synthesized).  When in doubt, do NOT force —\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4899-            the original submission stands and Director is processing it.\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4900-    \"\"\"\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4901-    result = feishu_group_mod.submit_review_report_to_research_director(\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4902-        report=report, project=project,\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4903-        reviewer_ids_acknowledged=reviewer_ids_acknowledged,\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4904-        cross_response_reviewer_ids=cross_response_reviewer_ids,\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4905-        overall_score=overall_score,\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4906-        review_chat_id=review_chat_id,\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4907-        force_resubmit=force_resubmit,\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4908-    )\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4909-    return _tool_result_to_str(result)\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4910-\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4911-\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4912-@mcp.tool()\n/home/ubuntu/agent-ml-research/core/mcp_server.py:4913:def submit_dream_review_report(\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4914-    report: str,\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4915-    project: str,\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4916-    tier: str,\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4917-    dream_id: str,\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4918-    overall_score: str = \"\",\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4919-    review_chat_id: str = \"\",\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4920-    review_visible: bool = True,\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4921-) -> str:\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4922-    \"\"\"Deliver a Dream-mode review report (Dream Review Director only).\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4923-\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4924-    Persists the review to ``dream_reports/{dream_id}/{tier}/review_report.md``\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4925-    and (optionally) posts a Group C visibility card. The Dream Tool reads\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4926-    the file once your subprocess exits — there is NO Research Director\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4927-    delivery, NO ``review_reports/round_N.md``, NO ``review_issues.yaml``,\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4928-    and NO 5-step protocol attached.\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4929-\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4930-    Use this in place of ``submit_review_report_to_research_director`` for\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4931-    Dream-mode roundtable Step 4. See DREAM_AGENT_DESIGN.md §6.4.\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4932-\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4933-    Args:\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4934-        report: Consolidated review report text (covers all Dream reviewers).\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4935-        project: Current project name.\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4936-        tier: Which Dream tier this report covers — ``best`` / ``median``\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4937-            / ``worst``.\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4938-        dream_id: Dream invocation id (with or without the ``dream_`` prefix —\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4939-            both accepted).\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4940-        overall_score: Optional headline assessment (\"strong reject\",\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4941-            \"borderline accept\", etc.).\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4942-        review_chat_id: Group C chat_id (loaded from project config when empty).\n/home/ubuntu/agent-ml-research/core/mcp_server.py-4943-        review_visible: When True (default) posts a visibility card to Group C\n--\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1214-    except Exception:\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1215-        # MCP subprocess path: SessionServer not available — use HTTP internal API.\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1216-        try:\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1217-            import urllib.request as _req\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1218-            import json as _json\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1219-            payload = _json.dumps({\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1220-                \"session_key\": research_director_key,\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1221-                \"project\": project,\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1222-                \"message\": report_msg,\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1223-                \"reply_chat_id\": research_chat_id,\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1224-                \"source\": \"submission_review_report\",\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1225-            }).encode()\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1226-            r = _req.urlopen(\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1227-                _req.Request(\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1228-                    f\"http://localhost:{_API_PORT}/api/internal/session-send\",\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1229-                    data=payload,\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1230-                    headers={\"Content-Type\": \"application/json\"},\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1231-                ),\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1232-                timeout=30,\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1233-            )\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1234-            resp_body = _json.loads(r.read())\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1235-            if resp_body.get(\"status\") not in (\"queued\", \"sent\"):\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1236-                return ToolResult(success=False, data={}, error=f\"session-send API error: {resp_body}\")\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1237-            logger.info(\"[submit_review_report→research_director] HTTP-routed to %s\", research_director_key)\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1238-            return ToolResult(success=True, data={\"research_director_key\": research_director_key})\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1239-        except Exception as exc2:\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1240-            logger.exception(\"[submit_review_report] failed for project=%s\", project)\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1241-            return ToolResult(success=False, data={}, error=str(exc2))\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1242-\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1243-\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py:1244:def submit_dream_review_report(\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1245-    report: str,\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1246-    project: str,\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1247-    tier: str,\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1248-    dream_id: str,\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1249-    overall_score: str = \"\",\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1250-    review_chat_id: str = \"\",\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1251-    review_visible: bool = True,\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1252-) -> ToolResult:\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1253-    \"\"\"Persist a Dream-mode review report and signal completion.\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1254-\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1255-    Used by the Dream Review Director in place of\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1256-    ``submit_review_report_to_research_director``. Differences from the real\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1257-    submission tool (DREAM_AGENT_DESIGN.md §6.4):\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1258-\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1259-    * Writes only to ``dream_reports/{dream_id}/{tier}/review_report.md`` —\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1260-      no ``review_reports/round_N.md``, no ``review_issues.yaml``.\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1261-    * Does NOT send the report to Research Director. The Dream Tool\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1262-      orchestrator reads the file once the subprocess exits.\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1263-    * Skips the roster / cross-sharing guards — those are Research-side\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1264-      protocol that Dream's simplified pipeline doesn't enforce.\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1265-    * ``review_visible=False`` suppresses the Group C visibility card.\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1266-\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1267-    Args:\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1268-        report: Full review report text (consolidated from all reviewers).\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1269-        project: Project name.\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1270-        tier: Which Dream tier this report covers (best/median/worst).\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1271-        dream_id: Dream invocation id (must include the ``dream_`` prefix\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1272-            stripped — caller passes the raw id, not the ``dream_xxx``\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1273-            segment).\n/home/ubuntu/agent-ml-research/core/tools/feishu_group.py-1274-        overall_score: Optional headline assessment (\"strong reject\", etc.)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1192decd-b5ed-410b-aee0-a8c7f6e5d1fd",
+            "isSidechain": true,
+            "promptId": "a542fdf3-735d-4549-af74-dd35edd5f0cc",
+            "agentId": "ab2395d53af5bcdca",
+            "type": "user",
+            "uuid": "915dfb52-4218-44e0-b1ff-ad99bb61da58",
+            "sourceToolAssistantUUID": "1192decd-b5ed-410b-aee0-a8c7f6e5d1fd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-12T20:38:15.889Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me get more details from the implementation in feishu_group.py:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "915dfb52-4218-44e0-b1ff-ad99bb61da58",
+            "isSidechain": true,
+            "agentId": "ab2395d53af5bcdca",
+            "requestId": "req_011CayKSeUmwPhXSWp1rKqNf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8f0a5bb1-1830-4279-a4a9-eea1425775e8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01A9tqSKFqN5uT6ojj3wEsCw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 32683,
+                "cache_read_input_tokens": 37466,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 32683,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-12T20:38:16.156Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YNyUDM3RbT1bBg3WqptT7C",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/core/tools/feishu_group.py",
+                "offset": 1244,
+                "limit": 150
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8f0a5bb1-1830-4279-a4a9-eea1425775e8",
+            "isSidechain": true,
+            "agentId": "ab2395d53af5bcdca",
+            "requestId": "req_011CayKSeUmwPhXSWp1rKqNf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b96a25e3-e4e2-4759-a740-e137d2db7ca8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01A9tqSKFqN5uT6ojj3wEsCw",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 32683,
+                "cache_read_input_tokens": 37466,
+                "output_tokens": 127,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 32683
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 127,
+                    "cache_read_input_tokens": 37466,
+                    "cache_creation_input_tokens": 32683,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 32683,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-12T20:38:16.161Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YNyUDM3RbT1bBg3WqptT7C",
+              "type": "tool_result",
+              "content": "1244\tdef submit_dream_review_report(\n1245\t    report: str,\n1246\t    project: str,\n1247\t    tier: str,\n1248\t    dream_id: str,\n1249\t    overall_score: str = \"\",\n1250\t    review_chat_id: str = \"\",\n1251\t    review_visible: bool = True,\n1252\t) -> ToolResult:\n1253\t    \"\"\"Persist a Dream-mode review report and signal completion.\n1254\t\n1255\t    Used by the Dream Review Director in place of\n1256\t    ``submit_review_report_to_research_director``. Differences from the real\n1257\t    submission tool (DREAM_AGENT_DESIGN.md §6.4):\n1258\t\n1259\t    * Writes only to ``dream_reports/{dream_id}/{tier}/review_report.md`` —\n1260\t      no ``review_reports/round_N.md``, no ``review_issues.yaml``.\n1261\t    * Does NOT send the report to Research Director. The Dream Tool\n1262\t      orchestrator reads the file once the subprocess exits.\n1263\t    * Skips the roster / cross-sharing guards — those are Research-side\n1264\t      protocol that Dream's simplified pipeline doesn't enforce.\n1265\t    * ``review_visible=False`` suppresses the Group C visibility card.\n1266\t\n1267\t    Args:\n1268\t        report: Full review report text (consolidated from all reviewers).\n1269\t        project: Project name.\n1270\t        tier: Which Dream tier this report covers (best/median/worst).\n1271\t        dream_id: Dream invocation id (must include the ``dream_`` prefix\n1272\t            stripped — caller passes the raw id, not the ``dream_xxx``\n1273\t            segment).\n1274\t        overall_score: Optional headline assessment (\"strong reject\", etc.).\n1275\t        review_chat_id: Group C chat_id (loaded from project config if empty).\n1276\t        review_visible: When False, skip Group C post.\n1277\t    \"\"\"\n1278\t    if not project:\n1279\t        return ToolResult(success=False, data={}, error=\"project is required\")\n1280\t    if not dream_id:\n1281\t        return ToolResult(success=False, data={}, error=\"dream_id is required\")\n1282\t    if tier not in {\"best\", \"median\", \"worst\"}:\n1283\t        return ToolResult(\n1284\t            success=False, data={},\n1285\t            error=f\"tier must be one of best/median/worst, got {tier!r}\",\n1286\t        )\n1287\t    if not report or not report.strip():\n1288\t        return ToolResult(success=False, data={}, error=\"report must be non-empty\")\n1289\t\n1290\t    from core import paths as _paths_mod\n1291\t\n1292\t    # Normalize: callers occasionally pass the full session segment.\n1293\t    dream_id = dream_id.removeprefix(\"dream_\")\n1294\t    canonical_id = f\"dream_{dream_id}\"\n1295\t\n1296\t    output_dir = _paths_mod.dream_report_dir(project, canonical_id) / tier\n1297\t    output_dir.mkdir(parents=True, exist_ok=True)\n1298\t    report_path = output_dir / \"review_report.md\"\n1299\t\n1300\t    import datetime as _dt\n1301\t    header = (\n1302\t        f\"---\\n\"\n1303\t        f\"dream_id: {canonical_id}\\n\"\n1304\t        f\"tier: {tier}\\n\"\n1305\t        f\"overall_score: {overall_score}\\n\"\n1306\t        f\"timestamp: {_dt.datetime.now(_dt.timezone.utc).isoformat()}\\n\"\n1307\t        f\"---\\n\\n\"\n1308\t    )\n1309\t    try:\n1310\t        report_path.write_text(header + report, encoding=\"utf-8\")\n1311\t        logger.info(\n1312\t            \"[submit_dream_review_report] wrote %s (%d bytes)\",\n1313\t            report_path, report_path.stat().st_size,\n1314\t        )\n1315\t    except Exception as exc:\n1316\t        logger.exception(\n1317\t            \"[submit_dream_review_report] failed to write %s\", report_path,\n1318\t        )\n1319\t        return ToolResult(success=False, data={}, error=str(exc))\n1320\t\n1321\t    # Optional Group C visibility — mirrors the real submission tool but\n1322\t    # without the Research Director routing step.\n1323\t    if review_visible:\n1324\t        if not review_chat_id:\n1325\t            try:\n1326\t                from core.tools.project_config import load_review_chat_id\n1327\t                review_chat_id = load_review_chat_id(project)\n1328\t            except Exception:\n1329\t                review_chat_id = \"\"\n1330\t        if review_chat_id:\n1331\t            try:\n1332\t                from core.tools.feishu import send_message as _send_msg\n1333\t                header_line = (\n1334\t                    f\"🌙 **[Dream Review Report — {tier}]**\"\n1335\t                    f\"{(' · Overall: ' + overall_score) if overall_score else ''}\"\n1336\t                )\n1337\t                _send_msg(chat_id=review_chat_id, text=f\"{header_line}\\n{report}\")\n1338\t            except Exception:\n1339\t                logger.exception(\n1340\t                    \"[submit_dream_review_report] Group C visibility post failed\",\n1341\t                )\n1342\t\n1343\t    return ToolResult(\n1344\t        success=True,\n1345\t        data={\n1346\t            \"report_path\": str(report_path),\n1347\t            \"dream_id\": canonical_id,\n1348\t            \"tier\": tier,\n1349\t            \"review_visible\": review_visible,\n1350\t        },\n1351\t    )\n1352\t\n1353\t\n1354\tdef update_review_issues(project: str, issues_yaml: str) -> ToolResult:\n1355\t    \"\"\"Update the cross-round review issue tracker.\n1356\t\n1357\t    Both Review Director and Research Director call this — Review Director\n1358\t    after synthesizing a report (mark new/recurring/possibly-resolved\n1359\t    issues), Research Director after locking the Action Matrix (flip\n1360\t    open → in_progress, in_progress → resolved).\n1361\t\n1362\t    The caller passes the FULL YAML content; the tool overwrites\n1363\t    `projects/{project}/artifacts/review_issues.yaml` atomically.  Reading\n1364\t    the existing tracker is via `read_local_file` — no separate read tool\n1365\t    is needed.\n1366\t\n1367\t    Args:\n1368\t        project: Current project name.\n1369\t        issues_yaml: Complete YAML content for the issue tracker.  Must\n1370\t            be valid YAML (validated before write — invalid YAML is\n1371\t            rejected to avoid silently corrupting the tracker).\n1372\t    \"\"\"\n1373\t    try:\n1374\t        import yaml as _yaml\n1375\t    except Exception as exc:\n1376\t        return ToolResult(success=False, data={}, error=f\"PyYAML unavailable: {exc}\")\n1377\t    try:\n1378\t        _yaml.safe_load(issues_yaml)\n1379\t    except Exception as exc:\n1380\t        return ToolResult(\n1381\t            success=False, data={},\n1382\t            error=f\"issues_yaml is not valid YAML: {exc}\",\n1383\t        )\n1384\t    try:\n1385\t        from core import paths as _paths_mod\n1386\t        artifacts_dir = _paths_mod.project_dir(project) / \"artifacts\"\n1387\t        artifacts_dir.mkdir(parents=True, exist_ok=True)\n1388\t        target = artifacts_dir / \"review_issues.yaml\"\n1389\t        # Atomic write: tmp-then-rename so a crash mid-write doesn't\n1390\t        # leave a half-written tracker.\n1391\t        tmp = target.with_suffix(\".yaml.tmp\")\n1392\t        tmp.write_text(issues_yaml, encoding=\"utf-8\")\n1393\t        tmp.replace(target)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b96a25e3-e4e2-4759-a740-e137d2db7ca8",
+            "isSidechain": true,
+            "promptId": "a542fdf3-735d-4549-af74-dd35edd5f0cc",
+            "agentId": "ab2395d53af5bcdca",
+            "type": "user",
+            "uuid": "5f56484e-9f45-4c31-84a9-df3054b912d7",
+            "sourceToolAssistantUUID": "b96a25e3-e4e2-4759-a740-e137d2db7ca8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-12T20:38:17.211Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for more test files to see usage patterns:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5f56484e-9f45-4c31-84a9-df3054b912d7",
+            "isSidechain": true,
+            "agentId": "ab2395d53af5bcdca",
+            "requestId": "req_011CayKSoNK9SoNZdUJEqrHo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "24e1d37a-e298-4094-89d4-739168644439",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01LXW5bXLKAqbDgFQtZGZg6G",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 2261,
+                "cache_read_input_tokens": 70149,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2261,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-12T20:38:17.863Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J9WVPjAm3rMAFM9MUVmQPP",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/tests/test_dream_review_report_delivery.py",
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "24e1d37a-e298-4094-89d4-739168644439",
+            "isSidechain": true,
+            "agentId": "ab2395d53af5bcdca",
+            "requestId": "req_011CayKSoNK9SoNZdUJEqrHo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b0b3bb67-599d-4227-a4b6-cb15e2eceede",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01LXW5bXLKAqbDgFQtZGZg6G",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 2261,
+                "cache_read_input_tokens": 70149,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2261,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-12T20:38:17.869Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J9WVPjAm3rMAFM9MUVmQPP",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Dream review report delivery (Phase 3 task 3-T7).\n2\t\n3\tPins the contract that ``submit_dream_review_report`` in Dream mode\n4\t**does NOT** route through the real-review 5-step delivery protocol.\n5\tDREAM_AGENT_DESIGN.md §6.5 sets the contrast:\n6\t\n7\t  | 报告送达 | → Research Director（5-step protocol） | → Dream Tool → Director（无 protocol） |\n8\t\n9\tThe 5-step protocol normally injected with the real ``submit_review_report_\n10\tto_research_director`` flow (item-by-item triage, post-to-reviewer for\n11\tindependent review, issue tracker sync, etc.) is irrelevant to Dream —\n12\tthe orchestrator reads the report file directly and surfaces the\n13\tDreamScenarioResult to the Director. If a regression copies the protocol\n14\tinto the Dream path, the Dream Director suddenly gets a 5-step \"rebuttal\n15\tplan\" injection for a *simulated* paper, which is both noisy and wrong.\n16\t\n17\tPillars:\n18\t\n19\t  D1. **No 5-step protocol append** — the saved report file contains the\n20\t      raw report (with a small Dream-specific header) and nothing\n21\t      resembling the real ``_REVIEW_REPORT_PROTOCOL`` text.\n22\t  D2. **Does not call Research Director routing** — the function never\n23\t      calls ``_find_research_director_for_project`` / ``send_sync`` to\n24\t      the Research Director session.\n25\t  D3. **Direct file-based delivery** — the orchestrator reads the report\n26\t      via the filesystem (``review_report.md``), not via an in-memory\n27\t      MCP callback, matching the design's \"subprocess exit is the signal\"\n28\t      pattern.\n29\t  D4. **No issue tracker write** — Dream does not touch\n30\t      ``review_issues.yaml`` (cross-round tracker).\n31\t  D5. **No 'round_N.md' artifact** — Dream writes to ``dream_reports/{id}\n32\t      /{tier}/review_report.md``, never to ``review_reports/round_N.md``.\n33\t\"\"\"\n34\t\n35\tfrom __future__ import annotations\n36\t\n37\tfrom pathlib import Path\n38\tfrom unittest.mock import MagicMock, patch\n39\t\n40\timport pytest\n41\t\n42\t\n43\tPROJECT = \"proj_delivery\"\n44\tDREAM_ID = \"dd_delivery\"\n45\tTIER = \"best\"\n46\tCHAT_ID = \"oc_review\"\n47\t\n48\t\n49\t# ---------------------------------------------------------------------------\n50\t# D1. No 5-step protocol appended to the persisted report\n51\t# ---------------------------------------------------------------------------\n52\t\n53\t\n54\tclass TestNoFiveStepProtocolInPersistedReport:\n55\t    \"\"\"The on-disk Dream review report is exactly what the Director wrote,\n56\t    plus a small Dream header. No 5-step \"must call post_to_reviewer /\n57\t    update_review_issues\" text gets appended.\"\"\"\n58\t\n59\t    def test_persisted_report_has_no_5_step_protocol(self, workspace):\n60\t        from core.tools.feishu_group import submit_dream_review_report\n61\t        from core import paths as _paths\n62\t        with (\n63\t            patch(\"core.tools.project_config.load_review_chat_id\", return_value=\"\"),\n64\t        ):\n65\t            res = submit_dream_review_report(\n66\t                report=\"The paper is solid. Score: weak accept.\",\n67\t                project=PROJECT, tier=TIER, dream_id=DREAM_ID,\n68\t                overall_score=\"weak accept\",\n69\t                review_visible=False,\n70\t            )\n71\t        assert res.success is True\n72\t        report_path = (\n73\t            _paths.dream_report_dir(PROJECT, f\"dream_{DREAM_ID}\") / TIER /\n74\t            \"review_report.md\"\n75\t        )\n76\t        body = report_path.read_text(encoding=\"utf-8\")\n77\t        # The 5-step protocol's anchor phrases — none must appear.\n78\t        forbidden_phrases = [\n79\t            \"处理协议\",\n80\t            \"逐条编号通读\",\n81\t            \"post_to_reviewer 让 Research Reviewer 补充意见\",\n82\t            \"同步 Issue Tracker\",\n83\t            \"Action Matrix\",\n84\t            \"review_issues.yaml\",\n85\t        ]\n86\t        for phrase in forbidden_phrases:\n87\t            assert phrase not in body, (\n88\t                f\"5-step protocol phrase leaked into Dream report: {phrase!r}\"\n89\t            )\n90\t\n91\t    def test_persisted_report_keeps_raw_review_body(self, workspace):\n92\t        \"\"\"The raw body the Director passed in must appear verbatim\n93\t        (modulo a Dream header prefix).\"\"\"\n94\t        from core.tools.feishu_group import submit_dream_review_report\n95\t        from core import paths as _paths\n96\t        body = \"The methodology is novel. Reviewer 2 raised X. Score: borderline.\"\n97\t        with patch(\n98\t            \"core.tools.project_config.load_review_chat_id\", return_value=\"\",\n99\t        ):\n100\t            res = submit_dream_review_report("
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b0b3bb67-599d-4227-a4b6-cb15e2eceede",
+            "isSidechain": true,
+            "promptId": "a542fdf3-735d-4549-af74-dd35edd5f0cc",
+            "agentId": "ab2395d53af5bcdca",
+            "type": "user",
+            "uuid": "c6c6bf40-ff7a-45b1-a973-1ee04b14ab6b",
+            "sourceToolAssistantUUID": "b0b3bb67-599d-4227-a4b6-cb15e2eceede",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-12T20:38:18.296Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015GMP5ih5oW4WaXaVnMTRuD",
+              "name": "Grep",
+              "input": {
+                "pattern": "submit_dream_review_report.*\\(",
+                "path": "/home/ubuntu/agent-ml-research/tests",
+                "output_mode": "content",
+                "context": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c6c6bf40-ff7a-45b1-a973-1ee04b14ab6b",
+            "isSidechain": true,
+            "agentId": "ab2395d53af5bcdca",
+            "requestId": "req_011CayKSoNK9SoNZdUJEqrHo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "284685e6-f74b-491a-aec4-b3a27e48592d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01LXW5bXLKAqbDgFQtZGZg6G",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 2261,
+                "cache_read_input_tokens": 70149,
+                "output_tokens": 215,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2261
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 215,
+                    "cache_read_input_tokens": 70149,
+                    "cache_creation_input_tokens": 2261,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2261,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-12T20:38:18.324Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015GMP5ih5oW4WaXaVnMTRuD",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (27.2KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3/tool-results/toolu_015GMP5ih5oW4WaXaVnMTRuD.txt\n\nPreview (first 2KB):\n/home/ubuntu/agent-ml-research/tests/test_dream_review_full.py-91-    def test_dispatch_signals_converge_step(self):\n/home/ubuntu/agent-ml-research/tests/test_dream_review_full.py-92-        prompt = self._dispatch()\n/home/ubuntu/agent-ml-research/tests/test_dream_review_full.py-93-        assert \"Step 3\" in prompt\n/home/ubuntu/agent-ml-research/tests/test_dream_review_full.py-94-        assert \"收敛\" in prompt or \"converge\" in prompt.lower()\n/home/ubuntu/agent-ml-research/tests/test_dream_review_full.py-95-\n/home/ubuntu/agent-ml-research/tests/test_dream_review_full.py:96:    def test_dispatch_names_submit_dream_review_report(self):\n/home/ubuntu/agent-ml-research/tests/test_dream_review_full.py-97-        prompt = self._dispatch()\n/home/ubuntu/agent-ml-research/tests/test_dream_review_full.py-98-        assert \"submit_dream_review_report\" in prompt\n/home/ubuntu/agent-ml-research/tests/test_dream_review_full.py-99-\n/home/ubuntu/agent-ml-research/tests/test_dream_review_full.py-100-    def test_dispatch_carries_dream_id_and_tier(self):\n/home/ubuntu/agent-ml-research/tests/test_dream_review_full.py-101-        prompt = self._dispatch()\n--\n/home/ubuntu/agent-ml-research/tests/test_dream_review_full.py-179-        \"\"\"Dispatch templates must explicitly target both reviewer_id=\"1\"\n/home/ubuntu/agent-ml-research/tests/test_dream_review_full.py-180-        and reviewer_id=\"2\".\"\"\"\n/home/ubuntu/agent-ml-research/tests/test_dream_review_full.py-181-        assert 'reviewer_id=\"1\"' in skill_text\n/home/ubuntu/agent-ml-research/tests/test_dream_review_full.py-182-        assert 'reviewer_id=\"2\"' in skill_text\n/home/ubuntu/agent-ml-research/tests/test_dream_review_full.py-183-\n/home/ubuntu/agent-ml-research/tests/test_dream_review_full.py:184:    def test_skill_names_submit_dream_review_report(self, skill_text):\n/home/ubuntu/agent-ml-research/tests/test_dream_review_full.py-185-        assert \"submit_dream_review_report\" in skill_text\n...\n</persisted-output>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "284685e6-f74b-491a-aec4-b3a27e48592d",
+            "isSidechain": true,
+            "promptId": "a542fdf3-735d-4549-af74-dd35edd5f0cc",
+            "agentId": "ab2395d53af5bcdca",
+            "type": "user",
+            "uuid": "390cba15-ef1d-4734-a7f9-270817af708d",
+            "sourceToolAssistantUUID": "284685e6-f74b-491a-aec4-b3a27e48592d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-12T20:38:19.894Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me check the MCP server registration to see the full tool definition:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "390cba15-ef1d-4734-a7f9-270817af708d",
+            "isSidechain": true,
+            "agentId": "ab2395d53af5bcdca",
+            "requestId": "req_011CayKSxTkohJA7UVmgeh1M",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4937f547-cfe2-4613-b11d-2fb2f0bd9a50",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016FdUc4yB2oJFTu21F1m4RK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 2549,
+                "cache_read_input_tokens": 72410,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2549,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-12T20:38:20.389Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WJa5CawbndNJVhQxSUvyfX",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/core/mcp_server.py",
+                "offset": 4912,
+                "limit": 50
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4937f547-cfe2-4613-b11d-2fb2f0bd9a50",
+            "isSidechain": true,
+            "agentId": "ab2395d53af5bcdca",
+            "requestId": "req_011CayKSxTkohJA7UVmgeh1M",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "869d60a4-ae14-4294-9b9f-c766062fe62c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016FdUc4yB2oJFTu21F1m4RK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 2549,
+                "cache_read_input_tokens": 72410,
+                "output_tokens": 125,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2549
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 125,
+                    "cache_read_input_tokens": 72410,
+                    "cache_creation_input_tokens": 2549,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2549,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-12T20:38:20.394Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WJa5CawbndNJVhQxSUvyfX",
+              "type": "tool_result",
+              "content": "4912\t@mcp.tool()\n4913\tdef submit_dream_review_report(\n4914\t    report: str,\n4915\t    project: str,\n4916\t    tier: str,\n4917\t    dream_id: str,\n4918\t    overall_score: str = \"\",\n4919\t    review_chat_id: str = \"\",\n4920\t    review_visible: bool = True,\n4921\t) -> str:\n4922\t    \"\"\"Deliver a Dream-mode review report (Dream Review Director only).\n4923\t\n4924\t    Persists the review to ``dream_reports/{dream_id}/{tier}/review_report.md``\n4925\t    and (optionally) posts a Group C visibility card. The Dream Tool reads\n4926\t    the file once your subprocess exits — there is NO Research Director\n4927\t    delivery, NO ``review_reports/round_N.md``, NO ``review_issues.yaml``,\n4928\t    and NO 5-step protocol attached.\n4929\t\n4930\t    Use this in place of ``submit_review_report_to_research_director`` for\n4931\t    Dream-mode roundtable Step 4. See DREAM_AGENT_DESIGN.md §6.4.\n4932\t\n4933\t    Args:\n4934\t        report: Consolidated review report text (covers all Dream reviewers).\n4935\t        project: Current project name.\n4936\t        tier: Which Dream tier this report covers — ``best`` / ``median``\n4937\t            / ``worst``.\n4938\t        dream_id: Dream invocation id (with or without the ``dream_`` prefix —\n4939\t            both accepted).\n4940\t        overall_score: Optional headline assessment (\"strong reject\",\n4941\t            \"borderline accept\", etc.).\n4942\t        review_chat_id: Group C chat_id (loaded from project config when empty).\n4943\t        review_visible: When True (default) posts a visibility card to Group C\n4944\t            with a ``[Dream]`` prefix. Set False for silent submission.\n4945\t    \"\"\"\n4946\t    result = feishu_group_mod.submit_dream_review_report(\n4947\t        report=report,\n4948\t        project=project,\n4949\t        tier=tier,\n4950\t        dream_id=dream_id,\n4951\t        overall_score=overall_score,\n4952\t        review_chat_id=review_chat_id,\n4953\t        review_visible=review_visible,\n4954\t    )\n4955\t    return _tool_result_to_str(result)\n4956\t\n4957\t\n4958\t@mcp.tool()\n4959\tdef request_external_review(\n4960\t    project: str,\n4961\t    paper_pdf_path: str,"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "869d60a4-ae14-4294-9b9f-c766062fe62c",
+            "isSidechain": true,
+            "promptId": "a542fdf3-735d-4549-af74-dd35edd5f0cc",
+            "agentId": "ab2395d53af5bcdca",
+            "type": "user",
+            "uuid": "e52033bc-057a-480b-a9e4-9ff7339601db",
+            "sourceToolAssistantUUID": "869d60a4-ae14-4294-9b9f-c766062fe62c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-12T20:38:21.922Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me get a summary of the artifact directory where it writes:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e52033bc-057a-480b-a9e4-9ff7339601db",
+            "isSidechain": true,
+            "agentId": "ab2395d53af5bcdca",
+            "requestId": "req_011CayKT7MJLFqrBdTFtBSTP",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3af5bbe8-5eb6-48aa-ac11-9f04f3c70fa5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016zNQw5k3H2EApqBZV7Kjtf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 820,
+                "cache_read_input_tokens": 74959,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 820,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-12T20:38:22.204Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013ZXzF3TFDzyjdAqCkhYtQ1",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu && find . -path \"*dream_reports*\" -type d 2>/dev/null | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3af5bbe8-5eb6-48aa-ac11-9f04f3c70fa5",
+            "isSidechain": true,
+            "agentId": "ab2395d53af5bcdca",
+            "requestId": "req_011CayKT7MJLFqrBdTFtBSTP",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a0121f43-8e61-43b7-8938-4d9133a065bc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016zNQw5k3H2EApqBZV7Kjtf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 820,
+                "cache_read_input_tokens": 74959,
+                "output_tokens": 97,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 820
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 97,
+                    "cache_read_input_tokens": 74959,
+                    "cache_creation_input_tokens": 820,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 820,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-12T20:38:22.477Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013ZXzF3TFDzyjdAqCkhYtQ1",
+              "type": "tool_result",
+              "content": "./.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/dream_reports\n./.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/dream_reports/dream_20260512T200328\n./.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/dream_reports/dream_20260512T200328/median\n./.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/dream_reports/dream_20260512T200328/logs\n./.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/dream_reports/dream_20260512T200328/worst\n./.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/dream_reports/dream_20260512T200328/best",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a0121f43-8e61-43b7-8938-4d9133a065bc",
+            "isSidechain": true,
+            "promptId": "a542fdf3-735d-4549-af74-dd35edd5f0cc",
+            "agentId": "ab2395d53af5bcdca",
+            "type": "user",
+            "uuid": "c130b3a5-4580-42fd-985c-f593d46e3790",
+            "sourceToolAssistantUUID": "a0121f43-8e61-43b7-8938-4d9133a065bc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-12T20:38:23.649Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the paths module to understand the paths structure:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c130b3a5-4580-42fd-985c-f593d46e3790",
+            "isSidechain": true,
+            "agentId": "ab2395d53af5bcdca",
+            "requestId": "req_011CayKTGDM7pq2ELGHdPvzY",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0a75c256-b83d-44bc-8915-cef638b156c8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HzqgoCBomKGTgKJSPsBQdw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 352,
+                "cache_read_input_tokens": 75779,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 352,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-12T20:38:24.109Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QdA9dvceC7y9tbSLntreet",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu && grep -n \"dream_report_dir\\|dream_reports_dir\" agent-ml-research/core/paths.py | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0a75c256-b83d-44bc-8915-cef638b156c8",
+            "isSidechain": true,
+            "agentId": "ab2395d53af5bcdca",
+            "requestId": "req_011CayKTGDM7pq2ELGHdPvzY",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b45fcb7d-f10b-4ec3-9319-f1a7b0edc328",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HzqgoCBomKGTgKJSPsBQdw",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 352,
+                "cache_read_input_tokens": 75779,
+                "output_tokens": 102,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 352
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 102,
+                    "cache_read_input_tokens": 75779,
+                    "cache_creation_input_tokens": 352,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 352,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-12T20:38:24.163Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QdA9dvceC7y9tbSLntreet",
+              "type": "tool_result",
+              "content": "443:def dream_reports_dir(project: str) -> Path:\n453:def dream_report_dir(project: str, dream_id: str) -> Path:\n461:    return dream_reports_dir(project) / dream_id",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b45fcb7d-f10b-4ec3-9319-f1a7b0edc328",
+            "isSidechain": true,
+            "promptId": "a542fdf3-735d-4549-af74-dd35edd5f0cc",
+            "agentId": "ab2395d53af5bcdca",
+            "type": "user",
+            "uuid": "61643306-c0ab-444a-8567-ba509a0f6161",
+            "sourceToolAssistantUUID": "b45fcb7d-f10b-4ec3-9319-f1a7b0edc328",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-12T20:38:25.611Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q9WFCoKAwUFAQ47vhF8YfH",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/core/paths.py",
+                "offset": 443,
+                "limit": 25
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "61643306-c0ab-444a-8567-ba509a0f6161",
+            "isSidechain": true,
+            "agentId": "ab2395d53af5bcdca",
+            "requestId": "req_011CayKTPPhduPwiDtiXLmJB",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "dd9188da-acf8-43b5-9146-6adeec5f9e68",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01LSCoxZziDva5vLpgoDKwtS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 170,
+                "cache_read_input_tokens": 76131,
+                "output_tokens": 102,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 170
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 102,
+                    "cache_read_input_tokens": 76131,
+                    "cache_creation_input_tokens": 170,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 170,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-12T20:38:25.627Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Q9WFCoKAwUFAQ47vhF8YfH",
+              "type": "tool_result",
+              "content": "443\tdef dream_reports_dir(project: str) -> Path:\n444\t    \"\"\"Root directory for all Dream Tool reports of a project.\n445\t\n446\t    Layout: projects/{project}/artifacts/dream_reports/{dream_id}/...\n447\t    Kept inside ``artifacts/`` so Dream outputs flow through the same\n448\t    backup/cleanup paths as other run artifacts.\n449\t    \"\"\"\n450\t    return project_artifacts_dir(project) / \"dream_reports\"\n451\t\n452\t\n453\tdef dream_report_dir(project: str, dream_id: str) -> Path:\n454\t    \"\"\"Per-dream report directory.\n455\t\n456\t    Holds three tier subdirectories (best/median/worst), the synthesized\n457\t    meta.yaml, and ``logs/`` for subprocess stdout/stderr.\n458\t    \"\"\"\n459\t    if not dream_id:\n460\t        raise ValueError(\"dream_id is required\")\n461\t    return dream_reports_dir(project) / dream_id\n462\t\n463\t\n464\tdef dream_registry_path(project: str) -> Path:\n465\t    \"\"\"Persistent state for in-flight Dream runs.\"\"\"\n466\t    return project_dir(project) / \"dream_registry.yaml\"\n467\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd9188da-acf8-43b5-9146-6adeec5f9e68",
+            "isSidechain": true,
+            "promptId": "a542fdf3-735d-4549-af74-dd35edd5f0cc",
+            "agentId": "ab2395d53af5bcdca",
+            "type": "user",
+            "uuid": "84518c9d-f22a-4920-9083-b06b69dc660a",
+            "sourceToolAssistantUUID": "dd9188da-acf8-43b5-9146-6adeec5f9e68",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-12T20:38:26.989Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me look for any documentation or additional context:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "84518c9d-f22a-4920-9083-b06b69dc660a",
+            "isSidechain": true,
+            "agentId": "ab2395d53af5bcdca",
+            "requestId": "req_011CayKTVof3wyT3mxZ9H56b",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d6eeeae7-70e0-4e33-9a9d-1bad8cc218bd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QkmAYA4Tb9MCL1WB3F6QZs",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 413,
+                "cache_read_input_tokens": 76301,
+                "output_tokens": 91,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 413
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 91,
+                    "cache_read_input_tokens": 76301,
+                    "cache_creation_input_tokens": 413,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 413,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-12T20:38:27.055Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QASZE4kbJmKUdxMhhCEYVD",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu && find agent-ml-research -name \"*DREAM*\" -type f 2>/dev/null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d6eeeae7-70e0-4e33-9a9d-1bad8cc218bd",
+            "isSidechain": true,
+            "agentId": "ab2395d53af5bcdca",
+            "requestId": "req_011CayKTVof3wyT3mxZ9H56b",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "20c6af73-d05c-4be9-b1c2-57ea3e85a66e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QkmAYA4Tb9MCL1WB3F6QZs",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 413,
+                "cache_read_input_tokens": 76301,
+                "output_tokens": 91,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 413
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 91,
+                    "cache_read_input_tokens": 76301,
+                    "cache_creation_input_tokens": 413,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 413,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-12T20:38:27.229Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QASZE4kbJmKUdxMhhCEYVD",
+              "type": "tool_result",
+              "content": "agent-ml-research/docs/plans/DREAM_FEEDBACK_ACTION_PROTOCOL.md\nagent-ml-research/docs/plans/DREAM_AGENT_DESIGN.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "20c6af73-d05c-4be9-b1c2-57ea3e85a66e",
+            "isSidechain": true,
+            "promptId": "a542fdf3-735d-4549-af74-dd35edd5f0cc",
+            "agentId": "ab2395d53af5bcdca",
+            "type": "user",
+            "uuid": "f46c315b-cd2f-4206-888c-be9b2fcafa06",
+            "sourceToolAssistantUUID": "20c6af73-d05c-4be9-b1c2-57ea3e85a66e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-12T20:38:38.562Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have enough information. Let me compile my findings:\n\n## Summary\n\nI found **`submit_dream_review_report`** — it's a Python function that exists as both an MCP tool handler and a core implementation. Here's the complete picture:\n\n### File Locations\n\n1. **MCP Tool Handler (exported)**: `/home/ubuntu/agent-ml-research/core/mcp_server.py:4913-4955`\n2. **Core Implementation**: `/home/ubuntu/agent-ml-research/core/tools/feishu_group.py:1244-1351`\n3. **Referenced in Tests**: Multiple test files including:\n   - `/home/ubuntu/agent-ml-research/tests/test_dream_review_report_delivery.py`\n   - `/home/ubuntu/agent-ml-research/tests/test_dream_review_full.py`\n   - `/home/ubuntu/agent-ml-research/tests/test_dream_review_simple.py`\n\n### Function Signature\n\n```python\ndef submit_dream_review_report(\n    report: str,\n    project: str,\n    tier: str,\n    dream_id: str,\n    overall_score: str = \"\",\n    review_chat_id: str = \"\",\n    review_visible: bool = True,\n) -> ToolResult:\n```\n\n### Parameters\n\n- **`report`**: Full review report text (consolidated from all reviewers) — must be non-empty\n- **`project`**: Current project name (required)\n- **`tier`**: Which Dream tier this report covers — must be one of `best`, `median`, or `worst` (required)\n- **`dream_id`**: Dream invocation id (with or without the `dream_` prefix — both accepted; required)\n- **`overall_score`**: Optional headline assessment (e.g., \"strong reject\", \"borderline accept\")\n- **`review_chat_id`**: Group C Feishu chat_id; auto-loaded from project config if empty\n- **`review_visible`**: When `True` (default), posts a visibility card to Group C with a `[Dream]` prefix; when `False`, suppresses the post\n\n### What It Writes\n\nThe function writes to the file system at this location:\n\n```\nprojects/{project}/artifacts/dream_reports/{dream_id}/{tier}/review_report.md\n```\n\nExample path: `projects/gen-depth-contamination/artifacts/dream_reports/dream_20260512T200328/best/review_report.md`\n\nThe file is persisted with a YAML frontmatter header containing:\n\n```yaml\n---\ndream_id: {canonical_id}\ntier: {tier}\noverall_score: {score}\ntimestamp: {iso_timestamp}\n---\n\n{report_body}\n```\n\n### Key Design Characteristics\n\n1. **No 5-step Protocol**: Unlike the real `submit_review_report_to_research_director`, this function does NOT append any review handling protocol, Action Matrix, or workflow text.\n\n2. **No Research Director Routing**: The report is NOT sent to the Research Director session. Instead, the Dream Tool orchestrator reads the file directly from disk once the Dream Review Director subprocess exits.\n\n3. **No Issue Tracker Updates**: Does not touch `review_issues.yaml` (the cross-round review tracker).\n\n4. **No round_N.md Artifacts**: Writes only to `dream_reports/{id}/{tier}/review_report.md`, never to `review_reports/round_N.md`.\n\n5. **Optional Group C Visibility**: When `review_visible=True`, posts the report to Group C Feishu chat. When `False`, submission is silent.\n\n### Return Value\n\nReturns a `ToolResult` with:\n- **`success`**: boolean\n- **`data`**: dict containing:\n  - `report_path`: absolute path to the written file\n  - `dream_id`: canonical dream_id with `dream_` prefix\n  - `tier`: the tier processed\n  - `review_visible`: whether visibility was posted\n- **`error`**: error message if failed\n\n### Integration Flow (from dream.py)\n\nThe function is called by the Dream pipeline at line 1035 in `/home/ubuntu/agent-ml-research/core/tools/dream.py`:\n\n```python\nsubmit_dream_review_report(report, project=\"{project}\", tier=\"{tier}\", \n                          dream_id=\"{dream_id_bare}\", review_visible={review_visible})\n```\n\nThis happens in the Dream Review Director subprocess (`_run_dream_review_director_subprocess`), which is spawned for each tier during the review phase of the dream pipeline. Once the subprocess exits, the orchestrator reads the persisted report file and includes it in the `DreamOutput`."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f46c315b-cd2f-4206-888c-be9b2fcafa06",
+            "isSidechain": true,
+            "agentId": "ab2395d53af5bcdca",
+            "requestId": "req_011CayKTcVzLmWL2fnUrX2DV",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e4f7e920-d69c-4a29-9c41-33e3c4222583",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+            "sessionId": "7bbb8f4a-1a6d-47fd-bcb4-79574df0a9b3",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01R3pYc4H7DEdgAmASpvxRAH",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 146,
+                "cache_read_input_tokens": 76714,
+                "output_tokens": 1109,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 146
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 1109,
+                    "cache_read_input_tokens": 76714,
+                    "cache_creation_input_tokens": 146,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 146,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        }
+      ],
+      "message_count": 36
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-the-codebase-for-submit-dream-review-report-it-might-be-a-python-functi.md"
+}

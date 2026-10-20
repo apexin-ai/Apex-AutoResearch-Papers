@@ -1,0 +1,1516 @@
+{
+  "schema_version": "1.0",
+  "id": "68951a81d8a471d8ea78",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to verify two key papers cited in a research proposal. Use WebSearch and WebFetch to check: 1. **DreamZero** (arX",
+  "task_key": "agent-a15b98ed49a9f8d53",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a15b98ed49a9f8d53.jsonl",
+    "occurrence": 1,
+    "bytes": 61832,
+    "sha256": "81bf484228312c10fee7a14ab6ec46637445c50db29ad8e2825314ebf2ec1e98"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 1,
+    "tool_calls": 12,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 12,
+      "tool_result": 12
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-10T19:36:49.128Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to verify two key papers cited in a research proposal. Use WebSearch and WebFetch to check:\n\n1. **DreamZero** (arXiv 2602.15922, Feb 2026) - \"World Action Models are Zero-shot Policies\". Claims: velocity-based convergence caching within flow-matching denoising, cosine similarity threshold on successive predictions, 75% step reduction (16→4), zero additional parameters, 14B parameter model using Wan2.1-I2V backbone, requires 2x GB200 for inference. I need to verify these specific claims.\n\n2. **UWM** (arXiv 2504.02792, RSS 2025) - \"Unified World Models: Coupling Video and Action Diffusion\". Claims: 180M-parameter DiT-B architecture, DDPM-based training with SEPARATE diffusion timesteps for action and video, public code and DROID checkpoints. Verify these claims.\n\nSearch for both papers on arxiv.org, fetch the abstracts and key sections, and report what you find. Also check if UWM code is actually publicly available on GitHub/HuggingFace."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "1e12b5d5-2db0-48a9-ac19-047a4c1f31ab",
+            "agentId": "a15b98ed49a9f8d53",
+            "type": "user",
+            "uuid": "3ef4d095-29a2-476a-b47b-28603a11063a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-10T19:36:49.131Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "3ef4d095-29a2-476a-b47b-28603a11063a",
+                "isSidechain": true,
+                "agentId": "a15b98ed49a9f8d53",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "fad3dc6d-ed4d-4071-a146-b6cc13879f50",
+                "timestamp": "2026-05-10T19:36:49.131Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/",
+                "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-10T19:36:52.130Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll search for both papers simultaneously to verify the claims."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fad3dc6d-ed4d-4071-a146-b6cc13879f50",
+            "isSidechain": true,
+            "agentId": "a15b98ed49a9f8d53",
+            "requestId": "req_011CauT9BMK8fjP6GnMZGjkQ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6907ee62-3285-40de-8b2d-8fd394fc16da",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XDRKkNsuVqu9omknGCe7nr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 9035,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9035,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-10T19:36:52.653Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EScL21VPYx43RSoc5WxnQc",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch,WebFetch",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6907ee62-3285-40de-8b2d-8fd394fc16da",
+            "isSidechain": true,
+            "agentId": "a15b98ed49a9f8d53",
+            "requestId": "req_011CauT9BMK8fjP6GnMZGjkQ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "763b19ba-74d1-4b56-97c5-f227cdb8741c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XDRKkNsuVqu9omknGCe7nr",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 9035,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 93,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 9035
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 93,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 9035,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 9035,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-10T19:36:52.657Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01EScL21VPYx43RSoc5WxnQc",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "763b19ba-74d1-4b56-97c5-f227cdb8741c",
+            "isSidechain": true,
+            "promptId": "1e12b5d5-2db0-48a9-ac19-047a4c1f31ab",
+            "agentId": "a15b98ed49a9f8d53",
+            "type": "user",
+            "uuid": "4470108a-2d42-493c-bf40-75350213aa60",
+            "sourceToolAssistantUUID": "763b19ba-74d1-4b56-97c5-f227cdb8741c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-10T19:36:54.806Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nNow let me search for both papers and fetch their details simultaneously."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4470108a-2d42-493c-bf40-75350213aa60",
+            "isSidechain": true,
+            "agentId": "a15b98ed49a9f8d53",
+            "requestId": "req_011CauT9SfKPEpiviohhjoLH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2503b3a4-044a-4e29-9bdd-c2a31d339e71",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WK8BnLPV79hxVQGUEKAz4w",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1902,
+                "cache_read_input_tokens": 9035,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1902,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-10T19:36:56.208Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016nyP6iS3P3q8Xi4mrQwuP8",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2602.15922 DreamZero World Action Models Zero-shot Policies"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2503b3a4-044a-4e29-9bdd-c2a31d339e71",
+            "isSidechain": true,
+            "agentId": "a15b98ed49a9f8d53",
+            "requestId": "req_011CauT9SfKPEpiviohhjoLH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "664488af-3798-4da9-9018-955b4d1e1e3e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WK8BnLPV79hxVQGUEKAz4w",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1902,
+                "cache_read_input_tokens": 9035,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1902,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-10T19:36:57.291Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018dEQ2RhdptQV5eC6CamuzV",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2504.02792 UWM Unified World Models Coupling Video Action Diffusion"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "664488af-3798-4da9-9018-955b4d1e1e3e",
+            "isSidechain": true,
+            "agentId": "a15b98ed49a9f8d53",
+            "requestId": "req_011CauT9SfKPEpiviohhjoLH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3e35032f-498f-40ae-a393-8453a2511070",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WK8BnLPV79hxVQGUEKAz4w",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1902,
+                "cache_read_input_tokens": 9035,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1902,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-10T19:36:57.501Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JQ6A9i6bjeAMCfvBjFUzYh",
+              "name": "WebSearch",
+              "input": {
+                "query": "UWM Unified World Models code github DROID checkpoints"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3e35032f-498f-40ae-a393-8453a2511070",
+            "isSidechain": true,
+            "agentId": "a15b98ed49a9f8d53",
+            "requestId": "req_011CauT9SfKPEpiviohhjoLH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c57e84d7-d388-479e-9088-ba2d6b78fbd8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WK8BnLPV79hxVQGUEKAz4w",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1902,
+                "cache_read_input_tokens": 9035,
+                "output_tokens": 194,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1902
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 194,
+                    "cache_read_input_tokens": 9035,
+                    "cache_creation_input_tokens": 1902,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1902,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-10T19:37:01.604Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016nyP6iS3P3q8Xi4mrQwuP8",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2602.15922 DreamZero World Action Models Zero-shot Policies\"\n\nLinks: [{\"title\":\"[2602.15922] World Action Models are Zero-shot Policies\",\"url\":\"https://arxiv.org/abs/2602.15922\"},{\"title\":\"DreamZero: World Action Models are Zero-shot Policies\",\"url\":\"https://dreamzero0.github.io/\"},{\"title\":\"World Action Models are Zero-shot Policies | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2602.15922\"},{\"title\":\"Paper page - World Action Models are Zero-shot Policies\",\"url\":\"https://huggingface.co/papers/2602.15922\"},{\"title\":\"2026-2-19 World Action Models are Zero-shot Policies Seonghyeon Ye† Yunhao Ge*\",\"url\":\"https://arxiv.org/pdf/2602.15922\"},{\"title\":\"GitHub - dreamzero0/dreamzero: Code to pretrain, fine-tune, and evaluate DreamZero and run sim & real-world evals · GitHub\",\"url\":\"https://github.com/dreamzero0/dreamzero\"},{\"title\":\"World Action Models are Zero-shot Policies\",\"url\":\"https://arxiv.org/html/2602.15922v1\"},{\"title\":\"World Action Models are Zero-shot Policies | OpenReview\",\"url\":\"https://openreview.net/forum?id=cd33uUB609\"},{\"title\":\"[2602.15922v1] World Action Models are Zero-shot Policies\",\"url\":\"https://arxiv.org/abs/2602.15922v1\"},{\"title\":\"World Action Models as Zero-Shot Policies\",\"url\":\"https://www.emergentmind.com/papers/2602.15922\"}]\n\nBased on the search results for arXiv paper 2602.15922, here's what I found:\n\n## Overview\n\nThe paper titled \"World Action Models are Zero-shot Policies\" was submitted on February 17, 2026, with authors led by Seonghyeon Ye and 35 co-authors.\n\n## Key Contribution: DreamZero\n\nDreamZero is a World Action Model (WAM) built upon a pretrained video diffusion backbone. Unlike VLAs (Vision-Language-Action models), WAMs learn physical dynamics by predicting future world states and actions, using video as a dense representation of how the world evolves.\n\n## Main Results\n\nState-of-the-art Vision-Language-Action (VLA) models excel at semantic generalization but struggle to generalize to unseen physical motions in novel environments. In contrast, DreamZero results in over 2x improvement in generalization to new tasks and environments compared to state-of-the-art VLAs in real robot experiments.\n\n## Technical Innovation\n\nThrough model and system optimizations, DreamZero enables a 14B autoregressive video diffusion model to perform real-time closed-loop control at 7Hz.\n\n## Cross-Embodiment Transfer\n\nDreamZero demonstrates two forms of cross-embodiment transfer: video-only demonstrations from other robots or humans yield a relative improvement of over 42% on unseen task performance with just 10-20 minutes of data. More surprisingly, DreamZero enables few-shot embodiment adaptation, transferring to a new embodiment with only 30 minutes of play data while retaining zero-shot generalization.\n\nThe paper is available on arXiv and has an accompanying project page and GitHub repository with open-source code.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "664488af-3798-4da9-9018-955b4d1e1e3e",
+            "isSidechain": true,
+            "promptId": "1e12b5d5-2db0-48a9-ac19-047a4c1f31ab",
+            "agentId": "a15b98ed49a9f8d53",
+            "type": "user",
+            "uuid": "8100077f-7d22-4ebc-9844-3f5ec9892dd8",
+            "sourceToolAssistantUUID": "664488af-3798-4da9-9018-955b4d1e1e3e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-10T19:37:03.052Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018dEQ2RhdptQV5eC6CamuzV",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2504.02792 UWM Unified World Models Coupling Video Action Diffusion\"\n\nLinks: [{\"title\":\"[2504.02792] Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets\",\"url\":\"https://arxiv.org/abs/2504.02792\"},{\"title\":\"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets\",\"url\":\"https://weirdlabuw.github.io/uwm/\"},{\"title\":\"[2504.02792v1] Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets\",\"url\":\"https://arxiv.org/abs/2504.02792v1\"},{\"title\":\"Paper page - Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets\",\"url\":\"https://huggingface.co/papers/2504.02792\"},{\"title\":\"Unified World Models: A Scalable AI Framework For Video And Action Data\",\"url\":\"https://quantumzeitgeist.com/unified-world-models-a-scalable-ai-framework-for-video-and-action-data/\"},{\"title\":\"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets\",\"url\":\"https://arxiv.org/html/2504.02792v1\"},{\"title\":\"[PDF] Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Unified-World-Models:-Coupling-Video-and-Action-for-Zhu-Yu/514b9977bdb57f6e9586461f36fcf6467a775b3c\"},{\"title\":\"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2504.02792/metadata\"},{\"title\":\"GitHub - WEIRDLabUW/unified-world-model: Unfied World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets\",\"url\":\"https://github.com/WEIRDLabUW/unified-world-model\"},{\"title\":\"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets [Quick Review]\",\"url\":\"https://liner.com/review/unified-world-models-coupling-video-and-action-diffusion-for-pretraining\"}]\n\nI found detailed information about arXiv paper 2504.02792. Here's what I found:\n\n## Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets\n\nThe paper presents Unified World Models (UWM), a framework that leverages both video and action data for policy learning by integrating an action diffusion process and a video diffusion process within a unified transformer architecture, where independent diffusion timesteps govern each modality.\n\n### Key Capabilities\n\nBy controlling each diffusion timestep, UWM can flexibly represent a policy, a forward dynamics, an inverse dynamics, and a video generator.\n\n### Main Results\n\nThrough simulated and real-world experiments, the work shows that: (1) UWM enables effective pretraining on large-scale multitask robot datasets with both dynamics and action predictions, resulting in more generalizable and robust policies than imitation learning, (2) UWM naturally facilitates learning from action-free video data through independent control of modality-specific diffusion timesteps, further improving the performance of finetuned policies.\n\n### Significance\n\nThe results suggest that UWM offers a promising step toward harnessing large, heterogeneous datasets for scalable robot learning, and provides a simple unification between the often disparate paradigms of imitation learning and world modeling.\n\n### Availability\n\nVideos and code are available at https://weirdlabuw.github.io/uwm/.\n\nThe paper was submitted on April 3, 2025 and authored by Chuning Zhu, Raymond Yu, Siyuan Feng, Benjamin Burchfiel, Paarth Shah, and Abhishek Gupta.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3e35032f-498f-40ae-a393-8453a2511070",
+            "isSidechain": true,
+            "promptId": "1e12b5d5-2db0-48a9-ac19-047a4c1f31ab",
+            "agentId": "a15b98ed49a9f8d53",
+            "type": "user",
+            "uuid": "e8c7ca20-53d0-4277-9cf7-9198b88979b5",
+            "sourceToolAssistantUUID": "3e35032f-498f-40ae-a393-8453a2511070",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-10T19:37:03.614Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JQ6A9i6bjeAMCfvBjFUzYh",
+              "type": "tool_result",
+              "content": "Web search results for query: \"UWM Unified World Models code github DROID checkpoints\"\n\nLinks: [{\"title\":\"GitHub - WEIRDLabUW/unified-world-model: Unfied World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets\",\"url\":\"https://github.com/WEIRDLabUW/unified-world-model\"},{\"title\":\"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets\",\"url\":\"https://weirdlabuw.github.io/uwm/\"},{\"title\":\"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets\",\"url\":\"https://arxiv.org/html/2504.02792v1\"},{\"title\":\"GitHub - thu-ml/Motus: Official code of Motus: A Unified Latent Action World Model · GitHub\",\"url\":\"https://github.com/thu-ml/Motus\"},{\"title\":\"GitHub - LMD0311/Awesome-World-Model: Collect some World Models for Autonomous Driving (and Robotic, etc.) papers. · GitHub\",\"url\":\"https://github.com/LMD0311/Awesome-World-Model\"},{\"title\":\"GitHub - leofan90/Awesome-World-Models: A comprehensive list of papers for the definition of World Models and using World Models for General Video Generation, Embodied AI, and Autonomous Driving, including papers, codes, and related websites. · GitHub\",\"url\":\"https://github.com/leofan90/awesome-world-models\"},{\"title\":\"GitHub - SenseTime-FVG/OpenDWM: An open source code repository of driving world models, with training, inferencing, evaluation tools, and pretrained checkpoints. · GitHub\",\"url\":\"https://github.com/sensetime-fvg/opendwm\"},{\"title\":\"GitHub - unitreerobotics/unifolm-world-model-action · GitHub\",\"url\":\"https://github.com/unitreerobotics/unifolm-world-model-action\"},{\"title\":\"Paper page - Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets\",\"url\":\"https://huggingface.co/papers/2504.02792\"},{\"title\":\"GitHub - World-In-World/world-in-world: Code implementation of the paper \\\"World-in-World: World Models in a Closed-Loop World\\\" (ICLR'26 Oral) · GitHub\",\"url\":\"https://github.com/World-In-World/world-in-world\"}]\n\nBased on the search results, I found information about the UWM (Unified World Models) project:\n\n## Overview\n\nThe repository provides a PyTorch implementation of Unified World Model (UWM) that combines action diffusion and video diffusion to enable scalable pretraining on large, heterogeneous robotics datasets.\n\n## Code & Checkpoints\n\nThe official code is available on GitHub:\n- **Repository**: The pretrained and cotrained DROID UWM checkpoints are released and can be downloaded and directly finetuned from.\n- **GitHub Link**: https://github.com/WEIRDLabUW/unified-world-model\n- **Project Page**: https://weirdlabuw.github.io/uwm/\n\n## Repository Structure\n\nThe repository includes configuration files for pretraining and finetuning experiments, dataset wrappers for DROID, Robomimic, and LIBERO, with all datasets standardized using compressed Zarr buffers.\n\n## Paper Citation\n\nThe work is titled \"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets\" by Zhu, Yu, Feng, Burchfiel, Shah, and Gupta, presented at Robotics: Science and Systems (RSS) in 2025.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c57e84d7-d388-479e-9088-ba2d6b78fbd8",
+            "isSidechain": true,
+            "promptId": "1e12b5d5-2db0-48a9-ac19-047a4c1f31ab",
+            "agentId": "a15b98ed49a9f8d53",
+            "type": "user",
+            "uuid": "2d6e6e16-21ce-4d11-831b-ce2c8b2b5f84",
+            "sourceToolAssistantUUID": "c57e84d7-d388-479e-9088-ba2d6b78fbd8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-10T19:37:09.057Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, I have initial search results. Now let me fetch the actual paper pages to verify the specific technical claims."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2d6e6e16-21ce-4d11-831b-ce2c8b2b5f84",
+            "isSidechain": true,
+            "agentId": "a15b98ed49a9f8d53",
+            "requestId": "req_011CauTAFUPpYhnQpAcCVG4u",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b9c502bd-7baa-4fbb-9430-8fa70ba807f7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KggFv7mx8qKyw8sKSqKEXz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3104,
+                "cache_read_input_tokens": 10937,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3104,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-10T19:37:12.744Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UgBDtfaVf36VMvGKrQzNnA",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2602.15922",
+                "prompt": "Extract ALL technical details from the abstract and paper description: model size (parameters), backbone architecture, inference hardware requirements (GPUs), convergence caching details, flow-matching denoising, cosine similarity threshold, step reduction numbers (e.g. 16 to 4), whether zero additional parameters are needed, velocity-based convergence, and any claims about step reduction percentages. Be very precise with numbers."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b9c502bd-7baa-4fbb-9430-8fa70ba807f7",
+            "isSidechain": true,
+            "agentId": "a15b98ed49a9f8d53",
+            "requestId": "req_011CauTAFUPpYhnQpAcCVG4u",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d09c74eb-7153-499e-b8e0-7fd7c32f7aff",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KggFv7mx8qKyw8sKSqKEXz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3104,
+                "cache_read_input_tokens": 10937,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3104,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-10T19:37:16.992Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016sLyjSAhYSVYFGZvQaXpAo",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2602.15922v1",
+                "prompt": "Extract ALL technical details about: (1) convergence caching - is it velocity-based? does it use cosine similarity threshold on successive predictions? what is the step reduction (e.g. 16 to 4 steps, 75% reduction)? (2) Does it require zero additional parameters? (3) Model size - 14B parameters? (4) Backbone - Wan2.1-I2V? (5) Inference hardware - 2x GB200? (6) Flow-matching denoising details. Be extremely precise with all numbers, thresholds, and technical specifics."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d09c74eb-7153-499e-b8e0-7fd7c32f7aff",
+            "isSidechain": true,
+            "agentId": "a15b98ed49a9f8d53",
+            "requestId": "req_011CauTAFUPpYhnQpAcCVG4u",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "86aafe01-ebb5-4be1-b45a-9e10cc76d49a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KggFv7mx8qKyw8sKSqKEXz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3104,
+                "cache_read_input_tokens": 10937,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3104,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-10T19:37:18.941Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Emkkiyb2dgG7QwDY7ZNkW3",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2504.02792",
+                "prompt": "Extract ALL technical details from the abstract and paper description: model architecture (DiT-B?), parameter count (180M?), training method (DDPM?), whether action and video use SEPARATE or shared diffusion timesteps, any details about architecture size, and whether it was accepted at RSS 2025."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "86aafe01-ebb5-4be1-b45a-9e10cc76d49a",
+            "isSidechain": true,
+            "agentId": "a15b98ed49a9f8d53",
+            "requestId": "req_011CauTAFUPpYhnQpAcCVG4u",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e30ee99d-de08-48aa-8598-f1f0a18fb4c3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KggFv7mx8qKyw8sKSqKEXz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3104,
+                "cache_read_input_tokens": 10937,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3104,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-10T19:37:22.540Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L2s3yDVWrqwKmURNZV6Jai",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2504.02792v1",
+                "prompt": "Extract ALL technical details about: (1) Model architecture - is it DiT-B? How many parameters (180M)? (2) Training method - is it DDPM-based? (3) Diffusion timesteps - are action and video timesteps SEPARATE/independent? (4) Any specific architecture details, layer counts, dimensions. Be extremely precise with all numbers."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e30ee99d-de08-48aa-8598-f1f0a18fb4c3",
+            "isSidechain": true,
+            "agentId": "a15b98ed49a9f8d53",
+            "requestId": "req_011CauTAFUPpYhnQpAcCVG4u",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "77a8659b-ccd0-4985-b5b9-cccf9203ebac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KggFv7mx8qKyw8sKSqKEXz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3104,
+                "cache_read_input_tokens": 10937,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3104,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-10T19:37:23.046Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UgBDtfaVf36VMvGKrQzNnA",
+              "type": "tool_result",
+              "content": "# Technical Details Extraction from arXiv:2602.15922\n\nBased on the provided content, here are the technical specifications found:\n\n**Model Architecture & Size:**\n- \"14B autoregressive video diffusion model\" serving as the World Action Model backbone\n\n**Inference Performance:**\n- \"real-time closed-loop control at 7Hz\" achieved through model and system optimizations\n\n**Training & Data:**\n- Learns from \"heterogeneous robot data without relying on repetitive demonstrations\"\n- Enables \"few-shot embodiment adaptation\" with \"only 30 minutes of play data\"\n\n**Performance Improvements:**\n- \"over 2x improvement in generalization to new tasks and environments\" versus state-of-the-art VLAs\n- \"relative improvement of over 42% on unseen task performance\" via cross-embodiment transfer using 10-20 minutes of video-only demonstrations\n\n**Learning Approach:**\n- The model \"jointly modeling video and action\" predicts future world states\n- Uses \"video as a dense representation of how the world evolves\"\n\n**Notable Limitation:**\nThe abstract and description provided do not contain specifications regarding convergence caching, flow-matching denoising parameters, cosine similarity thresholds, step reduction numbers, or claims about zero additional parameters being required."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d09c74eb-7153-499e-b8e0-7fd7c32f7aff",
+            "isSidechain": true,
+            "promptId": "1e12b5d5-2db0-48a9-ac19-047a4c1f31ab",
+            "agentId": "a15b98ed49a9f8d53",
+            "type": "user",
+            "uuid": "00b93893-1168-4684-bd25-bd4d77a0091f",
+            "sourceToolAssistantUUID": "d09c74eb-7153-499e-b8e0-7fd7c32f7aff",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-10T19:37:23.314Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Emkkiyb2dgG7QwDY7ZNkW3",
+              "type": "tool_result",
+              "content": "# Technical Details from \"Unified World Models\" Paper\n\nBased on the provided abstract and page content, here are the extractable technical details:\n\n**Architecture & Parameters:**\n- No specific model architecture designation (e.g., DiT-B) or parameter counts are mentioned in the available content.\n\n**Diffusion Approach:**\n- The framework employs \"independent diffusion timesteps govern each modality,\" indicating that action and video use **SEPARATE diffusion timesteps** rather than shared ones.\n\n**Training Method:**\n- The abstract references \"an action diffusion process and a video diffusion process\" but does not specify whether DDPM or another training methodology was used.\n\n**Unified Capability:**\n- The model \"can flexibly represent a policy, a forward dynamics, an inverse dynamics, and a video generator\" through modality-specific diffusion timestep control.\n\n**Conference Status:**\n- The document does not indicate acceptance at RSS 2025 or any specific conference venue.\n\n**Available Resources:**\n- The authors note that \"Videos and code are available\" at their project website, though the full URL is not expanded in this page excerpt.\n\nThe abstract emphasizes the framework's ability to leverage heterogeneous datasets (both video and action data) for robot learning, but most architectural specifics are not detailed in the provided content."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e30ee99d-de08-48aa-8598-f1f0a18fb4c3",
+            "isSidechain": true,
+            "promptId": "1e12b5d5-2db0-48a9-ac19-047a4c1f31ab",
+            "agentId": "a15b98ed49a9f8d53",
+            "type": "user",
+            "uuid": "63c4c53c-729d-4579-85dd-60c907ce1502",
+            "sourceToolAssistantUUID": "e30ee99d-de08-48aa-8598-f1f0a18fb4c3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-10T19:37:24.699Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QCtWFFLsX7C9KoqSfPXsTM",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://github.com/WEIRDLabUW/unified-world-model",
+                "prompt": "Extract details about: (1) Is the code publicly available and functional? (2) Are DROID checkpoints available for download? Where are they hosted? (3) What does the README say about available models/checkpoints? (4) What is the repository status - active, maintained? (5) Any model architecture details mentioned (DiT-B, parameter count, etc.)?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "63c4c53c-729d-4579-85dd-60c907ce1502",
+            "isSidechain": true,
+            "agentId": "a15b98ed49a9f8d53",
+            "requestId": "req_011CauTAFUPpYhnQpAcCVG4u",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "55377ebd-75cf-4b50-a555-1cadf360bc43",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KggFv7mx8qKyw8sKSqKEXz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3104,
+                "cache_read_input_tokens": 10937,
+                "output_tokens": 820,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3104
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 820,
+                    "cache_read_input_tokens": 10937,
+                    "cache_creation_input_tokens": 3104,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3104,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-10T19:37:26.585Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016sLyjSAhYSVYFGZvQaXpAo",
+              "type": "tool_result",
+              "content": "# Technical Details Summary\n\n## (1) Convergence Caching (DiT Caching)\n\n**Mechanism**: Velocity-based with cosine similarity threshold\n- \"exploits the directional consistency of velocity vectors learned during flow matching\"\n- Tracks \"cosine similarity between successive velocity predictions\"\n- When similarity exceeds threshold τ, \"bypasses the DiT forward pass for a window of a few steps by reusing the cached velocity vector\"\n\n**Step Reduction**: 16 → 4 steps (75% reduction)\n- \"reducing the average number of DiT steps from 16 to 4 with minimal degradation to predicted video and action fidelity\"\n- Specific threshold value not disclosed in document\n\n## (2) Additional Parameters\n\n**Zero additional parameters**: No\n- Introduces \"state encoders, action encoders, and decoders\" as \"minimal additional parameters\"\n- Freezes \"text encoder, image encoder, and VAE\" while updating \"all DiT blocks\"\n\n## (3) Model Size\n\n**14 billion parameters**\n- \"14B robot foundation model built upon a pretrained image-to-video diffusion backbone\"\n- Ablation tested 5B variant showing inferior performance (21% vs 50% task progress)\n\n## (4) Backbone\n\n**Wan2.1-I2V-14B-480P**\n- \"image-to-video diffusion model\" used as backbone\n- Training uses flow-matching objective with teacher forcing\n\n## (5) Inference Hardware\n\n**2× GB200 GPUs**\n- \"38× inference speedup...on GB200\" from Table 1\n- CFG parallelism \"distributed across two GPUs\"\n\n## (6) Flow-Matching Denoising\n\nTraining uses shared timestep tk ∼ U(0,1) for both modalities. Loss function: \"∥𝐮θ([𝐳ᵗᵏᵏ,𝐚ᵗᵏᵏ];𝒞ₖ,𝐜,𝐪ₖ,tₖ)−𝐯ᵏ∥²\"\n\n**DreamZero-Flash**: Decouples schedules—tᵏᵥᵢ𝒹𝒆𝒐 = 1−η where η ∼ Beta(7,1), while tᵏᵃᶜᵗ ∼ U(0,1), achieving 1→4 denoising steps with \"9% below 4-step baseline\" performance."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "86aafe01-ebb5-4be1-b45a-9e10cc76d49a",
+            "isSidechain": true,
+            "promptId": "1e12b5d5-2db0-48a9-ac19-047a4c1f31ab",
+            "agentId": "a15b98ed49a9f8d53",
+            "type": "user",
+            "uuid": "66f36ae3-5193-4f33-aa8c-857511b0cfe1",
+            "sourceToolAssistantUUID": "86aafe01-ebb5-4be1-b45a-9e10cc76d49a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-10T19:37:30.185Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QCtWFFLsX7C9KoqSfPXsTM",
+              "type": "tool_result",
+              "content": "# Unified World Models Repository Analysis\n\n## (1) Public Availability & Functionality\nYes, the code is publicly available on GitHub under WEIRDLabUW/unified-world-model. Installation is straightforward: `pip install -e .` with a note about potential TensorFlow Datasets issues with DROID.\n\n## (2) DROID Checkpoints Availability\nThe repository confirms that pretrained and cotrained DROID checkpoints are released and hosted on Google Drive. The documentation states: `\"We release the pretrained and cotrained DROID UWM checkpoints here\"` with a link to a shared Google Drive folder containing the models.\n\n## (3) README Model/Checkpoint Information\nThe README explicitly mentions releasing two checkpoint sets:\n- LIBERO-90 pretrained checkpoint available for direct download\n- Pretrained and cotrained DROID checkpoints available via Google Drive\n\nUsers can download these and directly finetune from the released checkpoints without retraining from scratch.\n\n## (4) Repository Status\nThe repository appears actively maintained with recent commit activity (11 commits on main branch). It has 221 stars and 14 forks, indicating community interest. The project includes comprehensive documentation for multiple datasets and experiments.\n\n## (5) Model Architecture Details\nThe README provides no specific architecture specifications (no mention of DiT-B, parameter counts, layer configurations, or similar technical details). Architecture information would likely be available in the linked paper or on the project website, not in this README."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "55377ebd-75cf-4b50-a555-1cadf360bc43",
+            "isSidechain": true,
+            "promptId": "1e12b5d5-2db0-48a9-ac19-047a4c1f31ab",
+            "agentId": "a15b98ed49a9f8d53",
+            "type": "user",
+            "uuid": "90291036-69df-4c43-8c1f-adad6635a0d9",
+            "sourceToolAssistantUUID": "55377ebd-75cf-4b50-a555-1cadf360bc43",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-10T19:37:31.755Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L2s3yDVWrqwKmURNZV6Jai",
+              "type": "tool_result",
+              "content": "# Technical Details of Unified World Models (UWM)\n\n## Model Architecture\n\n**Architecture Type:** Diffusion Transformer (not specified as DiT-B)\n\n**Parameters:** The document does not specify total parameter count or confirm 180M parameters.\n\n**Key Components:**\n- ResNet-18 encoder for frame processing from each camera view\n- Transformer backbone with Adaptive Layer Normalization (AdaLN) conditioning\n- Frozen SDXL VAE for latent image encoding: full-size (224,224,3) → latent (28,28,4)\n- Spatiotemporal patchifier: (4,4,2) patch size\n- \"Randomly initialized register tokens\" for multi-modal feature sharing\n\nThe architecture processes observations through separate encoding paths, with diffusion timesteps conditioning applied via AdaLN rather than concatenation.\n\n## Training Method\n\n**Framework:** Denoising Diffusion Probabilistic Models (DDPM)-based with independent diffusion processes for actions and observations.\n\n**Training Objective (Equation 1):**\nThe model trains a coupled score network minimizing weighted losses for both modalities:\n\n`ℓ(θ) = 𝔼[wa||ϵaθ−ϵa||²₂ + wo'||ϵo'θ−ϵo'||²₂]`\n\nwhere ta and to' are independently sampled timesteps from U(0,T).\n\n## Decoupled Diffusion Timesteps\n\n**Critical Design Feature:** Action and video diffusion timesteps are **SEPARATE and INDEPENDENTLY CONTROLLED**.\n\nThe model uses: `sθ(o, ata, oto'', ta, to')`\n\nThis enables flexible inference:\n- **Policy p(a|o):** Set to'=T (marginalize observations)\n- **Forward Dynamics p(o'|o,a):** Set ta=0 (condition on clean actions)\n- **Inverse Dynamics p(a|o,o'):** Set to'=0 (condition on clean observations)\n- **Video p(o'|o):** Set ta=T (marginalize actions)\n\n## Additional Architectural Details\n\n**Conditioning:** Current observations encoded via ResNet-18 features concatenated with sinusoidal timestep embeddings, applied through AdaLN.\n\n**Action Processing:** \"Action chunks of length ha\" encoded per-timestep using shallow MLPs.\n\n**Observation Processing:** Frame-stacked observations of length ho from nc camera views.\n\n**Training Scale:** Pretrained for 100K gradient steps on 2000 trajectories; finetuned for task-specific demonstrations.\n\nThe document does not provide layer counts, hidden dimensions, or confirm parameter specifications beyond architectural components described."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "77a8659b-ccd0-4985-b5b9-cccf9203ebac",
+            "isSidechain": true,
+            "promptId": "1e12b5d5-2db0-48a9-ac19-047a4c1f31ab",
+            "agentId": "a15b98ed49a9f8d53",
+            "type": "user",
+            "uuid": "75c1372b-5ad7-4c95-bd57-fae4d4278586",
+            "sourceToolAssistantUUID": "77a8659b-ccd0-4985-b5b9-cccf9203ebac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-10T19:37:34.297Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me get more specific details about the DreamZero paper's claims on \"zero additional parameters\" and the UWM architecture specifics."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "75c1372b-5ad7-4c95-bd57-fae4d4278586",
+            "isSidechain": true,
+            "agentId": "a15b98ed49a9f8d53",
+            "requestId": "req_011CauTCKYGiYPxtrVrnQQ2Z",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a387c74e-7ebd-448f-9d16-62bf45257280",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AqR9epbW6m4ocNFVPAptZ7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 361,
+                "cache_creation_input_tokens": 2834,
+                "cache_read_input_tokens": 14041,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2834,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-10T19:37:40.921Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JLGwd3p3cro2py5KQ54teG",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://dreamzero0.github.io/",
+                "prompt": "Extract any technical details about: convergence caching, velocity-based caching, cosine similarity threshold, step reduction, inference hardware (GB200), model parameters (14B), Wan2.1-I2V backbone, and whether it requires zero additional parameters or adds new parameters. Also look for any corrections vs what's in the paper."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a387c74e-7ebd-448f-9d16-62bf45257280",
+            "isSidechain": true,
+            "agentId": "a15b98ed49a9f8d53",
+            "requestId": "req_011CauTCKYGiYPxtrVrnQQ2Z",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b0647c19-47c9-4d11-9152-5c6c9d4f4907",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AqR9epbW6m4ocNFVPAptZ7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 361,
+                "cache_creation_input_tokens": 2834,
+                "cache_read_input_tokens": 14041,
+                "output_tokens": 236,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2834
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 361,
+                    "output_tokens": 236,
+                    "cache_read_input_tokens": 14041,
+                    "cache_creation_input_tokens": 2834,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2834,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-10T19:37:40.959Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EVq9iQGGs9EiyXWbZnMoP9",
+              "name": "WebSearch",
+              "input": {
+                "query": "UWM unified world models DiT-B 180M parameters architecture details RSS 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b0647c19-47c9-4d11-9152-5c6c9d4f4907",
+            "isSidechain": true,
+            "agentId": "a15b98ed49a9f8d53",
+            "requestId": "req_011CauTCKYGiYPxtrVrnQQ2Z",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a428237b-c6fc-4ce9-aed8-76b3396545b2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AqR9epbW6m4ocNFVPAptZ7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 361,
+                "cache_creation_input_tokens": 2834,
+                "cache_read_input_tokens": 14041,
+                "output_tokens": 236,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2834
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 361,
+                    "output_tokens": 236,
+                    "cache_read_input_tokens": 14041,
+                    "cache_creation_input_tokens": 2834,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2834,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-10T19:37:44.566Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JLGwd3p3cro2py5KQ54teG",
+              "type": "tool_result",
+              "content": "# Technical Details Analysis\n\nBased on the provided webpage content, I found **no mentions** of the following technical specifications:\n\n- Convergence caching\n- Velocity-based caching\n- Cosine similarity threshold\n- Step reduction techniques\n- Inference hardware (GB200)\n- Wan2.1-I2V backbone\n- Whether the approach requires zero additional parameters or adds new parameters\n\n## What IS documented on the page:\n\nThe webpage confirms:\n- **Model size**: \"14B autoregressive video diffusion model\"\n- **Real-time performance**: \"7Hz closed-loop control\" achieved through \"38× speedup\"\n- **Inference optimization**: \"16, 4, and 1 diffusion steps\" with \"action chunk smoothing\" and \"asynchronous inference\"\n- **Backbone**: References a \"pretrained video diffusion backbone\" but doesn't specify the model architecture by name\n\nThe technical details you're asking about appear to exist only in the full arXiv paper (referenced but not quoted in the webpage), not in this project summary. The webpage focuses on results and capabilities rather than implementation minutiae."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b0647c19-47c9-4d11-9152-5c6c9d4f4907",
+            "isSidechain": true,
+            "promptId": "1e12b5d5-2db0-48a9-ac19-047a4c1f31ab",
+            "agentId": "a15b98ed49a9f8d53",
+            "type": "user",
+            "uuid": "b957bab0-5f82-4279-a190-3d1c2c223ddc",
+            "sourceToolAssistantUUID": "b0647c19-47c9-4d11-9152-5c6c9d4f4907",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-10T19:37:48.546Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EVq9iQGGs9EiyXWbZnMoP9",
+              "type": "tool_result",
+              "content": "Web search results for query: \"UWM unified world models DiT-B 180M parameters architecture details RSS 2025\"\n\nLinks: [{\"title\":\"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets\",\"url\":\"https://arxiv.org/html/2504.02792v1\"},{\"title\":\"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets\",\"url\":\"https://weirdlabuw.github.io/uwm/\"},{\"title\":\"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets [Quick Review]\",\"url\":\"https://liner.com/review/unified-world-models-coupling-video-and-action-diffusion-for-pretraining\"},{\"title\":\"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets\",\"url\":\"https://liqing.io/mindflow/Papers/2504-UWM\"},{\"title\":\"Unified World Models: A Scalable AI Framework For Video And Action Data\",\"url\":\"https://quantumzeitgeist.com/unified-world-models-a-scalable-ai-framework-for-video-and-action-data/\"},{\"title\":\"Unified World Model Specification\",\"url\":\"https://www.emergentmind.com/topics/unified-design-specification-for-world-models\"},{\"title\":\"Towards Unified World Models for Visual Navigation via Memory-Augmented Planning and Foresight\",\"url\":\"https://arxiv.org/html/2510.08713\"},{\"title\":\"UniDWM: Towards a Unified Driving World Model via Multifaceted Representation Learning\",\"url\":\"https://arxiv.org/html/2602.01536\"},{\"title\":\"Paper page - Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets\",\"url\":\"https://huggingface.co/papers/2504.02792\"},{\"title\":\"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2504.02792v1\"}]\n\nBased on the search results, here are the architecture details for UWM (Unified World Models) with the DiT-B 180M parameter configuration:\n\n## Architecture Overview\n\nUWM integrates an action diffusion process and a video diffusion process within a unified transformer architecture, where independent diffusion timesteps govern each modality.\n\n## DiT-B 180M Configuration\n\nUWM is 180M parameters at the DiT-B scale, using a Diffusion Transformer (DiT) as the backbone architecture.\n\n## Key Architectural Components\n\n1. **Backbone**: DiT + AdaLN serves as the core architecture.\n\n2. **Modal Information Exchange**: 8 register tokens act as a scratchpad for inter-modal information exchange, with register tokens facilitating information sharing between the action and image latent spaces.\n\n3. **Video Encoding**: Frozen SDXL VAE is used as the image encoder.\n\n4. **Diffusion Process**: UWM decouples diffusion timesteps for action and next-observation predictions, enabling flexible inference for policies, dynamics models, inverse models, and video prediction from a single model.\n\n5. **Conditioning Method**: UWM uses decoupled timesteps with encoder-based conditioning for observation inputs.\n\nThe paper was published in April 2025 and demonstrates this 180M parameter model's effectiveness for robot learning tasks through pretraining on large-scale multitask datasets.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a428237b-c6fc-4ce9-aed8-76b3396545b2",
+            "isSidechain": true,
+            "promptId": "1e12b5d5-2db0-48a9-ac19-047a4c1f31ab",
+            "agentId": "a15b98ed49a9f8d53",
+            "type": "user",
+            "uuid": "825ff0a0-cc6c-4a61-95ef-3ef843c5583c",
+            "sourceToolAssistantUUID": "a428237b-c6fc-4ce9-aed8-76b3396545b2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-10T19:37:52.170Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GbFNxFuZrZLPSScDRwCmWK",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://weirdlabuw.github.io/uwm/",
+                "prompt": "Extract: (1) Is this paper accepted at RSS 2025? (2) What is the model architecture - DiT-B? How many parameters - 180M? (3) Training method - DDPM? (4) Any specific technical details about the architecture, training, or results. Be precise."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "825ff0a0-cc6c-4a61-95ef-3ef843c5583c",
+            "isSidechain": true,
+            "agentId": "a15b98ed49a9f8d53",
+            "requestId": "req_011CauTDZLm1iUqzyuLvBG77",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ca60b331-53cc-4a7d-9fd4-3f02cb86fb47",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C8A8whbL52z7zd8AvvQ3W8",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1775,
+                "cache_read_input_tokens": 16875,
+                "output_tokens": 148,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1775
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 148,
+                    "cache_read_input_tokens": 16875,
+                    "cache_creation_input_tokens": 1775,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1775,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-10T19:37:57.765Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GbFNxFuZrZLPSScDRwCmWK",
+              "type": "tool_result",
+              "content": "# Analysis of Unified World Models Paper\n\n## (1) RSS 2025 Acceptance\nYes, the paper is accepted at **Robotics: Science and Systems (RSS) 2025**. It also received a \"Best Paper Award\" at the \"ICML 2025 Workshop on Building Physically Plausible World Models.\"\n\n## (2) Model Architecture and Parameters\nThe webpage provides **no specific details** about model architecture (e.g., DiT-B) or parameter counts (e.g., 180M). The only architectural description states: \"Unified World Model (UWM) is a **multimodal diffusion transformer that uses separate diffusion timesteps for actions and videos**.\" No further specifications are disclosed in this content.\n\n## (3) Training Method\nThe paper uses a diffusion-based approach but does not explicitly name \"DDPM.\" The method employs: \"separate timesteps for each modality\" where \"diffusion timesteps for actions and next observations are sampled independently at random.\" For video-only data, missing actions are treated as \"fully noised, manually setting the action diffusion timestep to T.\"\n\n## (4) Technical Details Provided\n- **Key innovation**: Jointly trains on robot trajectories (with actions) and unlabeled videos (without actions)\n- **Flexible inference**: Single model generates policies, forward dynamics, inverse dynamics, and video predictions\n- **Data handling**: Missing actions masked as noise, enabling use of action-free video data\n\nFor complete architectural and training specifications, the [full paper](https://arxiv.org/abs/2504.02792) would be necessary."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca60b331-53cc-4a7d-9fd4-3f02cb86fb47",
+            "isSidechain": true,
+            "promptId": "1e12b5d5-2db0-48a9-ac19-047a4c1f31ab",
+            "agentId": "a15b98ed49a9f8d53",
+            "type": "user",
+            "uuid": "c1983dea-fe8a-4617-a398-3bb6c9e6028a",
+            "sourceToolAssistantUUID": "ca60b331-53cc-4a7d-9fd4-3f02cb86fb47",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-10T19:38:33.177Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have comprehensive information to provide a thorough verification report. Here is my analysis:\n\n---\n\n## Verification Report: DreamZero and UWM Papers\n\n### Paper 1: DreamZero (arXiv 2602.15922, Feb 2026)\n\n**Title:** \"World Action Models are Zero-shot Policies\" -- **CONFIRMED.** The paper exists on arXiv at the stated ID, submitted February 17, 2026.\n\nClaim-by-claim verification:\n\n| Claim | Status | Finding |\n|---|---|---|\n| **Velocity-based convergence caching within flow-matching denoising** | **CONFIRMED** | The paper describes caching that \"exploits the directional consistency of velocity vectors learned during flow matching.\" |\n| **Cosine similarity threshold on successive predictions** | **CONFIRMED** | The paper tracks \"cosine similarity between successive velocity predictions\" and when similarity exceeds threshold tau, it \"bypasses the DiT forward pass for a window of a few steps by reusing the cached velocity vector.\" |\n| **75% step reduction (16 to 4)** | **CONFIRMED** | The paper states: \"reducing the average number of DiT steps from 16 to 4 with minimal degradation to predicted video and action fidelity.\" That is exactly 75%. |\n| **Zero additional parameters** | **PARTIALLY INCORRECT** | The convergence caching itself requires zero additional parameters (it reuses cached velocity vectors). However, DreamZero as a whole does introduce \"minimal additional parameters\" in the form of \"state encoders, action encoders, and decoders.\" The proposal's claim of \"zero additional parameters\" is misleading if it refers to the overall model rather than narrowly to the caching mechanism. |\n| **14B parameter model** | **CONFIRMED** | The paper describes a \"14B robot foundation model built upon a pretrained image-to-video diffusion backbone.\" Ablation with a 5B variant showed significantly worse performance (21% vs 50% task progress). |\n| **Wan2.1-I2V backbone** | **CONFIRMED** | The backbone is identified as \"Wan2.1-I2V-14B-480P,\" an image-to-video diffusion model. |\n| **Requires 2x GB200 for inference** | **CONFIRMED** | The paper describes \"38x inference speedup...on GB200\" and CFG (Classifier-Free Guidance) parallelism \"distributed across two GPUs,\" confirming 2x GB200 for inference. |\n\n**Additional note on DreamZero:** The paper also describes a \"DreamZero-Flash\" variant that decouples video and action diffusion schedules, achieving 1-step denoising (down from 4) but at 9% below the 4-step baseline performance. Code is publicly available at `https://github.com/dreamzero0/dreamzero`.\n\n---\n\n### Paper 2: UWM (arXiv 2504.02792, April 2025)\n\n**Title:** \"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets\" -- **CONFIRMED.** Paper exists at the stated arXiv ID.\n\nClaim-by-claim verification:\n\n| Claim | Status | Finding |\n|---|---|---|\n| **180M-parameter DiT-B architecture** | **CONFIRMED** | Multiple sources confirm UWM uses a DiT-B (Diffusion Transformer-B) backbone at approximately 180M parameters. The architecture uses AdaLN conditioning, a frozen SDXL VAE for image encoding, 8 register tokens for inter-modal information exchange, and ResNet-18 observation encoders. |\n| **DDPM-based training** | **CONFIRMED** | The training objective is DDPM-based, with loss: `wa * ||eps_a_theta - eps_a||^2 + wo * ||eps_o_theta - eps_o||^2`, which is the standard DDPM epsilon-prediction loss formulation. |\n| **SEPARATE diffusion timesteps for action and video** | **CONFIRMED** | This is the core design feature. Action timestep `ta` and observation timestep `to'` are \"independently sampled\" from `U(0,T)`. This enables flexible inference: setting `to'=T` gives a pure policy, setting `ta=0` gives forward dynamics, setting `to'=0` gives inverse dynamics, and setting `ta=T` gives a video generator. |\n| **RSS 2025** | **CONFIRMED** | The paper is accepted at Robotics: Science and Systems (RSS) 2025. It also received a Best Paper Award at the ICML 2025 Workshop on Building Physically Plausible World Models. |\n| **Public code** | **CONFIRMED** | Code is publicly available at `https://github.com/WEIRDLabUW/unified-world-model` (221 stars, 14 forks, 11 commits on main). |\n| **DROID checkpoints** | **CONFIRMED** | Pretrained and cotrained DROID UWM checkpoints are released and hosted on Google Drive. LIBERO-90 pretrained checkpoints are also available. Users can download and directly finetune from them. |\n\n---\n\n### Summary\n\n**DreamZero:** 6 of 7 claims verified. The one issue is the \"zero additional parameters\" claim -- the convergence caching mechanism itself adds no parameters, but DreamZero as a whole does add minimal parameters (state/action encoders and decoders). If the proposal attributes \"zero additional parameters\" to the caching scheme specifically, this is accurate; if it implies the entire DreamZero framework adds no parameters on top of the Wan2.1 backbone, that is incorrect.\n\n**UWM:** All 6 claims fully verified. The paper, architecture, training method, separate timesteps, public code, and DROID checkpoints all match the proposal's description.\n\nSources:\n- [DreamZero on arXiv](https://arxiv.org/abs/2602.15922)\n- [DreamZero full paper HTML](https://arxiv.org/html/2602.15922v1)\n- [DreamZero project page](https://dreamzero0.github.io/)\n- [DreamZero GitHub](https://github.com/dreamzero0/dreamzero)\n- [UWM on arXiv](https://arxiv.org/abs/2504.02792)\n- [UWM full paper HTML](https://arxiv.org/html/2504.02792v1)\n- [UWM project page](https://weirdlabuw.github.io/uwm/)\n- [UWM GitHub](https://github.com/WEIRDLabUW/unified-world-model)\n- [UWM on HuggingFace Papers](https://huggingface.co/papers/2504.02792)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c1983dea-fe8a-4617-a398-3bb6c9e6028a",
+            "isSidechain": true,
+            "agentId": "a15b98ed49a9f8d53",
+            "requestId": "req_011CauTEEkLu8TvQCSk7RZg5",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1e786ffc-5cc5-4ac0-8365-673af65fb499",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "457e2ae8-268a-4527-8fc3-bb8d04ff217d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WQf8DuzJWgYHo3xwCAp1k9",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 517,
+                "cache_read_input_tokens": 18650,
+                "output_tokens": 1623,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 517
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1623,
+                    "cache_read_input_tokens": 18650,
+                    "cache_creation_input_tokens": 517,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 517,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-verify-two-key-papers-cited-in-a-research-proposal-use-websearch-and.md"
+}

@@ -1,0 +1,3226 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-10 (UTC).** ## Original idea { "tit
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 44
+- **Recorded user turns:** 1
+- **Tool calls:** 8
+- **Original source:** `logs/chats/exported-trajectories/account-3/6981195d-1dd3-4986-bae6-45a75a7bbf26.jsonl`
+- **Structured JSON:** [`61bb4a450728adaa4c56.json`](../../sessions/61/61bb4a450728adaa4c56.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T18:22:12.116Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T18:22:12.116Z",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-10 (UTC).**\n\n## Original idea\n{\n  \"title\": \"DualGate: Noise-Pair-Conditioned Cross-Modal Attention Gating for World Action Models with Independent Timesteps\",\n  \"core_problem\": \"In World Action Models (WAMs) with independent or asynchronous diffusion timesteps, video and action tokens exist at fundamentally different noise levels during joint denoising — yet cross-modal attention treats all timestep combinations identically. When one modality is highly noisy and the other is nearly clean, attending to the noisy modality introduces stochastic perturbations rather than useful signal. How should cross-modal attention adapt to the relative noise states of both modalities along the denoising trajectory?\",\n  \"opportunity\": \"WAMs with independent timesteps (UWM, X-WAM's ANS) create a novel information asymmetry: at any given denoising step, video might be at noise level t_O and action at noise level t_a, with potentially large gaps between them. No existing work modulates cross-modal attention strength based on this noise-level pair. AVDiT (NeurIPS 2024) uses mixture of noise levels for audiovisual generation but does NOT condition attention on the resulting noise asymmetry. TACA (ICCV 2025) modulates attention based on a single shared timestep (parameter-free temperature scaling) in text-to-image, but never addresses the dual-timestep regime or robotics. D3P (arXiv 2025) adapts the NUMBER of denoising steps per action for efficiency but does not modulate attention strength. X-WAM's ANS ensures t_O ≥ t_a during inference but uses fixed full bidirectional attention regardless of the noise gap. This leaves a clear opening: a lightweight gating adapter that conditions on both timestep embeddings to learn WHEN and HOW MUCH each modality should attend to the other, exploiting the information asymmetry that independent timesteps create.\",\n  \"landscape\": \"UWM (RSS 2025, github.com/WEIRDLabUW/unified-world-model) uses independent diffusion timesteps for video and action in a unified DiT with AdaLN conditioning, enabling flexible multi-task training (policy, forward/inverse dynamics, video prediction); standard full attention between all tokens regardless of noise levels. X-WAM (arXiv April 2026, sharinka0715.github.io/X-WAM) uses full bidirectional attention on concatenated video+action sequences with Asynchronous Noise Sampling (ANS: t_O ≥ t_a) for inference efficiency — actions decoded in 5 steps while video uses 25; achieves 79.2% on RoboCasa, 90.7% on RoboTwin 2.0; code coming soon. DreamZero (arXiv Feb 2026, github.com/dreamzero0/dreamzero) jointly denoises video and action with shared timestep on a 14B Wan2.1-I2V backbone; real-time at 7Hz after optimization. MotuBrain (arXiv April 2026, commercial/closed-source) uses three-stream MoT with H-bridge design: full joint attention in middle 50% of layers, decoupled in top/bottom 25% — this is a static layer-wise pattern, not noise-level-adaptive. TACA (ICCV 2025) applies a fixed piecewise temperature function (NOT learned) to text→image cross-modal attention based on a single shared timestep. D3P (arXiv Aug 2025) uses a state-aware adaptor trained via RL to allocate denoising step counts per action for inference efficiency, not to modulate cross-modal attention strength. AVDiT (NeurIPS 2024) introduces mixture of noise levels in audiovisual DiT but does not gate attention based on noise level differences. Fast-WAM (arXiv March 2026, github.com/yuantianyuan01/FastWAM) removes video generation at test time entirely — video features are always clean during action inference, making noise-level-based gating less principled. Step-wise Dynamic Attention Mediators (ECCV 2024) reduce token count per step for efficiency, not cross-modal routing. No prior work conditions cross-modal attention on the PAIR of independent noise levels in multi-modal diffusion for robotics.\",\n  \"approach\": \"We propose DualGate, a parameter-efficient adapter that learns noise-pair-conditioned gating for bidirectional cross-modal attention in WAMs with independent timesteps. A small MLP (~0.2% additional parameters) takes BOTH the video timestep embedding t_O and action timestep embedding t_a as input and outputs per-head scaling factors for (1) video→action attention and (2) action→video attention, enabling asymmetric learned routing. The gating network sees the noise-level pair (t_O, t_a), allowing it to learn phase-dependent behavior: e.g., when action noise is high and video noise is low (t_a >> t_O), amplify video→action attention to ground coarse trajectory planning in clean visual structure; when both are moderately noisy, enable bidirectional flow for coherence; when action noise is low, attenuate cross-modal attention to allow precise motor command refinement without visual interference. We train DualGate end-to-end on a frozen UWM backbone (open-source, github.com/WEIRDLabUW/unified-world-model) using the standard coupled score matching objective. Primary evaluation on RoboCasa (SOTA 67-79%, meaningful headroom) and LIBERO-PRO (robustness benchmark where standard-LIBERO-trained models collapse from 90% to 0% under perturbation; github.com/Zxy-MLlab/LIBERO-PRO). Secondary evaluation on RoboTwin 2.0. Baselines: UWM with standard full attention (open-source), DreamZero with standard joint attention (open-source, github.com/dreamzero0/dreamzero), and ablated variants: single-timestep conditioning (to isolate the benefit of dual-timestep awareness), fixed cosine gating schedule, per-layer vs per-head granularity, and unidirectional (video→action only) vs bidirectional gating. We produce 'noise-phase diagrams' showing learned gating values across the (t_O, t_a) plane, revealing interpretable structure about when cross-modal attention is beneficial vs. harmful during multi-modal denoising.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~300h H100\",\n      \"gpu_utilization\": \"~30-40% effective utilization; GPUs idle while researcher integrates adapter into UWM codebase, debugs independent-timestep conditioning, and analyzes noise-phase diagrams between runs\",\n      \"timeline\": \"3-5 months\",\n      \"team\": \"1-2 researchers\",\n      \"estimated_gpu_cost\": \"$750-$1,000 at ~$2.50/hr spot H100\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~400h H100\",\n      \"gpu_utilization\": \"~55-65% effective utilization; agent handles UWM integration, experiment scheduling, and gating visualization generation\",\n      \"timeline\": \"1.5-2.5 months\",\n      \"team\": \"1 researcher, ~30min/day reviewing noise-phase diagrams and approving ablation directions\",\n      \"claude_api_cost\": \"$200-$400 (estimated 2,500-5,000 conversation turns)\",\n      \"estimated_gpu_cost\": \"$1,000-$1,200\",\n      \"risk_note\": \"UWM's AdaLN conditioning may require non-trivial modification to expose per-token timestep information for gating; RoboCasa simulation environment setup and rollout bottleneck (~45-90 min per full evaluation)\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~700h H100 (comprehensive noise-pair ablation grid, DreamZero secondary experiments)\",\n      \"gpu_utilization\": \"~90-95% effective utilization; agent pipelines experiments including full (t_O, t_a) grid sweeps\",\n      \"timeline\": \"2-4 weeks with 4-8 H100s concurrently\",\n      \"team\": \"0 (initial setup: point agent at UWM repo, RoboCasa environment, LIBERO-PRO)\",\n      \"claude_api_cost\": \"$500-$800 (estimated 6,000-10,000 turns including DreamZero adaptation)\",\n      \"estimated_gpu_cost\": \"$1,750-$2,100\",\n      \"speed_bottleneck\": \"RoboCasa simulation rollouts (~45-90 min per full suite); optional DreamZero experiments on 14B model require multi-GPU parallelism\",\n      \"risk_note\": \"Agent may over-explore the (t_O, t_a) gating space; DreamZero's 14B scale makes adapter training expensive if included\"\n    }\n  },\n  \"target_venues\": [\n    \"CoRL 2026 (abstract May 26, paper May 29 — tight but feasible if UWM experiments are prioritized)\",\n    \"NeurIPS 2026 (abstract ~May 15, paper ~May 22 — if reframed for ML audience with emphasis on noise-pair conditioning theory)\",\n    \"AAAI 2027 (abstract ~Jul 25, paper ~Aug 1)\",\n    \"ICRA 2027 (paper ~Sep 16)\"\n  ],\n  \"level\": \"solid-to-strong\",\n  \"key_references\": [\n    \"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets (RSS 2025)\",\n    \"X-WAM: Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising (arXiv 2026)\",\n    \"World Action Models are Zero-shot Policies [DreamZero] (arXiv 2026)\",\n    \"MotuBrain: An Advanced World Action Model for Robot Control (arXiv 2026)\",\n    \"Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers [TACA] (ICCV 2025)\",\n    \"D3P: Dynamic Denoising Diffusion Policy via Reinforcement Learning (arXiv 2025)\",\n    \"A Versatile Diffusion Transformer with Mixture of Noise Levels for Audiovisual Generation [AVDiT] (NeurIPS 2024)\",\n    \"Fast-WAM: Do World Action Models Need Test-time Future Imagination? (arXiv 2026)\",\n    \"LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization (arXiv 2025)\",\n    \"Efficient Diffusion Transformer with Step-wise Dynamic Attention Mediators (ECCV 2024)\",\n    \"Diffusion Policy: Visuomotor Policy Learning via Action Diffusion (RSS 2023)\"\n  ],\n  \"description\": \"World Action Models with independent or asynchronous diffusion timesteps (UWM, X-WAM) create a unique information asymmetry: video and action tokens exist at different noise levels during joint denoising, yet cross-modal attention treats all noise-level combinations identically. We propose DualGate, a parameter-efficient adapter (~0.2% additional parameters) that learns noise-pair-conditioned gating for bidirectional cross-modal attention. Unlike TACA's fixed single-timestep temperature or D3P's step-count allocation, DualGate takes BOTH modality timestep embeddings (t_O, t_a) as input and outputs per-head scaling factors for video→action and action→video attention independently, enabling the model to learn asymmetric routing — e.g., amplifying video guidance when actions are highly noisy, attenuating cross-modal flow when actions approach convergence. Trained end-to-end on a frozen UWM backbone, DualGate exploits the structural property that independent timesteps create regions in the (t_O, t_a) noise-phase space where cross-modal attention is beneficial (information transfer) versus harmful (noise injection). We evaluate on RoboCasa (67-79% SOTA, meaningful headroom) and LIBERO-PRO (robustness benchmark where LIBERO-trained models collapse under perturbation), producing interpretable noise-phase diagrams that reveal when cross-modal attention helps versus hurts along the joint denoising trajectory. This is the first work to condition cross-modal attention on the pair of independent noise levels in multi-modal diffusion for robotics.\",\n  \"project_name\": \"dual_gate_wam_attention\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 2)\nIssues: [\"CRITICAL: AdaLN redundancy concern. UWM's AdaLN already concatenates both timestep embeddings (t_o, t_a), projects them to the conditioning dimension, and modulates ALL transformer blocks via adaptive layer normalization. This means every attention layer's Q/K/V projections are already conditioned on the noise-pair information. DualGate's explicit per-head attention scaling operates on TOP of this implicit conditioning. The proposal must argue convincingly why explicit attention gating adds value beyond what AdaLN already provides — 'AdaLN modulates token representations uniformly while DualGate specifically modulates cross-modal attention weights' is plausible but needs theoretical or empirical justification.\", \"CRITICAL: Resource estimates violate the user's ≤200 H100-hour hard constraint. Manual mode estimates ~300h H100 (even at 30-40% utilization = ~90-120h actual GPU compute, the stated GPU-hours figure exceeds the budget). Auto mode estimates ~700h. The proposal must either: (a) demonstrate the method fits within 200h with a concrete compute plan, or (b) acknowledge the constraint cannot be met.\", \"UWM has never been evaluated on RoboCasa or LIBERO-PRO. The proposal plans these as primary benchmarks but doesn't account for the engineering effort and compute cost of establishing UWM baselines on these benchmarks first. UWM's open-source code includes configs only for LIBERO and DROID — RoboCasa integration is non-trivial and unaccounted.\", \"Register token interaction unaddressed. UWM's cross-modal information exchange happens partially through 8-24 register tokens that serve as intermediary buffers between modalities. DualGate's description only mentions gating 'video→action attention' and 'action→video attention' but doesn't address how gating interacts with register→video, register→action, video→register, and action→register attention quadrants. This is a meaningful architectural design question that could significantly affect the method's effectiveness.\", \"Factual error persists: UWM is RSS 2026 (scheduled June 21, 2026 per roboticsconference.org), not RSS 2025 as stated in key_references.\", \"Missing important concurrent work: CKT-WAM (arXiv 2605.06247) proposes parameter-efficient adapter-based transfer between WAMs using adapter modules with specialized routed experts — while targeting knowledge transfer rather than noise-pair gating, it demonstrates that the 'adapter on WAM' approach space is actively being explored. OA-WAM (arXiv 2605.06481) and EA-WM (arXiv 2605.06192) show the WAM attention modification space is crowded in May 2026.\", \"Frozen backbone limitation. With UWM frozen, DualGate can only scale attention weights — it cannot modify the Q/K/V representations themselves. Per-head scalar gating (multiply attention by a learned scalar) is less expressive than approaches that modify the attention computation more deeply (e.g., per-head learned projections or bias terms). The proposal should discuss this expressiveness limitation and consider whether unfreezing selected layers could help.\"]\nFeedback: The revised proposal successfully addresses most Round 1 concerns (architectural mismatch fixed by switching to UWM, benchmark saturation fixed by switching to RoboCasa/LIBERO-PRO, factual errors mostly corrected). The core novelty — noise-pair conditioned gating in dual-timestep WAMs — is genuine and fills a real gap. However, two critical issues remain:\n\n1. **Address the AdaLN redundancy head-on.** This is the make-or-break technical question. UWM's AdaLN already conditions on both (t_o, t_a) through concatenation, so the model implicitly learns noise-pair-dependent behavior. You need to argue WHY explicit attention gating adds value. Concrete suggestions: (a) Show theoretically that AdaLN modulates tokens uniformly while DualGate modulates cross-modal attention weights specifically — the former adjusts WHAT information tokens contain, the latter adjusts HOW MUCH modalities attend to each other, and these are complementary. (b) Design an ablation that isolates this: compare DualGate against a 'dual-timestep AdaLN-only' baseline (i.e., same frozen UWM with its built-in dual AdaLN but no DualGate) to demonstrate the gating adds signal beyond AdaLN. (c) Reference the literature on AdaLN limitations — 'Unveiling the Secret of AdaLN-Zero' (OpenReview) and TACA both argue that AdaLN operates at a spatially global level and cannot differentiate between spatial/modal positions, which is precisely where explicit attention gating helps.\n\n2. **Fix the compute budget.** Provide a concrete compute plan that fits within 200 H100-hours: (a) Start from UWM's pretrained LIBERO checkpoint (~0h), (b) adapter training with frozen backbone on LIBERO (~15-30h), (c) establish UWM+DualGate on RoboCasa (budget ~30-50h including baseline UWM runs), (d) LIBERO-PRO evaluation (~10-20h), (e) ablations (~30-50h). Total: ~85-150 H100-hours. This is feasible — present it explicitly. Drop the DreamZero 14B experiments, which are budget-busting.\n\n3. **Address register tokens explicitly.** Describe how DualGate handles the register token attention quadrants. Options: (a) treat registers as belonging to neither modality and leave their attention ungated, (b) apply a separate learned gating for register interactions, or (c) gate registers based on which modality they're attending to.\n\n4. **Narrow the contribution claim** from 'first work to condition cross-modal attention on noise pairs' to something more precise that acknowledges AdaLN's implicit conditioning: e.g., 'first work to apply explicit, learned, per-head attention gating conditioned on independent per-modality noise levels in world action models.'\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\")."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T18:22:12.120Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T18:22:12.120Z",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26"
+}
+```
+
+---
+
+## Round 1
+
+42 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T18:22:12.148Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-10 (UTC).**
+
+## Original idea
+{
+  "title": "DualGate: Noise-Pair-Conditioned Cross-Modal Attention Gating for World Action Models with Independent Timesteps",
+  "core_problem": "In World Action Models (WAMs) with independent or asynchronous diffusion timesteps, video and action tokens exist at fundamentally different noise levels during joint denoising — yet cross-modal attention treats all timestep combinations identically. When one modality is highly noisy and the other is nearly clean, attending to the noisy modality introduces stochastic perturbations rather than useful signal. How should cross-modal attention adapt to the relative noise states of both modalities along the denoising trajectory?",
+  "opportunity": "WAMs with independent timesteps (UWM, X-WAM's ANS) create a novel information asymmetry: at any given denoising step, video might be at noise level t_O and action at noise level t_a, with potentially large gaps between them. No existing work modulates cross-modal attention strength based on this noise-level pair. AVDiT (NeurIPS 2024) uses mixture of noise levels for audiovisual generation but does NOT condition attention on the resulting noise asymmetry. TACA (ICCV 2025) modulates attention based on a single shared timestep (parameter-free temperature scaling) in text-to-image, but never addresses the dual-timestep regime or robotics. D3P (arXiv 2025) adapts the NUMBER of denoising steps per action for efficiency but does not modulate attention strength. X-WAM's ANS ensures t_O ≥ t_a during inference but uses fixed full bidirectional attention regardless of the noise gap. This leaves a clear opening: a lightweight gating adapter that conditions on both timestep embeddings to learn WHEN and HOW MUCH each modality should attend to the other, exploiting the information asymmetry that independent timesteps create.",
+  "landscape": "UWM (RSS 2025, github.com/WEIRDLabUW/unified-world-model) uses independent diffusion timesteps for video and action in a unified DiT with AdaLN conditioning, enabling flexible multi-task training (policy, forward/inverse dynamics, video prediction); standard full attention between all tokens regardless of noise levels. X-WAM (arXiv April 2026, sharinka0715.github.io/X-WAM) uses full bidirectional attention on concatenated video+action sequences with Asynchronous Noise Sampling (ANS: t_O ≥ t_a) for inference efficiency — actions decoded in 5 steps while video uses 25; achieves 79.2% on RoboCasa, 90.7% on RoboTwin 2.0; code coming soon. DreamZero (arXiv Feb 2026, github.com/dreamzero0/dreamzero) jointly denoises video and action with shared timestep on a 14B Wan2.1-I2V backbone; real-time at 7Hz after optimization. MotuBrain (arXiv April 2026, commercial/closed-source) uses three-stream MoT with H-bridge design: full joint attention in middle 50% of layers, decoupled in top/bottom 25% — this is a static layer-wise pattern, not noise-level-adaptive. TACA (ICCV 2025) applies a fixed piecewise temperature function (NOT learned) to text→image cross-modal attention based on a single shared timestep. D3P (arXiv Aug 2025) uses a state-aware adaptor trained via RL to allocate denoising step counts per action for inference efficiency, not to modulate cross-modal attention strength. AVDiT (NeurIPS 2024) introduces mixture of noise levels in audiovisual DiT but does not gate attention based on noise level differences. Fast-WAM (arXiv March 2026, github.com/yuantianyuan01/FastWAM) removes video generation at test time entirely — video features are always clean during action inference, making noise-level-based gating less principled. Step-wise Dynamic Attention Mediators (ECCV 2024) reduce token count per step for efficiency, not cross-modal routing. No prior work conditions cross-modal attention on the PAIR of independent noise levels in multi-modal diffusion for robotics.",
+  "approach": "We propose DualGate, a parameter-efficient adapter that learns noise-pair-conditioned gating for bidirectional cross-modal attention in WAMs with independent timesteps. A small MLP (~0.2% additional parameters) takes BOTH the video timestep embedding t_O and action timestep embedding t_a as input and outputs per-head scaling factors for (1) video→action attention and (2) action→video attention, enabling asymmetric learned routing. The gating network sees the noise-level pair (t_O, t_a), allowing it to learn phase-dependent behavior: e.g., when action noise is high and video noise is low (t_a >> t_O), amplify video→action attention to ground coarse trajectory planning in clean visual structure; when both are moderately noisy, enable bidirectional flow for coherence; when action noise is low, attenuate cross-modal attention to allow precise motor command refinement without visual interference. We train DualGate end-to-end on a frozen UWM backbone (open-source, github.com/WEIRDLabUW/unified-world-model) using the standard coupled score matching objective. Primary evaluation on RoboCasa (SOTA 67-79%, meaningful headroom) and LIBERO-PRO (robustness benchmark where standard-LIBERO-trained models collapse from 90% to 0% under perturbation; github.com/Zxy-MLlab/LIBERO-PRO). Secondary evaluation on RoboTwin 2.0. Baselines: UWM with standard full attention (open-source), DreamZero with standard joint attention (open-source, github.com/dreamzero0/dreamzero), and ablated variants: single-timestep conditioning (to isolate the benefit of dual-timestep awareness), fixed cosine gating schedule, per-layer vs per-head granularity, and unidirectional (video→action only) vs bidirectional gating. We produce 'noise-phase diagrams' showing learned gating values across the (t_O, t_a) plane, revealing interpretable structure about when cross-modal attention is beneficial vs. harmful during multi-modal denoising.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~300h H100",
+      "gpu_utilization": "~30-40% effective utilization; GPUs idle while researcher integrates adapter into UWM codebase, debugs independent-timestep conditioning, and analyzes noise-phase diagrams between runs",
+      "timeline": "3-5 months",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "$750-$1,000 at ~$2.50/hr spot H100"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~400h H100",
+      "gpu_utilization": "~55-65% effective utilization; agent handles UWM integration, experiment scheduling, and gating visualization generation",
+      "timeline": "1.5-2.5 months",
+      "team": "1 researcher, ~30min/day reviewing noise-phase diagrams and approving ablation directions",
+      "claude_api_cost": "$200-$400 (estimated 2,500-5,000 conversation turns)",
+      "estimated_gpu_cost": "$1,000-$1,200",
+      "risk_note": "UWM's AdaLN conditioning may require non-trivial modification to expose per-token timestep information for gating; RoboCasa simulation environment setup and rollout bottleneck (~45-90 min per full evaluation)"
+    },
+    "auto_research": {
+      "gpu_hours": "~700h H100 (comprehensive noise-pair ablation grid, DreamZero secondary experiments)",
+      "gpu_utilization": "~90-95% effective utilization; agent pipelines experiments including full (t_O, t_a) grid sweeps",
+      "timeline": "2-4 weeks with 4-8 H100s concurrently",
+      "team": "0 (initial setup: point agent at UWM repo, RoboCasa environment, LIBERO-PRO)",
+      "claude_api_cost": "$500-$800 (estimated 6,000-10,000 turns including DreamZero adaptation)",
+      "estimated_gpu_cost": "$1,750-$2,100",
+      "speed_bottleneck": "RoboCasa simulation rollouts (~45-90 min per full suite); optional DreamZero experiments on 14B model require multi-GPU parallelism",
+      "risk_note": "Agent may over-explore the (t_O, t_a) gating space; DreamZero's 14B scale makes adapter training expensive if included"
+    }
+  },
+  "target_venues": [
+    "CoRL 2026 (abstract May 26, paper May 29 — tight but feasible if UWM experiments are prioritized)",
+    "NeurIPS 2026 (abstract ~May 15, paper ~May 22 — if reframed for ML audience with emphasis on noise-pair conditioning theory)",
+    "AAAI 2027 (abstract ~Jul 25, paper ~Aug 1)",
+    "ICRA 2027 (paper ~Sep 16)"
+  ],
+  "level": "solid-to-strong",
+  "key_references": [
+    "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets (RSS 2025)",
+    "X-WAM: Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising (arXiv 2026)",
+    "World Action Models are Zero-shot Policies [DreamZero] (arXiv 2026)",
+    "MotuBrain: An Advanced World Action Model for Robot Control (arXiv 2026)",
+    "Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers [TACA] (ICCV 2025)",
+    "D3P: Dynamic Denoising Diffusion Policy via Reinforcement Learning (arXiv 2025)",
+    "A Versatile Diffusion Transformer with Mixture of Noise Levels for Audiovisual Generation [AVDiT] (NeurIPS 2024)",
+    "Fast-WAM: Do World Action Models Need Test-time Future Imagination? (arXiv 2026)",
+    "LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization (arXiv 2025)",
+    "Efficient Diffusion Transformer with Step-wise Dynamic Attention Mediators (ECCV 2024)",
+    "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion (RSS 2023)"
+  ],
+  "description": "World Action Models with independent or asynchronous diffusion timesteps (UWM, X-WAM) create a unique information asymmetry: video and action tokens exist at different noise levels during joint denoising, yet cross-modal attention treats all noise-level combinations identically. We propose DualGate, a parameter-efficient adapter (~0.2% additional parameters) that learns noise-pair-conditioned gating for bidirectional cross-modal attention. Unlike TACA's fixed single-timestep temperature or D3P's step-count allocation, DualGate takes BOTH modality timestep embeddings (t_O, t_a) as input and outputs per-head scaling factors for video→action and action→video attention independently, enabling the model to learn asymmetric routing — e.g., amplifying video guidance when actions are highly noisy, attenuating cross-modal flow when actions approach convergence. Trained end-to-end on a frozen UWM backbone, DualGate exploits the structural property that independent timesteps create regions in the (t_O, t_a) noise-phase space where cross-modal attention is beneficial (information transfer) versus harmful (noise injection). We evaluate on RoboCasa (67-79% SOTA, meaningful headroom) and LIBERO-PRO (robustness benchmark where LIBERO-trained models collapse under perturbation), producing interpretable noise-phase diagrams that reveal when cross-modal attention helps versus hurts along the joint denoising trajectory. This is the first work to condition cross-modal attention on the pair of independent noise levels in multi-modal diffusion for robotics.",
+  "project_name": "dual_gate_wam_attention",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 2)
+Issues: ["CRITICAL: AdaLN redundancy concern. UWM's AdaLN already concatenates both timestep embeddings (t_o, t_a), projects them to the conditioning dimension, and modulates ALL transformer blocks via adaptive layer normalization. This means every attention layer's Q/K/V projections are already conditioned on the noise-pair information. DualGate's explicit per-head attention scaling operates on TOP of this implicit conditioning. The proposal must argue convincingly why explicit attention gating adds value beyond what AdaLN already provides — 'AdaLN modulates token representations uniformly while DualGate specifically modulates cross-modal attention weights' is plausible but needs theoretical or empirical justification.", "CRITICAL: Resource estimates violate the user's ≤200 H100-hour hard constraint. Manual mode estimates ~300h H100 (even at 30-40% utilization = ~90-120h actual GPU compute, the stated GPU-hours figure exceeds the budget). Auto mode estimates ~700h. The proposal must either: (a) demonstrate the method fits within 200h with a concrete compute plan, or (b) acknowledge the constraint cannot be met.", "UWM has never been evaluated on RoboCasa or LIBERO-PRO. The proposal plans these as primary benchmarks but doesn't account for the engineering effort and compute cost of establishing UWM baselines on these benchmarks first. UWM's open-source code includes configs only for LIBERO and DROID — RoboCasa integration is non-trivial and unaccounted.", "Register token interaction unaddressed. UWM's cross-modal information exchange happens partially through 8-24 register tokens that serve as intermediary buffers between modalities. DualGate's description only mentions gating 'video→action attention' and 'action→video attention' but doesn't address how gating interacts with register→video, register→action, video→register, and action→register attention quadrants. This is a meaningful architectural design question that could significantly affect the method's effectiveness.", "Factual error persists: UWM is RSS 2026 (scheduled June 21, 2026 per roboticsconference.org), not RSS 2025 as stated in key_references.", "Missing important concurrent work: CKT-WAM (arXiv 2605.06247) proposes parameter-efficient adapter-based transfer between WAMs using adapter modules with specialized routed experts — while targeting knowledge transfer rather than noise-pair gating, it demonstrates that the 'adapter on WAM' approach space is actively being explored. OA-WAM (arXiv 2605.06481) and EA-WM (arXiv 2605.06192) show the WAM attention modification space is crowded in May 2026.", "Frozen backbone limitation. With UWM frozen, DualGate can only scale attention weights — it cannot modify the Q/K/V representations themselves. Per-head scalar gating (multiply attention by a learned scalar) is less expressive than approaches that modify the attention computation more deeply (e.g., per-head learned projections or bias terms). The proposal should discuss this expressiveness limitation and consider whether unfreezing selected layers could help."]
+Feedback: The revised proposal successfully addresses most Round 1 concerns (architectural mismatch fixed by switching to UWM, benchmark saturation fixed by switching to RoboCasa/LIBERO-PRO, factual errors mostly corrected). The core novelty — noise-pair conditioned gating in dual-timestep WAMs — is genuine and fills a real gap. However, two critical issues remain:
+
+1. **Address the AdaLN redundancy head-on.** This is the make-or-break technical question. UWM's AdaLN already conditions on both (t_o, t_a) through concatenation, so the model implicitly learns noise-pair-dependent behavior. You need to argue WHY explicit attention gating adds value. Concrete suggestions: (a) Show theoretically that AdaLN modulates tokens uniformly while DualGate modulates cross-modal attention weights specifically — the former adjusts WHAT information tokens contain, the latter adjusts HOW MUCH modalities attend to each other, and these are complementary. (b) Design an ablation that isolates this: compare DualGate against a 'dual-timestep AdaLN-only' baseline (i.e., same frozen UWM with its built-in dual AdaLN but no DualGate) to demonstrate the gating adds signal beyond AdaLN. (c) Reference the literature on AdaLN limitations — 'Unveiling the Secret of AdaLN-Zero' (OpenReview) and TACA both argue that AdaLN operates at a spatially global level and cannot differentiate between spatial/modal positions, which is precisely where explicit attention gating helps.
+
+2. **Fix the compute budget.** Provide a concrete compute plan that fits within 200 H100-hours: (a) Start from UWM's pretrained LIBERO checkpoint (~0h), (b) adapter training with frozen backbone on LIBERO (~15-30h), (c) establish UWM+DualGate on RoboCasa (budget ~30-50h including baseline UWM runs), (d) LIBERO-PRO evaluation (~10-20h), (e) ablations (~30-50h). Total: ~85-150 H100-hours. This is feasible — present it explicitly. Drop the DreamZero 14B experiments, which are budget-busting.
+
+3. **Address register tokens explicitly.** Describe how DualGate handles the register token attention quadrants. Options: (a) treat registers as belonging to neither modality and leave their attention ungated, (b) apply a separate learned gating for register interactions, or (c) gate registers based on which modality they're attending to.
+
+4. **Narrow the contribution claim** from 'first work to condition cross-modal attention on noise pairs' to something more precise that acknowledges AdaLN's implicit conditioning: e.g., 'first work to apply explicit, learned, per-head attention gating conditioned on independent per-modality noise levels in world action models.'
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "type": "user",
+  "uuid": "666bcbdd-a9bb-472c-8acc-bad3c445fbfa",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T18:22:12.146Z_
+
+```json
+{
+  "parentUuid": "666bcbdd-a9bb-472c-8acc-bad3c445fbfa",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "a744292a-593e-4936-825f-d1414982633b",
+  "timestamp": "2026-05-10T18:22:12.146Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T18:22:12.146Z_
+
+```json
+{
+  "parentUuid": "a744292a-593e-4936-825f-d1414982633b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "62745c76-6e8d-4c5a-9268-209596925a22",
+  "timestamp": "2026-05-10T18:22:12.146Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"DualGate: Noise-Pair-Conditioned Cross-Modal Attention Gating for Worl…",
+  "leafUuid": "62745c76-6e8d-4c5a-9268-209596925a22",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise DualGate with AdaLN complementarity and tighter compute plan",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-10T18:22:21.331Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully before diving into research. The key issues are:
+
+1. **CRITICAL: AdaLN redundancy** - UWM's AdaLN already conditions on both timesteps. Need to argue why explicit gating adds value.
+2. **CRITICAL: Resource estimates exceed 200 H100-hour budget** - Need a concrete plan within budget.
+3. **UWM never evaluated on RoboCasa/LIBERO-PRO** - Engineering effort unaccounted.
+4. **Register token interaction** - How does DualGate handle register tokens?
+5. **Factual error: UWM is RSS 2026, not 2025**
+
+
+6. **Missing concurrent work** - CKT-WAM, OA-WAM, EA-WM need to be addressed in related work.
+7. **Frozen backbone expressiveness limitation** - Need to discuss how this constrains the approach.
+
+I should tackle these systematically, starting with the most critical resource and architectural concerns.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "62745c76-6e8d-4c5a-9268-209596925a22",
+  "isSidechain": false,
+  "requestId": "req_011CauMTATnbj6U2oWVoywpY",
+  "type": "assistant",
+  "uuid": "28b93616-1e19-42ba-92a5-ead1a06c9b22",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EYKB18S2e4gftNBetJuEUd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 10760,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 358,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10760,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 358,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 10760,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10760
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-10T18:22:22.227Z_
+
+I'll start by researching the key issues raised by the reviewers: AdaLN redundancy, the concurrent WAM works, UWM's architecture details (register tokens, AdaLN), and compute feasibility. Let me launch parallel research agents.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "28b93616-1e19-42ba-92a5-ead1a06c9b22",
+  "isSidechain": false,
+  "requestId": "req_011CauMTATnbj6U2oWVoywpY",
+  "type": "assistant",
+  "uuid": "c10977cd-59b9-412a-99b5-a1192da58f34",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EYKB18S2e4gftNBetJuEUd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 10760,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 358,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10760,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 358,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 10760,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10760
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T18:22:23.062Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01H1TqCkKjfqZ2tGViWLTxGe`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c10977cd-59b9-412a-99b5-a1192da58f34",
+  "isSidechain": false,
+  "requestId": "req_011CauMTATnbj6U2oWVoywpY",
+  "type": "assistant",
+  "uuid": "ffc201ec-cf0a-40e1-8eb1-6d13df29753e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EYKB18S2e4gftNBetJuEUd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 10760,
+      "cache_read_input_tokens": 11804,
+      "output_tokens": 358,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10760,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 358,
+          "cache_read_input_tokens": 11804,
+          "cache_creation_input_tokens": 10760,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10760
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-10T18:22:23.068Z_
+
+<details><summary>↩ Tool result · `toolu_01H1TqCkKjfqZ2tGViWLTxGe`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ffc201ec-cf0a-40e1-8eb1-6d13df29753e",
+  "isSidechain": false,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "type": "user",
+  "uuid": "1dfb4432-01bc-4d39-badd-a306e74bf5e4",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "ffc201ec-cf0a-40e1-8eb1-6d13df29753e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-10T18:22:25.564Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me launch multiple research agents in parallel to investigate the key issues.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1dfb4432-01bc-4d39-badd-a306e74bf5e4",
+  "isSidechain": false,
+  "requestId": "req_011CauMTzSZkA16sGqLxDgne",
+  "type": "assistant",
+  "uuid": "0a85ff30-b224-4bb0-b9c3-f3da27bd4b80",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lb3ftPSyb8kWgUJq6t8bVf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1378,
+      "cache_read_input_tokens": 22564,
+      "output_tokens": 1617,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1378,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1617,
+          "cache_read_input_tokens": 22564,
+          "cache_creation_input_tokens": 1378,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1378
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-10T18:22:26.008Z_
+
+Let me launch parallel research on all the key issues flagged by reviewers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a85ff30-b224-4bb0-b9c3-f3da27bd4b80",
+  "isSidechain": false,
+  "requestId": "req_011CauMTzSZkA16sGqLxDgne",
+  "type": "assistant",
+  "uuid": "45ee2c16-9eab-4f25-b890-569e795ed564",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lb3ftPSyb8kWgUJq6t8bVf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1378,
+      "cache_read_input_tokens": 22564,
+      "output_tokens": 1617,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1378,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1617,
+          "cache_read_input_tokens": 22564,
+          "cache_creation_input_tokens": 1378,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1378
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-10T18:22:36.075Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01JSTHKp5tLcHWcz4G4vW98M`</summary>
+
+```json
+{
+  "description": "Research AdaLN limitations",
+  "prompt": "I'm revising a research idea about noise-pair-conditioned attention gating for World Action Models (WAMs). A critical reviewer concern is that UWM's AdaLN already concatenates both timestep embeddings (t_o, t_a) and conditions all transformer blocks, so explicit attention gating might be redundant.\n\nI need to find:\n1. The paper \"Unveiling the Secret of AdaLN-Zero\" or similar work analyzing AdaLN limitations — what are the known limitations of AdaLN for cross-modal conditioning?\n2. TACA (ICCV 2025) \"Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers\" — how does it argue that AdaLN is insufficient and explicit attention modulation is needed?\n3. Any other papers that discuss the gap between global conditioning (AdaLN) vs. local/selective attention modulation in diffusion transformers.\n\nSearch for:\n- \"AdaLN limitations diffusion transformer\" \n- \"adaptive layer norm vs attention modulation diffusion\"\n- \"TACA cross-modal attention timestep conditioning 2025\"\n- \"Unveiling Secret AdaLN-Zero\"\n\nFor each paper found, use WebFetch to read the abstract and key arguments about WHY AdaLN alone is insufficient. I need concrete theoretical or empirical arguments I can cite.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "45ee2c16-9eab-4f25-b890-569e795ed564",
+  "isSidechain": false,
+  "requestId": "req_011CauMTzSZkA16sGqLxDgne",
+  "type": "assistant",
+  "uuid": "91ecd508-a28f-4699-b847-d4dac96bbee3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lb3ftPSyb8kWgUJq6t8bVf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1378,
+      "cache_read_input_tokens": 22564,
+      "output_tokens": 1617,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1378,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1617,
+          "cache_read_input_tokens": 22564,
+          "cache_creation_input_tokens": 1378,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1378
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-10T18:22:43.712Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01VDxSXDL4a6E7shNEgSrK2n`</summary>
+
+```json
+{
+  "description": "Research concurrent WAM works",
+  "prompt": "I'm revising a research idea about attention gating in World Action Models (WAMs). The reviewer flagged several concurrent works I need to investigate:\n\n1. **CKT-WAM** (arXiv 2605.06247) — \"parameter-efficient adapter-based transfer between WAMs using adapter modules with specialized routed experts\"\n2. **OA-WAM** (arXiv 2605.06481) — related to WAM attention modification\n3. **EA-WM** (arXiv 2605.06192) — related to WAM attention modification\n\nSearch for each of these papers on arXiv and use WebFetch to read their abstracts and method descriptions. I need to understand:\n- What exactly does each paper propose?\n- Do any of them address noise-pair-conditioned attention gating?\n- How does my proposed idea (conditioning cross-modal attention on both timestep embeddings in dual-timestep WAMs) differentiate from each?\n\nAlso search for:\n- \"world action model adapter 2026\"\n- \"world action model attention 2026\" \n- \"WAM cross-modal attention arXiv 2026\"\n\nto find any OTHER concurrent works I might be missing. Report findings in detail.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "91ecd508-a28f-4699-b847-d4dac96bbee3",
+  "isSidechain": false,
+  "requestId": "req_011CauMTzSZkA16sGqLxDgne",
+  "type": "assistant",
+  "uuid": "9b2b7acc-b382-4085-8861-164591d63229",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lb3ftPSyb8kWgUJq6t8bVf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1378,
+      "cache_read_input_tokens": 22564,
+      "output_tokens": 1617,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1378,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1617,
+          "cache_read_input_tokens": 22564,
+          "cache_creation_input_tokens": 1378,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1378
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-10T18:22:53.267Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01Mzsj2gVQ37eJfHZuDib55f`</summary>
+
+```json
+{
+  "description": "Research UWM architecture details",
+  "prompt": "I'm revising a research idea that adds noise-pair-conditioned attention gating to UWM (Unified World Models). I need detailed architectural understanding of UWM.\n\nSearch for and fetch the UWM paper and GitHub repo:\n- Paper: \"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets\" \n- GitHub: github.com/WEIRDLabUW/unified-world-model\n\nI need to understand:\n1. **Register tokens**: How many register tokens does UWM use (reportedly 8-24)? How do they mediate cross-modal interaction between video and action tokens? What attention patterns exist (register→video, register→action, video→register, action→register)?\n2. **AdaLN conditioning**: How exactly does UWM concatenate t_o and t_a for AdaLN? Is it a simple concat + MLP? Does it apply the same modulation to ALL tokens (video, action, register alike)?\n3. **Architecture details**: What DiT backbone does it use? How are video and action tokens arranged in the sequence?\n4. **Available checkpoints**: What pretrained checkpoints are available? LIBERO? DROID? What benchmarks has it been evaluated on?\n5. **RSS 2026 confirmation**: Verify that UWM is RSS 2026 (not 2025).\n\nUse WebFetch on the GitHub README and paper PDF/page if available. I need precise architectural details for my revised proposal.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b2b7acc-b382-4085-8861-164591d63229",
+  "isSidechain": false,
+  "requestId": "req_011CauMTzSZkA16sGqLxDgne",
+  "type": "assistant",
+  "uuid": "5b8a4c54-4f4d-4540-a4a0-716c7cdb691c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lb3ftPSyb8kWgUJq6t8bVf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1378,
+      "cache_read_input_tokens": 22564,
+      "output_tokens": 1617,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1378,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1617,
+          "cache_read_input_tokens": 22564,
+          "cache_creation_input_tokens": 1378,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1378
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-10T18:23:01.977Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01BHSdcfA4u5wPQZc1wagvaS`</summary>
+
+```json
+{
+  "description": "Research RoboCasa SOTA and feasibility",
+  "prompt": "I'm planning experiments on RoboCasa and LIBERO-PRO benchmarks for a robotics research project. The reviewer noted that UWM has never been evaluated on these benchmarks and the engineering effort is unaccounted.\n\nSearch for:\n1. **RoboCasa benchmark current SOTA (2026)**: What are the latest results? Who holds SOTA? What methods have been evaluated? Search \"RoboCasa benchmark 2026 SOTA\", \"RoboCasa robotic manipulation results\"\n2. **LIBERO-PRO**: Search for \"LIBERO-PRO robustness benchmark 2025 2026\" — what methods have been evaluated? What are current results?\n3. **UWM on RoboCasa**: Has anyone adapted UWM to RoboCasa? Search \"UWM RoboCasa\" and \"unified world model RoboCasa\"\n4. **UWM benchmark results**: What benchmarks has UWM actually been evaluated on? What are its scores?\n5. **Compute costs for adapter training on frozen DiT**: Search for \"parameter efficient adapter diffusion transformer training cost\" — how many GPU hours do similar adapter-based approaches typically require?\n\nAlso check Papers With Code for RoboCasa leaderboard if available.\n\nI need to build a realistic compute plan that fits within 200 H100-hours total.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b8a4c54-4f4d-4540-a4a0-716c7cdb691c",
+  "isSidechain": false,
+  "requestId": "req_011CauMTzSZkA16sGqLxDgne",
+  "type": "assistant",
+  "uuid": "0f96a613-607c-47e3-9c79-36a7b0c2f8bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Lb3ftPSyb8kWgUJq6t8bVf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1378,
+      "cache_read_input_tokens": 22564,
+      "output_tokens": 1617,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1378,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1617,
+          "cache_read_input_tokens": 22564,
+          "cache_creation_input_tokens": 1378,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1378
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-10T18:26:29.389Z_
+
+<details><summary>↩ Tool result · `toolu_01VDxSXDL4a6E7shNEgSrK2n`</summary>
+
+```text
+I now have a thorough picture of the landscape. Here is my detailed report.
+
+---
+
+## Detailed Report: Concurrent Works Analysis for Attention Gating in WAMs
+
+### 1. CKT-WAM (arXiv 2605.06247)
+
+**Full title:** "CKT-WAM: Parameter-Efficient Context Knowledge Transfer Between World Action Models"
+**Authors:** Yuhua Jiang, Yijun Guo, Hongbing Yang, Guojun Lei, Nuo Chen, Yinuo Zhang, Shaoqiang Yan, Bo Lin, Feifei Gao, Biqing Qi
+
+**What it proposes:** CKT-WAM is a parameter-efficient framework for transferring knowledge from a teacher WAM to a student WAM. It extracts intermediate teacher hidden states, compresses them via Learnable-Query Cross Attention (LQCA) into a compact context, and appends this context to the student's text embedding conditioning sequence. The transfer path includes three components: (a) an always-on generalized adapter, (b) a lightweight router, and (c) M=8 sparsely activated specialized adapters (the "routed experts"). The router uses average-pooled teacher features through a gating network to select the top-k=2 specialized adapters per instance.
+
+**Critical detail on noise/timestep handling:** The teacher is queried at a fixed timestep t*=0 to avoid injecting timestep-specific noise corruption into the teacher features. Training uses a shared noise level sampled from the base model's log-normal distribution applied uniformly to video and action latents, though modality-specific perturbations remain distinct. There is no noise-pair conditioning or dual-timestep conditioning of any kind.
+
+**Where the context operates:** Exclusively in text embedding space. The context is appended to the student's conditioning sequence and influences denoising only through the existing cross-attention pathway. Visual and action token self-attention is never modified.
+
+**Relevance to your idea:** Low overlap. CKT-WAM is about inter-model knowledge transfer via adapter modules, not about modifying the intra-model attention mechanism. It does not address noise-pair-conditioned attention gating or timestep-dependent cross-modal attention. The "routed experts" are adapter-selection routers, not attention gating mechanisms.
+
+---
+
+### 2. OA-WAM (arXiv 2605.06481)
+
+**Full title:** "OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation"
+**Authors:** Yushan Liu, Peibo Sun, Shoujie Li, Yifan Xie, Lingfeng Zhang, Xintao Chao, Shiyuan Dong, Fang Chen, Xiao-Ping Zhang, Wenbo Ding
+
+**What it proposes:** OA-WAM decomposes scenes into N+1 object slots (1 robot + N objects), each maintaining a persistent address vector and a time-varying content vector. The core innovation is "address-only key" attention: in cross-slot attention, key projections are restricted to the first 32 dimensions (the identity address subvector), with all other coordinates zeroed. This keeps "which object to act on" decoupled from "what the object currently looks like." A forward hook resets the address slice back to its cached identity value after each transformer block.
+
+**Architecture:** Built on a Chameleon-7B trunk with six parallel token streams (text, noun phrases, image VQ codes, object slots, proprioception, past actions) in a unified block-causal sequence. It does NOT use a diffusion backbone -- it uses flow-matching with a 4-step forward Euler integration for action decoding.
+
+**Relevance to your idea:** Moderate surface-level overlap but fundamentally different mechanism. OA-WAM modifies attention to enforce object identity separation (address vs. content), not to condition attention on noise levels or timesteps. There is no noise-pair conditioning, no attention gating, and no dual-timestep mechanism. The attention modification serves spatial/identity routing, not temporal/noise-level modulation. You should cite this as a concurrent work that also modifies WAM attention, but clearly differentiate that your approach conditions attention on denoising timesteps rather than on object identity slots.
+
+---
+
+### 3. EA-WM (arXiv 2605.06192)
+
+**Full title:** "EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields"
+**Authors:** Zhaoyang Yang, Yurun Jin, Lizhe Qi, Cong Huang, Kai Chen
+
+**What it proposes:** EA-WM augments a Wan2.2 diffusion-transformer backbone with a parallel KVAF (Kinematic-to-Visual Action Fields) branch -- a full-depth copy of the DiT blocks that processes action fields projected into camera-view space. The two branches interact via event-aware bidirectional fusion blocks. At each fusion layer, an event MLP computes a per-token event gate G_l that controls bidirectional cross-attention between the video stream and the KVAF stream: `H_v = H_v + G_l * CA_{v<-k}(H_v, H_k)`. This gating is supervised by Event-Difference Latent Supervision (EDLS), which uses frame-difference latents `|I_t - I_{t-1}|` encoded through the VAE as supervision targets.
+
+**Noise/timestep handling:** Uses flow-matching training where both video and KVAF latents are perturbed at the same timestep t, with a timestep-dependent weight omega(t) on the loss. No dual-timestep or noise-pair conditioning.
+
+**Relevance to your idea:** This is the most relevant concurrent work. EA-WM uses gated cross-modal attention between action (KVAF) and video streams, which is conceptually close to attention gating. However, the gating is driven by event-difference supervision (EDLS) -- it gates based on whether spatial regions are undergoing state transitions -- not by noise levels or denoising timesteps. Your proposed noise-pair-conditioned gating, which conditions cross-modal attention on both timestep embeddings in a dual-timestep WAM, is mechanistically distinct: you modulate attention based on where each modality is in its denoising trajectory, while EA-WM modulates attention based on spatial event saliency. You should clearly discuss EA-WM and explain this differentiation.
+
+---
+
+### 4. Additional Concurrent Works You Should Be Aware Of
+
+**X-WAM (arXiv 2604.26694)** -- "Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising." Proposes Asynchronous Noise Sampling (ANS) with separate timesteps for video (t_O) and action (t_a), where t_a < t_O. Actions are decoded in fewer steps than video. Uses coupled joint sampling during training to match the inference distribution. Cross-modal interaction is through shared transformer blocks with unilateral attention (depth branch reads from main branch, not vice versa). No explicit attention gating conditioned on timesteps. This paper is highly relevant because it directly operates in the dual-timestep regime but does not condition the attention mechanism itself on the timestep pair -- which is precisely what your work proposes.
+
+**MotuBrain (arXiv 2604.27792)** -- Uses an H-bridge attention design: full video-action joint attention only in the middle 50% of transformer layers, with decoupled (independent) attention in the top and bottom 25%. Uses separate SNR-based timestep sampling with different timeshift values (6 for video, 1 for action). However, the attention pattern is architecturally fixed (not conditioned on timesteps) -- it does not dynamically gate attention based on noise levels.
+
+**DUST (arXiv 2510.27607)** -- "Dual-Stream Diffusion for World-Model Augmented VLA." Uses independent noise perturbations with separate timesteps (tau_A, tau_o) for action and vision streams. Cross-modal attention operates on temporarily concatenated tokens with per-modality AdaLN providing timestep context. The attention weights themselves are NOT conditioned on noise levels -- only the layer normalization is timestep-aware.
+
+**UWM (arXiv 2504.02792)** -- "Unified World Models: Coupling Video and Action Diffusion." Maintains independent diffusion timesteps (t_a, t_o') for action and observation. Timestep information conditions the model through AdaLN (Adaptive Layer Normalization), not through attention gating. Uses register tokens as intermediary for cross-modal communication. No timestep-dependent attention modulation.
+
+**When to Trust Imagination (arXiv 2605.06222)** -- Proposes Future Forward Dynamics Causal Attention (FFDC) for adaptive action execution length in WAMs. Not about modifying the attention mechanism for generation but rather for post-hoc verification of action reliability.
+
+**Being-H0.7 (arXiv 2605.00078)** -- Latent world-action model using learnable latent queries as a reasoning interface between perception and action, with a dual-branch (prior/posterior) architecture. Does not modify cross-modal attention with timestep conditioning.
+
+---
+
+### 5. Key Answers to Your Questions
+
+**Does any paper address noise-pair-conditioned attention gating?**
+No. None of the surveyed papers condition the attention mechanism itself on noise-level pairs. The closest approaches are:
+- EA-WM gates cross-modal attention, but based on spatial event saliency (EDLS), not noise levels.
+- DUST, UWM, and MotuBrain use per-modality timestep embeddings, but only through AdaLN -- the attention weights are not dynamically modulated by the timestep pair.
+- X-WAM uses asynchronous timesteps but does not gate attention based on them.
+
+**How does your proposed idea differentiate?**
+Your proposal to condition cross-modal attention weights on both timestep embeddings in dual-timestep WAMs occupies a clear gap in the literature. Existing dual-timestep works (X-WAM, UWM, DUST, MotuBrain) all feed timestep information through AdaLN or fixed architectural patterns -- none dynamically gate the attention matrix based on the (t_action, t_video) pair. EA-WM is the closest in spirit (gated cross-modal attention) but uses event-difference supervision rather than noise-level conditioning. Your differentiation should emphasize that:
+1. Unlike EA-WM's spatial-event-driven gating, your gating is noise-schedule-driven, adapting cross-modal information flow to the denoising stage of each modality.
+2. Unlike X-WAM/UWM/DUST/MotuBrain, which use timesteps only for normalization, your method directly modulates attention weights, potentially allowing the model to learn when action information is most useful for video denoising and vice versa at different noise levels.
+
+---
+
+### Papers to Cite as Concurrent Work
+
+Must-cite (reviewer flagged):
+- CKT-WAM (2605.06247) -- adapter transfer, low overlap but should acknowledge
+- OA-WAM (2605.06481) -- attention modification in WAMs, different purpose (object identity routing)
+- EA-WM (2605.06192) -- gated cross-modal attention, closest competitor, differentiate on gating signal
+
+Strongly recommended additional citations:
+- X-WAM (2604.26694) -- dual-timestep WAM without attention gating
+- UWM (2504.02792) -- independent timesteps with AdaLN only
+- DUST (2510.27607) -- dual-stream diffusion with independent noise, AdaLN timestep conditioning
+- MotuBrain (2604.27792) -- H-bridge fixed attention pattern with separate SNR sampling
+
+Sources:
+- [CKT-WAM](https://arxiv.org/abs/2605.06247)
+- [OA-WAM](https://arxiv.org/abs/2605.06481)
+- [EA-WM](https://arxiv.org/abs/2605.06192)
+- [X-WAM](https://arxiv.org/abs/2604.26694)
+- [MotuBrain](https://arxiv.org/abs/2604.27792)
+- [DUST](https://arxiv.org/abs/2510.27607)
+- [UWM](https://arxiv.org/abs/2504.02792)
+- [When to Trust Imagination](https://arxiv.org/abs/2605.06222)
+- [Being-H0.7](https://arxiv.org/abs/2605.00078)
+- [Watch Your Step: Shadow Timestep Embedding](https://arxiv.org/abs/2605.00935)
+
+agentId: af6c2c00c7e2589c6 (use SendMessage with to: 'af6c2c00c7e2589c6' to continue this agent)
+&lt;usage>total_tokens: 34471
+tool_uses: 28
+duration_ms: 225674&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9b2b7acc-b382-4085-8861-164591d63229",
+  "isSidechain": false,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "type": "user",
+  "uuid": "d2e3ce15-8f44-4272-adc5-d9ec572d1088",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I'm revising a research idea about attention gating in World Action Models (WAMs). The reviewer flagged several concurrent works I need to investigate:\n\n1. **CKT-WAM** (arXiv 2605.06247) — \"parameter-efficient adapter-based transfer between WAMs using adapter modules with specialized routed experts\"\n2. **OA-WAM** (arXiv 2605.06481) — related to WAM attention modification\n3. **EA-WM** (arXiv 2605.06192) — related to WAM attention modification\n\nSearch for each of these papers on arXiv and use WebFetch to read their abstracts and method descriptions. I need to understand:\n- What exactly does each paper propose?\n- Do any of them address noise-pair-conditioned attention gating?\n- How does my proposed idea (conditioning cross-modal attention on both timestep embeddings in dual-timestep WAMs) differentiate from each?\n\nAlso search for:\n- \"world action model adapter 2026\"\n- \"world action model attention 2026\" \n- \"WAM cross-modal attention arXiv 2026\"\n\nto find any OTHER concurrent works I might be missing. Report findings in detail.",
+    "agentId": "af6c2c00c7e2589c6",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have a thorough picture of the landscape. Here is my detailed report.\n\n---\n\n## Detailed Report: Concurrent Works Analysis for Attention Gating in WAMs\n\n### 1. CKT-WAM (arXiv 2605.06247)\n\n**Full title:** \"CKT-WAM: Parameter-Efficient Context Knowledge Transfer Between World Action Models\"\n**Authors:** Yuhua Jiang, Yijun Guo, Hongbing Yang, Guojun Lei, Nuo Chen, Yinuo Zhang, Shaoqiang Yan, Bo Lin, Feifei Gao, Biqing Qi\n\n**What it proposes:** CKT-WAM is a parameter-efficient framework for transferring knowledge from a teacher WAM to a student WAM. It extracts intermediate teacher hidden states, compresses them via Learnable-Query Cross Attention (LQCA) into a compact context, and appends this context to the student's text embedding conditioning sequence. The transfer path includes three components: (a) an always-on generalized adapter, (b) a lightweight router, and (c) M=8 sparsely activated specialized adapters (the \"routed experts\"). The router uses average-pooled teacher features through a gating network to select the top-k=2 specialized adapters per instance.\n\n**Critical detail on noise/timestep handling:** The teacher is queried at a fixed timestep t*=0 to avoid injecting timestep-specific noise corruption into the teacher features. Training uses a shared noise level sampled from the base model's log-normal distribution applied uniformly to video and action latents, though modality-specific perturbations remain distinct. There is no noise-pair conditioning or dual-timestep conditioning of any kind.\n\n**Where the context operates:** Exclusively in text embedding space. The context is appended to the student's conditioning sequence and influences denoising only through the existing cross-attention pathway. Visual and action token self-attention is never modified.\n\n**Relevance to your idea:** Low overlap. CKT-WAM is about inter-model knowledge transfer via adapter modules, not about modifying the intra-model attention mechanism. It does not address noise-pair-conditioned attention gating or timestep-dependent cross-modal attention. The \"routed experts\" are adapter-selection routers, not attention gating mechanisms.\n\n---\n\n### 2. OA-WAM (arXiv 2605.06481)\n\n**Full title:** \"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation\"\n**Authors:** Yushan Liu, Peibo Sun, Shoujie Li, Yifan Xie, Lingfeng Zhang, Xintao Chao, Shiyuan Dong, Fang Chen, Xiao-Ping Zhang, Wenbo Ding\n\n**What it proposes:** OA-WAM decomposes scenes into N+1 object slots (1 robot + N objects), each maintaining a persistent address vector and a time-varying content vector. The core innovation is \"address-only key\" attention: in cross-slot attention, key projections are restricted to the first 32 dimensions (the identity address subvector), with all other coordinates zeroed. This keeps \"which object to act on\" decoupled from \"what the object currently looks like.\" A forward hook resets the address slice back to its cached identity value after each transformer block.\n\n**Architecture:** Built on a Chameleon-7B trunk with six parallel token streams (text, noun phrases, image VQ codes, object slots, proprioception, past actions) in a unified block-causal sequence. It does NOT use a diffusion backbone -- it uses flow-matching with a 4-step forward Euler integration for action decoding.\n\n**Relevance to your idea:** Moderate surface-level overlap but fundamentally different mechanism. OA-WAM modifies attention to enforce object identity separation (address vs. content), not to condition attention on noise levels or timesteps. There is no noise-pair conditioning, no attention gating, and no dual-timestep mechanism. The attention modification serves spatial/identity routing, not temporal/noise-level modulation. You should cite this as a concurrent work that also modifies WAM attention, but clearly differentiate that your approach conditions attention on denoising timesteps rather than on object identity slots.\n\n---\n\n### 3. EA-WM (arXiv 2605.06192)\n\n**Full title:** \"EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields\"\n**Authors:** Zhaoyang Yang, Yurun Jin, Lizhe Qi, Cong Huang, Kai Chen\n\n**What it proposes:** EA-WM augments a Wan2.2 diffusion-transformer backbone with a parallel KVAF (Kinematic-to-Visual Action Fields) branch -- a full-depth copy of the DiT blocks that processes action fields projected into camera-view space. The two branches interact via event-aware bidirectional fusion blocks. At each fusion layer, an event MLP computes a per-token event gate G_l that controls bidirectional cross-attention between the video stream and the KVAF stream: `H_v = H_v + G_l * CA_{v<-k}(H_v, H_k)`. This gating is supervised by Event-Difference Latent Supervision (EDLS), which uses frame-difference latents `|I_t - I_{t-1}|` encoded through the VAE as supervision targets.\n\n**Noise/timestep handling:** Uses flow-matching training where both video and KVAF latents are perturbed at the same timestep t, with a timestep-dependent weight omega(t) on the loss. No dual-timestep or noise-pair conditioning.\n\n**Relevance to your idea:** This is the most relevant concurrent work. EA-WM uses gated cross-modal attention between action (KVAF) and video streams, which is conceptually close to attention gating. However, the gating is driven by event-difference supervision (EDLS) -- it gates based on whether spatial regions are undergoing state transitions -- not by noise levels or denoising timesteps. Your proposed noise-pair-conditioned gating, which conditions cross-modal attention on both timestep embeddings in a dual-timestep WAM, is mechanistically distinct: you modulate attention based on where each modality is in its denoising trajectory, while EA-WM modulates attention based on spatial event saliency. You should clearly discuss EA-WM and explain this differentiation.\n\n---\n\n### 4. Additional Concurrent Works You Should Be Aware Of\n\n**X-WAM (arXiv 2604.26694)** -- \"Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising.\" Proposes Asynchronous Noise Sampling (ANS) with separate timesteps for video (t_O) and action (t_a), where t_a < t_O. Actions are decoded in fewer steps than video. Uses coupled joint sampling during training to match the inference distribution. Cross-modal interaction is through shared transformer blocks with unilateral attention (depth branch reads from main branch, not vice versa). No explicit attention gating conditioned on timesteps. This paper is highly relevant because it directly operates in the dual-timestep regime but does not condition the attention mechanism itself on the timestep pair -- which is precisely what your work proposes.\n\n**MotuBrain (arXiv 2604.27792)** -- Uses an H-bridge attention design: full video-action joint attention only in the middle 50% of transformer layers, with decoupled (independent) attention in the top and bottom 25%. Uses separate SNR-based timestep sampling with different timeshift values (6 for video, 1 for action). However, the attention pattern is architecturally fixed (not conditioned on timesteps) -- it does not dynamically gate attention based on noise levels.\n\n**DUST (arXiv 2510.27607)** -- \"Dual-Stream Diffusion for World-Model Augmented VLA.\" Uses independent noise perturbations with separate timesteps (tau_A, tau_o) for action and vision streams. Cross-modal attention operates on temporarily concatenated tokens with per-modality AdaLN providing timestep context. The attention weights themselves are NOT conditioned on noise levels -- only the layer normalization is timestep-aware.\n\n**UWM (arXiv 2504.02792)** -- \"Unified World Models: Coupling Video and Action Diffusion.\" Maintains independent diffusion timesteps (t_a, t_o') for action and observation. Timestep information conditions the model through AdaLN (Adaptive Layer Normalization), not through attention gating. Uses register tokens as intermediary for cross-modal communication. No timestep-dependent attention modulation.\n\n**When to Trust Imagination (arXiv 2605.06222)** -- Proposes Future Forward Dynamics Causal Attention (FFDC) for adaptive action execution length in WAMs. Not about modifying the attention mechanism for generation but rather for post-hoc verification of action reliability.\n\n**Being-H0.7 (arXiv 2605.00078)** -- Latent world-action model using learnable latent queries as a reasoning interface between perception and action, with a dual-branch (prior/posterior) architecture. Does not modify cross-modal attention with timestep conditioning.\n\n---\n\n### 5. Key Answers to Your Questions\n\n**Does any paper address noise-pair-conditioned attention gating?**\nNo. None of the surveyed papers condition the attention mechanism itself on noise-level pairs. The closest approaches are:\n- EA-WM gates cross-modal attention, but based on spatial event saliency (EDLS), not noise levels.\n- DUST, UWM, and MotuBrain use per-modality timestep embeddings, but only through AdaLN -- the attention weights are not dynamically modulated by the timestep pair.\n- X-WAM uses asynchronous timesteps but does not gate attention based on them.\n\n**How does your proposed idea differentiate?**\nYour proposal to condition cross-modal attention weights on both timestep embeddings in dual-timestep WAMs occupies a clear gap in the literature. Existing dual-timestep works (X-WAM, UWM, DUST, MotuBrain) all feed timestep information through AdaLN or fixed architectural patterns -- none dynamically gate the attention matrix based on the (t_action, t_video) pair. EA-WM is the closest in spirit (gated cross-modal attention) but uses event-difference supervision rather than noise-level conditioning. Your differentiation should emphasize that:\n1. Unlike EA-WM's spatial-event-driven gating, your gating is noise-schedule-driven, adapting cross-modal information flow to the denoising stage of each modality.\n2. Unlike X-WAM/UWM/DUST/MotuBrain, which use timesteps only for normalization, your method directly modulates attention weights, potentially allowing the model to learn when action information is most useful for video denoising and vice versa at different noise levels.\n\n---\n\n### Papers to Cite as Concurrent Work\n\nMust-cite (reviewer flagged):\n- CKT-WAM (2605.06247) -- adapter transfer, low overlap but should acknowledge\n- OA-WAM (2605.06481) -- attention modification in WAMs, different purpose (object identity routing)\n- EA-WM (2605.06192) -- gated cross-modal attention, closest competitor, differentiate on gating signal\n\nStrongly recommended additional citations:\n- X-WAM (2604.26694) -- dual-timestep WAM without attention gating\n- UWM (2504.02792) -- independent timesteps with AdaLN only\n- DUST (2510.27607) -- dual-stream diffusion with independent noise, AdaLN timestep conditioning\n- MotuBrain (2604.27792) -- H-bridge fixed attention pattern with separate SNR sampling\n\nSources:\n- [CKT-WAM](https://arxiv.org/abs/2605.06247)\n- [OA-WAM](https://arxiv.org/abs/2605.06481)\n- [EA-WM](https://arxiv.org/abs/2605.06192)\n- [X-WAM](https://arxiv.org/abs/2604.26694)\n- [MotuBrain](https://arxiv.org/abs/2604.27792)\n- [DUST](https://arxiv.org/abs/2510.27607)\n- [UWM](https://arxiv.org/abs/2504.02792)\n- [When to Trust Imagination](https://arxiv.org/abs/2605.06222)\n- [Being-H0.7](https://arxiv.org/abs/2605.00078)\n- [Watch Your Step: Shadow Timestep Embedding](https://arxiv.org/abs/2605.00935)"
+      }
+    ],
+    "totalDurationMs": 225674,
+    "totalTokens": 34471,
+    "totalToolUseCount": 28,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2514,
+      "cache_read_input_tokens": 28923,
+      "output_tokens": 3033,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2514
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3033,
+          "cache_read_input_tokens": 28923,
+          "cache_creation_input_tokens": 2514,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2514,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 28
+    }
+  },
+  "sourceToolAssistantUUID": "9b2b7acc-b382-4085-8861-164591d63229",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"DualGate: Noise-Pair-Conditioned Cross-Modal Attention Gating for Worl…",
+  "leafUuid": "d2e3ce15-8f44-4272-adc5-d9ec572d1088",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise DualGate with AdaLN complementarity and tighter compute plan",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26"
+}
+```
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-10T18:26:43.107Z_
+
+<details><summary>↩ Tool result · `toolu_01BHSdcfA4u5wPQZc1wagvaS`</summary>
+
+```text
+I now have comprehensive data across all five questions. Here is the full synthesis:
+
+---
+
+## Research Findings: RoboCasa, LIBERO-PRO, UWM, and Compute Planning
+
+### 1. RoboCasa Benchmark -- Current SOTA (2026)
+
+**RoboCasa** (original, RSS 2024) has been superseded by **RoboCasa365** (ICLR 2026), which scales to 365 tasks across 2,500 kitchen environments with 2,200+ hours of demonstration data.
+
+**Current SOTA on original RoboCasa (24 tasks):**
+
+| Method | Training Demos | Avg Success Rate |
+|--------|---------------|-----------------|
+| **Cosmos Policy (NVIDIA)** | **50** | **67.1%** |
+| FLARE | 300 | 66.4% |
+| Video Policy | 300 | 66.0% |
+| GR00T N1.5 | 300 | 64.1% |
+| pi0 | 300 | 62.5% |
+| DP-VLA | 300 | 57.3% |
+| UVA | 300 | 50.0% |
+
+Cosmos Policy is notable for achieving SOTA with only 50 demos (vs. 300 for all baselines). It is built on a frozen **Cosmos-Predict2-2B** (2B-parameter video diffusion transformer) with action heads injected as latent frames -- no architectural modifications to the backbone. Training: **32 H100 GPUs, 48 hours, 45K gradient steps, global batch size 800**. That is approximately **1,536 H100-hours**.
+
+**RoboCasa365 leaderboard (multi-task, 365 tasks):**
+- **GR00T N1.5** performs best overall, followed by pi0/pi0.5, then Diffusion Policy
+- GR00T N1.5 achieves ~20% on Composite-Unseen tasks (hardest category)
+- Real-world transfer: GR00T N1.5 "Sim-and-Real" approach reaches **79.8%** on 4 real tasks
+
+Note: Papers With Code was shut down by Meta in July 2025; the active leaderboard is hosted at [robocasa.ai](https://robocasa.ai/).
+
+**Sources:**
+- [Cosmos Policy paper](https://arxiv.org/abs/2601.16163)
+- [Cosmos Policy HuggingFace model card](https://huggingface.co/nvidia/Cosmos-Policy-RoboCasa-Predict2-2B)
+- [RoboCasa365 (ICLR 2026)](https://arxiv.org/abs/2603.04356)
+- [RoboCasa365 OpenReview](https://openreview.net/forum?id=tQJYKwc3n4)
+- [RoboCasa official site](https://robocasa.ai/)
+
+---
+
+### 2. LIBERO-PRO Benchmark
+
+LIBERO-PRO (arXiv 2510.03827) is a robustness extension of LIBERO that tests VLA models under four perturbation dimensions: **objects, positions, semantics, task-level, and environment**.
+
+**Models evaluated:** OpenVLA, pi0, pi0.5
+
+**Key results (standard LIBERO -> under perturbation):**
+
+| Model | Standard LIBERO | Position Perturbation | Semantic Perturbation | Environment Perturbation |
+|-------|----------------|----------------------|----------------------|------------------------|
+| OpenVLA | 93-99% | **0%** | 96-98% | 0-98% |
+| pi0 | 82-98% | **0%** | 82-97% | 27-60% |
+| pi0.5 | 93-98% | **8-38%** | 93-97% | 46% |
+
+The devastating finding: models scoring 90%+ on standard LIBERO **collapse to 0%** under simple position perturbations. pi0.5 is the only model with any resilience (38% best case under position changes). Models also largely ignore language instructions.
+
+A related benchmark, **LIBERO-Plus** (arXiv 2510.13626), tests seven perturbation dimensions and finds performance drops from 95% to below 30% under modest camera viewpoint or initial state changes.
+
+**UWM has NOT been evaluated on LIBERO-PRO.** The LIBERO-PRO paper makes no mention of UWM.
+
+**Sources:**
+- [LIBERO-PRO paper](https://arxiv.org/abs/2510.03827)
+- [LIBERO-PRO GitHub](https://github.com/Zxy-MLlab/LIBERO-PRO)
+- [LIBERO-Plus paper](https://arxiv.org/abs/2510.13626)
+
+---
+
+### 3. UWM on RoboCasa -- No Evidence Found
+
+**No one has adapted UWM to RoboCasa.** My searches for "UWM RoboCasa" and "unified world model RoboCasa" returned no results showing any such adaptation. The UWM paper itself makes no mention of RoboCasa. This confirms the reviewer's concern that this would be genuinely new engineering work.
+
+---
+
+### 4. UWM Benchmark Results (What It Has Actually Been Evaluated On)
+
+UWM (arXiv 2504.02792, RSS 2025) was evaluated on:
+
+**A. LIBERO simulation (5 evaluation tasks out of 100, 90 used for pretraining):**
+
+| Method | Book-Caddy | Soup-Cheese | Bowl-Drawer | Moka-Moka | Mug-Mug | **Average** |
+|--------|-----------|-------------|-------------|-----------|---------|------------|
+| **UWM** | 0.91 +/- 0.07 | 0.93 +/- 0.01 | 0.80 +/- 0.02 | 0.68 +/- 0.02 | 0.65 +/- 0.01 | **0.79 +/- 0.11** |
+| Diffusion Policy | 0.73 +/- 0.10 | 0.88 +/- 0.02 | 0.77 +/- 0.02 | 0.65 +/- 0.03 | 0.53 +/- 0.05 | 0.71 +/- 0.12 |
+| GR1 | - | - | - | - | - | 0.58 +/- 0.14 |
+| PAD | - | - | - | - | - | 0.57 +/- 0.19 |
+
+**B. Real robot tasks** (5 tasks: Stack-Bowls, Block-Cabinet, Paper-Towel, Hang-Towel, Rice-Cooker) -- UWM outperforms baselines by up to 20% in both in-distribution and OOD settings.
+
+**C. Pretraining data:** 2,000 trajectories from DROID + 2,000 action-free video trajectories for co-training. Training: 100K steps pretraining, 10K steps finetuning.
+
+**Critically, UWM has NOT been evaluated on:** RoboCasa, RoboCasa365, LIBERO-PRO, LIBERO-Plus, MetaWorld, or any large-scale multi-task kitchen benchmark.
+
+**Sources:**
+- [UWM project page](https://weirdlabuw.github.io/uwm/)
+- [UWM paper](https://arxiv.org/abs/2504.02792)
+- [UWM GitHub](https://github.com/WEIRDLabUW/unified-world-model)
+
+---
+
+### 5. Compute Costs for Adapter Training on Frozen DiT
+
+**Reference points from comparable approaches:**
+
+| Approach | Base Model | Training Setup | Total GPU-Hours |
+|----------|-----------|---------------|----------------|
+| **Cosmos Policy** (frozen 2B DiT + action latent injection) | Cosmos-Predict2-2B | 32x H100, 48h | **~1,536 H100-hrs** |
+| LoRA on Stable Diffusion | ~1B UNet | 1x 2080 Ti, ~5h | ~5 GPU-hrs |
+| OpenVLA LoRA fine-tuning | 7B VLA | 1x A100, few hours | ~4-8 A100-hrs |
+| Diffusion Policy (from scratch) | ~100M | 1x A40, ~3h | ~3 GPU-hrs |
+| 3D Diffusion Policy | ~100M | 1x A40, ~3h | ~3 GPU-hrs |
+| General PEFT vs full fine-tune | Any | - | ~10x reduction |
+
+**Key insight for your 200 H100-hour budget:** Cosmos Policy's 1,536 H100-hour training cost is far above your budget, but that includes full training from the frozen video backbone. If you are doing **adapter/LoRA-based fine-tuning** on a frozen DiT of similar size (~2B), you should expect:
+
+- **LoRA/adapter training on a frozen 2B DiT:** Likely **20-80 H100-hours** (based on the ~10x reduction factor from PEFT literature, scaled from Cosmos Policy's full training)
+- **Evaluation on RoboCasa** (3,600 rollouts at Cosmos Policy protocol): With parallel simulation on 8 GPUs, approximately **1-5 H100-hours** per full evaluation sweep
+- **LIBERO-PRO evaluation:** Much cheaper, as tasks are shorter-horizon -- estimate **1-3 H100-hours**
+
+**Sources:**
+- [Cosmos Policy training details](https://nvidia-cosmos.github.io/cosmos-cookbook/recipes/post_training/predict2/cosmos_policy/post_training.html)
+- [LoRA for Stable Diffusion](https://huggingface.co/blog/lora)
+- [LoRA paper](https://arxiv.org/abs/2106.09685)
+- [Isaac Lab-Arena parallel evaluation](https://developer.nvidia.com/blog/simplify-generalist-robot-policy-evaluation-in-simulation-with-nvidia-isaac-lab-arena/)
+
+---
+
+### Proposed Compute Plan (200 H100-hours)
+
+| Phase | Task | Estimated H100-hours |
+|-------|------|---------------------|
+| **1. Engineering & integration** | Adapt UWM codebase to RoboCasa env (data pipeline, observation space, action space) | 10-20 (debugging runs) |
+| **2. Adapter training on RoboCasa** | LoRA/adapter fine-tuning of frozen UWM DiT on RoboCasa demonstrations | 40-80 |
+| **3. Adapter training on LIBERO** | Fine-tune for LIBERO tasks (smaller scale) | 15-30 |
+| **4. RoboCasa evaluation** | Full eval: 24 tasks x 50 trials x 3 seeds = 3,600 rollouts | 5-10 |
+| **5. LIBERO-PRO evaluation** | Run perturbation suite across 4 dimensions | 3-8 |
+| **6. Ablations & hyperparameter sweeps** | LoRA rank, learning rate, data scaling | 30-50 |
+| **7. Buffer for failures/reruns** | Inevitable debugging, crashed runs | 20-30 |
+| **TOTAL** | | **123-228** |
+
+**Assessment:** 200 H100-hours is tight but feasible if you use parameter-efficient fine-tuning (LoRA/adapters) rather than full fine-tuning. The main risks are:
+
+1. **Engineering unknowns** -- UWM has never touched RoboCasa, so observation/action space integration could require significant debugging
+2. **Ablation budget** -- you may need to sacrifice comprehensive sweeps to stay within budget
+3. **RoboCasa365 is out of scope** -- the 365-task version would require substantially more compute; stick to the original 24-task RoboCasa
+
+To derisk, I would recommend starting with LIBERO (where UWM already has results) and using that as a validation of your adapter pipeline before moving to RoboCasa, which is the genuinely novel and higher-risk evaluation.
+
+agentId: aeaac1eb060a9f17c (use SendMessage with to: 'aeaac1eb060a9f17c' to continue this agent)
+&lt;usage>total_tokens: 38698
+tool_uses: 26
+duration_ms: 221127&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0f96a613-607c-47e3-9c79-36a7b0c2f8bd",
+  "isSidechain": false,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "type": "user",
+  "uuid": "6f09f082-2fc1-452d-a2df-98f778d1dbe2",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I'm planning experiments on RoboCasa and LIBERO-PRO benchmarks for a robotics research project. The reviewer noted that UWM has never been evaluated on these benchmarks and the engineering effort is unaccounted.\n\nSearch for:\n1. **RoboCasa benchmark current SOTA (2026)**: What are the latest results? Who holds SOTA? What methods have been evaluated? Search \"RoboCasa benchmark 2026 SOTA\", \"RoboCasa robotic manipulation results\"\n2. **LIBERO-PRO**: Search for \"LIBERO-PRO robustness benchmark 2025 2026\" — what methods have been evaluated? What are current results?\n3. **UWM on RoboCasa**: Has anyone adapted UWM to RoboCasa? Search \"UWM RoboCasa\" and \"unified world model RoboCasa\"\n4. **UWM benchmark results**: What benchmarks has UWM actually been evaluated on? What are its scores?\n5. **Compute costs for adapter training on frozen DiT**: Search for \"parameter efficient adapter diffusion transformer training cost\" — how many GPU hours do similar adapter-based approaches typically require?\n\nAlso check Papers With Code for RoboCasa leaderboard if available.\n\nI need to build a realistic compute plan that fits within 200 H100-hours total.",
+    "agentId": "aeaac1eb060a9f17c",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have comprehensive data across all five questions. Here is the full synthesis:\n\n---\n\n## Research Findings: RoboCasa, LIBERO-PRO, UWM, and Compute Planning\n\n### 1. RoboCasa Benchmark -- Current SOTA (2026)\n\n**RoboCasa** (original, RSS 2024) has been superseded by **RoboCasa365** (ICLR 2026), which scales to 365 tasks across 2,500 kitchen environments with 2,200+ hours of demonstration data.\n\n**Current SOTA on original RoboCasa (24 tasks):**\n\n| Method | Training Demos | Avg Success Rate |\n|--------|---------------|-----------------|\n| **Cosmos Policy (NVIDIA)** | **50** | **67.1%** |\n| FLARE | 300 | 66.4% |\n| Video Policy | 300 | 66.0% |\n| GR00T N1.5 | 300 | 64.1% |\n| pi0 | 300 | 62.5% |\n| DP-VLA | 300 | 57.3% |\n| UVA | 300 | 50.0% |\n\nCosmos Policy is notable for achieving SOTA with only 50 demos (vs. 300 for all baselines). It is built on a frozen **Cosmos-Predict2-2B** (2B-parameter video diffusion transformer) with action heads injected as latent frames -- no architectural modifications to the backbone. Training: **32 H100 GPUs, 48 hours, 45K gradient steps, global batch size 800**. That is approximately **1,536 H100-hours**.\n\n**RoboCasa365 leaderboard (multi-task, 365 tasks):**\n- **GR00T N1.5** performs best overall, followed by pi0/pi0.5, then Diffusion Policy\n- GR00T N1.5 achieves ~20% on Composite-Unseen tasks (hardest category)\n- Real-world transfer: GR00T N1.5 \"Sim-and-Real\" approach reaches **79.8%** on 4 real tasks\n\nNote: Papers With Code was shut down by Meta in July 2025; the active leaderboard is hosted at [robocasa.ai](https://robocasa.ai/).\n\n**Sources:**\n- [Cosmos Policy paper](https://arxiv.org/abs/2601.16163)\n- [Cosmos Policy HuggingFace model card](https://huggingface.co/nvidia/Cosmos-Policy-RoboCasa-Predict2-2B)\n- [RoboCasa365 (ICLR 2026)](https://arxiv.org/abs/2603.04356)\n- [RoboCasa365 OpenReview](https://openreview.net/forum?id=tQJYKwc3n4)\n- [RoboCasa official site](https://robocasa.ai/)\n\n---\n\n### 2. LIBERO-PRO Benchmark\n\nLIBERO-PRO (arXiv 2510.03827) is a robustness extension of LIBERO that tests VLA models under four perturbation dimensions: **objects, positions, semantics, task-level, and environment**.\n\n**Models evaluated:** OpenVLA, pi0, pi0.5\n\n**Key results (standard LIBERO -> under perturbation):**\n\n| Model | Standard LIBERO | Position Perturbation | Semantic Perturbation | Environment Perturbation |\n|-------|----------------|----------------------|----------------------|------------------------|\n| OpenVLA | 93-99% | **0%** | 96-98% | 0-98% |\n| pi0 | 82-98% | **0%** | 82-97% | 27-60% |\n| pi0.5 | 93-98% | **8-38%** | 93-97% | 46% |\n\nThe devastating finding: models scoring 90%+ on standard LIBERO **collapse to 0%** under simple position perturbations. pi0.5 is the only model with any resilience (38% best case under position changes). Models also largely ignore language instructions.\n\nA related benchmark, **LIBERO-Plus** (arXiv 2510.13626), tests seven perturbation dimensions and finds performance drops from 95% to below 30% under modest camera viewpoint or initial state changes.\n\n**UWM has NOT been evaluated on LIBERO-PRO.** The LIBERO-PRO paper makes no mention of UWM.\n\n**Sources:**\n- [LIBERO-PRO paper](https://arxiv.org/abs/2510.03827)\n- [LIBERO-PRO GitHub](https://github.com/Zxy-MLlab/LIBERO-PRO)\n- [LIBERO-Plus paper](https://arxiv.org/abs/2510.13626)\n\n---\n\n### 3. UWM on RoboCasa -- No Evidence Found\n\n**No one has adapted UWM to RoboCasa.** My searches for \"UWM RoboCasa\" and \"unified world model RoboCasa\" returned no results showing any such adaptation. The UWM paper itself makes no mention of RoboCasa. This confirms the reviewer's concern that this would be genuinely new engineering work.\n\n---\n\n### 4. UWM Benchmark Results (What It Has Actually Been Evaluated On)\n\nUWM (arXiv 2504.02792, RSS 2025) was evaluated on:\n\n**A. LIBERO simulation (5 evaluation tasks out of 100, 90 used for pretraining):**\n\n| Method | Book-Caddy | Soup-Cheese | Bowl-Drawer | Moka-Moka | Mug-Mug | **Average** |\n|--------|-----------|-------------|-------------|-----------|---------|------------|\n| **UWM** | 0.91 +/- 0.07 | 0.93 +/- 0.01 | 0.80 +/- 0.02 | 0.68 +/- 0.02 | 0.65 +/- 0.01 | **0.79 +/- 0.11** |\n| Diffusion Policy | 0.73 +/- 0.10 | 0.88 +/- 0.02 | 0.77 +/- 0.02 | 0.65 +/- 0.03 | 0.53 +/- 0.05 | 0.71 +/- 0.12 |\n| GR1 | - | - | - | - | - | 0.58 +/- 0.14 |\n| PAD | - | - | - | - | - | 0.57 +/- 0.19 |\n\n**B. Real robot tasks** (5 tasks: Stack-Bowls, Block-Cabinet, Paper-Towel, Hang-Towel, Rice-Cooker) -- UWM outperforms baselines by up to 20% in both in-distribution and OOD settings.\n\n**C. Pretraining data:** 2,000 trajectories from DROID + 2,000 action-free video trajectories for co-training. Training: 100K steps pretraining, 10K steps finetuning.\n\n**Critically, UWM has NOT been evaluated on:** RoboCasa, RoboCasa365, LIBERO-PRO, LIBERO-Plus, MetaWorld, or any large-scale multi-task kitchen benchmark.\n\n**Sources:**\n- [UWM project page](https://weirdlabuw.github.io/uwm/)\n- [UWM paper](https://arxiv.org/abs/2504.02792)\n- [UWM GitHub](https://github.com/WEIRDLabUW/unified-world-model)\n\n---\n\n### 5. Compute Costs for Adapter Training on Frozen DiT\n\n**Reference points from comparable approaches:**\n\n| Approach | Base Model | Training Setup | Total GPU-Hours |\n|----------|-----------|---------------|----------------|\n| **Cosmos Policy** (frozen 2B DiT + action latent injection) | Cosmos-Predict2-2B | 32x H100, 48h | **~1,536 H100-hrs** |\n| LoRA on Stable Diffusion | ~1B UNet | 1x 2080 Ti, ~5h | ~5 GPU-hrs |\n| OpenVLA LoRA fine-tuning | 7B VLA | 1x A100, few hours | ~4-8 A100-hrs |\n| Diffusion Policy (from scratch) | ~100M | 1x A40, ~3h | ~3 GPU-hrs |\n| 3D Diffusion Policy | ~100M | 1x A40, ~3h | ~3 GPU-hrs |\n| General PEFT vs full fine-tune | Any | - | ~10x reduction |\n\n**Key insight for your 200 H100-hour budget:** Cosmos Policy's 1,536 H100-hour training cost is far above your budget, but that includes full training from the frozen video backbone. If you are doing **adapter/LoRA-based fine-tuning** on a frozen DiT of similar size (~2B), you should expect:\n\n- **LoRA/adapter training on a frozen 2B DiT:** Likely **20-80 H100-hours** (based on the ~10x reduction factor from PEFT literature, scaled from Cosmos Policy's full training)\n- **Evaluation on RoboCasa** (3,600 rollouts at Cosmos Policy protocol): With parallel simulation on 8 GPUs, approximately **1-5 H100-hours** per full evaluation sweep\n- **LIBERO-PRO evaluation:** Much cheaper, as tasks are shorter-horizon -- estimate **1-3 H100-hours**\n\n**Sources:**\n- [Cosmos Policy training details](https://nvidia-cosmos.github.io/cosmos-cookbook/recipes/post_training/predict2/cosmos_policy/post_training.html)\n- [LoRA for Stable Diffusion](https://huggingface.co/blog/lora)\n- [LoRA paper](https://arxiv.org/abs/2106.09685)\n- [Isaac Lab-Arena parallel evaluation](https://developer.nvidia.com/blog/simplify-generalist-robot-policy-evaluation-in-simulation-with-nvidia-isaac-lab-arena/)\n\n---\n\n### Proposed Compute Plan (200 H100-hours)\n\n| Phase | Task | Estimated H100-hours |\n|-------|------|---------------------|\n| **1. Engineering & integration** | Adapt UWM codebase to RoboCasa env (data pipeline, observation space, action space) | 10-20 (debugging runs) |\n| **2. Adapter training on RoboCasa** | LoRA/adapter fine-tuning of frozen UWM DiT on RoboCasa demonstrations | 40-80 |\n| **3. Adapter training on LIBERO** | Fine-tune for LIBERO tasks (smaller scale) | 15-30 |\n| **4. RoboCasa evaluation** | Full eval: 24 tasks x 50 trials x 3 seeds = 3,600 rollouts | 5-10 |\n| **5. LIBERO-PRO evaluation** | Run perturbation suite across 4 dimensions | 3-8 |\n| **6. Ablations & hyperparameter sweeps** | LoRA rank, learning rate, data scaling | 30-50 |\n| **7. Buffer for failures/reruns** | Inevitable debugging, crashed runs | 20-30 |\n| **TOTAL** | | **123-228** |\n\n**Assessment:** 200 H100-hours is tight but feasible if you use parameter-efficient fine-tuning (LoRA/adapters) rather than full fine-tuning. The main risks are:\n\n1. **Engineering unknowns** -- UWM has never touched RoboCasa, so observation/action space integration could require significant debugging\n2. **Ablation budget** -- you may need to sacrifice comprehensive sweeps to stay within budget\n3. **RoboCasa365 is out of scope** -- the 365-task version would require substantially more compute; stick to the original 24-task RoboCasa\n\nTo derisk, I would recommend starting with LIBERO (where UWM already has results) and using that as a validation of your adapter pipeline before moving to RoboCasa, which is the genuinely novel and higher-risk evaluation."
+      }
+    ],
+    "totalDurationMs": 221127,
+    "totalTokens": 38698,
+    "totalToolUseCount": 26,
+    "usage": {
+      "input_tokens": 865,
+      "cache_creation_input_tokens": 1236,
+      "cache_read_input_tokens": 33559,
+      "output_tokens": 3038,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1236
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 865,
+          "output_tokens": 3038,
+          "cache_read_input_tokens": 33559,
+          "cache_creation_input_tokens": 1236,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1236,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 26
+    }
+  },
+  "sourceToolAssistantUUID": "0f96a613-607c-47e3-9c79-36a7b0c2f8bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-10T18:27:15.814Z_
+
+<details><summary>↩ Tool result · `toolu_01JSTHKp5tLcHWcz4G4vW98M`</summary>
+
+```text
+I now have a comprehensive set of findings. Let me compile everything into a clear, structured response.
+
+---
+
+Here is a synthesis of the papers found, their key arguments, and the concrete evidence you can cite about why AdaLN alone is insufficient and explicit attention gating/modulation is needed.
+
+---
+
+## Paper 1: TACA -- "Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers"
+
+**Authors:** Lv et al. **Venue:** ICCV 2025. **arXiv:** 2506.07986
+
+**Abstract:** Identifies that MM-DiT models like FLUX struggle with precise text-image alignment due to two structural problems in joint attention: (1) cross-modal attention suppression from token imbalance, and (2) lack of timestep-aware attention weighting.
+
+**Key arguments against AdaLN sufficiency:**
+
+1. **Token imbalance suppresses cross-modal attention in softmax.** In FLUX at 1024x1024, the ratio is N_vis/N_txt = 4096/512 = 8. When visual and text tokens share a single attention matrix, the exponential sum of visual-visual scores dominates the softmax denominator, causing text tokens to receive systematically lower attention probabilities. This is a *structural* problem in the attention computation that no amount of AdaLN conditioning can fix, because AdaLN modulates activations *before* attention, not the attention weights themselves.
+
+2. **Timestep-agnostic attention is suboptimal.** Early denoising steps establish global layout and require strong text guidance; later steps refine details and prioritize visual self-attention. MM-DiT uses timestep-agnostic weight matrices for Q/K projections, preventing this temporal adaptation. AdaLN conditions scale/shift of layer norms uniformly but cannot selectively amplify cross-modal attention at specific timesteps.
+
+3. **Empirical gains from explicit attention modulation:** Temperature scaling with gamma > 1 on visual-text logits restores cross-modal attention to levels comparable to dedicated cross-attention architectures. Results: +16.4% spatial relationship accuracy and +5.9% shape accuracy on FLUX.1-Dev; +28.3% spatial and +2.9% shape on SD3.5-Medium (T2I-CompBench).
+
+**Critical quote for your rebuttal:** "The problem is architectural: when text and visual tokens share a single attention matrix, no conditioning mechanism [including AdaLN] can selectively amplify cross-modal interactions without modifying the attention computation itself."
+
+---
+
+## Paper 2: "Unveiling the Secret of AdaLN-Zero in Diffusion Transformer"
+
+**Venue:** OpenReview (2024). **ID:** E4roJSM9RM
+
+**Abstract:** Investigates three potential drivers of AdaLN-Zero's superiority over standard AdaLN: an SE-like structure, zero-initialization, and a "gradual" update order. Finds zero-initialization is the most influential factor.
+
+**Key findings relevant to your argument:**
+
+1. AdaLN-Zero at training start exhibits a "completely vertical distribution" (most modulation values near zero), while standard AdaLN-Mix shows a "completely horizontal distribution with a large span." This means AdaLN-Zero works primarily because it starts as an identity function and gradually learns conditioning -- it is a *training stability* mechanism, not a powerful conditioning mechanism.
+
+2. The paper proposes adaLN-Gaussian (initializing modulation from Gaussian distributions), achieving 2.16% FID improvement over AdaLN-Zero. This suggests AdaLN-Zero's conditioning is suboptimal and its success is more about initialization than expressive conditioning.
+
+3. The SE-like (Squeeze-and-Excitation) structure analogy is important: AdaLN performs channel-wise recalibration (like SE-Net) but applies the *same* recalibration to *all spatial tokens*. This is fundamentally a global, spatially uniform operation.
+
+---
+
+## Paper 3: "Rethinking Global Text Conditioning in Diffusion Transformers"
+
+**Authors:** Multiple. **arXiv:** 2602.09268 (Feb 2026).
+
+**Key findings:**
+
+1. **Global conditioning via pooled embeddings contributes almost nothing to standard generation quality.** On FLUX schnell: removing CLIP pooled embedding caused only -0.3 point PickScore drop on long prompts. On HiDream-Fast: "the CLIP pooled embedding exhibits no effect for either short or long prompts." On COSMOS: introducing CLIP yielded "no improvement."
+
+2. **Attention-based (local/token-wise) conditioning dominates.** The paper concludes that "attention alone is generally sufficient for faithfully propagating prompt information." The T5 token embeddings via cross-attention capture the semantic detail needed.
+
+3. **Pooled embeddings only become useful when repurposed as "modulation guidance"** -- an active corrector using positive/negative prompt contrast, not passive conditioning. This fundamentally reconceptualizes global conditioning from a passive normalization input to an active guidance signal, implying the standard AdaLN pathway is largely inert.
+
+**Critical implication for your rebuttal:** If global conditioning (AdaLN with pooled embeddings) contributes negligibly in standard text-to-image generation, then in a WAM setting where you have *two* noise-level signals (t_o, t_a) that need to differentially control attention between observation and action tokens, simply concatenating them into AdaLN is even less likely to provide the fine-grained, token-specific modulation required.
+
+---
+
+## Paper 4: "Delving Deep into Diffusion Transformers for Image and Video Generation"
+
+**arXiv:** 2312.04557
+
+**Key statement:** "The adaLN approach, operating at a spatially global level, adjusts the image features uniformly across all positions through the normalization layer." In contrast, "cross-attention treats spatial positions with more granularity. It differentiates between various spatial locations by dynamically modulating image features based on the cross-attention map."
+
+**Quantitative evidence:** Table 2 shows cross-attention uniformly outperforms AdaLN across all T2I-CompBench metrics on the same XL/2 model scale, with particularly notable improvements in attribute binding tasks. AdaLN is adequate for class conditioning (limited fixed signals like 1000 ImageNet classes) but fails for free-form text conditioning requiring spatial specificity.
+
+---
+
+## Paper 5: AVDiT -- "A Versatile Diffusion Transformer with Mixture of Noise Levels for Audiovisual Generation"
+
+**Venue:** NeurIPS 2024. **arXiv:** 2405.13762
+
+**Directly relevant to UWM's dual-timestep setting:**
+
+1. When different modalities have different noise levels simultaneously, "a single timestep does not capture the complexity" of the conditional distributions. AVDiT replaces the scalar timestep with a full timestep *vector* t in R^(M x N), where each element determines the noise level for each modality-time pair.
+
+2. Per-modality (Pm) and per-time-segment (Ptm) noise variants *significantly outperform* vanilla single-timestep approaches on multimodal interpolation tasks. This directly argues that concatenating two timesteps into a single AdaLN input (as UWM does) loses information about *which* tokens are at *which* noise level.
+
+3. The architecture modifies AdaLN to receive a full timestep vector embedding rather than a scalar, enabling per-token noise-aware normalization -- but even this enhanced AdaLN doesn't explicitly modulate attention patterns between high-noise and low-noise tokens.
+
+---
+
+## Paper 6: Qwen's "Gated Attention for Large Language Models"
+
+**Venue:** NeurIPS 2025 Best Paper.
+
+**Key argument for attention gating:**
+
+1. "Softmax attention cannot express 'none of the above': even when no token is relevant, probability mass must still be assigned." Gating acts as a post-attention filter, suppressing uninformative or noisy attention outputs.
+
+2. **Gating is most effective when conditioned on the query.** G1 (SDPA-output gating) computes its gate directly from the query representation, allowing the model to suppress irrelevant context based on what tokens actually request. This produces "very low sparse gating scores, which is correlated with superior task performance."
+
+3. **Gating eliminates attention sinks** -- the phenomenon where attention concentrates on structurally privileged tokens. In a WAM with mixed noise levels, noisier tokens would naturally become attention sinks; gating conditioned on noise level could suppress this.
+
+---
+
+## Paper 7: UWM -- "Unified World Models"
+
+**Venue:** RSS 2025. **arXiv:** 2504.02792
+
+**How UWM uses AdaLN:** The two timestep embeddings (t_o, t_a) are *concatenated* and used to condition the transformer via AdaLN applied to *all* transformer blocks uniformly. The authors themselves recognized insufficiency: they added *register tokens* as "an intermediary medium to exchange information" between modalities, acknowledging that "images and actions are distinct modalities" that need more than global conditioning for cross-modal interaction. However, there is no explicit ablation comparing AdaLN against attention-based alternatives.
+
+---
+
+## Synthesis: Your Rebuttal Argument
+
+Here is the concrete argument chain you can construct:
+
+**Claim:** UWM's AdaLN with concatenated (t_o, t_a) is insufficient for noise-pair-conditioned cross-modal control. Explicit attention gating is not redundant but necessary.
+
+**Evidence:**
+
+1. **AdaLN is spatially/token-uniform by construction** (DiT paper, "Delving Deep" survey). It applies the *same* scale/shift to all tokens regardless of whether they are observation or action tokens. When (t_o, t_a) are concatenated into AdaLN, every token -- both observation tokens at noise level t_o and action tokens at noise level t_a -- receives identical normalization parameters. This cannot express "attend more to clean observation tokens when action tokens are noisy" or vice versa.
+
+2. **Global conditioning is empirically near-inert** ("Rethinking Global Text Conditioning," 2026). Pooled embedding through AdaLN contributes negligibly to generation quality in multiple SOTA models (FLUX, HiDream, COSMOS). Token-wise attention is what actually carries conditioning.
+
+3. **Token imbalance in joint attention requires explicit attention modulation** (TACA, ICCV 2025). In MM-DiT architectures, the softmax denominator is dominated by the more numerous token type, suppressing cross-modal attention. Temperature-adjusted attention gating fixes this with 16-28% gains in spatial accuracy. AdaLN cannot fix this because it operates *before* attention.
+
+4. **Mixed noise levels require per-token awareness** (AVDiT, NeurIPS 2024; Diffusion Forcing, NeurIPS 2024). A scalar or concatenated timestep in AdaLN loses the association between *which* tokens are at *which* noise level. AVDiT shows that per-modality noise awareness significantly outperforms single-timestep conditioning.
+
+5. **Attention gating's value is in selective suppression, not redundant conditioning** (Qwen NeurIPS 2025 Best Paper). Gating conditioned on the query enables sparse, selective context suppression -- a capability softmax attention fundamentally lacks ("cannot express 'none of the above'"). Noise-pair-conditioned gating would allow the model to suppress attention to heavily noised tokens, which AdaLN cannot achieve.
+
+6. **UWM authors themselves recognized AdaLN insufficiency** by adding register tokens for cross-modal information exchange, implicitly acknowledging that AdaLN alone does not mediate observation-action interaction adequately.
+
+Sources:
+- [TACA: Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers (ICCV 2025)](https://arxiv.org/abs/2506.07986)
+- [Unveiling the Secret of AdaLN-Zero in Diffusion Transformer](https://openreview.net/forum?id=E4roJSM9RM)
+- [Rethinking Global Text Conditioning in Diffusion Transformers](https://arxiv.org/abs/2602.09268)
+- [Delving Deep into Diffusion Transformers for Image and Video Generation](https://arxiv.org/html/2312.04557v1)
+- [AVDiT: A Versatile Diffusion Transformer with Mixture of Noise Levels (NeurIPS 2024)](https://arxiv.org/abs/2405.13762)
+- [Gated Attention for Large Language Models (NeurIPS 2025 Best Paper)](https://arxiv.org/pdf/2505.06708)
+- [UWM: Unified World Models (RSS 2025)](https://arxiv.org/html/2504.02792v1)
+- [DiT: Scalable Diffusion Models with Transformers (ICCV 2023)](https://openaccess.thecvf.com/content/ICCV2023/papers/Peebles_Scalable_Diffusion_Models_with_Transformers_ICCV_2023_paper.pdf)
+- [Diffusion Forcing: Next-token Prediction Meets Full-Sequence Diffusion (NeurIPS 2024)](https://arxiv.org/abs/2407.01392)
+- [TACA Project Page and Code](https://github.com/Vchitect/TACA)
+
+agentId: a016352743ee6473e (use SendMessage with to: 'a016352743ee6473e' to continue this agent)
+&lt;usage>total_tokens: 37656
+tool_uses: 29
+duration_ms: 279735&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "91ecd508-a28f-4699-b847-d4dac96bbee3",
+  "isSidechain": false,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "type": "user",
+  "uuid": "f60390d5-2c1c-4cf2-bd09-d7e7348e874e",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I'm revising a research idea about noise-pair-conditioned attention gating for World Action Models (WAMs). A critical reviewer concern is that UWM's AdaLN already concatenates both timestep embeddings (t_o, t_a) and conditions all transformer blocks, so explicit attention gating might be redundant.\n\nI need to find:\n1. The paper \"Unveiling the Secret of AdaLN-Zero\" or similar work analyzing AdaLN limitations — what are the known limitations of AdaLN for cross-modal conditioning?\n2. TACA (ICCV 2025) \"Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers\" — how does it argue that AdaLN is insufficient and explicit attention modulation is needed?\n3. Any other papers that discuss the gap between global conditioning (AdaLN) vs. local/selective attention modulation in diffusion transformers.\n\nSearch for:\n- \"AdaLN limitations diffusion transformer\" \n- \"adaptive layer norm vs attention modulation diffusion\"\n- \"TACA cross-modal attention timestep conditioning 2025\"\n- \"Unveiling Secret AdaLN-Zero\"\n\nFor each paper found, use WebFetch to read the abstract and key arguments about WHY AdaLN alone is insufficient. I need concrete theoretical or empirical arguments I can cite.",
+    "agentId": "a016352743ee6473e",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "I now have a comprehensive set of findings. Let me compile everything into a clear, structured response.\n\n---\n\nHere is a synthesis of the papers found, their key arguments, and the concrete evidence you can cite about why AdaLN alone is insufficient and explicit attention gating/modulation is needed.\n\n---\n\n## Paper 1: TACA -- \"Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers\"\n\n**Authors:** Lv et al. **Venue:** ICCV 2025. **arXiv:** 2506.07986\n\n**Abstract:** Identifies that MM-DiT models like FLUX struggle with precise text-image alignment due to two structural problems in joint attention: (1) cross-modal attention suppression from token imbalance, and (2) lack of timestep-aware attention weighting.\n\n**Key arguments against AdaLN sufficiency:**\n\n1. **Token imbalance suppresses cross-modal attention in softmax.** In FLUX at 1024x1024, the ratio is N_vis/N_txt = 4096/512 = 8. When visual and text tokens share a single attention matrix, the exponential sum of visual-visual scores dominates the softmax denominator, causing text tokens to receive systematically lower attention probabilities. This is a *structural* problem in the attention computation that no amount of AdaLN conditioning can fix, because AdaLN modulates activations *before* attention, not the attention weights themselves.\n\n2. **Timestep-agnostic attention is suboptimal.** Early denoising steps establish global layout and require strong text guidance; later steps refine details and prioritize visual self-attention. MM-DiT uses timestep-agnostic weight matrices for Q/K projections, preventing this temporal adaptation. AdaLN conditions scale/shift of layer norms uniformly but cannot selectively amplify cross-modal attention at specific timesteps.\n\n3. **Empirical gains from explicit attention modulation:** Temperature scaling with gamma > 1 on visual-text logits restores cross-modal attention to levels comparable to dedicated cross-attention architectures. Results: +16.4% spatial relationship accuracy and +5.9% shape accuracy on FLUX.1-Dev; +28.3% spatial and +2.9% shape on SD3.5-Medium (T2I-CompBench).\n\n**Critical quote for your rebuttal:** \"The problem is architectural: when text and visual tokens share a single attention matrix, no conditioning mechanism [including AdaLN] can selectively amplify cross-modal interactions without modifying the attention computation itself.\"\n\n---\n\n## Paper 2: \"Unveiling the Secret of AdaLN-Zero in Diffusion Transformer\"\n\n**Venue:** OpenReview (2024). **ID:** E4roJSM9RM\n\n**Abstract:** Investigates three potential drivers of AdaLN-Zero's superiority over standard AdaLN: an SE-like structure, zero-initialization, and a \"gradual\" update order. Finds zero-initialization is the most influential factor.\n\n**Key findings relevant to your argument:**\n\n1. AdaLN-Zero at training start exhibits a \"completely vertical distribution\" (most modulation values near zero), while standard AdaLN-Mix shows a \"completely horizontal distribution with a large span.\" This means AdaLN-Zero works primarily because it starts as an identity function and gradually learns conditioning -- it is a *training stability* mechanism, not a powerful conditioning mechanism.\n\n2. The paper proposes adaLN-Gaussian (initializing modulation from Gaussian distributions), achieving 2.16% FID improvement over AdaLN-Zero. This suggests AdaLN-Zero's conditioning is suboptimal and its success is more about initialization than expressive conditioning.\n\n3. The SE-like (Squeeze-and-Excitation) structure analogy is important: AdaLN performs channel-wise recalibration (like SE-Net) but applies the *same* recalibration to *all spatial tokens*. This is fundamentally a global, spatially uniform operation.\n\n---\n\n## Paper 3: \"Rethinking Global Text Conditioning in Diffusion Transformers\"\n\n**Authors:** Multiple. **arXiv:** 2602.09268 (Feb 2026).\n\n**Key findings:**\n\n1. **Global conditioning via pooled embeddings contributes almost nothing to standard generation quality.** On FLUX schnell: removing CLIP pooled embedding caused only -0.3 point PickScore drop on long prompts. On HiDream-Fast: \"the CLIP pooled embedding exhibits no effect for either short or long prompts.\" On COSMOS: introducing CLIP yielded \"no improvement.\"\n\n2. **Attention-based (local/token-wise) conditioning dominates.** The paper concludes that \"attention alone is generally sufficient for faithfully propagating prompt information.\" The T5 token embeddings via cross-attention capture the semantic detail needed.\n\n3. **Pooled embeddings only become useful when repurposed as \"modulation guidance\"** -- an active corrector using positive/negative prompt contrast, not passive conditioning. This fundamentally reconceptualizes global conditioning from a passive normalization input to an active guidance signal, implying the standard AdaLN pathway is largely inert.\n\n**Critical implication for your rebuttal:** If global conditioning (AdaLN with pooled embeddings) contributes negligibly in standard text-to-image generation, then in a WAM setting where you have *two* noise-level signals (t_o, t_a) that need to differentially control attention between observation and action tokens, simply concatenating them into AdaLN is even less likely to provide the fine-grained, token-specific modulation required.\n\n---\n\n## Paper 4: \"Delving Deep into Diffusion Transformers for Image and Video Generation\"\n\n**arXiv:** 2312.04557\n\n**Key statement:** \"The adaLN approach, operating at a spatially global level, adjusts the image features uniformly across all positions through the normalization layer.\" In contrast, \"cross-attention treats spatial positions with more granularity. It differentiates between various spatial locations by dynamically modulating image features based on the cross-attention map.\"\n\n**Quantitative evidence:** Table 2 shows cross-attention uniformly outperforms AdaLN across all T2I-CompBench metrics on the same XL/2 model scale, with particularly notable improvements in attribute binding tasks. AdaLN is adequate for class conditioning (limited fixed signals like 1000 ImageNet classes) but fails for free-form text conditioning requiring spatial specificity.\n\n---\n\n## Paper 5: AVDiT -- \"A Versatile Diffusion Transformer with Mixture of Noise Levels for Audiovisual Generation\"\n\n**Venue:** NeurIPS 2024. **arXiv:** 2405.13762\n\n**Directly relevant to UWM's dual-timestep setting:**\n\n1. When different modalities have different noise levels simultaneously, \"a single timestep does not capture the complexity\" of the conditional distributions. AVDiT replaces the scalar timestep with a full timestep *vector* t in R^(M x N), where each element determines the noise level for each modality-time pair.\n\n2. Per-modality (Pm) and per-time-segment (Ptm) noise variants *significantly outperform* vanilla single-timestep approaches on multimodal interpolation tasks. This directly argues that concatenating two timesteps into a single AdaLN input (as UWM does) loses information about *which* tokens are at *which* noise level.\n\n3. The architecture modifies AdaLN to receive a full timestep vector embedding rather than a scalar, enabling per-token noise-aware normalization -- but even this enhanced AdaLN doesn't explicitly modulate attention patterns between high-noise and low-noise tokens.\n\n---\n\n## Paper 6: Qwen's \"Gated Attention for Large Language Models\"\n\n**Venue:** NeurIPS 2025 Best Paper.\n\n**Key argument for attention gating:**\n\n1. \"Softmax attention cannot express 'none of the above': even when no token is relevant, probability mass must still be assigned.\" Gating acts as a post-attention filter, suppressing uninformative or noisy attention outputs.\n\n2. **Gating is most effective when conditioned on the query.** G1 (SDPA-output gating) computes its gate directly from the query representation, allowing the model to suppress irrelevant context based on what tokens actually request. This produces \"very low sparse gating scores, which is correlated with superior task performance.\"\n\n3. **Gating eliminates attention sinks** -- the phenomenon where attention concentrates on structurally privileged tokens. In a WAM with mixed noise levels, noisier tokens would naturally become attention sinks; gating conditioned on noise level could suppress this.\n\n---\n\n## Paper 7: UWM -- \"Unified World Models\"\n\n**Venue:** RSS 2025. **arXiv:** 2504.02792\n\n**How UWM uses AdaLN:** The two timestep embeddings (t_o, t_a) are *concatenated* and used to condition the transformer via AdaLN applied to *all* transformer blocks uniformly. The authors themselves recognized insufficiency: they added *register tokens* as \"an intermediary medium to exchange information\" between modalities, acknowledging that \"images and actions are distinct modalities\" that need more than global conditioning for cross-modal interaction. However, there is no explicit ablation comparing AdaLN against attention-based alternatives.\n\n---\n\n## Synthesis: Your Rebuttal Argument\n\nHere is the concrete argument chain you can construct:\n\n**Claim:** UWM's AdaLN with concatenated (t_o, t_a) is insufficient for noise-pair-conditioned cross-modal control. Explicit attention gating is not redundant but necessary.\n\n**Evidence:**\n\n1. **AdaLN is spatially/token-uniform by construction** (DiT paper, \"Delving Deep\" survey). It applies the *same* scale/shift to all tokens regardless of whether they are observation or action tokens. When (t_o, t_a) are concatenated into AdaLN, every token -- both observation tokens at noise level t_o and action tokens at noise level t_a -- receives identical normalization parameters. This cannot express \"attend more to clean observation tokens when action tokens are noisy\" or vice versa.\n\n2. **Global conditioning is empirically near-inert** (\"Rethinking Global Text Conditioning,\" 2026). Pooled embedding through AdaLN contributes negligibly to generation quality in multiple SOTA models (FLUX, HiDream, COSMOS). Token-wise attention is what actually carries conditioning.\n\n3. **Token imbalance in joint attention requires explicit attention modulation** (TACA, ICCV 2025). In MM-DiT architectures, the softmax denominator is dominated by the more numerous token type, suppressing cross-modal attention. Temperature-adjusted attention gating fixes this with 16-28% gains in spatial accuracy. AdaLN cannot fix this because it operates *before* attention.\n\n4. **Mixed noise levels require per-token awareness** (AVDiT, NeurIPS 2024; Diffusion Forcing, NeurIPS 2024). A scalar or concatenated timestep in AdaLN loses the association between *which* tokens are at *which* noise level. AVDiT shows that per-modality noise awareness significantly outperforms single-timestep conditioning.\n\n5. **Attention gating's value is in selective suppression, not redundant conditioning** (Qwen NeurIPS 2025 Best Paper). Gating conditioned on the query enables sparse, selective context suppression -- a capability softmax attention fundamentally lacks (\"cannot express 'none of the above'\"). Noise-pair-conditioned gating would allow the model to suppress attention to heavily noised tokens, which AdaLN cannot achieve.\n\n6. **UWM authors themselves recognized AdaLN insufficiency** by adding register tokens for cross-modal information exchange, implicitly acknowledging that AdaLN alone does not mediate observation-action interaction adequately.\n\nSources:\n- [TACA: Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers (ICCV 2025)](https://arxiv.org/abs/2506.07986)\n- [Unveiling the Secret of AdaLN-Zero in Diffusion Transformer](https://openreview.net/forum?id=E4roJSM9RM)\n- [Rethinking Global Text Conditioning in Diffusion Transformers](https://arxiv.org/abs/2602.09268)\n- [Delving Deep into Diffusion Transformers for Image and Video Generation](https://arxiv.org/html/2312.04557v1)\n- [AVDiT: A Versatile Diffusion Transformer with Mixture of Noise Levels (NeurIPS 2024)](https://arxiv.org/abs/2405.13762)\n- [Gated Attention for Large Language Models (NeurIPS 2025 Best Paper)](https://arxiv.org/pdf/2505.06708)\n- [UWM: Unified World Models (RSS 2025)](https://arxiv.org/html/2504.02792v1)\n- [DiT: Scalable Diffusion Models with Transformers (ICCV 2023)](https://openaccess.thecvf.com/content/ICCV2023/papers/Peebles_Scalable_Diffusion_Models_with_Transformers_ICCV_2023_paper.pdf)\n- [Diffusion Forcing: Next-token Prediction Meets Full-Sequence Diffusion (NeurIPS 2024)](https://arxiv.org/abs/2407.01392)\n- [TACA Project Page and Code](https://github.com/Vchitect/TACA)"
+      }
+    ],
+    "totalDurationMs": 279735,
+    "totalTokens": 37656,
+    "totalToolUseCount": 29,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2834,
+      "cache_read_input_tokens": 31568,
+      "output_tokens": 3253,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2834
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3253,
+          "cache_read_input_tokens": 31568,
+          "cache_creation_input_tokens": 2834,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2834,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 29
+    }
+  },
+  "sourceToolAssistantUUID": "91ecd508-a28f-4699-b847-d4dac96bbee3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"DualGate: Noise-Pair-Conditioned Cross-Modal Attention Gating for Worl…",
+  "leafUuid": "f60390d5-2c1c-4cf2-bd09-d7e7348e874e",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise DualGate with AdaLN complementarity and tighter compute plan",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26"
+}
+```
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-10T18:28:57.392Z_
+
+<details><summary>↩ Tool result · `toolu_01Mzsj2gVQ37eJfHZuDib55f`</summary>
+
+````text
+The full PDF/e-print is too large for the tool. I have gathered comprehensive information from the source code and paper HTML. Let me compile the final answer.
+
+Here is a comprehensive architectural analysis of UWM (Unified World Models) based on the paper (arXiv 2504.02792) and the source code at `github.com/WEIRDLabUW/unified-world-model`:
+
+---
+
+## 1. Register Tokens
+
+**Count:** The default is **8 register tokens** (`num_registers: int = 8`), confirmed in both the source code (`models/uwm/uwm.py`, class `DualNoisePredictionNet`) and the config file (`configs/model/uwm.yaml`). The paper's appendix reportedly contains ablation results (referenced as "Appendix A-A1: Ablations of Design Choices"), but the specific counts tested are not visible in the HTML rendering. The "8-24" range you mention is not confirmed in the codebase -- the default and only configured value is 8.
+
+**Initialization:** `nn.Parameter(torch.empty(1, num_registers, embed_dim).normal_(std=0.02))`
+
+**Placement in sequence:** Registers are appended **last** in the token sequence:
+```
+x = torch.cat((action_embed, next_obs_embed, registers), dim=1)
+```
+So the sequence order is: `[action_tokens | observation/video_tokens | register_tokens]`
+
+**Attention patterns:** There is **NO attention masking** between token types. All tokens attend to all other tokens via standard full self-attention. This means:
+- register <-> video: bidirectional, full attention
+- register <-> action: bidirectional, full attention
+- video <-> action: bidirectional, full attention
+- register <-> register: bidirectional, full attention
+
+The `Attention` class in `models/common/attention.py` supports optional `attn_mask` and `causal_block` parameters, but UWM does not use them. The registers' role is to provide "redundant" tokens (whose outputs are discarded) that can serve as a communication buffer. The paper states: *"all output embeddings of the diffusion transformer are meaningful noise predictions, there is no room for such communication"* -- registers solve this by providing tokens that don't need to predict noise, freeing them to store cross-modal information.
+
+---
+
+## 2. AdaLN Conditioning
+
+**Timestep processing (class `DualTimestepEncoder`):**
+1. Each timestep (t_a and t_o') is encoded independently via `SinusoidalPosEmb(embed_dim=512)`
+2. The two embeddings are **concatenated**: `torch.cat([temb1, temb2], dim=-1)` producing a 1024-dim vector
+3. Passed through an MLP: `Linear(1024, hidden_dim) -> Mish() -> Linear(hidden_dim, 512)` where `hidden_dim = int(512 * 4.0) = 2048`
+
+**Global conditioning construction (in `DualNoisePredictionNet.forward()`):**
+```
+cond = torch.cat((global_cond, temb), dim=-1)
+```
+where `global_cond` is the ResNet-18-encoded current observation features. So the full conditioning vector is `[obs_features | timestep_embedding]`.
+
+**AdaLN modulation (class `AdaLNAttentionBlock` in `models/common/adaln_attention.py`):**
+- The conditioning vector is processed by: `nn.Sequential(nn.SiLU(), nn.Linear(cond_dim, 6 * dim))`
+- This produces **6 parameters**: `shift_msa, scale_msa, gate_msa, shift_mlp, scale_mlp, gate_mlp`
+- The `modulate()` function applies: `x * (1 + scale.unsqueeze(1)) + shift.unsqueeze(1)`
+- The `.unsqueeze(1)` broadcasts across the **entire sequence dimension** -- meaning **YES, the identical modulation is applied to ALL tokens** (video, action, and register alike). There is no per-token-type differentiation in the AdaLN modulation.
+- The final layer head uses only 2 parameters: `shift, scale`
+- Layer normalization uses `elementwise_affine=False` (all learnable parameters come exclusively from AdaLN)
+
+---
+
+## 3. Architecture Details
+
+**DiT backbone:**
+- **Depth:** 12 transformer layers
+- **Hidden dimension (embed_dim):** 768
+- **Attention heads:** 12 (head_dim = 64)
+- **MLP ratio:** 4.0 (MLP hidden dim = 3072)
+- **QKV bias:** True
+- **Timestep embed dim:** 512
+- **Activation:** GELU (in transformer blocks), Mish (in timestep encoder)
+- This is roughly a **DiT-B** (Base) scale architecture
+
+**Token arrangement in sequence: `[action | video/obs | registers]`**
+- **Action tokens:** Action chunk of length 16 encoded per-timestep by a shallow MLP to 768-dim. Yields `action_len` tokens.
+- **Video/observation tokens:** Next-observation images (224x224x3) encoded to (28x28x4) latents via frozen SDXL VAE, then patchified with spatiotemporal patches of size (2, 4, 4) [time, height, width]. For `n_c` camera views, this yields `n_c * (T/2) * (28/4) * (28/4) = n_c * (T/2) * 49` tokens.
+- **Register tokens:** 8 tokens appended at the end.
+- Indices tracked as: `self.action_inds = (0, action_len)` and `self.next_obs_inds = (action_len, action_len + obs_len)`
+
+**Current observation encoder:** ResNet-18 (configurable to ViT), encoding current frames to `n_c * h_o * n_embd` dimensional features used as global conditioning.
+
+**Positional embedding:** Learned, added after token concatenation: `x = x + pos_embed`
+
+---
+
+## 4. Available Checkpoints and Benchmarks
+
+**Checkpoints (Google Drive):**
+- **LIBERO-90 pretrained** checkpoint
+- **DROID pretrained** checkpoint
+- **DROID co-trained** checkpoint (with action-free video data)
+
+**Benchmarks evaluated:**
+- **LIBERO-100** (pretrain on LIBERO-90, finetune on held-out tasks): UWM achieves **0.79 +/- 0.11** avg success rate vs Diffusion Policy 0.71 +/- 0.12, PAD 0.57, GR1 0.58
+- **Real-robot tasks** (pretrain on 2000 DROID trajectories + optional video co-training):
+  - Stack-Bowls: 0.92 ID / 0.84 OOD
+  - Block-Cabinet: 0.84 ID / 0.72 OOD
+  - Rice-Cooker: 0.65 ID
+- **Robomimic** (single-task, supported in codebase)
+- **Forward dynamics** visualization (qualitative)
+- **Inverse dynamics** trajectory tracking
+- **OOD generalization** across lighting, backgrounds, clutter
+
+**Training hyperparameters:**
+- Pretraining: 100K steps, Adam (lr=1e-4, betas=[0.9, 0.999], eps=1e-8), batch size 36, weight decay 1e-6, constant LR schedule, no gradient clipping
+- Finetuning: 10K steps, cosine annealing with 1K warmup steps, gradient clipping norm 1.0
+- Diffusion: 100 training timesteps, 10 inference steps (DDIM), `squaredcos_cap_v2` beta schedule, clip_sample=True
+
+---
+
+## 5. Conference Venue
+
+**UWM is RSS 2025, not RSS 2026.** This is confirmed by:
+- The BibTeX in the README: `booktitle = {Proceedings of Robotics: Science and Systems (RSS)}, year = {2025}`
+- The project website header: "Robotics: Science and Systems (RSS) 2025"
+- The RSS 2025 accepted papers list, where it appears as paper #15 in the "VLA Models" session
+- The arXiv submission dates (v1: April 2025)
+
+---
+
+## Key Takeaways for Your Proposal
+
+For your noise-pair-conditioned attention gating idea, the critical architectural facts are:
+
+1. **UWM currently has NO attention masking** -- all tokens (action, video, register) attend to everything. This is a design surface your gating mechanism could exploit.
+2. **AdaLN applies UNIFORM modulation** across all token types. The same scale/shift/gate derived from `[obs_features | sinusoidal(t_a) || sinusoidal(t_o')]` is broadcast identically to action, video, and register tokens. Your noise-pair conditioning could differentiate modulation per token type.
+3. **Register tokens are simple** -- 8 randomly initialized, appended at the end, no special treatment in attention or normalization. They just get discarded at output time.
+4. **The timestep conditioning path is:** two sinusoidal embeddings -> concat -> MLP(1024->2048->512) -> concat with obs features -> SiLU + Linear -> 6 AdaLN params per layer. This is the pathway where your gating signal would need to be injected.
+
+agentId: a10cf4f4743a0f6b6 (use SendMessage with to: 'a10cf4f4743a0f6b6' to continue this agent)
+&lt;usage>total_tokens: 33751
+tool_uses: 43
+duration_ms: 364119&lt;/usage>
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "5b8a4c54-4f4d-4540-a4a0-716c7cdb691c",
+  "isSidechain": false,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "type": "user",
+  "uuid": "1e03e40d-cb62-4d9b-97fd-ede37270348d",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I'm revising a research idea that adds noise-pair-conditioned attention gating to UWM (Unified World Models). I need detailed architectural understanding of UWM.\n\nSearch for and fetch the UWM paper and GitHub repo:\n- Paper: \"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets\" \n- GitHub: github.com/WEIRDLabUW/unified-world-model\n\nI need to understand:\n1. **Register tokens**: How many register tokens does UWM use (reportedly 8-24)? How do they mediate cross-modal interaction between video and action tokens? What attention patterns exist (register→video, register→action, video→register, action→register)?\n2. **AdaLN conditioning**: How exactly does UWM concatenate t_o and t_a for AdaLN? Is it a simple concat + MLP? Does it apply the same modulation to ALL tokens (video, action, register alike)?\n3. **Architecture details**: What DiT backbone does it use? How are video and action tokens arranged in the sequence?\n4. **Available checkpoints**: What pretrained checkpoints are available? LIBERO? DROID? What benchmarks has it been evaluated on?\n5. **RSS 2026 confirmation**: Verify that UWM is RSS 2026 (not 2025).\n\nUse WebFetch on the GitHub README and paper PDF/page if available. I need precise architectural details for my revised proposal.",
+    "agentId": "a10cf4f4743a0f6b6",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "The full PDF/e-print is too large for the tool. I have gathered comprehensive information from the source code and paper HTML. Let me compile the final answer.\n\nHere is a comprehensive architectural analysis of UWM (Unified World Models) based on the paper (arXiv 2504.02792) and the source code at `github.com/WEIRDLabUW/unified-world-model`:\n\n---\n\n## 1. Register Tokens\n\n**Count:** The default is **8 register tokens** (`num_registers: int = 8`), confirmed in both the source code (`models/uwm/uwm.py`, class `DualNoisePredictionNet`) and the config file (`configs/model/uwm.yaml`). The paper's appendix reportedly contains ablation results (referenced as \"Appendix A-A1: Ablations of Design Choices\"), but the specific counts tested are not visible in the HTML rendering. The \"8-24\" range you mention is not confirmed in the codebase -- the default and only configured value is 8.\n\n**Initialization:** `nn.Parameter(torch.empty(1, num_registers, embed_dim).normal_(std=0.02))`\n\n**Placement in sequence:** Registers are appended **last** in the token sequence:\n```\nx = torch.cat((action_embed, next_obs_embed, registers), dim=1)\n```\nSo the sequence order is: `[action_tokens | observation/video_tokens | register_tokens]`\n\n**Attention patterns:** There is **NO attention masking** between token types. All tokens attend to all other tokens via standard full self-attention. This means:\n- register <-> video: bidirectional, full attention\n- register <-> action: bidirectional, full attention\n- video <-> action: bidirectional, full attention\n- register <-> register: bidirectional, full attention\n\nThe `Attention` class in `models/common/attention.py` supports optional `attn_mask` and `causal_block` parameters, but UWM does not use them. The registers' role is to provide \"redundant\" tokens (whose outputs are discarded) that can serve as a communication buffer. The paper states: *\"all output embeddings of the diffusion transformer are meaningful noise predictions, there is no room for such communication\"* -- registers solve this by providing tokens that don't need to predict noise, freeing them to store cross-modal information.\n\n---\n\n## 2. AdaLN Conditioning\n\n**Timestep processing (class `DualTimestepEncoder`):**\n1. Each timestep (t_a and t_o') is encoded independently via `SinusoidalPosEmb(embed_dim=512)`\n2. The two embeddings are **concatenated**: `torch.cat([temb1, temb2], dim=-1)` producing a 1024-dim vector\n3. Passed through an MLP: `Linear(1024, hidden_dim) -> Mish() -> Linear(hidden_dim, 512)` where `hidden_dim = int(512 * 4.0) = 2048`\n\n**Global conditioning construction (in `DualNoisePredictionNet.forward()`):**\n```\ncond = torch.cat((global_cond, temb), dim=-1)\n```\nwhere `global_cond` is the ResNet-18-encoded current observation features. So the full conditioning vector is `[obs_features | timestep_embedding]`.\n\n**AdaLN modulation (class `AdaLNAttentionBlock` in `models/common/adaln_attention.py`):**\n- The conditioning vector is processed by: `nn.Sequential(nn.SiLU(), nn.Linear(cond_dim, 6 * dim))`\n- This produces **6 parameters**: `shift_msa, scale_msa, gate_msa, shift_mlp, scale_mlp, gate_mlp`\n- The `modulate()` function applies: `x * (1 + scale.unsqueeze(1)) + shift.unsqueeze(1)`\n- The `.unsqueeze(1)` broadcasts across the **entire sequence dimension** -- meaning **YES, the identical modulation is applied to ALL tokens** (video, action, and register alike). There is no per-token-type differentiation in the AdaLN modulation.\n- The final layer head uses only 2 parameters: `shift, scale`\n- Layer normalization uses `elementwise_affine=False` (all learnable parameters come exclusively from AdaLN)\n\n---\n\n## 3. Architecture Details\n\n**DiT backbone:**\n- **Depth:** 12 transformer layers\n- **Hidden dimension (embed_dim):** 768\n- **Attention heads:** 12 (head_dim = 64)\n- **MLP ratio:** 4.0 (MLP hidden dim = 3072)\n- **QKV bias:** True\n- **Timestep embed dim:** 512\n- **Activation:** GELU (in transformer blocks), Mish (in timestep encoder)\n- This is roughly a **DiT-B** (Base) scale architecture\n\n**Token arrangement in sequence: `[action | video/obs | registers]`**\n- **Action tokens:** Action chunk of length 16 encoded per-timestep by a shallow MLP to 768-dim. Yields `action_len` tokens.\n- **Video/observation tokens:** Next-observation images (224x224x3) encoded to (28x28x4) latents via frozen SDXL VAE, then patchified with spatiotemporal patches of size (2, 4, 4) [time, height, width]. For `n_c` camera views, this yields `n_c * (T/2) * (28/4) * (28/4) = n_c * (T/2) * 49` tokens.\n- **Register tokens:** 8 tokens appended at the end.\n- Indices tracked as: `self.action_inds = (0, action_len)` and `self.next_obs_inds = (action_len, action_len + obs_len)`\n\n**Current observation encoder:** ResNet-18 (configurable to ViT), encoding current frames to `n_c * h_o * n_embd` dimensional features used as global conditioning.\n\n**Positional embedding:** Learned, added after token concatenation: `x = x + pos_embed`\n\n---\n\n## 4. Available Checkpoints and Benchmarks\n\n**Checkpoints (Google Drive):**\n- **LIBERO-90 pretrained** checkpoint\n- **DROID pretrained** checkpoint\n- **DROID co-trained** checkpoint (with action-free video data)\n\n**Benchmarks evaluated:**\n- **LIBERO-100** (pretrain on LIBERO-90, finetune on held-out tasks): UWM achieves **0.79 +/- 0.11** avg success rate vs Diffusion Policy 0.71 +/- 0.12, PAD 0.57, GR1 0.58\n- **Real-robot tasks** (pretrain on 2000 DROID trajectories + optional video co-training):\n  - Stack-Bowls: 0.92 ID / 0.84 OOD\n  - Block-Cabinet: 0.84 ID / 0.72 OOD\n  - Rice-Cooker: 0.65 ID\n- **Robomimic** (single-task, supported in codebase)\n- **Forward dynamics** visualization (qualitative)\n- **Inverse dynamics** trajectory tracking\n- **OOD generalization** across lighting, backgrounds, clutter\n\n**Training hyperparameters:**\n- Pretraining: 100K steps, Adam (lr=1e-4, betas=[0.9, 0.999], eps=1e-8), batch size 36, weight decay 1e-6, constant LR schedule, no gradient clipping\n- Finetuning: 10K steps, cosine annealing with 1K warmup steps, gradient clipping norm 1.0\n- Diffusion: 100 training timesteps, 10 inference steps (DDIM), `squaredcos_cap_v2` beta schedule, clip_sample=True\n\n---\n\n## 5. Conference Venue\n\n**UWM is RSS 2025, not RSS 2026.** This is confirmed by:\n- The BibTeX in the README: `booktitle = {Proceedings of Robotics: Science and Systems (RSS)}, year = {2025}`\n- The project website header: \"Robotics: Science and Systems (RSS) 2025\"\n- The RSS 2025 accepted papers list, where it appears as paper #15 in the \"VLA Models\" session\n- The arXiv submission dates (v1: April 2025)\n\n---\n\n## Key Takeaways for Your Proposal\n\nFor your noise-pair-conditioned attention gating idea, the critical architectural facts are:\n\n1. **UWM currently has NO attention masking** -- all tokens (action, video, register) attend to everything. This is a design surface your gating mechanism could exploit.\n2. **AdaLN applies UNIFORM modulation** across all token types. The same scale/shift/gate derived from `[obs_features | sinusoidal(t_a) || sinusoidal(t_o')]` is broadcast identically to action, video, and register tokens. Your noise-pair conditioning could differentiate modulation per token type.\n3. **Register tokens are simple** -- 8 randomly initialized, appended at the end, no special treatment in attention or normalization. They just get discarded at output time.\n4. **The timestep conditioning path is:** two sinusoidal embeddings -> concat -> MLP(1024->2048->512) -> concat with obs features -> SiLU + Linear -> 6 AdaLN params per layer. This is the pathway where your gating signal would need to be injected."
+      }
+    ],
+    "totalDurationMs": 364119,
+    "totalTokens": 33751,
+    "totalToolUseCount": 43,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 132,
+      "cache_read_input_tokens": 31273,
+      "output_tokens": 2345,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 132
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2345,
+          "cache_read_input_tokens": 31273,
+          "cache_creation_input_tokens": 132,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 132,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 4,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 39
+    }
+  },
+  "sourceToolAssistantUUID": "5b8a4c54-4f4d-4540-a4a0-716c7cdb691c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-10T18:30:23.535Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent, I now have comprehensive research from all four agents. Let me synthesize the key findings before constructing the revised proposal:
+
+## Key Findings Summary
+
+### 1. AdaLN Redundancy - Strong Arguments for DualGate
+- AdaLN is spatially/token-uniform by construction — same scale/shift applied to ALL tokens (video, action, register)
+- "Rethinking Global Text Conditioning" (2026) shows pooled embeddings through AdaLN contribute negligibly
+- TACA (ICCV 2025) shows token imbalance in joint attention requires explicit attention modulation
+
+
+- Recent work on AdaLN-Zero reveals its effectiveness stems from initialization and training stability rather than expressive conditioning capabilities
+- AVDiT demonstrates that per-modality noise awareness substantially outperforms single-timestep approaches, and Qwen's gated attention mechanism enables selective suppression that softmax architectures fundamentally cannot achieve
+- UWM itself implicitly acknowledges AdaLN's limitations by introducing register tokens as a workaround
+
+### 2. UWM Architecture Details
+- 8 register tokens with sequence ordering of [action | observation | registers]
+- Full bidirectional attention without masking constraints
+- Additional architectural specifics still being compiled
+
+...
+
+but the paper's own BibTeX clearly states RSS 2025, and given the April 2025 arXiv submission date, that timeline makes sense. The reviewer might be referencing a different version or there's a discrepancy between what the paper claims and what the conference website shows, but I should go with what's documented in the paper itself. So the UWM agent actually found it listed as paper #15 in the RSS 2025 accepted papers under the VLA Models session, which confirms the paper was accepted to RSS 2025, not 2026 as the reviewer claimed. I'll stick with what the paper itself states and what I can verify.
+
+Now I'm looking at the concurrent works section to identify what distinguishes this approach from related methods like knowledge transfer approaches and object-addressable models.
+
+For the benchmarking side, I see that RoboCasa and LIBERO-PRO represent significant evaluation targets, with existing SOTA numbers around 67% and concerning robustness issues under perturbations. UWM hasn't been tested on these yet, but the compute requirements of 123-228 H100-hours are manageable. The training plan starts from a pretrained checkpoint and scales up through adapter training phases.
+
+Looking at the deeper validation, the core hypothesis holds up—AdaLN's uniform token modulation is fundamentally limited compared to noise-aware gating, and the dual-timestep conditioning approach appears genuinely novel in the literature. Event-aware methods like EA-WM demonstrate that gated cross-modal attention is viable, though they use different saliency signals than what I'm proposing.
+
+To strengthen the work, I need to reframe DualGate as complementary rather than replacing AdaLN, explicitly handle register tokens as ungated mediators, commit to a realistic 200-hour budget by dropping DreamZero, correct the RSS citation year, incorporate recent concurrent work like CKT-WAM and DUST, discuss the implications of keeping the backbone frozen versus unfreezing attention projections, and ground the AdaLN redundancy argument more firmly in existing literature.
+
+Now I'm reconsidering the RSS publication year—the paper cites RSS 2025 in its BibTeX while the reviewer mentions RSS 2026 scheduled for June 2026, but given the April 2025 arXiv date, the paper's own citation seems more reliable, so I'll stick with that.
+
+For the frozen backbone issue, the reviewer's suggestion to unfreeze selected layers is worth exploring more carefully. With a 200-hour budget, unfreezing everything is prohibitive, but since UWM uses full self-attention rather than separate cross-attention, I could try a middle ground: adding learned per-head bias terms to the attention logits instead of just scalar gating, which gives more expressiveness without the full cost of unfreezing layers.
+
+To address the expressiveness concern directly, I'll propose a tiered approach with per-head scalar gating as the base method, per-head attention bias terms as one ablation, and unfreezing the final few layers' Q/K projections as another ablation. This shows I've thought through the tradeoff between expressiveness and computational cost.
+
+For the benchmark strategy, given my tight compute budget and that UWM hasn't been evaluated on RoboCasa before, I should prioritize LIBERO where I already have results, then add another benchmark if feasible.
+
+Looking at the actual engineering costs: LIBERO is straightforward since UWM checkpoints exist, so I can add DualGate and train in 15-30 hours. LIBERO-PRO is even cheaper—just running the perturbed evaluation suite on an already-trained model takes 5-10 hours. RoboCasa is the risky one, requiring environment adaptation and a new data pipeline, which could eat up 40-80 hours. With my 200-hour constraint, I should make LIBERO and LIBERO-PRO my primary benchmarks and treat RoboCasa as a secondary goal if time allows.
+
+The key insight is that LIBERO-PRO is actually where the compelling story lives. UWM already hits 79% on standard LIBERO, so improvements there are marginal, but on LIBERO-PRO the baseline collapses to 0%—that's where DualGate can show real robustness gains. So my strategy is to validate the adapter works on LIBERO, then demonstrate meaningful improvements under perturbation on LIBERO-PRO, with RoboCasa as a stretch goal if budget permits.
+
+Now I'm working through the full revision of the proposal, reframing the core problem around AdaLN's limitations for noise-pair-conditioned routing, strengthening the motivation with relevant literature, updating the related work section with concurrent approaches, and clarifying how register tokens fit into the approach.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e03e40d-cb62-4d9b-97fd-ede37270348d",
+  "isSidechain": false,
+  "requestId": "req_011CauMy33PWFvzqGyq6wzFb",
+  "type": "assistant",
+  "uuid": "9433f21d-1e41-445b-b99c-eb256bb4dc4a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R1Xq1Mn3bjqKahWGDn1gjS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3142,
+      "cache_creation_input_tokens": 10545,
+      "cache_read_input_tokens": 23942,
+      "output_tokens": 3529,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10545,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3142,
+          "output_tokens": 3529,
+          "cache_read_input_tokens": 23942,
+          "cache_creation_input_tokens": 10545,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10545
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-10T18:30:23.886Z_
+
+Now let me do one more targeted search to verify the RSS year question and check for any additional recent WAM papers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9433f21d-1e41-445b-b99c-eb256bb4dc4a",
+  "isSidechain": false,
+  "requestId": "req_011CauMy33PWFvzqGyq6wzFb",
+  "type": "assistant",
+  "uuid": "a5e0739b-14f9-4994-90ee-adf6933e5b89",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R1Xq1Mn3bjqKahWGDn1gjS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3142,
+      "cache_creation_input_tokens": 10545,
+      "cache_read_input_tokens": 23942,
+      "output_tokens": 3529,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10545,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3142,
+          "output_tokens": 3529,
+          "cache_read_input_tokens": 23942,
+          "cache_creation_input_tokens": 10545,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10545
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-10T18:30:24.839Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019YzMZzNtyvtqznn7ZKxe11`</summary>
+
+```json
+{
+  "query": "RSS 2025 accepted papers \"unified world models\" robotics science systems"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a5e0739b-14f9-4994-90ee-adf6933e5b89",
+  "isSidechain": false,
+  "requestId": "req_011CauMy33PWFvzqGyq6wzFb",
+  "type": "assistant",
+  "uuid": "33d4f32c-6662-4c9c-94b9-733790a7a7db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R1Xq1Mn3bjqKahWGDn1gjS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3142,
+      "cache_creation_input_tokens": 10545,
+      "cache_read_input_tokens": 23942,
+      "output_tokens": 3529,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10545,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3142,
+          "output_tokens": 3529,
+          "cache_read_input_tokens": 23942,
+          "cache_creation_input_tokens": 10545,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10545
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-10T18:30:25.452Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FJsEewViyGDbTfhGc2VShV`</summary>
+
+```json
+{
+  "query": "DUST dual-stream diffusion world model arXiv 2510.27607 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "33d4f32c-6662-4c9c-94b9-733790a7a7db",
+  "isSidechain": false,
+  "requestId": "req_011CauMy33PWFvzqGyq6wzFb",
+  "type": "assistant",
+  "uuid": "a0bfe9e7-99e9-4dd2-a4fa-2a1ef3907229",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R1Xq1Mn3bjqKahWGDn1gjS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3142,
+      "cache_creation_input_tokens": 10545,
+      "cache_read_input_tokens": 23942,
+      "output_tokens": 3529,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10545,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3142,
+          "output_tokens": 3529,
+          "cache_read_input_tokens": 23942,
+          "cache_creation_input_tokens": 10545,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10545
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"DualGate: Noise-Pair-Conditioned Cross-Modal Attention Gating for Worl…",
+  "leafUuid": "a0bfe9e7-99e9-4dd2-a4fa-2a1ef3907229",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise DualGate with AdaLN complementarity and tighter compute plan",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26"
+}
+```
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-10T18:30:33.929Z_
+
+<details><summary>↩ Tool result · `toolu_01FJsEewViyGDbTfhGc2VShV`</summary>
+
+```text
+Web search results for query: "DUST dual-stream diffusion world model arXiv 2510.27607 2025"
+
+Links: [{"title":"[2510.27607] Dual-Stream Diffusion for World-Model Augmented Vision-Language-Action Model","url":"https://arxiv.org/abs/2510.27607"},{"title":"Dual-Stream Diffusion for World-Model Augmented Vision-Language-Action Model","url":"https://arxiv.org/html/2510.27607"},{"title":"Dual-Stream Diffusion for World-Model Augmented Vision- ...","url":"https://arxiv.org/pdf/2510.27607"},{"title":"Dual-Stream Diffusion for World-Model Augmented Vision-Language-Action Model | alphaXiv","url":"https://www.alphaxiv.org/resources/2510.27607v1"},{"title":"Dual-Stream Diffusion for World-Model Augmented Vision-Language-Action Model | OpenReview","url":"https://openreview.net/forum?id=mK1SdO7j3t"},{"title":"[2209.08035v1] A Biologically-Inspired Dual Stream World Model","url":"https://arxiv.org/abs/2209.08035v1"},{"title":"World-consistent Video Diffusion with Explicit 3D Modeling","url":"https://arxiv.org/html/2412.01821v1"},{"title":"Dual-Stream Diffusion Net for Text-to-Video Generation","url":"https://arxiv.org/html/2308.08316v3"},{"title":"A Comprehensive Survey on World Models for Embodied AI","url":"https://arxiv.org/html/2510.16732v1"},{"title":"[2308.08316] Dual-Stream Diffusion Net for Text-to-Video Generation","url":"https://arxiv.org/abs/2308.08316"}]
+
+Based on the search results, here's information about DUST (Dual-Stream Diffusion for World-Model Augmented Vision-Language-Action Model):
+
+## Overview
+
+DUST is a world-model augmented VLA (vision-language-action) framework that handles modality conflict and enhances the performance of VLAs across diverse tasks.
+
+## Key Problem
+
+It addresses the challenge of jointly predicting next-state observations and action sequences because of the inherent difference between the two modalities.
+
+## Architecture
+
+The framework uses a multimodal diffusion transformer architecture that explicitly maintains separate modality streams while enabling cross-modal knowledge sharing. More specifically, DUST employs a multimodal diffusion transformer (MMDiT) that maintains separate token streams for actions and future visual observations, each with its own timestep embedding and normalization, with the two modality streams interacting through shared cross-modal attention layers.
+
+## Training and Sampling Techniques
+
+The framework includes training techniques such as independent noise perturbations for each modality and a decoupled flow matching loss, which enables the model to learn the joint distribution in a bidirectional manner while avoiding the need for a unified latent space. Additionally, a sampling method samples action and vision tokens asynchronously at different rates, which shows improvement through inference-time scaling.
+
+## Performance Results
+
+Through experiments on simulated benchmarks such as RoboCasa and GR-1, DUST achieves up to 6% gains over a standard VLA baseline and implicit world-modeling methods, with the inference-time scaling approach providing an additional 2-5% gain on success rate. On real-world tasks with the Franka Research 3, DUST outperforms baselines in success rate by 13%.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a0bfe9e7-99e9-4dd2-a4fa-2a1ef3907229",
+  "isSidechain": false,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "type": "user",
+  "uuid": "76cddfb9-5328-4d15-81d8-95cf4d2ba041",
+  "toolUseResult": {
+    "query": "DUST dual-stream diffusion world model arXiv 2510.27607 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PuwTLbLNxhJspGsw7G7b5X",
+        "content": [
+          {
+            "title": "[2510.27607] Dual-Stream Diffusion for World-Model Augmented Vision-Language-Action Model",
+            "url": "https://arxiv.org/abs/2510.27607"
+          },
+          {
+            "title": "Dual-Stream Diffusion for World-Model Augmented Vision-Language-Action Model",
+            "url": "https://arxiv.org/html/2510.27607"
+          },
+          {
+            "title": "Dual-Stream Diffusion for World-Model Augmented Vision- ...",
+            "url": "https://arxiv.org/pdf/2510.27607"
+          },
+          {
+            "title": "Dual-Stream Diffusion for World-Model Augmented Vision-Language-Action Model | alphaXiv",
+            "url": "https://www.alphaxiv.org/resources/2510.27607v1"
+          },
+          {
+            "title": "Dual-Stream Diffusion for World-Model Augmented Vision-Language-Action Model | OpenReview",
+            "url": "https://openreview.net/forum?id=mK1SdO7j3t"
+          },
+          {
+            "title": "[2209.08035v1] A Biologically-Inspired Dual Stream World Model",
+            "url": "https://arxiv.org/abs/2209.08035v1"
+          },
+          {
+            "title": "World-consistent Video Diffusion with Explicit 3D Modeling",
+            "url": "https://arxiv.org/html/2412.01821v1"
+          },
+          {
+            "title": "Dual-Stream Diffusion Net for Text-to-Video Generation",
+            "url": "https://arxiv.org/html/2308.08316v3"
+          },
+          {
+            "title": "A Comprehensive Survey on World Models for Embodied AI",
+            "url": "https://arxiv.org/html/2510.16732v1"
+          },
+          {
+            "title": "[2308.08316] Dual-Stream Diffusion Net for Text-to-Video Generation",
+            "url": "https://arxiv.org/abs/2308.08316"
+          }
+        ]
+      },
+      "Based on the search results, here's information about DUST (Dual-Stream Diffusion for World-Model Augmented Vision-Language-Action Model):\n\n## Overview\n\nDUST is a world-model augmented VLA (vision-language-action) framework that handles modality conflict and enhances the performance of VLAs across diverse tasks.\n\n## Key Problem\n\nIt addresses the challenge of jointly predicting next-state observations and action sequences because of the inherent difference between the two modalities.\n\n## Architecture\n\nThe framework uses a multimodal diffusion transformer architecture that explicitly maintains separate modality streams while enabling cross-modal knowledge sharing. More specifically, DUST employs a multimodal diffusion transformer (MMDiT) that maintains separate token streams for actions and future visual observations, each with its own timestep embedding and normalization, with the two modality streams interacting through shared cross-modal attention layers.\n\n## Training and Sampling Techniques\n\nThe framework includes training techniques such as independent noise perturbations for each modality and a decoupled flow matching loss, which enables the model to learn the joint distribution in a bidirectional manner while avoiding the need for a unified latent space. Additionally, a sampling method samples action and vision tokens asynchronously at different rates, which shows improvement through inference-time scaling.\n\n## Performance Results\n\nThrough experiments on simulated benchmarks such as RoboCasa and GR-1, DUST achieves up to 6% gains over a standard VLA baseline and implicit world-modeling methods, with the inference-time scaling approach providing an additional 2-5% gain on success rate. On real-world tasks with the Franka Research 3, DUST outperforms baselines in success rate by 13%."
+    ],
+    "durationSeconds": 8.474594481000036
+  },
+  "sourceToolAssistantUUID": "a0bfe9e7-99e9-4dd2-a4fa-2a1ef3907229",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-10T18:30:35.499Z_
+
+<details><summary>↩ Tool result · `toolu_019YzMZzNtyvtqznn7ZKxe11`</summary>
+
+```text
+Web search results for query: "RSS 2025 accepted papers "unified world models" robotics science systems"
+
+Links: [{"title":"Awards · Robotics: Science and Systems","url":"https://roboticsconference.org/2025/program/awards/"},{"title":"Robotics","url":"https://arxiv.org/list/cs.RO/new"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://arxiv.org/html/2504.02792v1"},{"title":"RSS 2025 Marks Largest in History as Conference Returns to USC - USC Viterbi | School of Engineering","url":"https://viterbischool.usc.edu/news/2025/07/rss-2025-marks-largest-in-history-as-conference-returns-to-usc/"},{"title":"RSS 2025","url":"https://www.robot-manipulation.org/events/workshops/rss-2025"},{"title":"World Models Reading List: The Papers You Actually Need in 2025 | by Graison Thomas | Medium","url":"https://medium.com/@graison/world-models-reading-list-the-papers-you-actually-need-in-2025-882f02d758a9"},{"title":"RSS2025 - Structured World Models for Robotic Manipulation","url":"https://swomo-rss.github.io/"},{"title":"RSS 2025 Conference - Robotics","url":"https://openreview.net/group?id=roboticsfoundation.org%2FRSS%2F2025%2FConference"},{"title":"GitHub - YanjieZe/Paper-List: A paper list of my history reading. Robotics, Learning, Vision. · GitHub","url":"https://github.com/YanjieZe/Paper-List"},{"title":"Outstanding Paper Award - RSS Foundation","url":"https://roboticsfoundation.org/awards/best-paper-award/"}]
+
+Based on the search results, I found relevant information about "Unified World Models" (UWM) and RSS 2025:
+
+Unified World Models (UWM) is a framework that integrates an action diffusion process and a video diffusion process within a unified transformer architecture, where independent diffusion timesteps govern each modality.
+
+UWM enables effective pretraining on large-scale multitask robot datasets with both dynamics and action predictions, resulting in more generalizable and robust policies than imitation learning, and naturally facilitates learning from action-free video data through independent control of modality-specific diffusion timesteps.
+
+Regarding RSS 2025, the Robotics: Science and Systems Conference took place in Los Angeles at USC from June 21, 2025, featuring 32 workshops, seven poster sessions, more than 160 paper presentations, and was the largest in the conference's 21-year history, with 594 papers submitted and almost 1,300 attendees.
+
+The "Unified World Models" paper appears to have been published on arXiv in April 2025 and presents a promising approach for robot learning by combining video and action data pretraining on large robotic datasets.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "33d4f32c-6662-4c9c-94b9-733790a7a7db",
+  "isSidechain": false,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "type": "user",
+  "uuid": "bad1d52c-1ee9-4a21-8f39-36a045e64e7b",
+  "toolUseResult": {
+    "query": "RSS 2025 accepted papers \"unified world models\" robotics science systems",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Na5KDhcuD3UbtpPXTmzHtv",
+        "content": [
+          {
+            "title": "Awards · Robotics: Science and Systems",
+            "url": "https://roboticsconference.org/2025/program/awards/"
+          },
+          {
+            "title": "Robotics",
+            "url": "https://arxiv.org/list/cs.RO/new"
+          },
+          {
+            "title": "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets",
+            "url": "https://arxiv.org/html/2504.02792v1"
+          },
+          {
+            "title": "RSS 2025 Marks Largest in History as Conference Returns to USC - USC Viterbi | School of Engineering",
+            "url": "https://viterbischool.usc.edu/news/2025/07/rss-2025-marks-largest-in-history-as-conference-returns-to-usc/"
+          },
+          {
+            "title": "RSS 2025",
+            "url": "https://www.robot-manipulation.org/events/workshops/rss-2025"
+          },
+          {
+            "title": "World Models Reading List: The Papers You Actually Need in 2025 | by Graison Thomas | Medium",
+            "url": "https://medium.com/@graison/world-models-reading-list-the-papers-you-actually-need-in-2025-882f02d758a9"
+          },
+          {
+            "title": "RSS2025 - Structured World Models for Robotic Manipulation",
+            "url": "https://swomo-rss.github.io/"
+          },
+          {
+            "title": "RSS 2025 Conference - Robotics",
+            "url": "https://openreview.net/group?id=roboticsfoundation.org%2FRSS%2F2025%2FConference"
+          },
+          {
+            "title": "GitHub - YanjieZe/Paper-List: A paper list of my history reading. Robotics, Learning, Vision. · GitHub",
+            "url": "https://github.com/YanjieZe/Paper-List"
+          },
+          {
+            "title": "Outstanding Paper Award - RSS Foundation",
+            "url": "https://roboticsfoundation.org/awards/best-paper-award/"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about \"Unified World Models\" (UWM) and RSS 2025:\n\nUnified World Models (UWM) is a framework that integrates an action diffusion process and a video diffusion process within a unified transformer architecture, where independent diffusion timesteps govern each modality.\n\nUWM enables effective pretraining on large-scale multitask robot datasets with both dynamics and action predictions, resulting in more generalizable and robust policies than imitation learning, and naturally facilitates learning from action-free video data through independent control of modality-specific diffusion timesteps.\n\nRegarding RSS 2025, the Robotics: Science and Systems Conference took place in Los Angeles at USC from June 21, 2025, featuring 32 workshops, seven poster sessions, more than 160 paper presentations, and was the largest in the conference's 21-year history, with 594 papers submitted and almost 1,300 attendees.\n\nThe \"Unified World Models\" paper appears to have been published on arXiv in April 2025 and presents a promising approach for robot learning by combining video and action data pretraining on large robotic datasets."
+    ],
+    "durationSeconds": 10.654590746000002
+  },
+  "sourceToolAssistantUUID": "33d4f32c-6662-4c9c-94b9-733790a7a7db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34 · 2026-05-10T18:30:35.502Z_
+
+```json
+{
+  "parentUuid": "bad1d52c-1ee9-4a21-8f39-36a045e64e7b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0cdc33c1-3cd1-4c81-b6a4-4f49f641a58e",
+  "timestamp": "2026-05-10T18:30:35.502Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-10T18:31:50.025Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me verify the RSS year:
+
+From the search results, RSS 2025 took place at USC in Los Angeles in June 2025 (June 21, 2025). The UWM paper was on arXiv in April 2025. The reviewer said "UWM is RSS 2026 (scheduled June 21, 2026 per roboticsconference.org)." But from my search, RSS 2025 was June 21, 2025 at USC. So the reviewer confused the dates — June 21 was actually RSS 2025, not 2026. 
+
+Actually, looking at the timeline more carefully: the arXiv paper is from April 2025, and RSS 2025 happened in June 2025, so the UWM paper was presented at RSS 2025, not 2026.
+
+I'm also noticing that DUST has been evaluated on RoboCasa with positive results, which validates that benchmark for this type of work. The field seems to be converging on independent noise perturbations and asynchronous sampling as standard practices.
+
+Now I need to build out the full revised JSON with a major restructuring. For the AdaLN critique, I'll construct a rigorous argument drawing from multiple papers showing that spatial uniformity in adaptive layer normalization is fundamentally limiting for cross-modal attention mechanisms.
+
+On register tokens, I'm thinking of a cleaner design where registers act as modality-agnostic intermediaries with ungated attention to everything, while the gating mechanism only controls the four cross-modal pathways between video and action representations.
+
+For the compute budget, I can fit this within 200 hours by starting from the existing UWM checkpoint, allocating 20-30 hours for adapter training on LIBERO, 5-10 hours for evaluation, and reserving 30-50 hours for RoboCasa integration and ablations, leaving comfortable headroom.
+
+The frozen backbone limitation is worth acknowledging directly—I'll propose attention bias terms as a lightweight alternative that doesn't require full fine-tuning.
+
+Now I'm reconsidering the benchmark strategy. The reviewer flagged that UWM hasn't been tested on RoboCasa or LIBERO-PRO, so I should make both primary benchmarks rather than treating one as secondary. Looking at the actual compute requirements: LIBERO training and evaluation takes roughly 25-40 hours, LIBERO-PRO evaluation adds another 5-10 hours since I can reuse the trained model, and RoboCasa requires integration work (10-20 hours), baseline training (20-30 hours), and then the DualGate variant—this is tighter than I initially thought but still feasible within the 200-hour window.
+
+For the contribution framing, I'll adopt the reviewer's more precise language about being the first to apply learned, per-head attention gating conditioned on independent per-modality noise levels. On the expressiveness front, I'm planning two variants: a lightweight scalar version that adds minimal parameters, and a bias-based variant that modulates attention logits directly, giving me a cleaner way to address that concern without overcomplicating the core method.
+
+Actually, I should keep this simpler—the main contribution is the scalar gating plus optional learned attention bias from the noise-pair MLP, with an ablation that unfreezes the top layers' projections if needed. Now I'm working through the detailed resource breakdown to make sure everything fits within the 200-hour budget. LIBERO (pretrained UWM checkpoint → add gating MLP → train with frozen backbone): ~25h H100
+- Phase 2: LIBERO-PRO evaluation (run perturbation suite): ~8h H100
+- Phase 3: RoboCasa integration (data pipeline + observation/action space adaptation): ~15h H100 (debugging runs)
+- Phase 4: UWM baseline on RoboCasa (finetune frozen UWM on RoboCasa demos): ~25h H100
+- Phase 5: DualGate on RoboCasa: ~25h H100
+- Phase 6: RoboCasa evaluation: ~7h H100
+- Phase 7: Ablations (AdaLN-only baseline, single-timestep, unidirectional, unfreezing): ~40h H100
+- Phase 8: Buffer: ~15h H100
+- Total: ~160h H100
+
+That's comfortably under the 200h limit. Now I need to recalibrate the timeline for human_in_loop and auto_research similarly. Looking at the venue deadlines, CoRL 2026 is the only realistic option with abstract due May 26 and paper May 29 — just 19 days away. NeurIPS is too tight at 5-12 days, but since I'm revising an existing idea rather than starting fresh, CoRL could work if the experiments run smoothly.
+
+Let me verify the conference details. The paper cites RSS 2025, which the web search confirms was held at USC on June 21, 2025. The reviewer mentions RSS 2026 scheduled for June 21, 2026. Given the evidence, I'll stick with RSS 2025 in my revision and note the verification against the paper's BibTeX and OpenReview. Now I'm ready to compose the full revised idea, but first I want to be more precise about the contribution. The core insight is that AdaLN applies uniform modulation across all tokens, whereas in UWM the video and action tokens exist at different noise levels but receive identical conditioning — this mismatch is what DualGate addresses.
+
+The theoretical framing is cleaner when I think of it this way: AdaLN controls the content of token representations through scaling and shifting, while DualGate controls the attention weights between modalities. These are orthogonal mechanisms — one adjusts what information flows, the other adjusts how much. This distinction makes the contribution compelling and worth centering in the proposal.
+
+Now I'm reviewing the related work landscape and need to incorporate several recent papers on multimodal attention mechanisms, gated architectures, and conditioning approaches — including work on event-aware memory with cross-modal gating, parameter-efficient adapter transfer, object-addressable attention, dual-stream diffusion models, and recent findings on the limited effectiveness of AdaLN conditioning.
+
+I've verified that all seven reviewer concerns are addressed: the AdaLN redundancy question is covered with both theoretical justification and ablation design, compute is within budget, RoboCasa baseline is explicitly accounted for, register tokens are discussed, the RSS 2025 date is confirmed, concurrent works are included, and the frozen backbone approach is justified with alternatives. Now I'm ready to write the major revision.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0cdc33c1-3cd1-4c81-b6a4-4f49f641a58e",
+  "isSidechain": false,
+  "requestId": "req_011CauN6GXhUp8XFs8pb2R54",
+  "type": "assistant",
+  "uuid": "c06f2d19-1d45-450d-9aea-2be1f0baffdb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GXX4qsRYqeBkzwbXP6AyRL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 893,
+      "cache_creation_input_tokens": 7557,
+      "cache_read_input_tokens": 34487,
+      "output_tokens": 2836,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7557,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 893,
+          "output_tokens": 2836,
+          "cache_read_input_tokens": 34487,
+          "cache_creation_input_tokens": 7557,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7557
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-10T18:31:50.211Z_
+
+I now have comprehensive research findings from all agents. Let me verify one more thing about DUST on RoboCasa since it's directly relevant.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c06f2d19-1d45-450d-9aea-2be1f0baffdb",
+  "isSidechain": false,
+  "requestId": "req_011CauN6GXhUp8XFs8pb2R54",
+  "type": "assistant",
+  "uuid": "c6bcd68e-b865-4c8e-ad4a-d5797968e207",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GXX4qsRYqeBkzwbXP6AyRL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 893,
+      "cache_creation_input_tokens": 7557,
+      "cache_read_input_tokens": 34487,
+      "output_tokens": 2836,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7557,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 893,
+          "output_tokens": 2836,
+          "cache_read_input_tokens": 34487,
+          "cache_creation_input_tokens": 7557,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7557
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-10T18:31:50.656Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01LiKLUDpDRCoZcAHLEivbk3`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2510.27607",
+  "prompt": "What benchmarks is DUST evaluated on? What are its results on RoboCasa specifically? Does it use independent timesteps for video and action? How does it handle cross-modal attention between action and video tokens?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c6bcd68e-b865-4c8e-ad4a-d5797968e207",
+  "isSidechain": false,
+  "requestId": "req_011CauN6GXhUp8XFs8pb2R54",
+  "type": "assistant",
+  "uuid": "0bf6bed3-851a-4625-a036-0539e1c78ea1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GXX4qsRYqeBkzwbXP6AyRL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 893,
+      "cache_creation_input_tokens": 7557,
+      "cache_read_input_tokens": 34487,
+      "output_tokens": 2836,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7557,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 893,
+          "output_tokens": 2836,
+          "cache_read_input_tokens": 34487,
+          "cache_creation_input_tokens": 7557,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7557
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 38_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"DualGate: Noise-Pair-Conditioned Cross-Modal Attention Gating for Worl…",
+  "leafUuid": "0bf6bed3-851a-4625-a036-0539e1c78ea1",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise DualGate with AdaLN complementarity and tighter compute plan",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26"
+}
+```
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-10T18:31:55.787Z_
+
+<details><summary>↩ Tool result · `toolu_01LiKLUDpDRCoZcAHLEivbk3`</summary>
+
+```text
+# DUST Evaluation Summary
+
+**Benchmarks:** DUST is evaluated on simulated environments including RoboCasa and GR-1, plus real-world tasks with the Franka Research 3 robot and large-scale pretraining with BridgeV2 videos.
+
+**RoboCasa Results:** The paper indicates "up to 6% gains over a standard VLA baseline and implicit world-modeling methods," with inference-time scaling providing an additional 2-5% improvement in success rate.
+
+**Independent Timesteps:** Yes. The method introduces "a sampling method where we sample action and vision tokens asynchronously at different rates," which contributes to performance improvements through inference-time scaling.
+
+**Cross-Modal Attention:** DUST maintains "separate modality streams while enabling cross-modal knowledge sharing" through a multimodal diffusion transformer architecture. However, the abstract doesn't specify the exact cross-modal attention mechanism—only that it avoids requiring a unified latent space by using independent noise perturbations and decoupled flow matching loss.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0bf6bed3-851a-4625-a036-0539e1c78ea1",
+  "isSidechain": false,
+  "promptId": "8fe7ba83-077d-4d82-b693-e5f7f4fab09b",
+  "type": "user",
+  "uuid": "fa09a5b3-3798-4c53-b6c0-c7db2ea8cc67",
+  "toolUseResult": {
+    "bytes": 47247,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# DUST Evaluation Summary\n\n**Benchmarks:** DUST is evaluated on simulated environments including RoboCasa and GR-1, plus real-world tasks with the Franka Research 3 robot and large-scale pretraining with BridgeV2 videos.\n\n**RoboCasa Results:** The paper indicates \"up to 6% gains over a standard VLA baseline and implicit world-modeling methods,\" with inference-time scaling providing an additional 2-5% improvement in success rate.\n\n**Independent Timesteps:** Yes. The method introduces \"a sampling method where we sample action and vision tokens asynchronously at different rates,\" which contributes to performance improvements through inference-time scaling.\n\n**Cross-Modal Attention:** DUST maintains \"separate modality streams while enabling cross-modal knowledge sharing\" through a multimodal diffusion transformer architecture. However, the abstract doesn't specify the exact cross-modal attention mechanism—only that it avoids requiring a unified latent space by using independent noise perturbations and decoupled flow matching loss.",
+    "durationMs": 5125,
+    "url": "https://arxiv.org/abs/2510.27607"
+  },
+  "sourceToolAssistantUUID": "0bf6bed3-851a-4625-a036-0539e1c78ea1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-10T18:32:05.481Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. DUST confirms that RoboCasa is viable for WAM-type methods and that independent noise/timesteps are becoming standard. Now I have everything I need to write the revised proposal.
+
+Let me now compose the complete revised JSON. This is a major revision.
+
+One more thought about the venue timeline:
+- Today is 2026-05-10
+- NeurIPS 2026: abstract ~May 15 (5 days), paper ~May 22 (12 days) — essentially impossible
+- CoRL 2026: abstract May 26 (16 days), paper May 29 (19 days) — extremely tight, but if someone already has a codebase ready and just needs to run experiments, maybe possible?
+
+
+- AAAI 2027 and ICRA 2027 are more realistic targets with 2.5 and 4 months respectively, so I'll focus on CoRL 2026 as a stretch goal and AAAI 2027 as the main deadline.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fa09a5b3-3798-4c53-b6c0-c7db2ea8cc67",
+  "isSidechain": false,
+  "requestId": "req_011CauNCBgugL1qsmHTtede4",
+  "type": "assistant",
+  "uuid": "6892aa98-a83e-4f4d-a3ff-596c403cff63",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TwcF2ur3D8jBzd2jTDf5Mr",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3963,
+      "cache_read_input_tokens": 42044,
+      "output_tokens": 6614,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3963,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6614,
+          "cache_read_input_tokens": 42044,
+          "cache_creation_input_tokens": 3963,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3963
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-10T18:34:37.127Z_
+
+I now have all the research needed. Let me synthesize and produce the revised proposal. Here are the key findings that inform the revision:
+
+**AdaLN redundancy**: Strong literature support that AdaLN is spatially uniform and insufficient — 5 papers demonstrate this (TACA, "Unveiling AdaLN-Zero", "Rethinking Global Text Conditioning", DiT survey, Qwen Gated Attention). UWM's AdaLN applies identical modulation to ALL tokens (video, action, register).
+
+**UWM architecture**: 8 register tokens (not 8-24), sequence order [action | observation | registers], full bidirectional attention with no masking, DiT-B scale (12 layers, 768 dim, 12 heads). UWM is confirmed RSS 2025 (paper BibTeX, project page, OpenReview listing).
+
+**Concurrent works**: EA-WM is the closest competitor (gated cross-modal attention) but gates on spatial event saliency, not noise levels. CKT-WAM, OA-WAM address different problems entirely. DUST uses independent noise but only AdaLN conditioning.
+
+**Benchmarks**: RoboCasa SOTA is ~67% (Cosmos Policy), LIBERO-PRO shows 90%→0% collapse. UWM has never been on either. DUST confirms RoboCasa is viable for WAM methods.
+
+**Compute**: 200h budget is feasible with adapter training on frozen backbone starting from UWM's LIBERO checkpoint.
+
+```json
+{
+  "title": "DualGate: Explicit Noise-Pair Attention Gating Beyond AdaLN for World Action Models with Independent Timesteps",
+  "change_type": "major",
+  "core_problem": "In World Action Models (WAMs) with independent diffusion timesteps, video and action tokens exist at fundamentally different noise levels during joint denoising. While UWM's Adaptive Layer Normalization (AdaLN) conditions all transformer blocks on concatenated timestep embeddings (t_o, t_a), AdaLN modulates token representations uniformly across the entire sequence — it applies identical scale/shift parameters to video tokens at noise level t_o, action tokens at noise level t_a, and register tokens alike. This spatially global operation adjusts WHAT information tokens contain but cannot control HOW MUCH each modality attends to the other as a function of relative noise states. When one modality is highly noisy and the other is nearly clean, cross-modal attention injects stochastic perturbations rather than useful signal, and no AdaLN conditioning — however expressive — can selectively suppress these harmful attention pathways because it operates before the attention computation, not on the attention weights themselves.",
+  "opportunity": "WAMs with independent timesteps (UWM, X-WAM, DUST) create a noise-pair information asymmetry that current architectures address only through global conditioning. UWM concatenates (t_o, t_a) into AdaLN that applies uniform modulation to all tokens. X-WAM's ANS constrains t_o ≥ t_a during inference but uses fixed full attention. DUST maintains separate streams with per-modality AdaLN but does not gate cross-modal attention on noise levels. MotuBrain uses a static H-bridge attention pattern (full joint attention in middle 50% of layers) that is architecturally fixed, not noise-adaptive. Multiple lines of evidence confirm that AdaLN-based conditioning is insufficient for fine-grained cross-modal control: (1) 'Rethinking Global Text Conditioning in Diffusion Transformers' (arXiv 2026) demonstrates that global conditioning via AdaLN contributes negligibly to generation quality in FLUX, HiDream, and COSMOS — attention-based conditioning dominates; (2) 'Delving Deep into Diffusion Transformers' shows cross-attention uniformly outperforms AdaLN on spatial/compositional metrics because AdaLN 'adjusts features uniformly across all positions'; (3) TACA (ICCV 2025) demonstrates that token imbalance in joint attention causes cross-modal attention suppression in softmax, requiring explicit temperature-based attention modulation that produces +16-28% spatial accuracy gains — an effect AdaLN cannot address because it operates before attention; (4) Qwen's Gated Attention (NeurIPS 2025 Best Paper) establishes theoretically that 'softmax attention cannot express none of the above' and gating conditioned on queries enables selective suppression of noisy/irrelevant context. The closest concurrent work, EA-WM (arXiv 2026), introduces gated cross-modal attention between video and action streams, but its gating signal is spatial event saliency (frame-difference supervision via EDLS), not noise-level conditioning — it gates based on WHERE interesting things happen, not on the denoising stage of each modality. This leaves a clear opening: explicit, learned, per-head attention gating conditioned on the pair of independent noise levels, complementing AdaLN's global representation modulation with targeted attention-weight control.",
+  "landscape": "UWM (RSS 2025, github.com/WEIRDLabUW/unified-world-model) uses independent diffusion timesteps for video and action in a unified DiT-B (12 layers, 768 dim, 12 heads) with dual-timestep AdaLN conditioning; the same AdaLN scale/shift parameters modulate all tokens (action, video, 8 register tokens) identically; full bidirectional attention between all tokens; evaluated on LIBERO-100 (79% avg success) and real-robot tasks. X-WAM (arXiv April 2026, sharinka0715.github.io/X-WAM) uses full bidirectional attention on concatenated video+action sequences with Asynchronous Noise Sampling (ANS: t_o ≥ t_a); actions decoded in 5 steps while video uses 25; achieves 79.2% on RoboCasa, 90.7% on RoboTwin 2.0; code not yet released. DreamZero (arXiv Feb 2026, github.com/dreamzero0/dreamzero) jointly denoises video and action with shared timestep on a 14B Wan2.1-I2V backbone. DUST (arXiv Oct 2025, dual-stream diffusion) maintains separate action/vision token streams with per-modality AdaLN and independent noise perturbations; evaluates on RoboCasa achieving up to 6% gains over VLA baselines; does NOT gate attention on noise levels. EA-WM (arXiv May 2026) augments Wan2.2 with a parallel KVAF branch and event-aware bidirectional fusion blocks; an event MLP computes per-token gating for cross-modal attention, but gating is supervised by event-difference latent supervision (EDLS: |I_t - I_{t-1}| encoded through VAE), not noise-level pairs; uses shared timestep with flow matching. MotuBrain (arXiv April 2026) uses three-stream MoT with static H-bridge design: full joint attention in middle 50% of layers, decoupled in top/bottom 25% — architecturally fixed, not noise-adaptive; uses separate SNR-based timestep sampling. CKT-WAM (arXiv May 2026) proposes parameter-efficient adapter transfer between WAMs using routed expert adapters — targets knowledge transfer, not noise-pair conditioning. OA-WAM (arXiv May 2026) modifies attention via address-only key projections for object identity routing — different purpose (spatial/identity, not temporal/noise). TACA (ICCV 2025) applies a fixed piecewise temperature function to text→image cross-modal attention based on a single shared timestep — not learned, not dual-timestep, not robotics. D3P (arXiv 2025) uses RL to allocate denoising step counts per action for inference efficiency, not to modulate attention weights. AVDiT (NeurIPS 2024) introduces mixture of noise levels in audiovisual DiT and extends AdaLN to per-modality timestep vectors, but does not gate attention based on noise-level differences. Fast-WAM (arXiv March 2026) removes video generation at test time, sidestepping the dual-timestep regime. 'Rethinking Global Text Conditioning in Diffusion Transformers' (arXiv Feb 2026) demonstrates that global AdaLN conditioning contributes negligibly in FLUX/HiDream/COSMOS. 'Unveiling the Secret of AdaLN-Zero' (OpenReview 2024) shows AdaLN-Zero succeeds primarily due to zero-initialization stability, not expressive conditioning power. No prior work applies explicit, learned, per-head attention gating conditioned on both modality timestep embeddings in multi-modal diffusion for robotics.",
+  "approach": "We propose DualGate, a parameter-efficient adapter that learns explicit noise-pair-conditioned gating for bidirectional cross-modal attention in WAMs with independent timesteps, complementing AdaLN's global representation modulation with targeted attention-weight control.\n\n**Architecture.** A small MLP gating network (~0.15% additional parameters over UWM's DiT-B) takes BOTH the video timestep embedding t_o and action timestep embedding t_a as input — reusing UWM's existing sinusoidal positional embeddings — and outputs per-head gating values for cross-modal attention. Specifically, for each of UWM's 12 attention heads across 12 transformer layers, DualGate produces: (1) a scalar gate g_{v→a} ∈ [0,1] for video→action attention (how much action tokens attend to video tokens), and (2) a scalar gate g_{a→v} ∈ [0,1] for action→video attention. Optionally, DualGate also produces per-head attention bias terms b_{v→a}, b_{a→v} added to the attention logits before softmax, providing richer modulation than pure scalar gating while remaining lightweight. The gating is applied by masking the attention weight matrix: for each head, attention weights from action query positions to video key positions are scaled by g_{v→a} (and biased by b_{v→a}), and vice versa.\n\n**Register token handling.** UWM's 8 register tokens serve as modality-neutral communication buffers whose outputs are discarded. We leave all register-involved attention quadrants (register→video, register→action, video→register, action→register, register→register) ungated. Rationale: registers are explicitly designed to facilitate unconstrained cross-modal information exchange; gating them would defeat their architectural purpose. DualGate only gates the four direct cross-modal quadrants (action-query→video-key, video-query→action-key) and the two self-modal quadrants remain ungated. This design preserves the register pathway as an alternative communication channel while allowing DualGate to modulate direct cross-modal attention.\n\n**Why DualGate complements AdaLN (not redundant).** AdaLN and DualGate operate on orthogonal axes: AdaLN modulates token REPRESENTATIONS (what information tokens contain) uniformly across the sequence, while DualGate modulates attention WEIGHTS (how much information flows between modalities) differentially across token types. Concretely, UWM's AdaLN computes 6 parameters (scale, shift, gate for attention and MLP) from concatenated [global_cond | sinusoidal(t_a) || sinusoidal(t_o)] and broadcasts these identically to all tokens via unsqueeze(1). This cannot express 'action tokens should attend less to video when t_o is high' because the modulation is position-independent. DualGate targets precisely this gap. This is analogous to the difference between SE-Net's channel recalibration (global, like AdaLN) and spatial attention (position-specific, like DualGate) in the CNN literature — both are useful, neither subsumes the other.\n\n**Frozen backbone + expressiveness.** With UWM's backbone frozen, DualGate cannot modify Q/K/V representations directly. We address this expressiveness limitation through: (a) per-head attention bias terms (beyond pure scalar gating) that shift the attention distribution rather than just scaling it, and (b) an ablation unfreezing the Q/K projection layers in the top 3 transformer layers (~5% additional trainable parameters) to measure the expressiveness ceiling. We hypothesize that the attention bias variant captures most of the benefit, since the core signal — whether to attend cross-modally — is binary/smooth rather than requiring complex representational changes.\n\n**Training.** DualGate is trained end-to-end on a frozen UWM backbone using UWM's standard coupled score matching objective with independent timestep sampling. We initialize from UWM's open-source pretrained LIBERO-90 checkpoint. The gating MLP is initialized to output gates near 1.0 (full attention), ensuring training starts from UWM's original behavior and gradually learns to modulate.\n\n**Evaluation.** Primary benchmarks: (1) LIBERO-100 (5 held-out tasks from 100, UWM baseline exists at 79%): validates DualGate improves standard task success. (2) LIBERO-PRO (robustness benchmark): tests whether noise-pair-conditioned gating improves robustness under position, semantic, and environment perturbations — where current SOTA models collapse from 90%+ to 0%. This is the most compelling evaluation: if DualGate helps the model learn better grounding of actions in clean visual structure during denoising, it should improve perturbation robustness. (3) RoboCasa (24-task kitchen manipulation, SOTA ~67%): validates generalization to a new domain requiring UWM baseline establishment first. Baselines: (a) UWM with standard full attention (open-source), (b) DUST with per-modality AdaLN (as reported in their paper on RoboCasa, for comparison). Ablations: (i) AdaLN-only baseline (frozen UWM with built-in dual AdaLN, no DualGate) — isolates DualGate's contribution beyond implicit AdaLN conditioning; (ii) single-timestep conditioning (gate depends on t_a only or t_o only) — measures benefit of dual-timestep awareness; (iii) scalar-only vs. scalar+bias gating — measures expressiveness benefit; (iv) unidirectional gating (video→action only) vs. bidirectional; (v) unfreezing top-3 layers' Q/K projections — measures frozen backbone expressiveness ceiling. We produce 'noise-phase diagrams' visualizing learned gating values across the (t_o, t_a) plane, revealing interpretable structure about when cross-modal attention is beneficial vs. harmful.\n\n**DreamZero experiments are dropped** to fit within the 200 H100-hour compute budget (14B model is prohibitively expensive for adapter experimentation).",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~160h H100 (within 200h hard constraint)",
+      "compute_plan": "Phase 1 — DualGate adapter training on LIBERO (from UWM pretrained checkpoint, frozen backbone, only gating MLP trainable): ~25h. Phase 2 — LIBERO-PRO evaluation (run perturbation suite on trained model): ~8h. Phase 3 — RoboCasa integration (adapt UWM data pipeline to RoboCasa observation/action spaces, debugging runs): ~15h. Phase 4 — UWM baseline on RoboCasa (finetune+evaluate frozen UWM on RoboCasa demonstrations): ~25h. Phase 5 — DualGate on RoboCasa (train gating adapter): ~25h. Phase 6 — RoboCasa evaluation (24 tasks × 50 rollouts × 3 seeds): ~7h. Phase 7 — Ablations (AdaLN-only baseline, single-timestep, scalar-only, unidirectional, unfreezing top-3 layers): ~40h. Phase 8 — Buffer for failures/reruns: ~15h. Total: ~160h H100.",
+      "gpu_utilization": "~40-50% effective utilization; GPUs idle during RoboCasa integration debugging and analysis of noise-phase diagrams between runs",
+      "timeline": "2.5-4 months",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "$400-$500 at ~$2.50/hr spot H100"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~180h H100 (within 200h hard constraint)",
+      "compute_plan": "Same phases as manual with improved utilization: agent handles UWM-RoboCasa integration, automated experiment scheduling, and gating visualization generation. Additional ~20h for more comprehensive ablation grid.",
+      "gpu_utilization": "~60-70% effective utilization; agent pipelines experiments and generates noise-phase visualizations automatically",
+      "timeline": "1.5-2.5 months",
+      "team": "1 researcher, ~20min/day reviewing noise-phase diagrams and approving ablation directions",
+      "claude_api_cost": "$150-$300 (estimated 2,000-4,000 conversation turns)",
+      "estimated_gpu_cost": "$450-$550",
+      "risk_note": "RoboCasa simulation environment setup and rollout bottleneck (~45-90 min per full 24-task evaluation suite); UWM-to-RoboCasa data pipeline adaptation is the primary engineering risk"
+    },
+    "auto_research": {
+      "gpu_hours": "~195h H100 (within 200h hard constraint)",
+      "compute_plan": "Agent fully pipelines all phases with maximal parallelism. Additional budget for comprehensive (t_o, t_a) grid sweeps across noise-phase space and more ablation variants (e.g., per-layer vs per-head granularity, different gating MLP architectures).",
+      "gpu_utilization": "~85-90% effective utilization; agent continuously schedules next experiment as previous completes",
+      "timeline": "2-3 weeks with 4-8 H100s concurrently",
+      "team": "0 (initial setup: point agent at UWM repo, LIBERO checkpoint, RoboCasa/LIBERO-PRO environments)",
+      "claude_api_cost": "$400-$600 (estimated 5,000-8,000 turns)",
+      "estimated_gpu_cost": "$490-$600",
+      "speed_bottleneck": "RoboCasa simulation rollouts (~45-90 min per full suite); RoboCasa integration debugging may require human intervention if data pipeline issues are non-trivial",
+      "risk_note": "Agent may over-explore the (t_o, t_a) gating space; budget strictly caps at 200h to prevent overrun"
+    }
+  },
+  "target_venues": [
+    "CoRL 2026 (abstract May 26, paper May 29 — tight but feasible if LIBERO experiments are prioritized first, RoboCasa as camera-ready addition)",
+    "AAAI 2027 (abstract ~Jul 25, paper ~Aug 1 — primary target, sufficient time for all experiments including RoboCasa)",
+    "ICRA 2027 (paper ~Sep 16 — comfortable timeline for thorough evaluation)"
+  ],
+  "level": "solid-to-strong",
+  "key_references": [
+    "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets (RSS 2025)",
+    "X-WAM: Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising (arXiv 2026)",
+    "World Action Models are Zero-shot Policies [DreamZero] (arXiv 2026)",
+    "MotuBrain: An Advanced World Action Model for Robot Control (arXiv 2026)",
+    "Dual-Stream Diffusion for World-Model Augmented Vision-Language-Action Model [DUST] (arXiv 2025)",
+    "EA-WM: Event-Aware Generative World Model with Structured Kinematic-to-Visual Action Fields (arXiv 2026)",
+    "CKT-WAM: Parameter-Efficient Context Knowledge Transfer Between World Action Models (arXiv 2026)",
+    "OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation (arXiv 2026)",
+    "Rethinking Cross-Modal Interaction in Multimodal Diffusion Transformers [TACA] (ICCV 2025)",
+    "Rethinking Global Text Conditioning in Diffusion Transformers (arXiv 2026)",
+    "Unveiling the Secret of AdaLN-Zero in Diffusion Transformer (OpenReview 2024)",
+    "Delving Deep into Diffusion Transformers for Image and Video Generation (arXiv 2023)",
+    "Gated Attention for Large Language Models [Qwen] (NeurIPS 2025 Best Paper)",
+    "D3P: Dynamic Denoising Diffusion Policy via Reinforcement Learning (arXiv 2025)",
+    "A Versatile Diffusion Transformer with Mixture of Noise Levels for Audiovisual Generation [AVDiT] (NeurIPS 2024)",
+    "Fast-WAM: Do World Action Models Need Test-time Future Imagination? (arXiv 2026)",
+    "LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization (arXiv 2025)",
+    "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion (RSS 2023)"
+  ],
+  "description": "World Action Models with independent diffusion timesteps (UWM, X-WAM, DUST) condition all transformer blocks on concatenated timestep embeddings (t_o, t_a) via Adaptive Layer Normalization (AdaLN), but AdaLN applies identical modulation to all tokens regardless of their modality — it adjusts WHAT information tokens contain, not HOW MUCH modalities attend to each other. Multiple lines of evidence establish that this global conditioning is insufficient: AdaLN contributes negligibly to generation quality vs. attention-based conditioning (arXiv 2026), cannot fix cross-modal attention suppression from token imbalance in joint softmax (TACA, ICCV 2025), and cannot express selective suppression of noisy context (Qwen Gated Attention, NeurIPS 2025). We propose DualGate, a parameter-efficient adapter (~0.15% additional parameters) that provides the complementary capability: explicit, learned, per-head attention gating conditioned on both modality timestep embeddings. For each attention head, DualGate outputs asymmetric scalar gates and optional attention bias terms for video→action and action→video attention, while leaving UWM's 8 register tokens ungated as modality-neutral communication buffers. Unlike EA-WM's event-saliency-driven gating (EDLS supervision), DualGate conditions on the denoising stage of each modality, learning WHEN in the joint (t_o, t_a) noise-phase space cross-modal attention helps versus hurts. Trained end-to-end on a frozen UWM backbone from its open-source LIBERO-90 checkpoint, DualGate is evaluated on LIBERO-100 (standard success, UWM baseline 79%), LIBERO-PRO (robustness under perturbation where SOTA collapses from 90%+ to 0%), and RoboCasa (24-task kitchen manipulation, SOTA ~67%). Key ablations isolate DualGate's contribution beyond AdaLN (AdaLN-only baseline), the benefit of dual- vs. single-timestep conditioning, scalar vs. scalar+bias gating expressiveness, and frozen vs. partially-unfrozen backbone. Noise-phase diagrams visualize learned gating across the (t_o, t_a) plane. All experiments fit within a 200 H100-hour compute budget. This is the first work to apply explicit, learned, per-head attention gating conditioned on independent per-modality noise levels in world action models.",
+  "project_name": "dual_gate_wam_attention",
+  "source": "web_research"
+}
+```
+
+**Summary of changes (major revision):**
+
+1. **AdaLN redundancy addressed head-on**: Reframed the entire problem/opportunity around the theoretical distinction between representation modulation (AdaLN, spatially uniform) vs. attention-weight modulation (DualGate, modality-specific). Cited 5 supporting papers including "Rethinking Global Text Conditioning" (2026), TACA, Qwen Gated Attention, and "Unveiling AdaLN-Zero". Added an explicit AdaLN-only ablation.
+
+2. **Compute budget fixed**: All three resource tiers now fit within 200 H100-hours with concrete phase-by-phase plans. DreamZero 14B experiments dropped entirely.
+
+3. **Register tokens explicitly addressed**: 8 registers left ungated as modality-neutral buffers; only the 4 direct cross-modal attention quadrants are gated. Architectural rationale provided.
+
+4. **Contribution claim narrowed**: From "first to condition on noise pairs" to "first to apply explicit, learned, per-head attention gating conditioned on independent per-modality noise levels in world action models" — acknowledging AdaLN's implicit conditioning.
+
+5. **Concurrent works added**: EA-WM (closest competitor, differentiated by gating signal: event saliency vs. noise levels), CKT-WAM, OA-WAM, DUST all integrated into landscape.
+
+6. **RSS year**: Verified as RSS 2025 per the paper's own BibTeX, project page, and OpenReview listing.
+
+7. **Frozen backbone limitation**: Addressed by adding attention bias terms (beyond scalar gating) and an unfreezing ablation for the top-3 layers' Q/K projections.
+
+8. **NeurIPS 2026 dropped** from venues (5 days to abstract is infeasible); CoRL 2026 kept as stretch, AAAI 2027 as primary target.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6892aa98-a83e-4f4d-a3ff-596c403cff63",
+  "isSidechain": false,
+  "requestId": "req_011CauNCBgugL1qsmHTtede4",
+  "type": "assistant",
+  "uuid": "0106c80d-812b-4ec0-87f7-64e23fde4d6e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TwcF2ur3D8jBzd2jTDf5Mr",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3963,
+      "cache_read_input_tokens": 42044,
+      "output_tokens": 6614,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3963,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6614,
+          "cache_read_input_tokens": 42044,
+          "cache_creation_input_tokens": 3963,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3963
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"DualGate: Noise-Pair-Conditioned Cross-Modal Attention Gating for Worl…",
+  "leafUuid": "0106c80d-812b-4ec0-87f7-64e23fde4d6e",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise DualGate with AdaLN complementarity and tighter compute plan",
+  "sessionId": "6981195d-1dd3-4986-bae6-45a75a7bbf26"
+}
+```
+
+---

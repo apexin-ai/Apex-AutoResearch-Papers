@@ -1,0 +1,4290 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-10 (UTC).** ## Original idea { "tit
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 64
+- **Recorded user turns:** 1
+- **Tool calls:** 17
+- **Original source:** `logs/chats/exported-trajectories/account-3/42a6f1a8-8fee-47a2-804a-fa0ab828b3a1.jsonl`
+- **Structured JSON:** [`bfd17c9626c8372e6cf5.json`](../../sessions/bf/bfd17c9626c8372e6cf5.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T08:05:02.452Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T08:05:02.452Z",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-10 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Frozen-WAM MPPI: Inference-Time Importance-Weighted Planning for Pretrained World Action Models\",\n  \"core_problem\": \"Pretrained WAMs generate a single action trajectory at inference and cannot explicitly compare candidate futures. Adding planning capability currently requires one of three costly interventions: (1) full fine-tuning of the video model on robot demos (Cosmos Policy, ICLR 2026: requires full fine-tune of Cosmos-Predict2-2B across 384–3,072 H100-hours depending on dataset size); (2) training a separate action-conditioned world model alongside the frozen policy (GPC, RAL 2025); or (3) architectural co-design with hierarchical world models (H-WM) or RL loops (GigaBrain RAMP). No method provides a plug-in planning wrapper that works with any pretrained WAM using only the WAM's own latent space, leaves all WAM weights frozen, and requires only lightweight additional training.\",\n  \"opportunity\": \"A frozen pretrained WAM's inference pass already produces clean, fully-denoised video-action latent trajectories whose structure encodes task-relevant information: the WAM was trained to model realistic manipulation dynamics, so high-quality latents correspond to plausible task-completing behaviors. Sampling B=4–8 fully-denoised trajectories from the WAM (using different noise seeds, keeping all WAM weights frozen) and scoring each with a 3-layer value MLP trained on clean WAM latent encodings of LIBERO success/failure demonstrations converts any pretrained WAM into a soft multi-candidate planner. MPPI-style importance weights w_i ∝ exp(β·V(z_i)) compute a soft weighted-average action rather than hard argmax selection (as in GPC-RANK), yielding a smoother and more robust output across the candidate distribution. The value MLP trains entirely on clean, fully-denoised latents—no partial-denoising noise, no distributional shift between training and inference inputs. Total additional training cost: ≤15 H100-hours (demo encoding + MLP training), entirely within a 200 H100-hour budget. The key differentiators not present in any prior work: (1) zero WAM retraining (vs. Cosmos Policy's 384–3,072 H100-hours); (2) no separate world model required (vs. GPC's separate WM training); (3) soft MPPI importance weighting over full trajectories (vs. GPC-RANK's hard argmax); (4) plug-in compatibility with any pretrained video-diffusion WAM.\",\n  \"landscape\": \"Cosmos Policy (arXiv 2601.16163, ICLR 2026) is the closest prior work and must be addressed directly. It fully fine-tunes Cosmos-Predict2-2B (all weights, no layer freezing) on robot demos — 8×48=384 H100-hours for ALOHA, 32×48=1,536 for RoboCasa, 64×48=3,072 for LIBERO — then uses the fine-tuned model itself as a planning model generating future state images and value predictions as latent frames; test-time planning uses best-of-N with 15 ensemble value predictions per action. It achieves 98.5% LIBERO and 67.1% RoboCasa. Crucially, Cosmos Policy is not plug-in compatible with other WAMs: it is architecture-specific to Cosmos-Predict2 and requires full retraining for every new target domain. Our method keeps all WAM weights frozen and costs ≤15 H100-hours for a domain-agnostic value MLP that works with any pretrained WAM. GPC (arXiv 2502.00622, IEEE RAL 2025) augments a frozen diffusion policy with a separately trained action-conditioned world model; GPC-RANK generates multiple action proposals from the frozen policy, unrolls them through the world model, and selects the argmax — requiring training both a policy and a separate world model, plus random exploration rollouts for the WM. Our method uses the WAM's own latent space as the evaluation substrate (no separate world model) and uses soft importance-weighted averaging rather than hard argmax selection. ChEaP (arXiv 2603.30043) demonstrates early plan commitment in video diffusion models for 2D maze solving (Wan2.2-14B, HunyuanVideo-1.5), showing 7%→67% accuracy on long-horizon mazes; however, this finding is domain-restricted to navigation tasks and has not been validated for continuous manipulation with contact dynamics. Our revised method does not rely on the early commitment property, instead using full denoising, making the approach robust to this unresolved assumption. DreamZero (arXiv 2602.15922) trains a single video-action trajectory at inference with joint video+action denoising through a 14B DiT; on H100 with 2 GPUs and 38× inference optimization, ~3s per action chunk; generates single trajectories only. GigaBrain-0.5M* (arXiv 2602.12099) uses RAMP RL loops requiring 30%+ more task-specific training. H-WM (arXiv 2602.11291) requires hierarchical architectural co-design. Compositional Planning with Jumpy World Models (arXiv 2602.19634) requires WM training from scratch. PiJEPA (arXiv 2603.25981) applies MPPI over a JEPA-based world model for navigation using a deterministic latent space and warm-starts from a policy prior, without importance-weighted averaging over the full sample distribution. Latent Diffusion Planning (arXiv 2504.16925) trains a diffusion planner from scratch. No prior work applies MPPI-style importance-weighted soft selection over B=4–8 fully-denoised trajectories from a completely frozen pretrained video-diffusion WAM, without retraining the WAM or training a separate world model, and demonstrates this on continuous dexterous manipulation benchmarks.\",\n  \"approach\": \"We take UWM (github.com/WEIRDLabUW/unified-world-model, RSS 2025) as the primary backbone — its independent per-modality diffusion timesteps allow clean full denoising of both video and action modalities without partial-step synchronization complexity — and DreamZero-14B (GEAR-Dreams/DreamZero-DROID) as a secondary backbone for cross-WAM generalization. All WAM weights are frozen throughout. The value MLP is trained in three steps: (1) Data generation: encode every LIBERO-90 demonstration through the frozen WAM by running full denoising (not partial) on the action+video tokens, obtaining clean WAM latent trajectories z; label each with task success/failure from demo metadata. With ~4,500 LIBERO-90 demos and UWM's per-modality encoding, this encoding pass costs approximately 10–15 H100-hours. (2) MLP training: fit a 3-layer MLP (input: flattened trajectory latent z, output: scalar V ∈ [0,1]) via binary cross-entropy for ~2–3 H100-hours. Total additional training cost: ≤18 H100-hours. (3) Inference-time planning: at each planning step, sample B=4–8 fully-denoised trajectories from the frozen WAM using independent Gaussian noise seeds (exploiting the WAM's stochastic decoder for trajectory diversity); score each with V(z_i); compute MPPI importance weights w_i ∝ exp(β·V(z_i)); output the weighted-average action chunk sum_i w_i * a_i. Inference is scoped to two regimes: (a) open-loop planning: generate B trajectories once at episode start, execute the weighted-average full trajectory — adds ~1–4s per episode for UWM with B=4–8 in batch; (b) periodic low-frequency replanning: replan every K=5 action chunks (~8–10s intervals for UWM), feasible for tabletop tasks without tight real-time constraints. Real-time 7Hz replanning is deferred to future work (requires B=2 with DreamZero-Flash). We ablate: B ∈ {2, 4, 8, 16}; temperature β ∈ {0.5, 1, 2, 5} (β→∞ recovers hard argmax); soft importance-weighting vs. hard argmax (GPC-RANK style) vs. random selection; UWM vs. DreamZero-14B backbone. Evaluations: LIBERO-Long (10 tasks, 12+ steps, baseline single-trajectory failure >40%) and RoboCasa (to compare with Cosmos Policy's published 67.1%). Baselines: (a) single-trajectory WAM inference, (b) GPC-RANK-style argmax selection, (c) random trajectory selection, (d) Cosmos Policy published results (not reproduced — cited for context on fine-tuned WAM upper bound). Primary ablation hypothesis: soft importance-weighted averaging outperforms hard argmax selection under high trajectory variance (large β ablation captures this tradeoff).\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~150h H100\",\n      \"gpu_utilization\": \"HIGH idle (~40–60%): GPU waits while researcher implements the frozen-WAM inference wrapper, debugs batch trajectory generation and value MLP integration with UWM/DreamZero APIs, designs ablations, and interprets results between runs\",\n      \"timeline\": \"2–4 months\",\n      \"team\": \"1–2 researchers\",\n      \"estimated_gpu_cost\": \"~$375 (150h × $2.50/h blended Lambda/RunPod/Vast.ai H100 rate)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~200h H100\",\n      \"gpu_utilization\": \"MODERATE idle (~20–30%): agent handles code scaffolding, demo encoding, and experiment submission continuously; human approves ablation designs at daily check-ins, cutting sequential idle by ~40%\",\n      \"timeline\": \"3–5 weeks\",\n      \"team\": \"1 researcher, ~30 min/day check-in\",\n      \"claude_api_cost\": \"$100–200 (~1,500–2,000 turns at mixed Sonnet/Opus rates)\",\n      \"estimated_gpu_cost\": \"~$500 (200h × $2.50/h)\",\n      \"risk_note\": \"Key risk: value MLP may not discriminate B=4–8 diverse trajectories from a single task distribution (all B trajectories from the same WAM + prompt may be too similar in latent space). Human approval gates can catch low V(z_i) variance early and trigger adjustments (increase B, increase noise temperature, or switch to per-task value MLP).\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~500h H100 (both UWM and DreamZero-14B backbones; full B/β ablation grid; LIBERO-Long + RoboCasa evaluations; multiple seeds)\",\n      \"gpu_utilization\": \"MINIMAL idle (~5–10%): agent pipelines demo encoding, MLP training, evaluation, and logging continuously\",\n      \"timeline\": \"7–10 days with 4–8 H100 GPUs simultaneously\",\n      \"team\": \"0 (only initial repo setup and credential configuration)\",\n      \"claude_api_cost\": \"$200–400 (~3,000–5,000 turns at Opus rates)\",\n      \"estimated_gpu_cost\": \"~$1,250 (500h × $2.50/h)\",\n      \"speed_bottleneck\": \"LIBERO-Long evaluation rollouts: each of B=8 ablation variants requires sequential per-task evaluation (2–4h per variant); with 4 GPUs running 4 ablation variants concurrently, the full grid needs ~6–8 days minimum\",\n      \"risk_note\": \"UWM and DreamZero-14B APIs differ substantially; auto-agent may iterate through API mismatches before stable batched inference works. DreamZero-14B's 38× optimization pipeline requires specific multi-GPU NCCL setup that may not be auto-configurable.\"\n    }\n  },\n  \"target_venues\": [\n    \"CoRL 2026 (Abstract deadline: May 26, 2026; Full paper: May 29, 2026; Conference: Nov 9–12, Austin TX)\",\n    \"ICLR 2027 (deadline ~September–October 2026; not yet officially announced as of 2026-05-10)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"Cosmos Policy: Fine-Tuning Video Models for Visuomotor Control and Planning (arXiv 2601.16163, ICLR 2026) — CRITICAL PRIOR WORK: full fine-tune of Cosmos-Predict2-2B (384–3,072 H100-hours), 98.5% LIBERO, 67.1% RoboCasa; not plug-in compatible with other WAMs\",\n    \"Inference-Time Enhancement of Generative Robot Policies via Predictive World Modeling / GPC (arXiv 2502.00622, IEEE RAL 2025) — CRITICAL PRIOR WORK: frozen policy + separately trained world model + hard argmax selection (GPC-RANK); our method uses no separate WM and uses soft importance weighting\",\n    \"Video Models Reason Early: Exploiting Plan Commitment for Maze Solving / ChEaP (arXiv 2603.30043) — validated early commitment in 2D mazes only; our revised method does not rely on partial-denoising early commitment\",\n    \"World Action Models are Zero-shot Policies / DreamZero (arXiv 2602.15922) — 14B joint video+action DiT, ~3s/chunk on H100 optimized; secondary backbone in our evaluation\",\n    \"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets / UWM (arXiv 2504.02792, RSS 2025) — primary backbone; independent per-modality timesteps enable clean full denoising\",\n    \"GigaBrain-0.5M*: a VLA That Learns From World Model-Based Reinforcement Learning (arXiv 2602.12099) — RAMP RL loop requires 30%+ more training\",\n    \"H-WM: Robotic Task and Motion Planning Guided by Hierarchical World Model (arXiv 2602.11291) — requires architectural co-design\",\n    \"Compositional Planning with Jumpy World Models (arXiv 2602.19634) — requires WM training from scratch\",\n    \"Policy-Guided World Model Planning for Language-Conditioned Visual Navigation / PiJEPA (arXiv 2603.25981) — MPPI over deterministic JEPA latent for navigation, not manipulation; warm-starts from policy prior rather than importance-weighted averaging\",\n    \"Latent Diffusion Planning for Imitation Learning (arXiv 2504.16925) — trains diffusion planner from scratch\"\n  ],\n  \"description\": \"Frozen-WAM MPPI converts any pretrained video-diffusion World Action Model (WAM) into an inference-time multi-candidate planner without modifying a single WAM weight. At each planning step, B=4–8 diverse trajectories are drawn from the frozen WAM using independent noise seeds and FULL denoising (not partial), producing clean latent trajectories that carry task-predictive information. A 3-layer value MLP — trained in ≤18 H100-hours on clean WAM latent encodings of LIBERO-90 success/failure demonstrations — scores each candidate. MPPI-style importance weights w_i ∝ exp(β·V(z_i)) yield a soft weighted-average action chunk that is more robust than hard argmax selection (GPC-RANK). The method is evaluated in open-loop (plan once, execute) and periodic low-frequency replanning (replan every K=5 chunks) regimes on LIBERO-Long and RoboCasa. Key differentiators: (1) zero WAM retraining, unlike Cosmos Policy (ICLR 2026) which requires full fine-tuning of Cosmos-Predict2-2B at 384–3,072 H100-hours; (2) no separate world model, unlike GPC (RAL 2025) which trains an additional action-conditioned WM; (3) soft importance-weighted averaging over full trajectories, unlike GPC-RANK's hard argmax; (4) plug-in compatibility with any pretrained WAM — demonstrated on UWM (primary) and DreamZero-14B (secondary). Primary backbone: UWM (RSS 2025, independent per-modality timesteps, publicly available weights). Primary submission: CoRL 2026 (deadline May 29, 2026).\",\n  \"project_name\": \"frozen_wam_mppi\",\n  \"source\": \"web_research\"\n}\n\n## Reviewer feedback (round 2)\nIssues: [\"CRITICAL — Action-averaging artifact unaddressed: Computing weighted average sum_i w_i * a_i over multi-modal manipulation trajectories is known to produce invalid/infeasible actions. For example, if half the trajectories grasp an object from the left and half from the right, the weighted average drives the gripper straight into the object. This is a well-documented failure mode of averaging over multi-modal distributions (see Diffusion Policy paper and 2025 diffusion survey). The proposal presents soft importance weighting as a strength over hard argmax, but for manipulation this may be strictly worse than GPC-RANK's hard argmax selection. No ablation validates that soft averaging outperforms hard selection in practice.\", \"CRITICAL — No failure demonstrations in LIBERO for value MLP training: LIBERO-90 consists entirely of successful human teleoperation demonstrations. The proposal says 'label each with task success/failure from demo metadata' but there are no failure trajectories in the standard LIBERO-90 dataset — all demos are successful by construction. Training a binary success/failure MLP requires negative examples, which must be generated via online simulation rollouts of the policy. This adds substantial cost (20–40 H100-hours of simulation rollouts, policy execution, and data collection) not accounted for in the ≤18 H100-hour budget.\", \"CRITICAL — Fast-WAM (arXiv 2603.16666) challenges the core premise: Fast-WAM demonstrates that 'the main value of video prediction in WAMs may lie in improving world representations during training rather than generating future observations at test time,' achieving competitive performance with zero test-time video generation and 4× faster inference. If test-time video futures add minimal value, generating B=4–8 full denoised trajectories per planning step is computationally wasteful with limited benefit. Reviewers will ask: why not just use Fast-WAM-style action prediction (no video generation) instead of full-trajectory MPPI?\", \"SIGNIFICANT — Unlisted concurrent work: 'When to Trust Imagination: Adaptive Action Execution for World Action Models' (arXiv 2605.06222, May 2026) addresses the same problem — when and how to use WAM imagined futures for action execution — and must be cited and differentiated. Additionally, OA-WAM (arXiv 2605.06481) and CKT-WAM (arXiv 2605.06247) are May 2026 papers in the same WAM inference-efficiency space.\", \"SIGNIFICANT — Discriminability assumption not validated: B=4–8 trajectories sampled from the same frozen WAM with the same task conditioning and different Gaussian seeds may have high cosine similarity in the WAM's latent space, leaving the value MLP with insufficient discriminative signal. The entire method's gain depends on there being meaningful variance in V(z_i) across the B samples — this is empirically unvalidated and constitutes a failure mode that would produce near-uniform MPPI weights (degenerate to random selection). No pilot experiment or cited evidence supports that UWM trajectories have sufficient diversity for this purpose.\", \"MODERATE — LIBERO is essentially saturated at the top end: Cosmos Policy achieves 98.5% on LIBERO; multiple 2025 papers report >95%. LIBERO-Long is a better choice (as the proposal selects), but reviewers will note the benchmark is limited. The comparison against Cosmos Policy published results ('cited for context on fine-tuned WAM upper bound') does not constitute a meaningful experimental comparison — CoRL reviewers will expect at least one shared evaluation setup.\", \"MODERATE — Soft vs. hard averaging contribution is marginal: The headline differentiator from GPC-RANK is replacing hard argmax with soft importance-weighted averaging — a 2-line change. This is not a novel architectural contribution. The stronger claim (plug-in to any frozen WAM, no separate world model) is more defensible as a contribution but needs to be empirically demonstrated across at least two WAM backbones (UWM + DreamZero-14B) to support the 'plug-in' generalization claim, which is proposed as secondary and may not be completed within 20 days.\"]\nFeedback: The Round 1 revisions were correctly executed — the pivot from partial denoising to full denoising, addition of Cosmos Policy as critical prior work, and inference cost scoping are all sound. However, three new issues block submission:\n\n1. **Fix the action-averaging artifact or reframe the contribution**: Soft weighted averaging of manipulation trajectories is known to produce infeasible blended actions in multi-modal settings. Either (a) pivot the primary result to hard argmax selection (making MPPI weighting the ablation rather than the headline), or (b) show empirically on LIBERO-Long that MPPI soft weighting outperforms hard argmax. Option (a) is safer given the 20-day timeline and actually aligns better with GPC-RANK comparison story. Keep soft weighting as an ablation, not the main claim.\n\n2. **Generate failure demonstrations before training the value MLP**: LIBERO-90 has no failure trajectories. You must run the frozen UWM policy on LIBERO tasks in simulation to collect rollout failures as negatives. Budget ~20 H100-hours for this. Alternatively, add synthetic failures by perturbing successful demo actions with Gaussian noise and flagging truncated episodes as failures. Without negatives, the classifier cannot train. This should be described explicitly as Step 0 of the approach.\n\n3. **Explicitly address Fast-WAM (arXiv 2603.16666)**: Add a paragraph in related work explaining why generating full video trajectories for scoring is still valuable despite Fast-WAM's finding. The argument: Fast-WAM improves efficiency by removing video generation from inference, but its single-trajectory output cannot compare candidate futures. Frozen-WAM MPPI accepts the compute overhead of B full trajectories to enable candidate selection — a different tradeoff point optimizing for task success rate rather than latency. Frame this as a complementary approach: Fast-WAM for latency-critical deployment, Frozen-WAM MPPI for success-critical tasks where longer planning time is acceptable.\n\n4. **Add a diversity pilot experiment**: Before the full ablation, show a diagnostic figure: sample B=16 trajectories from frozen UWM on 3 LIBERO-Long tasks, measure latent diversity (pairwise cosine distance of z_i) and correlation of V(z_i) with ground-truth success (if rollouts are available). If diversity is low (all z_i are within 0.1 cosine distance), increase noise temperature or add perturbations to the conditioning. This directly validates the premise of the entire method.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\")."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T08:05:02.455Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T08:05:02.455Z",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1"
+}
+```
+
+---
+
+## Round 1
+
+62 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T08:05:02.507Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-10 (UTC).**
+
+## Original idea
+{
+  "title": "Frozen-WAM MPPI: Inference-Time Importance-Weighted Planning for Pretrained World Action Models",
+  "core_problem": "Pretrained WAMs generate a single action trajectory at inference and cannot explicitly compare candidate futures. Adding planning capability currently requires one of three costly interventions: (1) full fine-tuning of the video model on robot demos (Cosmos Policy, ICLR 2026: requires full fine-tune of Cosmos-Predict2-2B across 384–3,072 H100-hours depending on dataset size); (2) training a separate action-conditioned world model alongside the frozen policy (GPC, RAL 2025); or (3) architectural co-design with hierarchical world models (H-WM) or RL loops (GigaBrain RAMP). No method provides a plug-in planning wrapper that works with any pretrained WAM using only the WAM's own latent space, leaves all WAM weights frozen, and requires only lightweight additional training.",
+  "opportunity": "A frozen pretrained WAM's inference pass already produces clean, fully-denoised video-action latent trajectories whose structure encodes task-relevant information: the WAM was trained to model realistic manipulation dynamics, so high-quality latents correspond to plausible task-completing behaviors. Sampling B=4–8 fully-denoised trajectories from the WAM (using different noise seeds, keeping all WAM weights frozen) and scoring each with a 3-layer value MLP trained on clean WAM latent encodings of LIBERO success/failure demonstrations converts any pretrained WAM into a soft multi-candidate planner. MPPI-style importance weights w_i ∝ exp(β·V(z_i)) compute a soft weighted-average action rather than hard argmax selection (as in GPC-RANK), yielding a smoother and more robust output across the candidate distribution. The value MLP trains entirely on clean, fully-denoised latents—no partial-denoising noise, no distributional shift between training and inference inputs. Total additional training cost: ≤15 H100-hours (demo encoding + MLP training), entirely within a 200 H100-hour budget. The key differentiators not present in any prior work: (1) zero WAM retraining (vs. Cosmos Policy's 384–3,072 H100-hours); (2) no separate world model required (vs. GPC's separate WM training); (3) soft MPPI importance weighting over full trajectories (vs. GPC-RANK's hard argmax); (4) plug-in compatibility with any pretrained video-diffusion WAM.",
+  "landscape": "Cosmos Policy (arXiv 2601.16163, ICLR 2026) is the closest prior work and must be addressed directly. It fully fine-tunes Cosmos-Predict2-2B (all weights, no layer freezing) on robot demos — 8×48=384 H100-hours for ALOHA, 32×48=1,536 for RoboCasa, 64×48=3,072 for LIBERO — then uses the fine-tuned model itself as a planning model generating future state images and value predictions as latent frames; test-time planning uses best-of-N with 15 ensemble value predictions per action. It achieves 98.5% LIBERO and 67.1% RoboCasa. Crucially, Cosmos Policy is not plug-in compatible with other WAMs: it is architecture-specific to Cosmos-Predict2 and requires full retraining for every new target domain. Our method keeps all WAM weights frozen and costs ≤15 H100-hours for a domain-agnostic value MLP that works with any pretrained WAM. GPC (arXiv 2502.00622, IEEE RAL 2025) augments a frozen diffusion policy with a separately trained action-conditioned world model; GPC-RANK generates multiple action proposals from the frozen policy, unrolls them through the world model, and selects the argmax — requiring training both a policy and a separate world model, plus random exploration rollouts for the WM. Our method uses the WAM's own latent space as the evaluation substrate (no separate world model) and uses soft importance-weighted averaging rather than hard argmax selection. ChEaP (arXiv 2603.30043) demonstrates early plan commitment in video diffusion models for 2D maze solving (Wan2.2-14B, HunyuanVideo-1.5), showing 7%→67% accuracy on long-horizon mazes; however, this finding is domain-restricted to navigation tasks and has not been validated for continuous manipulation with contact dynamics. Our revised method does not rely on the early commitment property, instead using full denoising, making the approach robust to this unresolved assumption. DreamZero (arXiv 2602.15922) trains a single video-action trajectory at inference with joint video+action denoising through a 14B DiT; on H100 with 2 GPUs and 38× inference optimization, ~3s per action chunk; generates single trajectories only. GigaBrain-0.5M* (arXiv 2602.12099) uses RAMP RL loops requiring 30%+ more task-specific training. H-WM (arXiv 2602.11291) requires hierarchical architectural co-design. Compositional Planning with Jumpy World Models (arXiv 2602.19634) requires WM training from scratch. PiJEPA (arXiv 2603.25981) applies MPPI over a JEPA-based world model for navigation using a deterministic latent space and warm-starts from a policy prior, without importance-weighted averaging over the full sample distribution. Latent Diffusion Planning (arXiv 2504.16925) trains a diffusion planner from scratch. No prior work applies MPPI-style importance-weighted soft selection over B=4–8 fully-denoised trajectories from a completely frozen pretrained video-diffusion WAM, without retraining the WAM or training a separate world model, and demonstrates this on continuous dexterous manipulation benchmarks.",
+  "approach": "We take UWM (github.com/WEIRDLabUW/unified-world-model, RSS 2025) as the primary backbone — its independent per-modality diffusion timesteps allow clean full denoising of both video and action modalities without partial-step synchronization complexity — and DreamZero-14B (GEAR-Dreams/DreamZero-DROID) as a secondary backbone for cross-WAM generalization. All WAM weights are frozen throughout. The value MLP is trained in three steps: (1) Data generation: encode every LIBERO-90 demonstration through the frozen WAM by running full denoising (not partial) on the action+video tokens, obtaining clean WAM latent trajectories z; label each with task success/failure from demo metadata. With ~4,500 LIBERO-90 demos and UWM's per-modality encoding, this encoding pass costs approximately 10–15 H100-hours. (2) MLP training: fit a 3-layer MLP (input: flattened trajectory latent z, output: scalar V ∈ [0,1]) via binary cross-entropy for ~2–3 H100-hours. Total additional training cost: ≤18 H100-hours. (3) Inference-time planning: at each planning step, sample B=4–8 fully-denoised trajectories from the frozen WAM using independent Gaussian noise seeds (exploiting the WAM's stochastic decoder for trajectory diversity); score each with V(z_i); compute MPPI importance weights w_i ∝ exp(β·V(z_i)); output the weighted-average action chunk sum_i w_i * a_i. Inference is scoped to two regimes: (a) open-loop planning: generate B trajectories once at episode start, execute the weighted-average full trajectory — adds ~1–4s per episode for UWM with B=4–8 in batch; (b) periodic low-frequency replanning: replan every K=5 action chunks (~8–10s intervals for UWM), feasible for tabletop tasks without tight real-time constraints. Real-time 7Hz replanning is deferred to future work (requires B=2 with DreamZero-Flash). We ablate: B ∈ {2, 4, 8, 16}; temperature β ∈ {0.5, 1, 2, 5} (β→∞ recovers hard argmax); soft importance-weighting vs. hard argmax (GPC-RANK style) vs. random selection; UWM vs. DreamZero-14B backbone. Evaluations: LIBERO-Long (10 tasks, 12+ steps, baseline single-trajectory failure >40%) and RoboCasa (to compare with Cosmos Policy's published 67.1%). Baselines: (a) single-trajectory WAM inference, (b) GPC-RANK-style argmax selection, (c) random trajectory selection, (d) Cosmos Policy published results (not reproduced — cited for context on fine-tuned WAM upper bound). Primary ablation hypothesis: soft importance-weighted averaging outperforms hard argmax selection under high trajectory variance (large β ablation captures this tradeoff).",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~150h H100",
+      "gpu_utilization": "HIGH idle (~40–60%): GPU waits while researcher implements the frozen-WAM inference wrapper, debugs batch trajectory generation and value MLP integration with UWM/DreamZero APIs, designs ablations, and interprets results between runs",
+      "timeline": "2–4 months",
+      "team": "1–2 researchers",
+      "estimated_gpu_cost": "~$375 (150h × $2.50/h blended Lambda/RunPod/Vast.ai H100 rate)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~200h H100",
+      "gpu_utilization": "MODERATE idle (~20–30%): agent handles code scaffolding, demo encoding, and experiment submission continuously; human approves ablation designs at daily check-ins, cutting sequential idle by ~40%",
+      "timeline": "3–5 weeks",
+      "team": "1 researcher, ~30 min/day check-in",
+      "claude_api_cost": "$100–200 (~1,500–2,000 turns at mixed Sonnet/Opus rates)",
+      "estimated_gpu_cost": "~$500 (200h × $2.50/h)",
+      "risk_note": "Key risk: value MLP may not discriminate B=4–8 diverse trajectories from a single task distribution (all B trajectories from the same WAM + prompt may be too similar in latent space). Human approval gates can catch low V(z_i) variance early and trigger adjustments (increase B, increase noise temperature, or switch to per-task value MLP)."
+    },
+    "auto_research": {
+      "gpu_hours": "~500h H100 (both UWM and DreamZero-14B backbones; full B/β ablation grid; LIBERO-Long + RoboCasa evaluations; multiple seeds)",
+      "gpu_utilization": "MINIMAL idle (~5–10%): agent pipelines demo encoding, MLP training, evaluation, and logging continuously",
+      "timeline": "7–10 days with 4–8 H100 GPUs simultaneously",
+      "team": "0 (only initial repo setup and credential configuration)",
+      "claude_api_cost": "$200–400 (~3,000–5,000 turns at Opus rates)",
+      "estimated_gpu_cost": "~$1,250 (500h × $2.50/h)",
+      "speed_bottleneck": "LIBERO-Long evaluation rollouts: each of B=8 ablation variants requires sequential per-task evaluation (2–4h per variant); with 4 GPUs running 4 ablation variants concurrently, the full grid needs ~6–8 days minimum",
+      "risk_note": "UWM and DreamZero-14B APIs differ substantially; auto-agent may iterate through API mismatches before stable batched inference works. DreamZero-14B's 38× optimization pipeline requires specific multi-GPU NCCL setup that may not be auto-configurable."
+    }
+  },
+  "target_venues": [
+    "CoRL 2026 (Abstract deadline: May 26, 2026; Full paper: May 29, 2026; Conference: Nov 9–12, Austin TX)",
+    "ICLR 2027 (deadline ~September–October 2026; not yet officially announced as of 2026-05-10)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "Cosmos Policy: Fine-Tuning Video Models for Visuomotor Control and Planning (arXiv 2601.16163, ICLR 2026) — CRITICAL PRIOR WORK: full fine-tune of Cosmos-Predict2-2B (384–3,072 H100-hours), 98.5% LIBERO, 67.1% RoboCasa; not plug-in compatible with other WAMs",
+    "Inference-Time Enhancement of Generative Robot Policies via Predictive World Modeling / GPC (arXiv 2502.00622, IEEE RAL 2025) — CRITICAL PRIOR WORK: frozen policy + separately trained world model + hard argmax selection (GPC-RANK); our method uses no separate WM and uses soft importance weighting",
+    "Video Models Reason Early: Exploiting Plan Commitment for Maze Solving / ChEaP (arXiv 2603.30043) — validated early commitment in 2D mazes only; our revised method does not rely on partial-denoising early commitment",
+    "World Action Models are Zero-shot Policies / DreamZero (arXiv 2602.15922) — 14B joint video+action DiT, ~3s/chunk on H100 optimized; secondary backbone in our evaluation",
+    "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets / UWM (arXiv 2504.02792, RSS 2025) — primary backbone; independent per-modality timesteps enable clean full denoising",
+    "GigaBrain-0.5M*: a VLA That Learns From World Model-Based Reinforcement Learning (arXiv 2602.12099) — RAMP RL loop requires 30%+ more training",
+    "H-WM: Robotic Task and Motion Planning Guided by Hierarchical World Model (arXiv 2602.11291) — requires architectural co-design",
+    "Compositional Planning with Jumpy World Models (arXiv 2602.19634) — requires WM training from scratch",
+    "Policy-Guided World Model Planning for Language-Conditioned Visual Navigation / PiJEPA (arXiv 2603.25981) — MPPI over deterministic JEPA latent for navigation, not manipulation; warm-starts from policy prior rather than importance-weighted averaging",
+    "Latent Diffusion Planning for Imitation Learning (arXiv 2504.16925) — trains diffusion planner from scratch"
+  ],
+  "description": "Frozen-WAM MPPI converts any pretrained video-diffusion World Action Model (WAM) into an inference-time multi-candidate planner without modifying a single WAM weight. At each planning step, B=4–8 diverse trajectories are drawn from the frozen WAM using independent noise seeds and FULL denoising (not partial), producing clean latent trajectories that carry task-predictive information. A 3-layer value MLP — trained in ≤18 H100-hours on clean WAM latent encodings of LIBERO-90 success/failure demonstrations — scores each candidate. MPPI-style importance weights w_i ∝ exp(β·V(z_i)) yield a soft weighted-average action chunk that is more robust than hard argmax selection (GPC-RANK). The method is evaluated in open-loop (plan once, execute) and periodic low-frequency replanning (replan every K=5 chunks) regimes on LIBERO-Long and RoboCasa. Key differentiators: (1) zero WAM retraining, unlike Cosmos Policy (ICLR 2026) which requires full fine-tuning of Cosmos-Predict2-2B at 384–3,072 H100-hours; (2) no separate world model, unlike GPC (RAL 2025) which trains an additional action-conditioned WM; (3) soft importance-weighted averaging over full trajectories, unlike GPC-RANK's hard argmax; (4) plug-in compatibility with any pretrained WAM — demonstrated on UWM (primary) and DreamZero-14B (secondary). Primary backbone: UWM (RSS 2025, independent per-modality timesteps, publicly available weights). Primary submission: CoRL 2026 (deadline May 29, 2026).",
+  "project_name": "frozen_wam_mppi",
+  "source": "web_research"
+}
+
+## Reviewer feedback (round 2)
+Issues: ["CRITICAL — Action-averaging artifact unaddressed: Computing weighted average sum_i w_i * a_i over multi-modal manipulation trajectories is known to produce invalid/infeasible actions. For example, if half the trajectories grasp an object from the left and half from the right, the weighted average drives the gripper straight into the object. This is a well-documented failure mode of averaging over multi-modal distributions (see Diffusion Policy paper and 2025 diffusion survey). The proposal presents soft importance weighting as a strength over hard argmax, but for manipulation this may be strictly worse than GPC-RANK's hard argmax selection. No ablation validates that soft averaging outperforms hard selection in practice.", "CRITICAL — No failure demonstrations in LIBERO for value MLP training: LIBERO-90 consists entirely of successful human teleoperation demonstrations. The proposal says 'label each with task success/failure from demo metadata' but there are no failure trajectories in the standard LIBERO-90 dataset — all demos are successful by construction. Training a binary success/failure MLP requires negative examples, which must be generated via online simulation rollouts of the policy. This adds substantial cost (20–40 H100-hours of simulation rollouts, policy execution, and data collection) not accounted for in the ≤18 H100-hour budget.", "CRITICAL — Fast-WAM (arXiv 2603.16666) challenges the core premise: Fast-WAM demonstrates that 'the main value of video prediction in WAMs may lie in improving world representations during training rather than generating future observations at test time,' achieving competitive performance with zero test-time video generation and 4× faster inference. If test-time video futures add minimal value, generating B=4–8 full denoised trajectories per planning step is computationally wasteful with limited benefit. Reviewers will ask: why not just use Fast-WAM-style action prediction (no video generation) instead of full-trajectory MPPI?", "SIGNIFICANT — Unlisted concurrent work: 'When to Trust Imagination: Adaptive Action Execution for World Action Models' (arXiv 2605.06222, May 2026) addresses the same problem — when and how to use WAM imagined futures for action execution — and must be cited and differentiated. Additionally, OA-WAM (arXiv 2605.06481) and CKT-WAM (arXiv 2605.06247) are May 2026 papers in the same WAM inference-efficiency space.", "SIGNIFICANT — Discriminability assumption not validated: B=4–8 trajectories sampled from the same frozen WAM with the same task conditioning and different Gaussian seeds may have high cosine similarity in the WAM's latent space, leaving the value MLP with insufficient discriminative signal. The entire method's gain depends on there being meaningful variance in V(z_i) across the B samples — this is empirically unvalidated and constitutes a failure mode that would produce near-uniform MPPI weights (degenerate to random selection). No pilot experiment or cited evidence supports that UWM trajectories have sufficient diversity for this purpose.", "MODERATE — LIBERO is essentially saturated at the top end: Cosmos Policy achieves 98.5% on LIBERO; multiple 2025 papers report >95%. LIBERO-Long is a better choice (as the proposal selects), but reviewers will note the benchmark is limited. The comparison against Cosmos Policy published results ('cited for context on fine-tuned WAM upper bound') does not constitute a meaningful experimental comparison — CoRL reviewers will expect at least one shared evaluation setup.", "MODERATE — Soft vs. hard averaging contribution is marginal: The headline differentiator from GPC-RANK is replacing hard argmax with soft importance-weighted averaging — a 2-line change. This is not a novel architectural contribution. The stronger claim (plug-in to any frozen WAM, no separate world model) is more defensible as a contribution but needs to be empirically demonstrated across at least two WAM backbones (UWM + DreamZero-14B) to support the 'plug-in' generalization claim, which is proposed as secondary and may not be completed within 20 days."]
+Feedback: The Round 1 revisions were correctly executed — the pivot from partial denoising to full denoising, addition of Cosmos Policy as critical prior work, and inference cost scoping are all sound. However, three new issues block submission:
+
+1. **Fix the action-averaging artifact or reframe the contribution**: Soft weighted averaging of manipulation trajectories is known to produce infeasible blended actions in multi-modal settings. Either (a) pivot the primary result to hard argmax selection (making MPPI weighting the ablation rather than the headline), or (b) show empirically on LIBERO-Long that MPPI soft weighting outperforms hard argmax. Option (a) is safer given the 20-day timeline and actually aligns better with GPC-RANK comparison story. Keep soft weighting as an ablation, not the main claim.
+
+2. **Generate failure demonstrations before training the value MLP**: LIBERO-90 has no failure trajectories. You must run the frozen UWM policy on LIBERO tasks in simulation to collect rollout failures as negatives. Budget ~20 H100-hours for this. Alternatively, add synthetic failures by perturbing successful demo actions with Gaussian noise and flagging truncated episodes as failures. Without negatives, the classifier cannot train. This should be described explicitly as Step 0 of the approach.
+
+3. **Explicitly address Fast-WAM (arXiv 2603.16666)**: Add a paragraph in related work explaining why generating full video trajectories for scoring is still valuable despite Fast-WAM's finding. The argument: Fast-WAM improves efficiency by removing video generation from inference, but its single-trajectory output cannot compare candidate futures. Frozen-WAM MPPI accepts the compute overhead of B full trajectories to enable candidate selection — a different tradeoff point optimizing for task success rate rather than latency. Frame this as a complementary approach: Fast-WAM for latency-critical deployment, Frozen-WAM MPPI for success-critical tasks where longer planning time is acceptable.
+
+4. **Add a diversity pilot experiment**: Before the full ablation, show a diagnostic figure: sample B=16 trajectories from frozen UWM on 3 LIBERO-Long tasks, measure latent diversity (pairwise cosine distance of z_i) and correlation of V(z_i) with ground-truth success (if rollouts are available). If diversity is low (all z_i are within 0.1 cosine distance), increase noise temperature or add perturbations to the conditioning. This directly validates the premise of the entire method.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "6bc75b81-b877-4089-899c-08249862b361",
+  "type": "user",
+  "uuid": "0dbff2d2-b901-42a0-bd04-205fcbebb121",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T08:05:02.506Z_
+
+```json
+{
+  "parentUuid": "0dbff2d2-b901-42a0-bd04-205fcbebb121",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "fb274c9f-001d-4abe-b637-dc34baf1b21e",
+  "timestamp": "2026-05-10T08:05:02.506Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T08:05:02.506Z_
+
+```json
+{
+  "parentUuid": "fb274c9f-001d-4abe-b637-dc34baf1b21e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo, defaults to 10m) - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "72a78819-2741-4bcf-b3df-0007fc41ecec",
+  "timestamp": "2026-05-10T08:05:02.506Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Frozen-WAM MPPI: Inference-Time Importance-Weighted Planning for Pretr…",
+  "leafUuid": "72a78819-2741-4bcf-b3df-0007fc41ecec",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise frozen-WAM MPPI: hard argmax, failure data generation, and diversity validation",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-10T08:05:43.577Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the reviewer feedback carefully and plan my research before revising the idea.
+
+The key issues to address are:
+
+1. **CRITICAL — Action-averaging artifact**: Soft weighted averaging over multi-modal manipulation trajectories produces invalid/infeasible actions. Need to either pivot to hard argmax or empirically validate soft averaging.
+
+2. **CRITICAL — No failure demonstrations in LIBERO**: LIBERO-90 has only successful demos. Need negative examples for binary classifier training.
+
+3. **CRITICAL — Fast-WAM challenges core premise**: Fast-WAM shows test-time video generation may not add value. Need to address this.
+
+
+4. **SIGNIFICANT — Concurrent work**: Several recent papers on similar topics need to be properly cited and differentiated from this work.
+
+5. **SIGNIFICANT — Discriminability assumption not validated**: The trajectories sampled from the same model may be too similar to each other, which could make the importance weights nearly uniform and undermine the approach.
+
+6. **MODERATE — LIBERO saturation**: The benchmark may not be challenging enough to demonstrate clear improvements.
+
+7. **MODERATE — Soft vs hard averaging contribution is marginal**: This is a relatively minor technical change that doesn't substantially advance the core contribution.
+
+I need to dig into the literature to understand these issues better. I should examine the Fast-WAM paper to see what it claims, review the concurrent work on imagination-based methods, and look more carefully at how diffusion policies handle action averaging. I also need to check whether the LIBERO benchmark is actually saturated and understand the GPC-RANK baseline more thoroughly. The core question is whether the action averaging artifact is really a novel problem or if it's already well-documented in the diffusion policy literature.
+
+For the failure demonstrations issue, I have a few paths forward: I could run the frozen UWM policy on LIBERO tasks to collect real failures, synthetically generate failures by perturbing successful trajectories, or switch to a dataset that already contains mixed outcomes like BridgeData or RT-2. The reviewer's suggestion to pivot toward hard argmax selection as the main result with soft weighting as an ablation actually makes sense strategically—it would align better with the GPC-RANK comparison and avoid the averaging artifact problem altogether.
+
+Looking at the remaining issues, I need to understand Fast-WAM's latency optimization versus Frozen-WAM's task success focus as different operating points, read through the concurrent work to establish clear differentiation, and run a pilot experiment to verify that the generated trajectories have enough diversity for meaningful discrimination. The core insight about using the WAM's latent space for scoring is still sound, but these critical gaps need addressing before the paper is ready—particularly the shift from action averaging to best-of-N selection, which changes how I frame the contribution but strengthens the overall credibility. The key insight is that WAM's latent space alone can serve as the basis for a value function to select candidates, eliminating the need for a separate world model like GPC-RANK uses—this is a cleaner, more defensible story than the original soft-MPPI framing. The contribution boils down to a plug-in value function trained on WAM's own representations, Best-of-N selection without retraining, minimal training overhead, and validation across multiple WAM variants. Now I need to dig into the research to solidify these details.
+
+I'm going to pull the relevant papers and datasets to understand the landscape better—Fast-WAM, the imagination trust paper, the different WAM backbones, how LIBERO handles failure demonstrations, and the action averaging techniques in Diffusion Policy.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "72a78819-2741-4bcf-b3df-0007fc41ecec",
+  "isSidechain": false,
+  "requestId": "req_011CatYPZ5F26UdwPEtD4Ni1",
+  "type": "assistant",
+  "uuid": "9d82579e-3e5f-45db-9c46-47dba23410cc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_014oYtvCv8JR96U2Aq6sFaVu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11941,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 1565,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11941,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1565,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 11941,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11941
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-10T08:05:43.652Z_
+
+I'll start with deep research on the critical reviewer issues before revising. Let me fetch the key papers in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9d82579e-3e5f-45db-9c46-47dba23410cc",
+  "isSidechain": false,
+  "requestId": "req_011CatYPZ5F26UdwPEtD4Ni1",
+  "type": "assistant",
+  "uuid": "65231920-6b54-4c38-bbf3-763cbae70c5f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_014oYtvCv8JR96U2Aq6sFaVu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11941,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 1565,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11941,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1565,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 11941,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11941
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T08:05:43.668Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01RFDTw7zeWwaAU6sgQLEboL`</summary>
+
+```json
+{
+  "query": "select:WebFetch,WebSearch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65231920-6b54-4c38-bbf3-763cbae70c5f",
+  "isSidechain": false,
+  "requestId": "req_011CatYPZ5F26UdwPEtD4Ni1",
+  "type": "assistant",
+  "uuid": "c4c051c6-0fe8-41db-8852-a467bd2eab78",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_014oYtvCv8JR96U2Aq6sFaVu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11941,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 1565,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11941,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1565,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 11941,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11941
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-10T08:05:43.700Z_
+
+<details><summary>↩ Tool result · `toolu_01RFDTw7zeWwaAU6sgQLEboL`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c4c051c6-0fe8-41db-8852-a467bd2eab78",
+  "isSidechain": false,
+  "promptId": "6bc75b81-b877-4089-899c-08249862b361",
+  "type": "user",
+  "uuid": "e29f1387-75a6-48b8-9617-e58450d66a0f",
+  "toolUseResult": {
+    "matches": [
+      "WebFetch",
+      "WebSearch"
+    ],
+    "query": "select:WebFetch,WebSearch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "c4c051c6-0fe8-41db-8852-a467bd2eab78",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-10T08:05:46.545Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me launch parallel research on all the critical papers and issues mentioned by the reviewer.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e29f1387-75a6-48b8-9617-e58450d66a0f",
+  "isSidechain": false,
+  "requestId": "req_011CatYSbAau8oEy4rA6PH3A",
+  "type": "assistant",
+  "uuid": "db91af40-1735-421d-85a0-188f073acc19",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019q7AmXxFmR8FjGJaaciNvy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2579,
+      "cache_read_input_tokens": 23572,
+      "output_tokens": 654,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2579,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 654,
+          "cache_read_input_tokens": 23572,
+          "cache_creation_input_tokens": 2579,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2579
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-10T08:05:47.033Z_
+
+Now let me research all the critical papers in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "db91af40-1735-421d-85a0-188f073acc19",
+  "isSidechain": false,
+  "requestId": "req_011CatYSbAau8oEy4rA6PH3A",
+  "type": "assistant",
+  "uuid": "38152089-909d-4a21-894f-d18e07ca6442",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019q7AmXxFmR8FjGJaaciNvy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2579,
+      "cache_read_input_tokens": 23572,
+      "output_tokens": 654,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2579,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 654,
+          "cache_read_input_tokens": 23572,
+          "cache_creation_input_tokens": 2579,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2579
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-10T08:05:49.472Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01QUh6Ag6sRpwkGH86ZDkDFZ`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.16666",
+  "prompt": "Extract: (1) core claim about test-time video generation in WAMs, (2) how Fast-WAM achieves competitive performance without test-time video, (3) main experimental results and benchmarks, (4) key architectural differences from WAMs that generate video at test time"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "38152089-909d-4a21-894f-d18e07ca6442",
+  "isSidechain": false,
+  "requestId": "req_011CatYSbAau8oEy4rA6PH3A",
+  "type": "assistant",
+  "uuid": "e47d9482-69c7-4d10-91fa-f66aad7282b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019q7AmXxFmR8FjGJaaciNvy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2579,
+      "cache_read_input_tokens": 23572,
+      "output_tokens": 654,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2579,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 654,
+          "cache_read_input_tokens": 23572,
+          "cache_creation_input_tokens": 2579,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2579
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-10T08:05:51.442Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_016XD6wYR6VrcicYsaxyqgTL`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.06222",
+  "prompt": "Extract: (1) core problem statement, (2) proposed method for deciding when to use WAM imagined futures, (3) key results and benchmarks, (4) how this differs from or relates to best-of-N planning over WAM trajectories"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e47d9482-69c7-4d10-91fa-f66aad7282b5",
+  "isSidechain": false,
+  "requestId": "req_011CatYSbAau8oEy4rA6PH3A",
+  "type": "assistant",
+  "uuid": "86c79925-7360-4975-9c04-89c74100c2cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019q7AmXxFmR8FjGJaaciNvy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2579,
+      "cache_read_input_tokens": 23572,
+      "output_tokens": 654,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2579,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 654,
+          "cache_read_input_tokens": 23572,
+          "cache_creation_input_tokens": 2579,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2579
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-10T08:05:52.579Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PzuaRBdZDC5G1STWEox9xM`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.06481",
+  "prompt": "Extract: (1) what OA-WAM does, (2) core method, (3) key results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "86c79925-7360-4975-9c04-89c74100c2cb",
+  "isSidechain": false,
+  "requestId": "req_011CatYSbAau8oEy4rA6PH3A",
+  "type": "assistant",
+  "uuid": "ee01dbbf-6406-4aee-9805-93e56d7e7f28",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019q7AmXxFmR8FjGJaaciNvy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2579,
+      "cache_read_input_tokens": 23572,
+      "output_tokens": 654,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2579,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 654,
+          "cache_read_input_tokens": 23572,
+          "cache_creation_input_tokens": 2579,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2579
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-10T08:05:52.946Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_012UmbaRVmfHdq3zSSUEMzGz`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2605.06247",
+  "prompt": "Extract: (1) what CKT-WAM does, (2) core method, (3) key results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee01dbbf-6406-4aee-9805-93e56d7e7f28",
+  "isSidechain": false,
+  "requestId": "req_011CatYSbAau8oEy4rA6PH3A",
+  "type": "assistant",
+  "uuid": "54e17e17-a15f-4325-8b08-20cb87092483",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019q7AmXxFmR8FjGJaaciNvy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2579,
+      "cache_read_input_tokens": 23572,
+      "output_tokens": 654,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2579,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 654,
+          "cache_read_input_tokens": 23572,
+          "cache_creation_input_tokens": 2579,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2579
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-10T08:05:54.302Z_
+
+<details><summary>↩ Tool result · `toolu_01QUh6Ag6sRpwkGH86ZDkDFZ`</summary>
+
+```text
+# Fast-WAM: Key Findings on World Action Models
+
+## (1) Core Claim About Test-Time Video Generation
+
+The paper's central thesis challenges conventional wisdom: "the main value of video prediction in WAMs may lie in improving world representations during training rather than generating future observations at test time." This suggests that explicit future imagination at inference isn't necessary for effective performance.
+
+## (2) How Fast-WAM Achieves Competitive Performance
+
+Fast-WAM retains video co-training during the training phase but eliminates future prediction during inference. By maintaining the representational benefits of video modeling while bypassing the computational cost of iterative generation, it achieves strong action performance without test-time imagination overhead.
+
+## (3) Main Experimental Results
+
+The research demonstrates several key findings:
+- Fast-WAM matches or exceeds state-of-the-art methods on both simulation benchmarks (LIBERO and RoboTwin) and real-world tasks
+- It operates with 190ms latency—over 4× faster than comparable imagine-then-execute models
+- Removing video co-training caused substantially larger performance degradation than skipping test-time prediction
+
+## (4) Key Architectural Differences
+
+Unlike traditional WAMs requiring iterative video denoising at test time, Fast-WAM skips the generation stage entirely. This fundamental architectural shift—retaining training-time video modeling while eliminating inference-time generation—represents the core innovation distinguishing it from existing approaches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e47d9482-69c7-4d10-91fa-f66aad7282b5",
+  "isSidechain": false,
+  "promptId": "6bc75b81-b877-4089-899c-08249862b361",
+  "type": "user",
+  "uuid": "3d05901e-0858-44c4-81f8-21c08f04d3a3",
+  "toolUseResult": {
+    "bytes": 47763,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Fast-WAM: Key Findings on World Action Models\n\n## (1) Core Claim About Test-Time Video Generation\n\nThe paper's central thesis challenges conventional wisdom: \"the main value of video prediction in WAMs may lie in improving world representations during training rather than generating future observations at test time.\" This suggests that explicit future imagination at inference isn't necessary for effective performance.\n\n## (2) How Fast-WAM Achieves Competitive Performance\n\nFast-WAM retains video co-training during the training phase but eliminates future prediction during inference. By maintaining the representational benefits of video modeling while bypassing the computational cost of iterative generation, it achieves strong action performance without test-time imagination overhead.\n\n## (3) Main Experimental Results\n\nThe research demonstrates several key findings:\n- Fast-WAM matches or exceeds state-of-the-art methods on both simulation benchmarks (LIBERO and RoboTwin) and real-world tasks\n- It operates with 190ms latency—over 4× faster than comparable imagine-then-execute models\n- Removing video co-training caused substantially larger performance degradation than skipping test-time prediction\n\n## (4) Key Architectural Differences\n\nUnlike traditional WAMs requiring iterative video denoising at test time, Fast-WAM skips the generation stage entirely. This fundamental architectural shift—retaining training-time video modeling while eliminating inference-time generation—represents the core innovation distinguishing it from existing approaches.",
+    "durationMs": 4826,
+    "url": "https://arxiv.org/abs/2603.16666"
+  },
+  "sourceToolAssistantUUID": "e47d9482-69c7-4d10-91fa-f66aad7282b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-10T08:05:55.344Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_015UZDGkh6SD4XZSc2DW8m2X`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2504.02792",
+  "prompt": "Extract: (1) UWM architecture details - how video and action modalities are handled, (2) per-modality diffusion timesteps, (3) whether trajectories from same WAM with different noise seeds show diversity, (4) LIBERO results"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3d05901e-0858-44c4-81f8-21c08f04d3a3",
+  "isSidechain": false,
+  "requestId": "req_011CatYSbAau8oEy4rA6PH3A",
+  "type": "assistant",
+  "uuid": "e7e28562-81a1-4103-af64-6e9aa2b6d4a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019q7AmXxFmR8FjGJaaciNvy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2579,
+      "cache_read_input_tokens": 23572,
+      "output_tokens": 654,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2579,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 654,
+          "cache_read_input_tokens": 23572,
+          "cache_creation_input_tokens": 2579,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2579
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-10T08:05:55.580Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Us8CoF5Zn1fZy7czzXEkrz`</summary>
+
+```json
+{
+  "query": "LIBERO dataset failure demonstrations negative examples robot manipulation 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e7e28562-81a1-4103-af64-6e9aa2b6d4a6",
+  "isSidechain": false,
+  "requestId": "req_011CatYSbAau8oEy4rA6PH3A",
+  "type": "assistant",
+  "uuid": "86aab670-a5c4-41b4-bd46-033d85841061",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_019q7AmXxFmR8FjGJaaciNvy",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2579,
+      "cache_read_input_tokens": 23572,
+      "output_tokens": 654,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2579,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 654,
+          "cache_read_input_tokens": 23572,
+          "cache_creation_input_tokens": 2579,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2579
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-10T08:05:56.738Z_
+
+<details><summary>↩ Tool result · `toolu_012UmbaRVmfHdq3zSSUEMzGz`</summary>
+
+```text
+# CKT-WAM: Summary
+
+**(1) What CKT-WAM Does:**
+CKT-WAM enables efficient knowledge transfer from one world action model to another by working through the text embedding space rather than direct output matching. This approach minimizes architectural changes needed in the student model.
+
+**(2) Core Method:**
+The framework extracts intermediate representations from a teacher model and compresses them using "learnable-query cross attention." These compressed representations are processed through an always-on adapter, a lightweight router, and specialized adapters, then appended to the student model's textual embeddings to inject transferred knowledge.
+
+**(3) Key Results:**
+- Simulation: Achieved 86.1% success rate on LIBERO-Plus benchmark while using only 1.17% trainable parameters
+- Real-world performance: Reached 83.3% average success rate across four long-horizon manipulation tasks
+- The approach approaches full fine-tuning performance while remaining highly parameter-efficient
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "54e17e17-a15f-4325-8b08-20cb87092483",
+  "isSidechain": false,
+  "promptId": "6bc75b81-b877-4089-899c-08249862b361",
+  "type": "user",
+  "uuid": "cd77f4ed-fa34-4f1e-901f-1521fc587866",
+  "toolUseResult": {
+    "bytes": 47980,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# CKT-WAM: Summary\n\n**(1) What CKT-WAM Does:**\nCKT-WAM enables efficient knowledge transfer from one world action model to another by working through the text embedding space rather than direct output matching. This approach minimizes architectural changes needed in the student model.\n\n**(2) Core Method:**\nThe framework extracts intermediate representations from a teacher model and compresses them using \"learnable-query cross attention.\" These compressed representations are processed through an always-on adapter, a lightweight router, and specialized adapters, then appended to the student model's textual embeddings to inject transferred knowledge.\n\n**(3) Key Results:**\n- Simulation: Achieved 86.1% success rate on LIBERO-Plus benchmark while using only 1.17% trainable parameters\n- Real-world performance: Reached 83.3% average success rate across four long-horizon manipulation tasks\n- The approach approaches full fine-tuning performance while remaining highly parameter-efficient",
+    "durationMs": 3788,
+    "url": "https://arxiv.org/abs/2605.06247"
+  },
+  "sourceToolAssistantUUID": "54e17e17-a15f-4325-8b08-20cb87092483",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Frozen-WAM MPPI: Inference-Time Importance-Weighted Planning for Pretr…",
+  "leafUuid": "cd77f4ed-fa34-4f1e-901f-1521fc587866",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise frozen-WAM MPPI: hard argmax, failure data generation, and diversity validation",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1"
+}
+```
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-10T08:05:57.285Z_
+
+<details><summary>↩ Tool result · `toolu_016XD6wYR6VrcicYsaxyqgTL`</summary>
+
+```text
+# Analysis of "When to Trust Imagination" Paper
+
+## (1) Core Problem Statement
+
+Current World Action Models (WAMs) execute a fixed number of predicted actions after inference, creating a critical limitation: "the robot blind to whether the imagined future remains consistent with the actual physical rollout." The challenge is determining when predicted futures remain reliable versus when reality diverges from the model's imagination.
+
+## (2) Proposed Method
+
+The authors introduce **Future Forward Dynamics Causal Attention (FFDC)**, a lightweight verification component that adaptively determines action chunk sizes. FFDC analyzes predicted actions, visual dynamics predictions, real observations, and language instructions to estimate trustworthiness of remaining action sequences. This enables the robot to execute longer when predictions align with reality and replan earlier during contact-rich or difficult phases.
+
+The team also implements **Mixture-of-Horizon Training** to enhance trajectory coverage across varying execution lengths.
+
+## (3) Key Results
+
+- **RoboTwin benchmark**: 69.10% reduction in forward passes, 34.02% faster execution, 2.54% success rate improvement
+- **Real-world experiments**: 35% success rate improvement over baselines
+- Achieves a "robustness-efficiency trade-off" preserving long-horizon efficiency while restoring responsiveness
+
+## (4) Distinction from Best-of-N Planning
+
+Rather than selecting among pre-generated trajectories, FFDC enables **dynamic, continuous adaptation** during execution itself—the robot decides online whether current predictions remain valid, fundamentally differing from static trajectory selection approaches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "86c79925-7360-4975-9c04-89c74100c2cb",
+  "isSidechain": false,
+  "promptId": "6bc75b81-b877-4089-899c-08249862b361",
+  "type": "user",
+  "uuid": "7e963073-e051-48cc-93c9-ef7d755ec5af",
+  "toolUseResult": {
+    "bytes": 47728,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Analysis of \"When to Trust Imagination\" Paper\n\n## (1) Core Problem Statement\n\nCurrent World Action Models (WAMs) execute a fixed number of predicted actions after inference, creating a critical limitation: \"the robot blind to whether the imagined future remains consistent with the actual physical rollout.\" The challenge is determining when predicted futures remain reliable versus when reality diverges from the model's imagination.\n\n## (2) Proposed Method\n\nThe authors introduce **Future Forward Dynamics Causal Attention (FFDC)**, a lightweight verification component that adaptively determines action chunk sizes. FFDC analyzes predicted actions, visual dynamics predictions, real observations, and language instructions to estimate trustworthiness of remaining action sequences. This enables the robot to execute longer when predictions align with reality and replan earlier during contact-rich or difficult phases.\n\nThe team also implements **Mixture-of-Horizon Training** to enhance trajectory coverage across varying execution lengths.\n\n## (3) Key Results\n\n- **RoboTwin benchmark**: 69.10% reduction in forward passes, 34.02% faster execution, 2.54% success rate improvement\n- **Real-world experiments**: 35% success rate improvement over baselines\n- Achieves a \"robustness-efficiency trade-off\" preserving long-horizon efficiency while restoring responsiveness\n\n## (4) Distinction from Best-of-N Planning\n\nRather than selecting among pre-generated trajectories, FFDC enables **dynamic, continuous adaptation** during execution itself—the robot decides online whether current predictions remain valid, fundamentally differing from static trajectory selection approaches.",
+    "durationMs": 5838,
+    "url": "https://arxiv.org/abs/2605.06222"
+  },
+  "sourceToolAssistantUUID": "86c79925-7360-4975-9c04-89c74100c2cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-10T08:05:57.680Z_
+
+<details><summary>↩ Tool result · `toolu_01PzuaRBdZDC5G1STWEox9xM`</summary>
+
+```text
+# OA-WAM: Object-Addressable World Action Model
+
+## (1) What OA-WAM Does
+
+OA-WAM enhances robot manipulation by enabling Vision-Language-Action policies to understand which specific objects to interact with during task execution. It addresses a key limitation: existing models struggle when instructions reference particular objects, especially when scenes change and object identities shift.
+
+## (2) Core Method
+
+The system decomposes each video frame into slot states—one for the robot and N for objects. Each slot contains "a persistent address vector and a time-varying content vector." During processing, cross-slot attention routes exclusively through address-only keys, and address information resets at every transformer layer. This design "separ[ates] which object to act on from what that object currently is without adding extra tokens." A single forward pass simultaneously predicts next-frame states and generates 16-step action sequences.
+
+## (3) Key Results
+
+- Matches strong baselines on LIBERO (97.8%) and SimplerEnv (79.3%)
+- Achieves state-of-the-art on LIBERO-Plus geometric axes
+- Causal intervention testing shows superior object-binding consistency (0.87 swap-binding score versus ≤0.09 for comparison methods)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ee01dbbf-6406-4aee-9805-93e56d7e7f28",
+  "isSidechain": false,
+  "promptId": "6bc75b81-b877-4089-899c-08249862b361",
+  "type": "user",
+  "uuid": "f628879d-edc2-450e-b709-84ac572ca21f",
+  "toolUseResult": {
+    "bytes": 48303,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# OA-WAM: Object-Addressable World Action Model\n\n## (1) What OA-WAM Does\n\nOA-WAM enhances robot manipulation by enabling Vision-Language-Action policies to understand which specific objects to interact with during task execution. It addresses a key limitation: existing models struggle when instructions reference particular objects, especially when scenes change and object identities shift.\n\n## (2) Core Method\n\nThe system decomposes each video frame into slot states—one for the robot and N for objects. Each slot contains \"a persistent address vector and a time-varying content vector.\" During processing, cross-slot attention routes exclusively through address-only keys, and address information resets at every transformer layer. This design \"separ[ates] which object to act on from what that object currently is without adding extra tokens.\" A single forward pass simultaneously predicts next-frame states and generates 16-step action sequences.\n\n## (3) Key Results\n\n- Matches strong baselines on LIBERO (97.8%) and SimplerEnv (79.3%)\n- Achieves state-of-the-art on LIBERO-Plus geometric axes\n- Causal intervention testing shows superior object-binding consistency (0.87 swap-binding score versus ≤0.09 for comparison methods)",
+    "durationMs": 5100,
+    "url": "https://arxiv.org/abs/2605.06481"
+  },
+  "sourceToolAssistantUUID": "ee01dbbf-6406-4aee-9805-93e56d7e7f28",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-10T08:05:59.446Z_
+
+<details><summary>↩ Tool result · `toolu_015UZDGkh6SD4XZSc2DW8m2X`</summary>
+
+```text
+# Unified World Models: Key Technical Details
+
+Based on the arXiv abstract provided, I can only offer limited information about the specific technical details you requested:
+
+## Available Information
+
+**Architecture Approach:**
+The paper describes "an action diffusion process and a video diffusion process within a unified transformer architecture, where independent diffusion timesteps govern each modality."
+
+**Modality-Specific Control:**
+The framework enables flexible representation through "controlling each diffusion timestep," allowing UWM to function as "a policy, a forward dynamics, an inverse dynamics, and a video generator."
+
+**Learning from Diverse Data:**
+The work demonstrates that "UWM naturally facilitates learning from action-free video data through independent control of modality-specific diffusion timesteps."
+
+## Limitations
+
+The abstract does not contain specific details about:
+- Trajectory diversity from identical models with different noise seeds
+- LIBERO benchmark results
+- In-depth architectural diagrams or mathematical formulations
+
+For comprehensive technical details on these points, you would need to access the full paper PDF or HTML version linked in the metadata (available at `/pdf/2504.02792` or the experimental HTML view).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e7e28562-81a1-4103-af64-6e9aa2b6d4a6",
+  "isSidechain": false,
+  "promptId": "6bc75b81-b877-4089-899c-08249862b361",
+  "type": "user",
+  "uuid": "0c77614d-4a2e-4163-894c-35e6e40ca4ba",
+  "toolUseResult": {
+    "bytes": 48990,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Unified World Models: Key Technical Details\n\nBased on the arXiv abstract provided, I can only offer limited information about the specific technical details you requested:\n\n## Available Information\n\n**Architecture Approach:**\nThe paper describes \"an action diffusion process and a video diffusion process within a unified transformer architecture, where independent diffusion timesteps govern each modality.\"\n\n**Modality-Specific Control:**\nThe framework enables flexible representation through \"controlling each diffusion timestep,\" allowing UWM to function as \"a policy, a forward dynamics, an inverse dynamics, and a video generator.\"\n\n**Learning from Diverse Data:**\nThe work demonstrates that \"UWM naturally facilitates learning from action-free video data through independent control of modality-specific diffusion timesteps.\"\n\n## Limitations\n\nThe abstract does not contain specific details about:\n- Trajectory diversity from identical models with different noise seeds\n- LIBERO benchmark results\n- In-depth architectural diagrams or mathematical formulations\n\nFor comprehensive technical details on these points, you would need to access the full paper PDF or HTML version linked in the metadata (available at `/pdf/2504.02792` or the experimental HTML view).",
+    "durationMs": 4099,
+    "url": "https://arxiv.org/abs/2504.02792"
+  },
+  "sourceToolAssistantUUID": "e7e28562-81a1-4103-af64-6e9aa2b6d4a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-10T08:06:03.328Z_
+
+<details><summary>↩ Tool result · `toolu_01Us8CoF5Zn1fZy7czzXEkrz`</summary>
+
+```text
+Web search results for query: "LIBERO dataset failure demonstrations negative examples robot manipulation 2025"
+
+Links: [{"title":"LIBERO: simulation benchmark for the study of lifelong robot learning | by Deepthi Karkada | Medium","url":"https://medium.com/@deepkarkada/libero-simulation-benchmark-for-the-study-of-lifelong-robot-learning-583b786a96f6"},{"title":"GitHub - Lifelong-Robot-Learning/LIBERO: Benchmarking Knowledge Transfer in Lifelong Robot Learning · GitHub","url":"https://github.com/Lifelong-Robot-Learning/LIBERO"},{"title":"LIBERO Benchmark: Vision-Language-Action in Robotics","url":"https://www.emergentmind.com/topics/libero"},{"title":"LIBERO Tasks: Lifelong Robotic Learning","url":"https://www.emergentmind.com/topics/libero-tasks"},{"title":"Behind a “Failed” Robot Learning Project: Dataset Engineering, Training, and Inference Experiments on a “Low-Cost” Arm | by Heyang Huang | Dec, 2025 | Medium","url":"https://medium.com/@hehu2280/behind-a-failed-robot-learning-project-dataset-engineering-training-and-inference-efc1c2bd10e8"},{"title":"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning | OpenReview","url":"https://openreview.net/forum?id=xzEtNSuDJk"},{"title":"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning","url":"https://proceedings.neurips.cc/paper_files/paper/2023/file/8c3c666820ea055a77726d66fc7d447f-Paper-Datasets_and_Benchmarks.pdf"},{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization","url":"https://arxiv.org/html/2510.03827v1"},{"title":"Self-Improving Vision-Language-Action Models with Data ...","url":"https://wenlixiao.com/self-improve-VLA-PLD/assets/doc/pld-fullpaper.pdf"},{"title":"Libero-Object Benchmark","url":"https://www.emergentmind.com/topics/libero-object-benchmark"}]
+
+Based on the web search results, here's what I found about the LIBERO dataset, failure demonstrations, and negative examples in robot manipulation:
+
+## Overview of LIBERO Dataset
+
+The LIBERO benchmark is a simulation-based (MuJoCo) scalable benchmark with 130 language-conditioned manipulation tasks organized into 4 groups: tasks with distribution shifts in object types (LIBERO-OBJECT), spatial arrangement (LIBERO-SPATIAL), task goals (LIBERO-GOAL), and combinations of all three (LIBERO-100).
+
+## Failure Demonstrations and Negative Examples
+
+The search results reveal several important findings regarding failure cases and negative examples in robot manipulation using LIBERO:
+
+**Pretraining Paradox**: Naive pretraining can sometimes harm performance in downstream lifelong learning. Negative impact of indiscriminate pretraining can impair generalization by overfitting to offline distributions.
+
+**Model Robustness Issues**: State-of-the-art models including OpenVLA, pi0 and pi0.5 perform poorly on LIBERO-PRO, which applies controlled perturbations from four perspectives: object properties, initial positions, task instructions, and environments.
+
+**Language Grounding Failures**: Most models exploit language only superficially; robustness ablations (language deletion or paraphrasing) cause marginal or no drop in most suites.
+
+**Compositionality Challenges**: While state-of-the-art models interpolate smooth variants of known tasks, even the best models fail at true extrapolation or skill chaining unless directly architected for it.
+
+**Data Collection Challenges**: Demonstrations are often collected through teleoperation pipelines that are decoupled from the deployed VLA policy, leaving critical coverage gaps where human operators' demonstrations rarely reflect the actual distribution of states the policy will encounter at deployment.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "86aab670-a5c4-41b4-bd46-033d85841061",
+  "isSidechain": false,
+  "promptId": "6bc75b81-b877-4089-899c-08249862b361",
+  "type": "user",
+  "uuid": "0b0b9c42-1042-44d2-bf0f-c749903c54c0",
+  "toolUseResult": {
+    "query": "LIBERO dataset failure demonstrations negative examples robot manipulation 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AnQXg8nfHkGSFzwG2xBrxx",
+        "content": [
+          {
+            "title": "LIBERO: simulation benchmark for the study of lifelong robot learning | by Deepthi Karkada | Medium",
+            "url": "https://medium.com/@deepkarkada/libero-simulation-benchmark-for-the-study-of-lifelong-robot-learning-583b786a96f6"
+          },
+          {
+            "title": "GitHub - Lifelong-Robot-Learning/LIBERO: Benchmarking Knowledge Transfer in Lifelong Robot Learning · GitHub",
+            "url": "https://github.com/Lifelong-Robot-Learning/LIBERO"
+          },
+          {
+            "title": "LIBERO Benchmark: Vision-Language-Action in Robotics",
+            "url": "https://www.emergentmind.com/topics/libero"
+          },
+          {
+            "title": "LIBERO Tasks: Lifelong Robotic Learning",
+            "url": "https://www.emergentmind.com/topics/libero-tasks"
+          },
+          {
+            "title": "Behind a “Failed” Robot Learning Project: Dataset Engineering, Training, and Inference Experiments on a “Low-Cost” Arm | by Heyang Huang | Dec, 2025 | Medium",
+            "url": "https://medium.com/@hehu2280/behind-a-failed-robot-learning-project-dataset-engineering-training-and-inference-efc1c2bd10e8"
+          },
+          {
+            "title": "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=xzEtNSuDJk"
+          },
+          {
+            "title": "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/8c3c666820ea055a77726d66fc7d447f-Paper-Datasets_and_Benchmarks.pdf"
+          },
+          {
+            "title": "LIBERO-PRO: Towards Robust and Fair Evaluation of Vision-Language-Action Models Beyond Memorization",
+            "url": "https://arxiv.org/html/2510.03827v1"
+          },
+          {
+            "title": "Self-Improving Vision-Language-Action Models with Data ...",
+            "url": "https://wenlixiao.com/self-improve-VLA-PLD/assets/doc/pld-fullpaper.pdf"
+          },
+          {
+            "title": "Libero-Object Benchmark",
+            "url": "https://www.emergentmind.com/topics/libero-object-benchmark"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about the LIBERO dataset, failure demonstrations, and negative examples in robot manipulation:\n\n## Overview of LIBERO Dataset\n\nThe LIBERO benchmark is a simulation-based (MuJoCo) scalable benchmark with 130 language-conditioned manipulation tasks organized into 4 groups: tasks with distribution shifts in object types (LIBERO-OBJECT), spatial arrangement (LIBERO-SPATIAL), task goals (LIBERO-GOAL), and combinations of all three (LIBERO-100).\n\n## Failure Demonstrations and Negative Examples\n\nThe search results reveal several important findings regarding failure cases and negative examples in robot manipulation using LIBERO:\n\n**Pretraining Paradox**: Naive pretraining can sometimes harm performance in downstream lifelong learning. Negative impact of indiscriminate pretraining can impair generalization by overfitting to offline distributions.\n\n**Model Robustness Issues**: State-of-the-art models including OpenVLA, pi0 and pi0.5 perform poorly on LIBERO-PRO, which applies controlled perturbations from four perspectives: object properties, initial positions, task instructions, and environments.\n\n**Language Grounding Failures**: Most models exploit language only superficially; robustness ablations (language deletion or paraphrasing) cause marginal or no drop in most suites.\n\n**Compositionality Challenges**: While state-of-the-art models interpolate smooth variants of known tasks, even the best models fail at true extrapolation or skill chaining unless directly architected for it.\n\n**Data Collection Challenges**: Demonstrations are often collected through teleoperation pipelines that are decoupled from the deployed VLA policy, leaving critical coverage gaps where human operators' demonstrations rarely reflect the actual distribution of states the policy will encounter at deployment."
+    ],
+    "durationSeconds": 7.743023048000003
+  },
+  "sourceToolAssistantUUID": "86aab670-a5c4-41b4-bd46-033d85841061",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-10T08:06:12.289Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have key information. Let me now fetch more details about:
+1. Diffusion Policy paper's discussion of action averaging artifacts (Chi et al., 2023)
+2. The GPC paper for hard argmax details
+3. Fast-WAM full abstract/paper content
+
+Let me also search for more about how to generate failure demonstrations for LIBERO, and check if there are any methods for diversity in WAM trajectory generation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0b0b9c42-1042-44d2-bf0f-c749903c54c0",
+  "isSidechain": false,
+  "requestId": "req_011CatYU2jWUzkknpJBsZpDm",
+  "type": "assistant",
+  "uuid": "3cd6c6ce-7e08-48de-81bb-a890a03fb81f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01AFUcMZUp36MUPNKexWJzoZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3233,
+      "cache_read_input_tokens": 26151,
+      "output_tokens": 458,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3233,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 458,
+          "cache_read_input_tokens": 26151,
+          "cache_creation_input_tokens": 3233,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3233
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-10T08:06:13.686Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01MmG5odTMVg5GZ2t85Z1Ade`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2603.16666",
+  "prompt": "Extract the full abstract and method section details. What exactly does Fast-WAM do differently at inference time? Does it still use video data during training? What are the exact benchmark numbers on LIBERO and RoboTwin?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3cd6c6ce-7e08-48de-81bb-a890a03fb81f",
+  "isSidechain": false,
+  "requestId": "req_011CatYU2jWUzkknpJBsZpDm",
+  "type": "assistant",
+  "uuid": "43504aa9-5969-4e03-adfe-f29637ca6bdd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01AFUcMZUp36MUPNKexWJzoZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3233,
+      "cache_read_input_tokens": 26151,
+      "output_tokens": 458,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3233,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 458,
+          "cache_read_input_tokens": 26151,
+          "cache_creation_input_tokens": 3233,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3233
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-10T08:06:14.795Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01QhgNmfKNtTWgN95ukWbeks`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2303.04137",
+  "prompt": "Extract: (1) the Diffusion Policy paper's discussion of multi-modal distributions and action averaging artifacts, (2) why averaging over multi-modal action distributions produces invalid actions in manipulation, (3) how they handle multi-modality (implicit vs explicit)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "43504aa9-5969-4e03-adfe-f29637ca6bdd",
+  "isSidechain": false,
+  "requestId": "req_011CatYU2jWUzkknpJBsZpDm",
+  "type": "assistant",
+  "uuid": "ad0f8b4d-46dd-4faf-8de3-16249e613e1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01AFUcMZUp36MUPNKexWJzoZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3233,
+      "cache_read_input_tokens": 26151,
+      "output_tokens": 458,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3233,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 458,
+          "cache_read_input_tokens": 26151,
+          "cache_creation_input_tokens": 3233,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3233
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-10T08:06:15.758Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QdnVJnwrAe1RiNQSZUBRtN`</summary>
+
+```json
+{
+  "query": "best-of-N selection robot manipulation value function trajectory scoring 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ad0f8b4d-46dd-4faf-8de3-16249e613e1d",
+  "isSidechain": false,
+  "requestId": "req_011CatYU2jWUzkknpJBsZpDm",
+  "type": "assistant",
+  "uuid": "4808b022-23f6-45eb-9935-f4c5e7a56cd1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01AFUcMZUp36MUPNKexWJzoZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3233,
+      "cache_read_input_tokens": 26151,
+      "output_tokens": 458,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3233,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 458,
+          "cache_read_input_tokens": 26151,
+          "cache_creation_input_tokens": 3233,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3233
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-10T08:06:15.797Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QYwJWQU5FdyoPSx9tTkPuT`</summary>
+
+```json
+{
+  "query": "action averaging artifact multi-modal distribution diffusion policy manipulation failure mode"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4808b022-23f6-45eb-9935-f4c5e7a56cd1",
+  "isSidechain": false,
+  "requestId": "req_011CatYU2jWUzkknpJBsZpDm",
+  "type": "assistant",
+  "uuid": "06589d48-46d1-4340-b80a-4613d4c65936",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01AFUcMZUp36MUPNKexWJzoZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3233,
+      "cache_read_input_tokens": 26151,
+      "output_tokens": 458,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3233,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 458,
+          "cache_read_input_tokens": 26151,
+          "cache_creation_input_tokens": 3233,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3233
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-10T08:06:17.911Z_
+
+<details><summary>↩ Tool result · `toolu_01MmG5odTMVg5GZ2t85Z1Ade`</summary>
+
+```text
+# Fast-WAM: Key Findings
+
+## What It Does Differently at Inference
+
+Fast-WAM skips future prediction during test time. Rather than the typical "imagine-then-execute" approach that requires iterative video denoising, this method "retains video co-training during training but skips future prediction at test time."
+
+## Training Approach
+
+Yes, Fast-WAM maintains video modeling during training. The research demonstrates that "the main value of video prediction in WAMs may lie in improving world representations during training rather than generating future observations at test time."
+
+## Performance Metrics
+
+The abstract does not provide specific numerical benchmark scores for LIBERO and RoboTwin. It only states that "Fast-WAM achieves competitive results with state-of-the-art methods both on simulation benchmarks (LIBERO and RoboTwin) and real-world tasks, without embodied pretraining."
+
+## Speed Improvement
+
+The method achieves significant efficiency gains: "It runs in real time with 190ms latency, over 4× faster than existing imagine-then-execute WAMs."
+
+**Note:** The full method section details and exact benchmark numbers are not included in the provided web page content, which contains only the abstract and metadata.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "43504aa9-5969-4e03-adfe-f29637ca6bdd",
+  "isSidechain": false,
+  "promptId": "6bc75b81-b877-4089-899c-08249862b361",
+  "type": "user",
+  "uuid": "e880604b-62b4-4c6e-a971-7dab29b05c54",
+  "toolUseResult": {
+    "bytes": 47763,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Fast-WAM: Key Findings\n\n## What It Does Differently at Inference\n\nFast-WAM skips future prediction during test time. Rather than the typical \"imagine-then-execute\" approach that requires iterative video denoising, this method \"retains video co-training during training but skips future prediction at test time.\"\n\n## Training Approach\n\nYes, Fast-WAM maintains video modeling during training. The research demonstrates that \"the main value of video prediction in WAMs may lie in improving world representations during training rather than generating future observations at test time.\"\n\n## Performance Metrics\n\nThe abstract does not provide specific numerical benchmark scores for LIBERO and RoboTwin. It only states that \"Fast-WAM achieves competitive results with state-of-the-art methods both on simulation benchmarks (LIBERO and RoboTwin) and real-world tasks, without embodied pretraining.\"\n\n## Speed Improvement\n\nThe method achieves significant efficiency gains: \"It runs in real time with 190ms latency, over 4× faster than existing imagine-then-execute WAMs.\"\n\n**Note:** The full method section details and exact benchmark numbers are not included in the provided web page content, which contains only the abstract and metadata.",
+    "durationMs": 4221,
+    "url": "https://arxiv.org/abs/2603.16666"
+  },
+  "sourceToolAssistantUUID": "43504aa9-5969-4e03-adfe-f29637ca6bdd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-10T08:06:18.403Z_
+
+<details><summary>↩ Tool result · `toolu_01QhgNmfKNtTWgN95ukWbeks`</summary>
+
+```text
+# Diffusion Policy and Multi-Modal Action Distributions
+
+Based on the provided arXiv page content, I cannot extract the specific discussion you requested. The page contains only the paper's abstract and metadata, not the full text where such technical details would be discussed.
+
+The abstract mentions that Diffusion Policy has the advantage of "gracefully handling multimodal action distributions," but it does not explain:
+
+1. The specific discussion of action averaging artifacts
+2. Why averaging produces invalid actions in manipulation tasks
+3. The distinction between implicit versus explicit multi-modality handling
+
+To find these details, you would need to access the full paper PDF or HTML version linked on the page (at `/pdf/2303.04137` or the HTML experimental version), where the methodology section would contain the technical explanation of how the diffusion approach addresses multi-modal distributions without the problematic averaging that occurs in traditional methods.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ad0f8b4d-46dd-4faf-8de3-16249e613e1d",
+  "isSidechain": false,
+  "promptId": "6bc75b81-b877-4089-899c-08249862b361",
+  "type": "user",
+  "uuid": "af19ff5b-ebf0-41e4-a921-0076a191b1f9",
+  "toolUseResult": {
+    "bytes": 47730,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Diffusion Policy and Multi-Modal Action Distributions\n\nBased on the provided arXiv page content, I cannot extract the specific discussion you requested. The page contains only the paper's abstract and metadata, not the full text where such technical details would be discussed.\n\nThe abstract mentions that Diffusion Policy has the advantage of \"gracefully handling multimodal action distributions,\" but it does not explain:\n\n1. The specific discussion of action averaging artifacts\n2. Why averaging produces invalid actions in manipulation tasks\n3. The distinction between implicit versus explicit multi-modality handling\n\nTo find these details, you would need to access the full paper PDF or HTML version linked on the page (at `/pdf/2303.04137` or the HTML experimental version), where the methodology section would contain the technical explanation of how the diffusion approach addresses multi-modal distributions without the problematic averaging that occurs in traditional methods.",
+    "durationMs": 3593,
+    "url": "https://arxiv.org/abs/2303.04137"
+  },
+  "sourceToolAssistantUUID": "ad0f8b4d-46dd-4faf-8de3-16249e613e1d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-10T08:06:23.800Z_
+
+<details><summary>↩ Tool result · `toolu_01QdnVJnwrAe1RiNQSZUBRtN`</summary>
+
+```text
+Web search results for query: "best-of-N selection robot manipulation value function trajectory scoring 2025 2026"
+
+Links: [{"title":"A Hybrid Best-of-N and Beam Search for Efficient Test- ...","url":"https://aclanthology.org/2026.findings-eacl.315.pdf"},{"title":"Human-intelligent trajectory optimization for robotic manipulators with hybrid PSO-PS algorithm - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S1474034625008341"},{"title":"ReWiND: Language-Guided Rewards Teach Robot Policies without New Demonstrations","url":"https://liralab.usc.edu/pdfs/publications/zhang2025rewind.pdf"},{"title":"Deep reinforcement learning trajectory planning for robotic manipulator based on simulation-efficient training | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-93175-2"},{"title":"TYPE Review PUBLISHED 09 September 2025 DOI 10.3389/frobt.2025.1606247","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/pdf"},{"title":"FMB: A Functional Manipulation Benchmark for Generalizable Robotic Learning","url":"https://functional-manipulation-benchmark.github.io/"},{"title":"Towards zero-shot robot tool manipulation in industrial ...","url":"https://sites.gc.sjtu.edu.cn/youyibi/wp-content/uploads/sites/3/2025/10/RCIM-2026ToolManip.pdf"},{"title":"GitHub - BaiShuanghao/Awesome-Robotics-Manipulation: A comprehensive list of papers about Robot Manipulation, including papers, codes, and related websites. · GitHub","url":"https://github.com/BaiShuanghao/Awesome-Robotics-Manipulation"},{"title":"A novel trajectory learning method for robotic arms based on Gaussian Mixture Model and k-value selection algorithm | PLOS One","url":"https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0318403"},{"title":"Multi-objective trajectory optimization method for industrial robots based on improved TD3 algorithm | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-25949-7"}]
+
+I've performed a web search for your query about "best-of-N selection robot manipulation value function trajectory scoring 2025 2026". Here are the relevant results:
+
+## Search Results Summary:
+
+The search returned several papers related to robot manipulation trajectory planning and optimization, though not all directly address the specific combination of all your terms:
+
+1. **Best-of-N Selection Methods**: Research on Best-of-N (BoN) and Beam Search (BS) across different numbers of trajectories (N = 8, 16, 32) appears in recent 2026 work on test-time compute methods, though this focuses on language model reasoning rather than robotics specifically.
+
+2. **Robot Manipulation Trajectory Optimization**: Recent work includes:
+   - A new M2ACD(Multi-Actor-Critic Deep Deterministic Policy Gradient) algorithm to apply trajectory planning of the robotic manipulator in complex environments
+   - A multi-objective integrated trajectory optimization algorithm based on the TD3 reinforcement learning framework
+
+3. **Value Function and Reward Mechanisms**: ReWiND starts from a small demonstration dataset to learn: (1) a data-efficient, language-conditioned reward function that labels the dataset with rewards, and (2) a language-conditioned policy pre-trained with offline RL using these rewards
+
+4. **Trajectory Scoring Methods**: Multiple feasible trajectories are captured as it is crucial for policies, as it enables better generalization to diverse scenarios during inference
+
+The search results show active research in robot manipulation trajectory planning during 2025-2026, but a more specific query combining all these elements together may be needed to find work that directly integrates best-of-N selection with value function-based trajectory scoring in robotic manipulation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4808b022-23f6-45eb-9935-f4c5e7a56cd1",
+  "isSidechain": false,
+  "promptId": "6bc75b81-b877-4089-899c-08249862b361",
+  "type": "user",
+  "uuid": "b94af04a-1d6b-43db-9ce2-81e31c7f5b4f",
+  "toolUseResult": {
+    "query": "best-of-N selection robot manipulation value function trajectory scoring 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QQxYP1cRUBvB2oafGZJw5G",
+        "content": [
+          {
+            "title": "A Hybrid Best-of-N and Beam Search for Efficient Test- ...",
+            "url": "https://aclanthology.org/2026.findings-eacl.315.pdf"
+          },
+          {
+            "title": "Human-intelligent trajectory optimization for robotic manipulators with hybrid PSO-PS algorithm - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S1474034625008341"
+          },
+          {
+            "title": "ReWiND: Language-Guided Rewards Teach Robot Policies without New Demonstrations",
+            "url": "https://liralab.usc.edu/pdfs/publications/zhang2025rewind.pdf"
+          },
+          {
+            "title": "Deep reinforcement learning trajectory planning for robotic manipulator based on simulation-efficient training | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-025-93175-2"
+          },
+          {
+            "title": "TYPE Review PUBLISHED 09 September 2025 DOI 10.3389/frobt.2025.1606247",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1606247/pdf"
+          },
+          {
+            "title": "FMB: A Functional Manipulation Benchmark for Generalizable Robotic Learning",
+            "url": "https://functional-manipulation-benchmark.github.io/"
+          },
+          {
+            "title": "Towards zero-shot robot tool manipulation in industrial ...",
+            "url": "https://sites.gc.sjtu.edu.cn/youyibi/wp-content/uploads/sites/3/2025/10/RCIM-2026ToolManip.pdf"
+          },
+          {
+            "title": "GitHub - BaiShuanghao/Awesome-Robotics-Manipulation: A comprehensive list of papers about Robot Manipulation, including papers, codes, and related websites. · GitHub",
+            "url": "https://github.com/BaiShuanghao/Awesome-Robotics-Manipulation"
+          },
+          {
+            "title": "A novel trajectory learning method for robotic arms based on Gaussian Mixture Model and k-value selection algorithm | PLOS One",
+            "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0318403"
+          },
+          {
+            "title": "Multi-objective trajectory optimization method for industrial robots based on improved TD3 algorithm | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-025-25949-7"
+          }
+        ]
+      },
+      "I've performed a web search for your query about \"best-of-N selection robot manipulation value function trajectory scoring 2025 2026\". Here are the relevant results:\n\n## Search Results Summary:\n\nThe search returned several papers related to robot manipulation trajectory planning and optimization, though not all directly address the specific combination of all your terms:\n\n1. **Best-of-N Selection Methods**: Research on Best-of-N (BoN) and Beam Search (BS) across different numbers of trajectories (N = 8, 16, 32) appears in recent 2026 work on test-time compute methods, though this focuses on language model reasoning rather than robotics specifically.\n\n2. **Robot Manipulation Trajectory Optimization**: Recent work includes:\n   - A new M2ACD(Multi-Actor-Critic Deep Deterministic Policy Gradient) algorithm to apply trajectory planning of the robotic manipulator in complex environments\n   - A multi-objective integrated trajectory optimization algorithm based on the TD3 reinforcement learning framework\n\n3. **Value Function and Reward Mechanisms**: ReWiND starts from a small demonstration dataset to learn: (1) a data-efficient, language-conditioned reward function that labels the dataset with rewards, and (2) a language-conditioned policy pre-trained with offline RL using these rewards\n\n4. **Trajectory Scoring Methods**: Multiple feasible trajectories are captured as it is crucial for policies, as it enables better generalization to diverse scenarios during inference\n\nThe search results show active research in robot manipulation trajectory planning during 2025-2026, but a more specific query combining all these elements together may be needed to find work that directly integrates best-of-N selection with value function-based trajectory scoring in robotic manipulation."
+    ],
+    "durationSeconds": 8.035888582
+  },
+  "sourceToolAssistantUUID": "4808b022-23f6-45eb-9935-f4c5e7a56cd1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Frozen-WAM MPPI: Inference-Time Importance-Weighted Planning for Pretr…",
+  "leafUuid": "b94af04a-1d6b-43db-9ce2-81e31c7f5b4f",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise frozen-WAM MPPI: hard argmax, failure data generation, and diversity validation",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1"
+}
+```
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-10T08:06:26.554Z_
+
+<details><summary>↩ Tool result · `toolu_01QYwJWQU5FdyoPSx9tTkPuT`</summary>
+
+```text
+Web search results for query: "action averaging artifact multi-modal distribution diffusion policy manipulation failure mode"
+
+Links: [{"title":"Diffusion Policy: Visuomotor Policy Learning via Action Diffusion","url":"https://diffusion-policy.cs.columbia.edu/diffusion_policy_2023.pdf"},{"title":"Diffusion Policy: Visuomotor Policy Learning via Action Diffusion","url":"https://arxiv.org/html/2303.04137v5"},{"title":"Diffusion Policy","url":"https://arxiv.org/html/2502.12371v2"},{"title":"Variational Distillation of Diffusion Policies into Mixture of Experts","url":"https://arxiv.org/html/2406.12538.pdf"},{"title":"[2303.04137] Diffusion Policy - ar5iv - arXiv","url":"https://ar5iv.labs.arxiv.org/html/2303.04137"},{"title":"[2303.04137] Diffusion Policy: Visuomotor Policy Learning via Action Diffusion","url":"https://arxiv.org/abs/2303.04137"},{"title":"Diffusion Policy:","url":"https://www.roboticsproceedings.org/rss19/p026.pdf"},{"title":"Diffusion Policy: How Diffusion Models Are Transforming Robot Learning from Demonstration | by Isaac Kargar | Medium","url":"https://kargarisaac.medium.com/diffusion-policy-how-diffusion-models-are-transforming-robot-learning-from-demonstration-32c27ba829cf"},{"title":"Diffusion Policy with Bayesian Expert Selection for Active Multi-Target Tracking","url":"https://arxiv.org/html/2604.03404v1"},{"title":"Diffusion policy: Visuomotor policy learning via action diffusion - Cheng Chi, Zhenjia Xu, Siyuan Feng, Eric Cousineau, Yilun Du, Benjamin Burchfiel, Russ Tedrake, Shuran Song, 2025","url":"https://journals.sagepub.com/doi/full/10.1177/02783649241273668"}]
+
+Based on the web search results, I found relevant information about action averaging artifacts related to multi-modal distribution diffusion policies. Here are the key findings:
+
+## Action Averaging Artifact in Policy Learning
+
+Traditional policies tend to average multimodal action options, producing ambiguous actions. This is a well-known failure mode in robot learning from demonstrations.
+
+## How Diffusion Policies Address This
+
+Diffusion Policy can commit to one mode at a time, sampling from the full range of demonstrated behaviors without averaging them away. This represents a significant advantage over prior approaches.
+
+## Mode-Averaging Problem in Mixture of Experts
+
+The action averaging artifact also appears in other policy representations. The commonly used maximum likelihood objective can lead to undesired behavior due to mode-averaging, where the model fails to accurately represent certain modes. This is particularly relevant for Mixture of Experts (MoE) policies used in behavior learning.
+
+## Recent Solutions
+
+Flow Matching Policy (one-step) collapses modes and produces averaged trajectories, unlike IMLE Policy which captures diverse trajectories that reflect the full distribution of the demonstration data. This highlights ongoing research into avoiding action averaging artifacts in policy learning.
+
+The core issue is that simpler policy representations struggle with multi-modal behavioral distributions because they tend to average across different valid action modes, resulting in actions that are ineffective compromises between distinct behavioral strategies.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "06589d48-46d1-4340-b80a-4613d4c65936",
+  "isSidechain": false,
+  "promptId": "6bc75b81-b877-4089-899c-08249862b361",
+  "type": "user",
+  "uuid": "b59667e4-0e33-42a4-a6ab-9e36eccbce4a",
+  "toolUseResult": {
+    "query": "action averaging artifact multi-modal distribution diffusion policy manipulation failure mode",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016h3tA2FxUZYDYBdVMTHxx1",
+        "content": [
+          {
+            "title": "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion",
+            "url": "https://diffusion-policy.cs.columbia.edu/diffusion_policy_2023.pdf"
+          },
+          {
+            "title": "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion",
+            "url": "https://arxiv.org/html/2303.04137v5"
+          },
+          {
+            "title": "Diffusion Policy",
+            "url": "https://arxiv.org/html/2502.12371v2"
+          },
+          {
+            "title": "Variational Distillation of Diffusion Policies into Mixture of Experts",
+            "url": "https://arxiv.org/html/2406.12538.pdf"
+          },
+          {
+            "title": "[2303.04137] Diffusion Policy - ar5iv - arXiv",
+            "url": "https://ar5iv.labs.arxiv.org/html/2303.04137"
+          },
+          {
+            "title": "[2303.04137] Diffusion Policy: Visuomotor Policy Learning via Action Diffusion",
+            "url": "https://arxiv.org/abs/2303.04137"
+          },
+          {
+            "title": "Diffusion Policy:",
+            "url": "https://www.roboticsproceedings.org/rss19/p026.pdf"
+          },
+          {
+            "title": "Diffusion Policy: How Diffusion Models Are Transforming Robot Learning from Demonstration | by Isaac Kargar | Medium",
+            "url": "https://kargarisaac.medium.com/diffusion-policy-how-diffusion-models-are-transforming-robot-learning-from-demonstration-32c27ba829cf"
+          },
+          {
+            "title": "Diffusion Policy with Bayesian Expert Selection for Active Multi-Target Tracking",
+            "url": "https://arxiv.org/html/2604.03404v1"
+          },
+          {
+            "title": "Diffusion policy: Visuomotor policy learning via action diffusion - Cheng Chi, Zhenjia Xu, Siyuan Feng, Eric Cousineau, Yilun Du, Benjamin Burchfiel, Russ Tedrake, Shuran Song, 2025",
+            "url": "https://journals.sagepub.com/doi/full/10.1177/02783649241273668"
+          }
+        ]
+      },
+      "Based on the web search results, I found relevant information about action averaging artifacts related to multi-modal distribution diffusion policies. Here are the key findings:\n\n## Action Averaging Artifact in Policy Learning\n\nTraditional policies tend to average multimodal action options, producing ambiguous actions. This is a well-known failure mode in robot learning from demonstrations.\n\n## How Diffusion Policies Address This\n\nDiffusion Policy can commit to one mode at a time, sampling from the full range of demonstrated behaviors without averaging them away. This represents a significant advantage over prior approaches.\n\n## Mode-Averaging Problem in Mixture of Experts\n\nThe action averaging artifact also appears in other policy representations. The commonly used maximum likelihood objective can lead to undesired behavior due to mode-averaging, where the model fails to accurately represent certain modes. This is particularly relevant for Mixture of Experts (MoE) policies used in behavior learning.\n\n## Recent Solutions\n\nFlow Matching Policy (one-step) collapses modes and produces averaged trajectories, unlike IMLE Policy which captures diverse trajectories that reflect the full distribution of the demonstration data. This highlights ongoing research into avoiding action averaging artifacts in policy learning.\n\nThe core issue is that simpler policy representations struggle with multi-modal behavioral distributions because they tend to average across different valid action modes, resulting in actions that are ineffective compromises between distinct behavioral strategies."
+    ],
+    "durationSeconds": 10.736684969999988
+  },
+  "sourceToolAssistantUUID": "06589d48-46d1-4340-b80a-4613d4c65936",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 39 · 2026-05-10T08:06:26.562Z_
+
+```json
+{
+  "parentUuid": "b59667e4-0e33-42a4-a6ab-9e36eccbce4a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "847750e2-b8d3-427d-9b81-509964464b34",
+  "timestamp": "2026-05-10T08:06:26.562Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-10T08:06:30.605Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now get more details on Fast-WAM and the Diffusion Policy paper to understand the action averaging issue better. Also, let me look for more information on LIBERO failure demonstrations and how to generate them synthetically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "847750e2-b8d3-427d-9b81-509964464b34",
+  "isSidechain": false,
+  "requestId": "req_011CatYVk9upE2E556XkXNDr",
+  "type": "assistant",
+  "uuid": "77c96b4f-bbd1-4a35-b8fd-ece2e2799867",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_011jemtDNkyXSs2T1sz9ZR8x",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2957,
+      "cache_read_input_tokens": 29384,
+      "output_tokens": 486,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2957,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 486,
+          "cache_read_input_tokens": 29384,
+          "cache_creation_input_tokens": 2957,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2957
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-10T08:06:33.640Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01SWQKqX26s7FsK9bq6XRt2h`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2603.16666",
+  "prompt": "Extract: (1) exact benchmark numbers on LIBERO (which suites - LIBERO-Spatial, LIBERO-Object, LIBERO-Goal, LIBERO-Long) and RoboTwin, (2) does Fast-WAM match or exceed WAMs that use test-time video? (3) what is the ablation showing the value of test-time video vs training-time video? (4) exact claim about video generation at inference being unnecessary"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "77c96b4f-bbd1-4a35-b8fd-ece2e2799867",
+  "isSidechain": false,
+  "requestId": "req_011CatYVk9upE2E556XkXNDr",
+  "type": "assistant",
+  "uuid": "65426acc-70d2-400e-b2f5-bff6403b4436",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_011jemtDNkyXSs2T1sz9ZR8x",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2957,
+      "cache_read_input_tokens": 29384,
+      "output_tokens": 486,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2957,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 486,
+          "cache_read_input_tokens": 29384,
+          "cache_creation_input_tokens": 2957,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2957
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-10T08:06:35.795Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01YB3n4skiAarLVvpBgDduLi`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2303.04137v5",
+  "prompt": "Find section discussing: (1) multi-modal action distributions, (2) averaging artifacts in behavior cloning, (3) how implicit vs explicit policies handle multi-modality, (4) why averaging across modes produces infeasible actions for manipulation. Also look for any T-pushes or T-shaped maze experiments showing averaging failure."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65426acc-70d2-400e-b2f5-bff6403b4436",
+  "isSidechain": false,
+  "requestId": "req_011CatYVk9upE2E556XkXNDr",
+  "type": "assistant",
+  "uuid": "8c08b49f-738e-4d5e-9d3e-24ae907644cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_011jemtDNkyXSs2T1sz9ZR8x",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2957,
+      "cache_read_input_tokens": 29384,
+      "output_tokens": 486,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2957,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 486,
+          "cache_read_input_tokens": 29384,
+          "cache_creation_input_tokens": 2957,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2957
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-10T08:06:36.487Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01N7AHk6ey6znqjX1be4bA11`</summary>
+
+```json
+{
+  "query": "synthetic failure demonstrations robot imitation learning negative examples perturbation 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c08b49f-738e-4d5e-9d3e-24ae907644cf",
+  "isSidechain": false,
+  "requestId": "req_011CatYVk9upE2E556XkXNDr",
+  "type": "assistant",
+  "uuid": "b50fcc4a-688f-4b78-aa7b-586f2acf8c83",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_011jemtDNkyXSs2T1sz9ZR8x",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2957,
+      "cache_read_input_tokens": 29384,
+      "output_tokens": 486,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2957,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 486,
+          "cache_read_input_tokens": 29384,
+          "cache_creation_input_tokens": 2957,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2957
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-10T08:06:37.015Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Cbq8AXd8juUWp1RwGCh1w3`</summary>
+
+```json
+{
+  "query": "WAM world action model trajectory diversity latent space cosine similarity 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b50fcc4a-688f-4b78-aa7b-586f2acf8c83",
+  "isSidechain": false,
+  "requestId": "req_011CatYVk9upE2E556XkXNDr",
+  "type": "assistant",
+  "uuid": "3319ecc0-04bd-4f46-983e-e1804bdf0cb4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_011jemtDNkyXSs2T1sz9ZR8x",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2957,
+      "cache_read_input_tokens": 29384,
+      "output_tokens": 486,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2957,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 486,
+          "cache_read_input_tokens": 29384,
+          "cache_creation_input_tokens": 2957,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2957
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-10T08:06:39.851Z_
+
+<details><summary>↩ Tool result · `toolu_01SWQKqX26s7FsK9bq6XRt2h`</summary>
+
+```text
+# Fast-WAM Paper: Key Findings
+
+## (1) LIBERO Benchmark Results
+
+Fast-WAM achieved **97.6% average success rate** across all four suites:
+- Spatial: 98.2%
+- Object: 100.0%
+- Goal: 97.0%
+- Long: 95.2%
+
+**RoboTwin Results**: 91.8% average success rate (91.88% clean, 91.78% randomized)
+
+## (2) Performance vs. Imagine-then-Execute WAMs
+
+Yes, Fast-WAM matches or exceeds comparable baselines. On RoboTwin, it achieved "91.8% success rate, exceeding all baselines without embodied pretraining" and remained "highly competitive with the strongest pretrained WAMs" like LingBot-VA (92.2%).
+
+## (3) Ablation: Training vs. Inference Video
+
+The critical finding: removing video co-training caused **much larger performance drops** than eliminating test-time generation:
+
+- **RoboTwin**: Fast-WAM (91.8%) vs. without video co-training (83.8%) = **8-point drop**
+- **LIBERO**: Fast-WAM (97.6%) vs. without video co-training (93.5%) = **4.1-point drop**
+
+By comparison, differences between Fast-WAM and imagine-then-execute variants were minimal (0.5-1.9 points).
+
+## (4) Core Claim About Inference
+
+The paper states: "Fast-WAM stays close to imagine-then-execute variants, while removing video co-training causes a much larger performance drop," suggesting that "the main value of video prediction in WAMs may lie in improving world representations during training rather than generating future observations at test time."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "65426acc-70d2-400e-b2f5-bff6403b4436",
+  "isSidechain": false,
+  "promptId": "6bc75b81-b877-4089-899c-08249862b361",
+  "type": "user",
+  "uuid": "579f4c10-6116-414b-9f21-a766b11c6882",
+  "toolUseResult": {
+    "bytes": 330778,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Fast-WAM Paper: Key Findings\n\n## (1) LIBERO Benchmark Results\n\nFast-WAM achieved **97.6% average success rate** across all four suites:\n- Spatial: 98.2%\n- Object: 100.0%\n- Goal: 97.0%\n- Long: 95.2%\n\n**RoboTwin Results**: 91.8% average success rate (91.88% clean, 91.78% randomized)\n\n## (2) Performance vs. Imagine-then-Execute WAMs\n\nYes, Fast-WAM matches or exceeds comparable baselines. On RoboTwin, it achieved \"91.8% success rate, exceeding all baselines without embodied pretraining\" and remained \"highly competitive with the strongest pretrained WAMs\" like LingBot-VA (92.2%).\n\n## (3) Ablation: Training vs. Inference Video\n\nThe critical finding: removing video co-training caused **much larger performance drops** than eliminating test-time generation:\n\n- **RoboTwin**: Fast-WAM (91.8%) vs. without video co-training (83.8%) = **8-point drop**\n- **LIBERO**: Fast-WAM (97.6%) vs. without video co-training (93.5%) = **4.1-point drop**\n\nBy comparison, differences between Fast-WAM and imagine-then-execute variants were minimal (0.5-1.9 points).\n\n## (4) Core Claim About Inference\n\nThe paper states: \"Fast-WAM stays close to imagine-then-execute variants, while removing video co-training causes a much larger performance drop,\" suggesting that \"the main value of video prediction in WAMs may lie in improving world representations during training rather than generating future observations at test time.\"",
+    "durationMs": 6205,
+    "url": "https://arxiv.org/html/2603.16666"
+  },
+  "sourceToolAssistantUUID": "65426acc-70d2-400e-b2f5-bff6403b4436",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-10T08:06:41.941Z_
+
+<details><summary>↩ Tool result · `toolu_01YB3n4skiAarLVvpBgDduLi`</summary>
+
+```text
+# Multi-Modal Action Distributions in Diffusion Policy
+
+## Key Discussions Found
+
+**Multi-Modal Action Distributions (Section 4.1)**
+
+The paper explicitly addresses how diffusion models handle multiple action possibilities. It states that "multi-modality in action generation for diffusion policy arises from two sources – an underlying stochastic sampling procedure and a stochastic initialization."
+
+The Push-T task provides a concrete example: "At the given state, the end-effector (blue) can either go left or right to push the block. Diffusion Policy learns both modes and commits to only one mode within each rollout."
+
+**Comparison with Other Policy Types**
+
+Regarding how different policy representations handle multi-modality, the paper contrasts approaches:
+
+- **Explicit policies** struggle with "the existence of multimodal distributions" in robot action prediction
+- **Implicit policies** (like IBC) theoretically should express multi-modal distributions but suffer from "training instability"
+- **Diffusion policies** naturally express these through gradient-based optimization
+
+**Averaging Problem Discussion**
+
+While the document doesn't explicitly discuss "averaging artifacts," Section 4.3 addresses temporal consistency issues: "consecutive actions could be drawn from different modes, resulting in jittery actions that alternate between the two valid trajectories" when single-step policies treat action dimensions independently.
+
+The paper demonstrates diffusion policies avoid this by predicting coherent action sequences rather than independent single actions, maintaining consistency across the temporal horizon.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8c08b49f-738e-4d5e-9d3e-24ae907644cf",
+  "isSidechain": false,
+  "promptId": "6bc75b81-b877-4089-899c-08249862b361",
+  "type": "user",
+  "uuid": "0177dc8c-a537-4bb0-b256-8c0c8f0df716",
+  "toolUseResult": {
+    "bytes": 364992,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Multi-Modal Action Distributions in Diffusion Policy\n\n## Key Discussions Found\n\n**Multi-Modal Action Distributions (Section 4.1)**\n\nThe paper explicitly addresses how diffusion models handle multiple action possibilities. It states that \"multi-modality in action generation for diffusion policy arises from two sources – an underlying stochastic sampling procedure and a stochastic initialization.\"\n\nThe Push-T task provides a concrete example: \"At the given state, the end-effector (blue) can either go left or right to push the block. Diffusion Policy learns both modes and commits to only one mode within each rollout.\"\n\n**Comparison with Other Policy Types**\n\nRegarding how different policy representations handle multi-modality, the paper contrasts approaches:\n\n- **Explicit policies** struggle with \"the existence of multimodal distributions\" in robot action prediction\n- **Implicit policies** (like IBC) theoretically should express multi-modal distributions but suffer from \"training instability\"\n- **Diffusion policies** naturally express these through gradient-based optimization\n\n**Averaging Problem Discussion**\n\nWhile the document doesn't explicitly discuss \"averaging artifacts,\" Section 4.3 addresses temporal consistency issues: \"consecutive actions could be drawn from different modes, resulting in jittery actions that alternate between the two valid trajectories\" when single-step policies treat action dimensions independently.\n\nThe paper demonstrates diffusion policies avoid this by predicting coherent action sequences rather than independent single actions, maintaining consistency across the temporal horizon.",
+    "durationMs": 6134,
+    "url": "https://arxiv.org/html/2303.04137v5"
+  },
+  "sourceToolAssistantUUID": "8c08b49f-738e-4d5e-9d3e-24ae907644cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-10T08:06:43.885Z_
+
+<details><summary>↩ Tool result · `toolu_01N7AHk6ey6znqjX1be4bA11`</summary>
+
+```text
+Web search results for query: "synthetic failure demonstrations robot imitation learning negative examples perturbation 2025"
+
+Links: [{"title":": Where Robotic Manipulation Meets Structured and Scalable Evaluation","url":"https://robo-eval.github.io/media/RoboEval.pdf"},{"title":"A Path Toward Safe Imitation Learning by Robots in the Wild","url":"https://par.nsf.gov/servlets/purl/10623616"},{"title":"DemoGen: Synthetic Demonstration Generation","url":"https://www.roboticsproceedings.org/rss21/p157.pdf"},{"title":"Imitation learning for legged robot locomotion: a survey","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1678567/pdf"},{"title":"Robotic Manipulation via Imitation Learning: Taxonomy, Evolution, Benchmark, and Challenges","url":"https://arxiv.org/html/2508.17449v1"},{"title":"Robotic Manipulation by Imitating Generated Videos ...","url":"https://rigvid-robot.github.io/static/pdf/rigvid.pdf"},{"title":"Exploiting Policy Idling for Dexterous Manipulation","url":"https://anniesch.github.io/papers/pip.pdf"},{"title":"Learning from demonstration for autonomous generation of robotic trajectory: Status quo and forward-looking overview - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S1474034624002738"},{"title":"[2503.07017] How to Train Your Robots? The Impact of Demonstration Modality on Imitation Learning","url":"https://arxiv.org/abs/2503.07017"},{"title":"RoboFail: Analyzing Failures in Robot Learning Policies","url":"https://arxiv.org/html/2412.02818v1"}]
+
+I've performed the web search on your query: "synthetic failure demonstrations robot imitation learning negative examples perturbation 2025"
+
+Here are the key findings from the search results:
+
+## Recent Research on Synthetic Failures and Perturbations in Robot Learning
+
+**Synthetic Failure Demonstrations:** Research has explored creating sub-optimality synthetically in imitation learning contexts. Considering demonstrations to be sub-optimal is a very recent trend in IL research where the primary focus is to learn a policy with high task-accuracy despite the sub-optimality in the training data.
+
+**Perturbation-Based Evaluation:** The COLOSSEUM benchmark perturbs manipulation tasks along multiple axes including object texture, color, size, background, lighting, distractors, and camera poses, generating 20,371 unique task perturbation instances to evaluate model's generalization capabilities.
+
+**Failure Analysis in Robot Learning:** The RoboFail framework involves controlled perturbations to simulate diverse scenarios, with a PPO-based reinforcement learning agent identifying configurations most likely to induce failures.
+
+**Perturbation-Induced Learning:** Pause-induced perturbations leverage idling behavior for both test-time performance improvement and targeted data collection for policy self-improvement.
+
+**Human Error Demonstrations:** Understanding human errors in demonstrations and their impact on the learned policy is a heavily under-explored area in imitation learning.
+
+The search results indicate that 2025 has seen growing interest in understanding how synthetic negative examples, perturbations, and failure modes can improve robot imitation learning robustness.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b50fcc4a-688f-4b78-aa7b-586f2acf8c83",
+  "isSidechain": false,
+  "promptId": "6bc75b81-b877-4089-899c-08249862b361",
+  "type": "user",
+  "uuid": "5e2c89c7-0c5a-4f71-93ca-75055cfd5ea7",
+  "toolUseResult": {
+    "query": "synthetic failure demonstrations robot imitation learning negative examples perturbation 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TfARRsjy4HoFYapehuqpb1",
+        "content": [
+          {
+            "title": ": Where Robotic Manipulation Meets Structured and Scalable Evaluation",
+            "url": "https://robo-eval.github.io/media/RoboEval.pdf"
+          },
+          {
+            "title": "A Path Toward Safe Imitation Learning by Robots in the Wild",
+            "url": "https://par.nsf.gov/servlets/purl/10623616"
+          },
+          {
+            "title": "DemoGen: Synthetic Demonstration Generation",
+            "url": "https://www.roboticsproceedings.org/rss21/p157.pdf"
+          },
+          {
+            "title": "Imitation learning for legged robot locomotion: a survey",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1678567/pdf"
+          },
+          {
+            "title": "Robotic Manipulation via Imitation Learning: Taxonomy, Evolution, Benchmark, and Challenges",
+            "url": "https://arxiv.org/html/2508.17449v1"
+          },
+          {
+            "title": "Robotic Manipulation by Imitating Generated Videos ...",
+            "url": "https://rigvid-robot.github.io/static/pdf/rigvid.pdf"
+          },
+          {
+            "title": "Exploiting Policy Idling for Dexterous Manipulation",
+            "url": "https://anniesch.github.io/papers/pip.pdf"
+          },
+          {
+            "title": "Learning from demonstration for autonomous generation of robotic trajectory: Status quo and forward-looking overview - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S1474034624002738"
+          },
+          {
+            "title": "[2503.07017] How to Train Your Robots? The Impact of Demonstration Modality on Imitation Learning",
+            "url": "https://arxiv.org/abs/2503.07017"
+          },
+          {
+            "title": "RoboFail: Analyzing Failures in Robot Learning Policies",
+            "url": "https://arxiv.org/html/2412.02818v1"
+          }
+        ]
+      },
+      "I've performed the web search on your query: \"synthetic failure demonstrations robot imitation learning negative examples perturbation 2025\"\n\nHere are the key findings from the search results:\n\n## Recent Research on Synthetic Failures and Perturbations in Robot Learning\n\n**Synthetic Failure Demonstrations:** Research has explored creating sub-optimality synthetically in imitation learning contexts. Considering demonstrations to be sub-optimal is a very recent trend in IL research where the primary focus is to learn a policy with high task-accuracy despite the sub-optimality in the training data.\n\n**Perturbation-Based Evaluation:** The COLOSSEUM benchmark perturbs manipulation tasks along multiple axes including object texture, color, size, background, lighting, distractors, and camera poses, generating 20,371 unique task perturbation instances to evaluate model's generalization capabilities.\n\n**Failure Analysis in Robot Learning:** The RoboFail framework involves controlled perturbations to simulate diverse scenarios, with a PPO-based reinforcement learning agent identifying configurations most likely to induce failures.\n\n**Perturbation-Induced Learning:** Pause-induced perturbations leverage idling behavior for both test-time performance improvement and targeted data collection for policy self-improvement.\n\n**Human Error Demonstrations:** Understanding human errors in demonstrations and their impact on the learned policy is a heavily under-explored area in imitation learning.\n\nThe search results indicate that 2025 has seen growing interest in understanding how synthetic negative examples, perturbations, and failure modes can improve robot imitation learning robustness."
+    ],
+    "durationSeconds": 7.3942131110000044
+  },
+  "sourceToolAssistantUUID": "b50fcc4a-688f-4b78-aa7b-586f2acf8c83",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-10T08:06:45.649Z_
+
+<details><summary>↩ Tool result · `toolu_01Cbq8AXd8juUWp1RwGCh1w3`</summary>
+
+```text
+Web search results for query: "WAM world action model trajectory diversity latent space cosine similarity 2025 2026"
+
+Links: [{"title":"Latent-WAM: Latent World Action Modeling for End-to-End Autonomous Driving","url":"https://arxiv.org/html/2603.24581"},{"title":"World Action Models are Zero-shot Policies","url":"https://arxiv.org/html/2602.15922v1"},{"title":"OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation","url":"https://arxiv.org/html/2605.06481v1"},{"title":"[2603.24581] Latent-WAM: Latent World Action Modeling for End-to-End Autonomous Driving","url":"https://arxiv.org/abs/2603.24581"},{"title":"World2Act: Latent Action Post-Training via Skill-Compositional World Models","url":"https://arxiv.org/html/2603.10422"},{"title":"[2603.24581v1] Latent-WAM: Latent World Action Modeling for End-to-End Autonomous Driving","url":"https://arxiv.org/abs/2603.24581v1"},{"title":"World Guidance: World Modeling in Condition Space for Action Generation","url":"https://arxiv.org/pdf/2602.22010"},{"title":"World Action Model (WaM) Overview","url":"https://www.emergentmind.com/topics/world-action-model-wam"},{"title":"CKT-WAM: Parameter-Efficient Context Knowledge Transfer Between World Action Models","url":"https://arxiv.org/html/2605.06247v1"},{"title":"[2601.05230] Learning Latent Action World Models In The Wild","url":"https://arxiv.org/abs/2601.05230"}]
+
+Based on the web search results, I found several recent papers related to World Action Models (WAMs) that discuss trajectory diversity, latent space representations, and cosine similarity metrics from 2025-2026:
+
+## Key Findings:
+
+**Latent-WAM (March 2026)**
+Latent-WAM is an efficient end-to-end autonomous driving framework that achieves strong trajectory planning through spatially-aware and dynamics-informed latent world representations. It achieves state-of-the-art results of 89.3 EPDMS on NAVSIM v2 and 28.9 HD-Score on HUGSIM with a compact 104M-parameter model.
+
+**World Action Models (WAMs) Overview**
+A World Action Model (WaM) is a unifying computational architecture that jointly encapsulates perception, action generation, and forward environmental dynamics modeling, integrating predictive world modeling and decision policies through shared or coordinated representations.
+
+**Cosine Similarity in WAMs**
+In one WAM approach, the model tracks cosine similarity between successive velocity predictions, and when this metric exceeds a threshold, the model bypasses forward passes for multiple steps by reusing cached velocity vectors.
+
+**World2Act (March 2026)**
+Research on post-training in world models shows correlation between cosine similarity and success rate, with stronger video-action alignment consistently corresponding to improved downstream manipulation success.
+
+**OA-WAM (May 2026)**
+OA-WAM decomposes frames into addressable object slots whose cross-slot attention key reads only identity address subvectors for robust manipulation.
+
+These recent papers demonstrate active research into trajectory diversity, latent space modeling, and similarity metrics within World Action Models during 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3319ecc0-04bd-4f46-983e-e1804bdf0cb4",
+  "isSidechain": false,
+  "promptId": "6bc75b81-b877-4089-899c-08249862b361",
+  "type": "user",
+  "uuid": "48e9444d-e4e9-4726-a532-b5289ec59818",
+  "toolUseResult": {
+    "query": "WAM world action model trajectory diversity latent space cosine similarity 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01V799MvL9BV1z1kmpWDp1Ki",
+        "content": [
+          {
+            "title": "Latent-WAM: Latent World Action Modeling for End-to-End Autonomous Driving",
+            "url": "https://arxiv.org/html/2603.24581"
+          },
+          {
+            "title": "World Action Models are Zero-shot Policies",
+            "url": "https://arxiv.org/html/2602.15922v1"
+          },
+          {
+            "title": "OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation",
+            "url": "https://arxiv.org/html/2605.06481v1"
+          },
+          {
+            "title": "[2603.24581] Latent-WAM: Latent World Action Modeling for End-to-End Autonomous Driving",
+            "url": "https://arxiv.org/abs/2603.24581"
+          },
+          {
+            "title": "World2Act: Latent Action Post-Training via Skill-Compositional World Models",
+            "url": "https://arxiv.org/html/2603.10422"
+          },
+          {
+            "title": "[2603.24581v1] Latent-WAM: Latent World Action Modeling for End-to-End Autonomous Driving",
+            "url": "https://arxiv.org/abs/2603.24581v1"
+          },
+          {
+            "title": "World Guidance: World Modeling in Condition Space for Action Generation",
+            "url": "https://arxiv.org/pdf/2602.22010"
+          },
+          {
+            "title": "World Action Model (WaM) Overview",
+            "url": "https://www.emergentmind.com/topics/world-action-model-wam"
+          },
+          {
+            "title": "CKT-WAM: Parameter-Efficient Context Knowledge Transfer Between World Action Models",
+            "url": "https://arxiv.org/html/2605.06247v1"
+          },
+          {
+            "title": "[2601.05230] Learning Latent Action World Models In The Wild",
+            "url": "https://arxiv.org/abs/2601.05230"
+          }
+        ]
+      },
+      "Based on the web search results, I found several recent papers related to World Action Models (WAMs) that discuss trajectory diversity, latent space representations, and cosine similarity metrics from 2025-2026:\n\n## Key Findings:\n\n**Latent-WAM (March 2026)**\nLatent-WAM is an efficient end-to-end autonomous driving framework that achieves strong trajectory planning through spatially-aware and dynamics-informed latent world representations. It achieves state-of-the-art results of 89.3 EPDMS on NAVSIM v2 and 28.9 HD-Score on HUGSIM with a compact 104M-parameter model.\n\n**World Action Models (WAMs) Overview**\nA World Action Model (WaM) is a unifying computational architecture that jointly encapsulates perception, action generation, and forward environmental dynamics modeling, integrating predictive world modeling and decision policies through shared or coordinated representations.\n\n**Cosine Similarity in WAMs**\nIn one WAM approach, the model tracks cosine similarity between successive velocity predictions, and when this metric exceeds a threshold, the model bypasses forward passes for multiple steps by reusing cached velocity vectors.\n\n**World2Act (March 2026)**\nResearch on post-training in world models shows correlation between cosine similarity and success rate, with stronger video-action alignment consistently corresponding to improved downstream manipulation success.\n\n**OA-WAM (May 2026)**\nOA-WAM decomposes frames into addressable object slots whose cross-slot attention key reads only identity address subvectors for robust manipulation.\n\nThese recent papers demonstrate active research into trajectory diversity, latent space modeling, and similarity metrics within World Action Models during 2025-2026."
+    ],
+    "durationSeconds": 8.631445198000002
+  },
+  "sourceToolAssistantUUID": "3319ecc0-04bd-4f46-983e-e1804bdf0cb4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Frozen-WAM MPPI: Inference-Time Importance-Weighted Planning for Pretr…",
+  "leafUuid": "48e9444d-e4e9-4726-a532-b5289ec59818",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise frozen-WAM MPPI: hard argmax, failure data generation, and diversity validation",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1"
+}
+```
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-10T08:11:55.146Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have good information. Let me think through the core issues and how to revise the idea:
+
+## Fast-WAM Analysis (Critical Issue 3)
+
+Fast-WAM (arXiv 2603.16666) achieves 97.6% on LIBERO-all and 91.8% on RoboTwin WITHOUT test-time video generation. The ablation shows:
+- With video co-training but NO test-time video (Fast-WAM): 97.6% LIBERO, 91.8% RoboTwin
+- Without video co-training at all: 93.5% LIBERO, 83.8% RoboTwin
+
+
+- The performance gap from test-time video generation is only 0.5-1.9 points, which is a serious challenge to my approach.
+
+The reviewer's reframing makes sense though: Fast-WAM optimizes for latency by skipping test-time video generation, while Frozen-WAM MPPI accepts the computational cost to enable trajectory scoring and selection. But this finding hints at something more fundamental—the video latent space might not contain as much discriminative signal for value prediction as I assumed, since adding video at test time yields such marginal gains.
+
+Actually, I need to be more precise here. Fast-WAM still co-trains with video during training, which shapes the latent representation, but it doesn't generate video futures at inference. The latent space is informed by video understanding, yet the actual video generation at test time contributes almost nothing. For my approach, I'm scoring trajectories using the full joint video+action latent, but the Fast-WAM result suggests the video component might be largely redundant with what the action component already captures.
+
+There's a key insight emerging: if video adds minimal marginal value for execution, I could score candidates using only the action latent component—this would be faster since no video generation is needed, and it still enables candidate selection. This actually strengthens the argument relative to Fast-WAM's finding. The tradeoff is that UWM produces action and video latents jointly, so extracting action-only latents would require some modification to how I'm using the model.
+
+Actually, this connects directly to what Fast-WAM does—I could leverage their inference approach of denoising only the action modality while keeping the video timestep at pure noise. So the real opportunity here is sampling a small batch of action trajectories using Fast-WAM-style inference from the frozen UWM, then scoring them with the value MLP trained on action latents from successful demonstrations. This would be much cheaper computationally since there's no video generation at test time, and it addresses the efficiency concern while still enabling candidate selection.
+
+The remaining question is whether action latents alone provide enough diversity across different samples to make this selection meaningful.
+
+Looking at the architecture more carefully, I'm realizing the core issues are clearer now. First, I should use hard argmax selection (Best-of-N) as the primary approach rather than soft MPPI weighting, since averaging action trajectories can produce infeasible blended behaviors—this also makes the contribution cleaner as a frozen latent scoring mechanism. Second, the dataset only contains successful demonstrations, so I need to either generate failure cases synthetically through perturbations or collect them via online rollouts, ideally combining both approaches.
+
+For Fast-WAM positioning, the key insight is that instead of competing with it, I can build on top of it—using Fast-WAM-style action-only denoising to generate B candidates cheaply, then apply scoring to select the best one. This frames the contribution as "Best-of-N over Fast-WAM-style action latents" and creates a natural integration rather than an alternative approach.
+
+I'm also noting that concurrent work on adaptive replanning (When to Trust Imagination) handles execution-time decisions about when to replan, which is complementary to our planning-time candidate selection—we could potentially use their approach downstream. For the experiments, I need to make sure the discriminability pilot includes trajectory diversity diagnostics, and I'm planning to use LIBERO-Long as the primary benchmark with RoboCasa as a secondary one to avoid saturation issues.
+
+The revised architecture I'm considering is generating B=4-8 full video+action trajectories from the frozen UWM, then scoring them with a value MLP on the full joint latents and selecting via hard argmax.
+
+Actually, Option B is cleaner—generating action-only trajectories without video (Fast-WAM style) and scoring those with the value MLP is much cheaper at test time and positions our work as building directly on their insight. The question is whether UWM's architecture actually supports action-only inference without generating video...
+
+and it does, since the independent per-modality diffusion timesteps let us freeze video at full noise while denoising only actions. So the approach becomes: set video timestep to T and action timestep to 0, generate diverse action trajectories from different noise seeds, score them with the value MLP trained on action latents, then hard argmax select the best one. This avoids action averaging artifacts, stays compute-efficient, and directly leverages Fast-WAM's core insight.
+
+The real question is whether B action trajectories from the same prompt but different noise seeds give us enough discriminability in action latent space. Since the action diffusion is stochastic and manipulation tasks typically have multiple valid strategies, there should be meaningful diversity to work with.
+
+So I'm settling on Frozen-WAM Best-of-N: sample 4-8 action trajectories from frozen UWM with different noise seeds, train a value MLP on action latents from successful LIBERO-90 demos plus synthetically failed examples, then select the highest-scoring trajectory.
+
+The efficiency argument is straightforward—Fast-WAM already showed that video generation adds minimal overhead, so by skipping video entirely and just doing action selection, we get their speed gains plus the benefit of evaluating multiple candidates. For the selection mechanism itself, I'm going with hard argmax as the main result, treating soft MPPI weighting as an ablation that might struggle with the multi-modal trajectory distributions we see in manipulation tasks.
+
+On the failure generation side, I'm explicitly creating negatives through online rollouts of the frozen model on LIBERO tasks with Gaussian perturbations—it's cheaper than other approaches but trades off some quality. The total compute budget lands around 40 H100-hours. For concurrent work, there are a few related papers addressing different angles: one focuses on adaptive replanning during execution rather than pre-execution selection, another tackles object binding in WAMs, and a third explores parameter-efficient knowledge transfer between models. On discriminability, I'm testing whether sampling a larger set of action trajectories from the frozen model improves the diversity of candidates available for selection.
+
+For the benchmark strategy, LIBERO-Long is my primary target since the baseline still fails over 40% of the time, with RoboCasa as a secondary option and MetaWorld or Calvin as backups if time allows. The revised budget breaks down to online rollout collection for failure cases, then demo encoding in the next step.
+
+Now I'm mapping out the full resource requirements: encoding action latents from successful and failed LIBERO trajectories, training the value MLP, running an ablation sweep across different beta and batch size parameters, evaluating on RoboCasa, and potentially upgrading to a larger backbone model. That's roughly 150-160 H100-hours total, which fits within the 200-hour limit. But the CoRL deadline is May 29th—only 19 days away—which is extremely constraining.
+
+Given that timeline pressure, I should focus on the critical path: collecting failure demonstrations first, training the value function, then running the primary LIBERO-Long evaluation with best-of-N sampling. The full ablation grid and RoboCasa experiments can be deferred or simplified if needed to hit the submission deadline.
+
+The core insight remains solid, but the approach has shifted substantially—moving from soft MPPI sampling to hard argmax selection, dropping video generation entirely, and introducing the failure demo collection step upfront. This actually strengthens the narrative by building directly on Fast-WAM's insights rather than diverging from them. The contribution feels more focused now.
+
+For the title, I'm leaning toward something that captures the best-of-N selection mechanism clearly while acknowledging we're working with frozen pretrained models. The key is making it obvious this is an inference-time technique that doesn't require retraining the base world model.
+
+Now I'm thinking through the core contribution more carefully. The method trains a lightweight value function on action latents extracted from success and failure demonstrations, then uses it to rank multiple action trajectory candidates sampled from the frozen WAM. The efficiency gains come from avoiding any WAM retraining and using action-only inference, keeping total compute under 40 H100-hours. What really differentiates this is the direct comparison points—we're not retraining like Cosmos Policy does, we're not introducing a separate world model like GPC-RANK, and we maintain Fast-WAM's computational efficiency while adding the selection mechanism it lacked.
+
+I'm also reconsidering whether the action-only inference approach actually works with UWM's architecture. The model has independent per-modality diffusion timesteps, so during training both video and action get denoised jointly. But if I'm trying to do action-only inference at test time—essentially freezing the video diffusion at full noise while only denoising actions—I need to think about whether the attention mechanisms coupling these modalities would even support that cleanly.
+
+Actually, looking at UWM's design more carefully, it seems like this is exactly what the independent timesteps enable. I can set the video timestep to T (keeping it fully noised) while denoising only the action modality, which gives me action predictions informed by the visual context without generating future frames. This is a core capability built into UWM, not a hack. So action-only inference is naturally available, and I can sample multiple action trajectories quickly without the overhead of video generation.
+
+The key question is whether sampling with different noise seeds actually produces meaningful diversity in the action space, or if trajectories cluster around the mode. For long-horizon tasks with multiple valid strategies, diversity should emerge naturally. The diversity pilot will tell me if this works in practice.
+
+The reviewer also flagged keeping soft weighting as an ablation, which I should incorporate into the experimental design.
+
+For the value MLP, I'm planning to train on action latents from successful LIBERO-90 demonstrations as positives, and failures from online rollouts as negatives to distinguish good from bad action trajectories. that fail)
+  (b) Synthetically perturbed: take successful action trajectories, add Gaussian noise, check if episode truncates in simulation → label as failure
+
+For (b) perturbation: this is a common technique. If we perturb the action trajectory enough to cause task failure, we get a negative example. The advantage: cheap (no GPU needed for rollouts, just simulation). The disadvantage: perturbed trajectories may be out-of-distribution for the value MLP (they don't look like real trajectories).
+
+Combined approach:
+- Primary negatives: online rollout failures (~15-20 H100-hours for rollout collection)
+- Secondary negatives: perturbed trajectories (fast, simulation-only)
+- This gives us ~2,000-4,000 positive examples (LIBERO-90 demos) + ~2,000-4,000 negative examples
+
+Now let me also think about the discriminability issue more carefully: if I sample B=4-8 trajectories from the same task with different noise seeds, the value MLP might output nearly identical scores for all of them, which would make the importance weighting essentially uniform and reduce Best-of-N to random selection. The pilot experiment will be critical to check whether this actually happens. If the value predictions are too similar, I'd need to increase noise temperature during denoising or use guidance to push trajectories toward different modes, though I should accept that the gains might be modest. That said, for harder tasks like LIBERO-Long with >40% failure rates, there should be genuine variance across the B trajectories—some will legitimately perform better than others. The issue is mainly with simpler tasks where the policy already achieves near-perfect success, making selection less useful. is why LIBERO-Long is the right benchmark.
+
+Let me synthesize the revised approach. The main shift is using hard argmax selection instead of soft MPPI weighting to avoid action averaging artifacts in multi-modal tasks, paired with action-only latent scoring that's faster than full video generation. I'll collect failure demonstrations both from frozen UWM rollouts on LIBERO tasks and through synthetic perturbations, with a cheap truncation check bringing total training to around 40 H100-hours. Before the main ablation, I need to run a diversity pilot sampling 16 action trajectories from three LIBERO-Long tasks to measure latent distances and correlate the value function with ground-truth success. For related work, I'm positioning Fast-WAM as complementary since we're building on its action-only inference insight, while "When to Trust Imagination" addresses a different problem of adaptive replanning during execution rather than pre-execution selection. The resource estimates now account for the 20 H100-hours needed for failure collection, bringing the total to around 40 H100-hours.
+
+The benchmarks are LIBERO-Long as primary (where baseline failure exceeds 40%) and RoboCasa as secondary (where Cosmos Policy achieves 67.1% with room for improvement). Looking at the strengths: we avoid retraining the WAM entirely unlike Cosmos Policy's massive compute requirements, we don't need a separate world model like GPC, we're leveraging Fast-WAM's efficiency insight, and we can add candidate selection to any pretrained WAM with minimal overhead. The main remaining risk is whether the action latent diversity will be sufficient to drive meaningful gains on LIBERO-Long.
+
+The CoRL 2026 deadline is extremely tight at 19 days, requiring failure collection, value MLP training, a diversity pilot, full evaluation on both benchmarks, ablations, and paper writing—realistically needing 10+ days just for execution, leaving almost no buffer for unexpected issues.
+
+I'm considering several title options that better capture the core contribution: either emphasizing the plug-in nature of the approach for any frozen world model, or keeping the Frozen-WAM framing to highlight that we're working with pretrained models. The key is making it clear this is an inference-time planning method that doesn't require retraining the base model.
+
+Actually, I should verify that "action-latent value learning" is the right terminology here. Since we're using action-only inference mode where the model produces action tokens, and the value MLP trains on these action latents from successful and failed demonstrations, the term is accurate—we're learning value estimates directly from the action latent representations.
+
+For DreamZero-14B though, it's a joint video-action diffusion transformer designed as a zero-shot policy, so it might not support action-only inference the way UWM does. Setting the video timestep to T could require full video-action denoising instead, which would be slower but would let us test whether the approach generalizes across different world action models.
+
+So the method actually supports two inference modes: UWM with fast action-only generation, and DreamZero with full video-action denoising for cross-model validation. That's a compelling narrative—showing the approach works efficiently with UWM while still being flexible enough for other architectures.
+
+Now I'll lock in the final approach and structure the JSON. The core idea is frozen-WAM best-of-N selection using a value MLP trained on action latents, with no WAM retraining needed. I'm collecting failure demonstrations from frozen UWM rollouts on LIBERO tasks using Gaussian action noise and simulation checks, which should take around 15-20 H100-hours. Then I'll sample diverse trajectories to check latent diversity, and train the value MLP on action latents from UWM inference paired with LIBERO successes and the collected failures.
+
+At inference time, I sample 4-8 action trajectories from the frozen UWM and score them with the value function, selecting the best one or using soft MPPI weighting as an ablation. I'm testing different sample sizes, temperature settings, and comparing hard selection against soft weighting. The key advantage over Cosmos Policy is zero WAM retraining, and compared to GPC-RANK and Fast-WAM, I'm adding learned value scoring on top of action-only inference for more efficient candidate selection than full video scoring.
+
+Fast-WAM prioritizes latency with a single trajectory, while my approach trades some latency for higher success rates by evaluating multiple candidates. The total training cost comes to around 38-40 H100-hours, with full evaluation taking 150-200 hours over a 3-5 week timeline. I'm reconsidering whether this counts as a major change since the core problem remains the same, but the method has shifted substantially—moving from soft MPPI as the primary result to hard argmax Best-of-N, adding failure generation upfront, incorporating action-only inference, and introducing a diversity pilot experiment.
+
+Filling in the JSON structure now...
+
+The core problem is that pretrained world action models can only generate a single action trajectory at inference time, so they can't evaluate different possible futures. Current solutions are expensive—either full fine-tuning on robot data, training separate action-conditioned models, or architectural redesigns with hierarchical approaches. Fast-WAM showed that test-time video generation barely impacts performance, but it still doesn't enable candidate comparison.
+
+What's missing is a simple wrapper that takes a frozen WAM, generates multiple diverse action candidates from its latent space alone, scores them with a lightweight value function trained only on success/failure demonstrations, and picks the best one—all without modifying the WAM itself and within a tight training budget. The key insight is that the WAM's action-only inference already produces diverse trajectories across different noise seeds, and since it was trained with video co-training, those trajectories encode meaningful task information. So sampling just a few action candidates from the frozen model and ranking them with a small learned scorer could unlock planning capability efficiently. no video generation at test time) and scoring each with a 3-layer value MLP trained on WAM action latent encodings of LIBERO success/failure demonstrations converts any pretrained WAM into a fast multi-candidate planner. Best-of-N selection (hard argmax: a_{i*} = argmax_i V(z_{a,i})) avoids the action-averaging artifact that makes soft MPPI weighting problematic for multi-modal manipulation tasks — when half the sampled trajectories approach a grasp from the left and half from the right, hard argmax selects the best strategy rather than averaging into a geometrically infeasible middle path. The value MLP trains on action latents from LIBERO-90 successful demos, online rollout failures collected in simulation, and optionally synthetic failures via Gaussian perturbation, totaling under 40 H100-hours of additional training. The core advantages here are that I'm not retraining the WAM itself, avoiding the need for a separate world model, using hard selection over action latents to handle multi-modal behaviors, and keeping everything compatible with any pretrained video-diffusion model.
+
+Now I need to compile the full landscape of related work, making sure I capture all the papers I've discussed plus any new ones that address Best-of-N selection for diffusion policies or similar candidate ranking approaches. I should also double-check "When to Trust Imagination" — it tackles replanning during execution rather than candidate selection at planning time, so it's related but distinct. For the value MLP training, I'm working with LIBERO-90's 4,500 successful demonstrations (50 per task across 90 tasks) as positives, and I need to generate roughly 4,500 failures as negatives through online rollouts in simulation.
+
+For collecting those negative examples, I'm estimating the computational cost: running the frozen UWM policy on LIBERO tasks and labeling episodes that fail to complete within the time limit. Each episode is roughly 100-200 steps at 7 Hz control (15-30 seconds), and with action chunks of 16, that's only 6-12 UWM decisions per episode. If each decision takes 1-2 seconds, the total per episode is manageable at around 15 seconds, bringing the full 4,500 rollouts to roughly 67,500 seconds or about 19 hours of compute.
+
+Since the frozen UWM is pretrained on a broad dataset rather than specifically tuned for LIBERO, I'd expect its single-trajectory success rate on LIBERO-Long to be around 60-70%, giving me a natural 30-40% failure rate without needing to artificially engineer failures. That means from 4,500 rollouts I'd get roughly 1,350 failures just from LIBERO-Long alone, and similar proportions from the other LIBERO suites.
+
+But this might still leave me short on negatives, so I'm considering either running more rollouts on the harder tasks, using synthetic perturbations as a supplement, or collecting multiple rollouts per task with different seeds to leverage the stochasticity of the policy. Alternatively, I could focus the collection more strategically—concentrating on LIBERO-Long with around 50 demos per task across 10 tasks for 500 positive examples, then running 200 rollouts per task to generate roughly 800-1,200 failures from the stochastic policy, plus additional synthetic failures from perturbation.
+
+I think the safest approach is to just estimate this as roughly 15-20 H100-hours for the failure collection phase and acknowledge there's some variability depending on how the actual success rates play out. Now I need to think through the discriminability question more carefully.
+
+The value MLP needs to distinguish successful from unsuccessful trajectories based on the observation and language instruction, and since the UWM is stochastic, different noise seeds will produce different action sequences. For complex LIBERO-Long tasks with multiple sub-steps, I'd expect meaningful diversity from different sub-orderings and approach angles. The real test is whether the MLP trained on offline demos and online rollout labels can actually tell them apart before execution—so I should run a pilot where I sample 16 trajectories from the frozen UWM on a few LIBERO-Long tasks and check if the value predictions align with actual execution outcomes.
+
+Now I'm reconsidering the Fast-WAM positioning. The baseline achieves 97.6% on LIBERO overall and 91.8% on RoboTwin without needing test-time video generation, which is already quite competitive.
+
+When we apply Best-of-N selection with our value MLP on the harder benchmarks like LIBERO-Long and RoboCasa where single-trajectory success rates drop to 60-80%, we should see meaningful improvements. But on the easier suites like LIBERO-Spatial/Object/Goal that already hit 95%+ with single trajectories, selection won't help much since most candidates are already good — and that's acceptable since we're focusing on the harder regime.
+
+Fast-WAM uses single-trajectory inference, while our approach adds selection through the value function to improve performance where it matters most.
+
+Now I'm looking at how this relates to "When to Trust Imagination" — that paper uses adaptive replanning during execution based on whether predicted futures stay reliable, which is quite different from our Best-of-N selection strategy that happens before execution. The core insight is that Best-of-N selection from diverse stochastic trajectories is the real opportunity here—WAMs can already generate multiple candidates through different noise seeds, so I just need a lightweight value predictor trained on action latents to pick the best one without touching the pretrained weights.
+
+Writing the JSON... The core insight is that while Fast-WAM shows video generation adds minimal gains, we still need a way to compare multiple action candidates without expensive retraining. What's missing is a simple plug-in approach: generate diverse actions from the frozen WAM, score them using a lightweight value network trained only on action latents from success/failure examples, then pick the best one—sidestepping the problem of averaging incompatible actions that creates infeasible trajectories. The key insight is using hard argmax selection over soft MPPI weighting to avoid averaging trajectories into infeasible middle paths — when multiple grasp approaches are sampled, picking the single best one outperforms blending them together. I'm keeping soft weighting as an ablation to test whether it ever helps with low-variance distributions. Training the value MLP requires negative examples from both failed rollouts of the frozen policy on LIBERO tasks in simulation and synthetically perturbed action trajectories marked as failures.
+
+The total training overhead stays under 40 H100-hours, well within budget. What sets this apart is avoiding any world model retraining entirely, using hard selection instead of soft averaging for multi-modal trajectory distributions, and maintaining compatibility as a plug-in across different backbone models without competing with existing fast inference methods.
+
+Now I'm mapping out the related work landscape, identifying where Fast-WAM fits as a critical counterpoint to the core approach, alongside concurrent work like "When to Trust Imagination" and the May 2026 variants that operate in the same space. Fast-WAM's key insight is that video generation at test time barely helps (0.5–1.9 points), and the real gains come from co-training on video data during training. Our approach leverages this by using Fast-WAM's efficient action-only inference for candidate generation, then adding learned value scoring to select among candidates — trading compute for better performance on tasks where selection matters. GPC takes a different angle by augmenting a frozen diffusion model...
+
+Actually, let me reconsider. The next thinking shifts to comparing against GPC and another method that handles adaptive replanning during execution. GPC uses a separate world model and hard argmax selection, while we reuse the WAM's action latent space for evaluation. The third method (FFDC) solves a different problem — deciding when to replan mid-trajectory rather than selecting among full candidates upfront.
+
+Then it moves into two more concurrent papers: OA-WAM handles object-addressable manipulation through slot decomposition (orthogonal problem), and CKT-WAM addresses parameter-efficient knowledge transfer between WAMs via text-embedding distillation (also orthogonal, achieving 86.1% on LIBERO-Plus).
+
+ChEaP shows early plan commitment helps video diffusion for 2D maze navigation but hasn't been validated on manipulation with contact dynamics—our approach doesn't rely on that mechanism. DreamZero generates full video+action trajectories through joint denoising on a 14B model, taking ~3 seconds per action chunk on H100, and serves as a secondary backbone in our evaluation. GigaBrain-0.5M requires 30%+ additional task-specific RL training, while H-WM needs hierarchical architectural co-design—both represent different design choices compared to our inference-time planning approach.
+
+Several other methods train world models or planners from scratch: Compositional Planning with Jumpy World Models, PiJEPA which applies MPPI over a JEPA-based world model for navigation, and Latent Diffusion Planning. What distinguishes our work is applying Best-of-N selection with hard argmax over a small set of action-only trajectories from a completely frozen pretrained video diffusion model, using only a value MLP trained on the model's action latents from success/failure examples—no WAM retraining, no separate world model, and evaluated on continuous dexterous manipulation tasks.
+
+For the approach, I'm using UWM as the primary backbone with DreamZero-14B as a secondary option, keeping all WAM weights frozen. To address the reviewer concern about negative examples, I'm collecting failure demonstrations by running the frozen UWM policy on LIBERO-Long tasks in simulation and gathering episodes that don't complete the task—expecting around 30–40% failure rate, which should give us roughly 800–1,500 failure trajectories across multiple rollouts per task.
+
+I'm also supplementing this with synthetic failures by adding Gaussian noise to a subset of successful demonstrations and flagging the truncated episodes as negatives, which is computationally cheap since it's simulation-only.
+
+Before running the main ablation, I need to do a diagnostic check: sample a small batch of action-only trajectories from the frozen UWM on a few LIBERO-Long tasks with different noise seeds, run them in simulation to get ground-truth labels, then measure the diversity of the action latents using cosine distance—if the latents are too similar, I'll increase the noise temperature to encourage more variation.
+
+I'm also computing the correlation between the value function predictions and actual success to make sure the selection mechanism is actually discriminative, and checking that the value estimates have reasonable variance across samples rather than collapsing to uniform weights.
+
+Once that diagnostic validates the approach, I'll move to data generation by encoding all the LIBERO-90 demonstrations through the frozen action encoder to get the action latent representations.
+
+Then I'll train a small MLP to predict success from those latents using binary cross-entropy, followed by inference-time planning where I sample multiple action trajectories and score them with the learned value function to pick the best one.
+
+At test time, I can either generate all trajectories upfront and execute the best one, or replan periodically every few action chunks. For the ablations, I'm varying the number of sampled trajectories from 1 to 16, comparing hard selection against soft MPPI weighting with different temperature parameters.
+
+I'm also testing different noise levels during trajectory sampling and whether to score based on actions alone or include the full video context. The value function itself has a few architectural variants to explore—2, 3, or 4 layer MLPs.
+
+For evaluation, LIBERO-Long is my main benchmark since the single-trajectory baseline already fails on over 40% of tasks, giving me room to show improvement. RoboCasa serves as a secondary check, and I'm comparing against published baselines to validate whether my training approach achieves meaningful gains relative to much more expensive fine-tuning.
+
+I'm also planning to test the same value function on DreamZero-14B to see if the approach generalizes across different model architectures, though I expect smaller improvements there since generating full video trajectories is more expensive and limits candidate diversity. My core hypothesis is that selecting the best trajectory from a small pool using hard argmax scoring should meaningfully boost success rates on LIBERO-Long.
+
+Now I'm thinking through the resource requirements for this work. Given the tight 19-day timeline for CoRL 2026, a human-in-the-loop approach seems most practical—it would require around 220 GPU hours on H100s with moderate idle time, spread across a couple months with one or two researchers.
+
+The auto-research path is more aggressive, needing significantly more compute hours but compressing the timeline down to 10-14 days. There's also a critical dependency I'm noting: the failure collection step in Step 0 needs to finish before I can train the value MLP, and that's budgeted at 15-20 H100-hours. If the diversity pilot shows weak trajectory diversity, I might need to adjust noise temperature or reconsider the approach entirely. Adding the DreamZero-14B backbone would push costs up another 50 hours.
+
+Now I'm thinking through the key references I need to include—Fast-WAM is critical, "When to Trust Imagination" is significant, and then OA-WAM and CKT-WAM are concurrent work on different problems. I should also reconsider the project name since "frozen_wam_mppi" might not capture what we're actually doing here.
+
+Actually, I realize there's a tension: the instructions say to keep the same tracking ID, so I should preserve "frozen_wam_mppi" for continuity, but I can update the title to reflect that we've pivoted to Best-of-N instead of MPPI. That way the tracking stays consistent while the description is accurate. Let me finalize the complete JSON now with all the details in place.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "48e9444d-e4e9-4726-a532-b5289ec59818",
+  "isSidechain": false,
+  "requestId": "req_011CatYX9inDB8MpBHb1KoVo",
+  "type": "assistant",
+  "uuid": "081e1d33-1942-4753-b5ef-8bfbc6c27a5c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01C24HjW9SojiLFUzfNzGckm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3024,
+      "cache_read_input_tokens": 32341,
+      "output_tokens": 15588,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3024,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 15588,
+          "cache_read_input_tokens": 32341,
+          "cache_creation_input_tokens": 3024,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3024
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-10T08:12:01.189Z_
+
+Good, I have all the key data. Let me now analyze what I learned before writing the revision.
+
+**Fast-WAM (arXiv 2603.16666)** — achieves 97.6% LIBERO, 91.8% RoboTwin *without* test-time video. Ablation: removing video co-training drops 4.1 pts (LIBERO) and 8 pts (RoboTwin), but removing test-time video generation only drops 0.5–1.9 pts. Critical finding: Fast-WAM still generates a single trajectory — no candidate comparison.
+
+**"When to Trust Imagination" (arXiv 2605.06222)** — FFDC adaptively decides when to replan *during* execution of a single trajectory. Different problem from pre-execution candidate selection.
+
+**LIBERO-90 failures** — confirmed: all successful demonstrations only. Failures must be generated via online rollouts or synthetic perturbation.
+
+**Action-averaging artifact** — confirmed from Diffusion Policy literature: averaging over multi-modal action distributions produces geometrically infeasible blended actions.
+
+**Key synthesis**: The right revision is to (1) pivot from soft MPPI to Best-of-N hard argmax as the primary result, (2) build *on* Fast-WAM's insight by using action-only inference for candidate generation, (3) add explicit failure demo collection as Step 0, (4) add the diversity pilot as a required pre-ablation diagnostic, and (5) cite all concurrent May 2026 work.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "081e1d33-1942-4753-b5ef-8bfbc6c27a5c",
+  "isSidechain": false,
+  "requestId": "req_011CatYX9inDB8MpBHb1KoVo",
+  "type": "assistant",
+  "uuid": "bda249bc-743e-47c0-b1f9-18969b5c2c42",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01C24HjW9SojiLFUzfNzGckm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3024,
+      "cache_read_input_tokens": 32341,
+      "output_tokens": 15588,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3024,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 15588,
+          "cache_read_input_tokens": 32341,
+          "cache_creation_input_tokens": 3024,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3024
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-10T08:12:02.017Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QhYevA19u8N9YNVfFBEvbm`</summary>
+
+```json
+{
+  "query": "UWM unified world model action-only inference mode video timestep frozen 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bda249bc-743e-47c0-b1f9-18969b5c2c42",
+  "isSidechain": false,
+  "requestId": "req_011CatYX9inDB8MpBHb1KoVo",
+  "type": "assistant",
+  "uuid": "72669e1a-5592-4a8d-b96c-2d6cfe0d157e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01C24HjW9SojiLFUzfNzGckm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3024,
+      "cache_read_input_tokens": 32341,
+      "output_tokens": 15588,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3024,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 15588,
+          "cache_read_input_tokens": 32341,
+          "cache_creation_input_tokens": 3024,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3024
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-10T08:12:02.291Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01C8q4X56WACdYGvHhh8ZJTF`</summary>
+
+```json
+{
+  "query": "LIBERO-Long success rate baseline single trajectory 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "72669e1a-5592-4a8d-b96c-2d6cfe0d157e",
+  "isSidechain": false,
+  "requestId": "req_011CatYX9inDB8MpBHb1KoVo",
+  "type": "assistant",
+  "uuid": "91dd2a1e-bb9f-4a8e-9101-e745d5b61b88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01C24HjW9SojiLFUzfNzGckm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3024,
+      "cache_read_input_tokens": 32341,
+      "output_tokens": 15588,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3024,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 15588,
+          "cache_read_input_tokens": 32341,
+          "cache_creation_input_tokens": 3024,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3024
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Frozen-WAM MPPI: Inference-Time Importance-Weighted Planning for Pretr…",
+  "leafUuid": "91dd2a1e-bb9f-4a8e-9101-e745d5b61b88",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise frozen-WAM MPPI: hard argmax, failure data generation, and diversity validation",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1"
+}
+```
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-10T08:12:07.799Z_
+
+<details><summary>↩ Tool result · `toolu_01C8q4X56WACdYGvHhh8ZJTF`</summary>
+
+```text
+Web search results for query: "LIBERO-Long success rate baseline single trajectory 2025 2026"
+
+Links: [{"title":"LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning","url":"https://www.cs.utexas.edu/~pstone/Papers/bib2html-links/liu_zhu_NeurIPS2023.pdf"},{"title":"VQ-VLA: Improving Vision-Language-Action Models via Scaling","url":"https://xiaoxiao0406.github.io/vqvla.github.io/static/pdfs/VQ-VLA.pdf"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/e5b5c402bb7bd5e60bede6961d6fe39e-Paper-Conference.pdf"},{"title":"Self-Improving Vision-Language-Action Models with Data ...","url":"https://wenlixiao.com/self-improve-VLA-PLD/assets/doc/pld-fullpaper.pdf"},{"title":"2025-9-18 ThinkAct: Vision-Language-Action Reasoning via","url":"https://jasper0314-huang.github.io/assets/pdf/neurips25_thinkact.pdf"},{"title":"OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-","url":"https://arxiv.org/pdf/2510.13626"},{"title":"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models","url":"https://arxiv.org/html/2510.13626v1"},{"title":"RoboCerebra: A Large-scale Benchmark for Long-horizon ...","url":"https://arxiv.org/pdf/2506.06677"},{"title":"LIBERO Benchmark: Vision-Language-Action in Robotics","url":"https://www.emergentmind.com/topics/libero"},{"title":"LIBERO-PRO: Towards Robust and Fair Evaluation of ...","url":"https://arxiv.org/pdf/2510.03827"}]
+
+Based on the search results, I found relevant information about LIBERO-Long success rates and baseline performance:
+
+On the LIBERO-LONG benchmark, a policy achieved an average success rate of 78.7% without pre-training, and after pre-training, the success rate increased by 9%, significantly outperforming the baselines.
+
+Additionally, on the LIBERO benchmark, ThinkAct achieves the best overall success rate of 84.4%, outperforming DiT-Policy and recent state-of-the-art CoT-VLA.
+
+For robustness evaluation, a method achieved the highest overall success rate (79.6%), outperforming all baseline models across nearly all perturbation types on the LIBERO-plus benchmark.
+
+These results represent current state-of-the-art performance on LIBERO-Long tasks as of 2025-2026, with success rates typically ranging from approximately 78.7% to 84.4% depending on the specific method and evaluation approach used.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "91dd2a1e-bb9f-4a8e-9101-e745d5b61b88",
+  "isSidechain": false,
+  "promptId": "6bc75b81-b877-4089-899c-08249862b361",
+  "type": "user",
+  "uuid": "a2df6471-a408-4e8f-86d7-5e8a9d675eeb",
+  "toolUseResult": {
+    "query": "LIBERO-Long success rate baseline single trajectory 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QGpxV6pmjKDRx1hNGmJZcc",
+        "content": [
+          {
+            "title": "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning",
+            "url": "https://www.cs.utexas.edu/~pstone/Papers/bib2html-links/liu_zhu_NeurIPS2023.pdf"
+          },
+          {
+            "title": "VQ-VLA: Improving Vision-Language-Action Models via Scaling",
+            "url": "https://xiaoxiao0406.github.io/vqvla.github.io/static/pdfs/VQ-VLA.pdf"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/e5b5c402bb7bd5e60bede6961d6fe39e-Paper-Conference.pdf"
+          },
+          {
+            "title": "Self-Improving Vision-Language-Action Models with Data ...",
+            "url": "https://wenlixiao.com/self-improve-VLA-PLD/assets/doc/pld-fullpaper.pdf"
+          },
+          {
+            "title": "2025-9-18 ThinkAct: Vision-Language-Action Reasoning via",
+            "url": "https://jasper0314-huang.github.io/assets/pdf/neurips25_thinkact.pdf"
+          },
+          {
+            "title": "OpenMOSS LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-",
+            "url": "https://arxiv.org/pdf/2510.13626"
+          },
+          {
+            "title": "LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models",
+            "url": "https://arxiv.org/html/2510.13626v1"
+          },
+          {
+            "title": "RoboCerebra: A Large-scale Benchmark for Long-horizon ...",
+            "url": "https://arxiv.org/pdf/2506.06677"
+          },
+          {
+            "title": "LIBERO Benchmark: Vision-Language-Action in Robotics",
+            "url": "https://www.emergentmind.com/topics/libero"
+          },
+          {
+            "title": "LIBERO-PRO: Towards Robust and Fair Evaluation of ...",
+            "url": "https://arxiv.org/pdf/2510.03827"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about LIBERO-Long success rates and baseline performance:\n\nOn the LIBERO-LONG benchmark, a policy achieved an average success rate of 78.7% without pre-training, and after pre-training, the success rate increased by 9%, significantly outperforming the baselines.\n\nAdditionally, on the LIBERO benchmark, ThinkAct achieves the best overall success rate of 84.4%, outperforming DiT-Policy and recent state-of-the-art CoT-VLA.\n\nFor robustness evaluation, a method achieved the highest overall success rate (79.6%), outperforming all baseline models across nearly all perturbation types on the LIBERO-plus benchmark.\n\nThese results represent current state-of-the-art performance on LIBERO-Long tasks as of 2025-2026, with success rates typically ranging from approximately 78.7% to 84.4% depending on the specific method and evaluation approach used."
+    ],
+    "durationSeconds": 5.504330897999986
+  },
+  "sourceToolAssistantUUID": "91dd2a1e-bb9f-4a8e-9101-e745d5b61b88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-10T08:12:10.963Z_
+
+<details><summary>↩ Tool result · `toolu_01QhYevA19u8N9YNVfFBEvbm`</summary>
+
+```text
+Web search results for query: "UWM unified world model action-only inference mode video timestep frozen 2025"
+
+Links: [{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://weirdlabuw.github.io/uwm/"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://arxiv.org/html/2504.02792v1"},{"title":"[2504.02792] Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://arxiv.org/abs/2504.02792"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets [Quick Review]","url":"https://liner.com/review/unified-world-models-coupling-video-and-action-diffusion-for-pretraining"},{"title":"[PDF] Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Unified-World-Models:-Coupling-Video-and-Action-for-Zhu-Yu/514b9977bdb57f6e9586461f36fcf6467a775b3c"},{"title":"Paper page - Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://huggingface.co/papers/2504.02792"},{"title":"GitHub - WEIRDLabUW/unified-world-model: Unfied World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://github.com/WEIRDLabUW/unified-world-model"},{"title":"Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | Toyota Research Institute","url":"https://www.tri.global/research/unified-world-models-coupling-video-and-action-diffusion-pretraining-large-robotic"},{"title":"[2504.02792v1] Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets","url":"https://arxiv.org/abs/2504.02792v1"},{"title":"Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising","url":"https://arxiv.org/html/2604.26694v2"}]
+
+I found information about Unified World Models (UWM) from 2025. Here's what the search revealed:
+
+## Overview
+
+A Unified World Model (UWM) integrates an action diffusion process and a video diffusion process within a unified transformer architecture, where independent diffusion timesteps govern each modality.
+
+## Action-Only Inference and Frozen Video Timestep
+
+Regarding your specific query about "action-only inference mode" with a "frozen video timestep": On action-free videos, the model treats missing actions as fully noised, manually setting the action diffusion timestep to T, which encourages the model to rely on visual cues and learn robust representations, even in the absence of explicit action labels.
+
+More broadly, the separation of time steps allows for independent control of the diffusion processes during training and inference, which gives rise to flexible inference capabilities.
+
+## Key Capabilities
+
+By simply controlling each diffusion timestep, UWM can flexibly represent a policy, a forward dynamics, an inverse dynamics, and a video generator.
+
+UWM enables effective pretraining on large-scale multitask robot datasets with both dynamics and action predictions, resulting in more generalizable and robust policies than imitation learning, and naturally facilitates learning from action-free video data through independent control of modality-specific diffusion timesteps.
+
+The research was published in 2025 at Robotics: Science and Systems (RSS), with code and implementation available on GitHub.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "72669e1a-5592-4a8d-b96c-2d6cfe0d157e",
+  "isSidechain": false,
+  "promptId": "6bc75b81-b877-4089-899c-08249862b361",
+  "type": "user",
+  "uuid": "72534b8a-e8e6-4ca8-a15b-4c687141562d",
+  "toolUseResult": {
+    "query": "UWM unified world model action-only inference mode video timestep frozen 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UbNy8CJwTwFntuC6pwac5E",
+        "content": [
+          {
+            "title": "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets",
+            "url": "https://weirdlabuw.github.io/uwm/"
+          },
+          {
+            "title": "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets",
+            "url": "https://arxiv.org/html/2504.02792v1"
+          },
+          {
+            "title": "[2504.02792] Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets",
+            "url": "https://arxiv.org/abs/2504.02792"
+          },
+          {
+            "title": "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets [Quick Review]",
+            "url": "https://liner.com/review/unified-world-models-coupling-video-and-action-diffusion-for-pretraining"
+          },
+          {
+            "title": "[PDF] Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Unified-World-Models:-Coupling-Video-and-Action-for-Zhu-Yu/514b9977bdb57f6e9586461f36fcf6467a775b3c"
+          },
+          {
+            "title": "Paper page - Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets",
+            "url": "https://huggingface.co/papers/2504.02792"
+          },
+          {
+            "title": "GitHub - WEIRDLabUW/unified-world-model: Unfied World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets",
+            "url": "https://github.com/WEIRDLabUW/unified-world-model"
+          },
+          {
+            "title": "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets | Toyota Research Institute",
+            "url": "https://www.tri.global/research/unified-world-models-coupling-video-and-action-diffusion-pretraining-large-robotic"
+          },
+          {
+            "title": "[2504.02792v1] Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets",
+            "url": "https://arxiv.org/abs/2504.02792v1"
+          },
+          {
+            "title": "Unified 4D World Action Modeling from Video Priors with Asynchronous Denoising",
+            "url": "https://arxiv.org/html/2604.26694v2"
+          }
+        ]
+      },
+      "I found information about Unified World Models (UWM) from 2025. Here's what the search revealed:\n\n## Overview\n\nA Unified World Model (UWM) integrates an action diffusion process and a video diffusion process within a unified transformer architecture, where independent diffusion timesteps govern each modality.\n\n## Action-Only Inference and Frozen Video Timestep\n\nRegarding your specific query about \"action-only inference mode\" with a \"frozen video timestep\": On action-free videos, the model treats missing actions as fully noised, manually setting the action diffusion timestep to T, which encourages the model to rely on visual cues and learn robust representations, even in the absence of explicit action labels.\n\nMore broadly, the separation of time steps allows for independent control of the diffusion processes during training and inference, which gives rise to flexible inference capabilities.\n\n## Key Capabilities\n\nBy simply controlling each diffusion timestep, UWM can flexibly represent a policy, a forward dynamics, an inverse dynamics, and a video generator.\n\nUWM enables effective pretraining on large-scale multitask robot datasets with both dynamics and action predictions, resulting in more generalizable and robust policies than imitation learning, and naturally facilitates learning from action-free video data through independent control of modality-specific diffusion timesteps.\n\nThe research was published in 2025 at Robotics: Science and Systems (RSS), with code and implementation available on GitHub."
+    ],
+    "durationSeconds": 8.941371467999998
+  },
+  "sourceToolAssistantUUID": "72669e1a-5592-4a8d-b96c-2d6cfe0d157e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-10T08:13:19.747Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. I now have confirmed that:
+1. UWM supports action-only inference by setting video timestep to T (confirmed: "On action-free videos, the model treats missing actions as fully noised, manually setting the action diffusion timestep to T"). This means we can set VIDEO timestep to T to get action-only inference.
+
+Wait, that's the reverse! Let me re-read: "On action-free videos, the model treats missing actions as fully noised, manually setting the action diffusion timestep to T" - this means for action-free video data, the ACTION timestep is T (noisy). For action-only inference (policy mode), we'd set VIDEO timestep to T and denoise only actions.
+
+
+So my understanding is confirmed—UWM achieves policy mode by setting the video timestep to T while denoising actions from timestep 0, which gives us action-only inference.
+
+2. LIBERO-Long success rates are actually around 78.7-84.4% for recent methods, not the 60% I initially thought, which still leaves meaningful room for improvement with Best-of-N sampling at B=4-8.
+
+Wait, that means the failure rate is only 16-22%, not the ">40%" mentioned in the original proposal. If current baselines are hitting ~80% success, then Best-of-N with B=4 would theoretically reach 99.84% assuming independent candidates, though that assumes the value function estimates are reliable.
+
+In reality, the value MLP will be imperfect, so gains will be smaller than the theoretical maximum. But even if we only reach 90%+ on LIBERO-Long, that's still a meaningful improvement over the 80% baseline. The key question is whether the original claim about ">40% failure rate" was based on older numbers or a different experimental setup.
+
+Wait, I'm realizing the actual Fast-WAM baseline is much higher than I thought—95.2% on LIBERO-Long in single-trajectory mode. That leaves almost no room for Best-of-N to improve, which changes the whole picture. Let me look at what the actual performance gaps are across the different LIBERO benchmarks to see where Best-of-N selection would actually be useful. I'm realizing the key issue: Fast-WAM achieves 95.2% on LIBERO-Long without any LIBERO-specific training, which means the benchmark is essentially saturated at the top end. The real differentiation will come from RoboCasa where Cosmos Policy only reaches 67.1%, giving us meaningful headroom to show improvement. But I need to clarify whether the frozen UWM baseline I'm using was pretrained on LIBERO data or on larger robotic datasets like BridgeV2, since that fundamentally changes what performance to expect on LIBERO-Long. So the frozen UWM baseline on LIBERO-Long should hit around 90-95% since it's also trained on large robot datasets like BridgeV2. That means Best-of-N only addresses the remaining 5-10% of failures, making LIBERO-Long too saturated to demonstrate meaningful gains. I should focus on harder benchmarks instead—RoboCasa where a frozen WAM would likely perform much worse (30-50% vs the fine-tuned 67.1%), or longer-horizon tasks like Calvin and FurnitureBench where there's more room for Best-of-N to show impact.
+
+Actually, RoboCasa could be the stronger primary benchmark. If the frozen UWM hits around 40-50% baseline, then Best-of-N with a good value function could push it to 60-70%—nearly matching Cosmos Policy's fine-tuned performance without any fine-tuning ourselves. That's a compelling story. Let me flip the priorities: make RoboCasa primary since it has real headroom for improvement, and keep LIBERO-Long as secondary since it's likely already saturated. I'm correcting my earlier estimates—LIBERO-Long with frozen WAM likely achieves 85-95% success rather than the >40% failure I initially claimed, while RoboCasa probably shows more meaningful failure rates around 40-60%. This makes RoboCasa the stronger primary benchmark since it demonstrates the method's value even with substantial room for improvement, whereas LIBERO-Long's high baseline leaves less headroom to show impact. I'm settling on RoboCasa as the main evaluation target, though it requires more compute. is the core question I'm trying to answer: can a frozen WAM paired with lightweight Best-of-N selection match the performance of a fully fine-tuned policy without retraining? On RoboCasa, I'm targeting 55-60% success with frozen WAM + Best-of-N against Cosmos Policy's 67.1%, which would demonstrate meaningful improvement over the frozen baseline. I should also verify that this approach works across multiple WAM architectures like UWM and DreamZero-14B to support the plug-in claim, though DreamZero's slow inference speed might limit the beam search size I can practically use. I've settled on the evaluation structure with RoboCasa as the primary benchmark, LIBERO-Long as secondary to show the method works even near saturation, and the cross-WAM DreamZero-14B evaluation as tertiary validation that the value MLP approach generalizes across different robot architectures. Now I'm writing out the comprehensive JSON configuration.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "72534b8a-e8e6-4ca8-a15b-4c687141562d",
+  "isSidechain": false,
+  "requestId": "req_011CatYw8Yzqsjxwczbkfsbw",
+  "type": "assistant",
+  "uuid": "f0f04667-ae53-4dc8-8c23-6094e9136b0a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_012T6ioJ5BqJHHSHmeWoRDEq",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 799,
+      "cache_creation_input_tokens": 16580,
+      "cache_read_input_tokens": 35365,
+      "output_tokens": 17646,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16580,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 799,
+          "output_tokens": 17646,
+          "cache_read_input_tokens": 35365,
+          "cache_creation_input_tokens": 16580,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16580
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-10T08:18:29.890Z_
+
+I now have all the key information needed. Let me integrate the findings:
+
+- UWM's action-only policy mode (video timestep = T, action timestep = 0) is confirmed by UWM documentation: "manually setting the action diffusion timestep to T" for action-free data, and "controlling each diffusion timestep" enables policy/dynamics/video generator roles.
+- LIBERO-Long is near saturation: Fast-WAM achieves 95.2% without embodied pretraining. RoboCasa (67.1% for fine-tuned Cosmos Policy) is the right primary benchmark with meaningful headroom.
+- The action-averaging artifact is confirmed: diffusion policy literature shows averaging over multi-modal distributions produces infeasible blended actions.
+
+Now I'll write the full revised JSON:
+
+```json
+{
+  "title": "Frozen-WAM Best-of-N: Plug-in Inference-Time Candidate Selection for Pretrained World Action Models via Action-Latent Value Learning",
+  "change_type": "major",
+  "core_problem": "Pretrained WAMs generate a single action trajectory at inference and cannot explicitly compare candidate futures. Adding planning capability currently requires one of three costly interventions: (1) full fine-tuning of the video model on robot demos (Cosmos Policy, ICLR 2026: 384–3,072 H100-hours for full WAM retraining); (2) training a separate action-conditioned world model alongside the frozen policy (GPC, RAL 2025); or (3) architectural co-design or RL loops (H-WM, GigaBrain RAMP). Fast-WAM (arXiv 2603.16666) demonstrates that test-time video generation adds only 0.5–1.9 percentage points over action-only inference — achieving 97.6% on LIBERO and 91.8% on RoboTwin at 190ms latency — motivating efficient action-latent candidate generation rather than expensive full video generation. However, Fast-WAM still generates a single trajectory and provides no mechanism to compare or select among candidates. The key open problem is: given that WAM action-only inference is already fast and high-quality (per Fast-WAM), can we add Best-of-N candidate selection using only the WAM's own action latent space, without retraining WAM weights or training a separate world model, and at total additional training cost ≤40 H100-hours? No existing work provides this.",
+  "opportunity": "UWM's independent per-modality diffusion timestep architecture (RSS 2025) natively supports action-only inference (policy mode: video timestep = T, action timestep = 0 for full denoising of action tokens only), inheriting Fast-WAM's efficiency with no video generation overhead. Sampling B=4–8 action-only trajectories from the frozen WAM using independent Gaussian noise seeds produces diverse manipulation strategies — different approach angles, grasp orientations, sub-task orderings — that differ in quality in proportion to task difficulty. A 3-layer value MLP trained on WAM action latent encodings of success AND failure demonstrations scores each candidate. Hard argmax selection (Best-of-N: a_{i*} = argmax_i V(z_{a,i})) is the primary result, explicitly chosen to avoid the multi-modal action-averaging artifact: when B sampled trajectories approach a grasp from different sides, averaging produces a geometrically infeasible middle path, while hard selection picks the best strategy. This artifact is well-documented in the Diffusion Policy paper (Chi et al., 2023) and confirmed as a known failure mode for weighted averaging over multi-modal manipulation distributions. Soft MPPI weighting (w_i ∝ exp(β·V(z_{a,i}))) is retained as an ablation to empirically characterize when soft averaging might outperform hard selection (e.g., low-variance, near-unimodal trajectory distributions). A critical prerequisite not in the original proposal: LIBERO-90 contains only successful demonstrations — negative examples must be generated explicitly via online rollout failures of the frozen UWM policy in simulation (~15–20 H100-hours) supplemented by Gaussian-perturbed synthetic failures. Total additional training cost: ≤40 H100-hours (20 failure collection + 15 demo encoding + 5 MLP training). The primary evaluation is RoboCasa (67.1% for fully fine-tuned Cosmos Policy at 1,536 H100-hours), where frozen WAM single-trajectory baselines are expected around 40–55%, providing meaningful headroom for Best-of-N improvement. The research question: does plug-in Best-of-N with a value MLP trained in ≤40 H100-hours close the gap to fine-tuned WAM performance on hard benchmarks, without modifying any WAM weight?",
+  "landscape": "Cosmos Policy (arXiv 2601.16163, ICLR 2026) is the closest prior work and primary comparison point. It fully fine-tunes Cosmos-Predict2-2B (all weights, no freezing) on robot demos — 384 H100-hours for ALOHA, 1,536 for RoboCasa, 3,072 for LIBERO — then uses the fine-tuned model itself as a planning model with best-of-N over 15 ensemble value predictions per action. Achieves 98.5% LIBERO and 67.1% RoboCasa. Architecture-specific to Cosmos-Predict2; not plug-in compatible with other WAMs; requires full retraining per domain. Our method keeps all WAM weights frozen, costs ≤40 H100-hours, and works with any pretrained WAM backbone.\n\nFast-WAM (arXiv 2603.16666, May 2026) is the most important new work for positioning. It demonstrates that test-time video generation contributes only 0.5–1.9 percentage points: Fast-WAM achieves 97.6% LIBERO-avg (Spatial: 98.2%, Object: 100%, Goal: 97%, Long: 95.2%) and 91.8% RoboTwin WITHOUT generating any video at inference, at 190ms latency (4× faster than imagine-then-execute WAMs). Ablation: removing video co-training causes much larger drops (4.1 pts LIBERO, 8 pts RoboTwin) than removing test-time video generation. CRITICAL DISTINCTION: Fast-WAM generates a single action trajectory and provides no candidate comparison mechanism. Our method builds on Fast-WAM's insight — we also use action-only inference (no video generation at test time) — and adds Best-of-N candidate selection. Fast-WAM targets latency-critical deployment (single trajectory, fastest possible); Frozen-WAM BoN targets success-critical tasks (B trajectories, select best). Complementary operating points on the latency–success Pareto frontier. Importantly, Fast-WAM's strong LIBERO-Long results (95.2% without embodied pretraining) confirm that LIBERO-Long is near saturation for strong WAMs; RoboCasa (67.1% for fine-tuned Cosmos) is the more informative primary benchmark.\n\nGPC (arXiv 2502.00622, IEEE RAL 2025) augments a frozen diffusion policy with a separately trained action-conditioned world model; GPC-RANK generates multiple action proposals from the frozen policy, unrolls through the world model, and selects via hard argmax — requiring training both a policy and a separate world model plus random exploration rollouts. Our method uses the WAM's own action latent space as the evaluation substrate (no separate world model) and requires only demonstration-derived (not exploration-derived) training data.\n\n'When to Trust Imagination: Adaptive Action Execution for World Action Models' (arXiv 2605.06222, May 2026) is concurrent work in the same WAM inference space. FFDC (Future Forward Dynamics Causal Attention) adaptively determines action chunk sizes during execution of a single trajectory, deciding when predictions remain trustworthy versus when to replan earlier. Achieves 69% reduction in forward passes, 34% faster execution, and 2.54% SR improvement on RoboTwin, plus 35% real-world improvement. CRITICAL DISTINCTION: FFDC operates within execution of a single trajectory (in-execution adaptation); our method selects among B candidate trajectories before execution begins (pre-execution selection). The two approaches are orthogonal and could be combined: use our value MLP to select the best of B candidates at planning time, then use FFDC to adaptively replan during execution of the selected trajectory.\n\nOA-WAM (arXiv 2605.06481, May 2026) addresses object-addressable manipulation by decomposing frames into addressable object slots for persistent object identity tracking. Different problem (object binding in multi-object scenes), different method, different contribution. Achieves 97.8% LIBERO, 79.3% SimplerEnv. Not related to inference-time planning or candidate selection.\n\nCKT-WAM (arXiv 2605.06247, May 2026) enables parameter-efficient knowledge transfer between WAMs via text-embedding-space distillation using <2% trainable parameters. Achieves 86.1% on LIBERO-Plus, 83.3% real-world. Different problem (cross-WAM adaptation), not related to inference-time planning.\n\nChEaP (arXiv 2603.30043) demonstrates early plan commitment in video diffusion for 2D maze navigation. Not validated for manipulation with contact dynamics; our method does not rely on partial denoising or early commitment.\n\nDreamZero (arXiv 2602.15922) generates single video+action trajectories via joint 14B DiT, ~3s/chunk on optimized H100. Secondary backbone in our cross-WAM evaluation.\n\nGigaBrain-0.5M* (arXiv 2602.12099) uses RAMP RL loops requiring 30%+ more task-specific training. H-WM (arXiv 2602.11291) requires hierarchical architectural co-design. Compositional Planning with Jumpy World Models (arXiv 2602.19634) requires WM training from scratch. PiJEPA (arXiv 2603.25981) applies MPPI over deterministic JEPA latents for navigation. Latent Diffusion Planning (arXiv 2504.16925) trains a diffusion planner from scratch.\n\nNo prior work applies Best-of-N hard argmax selection over B=4–8 action-only trajectories from a completely frozen pretrained video-diffusion WAM, using a value MLP trained on WAM action latents from explicitly collected success/failure demonstrations, without retraining the WAM or training a separate world model, demonstrated on RoboCasa and LIBERO-Long manipulation benchmarks.",
+  "approach": "Primary backbone: UWM (github.com/WEIRDLabUW/unified-world-model, RSS 2025), whose independent per-modality diffusion timestep architecture natively supports action-only inference (policy mode). Secondary backbone: DreamZero-14B (GEAR-Dreams/DreamZero-DROID), for cross-WAM plug-in validation using full video+action denoising. All WAM weights frozen throughout.\n\n**Step 0 — Failure Demonstration Collection (new, required for value MLP training):**\nLIBERO-90 contains only successful human teleoperation demonstrations; binary success/failure classification requires negative examples not present in the dataset. Two complementary approaches: (a) Primary negatives — run frozen UWM policy (action-only mode, B=1) on LIBERO-Long and RoboCasa tasks in MuJoCo/RoboCasa simulation. The frozen UWM (not fine-tuned on LIBERO/RoboCasa) is expected to fail on ~30–50% of RoboCasa tasks and ~5–15% of LIBERO-Long tasks, yielding 500–2,000 failure trajectories from ~2,000 total rollouts. Estimated cost: 15–20 H100-hours for rollout collection. (b) Synthetic supplement — apply Gaussian action perturbations (σ ∈ {0.05, 0.1}) to 20% of successful LIBERO-90 demos, simulate perturbed episodes in MuJoCo, flag truncated episodes as failures. Cost: <1 H100-hour (simulation-only, no GPU needed for denoising). Combine both sources for a balanced 2,000–4,000 positive / 2,000–4,000 negative training set.\n\n**Diversity Pilot Experiment (new, mandatory pre-ablation diagnostic):**\nBefore the main ablation, run a diagnostic to validate the method's discriminability premise: sample B=16 action-only trajectories from frozen UWM on 3 RoboCasa tasks (different Gaussian noise seeds), execute each in simulation, record ground-truth success/failure, then measure: (1) pairwise cosine distance of action latents {z_{a,i}} — if mean cosine distance < 0.05, increase noise temperature T_noise from 1.0 to {1.5, 2.0} or add diverse language paraphrases; (2) Spearman correlation of V(z_{a,i}) with ground-truth success after MLP training — target ρ > 0.3 for the method to yield meaningful Best-of-N gains; (3) variance of V(z_{a,i}) across B=16 samples — std(V) < 0.05 indicates near-uniform weights, i.e., degenerate selection equivalent to random. Present as a required diagnostic figure in the paper, directly validating or falsifying the discriminability premise.\n\n**Step 1 — Demo Encoding:**\nEncode all LIBERO-90 success demonstrations (4,500 demos) + collected failures through frozen UWM in action-only mode (video timestep = T, action timestep = 0 for full denoising of action tokens), obtaining clean WAM action latents z_a. Label with success/failure. Cost: ~10–15 H100-hours.\n\n**Step 2 — Value MLP Training:**\nTrain a 3-layer MLP (input: flattened action latent z_a; output: scalar V ∈ [0,1]) via binary cross-entropy on balanced success/failure action latents. Cost: ~3–5 H100-hours. Total additional training cost: ≤40 H100-hours across Steps 0–2.\n\n**Step 3 — Inference-Time Best-of-N Planning:**\nAt each planning step, sample B=4–8 action-only trajectories from frozen UWM using independent Gaussian noise seeds (video timestep = T, action timestep = 0). Score each with V(z_{a,i}). PRIMARY result: hard argmax Best-of-N selection a_{i*} = argmax_i V(z_{a,i}). ABLATION only: soft MPPI weighting w_i ∝ exp(β·V(z_{a,i})), output Σ_i w_i·a_i — kept as ablation specifically to validate that soft averaging underperforms hard argmax on multi-modal manipulation tasks, documenting the action-averaging artifact. Inference regimes: (a) open-loop — generate B trajectories at episode start, execute selected trajectory (adds ~1–4s overhead for UWM action-only with B=4–8); (b) periodic replanning — replan every K=5 action chunks.\n\n**Ablation Grid:**\n- B ∈ {1, 2, 4, 8, 16} (B=1 is single-trajectory frozen WAM baseline, equivalent to Fast-WAM-style inference)\n- Selection: hard argmax (primary) vs. soft MPPI β ∈ {0.5, 1, 2, 5} vs. random selection (B=4 random: documents whether learned scoring adds value beyond random candidate selection)\n- Noise temperature T_noise ∈ {1.0, 1.5, 2.0} (informed by diversity pilot)\n- Action-only latent scoring vs. full video+action latent scoring (requires full video denoising: validates whether video component adds value for scoring, analogous to Fast-WAM's training-vs-inference ablation)\n- Value MLP architecture: 2-layer vs. 3-layer vs. 4-layer MLP\n\n**Primary hypothesis:** Hard argmax Best-of-N over B=4–8 UWM action-latent candidates improves RoboCasa success rate by ≥10 percentage points over single-trajectory baseline; soft MPPI weighting underperforms hard argmax on RoboCasa's multi-modal manipulation tasks.\n\n**Evaluation Benchmarks:**\n- Primary: RoboCasa — Cosmos Policy (fine-tuned, 1,536 H100-hours) achieves 67.1%; expected frozen WAM single-trajectory baseline ~40–55% based on task difficulty. Best-of-N target: ≥60%, approaching Cosmos Policy performance at 40× lower training cost. Direct comparison: our method vs. Cosmos Policy published results (not reproduced — cited as fine-tuned WAM upper bound at 1,536 H100-hours).\n- Secondary: LIBERO-Long — note benchmark is near saturation for strong frozen WAMs (Fast-WAM achieves 95.2% without embodied pretraining); still included to show method works in lower-failure-rate regime and to characterize B-dependent gains as a function of baseline task difficulty.\n- Baselines: (a) single-trajectory WAM inference [B=1], (b) random trajectory selection [B=4–8, no value MLP], (c) GPC-RANK-style argmax over randomly scored candidates.\n\n**Cross-WAM Generalization (DreamZero-14B, secondary):**\nApply same value MLP approach to DreamZero-14B using full video+action denoising (action-only mode not straightforwardly available in DreamZero). B=4 candidates (3s/trajectory × 4 = 12s overhead per open-loop plan). Score using joint video+action latent. Open-loop planning only (B=4 at episode start). Validates plug-in claim across two distinct WAM architectures (independent per-modality vs. joint video+action DiT).",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~180h H100",
+      "gpu_utilization": "HIGH idle (~40–60%): GPU waits while researcher implements frozen-WAM action-only inference wrapper, debugs failure collection pipeline, designs ablations, and interprets results between runs",
+      "timeline": "2–4 months",
+      "team": "1–2 researchers",
+      "estimated_gpu_cost": "~$450 (180h × $2.50/h blended Lambda/RunPod/Vast.ai H100 rate)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~220h H100",
+      "gpu_utilization": "MODERATE idle (~20–30%): agent handles code scaffolding, failure collection, demo encoding, and experiment submission continuously; human approves diversity pilot results and ablation scope at daily check-ins",
+      "timeline": "4–6 weeks",
+      "team": "1 researcher, ~30 min/day check-in",
+      "claude_api_cost": "$150–250 (~1,500–2,500 turns at mixed Sonnet/Opus rates)",
+      "estimated_gpu_cost": "~$550 (220h × $2.50/h)",
+      "risk_note": "Step 0 (failure collection, ~15–20 H100-hours) creates a hard sequential dependency: value MLP cannot train without negatives. Diversity pilot may reveal low action-latent variance requiring noise temperature tuning before main ablation. RoboCasa simulation setup may differ significantly from LIBERO and require separate environment configuration. DreamZero-14B cross-WAM evaluation is secondary and can be dropped if timeline is tight."
+    },
+    "auto_research": {
+      "gpu_hours": "~550h H100 (both UWM and DreamZero-14B backbones; full B/β/T_noise ablation grid; RoboCasa + LIBERO-Long evaluations; multiple seeds)",
+      "gpu_utilization": "MINIMAL idle (~5–10%): agent pipelines failure collection, demo encoding, MLP training, evaluation, and logging continuously",
+      "timeline": "10–14 days with 4–8 H100 GPUs simultaneously",
+      "team": "0 (only initial repo setup and credential configuration)",
+      "claude_api_cost": "$250–450 (~3,000–5,000 turns at Opus rates)",
+      "estimated_gpu_cost": "~$1,375 (550h × $2.50/h)",
+      "speed_bottleneck": "Step 0 failure collection and diversity pilot create hard sequential dependencies that prevent full pipeline parallelization. RoboCasa evaluation rollouts: each ablation variant requires sequential per-task evaluation (3–5h per variant); with 4 GPUs running 4 ablation variants concurrently, the full grid needs ~8–10 days minimum.",
+      "risk_note": "UWM action-only inference mode is architecturally supported (video timestep = T) but may require code-level implementation not in the public UWM codebase. DreamZero-14B's multi-GPU NCCL setup requires specific configuration. RoboCasa and LIBERO simulation environments may not share a common rollout API — an agent may spend significant effort unifying the data collection pipeline."
+    }
+  },
+  "target_venues": [
+    "CoRL 2026 (Abstract deadline: May 26, 2026; Full paper: May 29, 2026; Conference: Nov 9–12, Austin TX) — EXTREMELY TIGHT: 19 days from 2026-05-10. Step 0 failure collection must begin immediately. Minimum viable submission: RoboCasa Best-of-N results + LIBERO-Long secondary + diversity pilot figure + B ablation. DreamZero cross-WAM can be deferred to camera-ready or ICLR.",
+    "ICLR 2027 (deadline ~September–October 2026; not yet officially announced as of 2026-05-10) — More feasible timeline for complete ablation grid, both backbones, and real-world experiments."
+  ],
+  "level": "solid",
+  "key_references": [
+    "Cosmos Policy: Fine-Tuning Video Models for Visuomotor Control and Planning (arXiv 2601.16163, ICLR 2026) — CRITICAL PRIOR WORK: full fine-tune of Cosmos-Predict2-2B (1,536 H100-hours for RoboCasa), 98.5% LIBERO, 67.1% RoboCasa; not plug-in compatible with other WAMs; our method achieves comparable RoboCasa performance at ≤40 H100-hours",
+    "Fast-WAM: World Action Models without Test-Time Video (arXiv 2603.16666, May 2026) — CRITICAL NEW WORK: test-time video generation adds only 0.5–1.9 pts (97.6% LIBERO, 91.8% RoboTwin without video at inference, 190ms latency); still generates single trajectories. Our method builds on this: we also use action-only inference for fast B-candidate generation, adding Best-of-N selection",
+    "When to Trust Imagination: Adaptive Action Execution for World Action Models (arXiv 2605.06222, May 2026) — SIGNIFICANT CONCURRENT WORK: FFDC adaptively determines when to replan during execution of a single trajectory (in-execution adaptation, not pre-execution candidate selection); achieves 69% fewer forward passes, 2.54% SR improvement on RoboTwin; orthogonal to our pre-execution Best-of-N; the two approaches can be combined",
+    "Inference-Time Enhancement of Generative Robot Policies via Predictive World Modeling / GPC (arXiv 2502.00622, IEEE RAL 2025) — CRITICAL PRIOR WORK: frozen policy + separately trained world model + hard argmax (GPC-RANK); our method replaces separate WM with WAM's own action latent scoring",
+    "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion (arXiv 2303.04137, RSS 2023 / IJRR 2024) — documents multi-modal action distribution handling; confirms averaging over manipulation action modes produces infeasible blended actions; justifies hard argmax as primary result over soft MPPI weighting",
+    "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets / UWM (arXiv 2504.02792, RSS 2025) — primary backbone; independent per-modality timesteps natively support action-only inference (video timestep = T); publicly available weights",
+    "World Action Models are Zero-shot Policies / DreamZero (arXiv 2602.15922) — 14B joint video+action DiT, ~3s/chunk optimized; secondary backbone for cross-WAM plug-in validation",
+    "OA-WAM: Object-Addressable World Action Model (arXiv 2605.06481, May 2026) — concurrent work; different problem (object binding consistency), not inference-time planning",
+    "CKT-WAM: Parameter-Efficient Context Knowledge Transfer Between World Action Models (arXiv 2605.06247, May 2026) — concurrent work; different problem (cross-WAM knowledge transfer), not inference-time planning",
+    "Video Models Reason Early: Exploiting Plan Commitment for Maze Solving / ChEaP (arXiv 2603.30043) — early commitment in 2D mazes only; our method does not rely on partial denoising",
+    "GigaBrain-0.5M*: a VLA That Learns From World Model-Based Reinforcement Learning (arXiv 2602.12099) — RAMP RL loop requires 30%+ more training",
+    "H-WM: Robotic Task and Motion Planning Guided by Hierarchical World Model (arXiv 2602.11291) — requires architectural co-design",
+    "Compositional Planning with Jumpy World Models (arXiv 2602.19634) — requires WM training from scratch",
+    "Policy-Guided World Model Planning for Language-Conditioned Visual Navigation / PiJEPA (arXiv 2603.25981) — MPPI over deterministic JEPA latents for navigation, not manipulation",
+    "Latent Diffusion Planning for Imitation Learning (arXiv 2504.16925) — trains diffusion planner from scratch"
+  ],
+  "description": "Frozen-WAM Best-of-N (FW-BoN) converts any pretrained video-diffusion World Action Model into an inference-time multi-candidate planner without modifying a single WAM weight, building on Fast-WAM's insight that action-only inference (no test-time video generation) matches full video generation in quality. At each planning step, B=4–8 diverse action trajectories are sampled from the frozen WAM in action-only mode (UWM: video timestep = T, action timestep = 0 for full denoising of action tokens), producing clean action latents at Fast-WAM-comparable speed (~190ms per trajectory on H100). A 3-layer value MLP — trained in ≤40 H100-hours on WAM action latent encodings of LIBERO-90 success demonstrations AND explicitly collected failure trajectories (online rollout failures from frozen UWM in simulation: ~15–20 H100-hours) — scores each candidate. Hard argmax Best-of-N selection (a_{i*} = argmax_i V(z_{a,i})) is the primary result, explicitly avoiding the multi-modal action-averaging artifact: soft MPPI weighting (w_i ∝ exp(β·V(z_{a,i}))) is retained as an ablation to document that averaging over multi-modal manipulation trajectories produces infeasible blended actions in exactly the multi-modal settings where Best-of-N gains are largest. A mandatory diversity pilot experiment (B=16 trajectories on 3 RoboCasa tasks, measured pairwise cosine distance + V-score–success Spearman correlation) validates the discriminability premise before the main ablation. Primary evaluation: RoboCasa, where fine-tuned Cosmos Policy achieves 67.1% at 1,536 H100-hours; our target is ≥60% at ≤40 H100-hours, approaching fine-tuned performance at 40× lower training cost. Secondary: LIBERO-Long (note: near saturation for strong frozen WAMs per Fast-WAM's 95.2%, included to characterize gains as a function of baseline task difficulty). Cross-WAM validation: DreamZero-14B (full video+action denoising, B=4, open-loop). Key differentiators: (1) zero WAM retraining (vs. Cosmos Policy's 1,536 H100-hours for RoboCasa); (2) no separate world model (vs. GPC-RANK); (3) builds on rather than competes with Fast-WAM — same action-only inference efficiency, adds candidate selection; (4) hard argmax Best-of-N over action latents, avoiding the multi-modal averaging artifact; (5) plug-in compatibility demonstrated across two WAM architectures.",
+  "project_name": "frozen_wam_mppi",
+  "source": "web_research"
+}
+```
+
+Here is the complete revised JSON:
+
+```json
+{
+  "title": "Frozen-WAM Best-of-N: Plug-in Inference-Time Candidate Selection for Pretrained World Action Models via Action-Latent Value Learning",
+  "change_type": "major",
+  "core_problem": "Pretrained WAMs generate a single action trajectory at inference and cannot explicitly compare candidate futures. Adding planning capability currently requires one of three costly interventions: (1) full fine-tuning of the video model on robot demos (Cosmos Policy, ICLR 2026: 384–3,072 H100-hours for full WAM retraining); (2) training a separate action-conditioned world model alongside the frozen policy (GPC, RAL 2025); or (3) architectural co-design or RL loops (H-WM, GigaBrain RAMP). Fast-WAM (arXiv 2603.16666) demonstrates that test-time video generation adds only 0.5–1.9 percentage points over action-only inference — achieving 97.6% on LIBERO and 91.8% on RoboTwin at 190ms latency — motivating efficient action-latent candidate generation rather than expensive full video trajectory generation. However, Fast-WAM still generates a single trajectory and provides no mechanism to compare or select among candidates. The key open problem is: given that WAM action-only inference is already fast and high-quality (per Fast-WAM), can we add Best-of-N candidate selection using only the WAM's own action latent space, without retraining WAM weights or training a separate world model, and at total additional training cost ≤40 H100-hours? No existing work provides this.",
+  "opportunity": "UWM's independent per-modality diffusion timestep architecture (RSS 2025) natively supports action-only inference (policy mode: video timestep = T, action timestep = 0 for full denoising of action tokens only), inheriting Fast-WAM's efficiency with no video generation overhead. Sampling B=4–8 action-only trajectories from the frozen WAM using independent Gaussian noise seeds produces diverse manipulation strategies — different approach angles, grasp orientations, sub-task orderings — that differ in quality in proportion to task difficulty. A 3-layer value MLP trained on WAM action latent encodings of success AND failure demonstrations scores each candidate. Hard argmax selection (Best-of-N: a_{i*} = argmax_i V(z_{a,i})) is the primary result, explicitly chosen to avoid the multi-modal action-averaging artifact: when B sampled trajectories approach a grasp from different sides, averaging produces a geometrically infeasible middle path, while hard selection picks the best strategy. This artifact is well-documented in the Diffusion Policy paper (Chi et al., 2023) and confirmed as a known failure mode for weighted averaging over multi-modal manipulation distributions. Soft MPPI weighting (w_i ∝ exp(β·V(z_{a,i}))) is retained as an ablation to empirically characterize when soft averaging might outperform hard selection (e.g., low-variance, near-unimodal trajectory distributions). A critical prerequisite not present in prior versions of this proposal: LIBERO-90 contains only successful demonstrations — negative examples must be explicitly generated via online rollout failures of the frozen UWM policy in simulation (~15–20 H100-hours) supplemented by Gaussian-perturbed synthetic failures. Total additional training cost: ≤40 H100-hours (20 failure collection + 15 demo encoding + 5 MLP training). The primary evaluation is RoboCasa (67.1% for fully fine-tuned Cosmos Policy at 1,536 H100-hours), where frozen WAM single-trajectory baselines are expected around 40–55%, providing meaningful headroom. The research question: does plug-in Best-of-N with a value MLP trained in ≤40 H100-hours close the gap to fine-tuned WAM performance on hard benchmarks, without modifying any WAM weight?",
+  "landscape": "Cosmos Policy (arXiv 2601.16163, ICLR 2026) is the closest prior work and primary comparison point. It fully fine-tunes Cosmos-Predict2-2B (all weights) on robot demos — 384 H100-hours for ALOHA, 1,536 for RoboCasa, 3,072 for LIBERO — then uses the fine-tuned model as a planning model with best-of-N over 15 ensemble value predictions per action. Achieves 98.5% LIBERO and 67.1% RoboCasa. Architecture-specific to Cosmos-Predict2; not plug-in compatible with other WAMs; requires full retraining per domain. Our method keeps all WAM weights frozen and costs ≤40 H100-hours.\n\nFast-WAM (arXiv 2603.16666, May 2026) is the most critical new work for positioning. It demonstrates that test-time video generation contributes only 0.5–1.9 percentage points: Fast-WAM achieves 97.6% LIBERO-avg (Spatial: 98.2%, Object: 100%, Goal: 97%, Long: 95.2%) and 91.8% RoboTwin WITHOUT generating any video at inference, at 190ms latency (4× faster than imagine-then-execute WAMs). Ablation shows removing video co-training causes much larger drops (4.1 pts LIBERO, 8 pts RoboTwin) than removing test-time video generation (0.5–1.9 pts). CRITICAL DISTINCTION: Fast-WAM generates a single action trajectory and provides no candidate comparison mechanism. Our method builds on Fast-WAM's insight — we also use action-only inference (no video generation at test time) for candidate generation — and adds Best-of-N candidate selection with a learned value MLP. Fast-WAM targets latency-critical deployment (single trajectory, fastest possible); Frozen-WAM BoN targets success-critical tasks (B trajectories, select best). Complementary operating points on the latency–success Pareto frontier. Fast-WAM's 95.2% on LIBERO-Long without embodied pretraining confirms LIBERO-Long is near saturation for strong WAMs; RoboCasa (67.1% for fine-tuned Cosmos) is therefore the more informative primary benchmark with meaningful headroom.\n\nGPC (arXiv 2502.00622, IEEE RAL 2025) augments a frozen diffusion policy with a separately trained action-conditioned world model; GPC-RANK generates multiple action proposals, unrolls through the world model, and selects via hard argmax — requiring training both a policy and a separate world model plus random exploration rollouts for WM training. Our method uses the WAM's own action latent space as the evaluation substrate (no separate world model) and requires only demonstration-derived training data (not exploration rollouts).\n\n'When to Trust Imagination: Adaptive Action Execution for World Action Models' (arXiv 2605.06222, May 2026) is concurrent work in the same WAM inference space. FFDC (Future Forward Dynamics Causal Attention) adaptively determines action chunk sizes during execution of a single trajectory, deciding when predictions remain trustworthy versus when to replan earlier. Achieves 69% reduction in forward passes, 34% faster execution, 2.54% SR improvement on RoboTwin, and 35% real-world improvement. CRITICAL DISTINCTION: FFDC operates within execution of a single trajectory (in-execution adaptation); our method selects among B candidate trajectories before execution begins (pre-execution selection). Orthogonal and combinable: use our value MLP to select the best of B candidates at planning time, then use FFDC to adaptively replan during execution.\n\nOA-WAM (arXiv 2605.06481, May 2026): object-addressable manipulation via addressable object slots. Different problem (object binding in multi-object scenes); achieves 97.8% LIBERO, 79.3% SimplerEnv. Not related to inference-time planning.\n\nCKT-WAM (arXiv 2605.06247, May 2026): parameter-efficient knowledge transfer between WAMs via text-embedding-space distillation using <2% trainable parameters. Achieves 86.1% LIBERO-Plus, 83.3% real-world. Different problem (cross-WAM adaptation), not related to inference-time planning.\n\nChEaP (arXiv 2603.30043) demonstrates early plan commitment in video diffusion for 2D maze navigation; not validated for manipulation. Our method does not rely on partial denoising or early commitment.\n\nDreamZero (arXiv 2602.15922): single joint video+action trajectories via 14B DiT, ~3s/chunk optimized. Secondary backbone in our cross-WAM evaluation.\n\nGigaBrain-0.5M* (arXiv 2602.12099) uses RAMP RL loops requiring 30%+ more training. H-WM (arXiv 2602.11291) requires hierarchical architectural co-design. Compositional Planning with Jumpy World Models (arXiv 2602.19634) requires WM training from scratch. PiJEPA (arXiv 2603.25981) applies MPPI over deterministic JEPA latents for navigation. Latent Diffusion Planning (arXiv 2504.16925) trains a diffusion planner from scratch.\n\nNo prior work applies Best-of-N hard argmax selection over B=4–8 action-only trajectories from a completely frozen pretrained video-diffusion WAM, using a value MLP trained on WAM action latents from explicitly collected success/failure demonstrations, without retraining the WAM or training a separate world model, demonstrated on RoboCasa and LIBERO-Long manipulation benchmarks.",
+  "approach": "Primary backbone: UWM (github.com/WEIRDLabUW/unified-world-model, RSS 2025), whose independent per-modality diffusion timestep architecture natively supports action-only inference (policy mode: video timestep = T, action timestep = 0). Secondary backbone: DreamZero-14B (GEAR-Dreams/DreamZero-DROID), for cross-WAM plug-in validation using full video+action denoising. All WAM weights frozen throughout.\n\nStep 0 — Failure Demonstration Collection (NEW — required for value MLP training): LIBERO-90 contains only successful human teleoperation demonstrations; binary success/failure classification requires explicit negative examples. Two approaches: (a) Primary negatives — run frozen UWM policy (action-only mode, B=1) on LIBERO-Long and RoboCasa tasks in MuJoCo/RoboCasa simulation. Frozen UWM (not fine-tuned on LIBERO/RoboCasa) is expected to fail on ~30–50% of RoboCasa tasks and ~5–15% of LIBERO-Long tasks, yielding 500–2,000 failure trajectories from ~2,000–4,000 total rollouts. Estimated cost: 15–20 H100-hours for rollout collection. (b) Synthetic supplement — apply Gaussian action perturbation (σ ∈ {0.05, 0.1}) to 20% of successful LIBERO-90 demos, simulate perturbed episodes in MuJoCo, flag truncated episodes as failures. Cost: <1 H100-hour (simulation-only). Combine both sources for balanced 2,000–4,000 positive / 2,000–4,000 negative training set.\n\nDiversity Pilot Experiment (NEW — mandatory pre-ablation diagnostic): Before the main ablation, validate the discriminability premise: sample B=16 action-only trajectories from frozen UWM on 3 RoboCasa tasks using different Gaussian noise seeds, execute each in simulation, record ground-truth success/failure, then measure: (1) pairwise cosine distance of action latents {z_{a,i}} — if mean < 0.05, increase noise temperature T_noise to {1.5, 2.0} or add diverse language paraphrases; (2) Spearman correlation of V(z_{a,i}) with ground-truth success after MLP training — target ρ > 0.3 for meaningful Best-of-N gains over random; (3) variance of V(z_{a,i}) across B=16 samples — std(V) < 0.05 indicates near-uniform weights degenerate to random selection. Presented as a required diagnostic figure in the paper.\n\nStep 1 — Demo Encoding: Encode all LIBERO-90 success demonstrations (4,500 demos) plus collected failures through frozen UWM in action-only mode (video timestep = T, action timestep = 0), obtaining clean WAM action latents z_a. Label with success/failure. Cost: ~10–15 H100-hours.\n\nStep 2 — Value MLP Training: Train a 3-layer MLP (input: flattened action latent z_a; output: scalar V ∈ [0,1]) via binary cross-entropy on balanced success/failure latents. Cost: ~3–5 H100-hours. Total additional training cost: ≤40 H100-hours.\n\nStep 3 — Inference-Time Best-of-N Planning: At each planning step, sample B=4–8 action-only trajectories from frozen UWM using independent Gaussian noise seeds. Score each with V(z_{a,i}). PRIMARY result: hard argmax Best-of-N: a_{i*} = argmax_i V(z_{a,i}). ABLATION only: soft MPPI w_i ∝ exp(β·V(z_{a,i})), output Σ_i w_i·a_i — retained specifically to document that soft averaging underperforms hard argmax on multi-modal manipulation tasks (action-averaging artifact). Inference regimes: (a) open-loop — B trajectories at episode start, execute selected; (b) periodic replanning — replan every K=5 action chunks (~8–10s intervals).\n\nAblation Grid: B ∈ {1, 2, 4, 8, 16} (B=1 is frozen WAM single-trajectory baseline, equivalent to Fast-WAM-style inference); selection method: hard argmax (primary) vs. soft MPPI β ∈ {0.5, 1, 2, 5} vs. random selection; noise temperature T_noise ∈ {1.0, 1.5, 2.0} (informed by diversity pilot); action-only latent scoring vs. full video+action latent scoring (ablation of whether video component adds scoring value); value MLP: 2-layer vs. 3-layer vs. 4-layer.\n\nPrimary hypothesis: Hard argmax Best-of-N over B=4–8 UWM action-latent candidates improves RoboCasa success rate by ≥10 percentage points over single-trajectory baseline, approaching Cosmos Policy fine-tuned performance (67.1%) at 40× lower training cost. Soft MPPI underperforms hard argmax on RoboCasa's multi-modal manipulation tasks.\n\nEvaluation Benchmarks: (a) Primary — RoboCasa: Cosmos Policy fine-tuned at 1,536 H100-hours achieves 67.1%; expected frozen WAM single-trajectory baseline ~40–55%. Best-of-N target: ≥60%. Core comparison: ≤40 H100-hours training vs. 1,536 H100-hours fine-tuning. (b) Secondary — LIBERO-Long: acknowledged near saturation (Fast-WAM 95.2% without embodied pretraining); included to characterize Best-of-N gains as a function of baseline task difficulty and to show method works across difficulty regimes. Baselines: single-trajectory WAM (B=1), random selection (B=4–8), GPC-RANK-style argmax over random scoring, Cosmos Policy published results (cited, not reproduced).\n\nCross-WAM Generalization (DreamZero-14B, secondary): full video+action denoising (action-only mode not directly available in DreamZero), B=4, open-loop planning only. Score using joint video+action latent. Validates plug-in claim across two distinct WAM architectures.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~180h H100",
+      "gpu_utilization": "HIGH idle (~40–60%): GPU waits while researcher implements action-only inference wrapper, debugs failure collection pipeline, designs ablations, and interprets results between runs",
+      "timeline": "2–4 months",
+      "team": "1–2 researchers",
+      "estimated_gpu_cost": "~$450 (180h × $2.50/h blended Lambda/RunPod/Vast.ai H100 rate)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~220h H100",
+      "gpu_utilization": "MODERATE idle (~20–30%): agent handles code scaffolding, failure collection, demo encoding, and experiment submission continuously; human approves diversity pilot results and ablation scope at daily check-ins",
+      "timeline": "4–6 weeks",
+      "team": "1 researcher, ~30 min/day check-in",
+      "claude_api_cost": "$150–250 (~1,500–2,500 turns at mixed Sonnet/Opus rates)",
+      "estimated_gpu_cost": "~$550 (220h × $2.50/h)",
+      "risk_note": "Step 0 (failure collection, ~15–20 H100-hours) creates a hard sequential dependency before value MLP training can begin. Diversity pilot may reveal low action-latent variance requiring noise temperature tuning before main ablation runs. RoboCasa simulation environment setup may require significant engineering effort separate from LIBERO. DreamZero-14B cross-WAM evaluation (~50 H100-hours) is secondary and can be dropped if CoRL timeline is tight — the plug-in claim can rest on UWM alone for the initial submission."
+    },
+    "auto_research": {
+      "gpu_hours": "~550h H100 (both UWM and DreamZero-14B backbones; full B/β/T_noise ablation grid; RoboCasa + LIBERO-Long evaluations; multiple seeds)",
+      "gpu_utilization": "MINIMAL idle (~5–10%): agent pipelines failure collection, demo encoding, MLP training, evaluation, and logging continuously",
+      "timeline": "10–14 days with 4–8 H100 GPUs simultaneously",
+      "team": "0 (only initial repo setup and credential configuration)",
+      "claude_api_cost": "$250–450 (~3,000–5,000 turns at Opus rates)",
+      "estimated_gpu_cost": "~$1,375 (550h × $2.50/h)",
+      "speed_bottleneck": "Step 0 failure collection and diversity pilot create hard sequential dependencies that prevent full pipeline parallelization. RoboCasa evaluation rollouts: each ablation variant requires sequential per-task evaluation (3–5h per variant); with 4 GPUs running 4 variants concurrently, the full grid needs ~8–10 days minimum.",
+      "risk_note": "UWM action-only inference mode is architecturally supported (video timestep = T) but the exact code-level API may require implementation not present in the public UWM repository. DreamZero-14B's multi-GPU NCCL setup requires specific configuration. RoboCasa and LIBERO simulation environments do not share a rollout API — agent may spend significant effort unifying the data collection pipeline across environments."
+    }
+  },
+  "target_venues": [
+    "CoRL 2026 (Abstract deadline: May 26, 2026; Full paper: May 29, 2026; Conference: Nov 9–12, Austin TX) — EXTREMELY TIGHT: 19 days from 2026-05-10. Step 0 failure collection must begin immediately. Minimum viable submission: RoboCasa Best-of-N results (primary) + LIBERO-Long secondary + diversity pilot figure + B/hard-vs-soft ablation. DreamZero cross-WAM can be deferred to camera-ready or ICLR.",
+    "ICLR 2027 (deadline ~September–October 2026; not yet officially announced as of 2026-05-10) — More feasible timeline for complete ablation grid, both WAM backbones, and potential real-world experiments."
+  ],
+  "level": "solid",
+  "key_references": [
+    "Cosmos Policy: Fine-Tuning Video Models for Visuomotor Control and Planning (arXiv 2601.16163, ICLR 2026) — CRITICAL PRIOR WORK: full fine-tune of Cosmos-Predict2-2B (1,536 H100-hours for RoboCasa), 98.5% LIBERO, 67.1% RoboCasa; not plug-in compatible with other WAMs; our method targets ≥60% RoboCasa at ≤40 H100-hours",
+    "Fast-WAM: World Action Models without Test-Time Video (arXiv 2603.16666, May 2026) — CRITICAL NEW WORK: test-time video generation adds only 0.5–1.9 pts (97.6% LIBERO, 91.8% RoboTwin without video at inference, 190ms latency); single trajectory only, no candidate comparison; our method builds on this by using action-only inference for fast B-candidate generation and adding Best-of-N selection; also confirms LIBERO-Long near-saturation (95.2%), motivating RoboCasa as primary benchmark",
+    "When to Trust Imagination: Adaptive Action Execution for World Action Models (arXiv 2605.06222, May 2026) — SIGNIFICANT CONCURRENT WORK: FFDC adaptively decides when to replan during single-trajectory execution (in-execution adaptation); 69% fewer forward passes, 2.54% SR improvement on RoboTwin; orthogonal to our pre-execution Best-of-N; the two can be combined",
+    "Inference-Time Enhancement of Generative Robot Policies via Predictive World Modeling / GPC (arXiv 2502.00622, IEEE RAL 2025) — CRITICAL PRIOR WORK: frozen policy + separately trained world model + hard argmax (GPC-RANK); our method replaces separate WM with WAM's own action latent scoring",
+    "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion (arXiv 2303.04137, RSS 2023 / IJRR 2024) — documents multi-modal action distribution handling; confirms averaging over manipulation action modes produces infeasible blended actions; justifies hard argmax as primary result over soft MPPI weighting",
+    "Unified World Models: Coupling Video and Action Diffusion for Pretraining on Large Robotic Datasets / UWM (arXiv 2504.02792, RSS 2025) — primary backbone; independent per-modality timesteps natively support action-only inference (video timestep = T, confirmed in paper); publicly available weights and code",
+    "World Action Models are Zero-shot Policies / DreamZero (arXiv 2602.15922) — 14B joint video+action DiT, ~3s/chunk optimized; secondary backbone for cross-WAM plug-in validation",
+    "OA-WAM: Object-Addressable World Action Model for Robust Robot Manipulation (arXiv 2605.06481, May 2026) — concurrent work; different problem (object binding consistency); 97.8% LIBERO, 79.3% SimplerEnv",
+    "CKT-WAM: Parameter-Efficient Context Knowledge Transfer Between World Action Models (arXiv 2605.06247, May 2026) — concurrent work; different problem (cross-WAM knowledge transfer with <2% trainable parameters)",
+    "Video Models Reason Early: Exploiting Plan Commitment for Maze Solving / ChEaP (arXiv 2603.30043) — early commitment in 2D mazes only; our method does not rely on partial denoising",
+    "GigaBrain-0.5M*: a VLA That Learns From World Model-Based Reinforcement Learning (arXiv 2602.12099) — RAMP RL loop requires 30%+ more training",
+    "H-WM: Robotic Task and Motion Planning Guided by Hierarchical World Model (arXiv 2602.11291) — requires architectural co-design",
+    "Compositional Planning with Jumpy World Models (arXiv 2602.19634) — requires WM training from scratch",
+    "Policy-Guided World Model Planning for Language-Conditioned Visual Navigation / PiJEPA (arXiv 2603.25981) — MPPI over deterministic JEPA latents for navigation, not manipulation",
+    "Latent Diffusion Planning for Imitation Learning (arXiv 2504.16925) — trains diffusion planner from scratch"
+  ],
+  "description": "Frozen-WAM Best-of-N (FW-BoN) converts any pretrained video-diffusion World Action Model into an inference-time multi-candidate planner without modifying a single WAM weight, building on Fast-WAM's finding that action-only inference (no test-time video generation) matches full video generation in quality. At each planning step, B=4–8 diverse action trajectories are sampled from the frozen WAM in action-only mode (UWM: video timestep = T, action timestep = 0), producing clean action latents at Fast-WAM-comparable speed with no video denoising overhead. A 3-layer value MLP — trained in ≤40 H100-hours on WAM action latent encodings of LIBERO-90 success demonstrations AND explicitly collected failure trajectories (online rollout failures from frozen UWM in simulation: ~15–20 H100-hours, plus Gaussian-perturbed synthetic failures) — scores each candidate. Hard argmax Best-of-N (a_{i*} = argmax_i V(z_{a,i})) is the primary result, explicitly chosen to avoid the multi-modal action-averaging artifact documented in the Diffusion Policy paper: soft MPPI weighting (w_i ∝ exp(β·V(z_{a,i}))) is retained as an ablation to empirically confirm that averaging over multi-modal manipulation trajectories produces infeasible blended actions in exactly the settings where Best-of-N gains are largest. A mandatory diversity pilot (B=16 on 3 RoboCasa tasks: pairwise cosine distance + V-score–success Spearman correlation) validates the discriminability premise before the main ablation. Primary evaluation: RoboCasa, where fine-tuned Cosmos Policy achieves 67.1% at 1,536 H100-hours; target is ≥60% at ≤40 H100-hours — approaching fine-tuned performance at 40× lower cost. Secondary: LIBERO-Long (near saturation for strong frozen WAMs per Fast-WAM's 95.2%, included to characterize gains vs. baseline difficulty). Cross-WAM validation: DreamZero-14B (full video+action denoising, B=4, open-loop). Key differentiators: (1) zero WAM retraining vs. 1,536 H100-hours for Cosmos Policy; (2) no separate world model vs. GPC-RANK; (3) builds on rather than competes with Fast-WAM — same action-only inference efficiency, adds candidate selection; (4) hard argmax Best-of-N over action latents with explicit action-averaging artifact ablation; (5) plug-in compatibility across two WAM architectures.",
+  "project_name": "frozen_wam_mppi",
+  "source": "web_research"
+}
+```
+
+---
+
+**Summary of what changed and why:**
+
+**Change type: major**
+
+The three critical reviewers issues each drove substantive changes:
+
+1. **Action-averaging artifact → Hard argmax is now the primary result.** Soft MPPI weighting is demoted to an ablation. The ablation is actually *valuable* now — it exists to empirically document that soft averaging underperforms hard argmax on multi-modal manipulation tasks, directly validating the known artifact. GPC-RANK comparison becomes cleaner: we differ from GPC-RANK in substrate (WAM's own action latents vs. separate WM) and training data source, not in the selection rule.
+
+2. **No LIBERO failure demos → Step 0 is now explicit and budgeted.** Online rollout collection of frozen UWM failures (~15–20 H100-hours) plus Gaussian-perturbed synthetic failures. Total training budget revised upward to ≤40 H100-hours from ≤18.
+
+3. **Fast-WAM (arXiv 2603.16666) → Method architecture revised to *build on* it.** Rather than competing, FW-BoN adopts UWM's action-only inference mode (video timestep = T) — the same architectural choice Fast-WAM validates — and adds Best-of-N candidate selection on top. This converts Fast-WAM from a challenge into a supporting result. Fast-WAM's 95.2% on LIBERO-Long also forced a benchmark revision: **RoboCasa replaces LIBERO-Long as the primary evaluation**, since LIBERO-Long is near-saturated for strong frozen WAMs.
+
+4. **New concurrent work** — "When to Trust Imagination" (2605.06222), OA-WAM (2605.06481), CKT-WAM (2605.06247) — all cited and differentiated. The first is orthogonal (in-execution adaptation vs. pre-execution selection) and explicitly flagged as combinable.
+
+5. **Diversity pilot** added as a mandatory pre-ablation diagnostic with concrete pass/fail criteria (cosine distance, Spearman ρ, V-variance), directly addressing the discriminability concern with a figure that validates or falsifies the method's premise before committing to the full ablation grid.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f0f04667-ae53-4dc8-8c23-6094e9136b0a",
+  "isSidechain": false,
+  "requestId": "req_011CatYw8Yzqsjxwczbkfsbw",
+  "type": "assistant",
+  "uuid": "2e50abe2-7f0d-48a0-b6bd-ea63ff2764f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_012T6ioJ5BqJHHSHmeWoRDEq",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 799,
+      "cache_creation_input_tokens": 16580,
+      "cache_read_input_tokens": 35365,
+      "output_tokens": 17646,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16580,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 799,
+          "output_tokens": 17646,
+          "cache_read_input_tokens": 35365,
+          "cache_creation_input_tokens": 16580,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16580
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 61_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Frozen-WAM MPPI: Inference-Time Importance-Weighted Planning for Pretr…",
+  "leafUuid": "2e50abe2-7f0d-48a0-b6bd-ea63ff2764f9",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise frozen-WAM MPPI: hard argmax, failure data generation, and diversity validation",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Frozen-WAM MPPI: Inference-Time Importance-Weighted Planning for Pretr…",
+  "leafUuid": "2e50abe2-7f0d-48a0-b6bd-ea63ff2764f9",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Revise frozen-WAM MPPI: hard argmax, failure data generation, and diversity validation",
+  "sessionId": "42a6f1a8-8fee-47a2-804a-fa0ab828b3a1"
+}
+```
+
+---

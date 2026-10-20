@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "179956e632230929b3f8",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [Round 1 审稿请求]: ## Round 1 审稿任务 — Reviewer 1（方法严谨性 + 实验设计） ### Venue 信息 - **目标**: EMNLP 2026（通过 ARR May 2026 cycle 提交） -",
+  "task_key": "0216558a-036d-4ace-bc54-532755ec526a",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/0216558a-036d-4ace-bc54-532755ec526a.jsonl",
+    "occurrence": 1,
+    "bytes": 564774,
+    "sha256": "463a9e531ad3e0c1c1d38ca06680c8317c72ab3f3d10e5064581ea8ea532beec"
+  },
+  "statistics": {
+    "messages": 212,
+    "user_turns": 3,
+    "tool_calls": 58,
+    "roles": {
+      "record": 64,
+      "user": 3,
+      "assistant": 29,
+      "tool_call": 58,
+      "tool_result": 58
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "179956e632230929b3f8-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 159,
+      "chunks": [
+        {
+          "path": "179956e632230929b3f8-part-0001.json",
+          "message_count": 159
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "179956e632230929b3f8-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 49,
+      "chunks": [
+        {
+          "path": "179956e632230929b3f8-part-0001.json",
+          "message_count": 17
+        },
+        {
+          "path": "179956e632230929b3f8-part-0002.json",
+          "message_count": 32
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-round-1-round-1-reviewer-1-venue-emnlp-2026-arr-may-2026-cycle.md"
+}

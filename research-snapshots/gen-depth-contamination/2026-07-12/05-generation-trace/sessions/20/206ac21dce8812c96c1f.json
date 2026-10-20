@@ -1,0 +1,601 @@
+{
+  "schema_version": "1.0",
+  "id": "206ac21dce8812c96c1f",
+  "project": "gen-depth-contamination--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search for and verify the \"WAM Robustness Study\" (arXiv 2603.22078, March 2026) - \"Do World Action Models Generalize Bet",
+  "task_key": "agent-a466b09ea00147d6d",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a466b09ea00147d6d.jsonl",
+    "occurrence": 1,
+    "bytes": 23160,
+    "sha256": "d498b492744de841f380ef9b20272e505bd14eb28d09bc0a5195902f38e3b007"
+  },
+  "statistics": {
+    "messages": 12,
+    "user_turns": 1,
+    "tool_calls": 4,
+    "roles": {
+      "user": 1,
+      "assistant": 3,
+      "tool_call": 4,
+      "tool_result": 4
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-10T19:25:08.810Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search for and verify the \"WAM Robustness Study\" (arXiv 2603.22078, March 2026) - \"Do World Action Models Generalize Better than VLAs? A Robustness Study\"\n\n1. Does this paper exist?\n2. Does it benchmark WAMs under distributional shifts (camera, lighting, layout perturbations)?\n3. Does it use LIBERO-Plus and RoboTwin 2.0-Plus?\n4. Does it document significant performance variation under distributional shifts?\n\nUse WebSearch: \n- \"world action models generalize VLAs robustness study 2603.22078\"\n- \"LIBERO-Plus RoboTwin robustness WAM VLA\"\nThen WebFetch the arXiv page."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "1c50d650-056b-494e-9cc6-f7460f80080f",
+            "agentId": "a466b09ea00147d6d",
+            "type": "user",
+            "uuid": "0f3cbc37-4e8e-4fdf-b588-ca88d5397d84",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "876d1434-ee5e-418a-858f-b18c0ac4ab82",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-10T19:25:09.627Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for information about this paper systematically."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0f3cbc37-4e8e-4fdf-b588-ca88d5397d84",
+            "isSidechain": true,
+            "agentId": "a466b09ea00147d6d",
+            "requestId": "req_011CauSFZ8YkGsh11Y3qXhmJ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1f4c4e3e-cdf5-4c9b-9199-d58747a627e1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "876d1434-ee5e-418a-858f-b18c0ac4ab82",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01GJZQhU4ZdGbkK5csdkPhrq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 604,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 604,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 7,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-10T19:25:09.847Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YAJoGXtrzjMCGVAAXQ8ciK",
+              "name": "WebSearch",
+              "input": {
+                "query": "world action models generalize VLAs robustness study 2603.22078"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1f4c4e3e-cdf5-4c9b-9199-d58747a627e1",
+            "isSidechain": true,
+            "agentId": "a466b09ea00147d6d",
+            "requestId": "req_011CauSFZ8YkGsh11Y3qXhmJ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8aaa06d2-cb03-49e8-b5d8-9674e0263a89",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "876d1434-ee5e-418a-858f-b18c0ac4ab82",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01GJZQhU4ZdGbkK5csdkPhrq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 604,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 604,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 7,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-10T19:25:09.949Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T5yjAd2SRLhBaYHnCz8Bkc",
+              "name": "WebSearch",
+              "input": {
+                "query": "LIBERO-Plus RoboTwin robustness WAM VLA"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8aaa06d2-cb03-49e8-b5d8-9674e0263a89",
+            "isSidechain": true,
+            "agentId": "a466b09ea00147d6d",
+            "requestId": "req_011CauSFZ8YkGsh11Y3qXhmJ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "720df6e1-dbca-4678-be5e-7103272b9767",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "876d1434-ee5e-418a-858f-b18c0ac4ab82",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01GJZQhU4ZdGbkK5csdkPhrq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 604,
+                "cache_read_input_tokens": 16153,
+                "output_tokens": 132,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 604
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 132,
+                    "cache_read_input_tokens": 16153,
+                    "cache_creation_input_tokens": 604,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 604,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-10T19:25:17.960Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T5yjAd2SRLhBaYHnCz8Bkc",
+              "type": "tool_result",
+              "content": "Web search results for query: \"LIBERO-Plus RoboTwin robustness WAM VLA\"\n\nLinks: [{\"title\":\"Do World Action Models Generalize Better than VLAs? A Robustness Study\",\"url\":\"https://www.wispaper.ai/en/blog/world-action-models-generalize-better-than-vlas-20260324/eng\"},{\"title\":\"Do World Action Models Generalize Better than VLAs? A Robustness Study\",\"url\":\"https://arxiv.org/html/2603.22078v1\"},{\"title\":\"Do World Action Models Generalize Better than VLAs? A Robustness Study [Quick Review]\",\"url\":\"https://liner.com/review/do-world-action-models-generalize-better-than-vlas-robustness-study\"},{\"title\":\"[2510.13626] LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\",\"url\":\"https://arxiv.org/abs/2510.13626\"},{\"title\":\"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\",\"url\":\"https://arxiv.org/html/2510.13626v1\"},{\"title\":\"GitHub - sylvestf/LIBERO-plus: Official repository of LIBERO-plus, a generalized benchmark for in-depth robustness analysis of vision-language-action models. · GitHub\",\"url\":\"https://github.com/sylvestf/LIBERO-plus\"},{\"title\":\"000 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 016 017 018 019\",\"url\":\"https://openreview.net/pdf/5ee94e80829fff79e4559b0c14bdb1cf32808838.pdf\"},{\"title\":\"Paper page - LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\",\"url\":\"https://huggingface.co/papers/2510.13626\"},{\"title\":\"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\",\"url\":\"https://sylvestf.github.io/LIBERO-plus/\"},{\"title\":\"StarVLA-𝜶: Reducing Complexity in Vision-Language-Action Systems\",\"url\":\"https://arxiv.org/html/2604.11757\"}]\n\nBased on the search results, here's what I found about LIBERO-Plus, RoboTwin, robustness, WAM (World Action Models), and VLA (Vision-Language-Action models):\n\n## LIBERO-Plus and RoboTwin Benchmarks\n\nLIBERO-Plus introduces controlled perturbations across seven dimensions: objects layout, camera viewpoints, robot initial states, language instructions, light conditions, background textures and sensor noise. RoboTwin 2.0-Plus is an in-house benchmark that follows a similar perturbation protocol in the two-arm Aloha-Agilex setup of RoboTwin 2.0.\n\n## Robustness Comparison: WAMs vs. VLAs\n\nBy evaluating them on the LIBERO-Plus and RoboTwin 2.0-Plus benchmarks under seven types of perturbations, the study discovers that WAMs (like LingBot-VA and Cosmos-Policy) generally generalize better to visual noise and layout changes due to spatiotemporal priors from video pretraining.\n\nHowever, the results are nuanced. WAMs achieve strong robustness, with LingBot-VA reaching 74.2% success rate on RoboTwin 2.0-Plus and Cosmos-Policy achieving 82.2% on LIBERO-Plus. Despite strong performance in visual perturbations, WAMs show reduced consistency and struggle with geometric perturbations, specifically variations in camera viewpoint and the robot's initial state. LingBot-VA's success rate dropped to 28.9% for camera and 36.2% for robot initial state perturbations on RoboTwin 2.0-Plus.\n\n## VLA Vulnerabilities\n\nModels exhibit extreme sensitivity to perturbation factors, including camera viewpoints and robot initial states, with performance dropping from 95% to below 30% under modest perturbations.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "720df6e1-dbca-4678-be5e-7103272b9767",
+            "isSidechain": true,
+            "promptId": "1c50d650-056b-494e-9cc6-f7460f80080f",
+            "agentId": "a466b09ea00147d6d",
+            "type": "user",
+            "uuid": "c51416bd-521f-4028-a92b-dfa29d5a1746",
+            "sourceToolAssistantUUID": "720df6e1-dbca-4678-be5e-7103272b9767",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "876d1434-ee5e-418a-858f-b18c0ac4ab82",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-10T19:25:18.551Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YAJoGXtrzjMCGVAAXQ8ciK",
+              "type": "tool_result",
+              "content": "Web search results for query: \"world action models generalize VLAs robustness study 2603.22078\"\n\nLinks: [{\"title\":\"[2603.22078] Do World Action Models Generalize Better than VLAs? A Robustness Study\",\"url\":\"https://arxiv.org/abs/2603.22078\"},{\"title\":\"Do World Action Models Generalize Better than VLAs? A Robustness Study\",\"url\":\"https://arxiv.org/html/2603.22078v1\"},{\"title\":\"Paper page - Do World Action Models Generalize Better than VLAs? A Robustness Study\",\"url\":\"https://huggingface.co/papers/2603.22078\"},{\"title\":\"Do World Action Models Generalize Better than VLAs? A Robustness Study | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2603.22078\"},{\"title\":\"Do World Action Models Generalize Better than VLAs? A Robustness Study [Quick Review]\",\"url\":\"https://liner.com/review/do-world-action-models-generalize-better-than-vlas-robustness-study\"},{\"title\":\"Do World Action Models Generalize Better than VLAs? A Robustness Study\",\"url\":\"https://www.wispaper.ai/en/blog/world-action-models-generalize-better-than-vlas-20260324/eng\"},{\"title\":\"GitHub - LMD0311/Awesome-World-Model: Collect some World Models for Autonomous Driving (and Robotic, etc.) papers. · GitHub\",\"url\":\"https://github.com/LMD0311/Awesome-World-Model\"},{\"title\":\"Towards Understanding Robustness and Generalization in World Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=k7nYm2yU5i\"},{\"title\":\"LIBERO-Plus: In-depth Robustness Analysis of Vision-Language-Action Models\",\"url\":\"https://arxiv.org/html/2510.13626v1\"},{\"title\":\"DreamZero: World Action Models are Zero-shot Policies\",\"url\":\"https://dreamzero0.github.io/\"}]\n\nI found the paper you're looking for! Here's what the research is about:\n\n## Paper Summary\n\nThe paper is titled \"Do World Action Models Generalize Better than VLAs? A Robustness Study\" (arXiv:2603.22078), submitted in March 2026 by researchers from Huawei Technologies and the University of Toronto.\n\n## Key Focus\n\nThe paper addresses the challenge of robot action planning in the real world, which requires understanding the current state of the environment and predicting how it will evolve in response to actions. The study compares two approaches:\n\n- **Vision-Language-Action (VLA) models**: VLAs repurpose large-scale vision-language models for robot action generation using action experts and have achieved notable success across robotic tasks, but their performance remains constrained by training data scope and they exhibit limited generalization to unseen scenarios.\n\n- **World Action Models (WAMs)**: WAMs are built upon world models trained on large corpora of video data to predict future states, with their latent representation decoded into robot actions.\n\n## Main Findings\n\nThe results show that WAMs achieve strong robustness, with LingBot-VA reaching 74.2% success rate on RoboTwin 2.0-Plus and Cosmos-Policy achieving 82.2% on LIBERO-Plus. While VLAs can achieve comparable robustness on certain tasks, they typically require extensive training with diverse robotic datasets, whereas hybrid approaches that partially incorporate video-based dynamic learning exhibit intermediate robustness.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8aaa06d2-cb03-49e8-b5d8-9674e0263a89",
+            "isSidechain": true,
+            "promptId": "1c50d650-056b-494e-9cc6-f7460f80080f",
+            "agentId": "a466b09ea00147d6d",
+            "type": "user",
+            "uuid": "9de5a34b-364a-4eb4-93a9-6140f9472204",
+            "sourceToolAssistantUUID": "8aaa06d2-cb03-49e8-b5d8-9674e0263a89",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "876d1434-ee5e-418a-858f-b18c0ac4ab82",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-10T19:25:19.999Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! The searches confirm the paper exists. Now let me fetch the arXiv page to verify the specific details about benchmarking distributional shifts."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9de5a34b-364a-4eb4-93a9-6140f9472204",
+            "isSidechain": true,
+            "agentId": "a466b09ea00147d6d",
+            "requestId": "req_011CauSGGmpyHBvW7nkS8Lpp",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0c166b1f-f025-4d66-a5b0-6878f33bdbf1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "876d1434-ee5e-418a-858f-b18c0ac4ab82",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01U5nKsbjj8jDpU17PHwcm8A",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1046,
+                "cache_creation_input_tokens": 1833,
+                "cache_read_input_tokens": 16757,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1833,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-10T19:25:21.316Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NbuAzeqCwYDdHzCx84w2WD",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2603.22078",
+                "prompt": "Does the paper benchmark WAMs under distributional shifts including camera, lighting, and layout perturbations? Does it use LIBERO-Plus and RoboTwin 2.0-Plus? Does it document performance variation?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0c166b1f-f025-4d66-a5b0-6878f33bdbf1",
+            "isSidechain": true,
+            "agentId": "a466b09ea00147d6d",
+            "requestId": "req_011CauSGGmpyHBvW7nkS8Lpp",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "72a713c2-43fa-4dfe-88d3-b277edc2154a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "876d1434-ee5e-418a-858f-b18c0ac4ab82",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01U5nKsbjj8jDpU17PHwcm8A",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1046,
+                "cache_creation_input_tokens": 1833,
+                "cache_read_input_tokens": 16757,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1833,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-10T19:25:21.685Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017ui8h7jRxRLEkbRf7EkDVR",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2603.22078v1",
+                "prompt": "What are the specific distributional shifts tested? What are the benchmark datasets? What performance variations are documented?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "72a713c2-43fa-4dfe-88d3-b277edc2154a",
+            "isSidechain": true,
+            "agentId": "a466b09ea00147d6d",
+            "requestId": "req_011CauSGGmpyHBvW7nkS8Lpp",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d4e69873-1deb-40db-846e-05d004b9db5d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "876d1434-ee5e-418a-858f-b18c0ac4ab82",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01U5nKsbjj8jDpU17PHwcm8A",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1046,
+                "cache_creation_input_tokens": 1833,
+                "cache_read_input_tokens": 16757,
+                "output_tokens": 251,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1833
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1046,
+                    "output_tokens": 251,
+                    "cache_read_input_tokens": 16757,
+                    "cache_creation_input_tokens": 1833,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1833,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-10T19:25:25.256Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NbuAzeqCwYDdHzCx84w2WD",
+              "type": "tool_result",
+              "content": "# Analysis of WAM Benchmarking in the Paper\n\nYes, the paper benchmarks WAMs under distributional shifts and uses the specified benchmarks.\n\n**Benchmarks Used:**\nThe abstract confirms evaluation on \"LIBERO-Plus and RoboTwin 2.0-Plus benchmarks under various visual and language perturbations.\"\n\n**Distributional Shifts:**\nThe study explicitly tests robustness against \"visual and language perturbations,\" which aligns with the camera, lighting, and layout variations you mention.\n\n**Performance Variation:**\nThe paper documents substantial performance differences across models. For instance, it reports that \"LingBot-VA reaching 74.2% success rate on RoboTwin 2.0-Plus and Cosmos-Policy achieving 82.2% on LIBERO-Plus,\" while noting that \"VLAs such as π₀.₅ can achieve comparable robustness on certain tasks\" but typically require more extensive training.\n\nThe research demonstrates that performance varies significantly depending on whether models incorporate video-based dynamic learning, suggesting the perturbation effects are well-documented across different architectural approaches."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "72a713c2-43fa-4dfe-88d3-b277edc2154a",
+            "isSidechain": true,
+            "promptId": "1c50d650-056b-494e-9cc6-f7460f80080f",
+            "agentId": "a466b09ea00147d6d",
+            "type": "user",
+            "uuid": "9d6c0d70-633f-457e-8bf3-3a5f72a258e7",
+            "sourceToolAssistantUUID": "72a713c2-43fa-4dfe-88d3-b277edc2154a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "876d1434-ee5e-418a-858f-b18c0ac4ab82",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-10T19:25:27.556Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017ui8h7jRxRLEkbRf7EkDVR",
+              "type": "tool_result",
+              "content": "# Distributional Shifts, Benchmarks, and Performance Variations\n\n## Distributional Shifts Tested\n\nThe paper evaluates robustness across seven perturbation dimensions:\n\n1. **Camera viewpoint** - altering third-person camera pose\n2. **Robot initial states** - varying joint configurations\n3. **Language** - paraphrasing task instructions\n4. **Lighting** - modifying illumination, shadows, color temperature\n5. **Background** - changing table and scene textures\n6. **Sensor noise** - applying photometric distortions to images\n7. **Layout** - introducing task-irrelevant distracting objects\n\n## Benchmark Datasets\n\n**LIBERO-Plus**: Single-arm manipulation using 7-DoF Franka Panda robot with dual cameras at 256×256 resolution.\n\n**RoboTwin 2.0-Plus**: Bimanual manipulation using Aloha-Agilex platform with three cameras at 320×240 resolution (in-house benchmark following similar perturbation protocols).\n\n## Key Performance Variations\n\n- **LingBot-VA** (WAM): 74.2% overall success on RoboTwin 2.0-Plus; particularly strong in lighting (89.0%), noise (80.9%), and layout (87.9%) perturbations\n- **Cosmos-Policy** (WAM): 82.2% overall on LIBERO-Plus, 98.5% on original benchmark\n- **π0.5** (VLA): 58.6% overall on RoboTwin 2.0-Plus; achieves 85.7% on LIBERO-Plus with perturbations\n\nWAMs demonstrate consistent robustness to visual perturbations but struggle with geometric shifts (camera/robot state changes)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d4e69873-1deb-40db-846e-05d004b9db5d",
+            "isSidechain": true,
+            "promptId": "1c50d650-056b-494e-9cc6-f7460f80080f",
+            "agentId": "a466b09ea00147d6d",
+            "type": "user",
+            "uuid": "d34755fd-93fb-4e64-aa28-14a6cd25e404",
+            "sourceToolAssistantUUID": "d4e69873-1deb-40db-846e-05d004b9db5d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "876d1434-ee5e-418a-858f-b18c0ac4ab82",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-10T19:25:32.943Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I now have comprehensive verification. Here are my findings:\n\n## Verification Results\n\n**1. Does this paper exist?**\n✓ **YES** - The paper \"Do World Action Models Generalize Better than VLAs? A Robustness Study\" (arXiv 2603.22078, March 2026) definitely exists and is published.\n\n**2. Does it benchmark WAMs under distributional shifts (camera, lighting, layout perturbations)?**\n✓ **YES** - The paper explicitly benchmarks WAMs under seven types of distributional shifts:\n- Camera viewpoint (altering third-person camera pose)\n- Lighting (modifying illumination, shadows, color temperature)\n- Layout (introducing task-irrelevant distracting objects)\n- Robot initial states\n- Language perturbations\n- Background/texture changes\n- Sensor noise\n\n**3. Does it use LIBERO-Plus and RoboTwin 2.0-Plus?**\n✓ **YES** - Both benchmarks are used:\n- **LIBERO-Plus**: Single-arm manipulation with 7-DoF Franka Panda robot (256×256 resolution dual cameras)\n- **RoboTwin 2.0-Plus**: Bimanual manipulation with Aloha-Agilex platform (320×240 resolution three cameras)\n\n**4. Does it document significant performance variation under distributional shifts?**\n✓ **YES** - Significant performance variations are documented:\n- **LingBot-VA (WAM)**: 74.2% overall on RoboTwin 2.0-Plus, with strong performance on lighting (89.0%), noise (80.9%), and layout (87.9%), but struggles with geometric shifts\n- **Cosmos-Policy (WAM)**: 82.2% on LIBERO-Plus, 98.5% on original benchmark\n- **π₀.₅ (VLA)**: 58.6% overall on RoboTwin 2.0-Plus\n- WAMs show strong robustness to visual perturbations but reduced consistency with geometric perturbations (camera viewpoint, robot initial state changes)\n\nSources:\n- [arXiv 2603.22078 Abstract](https://arxiv.org/abs/2603.22078)\n- [arXiv 2603.22078 HTML Version](https://arxiv.org/html/2603.22078v1)\n- [HuggingFace Paper Page](https://huggingface.co/papers/2603.22078)\n- [Wispaper Summary](https://www.wispaper.ai/en/blog/world-action-models-generalize-better-than-vlas-20260324/eng)\n- [LIBERO-Plus Benchmark](https://arxiv.org/abs/2510.13626)\n- [LIBERO-Plus GitHub Repository](https://github.com/sylvestf/LIBERO-plus)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d34755fd-93fb-4e64-aa28-14a6cd25e404",
+            "isSidechain": true,
+            "agentId": "a466b09ea00147d6d",
+            "requestId": "req_011CauSGwGbUYjyWr1PJLmFq",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "89e2804d-e208-4b3d-9620-a93a844be68a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "876d1434-ee5e-418a-858f-b18c0ac4ab82",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01MT34tyaww6bR5w9WC8CEFq",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2005,
+                "cache_read_input_tokens": 18590,
+                "output_tokens": 693,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2005
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 693,
+                    "cache_read_input_tokens": 18590,
+                    "cache_creation_input_tokens": 2005,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2005,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000012"
+        }
+      ],
+      "message_count": 12
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-for-and-verify-the-wam-robustness-study-arxiv-2603-22078-march-2026-do.md"
+}
