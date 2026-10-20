@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd6470b4147f67f17573",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper setup limitations update",
+  "task_key": "worker_paper_setup-limitations-update_20260516T045238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_setup-limitations-update_20260516T045238_result.json",
+    "occurrence": 1,
+    "bytes": 934,
+    "sha256": "f5295cf0e6f22af1b8fe5d9b115d74933c75b750c017f38fe2345c933e616ea3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Only hit is in `related_work.md` (Lu et al. delusional bias reference — that's a citation to prior work, not our terminology). Both edited files are clean.\n\n**Summary of changes:**\n\n**experimental_setup.md** (2 edits):\n- Table 1: added 018 (Full-SGS) row with `$^\\ddagger$` footnote marking it as pending at submission\n- §4.4 Classification accuracy: added `nve_sensitivity_table` reference to supplementary material sentence\n\n**limitations.md** (2 edits):\n- \"Limited seed count\": added 7/8 overall accuracy and AUROC=0.933 alongside retained 4/4 threshold separation; identified 008e_v3_s2 FP as non-CIVO\n- \"NVE threshold\": fixed CI attribution — [47.3%, 99.7%] now correctly attributed to 7/8 (not 4/4); added supplementary 8/8 CI [68.8%, 100%] at 1.7x threshold\n\nAll other DIFF items (E2–E5, seed updates, mitigation removal, baseline normalization) were already applied in the current files."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-setup-limitations-update.md"
+}

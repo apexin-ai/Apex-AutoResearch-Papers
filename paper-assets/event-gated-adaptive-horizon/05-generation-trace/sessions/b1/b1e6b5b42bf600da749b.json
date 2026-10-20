@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1e6b5b42bf600da749b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check full status 3h",
+  "task_key": "worker_check_full_status_3h_20260523T133053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_full_status_3h_20260523T133053_result.json",
+    "occurrence": 1,
+    "bytes": 2852,
+    "sha256": "34c093a4d606b93509cf1b4fac618c229e85ca0e71f613d3af9bdaf1e2a2aef6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据到手，汇总如下：\n\n---\n\n```\n=== bjb1-45299 进程状态 ===\nPID 123495 (exp_053): ALIVE, GPU显存 643+2758 MiB\nPID 133956 (exp_054): ALIVE, GPU显存 2849×2 MiB\n\n=== exp_053 PegInsertion frozen s0 ===\ntrain_step: 185.2K / 210K (88%)\n\nve_ratio 完整趋势:\n  step    | ve_ratio | eval_return\n  2,500   |    —     |   0.56\n  12,500  |  0.160   |  10.89\n  22,500  |  1.613   |   5.67\n  32,500  |  1.258   |  13.01\n  42,500  |  1.898   |  10.08\n  52,500  |  8.100   |   2.41  ← primary burst\n  62,500  |  2.211   |   7.93\n  72,500  |  3.934   |   3.84\n  82,500  |  1.819   |   7.32\n  92,500  |  1.314   |   8.68\n  102,500 |  1.646   |   5.67\n  112,500 |  1.569   |   4.73\n  122,500 |  0.704   |   8.80\n  132,500 |  0.724   |   7.37\n  142,500 |  0.577   |   7.67\n  152,500 |  0.741   |   4.81\n  162,500 |  0.477   |   6.47\n  172,500 |  0.311   |   8.90\n  182,500 |  0.438   |   5.89\n\nsecondary burst 检查: 无。102.5K 之后 ve_ratio 持续下降（1.65→0.44），无第二次 burst。\n\n=== exp_054 PickCube frozen s0 ===\ntrain_step: 126.4K / 210K (60%)\n\nve_ratio 完整趋势:\n  step    | ve_ratio | eval_return\n  2,500   |    —     |   2.41\n  12,500  |  0.150   |  20.97\n  22,500  |  1.520   |  11.59\n  32,500  |  4.912   |   5.35\n  42,500  |  5.764   |   3.50\n  52,500  |  4.498   |   3.33\n  62,500  |  8.810   |   1.22  ← primary burst\n  72,500  |  0.547   |  16.32  ← burst 后恢复\n  82,500  |  0.944   |   8.72\n  92,500  |  0.620   |  13.20\n  102,500 |  0.514   |  16.01\n  112,500 |  0.773   |   9.75\n  122,500 |  0.588   |  11.32\n\nvs trained baseline @52.5K: frozen=3.33, trained=5.66 → frozen 落后\n但 72.5K 后 frozen 恢复至 11-16 区间，已明显优于 trained baseline\n\n=== bjb1-40020 进程状态 ===\nPID 345223 (exp_055): ALIVE, GPU显存 2575×2 MiB\nPID 346430 (exp_056): ALIVE, GPU显存 435+2528 MiB\n\n=== exp_055 PegInsertion trained s1 ===\ntrain_step: 76.6K / 210K (36%)\n\nve_ratio 趋势:\n  step    | ve_ratio | eval_return\n  2,500   |    —     |   2.01\n  12,500  |  0.190   |  10.12\n  22,500  |  0.807   |  11.47\n  32,500  |  1.354   |  12.01\n  42,500  |  2.001   |  10.13\n  52,500  |  2.386   |  10.31\n  62,500  |  2.851   |   9.02\n  72,500  |  2.281   |  10.07\n\nve_ratio onset: 22.5K 突破 0.8，持续爬升至 62.5K 的 2.85 后回落。\n尚未出现 burst（所有值 <3），eval_return 稳定在 9-12 区间。\n\n=== exp_056 PegInsertion frozen s1 ===\ntrain_step: 71.0K / 210K (34%)\n\nve_ratio 趋势:\n  step    | ve_ratio | eval_return\n  2,500   |    —     |   2.01\n  12,500  |  0.316   |   5.75\n  22,500  |  0.975   |   9.30\n  32,500  |  1.839   |   9.23\n  42,500  |  1.966   |  12.30\n  52,500  |  5.422   |   5.90  ← 初现 burst 迹象\n  62,500  |  4.047   |   9.98\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-full-status-3h.md"
+}

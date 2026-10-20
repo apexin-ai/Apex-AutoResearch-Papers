@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75750cc3030f2a5398b9",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper ai style cleanup",
+  "task_key": "worker_paper_ai-style-cleanup_20260517T232323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_ai-style-cleanup_20260517T232323_result.json",
+    "occurrence": 1,
+    "bytes": 609,
+    "sha256": "80285ca9e73541095389724d0fd041148de65f469cce75b0b6f042b63088ecde"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。修改统计：\n\n| 文件 | 修改数 | 类型 |\n|------|--------|------|\n| abstract_body.tex | 0 | — |\n| introduction.tex | 1 | -ing 结尾 |\n| methodology.tex | 5 | 3× -ing 结尾, 1× \"Additionally\" 删除, 1× 语句重组 |\n| results.tex | 8 | 全部 -ing 结尾 |\n| analysis.tex | 2 | -ing 结尾 |\n| conclusion.tex | 4 | -ing 结尾 |\n| related_work.tex | 4 | -ing 结尾 |\n\n**总计 24 处修改**。所有解释性 em-dash/en-dash = 0，禁用词 = 0，trailing -ing participle clauses 全部消除。技术内容和 LaTeX 命令完整性未受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-ai-style-cleanup.md"
+}

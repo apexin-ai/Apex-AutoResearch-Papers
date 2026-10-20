@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "713d02f2e4351353a6dc",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "urgent bjb1 40020 final check",
+  "task_key": "worker_urgent_bjb1-40020-final-check_20260523T080718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_bjb1-40020-final-check_20260523T080718_result.json",
+    "occurrence": 1,
+    "bytes": 889,
+    "sha256": "d88c044b65229283a319eaa4bc9f12225333380a4ebb0119cfb5dfd8de07d59f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "### bjb1-45299 进度\n- **exp_053** (peginsertion frozen): @80.2K — 即将到 82.5K eval（Director 等的数据点）\n- **exp_054** (pickcube frozen): @11.2K — 早期阶段\n\n## 总结\n\n| 实验 | 服务器 | 当前步数 | 状态 | 关键指标 |\n|------|--------|---------|------|---------|\n| exp_050 (PegIns CIVO) | bjb1-40020:0 | 211.8K | 运行中，即将结束 | ve_ratio 自修复: 10.05→1.23 |\n| exp_051 (StackCube frozen) | bjb1-40020:1 | 213K | 运行中，即将结束 | ve_ratio=0.12, eval=45.31 |\n| exp_053 (PegIns frozen) | bjb1-45299:1 | 80.2K | 运行中 | 即将达 82.5K eval |\n| exp_054 (PickCube frozen) | bjb1-45299:0 | 11.2K | 运行中 | 早期 |\n\n**行动项**：exp_050/051 应在分钟级别内完成，之后需要：\n1. 提取 final metrics 和 checkpoint\n2. 更新 registry → DONE\n3. 在 bjb1-40020:cuda:1 部署 exp_055"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-bjb1-40020-final-check.md"
+}

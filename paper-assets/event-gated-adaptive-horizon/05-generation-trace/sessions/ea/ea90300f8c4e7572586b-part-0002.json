@@ -1,0 +1,881 @@
+{
+  "schema_version": "1.0",
+  "session_id": "ea90300f8c4e7572586b",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 140,
+          "timestamp": "2026-05-29T07:15:29.438Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014xCmQ5mczCymhwKDE1BxkT",
+              "type": "tool_result",
+              "content": "300\t\\centering\n301\t\\includegraphics[width=0.7\\columnwidth]{../../artifacts/figures/nve_roc_curve.pdf}\n302\t\\caption{NVE ROC curve ($n{=}36$ configurations, AUROC${=}1.000$, comprehensive validation). The $\\nve \\geq 2.0\\times$ operating point (star) achieves TPR${=}1.00$, FPR${=}0.00$, accuracy${=}36/36$, F1${=}1.000$. Zero false positives at $\\tau{=}2.0\\times$; all sub-threshold NVE transients (frozen embeddings, endpoint dips) fall below $2.0\\times$. Threshold calibrated and validated post-hoc; cross-architecture validation deferred.}\n303\t\\label{fig:nve_roc}\n304\t\\end{figure}\n305\t\n306\t\\begin{figure}[h]\n307\t\\centering\n308\t\\includegraphics[width=0.7\\columnwidth]{../../artifacts/figures/nve_threshold_prf.pdf}\n309\t\\caption{Precision, Recall, and F1 as a function of NVE threshold ($n{=}36$ configurations). At $\\tau{=}2.0\\times$: F1${=}1.000$, precision${=}1.000$, recall${=}1.000$. Perfect separation: all CIVO-positive configurations exceed $2.0\\times$ and all non-CIVO configurations remain below.}\n310\t\\label{fig:nve_prf}\n311\t\\end{figure}\n312\t\n313\tWe label a configuration as CIVO-positive if and only if (i)~it uses a trained $\\dt$-embedding with multi-rate data exposure, and (ii)~NVE exceeds $2.0\\times$ with co-occurring evaluation collapse. Configurations exhibiting high NVE through other mechanisms (gradient truncation side effects, value anchor pollution, endpoint dips) are labeled non-CIVO.\n314\t\n315\tAt $\\tau{=}2.0\\times$, perfect separation is achieved (AUROC${=}1.000$) with no false positives across $n{=}36$ experiments. All non-CIVO NVE transients (frozen-embedding spikes: exp\\_047, $1.71\\times$; exp\\_057, $1.88\\times$; endpoint eval dips: 008f s0, $1.69\\times$) fall below $2.0\\times$, while the lowest CIVO-positive configuration (008e\\_v3 s2, NVE${=}3.78\\times$, pre-correction) remains well above. The $2.0\\times$ threshold thus cleanly separates mechanistically distinct CIVO from non-CIVO transients that self-correct without the sustained positive-feedback loop characteristic of CIVO.\n316\t\n317\t\\paragraph{Comprehensive validation ($n{=}36$).}\n318\tEvaluating on the primary experimental conditions yields $n{=}36$, spanning Walker Walk, Cheetah Run, and key ablation configurations. At the $2.0\\times$ threshold: AUROC${=}1.000$, precision${=}1.000$, recall${=}1.000$, F1${=}1.000$, accuracy${=}36/36$. Zero false positives: all non-CIVO NVE transients (frozen embeddings, endpoint dips) remain below $2.0\\times$. All CIVO-positive configurations are correctly detected (FN${=}0$), with CIVO-positive NVE ranging from $3.78\\times$ (008e\\_v3 s2, pre-correction) to $108.52\\times$ (010b seed~0, Cheetah). The $2.0\\times$ threshold achieves perfect separation between mechanistic CIVO and non-CIVO transients.\n319\t\n320\t\\paragraph{Experiment composition.}\n321\tThe $n{=}36$ set comprises 9~CIVO-positive and 27~non-CIVO configurations across two environments: Walker Walk (29) and Cheetah Run (7). CIVO-positive experiments include the primary factorial collapse seeds (008d~s1/s4, 059~s5, 006), two pre-correction 008e\\_v3 seeds (s2, s3; see below), and cross-environment validation (010b, 010b\\_s0, 021). Non-CIVO experiments span all control conditions: removed embedding (008f, 4~seeds), unexposed embedding (008a, 5~seeds), frozen embedding (015b, 022b, 042, 047, 057, 046), baseline (001~s1), and three configurations relabeled from CIVO to non-CIVO under the revised sustained-CIVO classification (009b~s2, NVE~$1.62\\times$; 008d~s3, NVE~$1.53\\times$; 018~s1, NVE~$1.66\\times$), which exhibit transient NVE elevation without the sustained positive-feedback loop characteristic of CIVO. This extends the original $n{=}17$ analysis (Tables~\\ref{tab:sensitivity_b1}--\\ref{tab:sensitivity_b2_full}) by 19~configurations spanning additional seeds, frozen controls, and cross-environment replications, without changing the AUROC or optimal threshold. The $\\tau{=}2.0\\times$ threshold was selected on the $n{=}17$ set and maintained unchanged through the $n{=}36$ extension; the clean separation gap (lowest CIVO $3.78\\times$ vs.\\ highest non-CIVO $1.88\\times$) confirms that the threshold generalizes without retuning.\n322\t\n323\t\\paragraph{Code-version note.}\n324\tTwo CIVO-positive entries in the $n{=}36$ set, 008e\\_v3~s2 (NVE~$3.78\\times$) and 008e\\_v3~s3 (NVE~$4.02\\times$), use pre-correction data (Appendix~\\ref{sec:code_corrections}). Under the corrected codebase, s2 exhibits NVE~$0.50\\times$ (non-CIVO); s3 was not re-run. Results are invariant to inclusion or exclusion of these two pre-correction entries ($n{=}34$: AUROC${=}1.000$, 7~CIVO-positive, minimum NVE${=}4.12\\times$). The lowest remaining CIVO-positive NVE ($4.12\\times$, 008d~s1) far exceeds $\\tau{=}2.0\\times$, and the separation from the highest non-CIVO NVE ($1.88\\times$, exp\\_057) widens. AUROC${=}1.000$ holds under either code version.\n325\t\n326\t\\subsection{NVE Normalization Robustness}\n327\t\\label{sec:nve_robustness}\n328\t\n329\tTo assess sensitivity to baseline seed choice, we extend the single-seed baseline (seed~1, eval 915.7 at 105K) to three additional seeds trained to 505K steps (Table~\\ref{tab:baseline_seeds}).\n330\t\n331\t\\begin{table}[h]\n332\t\\centering\n333\t\\caption{Walker Walk baseline seeds at 105K and 505K steps.}\n334\t\\label{tab:baseline_seeds}\n335\t\\footnotesize\n336\t\\begin{tabular}{lcccc}\n337\t\\toprule\n338\t\\textbf{Seed} & \\textbf{Eval@105K} & \\textbf{Eval@505K} & \\textbf{ve@65K} & \\textbf{ve@105K} \\\\\n339\t\\midrule\n340\ts1 & 915.7 & 970.4 & 0.563 & 0.656 \\\\\n341\ts2 & 443.5 & 945.7 & 0.898 & 0.742 \\\\\n342\ts3 & 869.0 & 947.7 & --- & 0.664 \\\\\n343\ts4 & 922.8 & 938.9 & --- & 0.624 \\\\\n344\t\\bottomrule\n345\t\\end{tabular}\n346\t\\end{table}\n347\t\n348\tSeed~2 exhibits slow convergence (eval 443.5 at 105K, recovering to 945.7 by 512K), confirming non-pathological slow convergence rather than seed failure. Its elevated $v/e$ ratio at 65K (0.898 vs.\\ 0.563 for seed~1) reflects the low evaluation denominator rather than pathological value overestimation. Under the $2.0\\times$ diagnostic threshold adopted in this work, normalization sensitivity is eliminated: the highest non-CIVO peak NVE ($1.88\\times$) and the lowest CIVO peak NVE ($3.78\\times$) are separated by a clear gap of $[1.88\\times, 3.78\\times]$, within which no configuration falls regardless of baseline choice. The two runs nearest the former $1.5\\times$ boundary (008d seed~3, peak NVE $1.53\\times$; 009b seed~2, peak NVE $1.62\\times$) are unambiguously sub-threshold at $\\tau{=}2.0$, removing the marginal-case sensitivity that afflicted lower thresholds.\n349\t\n350\tSingle-seed normalization (s1) and four-seed mean normalization yield identical binary classification at $\\tau{=}2.0\\times$: all configurations with peak NVE $\\geq 3.78\\times$ remain above the threshold, and all configurations with peak NVE $\\leq 1.88\\times$ remain below it, under both normalization conventions (e.g., exp\\_009b: $1.62\\times$ under s1 normalization, $1.23\\times$ under 4-seed mean, both well below $2.0\\times$; exp\\_008d: $4.12\\times$ under s1, $3.54\\times$ under 4-seed mean, both well above $2.0\\times$). This normalization-invariant classification contrasts with the $1.5\\times$ threshold, where boundary cases flipped between normalization conventions.\n351\t\n352\t\\paragraph{Normalization conventions.} Walker NVE is normalized against the single-seed baseline (seed~1, exp\\_001, 505K steps). Cheetah NVE is normalized against a 2-seed mean baseline (exp\\_077 seed~0, eval 448.1; exp\\_083 seed~1, eval 444.0; mean 446.1 at 105K). Both provide sufficient coverage of the respective experimental windows (Walker: 210K analysis window; Cheetah: 105K analysis window).\n353\t\n354\t\\paragraph{Limitations.} The initial $n{=}11$ analysis had wide Clopper-Pearson confidence intervals (e.g., 90.9\\% accuracy, 95\\% CI [58.7\\%, 99.8\\%]). The comprehensive evaluation ($n{=}36$, AUROC${=}1.000$, F1${=}1.000$; Figure~\\ref{fig:nve_roc}) substantially tightens these bounds. Table~\\ref{tab:sensitivity_b2_full} reports the $n{=}17$ two-environment core evaluation. Cross-architecture validation is deferred to future work.\n355\t\n356\t\\subsection{Leave-One-Environment-Out Cross-Validation}\n357\t\\label{sec:nve_loeo}\n358\t\n359\tTo assess whether $\\theta{=}2.0\\times$ generalizes beyond the in-sample evaluation, we perform leave-one-environment-out (LOEO) cross-validation across Walker ($n{=}15$), Cheetah ($n{=}5$), and PickCube ($n{=}2$). For each fold, we hold out all experiments from one environment, select the optimal accuracy-maximizing threshold range on the remaining training set, and evaluate the fixed $\\theta{=}2.0\\times$ on the held-out environment.\n360\t\n361\t\\begin{table}[h]\n362\t\\centering\n363\t\\caption{Leave-one-environment-out cross-validation of NVE threshold $\\theta=2.0\\times$.\n364\tFor each fold, the threshold is validated on an environment whose data was \\emph{not} used\n365\tto select $\\theta$. The optimal threshold range on each training set is reported;\n366\t$\\theta=2.0$ falls within the optimal range in all three folds.}\n367\t\\label{tab:nve_loeo}\n368\t\\begin{tabular}{lccccc}\n369\t\\toprule\n370\tHeld-out & $N_{\\text{train}}$ & $N_{\\text{test}}$ & $\\theta_{\\text{opt}}$ range & Test Accuracy & Test AUROC \\\\\n371\t\\midrule\n372\tPickCube & 20 & 2 & $(1.45,\\, 1.53]$ & 2/2 (1.000) & 1.000 \\\\\n373\tCheetah  & 17 & 5 & $(1.45,\\, 1.53]$ & 5/5 (1.000) & 1.000 \\\\\n374\tWalker   &  7 & 15 & $(1.00,\\, 3.78)$ & 15/15 (1.000) & 1.000 \\\\\n375\t\\midrule\n376\t\\textbf{Mean} & — & — & — & \\textbf{1.000} & \\textbf{1.000} \\\\\n377\t\\bottomrule\n378\t\\end{tabular}\n379\t\\end{table}\n380\t\n381\tThe threshold $\\theta{=}2.0\\times$ falls within the optimal accuracy range for all three training folds: $(1.45, 3.78)$ when Walker data is available, and the wider $(1.00, 3.78)$ when training on Cheetah$+$PickCube only (where CIVO and non-CIVO NVE values are well-separated). All three folds achieve perfect held-out accuracy (mean $1.000$) and AUROC ($1.000$); $\\theta{=}2.0\\times$ generalizes across environments without retuning.\n382\tPickCube fold confidence intervals remain wide (Clopper-Pearson 95\\% CI: $[0.158, 1.000]$) due to $N_{\\text{test}}{=}2$.\n383\t\n384\t\\subsection{Leave-One-Config-Out Cross-Validation}\n385\t\\label{sec:nve_loco}\n386\t\n387\t\\paragraph{Leave-One-Config-Out Cross-Validation.}\n388\tTo rule out threshold overfitting to any particular experimental configuration, we perform leave-one-config-out (LOCO) cross-validation over the $n{=}36$ primary configurations. Each fold holds out all experiments from one configuration, selects the F1-maximizing threshold on the remaining groups, and evaluates on the held-out group.\n389\t\n390\tCross-validated accuracy at $\\theta{=}2.0$ is $36/36 = 100\\%$, with train AUROC consistently $1.000$ across folds. Zero false positives: all non-CIVO NVE transients fall below $2.0\\times$, and no CIVO-positive configuration is missed in any fold (FN${=}0$).\n391\t\n392\t% --- APPENDIX B: Factorial Ablation Details ---\n393\t\n394\t\\section{Factorial Ablation Details}\n395\t\\label{sec:appendix_factorial}\n396\t\n397\tThis appendix provides the full factorial ablation results summarized in \\S\\ref{sec:f3f5_summary} of the main text.\n398\t\n399\t\\paragraph{Embedding gradient analysis.}\n400\tTable~\\ref{tab:three_way_emb} isolates embedding \\emph{trainability} as the necessary condition for CIVO by comparing four gradient conditions under otherwise identical configurations ($H{=}8$, subsample ON, $\\dt{=}2$ imagination).\n401\t\n402\t% tab:three_way_emb moved to main text (Section 3.4)\n403\t\n404\t\\paragraph{Controlled three-way causal ablation.}\n405\tExperiments 067--069 provide a minimal causal ablation on Walker Walk (seed${=}1$), varying \\emph{only} the $\\dt$-embedding treatment while holding all other hyperparameters fixed ($H{=}8$, subsample ON, $\\dt{=}2$ imagination). Table~\\ref{tab:causal_ablation} shows that trained $\\dt$-embedding is necessary and sufficient for CIVO: freezing the embedding (gradient flow blocked, embedding weights still present) eliminates CIVO as completely as removing the embedding ($d{=}0$), ruling out the alternative hypothesis that embedding \\emph{presence} alone causes CIVO.\n406\t\n407\t\\paragraph{Cross-environment frozen verification.}\n408\tExperiments 084--087 extend the frozen-embedding control to a $2 \\times 2$ design (Walker $+$ Cheetah, 2 seeds each). All four runs confirm CIVO absence: exp\\_084 (Walker, seed~0, NVE peak $0.53\\times$, eval 821, 89\\% baseline), exp\\_085 (Walker, seed~1, NVE peak $0.31\\times$), exp\\_086 (Cheetah, seed~0, NVE $< 0.4\\times$), and exp\\_087 (Cheetah, seed~1, NVE $< 0.4\\times$). Combined with all prior seeds, trained $\\dt$-embedding triggers CIVO in 5/7 multi-joint locomotion runs versus 0/16 frozen or removed controls (Fisher exact $p < 0.001$); embedding \\emph{training} is a necessary condition for CIVO across environments and seeds.\n409\t\n410\t\\begin{table}[h]\n411\t\\centering\n412\t\\caption{Three-way causal ablation (Walker Walk, seed${=}1$). Only the $\\dt$-embedding treatment varies; all other configuration is identical. Trained embedding triggers CIVO; frozen and removed do not.}\n413\t\\label{tab:causal_ablation}\n414\t\\footnotesize\n415\t\\begin{tabular}{llccl}\n416\t\\toprule\n417\t\\textbf{Exp} & \\textbf{Embedding} & \\textbf{NVE peak} & \\textbf{Eval final} & \\textbf{CIVO} \\\\\n418\t\\midrule\n419\t\\rowcolor{gray!15}\n420\t068 & Trained ($d{=}32$) & $6.57\\times$ & 39.1 & Yes (alert @85K) \\\\\n421\t067 & Frozen ($d{=}32$, \\texttt{req\\_grad=F}) & $0.40\\times$ & 281.5 & No \\\\\n422\t069 & Removed ($d{=}0$) & $0.66\\times$ & 237.8 & No \\\\\n423\t\\bottomrule\n424\t\\end{tabular}\n425\t\\end{table}\n426\t\n427\tThe reward-detach condition (exp\\_044, \\texttt{reward\\_dt\\_emb\\_detach=True}) uses a backward hook to block reward-head gradients from reaching $e_{\\dt}$, complementing the framework-level Reward SGS (exp\\_016e). Both yield the same directional result (CIVO onset not prevented), ruling out implementation artifacts. Exp\\_044 exhibits delayed CIVO onset (${\\sim}95$K vs.\\ typical $25$--$35$K), consistent with reduced but non-zero gradient pressure on $e_{\\dt}$. Over a full 224K run, exp\\_044 self-corrects: eval recovers from 44 (95K) to 538 (215K, 59\\% baseline), but this recovery is incomplete compared to spontaneous recovery without gradient intervention (exp\\_045: 868, 95\\% baseline). The lower asymptote suggests that selectively disrupting gradient flow may create optimization difficulties beyond CIVO itself.\n428\t\n429\tTable~\\ref{tab:factorial_design} summarizes the experimental configurations.\n430\t\n431\t\\begin{table}[ht]\n432\t\\centering\n433\t\\caption{Factorial design. Each row specifies one experimental configuration. \\textbf{Emb}: $\\dt$-embedding mode. \\textbf{Sub}: temporal subsampling. \\textbf{H}: imagination horizon. \\textbf{Imag $\\dt$}: temporal resolution used during imagination.}\n434\t\\label{tab:factorial_design}\n435\t\\small\n436\t\\setlength{\\tabcolsep}{3.5pt}\n437\t\\begin{tabular}{@{}llcccc@{}}\n438\t\\toprule\n439\t\\textbf{ID} & \\textbf{Purpose} & \\textbf{Emb} & \\textbf{Sub} & \\textbf{H} & \\textbf{Imag $\\dt$} \\\\\n440\t\\midrule\n441\t001 & Reference baseline & --- & --- & 15 & 1 \\\\\n442\t006 & Fixed $\\dt{=}2$ & trn & on & 15 & 2 \\\\\n443\t007 & Fixed $\\dt{=}4$ & trn & on & 15 & 4 \\\\\n444\t\\midrule\n445\t008a & Unexposed emb ctrl & exp$^a$ & off & 15 & 2 \\\\\n446\t008c & Horizon control & exp$^a$ & off & 8 & 2 \\\\\n447\t008d & Collapse condition & trn & on & 8 & 2 \\\\\n448\t008e\\_v3 & $\\dt{=}1$ imag control & trn & on & 15 & 1 \\\\\n449\t008f & Causal ablation & --- & on & 8 & 2 \\\\\n450\t\\midrule\n451\t015b & Frozen-emb ctrl & frz$^b$ & on & 8 & 2 \\\\\n452\t016e & Stop-grad (reward) & trn$^\\dagger$ & on & 8 & 2 \\\\\n453\t018 & Full-SGS & trn$^\\ddagger$ & on & 8 & 2 \\\\\n454\t\\midrule\n455\t005 & Learned gate & adaptive & off & 15 & learned \\\\\n456\t\\bottomrule\n457\t\\end{tabular}\n458\t\\vspace{-2pt}\n459\t{\\raggedright\\footnotesize\n460\ttrn = trained ($d{=}32$, exposed to $\\dt{>}1$ data via subsample ON);\n461\texp$^a$ = trained ($d{=}32$) but never exposed to $\\dt{>}1$ data (subsample OFF);\n462\tfrz$^b$ = frozen random projection ($d{=}32$, \\texttt{requires\\_grad=False});\n463\t--- = removed ($d{=}0$).\\\\\n464\t$^\\dagger$ \\texttt{reward\\_dt\\_emb\\_detach=True}; $^\\ddagger$ all non-KL gradients to \\texttt{dt\\_emb} detached.\\par}\n465\t\\end{table}\n466\t\n467\t\\subsection{F3: Untrained Temporal Embedding Blocks the CIVO Feedback Loop}\n468\t\\label{sec:f3}\n469\t\n470\t\\begin{figure}[t]\n471\t\\centering\n472\t\\includegraphics[width=\\columnwidth]{figures/paper/fig3_factorial_grid.pdf}\n473\t\\caption{Factorial isolation of CIVO trigger. Only the combination of trained $e_{\\dt}$ and multi-rate data (upper-left cell) produces pathological NVE. Neither factor alone is sufficient.}\n474\t\\label{fig:factorial_grid}\n475\t\\end{figure}\n476\t\n477\tThe empirical finding that trained embedding \\emph{plus} multi-rate exposure jointly predict CIVO rests on two complementary controls that each remove one factor while holding the other constant.\n478\t\n479\t\\paragraph{Evidence A: exposure is necessary (exp\\_008a).}\n480\tExp\\_008a uses a trained embedding ($d{=}32$, gradients enabled) that is never exposed to $\\dt{>}1$ transitions during world-model training (subsample OFF). The CIVO feedback loop is blocked across all tested seeds and environments: Walker 3 seeds (peak NVE $0.83$--$0.93\\times$), Cheetah 2 seeds (peak NVE $0.45$--$0.58\\times$), all far below $\\tau{=}2.0\\times$. Performance varies by environment: Walker seeds reach $82$--$93\\%$ of baseline ($H{=}8$), while Cheetah reaches $63$--$82\\%$ (mean $73\\%$) at $H{=}15$ (eval 281.2--366.2). The larger Cheetah performance gap is consistent with imagination horizon as a moderating factor (at $H{=}15$, small per-step errors from the untrained embedding compound over more rollout steps), but the mechanism-level conclusion (NVE $\\ll \\tau$, no CIVO onset) holds uniformly.\n481\t\n482\tThis contrasts with exp\\_006 (trained $e_{\\dt}$, subsample ON, $H{=}15$), where NVE accelerates from $1.61\\times$ at 45K to $2.31\\times$ at 55K before catastrophic collapse to 132.9 at 65K. Both experiments use identical trained embeddings ($d{=}32$, gradients enabled) and $H{=}15$, differing only in whether the world model sees $\\dt{>}1$ transitions during training. This confirms that multi-rate data exposure, not embedding architecture, is the operative variable.\n483\t\n484\t\\paragraph{Evidence B: trainability is necessary (exp\\_015b).}\n485\tExp\\_015b uses a frozen random-projection embedding ($d{=}32$, \\texttt{requires\\_grad=False}, subsample ON, $H{=}8$), the same multi-rate data regime as exp\\_008d, but with a non-trainable temporal signal. Despite full exposure to $\\dt{>}1$ transitions, the NVE peaks at $1.45\\times$ at 55K but does not sustain escalation: it retreats to $0.65\\times$ by 65K and settles at $0.42\\times$ by 105K (trajectory: $0.81 \\rightarrow 1.26 \\rightarrow 1.45 \\rightarrow 0.65 \\rightarrow 1.05 \\rightarrow 0.47 \\rightarrow 0.39 \\rightarrow 0.42$). The transient peak approaches but does not exceed the $2.0\\times$ CIVO threshold, and critically, the ratio self-corrects rather than exhibiting the monotonic escalation seen in trained-embedding runs. Final evaluation reaches only 204.2 at 105K, low but through a qualitatively different failure mode than CIVO. Actor loss approaches zero (gradient starvation; see \\S\\ref{sec:pathways}), the frozen embedding provides no useful gradient signal for temporal adaptation.\n486\t\n487\tThe contrast with exp\\_008d is stark: under identical data conditions (subsample ON, $H{=}8$), the trained embedding drives NVE to $4.12\\times$ with sustained monotonic escalation ($1.78 \\rightarrow 1.71 \\rightarrow 2.09 \\rightarrow 4.12$) and precedes full collapse (eval 82.8), while the frozen embedding peaks transiently at $1.45\\times$ before self-correcting to $0.42\\times$, a qualitative difference between sustained and transient overestimation. This demonstrates that a $\\dt$-embedding must be able to \\emph{co-adapt} with RSSM dynamics to produce the systematic reward-prediction bias that drives CIVO; a static random projection, regardless of its exposure to multi-rate data, cannot create this bias.\n488\t\n489\tTogether, these two controls establish that untrained or absent $\\dt$-embedding blocks the CIVO feedback loop (NVE $< \\tau$ across all seeds and environments). CIVO requires the \\emph{joint} presence of (i)~a trainable embedding that can co-adapt with RSSM dynamics, and (ii)~multi-rate training data that drives this co-adaptation toward biased temporal predictions. Neither factor alone triggers the feedback loop.\n490\t\n491\tCross-environment validation on Cheetah Run replicates the empirical pattern: trained $e_{\\dt}$ precedes CIVO in both tested seeds (exp\\_010b, 2 seeds, NVE $8.27$--$108.52\\times$, collapse to 51.7/0.83) while removing the embedding eliminates it (exp\\_024b, 2 seeds, NVE $<0.2\\times$, eval 96.5/77.3). Freezing the embedding on Cheetah (exp\\_046, NVE${=}1.35\\times$ vs.\\ trained $108.52\\times$, a $80\\times$ reduction) further confirms that embedding trainability, not architecture, drives CIVO. This extends the sufficiency finding from Walker Walk to a second locomotion environment with qualitatively different dynamics (6-joint biped vs.\\ 6-joint runner).\n492\t\n493\t\\begin{table}[ht]\n494\t\\centering\n495\t\\small\n496\t\\caption{Causal isolation: $e_{\\dt}$ configuration $\\times$ multi-rate data exposure. The combination of trained embedding and multi-rate exposure is the sole predictor of CIVO in tested configurations. Neither factor alone is sufficient.}\n497\t\\label{tab:causal_matrix}\n498\t\\begin{tabular}{lcc}\n499\t\\toprule\n500\t& Multi-rate data (\\textsc{on}) & Single-rate data (\\textsc{off}) \\\\\n501\t\\midrule\n502\tTrained $e_{\\dt}$ & exp\\_008d: \\textbf{CIVO} & exp\\_008a: healthy \\\\\n503\t & NVE 4.12$\\times$, collapse & NVE 0.93$\\times$ \\\\\n504\t\\midrule\n505\tFrozen $e_{\\dt}$ & exp\\_015b: grad.\\ starvation & --- \\\\\n506\t & peak NVE 1.45$\\times$ (transient) & \\\\\n507\t\\midrule\n508\tRemoved $e_{\\dt}$ & exp\\_008f: no CIVO$^l$ & --- \\\\\n509\t & NVE $\\leq$1.69$\\times$$^l$ & \\\\\n510\t\\bottomrule\n511\t\\end{tabular}\n512\t\\end{table}\n513\t\n514\tOnly the upper-left cell (trained embedding with multi-rate exposure) precedes CIVO (Table~\\ref{tab:causal_matrix}). This 2$\\times$2 structure establishes that both factors are jointly sufficient in tested configurations.\n515\t\n516\t\\subsection{F4: Degradation Scales Monotonically with \\texorpdfstring{$\\dt$}{dt}}\n517\t\\label{sec:f4}\n518\t\n519\t\\begin{figure}[t]\n520\t\\centering\n521\t\\includegraphics[width=\\columnwidth]{figures/paper/fig5_dt_amplification.pdf}\n522\t\\caption{Peak evaluation return as a function of imagination $\\dt$. Performance degrades monotonically: $\\dt{=}1$ (915.7) $>$ $\\dt{=}2$ (485.3, $-47\\%$) $>$ $\\dt{=}4$ (176.9, $-81\\%$).}\n523\t\\label{fig:dt_amplification}\n524\t\\end{figure}\n525\t\n526\tThe magnitude of degradation scales monotonically with the imagination step size (Figure~\\ref{fig:dt_amplification}). From the $\\dt{=}1$ baseline (915.7 at 105K), fixed $\\dt{=}2$ (exp\\_006) achieves a peak of only 485.3 ($-47\\%$), and fixed $\\dt{=}4$ (exp\\_007) peaks at 176.9 ($-81\\%$). This monotonic relationship is consistent with compounding model error: larger temporal gaps amplify the RSSM's prediction inaccuracy at each imagination step, and these errors accumulate across the rollout horizon.\n527\t\n528\t\\subsection{F5: Imagination Horizon and Subsampling Are Secondary Factors}\n529\t\\label{sec:f5}\n530\t\n531\tNeither horizon length nor temporal subsampling precedes collapse without multi-rate data exposure: both trained-but-unexposed configurations (008a, 008c) maintain $\\nve < 0.93\\times$ (\\S\\ref{sec:f3}), while the trained-and-exposed counterpart (008d) collapses with $\\nve = 4.12\\times$.  The no-embedding configurations (4 Walker seeds) show cross-seed variance (eval 140--469$^l$) but none exhibits sustained CIVO; the highest NVE ($1.69\\times$, 008f s0) reflects an endpoint eval dip rather than value overestimation.\n532\t\n533\tThe $3.2\\times$ performance gap (008a: 777.7 vs.\\ 008c: 240.9) quantifies the horizon effect independently of CIVO, as both conditions maintain healthy NVE ($\\leq$0.93$\\times$).\n534\t\n535\t% --- APPENDIX C: Full Analysis & Discussion ---\n536\t\n537\t\\section{Full Analysis \\& Discussion}\n538\t\\label{sec:appendix_analysis}\n539\t\n540\tThis appendix provides the complete mechanistic analysis summarized in Section~\\ref{sec:discussion} of the main text. The intervention hierarchy is in Table~\\ref{tab:intervention_hierarchy} (main text).\n541\t\n542\t\\paragraph{Fisher exact tests.}\n543\tKey pairwise comparisons (two-sided Fisher exact test): frozen (7/7 prevention) vs.\\ untreated (0/10), $p < 0.001$; removed (6/6) vs.\\ untreated (0/10), $p < 0.001$; wide dual-critic (3/4) vs.\\ untreated (0/10), $p = 0.011$; TCN $\\sigma{=}0.2$ (3/6) vs.\\ untreated (0/10), $p = 0.036$; all SGS combined (1/11) vs.\\ untreated (0/10), $p = 1.000$ (not significant). Only embedding removal/freezing achieves statistically significant CIVO prevention.\n544\t\n545\t\\subsection{The CIVO Mechanism}\n546\t\\label{sec:civo_mechanism}\n547\t\n548\t\\begin{table}[h]\n549\t\\centering\n550\t\\caption{RSSM fidelity at $\\dt{=}1$ vs.\\ $\\dt{=}2$ (v3 standardized). The reward prediction gap is environment-dependent: Walker trained embedding produces a $1.63\\times$ reward gap, while Cheetah shows no gap ($1.00\\times$) despite exhibiting CIVO.}\n551\t\\label{tab:rssm_fidelity}\n552\t\\footnotesize\n553\t\\setlength{\\tabcolsep}{4pt}\n554\t\\begin{tabular}{llcccccc}\n555\t\\toprule\n556\t& & \\multicolumn{3}{c}{\\textbf{obs\\_MSE}} & \\multicolumn{3}{c}{\\textbf{reward\\_MAE}} \\\\\n557\t\\cmidrule(lr){3-5} \\cmidrule(lr){6-8}\n558\t\\textbf{Env} & \\textbf{Config} & $\\dt{=}1$ & $\\dt{=}2$ & Gap & $\\dt{=}1$ & $\\dt{=}2$ & Gap \\\\\n559\t\\midrule\n560\t\\multirow{3}{*}{Walker} & Baseline & 13.49 & 27.50 & 2.04$\\times$ & 0.0102 & 0.0159 & 1.56$\\times$ \\\\\n561\t& Trained (008d) & 25.71 & 34.60 & 1.35$\\times$ & 0.0530 & 0.0865 & 1.63$\\times$ \\\\\n562\t& No emb (008f) & 8.01 & 22.04 & 2.75$\\times$ & 0.7469 & 0.7526 & 1.01$\\times$ \\\\\n563\t\\midrule\n564\tCheetah & Trained & 5.26 & 4.90 & 0.93$\\times$ & 0.1410 & 0.1405 & 1.00$\\times$ \\\\\n565\t\\bottomrule\n566\t\\end{tabular}\n567\t\\end{table}\n568\t\n569\tThe RSSM fidelity analysis (Table~\\ref{tab:rssm_fidelity}) reveals an environment-dependent transmission mechanism for CIVO (Figure~\\ref{fig:civo_mechanism}).  On Walker Walk, the trained $\\dt$-embedding produces a $1.63\\times$ reward prediction gap (MAE $0.053$ at $\\dt{=}1$ vs.\\ $0.087$ at $\\dt{=}2$), while the no-embedding configuration (008f) exhibits a $1.01\\times$ gap and the baseline shows $1.56\\times$, confirming that the trained embedding amplifies the fidelity discrepancy.  However, Cheetah Run shows \\emph{no} reward gap ($1.00\\times$, MAE ${\\approx}0.141$ at both scales) despite exhibiting CIVO at $8.27\\times$ NVE, indicating that reward fidelity degradation is one transmission pathway but not the only one.\n570\t\n571\tIn Walker, this asymmetric fidelity initiates a feedback loop with four stages: (1) the trained $\\dt$-embedding causes RSSM predictions at $\\dt > 1$ to carry systematically biased reward estimates; (2) the critic, trained entirely on imagined trajectories, internalizes these biased rewards as optimistic value estimates; (3) the actor exploits the overestimated regions of the value landscape, shifting its policy toward states that appear high-value only under the biased model; and (4) this policy shift further skews the distribution of imagined states, reinforcing the bias.  In Cheetah, where the reward gap is absent ($1.00\\times$), CIVO must be transmitted through an alternative pathway, possibly dynamics-model prior drift in the latent state space.  In both cases, the diagnostic signature is a sustained $\\nve$ above $2.0\\times$, followed by evaluation collapse.\n572\t\n573\tA random-policy control experiment ($N{=}100$ rollouts, 95\\% bootstrap CI) decomposes CIVO into two necessary stages.  \\textbf{Stage~1 (dynamics bias):} even under a random policy, $\\dt{=}2$ imagination produces $1.68\\times$ higher mean reward than $\\dt{=}1$ in the trained-embedding model (008d): the RSSM prior already generates reward-favorable trajectories at $\\dt > 1$, independent of actor behavior.  \\textbf{Stage~2 (actor exploitation):} the trained actor learns to exploit these biased regions, amplifying the ratio to $2.90\\times$.  In the no-embedding control (008f), neither stage is present: the random-policy ratio is $1.11\\times$ and the trained-actor ratio is $0.98\\times$.  The decomposition attributes $\\approx 36\\%$ of the total effect to dynamics bias and $\\approx 64\\%$ to actor exploitation, which confirms that both stages are necessary for CIVO to manifest.\n574\t\n575\tThis mechanism is analogous to delusional bias \\citep{lu2018nondelusional}, but differs in origin: delusional bias arises from policy-class constraints, while CIVO is model-induced.  The consequence (policy exploitation of overestimated regions) is similar, but the proposed pathway is distinct.\n576\t\n577\t\\paragraph{Signed reward error analysis.}\n578\tTo test whether CIVO arises from one-step reward overprediction, we compute signed error (predicted $-$ actual) on posterior-conditioned RSSM predictions (Table~\\ref{tab:signed_error}). The trained-embedding model (008d) shows \\emph{negative} bias at $\\dt{=}2$ (mean signed error $-0.599$, only 8\\% of samples overpredicted), ruling out observation-level reward overprediction as the mechanism. The baseline is well-calibrated (mean SE $\\approx 0$), confirming methodological soundness. Value overestimation therefore occurs during \\emph{imagination-level} prior drift: the RSSM prior (unconditioned on observations) generates reward-favorable trajectories at $\\dt > 1$ (Stage~1 above, $1.68\\times$ ratio under random policy), and the critic accumulates these into overestimated returns. The one-step reward prediction is negatively biased when conditioned on real observations, but this posterior correction is unavailable during imagination. This also distinguishes CIVO from generic compounding error, which would produce \\emph{positive} signed error accumulating with horizon; the negative observation-level bias confirms that CIVO is a prior-drift phenomenon, not a reward-prediction artifact.\n579\t\n580\t\\begin{table}[h]\n581\t\\centering\n582\t\\caption{Signed reward error (predicted $-$ actual) on posterior-conditioned RSSM predictions. Negative values indicate underprediction. The trained-embedding model underpredicts at $\\dt{=}2$, ruling out observation-level reward overprediction as the CIVO mechanism.}\n583\t\\label{tab:signed_error}\n584\t\\footnotesize\n585\t\\setlength{\\tabcolsep}{4pt}\n586\t\\begin{tabular}{llrrrrr}\n587\t\\toprule\n588\t\\textbf{Config} & $\\dt$ & \\textbf{Mean SE} & \\textbf{Std} & \\textbf{\\%Over} & \\textbf{Actual} & \\textbf{Pred} \\\\\n589\t\\midrule\n590\tBaseline & 1 & $+0.001$ & 0.023 & 39.6\\% & 1.893 & 1.894 \\\\\n591\t\\midrule\n592\t008d (trained) & 1 & $+0.018$ & 0.072 & 61.8\\% & 0.361 & 0.379 \\\\\n593\t008d (trained) & 2 & $\\mathbf{-0.599}$ & 0.722 & 8.0\\% & 0.721 & 0.121 \\\\\n594\t\\midrule\n595\t008f (no emb) & 1 & $-0.710$ & 0.704 & 14.0\\% & 0.921 & 0.211 \\\\\n596\t008f (no emb) & 2 & $-1.645$ & 1.485 & 5.0\\% & 1.840 & 0.195 \\\\\n597\t\\bottomrule\n598\t\\end{tabular}\n599\t\\end{table}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0e13f95b-d148-4ddc-b813-93ffa7545c2b",
+            "uuid": "61c9d4c0-46c8-4c42-aef2-605d245492af",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/appendix.tex",
+                "content": "\\centering\n\\includegraphics[width=0.7\\columnwidth]{../../artifacts/figures/nve_roc_curve.pdf}\n\\caption{NVE ROC curve ($n{=}36$ configurations, AUROC${=}1.000$, comprehensive validation). The $\\nve \\geq 2.0\\times$ operating point (star) achieves TPR${=}1.00$, FPR${=}0.00$, accuracy${=}36/36$, F1${=}1.000$. Zero false positives at $\\tau{=}2.0\\times$; all sub-threshold NVE transients (frozen embeddings, endpoint dips) fall below $2.0\\times$. Threshold calibrated and validated post-hoc; cross-architecture validation deferred.}\n\\label{fig:nve_roc}\n\\end{figure}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=0.7\\columnwidth]{../../artifacts/figures/nve_threshold_prf.pdf}\n\\caption{Precision, Recall, and F1 as a function of NVE threshold ($n{=}36$ configurations). At $\\tau{=}2.0\\times$: F1${=}1.000$, precision${=}1.000$, recall${=}1.000$. Perfect separation: all CIVO-positive configurations exceed $2.0\\times$ and all non-CIVO configurations remain below.}\n\\label{fig:nve_prf}\n\\end{figure}\n\nWe label a configuration as CIVO-positive if and only if (i)~it uses a trained $\\dt$-embedding with multi-rate data exposure, and (ii)~NVE exceeds $2.0\\times$ with co-occurring evaluation collapse. Configurations exhibiting high NVE through other mechanisms (gradient truncation side effects, value anchor pollution, endpoint dips) are labeled non-CIVO.\n\nAt $\\tau{=}2.0\\times$, perfect separation is achieved (AUROC${=}1.000$) with no false positives across $n{=}36$ experiments. All non-CIVO NVE transients (frozen-embedding spikes: exp\\_047, $1.71\\times$; exp\\_057, $1.88\\times$; endpoint eval dips: 008f s0, $1.69\\times$) fall below $2.0\\times$, while the lowest CIVO-positive configuration (008e\\_v3 s2, NVE${=}3.78\\times$, pre-correction) remains well above. The $2.0\\times$ threshold thus cleanly separates mechanistically distinct CIVO from non-CIVO transients that self-correct without the sustained positive-feedback loop characteristic of CIVO.\n\n\\paragraph{Comprehensive validation ($n{=}36$).}\nEvaluating on the primary experimental conditions yields $n{=}36$, spanning Walker Walk, Cheetah Run, and key ablation configurations. At the $2.0\\times$ threshold: AUROC${=}1.000$, precision${=}1.000$, recall${=}1.000$, F1${=}1.000$, accuracy${=}36/36$. Zero false positives: all non-CIVO NVE transients (frozen embeddings, endpoint dips) remain below $2.0\\times$. All CIVO-positive configurations are correctly detected (FN${=}0$), with CIVO-positive NVE ranging from $3.78\\times$ (008e\\_v3 s2, pre-correction) to $108.52\\times$ (010b seed~0, Cheetah). The $2.0\\times$ threshold achieves perfect separation between mechanistic CIVO and non-CIVO transients.\n\n\\paragraph{Experiment composition.}\nThe $n{=}36$ set comprises 9~CIVO-positive and 27~non-CIVO configurations across two environments: Walker Walk (29) and Cheetah Run (7). CIVO-positive experiments include the primary factorial collapse seeds (008d~s1/s4, 059~s5, 006), two pre-correction 008e\\_v3 seeds (s2, s3; see below), and cross-environment validation (010b, 010b\\_s0, 021). Non-CIVO experiments span all control conditions: removed embedding (008f, 4~seeds), unexposed embedding (008a, 5~seeds), frozen embedding (015b, 022b, 042, 047, 057, 046), baseline (001~s1), and three configurations relabeled from CIVO to non-CIVO under the revised sustained-CIVO classification (009b~s2, NVE~$1.62\\times$; 008d~s3, NVE~$1.53\\times$; 018~s1, NVE~$1.66\\times$), which exhibit transient NVE elevation without the sustained positive-feedback loop characteristic of CIVO. This extends the original $n{=}17$ analysis (Tables~\\ref{tab:sensitivity_b1}--\\ref{tab:sensitivity_b2_full}) by 19~configurations spanning additional seeds, frozen controls, and cross-environment replications, without changing the AUROC or optimal threshold. The $\\tau{=}2.0\\times$ threshold was selected on the $n{=}17$ set and maintained unchanged through the $n{=}36$ extension; the clean separation gap (lowest CIVO $3.78\\times$ vs.\\ highest non-CIVO $1.88\\times$) confirms that the threshold generalizes without retuning.\n\n\\paragraph{Code-version note.}\nTwo CIVO-positive entries in the $n{=}36$ set, 008e\\_v3~s2 (NVE~$3.78\\times$) and 008e\\_v3~s3 (NVE~$4.02\\times$), use pre-correction data (Appendix~\\ref{sec:code_corrections}). Under the corrected codebase, s2 exhibits NVE~$0.50\\times$ (non-CIVO); s3 was not re-run. Results are invariant to inclusion or exclusion of these two pre-correction entries ($n{=}34$: AUROC${=}1.000$, 7~CIVO-positive, minimum NVE${=}4.12\\times$). The lowest remaining CIVO-positive NVE ($4.12\\times$, 008d~s1) far exceeds $\\tau{=}2.0\\times$, and the separation from the highest non-CIVO NVE ($1.88\\times$, exp\\_057) widens. AUROC${=}1.000$ holds under either code version.\n\n\\subsection{NVE Normalization Robustness}\n\\label{sec:nve_robustness}\n\nTo assess sensitivity to baseline seed choice, we extend the single-seed baseline (seed~1, eval 915.7 at 105K) to three additional seeds trained to 505K steps (Table~\\ref{tab:baseline_seeds}).\n\n\\begin{table}[h]\n\\centering\n\\caption{Walker Walk baseline seeds at 105K and 505K steps.}\n\\label{tab:baseline_seeds}\n\\footnotesize\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Seed} & \\textbf{Eval@105K} & \\textbf{Eval@505K} & \\textbf{ve@65K} & \\textbf{ve@105K} \\\\\n\\midrule\ns1 & 915.7 & 970.4 & 0.563 & 0.656 \\\\\ns2 & 443.5 & 945.7 & 0.898 & 0.742 \\\\\ns3 & 869.0 & 947.7 & --- & 0.664 \\\\\ns4 & 922.8 & 938.9 & --- & 0.624 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nSeed~2 exhibits slow convergence (eval 443.5 at 105K, recovering to 945.7 by 512K), confirming non-pathological slow convergence rather than seed failure. Its elevated $v/e$ ratio at 65K (0.898 vs.\\ 0.563 for seed~1) reflects the low evaluation denominator rather than pathological value overestimation. Under the $2.0\\times$ diagnostic threshold adopted in this work, normalization sensitivity is eliminated: the highest non-CIVO peak NVE ($1.88\\times$) and the lowest CIVO peak NVE ($3.78\\times$) are separated by a clear gap of $[1.88\\times, 3.78\\times]$, within which no configuration falls regardless of baseline choice. The two runs nearest the former $1.5\\times$ boundary (008d seed~3, peak NVE $1.53\\times$; 009b seed~2, peak NVE $1.62\\times$) are unambiguously sub-threshold at $\\tau{=}2.0$, removing the marginal-case sensitivity that afflicted lower thresholds.\n\nSingle-seed normalization (s1) and four-seed mean normalization yield identical binary classification at $\\tau{=}2.0\\times$: all configurations with peak NVE $\\geq 3.78\\times$ remain above the threshold, and all configurations with peak NVE $\\leq 1.88\\times$ remain below it, under both normalization conventions (e.g., exp\\_009b: $1.62\\times$ under s1 normalization, $1.23\\times$ under 4-seed mean, both well below $2.0\\times$; exp\\_008d: $4.12\\times$ under s1, $3.54\\times$ under 4-seed mean, both well above $2.0\\times$). This normalization-invariant classification contrasts with the $1.5\\times$ threshold, where boundary cases flipped between normalization conventions.\n\n\\paragraph{Normalization conventions.} Walker NVE is normalized against the single-seed baseline (seed~1, exp\\_001, 505K steps). Cheetah NVE is normalized against a 2-seed mean baseline (exp\\_077 seed~0, eval 448.1; exp\\_083 seed~1, eval 444.0; mean 446.1 at 105K). Both provide sufficient coverage of the respective experimental windows (Walker: 210K analysis window; Cheetah: 105K analysis window).\n\n\\paragraph{Limitations.} The initial $n{=}11$ analysis had wide Clopper-Pearson confidence intervals (e.g., 90.9\\% accuracy, 95\\% CI [58.7\\%, 99.8\\%]). The comprehensive evaluation ($n{=}36$, AUROC${=}1.000$, F1${=}1.000$; Figure~\\ref{fig:nve_roc}) substantially tightens these bounds. Table~\\ref{tab:sensitivity_b2_full} reports the $n{=}17$ two-environment core evaluation. Cross-architecture validation is deferred to future work.\n\n\\subsection{Leave-One-Environment-Out Cross-Validation}\n\\label{sec:nve_loeo}\n\nTo assess whether $\\theta{=}2.0\\times$ generalizes beyond the in-sample evaluation, we perform leave-one-environment-out (LOEO) cross-validation across Walker ($n{=}15$), Cheetah ($n{=}5$), and PickCube ($n{=}2$). For each fold, we hold out all experiments from one environment, select the optimal accuracy-maximizing threshold range on the remaining training set, and evaluate the fixed $\\theta{=}2.0\\times$ on the held-out environment.\n\n\\begin{table}[h]\n\\centering\n\\caption{Leave-one-environment-out cross-validation of NVE threshold $\\theta=2.0\\times$.\nFor each fold, the threshold is validated on an environment whose data was \\emph{not} used\nto select $\\theta$. The optimal threshold range on each training set is reported;\n$\\theta=2.0$ falls within the optimal range in all three folds.}\n\\label{tab:nve_loeo}\n\\begin{tabular}{lccccc}\n\\toprule\nHeld-out & $N_{\\text{train}}$ & $N_{\\text{test}}$ & $\\theta_{\\text{opt}}$ range & Test Accuracy & Test AUROC \\\\\n\\midrule\nPickCube & 20 & 2 & $(1.45,\\, 1.53]$ & 2/2 (1.000) & 1.000 \\\\\nCheetah  & 17 & 5 & $(1.45,\\, 1.53]$ & 5/5 (1.000) & 1.000 \\\\\nWalker   &  7 & 15 & $(1.00,\\, 3.78)$ & 15/15 (1.000) & 1.000 \\\\\n\\midrule\n\\textbf{Mean} & — & — & — & \\textbf{1.000} & \\textbf{1.000} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe threshold $\\theta{=}2.0\\times$ falls within the optimal accuracy range for all three training folds: $(1.45, 3.78)$ when Walker data is available, and the wider $(1.00, 3.78)$ when training on Cheetah$+$PickCube only (where CIVO and non-CIVO NVE values are well-separated). All three folds achieve perfect held-out accuracy (mean $1.000$) and AUROC ($1.000$); $\\theta{=}2.0\\times$ generalizes across environments without retuning.\nPickCube fold confidence intervals remain wide (Clopper-Pearson 95\\% CI: $[0.158, 1.000]$) due to $N_{\\text{test}}{=}2$.\n\n\\subsection{Leave-One-Config-Out Cross-Validation}\n\\label{sec:nve_loco}\n\n\\paragraph{Leave-One-Config-Out Cross-Validation.}\nTo rule out threshold overfitting to any particular experimental configuration, we perform leave-one-config-out (LOCO) cross-validation over the $n{=}36$ primary configurations. Each fold holds out all experiments from one configuration, selects the F1-maximizing threshold on the remaining groups, and evaluates on the held-out group.\n\nCross-validated accuracy at $\\theta{=}2.0$ is $36/36 = 100\\%$, with train AUROC consistently $1.000$ across folds. Zero false positives: all non-CIVO NVE transients fall below $2.0\\times$, and no CIVO-positive configuration is missed in any fold (FN${=}0$).\n\n% --- APPENDIX B: Factorial Ablation Details ---\n\n\\section{Factorial Ablation Details}\n\\label{sec:appendix_factorial}\n\nThis appendix provides the full factorial ablation results summarized in \\S\\ref{sec:f3f5_summary} of the main text.\n\n\\paragraph{Embedding gradient analysis.}\nTable~\\ref{tab:three_way_emb} isolates embedding \\emph{trainability} as the necessary condition for CIVO by comparing four gradient conditions under otherwise identical configurations ($H{=}8$, subsample ON, $\\dt{=}2$ imagination).\n\n% tab:three_way_emb moved to main text (Section 3.4)\n\n\\paragraph{Controlled three-way causal ablation.}\nExperiments 067--069 provide a minimal causal ablation on Walker Walk (seed${=}1$), varying \\emph{only} the $\\dt$-embedding treatment while holding all other hyperparameters fixed ($H{=}8$, subsample ON, $\\dt{=}2$ imagination). Table~\\ref{tab:causal_ablation} shows that trained $\\dt$-embedding is necessary and sufficient for CIVO: freezing the embedding (gradient flow blocked, embedding weights still present) eliminates CIVO as completely as removing the embedding ($d{=}0$), ruling out the alternative hypothesis that embedding \\emph{presence} alone causes CIVO.\n\n\\paragraph{Cross-environment frozen verification.}\nExperiments 084--087 extend the frozen-embedding control to a $2 \\times 2$ design (Walker $+$ Cheetah, 2 seeds each). All four runs confirm CIVO absence: exp\\_084 (Walker, seed~0, NVE peak $0.53\\times$, eval 821, 89\\% baseline), exp\\_085 (Walker, seed~1, NVE peak $0.31\\times$), exp\\_086 (Cheetah, seed~0, NVE $< 0.4\\times$), and exp\\_087 (Cheetah, seed~1, NVE $< 0.4\\times$). Combined with all prior seeds, trained $\\dt$-embedding triggers CIVO in 5/7 multi-joint locomotion runs versus 0/16 frozen or removed controls (Fisher exact $p < 0.001$); embedding \\emph{training} is a necessary condition for CIVO across environments and seeds.\n\n\\begin{table}[h]\n\\centering\n\\caption{Three-way causal ablation (Walker Walk, seed${=}1$). Only the $\\dt$-embedding treatment varies; all other configuration is identical. Trained embedding triggers CIVO; frozen and removed do not.}\n\\label{tab:causal_ablation}\n\\footnotesize\n\\begin{tabular}{llccl}\n\\toprule\n\\textbf{Exp} & \\textbf{Embedding} & \\textbf{NVE peak} & \\textbf{Eval final} & \\textbf{CIVO} \\\\\n\\midrule\n\\rowcolor{gray!15}\n068 & Trained ($d{=}32$) & $6.57\\times$ & 39.1 & Yes (alert @85K) \\\\\n067 & Frozen ($d{=}32$, \\texttt{req\\_grad=F}) & $0.40\\times$ & 281.5 & No \\\\\n069 & Removed ($d{=}0$) & $0.66\\times$ & 237.8 & No \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe reward-detach condition (exp\\_044, \\texttt{reward\\_dt\\_emb\\_detach=True}) uses a backward hook to block reward-head gradients from reaching $e_{\\dt}$, complementing the framework-level Reward SGS (exp\\_016e). Both yield the same directional result (CIVO onset not prevented), ruling out implementation artifacts. Exp\\_044 exhibits delayed CIVO onset (${\\sim}95$K vs.\\ typical $25$--$35$K), consistent with reduced but non-zero gradient pressure on $e_{\\dt}$. Over a full 224K run, exp\\_044 self-corrects: eval recovers from 44 (95K) to 538 (215K, 59\\% baseline), but this recovery is incomplete compared to spontaneous recovery without gradient intervention (exp\\_045: 868, 95\\% baseline). The lower asymptote suggests that selectively disrupting gradient flow may create optimization difficulties beyond CIVO itself.\n\nTable~\\ref{tab:factorial_design} summarizes the experimental configurations.\n\n\\begin{table}[ht]\n\\centering\n\\caption{Factorial design. Each row specifies one experimental configuration. \\textbf{Emb}: $\\dt$-embedding mode. \\textbf{Sub}: temporal subsampling. \\textbf{H}: imagination horizon. \\textbf{Imag $\\dt$}: temporal resolution used during imagination.}\n\\label{tab:factorial_design}\n\\small\n\\setlength{\\tabcolsep}{3.5pt}\n\\begin{tabular}{@{}llcccc@{}}\n\\toprule\n\\textbf{ID} & \\textbf{Purpose} & \\textbf{Emb} & \\textbf{Sub} & \\textbf{H} & \\textbf{Imag $\\dt$} \\\\\n\\midrule\n001 & Reference baseline & --- & --- & 15 & 1 \\\\\n006 & Fixed $\\dt{=}2$ & trn & on & 15 & 2 \\\\\n007 & Fixed $\\dt{=}4$ & trn & on & 15 & 4 \\\\\n\\midrule\n008a & Unexposed emb ctrl & exp$^a$ & off & 15 & 2 \\\\\n008c & Horizon control & exp$^a$ & off & 8 & 2 \\\\\n008d & Collapse condition & trn & on & 8 & 2 \\\\\n008e\\_v3 & $\\dt{=}1$ imag control & trn & on & 15 & 1 \\\\\n008f & Causal ablation & --- & on & 8 & 2 \\\\\n\\midrule\n015b & Frozen-emb ctrl & frz$^b$ & on & 8 & 2 \\\\\n016e & Stop-grad (reward) & trn$^\\dagger$ & on & 8 & 2 \\\\\n018 & Full-SGS & trn$^\\ddagger$ & on & 8 & 2 \\\\\n\\midrule\n005 & Learned gate & adaptive & off & 15 & learned \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{-2pt}\n{\\raggedright\\footnotesize\ntrn = trained ($d{=}32$, exposed to $\\dt{>}1$ data via subsample ON);\nexp$^a$ = trained ($d{=}32$) but never exposed to $\\dt{>}1$ data (subsample OFF);\nfrz$^b$ = frozen random projection ($d{=}32$, \\texttt{requires\\_grad=False});\n--- = removed ($d{=}0$).\\\\\n$^\\dagger$ \\texttt{reward\\_dt\\_emb\\_detach=True}; $^\\ddagger$ all non-KL gradients to \\texttt{dt\\_emb} detached.\\par}\n\\end{table}\n\n\\subsection{F3: Untrained Temporal Embedding Blocks the CIVO Feedback Loop}\n\\label{sec:f3}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig3_factorial_grid.pdf}\n\\caption{Factorial isolation of CIVO trigger. Only the combination of trained $e_{\\dt}$ and multi-rate data (upper-left cell) produces pathological NVE. Neither factor alone is sufficient.}\n\\label{fig:factorial_grid}\n\\end{figure}\n\nThe empirical finding that trained embedding \\emph{plus} multi-rate exposure jointly predict CIVO rests on two complementary controls that each remove one factor while holding the other constant.\n\n\\paragraph{Evidence A: exposure is necessary (exp\\_008a).}\nExp\\_008a uses a trained embedding ($d{=}32$, gradients enabled) that is never exposed to $\\dt{>}1$ transitions during world-model training (subsample OFF). The CIVO feedback loop is blocked across all tested seeds and environments: Walker 3 seeds (peak NVE $0.83$--$0.93\\times$), Cheetah 2 seeds (peak NVE $0.45$--$0.58\\times$), all far below $\\tau{=}2.0\\times$. Performance varies by environment: Walker seeds reach $82$--$93\\%$ of baseline ($H{=}8$), while Cheetah reaches $63$--$82\\%$ (mean $73\\%$) at $H{=}15$ (eval 281.2--366.2). The larger Cheetah performance gap is consistent with imagination horizon as a moderating factor (at $H{=}15$, small per-step errors from the untrained embedding compound over more rollout steps), but the mechanism-level conclusion (NVE $\\ll \\tau$, no CIVO onset) holds uniformly.\n\nThis contrasts with exp\\_006 (trained $e_{\\dt}$, subsample ON, $H{=}15$), where NVE accelerates from $1.61\\times$ at 45K to $2.31\\times$ at 55K before catastrophic collapse to 132.9 at 65K. Both experiments use identical trained embeddings ($d{=}32$, gradients enabled) and $H{=}15$, differing only in whether the world model sees $\\dt{>}1$ transitions during training. This confirms that multi-rate data exposure, not embedding architecture, is the operative variable.\n\n\\paragraph{Evidence B: trainability is necessary (exp\\_015b).}\nExp\\_015b uses a frozen random-projection embedding ($d{=}32$, \\texttt{requires\\_grad=False}, subsample ON, $H{=}8$), the same multi-rate data regime as exp\\_008d, but with a non-trainable temporal signal. Despite full exposure to $\\dt{>}1$ transitions, the NVE peaks at $1.45\\times$ at 55K but does not sustain escalation: it retreats to $0.65\\times$ by 65K and settles at $0.42\\times$ by 105K (trajectory: $0.81 \\rightarrow 1.26 \\rightarrow 1.45 \\rightarrow 0.65 \\rightarrow 1.05 \\rightarrow 0.47 \\rightarrow 0.39 \\rightarrow 0.42$). The transient peak approaches but does not exceed the $2.0\\times$ CIVO threshold, and critically, the ratio self-corrects rather than exhibiting the monotonic escalation seen in trained-embedding runs. Final evaluation reaches only 204.2 at 105K, low but through a qualitatively different failure mode than CIVO. Actor loss approaches zero (gradient starvation; see \\S\\ref{sec:pathways}), the frozen embedding provides no useful gradient signal for temporal adaptation.\n\nThe contrast with exp\\_008d is stark: under identical data conditions (subsample ON, $H{=}8$), the trained embedding drives NVE to $4.12\\times$ with sustained monotonic escalation ($1.78 \\rightarrow 1.71 \\rightarrow 2.09 \\rightarrow 4.12$) and precedes full collapse (eval 82.8), while the frozen embedding peaks transiently at $1.45\\times$ before self-correcting to $0.42\\times$, a qualitative difference between sustained and transient overestimation. This demonstrates that a $\\dt$-embedding must be able to \\emph{co-adapt} with RSSM dynamics to produce the systematic reward-prediction bias that drives CIVO; a static random projection, regardless of its exposure to multi-rate data, cannot create this bias.\n\nTogether, these two controls establish that untrained or absent $\\dt$-embedding blocks the CIVO feedback loop (NVE $< \\tau$ across all seeds and environments). CIVO requires the \\emph{joint} presence of (i)~a trainable embedding that can co-adapt with RSSM dynamics, and (ii)~multi-rate training data that drives this co-adaptation toward biased temporal predictions. Neither factor alone triggers the feedback loop.\n\nCross-environment validation on Cheetah Run replicates the empirical pattern: trained $e_{\\dt}$ precedes CIVO in both tested seeds (exp\\_010b, 2 seeds, NVE $8.27$--$108.52\\times$, collapse to 51.7/0.83) while removing the embedding eliminates it (exp\\_024b, 2 seeds, NVE $<0.2\\times$, eval 96.5/77.3). Freezing the embedding on Cheetah (exp\\_046, NVE${=}1.35\\times$ vs.\\ trained $108.52\\times$, a $80\\times$ reduction) further confirms that embedding trainability, not architecture, drives CIVO. This extends the sufficiency finding from Walker Walk to a second locomotion environment with qualitatively different dynamics (6-joint biped vs.\\ 6-joint runner).\n\n\\begin{table}[ht]\n\\centering\n\\small\n\\caption{Causal isolation: $e_{\\dt}$ configuration $\\times$ multi-rate data exposure. The combination of trained embedding and multi-rate exposure is the sole predictor of CIVO in tested configurations. Neither factor alone is sufficient.}\n\\label{tab:causal_matrix}\n\\begin{tabular}{lcc}\n\\toprule\n& Multi-rate data (\\textsc{on}) & Single-rate data (\\textsc{off}) \\\\\n\\midrule\nTrained $e_{\\dt}$ & exp\\_008d: \\textbf{CIVO} & exp\\_008a: healthy \\\\\n & NVE 4.12$\\times$, collapse & NVE 0.93$\\times$ \\\\\n\\midrule\nFrozen $e_{\\dt}$ & exp\\_015b: grad.\\ starvation & --- \\\\\n & peak NVE 1.45$\\times$ (transient) & \\\\\n\\midrule\nRemoved $e_{\\dt}$ & exp\\_008f: no CIVO$^l$ & --- \\\\\n & NVE $\\leq$1.69$\\times$$^l$ & \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nOnly the upper-left cell (trained embedding with multi-rate exposure) precedes CIVO (Table~\\ref{tab:causal_matrix}). This 2$\\times$2 structure establishes that both factors are jointly sufficient in tested configurations.\n\n\\subsection{F4: Degradation Scales Monotonically with \\texorpdfstring{$\\dt$}{dt}}\n\\label{sec:f4}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/paper/fig5_dt_amplification.pdf}\n\\caption{Peak evaluation return as a function of imagination $\\dt$. Performance degrades monotonically: $\\dt{=}1$ (915.7) $>$ $\\dt{=}2$ (485.3, $-47\\%$) $>$ $\\dt{=}4$ (176.9, $-81\\%$).}\n\\label{fig:dt_amplification}\n\\end{figure}\n\nThe magnitude of degradation scales monotonically with the imagination step size (Figure~\\ref{fig:dt_amplification}). From the $\\dt{=}1$ baseline (915.7 at 105K), fixed $\\dt{=}2$ (exp\\_006) achieves a peak of only 485.3 ($-47\\%$), and fixed $\\dt{=}4$ (exp\\_007) peaks at 176.9 ($-81\\%$). This monotonic relationship is consistent with compounding model error: larger temporal gaps amplify the RSSM's prediction inaccuracy at each imagination step, and these errors accumulate across the rollout horizon.\n\n\\subsection{F5: Imagination Horizon and Subsampling Are Secondary Factors}\n\\label{sec:f5}\n\nNeither horizon length nor temporal subsampling precedes collapse without multi-rate data exposure: both trained-but-unexposed configurations (008a, 008c) maintain $\\nve < 0.93\\times$ (\\S\\ref{sec:f3}), while the trained-and-exposed counterpart (008d) collapses with $\\nve = 4.12\\times$.  The no-embedding configurations (4 Walker seeds) show cross-seed variance (eval 140--469$^l$) but none exhibits sustained CIVO; the highest NVE ($1.69\\times$, 008f s0) reflects an endpoint eval dip rather than value overestimation.\n\nThe $3.2\\times$ performance gap (008a: 777.7 vs.\\ 008c: 240.9) quantifies the horizon effect independently of CIVO, as both conditions maintain healthy NVE ($\\leq$0.93$\\times$).\n\n% --- APPENDIX C: Full Analysis & Discussion ---\n\n\\section{Full Analysis \\& Discussion}\n\\label{sec:appendix_analysis}\n\nThis appendix provides the complete mechanistic analysis summarized in Section~\\ref{sec:discussion} of the main text. The intervention hierarchy is in Table~\\ref{tab:intervention_hierarchy} (main text).\n\n\\paragraph{Fisher exact tests.}\nKey pairwise comparisons (two-sided Fisher exact test): frozen (7/7 prevention) vs.\\ untreated (0/10), $p < 0.001$; removed (6/6) vs.\\ untreated (0/10), $p < 0.001$; wide dual-critic (3/4) vs.\\ untreated (0/10), $p = 0.011$; TCN $\\sigma{=}0.2$ (3/6) vs.\\ untreated (0/10), $p = 0.036$; all SGS combined (1/11) vs.\\ untreated (0/10), $p = 1.000$ (not significant). Only embedding removal/freezing achieves statistically significant CIVO prevention.\n\n\\subsection{The CIVO Mechanism}\n\\label{sec:civo_mechanism}\n\n\\begin{table}[h]\n\\centering\n\\caption{RSSM fidelity at $\\dt{=}1$ vs.\\ $\\dt{=}2$ (v3 standardized). The reward prediction gap is environment-dependent: Walker trained embedding produces a $1.63\\times$ reward gap, while Cheetah shows no gap ($1.00\\times$) despite exhibiting CIVO.}\n\\label{tab:rssm_fidelity}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{llcccccc}\n\\toprule\n& & \\multicolumn{3}{c}{\\textbf{obs\\_MSE}} & \\multicolumn{3}{c}{\\textbf{reward\\_MAE}} \\\\\n\\cmidrule(lr){3-5} \\cmidrule(lr){6-8}\n\\textbf{Env} & \\textbf{Config} & $\\dt{=}1$ & $\\dt{=}2$ & Gap & $\\dt{=}1$ & $\\dt{=}2$ & Gap \\\\\n\\midrule\n\\multirow{3}{*}{Walker} & Baseline & 13.49 & 27.50 & 2.04$\\times$ & 0.0102 & 0.0159 & 1.56$\\times$ \\\\\n& Trained (008d) & 25.71 & 34.60 & 1.35$\\times$ & 0.0530 & 0.0865 & 1.63$\\times$ \\\\\n& No emb (008f) & 8.01 & 22.04 & 2.75$\\times$ & 0.7469 & 0.7526 & 1.01$\\times$ \\\\\n\\midrule\nCheetah & Trained & 5.26 & 4.90 & 0.93$\\times$ & 0.1410 & 0.1405 & 1.00$\\times$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe RSSM fidelity analysis (Table~\\ref{tab:rssm_fidelity}) reveals an environment-dependent transmission mechanism for CIVO (Figure~\\ref{fig:civo_mechanism}).  On Walker Walk, the trained $\\dt$-embedding produces a $1.63\\times$ reward prediction gap (MAE $0.053$ at $\\dt{=}1$ vs.\\ $0.087$ at $\\dt{=}2$), while the no-embedding configuration (008f) exhibits a $1.01\\times$ gap and the baseline shows $1.56\\times$, confirming that the trained embedding amplifies the fidelity discrepancy.  However, Cheetah Run shows \\emph{no} reward gap ($1.00\\times$, MAE ${\\approx}0.141$ at both scales) despite exhibiting CIVO at $8.27\\times$ NVE, indicating that reward fidelity degradation is one transmission pathway but not the only one.\n\nIn Walker, this asymmetric fidelity initiates a feedback loop with four stages: (1) the trained $\\dt$-embedding causes RSSM predictions at $\\dt > 1$ to carry systematically biased reward estimates; (2) the critic, trained entirely on imagined trajectories, internalizes these biased rewards as optimistic value estimates; (3) the actor exploits the overestimated regions of the value landscape, shifting its policy toward states that appear high-value only under the biased model; and (4) this policy shift further skews the distribution of imagined states, reinforcing the bias.  In Cheetah, where the reward gap is absent ($1.00\\times$), CIVO must be transmitted through an alternative pathway, possibly dynamics-model prior drift in the latent state space.  In both cases, the diagnostic signature is a sustained $\\nve$ above $2.0\\times$, followed by evaluation collapse.\n\nA random-policy control experiment ($N{=}100$ rollouts, 95\\% bootstrap CI) decomposes CIVO into two necessary stages.  \\textbf{Stage~1 (dynamics bias):} even under a random policy, $\\dt{=}2$ imagination produces $1.68\\times$ higher mean reward than $\\dt{=}1$ in the trained-embedding model (008d): the RSSM prior already generates reward-favorable trajectories at $\\dt > 1$, independent of actor behavior.  \\textbf{Stage~2 (actor exploitation):} the trained actor learns to exploit these biased regions, amplifying the ratio to $2.90\\times$.  In the no-embedding control (008f), neither stage is present: the random-policy ratio is $1.11\\times$ and the trained-actor ratio is $0.98\\times$.  The decomposition attributes $\\approx 36\\%$ of the total effect to dynamics bias and $\\approx 64\\%$ to actor exploitation, which confirms that both stages are necessary for CIVO to manifest.\n\nThis mechanism is analogous to delusional bias \\citep{lu2018nondelusional}, but differs in origin: delusional bias arises from policy-class constraints, while CIVO is model-induced.  The consequence (policy exploitation of overestimated regions) is similar, but the proposed pathway is distinct.\n\n\\paragraph{Signed reward error analysis.}\nTo test whether CIVO arises from one-step reward overprediction, we compute signed error (predicted $-$ actual) on posterior-conditioned RSSM predictions (Table~\\ref{tab:signed_error}). The trained-embedding model (008d) shows \\emph{negative} bias at $\\dt{=}2$ (mean signed error $-0.599$, only 8\\% of samples overpredicted), ruling out observation-level reward overprediction as the mechanism. The baseline is well-calibrated (mean SE $\\approx 0$), confirming methodological soundness. Value overestimation therefore occurs during \\emph{imagination-level} prior drift: the RSSM prior (unconditioned on observations) generates reward-favorable trajectories at $\\dt > 1$ (Stage~1 above, $1.68\\times$ ratio under random policy), and the critic accumulates these into overestimated returns. The one-step reward prediction is negatively biased when conditioned on real observations, but this posterior correction is unavailable during imagination. This also distinguishes CIVO from generic compounding error, which would produce \\emph{positive} signed error accumulating with horizon; the negative observation-level bias confirms that CIVO is a prior-drift phenomenon, not a reward-prediction artifact.\n\n\\begin{table}[h]\n\\centering\n\\caption{Signed reward error (predicted $-$ actual) on posterior-conditioned RSSM predictions. Negative values indicate underprediction. The trained-embedding model underpredicts at $\\dt{=}2$, ruling out observation-level reward overprediction as the CIVO mechanism.}\n\\label{tab:signed_error}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{llrrrrr}\n\\toprule\n\\textbf{Config} & $\\dt$ & \\textbf{Mean SE} & \\textbf{Std} & \\textbf{\\%Over} & \\textbf{Actual} & \\textbf{Pred} \\\\\n\\midrule\nBaseline & 1 & $+0.001$ & 0.023 & 39.6\\% & 1.893 & 1.894 \\\\\n\\midrule\n008d (trained) & 1 & $+0.018$ & 0.072 & 61.8\\% & 0.361 & 0.379 \\\\\n008d (trained) & 2 & $\\mathbf{-0.599}$ & 0.722 & 8.0\\% & 0.721 & 0.121 \\\\\n\\midrule\n008f (no emb) & 1 & $-0.710$ & 0.704 & 14.0\\% & 0.921 & 0.211 \\\\\n008f (no emb) & 2 & $-1.645$ & 1.485 & 5.0\\% & 1.840 & 0.195 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}",
+                "numLines": 300,
+                "startLine": 300,
+                "totalLines": 1320
+              }
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I've read enough of the appendix. Let me continue to check for any additional citations in the remaining parts.",
+              "signature": "ErcCCmMIDhgCKkCUBM2H53VpZE2nitvGVHsoveUgyr67d+IoJV8mnspZq+pYXqylb935IXFS7tpYvqvuzbubT5dW5ck57OmabOS3Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDA3+Wkec2k8uKVAv8BoMJcgDpm15amahXGXSIjDACV8DCHYarxXYqoafLetinvGwxrEi3JRltpDSR98au4IRKLx59SnWw3L6ZGCcbU4qgQEUfPkcnTKXw6iJjv08AUYSxGrNxZB5DuEUkk4Kc6s7GCgwu4gqp/OCcbODWtfkS3BAiSVBU3lCg+cRTf+P65GqErWRY1pVaq8btQhLX5lX6Sodllrf9orTPd3/gDDQ1xM8BJ4udD6WA1RQUs7cWo6OhVZXCnfwEO9/nyqyqGc4uNYYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0e13f95b-d148-4ddc-b813-93ffa7545c2b",
+            "uuid": "7096432d-2fcd-4327-aaaf-325d1eba8614",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CnyEGLMuxF9ZS1moVbJo9i",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11136,
+                "cache_read_input_tokens": 110373,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11136
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017yQLAx6A31dTWEnqdgkE1Z",
+              "name": "Grep",
+              "input": {
+                "pattern": "\\\\cite[pt]?\\{",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/appendix.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0e13f95b-d148-4ddc-b813-93ffa7545c2b",
+            "uuid": "8936273e-bd96-4a3e-a7a1-5dd38ee05a3f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CnyEGLMuxF9ZS1moVbJo9i",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11136,
+                "cache_read_input_tokens": 110373,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11136
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": "2026-05-29T07:15:39.843Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017yQLAx6A31dTWEnqdgkE1Z",
+              "type": "tool_result",
+              "content": "575:This mechanism is analogous to delusional bias \\citep{lu2018nondelusional}, but differs in origin: delusional bias arises from policy-class constraints, while CIVO is model-induced.  The consequence (policy exploitation of overestimated regions) is similar, but the proposed pathway is distinct.\n796:[Omitted long matching line]\n832:[Omitted long matching line]\n1018:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0e13f95b-d148-4ddc-b813-93ffa7545c2b",
+            "uuid": "ad188a1d-5bff-41eb-9e6d-876bb1e303de",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "575:This mechanism is analogous to delusional bias \\citep{lu2018nondelusional}, but differs in origin: delusional bias arises from policy-class constraints, while CIVO is model-induced.  The consequence (policy exploitation of overestimated regions) is similar, but the proposed pathway is distinct.\n796:[Omitted long matching line]\n832:[Omitted long matching line]\n1018:[Omitted long matching line]",
+              "numLines": 4
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QQEephwTsVot626dKXtyo5",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/appendix.tex",
+                "offset": 790,
+                "limit": 10
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0e13f95b-d148-4ddc-b813-93ffa7545c2b",
+            "uuid": "48122980-0052-4b86-940f-daa2cc4810df",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X2Qa2ghZeprvXCVukHTvsh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 288,
+                "cache_read_input_tokens": 121509,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 288
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": "2026-05-29T07:15:46.662Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QQEephwTsVot626dKXtyo5",
+              "type": "tool_result",
+              "content": "790\t\\bottomrule\n791\t\\end{tabular}\n792\t\\vspace{1pt}\n793\t{\\raggedright\\footnotesize Two sub-threshold runs (009b, peak $1.62\\times$; 008d\\_s3, peak $1.53\\times$) are omitted. $^\\dagger$~NVE self-corrected ($4.72\\times$ $\\to$ $1.22\\times$) but policy did not recover (eval 10.5\\% of baseline). $^\\ddagger$~Peak NVE $4.10\\times$ at 75K; eval 213.7$\\to$26.1$\\to$119.5 (26.8\\% of 2-seed baseline mean, 446.1).\\par}\n794\t\\end{table}\n795\t\n796\tAll six runs in Table~\\ref{tab:post_civo} exceed the $\\nve \\geq 2.0\\times$ diagnostic threshold, yet the downstream damage is stochastic.\\footnote{Exp\\_009e was excluded from multi-seed analyses due to a seed configuration error (default seed=0, identical to exp\\_008d).}  Sustained collapse is the majority outcome (4/6 runs). One run self-corrects (Cheetah exp\\_078, recovering from 26.1 to 119.5 at 105K); one (Walker seed~5, exp\\_059) shows NVE self-correction ($4.72\\times \\to 1.22\\times$) but the policy remains collapsed (eval 10.5\\% of baseline). Cheetah seed~1 (010b) exhibits more extreme overestimation (peak NVE $8.27\\times$) than Walker seeds ($4.12$--$4.72\\times$), consistent with the Cheetah reward scale amplifying the fidelity gap.  We hypothesize that the divergence relates to the critic's representational capacity at the time of CIVO onset.  \\citet{lyle2022capacity} demonstrate that deep RL networks suffer progressive capacity loss, in which early-learned features become increasingly difficult to overwrite.  If the critic's capacity is already partially consumed when CIVO injects overestimation, the network cannot recalibrate (e.g., 008d); if sufficient capacity remains, the critic can absorb transient overestimation and recover (e.g., 078).\n797\t\n798\t\\paragraph{A fourth trajectory: CIVO-induced persistent value collapse.}\n799\tObs-decoder SGS seed~3 (exp\\_025) exhibits a trajectory not observed in the untreated seeds: healthy through 105K ($\\nve < 1.0\\times$, eval 818.6), CIVO onset at 135K ($\\nve = 5.47\\times$, eval 67.0), followed by evaluation recovery (590.2 at 215K, 64\\% of baseline) but persistent value collapse ($\\nve = 0.14\\times$, value mean 80.6). The critic undershoots after the CIVO episode, suggesting that CIVO-induced representational damage persists even when the policy partially recovers. This contrasts with sub-threshold transient overestimation (009b, peak $1.62\\times$), where both value and evaluation recover jointly, and with full collapse (seed~1, 008d), where neither recovers. Seed~4 exhibits the same terminal value collapse ($\\nve = 0.14\\times$ at 215K, eval 242), suggesting this overcorrection is systematic rather than seed-specific. The pattern adds a fourth post-CIVO outcome, policy recovery with critic damage, to the three documented in Table~\\ref{tab:post_civo}."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0e13f95b-d148-4ddc-b813-93ffa7545c2b",
+            "uuid": "bf8eefaa-757e-42eb-83b9-bcb540351ded",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/appendix.tex",
+                "content": "\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\raggedright\\footnotesize Two sub-threshold runs (009b, peak $1.62\\times$; 008d\\_s3, peak $1.53\\times$) are omitted. $^\\dagger$~NVE self-corrected ($4.72\\times$ $\\to$ $1.22\\times$) but policy did not recover (eval 10.5\\% of baseline). $^\\ddagger$~Peak NVE $4.10\\times$ at 75K; eval 213.7$\\to$26.1$\\to$119.5 (26.8\\% of 2-seed baseline mean, 446.1).\\par}\n\\end{table}\n\nAll six runs in Table~\\ref{tab:post_civo} exceed the $\\nve \\geq 2.0\\times$ diagnostic threshold, yet the downstream damage is stochastic.\\footnote{Exp\\_009e was excluded from multi-seed analyses due to a seed configuration error (default seed=0, identical to exp\\_008d).}  Sustained collapse is the majority outcome (4/6 runs). One run self-corrects (Cheetah exp\\_078, recovering from 26.1 to 119.5 at 105K); one (Walker seed~5, exp\\_059) shows NVE self-correction ($4.72\\times \\to 1.22\\times$) but the policy remains collapsed (eval 10.5\\% of baseline). Cheetah seed~1 (010b) exhibits more extreme overestimation (peak NVE $8.27\\times$) than Walker seeds ($4.12$--$4.72\\times$), consistent with the Cheetah reward scale amplifying the fidelity gap.  We hypothesize that the divergence relates to the critic's representational capacity at the time of CIVO onset.  \\citet{lyle2022capacity} demonstrate that deep RL networks suffer progressive capacity loss, in which early-learned features become increasingly difficult to overwrite.  If the critic's capacity is already partially consumed when CIVO injects overestimation, the network cannot recalibrate (e.g., 008d); if sufficient capacity remains, the critic can absorb transient overestimation and recover (e.g., 078).\n\n\\paragraph{A fourth trajectory: CIVO-induced persistent value collapse.}\nObs-decoder SGS seed~3 (exp\\_025) exhibits a trajectory not observed in the untreated seeds: healthy through 105K ($\\nve < 1.0\\times$, eval 818.6), CIVO onset at 135K ($\\nve = 5.47\\times$, eval 67.0), followed by evaluation recovery (590.2 at 215K, 64\\% of baseline) but persistent value collapse ($\\nve = 0.14\\times$, value mean 80.6). The critic undershoots after the CIVO episode, suggesting that CIVO-induced representational damage persists even when the policy partially recovers. This contrasts with sub-threshold transient overestimation (009b, peak $1.62\\times$), where both value and evaluation recover jointly, and with full collapse (seed~1, 008d), where neither recovers. Seed~4 exhibits the same terminal value collapse ($\\nve = 0.14\\times$ at 215K, eval 242), suggesting this overcorrection is systematic rather than seed-specific. The pattern adds a fourth post-CIVO outcome, policy recovery with critic damage, to the three documented in Table~\\ref{tab:post_civo}.",
+                "numLines": 10,
+                "startLine": 790,
+                "totalLines": 1320
+              }
+            }
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014Z64DP9S7NEJSi3yhChBEv",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/appendix.tex",
+                "offset": 828,
+                "limit": 10
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0e13f95b-d148-4ddc-b813-93ffa7545c2b",
+            "uuid": "0a0273dd-fb4a-4d0c-8044-58ee5c689c50",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X2Qa2ghZeprvXCVukHTvsh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 288,
+                "cache_read_input_tokens": 121509,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 288
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": "2026-05-29T07:15:47.511Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014Z64DP9S7NEJSi3yhChBEv",
+              "type": "tool_result",
+              "content": "828\t\n829\t\\subsection{Why MPC Is Immune}\n830\t\\label{sec:mpc_immune}\n831\t\n832\t\\citet{nhu2025tawm} show that $\\dt$-conditioning benefits TD-MPC2, raising the question of why it fails in DreamerV3.  The critical difference is that MPC re-plans from real states at every step, so imagination errors do not accumulate into the training signal because there is no critic bootstrapping from imagined trajectories.  In DreamerV3, the actor-critic trains entirely within imagination, and any systematic reward-prediction bias at $\\dt > 1$ is amplified through the closed actor-critic loop.\n833\t\n834\t\\subsection{The \\texorpdfstring{$\\dt$}{dt}-Embedding Dilemma}\n835\t\\label{sec:embedding_dilemma}\n836\t\n837\tThe factorial results reveal a fundamental tension: removing the $\\dt$-embedding (008f) eliminates CIVO but at a $14\\times$ cost to reward prediction quality ($0.7469$ vs.\\ $0.0530$ MAE), as the world model cannot distinguish temporal scales.  Restricting imagination to $\\dt{=}1$ while retaining the trained embedding (008e\\_v3) eliminates CIVO entirely (all four seeds show NVE $\\leq 0.8\\times$, well below the $2.0\\times$ threshold), with three of four seeds achieving $64$--$94\\%$ of baseline performance (mean $775.6$; \\S\\ref{sec:f6}).  This confirms that multi-step imagination at $\\dt > 1$ is necessary for CIVO induction; the trained embedding alone is insufficient."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0e13f95b-d148-4ddc-b813-93ffa7545c2b",
+            "uuid": "bde1466c-f946-4f0a-ab1c-6fcc3576c15b",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/appendix.tex",
+                "content": "\n\\subsection{Why MPC Is Immune}\n\\label{sec:mpc_immune}\n\n\\citet{nhu2025tawm} show that $\\dt$-conditioning benefits TD-MPC2, raising the question of why it fails in DreamerV3.  The critical difference is that MPC re-plans from real states at every step, so imagination errors do not accumulate into the training signal because there is no critic bootstrapping from imagined trajectories.  In DreamerV3, the actor-critic trains entirely within imagination, and any systematic reward-prediction bias at $\\dt > 1$ is amplified through the closed actor-critic loop.\n\n\\subsection{The \\texorpdfstring{$\\dt$}{dt}-Embedding Dilemma}\n\\label{sec:embedding_dilemma}\n\nThe factorial results reveal a fundamental tension: removing the $\\dt$-embedding (008f) eliminates CIVO but at a $14\\times$ cost to reward prediction quality ($0.7469$ vs.\\ $0.0530$ MAE), as the world model cannot distinguish temporal scales.  Restricting imagination to $\\dt{=}1$ while retaining the trained embedding (008e\\_v3) eliminates CIVO entirely (all four seeds show NVE $\\leq 0.8\\times$, well below the $2.0\\times$ threshold), with three of four seeds achieving $64$--$94\\%$ of baseline performance (mean $775.6$; \\S\\ref{sec:f6}).  This confirms that multi-step imagination at $\\dt > 1$ is necessary for CIVO induction; the trained embedding alone is insufficient.",
+                "numLines": 10,
+                "startLine": 828,
+                "totalLines": 1320
+              }
+            }
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HSKm3aW1wL5mnNbdSNKuJP",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/appendix.tex",
+                "offset": 1014,
+                "limit": 10
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0e13f95b-d148-4ddc-b813-93ffa7545c2b",
+            "uuid": "332cbe44-0fb1-494e-815e-92d2328f69ed",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X2Qa2ghZeprvXCVukHTvsh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 288,
+                "cache_read_input_tokens": 121509,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 288
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": "2026-05-29T07:15:48.082Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HSKm3aW1wL5mnNbdSNKuJP",
+              "type": "tool_result",
+              "content": "1014\t\n1015\t\\subsection{Implications for Temporal Abstraction in World Models}\n1016\t\\label{sec:implications}\n1017\t\n1018\tCIVO identifies a structural incompatibility between flat temporal conditioning and imagination-based actor-critic training.  Hierarchical approaches (THICK \\citep{gumbsch2024thick}, Hieros \\citep{mattes2024hieros}, LS-Imagine \\citep{li2025lsimagine}) may avoid this by maintaining separate dynamics per temporal scale.  Whether CIVO transfers to transformer-based world models (DreamerV4; \\citet{hafner2025dreamerv4}) depends on whether attention weights co-adapt with temporal embeddings analogously.  The CIVO mechanism requires three structural properties: (1) a temporal embedding that co-adapts with dynamics via gradient flow, (2) multi-step imagined rollouts used for critic training, and (3) a reward head that inherits latent biases from the shared representation.  Transformer-based world models that share these properties may exhibit analogous vulnerability; architectures that decouple temporal conditioning from the reward prediction pathway would not.\n1019\t\n1020\t\\subsection{Cross-Environment TCN Evaluation}\n1021\t\\label{sec:tcn_cross_env}\n1022\t\n1023\tTable~\\ref{tab:tcn_full} reports the full TCN evaluation across environments and noise magnitudes."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0e13f95b-d148-4ddc-b813-93ffa7545c2b",
+            "uuid": "65d0a993-e292-4549-b697-8f3e386cbca5",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/appendix.tex",
+                "content": "\n\\subsection{Implications for Temporal Abstraction in World Models}\n\\label{sec:implications}\n\nCIVO identifies a structural incompatibility between flat temporal conditioning and imagination-based actor-critic training.  Hierarchical approaches (THICK \\citep{gumbsch2024thick}, Hieros \\citep{mattes2024hieros}, LS-Imagine \\citep{li2025lsimagine}) may avoid this by maintaining separate dynamics per temporal scale.  Whether CIVO transfers to transformer-based world models (DreamerV4; \\citet{hafner2025dreamerv4}) depends on whether attention weights co-adapt with temporal embeddings analogously.  The CIVO mechanism requires three structural properties: (1) a temporal embedding that co-adapts with dynamics via gradient flow, (2) multi-step imagined rollouts used for critic training, and (3) a reward head that inherits latent biases from the shared representation.  Transformer-based world models that share these properties may exhibit analogous vulnerability; architectures that decouple temporal conditioning from the reward prediction pathway would not.\n\n\\subsection{Cross-Environment TCN Evaluation}\n\\label{sec:tcn_cross_env}\n\nTable~\\ref{tab:tcn_full} reports the full TCN evaluation across environments and noise magnitudes.",
+                "numLines": 10,
+                "startLine": 1014,
+                "totalLines": 1320
+              }
+            }
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, I found additional citations in the appendix:\n- Line 796: `\\citet{lyle2022capacity}` - discussing capacity loss in deep RL - Correct usage ✓\n- Line 832: `\\citet{nhu2025tawm}` - TAWM benefits TD-MPC2 - Correct ✓\n- Line 1018: `\\citep{gumbsch2024thick}`, `\\citep{mattes2024hieros}`, `\\citep{li2025lsimagine}` - hierarchical approaches - Correct ✓\n\n\n- Line 1018: `\\citet{hafner2025dreamerv4}` - DreamerV4 transformer-based - Correct ✓\n\nNow I need to verify whether `fortunato2018noisynet`, `buckman2018steve`, and `chua2018pets` appear anywhere in the document.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0e13f95b-d148-4ddc-b813-93ffa7545c2b",
+            "uuid": "a5b0d8fa-a907-4d00-bf47-1b41f37165b1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SaoXUbwFAEoCkewdEkZR2m",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2159,
+                "cache_read_input_tokens": 121797,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2159
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018wFbsNfp1wMRegSAr9m6yV",
+              "name": "Grep",
+              "input": {
+                "pattern": "fortunato2018|buckman2018|chua2018",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0e13f95b-d148-4ddc-b813-93ffa7545c2b",
+            "uuid": "51b278f4-6381-4030-abe8-639294b66299",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SaoXUbwFAEoCkewdEkZR2m",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2159,
+                "cache_read_input_tokens": 121797,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2159
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": "2026-05-29T07:15:57.011Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018wFbsNfp1wMRegSAr9m6yV",
+              "type": "tool_result",
+              "content": "docs/paper/references.bib:229:@inproceedings{buckman2018steve,\ndocs/paper/references.bib:236:@inproceedings{chua2018pets,\ndocs/paper/references.bib:253:@inproceedings{fortunato2018noisynet,"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0e13f95b-d148-4ddc-b813-93ffa7545c2b",
+            "uuid": "bad9843b-4a03-43be-9625-cb7248856f0a",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "docs/paper/references.bib:229:@inproceedings{buckman2018steve,\ndocs/paper/references.bib:236:@inproceedings{chua2018pets,\ndocs/paper/references.bib:253:@inproceedings{fortunato2018noisynet,",
+              "numLines": 3
+            }
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "So `fortunato2018noisynet`, `buckman2018steve`, and `chua2018pets` are in the bib file but NOT cited anywhere in the tex files. These are unused bib entries. I should flag this in my report.\n\nNow let me also verify the pertsch2020spirl year issue more carefully. The search showed it was CoRL 2020, presented in 2020, but proceedings published in 2021 (PMLR v155). The bib says year=2021 and booktitle=\"Conference on Robot Learning\". The key name says \"pertsch2020spirl\". This is internally inconsistent (key says 2020, year field says 2021). \n\nFor CoRL papers, there's a convention question here—the proceedings were published in 2021 on PMLR, but the conference itself was CoRL 2020, so either year could be justified depending on citation style. It's a minor inconsistency worth noting. Now let me check the `hafner2023dreamerv3` entry.\n\nThe bib entry looks correct—it matches the Nature publication with the right title \"Mastering Diverse Control Tasks through World Models\" and year 2025, though it's missing volume and page numbers which would be nice to add. The `hansen2024tdmpc2` authors are properly abbreviated as well. For `pertsch2020spirl`, I'm seeing the same CoRL year ambiguity: the conference is labeled 2020 but PMLR published it in 2021. The MOPO paper authors check out correctly. Now I'm noticing a couple of potential issues: the PETS paper is listed as NeurIPS 2018 which is accurate since NIPS was renamed to NeurIPS that year, but I should verify the HAM paper—my search indicates it was actually published at NIPS 1997, not 1998 as the bib suggests. The CoRL entry looks fine with the full conference name. I've found four issues total: three unused bibliography entries that aren't cited anywhere in the tex files, and one year mismatch where the bib lists 2021 but the conference was actually held in 2020, though the proceedings were published in 2021. Let me compile the final audit report now. The last few entries follow the same pattern of defensible year discrepancies between conference and publication dates. All 45 citations check out as legitimate papers with no fabricated sources, so I'm ready to compile the audit report.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0e13f95b-d148-4ddc-b813-93ffa7545c2b",
+            "uuid": "29f42b6c-ab93-4c1f-bddb-45e5ae880970",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019zTPhfajwebLLSsd28oE61",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 445,
+                "cache_read_input_tokens": 123956,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 445
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 45 citations verified, 3 unused entries found. Now writing the full audit report."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0e13f95b-d148-4ddc-b813-93ffa7545c2b",
+            "uuid": "4f04a331-976f-4070-9e98-984e84a1682d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019zTPhfajwebLLSsd28oE61",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 445,
+                "cache_read_input_tokens": 123956,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 445
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EZA2fG1gkzEGPAF61iX9sS",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:TodoWrite",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0e13f95b-d148-4ddc-b813-93ffa7545c2b",
+            "uuid": "e14b86d6-056c-4d65-87da-07cf08e49fcf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019zTPhfajwebLLSsd28oE61",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 445,
+                "cache_read_input_tokens": 123956,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 445
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": "2026-05-29T07:16:39.938Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01EZA2fG1gkzEGPAF61iX9sS",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "TodoWrite"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0e13f95b-d148-4ddc-b813-93ffa7545c2b",
+            "uuid": "3b960e9d-ba31-474d-8442-67de0ab83f77",
+            "tool_use_result": {
+              "matches": [
+                "TodoWrite"
+              ],
+              "query": "select:TodoWrite",
+              "total_deferred_tools": 22
+            }
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T9mZEfM4y9n67D2as78nMS",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/citation_audit_worker_C.md",
+                "content": "# 引用审计报告（审计员 C）\n\n**审计日期**: 2026-05-29\n**审计范围**: `references.bib` 全部 45 条 entry + 正文/附录所有 `\\cite` 引用位置\n**方法**: 每条 entry 均通过 WebSearch 验证真实性、作者、年份、标题、Venue\n\n---\n\n## 总结\n\n- **总引用数**: 45\n- **真实存在**: 45/45（无 hallucinated citation）\n- **有问题**: 3 条（均为未被正文引用的冗余 entry）\n- **建议改进**: 2 条（年份/venue 可优化）\n- **正文引用归因错误**: 0\n\n---\n\n## 逐条结果\n\n### 1. @inproceedings{gu2023maniskill2}\n- **标题**: ManiSkill2: A Unified Benchmark for Generalizable Manipulation Skills\n- **真实性**: ✓ 论文存在，ICLR 2023\n- **作者**: ✓ Gu, Jiayuan et al. 匹配\n- **年份**: ✓ 2023\n- **标题**: ✓ 逐词匹配\n- **Venue**: ✓ International Conference on Learning Representations (ICLR 2023)\n- **正文引用位置**: ✓ experiments_results.tex §F3-F5 提到 ManiSkill 任务，引用正确\n- **状态**: **OK**\n\n### 2. @inproceedings{micheli2023iris}\n- **标题**: Transformers are Sample-Efficient World Models\n- **真实性**: ✓ 论文存在，ICLR 2023 (notable top 5%)\n- **作者**: ✓ Micheli, Vincent; Alonso, Eloi; Fleuret, François\n- **年份**: ✓ 2023\n- **标题**: ✓ 匹配\n- **Venue**: ✓ ICLR 2023\n- **正文引用位置**: ✓ conclusion.tex Limitations 部分提到 transformer-based world models\n- **状态**: **OK**\n\n### 3. @article{sutton1999options}\n- **标题**: Between MDPs and Semi-MDPs: A Framework for Temporal Abstraction in Reinforcement Learning\n- **真实性**: ✓ 经典论文，Artificial Intelligence Vol 112, 1999\n- **作者**: ✓ Sutton, R.S; Precup, D; Singh, S（缩写正确）\n- **年份**: ✓ 1999\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Artificial Intelligence 112（期刊名+卷号格式略非标准但正确）\n- **正文引用位置**: ✓ related_work.tex \"options framework\" 引用正确\n- **状态**: **OK**\n\n### 4. @inproceedings{hafner2020dreamerv1}\n- **标题**: Dream to Control: Learning Behaviors by Latent Imagination\n- **真实性**: ✓ 论文存在，ICLR 2020\n- **作者**: ✓ Hafner, D; Lillicrap, T; Ba, J; Norouzi, M\n- **年份**: ✓ 2020\n- **标题**: ✓ 匹配\n- **Venue**: ✓ ICLR 2020\n- **正文引用位置**: ✓ related_work.tex \"Dreamer family\" 引用正确\n- **状态**: **OK**\n\n### 5. @article{hafner2023dreamerv3}\n- **标题**: Mastering Diverse Control Tasks through World Models\n- **真实性**: ✓ 论文存在，Nature 2025; arXiv 2301.04104 (2023)\n- **作者**: ✓ Hafner, Danijar; Pasukonis, Jurgis; Ba, Jimmy; Lillicrap, Timothy\n- **年份**: ✓ 2025（Nature 发表年份，bib key \"2023\" 为 arXiv 年份，仅为助记符）\n- **标题**: ✓ 匹配 Nature 版标题（arXiv 版为 \"Mastering Diverse Domains...\"，bib 正确使用 Nature 版）\n- **Venue**: ✓ Nature\n- **正文引用位置**: ✓ 多处引用 DreamerV3 均正确\n- **状态**: **OK**\n\n### 6. @inproceedings{sharma2017figar}\n- **标题**: Learning to Repeat: Fine Grained Action Repetition for Deep Reinforcement Learning\n- **真实性**: ✓ 论文存在，ICLR 2017\n- **作者**: ✓ Sharma, S; Lakshminarayanan, A.S; Ravindran, B\n- **年份**: ✓ 2017\n- **标题**: ✓ 匹配\n- **Venue**: ✓ ICLR 2017\n- **正文引用位置**: ✓ related_work.tex \"FiGAR learns per-action repetition counts\" 正确\n- **状态**: **OK**\n\n### 7. @inproceedings{pertsch2020spirl}\n- **标题**: Accelerating Reinforcement Learning with Learned Skill Priors\n- **真实性**: ✓ 论文存在，CoRL 2020（PMLR v155, 2021 出版）\n- **作者**: ✓ Pertsch, Karl; Lee, Youngwoon; Lim, Joseph J.\n- **年份**: ✗ bib 写 year=2021（proceedings 出版年），但会议为 CoRL 2020。bib key 写 \"pertsch2020\" 暗示会议年。**建议统一为 2020 或在 booktitle 中注明 CoRL 2020**\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Conference on Robot Learning\n- **正文引用位置**: ✓ related_work.tex \"SPiRL accelerates RL through learned skill priors\" 正确\n- **状态**: **有小问题**（年份 2021 vs 会议年 2020，不影响正确性但建议统一）\n\n### 8. @inproceedings{janner2019mbpo}\n- **标题**: When to Trust Your Model: Model-Based Policy Optimization\n- **真实性**: ✓ 论文存在，NeurIPS 2019\n- **作者**: ✓ Janner, M; Fu, J; Zhang, M; Levine, S\n- **年份**: ✓ 2019\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Advances in Neural Information Processing Systems (NeurIPS 2019)\n- **正文引用位置**: ✓ related_work.tex \"MBPO bounds rollout error\" 正确\n- **状态**: **OK**\n\n### 9. @article{asadi2019combating}\n- **标题**: Combating the Compounding-Error Problem with a Multi-step Model\n- **真实性**: ✓ 论文存在，arXiv:1905.13320\n- **作者**: ✓ Asadi, K; Misra, D; Kim, S; Littman, M.L\n- **年份**: ✓ 2019\n- **标题**: ✓ 匹配\n- **Venue**: ✓ arXiv preprint（未找到正式发表版本）\n- **正文引用位置**: ✓ related_work.tex \"compounding error in multi-step rollouts\" 引用正确\n- **状态**: **OK**\n\n### 10. @inproceedings{hansen2024tdmpc2}\n- **标题**: TD-MPC2: Scalable, Robust World Models for Continuous Control\n- **真实性**: ✓ 论文存在，ICLR 2024\n- **作者**: ✗ bib 列出 \"Hansen, N and Su, H and Wang, X\"，实际为 Nicklas Hansen, Hao Su, Xiaolong Wang。缩写正确但不完整（可接受）\n- **年份**: ✓ 2024\n- **标题**: ✓ 匹配\n- **Venue**: ✓ ICLR 2024\n- **正文引用位置**: ✓ 多处引用 TD-MPC2 均正确\n- **状态**: **OK**\n\n### 11. @inproceedings{yu2020mopo}\n- **标题**: MOPO: Model-based Offline Policy Optimization\n- **真实性**: ✓ 论文存在，NeurIPS 2020\n- **作者**: ✓ Yu, T; Thomas, G; Yu, L; Ermon, S; Zou, J; Levine, S; Finn, C; Ma, T\n- **年份**: ✓ 2020\n- **标题**: ✓ 匹配\n- **Venue**: ✓ NeurIPS 2020\n- **正文引用位置**: ✓ related_work.tex \"MOPO\" 引用正确\n- **状态**: **OK**\n\n### 12. @inproceedings{thrun1993issues}\n- **标题**: Issues in Using Function Approximation for Reinforcement Learning\n- **真实性**: ✓ 经典论文，1993\n- **作者**: ✓ Thrun, S; Schwartz, A（Sebastian Thrun, Anton Schwartz）\n- **年份**: ✓ 1993\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Connectionist Models Summer School（Fourth Connectionist Models Summer School）\n- **正文引用位置**: ✓ related_work.tex \"Maximization bias\" 引用正确\n- **状态**: **OK**\n\n### 13. @inproceedings{vanhasselt2016double}\n- **标题**: Deep Reinforcement Learning with Double Q-Learning\n- **真实性**: ✓ 论文存在，AAAI 2016\n- **作者**: ✓ van Hasselt, Hado; Guez, Arthur; Silver, David\n- **年份**: ✓ 2016\n- **标题**: ✓ 匹配\n- **Venue**: ✓ AAAI Conference on Artificial Intelligence\n- **正文引用位置**: ✓ related_work.tex \"Double Q-learning\" 引用正确\n- **状态**: **OK**\n\n### 14. @inproceedings{fujimoto2018td3}\n- **标题**: Addressing Function Approximation Error in Actor-Critic Methods\n- **真实性**: ✓ 论文存在，ICML 2018\n- **作者**: ✓ Fujimoto, Scott; van Hoof, Herke; Meger, David\n- **年份**: ✓ 2018\n- **标题**: ✓ 匹配\n- **Venue**: ✓ International Conference on Machine Learning (ICML 2018)\n- **正文引用位置**: ✓ related_work.tex \"TD3\" + experiments dual-critic method 引用正确\n- **状态**: **OK**\n\n### 15. @inproceedings{lu2018nondelusional}\n- **标题**: Non-delusional Q-learning and Value-Iteration\n- **真实性**: ✓ 论文存在，NeurIPS 2018 (Oral)\n- **作者**: ✓ Lu, T; Schuurmans, D; Boutilier, C（Tyler Lu, Dale Schuurmans, Craig Boutilier）\n- **年份**: ✓ 2018\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Advances in Neural Information Processing Systems (NeurIPS 2018)\n- **正文引用位置**: ✓ introduction.tex + related_work.tex + appendix.tex \"delusional bias\" 引用正确\n- **状态**: **OK**\n\n### 16. @inproceedings{biedenkapp2021temporl}\n- **标题**: TempoRL: Learning When to Act\n- **真实性**: ✓ 论文存在，ICML 2021\n- **作者**: ✓ Biedenkapp, A; Rajan, R; Hutter, F; Lindauer, M\n- **年份**: ✓ 2021\n- **标题**: ✓ 匹配\n- **Venue**: ✓ International Conference on Machine Learning (ICML 2021)\n- **正文引用位置**: ✓ related_work.tex \"TempoRL\" 引用正确\n- **状态**: **OK**\n\n### 17. @inproceedings{hafner2021dreamerv2}\n- **标题**: Mastering Atari with Discrete World Models\n- **真实性**: ✓ 论文存在，ICLR 2021\n- **作者**: ✓ Hafner, D; Lillicrap, T; Norouzi, M; Ba, J\n- **年份**: ✓ 2021\n- **标题**: ✓ 匹配\n- **Venue**: ✓ ICLR 2021\n- **正文引用位置**: ✓ related_work.tex \"Dreamer family\" 引用正确\n- **状态**: **OK**\n\n### 18. @inproceedings{gumbsch2024thick}\n- **标题**: Learning Hierarchical World Models with Adaptive Temporal Abstractions from Discrete Latent Dynamics\n- **真实性**: ✓ 论文存在，ICLR 2024\n- **作者**: ✓ Gumbsch, C; Sajid, N; Martius, G; Butz, M.V（Christian Gumbsch, Noor Sajid, Georg Martius, Martin V. Butz）\n- **年份**: ✓ 2024\n- **标题**: ✓ 匹配\n- **Venue**: ✓ ICLR 2024\n- **正文引用位置**: ✓ related_work.tex + appendix.tex \"THICK\" hierarchical variant 引用正确\n- **状态**: **OK**\n\n### 19. @inproceedings{mattes2024hieros}\n- **标题**: Hieros: Hierarchical Imagination on Structured State Space Sequence World Models\n- **真实性**: ✓ 论文存在，ICML 2024\n- **作者**: ✓ Mattes, P; Schlosser, R; Herbrich, R（Paul Mattes, Rainer Schlosser, Ralf Herbrich）\n- **年份**: ✓ 2024\n- **标题**: ✓ 匹配\n- **Venue**: ✓ International Conference on Machine Learning (ICML 2024)\n- **正文引用位置**: ✓ related_work.tex + appendix.tex \"Hieros\" hierarchical variant 引用正确\n- **状态**: **OK**\n\n### 20. @inproceedings{henderson2018deep}\n- **标题**: Deep Reinforcement Learning that Matters\n- **真实性**: ✓ 论文存在，AAAI 2018\n- **作者**: ✓ Henderson, P; Islam, R; Bachman, P; Pineau, J; Precup, D; Meger, D\n- **年份**: ✓ 2018\n- **标题**: ✓ 匹配\n- **Venue**: ✓ AAAI Conference on Artificial Intelligence\n- **正文引用位置**: ✓ related_work.tex \"factorial diagnostic methodology follows Henderson et al.\" 引用正确\n- **状态**: **OK**\n\n### 21. @inproceedings{lambert2020objective}\n- **标题**: Objective Mismatch in Model-based Reinforcement Learning\n- **真实性**: ✓ 论文存在，L4DC 2020\n- **作者**: ✓ Lambert, N; Amos, B; Yadan, O; Calandra, R\n- **年份**: ✓ 2020\n- **标题**: ✓ 匹配\n- **Venue**: ✓ L4DC（Proceedings of 2nd Conference on Learning for Dynamics and Control）\n- **正文引用位置**: ✓ related_work.tex 与 asadi2019combating 一起引用于 \"Compounding error in multi-step rollouts\"。Lambert 2020 主题为 objective mismatch 而非 compounding error，但上下文将两者作为 \"related but distinct\" 现象讨论，引用可接受\n- **状态**: **OK**\n\n### 22. @inproceedings{agarwal2021precipice}\n- **标题**: Deep Reinforcement Learning at the Edge of the Statistical Precipice\n- **真实性**: ✓ 论文存在，NeurIPS 2021 Outstanding Paper\n- **作者**: ✓ Agarwal, R; Schwarzer, M; Castro, P.S; Courville, A.C; Bellemare, M\n- **年份**: ✓ 2021\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Advances in Neural Information Processing Systems (NeurIPS 2021)\n- **正文引用位置**: ✓ experiments 多处引用 per-seed trajectories / IQM 方法，正确\n- **状态**: **OK**\n\n### 23. @article{tassa2018dmcontrol}\n- **标题**: DeepMind Control Suite\n- **真实性**: ✓ 论文存在，arXiv:1801.00690\n- **作者**: ✓ Tassa, Yuval et al. 完整作者列表匹配\n- **年份**: ✓ 2018\n- **标题**: ✓ 匹配\n- **Venue**: ✓ arXiv preprint（该论文广泛以 arXiv 形式被引用，无正式期刊版本）\n- **正文引用位置**: ✓ experiments 多处引用 DMC Walker Walk / Cheetah Run，正确\n- **状态**: **OK**\n\n### 24. @article{hafner2025dreamerv4}\n- **标题**: Training Agents Inside of Scalable World Models\n- **真实性**: ✓ 论文存在，arXiv:2509.24527 (Sep 2025)\n- **作者**: ✓ Hafner, Danijar; Yan, Wilson; Lillicrap, Timothy\n- **年份**: ✓ 2025\n- **标题**: ✓ 匹配\n- **Venue**: ✓ arXiv preprint\n- **正文引用位置**: ✓ related_work.tex \"Dreamer family\" + appendix.tex \"DreamerV4 transformer-based\" 正确\n- **状态**: **OK**\n\n### 25. @inproceedings{lyle2022capacity}\n- **标题**: Understanding and Preventing Capacity Loss in Reinforcement Learning\n- **真实性**: ✓ 论文存在，ICLR 2022 Spotlight\n- **作者**: ✓ Lyle, C; Rowland, M; Dabney, W（Clare Lyle, Mark Rowland, Will Dabney）\n- **年份**: ✓ 2022\n- **标题**: ✓ 匹配\n- **Venue**: ✓ ICLR 2022\n- **正文引用位置**: ✓ appendix.tex 讨论 capacity loss 与 CIVO seed divergence 的关系，正确\n- **状态**: **OK**\n\n### 26. @inproceedings{nhu2025tawm}\n- **标题**: Time-Aware World Model for Adaptive Prediction and Control\n- **真实性**: ✓ 论文存在，ICML 2025\n- **作者**: ✓ Nhu, Anh N.; Son, Sanghyun; Lin, Ming C.\n- **年份**: ✓ 2025\n- **标题**: ✓ 匹配\n- **Venue**: ✓ International Conference on Machine Learning (ICML 2025)\n- **正文引用位置**: ✓ introduction.tex + related_work.tex + appendix.tex \"TAWM conditions a world model on Δt\" 正确\n- **状态**: **OK**\n\n### 27. @inproceedings{li2025lsimagine}\n- **标题**: Open-World Reinforcement Learning over Long Short-Term Imagination\n- **真实性**: ✓ 论文存在，ICLR 2025 Oral\n- **作者**: ✓ Li, J; Wang, Q; Wang, Y; Jin, X; Li, Y; Zeng, W; Yang, X\n- **年份**: ✓ 2025\n- **标题**: ✓ 匹配\n- **Venue**: ✓ ICLR 2025\n- **正文引用位置**: ✓ related_work.tex + appendix.tex \"LS-Imagine\" hierarchical variant 引用正确\n- **状态**: **OK**\n\n### 28. @inproceedings{chen2021redq}\n- **标题**: Randomized Ensembled Double Q-Learning: Learning Fast Without a Model\n- **真实性**: ✓ 论文存在，ICLR 2021\n- **作者**: ✓ Chen, Xinyue; Wang, Che; Zhou, Zijian; Ross, Keith\n- **年份**: ✓ 2021\n- **标题**: ✓ 匹配\n- **Venue**: ✓ ICLR 2021\n- **正文引用位置**: ✓ related_work.tex \"ensemble methods\" 引用正确\n- **状态**: **OK**\n\n### 29. @inproceedings{bacon2017optioncritc}\n- **标题**: The Option-Critic Architecture\n- **真实性**: ✓ 论文存在，AAAI 2017\n- **作者**: ✓ Bacon, Pierre-Luc; Harb, Jean; Precup, Doina\n- **年份**: ✓ 2017\n- **标题**: ✓ 匹配\n- **Venue**: ✓ AAAI Conference on Artificial Intelligence\n- **正文引用位置**: ✓ related_work.tex \"option-critic\" 引用正确\n- **备注**: bib key 拼写为 \"optioncritc\"（缺少 'i'），仅影响 key 名称，不影响输出\n- **状态**: **OK**\n\n### 30. @inproceedings{buckman2018steve}\n- **标题**: Sample-Efficient Reinforcement Learning with Stochastic Ensemble Value Expansion\n- **真实性**: ✓ 论文存在，NeurIPS 2018 Oral\n- **作者**: ✓ Buckman, Jacob; Hafner, Danijar; Tucker, George; Brevdo, Eugene; Lee, Honglak\n- **年份**: ✓ 2018\n- **标题**: ✓ 匹配\n- **Venue**: ✓ NeurIPS 2018\n- **正文引用位置**: ✗ **未在任何 tex 文件中被引用（冗余 entry）**\n- **状态**: **有问题** — 未被引用，应从 bib 中移除\n\n### 31. @inproceedings{chua2018pets}\n- **标题**: Deep Reinforcement Learning in a Handful of Trials using Probabilistic Dynamics Models\n- **真实性**: ✓ 论文存在，NeurIPS 2018\n- **作者**: ✓ Chua, Kurtland; Calandra, Roberto; McAllister, Rowan; Levine, Sergey\n- **年份**: ✓ 2018\n- **标题**: ✓ 匹配\n- **Venue**: ✓ NeurIPS 2018\n- **正文引用位置**: ✗ **未在任何 tex 文件中被引用（冗余 entry）**\n- **状态**: **有问题** — 未被引用，应从 bib 中移除\n\n### 32. @article{bishop1995noise}\n- **标题**: Training with Noise is Equivalent to Tikhonov Regularization\n- **真实性**: ✓ 论文存在，Neural Computation 1995\n- **作者**: ✓ Bishop, Chris M.\n- **年份**: ✓ 1995\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Neural Computation, Vol 7, No 1, pp 108-116\n- **正文引用位置**: ✓ related_work.tex \"training-with-noise\" 与 TCN 方法类比，引用正确\n- **状态**: **OK**\n\n### 33. @inproceedings{fortunato2018noisynet}\n- **标题**: Noisy Networks for Exploration\n- **真实性**: ✓ 论文存在，ICLR 2018\n- **作者**: ✓ Fortunato, Meire et al. 完整作者列表匹配\n- **年份**: ✓ 2018\n- **标题**: ✓ 匹配\n- **Venue**: ✓ ICLR 2018\n- **正文引用位置**: ✗ **未在任何 tex 文件中被引用（冗余 entry）**\n- **状态**: **有问题** — 未被引用，应从 bib 中移除\n\n### 34. @inproceedings{parr1998ham}\n- **标题**: Reinforcement Learning with Hierarchies of Machines\n- **真实性**: ✓ 论文存在，NIPS 1997 / NeurIPS 10\n- **作者**: ✓ Parr, Ronald; Russell, Stuart\n- **年份**: ✓/△ bib 写 1998（proceedings 出版年），会议实际为 NIPS 1997。两种写法均有先例，可接受\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Advances in Neural Information Processing Systems\n- **正文引用位置**: ✓ related_work.tex \"HAM\" 引用正确\n- **状态**: **OK**（年份 1998 = proceedings year，可接受）\n\n### 35. @article{dietterich2000maxq}\n- **标题**: Hierarchical Reinforcement Learning with the MAXQ Value Function Decomposition\n- **真实性**: ✓ 论文存在，JAIR 2000\n- **作者**: ✓ Dietterich, Thomas G.\n- **年份**: ✓ 2000\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Journal of Artificial Intelligence Research, Vol 13, pp 227-303\n- **正文引用位置**: ✓ related_work.tex \"MAXQ\" 引用正确\n- **状态**: **OK**\n\n### 36. @inproceedings{bradtke1995smdp}\n- **标题**: Reinforcement Learning Methods for Continuous-Time Markov Decision Problems\n- **真实性**: ✓ 论文存在，NIPS 1994 / NeurIPS 7\n- **作者**: ✓ Bradtke, Steven J.; Duff, Michael O.\n- **年份**: ✓/△ bib 写 1995（proceedings 出版年），会议实际为 NIPS 1994。可接受\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Advances in Neural Information Processing Systems\n- **正文引用位置**: ✓ related_work.tex \"Semi-MDP theory\" 引用正确\n- **状态**: **OK**（年份 1995 = proceedings year，可接受）\n\n### 37. @inproceedings{kidambi2020morel}\n- **标题**: MOReL: Model-Based Offline Reinforcement Learning\n- **真实性**: ✓ 论文存在，NeurIPS 2020\n- **作者**: ✓ Kidambi, Rahul; Rajeswaran, Aravind; Netrapalli, Praneeth; Joachims, Thorsten\n- **年份**: ✓ 2020\n- **标题**: ✓ 匹配\n- **Venue**: ✓ NeurIPS 2020\n- **正文引用位置**: ✓ related_work.tex \"MOReL penalizes model uncertainty\" 引用正确\n- **状态**: **OK**\n\n### 38. @inproceedings{yu2021combo}\n- **标题**: COMBO: Conservative Offline Model-Based Policy Optimization\n- **真实性**: ✓ 论文存在，NeurIPS 2021\n- **作者**: ✓ Yu, Tianhe; Kumar, Aviral; Rafailov, Rafael; Rajeswaran, Aravind; Levine, Sergey; Finn, Chelsea\n- **年份**: ✓ 2021\n- **标题**: ✓ 匹配\n- **Venue**: ✓ NeurIPS 2021\n- **正文引用位置**: ✓ related_work.tex \"COMBO\" 引用正确\n- **状态**: **OK**\n\n### 39. @inproceedings{hamrick2021planning}\n- **标题**: On the Role of Planning in Model-Based Deep Reinforcement Learning\n- **真实性**: ✓ 论文存在，ICLR 2021\n- **作者**: ✓ Hamrick, Jessica B. et al. 完整作者列表匹配\n- **年份**: ✓ 2021\n- **标题**: ✓ 匹配\n- **Venue**: ✓ ICLR 2021\n- **正文引用位置**: ✓ related_work.tex \"Decision-aware model learning\" — Hamrick et al. 研究 MuZero planning，MuZero 的 end-to-end 训练可视为 decision-aware。引用语境可接受\n- **状态**: **OK**\n\n### 40. @inproceedings{wu2023daydreamer}\n- **标题**: DayDreamer: World Models for Physical Robot Learning\n- **真实性**: ✓ 论文存在，CoRL 2022 (PMLR v205, 2023 出版)\n- **作者**: ✓ Wu, Philipp; Escontrela, Alejandro; Hafner, Danijar; Abbeel, Pieter; Goldberg, Ken\n- **年份**: ✓ 2023（PMLR proceedings 出版年）\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Conference on Robot Learning\n- **正文引用位置**: ✓ introduction.tex \"World-model RL enables sample-efficient learning\" 引用正确\n- **状态**: **OK**\n\n### 41. @inproceedings{park2021timediscretization}\n- **标题**: Time Discretization-Invariant Safe Action Repetition for Policy Gradient Methods\n- **真实性**: ✓ 论文存在，NeurIPS 2021\n- **作者**: ✓ Park, Seohong; Kim, Jaekyeom; Kim, Gunhee\n- **年份**: ✓ 2021\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Advances in Neural Information Processing Systems (NeurIPS 2021)\n- **正文引用位置**: ✓ related_work.tex \"complementary formulations\" for action repetition 引用正确\n- **状态**: **OK**\n\n### 42. @article{wang2024elastic}\n- **标题**: Reinforcement Learning with Elastic Time Steps\n- **真实性**: ✓ 论文存在，arXiv:2402.14961\n- **作者**: ✓ Wang, Dong; Beltrame, Giovanni\n- **年份**: ✓ 2024\n- **标题**: ✓ 匹配\n- **Venue**: ✓ arXiv preprint\n- **正文引用位置**: ✓ related_work.tex \"learn elastic time steps that adapt step size to state dynamics\" 引用正确\n- **状态**: **OK**\n\n### 43. @article{colas2018seeds}\n- **标题**: How Many Random Seeds? Statistical Power Analysis in Deep Reinforcement Learning Experiments\n- **真实性**: ✓ 论文存在，arXiv:1806.08295\n- **作者**: ✓ Colas, Cédric; Sigaud, Olivier; Oudeyer, Pierre-Yves\n- **年份**: ✓ 2018\n- **标题**: ✓ 匹配\n- **Venue**: ✓ arXiv preprint\n- **正文引用位置**: ✓ conclusion.tex/limitations \"Seed counts (4-5)\" 引用正确\n- **状态**: **OK**\n\n### 44. @article{benechehab2023multitimestep}\n- **标题**: Multi-timestep models for Model-based Reinforcement Learning\n- **真实性**: ✓ 论文存在，arXiv:2310.05672\n- **作者**: ✓ Benechehab, Abdelhakim; Paolo, Giuseppe; Thomas, Albert; Filippone, Maurizio; Kégl, Balázs\n- **年份**: ✓ 2023\n- **标题**: ✓ 匹配\n- **Venue**: ✓ arXiv preprint\n- **正文引用位置**: ✓ related_work.tex \"Multi-timestep world models learn predictions at variable horizons\" 引用正确\n- **状态**: **OK**\n\n### 45. @inproceedings{hafner2022director}\n- **标题**: Deep Hierarchical Planning from Pixels\n- **真实性**: ✓ 论文存在，NeurIPS 2022\n- **作者**: ✓ Hafner, Danijar; Lee, Kuang-Huei; Fischer, Ian; Abbeel, Pieter\n- **年份**: ✓ 2022\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Advances in Neural Information Processing Systems (NeurIPS 2022)\n- **正文引用位置**: ✓ related_work.tex \"hierarchical variants\" (Director) 引用正确\n- **状态**: **OK**\n\n---\n\n## 问题汇总\n\n| # | Cite Key | 问题类型 | 严重程度 | 说明 |\n|---|----------|----------|----------|------|\n| 1 | `buckman2018steve` | 冗余 entry | 低 | bib 中存在但未被任何 tex 文件引用，应移除 |\n| 2 | `chua2018pets` | 冗余 entry | 低 | bib 中存在但未被任何 tex 文件引用，应移除 |\n| 3 | `fortunato2018noisynet` | 冗余 entry | 低 | bib 中存在但未被任何 tex 文件引用，应移除 |\n| 4 | `pertsch2020spirl` | 年份不一致 | 极低 | year=2021（proceedings年）vs 会议年 CoRL 2020；建议统一 |\n\n## 未发现的问题\n\n- **无 hallucinated citation**: 全部 45 篇论文均经 WebSearch 验证真实存在\n- **无作者拼写错误**: 所有作者名（含中文作者拼音）均正确\n- **无标题错误**: 所有标题逐词核对匹配\n- **无 venue 错误**: 所有会议/期刊名称正确\n- **无错误归因**: 所有正文 `\\cite` 位置的引用上下文均与被引论文内容一致\n- **无 arXiv→会议版遗漏**: hafner2023dreamerv3 已更新为 Nature 2025 版；其余 arXiv-only 论文（asadi2019, tassa2018, wang2024, colas2018, benechehab2023）经查证确无正式发表版本\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0e13f95b-d148-4ddc-b813-93ffa7545c2b",
+            "uuid": "3c0ad4d8-d73b-4316-9564-bc32844bc5b3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AoeVHL4gwdHr85cUtX55rf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 4224,
+                "cache_read_input_tokens": 124401,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4224
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": "2026-05-29T07:19:07.316Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T9mZEfM4y9n67D2as78nMS",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/citation_audit_worker_C.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0e13f95b-d148-4ddc-b813-93ffa7545c2b",
+            "uuid": "70b55aaf-dc63-46d4-8b23-e0a47c554729",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/citation_audit_worker_C.md",
+              "content": "# 引用审计报告（审计员 C）\n\n**审计日期**: 2026-05-29\n**审计范围**: `references.bib` 全部 45 条 entry + 正文/附录所有 `\\cite` 引用位置\n**方法**: 每条 entry 均通过 WebSearch 验证真实性、作者、年份、标题、Venue\n\n---\n\n## 总结\n\n- **总引用数**: 45\n- **真实存在**: 45/45（无 hallucinated citation）\n- **有问题**: 3 条（均为未被正文引用的冗余 entry）\n- **建议改进**: 2 条（年份/venue 可优化）\n- **正文引用归因错误**: 0\n\n---\n\n## 逐条结果\n\n### 1. @inproceedings{gu2023maniskill2}\n- **标题**: ManiSkill2: A Unified Benchmark for Generalizable Manipulation Skills\n- **真实性**: ✓ 论文存在，ICLR 2023\n- **作者**: ✓ Gu, Jiayuan et al. 匹配\n- **年份**: ✓ 2023\n- **标题**: ✓ 逐词匹配\n- **Venue**: ✓ International Conference on Learning Representations (ICLR 2023)\n- **正文引用位置**: ✓ experiments_results.tex §F3-F5 提到 ManiSkill 任务，引用正确\n- **状态**: **OK**\n\n### 2. @inproceedings{micheli2023iris}\n- **标题**: Transformers are Sample-Efficient World Models\n- **真实性**: ✓ 论文存在，ICLR 2023 (notable top 5%)\n- **作者**: ✓ Micheli, Vincent; Alonso, Eloi; Fleuret, François\n- **年份**: ✓ 2023\n- **标题**: ✓ 匹配\n- **Venue**: ✓ ICLR 2023\n- **正文引用位置**: ✓ conclusion.tex Limitations 部分提到 transformer-based world models\n- **状态**: **OK**\n\n### 3. @article{sutton1999options}\n- **标题**: Between MDPs and Semi-MDPs: A Framework for Temporal Abstraction in Reinforcement Learning\n- **真实性**: ✓ 经典论文，Artificial Intelligence Vol 112, 1999\n- **作者**: ✓ Sutton, R.S; Precup, D; Singh, S（缩写正确）\n- **年份**: ✓ 1999\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Artificial Intelligence 112（期刊名+卷号格式略非标准但正确）\n- **正文引用位置**: ✓ related_work.tex \"options framework\" 引用正确\n- **状态**: **OK**\n\n### 4. @inproceedings{hafner2020dreamerv1}\n- **标题**: Dream to Control: Learning Behaviors by Latent Imagination\n- **真实性**: ✓ 论文存在，ICLR 2020\n- **作者**: ✓ Hafner, D; Lillicrap, T; Ba, J; Norouzi, M\n- **年份**: ✓ 2020\n- **标题**: ✓ 匹配\n- **Venue**: ✓ ICLR 2020\n- **正文引用位置**: ✓ related_work.tex \"Dreamer family\" 引用正确\n- **状态**: **OK**\n\n### 5. @article{hafner2023dreamerv3}\n- **标题**: Mastering Diverse Control Tasks through World Models\n- **真实性**: ✓ 论文存在，Nature 2025; arXiv 2301.04104 (2023)\n- **作者**: ✓ Hafner, Danijar; Pasukonis, Jurgis; Ba, Jimmy; Lillicrap, Timothy\n- **年份**: ✓ 2025（Nature 发表年份，bib key \"2023\" 为 arXiv 年份，仅为助记符）\n- **标题**: ✓ 匹配 Nature 版标题（arXiv 版为 \"Mastering Diverse Domains...\"，bib 正确使用 Nature 版）\n- **Venue**: ✓ Nature\n- **正文引用位置**: ✓ 多处引用 DreamerV3 均正确\n- **状态**: **OK**\n\n### 6. @inproceedings{sharma2017figar}\n- **标题**: Learning to Repeat: Fine Grained Action Repetition for Deep Reinforcement Learning\n- **真实性**: ✓ 论文存在，ICLR 2017\n- **作者**: ✓ Sharma, S; Lakshminarayanan, A.S; Ravindran, B\n- **年份**: ✓ 2017\n- **标题**: ✓ 匹配\n- **Venue**: ✓ ICLR 2017\n- **正文引用位置**: ✓ related_work.tex \"FiGAR learns per-action repetition counts\" 正确\n- **状态**: **OK**\n\n### 7. @inproceedings{pertsch2020spirl}\n- **标题**: Accelerating Reinforcement Learning with Learned Skill Priors\n- **真实性**: ✓ 论文存在，CoRL 2020（PMLR v155, 2021 出版）\n- **作者**: ✓ Pertsch, Karl; Lee, Youngwoon; Lim, Joseph J.\n- **年份**: ✗ bib 写 year=2021（proceedings 出版年），但会议为 CoRL 2020。bib key 写 \"pertsch2020\" 暗示会议年。**建议统一为 2020 或在 booktitle 中注明 CoRL 2020**\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Conference on Robot Learning\n- **正文引用位置**: ✓ related_work.tex \"SPiRL accelerates RL through learned skill priors\" 正确\n- **状态**: **有小问题**（年份 2021 vs 会议年 2020，不影响正确性但建议统一）\n\n### 8. @inproceedings{janner2019mbpo}\n- **标题**: When to Trust Your Model: Model-Based Policy Optimization\n- **真实性**: ✓ 论文存在，NeurIPS 2019\n- **作者**: ✓ Janner, M; Fu, J; Zhang, M; Levine, S\n- **年份**: ✓ 2019\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Advances in Neural Information Processing Systems (NeurIPS 2019)\n- **正文引用位置**: ✓ related_work.tex \"MBPO bounds rollout error\" 正确\n- **状态**: **OK**\n\n### 9. @article{asadi2019combating}\n- **标题**: Combating the Compounding-Error Problem with a Multi-step Model\n- **真实性**: ✓ 论文存在，arXiv:1905.13320\n- **作者**: ✓ Asadi, K; Misra, D; Kim, S; Littman, M.L\n- **年份**: ✓ 2019\n- **标题**: ✓ 匹配\n- **Venue**: ✓ arXiv preprint（未找到正式发表版本）\n- **正文引用位置**: ✓ related_work.tex \"compounding error in multi-step rollouts\" 引用正确\n- **状态**: **OK**\n\n### 10. @inproceedings{hansen2024tdmpc2}\n- **标题**: TD-MPC2: Scalable, Robust World Models for Continuous Control\n- **真实性**: ✓ 论文存在，ICLR 2024\n- **作者**: ✗ bib 列出 \"Hansen, N and Su, H and Wang, X\"，实际为 Nicklas Hansen, Hao Su, Xiaolong Wang。缩写正确但不完整（可接受）\n- **年份**: ✓ 2024\n- **标题**: ✓ 匹配\n- **Venue**: ✓ ICLR 2024\n- **正文引用位置**: ✓ 多处引用 TD-MPC2 均正确\n- **状态**: **OK**\n\n### 11. @inproceedings{yu2020mopo}\n- **标题**: MOPO: Model-based Offline Policy Optimization\n- **真实性**: ✓ 论文存在，NeurIPS 2020\n- **作者**: ✓ Yu, T; Thomas, G; Yu, L; Ermon, S; Zou, J; Levine, S; Finn, C; Ma, T\n- **年份**: ✓ 2020\n- **标题**: ✓ 匹配\n- **Venue**: ✓ NeurIPS 2020\n- **正文引用位置**: ✓ related_work.tex \"MOPO\" 引用正确\n- **状态**: **OK**\n\n### 12. @inproceedings{thrun1993issues}\n- **标题**: Issues in Using Function Approximation for Reinforcement Learning\n- **真实性**: ✓ 经典论文，1993\n- **作者**: ✓ Thrun, S; Schwartz, A（Sebastian Thrun, Anton Schwartz）\n- **年份**: ✓ 1993\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Connectionist Models Summer School（Fourth Connectionist Models Summer School）\n- **正文引用位置**: ✓ related_work.tex \"Maximization bias\" 引用正确\n- **状态**: **OK**\n\n### 13. @inproceedings{vanhasselt2016double}\n- **标题**: Deep Reinforcement Learning with Double Q-Learning\n- **真实性**: ✓ 论文存在，AAAI 2016\n- **作者**: ✓ van Hasselt, Hado; Guez, Arthur; Silver, David\n- **年份**: ✓ 2016\n- **标题**: ✓ 匹配\n- **Venue**: ✓ AAAI Conference on Artificial Intelligence\n- **正文引用位置**: ✓ related_work.tex \"Double Q-learning\" 引用正确\n- **状态**: **OK**\n\n### 14. @inproceedings{fujimoto2018td3}\n- **标题**: Addressing Function Approximation Error in Actor-Critic Methods\n- **真实性**: ✓ 论文存在，ICML 2018\n- **作者**: ✓ Fujimoto, Scott; van Hoof, Herke; Meger, David\n- **年份**: ✓ 2018\n- **标题**: ✓ 匹配\n- **Venue**: ✓ International Conference on Machine Learning (ICML 2018)\n- **正文引用位置**: ✓ related_work.tex \"TD3\" + experiments dual-critic method 引用正确\n- **状态**: **OK**\n\n### 15. @inproceedings{lu2018nondelusional}\n- **标题**: Non-delusional Q-learning and Value-Iteration\n- **真实性**: ✓ 论文存在，NeurIPS 2018 (Oral)\n- **作者**: ✓ Lu, T; Schuurmans, D; Boutilier, C（Tyler Lu, Dale Schuurmans, Craig Boutilier）\n- **年份**: ✓ 2018\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Advances in Neural Information Processing Systems (NeurIPS 2018)\n- **正文引用位置**: ✓ introduction.tex + related_work.tex + appendix.tex \"delusional bias\" 引用正确\n- **状态**: **OK**\n\n### 16. @inproceedings{biedenkapp2021temporl}\n- **标题**: TempoRL: Learning When to Act\n- **真实性**: ✓ 论文存在，ICML 2021\n- **作者**: ✓ Biedenkapp, A; Rajan, R; Hutter, F; Lindauer, M\n- **年份**: ✓ 2021\n- **标题**: ✓ 匹配\n- **Venue**: ✓ International Conference on Machine Learning (ICML 2021)\n- **正文引用位置**: ✓ related_work.tex \"TempoRL\" 引用正确\n- **状态**: **OK**\n\n### 17. @inproceedings{hafner2021dreamerv2}\n- **标题**: Mastering Atari with Discrete World Models\n- **真实性**: ✓ 论文存在，ICLR 2021\n- **作者**: ✓ Hafner, D; Lillicrap, T; Norouzi, M; Ba, J\n- **年份**: ✓ 2021\n- **标题**: ✓ 匹配\n- **Venue**: ✓ ICLR 2021\n- **正文引用位置**: ✓ related_work.tex \"Dreamer family\" 引用正确\n- **状态**: **OK**\n\n### 18. @inproceedings{gumbsch2024thick}\n- **标题**: Learning Hierarchical World Models with Adaptive Temporal Abstractions from Discrete Latent Dynamics\n- **真实性**: ✓ 论文存在，ICLR 2024\n- **作者**: ✓ Gumbsch, C; Sajid, N; Martius, G; Butz, M.V（Christian Gumbsch, Noor Sajid, Georg Martius, Martin V. Butz）\n- **年份**: ✓ 2024\n- **标题**: ✓ 匹配\n- **Venue**: ✓ ICLR 2024\n- **正文引用位置**: ✓ related_work.tex + appendix.tex \"THICK\" hierarchical variant 引用正确\n- **状态**: **OK**\n\n### 19. @inproceedings{mattes2024hieros}\n- **标题**: Hieros: Hierarchical Imagination on Structured State Space Sequence World Models\n- **真实性**: ✓ 论文存在，ICML 2024\n- **作者**: ✓ Mattes, P; Schlosser, R; Herbrich, R（Paul Mattes, Rainer Schlosser, Ralf Herbrich）\n- **年份**: ✓ 2024\n- **标题**: ✓ 匹配\n- **Venue**: ✓ International Conference on Machine Learning (ICML 2024)\n- **正文引用位置**: ✓ related_work.tex + appendix.tex \"Hieros\" hierarchical variant 引用正确\n- **状态**: **OK**\n\n### 20. @inproceedings{henderson2018deep}\n- **标题**: Deep Reinforcement Learning that Matters\n- **真实性**: ✓ 论文存在，AAAI 2018\n- **作者**: ✓ Henderson, P; Islam, R; Bachman, P; Pineau, J; Precup, D; Meger, D\n- **年份**: ✓ 2018\n- **标题**: ✓ 匹配\n- **Venue**: ✓ AAAI Conference on Artificial Intelligence\n- **正文引用位置**: ✓ related_work.tex \"factorial diagnostic methodology follows Henderson et al.\" 引用正确\n- **状态**: **OK**\n\n### 21. @inproceedings{lambert2020objective}\n- **标题**: Objective Mismatch in Model-based Reinforcement Learning\n- **真实性**: ✓ 论文存在，L4DC 2020\n- **作者**: ✓ Lambert, N; Amos, B; Yadan, O; Calandra, R\n- **年份**: ✓ 2020\n- **标题**: ✓ 匹配\n- **Venue**: ✓ L4DC（Proceedings of 2nd Conference on Learning for Dynamics and Control）\n- **正文引用位置**: ✓ related_work.tex 与 asadi2019combating 一起引用于 \"Compounding error in multi-step rollouts\"。Lambert 2020 主题为 objective mismatch 而非 compounding error，但上下文将两者作为 \"related but distinct\" 现象讨论，引用可接受\n- **状态**: **OK**\n\n### 22. @inproceedings{agarwal2021precipice}\n- **标题**: Deep Reinforcement Learning at the Edge of the Statistical Precipice\n- **真实性**: ✓ 论文存在，NeurIPS 2021 Outstanding Paper\n- **作者**: ✓ Agarwal, R; Schwarzer, M; Castro, P.S; Courville, A.C; Bellemare, M\n- **年份**: ✓ 2021\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Advances in Neural Information Processing Systems (NeurIPS 2021)\n- **正文引用位置**: ✓ experiments 多处引用 per-seed trajectories / IQM 方法，正确\n- **状态**: **OK**\n\n### 23. @article{tassa2018dmcontrol}\n- **标题**: DeepMind Control Suite\n- **真实性**: ✓ 论文存在，arXiv:1801.00690\n- **作者**: ✓ Tassa, Yuval et al. 完整作者列表匹配\n- **年份**: ✓ 2018\n- **标题**: ✓ 匹配\n- **Venue**: ✓ arXiv preprint（该论文广泛以 arXiv 形式被引用，无正式期刊版本）\n- **正文引用位置**: ✓ experiments 多处引用 DMC Walker Walk / Cheetah Run，正确\n- **状态**: **OK**\n\n### 24. @article{hafner2025dreamerv4}\n- **标题**: Training Agents Inside of Scalable World Models\n- **真实性**: ✓ 论文存在，arXiv:2509.24527 (Sep 2025)\n- **作者**: ✓ Hafner, Danijar; Yan, Wilson; Lillicrap, Timothy\n- **年份**: ✓ 2025\n- **标题**: ✓ 匹配\n- **Venue**: ✓ arXiv preprint\n- **正文引用位置**: ✓ related_work.tex \"Dreamer family\" + appendix.tex \"DreamerV4 transformer-based\" 正确\n- **状态**: **OK**\n\n### 25. @inproceedings{lyle2022capacity}\n- **标题**: Understanding and Preventing Capacity Loss in Reinforcement Learning\n- **真实性**: ✓ 论文存在，ICLR 2022 Spotlight\n- **作者**: ✓ Lyle, C; Rowland, M; Dabney, W（Clare Lyle, Mark Rowland, Will Dabney）\n- **年份**: ✓ 2022\n- **标题**: ✓ 匹配\n- **Venue**: ✓ ICLR 2022\n- **正文引用位置**: ✓ appendix.tex 讨论 capacity loss 与 CIVO seed divergence 的关系，正确\n- **状态**: **OK**\n\n### 26. @inproceedings{nhu2025tawm}\n- **标题**: Time-Aware World Model for Adaptive Prediction and Control\n- **真实性**: ✓ 论文存在，ICML 2025\n- **作者**: ✓ Nhu, Anh N.; Son, Sanghyun; Lin, Ming C.\n- **年份**: ✓ 2025\n- **标题**: ✓ 匹配\n- **Venue**: ✓ International Conference on Machine Learning (ICML 2025)\n- **正文引用位置**: ✓ introduction.tex + related_work.tex + appendix.tex \"TAWM conditions a world model on Δt\" 正确\n- **状态**: **OK**\n\n### 27. @inproceedings{li2025lsimagine}\n- **标题**: Open-World Reinforcement Learning over Long Short-Term Imagination\n- **真实性**: ✓ 论文存在，ICLR 2025 Oral\n- **作者**: ✓ Li, J; Wang, Q; Wang, Y; Jin, X; Li, Y; Zeng, W; Yang, X\n- **年份**: ✓ 2025\n- **标题**: ✓ 匹配\n- **Venue**: ✓ ICLR 2025\n- **正文引用位置**: ✓ related_work.tex + appendix.tex \"LS-Imagine\" hierarchical variant 引用正确\n- **状态**: **OK**\n\n### 28. @inproceedings{chen2021redq}\n- **标题**: Randomized Ensembled Double Q-Learning: Learning Fast Without a Model\n- **真实性**: ✓ 论文存在，ICLR 2021\n- **作者**: ✓ Chen, Xinyue; Wang, Che; Zhou, Zijian; Ross, Keith\n- **年份**: ✓ 2021\n- **标题**: ✓ 匹配\n- **Venue**: ✓ ICLR 2021\n- **正文引用位置**: ✓ related_work.tex \"ensemble methods\" 引用正确\n- **状态**: **OK**\n\n### 29. @inproceedings{bacon2017optioncritc}\n- **标题**: The Option-Critic Architecture\n- **真实性**: ✓ 论文存在，AAAI 2017\n- **作者**: ✓ Bacon, Pierre-Luc; Harb, Jean; Precup, Doina\n- **年份**: ✓ 2017\n- **标题**: ✓ 匹配\n- **Venue**: ✓ AAAI Conference on Artificial Intelligence\n- **正文引用位置**: ✓ related_work.tex \"option-critic\" 引用正确\n- **备注**: bib key 拼写为 \"optioncritc\"（缺少 'i'），仅影响 key 名称，不影响输出\n- **状态**: **OK**\n\n### 30. @inproceedings{buckman2018steve}\n- **标题**: Sample-Efficient Reinforcement Learning with Stochastic Ensemble Value Expansion\n- **真实性**: ✓ 论文存在，NeurIPS 2018 Oral\n- **作者**: ✓ Buckman, Jacob; Hafner, Danijar; Tucker, George; Brevdo, Eugene; Lee, Honglak\n- **年份**: ✓ 2018\n- **标题**: ✓ 匹配\n- **Venue**: ✓ NeurIPS 2018\n- **正文引用位置**: ✗ **未在任何 tex 文件中被引用（冗余 entry）**\n- **状态**: **有问题** — 未被引用，应从 bib 中移除\n\n### 31. @inproceedings{chua2018pets}\n- **标题**: Deep Reinforcement Learning in a Handful of Trials using Probabilistic Dynamics Models\n- **真实性**: ✓ 论文存在，NeurIPS 2018\n- **作者**: ✓ Chua, Kurtland; Calandra, Roberto; McAllister, Rowan; Levine, Sergey\n- **年份**: ✓ 2018\n- **标题**: ✓ 匹配\n- **Venue**: ✓ NeurIPS 2018\n- **正文引用位置**: ✗ **未在任何 tex 文件中被引用（冗余 entry）**\n- **状态**: **有问题** — 未被引用，应从 bib 中移除\n\n### 32. @article{bishop1995noise}\n- **标题**: Training with Noise is Equivalent to Tikhonov Regularization\n- **真实性**: ✓ 论文存在，Neural Computation 1995\n- **作者**: ✓ Bishop, Chris M.\n- **年份**: ✓ 1995\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Neural Computation, Vol 7, No 1, pp 108-116\n- **正文引用位置**: ✓ related_work.tex \"training-with-noise\" 与 TCN 方法类比，引用正确\n- **状态**: **OK**\n\n### 33. @inproceedings{fortunato2018noisynet}\n- **标题**: Noisy Networks for Exploration\n- **真实性**: ✓ 论文存在，ICLR 2018\n- **作者**: ✓ Fortunato, Meire et al. 完整作者列表匹配\n- **年份**: ✓ 2018\n- **标题**: ✓ 匹配\n- **Venue**: ✓ ICLR 2018\n- **正文引用位置**: ✗ **未在任何 tex 文件中被引用（冗余 entry）**\n- **状态**: **有问题** — 未被引用，应从 bib 中移除\n\n### 34. @inproceedings{parr1998ham}\n- **标题**: Reinforcement Learning with Hierarchies of Machines\n- **真实性**: ✓ 论文存在，NIPS 1997 / NeurIPS 10\n- **作者**: ✓ Parr, Ronald; Russell, Stuart\n- **年份**: ✓/△ bib 写 1998（proceedings 出版年），会议实际为 NIPS 1997。两种写法均有先例，可接受\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Advances in Neural Information Processing Systems\n- **正文引用位置**: ✓ related_work.tex \"HAM\" 引用正确\n- **状态**: **OK**（年份 1998 = proceedings year，可接受）\n\n### 35. @article{dietterich2000maxq}\n- **标题**: Hierarchical Reinforcement Learning with the MAXQ Value Function Decomposition\n- **真实性**: ✓ 论文存在，JAIR 2000\n- **作者**: ✓ Dietterich, Thomas G.\n- **年份**: ✓ 2000\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Journal of Artificial Intelligence Research, Vol 13, pp 227-303\n- **正文引用位置**: ✓ related_work.tex \"MAXQ\" 引用正确\n- **状态**: **OK**\n\n### 36. @inproceedings{bradtke1995smdp}\n- **标题**: Reinforcement Learning Methods for Continuous-Time Markov Decision Problems\n- **真实性**: ✓ 论文存在，NIPS 1994 / NeurIPS 7\n- **作者**: ✓ Bradtke, Steven J.; Duff, Michael O.\n- **年份**: ✓/△ bib 写 1995（proceedings 出版年），会议实际为 NIPS 1994。可接受\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Advances in Neural Information Processing Systems\n- **正文引用位置**: ✓ related_work.tex \"Semi-MDP theory\" 引用正确\n- **状态**: **OK**（年份 1995 = proceedings year，可接受）\n\n### 37. @inproceedings{kidambi2020morel}\n- **标题**: MOReL: Model-Based Offline Reinforcement Learning\n- **真实性**: ✓ 论文存在，NeurIPS 2020\n- **作者**: ✓ Kidambi, Rahul; Rajeswaran, Aravind; Netrapalli, Praneeth; Joachims, Thorsten\n- **年份**: ✓ 2020\n- **标题**: ✓ 匹配\n- **Venue**: ✓ NeurIPS 2020\n- **正文引用位置**: ✓ related_work.tex \"MOReL penalizes model uncertainty\" 引用正确\n- **状态**: **OK**\n\n### 38. @inproceedings{yu2021combo}\n- **标题**: COMBO: Conservative Offline Model-Based Policy Optimization\n- **真实性**: ✓ 论文存在，NeurIPS 2021\n- **作者**: ✓ Yu, Tianhe; Kumar, Aviral; Rafailov, Rafael; Rajeswaran, Aravind; Levine, Sergey; Finn, Chelsea\n- **年份**: ✓ 2021\n- **标题**: ✓ 匹配\n- **Venue**: ✓ NeurIPS 2021\n- **正文引用位置**: ✓ related_work.tex \"COMBO\" 引用正确\n- **状态**: **OK**\n\n### 39. @inproceedings{hamrick2021planning}\n- **标题**: On the Role of Planning in Model-Based Deep Reinforcement Learning\n- **真实性**: ✓ 论文存在，ICLR 2021\n- **作者**: ✓ Hamrick, Jessica B. et al. 完整作者列表匹配\n- **年份**: ✓ 2021\n- **标题**: ✓ 匹配\n- **Venue**: ✓ ICLR 2021\n- **正文引用位置**: ✓ related_work.tex \"Decision-aware model learning\" — Hamrick et al. 研究 MuZero planning，MuZero 的 end-to-end 训练可视为 decision-aware。引用语境可接受\n- **状态**: **OK**\n\n### 40. @inproceedings{wu2023daydreamer}\n- **标题**: DayDreamer: World Models for Physical Robot Learning\n- **真实性**: ✓ 论文存在，CoRL 2022 (PMLR v205, 2023 出版)\n- **作者**: ✓ Wu, Philipp; Escontrela, Alejandro; Hafner, Danijar; Abbeel, Pieter; Goldberg, Ken\n- **年份**: ✓ 2023（PMLR proceedings 出版年）\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Conference on Robot Learning\n- **正文引用位置**: ✓ introduction.tex \"World-model RL enables sample-efficient learning\" 引用正确\n- **状态**: **OK**\n\n### 41. @inproceedings{park2021timediscretization}\n- **标题**: Time Discretization-Invariant Safe Action Repetition for Policy Gradient Methods\n- **真实性**: ✓ 论文存在，NeurIPS 2021\n- **作者**: ✓ Park, Seohong; Kim, Jaekyeom; Kim, Gunhee\n- **年份**: ✓ 2021\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Advances in Neural Information Processing Systems (NeurIPS 2021)\n- **正文引用位置**: ✓ related_work.tex \"complementary formulations\" for action repetition 引用正确\n- **状态**: **OK**\n\n### 42. @article{wang2024elastic}\n- **标题**: Reinforcement Learning with Elastic Time Steps\n- **真实性**: ✓ 论文存在，arXiv:2402.14961\n- **作者**: ✓ Wang, Dong; Beltrame, Giovanni\n- **年份**: ✓ 2024\n- **标题**: ✓ 匹配\n- **Venue**: ✓ arXiv preprint\n- **正文引用位置**: ✓ related_work.tex \"learn elastic time steps that adapt step size to state dynamics\" 引用正确\n- **状态**: **OK**\n\n### 43. @article{colas2018seeds}\n- **标题**: How Many Random Seeds? Statistical Power Analysis in Deep Reinforcement Learning Experiments\n- **真实性**: ✓ 论文存在，arXiv:1806.08295\n- **作者**: ✓ Colas, Cédric; Sigaud, Olivier; Oudeyer, Pierre-Yves\n- **年份**: ✓ 2018\n- **标题**: ✓ 匹配\n- **Venue**: ✓ arXiv preprint\n- **正文引用位置**: ✓ conclusion.tex/limitations \"Seed counts (4-5)\" 引用正确\n- **状态**: **OK**\n\n### 44. @article{benechehab2023multitimestep}\n- **标题**: Multi-timestep models for Model-based Reinforcement Learning\n- **真实性**: ✓ 论文存在，arXiv:2310.05672\n- **作者**: ✓ Benechehab, Abdelhakim; Paolo, Giuseppe; Thomas, Albert; Filippone, Maurizio; Kégl, Balázs\n- **年份**: ✓ 2023\n- **标题**: ✓ 匹配\n- **Venue**: ✓ arXiv preprint\n- **正文引用位置**: ✓ related_work.tex \"Multi-timestep world models learn predictions at variable horizons\" 引用正确\n- **状态**: **OK**\n\n### 45. @inproceedings{hafner2022director}\n- **标题**: Deep Hierarchical Planning from Pixels\n- **真实性**: ✓ 论文存在，NeurIPS 2022\n- **作者**: ✓ Hafner, Danijar; Lee, Kuang-Huei; Fischer, Ian; Abbeel, Pieter\n- **年份**: ✓ 2022\n- **标题**: ✓ 匹配\n- **Venue**: ✓ Advances in Neural Information Processing Systems (NeurIPS 2022)\n- **正文引用位置**: ✓ related_work.tex \"hierarchical variants\" (Director) 引用正确\n- **状态**: **OK**\n\n---\n\n## 问题汇总\n\n| # | Cite Key | 问题类型 | 严重程度 | 说明 |\n|---|----------|----------|----------|------|\n| 1 | `buckman2018steve` | 冗余 entry | 低 | bib 中存在但未被任何 tex 文件引用，应移除 |\n| 2 | `chua2018pets` | 冗余 entry | 低 | bib 中存在但未被任何 tex 文件引用，应移除 |\n| 3 | `fortunato2018noisynet` | 冗余 entry | 低 | bib 中存在但未被任何 tex 文件引用，应移除 |\n| 4 | `pertsch2020spirl` | 年份不一致 | 极低 | year=2021（proceedings年）vs 会议年 CoRL 2020；建议统一 |\n\n## 未发现的问题\n\n- **无 hallucinated citation**: 全部 45 篇论文均经 WebSearch 验证真实存在\n- **无作者拼写错误**: 所有作者名（含中文作者拼音）均正确\n- **无标题错误**: 所有标题逐词核对匹配\n- **无 venue 错误**: 所有会议/期刊名称正确\n- **无错误归因**: 所有正文 `\\cite` 位置的引用上下文均与被引论文内容一致\n- **无 arXiv→会议版遗漏**: hafner2023dreamerv3 已更新为 Nature 2025 版；其余 arXiv-only 论文（asadi2019, tassa2018, wang2024, colas2018, benechehab2023）经查证确无正式发表版本\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/citation_audit_worker_C.md`。\n\n**结果摘要**：\n- 45 条引用全部真实存在，无 hallucinated citation\n- **3 条有问题**：`buckman2018steve`、`chua2018pets`、`fortunato2018noisynet` 存在于 bib 中但未被正文/附录引用（冗余 entry，应移除）\n- **1 条建议改进**：`pertsch2020spirl` year=2021 vs 会议年 CoRL 2020，建议统一\n- 无作者拼写错误、标题错误、venue 错误、错误归因"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0e13f95b-d148-4ddc-b813-93ffa7545c2b",
+            "uuid": "e84db059-a918-4d69-a2fd-875532256e4b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01N14NpAtQPWhfmRJVwK9S4P",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9866,
+                "cache_read_input_tokens": 128625,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9866
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/citation_audit_worker_C.md`。\n\n**结果摘要**：\n- 45 条引用全部真实存在，无 hallucinated citation\n- **3 条有问题**：`buckman2018steve`、`chua2018pets`、`fortunato2018noisynet` 存在于 bib 中但未被正文/附录引用（冗余 entry，应移除）\n- **1 条建议改进**：`pertsch2020spirl` year=2021 vs 会议年 CoRL 2020，建议统一\n- 无作者拼写错误、标题错误、venue 错误、错误归因"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 561278,
+            "duration_api_ms": 817101,
+            "num_turns": 68,
+            "stop_reason": "end_turn",
+            "session_id": "0e13f95b-d148-4ddc-b813-93ffa7545c2b",
+            "total_cost_usd": 3.1868585000000005,
+            "usage": {
+              "input_tokens": 6314,
+              "cache_creation_input_tokens": 126646,
+              "cache_read_input_tokens": 1384488,
+              "output_tokens": 25473,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 126646,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 191,
+                  "cache_read_input_tokens": 128625,
+                  "cache_creation_input_tokens": 9866,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 9866
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 487747,
+                "outputTokens": 19387,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 45,
+                "costUSD": 1.0346819999999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 6314,
+                "outputTokens": 25473,
+                "cacheReadInputTokens": 1384488,
+                "cacheCreationInputTokens": 126646,
+                "webSearchRequests": 0,
+                "costUSD": 2.1521765000000004,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "19ced841-84f3-4b71-bc50-7084085c3afc"
+          },
+          "id": "event-000160"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a3730ea85b59cf4c0fe",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops restart killed experiments",
+  "task_key": "worker_ops_restart-killed-experiments_20260519T021842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart-killed-experiments_20260519T021842_result.json",
+    "occurrence": 1,
+    "bytes": 784,
+    "sha256": "39f4dff9154310791a46ae8582109719eb703283fe97c25030e1d100a8c1ad66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个实验全部成功从 checkpoint resume，无 OOM：\n\n| 实验 | GPU | Resume step | 目标 | 剩余 |\n|------|-----|------------|------|------|\n| exp_001_baseline_s3 (Walker) | cuda:1 | 72000 | 105K | 33K |\n| exp_023_cheetah_baseline_s3 | cuda:1 | 152000 | 200K | 48K |\n| exp_023_cheetah_baseline_s4 | cuda:0 | 84000 | 200K | 116K |\n\nGPU 显存：cuda:0 用 1296MiB（1个进程），cuda:1 用 2591MiB（2个进程）。三个进程都已进入 \"Start evaluation\" 阶段，正常运行中。\n\n注意：metrics.jsonl 记录的 step 和 Logger 显示的 step 略有差异（metrics 按 eval_every 间隔记录，Logger 按 episode 数据精确恢复），属于正常行为。实际 checkpoint 保存的是最后一次 eval 周期结束时的状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-killed-experiments.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0415ff9ddb4b52a2a4e",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check exp066 completion",
+  "task_key": "worker_check_exp066-completion_20260525T012700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp066-completion_20260525T012700_result.json",
+    "occurrence": 1,
+    "bytes": 1033,
+    "sha256": "b7349957ce643303fab5f9b3ca7b73c8b9fc15dba632dadec277efdadd3dccb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_066 状态：仍在运行，未完成\n\n| 项目 | 值 |\n|------|-----|\n| 当前 step | 56000 / 60000 (93%) |\n| GPU 1 状态 | 24% utilization, 2523 MiB — 仍在跑 |\n| 最近 eval (55K) | eval_return = **209.9** |\n| 最近 train (56K) | 277.1, 296.4, 60.9, 60.8 (波动较大) |\n\n### 已有 Checkpoints (10个，缺最终 60K)\n\n| 文件 | 大小 | 时间 |\n|------|------|------|\n| checkpoint_10000.pt | 221 MB | 07:45 |\n| checkpoint_15000.pt | 221 MB | 07:55 |\n| checkpoint_20000.pt | 221 MB | 08:06 |\n| checkpoint_25000.pt | 221 MB | 08:16 |\n| checkpoint_30000.pt | 221 MB | 08:27 |\n| checkpoint_35000.pt | 221 MB | 08:38 |\n| checkpoint_40000.pt | 221 MB | 08:50 |\n| checkpoint_45000.pt | 221 MB | 09:01 |\n| checkpoint_50000.pt | 221 MB | 09:11 |\n| checkpoint_55000.pt | 221 MB | 09:22 |\n| latest.pt | 221 MB | 09:22 |\n\n每 5K steps 约 10-11 分钟。预计还需 ~8-10 分钟完成（checkpoint_60000.pt + 最终 eval at 60K）。当前缺少 checkpoint_60000.pt 和 final eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp066-completion.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62b58851ea7e6bbf4aeb",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper figure fig5 dt amplification fix",
+  "task_key": "worker_paper_figure_fig5_dt_amplification_fix_20260515T102339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig5_dt_amplification_fix_20260515T102339_result.json",
+    "occurrence": 1,
+    "bytes": 634,
+    "sha256": "9c8e5bed55e1a05e1b3724db6149df4f48cad6d9a15981e7f2eea58edd4c273d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修正摘要：\n\n**Diff 总结：**\n| 项目 | 旧值 | 新值 |\n|------|------|------|\n| Baseline (dt=1) | 915.67 (@105K) | **968.67** ±2.45 (@505K, 2-seed mean) |\n| y 轴标签 | \"Peak Eval Return\" | **\"Best Eval Return\"** |\n| dt=2 降幅 | -47% | **-50%** |\n| dt=4 降幅 | -81% | **-82%** |\n| N 标注 | 无 | **x 轴标签含 N=2/N=1** |\n| 误差棒 | 无 | **baseline 有误差棒 (std=2.45)** |\n\n**清理：** 旧 `fig5_rssm_fidelity.*` 本地和服务器均已删除。\n\n**产出：** `artifacts/figures/paper/fig5_dt_amplification.pdf` + `.png`（已注册 art_20260515_72d849）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig5-dt-amplification-fix.md"
+}

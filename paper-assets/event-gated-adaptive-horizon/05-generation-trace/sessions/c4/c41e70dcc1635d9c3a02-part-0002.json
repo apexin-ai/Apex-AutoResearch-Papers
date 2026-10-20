@@ -1,0 +1,667 @@
+{
+  "schema_version": "1.0",
+  "session_id": "c41e70dcc1635d9c3a02",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 48,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F8amWrrBAgnGSuvnoTDifJ",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\n\nwith open(\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/c90b510e-2764-4f5f-8b1c-ebcd89e484de/tool-results/mcp-agent-ml-research-read_registry-1779738926574.txt\") as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Build the complete dataset from the existing analysis + new experiments\n# The existing analysis has 56 data points. We need to add experiments that were\n# previously excluded as \"not completed\" but are now DONE.\n\n# First, let's reproduce the existing 56-experiment dataset as-is, then add new ones.\n# The existing dataset is the ground truth from the prior analysis.\n# New experiments to add: exp_077, exp_078, exp_082, exp_083, exp_084, exp_085, exp_087\n\nexisting_dataset = [\n    # From the existing analysis.md table, all 56 entries\n    (\"exp_006_fixed_dt2\", \"walker\", \"006_fixed_dt2\", 1, 1, 4.835, \"computed\"),\n    (\"exp_008a_cheetah_unexposed_s0\", \"cheetah\", \"008a_unexposed\", 0, 0, 0.490, \"max(nve_105k)\"),\n    (\"exp_008a_cheetah_unexposed_s1\", \"cheetah\", \"008a_unexposed\", 1, 0, 0.478, \"max(nve_105k)\"),\n    (\"exp_008a_no_subsample_dt2\", \"walker\", \"008a_unexposed\", 1, 0, 0.930, \"max(normalized_ve)\"),\n    (\"exp_008a_unexposed_s1\", \"walker\", \"008a_unexposed\", 1, 0, 0.598, \"computed\"),\n    (\"exp_008a_unexposed_s2\", \"walker\", \"008a_unexposed\", 2, 0, 0.463, \"computed\"),\n    (\"exp_008d_civo_trigger_s3\", \"walker\", \"008d_civo_trigger\", 3, 1, 1.530, \"metrics.nve_peak\"),\n    (\"exp_008d_civo_trigger_s4\", \"walker\", \"008d_civo_trigger\", 4, 1, 4.620, \"metrics.nve_peak\"),\n    (\"exp_008d_subsample_on_h8\", \"walker\", \"008d_civo_trigger\", 1, 1, 4.124, \"computed\"),\n    (\"exp_008e_v3_s3\", \"walker\", \"008e_v3_mitigation\", 3, 1, 4.020, \"metrics.nve_peak\"),\n    (\"exp_008e_v3_s4\", \"walker\", \"008e_v3_mitigation\", 4, 0, 0.990, \"metrics.nve_peak\"),\n    (\"exp_008e_v3_subsample_on_dt1_h15\", \"walker\", \"008e_v3_mitigation\", 1, 0, 1.930, \"max(normalized_ve)\"),\n    (\"exp_008e_v3_walker_s1\", \"walker\", \"008e_v3_mitigation\", 1, 0, 0.803, \"computed\"),\n    (\"exp_008e_v3_walker_s2\", \"walker\", \"008e_v3_mitigation\", 2, 1, 3.780, \"max(final_nve)\"),\n    (\"exp_008f_no_dt_embed_subsample_on_h8\", \"walker\", \"008f_no_dt_emb\", 1, 0, 1.020, \"max(normalized_ve)\"),\n    (\"exp_008f_s3_no_dt_embed_walker\", \"walker\", \"008f_no_dt_emb\", 3, 0, 1.490, \"metrics.nve_peak\"),\n    (\"exp_008f_s4\", \"walker\", \"008f_no_dt_emb\", 4, 0, 1.410, \"metrics.peak_nve\"),\n    (\"exp_009b_008d_walker_s2\", \"walker\", \"008d_civo_trigger\", 2, 1, 1.620, \"metrics.nve_peak\"),\n    (\"exp_009c_s3\", \"walker\", \"other\", 3, 0, 0.520, \"max(nve_105k)\"),\n    (\"exp_009e_008d_walker_s1\", \"walker\", \"008d_civo_trigger\", 1, 1, 4.130, \"metrics.nve_peak\"),\n    (\"exp_010b_cheetah_civo_trigger\", \"cheetah\", \"008d_civo_trigger\", 1, 1, 8.270, \"metrics.nve_peak\"),\n    (\"exp_010b_cheetah_civo_trigger_s0\", \"cheetah\", \"008d_civo_trigger\", 0, 1, 70.640, \"max(nve_105K)\"),\n    (\"exp_015b_frozen_dt_emb\", \"walker\", \"frozen_dt_emb\", 1, 0, 0.467, \"max(nve_85K)\"),\n    (\"exp_020_vanilla_dreamerv3_s2\", \"walker\", \"baseline\", 2, 0, 0.983, \"computed\"),\n    (\"exp_021_full_sgs_cheetah_s1\", \"cheetah\", \"sgs\", 1, 1, 9.940, \"metrics.nve_peak\"),\n    (\"exp_024b_cheetah_no_dt_emb_s0\", \"cheetah\", \"008f_no_dt_emb\", 0, 0, 0.200, \"metrics.nve_peak\"),\n    (\"exp_024b_cheetah_no_dt_emb_s1\", \"cheetah\", \"008f_no_dt_emb\", 1, 0, 0.100, \"metrics.nve_peak\"),\n    (\"exp_027_tcn_walker_s0\", \"walker\", \"tcn\", 0, 1, 3.965, \"metrics.peak_nve\"),\n    (\"exp_027_tcn_walker_s0_sigma02\", \"walker\", \"tcn\", 0, 0, 0.908, \"metrics.nve_max\"),\n    (\"exp_027_tcn_walker_s1\", \"walker\", \"tcn\", 1, 1, 1.637, \"metrics.nve_max\"),\n    (\"exp_029a_tcn_walker_s1_sigma02\", \"walker\", \"tcn\", 1, 0, 0.643, \"metrics.nve_max\"),\n    (\"exp_029b_tcn_walker_s2_sigma02\", \"walker\", \"tcn\", 2, 1, 2.765, \"metrics.nve_peak\"),\n    (\"exp_029d_tcn_walker_s3_sigma02\", \"walker\", \"tcn\", 3, 1, 3.000, \"metrics.nve_peak\"),\n    (\"exp_030b_tcn_cheetah_s0_sigma05\", \"cheetah\", \"tcn\", 0, 1, 10.666, \"metrics.nve_max\"),\n    (\"exp_031b_tcn_pickcube_s0_sigma05\", \"pickcube\", \"tcn\", 0, 1, 3.300, \"metrics.nve_peak\"),\n    (\"exp_032_dual_critic_walker\", \"walker\", \"dual_critic\", 0, 0, 1.100, \"metrics.nve_peak\"),\n    (\"exp_032b_dual_critic_walker_s1\", \"walker\", \"dual_critic\", 1, 0, 1.400, \"metrics.peak_nve\"),\n    (\"exp_034_dual_critic_cheetah\", \"cheetah\", \"dual_critic\", 0, 1, 4.500, \"computed\"),\n    (\"exp_036_dual_critic_pickcube\", \"cheetah\", \"dual_critic\", 0, 1, 2.300, \"metrics.nve_peak\"),\n    (\"exp_037_wide_critic_cheetah\", \"cheetah\", \"other\", 0, 1, 3.600, \"metrics.nve_peak\"),\n    (\"exp_042_frozen_dt_emb_walker\", \"walker\", \"frozen_dt_emb\", 0, 0, 0.194, \"metrics.nve_peak\"),\n    (\"exp_043_008f_walker_s1\", \"walker\", \"008f_no_dt_emb\", 1, 0, 0.808, \"metrics.nve_peak\"),\n    (\"exp_045_treatment_extension_008d_s3\", \"walker\", \"008d_civo_trigger\", 3, 1, 4.910, \"metrics.nve_peak\"),\n    (\"exp_046_frozen_dt_emb_cheetah\", \"cheetah\", \"frozen_dt_emb\", 0, 0, 1.350, \"metrics.nve_peak\"),\n    (\"exp_047_frozen_dt_emb_walker_s1\", \"walker\", \"frozen_dt_emb\", 1, 0, 1.710, \"metrics.nve_peak\"),\n    (\"exp_048_cheetah_civo_extension\", \"cheetah\", \"other\", 0, 1, 2.750, \"max(nve_final)\"),\n    (\"exp_057_frozen_dt_emb_walker_s2\", \"walker\", \"frozen_dt_emb\", 2, 0, 1.880, \"metrics.nve_peak\"),\n    (\"exp_058_frozen_dt_emb_cheetah_s1\", \"cheetah\", \"frozen_dt_emb\", 1, 0, 0.780, \"metrics.nve_peak\"),\n    (\"exp_059_walker_trained_s5\", \"walker\", \"trained_dt_emb\", 5, 1, 4.720, \"metrics.nve_peak\"),\n    (\"exp_067_frozen_dt_emb_walker_plan015\", \"walker\", \"frozen_dt_emb\", 0, 0, 0.400, \"metrics.nve_peak\"),\n    (\"exp_068_008d_walker_repro_s1\", \"walker\", \"008d_civo_trigger\", 1, 1, 4.120, \"max(nve_final_105k)\"),\n    (\"exp_069_008f_walker_repro_s1\", \"walker\", \"008f_no_dt_emb\", 1, 0, 0.660, \"metrics.nve_peak\"),\n    (\"exp_070_008e_v3_walker_s0\", \"walker\", \"008e_v3_mitigation\", 0, 0, 0.800, \"metrics.nve_peak\"),\n    (\"exp_071_008f_walker_s3\", \"walker\", \"008f_no_dt_emb\", 3, 0, 0.974, \"computed\"),\n    (\"exp_072_008e_v3_walker_s5\", \"walker\", \"008e_v3_mitigation\", 5, 0, 0.610, \"metrics.nve_peak\"),\n    (\"exp_073_008f_walker_s4\", \"walker\", \"008f_no_dt_emb\", 4, 0, 0.760, \"metrics.nve_peak\"),\n]\n\n# New experiments to add (previously excluded as \"not completed\" but now DONE)\nnew_experiments = [\n    (\"exp_078_cheetah_008d_s0\", \"cheetah\", \"008d_civo_trigger\", 0, 1, 4.100, \"metrics.nve_peak\"),\n    (\"exp_082_cheetah_no_dt_emb_s0\", \"cheetah\", \"008f_no_dt_emb\", 0, 0, 1.580, \"metrics.nve_peak (eval-variance-driven)\"),\n    (\"exp_084_frozen_dt_emb_walker_s0\", \"walker\", \"frozen_dt_emb\", 0, 0, 0.370, \"metrics.nve_peak\"),\n    (\"exp_085_frozen_dt_emb_walker_s1\", \"walker\", \"frozen_dt_emb\", 1, 0, 0.310, \"metrics.nve_peak\"),\n    (\"exp_087_frozen_dt_emb_cheetah_s1\", \"cheetah\", \"frozen_dt_emb\", 1, 0, 0.299, \"computed ve_ratio/baseline\"),\n]\n# Note: exp_077 and exp_083 are baselines used for NVE normalization, not classified experiments\n# Note: exp_082 nve_classification=\"no_civo\", eval-variance-driven not value overestimation\n\nall_data = existing_dataset + new_experiments\n\n# Convert to dicts\ndataset = []\nfor row in all_data:\n    dataset.append({\n        'exp_id': row[0],\n        'env': row[1],\n        'config': row[2],\n        'seed': row[3],\n        'label': row[4],\n        'nve_peak': row[5],\n        'nve_source': row[6],\n    })\n\n# Sort by label desc, env, nve desc\ndataset.sort(key=lambda x: (-x['label'], x['env'], -x['nve_peak']))\n\nn_pos = sum(1 for d in dataset if d['label'] == 1)\nn_neg = sum(1 for d in dataset if d['label'] == 0)\nprint(f\"Total: {len(dataset)} (CIVO: {n_pos}, Healthy: {n_neg})\")\n\n# Threshold analysis\nthresholds = [1.3, 1.5, 1.7, 2.0]\nprint(\"\\n| threshold | TP | FP | TN | FN | Precision | Recall | F1 | Accuracy |\")\nprint(\"|-----------|----|----|----|----|-----------|--------|-----|----------|\")\n\nresults = {}\nfor theta in thresholds:\n    tp = sum(1 for d in dataset if d['label']==1 and d['nve_peak'] > theta)\n    fp = sum(1 for d in dataset if d['label']==0 and d['nve_peak'] > theta)\n    tn = sum(1 for d in dataset if d['label']==0 and d['nve_peak'] <= theta)\n    fn = sum(1 for d in dataset if d['label']==1 and d['nve_peak'] <= theta)\n    total = tp+fp+tn+fn\n    prec = tp/(tp+fp) if (tp+fp)>0 else 0\n    rec = tp/(tp+fn) if (tp+fn)>0 else 0\n    f1 = 2*prec*rec/(prec+rec) if (prec+rec)>0 else 0\n    acc = (tp+tn)/total\n    \n    mark = \" **\" if theta == 1.5 else \"\"\n    print(f\"| {theta}{mark} | {tp} | {fp} | {tn} | {fn} | {prec:.3f} | {rec:.3f} | {f1:.3f} | {acc:.3f} |\")\n    \n    results[theta] = {\n        'tp': tp, 'fp': fp, 'tn': tn, 'fn': fn,\n        'prec': prec, 'rec': rec, 'f1': f1, 'acc': acc,\n        'fp_list': [d for d in dataset if d['label']==0 and d['nve_peak'] > theta],\n        'fn_list': [d for d in dataset if d['label']==1 and d['nve_peak'] <= theta],\n    }\n\n# AUROC\nconcordant = 0\nfor d1 in dataset:\n    if d1['label'] == 1:\n        for d2 in dataset:\n            if d2['label'] == 0:\n                if d1['nve_peak'] > d2['nve_peak']:\n                    concordant += 1\n                elif d1['nve_peak'] == d2['nve_peak']:\n                    concordant += 0.5\n\nauroc = concordant / (n_pos * n_neg)\nprint(f\"\\nAUROC = {auroc:.4f} (N={len(dataset)}, {n_pos}+, {n_neg}-)\")\n\n# Youden's J optimal\nall_nves = sorted(set(d['nve_peak'] for d in dataset))\nbest_j = -1\nbest_theta_opt = 0\nfor i in range(len(all_nves)-1):\n    mid = (all_nves[i] + all_nves[i+1]) / 2\n    tp = sum(1 for d in dataset if d['label']==1 and d['nve_peak'] > mid)\n    fn_ = sum(1 for d in dataset if d['label']==1 and d['nve_peak'] <= mid)\n    fp_ = sum(1 for d in dataset if d['label']==0 and d['nve_peak'] > mid)\n    tn_ = sum(1 for d in dataset if d['label']==0 and d['nve_peak'] <= mid)\n    sens = tp/(tp+fn_) if (tp+fn_)>0 else 0\n    spec = tn_/(tn_+fp_) if (tn_+fp_)>0 else 0\n    j = sens + spec - 1\n    if j > best_j:\n        best_j = j\n        best_theta_opt = mid\n\nprint(f\"Optimal θ (Youden's J) = {best_theta_opt:.3f}, J = {best_j:.4f}\")\n\n# Detail FP/FN at each threshold\nfor theta in thresholds:\n    r = results[theta]\n    print(f\"\\n--- θ={theta}× ---\")\n    if r['fp_list']:\n        print(f\"  FP ({len(r['fp_list'])}):\")\n        for d in r['fp_list']:\n            print(f\"    {d['exp_id']} (NVE={d['nve_peak']:.3f}, config={d['config']}, env={d['env']})\")\n    else:\n        print(\"  FP: none\")\n    if r['fn_list']:\n        print(f\"  FN ({len(r['fn_list'])}):\")\n        for d in r['fn_list']:\n            print(f\"    {d['exp_id']} (NVE={d['nve_peak']:.3f}, config={d['config']}, env={d['env']})\")\n    else:\n        print(\"  FN: none\")\n\n# Score distributions\npos_nves = sorted([d['nve_peak'] for d in dataset if d['label']==1])\nneg_nves = sorted([d['nve_peak'] for d in dataset if d['label']==0])\nprint(f\"\\nPositives ({len(pos_nves)}): min={min(pos_nves):.3f}, median={pos_nves[len(pos_nves)//2]:.3f}, max={max(pos_nves):.3f}, mean={sum(pos_nves)/len(pos_nves):.3f}\")\nprint(f\"Negatives ({len(neg_nves)}): min={min(neg_nves):.3f}, median={neg_nves[len(neg_nves)//2]:.3f}, max={max(neg_nves):.3f}, mean={sum(neg_nves)/len(neg_nves):.3f}\")\nprint(f\"Overlap zone: [{min(pos_nves):.3f}, {max(neg_nves):.3f}]\")\noverlap_pos = [n for n in pos_nves if n <= max(neg_nves)]\noverlap_neg = [n for n in neg_nves if n >= min(pos_nves)]\nprint(f\"  Overlapping positives: {overlap_pos}\")\nprint(f\"  Overlapping negatives: {overlap_neg}\")\n\nPYEOF\n",
+                "description": "Compute updated analysis with all 61 data points"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+            "uuid": "e9f1b81b-4fa6-4cd9-8794-afa71b3216a4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CKmRoJfrY7crQWqZD5LH3B",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5757,
+                "cache_read_input_tokens": 70778,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5757
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-25T20:02:32.169Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F8amWrrBAgnGSuvnoTDifJ",
+              "type": "tool_result",
+              "content": "Total: 61 (CIVO: 25, Healthy: 36)\n\n| threshold | TP | FP | TN | FN | Precision | Recall | F1 | Accuracy |\n|-----------|----|----|----|----|-----------|--------|-----|----------|\n| 1.3 | 25 | 8 | 28 | 0 | 0.758 | 1.000 | 0.862 | 0.869 |\n| 1.5 ** | 25 | 4 | 32 | 0 | 0.862 | 1.000 | 0.926 | 0.934 |\n| 1.7 | 22 | 3 | 33 | 3 | 0.880 | 0.880 | 0.880 | 0.902 |\n| 2.0 | 22 | 0 | 36 | 3 | 1.000 | 0.880 | 0.936 | 0.951 |\n\nAUROC = 0.9889 (N=61, 25+, 36-)\nOptimal θ (Youden's J) = 1.510, J = 0.8889\n\n--- θ=1.3× ---\n  FP (8):\n    exp_082_cheetah_no_dt_emb_s0 (NVE=1.580, config=008f_no_dt_emb, env=cheetah)\n    exp_046_frozen_dt_emb_cheetah (NVE=1.350, config=frozen_dt_emb, env=cheetah)\n    exp_008e_v3_subsample_on_dt1_h15 (NVE=1.930, config=008e_v3_mitigation, env=walker)\n    exp_057_frozen_dt_emb_walker_s2 (NVE=1.880, config=frozen_dt_emb, env=walker)\n    exp_047_frozen_dt_emb_walker_s1 (NVE=1.710, config=frozen_dt_emb, env=walker)\n    exp_008f_s3_no_dt_embed_walker (NVE=1.490, config=008f_no_dt_emb, env=walker)\n    exp_008f_s4 (NVE=1.410, config=008f_no_dt_emb, env=walker)\n    exp_032b_dual_critic_walker_s1 (NVE=1.400, config=dual_critic, env=walker)\n  FN: none\n\n--- θ=1.5× ---\n  FP (4):\n    exp_082_cheetah_no_dt_emb_s0 (NVE=1.580, config=008f_no_dt_emb, env=cheetah)\n    exp_008e_v3_subsample_on_dt1_h15 (NVE=1.930, config=008e_v3_mitigation, env=walker)\n    exp_057_frozen_dt_emb_walker_s2 (NVE=1.880, config=frozen_dt_emb, env=walker)\n    exp_047_frozen_dt_emb_walker_s1 (NVE=1.710, config=frozen_dt_emb, env=walker)\n  FN: none\n\n--- θ=1.7× ---\n  FP (3):\n    exp_008e_v3_subsample_on_dt1_h15 (NVE=1.930, config=008e_v3_mitigation, env=walker)\n    exp_057_frozen_dt_emb_walker_s2 (NVE=1.880, config=frozen_dt_emb, env=walker)\n    exp_047_frozen_dt_emb_walker_s1 (NVE=1.710, config=frozen_dt_emb, env=walker)\n  FN (3):\n    exp_027_tcn_walker_s1 (NVE=1.637, config=tcn, env=walker)\n    exp_009b_008d_walker_s2 (NVE=1.620, config=008d_civo_trigger, env=walker)\n    exp_008d_civo_trigger_s3 (NVE=1.530, config=008d_civo_trigger, env=walker)\n\n--- θ=2.0× ---\n  FP: none\n  FN (3):\n    exp_027_tcn_walker_s1 (NVE=1.637, config=tcn, env=walker)\n    exp_009b_008d_walker_s2 (NVE=1.620, config=008d_civo_trigger, env=walker)\n    exp_008d_civo_trigger_s3 (NVE=1.530, config=008d_civo_trigger, env=walker)\n\nPositives (25): min=1.530, median=4.100, max=70.640, mean=6.954\nNegatives (36): min=0.100, median=0.800, max=1.930, mean=0.845\nOverlap zone: [1.530, 1.930]\n  Overlapping positives: [1.53, 1.62, 1.637]\n  Overlapping negatives: [1.58, 1.71, 1.88, 1.93]",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+            "uuid": "7cde3650-f3b2-4bd2-b8c1-64c7c562fba4",
+            "tool_use_result": {
+              "stdout": "Total: 61 (CIVO: 25, Healthy: 36)\n\n| threshold | TP | FP | TN | FN | Precision | Recall | F1 | Accuracy |\n|-----------|----|----|----|----|-----------|--------|-----|----------|\n| 1.3 | 25 | 8 | 28 | 0 | 0.758 | 1.000 | 0.862 | 0.869 |\n| 1.5 ** | 25 | 4 | 32 | 0 | 0.862 | 1.000 | 0.926 | 0.934 |\n| 1.7 | 22 | 3 | 33 | 3 | 0.880 | 0.880 | 0.880 | 0.902 |\n| 2.0 | 22 | 0 | 36 | 3 | 1.000 | 0.880 | 0.936 | 0.951 |\n\nAUROC = 0.9889 (N=61, 25+, 36-)\nOptimal θ (Youden's J) = 1.510, J = 0.8889\n\n--- θ=1.3× ---\n  FP (8):\n    exp_082_cheetah_no_dt_emb_s0 (NVE=1.580, config=008f_no_dt_emb, env=cheetah)\n    exp_046_frozen_dt_emb_cheetah (NVE=1.350, config=frozen_dt_emb, env=cheetah)\n    exp_008e_v3_subsample_on_dt1_h15 (NVE=1.930, config=008e_v3_mitigation, env=walker)\n    exp_057_frozen_dt_emb_walker_s2 (NVE=1.880, config=frozen_dt_emb, env=walker)\n    exp_047_frozen_dt_emb_walker_s1 (NVE=1.710, config=frozen_dt_emb, env=walker)\n    exp_008f_s3_no_dt_embed_walker (NVE=1.490, config=008f_no_dt_emb, env=walker)\n    exp_008f_s4 (NVE=1.410, config=008f_no_dt_emb, env=walker)\n    exp_032b_dual_critic_walker_s1 (NVE=1.400, config=dual_critic, env=walker)\n  FN: none\n\n--- θ=1.5× ---\n  FP (4):\n    exp_082_cheetah_no_dt_emb_s0 (NVE=1.580, config=008f_no_dt_emb, env=cheetah)\n    exp_008e_v3_subsample_on_dt1_h15 (NVE=1.930, config=008e_v3_mitigation, env=walker)\n    exp_057_frozen_dt_emb_walker_s2 (NVE=1.880, config=frozen_dt_emb, env=walker)\n    exp_047_frozen_dt_emb_walker_s1 (NVE=1.710, config=frozen_dt_emb, env=walker)\n  FN: none\n\n--- θ=1.7× ---\n  FP (3):\n    exp_008e_v3_subsample_on_dt1_h15 (NVE=1.930, config=008e_v3_mitigation, env=walker)\n    exp_057_frozen_dt_emb_walker_s2 (NVE=1.880, config=frozen_dt_emb, env=walker)\n    exp_047_frozen_dt_emb_walker_s1 (NVE=1.710, config=frozen_dt_emb, env=walker)\n  FN (3):\n    exp_027_tcn_walker_s1 (NVE=1.637, config=tcn, env=walker)\n    exp_009b_008d_walker_s2 (NVE=1.620, config=008d_civo_trigger, env=walker)\n    exp_008d_civo_trigger_s3 (NVE=1.530, config=008d_civo_trigger, env=walker)\n\n--- θ=2.0× ---\n  FP: none\n  FN (3):\n    exp_027_tcn_walker_s1 (NVE=1.637, config=tcn, env=walker)\n    exp_009b_008d_walker_s2 (NVE=1.620, config=008d_civo_trigger, env=walker)\n    exp_008d_civo_trigger_s3 (NVE=1.530, config=008d_civo_trigger, env=walker)\n\nPositives (25): min=1.530, median=4.100, max=70.640, mean=6.954\nNegatives (36): min=0.100, median=0.800, max=1.930, mean=0.845\nOverlap zone: [1.530, 1.930]\n  Overlapping positives: [1.53, 1.62, 1.637]\n  Overlapping negatives: [1.58, 1.71, 1.88, 1.93]",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the complete updated results. Let me write the final report."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+            "uuid": "18486219-26ee-49de-9679-b58e4ee15139",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012Hk6CmKFkq1CKM2gE9hRGj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7655,
+                "cache_read_input_tokens": 76535,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7655
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Wn8akwYMm7agruFbUdqQ9e",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis.md",
+                "content": "# NVE Threshold Sensitivity Analysis\n\n**Updated: 2026-05-25** (added exp_078, exp_082, exp_084, exp_085, exp_087; total N=61)\n\n## 数据集\n\n样本总数: 61 (Collapsed: 25, Healthy: 36)\n\n| exp_id | env | config | seed | ground_truth | peak_nve | nve_source |\n|--------|-----|--------|------|-------------|----------|------------|\n| exp_006_fixed_dt2 | walker | 006_fixed_dt2 | 1 | CIVO(1) | 4.835 | computed ve_ratio/baseline at 65K |\n| exp_008a_cheetah_unexposed_s0 | cheetah | 008a_unexposed | 0 | Healthy(0) | 0.490 | max(nve_105k) |\n| exp_008a_cheetah_unexposed_s1 | cheetah | 008a_unexposed | 1 | Healthy(0) | 0.478 | max(nve_105k) |\n| exp_008a_no_subsample_dt2 | walker | 008a_unexposed | 1 | Healthy(0) | 0.930 | max(normalized_ve) |\n| exp_008a_unexposed_s1 | walker | 008a_unexposed | 1 | Healthy(0) | 0.598 | computed |\n| exp_008a_unexposed_s2 | walker | 008a_unexposed | 2 | Healthy(0) | 0.463 | computed |\n| exp_008d_civo_trigger_s3 | walker | 008d_civo_trigger | 3 | CIVO(1) | 1.530 | metrics.nve_peak |\n| exp_008d_civo_trigger_s4 | walker | 008d_civo_trigger | 4 | CIVO(1) | 4.620 | metrics.nve_peak |\n| exp_008d_subsample_on_h8 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.124 | computed |\n| exp_008e_v3_s3 | walker | 008e_v3_mitigation | 3 | CIVO(1) | 4.020 | metrics.nve_peak |\n| exp_008e_v3_s4 | walker | 008e_v3_mitigation | 4 | Healthy(0) | 0.990 | metrics.nve_peak |\n| exp_008e_v3_subsample_on_dt1_h15 | walker | 008e_v3_mitigation | 1 | Healthy(0) | 1.930 | max(normalized_ve) at 25K |\n| exp_008e_v3_walker_s1 | walker | 008e_v3_mitigation | 1 | Healthy(0) | 0.803 | computed |\n| exp_008e_v3_walker_s2 | walker | 008e_v3_mitigation | 2 | CIVO(1) | 3.780 | max(final_nve) |\n| exp_008f_no_dt_embed_subsample_on_h8 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 1.020 | max(normalized_ve) at 25K |\n| exp_008f_s3_no_dt_embed_walker | walker | 008f_no_dt_emb | 3 | Healthy(0) | 1.490 | metrics.nve_peak (parsed '< 1.5x') |\n| exp_008f_s4 | walker | 008f_no_dt_emb | 4 | Healthy(0) | 1.410 | metrics.peak_nve |\n| exp_009b_008d_walker_s2 | walker | 008d_civo_trigger | 2 | CIVO(1) | 1.620 | metrics.nve_peak |\n| exp_009c_s3 | walker | other | 3 | Healthy(0) | 0.520 | max(nve_105k) |\n| exp_009e_008d_walker_s1 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.130 | metrics.nve_peak |\n| exp_010b_cheetah_civo_trigger | cheetah | 008d_civo_trigger | 1 | CIVO(1) | 8.270 | metrics.nve_peak |\n| exp_010b_cheetah_civo_trigger_s0 | cheetah | 008d_civo_trigger | 0 | CIVO(1) | 70.640 | max(nve_105K) |\n| exp_015b_frozen_dt_emb | walker | frozen_dt_emb | 1 | Healthy(0) | 0.467 | max(nve_85K) |\n| exp_020_vanilla_dreamerv3_s2 | walker | baseline | 2 | Healthy(0) | 0.983 | computed |\n| exp_021_full_sgs_cheetah_s1 | cheetah | sgs | 1 | CIVO(1) | 9.940 | metrics.nve_peak |\n| exp_024b_cheetah_no_dt_emb_s0 | cheetah | 008f_no_dt_emb | 0 | Healthy(0) | 0.200 | metrics.nve_peak |\n| exp_024b_cheetah_no_dt_emb_s1 | cheetah | 008f_no_dt_emb | 1 | Healthy(0) | 0.100 | metrics.nve_peak |\n| exp_027_tcn_walker_s0 | walker | tcn | 0 | CIVO(1) | 3.965 | metrics.peak_nve |\n| exp_027_tcn_walker_s0_sigma02 | walker | tcn | 0 | Healthy(0) | 0.908 | metrics.nve_max |\n| exp_027_tcn_walker_s1 | walker | tcn | 1 | CIVO(1) | 1.637 | metrics.nve_max |\n| exp_029a_tcn_walker_s1_sigma02 | walker | tcn | 1 | Healthy(0) | 0.643 | metrics.nve_max |\n| exp_029b_tcn_walker_s2_sigma02 | walker | tcn | 2 | CIVO(1) | 2.765 | metrics.nve_peak |\n| exp_029d_tcn_walker_s3_sigma02 | walker | tcn | 3 | CIVO(1) | 3.000 | metrics.nve_peak |\n| exp_030b_tcn_cheetah_s0_sigma05 | cheetah | tcn | 0 | CIVO(1) | 10.666 | metrics.nve_max |\n| exp_031b_tcn_pickcube_s0_sigma05 | pickcube | tcn | 0 | CIVO(1) | 3.300 | metrics.nve_peak |\n| exp_032_dual_critic_walker | walker | dual_critic | 0 | Healthy(0) | 1.100 | metrics.nve_peak |\n| exp_032b_dual_critic_walker_s1 | walker | dual_critic | 1 | Healthy(0) | 1.400 | metrics.peak_nve |\n| exp_034_dual_critic_cheetah | cheetah | dual_critic | 0 | CIVO(1) | 4.500 | computed |\n| exp_036_dual_critic_pickcube | cheetah | dual_critic | 0 | CIVO(1) | 2.300 | metrics.nve_peak |\n| exp_037_wide_critic_cheetah | cheetah | other | 0 | CIVO(1) | 3.600 | metrics.nve_peak |\n| exp_042_frozen_dt_emb_walker | walker | frozen_dt_emb | 0 | Healthy(0) | 0.194 | metrics.nve_peak |\n| exp_043_008f_walker_s1 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 0.808 | metrics.nve_peak |\n| exp_045_treatment_extension_008d_s3 | walker | 008d_civo_trigger | 3 | CIVO(1) | 4.910 | metrics.nve_peak |\n| exp_046_frozen_dt_emb_cheetah | cheetah | frozen_dt_emb | 0 | Healthy(0) | 1.350 | metrics.nve_peak |\n| exp_047_frozen_dt_emb_walker_s1 | walker | frozen_dt_emb | 1 | Healthy(0) | 1.710 | metrics.nve_peak |\n| exp_048_cheetah_civo_extension | cheetah | other | 0 | CIVO(1) | 2.750 | max(nve_final) |\n| exp_057_frozen_dt_emb_walker_s2 | walker | frozen_dt_emb | 2 | Healthy(0) | 1.880 | metrics.nve_peak |\n| exp_058_frozen_dt_emb_cheetah_s1 | cheetah | frozen_dt_emb | 1 | Healthy(0) | 0.780 | metrics.nve_peak |\n| exp_059_walker_trained_s5 | walker | trained_dt_emb | 5 | CIVO(1) | 4.720 | metrics.nve_peak |\n| exp_067_frozen_dt_emb_walker_plan015 | walker | frozen_dt_emb | 0 | Healthy(0) | 0.400 | metrics.nve_peak |\n| exp_068_008d_walker_repro_s1 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.120 | max(nve_final_105k) |\n| exp_069_008f_walker_repro_s1 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 0.660 | metrics.nve_peak |\n| exp_070_008e_v3_walker_s0 | walker | 008e_v3_mitigation | 0 | Healthy(0) | 0.800 | metrics.nve_peak |\n| exp_071_008f_walker_s3 | walker | 008f_no_dt_emb | 3 | Healthy(0) | 0.974 | computed ve_ratio_peak/baseline |\n| exp_072_008e_v3_walker_s5 | walker | 008e_v3_mitigation | 5 | Healthy(0) | 0.610 | metrics.nve_peak |\n| exp_073_008f_walker_s4 | walker | 008f_no_dt_emb | 4 | Healthy(0) | 0.760 | metrics.nve_peak |\n| exp_078_cheetah_008d_s0 | cheetah | 008d_civo_trigger | 0 | CIVO(1) | 4.100 | metrics.nve_peak |\n| exp_082_cheetah_no_dt_emb_s0 | cheetah | 008f_no_dt_emb | 0 | Healthy(0) | 1.580 | metrics.nve_peak (eval-variance-driven) |\n| exp_084_frozen_dt_emb_walker_s0 | walker | frozen_dt_emb | 0 | Healthy(0) | 0.370 | metrics.nve_peak |\n| exp_085_frozen_dt_emb_walker_s1 | walker | frozen_dt_emb | 1 | Healthy(0) | 0.310 | metrics.nve_peak |\n| exp_087_frozen_dt_emb_cheetah_s1 | cheetah | frozen_dt_emb | 1 | Healthy(0) | 0.299 | computed ve_ratio/baseline |\n\n## Threshold Analysis\n\n### θ = 1.3×\n- **Accuracy: 86.9%** (53/61)\n- Precision: 75.8% | Recall: 100.0% | **F1: 0.862**\n- TP=25, FP=8, TN=28, FN=0\n- FP: exp_082_cheetah_no_dt_emb_s0 (1.58), exp_046_frozen_dt_emb_cheetah (1.35), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88), exp_047_frozen_dt_emb_walker_s1 (1.71), exp_008f_s3_no_dt_embed_walker (1.49), exp_008f_s4 (1.41), exp_032b_dual_critic_walker_s1 (1.40)\n- FN: none\n\n### θ = 1.5× (recommended)\n- **Accuracy: 93.4%** (57/61)\n- Precision: 86.2% | Recall: 100.0% | **F1: 0.926**\n- TP=25, FP=4, TN=32, FN=0\n- FP: exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven, NOT value overestimation), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient)\n- FN: none\n\n### θ = 1.7×\n- **Accuracy: 90.2%** (55/61)\n- Precision: 88.0% | Recall: 88.0% | **F1: 0.880**\n- TP=22, FP=3, TN=33, FN=3\n- FP: exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88), exp_047_frozen_dt_emb_walker_s1 (1.71)\n- FN: exp_027_tcn_walker_s1 (1.64), exp_009b_008d_walker_s2 (1.62), exp_008d_civo_trigger_s3 (1.53)\n\n### θ = 2.0×\n- **Accuracy: 95.1%** (58/61)\n- Precision: 100.0% | Recall: 88.0% | **F1: 0.936**\n- TP=22, FP=0, TN=36, FN=3\n- FP: none\n- FN: exp_027_tcn_walker_s1 (1.64), exp_009b_008d_walker_s2 (1.62), exp_008d_civo_trigger_s3 (1.53)\n\n### 汇总\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 86.9% | 75.8% | 100% | 0.862 | 8 | 0 |\n| **1.5×** | **93.4%** | **86.2%** | **100%** | **0.926** | 4 | 0 |\n| 1.7× | 90.2% | 88.0% | 88.0% | 0.880 | 3 | 3 |\n| 2.0× | 95.1% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n## AUROC\n\n**AUROC = 0.9889** (N=61, 25 positive, 36 negative)\n\nNVE_peak 作为连续分数对 CIVO 的区分力极强。\n\n**NVE 分布:**\n- CIVO collapsed (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (36): min=0.100, median=0.800, max=1.930, mean=0.845\n\n**Overlap zone:** NVE ∈ [1.530, 1.930]\n- 重叠 collapsed (3): exp_008d_s3 (1.530), exp_009b_s2 (1.620), exp_027_tcn_s1 (1.637)\n- 重叠 healthy (4): exp_082_cheetah_no_dt_emb (1.580), exp_047_frozen_walker_s1 (1.710), exp_057_frozen_walker_s2 (1.880), exp_008e_v3_dt1_h15 (1.930)\n\n**Data-optimal threshold (Youden's J):** θ ≈ 1.51×, J = 0.889\n\n## 推荐 threshold\n\n**推荐阈值: NVE ≥ 1.5×** (F1 = 0.926, AUROC = 0.989)\n\n理由：\n1. **100% recall**: 不漏掉任何 CIVO 实验。漏检比误报代价更高——未检出的 CIVO 导致无效训练浪费 GPU 小时。\n2. **最佳 F1**: 1.5× 在四个候选 threshold 中 F1 第二高（0.926 vs 2.0× 的 0.936），但 recall 从 88%→100% 的提升价值大于 precision 从 100%→86% 的下降。\n3. **4 个 FP 均可解释**: 2 个 frozen dt_emb transient spike（自然消退，非病理性）、1 个 eval-variance-driven（非 value overestimation）、1 个 mitigation config 早期 spike。\n4. **Youden's J 最优点**: 统计最优切分在 θ≈1.51×，与 1.5× 一致。\n5. **与论文定义一致**: 原论文使用 NVE≥1.5× 作为 CIVO onset 标准。\n\n**Decision rule:**\n- θ=1.5× for **screening** (maximize sensitivity, catch all CIVO early)\n- θ=2.0× for **confirmation** (zero false positives, but misses 3 self-correcting CIVO seeds)\n\n## 方法论说明\n\n### NVE 计算方法\n\nNVE (Normalized Value-Eval ratio) = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n- Walker Walk baseline: exp_001_baseline (seed 1) per-step VE ratios: 25K=0.087, 35K=0.241, 45K=0.331, 55K=0.404, 65K=0.563, 75K=0.719, 85K=0.701, 95K=0.632, 105K=0.656\n- Cheetah Run baseline: approximate VE trajectory from exp_023a/023b: 25K=0.1, 35K=0.2, 45K=0.3, 55K=0.4, 65K=0.5, 75K=0.55, 85K=0.6, 95K=0.65, 105K=0.65\n- 取 peak NVE (训练过程中最大 NVE) 作为分类特征\n- NVE 数据提取优先级: nve_peak > nve_max > normalized_ve > ve_ratio/baseline\n\n### Ground Truth 标注\n\n- **CIVO(1)** (25 个): 明确 CIVO collapse 证据 (VE 持续加速, eval 显著下降, nve_classification=onset_collapse)\n- **Healthy(0)** (36 个): 无 CIVO 迹象 (VE 稳定, eval 保持或增长)\n- **EXCLUDE**: conclusion=killed/failed (技术故障), 无 NVE 数据, 纯 baseline (用于归一化), 分类模糊\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+            "uuid": "04a032f0-8cf9-4218-96cb-eb1af64c92a9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012Hk6CmKFkq1CKM2gE9hRGj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7655,
+                "cache_read_input_tokens": 76535,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7655
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-25T20:04:05.768Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Wn8akwYMm7agruFbUdqQ9e",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+            "uuid": "f5f33939-33f3-4ea6-a410-88a44834b247",
+            "tool_use_result": {
+              "type": "update",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis.md",
+              "content": "# NVE Threshold Sensitivity Analysis\n\n**Updated: 2026-05-25** (added exp_078, exp_082, exp_084, exp_085, exp_087; total N=61)\n\n## 数据集\n\n样本总数: 61 (Collapsed: 25, Healthy: 36)\n\n| exp_id | env | config | seed | ground_truth | peak_nve | nve_source |\n|--------|-----|--------|------|-------------|----------|------------|\n| exp_006_fixed_dt2 | walker | 006_fixed_dt2 | 1 | CIVO(1) | 4.835 | computed ve_ratio/baseline at 65K |\n| exp_008a_cheetah_unexposed_s0 | cheetah | 008a_unexposed | 0 | Healthy(0) | 0.490 | max(nve_105k) |\n| exp_008a_cheetah_unexposed_s1 | cheetah | 008a_unexposed | 1 | Healthy(0) | 0.478 | max(nve_105k) |\n| exp_008a_no_subsample_dt2 | walker | 008a_unexposed | 1 | Healthy(0) | 0.930 | max(normalized_ve) |\n| exp_008a_unexposed_s1 | walker | 008a_unexposed | 1 | Healthy(0) | 0.598 | computed |\n| exp_008a_unexposed_s2 | walker | 008a_unexposed | 2 | Healthy(0) | 0.463 | computed |\n| exp_008d_civo_trigger_s3 | walker | 008d_civo_trigger | 3 | CIVO(1) | 1.530 | metrics.nve_peak |\n| exp_008d_civo_trigger_s4 | walker | 008d_civo_trigger | 4 | CIVO(1) | 4.620 | metrics.nve_peak |\n| exp_008d_subsample_on_h8 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.124 | computed |\n| exp_008e_v3_s3 | walker | 008e_v3_mitigation | 3 | CIVO(1) | 4.020 | metrics.nve_peak |\n| exp_008e_v3_s4 | walker | 008e_v3_mitigation | 4 | Healthy(0) | 0.990 | metrics.nve_peak |\n| exp_008e_v3_subsample_on_dt1_h15 | walker | 008e_v3_mitigation | 1 | Healthy(0) | 1.930 | max(normalized_ve) at 25K |\n| exp_008e_v3_walker_s1 | walker | 008e_v3_mitigation | 1 | Healthy(0) | 0.803 | computed |\n| exp_008e_v3_walker_s2 | walker | 008e_v3_mitigation | 2 | CIVO(1) | 3.780 | max(final_nve) |\n| exp_008f_no_dt_embed_subsample_on_h8 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 1.020 | max(normalized_ve) at 25K |\n| exp_008f_s3_no_dt_embed_walker | walker | 008f_no_dt_emb | 3 | Healthy(0) | 1.490 | metrics.nve_peak (parsed '< 1.5x') |\n| exp_008f_s4 | walker | 008f_no_dt_emb | 4 | Healthy(0) | 1.410 | metrics.peak_nve |\n| exp_009b_008d_walker_s2 | walker | 008d_civo_trigger | 2 | CIVO(1) | 1.620 | metrics.nve_peak |\n| exp_009c_s3 | walker | other | 3 | Healthy(0) | 0.520 | max(nve_105k) |\n| exp_009e_008d_walker_s1 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.130 | metrics.nve_peak |\n| exp_010b_cheetah_civo_trigger | cheetah | 008d_civo_trigger | 1 | CIVO(1) | 8.270 | metrics.nve_peak |\n| exp_010b_cheetah_civo_trigger_s0 | cheetah | 008d_civo_trigger | 0 | CIVO(1) | 70.640 | max(nve_105K) |\n| exp_015b_frozen_dt_emb | walker | frozen_dt_emb | 1 | Healthy(0) | 0.467 | max(nve_85K) |\n| exp_020_vanilla_dreamerv3_s2 | walker | baseline | 2 | Healthy(0) | 0.983 | computed |\n| exp_021_full_sgs_cheetah_s1 | cheetah | sgs | 1 | CIVO(1) | 9.940 | metrics.nve_peak |\n| exp_024b_cheetah_no_dt_emb_s0 | cheetah | 008f_no_dt_emb | 0 | Healthy(0) | 0.200 | metrics.nve_peak |\n| exp_024b_cheetah_no_dt_emb_s1 | cheetah | 008f_no_dt_emb | 1 | Healthy(0) | 0.100 | metrics.nve_peak |\n| exp_027_tcn_walker_s0 | walker | tcn | 0 | CIVO(1) | 3.965 | metrics.peak_nve |\n| exp_027_tcn_walker_s0_sigma02 | walker | tcn | 0 | Healthy(0) | 0.908 | metrics.nve_max |\n| exp_027_tcn_walker_s1 | walker | tcn | 1 | CIVO(1) | 1.637 | metrics.nve_max |\n| exp_029a_tcn_walker_s1_sigma02 | walker | tcn | 1 | Healthy(0) | 0.643 | metrics.nve_max |\n| exp_029b_tcn_walker_s2_sigma02 | walker | tcn | 2 | CIVO(1) | 2.765 | metrics.nve_peak |\n| exp_029d_tcn_walker_s3_sigma02 | walker | tcn | 3 | CIVO(1) | 3.000 | metrics.nve_peak |\n| exp_030b_tcn_cheetah_s0_sigma05 | cheetah | tcn | 0 | CIVO(1) | 10.666 | metrics.nve_max |\n| exp_031b_tcn_pickcube_s0_sigma05 | pickcube | tcn | 0 | CIVO(1) | 3.300 | metrics.nve_peak |\n| exp_032_dual_critic_walker | walker | dual_critic | 0 | Healthy(0) | 1.100 | metrics.nve_peak |\n| exp_032b_dual_critic_walker_s1 | walker | dual_critic | 1 | Healthy(0) | 1.400 | metrics.peak_nve |\n| exp_034_dual_critic_cheetah | cheetah | dual_critic | 0 | CIVO(1) | 4.500 | computed |\n| exp_036_dual_critic_pickcube | cheetah | dual_critic | 0 | CIVO(1) | 2.300 | metrics.nve_peak |\n| exp_037_wide_critic_cheetah | cheetah | other | 0 | CIVO(1) | 3.600 | metrics.nve_peak |\n| exp_042_frozen_dt_emb_walker | walker | frozen_dt_emb | 0 | Healthy(0) | 0.194 | metrics.nve_peak |\n| exp_043_008f_walker_s1 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 0.808 | metrics.nve_peak |\n| exp_045_treatment_extension_008d_s3 | walker | 008d_civo_trigger | 3 | CIVO(1) | 4.910 | metrics.nve_peak |\n| exp_046_frozen_dt_emb_cheetah | cheetah | frozen_dt_emb | 0 | Healthy(0) | 1.350 | metrics.nve_peak |\n| exp_047_frozen_dt_emb_walker_s1 | walker | frozen_dt_emb | 1 | Healthy(0) | 1.710 | metrics.nve_peak |\n| exp_048_cheetah_civo_extension | cheetah | other | 0 | CIVO(1) | 2.750 | max(nve_final) |\n| exp_057_frozen_dt_emb_walker_s2 | walker | frozen_dt_emb | 2 | Healthy(0) | 1.880 | metrics.nve_peak |\n| exp_058_frozen_dt_emb_cheetah_s1 | cheetah | frozen_dt_emb | 1 | Healthy(0) | 0.780 | metrics.nve_peak |\n| exp_059_walker_trained_s5 | walker | trained_dt_emb | 5 | CIVO(1) | 4.720 | metrics.nve_peak |\n| exp_067_frozen_dt_emb_walker_plan015 | walker | frozen_dt_emb | 0 | Healthy(0) | 0.400 | metrics.nve_peak |\n| exp_068_008d_walker_repro_s1 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.120 | max(nve_final_105k) |\n| exp_069_008f_walker_repro_s1 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 0.660 | metrics.nve_peak |\n| exp_070_008e_v3_walker_s0 | walker | 008e_v3_mitigation | 0 | Healthy(0) | 0.800 | metrics.nve_peak |\n| exp_071_008f_walker_s3 | walker | 008f_no_dt_emb | 3 | Healthy(0) | 0.974 | computed ve_ratio_peak/baseline |\n| exp_072_008e_v3_walker_s5 | walker | 008e_v3_mitigation | 5 | Healthy(0) | 0.610 | metrics.nve_peak |\n| exp_073_008f_walker_s4 | walker | 008f_no_dt_emb | 4 | Healthy(0) | 0.760 | metrics.nve_peak |\n| exp_078_cheetah_008d_s0 | cheetah | 008d_civo_trigger | 0 | CIVO(1) | 4.100 | metrics.nve_peak |\n| exp_082_cheetah_no_dt_emb_s0 | cheetah | 008f_no_dt_emb | 0 | Healthy(0) | 1.580 | metrics.nve_peak (eval-variance-driven) |\n| exp_084_frozen_dt_emb_walker_s0 | walker | frozen_dt_emb | 0 | Healthy(0) | 0.370 | metrics.nve_peak |\n| exp_085_frozen_dt_emb_walker_s1 | walker | frozen_dt_emb | 1 | Healthy(0) | 0.310 | metrics.nve_peak |\n| exp_087_frozen_dt_emb_cheetah_s1 | cheetah | frozen_dt_emb | 1 | Healthy(0) | 0.299 | computed ve_ratio/baseline |\n\n## Threshold Analysis\n\n### θ = 1.3×\n- **Accuracy: 86.9%** (53/61)\n- Precision: 75.8% | Recall: 100.0% | **F1: 0.862**\n- TP=25, FP=8, TN=28, FN=0\n- FP: exp_082_cheetah_no_dt_emb_s0 (1.58), exp_046_frozen_dt_emb_cheetah (1.35), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88), exp_047_frozen_dt_emb_walker_s1 (1.71), exp_008f_s3_no_dt_embed_walker (1.49), exp_008f_s4 (1.41), exp_032b_dual_critic_walker_s1 (1.40)\n- FN: none\n\n### θ = 1.5× (recommended)\n- **Accuracy: 93.4%** (57/61)\n- Precision: 86.2% | Recall: 100.0% | **F1: 0.926**\n- TP=25, FP=4, TN=32, FN=0\n- FP: exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven, NOT value overestimation), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient)\n- FN: none\n\n### θ = 1.7×\n- **Accuracy: 90.2%** (55/61)\n- Precision: 88.0% | Recall: 88.0% | **F1: 0.880**\n- TP=22, FP=3, TN=33, FN=3\n- FP: exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88), exp_047_frozen_dt_emb_walker_s1 (1.71)\n- FN: exp_027_tcn_walker_s1 (1.64), exp_009b_008d_walker_s2 (1.62), exp_008d_civo_trigger_s3 (1.53)\n\n### θ = 2.0×\n- **Accuracy: 95.1%** (58/61)\n- Precision: 100.0% | Recall: 88.0% | **F1: 0.936**\n- TP=22, FP=0, TN=36, FN=3\n- FP: none\n- FN: exp_027_tcn_walker_s1 (1.64), exp_009b_008d_walker_s2 (1.62), exp_008d_civo_trigger_s3 (1.53)\n\n### 汇总\n\n| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |\n|-----------|----------|-----------|--------|------|-----|-----|\n| 1.3× | 86.9% | 75.8% | 100% | 0.862 | 8 | 0 |\n| **1.5×** | **93.4%** | **86.2%** | **100%** | **0.926** | 4 | 0 |\n| 1.7× | 90.2% | 88.0% | 88.0% | 0.880 | 3 | 3 |\n| 2.0× | 95.1% | 100% | 88.0% | 0.936 | 0 | 3 |\n\n## AUROC\n\n**AUROC = 0.9889** (N=61, 25 positive, 36 negative)\n\nNVE_peak 作为连续分数对 CIVO 的区分力极强。\n\n**NVE 分布:**\n- CIVO collapsed (25): min=1.530, median=4.100, max=70.640, mean=6.954\n- Healthy (36): min=0.100, median=0.800, max=1.930, mean=0.845\n\n**Overlap zone:** NVE ∈ [1.530, 1.930]\n- 重叠 collapsed (3): exp_008d_s3 (1.530), exp_009b_s2 (1.620), exp_027_tcn_s1 (1.637)\n- 重叠 healthy (4): exp_082_cheetah_no_dt_emb (1.580), exp_047_frozen_walker_s1 (1.710), exp_057_frozen_walker_s2 (1.880), exp_008e_v3_dt1_h15 (1.930)\n\n**Data-optimal threshold (Youden's J):** θ ≈ 1.51×, J = 0.889\n\n## 推荐 threshold\n\n**推荐阈值: NVE ≥ 1.5×** (F1 = 0.926, AUROC = 0.989)\n\n理由：\n1. **100% recall**: 不漏掉任何 CIVO 实验。漏检比误报代价更高——未检出的 CIVO 导致无效训练浪费 GPU 小时。\n2. **最佳 F1**: 1.5× 在四个候选 threshold 中 F1 第二高（0.926 vs 2.0× 的 0.936），但 recall 从 88%→100% 的提升价值大于 precision 从 100%→86% 的下降。\n3. **4 个 FP 均可解释**: 2 个 frozen dt_emb transient spike（自然消退，非病理性）、1 个 eval-variance-driven（非 value overestimation）、1 个 mitigation config 早期 spike。\n4. **Youden's J 最优点**: 统计最优切分在 θ≈1.51×，与 1.5× 一致。\n5. **与论文定义一致**: 原论文使用 NVE≥1.5× 作为 CIVO onset 标准。\n\n**Decision rule:**\n- θ=1.5× for **screening** (maximize sensitivity, catch all CIVO early)\n- θ=2.0× for **confirmation** (zero false positives, but misses 3 self-correcting CIVO seeds)\n\n## 方法论说明\n\n### NVE 计算方法\n\nNVE (Normalized Value-Eval ratio) = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n- Walker Walk baseline: exp_001_baseline (seed 1) per-step VE ratios: 25K=0.087, 35K=0.241, 45K=0.331, 55K=0.404, 65K=0.563, 75K=0.719, 85K=0.701, 95K=0.632, 105K=0.656\n- Cheetah Run baseline: approximate VE trajectory from exp_023a/023b: 25K=0.1, 35K=0.2, 45K=0.3, 55K=0.4, 65K=0.5, 75K=0.55, 85K=0.6, 95K=0.65, 105K=0.65\n- 取 peak NVE (训练过程中最大 NVE) 作为分类特征\n- NVE 数据提取优先级: nve_peak > nve_max > normalized_ve > ve_ratio/baseline\n\n### Ground Truth 标注\n\n- **CIVO(1)** (25 个): 明确 CIVO collapse 证据 (VE 持续加速, eval 显著下降, nve_classification=onset_collapse)\n- **Healthy(0)** (36 个): 无 CIVO 迹象 (VE 稳定, eval 保持或增长)\n- **EXCLUDE**: conclusion=killed/failed (技术故障), 无 NVE 数据, 纯 baseline (用于归一化), 分类模糊\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 26,
+                  "newStart": 1,
+                  "newLines": 28,
+                  "lines": [
+                    " # NVE Threshold Sensitivity Analysis",
+                    " ",
+                    "+**Updated: 2026-05-25** (added exp_078, exp_082, exp_084, exp_085, exp_087; total N=61)",
+                    "+",
+                    " ## 数据集",
+                    " ",
+                    "-样本总数: 56 (Collapsed: 24, Healthy: 32)",
+                    "+样本总数: 61 (Collapsed: 25, Healthy: 36)",
+                    " ",
+                    " | exp_id | env | config | seed | ground_truth | peak_nve | nve_source |",
+                    " |--------|-----|--------|------|-------------|----------|------------|",
+                    " | exp_006_fixed_dt2 | walker | 006_fixed_dt2 | 1 | CIVO(1) | 4.835 | computed ve_ratio/baseline at 65K |",
+                    " | exp_008a_cheetah_unexposed_s0 | cheetah | 008a_unexposed | 0 | Healthy(0) | 0.490 | max(nve_105k) |",
+                    " | exp_008a_cheetah_unexposed_s1 | cheetah | 008a_unexposed | 1 | Healthy(0) | 0.478 | max(nve_105k) |",
+                    "-| exp_008a_no_subsample_dt2 | walker | 008a_unexposed | 1 | Healthy(0) | 0.930 | max(normalized_ve_55K) |",
+                    "-| exp_008a_unexposed_s1 | walker | 008a_unexposed | 1 | Healthy(0) | 0.598 | computed civo_ve_ratio_final/max_baseline_ve |",
+                    "-| exp_008a_unexposed_s2 | walker | 008a_unexposed | 2 | Healthy(0) | 0.463 | computed civo_ve_ratio_final/max_baseline_ve |",
+                    "+| exp_008a_no_subsample_dt2 | walker | 008a_unexposed | 1 | Healthy(0) | 0.930 | max(normalized_ve) |",
+                    "+| exp_008a_unexposed_s1 | walker | 008a_unexposed | 1 | Healthy(0) | 0.598 | computed |",
+                    "+| exp_008a_unexposed_s2 | walker | 008a_unexposed | 2 | Healthy(0) | 0.463 | computed |",
+                    " | exp_008d_civo_trigger_s3 | walker | 008d_civo_trigger | 3 | CIVO(1) | 1.530 | metrics.nve_peak |",
+                    " | exp_008d_civo_trigger_s4 | walker | 008d_civo_trigger | 4 | CIVO(1) | 4.620 | metrics.nve_peak |",
+                    "-| exp_008d_subsample_on_h8 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.124 | computed ve_ratio/baseline at 55K |",
+                    "+| exp_008d_subsample_on_h8 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.124 | computed |",
+                    " | exp_008e_v3_s3 | walker | 008e_v3_mitigation | 3 | CIVO(1) | 4.020 | metrics.nve_peak |",
+                    " | exp_008e_v3_s4 | walker | 008e_v3_mitigation | 4 | Healthy(0) | 0.990 | metrics.nve_peak |",
+                    "-| exp_008e_v3_subsample_on_dt1_h15 | walker | 008e_v3_mitigation | 1 | Healthy(0) | 1.930 | max(metrics.normalized_ve) at 25K |",
+                    "-| exp_008e_v3_walker_s1 | walker | 008e_v3_mitigation | 1 | Healthy(0) | 0.803 | computed ve_ratio/baseline at 105K |",
+                    "+| exp_008e_v3_subsample_on_dt1_h15 | walker | 008e_v3_mitigation | 1 | Healthy(0) | 1.930 | max(normalized_ve) at 25K |",
+                    "+| exp_008e_v3_walker_s1 | walker | 008e_v3_mitigation | 1 | Healthy(0) | 0.803 | computed |",
+                    " | exp_008e_v3_walker_s2 | walker | 008e_v3_mitigation | 2 | CIVO(1) | 3.780 | max(final_nve) |",
+                    "-| exp_008f_no_dt_embed_subsample_on_h8 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 1.020 | max(eval_checkpoints.normalized_ve) at 25K |",
+                    "+| exp_008f_no_dt_embed_subsample_on_h8 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 1.020 | max(normalized_ve) at 25K |",
+                    " | exp_008f_s3_no_dt_embed_walker | walker | 008f_no_dt_emb | 3 | Healthy(0) | 1.490 | metrics.nve_peak (parsed '< 1.5x') |",
+                    " | exp_008f_s4 | walker | 008f_no_dt_emb | 4 | Healthy(0) | 1.410 | metrics.peak_nve |",
+                    " | exp_009b_008d_walker_s2 | walker | 008d_civo_trigger | 2 | CIVO(1) | 1.620 | metrics.nve_peak |"
+                  ]
+                },
+                {
+                  "oldStart": 29,
+                  "oldLines": 7,
+                  "newStart": 31,
+                  "newLines": 7,
+                  "lines": [
+                    " | exp_010b_cheetah_civo_trigger | cheetah | 008d_civo_trigger | 1 | CIVO(1) | 8.270 | metrics.nve_peak |",
+                    " | exp_010b_cheetah_civo_trigger_s0 | cheetah | 008d_civo_trigger | 0 | CIVO(1) | 70.640 | max(nve_105K) |",
+                    " | exp_015b_frozen_dt_emb | walker | frozen_dt_emb | 1 | Healthy(0) | 0.467 | max(nve_85K) |",
+                    "-| exp_020_vanilla_dreamerv3_s2 | walker | baseline | 2 | Healthy(0) | 0.983 | computed ve_ratio/baseline at 105K |",
+                    "+| exp_020_vanilla_dreamerv3_s2 | walker | baseline | 2 | Healthy(0) | 0.983 | computed |",
+                    " | exp_021_full_sgs_cheetah_s1 | cheetah | sgs | 1 | CIVO(1) | 9.940 | metrics.nve_peak |",
+                    " | exp_024b_cheetah_no_dt_emb_s0 | cheetah | 008f_no_dt_emb | 0 | Healthy(0) | 0.200 | metrics.nve_peak |",
+                    " | exp_024b_cheetah_no_dt_emb_s1 | cheetah | 008f_no_dt_emb | 1 | Healthy(0) | 0.100 | metrics.nve_peak |"
+                  ]
+                },
+                {
+                  "oldStart": 43,
+                  "oldLines": 9,
+                  "newStart": 45,
+                  "newLines": 9,
+                  "lines": [
+                    " | exp_031b_tcn_pickcube_s0_sigma05 | pickcube | tcn | 0 | CIVO(1) | 3.300 | metrics.nve_peak |",
+                    " | exp_032_dual_critic_walker | walker | dual_critic | 0 | Healthy(0) | 1.100 | metrics.nve_peak |",
+                    " | exp_032b_dual_critic_walker_s1 | walker | dual_critic | 1 | Healthy(0) | 1.400 | metrics.peak_nve |",
+                    "-| exp_034_dual_critic_cheetah | cheetah | dual_critic | 0 | CIVO(1) | 4.500 | computed ve_ratio_peak/baseline at 55K |",
+                    "+| exp_034_dual_critic_cheetah | cheetah | dual_critic | 0 | CIVO(1) | 4.500 | computed |",
+                    " | exp_036_dual_critic_pickcube | cheetah | dual_critic | 0 | CIVO(1) | 2.300 | metrics.nve_peak |",
+                    "-| exp_037_wide_critic_cheetah | cheetah | other | ? | CIVO(1) | 3.600 | metrics.nve_peak |",
+                    "+| exp_037_wide_critic_cheetah | cheetah | other | 0 | CIVO(1) | 3.600 | metrics.nve_peak |",
+                    " | exp_042_frozen_dt_emb_walker | walker | frozen_dt_emb | 0 | Healthy(0) | 0.194 | metrics.nve_peak |",
+                    " | exp_043_008f_walker_s1 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 0.808 | metrics.nve_peak |",
+                    " | exp_045_treatment_extension_008d_s3 | walker | 008d_civo_trigger | 3 | CIVO(1) | 4.910 | metrics.nve_peak |"
+                  ]
+                },
+                {
+                  "oldStart": 59,
+                  "oldLines": 69,
+                  "newStart": 61,
+                  "newLines": 85,
+                  "lines": [
+                    " | exp_068_008d_walker_repro_s1 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.120 | max(nve_final_105k) |",
+                    " | exp_069_008f_walker_repro_s1 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 0.660 | metrics.nve_peak |",
+                    " | exp_070_008e_v3_walker_s0 | walker | 008e_v3_mitigation | 0 | Healthy(0) | 0.800 | metrics.nve_peak |",
+                    "-| exp_071_008f_walker_s3 | walker | 008f_no_dt_emb | 3 | Healthy(0) | 0.974 | computed ve_ratio_peak/max_baseline_ve |",
+                    "+| exp_071_008f_walker_s3 | walker | 008f_no_dt_emb | 3 | Healthy(0) | 0.974 | computed ve_ratio_peak/baseline |",
+                    " | exp_072_008e_v3_walker_s5 | walker | 008e_v3_mitigation | 5 | Healthy(0) | 0.610 | metrics.nve_peak |",
+                    " | exp_073_008f_walker_s4 | walker | 008f_no_dt_emb | 4 | Healthy(0) | 0.760 | metrics.nve_peak |",
+                    "+| exp_078_cheetah_008d_s0 | cheetah | 008d_civo_trigger | 0 | CIVO(1) | 4.100 | metrics.nve_peak |",
+                    "+| exp_082_cheetah_no_dt_emb_s0 | cheetah | 008f_no_dt_emb | 0 | Healthy(0) | 1.580 | metrics.nve_peak (eval-variance-driven) |",
+                    "+| exp_084_frozen_dt_emb_walker_s0 | walker | frozen_dt_emb | 0 | Healthy(0) | 0.370 | metrics.nve_peak |",
+                    "+| exp_085_frozen_dt_emb_walker_s1 | walker | frozen_dt_emb | 1 | Healthy(0) | 0.310 | metrics.nve_peak |",
+                    "+| exp_087_frozen_dt_emb_cheetah_s1 | cheetah | frozen_dt_emb | 1 | Healthy(0) | 0.299 | computed ve_ratio/baseline |",
+                    " ",
+                    "-## 分类结果",
+                    "+## Threshold Analysis",
+                    " ",
+                    "-| threshold | TP | FP | TN | FN | Precision | Recall | F1 | Accuracy |",
+                    "-|-----------|----|----|----|----|-----------|--------|-----|----------|",
+                    "-| 1.0 | 24 | 9 | 23 | 0 | 0.727 | 1.000 | 0.842 | 0.839 |",
+                    "-| 1.1 | 24 | 8 | 24 | 0 | 0.750 | 1.000 | 0.857 | 0.857 |",
+                    "-| 1.2 | 24 | 7 | 25 | 0 | 0.774 | 1.000 | 0.873 | 0.875 |",
+                    "-| 1.3 | 24 | 7 | 25 | 0 | 0.774 | 1.000 | 0.873 | 0.875 |",
+                    "-| 1.5 ** | 24 | 3 | 29 | 0 | 0.889 | 1.000 | 0.941 | 0.946 |",
+                    "-| 1.7 | 21 | 3 | 29 | 3 | 0.875 | 0.875 | 0.875 | 0.893 |",
+                    "-| 2.0 | 21 | 0 | 32 | 3 | 1.000 | 0.875 | 0.933 | 0.946 |",
+                    "+### θ = 1.3×",
+                    "+- **Accuracy: 86.9%** (53/61)",
+                    "+- Precision: 75.8% | Recall: 100.0% | **F1: 0.862**",
+                    "+- TP=25, FP=8, TN=28, FN=0",
+                    "+- FP: exp_082_cheetah_no_dt_emb_s0 (1.58), exp_046_frozen_dt_emb_cheetah (1.35), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88), exp_047_frozen_dt_emb_walker_s1 (1.71), exp_008f_s3_no_dt_embed_walker (1.49), exp_008f_s4 (1.41), exp_032b_dual_critic_walker_s1 (1.40)",
+                    "+- FN: none",
+                    " ",
+                    "-## AUROC",
+                    "+### θ = 1.5× (recommended)",
+                    "+- **Accuracy: 93.4%** (57/61)",
+                    "+- Precision: 86.2% | Recall: 100.0% | **F1: 0.926**",
+                    "+- TP=25, FP=4, TN=32, FN=0",
+                    "+- FP: exp_082_cheetah_no_dt_emb_s0 (1.58, eval-variance-driven, NOT value overestimation), exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88, transient), exp_047_frozen_dt_emb_walker_s1 (1.71, transient)",
+                    "+- FN: none",
+                    " ",
+                    "-**AUROC = 0.9902**",
+                    "+### θ = 1.7×",
+                    "+- **Accuracy: 90.2%** (55/61)",
+                    "+- Precision: 88.0% | Recall: 88.0% | **F1: 0.880**",
+                    "+- TP=22, FP=3, TN=33, FN=3",
+                    "+- FP: exp_008e_v3_subsample_on_dt1_h15 (1.93), exp_057_frozen_dt_emb_walker_s2 (1.88), exp_047_frozen_dt_emb_walker_s1 (1.71)",
+                    "+- FN: exp_027_tcn_walker_s1 (1.64), exp_009b_008d_walker_s2 (1.62), exp_008d_civo_trigger_s3 (1.53)",
+                    " ",
+                    "-Computed from 24 positive + 32 negative samples using 33 ROC points",
+                    "+### θ = 2.0×",
+                    "+- **Accuracy: 95.1%** (58/61)",
+                    "+- Precision: 100.0% | Recall: 88.0% | **F1: 0.936**",
+                    "+- TP=22, FP=0, TN=36, FN=3",
+                    "+- FP: none",
+                    "+- FN: exp_027_tcn_walker_s1 (1.64), exp_009b_008d_walker_s2 (1.62), exp_008d_civo_trigger_s3 (1.53)",
+                    " ",
+                    "-ROC 关键点 (FPR, TPR):",
+                    "+### 汇总",
+                    " ",
+                    "-| Threshold | FPR | TPR |",
+                    "-|-----------|-----|-----|",
+                    "-| 1.0 | 0.281 | 1.000 |",
+                    "-| 1.1 | 0.250 | 1.000 |",
+                    "-| 1.2 | 0.219 | 1.000 |",
+                    "-| 1.3 | 0.219 | 1.000 |",
+                    "-| 1.5 | 0.094 | 1.000 |",
+                    "-| 1.7 | 0.094 | 0.875 |",
+                    "-| 2.0 | 0.000 | 0.875 |",
+                    "+| Threshold | Accuracy | Precision | Recall | F1 | FP | FN |",
+                    "+|-----------|----------|-----------|--------|------|-----|-----|",
+                    "+| 1.3× | 86.9% | 75.8% | 100% | 0.862 | 8 | 0 |",
+                    "+| **1.5×** | **93.4%** | **86.2%** | **100%** | **0.926** | 4 | 0 |",
+                    "+| 1.7× | 90.2% | 88.0% | 88.0% | 0.880 | 3 | 3 |",
+                    "+| 2.0× | 95.1% | 100% | 88.0% | 0.936 | 0 | 3 |",
+                    " ",
+                    "-## 推荐阈值",
+                    "+## AUROC",
+                    " ",
+                    "-**推荐阈值: NVE >= 1.5** (基于最高 F1 = 0.941)",
+                    "+**AUROC = 0.9889** (N=61, 25 positive, 36 negative)",
+                    " ",
+                    "-- Precision = 0.889, Recall = 1.000, Accuracy = 0.946",
+                    "-- TP=24, FP=3, TN=29, FN=0",
+                    "+NVE_peak 作为连续分数对 CIVO 的区分力极强。",
+                    " ",
+                    "-### 阈值选择权衡",
+                    "+**NVE 分布:**",
+                    "+- CIVO collapsed (25): min=1.530, median=4.100, max=70.640, mean=6.954",
+                    "+- Healthy (36): min=0.100, median=0.800, max=1.930, mean=0.845",
+                    " ",
+                    "-- **低阈值 (1.0-1.2)**: 高 Recall (少漏报) 但多误报。适用于安全优先场景 (宁可误报不可漏报)。",
+                    "-- **中阈值 (1.3-1.5)**: Recall/Precision 平衡。1.5 是 CIVO 论文推荐的 onset 检测阈值。",
+                    "-- **高阈值 (1.7-2.0)**: 高 Precision (少误报) 但可能漏报早期 CIVO。适用于减少不必要干预。",
+                    "+**Overlap zone:** NVE ∈ [1.530, 1.930]",
+                    "+- 重叠 collapsed (3): exp_008d_s3 (1.530), exp_009b_s2 (1.620), exp_027_tcn_s1 (1.637)",
+                    "+- 重叠 healthy (4): exp_082_cheetah_no_dt_emb (1.580), exp_047_frozen_walker_s1 (1.710), exp_057_frozen_walker_s2 (1.880), exp_008e_v3_dt1_h15 (1.930)",
+                    " ",
+                    "-### 最佳阈值 (1.5) 下的分类细节",
+                    "+**Data-optimal threshold (Youden's J):** θ ≈ 1.51×, J = 0.889",
+                    " ",
+                    "-**False Positives (误报为CIVO):**",
+                    "+## 推荐 threshold",
+                    " ",
+                    "-- `exp_008e_v3_subsample_on_dt1_h15`: peak_nve=1.930, config=008e_v3_mitigation, env=walker",
+                    "-- `exp_047_frozen_dt_emb_walker_s1`: peak_nve=1.710, config=frozen_dt_emb, env=walker",
+                    "-- `exp_057_frozen_dt_emb_walker_s2`: peak_nve=1.880, config=frozen_dt_emb, env=walker",
+                    "+**推荐阈值: NVE ≥ 1.5×** (F1 = 0.926, AUROC = 0.989)",
+                    " ",
+                    "-### 阈值 1.5 下的分类细节",
+                    "+理由：",
+                    "+1. **100% recall**: 不漏掉任何 CIVO 实验。漏检比误报代价更高——未检出的 CIVO 导致无效训练浪费 GPU 小时。",
+                    "+2. **最佳 F1**: 1.5× 在四个候选 threshold 中 F1 第二高（0.926 vs 2.0× 的 0.936），但 recall 从 88%→100% 的提升价值大于 precision 从 100%→86% 的下降。",
+                    "+3. **4 个 FP 均可解释**: 2 个 frozen dt_emb transient spike（自然消退，非病理性）、1 个 eval-variance-driven（非 value overestimation）、1 个 mitigation config 早期 spike。",
+                    "+4. **Youden's J 最优点**: 统计最优切分在 θ≈1.51×，与 1.5× 一致。",
+                    "+5. **与论文定义一致**: 原论文使用 NVE≥1.5× 作为 CIVO onset 标准。",
+                    " ",
+                    "-**False Positives (误报为CIVO):**",
+                    "+**Decision rule:**",
+                    "+- θ=1.5× for **screening** (maximize sensitivity, catch all CIVO early)",
+                    "+- θ=2.0× for **confirmation** (zero false positives, but misses 3 self-correcting CIVO seeds)",
+                    " ",
+                    "-- `exp_008e_v3_subsample_on_dt1_h15`: peak_nve=1.930, config=008e_v3_mitigation, env=walker",
+                    "-- `exp_047_frozen_dt_emb_walker_s1`: peak_nve=1.710, config=frozen_dt_emb, env=walker",
+                    "-- `exp_057_frozen_dt_emb_walker_s2`: peak_nve=1.880, config=frozen_dt_emb, env=walker",
+                    "-",
+                    " ## 方法论说明",
+                    " ",
+                    " ### NVE 计算方法"
+                  ]
+                },
+                {
+                  "oldStart": 132,
+                  "oldLines": 28,
+                  "newStart": 150,
+                  "newLines": 9,
+                  "lines": [
+                    " - Cheetah Run baseline: approximate VE trajectory from exp_023a/023b: 25K=0.1, 35K=0.2, 45K=0.3, 55K=0.4, 65K=0.5, 75K=0.55, 85K=0.6, 95K=0.65, 105K=0.65",
+                    " - 取 peak NVE (训练过程中最大 NVE) 作为分类特征",
+                    " - NVE 数据提取优先级: nve_peak > nve_max > normalized_ve > ve_ratio/baseline",
+                    "-- 操控环境 (pickcube/stackcube/peginsertion) 和 cartpole 因缺乏可靠 baseline 而排除",
+                    " ",
+                    " ### Ground Truth 标注",
+                    " ",
+                    "-- **CIVO(1)** (25 个): conclusion=negative/success + 明确 CIVO collapse 证据 (VE 持续加速, eval 显著下降, nve_classification=onset_collapse)",
+                    "-- **Healthy(0)** (33 个): conclusion=success + 无 CIVO 迹象 (VE 稳定, eval 保持或增长)",
+                    "-- **EXCLUDE**: conclusion=killed/failed (技术故障), 无 NVE 数据, baseline 实验, 操控环境, 分类模糊",
+                    "-",
+                    "-### 排除实验 (98 个)",
+                    "-",
+                    "-- **ambiguous (not manually labeled)** (18): exp_007_fixed_dt4, exp_008c_no_subsample_dt2_h8, exp_018v2_full_sgs_walker_s1, exp_022b_no_curriculum, exp_028_rave_walker_s0_ceil15 ...+13 more",
+                    "-- **baseline (reference)** (18): exp_001_baseline, exp_001_baseline_s2, exp_001_baseline_s2_extended, exp_001_baseline_s3, exp_001_baseline_s3_extended ...+13 more",
+                    "-- **excluded pickcube env (no reliable baseline for NVE)** (1): exp_019b_pickcube_civo_trigger",
+                    "-- **no NVE data** (23): exp_003_event_gated_v2, exp_004_event_gated_v3, exp_005_event_gated_v4, exp_016e_sgs_walker_s1, exp_018_full_sgs_s2 ...+18 more",
+                    "-- **not completed** (3): exp_077_cheetah_baseline_s0, exp_078_cheetah_008d_s0, exp_080_008e_v3_walker_s1",
+                    "-- **technical failure** (35): 016e, exp_002_event_gated, exp_006, exp_008a, exp_008a_untrained_s1 ...+30 more",
+                    "-",
+                    "-### NVE 分布",
+                    "-",
+                    "-- CIVO collapsed (24): min=1.530, median=4.120, max=70.640, mean=7.073",
+                    "-- Healthy (32): min=0.100, median=0.803, max=1.930, mean=0.870",
+                    "-- 类间间距 (min_collapsed - max_healthy): -0.400",
+                    "-  - 重叠区域: 3 collapsed 样本 + 3 healthy 样本在 [1.530, 1.930] 重叠范围内",
+                    "-  - 重叠 collapsed: exp_008d_civo_trigger_s3(nve=1.530), exp_009b_008d_walker_s2(nve=1.620), exp_027_tcn_walker_s1(nve=1.637)",
+                    "-  - 重叠 healthy: exp_008e_v3_subsample_on_dt1_h15(nve=1.930), exp_047_frozen_dt_emb_walker_s1(nve=1.710), exp_057_frozen_dt_emb_walker_s2(nve=1.880)",
+                    "+- **CIVO(1)** (25 个): 明确 CIVO collapse 证据 (VE 持续加速, eval 显著下降, nve_classification=onset_collapse)",
+                    "+- **Healthy(0)** (36 个): 无 CIVO 迹象 (VE 稳定, eval 保持或增长)",
+                    "+- **EXCLUDE**: conclusion=killed/failed (技术故障), 无 NVE 数据, 纯 baseline (用于归一化), 分类模糊"
+                  ]
+                }
+              ],
+              "originalFile": "# NVE Threshold Sensitivity Analysis\n\n## 数据集\n\n样本总数: 56 (Collapsed: 24, Healthy: 32)\n\n| exp_id | env | config | seed | ground_truth | peak_nve | nve_source |\n|--------|-----|--------|------|-------------|----------|------------|\n| exp_006_fixed_dt2 | walker | 006_fixed_dt2 | 1 | CIVO(1) | 4.835 | computed ve_ratio/baseline at 65K |\n| exp_008a_cheetah_unexposed_s0 | cheetah | 008a_unexposed | 0 | Healthy(0) | 0.490 | max(nve_105k) |\n| exp_008a_cheetah_unexposed_s1 | cheetah | 008a_unexposed | 1 | Healthy(0) | 0.478 | max(nve_105k) |\n| exp_008a_no_subsample_dt2 | walker | 008a_unexposed | 1 | Healthy(0) | 0.930 | max(normalized_ve_55K) |\n| exp_008a_unexposed_s1 | walker | 008a_unexposed | 1 | Healthy(0) | 0.598 | computed civo_ve_ratio_final/max_baseline_ve |\n| exp_008a_unexposed_s2 | walker | 008a_unexposed | 2 | Healthy(0) | 0.463 | computed civo_ve_ratio_final/max_baseline_ve |\n| exp_008d_civo_trigger_s3 | walker | 008d_civo_trigger | 3 | CIVO(1) | 1.530 | metrics.nve_peak |\n| exp_008d_civo_trigger_s4 | walker | 008d_civo_trigger | 4 | CIVO(1) | 4.620 | metrics.nve_peak |\n| exp_008d_subsample_on_h8 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.124 | computed ve_ratio/baseline at 55K |\n| exp_008e_v3_s3 | walker | 008e_v3_mitigation | 3 | CIVO(1) | 4.020 | metrics.nve_peak |\n| exp_008e_v3_s4 | walker | 008e_v3_mitigation | 4 | Healthy(0) | 0.990 | metrics.nve_peak |\n| exp_008e_v3_subsample_on_dt1_h15 | walker | 008e_v3_mitigation | 1 | Healthy(0) | 1.930 | max(metrics.normalized_ve) at 25K |\n| exp_008e_v3_walker_s1 | walker | 008e_v3_mitigation | 1 | Healthy(0) | 0.803 | computed ve_ratio/baseline at 105K |\n| exp_008e_v3_walker_s2 | walker | 008e_v3_mitigation | 2 | CIVO(1) | 3.780 | max(final_nve) |\n| exp_008f_no_dt_embed_subsample_on_h8 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 1.020 | max(eval_checkpoints.normalized_ve) at 25K |\n| exp_008f_s3_no_dt_embed_walker | walker | 008f_no_dt_emb | 3 | Healthy(0) | 1.490 | metrics.nve_peak (parsed '< 1.5x') |\n| exp_008f_s4 | walker | 008f_no_dt_emb | 4 | Healthy(0) | 1.410 | metrics.peak_nve |\n| exp_009b_008d_walker_s2 | walker | 008d_civo_trigger | 2 | CIVO(1) | 1.620 | metrics.nve_peak |\n| exp_009c_s3 | walker | other | 3 | Healthy(0) | 0.520 | max(nve_105k) |\n| exp_009e_008d_walker_s1 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.130 | metrics.nve_peak |\n| exp_010b_cheetah_civo_trigger | cheetah | 008d_civo_trigger | 1 | CIVO(1) | 8.270 | metrics.nve_peak |\n| exp_010b_cheetah_civo_trigger_s0 | cheetah | 008d_civo_trigger | 0 | CIVO(1) | 70.640 | max(nve_105K) |\n| exp_015b_frozen_dt_emb | walker | frozen_dt_emb | 1 | Healthy(0) | 0.467 | max(nve_85K) |\n| exp_020_vanilla_dreamerv3_s2 | walker | baseline | 2 | Healthy(0) | 0.983 | computed ve_ratio/baseline at 105K |\n| exp_021_full_sgs_cheetah_s1 | cheetah | sgs | 1 | CIVO(1) | 9.940 | metrics.nve_peak |\n| exp_024b_cheetah_no_dt_emb_s0 | cheetah | 008f_no_dt_emb | 0 | Healthy(0) | 0.200 | metrics.nve_peak |\n| exp_024b_cheetah_no_dt_emb_s1 | cheetah | 008f_no_dt_emb | 1 | Healthy(0) | 0.100 | metrics.nve_peak |\n| exp_027_tcn_walker_s0 | walker | tcn | 0 | CIVO(1) | 3.965 | metrics.peak_nve |\n| exp_027_tcn_walker_s0_sigma02 | walker | tcn | 0 | Healthy(0) | 0.908 | metrics.nve_max |\n| exp_027_tcn_walker_s1 | walker | tcn | 1 | CIVO(1) | 1.637 | metrics.nve_max |\n| exp_029a_tcn_walker_s1_sigma02 | walker | tcn | 1 | Healthy(0) | 0.643 | metrics.nve_max |\n| exp_029b_tcn_walker_s2_sigma02 | walker | tcn | 2 | CIVO(1) | 2.765 | metrics.nve_peak |\n| exp_029d_tcn_walker_s3_sigma02 | walker | tcn | 3 | CIVO(1) | 3.000 | metrics.nve_peak |\n| exp_030b_tcn_cheetah_s0_sigma05 | cheetah | tcn | 0 | CIVO(1) | 10.666 | metrics.nve_max |\n| exp_031b_tcn_pickcube_s0_sigma05 | pickcube | tcn | 0 | CIVO(1) | 3.300 | metrics.nve_peak |\n| exp_032_dual_critic_walker | walker | dual_critic | 0 | Healthy(0) | 1.100 | metrics.nve_peak |\n| exp_032b_dual_critic_walker_s1 | walker | dual_critic | 1 | Healthy(0) | 1.400 | metrics.peak_nve |\n| exp_034_dual_critic_cheetah | cheetah | dual_critic | 0 | CIVO(1) | 4.500 | computed ve_ratio_peak/baseline at 55K |\n| exp_036_dual_critic_pickcube | cheetah | dual_critic | 0 | CIVO(1) | 2.300 | metrics.nve_peak |\n| exp_037_wide_critic_cheetah | cheetah | other | ? | CIVO(1) | 3.600 | metrics.nve_peak |\n| exp_042_frozen_dt_emb_walker | walker | frozen_dt_emb | 0 | Healthy(0) | 0.194 | metrics.nve_peak |\n| exp_043_008f_walker_s1 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 0.808 | metrics.nve_peak |\n| exp_045_treatment_extension_008d_s3 | walker | 008d_civo_trigger | 3 | CIVO(1) | 4.910 | metrics.nve_peak |\n| exp_046_frozen_dt_emb_cheetah | cheetah | frozen_dt_emb | 0 | Healthy(0) | 1.350 | metrics.nve_peak |\n| exp_047_frozen_dt_emb_walker_s1 | walker | frozen_dt_emb | 1 | Healthy(0) | 1.710 | metrics.nve_peak |\n| exp_048_cheetah_civo_extension | cheetah | other | 0 | CIVO(1) | 2.750 | max(nve_final) |\n| exp_057_frozen_dt_emb_walker_s2 | walker | frozen_dt_emb | 2 | Healthy(0) | 1.880 | metrics.nve_peak |\n| exp_058_frozen_dt_emb_cheetah_s1 | cheetah | frozen_dt_emb | 1 | Healthy(0) | 0.780 | metrics.nve_peak |\n| exp_059_walker_trained_s5 | walker | trained_dt_emb | 5 | CIVO(1) | 4.720 | metrics.nve_peak |\n| exp_067_frozen_dt_emb_walker_plan015 | walker | frozen_dt_emb | 0 | Healthy(0) | 0.400 | metrics.nve_peak |\n| exp_068_008d_walker_repro_s1 | walker | 008d_civo_trigger | 1 | CIVO(1) | 4.120 | max(nve_final_105k) |\n| exp_069_008f_walker_repro_s1 | walker | 008f_no_dt_emb | 1 | Healthy(0) | 0.660 | metrics.nve_peak |\n| exp_070_008e_v3_walker_s0 | walker | 008e_v3_mitigation | 0 | Healthy(0) | 0.800 | metrics.nve_peak |\n| exp_071_008f_walker_s3 | walker | 008f_no_dt_emb | 3 | Healthy(0) | 0.974 | computed ve_ratio_peak/max_baseline_ve |\n| exp_072_008e_v3_walker_s5 | walker | 008e_v3_mitigation | 5 | Healthy(0) | 0.610 | metrics.nve_peak |\n| exp_073_008f_walker_s4 | walker | 008f_no_dt_emb | 4 | Healthy(0) | 0.760 | metrics.nve_peak |\n\n## 分类结果\n\n| threshold | TP | FP | TN | FN | Precision | Recall | F1 | Accuracy |\n|-----------|----|----|----|----|-----------|--------|-----|----------|\n| 1.0 | 24 | 9 | 23 | 0 | 0.727 | 1.000 | 0.842 | 0.839 |\n| 1.1 | 24 | 8 | 24 | 0 | 0.750 | 1.000 | 0.857 | 0.857 |\n| 1.2 | 24 | 7 | 25 | 0 | 0.774 | 1.000 | 0.873 | 0.875 |\n| 1.3 | 24 | 7 | 25 | 0 | 0.774 | 1.000 | 0.873 | 0.875 |\n| 1.5 ** | 24 | 3 | 29 | 0 | 0.889 | 1.000 | 0.941 | 0.946 |\n| 1.7 | 21 | 3 | 29 | 3 | 0.875 | 0.875 | 0.875 | 0.893 |\n| 2.0 | 21 | 0 | 32 | 3 | 1.000 | 0.875 | 0.933 | 0.946 |\n\n## AUROC\n\n**AUROC = 0.9902**\n\nComputed from 24 positive + 32 negative samples using 33 ROC points\n\nROC 关键点 (FPR, TPR):\n\n| Threshold | FPR | TPR |\n|-----------|-----|-----|\n| 1.0 | 0.281 | 1.000 |\n| 1.1 | 0.250 | 1.000 |\n| 1.2 | 0.219 | 1.000 |\n| 1.3 | 0.219 | 1.000 |\n| 1.5 | 0.094 | 1.000 |\n| 1.7 | 0.094 | 0.875 |\n| 2.0 | 0.000 | 0.875 |\n\n## 推荐阈值\n\n**推荐阈值: NVE >= 1.5** (基于最高 F1 = 0.941)\n\n- Precision = 0.889, Recall = 1.000, Accuracy = 0.946\n- TP=24, FP=3, TN=29, FN=0\n\n### 阈值选择权衡\n\n- **低阈值 (1.0-1.2)**: 高 Recall (少漏报) 但多误报。适用于安全优先场景 (宁可误报不可漏报)。\n- **中阈值 (1.3-1.5)**: Recall/Precision 平衡。1.5 是 CIVO 论文推荐的 onset 检测阈值。\n- **高阈值 (1.7-2.0)**: 高 Precision (少误报) 但可能漏报早期 CIVO。适用于减少不必要干预。\n\n### 最佳阈值 (1.5) 下的分类细节\n\n**False Positives (误报为CIVO):**\n\n- `exp_008e_v3_subsample_on_dt1_h15`: peak_nve=1.930, config=008e_v3_mitigation, env=walker\n- `exp_047_frozen_dt_emb_walker_s1`: peak_nve=1.710, config=frozen_dt_emb, env=walker\n- `exp_057_frozen_dt_emb_walker_s2`: peak_nve=1.880, config=frozen_dt_emb, env=walker\n\n### 阈值 1.5 下的分类细节\n\n**False Positives (误报为CIVO):**\n\n- `exp_008e_v3_subsample_on_dt1_h15`: peak_nve=1.930, config=008e_v3_mitigation, env=walker\n- `exp_047_frozen_dt_emb_walker_s1`: peak_nve=1.710, config=frozen_dt_emb, env=walker\n- `exp_057_frozen_dt_emb_walker_s2`: peak_nve=1.880, config=frozen_dt_emb, env=walker\n\n## 方法论说明\n\n### NVE 计算方法\n\nNVE (Normalized Value-Eval ratio) = experiment_ve_ratio / baseline_ve_ratio_at_same_step\n\n- Walker Walk baseline: exp_001_baseline (seed 1) per-step VE ratios: 25K=0.087, 35K=0.241, 45K=0.331, 55K=0.404, 65K=0.563, 75K=0.719, 85K=0.701, 95K=0.632, 105K=0.656\n- Cheetah Run baseline: approximate VE trajectory from exp_023a/023b: 25K=0.1, 35K=0.2, 45K=0.3, 55K=0.4, 65K=0.5, 75K=0.55, 85K=0.6, 95K=0.65, 105K=0.65\n- 取 peak NVE (训练过程中最大 NVE) 作为分类特征\n- NVE 数据提取优先级: nve_peak > nve_max > normalized_ve > ve_ratio/baseline\n- 操控环境 (pickcube/stackcube/peginsertion) 和 cartpole 因缺乏可靠 baseline 而排除\n\n### Ground Truth 标注\n\n- **CIVO(1)** (25 个): conclusion=negative/success + 明确 CIVO collapse 证据 (VE 持续加速, eval 显著下降, nve_classification=onset_collapse)\n- **Healthy(0)** (33 个): conclusion=success + 无 CIVO 迹象 (VE 稳定, eval 保持或增长)\n- **EXCLUDE**: conclusion=killed/failed (技术故障), 无 NVE 数据, baseline 实验, 操控环境, 分类模糊\n\n### 排除实验 (98 个)\n\n- **ambiguous (not manually labeled)** (18): exp_007_fixed_dt4, exp_008c_no_subsample_dt2_h8, exp_018v2_full_sgs_walker_s1, exp_022b_no_curriculum, exp_028_rave_walker_s0_ceil15 ...+13 more\n- **baseline (reference)** (18): exp_001_baseline, exp_001_baseline_s2, exp_001_baseline_s2_extended, exp_001_baseline_s3, exp_001_baseline_s3_extended ...+13 more\n- **excluded pickcube env (no reliable baseline for NVE)** (1): exp_019b_pickcube_civo_trigger\n- **no NVE data** (23): exp_003_event_gated_v2, exp_004_event_gated_v3, exp_005_event_gated_v4, exp_016e_sgs_walker_s1, exp_018_full_sgs_s2 ...+18 more\n- **not completed** (3): exp_077_cheetah_baseline_s0, exp_078_cheetah_008d_s0, exp_080_008e_v3_walker_s1\n- **technical failure** (35): 016e, exp_002_event_gated, exp_006, exp_008a, exp_008a_untrained_s1 ...+30 more\n\n### NVE 分布\n\n- CIVO collapsed (24): min=1.530, median=4.120, max=70.640, mean=7.073\n- Healthy (32): min=0.100, median=0.803, max=1.930, mean=0.870\n- 类间间距 (min_collapsed - max_healthy): -0.400\n  - 重叠区域: 3 collapsed 样本 + 3 healthy 样本在 [1.530, 1.930] 重叠范围内\n  - 重叠 collapsed: exp_008d_civo_trigger_s3(nve=1.530), exp_009b_008d_walker_s2(nve=1.620), exp_027_tcn_walker_s1(nve=1.637)\n  - 重叠 healthy: exp_008e_v3_subsample_on_dt1_h15(nve=1.930), exp_047_frozen_dt_emb_walker_s1(nve=1.710), exp_057_frozen_dt_emb_walker_s2(nve=1.880)\n",
+              "userModified": false
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CLRmemfvH8SSmyYCxza2Tp",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "plan_034_nve_threshold_analysis_v2",
+                "type": "report",
+                "description": "NVE threshold sensitivity analysis (updated 2026-05-25, N=61). AUROC=0.989, recommended θ=1.5× (F1=0.926, recall=100%). Covers thresholds 1.3×/1.5×/1.7×/2.0× with FP/FN details.",
+                "project": "event-gated-adaptive-horizon",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/plan_034_nve_threshold/analysis.md",
+                "tags": [
+                  "plan_034",
+                  "nve",
+                  "threshold",
+                  "auroc",
+                  "diagnostics"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+            "uuid": "af6a4f60-f928-4420-b357-3dd426948d56",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XZL5LMyveiKVWrXqmSaSUN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5569,
+                "cache_read_input_tokens": 84190,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5569
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-25T20:04:12.167Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CLRmemfvH8SSmyYCxza2Tp",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260525_811ba6\\\", \\\"name\\\": \\\"plan_034_nve_threshold_analysis_v2\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"NVE threshold sensitivity analysis (updated 2026-05-25, N=61). AUROC=0.989, recommended θ=1.5× (F1=0.926, recall=100%). Covers thresholds 1.3×/1.5×/1.7×/2.0× with FP/FN details.\\\", \\\"path\\\": \\\"projects/event-gated-adaptive-horizon/artifacts/_project/report/analysis_811ba6.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-25T20:04:11.724428+00:00\\\", \\\"tags\\\": [\\\"plan_034\\\", \\\"nve\\\", \\\"threshold\\\", \\\"auroc\\\", \\\"diagnostics\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+            "uuid": "af9c1645-9b3d-4491-aa05-cde3f9260477",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260525_811ba6\\\", \\\"name\\\": \\\"plan_034_nve_threshold_analysis_v2\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"NVE threshold sensitivity analysis (updated 2026-05-25, N=61). AUROC=0.989, recommended θ=1.5× (F1=0.926, recall=100%). Covers thresholds 1.3×/1.5×/1.7×/2.0× with FP/FN details.\\\", \\\"path\\\": \\\"projects/event-gated-adaptive-horizon/artifacts/_project/report/analysis_811ba6.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-25T20:04:11.724428+00:00\\\", \\\"tags\\\": [\\\"plan_034\\\", \\\"nve\\\", \\\"threshold\\\", \\\"auroc\\\", \\\"diagnostics\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260525_811ba6\", \"name\": \"plan_034_nve_threshold_analysis_v2\", \"type\": \"report\", \"description\": \"NVE threshold sensitivity analysis (updated 2026-05-25, N=61). AUROC=0.989, recommended θ=1.5× (F1=0.926, recall=100%). Covers thresholds 1.3×/1.5×/1.7×/2.0× with FP/FN details.\", \"path\": \"projects/event-gated-adaptive-horizon/artifacts/_project/report/analysis_811ba6.md\", \"url\": null, \"project\": \"event-gated-adaptive-horizon\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-25T20:04:11.724428+00:00\", \"tags\": [\"plan_034\", \"nve\", \"threshold\", \"auroc\", \"diagnostics\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**N=61** (25 CIVO, 36 Healthy)，**AUROC = 0.989**\n\n| Threshold | Accuracy | Precision | Recall | F1 |\n|-----------|----------|-----------|--------|------|\n| 1.3× | 86.9% | 75.8% | 100% | 0.862 |\n| **1.5×** | **93.4%** | **86.2%** | **100%** | **0.926** |\n| 1.7× | 90.2% | 88.0% | 88.0% | 0.880 |\n| 2.0× | 95.1% | 100% | 88.0% | 0.936 |\n\n**推荐 θ=1.5×**: 100% recall，4个 FP 均可解释（frozen transient spike + eval-variance-driven），Youden's J 最优点也在 ~1.51×。θ=2.0× 适用于需要零误报的场景，但会漏掉 3 个 self-correcting CIVO seed。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+            "uuid": "b2cd97b7-be75-4139-b414-ba28911d2f6b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M7x3jCtkS1UDosmoEQJ4Rs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 654,
+                "cache_read_input_tokens": 89759,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 654
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**N=61** (25 CIVO, 36 Healthy)，**AUROC = 0.989**\n\n| Threshold | Accuracy | Precision | Recall | F1 |\n|-----------|----------|-----------|--------|------|\n| 1.3× | 86.9% | 75.8% | 100% | 0.862 |\n| **1.5×** | **93.4%** | **86.2%** | **100%** | **0.926** |\n| 1.7× | 90.2% | 88.0% | 88.0% | 0.880 |\n| 2.0× | 95.1% | 100% | 88.0% | 0.936 |\n\n**推荐 θ=1.5×**: 100% recall，4个 FP 均可解释（frozen transient spike + eval-variance-driven），Youden's J 最优点也在 ~1.51×。θ=2.0× 适用于需要零误报的场景，但会漏掉 3 个 self-correcting CIVO seed。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 539672,
+            "duration_api_ms": 537946,
+            "num_turns": 20,
+            "stop_reason": "end_turn",
+            "session_id": "c90b510e-2764-4f5f-8b1c-ebcd89e484de",
+            "total_cost_usd": 1.823104,
+            "usage": {
+              "input_tokens": 23,
+              "cache_creation_input_tokens": 78572,
+              "cache_read_input_tokens": 963826,
+              "output_tokens": 33939,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 78572,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 297,
+                  "cache_read_input_tokens": 89759,
+                  "cache_creation_input_tokens": 654,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 654
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1456,
+                "outputTokens": 14,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001526,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 23,
+                "outputTokens": 33939,
+                "cacheReadInputTokens": 963826,
+                "cacheCreationInputTokens": 78572,
+                "webSearchRequests": 0,
+                "costUSD": 1.8215780000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "61b87e33-e4cc-40f1-9c73-a45b9c9ac3d0"
+          },
+          "id": "event-000056"
+        }
+      ]
+    }
+  ]
+}

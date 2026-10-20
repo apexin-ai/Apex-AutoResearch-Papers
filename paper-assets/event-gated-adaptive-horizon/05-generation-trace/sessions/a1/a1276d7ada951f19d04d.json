@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1276d7ada951f19d04d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "monitor training progress check",
+  "task_key": "worker_monitor_training-progress-check_20260514T142507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_training-progress-check_20260514T142507_result.json",
+    "occurrence": 1,
+    "bytes": 749,
+    "sha256": "69914f175f66b2168854e880ac7f36ddba43c989cc16c2e1186ac43a6d326c00"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n| | exp_009a (baseline) | exp_009b (008d treatment) |\n|---|---|---|\n| **Step** | 116K / 500K (23.2%) | 5K / 105K (4.8%) |\n| **eval_return** | 804.8 @ 115K | 39.3 @ 5K |\n| **value_mean** | 574.9 | 0.0013 |\n| **value/eval ratio** | 71.4% | ~0% (正常，太早期) |\n| **fps** | 7.77 | ~7.5 (估算) |\n| **ETA** | ~13.7h | ~3.7h |\n| **GPU** | cuda:0, 16%, 4165MiB | cuda:1, 0%, 2751MiB |\n| **状态** | 健康，eval_return 稳步上升 | 刚启动，gate 全锁 dt=2 |\n\n009a 训练曲线正常，eval_return 从 41→805 稳步爬升。009b 刚跑 7 分钟，尚无法判断 delusional critic collapse 风险——需要等到 ~30K-50K steps 时观察 value_eval_ratio 是否异常膨胀。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-training-progress-check-copy-4.md"
+}

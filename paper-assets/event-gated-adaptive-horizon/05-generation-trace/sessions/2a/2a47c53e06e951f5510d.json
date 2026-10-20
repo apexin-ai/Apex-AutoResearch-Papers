@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a47c53e06e951f5510d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "research lit reward prediction mbrl",
+  "task_key": "worker_research_lit-reward-prediction-mbrl_20260514T142855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_lit-reward-prediction-mbrl_20260514T142855_result.json",
+    "occurrence": 1,
+    "bytes": 1960,
+    "sha256": "2ed0d6ce077f5819aa6c52aa7d7c4b7c966c732b56e669a0d5e60bce70b5cd75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "39 篇，6 篇新增全部写入。汇总结果：\n\n---\n\n**Direction 1: Reward prediction quality → MBRL performance** (3 篇新增)\n\n| paper_id | venue | relevance | 关联 |\n|---|---|---|---|\n| `lee2024dreamsmooth` | ICLR 2024 | 5 | 直接证明 reward prediction 是 MBRL 瓶颈，sparse/ambiguous reward 导致 reward model 输出全零 |\n| `ma2024harmonydream` | ICML 2024 | 5 | 观测 vs reward 预测任务在 world model 中存在主导效应，动态平衡可提升 10-69% |\n| `lambert2020objective` | L4DC 2020 | 4 | 形式化 objective mismatch——one-step likelihood 与控制性能不相关 |\n\n**Direction 2: MBRL 中的 seed sensitivity / training instability** (1 篇新增，已有 5 篇覆盖)\n\n| paper_id | venue | relevance | 关联 |\n|---|---|---|---|\n| `bjorck2022variance` | ICLR 2022 | 3 | RL 方差主要来自训练早期的 outlier runs，与我们 seed 2 早期分叉一致 |\n\n已有条目 (`henderson2018deep`, `nikishin2022primacy`, `qiao2023mind`, `hussing2024dissecting`, `barkley2024stealing`) 已充分覆盖此方向。**文献空白注记**：无论文专门研究 Dreamer 家族中 reward prediction 退化导致的 seed-dependent instability——这是我们的 novelty 点。\n\n**Direction 3: Auxiliary task（reward prediction）的 conditioning 效应** (2 篇新增)\n\n| paper_id | venue | relevance | 关联 |\n|---|---|---|---|\n| `jaderberg2017unreal` | ICLR 2017 | 4 | 奠基性工作：reward prediction 作为 auxiliary task 主动塑造共享表征 |\n| `lyle2021auxiliary` | AISTATS 2021 | 4 | 理论分析：auxiliary task 将表征推向 transition operator 的 top eigenvectors |\n\n**文献空白注记**：无论文研究 Dreamer world model 中 reward head 与 temporal conditioning 的耦合关系——我们发现去掉 dt_embedding 选择性地破坏 reward prediction（而非 dynamics）是一个未被文献覆盖的现象，对 novelty argument 有价值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-lit-reward-prediction-mbrl.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c152ecd0ec1d4a43fc03",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops deploy 029c blocking wait",
+  "task_key": "worker_ops_deploy_029c_blocking_wait_20260520T113613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deploy_029c_blocking_wait_20260520T113613_result.json",
+    "occurrence": 1,
+    "bytes": 283,
+    "sha256": "1768407bce9e5abe821d484f4ab9bd8738bc24eabc90ddcd264c13b9dab79cd4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n1. **PID 37863 已退出** — exp_027_tcn_walker_s0_sigma02 训练完成（最终到 224K 步），GPU 0 已释放\n2. **exp_029c 已部署** — PID 59395，GPU cuda:0，tmux session `exp_029c_tcn_walker_s0_sigma01`，registry 状态已更新为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-029c-blocking-wait.md"
+}

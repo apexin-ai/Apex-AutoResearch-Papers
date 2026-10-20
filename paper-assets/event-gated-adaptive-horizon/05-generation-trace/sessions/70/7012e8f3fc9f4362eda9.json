@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7012e8f3fc9f4362eda9",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_23_1779769763.md",
+  "task_key": "loop_23_1779769763",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_23_1779769763.md",
+    "occurrence": 1,
+    "bytes": 4336,
+    "sha256": "2051a0455d4be189d5cc1a0c072102ccf4ad34246059e0bef0f2d0224b821435"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 23\nreason: idle_timeout\nupdated: '2026-05-26T02:11:25+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-45299:cuda:0, bjb1-45299:cuda:1, westd-19154:cuda:0, westd-19154:cuda:1，严禁使用其他设备\n- **CLI flag 服务器差异**：bjb1 用 `--gate_dt_embed_dim`，westd 用 `--dt_embed_dim`。跨服务器复制命令必改参数名\n- submit 命令环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（不是 venv）\n- **exp_098/099 无 cron 注册**——上一轮 session 未完成 cron 注册就到期了。新 session 第一件事：为这两个 RUNNING 实验注册 cron，否则完成后无回调、无人处理\n- ICML 2026 DDL 5/29，数据锁定 5/27。今天 5/26，剩余 ~24h 到数据锁定\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-45299**：2× RTX PRO 6000，工作目录 `/root/autodl-tmp/event-gated-adaptive-horizon`，Python `/root/miniconda3/bin/python`（conda base）\n- **westd-19154**：2 GPU，同路径 `/root/autodl-tmp/event-gated-adaptive-horizon`，同 conda base\n- 模型/数据：DreamerV3 online RL（MuJoCo DMC），无预下载模型，训练从零开始\n- W&B：项目已配置（实验 logdir 在 `logdir/{exp_id}`）\n- **活跃进程**：\n  - exp_098_cheetah_008a_s0：bjb1 cuda:0，PID 322486，tmux 由 submit_training_job 创建\n  - exp_099_cheetah_008a_s1：bjb1 cuda:1，PID 322767，同上\n- **westd cuda:0 和 cuda:1 均空闲**（exp_086/088 已完成）\n- **无活跃 cron**（reconcile 返回 0）\n\n### 3. 📊 当前状态\n上一轮 session 提交了 exp_098/099（Cheetah 008a s0/s1，C3 cross-env value suppression），但**未注册 cron 就到期**。\n\nRegistry 状态：\n- **RUNNING (2)**：exp_098 (bjb1 cuda:0, 105K steps, seed=0)、exp_099 (bjb1 cuda:1, 105K steps, seed=1) — 均为 Cheetah 008a trained dt_emb + subsample OFF + H=15，预期无 CIVO（dt_emb 未暴露于 dt>1）\n- **PREPARING (1)**：exp_097_cheetah_008d_s3 — Cheetah CIVO trigger seed=3，需要 westd GPU。当前 Cheetah onset rate = 2/3 (s0✓ s1✗ s2✓)，本实验确定最终 onset rate\n- **DONE (176)**：86 success / 40 negative / 24 killed / 11 failed / 15 其他\n\n等待中：\n- exp_098/099 完成回调（需先注册 cron）\n- exp_097 需要提交到 westd（两张卡都空闲，可立即提交）\n- Round 5 审稿结果待出\n- 论文 paper_framing.md C2 section 需更新 frozen 实验统计（从 2→7+）\n\n### 4. 📋 待办（条件触发式）\n- **立即** → 为 exp_098/099 注册 cron（register_cron），否则完成无回调\n- **立即** → 将 exp_097 提交到 westd（两张卡空闲，可并行两个或选一张）；如果只剩一个实验，另一张卡考虑其他补强实验\n- exp_098/099 cron 回调（ANALYZING）→ spawn worker 分析 NVE，预期无 CIVO（dt_emb 未训练 dt>1）。success → 更新 C3 跨环境证据；negative（意外出现 CIVO）→ 立即升级汇报 Director\n- exp_097 cron 回调 → 分析 Cheetah CIVO onset rate 最终值。若 3/4 → \"stochastic onset ~75%\"；若 2/4 → \"~50%\"；写入论文数据\n- 所有补强实验完成 → 数据锁定（5/27 前必须完成）→ 更新 paper_framing.md C2 frozen 统计 → 提交 ICML\n\n### 5. 🎯 战略上下文\n- **核心结论**：DreamerV3 中 trained dt_embedding 是 CIVO 的必要条件（非充分），onset 具有随机性。Frozen/removed dt_emb 完美阻止 CIVO（0/10+ frozen，0/3 removed）。这是一篇 diagnostic analysis paper，不是 method paper。\n- **D155-D156 关键决策**：NVE 诊断已升级为三维标准（peak > τ + 持续 ≥2 eval 点 + 时序因果），消除 frozen transient spike 假阳性。C1 措辞修正：trained dt_emb 是必要非充分条件。\n- **TAWM 对比是 novelty 核心**（D037）：dt-conditioning 在 MPC 中成功（TAWM, ICML 2025）但在 imagination-based AC 中失败 → architecture-specific vulnerability\n- **易错点**：\n  - 不要把 Cheetah 和 Walker 的 NVE 阈值直接类比——baseline v/e trajectory 不同\n  - NVE > 1.5× 诊断仅适用于 35K+ steps（之前 baseline v/e 太小，比率不稳定）\n  - exp_097 的 onset rate 无论结果如何都是有价值数据——不要预设\"必须 3/4\"\n  - Cheetah CIVO severity 高方差（s0: 4.1×, s2: 138.7×），论文 stochastic onset framing 应涵盖 severity variance\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-23-1779769763.md"
+}

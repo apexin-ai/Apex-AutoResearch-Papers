@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e579f29d6774806c6ebb",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "experiment cheetah unexposed submit",
+  "task_key": "worker_experiment_cheetah-unexposed-submit_20260518T142354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_cheetah-unexposed-submit_20260518T142354_result.json",
+    "occurrence": 1,
+    "bytes": 340,
+    "sha256": "0adf0b15bd642b7c2da1c25c737148e65d6a1b9b553686a7972ac5a55d0abd11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已成功启动并注册：\n\n| 实验 | GPU | Seed | PID | 状态 |\n|------|-----|------|-----|------|\n| `exp_008a_cheetah_unexposed_s0` | cuda:0 | 0 | 748623 | RUNNING |\n| `exp_008a_cheetah_unexposed_s1` | cuda:1 | 1 | 748702 | RUNNING |\n\ntmux session 已创建，registry spec 字段已补充完毕。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-cheetah-unexposed-submit.md"
+}

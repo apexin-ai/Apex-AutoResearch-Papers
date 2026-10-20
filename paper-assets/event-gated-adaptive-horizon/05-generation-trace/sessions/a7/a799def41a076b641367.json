@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a799def41a076b641367",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper fix fig3b",
+  "task_key": "worker_paper_fix-fig3b_20260529T010029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-fig3b_20260529T010029_result.json",
+    "occurrence": 1,
+    "bytes": 596,
+    "sha256": "7fc54515a1fd9c88505f814376287fd230fa8dfc220a3574c9ce2b278b14539e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No `register_artifact` tool available. The task is complete:\n\n1. **Annotation overlap fixed** — 008d_009e \"sign flip\" moved to (step-30K, +0.06) and 008e_v3_s2 \"sign flip\" moved to (step-18K, +0.055), both now in clear space above data lines without mutual overlap.\n\n2. **Panel height alignment fixed** — switched from manual `gridspec_kw={'wspace': 0.28}` to `constrained_layout=True`, which ensures both axes have identical physical height.\n\n3. Updated figures copied to `docs/paper/figures/fig1_nve_trajectory.{pdf,png}` and paper compiles successfully (43 pages)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-fig3b.md"
+}

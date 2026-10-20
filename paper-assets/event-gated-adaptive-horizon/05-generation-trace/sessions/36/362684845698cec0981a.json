@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "362684845698cec0981a",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check exp 056 058 final",
+  "task_key": "worker_check_exp_056_058_final_20260523T234447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp_056_058_final_20260523T234447_result.json",
+    "occurrence": 1,
+    "bytes": 4126,
+    "sha256": "c66aad145d0a7de43d59fa68d318df66ac3af9375ed39da1a255b117655970b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验数据全部拿到。注意 exp_056 仍在运行但已超过目标步数，exp_058 还差 ~5K 步。\n\n---\n\n## exp_056 PegInsertion frozen s1（bjb1-40020）\n\n| 项目 | 值 |\n|------|-----|\n| **进程状态** | 运行中（PID 346430，已运行 14h44m） |\n| **目标步数** | 210,000 |\n| **当前 total_steps** | 218,800（已超过目标，可能在做最终 eval/checkpoint） |\n| **metrics.jsonl 行数** | 1,160 |\n| **最后 checkpoint** | `checkpoint_202500.pt` |\n\n### ve_ratio 轨迹（key: `civo/ve_ratio`）\n\n| Step | ve_ratio |\n|------|----------|\n| 12,500 | 0.316 |\n| 22,500 | 0.975 |\n| 32,500 | 1.839 |\n| 42,500 | 1.966 |\n| 52,500 | **5.422** |\n| 62,500 | 4.047 |\n| 72,500 | **8.408** |\n| 82,500 | **11.321** ← peak |\n| 92,500 | 3.724 |\n| 102,500 | 3.034 |\n| 112,500 | 2.204 |\n| 122,500 | 2.425 |\n| 132,500 | 0.842 |\n| 142,500 | 2.194 |\n| 152,500 | 2.203 |\n| 162,500 | 0.651 |\n| 172,500 | 1.085 |\n| 182,500 | 1.070 |\n| 192,500 | 0.467 |\n| 202,500 | 0.708 |\n| 212,500 | 1.193 |\n\n- **ve_ratio_peak**: 11.321 @ step 82,500\n- **ve_ratio_final**: 1.193 @ step 212,500\n- **NVE 分类**: **burst**（peak 11.321 > 5，52.5K-82.5K 区间出现连续 burst）\n\n### eval_return 轨迹（key: `eval_return`）\n\n| Step | eval_return |\n|------|------------|\n| 2,500 | 2.01 |\n| 12,500 | 5.75 |\n| 22,500 | 9.30 |\n| 32,500 | 9.23 |\n| 42,500 | 12.30 |\n| 52,500 | 5.90 |\n| 62,500 | 9.98 |\n| 72,500 | 5.41 |\n| 82,500 | 3.57 |\n| 92,500 | 8.68 |\n| 102,500 | 9.60 |\n| 112,500 | 12.33 |\n| 122,500 | 10.13 |\n| 132,500 | **24.42** ← peak |\n| 142,500 | 7.73 |\n| 152,500 | 6.20 |\n| 162,500 | 16.93 |\n| 172,500 | 8.75 |\n| 182,500 | 7.54 |\n| 192,500 | 15.36 |\n| 202,500 | 8.70 |\n| 212,500 | 4.37 |\n\n- **eval_return_peak**: 24.42 @ step 132,500\n- **eval_return_final**: 4.37 @ step 212,500\n\n---\n\n## exp_058 Cheetah frozen s1（bjb1-45299）\n\n| 项目 | 值 |\n|------|-----|\n| **进程状态** | 运行中（PID 164830，已运行 5h36m） |\n| **目标步数** | 210,000 |\n| **当前 total_steps** | 205,000（还差 ~5K 步未完成） |\n| **metrics.jsonl 行数** | 267 |\n| **最后 checkpoint** | `checkpoint_175000.pt` |\n\n### ve_ratio 轨迹（key: `civo/ve_ratio`）\n\n| Step | ve_ratio |\n|------|----------|\n| 15,000 | 0.011 |\n| 25,000 | 0.030 |\n| 35,000 | 0.054 |\n| 45,000 | **0.231** ← peak |\n| 55,000 | 0.081 |\n| 65,000 | 0.127 |\n| 75,000 | 0.139 |\n| 85,000 | 0.188 |\n| 95,000 | 0.223 |\n| 105,000 | 0.166 |\n| 115,000 | 0.138 |\n| 125,000 | 0.102 |\n| 135,000 | 0.129 |\n| 145,000 | 0.103 |\n| 155,000 | 0.103 |\n| 165,000 | 0.127 |\n| 175,000 | 0.113 |\n| 185,000 | 0.142 |\n| 195,000 | 0.111 |\n| 205,000 | 0.112 |\n\n- **ve_ratio_peak**: 0.231 @ step 45,000\n- **ve_ratio_final**: 0.112 @ step 205,000\n- **NVE 分类**: **clean**（全程 < 1.5，峰值仅 0.231）\n\n### eval_return 轨迹（key: `eval_return`）\n\n| Step | eval_return |\n|------|------------|\n| 5,000 | 13.48 |\n| 15,000 | 99.83 |\n| 25,000 | **191.74** ← peak |\n| 35,000 | 190.57 |\n| 45,000 | 49.75 |\n| 55,000 | 145.32 |\n| 65,000 | 91.48 |\n| 75,000 | 82.39 |\n| 85,000 | 58.47 |\n| 95,000 | 49.76 |\n| 105,000 | 63.53 |\n| 115,000 | 71.63 |\n| 125,000 | 92.57 |\n| 135,000 | 73.98 |\n| 145,000 | 92.37 |\n| 155,000 | 91.37 |\n| 165,000 | 74.84 |\n| 175,000 | 83.41 |\n| 185,000 | 66.26 |\n| 195,000 | 82.54 |\n| 205,000 | 80.46 |\n\n- **eval_return_peak**: 191.74 @ step 25,000\n- **eval_return_final**: 80.46 @ step 205,000\n\n---\n\n## 注意事项\n\n1. **exp_056 尚未完全结束**：进程仍在运行，已过 210K 目标步数（当前 218.8K），最后 checkpoint 停在 202,500。可能正在做最终 eval 或写最后一个 checkpoint。建议等进程退出后再做一次确认，锁定最终 checkpoint。\n2. **exp_058 还差 ~5K 步**：当前 205K/210K，预计约 1-2 小时内完成。最终数据需等完成后再确认。\n3. **metrics key 名称**：两个实验的 ve_ratio 都记录在 `civo/ve_ratio`（不是 `agent/ve_ratio`），eval 记录在 `eval_return`（不是 `eval/return`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp-056-058-final.md"
+}

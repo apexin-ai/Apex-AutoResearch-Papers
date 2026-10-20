@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "36493362f058d01389af",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "debug exp 009f crash",
+  "task_key": "worker_debug_exp_009f_crash_20260515T184643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_exp_009f_crash_20260515T184643.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/debug-exp-009f-crash.md"
+}

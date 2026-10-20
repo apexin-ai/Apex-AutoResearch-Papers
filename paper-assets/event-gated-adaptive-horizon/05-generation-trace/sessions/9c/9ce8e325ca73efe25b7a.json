@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ce8e325ca73efe25b7a",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "diagnose exp 009d baseline walker s0",
+  "task_key": "worker_diagnose_exp_009d_baseline_walker_s0_20260515T121115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_009d_baseline_walker_s0_20260515T121115_result.json",
+    "occurrence": 1,
+    "bytes": 1370,
+    "sha256": "79fbdb4f060f1e6fea1a25ff1730a68d781b6ca6cb03956f30160cf1b07f0473"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n## 诊断报告\n\n### 失败根因\n\n**dm_control 的 OpenGL 渲染后端初始化失败。** 具体错误：\n\n```\nAttributeError: 'NoneType' object has no attribute 'glGetError'\n```\n\n调用链：`dreamer.py` → `dmc.DeepMindControl` → `from dm_control import suite` → dm_control 尝试加载 OSMesa 渲染器 → PyOpenGL 无法正确绑定 GL 库。\n\n**根本原因：** 环境变量 `MUJOCO_GL` 和 `PYOPENGL_PLATFORM` 均未设置。dm_control 默认尝试 OSMesa，但 PyOpenGL 在当前环境下无法正确加载 OSMesa GL context。服务器有 NVIDIA GPU，应使用 EGL 后端进行 headless GPU 渲染。\n\n### 建议修复\n\n在训练命令中添加环境变量，将渲染后端切换为 EGL：\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && MUJOCO_GL=egl python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009d_baseline_walker_s0 --steps 500000 --seed 0 --compile False --device cuda:0\"\n```\n\n关键改动：`python dreamer.py` → `MUJOCO_GL=egl python dreamer.py`\n\n### cuda:0 当前状态\n\n- **可用。** 两块 NVIDIA RTX PRO 6000 Blackwell (各 96GB)，GPU 利用率 0%，无任何进程占用\n- 磁盘：250GB 数据盘仅用 13GB (5%)，空间充足"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-009d-baseline-walker-s0-copy-2.md"
+}

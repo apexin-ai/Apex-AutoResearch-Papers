@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf57ed044f3fdbd2135b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper cheetah 409 and overfull final",
+  "task_key": "worker_paper_cheetah_409_and_overfull_final_20260524T103038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_cheetah_409_and_overfull_final_20260524T103038_result.json",
+    "occurrence": 1,
+    "bytes": 904,
+    "sha256": "10aa7f5d63fd9d1134b9cdde73ed404a5da97ac75d4118c86f7923f62072f7c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过：\n\n| 验证项 | 结果 |\n|---|---|\n| TODO | 0 |\n| Error | 0 |\n| undefined | 0 |\n| 320/603 残留 | 0 |\n| Overfull hbox 最大值 | 11.0pt（< 30pt） |\n| 页数 | 24 |\n\n### 汇报\n\n1. **Cheetah baseline**：`${\\sim}320$` → `${\\sim}409$`，删除了 `%% TODO: verify Cheetah baseline...` 注释。全文无其他 320/603 残留。\n\n2. **Overfull hbox**：修复 8 个 > 30pt 的 overfull 表格（appendix.tex），全部用 `\\resizebox{\\columnwidth}{!}{...}` 包裹 tabular 环境。修复前最大 155.7pt，修复后最大 11.0pt。涉及表格：`tab:cross_domain`、`tab:nve_loeo`、`tab:three_way_emb`、`tab:causal_matrix`、`tab:post_civo`、`tab:failure_modes`、`tab:detector-validation`、`tab:dual_critic_full`。\n\n3. **最终验证**：0 TODO、0 Error、0 undefined、0 残留旧值、Overfull 最大 11pt。编译成功，24 页。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-cheetah-409-and-overfull-final.md"
+}

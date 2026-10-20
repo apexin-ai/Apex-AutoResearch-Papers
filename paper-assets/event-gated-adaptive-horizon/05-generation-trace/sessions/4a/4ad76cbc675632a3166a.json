@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ad76cbc675632a3166a",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check cheetah baseline progress",
+  "task_key": "worker_check_cheetah-baseline-progress_20260517T170416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_cheetah-baseline-progress_20260517T170416_result.json",
+    "occurrence": 1,
+    "bytes": 389,
+    "sha256": "2db37986e0c0488c2aa09a11149edcac4008ee081eabe2481c0308555217b3c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n023a: step 85K/200K (42.5%), eval@85k = 330.6 (peak 404.2@75k), ETA ~3h\n023b: step 125K/200K (62.5%), eval@125k = 537.7 (稳步上升), ETA ~2h\n```\n\n两个进程均正常运行，无 error。023b 领先 023a 约 40K steps。\n\neval_return 趋势：\n- **023a**: 338→386→404→331 (85K 有回落)\n- **023b**: 457→436→506→538 (稳步提升，表现良好)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-cheetah-baseline-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b20939ca812cd721d49",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code 019b pickcube civo trigger prep",
+  "task_key": "worker_code_019b-pickcube-civo-trigger-prep_20260516T235335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_019b-pickcube-civo-trigger-prep_20260516T235335_result.json",
+    "occurrence": 1,
+    "bytes": 1279,
+    "sha256": "d9e91f1b0f5a2f18aed020e80428982a904bcb46c4b8be58c669d429b28dbbef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**完成。** 脚本已更新至 `artifacts/scripts/exp_019b_pickcube_civo_trigger.sh`，验证结果：\n\n- Dry-run 在 bjb1-45299 cuda:1 上成功启动（`[ManiSkill GPU] CVD=None, requested=cuda:1, resolved=cuda:1`）\n- 模型参数量 16,986,162（含 dt_emb），对比 019a baseline 的 16,507,690（纯 DreamerV3），增量 ~478K 来自 gate 模块\n- `unset CUDA_VISIBLE_DEVICES` 已包含，避免 SAPIEN IndexError\n- 默认 CUDA_ID=1，Main Agent 提交时可直接用或覆盖\n\n提交命令参考（供 Main Agent 使用）：\n```\nbash /root/autodl-tmp/event-gated-adaptive-horizon/../../artifacts/scripts/exp_019b_pickcube_civo_trigger.sh\n```\n或等效的 inline command：\n```\nunset CUDA_VISIBLE_DEVICES && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=1 python -u dreamer.py --configs maniskill_state --task maniskill_PickCube-v1 --steps 200000 --seed 1 --device cuda:1 --compile False --checkpoint_every 25000 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_min_dt 1 --gate_subsample_max_dt 2 --imag_horizon 8 --logdir ./logdir/exp_019b_pickcube_civo_trigger\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-019b-pickcube-civo-trigger-prep.md"
+}

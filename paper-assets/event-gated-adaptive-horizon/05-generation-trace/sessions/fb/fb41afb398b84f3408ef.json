@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb41afb398b84f3408ef",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops launch 026 cheetah bjb40020",
+  "task_key": "worker_ops_launch-026-cheetah-bjb40020_20260519T201959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_launch-026-cheetah-bjb40020_20260519T201959_result.json",
+    "occurrence": 1,
+    "bytes": 492,
+    "sha256": "9d0809f44d4a19ea8a6aaa4e3b21d196db7972b3bb2c0fa3bd4e62bb50e7fd38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已成功启动并正常训练：\n\n| 实验 | tmux session | GPU | 显存占用 | PID | 状态 |\n|------|-------------|-----|---------|-----|------|\n| exp_026_obs_sgs_cheetah_s0 | exp_026_s0 | cuda:0 | 5178/24564 MiB | 16208 | 已到 [5000]，正在 evaluation |\n| exp_026_obs_sgs_cheetah_s1 | exp_026_s1 | cuda:1 | 3096/24564 MiB | 16346 | 已到 [5000]，正在 evaluation |\n\n两个实验与现有 exp_025 共存运行，GPU 0/1 各承载一个实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-launch-026-cheetah-bjb40020.md"
+}

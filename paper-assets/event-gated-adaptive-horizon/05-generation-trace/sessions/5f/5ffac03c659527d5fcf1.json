@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ffac03c659527d5fcf1",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code impl event gate",
+  "task_key": "worker_code_impl-event-gate_20260513T012450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_impl-event-gate_20260513T012450_result.json",
+    "occurrence": 1,
+    "bytes": 1221,
+    "sha256": "9cd8817bc834d610f9276e3caecee9d749ff07cdbb5accffbe35e6411cbec9f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实现完成。总结：\n\n**修改了 4 个文件 + 1 个变更文档：**\n\n- **`configs.yaml`** — 添加 14 个 `gate_*` 超参数（`gate_enabled: false` 默认关闭）\n- **`networks.py`** — RSSM 增加 `max_dt`/`dt_embed_dim` 参数和 dt embedding（`max_dt=1` 时不创建，保持原版行为）；新增 `EventGate` 类（MLP + Gumbel-Softmax，τ 从 5.0 退火到 0.5）\n- **`tools.py`** — 新增 `lambda_return_variable_dt`（γ^dt 折扣）和 `subsample_variable_dt`（log-uniform dt 采样 + 累积折扣 reward）\n- **`models.py`** — WorldModel 集成 EventGate + 变量 dt 子采样 + gate supervision loss（3 阶段 curriculum + λ_H 退火）；ImagBehavior 在 imagination 中用 gate 决策 dt + 适配的 lambda-return\n- **`CHANGES.md`** — 逐行变更说明\n\n**验证通过的测试：**\n- 所有模块 import 正常\n- EventGate 前向/后向、entropy 计算\n- RSSM img_step/obs_step/observe/imagine_with_action 在有/无 dt 时均正确\n- `lambda_return_variable_dt` 在 dt=1 时与原版 `lambda_return` 输出一致\n- `subsample_variable_dt` 正确计算累积折扣 reward\n- `gate_enabled=false` 时 RSSM 无 dt_embedding，行为与原版完全一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-impl-event-gate.md"
+}

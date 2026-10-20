@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f462f24710eb0c4e1eb",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 009c 008f walker s2",
+  "task_key": "worker_analysis_exp_009c_008f_walker_s2_20260514T141709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_009c_008f_walker_s2_20260514T141709_result.json",
+    "occurrence": 1,
+    "bytes": 816,
+    "sha256": "5a6f9ede81812a43e8e5bc6baee83d294bc86d861a1682834b75f0ed51d663da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。训练正常结束（EXIT_CODE=0），无报错。\n\n**结论：NEGATIVE**\n\n| 对比维度 | 008f seed 1 | 009c seed 2 |\n|----------|-------------|-------------|\n| eval_return@105K | 503 | 148 |\n| peak eval_return | 503@105K（上升中）| 359@75K（之后连跌3次）|\n| normalized v/e@105K | 0.30x | 1.14x |\n| vs baseline@105K | -45.1% | -83.8% |\n| 趋势 | zigzag recovery | rise-then-decay |\n\nSeed 2 未复现 seed 1 的 zigzag recovery 模式。75K 后 eval_return 单调下降（359→227→191→148），value_mean 却持续上升（84→96→108→111），v/e ratio 从 0.23 升至 0.75，说明 value function 与实际表现脱节加剧。虽未达到 1.5x delusional critic 阈值，但 008f 配置的因果控制效果 **seed-dependent，不 robust**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-009c-008f-walker-s2.md"
+}

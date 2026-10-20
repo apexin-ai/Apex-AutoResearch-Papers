@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6b21ae649d237f9a449",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops check 018v2 status",
+  "task_key": "worker_ops_check-018v2-status_20260516T152241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-018v2-status_20260516T152241_result.json",
+    "occurrence": 1,
+    "bytes": 402,
+    "sha256": "58fe8a66a4d3012b235b1e7acdad0285bbf11dd8307b19a0d71cf60cbe3b2cf6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：**\n\n- **exp_018v2**: PID 589564 存活，Python 子进程 589569 在 GPU-1 上运行，当前 step 48000/105000 (46%)，eval_return 从 208→303 稳步上升，FPS 9.4。**正常运行中，registry 需从 ALLOCATED 更新为 RUNNING。**\n- **exp_010b**: step 85000/105000 (81%)，eval_return 109.7，接近完成。\n\n报告已写入 `artifacts/018v2_server_check.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-018v2-status.md"
+}

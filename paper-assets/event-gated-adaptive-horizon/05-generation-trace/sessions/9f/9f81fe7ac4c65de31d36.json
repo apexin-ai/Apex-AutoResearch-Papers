@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "9f81fe7ac4c65de31d36",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "paper auroc full recalculation",
+  "task_key": "worker_paper_auroc_full_recalculation_20260524T085347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_auroc_full_recalculation_20260524T085347.log",
+    "occurrence": 1,
+    "bytes": 1754026,
+    "sha256": "8aa6a2006bace2f482a816bde658ee9a5eb2849b7a5869683f5d40893f7eadde"
+  },
+  "statistics": {
+    "messages": 191,
+    "user_turns": 0,
+    "tool_calls": 70,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 70,
+      "tool_result": 70,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 191,
+      "chunks": [
+        {
+          "path": "9f81fe7ac4c65de31d36-part-0001.json",
+          "message_count": 104
+        },
+        {
+          "path": "9f81fe7ac4c65de31d36-part-0002.json",
+          "message_count": 28
+        },
+        {
+          "path": "9f81fe7ac4c65de31d36-part-0003.json",
+          "message_count": 59
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-auroc-full-recalculation.md"
+}

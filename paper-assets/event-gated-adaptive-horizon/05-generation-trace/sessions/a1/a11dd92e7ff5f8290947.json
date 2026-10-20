@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a11dd92e7ff5f8290947",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops check 008ac progress",
+  "task_key": "worker_ops_check_008ac_progress_20260514T022152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_008ac_progress_20260514T022152_result.json",
+    "occurrence": 1,
+    "bytes": 1438,
+    "sha256": "f159f8e515dabf71ae5c8e22ef1905fc91ed7e6bc571ff914e3fb7523a94b80c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个都返回 0（无匹配，grep exit code 1 是正常的\"未找到\"）。汇总如下：\n\n---\n\n## GPU 状态\n\n| GPU | 型号 | Compute Util | Memory | 功耗 | 温度 |\n|-----|------|-------------|--------|------|------|\n| 0 | RTX PRO 6000 Blackwell | **19%** | 4165 / 97887 MiB (4.3%) | 145W/600W | 39°C |\n| 1 | RTX PRO 6000 Blackwell | **22%** | 2751 / 97887 MiB (2.8%) | 112W/600W | 41°C |\n\nGPU 0 跑 exp_008a (PID 106947)，GPU 1 跑 exp_008c (PID 107026)。利用率偏低（19-22%），显存占用极小。\n\n## 训练进度\n\n| 实验 | 当前 step | dataset_size | train_return (最新) | train_length |\n|------|----------|-------------|-------------------|-------------|\n| **exp_008a** | 20,000 | 10,000 | **147.82** | 500 |\n| **exp_008c** | 24,000 | 12,000 | **200.85** | 500 |\n\nexp_008c 领先 4k steps，train_return 也明显更高（~201 vs ~148）。\n\n两个 metrics 文件中均无 `eval_return`、`model_loss`、`fps` 字段，只有 step/dataset_size/train_return/train_length/train_episodes。\n\n## NaN 检查\n\n008a: **0**，008c: **0**。无 NaN/inf。\n\n## 进程状态\n\n| PID | 运行时间 | CPU% | MEM% |\n|-----|---------|------|------|\n| 106942 | 44min 34s | 0.0% | 0.0% |\n| 107021 | 44min 33s | 0.0% | 0.0% |\n\n这两个 PID（106942/107021）是 wrapper 进程，CPU/MEM 接近 0；实际干活的是子进程 106947 和 107026（nvidia-smi 中可见）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-008ac-progress.md"
+}

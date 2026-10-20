@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b4de3a6181a97d8426c",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops fix plan017 kill and reverify",
+  "task_key": "worker_ops_fix-plan017-kill-and-reverify_20260515T100255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-plan017-kill-and-reverify_20260515T100255_result.json",
+    "occurrence": 1,
+    "bytes": 1938,
+    "sha256": "0b649cf056a36914a617af8f9e98fb7b5b80dac933cc812612460671b5b6fde0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry run 验证通过。\n\n---\n\n## 完整报告\n\n### 1. 进程清理\n5 个 dry run 进程全部已杀：130056, 130470, 130846, 131371, 131916。无其他 plan017 残留进程。\n\n### 2. submit_plan017.sh 内容确认\n脚本已包含 `--gate_subsample_max_dt 1`，无需修复。\n\n### 3. 代码逻辑验证\n- `models.py:216`: `gate_subsample_max_dt=1` → `subsample_eff_dt=1.0`\n- `tools.py:776-778`: `effective_max_dt <= 1` → `dt_labels = ones`，**直接跳过 subsampling，返回原始数据**\n\n### 4. Dry run 结果\n| 配置 | dt_labels 唯一值 | subsample 状态 |\n|------|-----------------|---------------|\n| `gate_subsample_max_dt=1` (plan_017) | `[1]` | **OFF** — 全部 dt=1 |\n| `gate_subsample_max_dt=0` + `effective_max_dt=2` (008d-like) | `[1, 2]` | ON — 有 dt>1 |\n\n### 5. 最终确认的完整训练命令\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nexport LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && \\\nexport MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && \\\ncd /root/autodl-tmp/event-gated-adaptive-horizon && \\\nnohup python -u dreamer.py --configs defaults dmc_proprio \\\n  --task dmc_walker_walk \\\n  --logdir logdir/exp_017_subsample_off_trained_dt_emb \\\n  --steps 105000 --seed 1 --compile False --device cuda:0 \\\n  --gate_enabled True --gate_fixed_dt 2 \\\n  --gate_dt_embed_dim 32 \\\n  --gate_subsample_max_dt 1 \\\n  --imag_horizon 15 \\\n  > logdir/exp_017_subsample_off_trained_dt_emb.log 2>&1 &\n```\n\n关键参数确认：\n- `--gate_subsample_max_dt 1` → subsample **OFF**\n- `--gate_fixed_dt 2` → dt=2 imagination\n- `--imag_horizon 15`（脚本原值，非任务描述中的 H=8）\n- `--dt_emb_freeze` 未指定 → 默认 False → dt_emb **trained**\n- 与 008d（subsample ON）的唯一差异就是 `gate_subsample_max_dt=1`\n\n**配置正确，可以放心启动正式实验。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-plan017-kill-and-reverify.md"
+}

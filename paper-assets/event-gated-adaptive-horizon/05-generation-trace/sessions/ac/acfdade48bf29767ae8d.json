@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "acfdade48bf29767ae8d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "extract 008e v3 s1 final",
+  "task_key": "worker_extract_008e_v3_s1_final_20260514T223306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_extract_008e_v3_s1_final_20260514T223306_result.json",
+    "occurrence": 1,
+    "bytes": 2799,
+    "sha256": "773658fd1a880ebc821d21f711983774b655f6895b84be4b54de4a8a9f39dee2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data. Here's the compiled result:\n\n```\n=== 008e_v3_s1 FINAL RESULTS ===\nSTATUS: STILL_RUNNING (PID 898127, elapsed 3h44m, target 105000 steps)\nCURRENT_STEP: ~92000 (last train log)\nLAST_EVAL_STEP: 85000\nCHECKPOINT: latest.pt (221MB), no checkpoint.ckpt\n\nCONFIG: --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15 --seed 1\n\nEVAL_TRAJECTORY:\n  step=5000:  eval_return=31.00   value_mean=0.00     ve_ratio=0.0001  reward_loss=3.3450  model_loss=20.7378  actor_entropy=8.1598\n  step=15000: eval_return=131.17  value_mean=4.00     ve_ratio=0.0305  reward_loss=0.6736  model_loss=7.4676   actor_entropy=2.2060\n  step=25000: eval_return=155.69  value_mean=26.19    ve_ratio=0.1683  reward_loss=0.5944  model_loss=5.3057   actor_entropy=0.0658\n  step=35000: eval_return=276.47  value_mean=62.76    ve_ratio=0.2270  reward_loss=0.6115  model_loss=5.0288   actor_entropy=-1.2322\n  step=45000: eval_return=382.22  value_mean=110.67   ve_ratio=0.2896  reward_loss=0.6182  model_loss=4.9644   actor_entropy=-1.9930\n  step=55000: eval_return=486.84  value_mean=170.09   ve_ratio=0.3494  reward_loss=0.6228  model_loss=4.9633   actor_entropy=-3.2020\n  step=65000: eval_return=580.67  value_mean=235.05   ve_ratio=0.4048  reward_loss=0.6203  model_loss=4.9721   actor_entropy=-4.8221\n  step=75000: eval_return=574.09  value_mean=300.51   ve_ratio=0.5235  reward_loss=0.6112  model_loss=4.9152   actor_entropy=-5.1072\n  step=85000: eval_return=657.31  value_mean=351.33   ve_ratio=0.5345  reward_loss=0.6019  model_loss=4.8267   actor_entropy=-5.1767\n\nLATEST_EVAL_RETURN: 657.31\nLATEST_VALUE_MEAN: 351.33\nLATEST_VE_RATIO: 0.5345\n\nGATE METRICS: gate_dt_mean=1.0 at all checkpoints (gate_fixed_dt=1, no adaptive gating active)\n\n=== NVE TRAJECTORY ===\nexp_001_baseline NOT FOUND at specified path.\nNo exp_001* directories exist in logdir/.\nCannot compute NVE against baseline.\n\n=== 009a STATUS ===\nSTATUS: STILL_RUNNING (PID 142508, elapsed 13h01m)\nCURRENT_STEP: 336000 / 500000 (67.2%)\nLAST_EVAL: step=335000, eval_return=919.23\n\n009a EVAL TRAJECTORY (selected):\n  step=85000:  618.73\n  step=105000: 836.51\n  step=215000: 956.04 (peak)\n  step=285000: 960.20 (best)\n  step=335000: 919.23 (latest)\nPROCESS: ALIVE\n```\n\n**Key observations:**\n- 008e 还在跑（~92k/105k），预计 ~1h 内完成\n- 009a 作为 baseline（seed 2, 无 gate），67% 进度，eval_return 已稳定在 920-960 区间\n- 008e 在 85k 步的 eval_return=657 远低于 009a 同步数下的 618（009a 85k=618.73，008e 85k=657.31，008e 略高）\n- 008e 的 ve_ratio 持续上升（0.53），说明 value function 在追赶但仍有差距\n- gate_dt 全程固定为 1（因为 gate_fixed_dt=1），没有真正的 adaptive horizon"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/extract-008e-v3-s1-final.md"
+}

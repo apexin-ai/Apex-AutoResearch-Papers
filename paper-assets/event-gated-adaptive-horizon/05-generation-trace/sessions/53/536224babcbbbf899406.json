@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "536224babcbbbf899406",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis cross env civo comparison",
+  "task_key": "worker_analysis_cross_env_civo_comparison_20260525T033401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_env_civo_comparison_20260525T033401_result.json",
+    "occurrence": 1,
+    "bytes": 2650,
+    "sha256": "3cca69412a61a2f2df1feaf2e775a0ec875884573e69c9170be06959f0428bfd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已生成并注册。以下是结果：\n\n---\n\n## LaTeX Table\n\n```latex\n\\begin{table}[t]\n\\centering\n\\caption{Cross-environment CIVO comparison. \\textbf{Trigger}: trained dt\\_emb + subsample ON + $H{=}8$; \\textbf{Control}: dt\\_embed\\_dim$=$0 (no dt\\_emb) + subsample ON + $H{=}8$. NVE Peak reports the maximum Normalized Value Excess across all seeds. CIVO is flagged when any seed exceeds NVE $\\geq 1.5\\times$.}\n\\label{tab:cross_env_civo}\n\\begin{tabular}{llccc}\n\\toprule\nEnvironment & Configuration & Eval Return & NVE Peak & CIVO \\\\\n\\midrule\n\\multirow{3}{*}{Walker Walk}\n & Baseline ($\\Delta t{=}1$) & $787.7 \\pm 230.8$ & --- & --- \\\\\n & Trigger (trained dt\\_emb) & $140.6 \\pm 111.5$ & $4.72\\times$ & \\cmark~(5/5) \\\\\n & Control (no dt\\_emb) & $373.8 \\pm 111.9$ & $1.41\\times$ & \\xmark~(0/4) \\\\\n\\midrule\n\\multirow{3}{*}{Cheetah Run}\n & Baseline ($\\Delta t{=}1$) & $593.9 \\pm 60.4$ & --- & --- \\\\\n & Trigger (trained dt\\_emb) & $26.3 \\pm 36.0$ & $70.64\\times$ & \\cmark~(2/2) \\\\\n & Control (no dt\\_emb) & $86.9 \\pm 13.6$ & $0.20\\times$ & \\xmark~(0/2) \\\\\n\\midrule\n\\multirow{3}{*}{Cartpole Swingup}\n & Baseline ($\\Delta t{=}1$) & $673.3 \\pm 142.0$ & --- & --- \\\\\n & Trigger (trained dt\\_emb) & $236.3 \\pm 29.7$ & $0.06\\times$ & \\xmark~(0/3) \\\\\n & Control (no dt\\_emb) & \\multicolumn{3}{c}{\\emph{running (exp\\_062)}} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n```\n\n---\n\n## CSV\n\n```\nEnvironment,Configuration,Eval Return (mean),Eval Return (std),Seeds (eval),NVE Peak (max),CIVO\nWalker Walk,Baseline (dt=1),787.7,230.8,4,—,—\nWalker Walk,Trigger (trained dt_emb),140.6,111.5,3,4.72×,Yes (5/5)\nWalker Walk,Control (no dt_emb),373.8,111.9,3,1.41×,No (0/4)\nCheetah Run,Baseline (dt=1),593.9,60.4,5,—,—\nCheetah Run,Trigger (trained dt_emb),26.3,36.0,2,70.64×,Yes (2/2)\nCheetah Run,Control (no dt_emb),86.9,13.6,2,0.20×,No (0/2)\nCartpole Swingup,Baseline (dt=1),673.3,142.0,3,—,—\nCartpole Swingup,Trigger (trained dt_emb),236.3,29.7,3,0.06×,No (0/3)\nCartpole Swingup,Control (no dt_emb),—,—,0,—,RUNNING\n```\n\n---\n\n## 关键发现\n\n| 环境 | CIVO 触发? | NVE 严重程度 | 备注 |\n|---|---|---|---|\n| Walker Walk | **Yes** (5/5 seeds) | 4.72× | 100% 复现，中等 NVE |\n| Cheetah Run | **Yes** (2/2 seeds) | 70.64× | NVE 极高，不可自修复 |\n| Cartpole Swingup | **No** (0/3 seeds) | 0.06× | trained dt_emb 未触发 CIVO，但 eval 仍显著下降 (236 vs 673) |\n\n**exp_062 (Cartpole Control)** 仍在运行，registry 无 metrics。服务器上也未找到日志目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cross-env-civo-comparison.md"
+}

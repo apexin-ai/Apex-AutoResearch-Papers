@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c77ebada0e0f497cbb1c",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper claim strength audit",
+  "task_key": "worker_paper_claim-strength-audit_20260516T075150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_claim-strength-audit_20260516T075150_result.json",
+    "occurrence": 1,
+    "bytes": 453,
+    "sha256": "4c0d81d394fc8c4b5f8ec23344c629604c12bef2d938b8a8c2a3e04c67035f50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。文件在 `artifacts/claim_strength_audit.md`，已注册 (`art_20260516_0b4bf1`)。\n\n核心发现：\n- 10/13 阴性实验已被 results.tex 引用，叙事角色清晰\n- **关键缺口**：exp_016e（梯度分解 + reward-only SGS = no-op）完全未写入论文，是 Framing B 最强机制证据\n- 未验证假说：obs decoder 梯度通路是 CIVO 驱动源（exp_018 QUEUED）；跨环境泛化（exp_010a RUNNING）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-claim-strength-audit.md"
+}

@@ -1,0 +1,371 @@
+{
+  "schema_version": "1.0",
+  "id": "a6c7210b1512c11e537c",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "conversation",
+  "title": "paper iclr reframe p0",
+  "task_key": "worker_paper_iclr-reframe-p0_20260528T233554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_iclr-reframe-p0_20260528T233554.jsonl",
+    "occurrence": 1,
+    "bytes": 15249,
+    "sha256": "f1f2c5a28b4403c2f4c06ba8c323daf12f5b784d988ad74d37bd0c2b80e398e7"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-28T23:37:10.588753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_iclr-reframe-p0_20260528T233554",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/introduction.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-28T23:37:10.589184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tWorld-model reinforcement learning enables sample-efficient learning directly on physical hardware \\citep{wu2023daydreamer, hansen2024tdmpc2}. Real robotic tasks demand temporal abstraction: manipulation requires fast reactive grasping alongside slow approach planning, locomotion involves gait phases at different frequencies, and sim-to-real transfer must handle $\\dt$ mismatches between simulation and hardware. TAWM \\citep{nhu2025tawm} shows that conditioning a world model on step size $\\dt$ yields consistent gains within TD-MPC2's MPC framework \\citep{hansen2024tdmpc2}. Can the same $\\dt$-conditioning bring temporal abstraction to imagination-based actor-critic methods like DreamerV3 \\citep{hafner2023dreamerv3}, where policies are trained entirely in imagined rollouts?\n5\t\n6\tWe find that it cannot. Every variable-rate configuration degrades performance catastrophically (14--19\\% of baseline). Through a factorial analysis on Walker Walk \\citep{tassa2018dmcontrol}, we isolate the combination of a \\emph{trained} $\\dt$-embedding (a learned vector concatenated to the RSSM input at each imagination step; our implementation of $\\dt$-conditioning) and multi-rate data exposure as the strongest predictor. This combination enables environment-dependent pathologies---a $1.63\\times$ reward prediction gap in Walker Walk, or dynamics-model prior drift without measurable reward bias in Cheetah Run---which the critic internalizes as optimistic value estimates, a failure mode we term \\emph{conditioning-induced value overestimation} (CIVO), analogous to delusional bias \\citep{lu2018nondelusional} but model-induced rather than policy-class-induced. A normalized value-to-eval (NVE) threshold of $\\geq 2.0\\times$ achieves perfect classification ($n{=}36$; AUROC${=}1.000$, F1${=}1.000$; Appendix~\\ref{sec:appendix_sensitivity}).\n7\t\\begin{figure*}[t]\n8\t\\centering\n9\t\\includegraphics[width=\\textwidth]{figures/paper/fig4_mechanism_diagram\n…[truncated 2397 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_iclr-reframe-p0_20260528T233554",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-28T23:37:10.589519+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_iclr-reframe-p0_20260528T233554",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/abstract_body.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-28T23:37:10.589693+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tWorld-model reinforcement learning is increasingly deployed for robot control, where temporal abstraction enables planning across heterogeneous time scales. We find that $\\Delta t$-conditioning, effective in model-predictive control (MPC), cannot transfer to imagination-based actor-critic training: every variable-rate DreamerV3 configuration degrades to 14--19\\% of baseline. Factorial diagnostics on two continuous-control tasks identify the combination of trained temporal embedding and multi-rate data exposure as the strongest predictor of this failure---\\emph{conditioning-induced value overestimation} (CIVO; $n{=}36$, AUROC${=}1.000$ [95\\% bootstrap CI: 1.000--1.000], F1${=}1.000$). The RSSM develops a reward prediction gap at $\\Delta t{>}1$ that the critic internalizes as optimistic values; the contrast with MPC identifies feedback architecture as a hypothesized structural factor. Gradient, output, and representation interventions fail to eliminate CIVO; at the architecture level, dual critics converge in pure imagination ($\\rho > 0.999$), but wide dual-critic (min-aggregation $+$ increased capacity) achieves 3/4 prevention---the only partial success, whose mechanism requires further study.\n2\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_iclr-reframe-p0_20260528T233554",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-28T23:37:10.589884+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_iclr-reframe-p0_20260528T233554",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-28T23:37:10.590086+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass{article}\n2\t\n3\t% xcolor with table option must be loaded before corl_2026.sty (which loads color internally)\n4\t\\usepackage[table]{xcolor}\n5\t\n6\t\\usepackage{corl_2026} % CoRL 2026 submission (anonymous)\n7\t\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage[T1]{fontenc}\n10\t\\usepackage{amsmath,amssymb}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{multirow}\n13\t\\usepackage{graphicx}\n14\t\\graphicspath{{../../artifacts/}}\n15\t\\usepackage{colortbl}\n16\t\\usepackage{caption}\n17\t\\usepackage{subcaption}\n18\t\\usepackage{array}\n19\t\\usepackage{enumitem}\n20\t\\usepackage{wrapfig}\n21\t\\usepackage{algorithm}\n22\t\\usepackage{algorithmic}\n23\t\n24\t% Custom commands\n25\t\\newcommand{\\dt}{\\mathrm{dt}}\n26\t\\newcommand{\\nve}{\\mathrm{nve}}\n27\t% SGS result values (018 seed 1: partial mitigation; seed 2: collapsed — 0/3 CIVO elimination)\n28\t\\newcommand{\\sgseval}{448.3}\n29\t\\newcommand{\\sgsnve}{1.66}\n30\t\\newcommand{\\sgsclaim}{reduced CIVO severity in one of two Walker seeds but eliminated it in neither (0/3 across environments)}\n31\t\\usepackage{pifont}\n32\t\\newcommand{\\cmark}{\\ding{51}}\n33\t\\newcommand{\\xmark}{\\ding{55}}\n34\t\\newcommand{\\ie}{\\textit{i.e.}}\n35\t\\newcommand{\\eg}{\\textit{e.g.}}\n36\t\\newcommand{\\cf}{\\textit{cf.}}\n37\t\\newcommand{\\etal}{\\textit{et al.}}\n38\t\n39\t\\title{Why Temporal Abstraction Can Fail in Imagination-Based RL:\\\\\n40\tA Diagnostic Analysis of Variable-Rate DreamerV3}\n41\t\n42\t\\author{\n43\t  Anonymous Authors\\\\\n44\t  Anonymous Institution\\\\\n45\t  \\texttt{anon@anon.edu}\n46\t}\n47\t\n48\t\\begin{document}\n49\t\\maketitle\n50\t\n51\t\\begin{abstract}\n52\t\\input{sections/abstract_body}\n53\t\\end{abstract}\n54\t\n55\t\\keywords{World Models, Temporal Abstraction, Value Overestimation, DreamerV3}\n56\t\n57\t% --- INTRODUCTION ---\n58\t\\input{sections/introduction}\n59\t\n60\t% --- RELATED WORK ---\n61\t\\input{sections/related_work}\n62\t\n63\t% --- EXPERIMENTS AND RESULTS (merged) ---\n64\t\\input{sections/experiments_results}\n65\t\n66\t% --- ANALYSIS ---\n67\t\\input{sections/analysis}\n68\t\n69\t% --- CONCLUSION ---\n70\t\\input{sections/conclusion}\n…[truncated 127 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_iclr-reframe-p0_20260528T233554",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-28T23:37:10.590317+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_iclr-reframe-p0_20260528T233554",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/introduction.tex",
+              "old_string": "World-model reinforcement learning enables sample-efficient learning directly on physical hardware \\citep{wu2023daydreamer, hansen2024tdmpc2}. Real robotic tasks demand temporal abstraction: manipulation requires fast reactive grasping alongside slow approach planning, locomotion involves gait phases at different frequencies, and sim-to-real transfer must handle $\\dt$ mismatches between simulation and hardware.",
+              "new_string": "World-model reinforcement learning enables sample-efficient learning in complex continuous control tasks \\citep{wu2023daydreamer, hansen2024tdmpc2}. Continuous control demands temporal abstraction: locomotion with heterogeneous gait phases, contact-rich tasks with variable sensing rates, and multi-rate decision-making across planning horizons all require handling $\\dt$ mismatches."
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-28T23:37:10.590496+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_iclr-reframe-p0_20260528T233554",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-28T23:37:10.590637+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_iclr-reframe-p0_20260528T233554",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/introduction.tex",
+              "old_string": "As world-model RL moves toward real systems with variable-rate sensing, understanding when temporal conditioning fails is essential for safe deployment.",
+              "new_string": "As world-model RL incorporates variable-rate decision-making, understanding when temporal conditioning fails is essential for the architectural design of variable-rate model-based RL."
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-28T23:37:10.590793+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_iclr-reframe-p0_20260528T233554",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-28T23:37:10.590942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_iclr-reframe-p0_20260528T233554",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/abstract_body.tex",
+              "old_string": "World-model reinforcement learning is increasingly deployed for robot control, where temporal abstraction enables planning across heterogeneous time scales.",
+              "new_string": "World-model reinforcement learning increasingly targets continuous control tasks where temporal abstraction enables planning across heterogeneous time scales."
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-28T23:37:10.591082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/abstract_body.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_iclr-reframe-p0_20260528T233554",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-28T23:37:10.591204+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_iclr-reframe-p0_20260528T233554",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/abstract_body.tex",
+              "old_string": "the only partial success, whose mechanism requires further study.",
+              "new_string": "the only partial success, highlighting open challenges in the architectural design of variable-rate model-based RL."
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-28T23:37:10.591340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/abstract_body.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_iclr-reframe-p0_20260528T233554",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-28T23:37:10.591476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_iclr-reframe-p0_20260528T233554",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -30",
+              "description": "Compile LaTeX to check for errors",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-28T23:37:10.591612+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LaTeX Warning: `h' float specifier changed to `ht'.\n\n) [33] [34] [35] [36] [37] [38] [39] [40] [41] [42] (./main.aux) )\n(see the transcript file for additional information) </home/ubuntu/.texlive2025\n/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0900.600pk> </home/ubuntu/.texlive20\n25/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></usr/share/texlive/tex\nmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist\n/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts\n/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1\n/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public\n/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon\nts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c\nmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pf\nb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/\nshare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/te\nxlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/te\nxmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-di\nst/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/font\ns/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1\n/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public\n/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon\nts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont\ns/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uh\nvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/\nshare/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/t\nexmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/share/texlive/texmf-dist/font\ns/type1/urw/zapfding/uzdr.pfb>\nOutput wr\n…[truncated 76 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_iclr-reframe-p0_20260528T233554",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-28T23:37:10.591804+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，42页，无错误。\n\n### Diff 汇总\n\n**introduction.tex** (2处)：\n1. 第1句：`directly on physical hardware` → `in complex continuous control tasks`\n2. 第2句整句重写：删除 `Real robotic tasks` / `manipulation requires fast reactive grasping` / `sim-to-real transfer`，替换为 `Continuous control demands temporal abstraction: locomotion with heterogeneous gait phases, contact-rich tasks with variable sensing rates, and multi-rate decision-making across planning horizons all require handling $\\dt$ mismatches.`\n3. 末段尾句：`As world-model RL moves toward real systems with variable-rate sensing, understanding when temporal conditioning fails is essential for safe deployment.` → `...incorporates variable-rate decision-making...essential for the architectural design of variable-rate model-based RL.`\n\n**abstract_body.tex** (2处)：\n1. 首句：`increasingly deployed for robot control, where temporal abstraction` → `increasingly targets continuous control tasks where temporal abstraction`\n2. 尾句：`whose mechanism requires further study` → `highlighting open challenges in the architectural design of variable-rate model-based RL`\n\n**main.tex**：Keywords 无需修改，已无 robotics 措辞。`DreamerV3` 保留。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_iclr-reframe-p0_20260528T233554"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/paper-iclr-reframe-p0.md"
+}

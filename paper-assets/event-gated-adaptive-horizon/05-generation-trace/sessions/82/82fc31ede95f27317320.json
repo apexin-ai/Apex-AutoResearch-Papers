@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82fc31ede95f27317320",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper introduction draft",
+  "task_key": "worker_paper_introduction-draft_20260516T200221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_introduction-draft_20260516T200221_result.json",
+    "occurrence": 1,
+    "bytes": 1276,
+    "sha256": "3582a706cecd86ab71cfaeb19528539b3200fa4d673e77520963f23ec11d6da9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "草稿已写入 `artifacts/paper_drafts/introduction_draft.md`。\n\n结构概要：\n\n- **Para 1**: 从temporal abstraction在MBRL中的吸引力切入，引TAWM在MPC中的成功作为正面预期\n- **Para 2**: 转折——同样的dt-conditioning在imagination-based actor-critic中变成pathological feedback loop，引入CIVO术语\n- **Para 3**: 贡献概述——factorial design、NVE诊断指标（>1.5x perfect separation）、梯度分解（obs decoder 93%）、Full-SGS proof-of-concept\n- **Contributions 1-4**: (1) phenomenon identification + paradigm asymmetry, (2) causal diagnosis via ablations, (3) mechanistic explanation via gradient decomposition, (4) Full-SGS + Pathway B residual risk\n- **Closing**: practical implication（field must address CIVO before building variable-dt agents）+ paper outline\n\n几个写作决策：\n- TAWM对比放在第一段而非contribution list，建立\"MPC成功 vs imagination失败\"的paradigm asymmetry作为核心tension\n- Contribution 4明确标注Full-SGS为\"proof-of-concept\"而非mature solution，预防R2\n- 末段指向hierarchical approaches作为更promising的方向，避免over-claiming\n- 未使用\"significantly\"或\"consistently\"，所有数值claims可追溯到具体实验"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-introduction-draft.md"
+}

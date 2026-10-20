@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37dbbd98f64a3c587871",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis fix threshold report grouping",
+  "task_key": "worker_analysis_fix-threshold-report-grouping_20260515T062823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fix-threshold-report-grouping_20260515T062823_result.json",
+    "occurrence": 1,
+    "bytes": 782,
+    "sha256": "8d566273a72338ca4362076eefd5f152608dd4f7409391c7262161903a9a1302"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修正完成。主要变更：\n\n1. **分组修正**: 008e_v3_s1 从 untrained 移入 trained 组（5 trained / 4 untrained）\n2. **Threshold sweep 全部重算**: 最优范围 [1.2x, 1.6x] 准确率 88.9%（非 100%），008e_v3_s1 为永久 false negative\n3. **删除所有 \"perfect classification/separation\"**: 改为 necessary-but-not-sufficient 表述\n4. **Separation analysis 重写**: 明确指出两组在 nve 上存在重叠（trained min 0.94 < untrained max 1.14）\n5. **Time window sensitivity 重算**: Full window TPR 降为 80%（4/5）\n6. **新增 §6**: 008e_v3_s1 false negative 分析 — seed 分歧、多路径假说、dt=1 部分缓解\n7. **§7 推荐语和 paper language**: 反映 89% accuracy 和 necessary-but-not-sufficient 结论"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fix-threshold-report-grouping.md"
+}

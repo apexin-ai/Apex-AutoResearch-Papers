@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a719a5f4f65dbee13239",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp status check",
+  "task_key": "worker_analysis_exp-status-check_20260521T121718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-status-check_20260521T121718_result.json",
+    "occurrence": 1,
+    "bytes": 1411,
+    "sha256": "c193ea4bb052493c515e4ec34cff88f11f4084e6e310a6befebd3e9e8c38450e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度汇报\n\n### exp_035_narrow_dual_critic_walker (bjb1-40020)\n\n| 项目 | 值 |\n|------|-----|\n| 进程 | PID 162900 存活，已运行 4h 22m |\n| 进度 | **120,000 / 210,000** (57.1%) |\n| 最近 eval (step 115k) | eval_return = **114.8**, ve_ratio = **0.7** |\n| 近期 train_return | 56.9 ~ 184.9（波动大，100k 附近出现过 200+） |\n| Gate | dt_mean=2.0, dt_2_frac=1.0（**gate 锁死在 dt=2**） |\n| GPU (cuda:1) | 16% util, 3121 MiB / 24564 MiB |\n| 速率 | ~7.6 steps/sec (120k steps / 15709s) |\n| **预计剩余** | **~3h 17m**（约 UTC 15:35 完成） |\n\n### exp_036_dual_critic_pickcube (bjb1-45299)\n\n| 项目 | 值 |\n|------|-----|\n| 进程 | PID 2476 存活，已运行 3h 34m |\n| 进度 | **74,047 / 200,000** (37.0%) |\n| 最近 eval (step 72.5k) | eval_return = **5.4**, ve_ratio = **1.6** |\n| 近期 train_return | 0.4 ~ 19.2（较低，pick-cube 任务本身难度大） |\n| Gate | dt_mean=2.0, dt_2_frac=1.0（**gate 锁死在 dt=2**） |\n| GPU (cuda:0) | 29% util, 3135 MiB / 97887 MiB |\n| 速率 | ~5.8 steps/sec (74k steps / 12851s) |\n| **预计剩余** | **~6h 3m**（约 UTC 18:20 完成） |\n\n### 需要注意\n\n两个实验的 **gate 均锁死在 dt=2**（gate_empirical_entropy=0, dt_2_frac=1.0），自适应 horizon 机制没有激活。如果这不符合预期，可能需要检查 gate 的温度/探索参数配置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-status-check.md"
+}

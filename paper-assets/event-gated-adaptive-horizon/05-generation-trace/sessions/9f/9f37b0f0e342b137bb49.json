@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f37b0f0e342b137bb49",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops exact step check",
+  "task_key": "worker_ops_exact-step-check_20260519T154238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exact-step-check_20260519T154238_result.json",
+    "occurrence": 1,
+    "bytes": 187,
+    "sha256": "6f799dc4c9c179ee147da23a1808168c5bd3ee33b5f8d9f63f156f20c24cb299"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个延长实验当前步数：\n\n| 实验 | 当前 step |\n|------|----------|\n| **s2_ext** | **464,000** |\n| **s3_ext** | **356,000** |\n| **s4_ext** | **312,000** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exact-step-check.md"
+}

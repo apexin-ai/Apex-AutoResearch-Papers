@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6a0d5a8d197d6966995",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops fix submit scripts 015B 017",
+  "task_key": "worker_ops_fix-submit-scripts-015B-017_20260515T102246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-submit-scripts-015B-017_20260515T102246_result.json",
+    "occurrence": 1,
+    "bytes": 1306,
+    "sha256": "325b203ce626d642ad199bb760254feb2d21ed8a3ca2992ab756168bfd3350c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n### 1. submit_plan017.sh diff\n\n```diff\n-  --device cuda:0 \\\n+  --device cuda:1 \\\n```\n\n其他参数未变（`--gate_subsample_max_dt 1` 保留）。\n\n### 2. submit_plan015b.sh 完整内容\n\n```bash\n#!/bin/bash\n# plan_015B: frozen dt_emb + subsample ON + dt=2 imagination + H=8\n# 2x2 ablation: isolate training vs existence of dt_emb\n# cuda:1, after 009e completes\n\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6\nexport MUJOCO_GL=osmesa\nexport PYOPENGL_PLATFORM=osmesa\n\ncd /root/autodl-tmp/event-gated-adaptive-horizon\n\npython -u dreamer.py --configs defaults dmc_proprio \\\n  --task dmc_walker_walk \\\n  --logdir logdir/exp_015b_frozen_dt_emb \\\n  --steps 105000 --seed 1 --compile False --device cuda:1 \\\n  --gate_enabled True --gate_fixed_dt 2 \\\n  --gate_subsample_max_dt 2 \\\n  --imag_horizon 8 \\\n  --dt_emb_freeze True\n```\n\n### 3. 关键参数对比\n\n| 参数 | plan_015B | plan_017 |\n|------|-----------|----------|\n| device | cuda:1 | cuda:1 |\n| gate_subsample_max_dt | 2 (ON) | 1 (OFF) |\n| dt_emb_freeze | True (frozen) | 未设 (trained) |\n| imag_horizon | 8 | 15 |\n| seed | 1 | 1 |\n| steps | 105000 | 105000 |\n\n全部符合预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-submit-scripts-015b-017.md"
+}

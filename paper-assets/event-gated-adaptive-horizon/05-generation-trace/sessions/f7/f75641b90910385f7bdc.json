@@ -1,0 +1,420 @@
+{
+  "schema_version": "1.0",
+  "id": "f75641b90910385f7bdc",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "conversation",
+  "title": "cron hook exp 036 dual critic pickcube",
+  "task_key": "cron_hook_exp_036_dual_critic_pickcube",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/cron_hook_exp_036_dual_critic_pickcube.jsonl",
+    "occurrence": 1,
+    "bytes": 18408,
+    "sha256": "e67ee158397a0472929b663ec2d4c33b41aecace25e30b845ee967ba8c839f00"
+  },
+  "statistics": {
+    "messages": 20,
+    "user_turns": 1,
+    "tool_calls": 9,
+    "roles": {
+      "user": 1,
+      "tool_call": 9,
+      "tool_result": 9,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T19:38:29.752908+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: exp_036_dual_critic_pickcube\n- project: event-gated-adaptive-horizon\n- server: bjb1-45299\n- log_path: ~/runs/event-gated-adaptive-horizon/exp_036_dual_critic_pickcube.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_036_dual_critic_pickcube",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T19:38:43.846542+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_036_dual_critic_pickcube",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T19:38:43.847046+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_036_dual_critic_pickcube",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T19:38:47.316995+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_036_dual_critic_pickcube",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "limit": "0"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T19:38:47.821034+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_036_dual_critic_pickcube",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T19:38:48.224016+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (117,271 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon--claude-sessions-agent-cbb78209/4917658e-a6f3-43ab-a57f-bf998e41bb02/tool-results/mcp-agent-ml-research-read_registry-1779392328034.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon--claude-sessions-agent-cbb78209/4917658e-a6f3-43ab-a57f-bf998e41bb02/tool-results/mcp-agent-ml-research-read_registry-1779392328034.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_036_dual_critic_pickcube",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 907
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T19:38:48.224459+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_036_dual_critic_pickcube",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 403
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T19:38:48.224625+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_036_dual_critic_pickcube",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T19:38:48.224769+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_036_dual_critic_pickcube",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T19:38:48.275681+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-21T19:38:27Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 113 个实验 — ALLOCATED 1, ANALYZING 1, DONE 109, PREPARING 1, QUEUED 1\\\\n**DONE 分布**: failed 11, killed 21, negative 32, success 45\\\\n\\\\n### GPU 占用\\\\n- **分配**: 4 张 — bjb1-45299:cuda:0, bjb1-45299:cuda:1, bjb1-40020:cuda:0, bjb1-40020:cuda:1\\\\n- **空闲（分配了没跑）**: bjb1-45299:cuda:0, bjb1-45299:cuda:1\\\\n\\\\n### 💾 磁盘余量\\\\n- **bjb1-45299**:\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 399G/439G 可用（已用 5%）\\\\n- **bjb1-40020**:\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/root/autodl-pub`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 389G/438G 可用（已用 7%）\\\\n\\\\n### 🏃 RUNNING\\\\n_（无）_\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `exp_035_narrow_dual_critic_walker` [success] — 2026-05-21T16:14:26\\\\n- `exp_034` [negative] — 2026-05-21T12:18:09\\\\n- `exp_034_dual_critic_cheetah` [negative] — 2026-05-21T12:15:03\\\\n- `exp_033_wide_critic_walker` [success] — 2026-05-21T12:08:15\\\\n- `exp_031b_tcn_pickcube_s0_sigma05` [negative] — 2026-05-21T08:50:22 — NVE late-stage decline is floor effect (value signal collapse), not CIVO recover\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-21\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp_036_dual_critic_pickcube | Dual-critic on PickCube: TCN failed at σ=0.2 and σ=0.5 on PickCube. If dual-critic suppresses CIVO on PickCube → architecture-level intervention generalizes across all 3 environments (Walker+Cheetah+PickCube), while representation-level (TCN) only partially works on Walker. Strongest evidence for intervention hierarchy. | — | — | — |\\\\n\\\\n## 待处理\\\\n- exp_037_wide_c\n…[truncated 4040 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_036_dual_critic_pickcube",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 51
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T19:38:48.276409+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/ROADMAP.md\\\", \\\"content\\\": \\\"# event-gated-adaptive-horizon — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-21 16:10 UTC | 更新原因: D127 exp_035 完成(697.8) — 双维度narrative: Prevention(协同) + Recovery(min主导)\\\\n\\\\n> **Target**: CoRL 2026 (DDL 2026-05-29, 剩余 7 天) | 5/25 数据锁定\\\\n\\\\n## 核心方向\\\\n**Intervention Hierarchy + Dual-critic 双维度分析**\\\\n核心贡献：(1) CIVO 因果诊断 (2) 三层干预框架 (3) **2×2 factorial: Prevention(min+cap协同) + Recovery(min主导)** (4) v1≈v2 pessimism breakdown (5) 环境依赖性\\\\n\\\\n## 2×2 Mechanism Factorial — Walker（D127 完成）\\\\n| | Single Critic | Dual Critic (min) |\\\\n|---|---|---|\\\\n| ~1.05-1.2M | Baseline: CIVO → 崩溃 | **exp_035: CIVO(2.75) → 完全恢复(697.8)** |\\\\n| ~2.4-2.9M | **exp_033: CIVO(4.75) → 部分恢复(408)** | **exp_032: CIVO 预防(NVE≤1.1, 670-788)** |\\\\n\\\\n**双维度 insight**:\\\\n- **Prevention**: 仅 min+capacity 协同可预防（训练效率优势）\\\\n- **Recovery**: min 主导（697.8 vs 408），min >> capacity for recovery\\\\n- **Final perf**: Prevention ≈ Recovery-with-min（Walker 上）\\\\n- **跨环境**: Cheetah recovery 仅 31% → 难环境中 prevention 更关键\\\\n\\\\n## 跨环境验证\\\\n| 环境 | CIVO 强度 | Dual-critic 效果 | eval |\\\\n|------|----------|-----------------|------|\\\\n| Walker | 中等 | ✅ 预防/完全恢复 | 670-788/697.8 |\\\\n| Cheetah | 高 | ⚠️ 部分恢复 | 97.5↓ |\\\\n| PickCube | 高 | 🔄 exp_036 (NVE 2.3, wave CIVO) | — |\\\\n\\\\n## 运行中实验 (3/4 GPU)\\\\n| 实验 | Server:GPU | 进度 | 信号 |\\\\n|------|-----------|------|------|\\\\n| exp_036 PickCube dual | 45299:0 | ~38%+ | NVE 2.3 ⚠️ |\\\\n| exp_037 Cheetah wide | 45299:1 | 早期 | — |\\\\n| exp_038 Walker dual s2 | 40020:0 | 早期 | — |\\\\n\\\\n## 已完成关键实验\\\\n| 实验 | 结果 | eval | 意义 |\\\\n|------|------|------|------|\\\\n| exp_032 Walker dual wide | ✅ Prevention | 670-788 | min+cap 协同 |\\\\n| exp_033 Walker wide single | ⚠️ Partial recovery | 408 | Capacity only |\\\\n| exp_034 Cheetah dual | ⚠️ Poor recovery | 97.5↓ | 环境依赖 |\\\\n| **exp_035 Walker dual narrow** | **✅ Full recovery** | **697.8** | **Min 主导 recovery** |\\\n…[truncated 2110 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_036_dual_critic_pickcube",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 51
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T19:38:55.602693+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_036_dual_critic_pickcube",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "filters": "{'exp_id': 'exp_036_dual_critic_pickcube'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T19:38:56.054433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4188}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_036_dual_critic_pickcube",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 451
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T19:39:00.473971+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_036_dual_critic_pickcube",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 50 \"exp_036\" /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/registry.yaml | head -80",
+              "description": "Search for exp_036 entry in registry"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T19:39:00.624949+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  exp_036_dual_critic_pickcube:\n    status: ANALYZING\n    retry_count: 0\n    created_at: '2026-05-21T08:43:18.481296+00:00'\n    updated_at: '2026-05-21T19:38:25.006Z'\n    hypothesis: 'Dual-critic on PickCube: TCN failed at σ=0.2 and σ=0.5 on PickCube.\n      If dual-critic suppresses CIVO on PickCube → architecture-level intervention\n      generalizes across all 3 environments (Walker+Cheetah+PickCube), while representation-level\n      (TCN) only partially works on Walker. Strongest evidence for intervention hierarchy.'\n    parent: exp_032_dual_critic_walker\n    spec:\n      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n        base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6\n        MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults\n        maniskill --task maniskill_PickCube-v1 --gate_enabled True --gate_fixed_dt\n        2 --gate_subsample_max_dt 2 --imag_horizon 8 --dual_critic True --seed 0 --steps\n        200000 --compile False --device cuda:0 --logdir ./logdir/exp_036_dual_critic_pickcube\"\n      server: bjb1-45299\n      gpu:\n      - cuda:0\n      gpu_id: 0\n      pid: '2476'\n      data_path: ManiSkill PickCube-v1\n      data_count: 200000\n      model_name: DreamerV3 + Dual Critic\n      seed: 0\n      log_path: ~/runs/event-gated-adaptive-horizon/exp_036_dual_critic_pickcube.log\n      submitted_at: '2026-05-21T08:43:44.544357+00:00'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      hyperparams:\n        gate_enabled: true\n        gate_fixed_dt: 2\n        gate_subsample_max_dt: 2\n        imag_horizon: 8\n        dual_critic: true\n        tcn_sigma: 0.0\n    metrics: {}\n    reproduce:\n      finished_at: '2026-05-21T19:38:24.346Z'\n    extra:\n      hook_events:\n      - event: on_complete\n        action: agent\n        ts: '2026-05-21T19:38:29.196731+00:00'\n  exp_034:\n    status: DONE\n    retry_count: 0\n    created_\n…[truncated 1135 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_036_dual_critic_pickcube",
+            "tool": "Bash",
+            "elapsed_ms": 150
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T19:39:11.044718+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_036_dual_critic_pickcube",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__read_experiment_plan_with_status",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T19:39:11.045141+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_036_dual_critic_pickcube",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T19:39:38.960420+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_036_dual_critic_pickcube",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:exp_036_dual_critic_pickcube",
+              "project": "event-gated-adaptive-horizon",
+              "task_prompt": "## 任务：分析 exp_036_dual_critic_pickcube 实验结果\n\n实验已完成（进程正常退出），需要你完整分析结果并产出报告。\n\n### 实验信息\n- **exp_id**: exp_036_dual_critic_pickcube\n- **server**: bjb1-45299\n- **log_path**: ~/runs/event-gated-adaptive-horizon/exp_036_dual_critic_pickcube.log\n- **logdir**: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_036_dual_critic_pickcube\n- **hypothesis**: Dual-critic on PickCube: TCN failed at σ=0.2 and σ=0.5 on PickCube. If dual-critic suppresses CIVO on PickCube → architecture-level intervention generalizes across all 3 environments (Walker+Cheetah+PickCube), while representation-level (TCN) only partially works on Walker. Strongest evidence for intervention hierarchy.\n- **parent**: exp_032_dual_critic_walker\n- **config**: DreamerV3 + Dual Critic, gate_fixed_dt=2, gate_subsample_max_dt=2, imag_horizon=8, dual_critic=True, seed=0, steps=200000, ManiSkill PickCube-v1\n\n### 需要的对比 baseline\n- PickCube baseline (无 dual-critic): 查 registry 中 PickCube 相关的 baseline 实验（如 exp_019 系列或其他 PickCube baseline），获取其 eval_return 和 NVE 指标\n- TCN on PickCube 结果: exp_031 系列（TCN σ=0.2 和 σ=0.5 在 PickCube 上失败的实验）\n- Dual-critic 在其他环境的结果：\n  - Walker: exp_032 (eval 787.7, NVE≤1.1, CIVO prevented) 和 exp_035 (eval 697.8, narrow dual, recovery)\n  - Cheetah: exp_034 (eval 97.5, NVE 1.75, partial recovery only)\n\n### 分析步骤\n\n1. **读取 W&B 指标**：用 fetch_wandb_metrics 获取以下关键曲线：\n   - eval/episode_return（评估回报曲线）\n   - scalars/critic_NVE 或类似的 NVE 指标（value estimation error）\n   - 如有 v1/v2 相关指标（dual critic 的两个 critic value divergence）\n   - scalars/train_return 或 episode/return\n   - 查看 W&B run 的 config 和 summary\n\n2. **读取训练日志尾部**：SSH 到 bjb1-45299 读日志尾部 200 行，确认：\n   - 训练正常完成（无 error/exception）\n   - 最终 step 数\n   - 最终指标\n\n3. **关键判断**：\n   - **CIVO 是否被预防？** NVE 是否保持低位（< 2 视为预防，> 3 视为 CIVO triggered）？\n   - **eval return 水平？** 对比 PickCube baseline\n   - **v1 ≈ v2？** dual critic 两个 critic 是否趋同（如 Walker 和 Cheetah 中观察到的）\n   - **conclusion**: success（CIVO suppressed + 性能保持/提升）或 negative（CIVO 未 suppressed / 性能下降）\n\n4. **对比跨环境 pattern**：\n   - Walker: dual-critic 完全预防 CIVO（NVE≤1.1）\n   - Cheetah: dual-critic 部分恢复（NVE 1.75，eval 97.5 下降）\n   - PickCube: 本实验结果如何？形成什么跨环境 pattern？\n\n5. **产出**：\n   a) 更新 registry：设置 conclusion（success/negative）、metrics（final_eval_return, peak_eval_return, max_NVE, final_NVE, CIVO_prevented, v1_v2_max_divergence 等）、checkpoint_path、log_path\n   b) 写分析报告到 artifacts：`/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/exp_036_dual_critic_pickcube/report/exp_036_analysis.md`\n      报告结构：Summary → Key Metrics → CIVO Analysis → Cross-environment Comparison → Conclusion\n   c) 注册 artifact\n\n### 注意\n- 用 ssh_read_only 读日志和文件，不要用 ssh_execute\n- 所有数字必须来自 W&B 或日志，不要编造\n- checkpoint_path 设为 logdir 路径：/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_036_dual_critic_pickcube\n- log_path: /root/runs/event-gated-adaptive-horizon/exp_036_dual_critic_pickcube.log\n",
+              "tool_groups": "['ssh', 'wandb', 'registry', 'knowledge']"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T19:39:41.902056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_exp_036_dual_critic_pickcube_20260521T193939\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/logs/workers/worker_analysis_exp_036_dual_critic_pickcube_20260521T193939.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_exp_036_dual_critic_pickcube_20260521T193939 started. Use get_worker_status('worker_analysis_exp_036_dual_critic_pickcube_20260521T193939') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_036_dual_critic_pickcube",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2941
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T19:39:47.116516+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派出分析 exp_036 结果（`worker_analysis_exp_036_dual_critic_pickcube_20260521T193939`）。Worker 将：\n1. 从 W&B 拉取 eval return、NVE、v1/v2 divergence 等关键指标\n2. 读取训练日志确认正常完成\n3. 判断 CIVO 是否被 suppressed，与 Walker/Cheetah 跨环境对比\n4. 更新 registry（conclusion + metrics + checkpoint_path）并写分析报告\n\n等待 Worker 回调后处理结果并汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_036_dual_critic_pickcube"
+          },
+          "id": "event-000020"
+        }
+      ],
+      "message_count": 20
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-exp-036-dual-critic-pickcube.md"
+}

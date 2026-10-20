@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58241120e6cb87b25661",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code exp 056 deploy",
+  "task_key": "worker_code_exp_056_deploy_20260523T085827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_056_deploy_20260523T085827_result.json",
+    "occurrence": 1,
+    "bytes": 231,
+    "sha256": "dca162bf687d2cbdea521c98050c816c06e8e1060a06311a2a647f1dcc75f25f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:0 被 exp_055_peginsertion_civo_trigger_s1 (PID 345223, 已跑 12 分钟) 占用。cuda:1 空闲 (3 MiB)。\n\n两个选择：\n1. 改用 cuda:1 部署 exp_056\n2. 停掉 exp_055 后用 cuda:0\n\n怎么处理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-056-deploy.md"
+}

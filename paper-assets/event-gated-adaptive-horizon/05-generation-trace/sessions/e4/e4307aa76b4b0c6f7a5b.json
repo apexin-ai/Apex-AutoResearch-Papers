@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "e4307aa76b4b0c6f7a5b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "code obs decoder sgs impl",
+  "task_key": "worker_code_obs-decoder-sgs-impl_20260519T162313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_obs-decoder-sgs-impl_20260519T162313.log",
+    "occurrence": 1,
+    "bytes": 957096,
+    "sha256": "d82a5225982f6fe577fbb01380cee595af2b9f45a1268b5ba105bdcc1f658bd7"
+  },
+  "statistics": {
+    "messages": 413,
+    "user_turns": 0,
+    "tool_calls": 175,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 175,
+      "tool_result": 175,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 413,
+      "chunks": [
+        {
+          "path": "e4307aa76b4b0c6f7a5b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e4307aa76b4b0c6f7a5b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e4307aa76b4b0c6f7a5b-part-0003.json",
+          "message_count": 53
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-obs-decoder-sgs-impl.md"
+}

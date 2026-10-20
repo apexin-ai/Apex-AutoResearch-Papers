@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3560c136eaf2a0b0f21",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper results f6 perf fix",
+  "task_key": "worker_paper_results_f6_perf_fix_20260525T162523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_results_f6_perf_fix_20260525T162523_result.json",
+    "occurrence": 1,
+    "bytes": 1045,
+    "sha256": "eba44068545012b514a0ec20e8eede51ba5d4c89d29ef54d552a122d87973010"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Here's the diff:\n\n**Before (L112):**\n> All four tested seeds avoid CIVO onset (peak NVE $0.5$--$0.6\\times$, well below the $1.5\\times$ threshold), with **three-seed mean evaluation $781.2 \\pm 159.5$ ($84\\%$ of baseline**; Figure~\\ref{fig:multiple_pathways}).\n\n**After (L112):**\n> Across **four unique seeds (s0, s1, s2, s5)**, none exhibits CIVO onset (peak NVE ${\\leq}0.6\\times$, well below the $1.5\\times$ threshold). **Three of four seeds achieve $64$--$94\\%$ of baseline (eval $597$--$877$; mean $775.6$); seed~0 exhibits CIVO-unrelated learning stagnation (eval $148$, $16\\%$ baseline**; Figure~\\ref{fig:multiple_pathways}).\n\n**Checklist:**\n- All 4 unique seeds (s0, s1, s2, s5) explicitly mentioned\n- s0 outlier transparently disclosed with characterization (CIVO-unrelated stagnation)\n- 4/4 no CIVO claim preserved\n- No mean based on non-unique seeds\n- 3 productive seeds mean (775.6) reported with s0 excluded and reason stated\n- results.md files checked — no corresponding F6 text to sync"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-results-f6-perf-fix.md"
+}

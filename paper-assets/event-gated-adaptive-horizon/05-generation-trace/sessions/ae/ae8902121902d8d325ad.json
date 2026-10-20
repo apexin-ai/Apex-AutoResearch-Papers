@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae8902121902d8d325ad",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis value distribution",
+  "task_key": "worker_analysis_value-distribution_20260524T160157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_value-distribution_20260524T160157_result.json",
+    "occurrence": 1,
+    "bytes": 1001,
+    "sha256": "f20dd2a0e4379909c90b8cf82ea10a622e96af1b41f0c25b158c69a04dd93aea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n**核心发现**：\n\n| 模型 | VE Ratio (final) | V(s) final | Eval final |\n|---|---|---|---|\n| Baseline | 0.709 | 665.86 | 938.86 |\n| CIVO (008d) | **3.029** | 192.65 | 63.60 |\n| No dt_emb (008f) | 0.380 | 116.45 | 306.54 |\n\n**关键洞察**：CIVO 不是 critic 拟合误差（V(s) ≈ λ-return target 在所有模型中都成立），而是 **world model co-adaptation** —— dt_embedding 让 world model 在 imagination 中生成过度乐观的轨迹，critic 忠实学习了这些膨胀的 targets，导致 V(s) 远超真实 eval return（3.03x）。去掉 dt_embedding 后（008f），VE ratio 始终 < 0.4，验证了因果关系。\n\n**产出**：\n- 报告：`artifacts/value_distribution_analysis.md`\n- 图表：`artifacts/figures/value_distribution_summary.png`、`ve_ratio_comparison.png`\n- 服务器上还有额外图表（calibration scatter, overestimation gap 等）在 `/root/autodl-tmp/event-gated-adaptive-horizon/artifacts/figures/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-value-distribution.md"
+}

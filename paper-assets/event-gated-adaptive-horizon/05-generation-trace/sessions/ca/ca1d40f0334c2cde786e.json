@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ca1d40f0334c2cde786e",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "analysis nve baseline unification",
+  "task_key": "worker_analysis_nve-baseline-unification_20260515T044956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_nve-baseline-unification_20260515T044956.log",
+    "occurrence": 1,
+    "bytes": 656567,
+    "sha256": "1409d526a524ad6d68dfbef82b95b8bb9283514c4030da93bffba96e41c736b5"
+  },
+  "statistics": {
+    "messages": 136,
+    "user_turns": 0,
+    "tool_calls": 46,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 40,
+      "tool_call": 46,
+      "tool_result": 46,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 136,
+      "chunks": [
+        {
+          "path": "ca1d40f0334c2cde786e-part-0001.json",
+          "message_count": 123
+        },
+        {
+          "path": "ca1d40f0334c2cde786e-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-nve-baseline-unification.md"
+}

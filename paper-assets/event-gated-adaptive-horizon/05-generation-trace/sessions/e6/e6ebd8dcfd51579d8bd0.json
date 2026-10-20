@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6ebd8dcfd51579d8bd0",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "deploy exp 040 041 verified",
+  "task_key": "worker_deploy_exp_040_041_verified_20260522T025925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_deploy_exp_040_041_verified_20260522T025925_result.json",
+    "occurrence": 1,
+    "bytes": 98,
+    "sha256": "ccaedab5b8c10eaea53b0ec164a41fb89d5dba5dd8deecb976c024f84153f929"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 分钟等待已完成，验证已在上面完成。两个实验均正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-exp-040-041-verified.md"
+}

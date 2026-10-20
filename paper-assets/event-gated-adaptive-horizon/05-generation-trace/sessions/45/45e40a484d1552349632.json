@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45e40a484d1552349632",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "verify template switch status",
+  "task_key": "worker_verify_template_switch_status_20260524T102143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_template_switch_status_20260524T102143_result.json",
+    "occurrence": 1,
+    "bytes": 576,
+    "sha256": "1a32a1407874a5f354fe5c99cb2ba1ed1e3c0ca10bba6d974e774a302cc5d3d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n| 项目 | 状态 |\n|------|------|\n| **模板** | ICML 2026（`\\usepackage{icml2026}`，`icml2026.sty` 存在） |\n| **编译** | 通过，生成 `main.pdf`（24 页，616KB） |\n| **页数** | 24 页 |\n| **CoRL 残留** | 无（grep 无匹配，`corl*.sty` 不存在） |\n| **编译错误** | 1 个非致命错误：缺图片 `../../artifacts/figures/nve_roc_curve.pdf`（路径应为 `../artifacts/`，但引用写了 `../../artifacts/`） |\n\n模板切换完成，唯一问题是 `nve_roc_curve.pdf` 的引用路径多了一层 `../`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-template-switch-status.md"
+}

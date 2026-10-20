@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b6f1f049dcb410d3a0d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops gpu status diagnosis",
+  "task_key": "worker_ops_gpu-status-diagnosis_20260515T073645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-diagnosis_20260515T073645_result.json",
+    "occurrence": 1,
+    "bytes": 953,
+    "sha256": "d267cc3b0f8f2ec9230a5d8c87d721f5a59862faff6b690f33a31f1455ac626f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fig1 updated — 008e_v3 s2 (浅蓝色虚线) 现在有三角形 marker，灰度打印下可区分。\n\n---\n\n## GPU 诊断结果\n\n| | cuda:0: exp_009d_baseline_walker_s1 | cuda:1: exp_009e_008d_walker_s1 |\n|---|---|---|\n| PID | 122271 | 119108 |\n| 运行时间 | 1h06m | 1h55m |\n| 进程状态 | Rl+ (正常运行) | Rl (正常运行) |\n| 显存 | 4163 MiB / 97887 MiB (4.3%) | 2753 MiB / 97887 MiB (2.8%) |\n| GPU 利用率 | 33% | 18% |\n| 训练步数 | 32K / 500K (6.4%) | 48K / 105K (45.7%) |\n| 最新 train_return | ~400-493 | ~95-255 |\n| metrics 最后写入 | 刚刚 (活跃) | ~5 分钟前 (活跃) |\n\n**低利用率原因：正常。** DreamerV3 是 CPU/GPU 交替式训练（环境交互在 CPU，模型训练在 GPU），加上这两块 RTX PRO 6000 Black 各有 98GB 显存，DreamerV3 的小模型只用几 GB，显存占比和 GPU 平均利用率天然就低。两个实验都在正常推进，无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-diagnosis.md"
+}

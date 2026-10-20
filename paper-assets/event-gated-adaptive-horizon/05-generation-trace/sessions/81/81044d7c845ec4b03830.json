@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81044d7c845ec4b03830",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "research iris feasibility",
+  "task_key": "worker_research_iris-feasibility_20260529T204003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_iris-feasibility_20260529T204003_result.json",
+    "occurrence": 1,
+    "bytes": 1443,
+    "sha256": "fe5c6cca9a2c94735785650a5f74b4ed2b4840455b71099224aec7b9841a4410"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/transformer_wm_feasibility.md`。核心结论：\n\n**IRIS 直接改造不推荐。** 两个阻塞问题：\n1. **IRIS 仅支持 Atari**（VQ-VAE discrete image tokens + discrete actions），不支持 DMC proprioceptive 环境。改造为支持 DMC 需要重写 tokenizer/action embedding/actor-critic（~640 行），改造后本质上不再是 IRIS。\n2. **在 Atari 上做 dt-conditioning 无法触发 CIVO**——CIVO 是 6-DoF locomotion 特异性现象，Atari 的 low-DoF discrete control 几乎不可能重现。\n\n**推荐路径：STORM**（Zhang et al., 2023）——transformer WM + continuous latent + DMC proprioceptive + imagination-based actor-critic，架构最接近 \"transformer 版 DreamerV3\"。在 STORM 上加 dt-conditioning 估计 **8-12 AI worker hours, 10-20 GPU-h**，远低于改造 IRIS 的 ~20h。\n\n三条可选路径的工程量对比：\n\n| 路径 | 工程量 | 科学价值 |\n|------|--------|----------|\n| IRIS + Atari（dt-conditioning only） | 3-5h | 低（不触发 CIVO，但可作为 DoF 依赖性的补充证据） |\n| IRIS 改造 DMC + dt-conditioning | 15-25h | 中高（但改造后偏离原始 IRIS 架构） |\n| **STORM + dt-conditioning** | **8-12h** | **高（直接对标 DreamerV3 实验设置）** |\n\n下一步建议：对 STORM 做同样的代码调研，确认其 imagination training 实现和 DMC 环境覆盖后再做最终决策。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-iris-feasibility.md"
+}

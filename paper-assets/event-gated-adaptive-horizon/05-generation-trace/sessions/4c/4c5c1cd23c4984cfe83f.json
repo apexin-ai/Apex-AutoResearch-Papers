@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c5c1cd23c4984cfe83f",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code cheetah cartpole dryrun",
+  "task_key": "worker_code_cheetah-cartpole-dryrun_20260514T223555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cheetah-cartpole-dryrun_20260514T223555_result.json",
+    "occurrence": 1,
+    "bytes": 1147,
+    "sha256": "845fb23d37cc593ed0226d027a3a02e529257b3ccf928717169dd4cf9e4ebc7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dry-run 验证结果\n\n| 环境 | 配置 | 启动 | step 5000 | metrics.jsonl | 报错 |\n|------|------|------|-----------|---------------|------|\n| Cheetah Run | baseline | ✅ | ✅ | ✅ | 无 |\n| Cheetah Run | treatment (gate+dt1+subsample+H15) | ✅ | ✅ | ✅ | 无 |\n| Cartpole Swingup | baseline | ✅ | ✅ | ✅ | 无 |\n| Cartpole Swingup | treatment (gate+dt1+subsample+H15) | ✅ | ✅ | ✅ | 无 |\n\n**obs/action 维度确认：**\n- Cheetah Run: obs 17D (position + velocity), act 6D ✅\n- Cartpole Swingup: obs 5D (position + velocity), act 1D ✅\n\n**Warning（均为非关键）：**\n- Gym 废弃警告（建议迁移到 Gymnasium）— 不影响功能\n- `torch.cuda.amp.GradScaler` 废弃 — 不影响功能（CPU 模式下不使用 AMP）\n- Box bound precision cast 警告 — 正常\n\n**其他观察：**\n- 4 个 run 均在 CPU 上成功收集了 4 个 prefill episode（每个 500 步 = 2000 步），并进入训练循环到 step 5000\n- 服务器上已有 GPU 实验在跑（exp_008e_v3_walker_s1 / exp_009a_baseline_walker_s2），dry-run 用 CPU 不冲突\n- dryrun 目录已清理完毕"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cheetah-cartpole-dryrun.md"
+}

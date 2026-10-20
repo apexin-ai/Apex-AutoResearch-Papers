@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1ae2a1321126c3ca39d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_2_1778733776.md",
+  "task_key": "loop_2_1778733776",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778733776.md",
+    "occurrence": 1,
+    "bytes": 3769,
+    "sha256": "16e17ac284f11bdffce81c0c078f070255809b1a777a08c65bcb33eae359758e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_wall_time\nupdated: '2026-05-14T04:14:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 cuda:0 和 cuda:1（bjb1-45299），白名单外的 GPU 必须 push back Director\n- 008a 和 008d 共享 cuda:0（时分复用），008e 系列在 cuda:1（008c 已完成释放）\n- AutoDL 实例重启后 SSH 端口会变，连接失败不要重试，让用户查控制台\n- 008e 用 `--gate_dt_embed_dim 0` 参数（不是删代码），已验证 PyTorch 0-sized tensor 安全\n- Narrative B/B+ 分歧由 008a@65K 决定，**在数据到达前不要预判、不要动 paper_framing.md**\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-45299，工作目录 /root/autodl-tmp/event-gated-adaptive-horizon\n- Python：/root/miniconda3/bin/python（conda base 环境，不是 venv）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 活跃进程：\n  - exp_008a_no_subsample_dt2: PID 106942, cron 监控中\n  - exp_008d_subsample_on_h8: PID 109519, cron 监控中\n  - exp_008e_subsample_on_dt1_h15: RUNNING，cron 正在由 worker_ops_add_008e_to_monitor 注册\n  - exp_008e_subsample_on_fixed_dt1: RUNNING，同上\n- GPU：RTX PRO 6000 × 2，累计 ~58 GPU·h\n\n### 3. 📊 当前状态\n刚处理 worker_code_008e_dryrun_prep 完成回调（结论：dt_embed_dim=0 代码安全，无需修改）。已向 Director 发送 session 启动汇报。\n\n**RUNNING 实验：**\n- exp_008a_no_subsample_dt2 (step 55K): no-subsample + dt=2 imag + H=15, eval=487.9, v/e=37.6%。**65K 是 B/B+ 最终决策点**\n- exp_008d_subsample_on_h8 (step 40K): subsample ON + trained dt_emb + H=8, eval=146.3@35K, v/e=41.2%。**45K 预测崩塌确认**\n- exp_008e_subsample_on_dt1_h15: subsample ON + dt_embed_dim=0 + dt=1 imag + H=15（刚启动）\n- exp_008e_subsample_on_fixed_dt1: subsample ON + dt_embed_dim=0 + dt=1 imag（刚启动）\n\n**等待中：**\n- 2 个 Worker 仍 running：worker_code_fix_dt_embed_dim_zero_guard（非阻塞代码守卫）、worker_ops_add_008e_to_monitor（cron 注册）\n- 008a 和 008d 的 cron 回调（~1-2h 内到达关键步数）\n\n### 4. 📋 待办\n- 008a cron 回调 @65K → eval_return ≥450 → Narrative B+（延迟+减弱崩塌）；<350 → 纯 B；350-450 看 actor_loss 斜率 + v/e 趋势 → 汇报 Director 做最终决策\n- 008d cron 回调 @45K → v/e >50% + eval 加速下降 → 确认崩塌复现，更新 registry conclusion → 汇报 Director\n- 008e 到达 25-35K → 如果 v/e 保持低位（<25%）→ 证明 dt_embed_dim=0 阻断 delusional critic，因果链充分必要性确认\n- 上述三个关键数据点全部到达 → 提议 complete_mvp + 创建 paper_framing.md\n- MVP 通过后 → 铺 2 个额外 DMC 环境（Cheetah Run, Hopper Hop）验证通用性\n\n### 5. 🎯 战略上下文\n- **核心结论**：trained dt_embedding → delusional critic → collapse。因果链已由 008c vs 008d 控制实验闭合（同 H=8 同 dt=2，唯一变量是 dt_emb 是否训练，v/e 从 19% 翻到 41%）\n- **Narrative B**（确定）：Diagnostic Analysis — variable-rate imagination 失败根因是 trained dt_embedding 导致 value 过估\n- **Narrative B+**（条件性）：008a 证明 untrained dt_emb 的悲观偏置能延迟崩塌 3x 且减弱幅度，如果 @65K 仍 ≥450 则 B+ 成立\n- **易错点**：008a 的 PREPARING 和 RUNNING 是两条 registry 记录（旧的 exp_008a 是 PREPARING 带历史快照，exp_008a_no_subsample_dt2 才是活跃的 RUNNING），不要搞混\n- **CoRL DDL 2026-05-29**，剩 15 天，时间线充裕但不能拖——MVP 后还有通用性验证 + 论文全流程\n- 决策链关键节点：D020（delusional critic 机制修正）→ D021（因果链闭合）→ D022（008a 确认 no-subsample 阻止崩塌）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778733776.md"
+}

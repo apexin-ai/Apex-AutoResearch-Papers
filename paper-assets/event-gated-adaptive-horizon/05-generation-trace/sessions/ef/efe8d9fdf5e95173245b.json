@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "efe8d9fdf5e95173245b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_5.md",
+  "task_key": "loop_5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5.md",
+    "occurrence": 1,
+    "bytes": 4780,
+    "sha256": "b373a34adda1d9c91711d1cd9181c30214bae4dcda6a6a6a8e1bdb2f2bb9d28a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-14T07:27:47+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 `cuda:0` 和 `cuda:1`（服务器 bjb1-45299）。**不得使用其他 GPU 编号**\n- 提交命令必须用绝对路径激活 conda：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，**不要假设 .venv 存在**\n- 环境变量三件套必带：`LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6`、`MUJOCO_GL=osmesa`、`PYOPENGL_PLATFORM=osmesa`\n- exp_009a 已 ALLOCATED 到 cuda:0，exp_009c 已 ALLOCATED 到 cuda:1——**必须等 008f/008e_v3 完成释放 GPU 后才能提交**，不要强占\n- Worker 计算 normalized v/e 经常出错（用固定值做分母）——汇报时必须自己用 baseline 同 step 的 v/e 重算\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：bjb1-45299（AutoDL RTX PRO 6000 ×2）\n- **工作目录**：`/root/autodl-tmp/event-gated-adaptive-horizon`\n- **Python**：`/root/miniconda3/bin/python`（conda base 环境）\n- **模型/数据**：DMC Walker Walk（dm_control built-in），无需额外数据集下载\n- **脚本已就绪**：`scripts/multi_seed_runs.sh`（Walker 6 configs）、`scripts/cheetah_run_experiments.sh`（Cheetah 9 configs）\n- **活跃进程**：\n  - exp_008f_no_dt_embed_subsample_on_h8：PID 127761，tmux session，cuda:0，~56K/105K\n  - exp_008e_v3_subsample_on_dt1_h15：PID 126110，tmux session，cuda:1，~68K/105K\n- **Cron 监控**：2 个活跃 cron 分别监控上述两个实验\n- **无活跃 Worker**\n\n### 3. 📊 当前状态\n**刚完成**：session-start 初始化，registry 同步完成，两个 RUNNING 实验 cron 确认存活。\n\n**RUNNING（2 个）**：\n- `exp_008f_no_dt_embed_subsample_on_h8`（cuda:0，~56K/105K）——C2 因果控制实验，dt_embed_dim=0。55K 时 normalized v/e=0.97x，仍正常。预计还需 ~2h\n- `exp_008e_v3_subsample_on_dt1_h15`（cuda:1，~68K/105K）——B+ confound 控制。65K eval=580.7（94% baseline），normalized v/e=0.72x，非常健康。预计还需 ~1.5h\n\n**ALLOCATED 待提交（2 个，等 GPU 释放）**：\n- `exp_009a_baseline_walker_s2`（cuda:0）——Walker baseline seed 2\n- `exp_009c_008f_walker_s2`（cuda:1）——008f 复现 seed 2\n\n**QUEUED（2 个，未分配 GPU）**：\n- `exp_009b_008d_walker_s2`——008d 崩塌复现 seed 2\n- `exp_010a_cheetah_baseline_s1`——Cheetah Run baseline seed 1\n\n**等待中**：\n- 2 个 cron 回调（008f/008e_v3 完成时触发）\n- Dream review（dream_20260514T062606）尚未回调——Director 启动的 full review，通过后批准 P0 实验\n\n### 4. 📋 待办（条件触发式）\n- **008f cron 回调到达** → 分析 105K 最终 metrics，更新 registry（conclusion 取决于 v/e 是否 <1.2x），汇报 Director。释放 cuda:0 后立即用 `submit_on_allocated` 提交 exp_009a（已 ALLOCATED）\n- **008e_v3 cron 回调到达** → 分析 105K，验证 subsample ON + untrained dt_emb 长期稳定性。释放 cuda:1 后立即用 `submit_on_allocated` 提交 exp_009c（已 ALLOCATED）\n- **009a + 009c 提交后** → cuda:0/1 各还能共存 1 个实验（VRAM<9%），可同时提交 009b 和 010a（需先向 Director 确认 GPU 共存方案）\n- **Dream review 回调到达** → 按反馈调整 paper_framing / experiment_plan，然后批准 P0 后续实验\n- **所有 Walker seed 2 完成** → spawn Worker 做统计显著性分析（paired t-test / bootstrap CI），更新 report.md\n\n### 5. 🎯 战略上下文\n**核心结论**：Narrative B+（Diagnostic Analysis of Temporal Abstraction）。因果链已闭合：trained dt_embedding → delusional critic → value overestimation → collapse。Untrained dt_embedding 提供结构性 value growth suppression（008a@105K=778，82% baseline，normalized v/e=0.59x）。\n\n**决策链关键节点**：\n- D028：C2 因果归因确认（008f vs 008d）\n- D027：C3 措辞决定（\"preventing optimistic drift\"）\n- D020：因果机制修正（精确 imagination → delusional critic）\n- D019：compounding error 假说被 008c 反驳\n\n**目标**：CoRL 2026，DDL 2026-05-29（剩 15 天）。P0+P1 实验预算 ~121 GPU·h（~2.5 天 wall time），时间充裕。\n\n**易错点**：\n- **不要把 H=8 实验（008c/008d/008f）的 eval_return 和 H=15 实验（008a/baseline）直接比较**——H=8 learning signal 不足导致系统性偏低，只能比 v/e ratio\n- **008e_v3 gate 完全锁定 dt=1（entropy=0）**——这是 untrained dt_emb 的预期行为，不是 bug\n- **exp_008a/008c/008d/006/008e_v2 等 PREPARING 状态条目**是历史残留（与对应的 `_xxx` 全名实验重复），不要当作待执行实验\n- **GPU 共存方案（每 GPU 2 实验）已验证可行**，但尚未获 Director 批准——不要自行启动共存\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-copy-2.md"
+}

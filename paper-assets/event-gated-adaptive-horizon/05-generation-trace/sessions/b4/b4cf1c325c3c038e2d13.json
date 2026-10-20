@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4cf1c325c3c038e2d13",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "submit exp 025 cheetah civo trigger s0",
+  "task_key": "worker_submit_exp_025_cheetah_civo_trigger_s0_20260517T225534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp_025_cheetah_civo_trigger_s0_20260517T225534_result.json",
+    "occurrence": 1,
+    "bytes": 367,
+    "sha256": "a693a585904c68999162341487870a8d557ff6c8c05a62dd95d0f788990adc65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:1 被占用。** exp_024b_cheetah_no_dt_emb_s1 正在 GPU 1 上运行，当前仅到 step 5000/105000，刚开始不久。\n\n无法在 cuda:1 上提交 exp_025。选项：\n\n1. 等 exp_024b 跑完（预计还要数小时）\n2. 如果 exp_024b 优先级低，可以 kill 后提交 exp_025\n3. 改用 cuda:0（如果空闲）\n\n如何处理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp-025-cheetah-civo-trigger-s0.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b048fd73b947f873113",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "recovery cuda0 009a and 009d",
+  "task_key": "worker_recovery_cuda0-009a-and-009d_20260515T061706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_recovery_cuda0-009a-and-009d_20260515T061706_result.json",
+    "occurrence": 1,
+    "bytes": 884,
+    "sha256": "0e3381717a74b25afeb634f2040ccd891063486245b179f727319fe89ee8a8ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## 产出\n\n### 1. exp_009a_baseline_walker_s2 — DONE ✓\n\n| 指标 | 009a (seed 2) | exp_001 (seed 0/1) | 差异 |\n|---|---|---|---|\n| Final eval (505K) | 957.87 | 970.41 | -1.3% |\n| Peak eval | 966.94@395K | 970.41@505K | -0.4% |\n| Last 10 mean | 947.19 | 950.90 | -0.4% |\n| v/e stable | 0.69-0.72 | 0.69-0.72 | 匹配 |\n| 105K eval | 836.51 | 915.67 | -8.6%* |\n\n*105K 处偏低但 215K+ 完全收敛。跨 seed baseline 一致性确认。\n\n### 2. Registry 已更新\n- 009a: status=DONE, conclusion=success, 完整 51 eval trajectory + value/v/e trajectory\n\n### 3. exp_009d_baseline_walker_s1 — 已提交 ✓\n- tmux session `exp_009d_baseline_walker_s1` 已创建\n- 内置等待逻辑：等 009a (pid 142508) 退出后自动启动\n- 配置：seed=1, 500K steps, cuda:0, 与 exp_001 一致\n- Registry: status=RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/recovery-cuda0-009a-and-009d.md"
+}

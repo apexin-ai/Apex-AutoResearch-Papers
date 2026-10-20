@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a642325269b933b45200",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper 018 visualization template",
+  "task_key": "worker_paper_018-visualization-template_20260516T110750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_018-visualization-template_20260516T110750_result.json",
+    "occurrence": 1,
+    "bytes": 393,
+    "sha256": "8012d17d8dac0b19371798ee989693672e6efb353adb2efb72dd8730a139e5ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写入 `scripts/plot_018_results.py`。\n\n运行方式：\n```bash\npython scripts/plot_018_results.py --verdict\n```\n\n结构：顶部 5 行路径配置（LOGDIR_018 已预填猜测路径，其余三个已确定），输出两个 PDF 到 `figures/paper/`，`--verdict` 打印 CIVO 判定摘要。018 结果出来后如果路径正确可直接执行，无需改动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-018-visualization-template.md"
+}

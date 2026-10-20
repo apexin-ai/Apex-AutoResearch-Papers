@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3db8e0516d58c8c4e008",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check exp 055 056 102k",
+  "task_key": "worker_check_exp_055_056_102k_20260523T152124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp_055_056_102k_20260523T152124_result.json",
+    "occurrence": 1,
+    "bytes": 1336,
+    "sha256": "150761df1580380b46cc83ee918ac6d66147a7a4680405e8c9894c3d886a7b0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n两个进程均存活：PID 345223 运行 6h35m，PID 346430 运行 6h20m。\n\n---\n\n### exp_055 PegInsertion trained s1\n**当前步数: 103.8K** | **102.5K 已到: 是**\n\nve_ratio 趋势:\n| Step | ve_ratio | delta_ve | alert |\n|------|----------|----------|-------|\n| 12.5K | 0.190 | 0.0 | 0 |\n| 22.5K | 0.807 | +0.616 | 0 |\n| 32.5K | 1.354 | +0.547 | 0 |\n| *(42.5K-82.5K 中间数据被截断)* | | | |\n| 92.5K | 3.078 | +0.600 | **1** |\n| **102.5K** | **2.514** | **-0.563** | **0** |\n\n**Director 关注: trained s1 @102.5K = 2.514，未达 >5.0 阈值。** 且从 92.5K→102.5K 出现回落（3.078→2.514），alert 从 1 降回 0。\n\n---\n\n### exp_056 PegInsertion frozen s1\n**当前步数: 97.8K** | **102.5K 已到: 否**\n\nve_ratio 趋势:\n| Step | ve_ratio | delta_ve | alert |\n|------|----------|----------|-------|\n| 12.5K | 0.316 | 0.0 | 0 |\n| 22.5K | 0.975 | +0.659 | 0 |\n| 32.5K | 1.839 | +0.864 | 0 |\n| *(42.5K-72.5K 中间数据被截断)* | | | |\n| 82.5K | **11.321** | +2.912 | 0 |\n| 92.5K | 3.724 | **-7.597** | 0 |\n\n**Director 关注: frozen s1 尚未到 102.5K（当前 97.8K）。** 92.5K 的 ve_ratio=3.724，从 82.5K 的峰值 11.32 大幅跳水。目前仍 >2.0，未满足 <2.0 条件。按 ~4 fps 估算，约 20 分钟后到达 102.5K eval 点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp-055-056-102k.md"
+}

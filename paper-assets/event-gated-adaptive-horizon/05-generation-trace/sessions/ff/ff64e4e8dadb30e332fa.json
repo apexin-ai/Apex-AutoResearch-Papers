@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "ff64e4e8dadb30e332fa",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "paper round4 content fixes",
+  "task_key": "worker_paper_round4_content_fixes_20260524T095850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_round4_content_fixes_20260524T095850.log",
+    "occurrence": 1,
+    "bytes": 933136,
+    "sha256": "1ab5679f562163f946181ae8463730df886527c449c6f4764baec859ed9d785f"
+  },
+  "statistics": {
+    "messages": 212,
+    "user_turns": 2,
+    "tool_calls": 75,
+    "roles": {
+      "log": 1,
+      "system": 20,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 75,
+      "user": 2,
+      "tool_result": 75,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "ff64e4e8dadb30e332fa-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 165,
+      "chunks": [
+        {
+          "path": "ff64e4e8dadb30e332fa-part-0001.json",
+          "message_count": 108
+        },
+        {
+          "path": "ff64e4e8dadb30e332fa-part-0002.json",
+          "message_count": 57
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 40,
+      "chunks": [
+        {
+          "path": "ff64e4e8dadb30e332fa-part-0002.json",
+          "message_count": 40
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-round4-content-fixes.md"
+}

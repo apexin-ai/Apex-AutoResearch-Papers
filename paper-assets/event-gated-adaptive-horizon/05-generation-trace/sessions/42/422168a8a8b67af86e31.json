@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "422168a8a8b67af86e31",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis figure data gaps",
+  "task_key": "worker_analysis_figure-data-gaps_20260516T215817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_figure-data-gaps_20260516T215817_result.json",
+    "occurrence": 1,
+    "bytes": 1000,
+    "sha256": "78dc7923bef30411ae9dd51d28a7ff4669279f7fbb2c5ed74bfe4dcdd0c3eced"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已保存：\n\n**1. `gradient_decomposition_008d.json`**\n从 checkpoint 直接测量（50 batches, GPU 上 forward+backward）：\n- **008d @ 55K**: obs=39.5%, reward=24.8%, kl=34.8%, cont=0.9%\n- **009e @ 112K** (同配置延长): obs=32.0%, reward=36.0%, kl=31.3%, cont=0.7%\n- **018v2 @ 112K** (反事实): obs=38.4%, reward=33.9%, kl=26.2%, cont=1.4%\n- 对比：018v2 实际训练时 SGS 生效，dt_emb 只接收 KL=100%\n\n与先前分析（gen_figures.py 中 55K: 25.8/23.5/50.7, 105K: 93/0/7）有差异，已在 JSON 中标注。定性结论一致：obs 梯度是 dt_emb 的主要驱动力之一，SGS 将其完全阻断。\n\n**2. `rssm_fidelity_data.json`**\n从 metrics.jsonl 提取（已验证每个数值）：\n- 105K 对比：baseline obs_loss=0.452 < 009e=0.682 < 008f=0.699 < 018v2=0.718\n- reward_loss 各条件差异不大（~0.57-0.60）\n- dyn_loss: gated 变体（5.4-5.7）显著高于 baseline（3.8）\n- 包含完整 trajectory 数据供作图"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-figure-data-gaps.md"
+}

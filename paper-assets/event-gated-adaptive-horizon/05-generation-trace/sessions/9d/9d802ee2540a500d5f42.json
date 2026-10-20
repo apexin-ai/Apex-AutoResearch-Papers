@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d802ee2540a500d5f42",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_5_1778768510.md",
+  "task_key": "loop_5_1778768510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778768510.md",
+    "occurrence": 1,
+    "bytes": 5650,
+    "sha256": "df5f6589672ea4aa53130c7fc4cff8dc0ee7991d6659720f64f90ba0f24cc721"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-14T11:06:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 `cuda:0` 和 `cuda:1`（服务器 bjb1-45299）。config 里 `gpu_ids: [\"cuda:0\", \"cuda:1\"]`，用其他 GPU 必须先让 Director 扩配额\n- submit_training_job 命令必须以 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && ...\"` 开头，漏掉 LD_PRELOAD 或 MUJOCO_GL 会 segfault\n- 设备号始终 `--device cuda:0`（框架自动映射物理 GPU），不要写 `cuda:1`\n- CoRL DDL = 2026-05-29，剩 15 天。P0 实验 ~145 GPU·h（~3 天 wall time），时间紧但够用，不能拖\n- Dream 审稿已回 Weak Reject——论文 framing 必须以三个差异化点为核心（dt-embedding exploitation channel / v/R>1.0 分界线 / untrained embedding value suppression），不是泛泛 \"diagnose temporal abstraction failure\"\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**bjb1-45299**（AutoDL RTX PRO 6000 ×2）\n- 工作目录：`/root/autodl-tmp/event-gated-adaptive-horizon`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，**不是 venv**）\n- 代码 commit：`09876d7080affdb0fb329e24753a46d998da9d8e`\n- 日志/checkpoint 目录：`/root/autodl-tmp/event-gated-adaptive-horizon/logdir/<exp_name>/`\n- HF cache：不适用（本项目用 dm_control 内置环境，无模型下载）\n- 活跃进程：\n  - exp_009a_baseline_walker_s2：PID 142508，cuda:0，tmux session，500K steps，~07:19 启动\n  - exp_009c_008f_walker_s2：PID 140980，cuda:1，tmux session，105K steps，~07:19 启动\n- 活跃 Cron：2 个（分别监控上述两个实验）\n- 活跃 Worker：`worker_analysis_rssm-prediction-quality-retry`（RSSM 预测质量分析，plan_030）\n\n### 3. 📊 当前状态\n**刚完成**：008f（C2 因果控制）和 008e_v3（B+ confound）分析及汇报。MVP 通过（D028）。experiment_plan.yaml 已创建，Dream 审稿已完成并获得战略调整指示（D029）。\n\n**RUNNING（2）**：\n- `exp_009a_baseline_walker_s2`：Walker Walk baseline seed 2，500K steps，cuda:0。多 seed 复现 baseline v/e 校准（plan_010 部分）\n- `exp_009c_008f_walker_s2`：Walker Walk dt_embed_dim=0 seed 2，105K steps，cuda:1。复现 C2 causal control（plan_012 部分）\n\n**QUEUED（2，等 GPU）**：\n- `exp_009b_008d_walker_s2`：Walker Walk trained dt_emb collapse seed 2（plan_011）\n- `exp_010a_cheetah_baseline_s1`：Cheetah Run baseline seed 1（plan_020）\n\n**等待中**：\n- Worker `worker_analysis_rssm-prediction-quality-retry` 回调 → 整合 RSSM 预测质量分析到 registry\n- exp_009a / exp_009c cron 完成回调\n- PREPARING 状态的 exp_008d / exp_008c / exp_008a / exp_006 / exp_008e_v2 是旧的 orphan 条目（已有对应的正式条目跑完），可忽略\n\n### 4. 📋 待办（条件触发式）\n- exp_009c cron 完成 → 分析 seed 2 的 008f 是否复现 value self-correction + normalized v/e<1.0x → 释放 cuda:1 → 提交 exp_009b_008d_walker_s2（cuda:1，验证 collapse 复现）\n- exp_009a 完成（500K 步，~2.5 天 wall time） → 分析 seed 2 baseline v/e 校准 → 释放 cuda:0 → 提交 exp_010a_cheetah_baseline_s1（cuda:0）\n- exp_009b 完成 → 分析 collapse 是否复现 → Walker Walk 多 seed 数据集齐（3 seeds × baseline/collapse/control） → 可以开始写论文实验部分\n- RSSM prediction quality Worker 完成 → 整合分析结果到 memory.md / registry → 为 paper C2 机制解释提供定量支撑\n- Cheetah baseline 完成 → 启动 plan_021（Cheetah trained dt_emb）和 plan_022（Cheetah dim=0）\n- 所有 Walker seed 实验完成 + Cheetah baseline 就绪 → 开始 Cartpole Swingup 系列（plan_050-052，P0）\n- plan_060（uncertainty-gated truncation pilot）在有空闲 GPU 时尽早启动（P0，actionability 硬伤回应）\n\n### 5. 🎯 战略上下文\n**核心 narrative**：Diagnostic Analysis of Temporal Abstraction in World-Model RL。因果链已闭合：trained dt_embedding → delusional critic → collapse。Untrained dt_embedding 通过 value growth suppression 保护性能（95% baseline @105K）。\n\n**决策链**：D020（delusional critic 机制修正）→ D021（因果链闭合）→ D024-D026（C2 confound control）→ D028（MVP 通过）→ D029（Dream 审稿后战略调整：3 seeds 不扩 5、008e_v3 frame 为 mitigation、缩减 scope）\n\n**最容易判断错的事**：\n1. **PREPARING 状态的 orphan 条目**（exp_008d / exp_008c / exp_008a / exp_006 / exp_008e_v2）——这些是早期创建的冗余条目，真正的实验数据在带后缀的条目里（exp_008d_subsample_on_h8 等）。不要尝试提交这些 orphan。\n2. **008f 绝对性能低（503 = 55% baseline）不是方法失败**——是 H=8 物理覆盖不足（16 步 vs baseline 15 步 × dt=1）。Paper 中对比应用 normalized v/e ratio，不是 absolute return。\n3. **exp_009a 是 500K 步 baseline**（~2.5 天 wall time），比 009c（105K 步）慢很多。009c 先完成后 cuda:1 先释放。\n4. **Dream 审稿核心反馈**：纯诊断 paper 在 top venue 难过，plan_060（uncertainty-gated truncation）是回应 actionability 的最小成本方案，必须跑。\n5. **不要混淆 exp_008e 系列**：exp_008e_subsample_on_fixed_dt1（killed）、exp_008e_subsample_on_dt1_h15（killed）、exp_008e_v2（orphan PREPARING）→ 都是废弃的。只有 `exp_008e_v3_subsample_on_dt1_h15`（DONE, success）是有效的。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778768510.md"
+}

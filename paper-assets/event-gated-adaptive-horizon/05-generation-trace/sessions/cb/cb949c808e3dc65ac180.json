@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb949c808e3dc65ac180",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "monitoring progress check 20260515",
+  "task_key": "worker_monitoring_progress_check_20260515_20260515T011352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitoring_progress_check_20260515_20260515T011352_result.json",
+    "occurrence": 1,
+    "bytes": 379,
+    "sha256": "bd7a14d81c8f9fb8c53f49b349b5fcad681b4a6826025ed54d5b70124168cc19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n**exp_008e_v3_walker_s2** — RUNNING，step 8K/105K (7.6%)，刚启动 28 分钟。预计 ~15h 后完成（明早凌晨）。\n\n**exp_009a_baseline_walker_s2** — RUNNING，step 368K/500K (73.6%)，eval_return=943.13，v/e=0.704。剩余 132K steps，预计 ~5.6h 后完成（今晚）。eval 在 200K+ 后稳定在 900-960 区间，表现正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitoring-progress-check-20260515.md"
+}

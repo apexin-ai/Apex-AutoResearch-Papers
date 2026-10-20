@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "374726e250afe700404e",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "infra env setup",
+  "task_key": "worker_infra_env-setup_20260513T012611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env-setup_20260513T012611.log",
+    "occurrence": 1,
+    "bytes": 551514,
+    "sha256": "2c975ca8c7aef2e08e66b6972297a95f5e754a1f573ae2f5487454ae5fe8628e"
+  },
+  "statistics": {
+    "messages": 409,
+    "user_turns": 1,
+    "tool_calls": 140,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 119,
+      "tool_call": 140,
+      "tool_result": 140,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "374726e250afe700404e-part-0001.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 391,
+      "chunks": [
+        {
+          "path": "374726e250afe700404e-part-0001.json",
+          "message_count": 162
+        },
+        {
+          "path": "374726e250afe700404e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "374726e250afe700404e-part-0003.json",
+          "message_count": 49
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-env-setup.md"
+}

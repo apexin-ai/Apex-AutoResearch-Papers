@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e8c8ed4c30375302208",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper method rewrite framingB",
+  "task_key": "worker_paper_method-rewrite-framingB_20260516T045212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_method-rewrite-framingB_20260516T045212_result.json",
+    "occurrence": 1,
+    "bytes": 525,
+    "sha256": "66ecba01be75718da5d196cd8cfcfd45e0e7a06dd86fd8d5681cc4c04026ac76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 6 Framing B diffs (M2–M7) were already applied. I made two housekeeping fixes:\n1. Updated the status comment to list all 6 diffs explicitly\n2. Added the missing `\\label{sec:gradient_decomposition}` that line 176's `\\ref` depends on\n\nVerified hard constraints: zero occurrences of \"delusional critic\", \"SGS delays collapse\", or \"practical mitigation\". All numbers match the provided data sources. 008f is positioned as causal control, not recommendation. The file is consistent with Framing B."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-method-rewrite-framingb.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f468f8be06d6251093b1",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "audit citation verify C",
+  "task_key": "worker_audit_citation-verify-C_20260529T070947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_citation-verify-C_20260529T070947_result.json",
+    "occurrence": 1,
+    "bytes": 498,
+    "sha256": "6e4ec11739f1c382568780e1b5ad051f7c990efb60677eced0339d2c80f015b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/citation_audit_worker_C.md`。\n\n**结果摘要**：\n- 45 条引用全部真实存在，无 hallucinated citation\n- **3 条有问题**：`buckman2018steve`、`chua2018pets`、`fortunato2018noisynet` 存在于 bib 中但未被正文/附录引用（冗余 entry，应移除）\n- **1 条建议改进**：`pertsch2020spirl` year=2021 vs 会议年 CoRL 2020，建议统一\n- 无作者拼写错误、标题错误、venue 错误、错误归因"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-citation-verify-c.md"
+}

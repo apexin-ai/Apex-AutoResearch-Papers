@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7614452ed54a36db72be",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analyze exp 042 completion",
+  "task_key": "worker_analyze_exp_042_completion_20260522T102742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp_042_completion_20260522T102742_result.json",
+    "occurrence": 1,
+    "bytes": 941,
+    "sha256": "6ab50774be3a89f30331f10a4e1a2f7b2daf077c28191947aa40accbd973299c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在，无需删除。所有操作完成。\n\n---\n\n## exp_042_frozen_dt_emb_walker 诊断结果\n\n**状态：正常完成 → SUCCESS**\n\n| 指标 | 值 |\n|------|-----|\n| 总步数 | 224K（目标 210K，已超额完成） |\n| eval_final (215K) | **612.45** |\n| eval_peak (205K) | **682.38** |\n| NVE peak (35K) | **0.194** |\n| NVE final (215K) | **0.051** |\n| civo/alert | 全程 0.0 |\n\n**结论判断依据：**\n- NVE 全程最高仅 0.194，远低于 1.5 阈值 → **无 CIVO collapse**\n- eval_return 持续上升至 682 峰值，末期稳定在 612 → eval 健康\n- civo/alert 从未触发\n- 无 traceback、无异常退出\n\n**假设验证：** frozen dt_emb（随机初始化 + requires_grad=False）成功阻止了 CIVO collapse，确认 dt_embedding 的**训练过程**（而非其存在本身）是 CIVO 的必要条件。\n\nRegistry 已更新为 DONE/success，metrics 已记录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-042-completion.md"
+}

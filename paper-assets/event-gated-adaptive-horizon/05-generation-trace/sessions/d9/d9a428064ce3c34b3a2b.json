@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9a428064ce3c34b3a2b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 009b 008d walker s2",
+  "task_key": "worker_analysis_exp_009b_008d_walker_s2_20260514T184904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_009b_008d_walker_s2_20260514T184904_result.json",
+    "occurrence": 1,
+    "bytes": 1254,
+    "sha256": "80f4bbbdf8aa1183ebc1cede2f0927678755b2ff1378664be6a327c9e305785f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Conclusion: **success** (collapse NOT reproduced).\n\n## 结果摘要\n\n**exp_009b_008d_walker_s2 — Delusional critic collapse 未复现**\n\n| Step | eval_return | value_mean | v/e | norm v/e |\n|------|-------------|------------|-----|----------|\n| 25K  | 141.12 | 25.14 | 17.8% | **2.05x** |\n| 45K  | 141.04 | 75.59 | 53.6% | **1.62x** |\n| 55K  | 172.33 | 98.28 | 57.0% | 1.41x |\n| 65K  | 209.16 | 110.91 | 53.0% | 0.94x |\n| 85K  | 236.49 | 83.86 | 35.5% | 0.51x |\n| 105K | **267.93** | 67.27 | **25.1%** | **0.38x** |\n\n**与 008d seed 1 完全相反的轨迹：**\n- **008d (seed 1)**: v/e 加速 15.5%→166.6%, eval 崩塌 167→83 → collapse confirmed\n- **009b (seed 2)**: v/e 峰值 57% 后自修正至 25.1%, eval 上升至 268 → **no collapse**\n\n**与 009c (no dt_embed, seed 2) 的讽刺性对比：**\n- 009c (无 dt_embedding): eval 148@105K（持续下降）\n- 009b (有 dt_embedding): eval 268@105K（上升趋势）\n- Seed 2 中**有** dt_embedding 的反而表现更好，与 C2 叙事完全相反\n\n**对论文的影响：** trained dt_embedding → delusional critic 的因果链在 seed 间不稳健。008d 的 collapse 可能是 seed-specific 现象而非系统性因果关系。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-009b-008d-walker-s2.md"
+}

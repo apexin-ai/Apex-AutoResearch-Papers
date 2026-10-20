@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93f8e3f9d2c6e71d79a0",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_21_1779342825.md",
+  "task_key": "loop_21_1779342825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_21_1779342825.md",
+    "occurrence": 1,
+    "bytes": 3144,
+    "sha256": "cb437c8dc4b59ab523fbfd2a450b3fa7c10af8236c1f5937d403efaed668225f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 21\nreason: idle_timeout\nupdated: '2026-05-18T02:00:24+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 bjb1-45299 的 cuda:0 和 cuda:1（gpu_ids=[0,1]）\n- 023a/023b 是 Cheetah baseline，完成后 cuda:0 释放给 exp_021 Full-SGS Cheetah（已 QUEUED）\n- NVE 口径已统一为 12-exp 全集 AUROC=0.926，不要用旧的 0.933\n- Detector 数据：n=11, TPR=3/3, FPR=2/8=25%，论文中 FPR 从 2/7 已修正为 2/8\n- 梯度分解已修正（D086）：Reward=49%, Obs=16.3%, KL=34.7%，不是旧的 93% obs/0% reward\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-45299，工作目录 /root/autodl-tmp/event-gated-adaptive-horizon\n- 日志目录：~/runs/event-gated-adaptive-horizon/\n- 项目本地路径：/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/\n- GPU：2×RTX PRO 6000 96GB\n- 活跃进程：exp_021_full_sgs_cheetah_s1 (PID 696201, cuda:1, cron 监控中)\n- W&B：部分实验未接 W&B，数据在本地 logdir\n- 磁盘：/usr/bin/nvidia-smi 分区 399G/439G 可用(5% used)\n\n### 3. 📊 当前状态\n- **刚做完**：收到 exp_023a_cheetah_baseline_s0 ANALYZING 回调，已派 Worker (`worker_analysis_exp_023a_cheetah_baseline_s0_20260517T203313`) 去 SSH 读日志分析结果\n- **RUNNING**：exp_021_full_sgs_cheetah_s1 (cuda:1, PID 696201) — Full-SGS Cheetah 验证 SGS intervention 跨环境一致性\n- **ANALYZING**：exp_023a_cheetah_baseline_s0 (cuda:0) — Worker 正在分析\n- **等待中**：Worker 回调（分析完 023a 后需更新 registry → conclusion + metrics → 汇报 Director）\n- exp_023b_cheetah_baseline_s1 已完成（success, eval_return_final=520.3, peak=572.9, last-5 mean=542.2）\n\n### 4. 📋 待办\n- Worker 分析 023a 回调 → 更新 registry(conclusion/metrics/checkpoint_path/log_path) → 更新 report.md → 汇报 Director\n- 023a 确认 success 后 → 计算双 seed 均值作为 Cheetah NVE baseline → 记入 memory.md\n- exp_021 cron 回调 → 分析 Full-SGS Cheetah 结果（关键：是否消除 NVE>1.5x，对比 010b NVE 14.59×）\n- 021 完成后 → Cheetah CIVO trigger 实验 + 最终 NVE 计算 → 论文数据整合\n- 所有 Cheetah 数据就绪 → submit_paper_to_review\n\n### 5. 🎯 战略上下文\n- **目标**：CoRL 2026，DDL 2026-05-29（剩 11 天）\n- **论文定位**：CIVO 诊断论文 + 实用在线检测工具（TAWM 对比作为 novelty 锚点）\n- **核心因果链**：Trained dt_emb → obs decoder gradient → RSSM fidelity gap → reward bias → critic overestimation → collapse\n- **当前瓶颈**：Cheetah 环境数据收集（023a/023b baseline + 021 SGS intervention），这是论文最后一块拼图（跨环境验证）\n- **C5 SGS intervention 只有 50% prevention rate**——这是 Reviewer 最大风险点，021 如果成功可以加强\n- **易错点**：\n  - 不要混淆 exp_010b（Cheetah CIVO trigger, NVE 14.59×）和 008d（Walker CIVO trigger）\n  - 023a/023b 的 last-5 eval mean 是 NVE 分母，必须双 seed 取均值后再算 NVE\n  - Reviewer 预期评分 5-6/10，提升靠叙事精简 + detector 实用性包装，不是更多实验\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-21-1779342825.md"
+}

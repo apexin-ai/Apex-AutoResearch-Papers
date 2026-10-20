@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ff096f48243b08abfd6",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis loco cv nve",
+  "task_key": "worker_analysis_loco_cv_nve_20260525T142550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_loco_cv_nve_20260525T142550_result.json",
+    "occurrence": 1,
+    "bytes": 705,
+    "sha256": "66736690d1284a2e80ee7f2a79b0f79437df1c3a77197fbafa0900a5d9374190"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出汇总：\n\n**LOCO-CV 结果（K=12, n=56）**\n- 10/12 折选择 θ≈1.5 为最优（均值 1.61±0.23）\n- CV accuracy at θ=1.5: **53/56 = 94.6%**，与 in-sample 完全一致\n- Train AUROC: 0.988 ± 0.003\n- 3 个 FP 与全样本分析完全相同（frozen_dt_emb 瞬态 ×2 + mitigation 瞬态 ×1）\n- 所有折 FN=0\n\n**文件**\n1. `artifacts/plan_034_nve_threshold/loco_cv_analysis.py` — 分析脚本\n2. `artifacts/plan_034_nve_threshold/loco_cv_results.md` — 完整结果\n3. `docs/paper/sections/appendix.tex` — 在 LOEO 节后新增 `\\subsection{Leave-One-Config-Out Cross-Validation}`（§nve_loco）\n4. Artifact 已注册（art_20260525_eed111）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-loco-cv-nve.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3adb77a93ea3a17e50af",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "infra seed fix verification",
+  "task_key": "worker_infra_seed-fix-verification_20260517T002646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_seed-fix-verification_20260517T002646_result.json",
+    "occurrence": 1,
+    "bytes": 930,
+    "sha256": "4cc5aa4b720ea374fd82d28c6e41ce316b5cd62461f638f386aa0f69d2c84aeb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n### [SEED CHECK] 输出\n```\n[SEED CHECK] config.seed = 3\n```\n\n### 5K step eval_return 对比\n\n| 实验 | seed | eval_return @5K |\n|------|------|----------------|\n| exp_008d_civo_trigger_s3 | 3 | **36.13** |\n| exp_008d_subsample_on_h8 | 0 | **31.00** |\n\n### prefill train_return 对比 (step=0, 4 episodes)\n\n| episode | seed=3 | seed=0 |\n|---------|--------|--------|\n| 1 | 32.90 | 33.16 |\n| 2 | **36.86** | **52.86** |\n| 3 | 30.63 | 30.63 |\n| 4 | **35.38** | **54.72** |\n\n### PID 635744\n存活确认 ✓（/proc/635744/status 存在）\n\n### 结论：修复成功\n\nseed=3 与 seed=0 在 prefill 阶段和 5K eval 阶段都产生了**不同数值**：\n- prefill episode 2/4 差异显著（36.86 vs 52.86, 35.38 vs 54.72）\n- 5K eval_return 差异明显（36.13 vs 31.00）\n\nseed bug 修复生效，不同 seed 现在确实产生不同的采样轨迹和训练结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-seed-fix-verification.md"
+}

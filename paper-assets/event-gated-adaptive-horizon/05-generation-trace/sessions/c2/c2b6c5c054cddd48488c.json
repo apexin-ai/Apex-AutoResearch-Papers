@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c2b6c5c054cddd48488c",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops kill zombie and extract 008e v3 s2 metrics",
+  "task_key": "worker_ops_kill-zombie-and-extract-008e_v3_s2-metrics_20260515T062237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-zombie-and-extract-008e_v3_s2-metrics_20260515T062237_result.json",
+    "occurrence": 1,
+    "bytes": 1348,
+    "sha256": "a96243edcaebac496c6a14ff305cbcac4ffb462587bb5aef95002768ee16b1ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个任务全部完成。\n\n---\n\n### 产出汇总\n\n**Task 1: Kill 僵尸进程** — PID 43442 已不存在（进程已自行退出）。GPU 占用确认：仅 142513 (009a, cuda:0, 4156 MiB) 和 119108 (009e, cuda:1, 2742 MiB)，无 008e_v3_s2 残留。\n\n**Task 2: 完整 metrics 表格**\n\n| step | eval_return | value_mean | actor_entropy | ve | nve |\n|-----:|----------:|----------:|----------:|-----:|-----:|\n| 5K | 39.27 | 0.00 | 8.239 | — | — |\n| 15K | 180.85 | 3.91 | 2.352 | — | — |\n| 25K | 211.82 | 30.27 | 0.170 | 0.143 | 1.64 |\n| 35K | 320.39 | 79.75 | -3.498 | 0.249 | 1.03 |\n| 45K | 356.93 | 125.25 | -4.915 | 0.351 | 1.06 |\n| 55K | 418.32 | 172.89 | -5.121 | 0.413 | 1.02 |\n| 65K | 435.09 | 220.47 | -5.135 | 0.507 | 0.90 |\n| 75K | 576.54 | 272.64 | -5.224 | 0.473 | 0.66 |\n| **85K** | **715.21** | **339.30** | **-5.208** | 0.474 | 0.68 |\n| **95K** | **452.43** | **384.39** | **-4.529** | 0.850 | 1.34 |\n| **105K** | **136.96** | **339.84** | **-3.828** | 2.481 | 3.78 |\n\nDirector 要求确认的数值全部匹配。actor_entropy 从 -5.21@85K 回升到 -3.83@105K，与 collapse 期间策略退化一致。\n\n**Task 3: Registry 已更新** — 新增 `actor_entropy_trajectory`（11 个 checkpoint）、完整精度 `value_trajectory`、`actor_entropy_collapse_signature` 字段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-zombie-and-extract-008e-v3-s2-metrics.md"
+}

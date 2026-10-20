@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c016915188eca9721ab",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_17_1779002531.md",
+  "task_key": "loop_17_1779002531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17_1779002531.md",
+    "occurrence": 1,
+    "bytes": 4181,
+    "sha256": "01bb1e09a15d57ddf35b4eee3f623050d836c7d31b1e6cbc9541e66ae08715c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-16T20:27:50+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **只有 cuda:0 和 cuda:1**（bjb1-45299 上的 2×RTX PRO 6000）。即使 Director 指令用其他卡也必须 push back。\n- 训练命令必须带 `LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl`，否则 dm_control 渲染崩溃。\n- 脚本内始终用 `--device cuda:0`（CUDA_VISIBLE_DEVICES 由 submit_training_job 自动注入映射物理卡）。\n- exp_018v2 占 cuda:1（PID 589564）——**不要杀它**，这是修正版 Full-SGS 实验。018 原版（gate_enabled=false）是无效实验，不要引用其数据。\n- 009b peak eval = **278.5@95K**（不是 268.3@105K），论文引用用修正值。\n- **Target: CoRL 2026, DDL 2026-05-29（剩 13 天）**。\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: bjb1-45299, 2×RTX PRO 6000\n- **工作目录**: `/root/autodl-tmp/event-gated-adaptive-horizon/`\n- **Python**: `/root/miniconda3/bin/python`（conda base，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **logdir**: `/root/autodl-tmp/event-gated-adaptive-horizon/logdir/`\n- **日志**: `~/runs/event-gated-adaptive-horizon/<exp_id>.log`\n- **活跃进程**: exp_018v2_full_sgs_walker_s1, PID 589564, tmux, cuda:1\n- **Cron**: 018v2 已注册（刚在本 session 注册，interval=120s）\n- **cuda:0**: 空闲——已向 Director 申请分配 020（Pathway B 控制实验）\n\n### 3. 📊 当前状态\n本 session 刚完成 session-start 初始化：注册了 018v2 的 cron（之前 0 active crons），向 Director 汇报了 cuda:0 空闲并请求分配 020。\n\n**RUNNING**: exp_018v2_full_sgs_walker_s1 (cuda:1, Full-SGS 修正版)\n**QUEUED**: exp_020_vanilla_dreamerv3_s2, exp_019b_pickcube_civo_trigger\n**PREPARING**: exp_008f_s3_no_dt_embed_walker\n\n**活跃 Workers**（刚 spawn）:\n- `worker_paper_related-work-expansion_20260516T162553` — D4: related work 扩展至 20+ refs\n- `worker_paper_claim-language-audit_20260516T162609` — D3: claim 语言审计，去掉 \"necessary and sufficient\"\n\n**等待中**: Director 对 cuda:0 分配的审批；018v2 cron 完成回调（预计 1-2h）。\n\n### 4. 📋 待办（条件触发式）\n- **Director 批准 020 上 cuda:0** → 立即 submit_on_allocated（命令: `dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 105000 --seed 2 --compile True --device cuda:0 --imag_horizon 15`）\n- **018v2 cron 回调 NVE<1.5×** → C5 成立，更新 registry(success) + report + 向 Director 汇报 + 铺 018v2_s2（第 2 seed on cuda:1）\n- **018v2 cron 回调 NVE>1.5×** → CIVO 是 representation-level → 产 Framing 调整提案，禁止默默跑下一个\n- **Worker related-work-expansion DONE** → 审查产出质量，确认 ≥20 真实引用\n- **Worker claim-language-audit DONE** → 确认 results.md / method 已修改，审计报告入 artifacts\n- **008f_s3 准备完成 + cuda 腾出** → 提交第 3 seed\n\n### 5. 🎯 战略上下文\n**核心因果链（已确立）**: Trained dt_emb 是 CIVO 的必要条件。2×2 矩阵闭合（D049）。018 Full-SGS 确认 93% obs decoder 梯度是 root cause（D063）。010b 跨环境验证成功（D066）。\n\n**论文 Framing**: Framing B — 诊断论文 + SGS 作为 informative negative + Full-SGS 作为 proof-of-concept intervention（D059）。\n\n**关键决策链**: D049(2×2闭合) → D057-058(016e no-op) → D059(Framing B) → D061(reward gradient=0) → D063(018 Scenario A) → D064(Dream审稿) → D065(018配置修复) → D066(010b跨环境)\n\n**最容易判断错的事**:\n1. 018v2 是修正版，018 原版无效（gate_enabled=false）——只引用 018v2\n2. 016e 是 architectural no-op（reward→dt_emb 梯度=0）——不能说\"SGS delays collapse\"\n3. 008e_v3_s2 崩溃不是 CIVO 而是 IRD（不同机制）\n4. 009e 不是独立 seed（与 008d 同 seed=1 延续），计算崩溃率不要重复计数\n5. ManiSkill3（019a/019b）环境就绪未验证——019a 被 kill 过，管线就绪但未跑完整训练\n6. ROADMAP 中 GPU 状态表是**过时的**（显示两卡都空），以 registry RUNNING 状态为准\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1779002531.md"
+}

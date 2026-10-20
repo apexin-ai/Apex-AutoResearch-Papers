@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a55511ee4cbd3627141a",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "research d064 gradient methodology",
+  "task_key": "worker_research_d064-gradient-methodology_20260516T172723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_d064-gradient-methodology_20260516T172723_result.json",
+    "occurrence": 1,
+    "bytes": 1216,
+    "sha256": "18df73b6e088b47d1be0b758468991bf4686ed2f045a6b6494791afec6e5aee2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "草稿已写入 `artifacts/paper_drafts/gradient_decomposition_methodology.md`。\n\n内容包括：\n\n1. **Methodology**: 基于 `torch.autograd.grad` + `retain_graph=True` 的 per-loss gradient isolation 方法，计算每个 loss 对 dt_embedding weight 的 Frobenius norm 贡献比例\n2. **Single-checkpoint 结果**: 55K checkpoint 的 93/7/0 分布（来自 commit 5fc8e49 的已验证数据）\n3. **Multi-checkpoint table 模板**: 008d 和 018v2 两张表，覆盖 25K/55K/75K/105K，55K 已填，其余标注 `[TODO: 需要从 logdir 提取]`\n4. **因果推理链**: obs decoder gradient → trained dt_emb → reward bias during imagination → CIVO，以及为什么 016e (reward SGS) 是 architectural no-op 而 018v2 (Full-SGS) 有效\n5. **Architectural pathway analysis**: 解释为什么 reward head 梯度为零的计算图原因\n6. **Paper narrative implications**: 016e 作为 informative negative、Full-SGS 作为 proof-of-concept、inherent gate mechanism cost 量化\n\n**需要后续补充的数据**：multi-checkpoint gradient norms（25K/75K/105K）需要从服务器 logdir 加载各 checkpoint 重跑 gradient 分析脚本提取。可复用 5fc8e49 的分析代码。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-d064-gradient-methodology.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d7097d24b9ac698a0d1",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code cartpole analysis script",
+  "task_key": "worker_code_cartpole-analysis-script_20260524T230726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cartpole-analysis-script_20260524T230726_result.json",
+    "occurrence": 1,
+    "bytes": 1171,
+    "sha256": "6b0c4f49107eb48f0fe523fa212fd8712ec2eab091c691c3da4506a12186d239"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写入 `artifacts/scripts/cartpole_analysis.py`。\n\n**核心逻辑**：\n- 从 metrics.jsonl 提取 `value_mean`（训练指标行）和 `eval_return`（评估行），按 step 匹配\n- `ve_ratio = value_mean / eval_return`\n- `NVE = ve_ratio(treatment) / ve_ratio(baseline_mean)`，跨 seed 对齐到公共 step\n- CIVO 判定：peak NVE > 1.5x\n\n**三张图**：\n1. ve_ratio 时间线（3 组实验，mean ± shade）\n2. NVE 柱状图（peak + final，含 error bars 和 1.5x 阈值线）\n3. eval_return 学习曲线\n\n**两种用法**：\n```bash\n# 自动发现（同一服务器）\npython cartpole_analysis.py --logdir-base /root/autodl-tmp/event-gated-adaptive-horizon/logdir/\n\n# 手动指定（跨服务器数据合并后）\npython cartpole_analysis.py \\\n  --exp060 logdir/exp_060_cartpole_baseline_s{0,1,2} \\\n  --exp061 logdir/exp_061_cartpole_civo_trigger_s{0,1,2} \\\n  --exp062 logdir/exp_062_cartpole_control_s{0,1,2}\n```\n\n字段名已验证与服务器上 metrics.jsonl 实际输出一致（`eval_return`, `value_mean`, `train_return`）。不硬编码 obs/action 维度，纯 metrics.jsonl 解析，无需 torch。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cartpole-analysis-script.md"
+}

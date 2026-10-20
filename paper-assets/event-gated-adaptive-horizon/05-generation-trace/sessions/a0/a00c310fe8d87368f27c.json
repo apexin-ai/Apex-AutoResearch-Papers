@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "a00c310fe8d87368f27c",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "analysis plan 034 nve threshold",
+  "task_key": "worker_analysis_plan_034_nve_threshold_20260525T120442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_034_nve_threshold_20260525T120442.log",
+    "occurrence": 1,
+    "bytes": 676094,
+    "sha256": "54a2df4486af597e78005ca18da8fa40100f61a44a0c4e9ae0cf1278f279315a"
+  },
+  "statistics": {
+    "messages": 125,
+    "user_turns": 1,
+    "tool_calls": 39,
+    "roles": {
+      "log": 1,
+      "system": 35,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 39,
+      "tool_result": 39,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "a00c310fe8d87368f27c-part-0001.json",
+          "message_count": 13
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 112,
+      "chunks": [
+        {
+          "path": "a00c310fe8d87368f27c-part-0001.json",
+          "message_count": 87
+        },
+        {
+          "path": "a00c310fe8d87368f27c-part-0002.json",
+          "message_count": 25
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-plan-034-nve-threshold.md"
+}

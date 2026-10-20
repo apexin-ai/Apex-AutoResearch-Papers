@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49a0cf3b57ccf144390a",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "deploy exp 048 cheetah civo extension",
+  "task_key": "worker_deploy_exp_048_cheetah_civo_extension_20260522T154925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_deploy_exp_048_cheetah_civo_extension_20260522T154925_result.json",
+    "occurrence": 1,
+    "bytes": 531,
+    "sha256": "595c6d9220a275158d78ea03b003465ff50c316e40cfeae7882e5d24e58b62c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。\n\n**汇报：**\n\n| 项目 | 结果 |\n|------|------|\n| StackCube kill | PID 87609 已 SIGTERM 终止 |\n| Checkpoint | 使用 **s0**（exp_010b_cheetah_civo_trigger_s0, NVE=70.64, seed 0） |\n| 恢复证据 | `Prefill dataset (0 steps)` + `Logger: (112000 steps)` + `[112000] Start evaluation` — 从 112K 步恢复（对应 105K env steps × action_repeat=2） |\n| GPU 0 负载 | 33% utilization, 4695 MiB |\n| tmux session | `exp_048_cheetah_civo_extension` |\n| 目标 | 300K total steps |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-exp-048-cheetah-civo-extension.md"
+}

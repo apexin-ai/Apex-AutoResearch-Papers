@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3b888601de8adcb601c",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis roc prf regenerate",
+  "task_key": "worker_analysis_roc-prf-regenerate_20260527T173221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_roc-prf-regenerate_20260527T173221_result.json",
+    "occurrence": 1,
+    "bytes": 596,
+    "sha256": "6657aa9e4948b9632c7f698d22ac7bc65b755113567e358f125dec4d58bfa38d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**生成结果**：\n- `nve_roc_curve.pdf` (art_20260527_debb78) — ROC 曲线，AUROC=1.000，τ=2.0 操作点标记在 (0, 1) 完美分类位置\n- `nve_threshold_prf.pdf` (art_20260527_01dc4e) — PRF 曲线，F1=1.00@τ=2.0，separation gap [1.88, 3.78] 绿色阴影标注\n\n**数据集**：N=36 (9 CIVO + 27 No-CIVO)，含 D165 标签修正（009b_s2/008d_s3/018_s1→No-CIVO，008e_v3_s2→CIVO）+ 4 个新增实验（008f_s0=1.69, no_dt_s1=0.88, ch_008a_s0=0.449, ch_008a_s1=0.584，均为 No-CIVO）。CIVO min=3.78, No-CIVO max=1.88, τ=2.0 完美分离。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-roc-prf-regenerate.md"
+}

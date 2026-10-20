@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a3bac1e951a98c1cb6df",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "writing framing b reaudit diff",
+  "task_key": "worker_writing_framing-b-reaudit-diff_20260516T014028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_framing-b-reaudit-diff_20260516T014028.log",
+    "occurrence": 1,
+    "bytes": 803789,
+    "sha256": "6cc23c9ff1c17d150befc881db4a4d5cd0ad9f7775c4f536020f7798fa28ff7b"
+  },
+  "statistics": {
+    "messages": 92,
+    "user_turns": 0,
+    "tool_calls": 32,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 24,
+      "tool_call": 32,
+      "tool_result": 32,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 92,
+      "chunks": [
+        {
+          "path": "a3bac1e951a98c1cb6df-part-0001.json",
+          "message_count": 67
+        },
+        {
+          "path": "a3bac1e951a98c1cb6df-part-0002.json",
+          "message_count": 25
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/writing-framing-b-reaudit-diff.md"
+}

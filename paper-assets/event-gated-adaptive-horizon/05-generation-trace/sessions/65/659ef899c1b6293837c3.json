@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "659ef899c1b6293837c3",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code bjb1 40020 final deploy exp055",
+  "task_key": "worker_code_bjb1-40020-final-deploy-exp055_20260523T082720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bjb1-40020-final-deploy-exp055_20260523T082720_result.json",
+    "occurrence": 1,
+    "bytes": 182,
+    "sha256": "7abf52e70154d9b53594e2c29aec2d0015e9c6e4075aa597705d2d1d6874323e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在 bjb1-40020 上仍在运行（exp_050@216.8K, exp_051@218K），已超过 210K 目标，可能在做最终 checkpoint/eval。60 秒后再次轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bjb1-40020-final-deploy-exp055.md"
+}

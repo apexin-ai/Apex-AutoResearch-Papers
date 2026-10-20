@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e8c074d4239411529af",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code fix civo detector formula",
+  "task_key": "worker_code_fix-civo-detector-formula_20260517T075825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-civo-detector-formula_20260517T075825_result.json",
+    "occurrence": 1,
+    "bytes": 347,
+    "sha256": "28e543aa3f5985f867ba933310efc64bae59a1428213d7961bb8453dd39301bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **dreamer.py 第44行**：`abs(V-E)/max(E,1.0)` → `value_mean / max(eval_return, 1e-6)`，同时删除了多余的 `E = max(eval_return, 1.0)` 行\n- **configs.yaml**：`civo_ve_threshold: 0.49` 保留\n- **语法验证**：通过\n- **数值验证**：97.53/140.76 = 0.6929 ✓\n- 未触碰运行中的进程"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-civo-detector-formula.md"
+}

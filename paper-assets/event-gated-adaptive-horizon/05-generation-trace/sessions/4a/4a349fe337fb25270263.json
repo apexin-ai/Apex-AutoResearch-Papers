@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a349fe337fb25270263",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops bjb1 45299 snapshot",
+  "task_key": "worker_ops_bjb1_45299_snapshot_20260520T113335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1_45299_snapshot_20260520T113335_result.json",
+    "occurrence": 1,
+    "bytes": 1462,
+    "sha256": "8d140b5b10ef34b66af1a48184986207c27962947c2f9ebfec3959e80463b112"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 进程状态\n| 实验 | PID | 状态 | 运行时间 |\n|------|-----|------|----------|\n| exp_027_tcn_walker_s1 | 888926 | Running (Sl) | 5h20m |\n| exp_030b_tcn_cheetah_s0_sigma05 | 903247 | Running (Sl+) | 22m43s |\n\n### exp_027_tcn_walker_s1 (Walker σ=0.5, seed=1)\n\n| 指标 | 最新值 | step |\n|------|--------|------|\n| **当前 step** | ~188K / 210K | — |\n| **最新 eval_return** | **355.4** | 185K |\n| **peak eval_return** | **364.9** | 75K |\n| **最新 ve_ratio** | **0.211** | 185K |\n| **peak ve_ratio** | **0.735** | 175K |\n| **train_return** (最新 4 ep)** | 354.8 / 431.2 / 419.4 / 427.1 | 188K |\n| fps | ~10.0 | — |\n\neval_return 趋势：75K 见顶 364.9 后大幅波动，185K 回升到 355.4。ve_ratio 在 175K 冲到 0.735 后 185K 骤降到 0.211（delta_ve = -0.52）。gate_dt 始终固定在 2.0（100% dt=2）。\n\n### exp_030b_tcn_cheetah_s0_sigma05 (Cheetah σ=0.5, seed=0)\n\n| 指标 | 最新值 | step |\n|------|--------|------|\n| **当前 step** | ~16K / 210K | — |\n| **最新 eval_return** | **78.3** | 15K |\n| **最新 ve_ratio** | **0.020** | 15K |\n| fps | ~9.7 | — |\n\n刚启动 22 分钟，只有两个 eval 点（5K: 8.3, 15K: 78.3），早期阶段正常上升。\n\n### GPU 状态\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| cuda:0 (exp_030b) | 21% | 3.8 GB / 95.6 GB |\n| cuda:1 (exp_027) | 22% | 2.8 GB / 95.6 GB |\n\n两卡负载都很轻。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-45299-snapshot.md"
+}

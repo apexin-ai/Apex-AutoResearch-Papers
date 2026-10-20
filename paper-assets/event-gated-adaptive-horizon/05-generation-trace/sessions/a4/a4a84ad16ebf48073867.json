@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4a84ad16ebf48073867",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "research citation verification",
+  "task_key": "worker_research_citation-verification_20260521T123315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_citation-verification_20260521T123315_result.json",
+    "occurrence": 1,
+    "bytes": 3016,
+    "sha256": "103d5b276f77be06f9c004191f39427b3f42fcf3156efe508ea27776cf3bbc9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 引用验证报告\n\n---\n\n### 1. Turcato et al. 2024 — ✅ 已验证\n\n| 字段 | 声称 | 实际 |\n|------|------|------|\n| arXiv ID | 2402.09078 | **2402.09078** ✅ |\n| 标题 | (未明确) | *Exploiting Estimation Bias in Clipped Double Q-Learning for Continuous Control Reinforcement Learning Tasks* |\n| 作者 | Turcato | **Niccolò Turcato**, Alberto Sinigaglia, Alberto Dalla Libera, Ruggero Carli, Gian Antonio Susto ✅ |\n| Venue | (未明确) | arXiv preprint（2024-02 提交，2024-10 修订，未见会议发表记录） |\n| 核心 claim | environment-dependent bias preference: Walker/Ant 偏好 underestimation，Swimmer/Reacher 偏好 overestimation | **匹配** — 论文研究不同环境中 estimation bias 的影响，设计 Bias Exploiting (BE) 机制动态选择最优 bias ✅ |\n\n---\n\n### 2. CrossQ (Bhatt et al.) — ✅ 已验证\n\n| 字段 | 声称 | 实际 |\n|------|------|------|\n| arXiv ID | (未提供) | **1902.05605**（2019 年首次提交，多次修订） |\n| 标题 | CrossQ | *CrossQ: Batch Normalization in Deep Reinforcement Learning for Greater Sample Efficiency and Simplicity* ✅ |\n| 作者 | Bhatt et al. | **Aditya Bhatt**, Daniel Palenicek, Boris Belousov, Max Argus, Artemij Amiranashvili, Thomas Brox, Jan Peters ✅ |\n| Venue | ICLR 2024 | **ICLR 2024 (Top 5% Spotlight)** ✅ |\n| 核心 claim | implicit regularization (BN) > explicit pessimism (min-of-two)；2 个 critic 降到 1 个效果更好 | **匹配** — 通过 BatchNorm 提供隐式正则化，移除 target network，使用单个 double-Q 网络做 joint forward pass，不依赖传统的 bias-reduction schemes ✅ |\n\n---\n\n### 3. DARC — ✅ 已验证\n\n| 字段 | 声称 | 实际 |\n|------|------|------|\n| arXiv ID | (未提供) | **2106.03050** |\n| 标题 | DARC (double actors + regularized critics) | *Efficient Continuous Control with Double Actors and Regularized Critics* ✅ |\n| 作者 | (未提供) | **Jiafei Lyu**, Xiaoteng Ma, Jiangpeng Yan, Xiu Li |\n| Venue | AAAI 2022 | **AAAI 2022** ✅ |\n| 核心 claim | double actors + regularized critics | **完全匹配** — 双 actor 改善探索并缓解 overestimation，regularized critics 缓解双 critic 的 pessimistic estimate ✅ |\n\n---\n\n## 总结\n\n3 篇论文全部真实存在，核心 claim 均与原文一致，**无幻觉**。补充缺失信息：\n\n- Turcato et al.: 目前仍为 arXiv preprint，引用时注意标注\n- CrossQ: arXiv ID 为 `1902.05605`（非 2024 年 ID，首次提交于 2019 年）\n- DARC: arXiv ID 为 `2106.03050`，作者为 Lyu, Ma, Yan, Li\n\nSources:\n- [Turcato et al. 2402.09078](https://arxiv.org/abs/2402.09078)\n- [CrossQ - arXiv](https://arxiv.org/abs/1902.05605)\n- [CrossQ - OpenReview ICLR 2024](https://openreview.net/forum?id=PczQtTsTIX)\n- [DARC - AAAI Proceedings](https://ojs.aaai.org/index.php/AAAI/article/view/20732)\n- [DARC - arXiv](https://arxiv.org/abs/2106.03050)\n- [DARC - GitHub](https://github.com/dmksjfl/DARC)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-citation-verification.md"
+}

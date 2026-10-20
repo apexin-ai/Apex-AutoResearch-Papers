@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6eeff7f86a36414f52c",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis rssm onset checkpoint",
+  "task_key": "worker_analysis_rssm-onset-checkpoint_20260526T113330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rssm-onset-checkpoint_20260526T113330_result.json",
+    "occurrence": 1,
+    "bytes": 2298,
+    "sha256": "b34995d208b9274af19fbdb924f736e9ac03612ffcc6f85ad5ff00a28af7789e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the complete picture. Here's the analysis:\n\n## 结果\n\n### 中间 checkpoint 不存在\n所有实验只保留 `latest.pt`（DreamerV3 覆盖写入），**无法对 onset 时刻 checkpoint 运行 v3 standardized 分析**。\n\n### Cheetah exp_097 CIVO 时间线\n| Step | ve_ratio | alert |\n|------|----------|-------|\n| 15K | 0.009 | 0 |\n| 25K | 0.120 | 0 |\n| 35K | 0.350 | 0 |\n| **45K** | **2.265** | **1** |\n| 55K | 0.758 | 0 |\n| 65K | 0.232 | 0 |\n| 75K-105K | 0.17-0.31 | 0 |\n\nCIVO alert 仅在 45K 触发一次（ve_ratio 从 0.35 暴涨到 2.26），之后回落。训练 loss 在 45K 无异常——position/velocity/reward loss 全部单调下降。\n\n### 已有 RSSM 时序数据（exp_066b，Walker seed 1）\n这是唯一保存了中间 checkpoint fidelity 的实验：\n\n| Step | reward_ratio | obs_ratio |\n|------|-------------|-----------|\n| 10K | 0.89× | 0.99× |\n| 20K | **1.22×** | 1.09× |\n| 25K | **1.53×** | 1.08× |\n| **35K** (Walker onset) | **1.49×** | **1.14×** |\n| 45K | 1.38× | 1.15× |\n| 60K | **1.80×** | 1.13× |\n| 65K | 1.76× | 1.20× |\n\nWalker 的 fidelity gap 从 ~20K 出现后 **从未闭合**，持续增长到训练结束。Final checkpoint (exp_008d): obs=1.35×, reward=1.63×。\n\n### Final checkpoint 对比\n\n| Env | Model | obs_ratio | reward_ratio |\n|-----|-------|-----------|--------------|\n| Cheetah | trained_dt_emb (105K) | 1.12× | **1.00×** |\n| Cheetah | no_dt_emb | 1.03× | 1.01× |\n| Walker | trained_dt_emb (final) | 1.35× | 1.63× |\n| Walker | baseline | 1.57× | 1.56× |\n\n### 结论\n\n1. **无法直接验证** onset 时刻是否存在 transient RSSM fidelity gap——45K checkpoint 不存在\n2. **Walker 代理数据**表明 gap 在 onset 前就已存在（~20K）且**从未闭合**\n3. **Cheetah reward=1.00×** 有两种可能：(a) Cheetah 从未有 reward fidelity gap；(b) 曾有 transient gap 后闭合。训练 loss 不支持 (b)——45K 处无 loss 异常\n4. CIVO alert 在 45K 的 ve_ratio=2.26 spike 是 **value function calibration 问题**（delta_ve=1.92），不是 RSSM fidelity 问题\n\n**建议**：未来实验在 training 中每 10K 步跑 RSSM fidelity check（如 exp_066b 做的），或保留中间 checkpoint，才能回答这个问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-rssm-onset-checkpoint.md"
+}

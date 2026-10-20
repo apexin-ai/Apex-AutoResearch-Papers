@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61b0ac5b882b6b1f7456",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "snapshot bjb1 40020 sigma02 65 75K",
+  "task_key": "worker_snapshot_bjb1_40020_sigma02_65_75K_20260520T080558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_snapshot_bjb1_40020_sigma02_65_75K_20260520T080558_result.json",
+    "occurrence": 1,
+    "bytes": 386,
+    "sha256": "ef87ed8b140a4dd7be65390ecc1adbbd2e1054c9f8dfbf77be398c32a2caff75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "bjb1-40020 上没有 `exp_027` 和 `exp_028`。当前 logdir 只有：\n\n```\nexp_025_obs_sgs_walker_s1\nexp_025_obs_sgs_walker_s2\nexp_026_obs_sgs_cheetah_s0\nexp_026_obs_sgs_cheetah_s1\n```\n\n这两个实验可能跑在别的服务器上。要我检查 bjb1-45299（本项目默认服务器）或其他机器？请确认 exp_027/exp_028 实际在哪台服务器上。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/snapshot-bjb1-40020-sigma02-65-75k.md"
+}

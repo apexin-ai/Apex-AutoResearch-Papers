@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "420e28dd58fa9114e085",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper section status audit",
+  "task_key": "worker_paper_section-status-audit_20260517T115132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_section-status-audit_20260517T115132_result.json",
+    "occurrence": 1,
+    "bytes": 949,
+    "sha256": "4a6f6bca92e58ccd79b0e947d59ed11924de3622bffa3ebb36ba85dceb2f9ead"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。关键发现：\n\n**最严重问题：93% 梯度数据全文错误。** D073 确认 obs=16-22%（非 93%）、reward=38-49%（非 0%）、KL=35-40%（非 7%）。这影响 6 个文件的核心叙事，需要从\"magnitude dominance\"重构为\"gradient importance ≠ magnitude\"。\n\n**10 个 P0 阻断项：**\n1. 93% 梯度数据全文修正（6 个文件）\n2. 梯度叙事重构\n3. Full-SGS 从\"correct intervention\"降级为\"informative mixed result\"（018_s2 collapsed，collapse_rate=50%）\n4. Abstract 未写\n5. Introduction 未写\n6. Discussion 未写\n7. Conclusion 未写\n8. CIVO detector section 未从 artifacts/ 集成到 paper/\n9. exp_018 从\"pending\"更新为完成结果\n10. PickCube 019a/019b 跨环境结果未写入\n\n**7 个 P1 项：** C1 reframe（D078）、seed=3 数据、figure 文件名不匹配等。\n\n审计报告已写入 `artifacts/paper_section_audit.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-section-status-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee8259e5700594d382f7",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code wide critic implementation",
+  "task_key": "worker_code_wide_critic_implementation_20260521T034534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_wide_critic_implementation_20260521T034534_result.json",
+    "occurrence": 1,
+    "bytes": 824,
+    "sha256": "82194d41c78f2c9449cffb1ce6eb67a8c79ca57f947e96afec3656c5c7624f38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Summary:\n\n```\nCRITIC_STRUCTURE: hidden=512, layers=2, total_params=1,181,439\nWIDE_CRITIC:      hidden=1024, layers=2, total_params=2,886,911 (2.44× normal)\nDUAL_CRITIC:      2 × 1,181,439 = 2,362,878 (2.00× normal)\nDRYRUN: pass (model init OK, training loop started, no errors)\nSYNC_45299: done\nSTATUS: ready_for_033\n```\n\nImplementation details:\n- `configs.yaml`: added `wide_critic: false` (line 64, next to `dual_critic`)\n- `models.py`: assertion enforces mutual exclusion of `wide_critic` + `dual_critic`; when `wide_critic=True`, value MLP hidden units doubled (512→1024) while keeping single critic with no min operation\n- Wide critic has slightly more params than dual critic (2.44× vs 2.00×) because the first layer scales with input dimension (1536→1024 vs 1536→512)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-wide-critic-implementation.md"
+}

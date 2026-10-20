@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f22f1deb1715cbf21226",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "research maniskill3 integration",
+  "task_key": "worker_research_maniskill3-integration_20260516T025719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_maniskill3-integration_20260516T025719_result.json",
+    "occurrence": 1,
+    "bytes": 788,
+    "sha256": "1eac41ee6c5e6b79412a9b8b567fe56455c3dfedc5e838bc5dc221b8dcf7d1d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "集成方案已完成并注册 (`art_20260516_252646`)。\n\n**核心发现**：代码集成已基本完成 — `envs/maniskill.py` wrapper、`dreamer.py` make_env 分支、`configs.yaml` maniskill_state preset 都已就位。**唯一的阻塞项是服务器上 mani-skill 包未安装**。\n\n**方案要点**：\n1. **选定任务**: PickCube-v1 / StackCube-v1 / PegInsertionSide-v1，均为 8 维连续动作、42-48 维 state obs、dense reward\n2. **代码无需大改**: 仅需在 `configs.yaml` 追加 StackCube 和 PegInsertion 配置\n3. **实验设计**: 3 tasks × 3 configs (baseline/gated/fixed-dt) × 3 seeds = 27 runs，每 run 预估 1-2 hr\n4. **关键风险**: manipulation 的 dense reward 可能导致 gate 退化为 dt=1，需关注 gate_dt_mean 指标"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-maniskill3-integration-copy-2.md"
+}

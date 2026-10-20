@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "608230730f76784b988d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp hopper frozen s0 ext",
+  "task_key": "worker_analysis_exp_hopper_frozen_s0_ext_20260527T105310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_hopper_frozen_s0_ext_20260527T105310_result.json",
+    "occurrence": 1,
+    "bytes": 675,
+    "sha256": "ed6a408834b449ca23201b8387613aa812d3c2522b25909230f93ef853180b54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。Registry 已更新为 DONE (negative)，报告已注册。\n\n**结论：假设被否定。**\n\n| 指标 | trained_s0_ext | frozen_s0_ext |\n|------|---------------|---------------|\n| eval_return | 3.26 → 81.58 (恢复) | 0 → 0.56 (无恢复) |\n| ve_ratio | 0.897 → 0.44 (下降) | 4.3M → 15.08 (持续高) |\n| value_mean | 2.93 → 35.81 (跟踪真实表现) | 4.34 → 8.46 (phantom value) |\n\nfrozen_s0 的近零表现不是暂态不稳定——是**结构性学习失败**。frozen embedding 无法适应，价值函数学到的是与实际回报完全脱节的幻影价值。这与 trained_s0_ext 的恢复模式根本不同。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-hopper-frozen-s0-ext.md"
+}

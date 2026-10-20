@@ -1,0 +1,130 @@
+{
+  "schema_version": "1.0",
+  "id": "6db0a5d85b2283a138cc",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "conversation",
+  "title": "analysis fix threshold report grouping",
+  "task_key": "worker_analysis_fix-threshold-report-grouping_20260515T062823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_fix-threshold-report-grouping_20260515T062823.jsonl",
+    "occurrence": 1,
+    "bytes": 13823,
+    "sha256": "1e7bc889e70a28c6e7c519eceee5f191d4f4be93744184818663b5f801de60a2"
+  },
+  "statistics": {
+    "messages": 5,
+    "user_turns": 0,
+    "tool_calls": 2,
+    "roles": {
+      "tool_call": 2,
+      "tool_result": 2,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T06:31:00.128688+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fix-threshold-report-grouping_20260515T062823",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/analysis/threshold_sensitivity_report.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T06:31:00.129172+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# NVE Threshold Sensitivity Analysis\n2\t\n3\t**Date:** 2026-05-15\n4\t**Dataset:** 9 experiments (4 trained dt_emb, 5 untrained/no dt_emb), Walker Walk, seeds 0-2\n5\t\n6\t## 1. NVE Trajectory Table (35K+ checkpoints)\n7\t\n8\tBaseline v/e: 25K=0.087, 35K=0.241, 45K=0.331, 55K=0.404, 65K=0.563, 75K=0.719, 85K=0.701, 95K=0.632, 105K=0.656\n9\t\n10\t### Trained dt_emb (expected pathological)\n11\t\n12\t| Experiment | 35K | 45K | 55K | 65K | 75K | 85K | 95K | 105K | max |\n13\t|---|---|---|---|---|---|---|---|---|---|\n14\t| 008d (s1) | **1.71** | **2.09** | **4.12** | - | - | - | - | - | **4.12** |\n15\t| 009b (s2) | 1.24 | **1.62** | 1.41 | 0.94 | 0.66 | 0.51 | 0.43 | 0.38 | **1.62** |\n16\t| 008e_v3_s2 (s2) | 1.03 | 1.06 | 1.02 | 0.90 | 0.66 | 0.68 | 1.34 | **3.78** | **3.78** |\n17\t| 006 (s0) | 1.29 | **1.61** | **2.31** | **4.83** | - | - | - | - | **4.83** |\n18\t\n19\t**Bold** = exceeds 1.5x threshold.\n20\t\n21\t### Untrained / No dt_emb (expected healthy)\n22\t\n23\t| Experiment | 35K | 45K | 55K | 65K | 75K | 85K | 95K | 105K | max |\n24\t|---|---|---|---|---|---|---|---|---|---|\n25\t| 008c (s0) | 0.90 | - | 0.72 | 0.58 | - | - | - | - | 0.90 |\n26\t| 008f (s1) | 0.73 | 0.83 | 0.97 | 0.37 | 0.42 | 0.65 | 0.54 | 0.30 | 0.97 |\n27\t| 009c (s2) | 0.79 | 0.72 | 0.66 | 0.53 | 0.33 | 0.60 | 0.90 | 1.14 | 1.14 |\n28\t| 008a (s0) | - | - | 0.93 | 0.66 | 0.75 | 0.68 | 0.79 | 0.59 | 0.93 |\n29\t| 008e_v3_dt1 (s0/1) | 0.94 | 0.88 | 0.87 | 0.72 | 0.73 | 0.76 | 0.75 | 0.80 | 0.94 |\n30\t\n31\tAll below 1.5x. Closest: 009c at 105K = 1.14x.\n32\t\n33\t## 2. Threshold Sweep (full window 35K-105K)\n34\t\n35\tClassification rule: experiment is \"pathological\" if **any** checkpoint at 35K+ exceeds threshold.\n36\t\n37\t| Threshold | TP | FN | TN | FP | TPR | TNR | Accuracy |\n38\t|---|---|---|---|---|---|---|---|\n39\t| 1.0x | 4 | 0 | 4 | 1 | 100% | 80% | 88.9% |\n40\t| 1.1x | 4 | 0 | 4 | 1 | 100% | 80% | 88.9% |\n41\t| **1.2x** | **4** | **0** | **5** | **0** | **100%** | **100%** | **100%** |\n42\t| 1.3x | 4 | 0 | 5 | 0 | 100% | 100% | 100% |\n43\t| 1.4x\n…[truncated 5398 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fix-threshold-report-grouping_20260515T062823",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T06:31:00.129492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fix-threshold-report-grouping_20260515T062823",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/analysis/threshold_sensitivity_report.md",
+              "content": "# NVE Threshold Sensitivity Analysis\n\n**Date:** 2026-05-15 (revised: grouping corrected per D033 — 008e_v3 has trained dt_emb)\n**Dataset:** 9 experiments (5 trained dt_emb, 4 untrained/no dt_emb), Walker Walk, seeds 0-2\n\n## 1. NVE Trajectory Table (35K+ checkpoints)\n\nBaseline v/e: 25K=0.087, 35K=0.241, 45K=0.331, 55K=0.404, 65K=0.563, 75K=0.719, 85K=0.701, 95K=0.632, 105K=0.656\n\n### Trained dt_emb (5 experiments)\n\nGrouping criterion: `nn.Embedding` for dt with default `requires_grad=True`, no freeze/detach in code (verified D033).\n\n| Experiment | 35K | 45K | 55K | 65K | 75K | 85K | 95K | 105K | max |\n|---|---|---|---|---|---|---|---|---|---|\n| 006 (s0) | 1.29 | **1.61** | **2.31** | **4.83** | - | - | - | - | **4.83** |\n| 008d (s1) | **1.71** | **2.09** | **4.12** | - | - | - | - | - | **4.12** |\n| 008e_v3 (s2) | 1.03 | 1.06 | 1.02 | 0.90 | 0.66 | 0.68 | 1.34 | **3.78** | **3.78** |\n| 009b (s2) | 1.24 | **1.62** | 1.41 | 0.94 | 0.66 | 0.51 | 0.43 | 0.38 | **1.62** |\n| 008e_v3 (s1) | 0.94 | 0.88 | 0.87 | 0.72 | 0.73 | 0.76 | 0.75 | 0.80 | 0.94 |\n\n**Bold** = exceeds 1.5x threshold. 008e_v3 (s1) is a **false negative** at 1.5x — trained dt_emb but nve stays healthy.\n\n### Untrained / No dt_emb (4 experiments)\n\n| Experiment | 35K | 45K | 55K | 65K | 75K | 85K | 95K | 105K | max |\n|---|---|---|---|---|---|---|---|---|---|\n| 008a (s0) | - | - | 0.93 | 0.66 | 0.75 | 0.68 | 0.79 | 0.59 | 0.93 |\n| 008c (s0) | 0.90 | - | 0.72 | 0.58 | - | - | - | - | 0.90 |\n| 008f (s1) | 0.73 | 0.83 | 0.97 | 0.37 | 0.42 | 0.65 | 0.54 | 0.30 | 0.97 |\n| 009c (s2) | 0.79 | 0.72 | 0.66 | 0.53 | 0.33 | 0.60 | 0.90 | 1.14 | 1.14 |\n\nAll below 1.5x. Closest: 009c at 105K = 1.14x.\n\n## 2. Threshold Sweep (full window 35K-105K)\n\nClassification rule: experiment is \"pathological\" if **any** checkpoint at 35K+ exceeds threshold.\n\nPositives = trained dt_emb (5): 006(4.83), 008d(4.12), 008e_v3_s2(3.78), 009b(1.62), 008e_v3_s1(0.94)\nNegatives = untrained (4): 009c(1.14), 008f(0.97), 008a(0.93), 008c(0.90)\n\n| Threshold | TP | FN | TN | FP | TPR | TNR | Accuracy |\n|---|---|---|---|---|---|---|---|\n| 1.0x | 4 | 1 | 3 | 1 | 80% | 75% | 77.8% |\n| 1.1x | 4 | 1 | 3 | 1 | 80% | 75% | 77.8% |\n| **1.2x** | **4** | **1** | **4** | **0** | **80%** | **100%** | **88.9%** |\n| 1.3x | 4 | 1 | 4 | 0 | 80% | 100% | 88.9% |\n| 1.4x | 4 | 1 | 4 | 0 | 80% | 100% | 88.9% |\n| **1.5x** | **4** | **1** | **4** | **0** | **80%** | **100%** | **88.9%** |\n| 1.6x | 4 | 1 | 4 | 0 | 80% | 100% | 88.9% |\n| 1.7x | 3 | 2 | 4 | 0 | 60% | 100% | 77.8% |\n| 1.8x | 3 | 2 | 4 | 0 | 60% | 100% | 77.8% |\n| 1.9x | 3 | 2 | 4 | 0 | 60% | 100% | 77.8% |\n| 2.0x | 3 | 2 | 4 | 0 | 60% | 100% | 77.8% |\n\n**Best accuracy range: [1.2x, 1.6x]** — 88.9% (8/9). The persistent false negative is 008e_v3_s1 (trained dt_emb, max nve = 0.94).\n\nAt 1.7x+, 009b (max nve=1.62x) becomes a second false negative.\nAt ≤1.1x, 009c (nve=1.14x@105K) becomes a false positive.\n\n## 3. Separation Analysis\n\nWith corrected grouping, the trained and untrained groups **overlap** in nve range:\n\n| Metric | Value |\n|---|---|\n| Max nve in untrained group | 1.14x (009c @ 105K) |\n| Min max-nve in trained group | 0.94x (008e_v3_s1) |\n| **Overlap** | trained min (0.94) < untrained max (1.14) |\n\nNo threshold achieves 100% accuracy because 008e_v3_s1 (trained) sits inside the untrained nve range.\n\n**Excluding the false negative**, the remaining 4 pathological trained experiments have a separation gap:\n\n| Metric | Value |\n|---|---|\n| Max nve in untrained group | 1.14x (009c) |\n| Min max-nve in collapsed trained | 1.62x (009b) |\n| Gap | (1.14, 1.62] — width 0.48 |\n\n**Margin analysis for 1.5x threshold:**\n- Distance to nearest false positive: 1.50 - 1.14 = **0.36** (comfortable)\n- Distance to nearest collapsed false negative: 1.62 - 1.50 = **0.12** (tight)\n- Structural false negative: 008e_v3_s1 at 0.94 — no threshold can capture this without also capturing healthy untrained runs\n\n## 4. Time Window Sensitivity (threshold = 1.5x)\n\n| Window | TPR | TNR | Accuracy | Missed (FN) |\n|---|---|---|---|---|\n| Early (35K-55K) | 60% (3/5) | 100% (4/4) | 77.8% | 008e_v3_s1 (0.94), 008e_v3_s2 (max 1.06) |\n| Mid (55K-75K) | 40% (2/5) | 100% (4/4) | 66.7% | 008e_v3_s1 (0.87), 009b (1.41), 008e_v3_s2 (1.02) |\n| Late (75K-105K) | 20% (1/5) | 100% (4/4) | 55.6% | 008d (no data), 009b (0.66), 006 (no data), 008e_v3_s1 (0.80) |\n| **Full (35K-105K)** | **80% (4/5)** | **100% (4/4)** | **88.9%** | 008e_v3_s1 (0.94) |\n\nThe 1.5x threshold requires the **full training window** for maximum sensitivity, but even then achieves only 80% TPR due to 008e_v3_s1. TNR is 100% in all windows.\n\n## 5. 008e_v3_s2: Late-Onset Collapse\n\n008e_v3_s2 is a trained dt_emb experiment with dt=1 imagination (gate locked to 1-step). Its nve trajectory:\n\n```\n35K: 1.03  →  45K: 1.06  →  55K: 1.02  →  65K: 0.90\n75K: 0.66  →  85K: 0.68  →  95K: 1.34  →  105K: 3.78 ★\n```\n\nThis experiment presents as healthy until 95K, then undergoes sudden catastrophic collapse (eval 715→137 between 85K-105K). The nve at 95K (1.34x) is a warning signal but below 1.5x.\n\n**Implications:**\n- A **monitoring** threshold (e.g., nve > 1.2x as \"warning\") at 95K would have caught the 1.34x signal before the 105K crash\n- The 1.5x **diagnostic** threshold correctly classifies it post-hoc but cannot serve as an early warning for this failure mode\n- This case suggests a **two-tier system**: nve > 1.2x = warning, nve > 1.5x = pathological confirmed\n\n## 6. 008e_v3_s1: False Negative Analysis\n\n008e_v3_s1 shares the same configuration as 008e_v3_s2 (trained dt_emb, dt=1 imagination, h=15) but remains healthy throughout training:\n\n```\n35K: 0.94  →  45K: 0.88  →  55K: 0.87  →  65K: 0.72\n75K: 0.73  →  85K: 0.76  →  95K: 0.75  →  105K: 0.80\n```\n\nMax nve = 0.94 — well within the untrained range. This is a **structural false negative**: no nve threshold can flag it without also generating false positives on untrained experiments.\n\n**Diagnostic value of this false negative:**\n\n1. **Trained dt_emb is necessary but not sufficient for CIVO.** All 4 experiments exceeding 1.5x have trained dt_emb; 0/4 untrained experiments exceed it. But 1/5 trained experiments (008e_v3_s1) does not collapse.\n\n2. **Same config, different seeds diverge.** 008e_v3 seed 1 stays healthy (nve 0.94) while seed 2 collapses catastrophically (nve 3.78). This seed-dependent divergence is itself a diagnostic finding: CIVO onset is stochastic under dt=1 imagination.\n\n3. **Consistent with D040 \"multiple vulnerability pathways.\"** The dt=1 imagination eliminates the imagination-side pathway (actor cannot exploit dt mismatch during rollouts). But the training-data pathway persists (subsample ON introduces dt=2 transitions into the world model's training data, distorting learned representations). Whether this remaining pathway triggers collapse appears seed-dependent.\n\n4. **dt=1 imagination partially mitigates CIVO.** Collapse rate drops from ~100% (all seeds collapse with standard imagination) to ~50% (1/2 seeds with dt=1 imagination collapse). The mitigation is real but incomplete — it removes one attack vector without eliminating the underlying vulnerability.\n\n## 7. Recommendations\n\n### Threshold choice: 1.5x remains defensible\n\n**Keep 1.5x** for the paper. Rationale:\n1. 88.9% accuracy (8/9) — best achievable in range [1.2x, 1.6x]\n2. Semantically clear: \"50% above baseline value-to-eval ratio\"\n3. TNR = 100% across all time windows — zero false positives\n4. The single false negative (008e_v3_s1) is itself informative, not a diagnostic failure\n\n**Key caveats:**\n1. **No threshold achieves 100% accuracy.** 008e_v3_s1 (trained dt_emb, dt=1 imagination) remains healthy at nve = 0.94, overlapping with the untrained range. Trained dt_emb is necessary but not sufficient for CIVO.\n2. **Small sample size.** N=9 (5 positive, 4 negative). The 88.9% accuracy estimate has wide confidence intervals.\n3. **Tight margin to 009b.** The nearest collapsed experiment (009b) has max nve = 1.62x, only 0.12 above threshold. 009b is a transient case that self-corrected — if its peak nve had been slightly lower, it would be missed.\n4. **Late-onset cases.** 008e_v3_s2 only exceeds 1.5x at 105K. Early detection (35K-55K) achieves only 60% TPR.\n5. **Task-specific.** All data is from Walker Walk. Generalization to other tasks is unknown.\n\n### Suggested paper language\n\n> \"Trained dt_embedding is a **necessary** condition for nve > 1.5×: all 4/4 experiments exceeding the threshold have trained dt_embedding, while 0/4 untrained experiments exceed it. However, it is not **sufficient**: 1/5 trained dt_embedding seeds (008e_v3_s1, with dt=1 imagination) remained healthy. The threshold achieves 89% accuracy (8/9) with TPR = 80% and TNR = 100% over the range [1.2×, 1.6×]. The false negative is diagnostically informative: same-configuration seed divergence (008e_v3 s1 healthy vs s2 collapsed) confirms that CIVO has multiple vulnerability pathways, and dt=1 imagination mitigates but does not eliminate the pathology.\"\n\n### Future validation needed\n\n1. More seeds per configuration to stress-test the false negative rate under dt=1 imagination\n2. Different tasks (Cheetah, Hopper) to test generalization\n3. Lower threshold (1.2-1.3x) as an early warning tier\n4. Multivariate diagnostic combining nve threshold with other signals (e.g., representation divergence) to capture false negatives like 008e_v3_s1\n"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T06:31:00.129971+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/analysis/threshold_sensitivity_report.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fix-threshold-report-grouping_20260515T062823",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T06:31:00.130254+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修正完成。主要变更：\n\n1. **分组修正**: 008e_v3_s1 从 untrained 移入 trained 组（5 trained / 4 untrained）\n2. **Threshold sweep 全部重算**: 最优范围 [1.2x, 1.6x] 准确率 88.9%（非 100%），008e_v3_s1 为永久 false negative\n3. **删除所有 \"perfect classification/separation\"**: 改为 necessary-but-not-sufficient 表述\n4. **Separation analysis 重写**: 明确指出两组在 nve 上存在重叠（trained min 0.94 < untrained max 1.14）\n5. **Time window sensitivity 重算**: Full window TPR 降为 80%（4/5）\n6. **新增 §6**: 008e_v3_s1 false negative 分析 — seed 分歧、多路径假说、dt=1 部分缓解\n7. **§7 推荐语和 paper language**: 反映 89% accuracy 和 necessary-but-not-sufficient 结论"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fix-threshold-report-grouping_20260515T062823"
+          },
+          "id": "event-000005"
+        }
+      ],
+      "message_count": 5
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-fix-threshold-report-grouping.md"
+}

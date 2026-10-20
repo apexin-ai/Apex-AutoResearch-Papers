@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "30693e40037021880cfc",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper submission checklist v2",
+  "task_key": "worker_paper_submission-checklist-v2_20260527T223508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_submission-checklist-v2_20260527T223508_result.json",
+    "occurrence": 1,
+    "bytes": 2109907,
+    "sha256": "7c58b03a8b6f01b42b0df3183494584583fff9f0bc3878a1914b9136d9d9539d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "30693e40037021880cfc-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/paper-submission-checklist-v2.md"
+}

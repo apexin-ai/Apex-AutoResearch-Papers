@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "517e1453e5e47668e136",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "code tcn rave bjb1 40020",
+  "task_key": "worker_code_tcn_rave_bjb1_40020_20260520T033829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_tcn_rave_bjb1_40020_20260520T033829.log",
+    "occurrence": 1,
+    "bytes": 536106,
+    "sha256": "a5581ae0753808859c83dd9e9a16843670a1444726842262765ce27adde654bd"
+  },
+  "statistics": {
+    "messages": 247,
+    "user_turns": 0,
+    "tool_calls": 90,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 63,
+      "tool_call": 90,
+      "tool_result": 90,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 247,
+      "chunks": [
+        {
+          "path": "517e1453e5e47668e136-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "517e1453e5e47668e136-part-0002.json",
+          "message_count": 67
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-tcn-rave-bjb1-40020.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a85e25c7a7e041ca0a3c",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper n16 auroc footnote update",
+  "task_key": "worker_paper_n16-auroc-footnote-update_20260518T121537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_n16-auroc-footnote-update_20260518T121537_result.json",
+    "occurrence": 1,
+    "bytes": 1573,
+    "sha256": "39b23d52d3e136d9baf6f34564a622c9553af7529d35c7976f781ea44238c685"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All old patterns cleared (grep returns empty). Here's the summary:\n\n### Task 1: 5 locations updated\n- **introduction.tex L6**: 13/14 → 15/16, n=14 → n=16\n- **methodology.tex L87**: 14 → 16, 13/14 → 15/16, AUROC 0.933 → 0.950\n- **results.tex L67**: 13 of 14 → 15 of 16, AUROC 0.933 → 0.950\n- **conclusion.tex L8**: 13/14 → 15/16, n=14 → n=16, 92.9% → 93.8%\n- **conclusion.tex L18** (Limitations): 13/14 → 15/16\n\n### Task 2: Footnote — removed (stale)\n\nInvestigation findings:\n- The footnote (\"Excluding 3 baseline configurations, the 10-experiment subset yields accuracy=9/10 and AUROC=0.880\") is from the **n=13 era** (13−3=10). It doesn't match n=14 (14−3=11≠10).\n- The appendix B2 table (`tab:nve_raw`) has a **different** 10-experiment set: the factorial subset including 001 (a baseline) and all four 008e_v3 seeds. B2's AUROC=0.958, accuracy=9/10 at 1.5× threshold.\n- AUROC=0.880 requires exactly 22/25 concordant pairs (5 pos, 5 neg), which doesn't match any reconstructable current subset. The underlying data has changed.\n- Removed the footnote since it's unreproducible and the appendix B2 already provides a more rigorous sensitivity analysis on the factorial subset.\n\n### Task 3: analysis.tex — confirmed clean\n\nanalysis.tex L23 (\"thirteen runs\") and conclusion.tex L18 (\"thirteen runs across three environments\") both refer to the **online detector's calibration set** (Table 5, n=13), not the NVE classification set. No AUROC is mentioned in that context. No confusion or updates needed."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-n16-auroc-footnote-update.md"
+}

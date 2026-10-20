@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0",
+  "id": "3daf17cf5575e99a5fe1",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "analysis rssm prediction quality",
+  "task_key": "worker_analysis_rssm-prediction-quality_20260514T095825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rssm-prediction-quality_20260514T095825.log",
+    "occurrence": 1,
+    "bytes": 2181109,
+    "sha256": "20c4dc562bdcbeb8fd82e2cb72ab8dcdde33b29c7283fdc9bae38498e7f35563"
+  },
+  "statistics": {
+    "messages": 1396,
+    "user_turns": 4,
+    "tool_calls": 614,
+    "roles": {
+      "log": 1,
+      "system": 86,
+      "record": 3,
+      "assistant": 73,
+      "tool_call": 614,
+      "tool_result": 614,
+      "user": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "3daf17cf5575e99a5fe1-part-0001.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 101,
+      "chunks": [
+        {
+          "path": "3daf17cf5575e99a5fe1-part-0001.json",
+          "message_count": 101
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 88,
+      "chunks": [
+        {
+          "path": "3daf17cf5575e99a5fe1-part-0001.json",
+          "message_count": 61
+        },
+        {
+          "path": "3daf17cf5575e99a5fe1-part-0002.json",
+          "message_count": 27
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 540,
+      "chunks": [
+        {
+          "path": "3daf17cf5575e99a5fe1-part-0002.json",
+          "message_count": 153
+        },
+        {
+          "path": "3daf17cf5575e99a5fe1-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "3daf17cf5575e99a5fe1-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "3daf17cf5575e99a5fe1-part-0005.json",
+          "message_count": 27
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 656,
+      "chunks": [
+        {
+          "path": "3daf17cf5575e99a5fe1-part-0005.json",
+          "message_count": 153
+        },
+        {
+          "path": "3daf17cf5575e99a5fe1-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "3daf17cf5575e99a5fe1-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "3daf17cf5575e99a5fe1-part-0008.json",
+          "message_count": 143
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-rssm-prediction-quality.md"
+}

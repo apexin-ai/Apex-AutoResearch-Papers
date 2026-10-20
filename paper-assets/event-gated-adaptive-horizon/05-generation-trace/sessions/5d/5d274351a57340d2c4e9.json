@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d274351a57340d2c4e9",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis integrate plan031 032 results",
+  "task_key": "worker_analysis_integrate-plan031-032-results_20260514T142844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_integrate-plan031-032-results_20260514T142844_result.json",
+    "occurrence": 1,
+    "bytes": 1060,
+    "sha256": "61edcd2110335eea927d0d14f47c97b629c8fa9abb0e67feb801e48a9df9be58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。memory.md 新增章节 \"2026-05-14: Actor Entropy & Value Calibration 分析结果 (plan_031/032)\"，关键发现：\n\n1. **Value calibration 是最强诊断信号**：v/R ratio（eval_return 基准）> 1.5 在 late training 100% 区分 collapsed vs healthy。collapsed 的 008d 峰值 1.67，006 峰值 2.72；healthy 从未超过 1.0。\n2. **Actor entropy 差异反直觉**：collapsed configs 在 15K 步时 entropy 下降更慢（仍为正值），而非更快。可用但非主要诊断指标。\n3. **008f 极端保守**：v/R=0.20 despite 503 eval_return，与 dt_emb removal 导致 reward prediction 退化一致。\n4. **Normalized v/e target 无区分力**：所有实验 late-stage 均收敛至 ~1.0，不可用于诊断。\n5. **组合机制可用于论文**：delusional critic signature = 慢 entropy 收敛 + value 过高估计，构成完整因果链。\n\n另发现服务器上还有 `analysis_rssm_prediction_quality.json`（RSSM prediction quality 分析），属不同 plan 产物，已在 memory 中注明。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-integrate-plan031-032-results.md"
+}

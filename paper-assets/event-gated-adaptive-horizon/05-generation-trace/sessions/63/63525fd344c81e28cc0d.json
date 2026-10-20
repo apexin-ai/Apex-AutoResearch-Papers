@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63525fd344c81e28cc0d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis paper data audit pre lockdown",
+  "task_key": "worker_analysis_paper_data_audit_pre_lockdown_20260526T043156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_paper_data_audit_pre_lockdown_20260526T043156_result.json",
+    "occurrence": 1,
+    "bytes": 770,
+    "sha256": "624cefb0dda63bebca811993ec3c9f29bdc3618ed3a0448a068b4e6736d93700"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。结论：\n\n**所有 8 个 Claims (C1-C8) 均有充分实验支撑，无阻塞缺口。**\n\n关键发现：\n- **C1-C3, C7**: Strong 级别证据，多 seed、多环境\n- **C4-C5**: Moderate，定位为 supporting claims，可接受\n- **C6**: 6 seeds，2/6 CIVO 崩溃 + 1/6 non-CIVO 失败，partially falsified 本身即为发现\n- **C8**: 7+ 方法、3 层级、3 环境，Intervention Hierarchy 是系统性贡献\n\n两个 RUNNING 实验：\n- **exp_097** (C2 Cheetah s3): 当前 onset rate 2/3，完成后变 2/4 或 3/4。不影响 necessity 结论 (Fisher p<0.001)\n- **exp_100** (C3 Walker s1): C3 已有 6 seeds (4 Walker + 2 Cheetah) 全 success。添加 NVE trajectory 但不阻塞\n\n产出已注册: `art_20260526_c46dc7`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-paper-data-audit-pre-lockdown.md"
+}

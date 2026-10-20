@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b189daeea3d61bc73f0d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp cheetah 008a s1",
+  "task_key": "worker_analysis_exp_cheetah_008a_s1_20260527T141828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_cheetah_008a_s1_20260527T141828_result.json",
+    "occurrence": 1,
+    "bytes": 1284,
+    "sha256": "3819a41d1081201b0d960dc5609f26fde04a2737ebe80bda07a0140ecb674255"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成，status=DONE。\n\n---\n\n## 结果汇总\n\n| 指标 | 值 |\n|------|-----|\n| **eval_return_105K** | **281.24** |\n| **NVE_105K** | **0.584** (< τ=2.0, no CIVO) |\n| **value_mean_105K** | 164.29 |\n| **ve_ratio_105K** | 0.584 |\n| **conclusion** | **success** |\n| **vs_baseline_105K** | **-36.7%** (baseline s1=444) |\n\n## 完整 Eval Trajectory\n\n| Step | eval_return | value_mean | NVE |\n|------|------------|------------|-----|\n| 5K   | 13.48      | 0.001      | ~0  |\n| 15K  | 21.22      | 1.94       | 0.091 |\n| 25K  | 178.88     | 10.83      | 0.061 |\n| 35K  | 265.67     | 28.16      | 0.106 |\n| 45K  | 391.72     | 51.43      | 0.131 |\n| 55K  | 446.50     | ~75.3      | 0.169 |\n| 65K  | 459.79     | 98.89      | 0.215 |\n| 75K  | 519.56     | 120.76     | 0.232 |\n| 85K  | 411.18     | 138.35     | 0.336 |\n| 95K  | 415.49     | 151.31     | 0.364 |\n| 105K | 281.24     | 164.29     | 0.584 |\n\n## 分析报告路径\n`projects/event-gated-adaptive-horizon/artifacts/exp_cheetah_008a_s1/report/analysis_c5f89a.md` (artifact ID: art_20260527_c5f89a)\n\nC3 claim 在 Cheetah Run seed=1 得到确认：untrained dt=2 embedding 导致 value growth suppression，NVE 全程远低于 2.0，pattern 与 Walker 008a 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-cheetah-008a-s1.md"
+}

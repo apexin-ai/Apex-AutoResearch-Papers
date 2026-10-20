@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "77c71475accbab1f7451",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "code exp063 rssm fidelity",
+  "task_key": "worker_code_exp063-rssm-fidelity_20260524T185452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp063-rssm-fidelity_20260524T185452.log",
+    "occurrence": 1,
+    "bytes": 985158,
+    "sha256": "ee6df427b0fb374a19460696dddeaaa855e1aba9ced863ab43a7c4348a82ce5a"
+  },
+  "statistics": {
+    "messages": 302,
+    "user_turns": 1,
+    "tool_calls": 112,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 70,
+      "tool_call": 112,
+      "tool_result": 112,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 167,
+      "chunks": [
+        {
+          "path": "77c71475accbab1f7451-part-0001.json",
+          "message_count": 142
+        },
+        {
+          "path": "77c71475accbab1f7451-part-0002.json",
+          "message_count": 25
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 135,
+      "chunks": [
+        {
+          "path": "77c71475accbab1f7451-part-0002.json",
+          "message_count": 135
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp063-rssm-fidelity.md"
+}

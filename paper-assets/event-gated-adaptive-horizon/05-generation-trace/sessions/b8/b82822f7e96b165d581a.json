@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b82822f7e96b165d581a",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 088 cheetah 008d s1",
+  "task_key": "worker_analysis_exp_088_cheetah_008d_s1_20260525T210614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_088_cheetah_008d_s1_20260525T210614_result.json",
+    "occurrence": 1,
+    "bytes": 1637,
+    "sha256": "d31cbac821a3251062b095fdbd4f11e3051d23d4ccf9d91327e010ca72cdb003"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n## exp_088_cheetah_008d_s1 分析总结\n\n**Conclusion: negative — CIVO 未触发，跨 seed 复制失败。**\n\n### 关键指标\n| 指标 | exp_088 (s1) | exp_078 (s0) |\n|------|-------------|-------------|\n| NVE peak | **0.52×** @45K | **4.1×** @75K |\n| NVE onset | 无 | 45K (NVE=1.7×) |\n| NVE classification | **no_onset** | onset_self_correcting |\n| CIVO | **false** | true |\n| ve_ratio peak | 0.31 @45K | 2.32 @75K |\n| eval_return final | 309.3 (69.6% baseline) | 119.5 (~27% baseline) |\n| eval_return peak | 309.3 @105K | 213.7 @35K |\n| gate entropy | 0.0 (stuck dt=2) | — |\n\n### 核心发现\n\n1. **NVE 全程远低于 1.5× 阈值**：peak 仅 0.52×，D155 三维标准全部未满足。\n2. **Gate 完全未学习**：dt_mean=2.0, dt_2_frac=1.0, entropy=0.0 — 全程锁定在 dt=2，无自适应行为。\n3. **与 parent 模式相反**：exp_078 出现强烈 value expansion（ve_ratio 从 0.04 飙升到 2.32 再回落），exp_088 的 ve_ratio 始终低平（0.01–0.31），无任何 onset 迹象。\n4. **但 eval 性能反而更好**：exp_088 final 309.3 vs exp_078 final 119.5。没有 value expansion 反而带来了更稳定的训练——这提示 exp_078 的 CIVO 现象可能是 seed-specific 的训练不稳定性，而非 systematic mechanism。\n\n### 结论\nCheetah Run 的 CIVO onset 不具备跨 seed 可复现性。seed=1 在相同配置下未出现 value expansion，且 gate 完全退化为固定 dt=2。exp_078 的 NVE=4.1× 可能是 seed=0 特有的训练动态，而非由 trained dt_emb + subsample 机制 systematically 引发。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-088-cheetah-008d-s1.md"
+}

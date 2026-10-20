@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fc765fcf574b5222592",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis 019b ve trajectory",
+  "task_key": "worker_analysis_019b-ve-trajectory_20260517T145650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_019b-ve-trajectory_20260517T145650_result.json",
+    "occurrence": 1,
+    "bytes": 852,
+    "sha256": "8e2e12171e47344bad7b6843a414f37a761cfe19f71a24f4f16a2e65e4be1895"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。产出保存在 `artifacts/analysis/exp_019b_analysis.json`。\n\n关键结论：\n\n1. **V/E trajectory**: Raw V/E peak = **5.66** @52.5K (NVE = 3.78× vs baseline)。Value 在 32.5K 达到峰值 27.17 后单调下降至 ~4.26，eval 在 52.5K 跌至谷底 3.69 后缓慢恢复。\n\n2. **Eval 对比**: 019b final 26.64 vs 019a_v2 baseline 58.56，性能损失 54.5%。尽管 CIVO 自行消退，永久伤害已造成。\n\n3. **Detector backtest = True Negative (TN)**：V/E spike 呈振荡模式（up-DOWN-up-DOWN），最大连续加速 streak = 2（需要 3 才触发）。Detector 正确不触发，因为 transient CIVO 自行消退，不满足\"持续加速\"条件。\n\n4. **关键时间线**: onset ~22.5K → peak 52.5K → deflation 62.5K-102.5K → eval recovery peak 132.5K (26.87) → stable low regime。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-019b-ve-trajectory.md"
+}

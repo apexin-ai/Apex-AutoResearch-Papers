@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5dd7ab0ec43c7983295b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops urgent bjb1 45299 snapshot deploy",
+  "task_key": "worker_ops_urgent_bjb1_45299_snapshot_deploy_20260520T162648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent_bjb1_45299_snapshot_deploy_20260520T162648_result.json",
+    "occurrence": 1,
+    "bytes": 890,
+    "sha256": "88115924d09fa3dc8e84abf7974ded065f7950a0ce931fe1bcc6f60497f549ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n```\n=== exp_030b (Cheetah σ=0.5) ===\nPID: exited（已 kill，超 220K 未自退）\n最新 step: 215K（eval）/ 220K+（training metrics）\n最新 eval: step=215K → 77.6\n最新 NVE: step=215K → 0.1394\nRegistry: DONE/negative ✓\n\n=== exp_031 (PickCube σ=0.2) ===\nPID 908459: running（03:44:47+）\n最新 step: 72.5K\neval_return 全量:\n  2.5K=2.4, 12.5K=19.2, 22.5K=17.7, 32.5K=11.5,\n  42.5K=7.8, 52.5K=4.8, 62.5K=10.4, 72.5K=16.2\nNVE 全量:\n  12.5K=0.20, 22.5K=1.01, 32.5K=2.29, 42.5K=3.06,\n  52.5K=3.71, 62.5K=1.20, 72.5K=0.55\n\n=== exp_030c (Cheetah σ=1.0) ===\n部署状态: 成功 ✓\nPID: 920973（tmux session: exp_030c_tcn_cheetah_s0_sigma10）\nRegistry: RUNNING\n\n=== GPU ===\ncuda:0: 28% util, 3942/97887 MiB（exp_030c PID 920973, 3255 MiB）\ncuda:1: 18% util, 2767/97887 MiB（exp_031 PID 908464, 2758 MiB）\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-bjb1-45299-snapshot-deploy.md"
+}

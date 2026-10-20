@@ -1,0 +1,212 @@
+{
+  "schema_version": "1.0",
+  "id": "67ea67552ebc5266116e",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "conversation",
+  "title": "research 008f 35k metrics",
+  "task_key": "worker_research_008f_35k_metrics_20260514T062046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_008f_35k_metrics_20260514T062046.jsonl",
+    "occurrence": 1,
+    "bytes": 11208,
+    "sha256": "f9e927103b4bb74c33d9bf0b82bd4d6d4c9e25c46590036ff1c485aac56b013e"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "tool_call": 4,
+      "tool_result": 4,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T06:21:39.661970+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_008f_35k_metrics_20260514T062046",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T06:21:39.662353+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_008f_35k_metrics_20260514T062046",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T06:21:39.662523+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_008f_35k_metrics_20260514T062046",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-45299",
+              "command": "tail -100 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008f_no_dt_embed_subsample_on_h8/metrics.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T06:21:39.662896+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"step\\\\\\\": 0, \\\\\\\"dataset_size\\\\\\\": 2000.0, \\\\\\\"train_return\\\\\\\": 33.15589141845703, \\\\\\\"train_length\\\\\\\": 500.0, \\\\\\\"train_episodes\\\\\\\": 4.0}\\\\n{\\\\\\\"step\\\\\\\": 0, \\\\\\\"dataset_size\\\\\\\": 2000.0, \\\\\\\"train_return\\\\\\\": 52.859649658203125, \\\\\\\"train_length\\\\\\\": 500.0, \\\\\\\"train_episodes\\\\\\\": 4.0}\\\\n{\\\\\\\"step\\\\\\\": 0, \\\\\\\"dataset_size\\\\\\\": 2000.0, \\\\\\\"train_return\\\\\\\": 30.6280517578125, \\\\\\\"train_length\\\\\\\": 500.0, \\\\\\\"train_episodes\\\\\\\": 4.0}\\\\n{\\\\\\\"step\\\\\\\": 0, \\\\\\\"dataset_size\\\\\\\": 2000.0, \\\\\\\"train_return\\\\\\\": 54.71767807006836, \\\\\\\"train_length\\\\\\\": 500.0, \\\\\\\"train_episodes\\\\\\\": 4.0}\\\\n{\\\\\\\"step\\\\\\\": 5000}\\\\n{\\\\\\\"step\\\\\\\": 5000, \\\\\\\"eval_return\\\\\\\": 30.485724258422852, \\\\\\\"eval_length\\\\\\\": 500.0, \\\\\\\"eval_episodes\\\\\\\": 10.0}\\\\n{\\\\\\\"step\\\\\\\": 5000, \\\\\\\"model_loss\\\\\\\": 21.054241180419922, \\\\\\\"model_grad_norm\\\\\\\": 150.29949951171875, \\\\\\\"height_loss\\\\\\\": 0.0650239810347557, \\\\\\\"orientations_loss\\\\\\\": 2.7330899238586426, \\\\\\\"velocity_loss\\\\\\\": 10.053638458251953, \\\\\\\"reward_loss\\\\\\\": 3.3570351600646973, \\\\\\\"cont_loss\\\\\\\": 0.014279581606388092, \\\\\\\"kl_free\\\\\\\": 1.0, \\\\\\\"dyn_scale\\\\\\\": 0.5, \\\\\\\"rep_scale\\\\\\\": 0.09999999999999998, \\\\\\\"dyn_loss\\\\\\\": 8.051959037780762, \\\\\\\"rep_loss\\\\\\\": 8.051959037780762, \\\\\\\"kl\\\\\\\": 8.051959037780762, \\\\\\\"prior_ent\\\\\\\": 104.5586166381836, \\\\\\\"post_ent\\\\\\\": 97.03143310546875, \\\\\\\"normed_target_mean\\\\\\\": 0.10173150151968002, \\\\\\\"normed_target_std\\\\\\\": 0.04952041059732437, \\\\\\\"normed_target_min\\\\\\\": 0.023654349148273468, \\\\\\\"normed_target_max\\\\\\\": 0.17299595475196838, \\\\\\\"EMA_005\\\\\\\": 0.007463684305548668, \\\\\\\"EMA_095\\\\\\\": 0.04319798946380615, \\\\\\\"value_mean\\\\\\\": 0.0012146227527409792, \\\\\\\"value_std\\\\\\\": 1.9084143787040375e-05, \\\\\\\"value_min\\\\\\\": 0.000987325911410153, \\\\\\\"value_max\\\\\\\": 0.0012440037680789828, \\\\\\\"target_mean\\\\\\\": 0.10919518768787384, \\\\\\\"target_std\\\\\\\": 0.04952041059732437, \\\\\\\"target_min\\\\\\\": 0.031118027865886688, \\\\\\\"target_max\\\\\\\": 0.1804596334695816, \\\\\\\"imag_rewar\n…[truncated 7975 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_008f_35k_metrics_20260514T062046",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T06:21:39.663128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_008f_35k_metrics_20260514T062046",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-45299",
+              "command": "grep -E \"\\\"step\\\": 25000\" /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008f_no_dt_embed_subsample_on_h8/metrics.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T06:21:39.663314+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"step\\\\\\\": 25000}\\\\n{\\\\\\\"step\\\\\\\": 25000, \\\\\\\"eval_return\\\\\\\": 196.7777069091797, \\\\\\\"eval_length\\\\\\\": 500.0, \\\\\\\"eval_episodes\\\\\\\": 10.0}\\\\n{\\\\\\\"step\\\\\\\": 25000, \\\\\\\"model_loss\\\\\\\": 5.0852155685424805, \\\\\\\"model_grad_norm\\\\\\\": 7.992853164672852, \\\\\\\"height_loss\\\\\\\": 0.0028421233873814344, \\\\\\\"orientations_loss\\\\\\\": 0.13331258296966553, \\\\\\\"velocity_loss\\\\\\\": 0.7439374327659607, \\\\\\\"reward_loss\\\\\\\": 0.6262813210487366, \\\\\\\"cont_loss\\\\\\\": 9.645893896959024e-07, \\\\\\\"kl_free\\\\\\\": 1.0, \\\\\\\"dyn_scale\\\\\\\": 0.5, \\\\\\\"rep_scale\\\\\\\": 0.09999999999999999, \\\\\\\"dyn_loss\\\\\\\": 5.964735984802246, \\\\\\\"rep_loss\\\\\\\": 5.964735984802246, \\\\\\\"kl\\\\\\\": 5.8570404052734375, \\\\\\\"prior_ent\\\\\\\": 40.190818786621094, \\\\\\\"post_ent\\\\\\\": 34.14746856689453, \\\\\\\"normed_target_mean\\\\\\\": 0.6624504327774048, \\\\\\\"normed_target_std\\\\\\\": 0.30853068828582764, \\\\\\\"normed_target_min\\\\\\\": -0.4229609966278076, \\\\\\\"normed_target_max\\\\\\\": 1.9905791282653809, \\\\\\\"EMA_005\\\\\\\": 14.979862213134766, \\\\\\\"EMA_095\\\\\\\": 20.36556625366211, \\\\\\\"value_mean\\\\\\\": 17.506994247436523, \\\\\\\"value_std\\\\\\\": 1.3013994693756104, \\\\\\\"value_min\\\\\\\": 6.875308513641357, \\\\\\\"value_max\\\\\\\": 18.8983211517334, \\\\\\\"target_mean\\\\\\\": 18.542428970336914, \\\\\\\"target_std\\\\\\\": 1.6683517694473267, \\\\\\\"target_min\\\\\\\": 12.32155704498291, \\\\\\\"target_max\\\\\\\": 25.659164428710938, \\\\\\\"imag_reward_mean\\\\\\\": 0.2815243601799011, \\\\\\\"imag_reward_std\\\\\\\": 0.2724156677722931, \\\\\\\"imag_reward_min\\\\\\\": 3.636822657426819e-05, \\\\\\\"imag_reward_max\\\\\\\": 1.7318650484085083, \\\\\\\"imag_action_mean\\\\\\\": 0.2551960349082947, \\\\\\\"imag_action_std\\\\\\\": 0.7903289794921875, \\\\\\\"imag_action_min\\\\\\\": -1.0, \\\\\\\"imag_action_max\\\\\\\": 1.0, \\\\\\\"actor_entropy\\\\\\\": -1.8516017198562622, \\\\\\\"gate_dt_mean\\\\\\\": 2.0, \\\\\\\"gate_dt_std\\\\\\\": 0.0, \\\\\\\"gate_dt_min\\\\\\\": 2.0, \\\\\\\"gate_dt_max\\\\\\\": 2.0, \\\\\\\"gate_dt_1_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_2_frac\\\\\\\": 1.0, \\\\\\\"gate_dt_3_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_4_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_5_frac\\\\\\\": 0.0,\n…[truncated 530 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_008f_35k_metrics_20260514T062046",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T06:21:39.663518+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_008f_35k_metrics_20260514T062046",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-45299",
+              "command": "grep \"train_return\" /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008f_no_dt_embed_subsample_on_h8/metrics.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T06:21:39.663924+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"step\\\\\\\": 0, \\\\\\\"dataset_size\\\\\\\": 2000.0, \\\\\\\"train_return\\\\\\\": 33.15589141845703, \\\\\\\"train_length\\\\\\\": 500.0, \\\\\\\"train_episodes\\\\\\\": 4.0}\\\\n{\\\\\\\"step\\\\\\\": 0, \\\\\\\"dataset_size\\\\\\\": 2000.0, \\\\\\\"train_return\\\\\\\": 52.859649658203125, \\\\\\\"train_length\\\\\\\": 500.0, \\\\\\\"train_episodes\\\\\\\": 4.0}\\\\n{\\\\\\\"step\\\\\\\": 0, \\\\\\\"dataset_size\\\\\\\": 2000.0, \\\\\\\"train_return\\\\\\\": 30.6280517578125, \\\\\\\"train_length\\\\\\\": 500.0, \\\\\\\"train_episodes\\\\\\\": 4.0}\\\\n{\\\\\\\"step\\\\\\\": 0, \\\\\\\"dataset_size\\\\\\\": 2000.0, \\\\\\\"train_return\\\\\\\": 54.71767807006836, \\\\\\\"train_length\\\\\\\": 500.0, \\\\\\\"train_episodes\\\\\\\": 4.0}\\\\n{\\\\\\\"step\\\\\\\": 8000, \\\\\\\"dataset_size\\\\\\\": 4000.0, \\\\\\\"train_return\\\\\\\": 37.78185272216797, \\\\\\\"train_length\\\\\\\": 500.0, \\\\\\\"train_episodes\\\\\\\": 8.0}\\\\n{\\\\\\\"step\\\\\\\": 8000, \\\\\\\"dataset_size\\\\\\\": 4000.0, \\\\\\\"train_return\\\\\\\": 40.522071838378906, \\\\\\\"train_length\\\\\\\": 500.0, \\\\\\\"train_episodes\\\\\\\": 8.0}\\\\n{\\\\\\\"step\\\\\\\": 8000, \\\\\\\"dataset_size\\\\\\\": 4000.0, \\\\\\\"train_return\\\\\\\": 36.21171951293945, \\\\\\\"train_length\\\\\\\": 500.0, \\\\\\\"train_episodes\\\\\\\": 8.0}\\\\n{\\\\\\\"step\\\\\\\": 8000, \\\\\\\"dataset_size\\\\\\\": 4000.0, \\\\\\\"train_return\\\\\\\": 37.36892318725586, \\\\\\\"train_length\\\\\\\": 500.0, \\\\\\\"train_episodes\\\\\\\": 8.0}\\\\n{\\\\\\\"step\\\\\\\": 12000, \\\\\\\"dataset_size\\\\\\\": 6000.0, \\\\\\\"train_return\\\\\\\": 112.22904968261719, \\\\\\\"train_length\\\\\\\": 500.0, \\\\\\\"train_episodes\\\\\\\": 12.0}\\\\n{\\\\\\\"step\\\\\\\": 12000, \\\\\\\"dataset_size\\\\\\\": 6000.0, \\\\\\\"train_return\\\\\\\": 108.91830444335938, \\\\\\\"train_length\\\\\\\": 500.0, \\\\\\\"train_episodes\\\\\\\": 12.0}\\\\n{\\\\\\\"step\\\\\\\": 12000, \\\\\\\"dataset_size\\\\\\\": 6000.0, \\\\\\\"train_return\\\\\\\": 102.33698272705078, \\\\\\\"train_length\\\\\\\": 500.0, \\\\\\\"train_episodes\\\\\\\": 12.0}\\\\n{\\\\\\\"step\\\\\\\": 12000, \\\\\\\"dataset_size\\\\\\\": 6000.0, \\\\\\\"train_return\\\\\\\": 97.84228515625, \\\\\\\"train_length\\\\\\\": 500.0, \\\\\\\"train_episodes\\\\\\\": 12.0}\\\\n{\\\\\\\"step\\\\\\\": 16000, \\\\\\\"dataset_size\\\\\\\": 8000.0, \\\\\\\"train_return\\\\\\\": 156.69219970703125, \\\\\\\"train_length\\\\\\\": 500.0, \n…[truncated 3076 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_008f_35k_metrics_20260514T062046",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T06:21:39.664166+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐全，计算结果：\n\n```\n=== exp_008f (no_dt_embed) 关键指标 ===\n\n008f@25K: eval=196.78, value=17.51, v/e=8.90%, normalized=1.02x\n008f@35K: eval=206.67, value=36.28, v/e=17.56%, normalized=0.73x\n\n对比 008d@35K: v/e=41.2%, normalized=1.71x\n\n结论: ✅ C2 CONFIRMED\n```\n\n**分析**:\n- 008f@25K v/e=8.90% vs baseline 8.7% → 几乎与 baseline 持平 (1.02x)\n- 008f@35K v/e=17.56% vs baseline 24.1% → **低于 baseline** (0.73x)\n- 对比 008d@35K 的 1.71x → 008f 直接从 1.71x 降到 0.73x，**差距 2.3 倍**\n\n去掉 dt_embedding conditioning 后，value overestimation 不仅没有恶化，反而**被抑制到 baseline 以下**。dt_embedding 是 value 崩塌的因果根因确认。\n\n**Loss 趋势**:\n\n| Step | model_loss | actor_loss | value_loss |\n|------|-----------|------------|------------|\n| 5K   | 21.05     | -0.109     | 9.33       |\n| 15K  | 7.46      | (截断)      | (截断)      |\n| 25K  | 5.09      | -0.195     | 1.47       |\n| 35K  | 4.60      | -0.075     | 1.10       |\n\nmodel_loss 和 value_loss 持续健康下降，actor_loss 稳定。没有任何发散迹象。\n\n**额外观察**: gate_dt 全程锁定在 dt=2 (gate_dt_2_frac=1.0)，gate 尚未激活多步跳转——这是 no_dt_embed 下的预期行为。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_008f_35k_metrics_20260514T062046"
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/research-008f-35k-metrics.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fad0309b0b216f387b23",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_5_1778754102.md",
+  "task_key": "loop_5_1778754102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778754102.md",
+    "occurrence": 1,
+    "bytes": 4943,
+    "sha256": "3758c4aec7e4efebadd24a9b6ff50bad283fc5c250333ecebf6e615ee4ddb746"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-14T10:19:34+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单只有 `cuda:0` 和 `cuda:1`（服务器 bjb1-45299），其他 GPU 编号一律 push back Director\n- submit_training_job 命令必须以 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && ...\"` 开头——少任何一个 export 都会段错误或渲染失败\n- PREPARING 状态的旧条目（exp_008a/008c/008d/006/008e_v2）是中间产物残留，**不要对它们操作**，真实数据在对应的带后缀的完整 exp_id 里\n- 对比实验指标时用 **normalized v/e ratio**（实验 v/e / baseline v/e @同 step），不要用 absolute return，因为 H=8 实验绝对性能天然低\n- CoRL 2026 DDL = 2026-05-29，剩 15 天，不允许 fallback 到次级会议\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: bjb1-45299（AutoDL RTX PRO 6000 ×2）\n- **工作目录**: `/root/autodl-tmp/event-gated-adaptive-horizon`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **模型/数据**: DMC Walker Walk / Cheetah Run（dm_control 内置，无外部数据集）\n- **Logdir**: `/root/autodl-tmp/event-gated-adaptive-horizon/logdir/`（每个实验一个子目录）\n- **代码 commit**: `09876d7080affdb0fb329e24753a46d998da9d8e`（009a/009c 提交时）\n- **活跃进程**:\n  - exp_009a_baseline_walker_s2: PID 142508, tmux=exp_009a_baseline_walker_s2, cuda:0, 500K步, ~7fps\n  - exp_009c_008f_walker_s2: PID 140980, tmux=exp_009c_008f_walker_s2, cuda:1, 105K步, ~7fps\n- **活跃 Cron**: 2 个（分别监控 009a 和 009c）\n- **活跃 Worker**: `worker_analysis_rssm-prediction-quality_20260514T095825`（RSSM 预测质量分析，正在运行）\n\n### 3. 📊 当前状态\n刚完成 exp_008f 的 on-experiment-done 全流程（C2 因果归因确认：trained dt_embedding → delusional critic → collapse），并 spawn 了 RSSM 预测质量分析 Worker。此前同批 008e_v3 和 008a 也已完成分析并确认 B+ narrative。\n\n**Registry 摘要**:\n- **RUNNING**: exp_009a（baseline seed 2, cuda:0, 500K步）、exp_009c（008f seed 2, cuda:1, 105K步）——均为多 seed 复现，cron 自动监控\n- **QUEUED**: exp_009b（008d seed 2）、exp_010a（Cheetah baseline seed 1）——等 GPU 释放\n- **DONE success**: 008f（C2 因果控制 ✓）、008e_v3（B+ confound ✓）、008a（no-subsample ✓）、001（baseline ✓）\n- **DONE negative**: 008d（delusional collapse ✓）、006（dt=2 collapse ✓）、008c（H=8 plateau）、007（dt=4 太粗）、005/004/003（gate 结构失败系列）\n- **等待中**: Worker `rssm-prediction-quality` 回调；009a/009c cron 完成回调\n\n### 4. 📋 待办（条件触发式）\n- `worker_analysis_rssm-prediction-quality` 回调 → 读产出、更新 memory.md，将 RSSM 预测误差数据加入 paper evidence\n- exp_009c cron 回调（~105K步，预计 ~6h 内）→ 与 008f seed 1 对比 normalized v/e，确认 C2 跨 seed 稳定性；成功则汇报 Director + 更新 report.md\n- exp_009a cron 回调（~500K步，预计 ~1天+）→ 提取 v/e 校准曲线作为 multi-seed baseline 参考\n- 009c 完成释放 cuda:1 → 立即提交 exp_009b（008d seed 2, QUEUED）\n- 009a 完成释放 cuda:0 → 提交 exp_010a（Cheetah baseline seed 1, QUEUED）\n- Dream 审稿回调（dream_20260514T062606）→ 按反馈调整 framing/experiment_plan，然后批量提交 P0 剩余实验\n- 所有 P0 Walker seeds 完成 + Cheetah 初始实验完成 → 向 Director 汇报统计显著性，请求批准论文写作\n\n### 5. 🎯 战略上下文\n- **核心结论**: trained dt_embedding 给 critic 一条利用 RSSM dt=2 预测偏差的通道 → value overestimation（v/R>1.5 = 100% 崩塌分类器）→ actor exploitation → collapse。去掉 dt_embedding 后 value 自修正（008f）。Narrative B+ = \"Diagnostic Analysis of Temporal Abstraction in World-Model RL\"\n- **决策链关键节点**: D020（因果机制修正）→ D021（因果链闭合）→ D023/D024（Reviewer C2 confound）→ D028（MVP通过）→ D029（Dream审稿战略调整：3 seeds不扩5、frame 008e_v3为mitigation、缩减scope）\n- **易踩坑**:\n  - PREPARING 状态的 exp_008a/008c/008d/006 是残留条目，不是待执行实验——真正的实验是带完整后缀的 exp_id\n  - 008f 绝对 return 只有 503（-45% baseline），但这是 H=8 的天然上限，不是方法问题——paper 论证要用 normalized v/e ratio\n  - exp_008e_v3 的 entropy@15K=2.21 看似异常高，但这是因为 untrained dt_emb 的随机噪声；不影响 B+ 结论（v/e 正常）\n  - 文献方面：THICK（Gumbsch 2024, ICLR）和 Hieros（Mattes 2024, ICML）是最近的竞争对手，related work 必须讨论\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778754102.md"
+}

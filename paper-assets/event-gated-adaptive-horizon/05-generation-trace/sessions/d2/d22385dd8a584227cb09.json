@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d22385dd8a584227cb09",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check verify 022 running",
+  "task_key": "worker_check_verify-022-running_20260517T074542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_verify-022-running_20260517T074542_result.json",
+    "occurrence": 1,
+    "bytes": 1375,
+    "sha256": "7c41f680d70db1b4b6655d563c92eb810909f21a7e984386ba54e3754e5313a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n### 1. 019a_v2 (PID 629444)\n**仍在运行**，但实际已完成训练。进程还活着（bash wrapper），但 metrics.jsonl 最后记录到 step 202500（目标 200000 已达），最终 eval_return = **58.56**，train_return ≈ 79.0。进程可能在做最后的 checkpoint 保存或已进入 idle 状态。\n\n### 2. exp_022 (PID 660840)\n**已崩溃退出**（exit code 1），退出时间 `2026-05-17T07:44:06Z`。\n\n**崩溃原因**：`torch.compile` 失败 —— `AssertionError: duplicate template name`，出在 `torch._inductor.kernel.flex_attention`。这是 PyTorch inductor 的已知 bug，发生在 `self._wm = torch.compile(self._wm)` 这行 (`dreamer.py:105`)。\n\nexp_022 的启动命令里可能没有传 `--compile False`。metrics.jsonl 只写了 4 行（seed episodes），训练还没真正开始就挂了。\n\n### 3. tmux sessions\n只有 `exp_019a_v2_pickcube_baseline` 和 `exp_019b_pickcube_civo_trigger`，没有 exp_022 的 session。\n\n### 4. GPU 使用\n- **GPU 0**: PID 629449 (643 MiB) + PID 649577 (2849 MiB) — 分别是 019a_v2 子进程和 019b\n- **GPU 1**: PID 629449 (4152 MiB) — 019a_v2 的 MuJoCo 渲染\n\nexp_022 没有占用任何 GPU。\n\n### 结论\n- 019a_v2 已完成 200k steps，可以清理\n- **exp_022 需要重新启动**，加上 `--compile False` 参数避免 torch.compile bug"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-verify-022-running.md"
+}

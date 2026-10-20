@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5777c601af291aa349f",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check exp 056 058 final confirm",
+  "task_key": "worker_check_exp_056_058_final_confirm_20260524T002158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp_056_058_final_confirm_20260524T002158_result.json",
+    "occurrence": 1,
+    "bytes": 1922,
+    "sha256": "ecc53f5e9d45e2b6807ed5e7750eb15859351acc153ebba34a4bd54f4f23cd1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已提取。汇总如下：\n\n---\n\n## exp_056 PegInsertion frozen s1（bjb1-40020）\n\n| 项目 | 值 |\n|------|-----|\n| **进程状态** | 已退出（PID 346430 不存在） |\n| **total_steps** | 222,400 |\n| **212.5K 后新数据** | 无 — 212.5K 是最终 eval 点 |\n| **ve_ratio_peak** | **11.321 @ 82.5K** |\n| **ve_ratio_final** | 1.193 @ 212.5K |\n| **eval_return_peak** | **24.42 @ 132.5K** |\n| **eval_return_final** | 4.37 @ 212.5K |\n| **NVE 分类** | **NVE** — ve_ratio 从 peak 11.3 大幅衰退到 1.19，eval 从 24.4 跌到 4.4，后半程持续下行无恢复 |\n| **最终 checkpoint** | `checkpoint_202500.pt` |\n\nve_ratio 轨迹：0.32→0.98→1.84→1.97→5.42→4.05→8.41→**11.32**→3.72→3.03→2.20→2.43→0.84→2.19→2.20→0.65→1.09→1.07→0.47→0.71→1.19\n\neval 轨迹：2.0→5.8→9.3→9.2→12.3→5.9→10.0→5.4→3.6→8.7→9.6→12.3→10.1→**24.4**→7.7→6.2→16.9→8.8→7.5→15.4→8.7→4.4\n\n---\n\n## exp_058 Cheetah frozen s1（bjb1-45299）\n\n| 项目 | 值 |\n|------|-----|\n| **进程状态** | 已退出（PID 164830 不存在） |\n| **total_steps** | 224,000 |\n| **ve_ratio** | **无此指标**（metrics 中不含 civo/ve_ratio） |\n| **eval_return_peak** | **191.74 @ 25K** |\n| **eval_return_final** | 82.82 @ 215K |\n| **train_return_peak** | 273.99 @ 28K |\n| **train_return_final** | 60.63 @ 224K |\n| **NVE 分类** | **NVE** — eval 从 peak 191.7 (25K) 急跌，后半程在 50-92 区间震荡无恢复趋势，最终 82.8 仅 peak 的 43% |\n| **最终 checkpoint** | `checkpoint_225000.pt` |\n\neval 轨迹：13.5→99.8→**191.7**→190.6→49.8→145.3→91.5→82.4→58.5→49.8→63.5→71.6→92.6→74.0→92.4→91.4→74.8→83.4→66.3→82.5→80.5→82.8\n\n---\n\n两个 frozen 实验均为 **NVE**，peak 出现在训练前期后持续衰退，数据锁定确认完毕。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp-056-058-final-confirm.md"
+}

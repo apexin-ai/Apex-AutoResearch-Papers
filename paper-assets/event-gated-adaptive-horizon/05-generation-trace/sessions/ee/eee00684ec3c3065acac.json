@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eee00684ec3c3065acac",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper roadmap d061 update",
+  "task_key": "worker_paper_roadmap-d061-update_20260515T233437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_roadmap-d061-update_20260515T233437_result.json",
+    "occurrence": 1,
+    "bytes": 598,
+    "sha256": "31300224e3e19f712735aff0bec42354e7a48a1f0f34fb851945439ec30757fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ROADMAP 已更新，四处修改全部到位：\n\n1. **核心方向** (L11-12)：新增梯度分解段落（93% obs decoders / 7% KL / 0% reward），论文定位更新为 016e no-op 解读\n2. **SGS 干预实验表** (L35-36)：016e 标注 \"no-op (reward gradient=0 by architecture)\"，018 标注 \"planned: Full-SGS removes 93% gradient\"\n3. **D061 决策日志** (L78)：扩展为完整描述，含梯度验证结论和解读撤回\n4. **近期任务** (L51-56)：三项核心任务已加入（009d→018、018 分析、010a→010b），016e 写作任务更新为 no-op 解读"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-roadmap-d061-update.md"
+}

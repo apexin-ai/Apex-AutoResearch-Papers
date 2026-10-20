@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d93fa49dfe144245bd6",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "urgent confirm processes alive",
+  "task_key": "worker_urgent_confirm-processes-alive_20260519T233902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_confirm-processes-alive_20260519T233902_result.json",
+    "occurrence": 1,
+    "bytes": 949,
+    "sha256": "b6fe4b07decca067ae387abafa63251f9fb156e30e8a2356d26b31431644b859"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**全部存活。** 汇总如下：\n\n| exp_id | server | PID | alive | GPU memory | uptime | 备注 |\n|--------|--------|-----|-------|------------|--------|------|\n| exp_025_s1 | bjb1-40020 | 7833 | **yes** | 3025 MiB | 6h31m | Rl+ (running) |\n| exp_025_s2 | bjb1-40020 | 7989 | **yes** | 2514 MiB | 6h31m | Rl+ (running) |\n| exp_026_s0 | bjb1-40020 | 16208 | **yes** | 3025 MiB* | 3h18m | bash wrapper, 实际 GPU 进程 PID 16214 |\n| exp_026_s1 | bjb1-40020 | 16346 | **yes** | 2514 MiB* | 3h18m | bash wrapper, 实际 GPU 进程 PID 16354 |\n| exp_025_s3 | bjb1-45299 | 847597 | **yes** | 3259 MiB | 6h58m | Rl+ (running) |\n| exp_025_s4 | bjb1-45299 | 851593 | **yes** | 2744 MiB | 6h11m | Rl+ (running) |\n\nexp_025_s1 (PID 7833) 活着，状态正常。\n\n注意 exp_026 的两个 PID (16208/16346) 是 bash 包装进程（Ss+ 状态），实际占 GPU 的 python 子进程分别是 16214 和 16354，均在正常跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-confirm-processes-alive.md"
+}

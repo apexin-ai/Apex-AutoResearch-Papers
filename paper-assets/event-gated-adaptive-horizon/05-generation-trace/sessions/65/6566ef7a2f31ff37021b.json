@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6566ef7a2f31ff37021b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper fig2 nve regenerate",
+  "task_key": "worker_paper_fig2-nve-regenerate_20260517T065906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig2-nve-regenerate_20260517T065906_result.json",
+    "occurrence": 1,
+    "bytes": 301,
+    "sha256": "b6752445a3eefaf7549125e669b19e4f0aa0fe68b83aadf27288762ebe2a4745"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成。验证通过：\n\n- Seed 0 max NVE = 4.129 (> 1.5)\n- Seed 2 max NVE = 2.042 (> 1.5)\n- Seed 3 max NVE = 1.528 (> 1.5)\n- No-dt-emb max NVE = 1.020 (< 1.5)\n\n输出文件：\n- `docs/paper/figures/fig1_nve_trajectory.pdf`\n- `docs/paper/figures/fig1_nve_trajectory.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig2-nve-regenerate.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3a5704d0d54577f000d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "diagnose exp 001 and 004 ssh recovery",
+  "task_key": "worker_diagnose_exp_001_and_004_ssh_recovery_20260513T152619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_and_004_ssh_recovery_20260513T152619_result.json",
+    "occurrence": 1,
+    "bytes": 2380,
+    "sha256": "eb14c30d388c9780e68572220acbe715e8a29694a94ceb7dd5777c3cf9bb8c02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### 1. 进程状态：两个进程均健康运行\n\n| 实验 | PID | GPU | 显存占用 | GPU Util |\n|------|-----|-----|---------|----------|\n| exp_001_baseline | 9409 | GPU 0 (RTX PRO 6000 Black) | 4156MiB / 97887MiB | 19% |\n| exp_004_event_gated_v3 | 36645 | GPU 1 (RTX PRO 6000 Black) | 4340MiB / 97887MiB | 0%* |\n\n*GPU 1 的 0% 是瞬时采样，进程仍在运行（metrics.jsonl 最后写入 23:26，与 nvidia-smi 时间一致）。\n\n---\n\n### 2. exp_001_baseline 最新指标（step 365K）\n\n| 指标 | 值 |\n|------|-----|\n| **step** | 365,000 |\n| **eval_return** | 935.76 |\n| **train_return** (step 364K, 4 envs) | 925.5 ~ 963.0 |\n| **fps** | 7.66 |\n| **model_loss** | 3.157 |\n| **reward_loss** | 0.302 |\n| **kl** | 4.028 |\n| **actor_entropy** | -0.990 |\n| **update_count** | 90,099 |\n\n趋势：eval_return 从 345K 的 969.8 → 355K 的 941.1 → 365K 的 935.8，略有下降但仍在高位。训练稳定。\n\n---\n\n### 3. exp_004_event_gated_v3 最新指标（step 135K）\n\n| 指标 | 值 |\n|------|-----|\n| **step** | 135,000 |\n| **eval_return** | 342.27 |\n| **train_return** (step 136K, 4 envs) | 269 ~ 424 |\n| **fps** | 6.81 |\n| **gate_scale** | 0.800 |\n| **gate_dt_mean** | 2.724 |\n| **gate_dt_std** | 1.311 |\n| **gate_empirical_entropy** | 1.596 |\n| **gate_entropy_ratio** | 0.767 |\n| **gate_dt distribution** | dt=1: 18%, dt=2: 33%, dt=3: 23%, dt=4: 16%, dt=5: 8%, dt=6: 3% |\n| **actor_entropy** | 3.221 |\n\ngate 分布合理，dt=2 和 dt=3 为主，无退化到全 dt=1 的情况。\n\n---\n\n### 4. 异常警告\n\n**exp_004 的 gate_loss / model_loss 异常大：**\n- step 125K: gate_loss = **278,850,976**，model_loss = 278,850,976\n- step 135K: gate_loss = **226,705,584**，model_loss = 226,705,584\n\ngate_loss 完全主导了 model_loss（其他 loss 分量在 0.001~5 量级）。虽然 gate_loss 在下降（2.79e8 → 2.27e8），但这个量级是否符合预期需要确认。eval_return 从 352 → 342 略降，训练 return 波动大（10~481），学习不稳定。\n\n---\n\n### 5. Checkpoint 与磁盘\n\n| 实验 | 文件 | 大小 | 最后修改 |\n|------|------|------|---------|\n| baseline_s1 | latest.pt | 219MB | 23:17 |\n| event_gated_v4_s1 | latest.pt | 225MB | 23:19 |\n\n**磁盘：250GB 总量，已用 2.8GB (2%)，剩余 248GB** — 完全充足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-and-004-ssh-recovery.md"
+}

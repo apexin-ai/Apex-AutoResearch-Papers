@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "907d6b84913f4ec682e0",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "audit icml compliance",
+  "task_key": "worker_audit_icml-compliance_20260524T131137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_icml-compliance_20260524T131137_result.json",
+    "occurrence": 1,
+    "bytes": 581,
+    "sha256": "68c095f1bf6eda0591a58425d37787a7d0c14410e1898f3cd63d33623083ef43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查完成。报告已写入 `artifacts/icml_compliance_results.md`。\n\n**结果**: 6 项检查中 5 项通过，1 项需修复。\n\n唯一问题：appendix 中 3 个 figure（`fig:factorial_grid`、`fig:entropy_dynamics`、`fig:gradient_decomp`）定义了 `\\label{}` 但全文没有任何 `\\ref{}` 引用。需要在对应段落添加引用，或删除这些 label（如果确实不需要交叉引用）。\n\n其余全部合规：icml2026 模板、Broader Impact 在 References 之前、正文 6 页（限制 8 页）、匿名化无泄露、数值一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-icml-compliance.md"
+}

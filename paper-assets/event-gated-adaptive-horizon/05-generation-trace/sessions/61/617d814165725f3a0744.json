@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "617d814165725f3a0744",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "infra env setup",
+  "task_key": "worker_infra_env-setup_20260513T012611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env-setup_20260513T012611_result.json",
+    "occurrence": 1,
+    "bytes": 1639,
+    "sha256": "091c17c86e472eae32568cec39fab495d5750cbbb1a37abedacb0f37ebd5ce0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`autodl-rtx6000` 别名现在可以正常连接了。\n\n---\n\n## 环境搭建完成 - 汇报\n\n### GPU 信息\n- 2× NVIDIA RTX PRO 6000 Blackwell Server Edition (96GB VRAM each)\n- Driver: 595.58.03, CUDA Toolkit: 12.8\n\n### 环境信息\n- Python 3.12.3 (conda base, `/root/miniconda3`)\n- PyTorch 2.10.0+cu128, CUDA 可用\n- 所有依赖已装：gym 0.22.0, dm_control 1.0.41, mujoco 3.8.1, einops, ruamel.yaml, wandb, matplotlib, moviepy, crafter, opencv-python, tensorboard\n\n### Dry-run 结果\n- **通过** — 训练跑到 step 100，评估完成\n- `eval_return=30.7, eval_length=500.0, eval_episodes=10.0`\n- 模型参数：model_opt 16.5M, actor_opt 1.1M, value_opt 1.2M\n\n### 修复的问题\n1. **SSH 认证**：autodl-rtx6000 配置中缺少密码，已用 bjb1-45299 的加密密码更新\n2. **OSMesa/libstdc++**：conda 的 libstdc++ 缺少 GLIBCXX_3.4.30，需 `LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6`\n3. **torch.compile bug**：PyTorch 2.10 的 `duplicate template name` 断言错误，需 `--compile False`\n4. 安装了 `libosmesa6-dev libgl1-mesa-glx libglfw3` 系统包\n\n### 环境激活命令（后续 Worker 使用）\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nexport LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && \\\nexport MUJOCO_GL=osmesa && \\\nexport PYOPENGL_PLATFORM=osmesa\n```\n\n### 注意事项\n- `--compile False` 必须传给 dreamer.py，否则 torch.compile 会报错\n- pip 安装前需 `source /etc/network_turbo`\n- 项目路径：`/root/autodl-tmp/event-gated-adaptive-horizon`\n- 数据盘 250GB 可用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-env-setup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9a8dc3efc9b70ff8438",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "cleanup kill stackcube remnant",
+  "task_key": "worker_cleanup_kill_stackcube_remnant_20260522T163124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_kill_stackcube_remnant_20260522T163124_result.json",
+    "occurrence": 1,
+    "bytes": 263,
+    "sha256": "ff2c15da96774f48fe919202821257af3e2d81273c5d59e013048783de894a31"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 87614 已不存在，无需手动 kill（可能已自行退出或被其他方式终止）。\n\n**GPU 0 当前状态**：干净，只有 PID 88654（Cheetah extension）在运行，占用 3361MiB / 97887MiB，GPU 利用率 22%。GPU 1 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-kill-stackcube-remnant.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2b527ab2bfb0e37febc",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check bjb1 status",
+  "task_key": "worker_check_bjb1_status_20260525T193155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_bjb1_status_20260525T193155_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "5be9d7d09b31300ed0c2eeaef8599605bc2d49393600af190888f05ed6ce3eb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| 实验 | 状态 | 最终 step | eval_return@105k | best eval | CIVO onset |\n|------|------|-----------|-----------------|-----------|------------|\n| exp_084 (s0) | **COMPLETED** | 112k | 281.48 | 334.06@95k | 无 |\n| exp_085 (s1) | **COMPLETED** | 69.26 | 69.26 | 281.53@65k | 无 |\n\n两个实验均已正常完成，进程退出，GPU 空闲。两者 gate 均 100% 锁定在 dt=2（frozen embedding 预期行为），无 CIVO alert。\n\ns0 表现显著优于 s1（281 vs 69），与 trained dt_emb 下的 seed 间方差模式一致，但两者均无 value explosion — 再次确认 frozen dt_emb 是 CIVO 的有效消融控制。\n\n状态已追加到 memory.md。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bjb1-status.md"
+}

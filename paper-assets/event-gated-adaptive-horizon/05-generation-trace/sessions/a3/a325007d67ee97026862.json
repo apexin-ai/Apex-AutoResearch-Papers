@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a325007d67ee97026862",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code cross env comparison script",
+  "task_key": "worker_code_cross-env-comparison-script_20260524T235556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cross-env-comparison-script_20260524T235556_result.json",
+    "occurrence": 1,
+    "bytes": 679,
+    "sha256": "4719ef05a7f173ebddbc744945663907fd1634c7a81a5b2bf1ad366b907ce7da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部输出文件已生成：\n- `cross_env_civo_table.tex` — LaTeX 表格\n- `cross_env_civo_summary.json` — JSON 汇总数据\n- `cross_env_nve_bars.png/pdf` — NVE 分组柱状图（含 1.5x 阈值线）\n- `cross_env_ve_ratio_timelines.png/pdf` — 三环境 ve_ratio 时间线\n\n脚本保存在本地 `artifacts/scripts/cross_env_civo_comparison.py`，服务器上同步了一份。Walker Walk 和 Cheetah Run 的 trained dt_emb 均触发 CIVO，no dt_emb control 均未触发，验证了 CIVO 泛化性 claim。Cartpole 的 exp_062（no dt_emb control）尚不存在，exp_061 目前 NVE 很低，待训练进一步推进后重跑脚本即可更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cross-env-comparison-script.md"
+}

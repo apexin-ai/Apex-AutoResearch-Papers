@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ea90300f8c4e7572586b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "audit citation verify C",
+  "task_key": "worker_audit_citation-verify-C_20260529T070947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_citation-verify-C_20260529T070947.log",
+    "occurrence": 1,
+    "bytes": 698630,
+    "sha256": "e7725d09a2cbc3e26ba40fe7405ff0d409a01946efb4a3bbd387835248e81bc4"
+  },
+  "statistics": {
+    "messages": 160,
+    "user_turns": 0,
+    "tool_calls": 67,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 22,
+      "tool_call": 67,
+      "tool_result": 67,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 160,
+      "chunks": [
+        {
+          "path": "ea90300f8c4e7572586b-part-0001.json",
+          "message_count": 139
+        },
+        {
+          "path": "ea90300f8c4e7572586b-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-citation-verify-c.md"
+}

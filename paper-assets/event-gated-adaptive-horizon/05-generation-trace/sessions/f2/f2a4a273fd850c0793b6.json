@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2a4a273fd850c0793b6",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "writing 016e noop section draft",
+  "task_key": "worker_writing_016e-noop-section-draft_20260516T014517",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_016e-noop-section-draft_20260516T014517_result.json",
+    "occurrence": 1,
+    "bytes": 913,
+    "sha256": "a3993f6d033c163206629927d1b593fc037b2a4ead35b7d49b094754fd6f152d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Section 草稿已写入 `paper/sections/sgs_informative_negative.md`（~1100 words）。\n\n结构：\n1. **开头** — reward-pathway amplification 假设的动机\n2. **实验设计** — 016e 的 reward-only SGS 配置，与 008d 的对照关系\n3. **结果** — eval 和 NVE 轨迹对比，timing 差异归因于 seed variability\n4. **梯度分解** — D061 分析表（obs decoders 93%, KL 7%, reward 0%），解释 016e 为 architectural no-op\n5. **因果链影响** — 根因指向 observation decoder 梯度，reward-only 干预无效\n6. **Full-SGS 预告** — 018 需要 detach 全部 non-KL 梯度（93%）\n7. **Informative negative framing** — 016e 的价值在于揭示梯度结构，缩小 viable intervention 空间\n\n所有数字标注了 exp\\_ID 来源，强度词与单 seed evidence 匹配（无 \"consistently\"/\"robustly\" 等词），符合 red-section 规范。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-016e-noop-section-draft.md"
+}

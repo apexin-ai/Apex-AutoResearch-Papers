@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b2f41438464b6fc90a78",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "analysis signed reward error",
+  "task_key": "worker_analysis_signed_reward_error_20260515T125323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_signed_reward_error_20260515T125323.log",
+    "occurrence": 1,
+    "bytes": 847340,
+    "sha256": "16da7d9f3bca20758359c60910eb719f483c7c45b97888ef2073156587334d2f"
+  },
+  "statistics": {
+    "messages": 253,
+    "user_turns": 0,
+    "tool_calls": 90,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 69,
+      "tool_call": 90,
+      "tool_result": 90,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 253,
+      "chunks": [
+        {
+          "path": "b2f41438464b6fc90a78-part-0001.json",
+          "message_count": 146
+        },
+        {
+          "path": "b2f41438464b6fc90a78-part-0002.json",
+          "message_count": 107
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-signed-reward-error.md"
+}

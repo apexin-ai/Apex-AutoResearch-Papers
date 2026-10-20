@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a5195e2272a4addda2f",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper 190k post onset fix",
+  "task_key": "worker_paper_190k_post_onset_fix_20260524T083102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_190k_post_onset_fix_20260524T083102_result.json",
+    "occurrence": 1,
+    "bytes": 380,
+    "sha256": "f9f71d93cf01875322ea56e9440adbe4b5697f289e115804c4cef93fb69f8078"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处已修改，无残留：\n\n| 文件 | 行号 | 旧 | 新 |\n|------|------|----|----|\n| `analysis.tex:11` | `approximately 190K additional steps post-onset` | `approximately 170K additional steps post-onset` |\n| `appendix.tex:654` | `approximately 190K additional training steps beyond onset` | `approximately 170K additional training steps beyond onset` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-190k-post-onset-fix.md"
+}

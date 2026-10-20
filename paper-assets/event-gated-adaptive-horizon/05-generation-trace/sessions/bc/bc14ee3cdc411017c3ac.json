@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc14ee3cdc411017c3ac",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper intro abstract gradient",
+  "task_key": "worker_paper_intro-abstract-gradient_20260516T075413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_intro-abstract-gradient_20260516T075413_result.json",
+    "occurrence": 1,
+    "bytes": 404,
+    "sha256": "93a360666c537bdf28b93f14998e1edf4ca6d5921b5e9b5239e937c4323876e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处已插入：\n\n- **introduction.tex**: 在 delusional bias 类比之后、\"Three further findings\" 段落之前，添加了梯度分解发现，将 CIVO 重新定位为 representation-level phenomenon。\n- **abstract.tex**: 在 \"optimistic values\" 之后紧接一句，点明 93%/0% 的梯度流向，确立 CIVO 为 representation-driven。abstract 增量控制在一句话。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-intro-abstract-gradient.md"
+}

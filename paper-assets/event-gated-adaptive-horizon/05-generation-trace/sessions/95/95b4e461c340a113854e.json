@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "95b4e461c340a113854e",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "paper c6 nve critical fixes",
+  "task_key": "worker_paper_c6-nve-critical-fixes_20260518T114916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_c6-nve-critical-fixes_20260518T114916.log",
+    "occurrence": 1,
+    "bytes": 968879,
+    "sha256": "b1e3a20932fb874105e069b6ceb5085655355615a5844ab0ad70b3b29d779627"
+  },
+  "statistics": {
+    "messages": 132,
+    "user_turns": 0,
+    "tool_calls": 48,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 32,
+      "tool_call": 48,
+      "tool_result": 48,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 132,
+      "chunks": [
+        {
+          "path": "95b4e461c340a113854e-part-0001.json",
+          "message_count": 71
+        },
+        {
+          "path": "95b4e461c340a113854e-part-0002.json",
+          "message_count": 61
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-c6-nve-critical-fixes.md"
+}

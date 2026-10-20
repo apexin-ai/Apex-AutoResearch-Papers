@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65164cf34f90fb6076d5",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper 018 version a insert",
+  "task_key": "worker_paper_018-version-a-insert_20260516T130334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_018-version-a-insert_20260516T130334_result.json",
+    "occurrence": 1,
+    "bytes": 771,
+    "sha256": "b7f9109d89b9f1bff519f9f15a770a8466c6466d495339019fbaee737d2d1c2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Zero errors. Compilation successful — 14 pages output, no errors.\n\nAll 6 modifications complete:\n1. **Table 1**: Added 018 row with `trn$^\\ddagger$` footnote\n2. **F7 section**: Inserted after F6, before RSSM fidelity table\n3. **analysis.tex**: Added \"Full-Pathway SGS Confirms Gradient-Level Vulnerability\" subsubsection before the 016e reinterpretation\n4. **conclusion.tex**: Replaced \"queued to test\" with confirmed result\n5. **abstract.tex**: Changed \"representation-driven\" to \"observation-reconstruction-gradient-driven\" and added full-pathway SGS sentence\n6. **introduction.tex**: Added gradient-stopping confirmation sentence\n\nAlso updated the results opening paragraph (F1–F6 → F1–F7) and summary paragraph to include F7."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-018-version-a-insert.md"
+}

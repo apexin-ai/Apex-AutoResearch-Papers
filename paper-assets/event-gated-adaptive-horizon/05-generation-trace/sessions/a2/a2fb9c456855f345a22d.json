@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2fb9c456855f345a22d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops post restart health check",
+  "task_key": "worker_ops_post-restart-health-check_20260518T162916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_post-restart-health-check_20260518T162916_result.json",
+    "occurrence": 1,
+    "bytes": 1135,
+    "sha256": "973cbba0cc680827966c731f089b12c235c3580c1d5ad7b082dd9a4e75b2b738"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 个实验正常运行，汇总如下：\n\n```\n实验ID                              | 进程状态 | 当前步数 | 目标步数 | GPU卡号\n------------------------------------|----------|----------|----------|--------\nexp_008a_cheetah_unexposed_s0       | ✅ 运行中 | 76K      | 105K     | cuda:0\nexp_008a_cheetah_unexposed_s1       | ✅ 运行中 | 80K      | 105K     | cuda:1\nexp_023_cheetah_baseline_s2         | ✅ 运行中 | 12K      | 105K     | cuda:0\nexp_008f_s2 (no_dt_emb)             | ✅ 运行中 | 8K       | 105K     | cuda:0\nexp_001_baseline_s2                 | ✅ 运行中 | 12K      | 105K     | cuda:1\nexp_009c_s2 (no_dt_emb)             | ✅ 运行中 | 8K       | 105K     | cuda:1\n```\n\n**GPU 状态：**\n- GPU 0: 3 进程，13.2GB/97.9GB，利用率 99%，43°C\n- GPU 1: 3 进程，12.1GB/97.9GB，利用率 100%，46°C\n\n**进展对比：**\n- Cheetah unexposed s0: 72K → 76K（+4K 步）\n- Cheetah unexposed s1: 76K → 80K（+4K 步）\n- 其余 4 个为新启动实验，均处于早期训练阶段（8K-12K 步）\n\n无异常，全部正常推进。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-post-restart-health-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2c58ae05782ad057feb",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper fig2 nve trajectory reviewer fix",
+  "task_key": "worker_paper_fig2_nve_trajectory_reviewer_fix_20260515T183811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig2_nve_trajectory_reviewer_fix_20260515T183811_result.json",
+    "occurrence": 1,
+    "bytes": 1267,
+    "sha256": "7dce876dfa8930a197b213a5bfdc7d325e2144b3f20e99cba7b6bb994b8639e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All outputs generated. File sizes increased from 31K/337K to 33K/392K (PDF/PNG), consistent with the additions.\n\n**Summary of changes:**\n\n| Fix | What was done |\n|-----|------|\n| **Fix 1: 35K+ classification window** | `axvspan(25K-35K)` gray zone (alpha=0.22) + vertical dashed line at 35K + \"Classification window →\" annotation at top-right of the gray band |\n| **Fix 2: 008e_v3_s2 actor loss** | Purple dashed line (#9B59B6, marker='P') in bottom panel with hardcoded data from metrics.jsonl. Label \"008e_v3 s2 (IRD)\". Sign flip annotation at 105K (+0.016) |\n| **Fix 3: exp_006** | Omitted — y-axis would need 5.2+ which compresses the 0-2 cluster where most runs live. Caption suggestion printed: *\"exp_006 (NVE=4.84x) omitted for clarity; see Appendix Table X.\"* |\n\n**Other changes vs server version:**\n- 008d/009e NVE data extended from 6 points (→75K) to 9 points (→105K)\n- Baseline trimmed to ≤105K to match x-range\n- Added linestyle differentiation in bottom panel\n- Fixed x-axis ticks to uniform 0-110K range in bottom panel\n\n**Output files:**\n- `artifacts/fig2_nve_trajectory_d054.pdf` (33K)\n- `artifacts/fig2_nve_trajectory_d054.png` (392K)\n- `artifacts/figures/paper/fig2_nve_trajectory.{pdf,png}` (same)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig2-nve-trajectory-reviewer-fix.md"
+}

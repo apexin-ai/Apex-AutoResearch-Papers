@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "afddcc088b616760efb1",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_9_1778807525.md",
+  "task_key": "loop_9_1778807525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778807525.md",
+    "occurrence": 1,
+    "bytes": 4788,
+    "sha256": "28eda93ba200e5bcdd60b2d9dde919e893e12e9649bc48b13844fb5ab874b894"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T01:11:36+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**cuda:0, cuda:1**（bjb1-45299）。即使 Director 指令也不得用白名单外 GPU，必须 push back\n- 008e_v3 的 dt_embedding 实际是 **trained**（D033 代码审计确认）。不要在任何汇报/论文中说 \"untrained dt_emb\"\n- nve>1.5x 诊断阈值仅适用于 **35K+ steps**（25K 处 baseline v/e 太低导致 false positive）。论文写作必须标注此限定\n- Collapse 是 **stochastic**（D032: 008d seed 1 collapse, 009b seed 2 self-correct）。不能 claim \"deterministic collapse\"，措辞用 \"creates collapse vulnerability\"\n- CoRL DDL **2026-05-29**，今天 05-15，剩 14 天\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：bjb1-45299，RTX PRO 6000 × 2（cuda:0 + cuda:1）\n- **工作目录**：`/root/autodl-tmp/event-gated-adaptive-horizon`\n- **Python**：`/root/miniconda3/bin/python`（conda base 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **环境变量**：`MUJOCO_GL=osmesa PYOPENGL_PLATFORM=osmesa LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6`\n- **模型/数据**：DreamerV3 本地代码，DMC proprio 环境（walker_walk / cheetah_run / cartpole_swingup 均可用，无需代码修改）\n- **活跃进程**：\n  - exp_008e_v3_walker_s2: PID 43437, cuda:1, cron 监控中\n  - exp_009a_baseline_walker_s2: PID 142508, cron 监控中（336K/500K, 67.2%）\n- **W&B**：未明确配置（指标从 logdir/metrics.jsonl 读取）\n- **监控注意**：`tail_training_logs` 有 stdout buffering 延迟，**读 logdir/metrics.jsonl** 才是准确的\n\n### 3. 📊 当前状态\n**刚完成**：session-start 初始化（registry 同步 + cron reconcile）。两个 cron 正常运行。\n\n**RUNNING (2)**：\n- **exp_008e_v3_walker_s2**（cuda:1）：crown jewel C6 seed 2 验证。trained dt_emb + subsample ON + dt=1 imag + H=15。seed 1 已成功（eval=869.9, v/e=0.527@105K），两 seed 指标几乎相同（极罕见，论文可用）\n- **exp_009a_baseline_walker_s2**（cuda:0）：baseline seed 2。336K/500K (67.2%)，eval=919.23，v/e=0.699，已稳定收敛\n\n**QUEUED (4)**：009d (baseline s1) / 009e (008d s1) / 009f (008f s1) / 010a (cheetah baseline s1)。全部等 GPU 释放\n\n**cuda:1 排期**（D031）：008e_v3_s2(running) → 009e → 009f → 009c(200K) → plan_060\n\n**Worker 池**：0 个运行中（**违反 L1 #4**，接手后应立即派 Worker 做非 GPU 任务：论文写作准备 / 文献 / 分析）\n\n**等待中**：\n- Dream 模拟结果（dream_20260514T062606）——按反馈调整 framing/plan\n- 两个 RUNNING 实验的 cron 完成回调\n\n### 4. 📋 待办（条件触发式）\n- **exp_008e_v3_walker_s2 cron 回调** → spawn worker 分析 metrics.jsonl，与 seed 1 (869.9) 对比。success → 更新 registry + report.md + 向 Director 汇报 C6 跨 seed 一致性。释放 cuda:1 → 启动 009e（008d seed 1，验证 delusional critic 的 stochastic collapse）\n- **exp_009a_baseline_walker_s2 cron 回调**（预计 ~500K steps 完成）→ 分析最终 eval/v/e，与 exp_001 baseline (seed 0, ~950) 对比。释放 cuda:0 → 启动 009d（baseline seed 1）\n- **Dream 模拟完成** → 读反馈，调整 paper_framing.md 和 experiment_plan.yaml\n- **Walker Walk 3-seed 全部完成** → 启动 Cheetah Run 跨环境验证（plan_020+）\n- **所有 P0 实验完成** → 开始论文写作（先 Read red-section + academic-writer skill）\n\n### 5. 🎯 战略上下文\n**核心结论（因果链已闭合 ✓）**：\n- trained dt_embedding → RSSM dt>1 预测不准 → value overestimation (nve>1.5x) → delusional critic → stochastic collapse\n- C6 mitigation: 保留 trained dt_emb 但 imagination 只用 dt=1 → 95% baseline recovery + 无 delusional critic。**是策略修改不是模型修改，零成本采用**\n\n**决策链关键节点**：D028(因果确认) → D029(Dream 战略调整: 3 seeds 不扩 5) → D031(Option A narrative: 机制+陷阱+正确修复) → D032(collapse stochastic, nve>1.5x reliable) → D033(008e_v3 dt_emb is trained, critical variable 是 imagination dt)\n\n**最容易判断错的事**：\n1. 不要把 008e_v3 当 \"untrained dt_emb\" 实验——它是 trained 的（D033），保护来自 dt=1 imagination 策略\n2. 不要直接对比 GC4-par 和 GC4-seq（不同 pipeline）\n3. 009c (008f seed 2) 性能崩塌不是 delusional critic，是 reward prediction 退化（dt_emb removal 的双重效应）——008f 方案从\"推荐\"降级为\"有 trade-off\"\n4. `tail_training_logs` 显示的 step 可能滞后数小时，读 `logdir/metrics.jsonl` 才准确\n5. 当前 Worker 池=0 是失职状态，应立即派非 GPU Worker（论文 outline / 文献联动 / figure 规划）填充\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778807525.md"
+}

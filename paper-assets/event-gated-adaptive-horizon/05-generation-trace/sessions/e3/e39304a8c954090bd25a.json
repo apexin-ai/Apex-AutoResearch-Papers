@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e39304a8c954090bd25a",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "diagnose exp 009d s0 v2",
+  "task_key": "worker_diagnose_exp_009d_s0_v2_20260515T121027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_009d_s0_v2_20260515T121027_result.json",
+    "occurrence": 1,
+    "bytes": 1813,
+    "sha256": "93a461154832225a8cd5ef2906de1b8725ee383a2cf42eff006dda1173c47d8d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**错误信息**：\n```\nAttributeError: 'NoneType' object has no attribute 'glGetError'\n```\n发生在 `dm_control` → `PyOpenGL` → `OSMesa` 初始化链中。OSMesa 库存在（`/usr/lib/x86_64-linux-gnu/libOSMesa.so.8.0.0`），`dreamer.py` 也在第 7-8 行正确设置了 `MUJOCO_GL=osmesa` 和 `PYOPENGL_PLATFORM=osmesa`。\n\n**根因**：缺少 `LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6`。\n\nconda activate 后，conda 自带的 `libstdc++.so.6` 会覆盖系统版本，导致 OSMesa 加载失败（返回 None）。所有成功实验的脚本（`multi_seed_runs.sh`、`cheetah_run_experiments.sh` 等）都包含这个 export，但本次提交命令遗漏了。\n\n**对比**：\n\n失败命令：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py ...\n```\n\n成功模板（来自 `multi_seed_runs.sh`）：\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py ...\n```\n\n**修正命令**：\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && cd /root/autodl-tmp/event-gated-adaptive-horizon && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_009d_baseline_walker_s0 --steps 500000 --seed 0 --compile False --device cuda:0\"\n```\n\n（`MUJOCO_GL` 和 `PYOPENGL_PLATFORM` 已在 dreamer.py 中设置，可省略；`LD_PRELOAD` 是唯一必须通过环境变量传入的。）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-009d-s0-v2.md"
+}

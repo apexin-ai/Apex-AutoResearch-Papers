@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "2ae1fea01b67d6182838",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "paper provenance update",
+  "task_key": "worker_paper_provenance_update_20260525T141104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_provenance_update_20260525T141104.log",
+    "occurrence": 1,
+    "bytes": 909101,
+    "sha256": "72d9edae99d1a54e0fdcb882c6032499cb1670eff27c612789a4c9f98f6fff9d"
+  },
+  "statistics": {
+    "messages": 58,
+    "user_turns": 0,
+    "tool_calls": 20,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 14,
+      "tool_call": 20,
+      "tool_result": 20,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 58,
+      "chunks": [
+        {
+          "path": "2ae1fea01b67d6182838-part-0001.json",
+          "message_count": 36
+        },
+        {
+          "path": "2ae1fea01b67d6182838-part-0002.json",
+          "message_count": 22
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-provenance-update.md"
+}

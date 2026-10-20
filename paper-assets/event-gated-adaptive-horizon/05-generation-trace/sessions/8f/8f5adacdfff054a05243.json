@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f5adacdfff054a05243",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_10_1778820784.md",
+  "task_key": "loop_10_1778820784",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778820784.md",
+    "occurrence": 1,
+    "bytes": 4811,
+    "sha256": "163a578afb82e82c71fef1640b5d787fcc9eaacceef520a229b2635b18675614"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T04:36:43+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **只有 cuda:0 和 cuda:1**（服务器 bjb1-45299，RTX PRO 6000 × 2）。任何其他 GPU 编号一律 push back Director\n- C6 seed 计数陷阱：exp_008e_v3_subsample_on_dt1_h15（\"s0\"）和 exp_008e_v3_walker_s1（\"s1\"）**实际都是 --seed 1**（确定性复现）。C6 目前只有 1 个独立 seed。exp_008e_v3_walker_s2（seed=2, RUNNING）是第一个真正独立验证\n- nve>1.5x 诊断阈值**仅适用于 35K+ steps**。25K 处 baseline v/e 太小（0.087），比率不可靠（会产生 false positive）\n- 008e_v3 的 dt_embedding 是 **trained**（nn.Embedding 默认 trainable，代码无 freeze）。Critical variable 是 imagination dt=1，不是 embedding 训练状态。已被 D033 确认\n- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...`\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**bjb1-45299**，工作目录 `/root/autodl-tmp/event-gated-adaptive-horizon`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 数据/模型：DMC 环境内置，无外部模型下载需求\n- W&B：未配置（指标从 metrics.jsonl 读取）\n- 活跃进程：\n  - exp_008e_v3_walker_s2: PID 43437, cuda:1, cron 监控中\n  - exp_009a_baseline_walker_s2: PID 142508, cuda:0, cron 监控中\n- Cron：2 个 active（reconcile 刚确认两个都 still running）\n\n### 3. 📊 当前状态\n两个实验正在跑，即将完成：\n- **exp_009a_baseline_walker_s2**（cuda:0）：448K/500K (89.6%), eval_return=948.4, ETA ~2h。Walker Walk baseline seed 2，为多 seed v/e 校准提供参考\n- **exp_008e_v3_walker_s2**（cuda:1）：72K/105K (68.6%), eval_return@65K=435.1, ETA ~5.5h。C6 crown jewel seed 2 验证——C6 是否跨 seed 成立的关键数据点\n\nRegistry 总计 29 个实验：23 DONE, 2 RUNNING, 4 QUEUED。QUEUED 的 4 个（009d, 009e, 009f, 010a）等 GPU 释放。Worker 池 = 0（两个实验都在自动跑，cron 监控，无需人工介入）。\n\n研究阶段：MVP 已通过（D028），experiment_plan.yaml 已创建。核心因果链闭合（C2 confirmed）。目标 CoRL 2026 DDL 2026-05-29，剩余 14 天，P0 实验预算 ~145 GPU·h（~3 天 wall time），时间充裕。\n\n### 4. 📋 待办（条件触发式）\n- **exp_009a cron 回调（~2h 内）** → 分析 baseline seed 2 v/e 曲线 → update_registry + report.md → cuda:0 释放 → 立即提交 QUEUED 中的下一个实验（优先 exp_009d_baseline_walker_s1 或 exp_009e_008d_walker_s1）\n- **exp_008e_v3_walker_s2 cron 回调（~5.5h 内）** → 这是 C6 的关键验证：eval_return ≥ 820（90% baseline）且 nve < 1.2x → C6 multi-seed confirmed，汇报 Director；eval_return < 750 或 nve > 1.5x → C6 需要降级，触发 red-section Framing 调整提案\n- **两个 GPU 都释放后** → 从 QUEUED 中并行提交 2 个实验（尽量覆盖不同 plan：一个 Walker seed 实验 + 一个 Cheetah 实验）\n- **Walker Walk 3 seeds 全部完成后** → 铺 Cheetah Run 全套（plan_020/021/022），跨环境验证 C1/C2\n- **Dream 审稿完成回调** → 按反馈调整 framing/plan（D029 已有初步方向：3 seeds 不扩 5，frame 008e_v3 为 mitigation）\n\n### 5. 🎯 战略上下文\n**核心 narrative**：Diagnostic Analysis — trained dt_embedding → delusional critic (pathological nve >1.5x) → stochastic collapse。不是 method paper，是诊断论文。贡献是闭合因果链 + practical mitigation（imagination dt=1）。\n\n**因果链状态**：\n- C1（variable-rate degrades performance）：✅ 3 configs confirmed\n- C2（trained dt_emb → pathological v/e）：✅ 4/4 perfect 1.5x separation, collapse is stochastic (1/2)\n- C3（untrained dt_emb → value suppression, B+）：✅ 008a 105K=778 (85% baseline)\n- C6（mitigation: dt=1 imagination）：⏳ seed 1 confirmed (869.9, 95% baseline), seed 2 RUNNING\n\n**最容易判断错的事**：\n- 009b (008d seed 2) **没有** collapse——nve 瞬时 >1.5x 后 self-corrected。不要把它当作 collapse case。C2 的 claim 是\"nve>1.5x reliably triggered\"，不是\"collapse always happens\"\n- 008f (dt_embed_dim=0) 消除了 delusional critic 但引入了 reward prediction 退化（MAE 75x baseline）。008f 不是可用方案，C6 (008e_v3) 才是唯一的 mitigation\n- TAWM (Nhu et al., ICML 2025) 是最相关竞品但在 MPC 范式，反而强化我们贡献。必须引用并区分 MPC vs imagination\n- \"Delusional\" 术语源自 Lu & Schuurmans (NeurIPS 2018)，我们是该概念在 model-based imagination 中的新实例化，论文中需明确引用和区分\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778820784.md"
+}

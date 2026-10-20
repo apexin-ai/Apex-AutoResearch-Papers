@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e291fa5c928f217f5620",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "reviewer / loop_5.md",
+  "task_key": "loop_5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_5.md",
+    "occurrence": 1,
+    "bytes": 4595,
+    "sha256": "4bfaf627e0d58b8c1c8b437a32a935fc263ae4e44fd9ff474be679582f9d8e9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: max_wall_time\nupdated: '2026-05-14T19:36:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0 和 cuda:1（bjb1-45299 上只有 2 张 A800-96GB）\n- exp_008d 的实际 seed 是 `--seed 1`，**不是 seed 0**。paper_framing.md / memory.md / 009b registry 的 causal_conclusion 中均误写为 \"seed 0\"——已提交 warning 给 Director 但尚未修正。论文写作引用 008d 时务必写 seed 1。\n- exp_006 和 exp_007 的 subsample 实际是 ON（D016 代码审计确认 fixed_dt 模式下 subsample 从 step 0 生效，dt∈{1,2} 比例 58.5%/41.5%）。experimental_setup.md Table 1 标注 subsample=off 是错误的，已提交 critical 给 Director。\n- 不存在 seed 0 的实验——所有实验用 `--seed 1` 或 `--seed 2`。experimental_setup.md 声称 \"3 seeds (0, 1, 2)\" 是虚构的。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-45299 (root)，工作目录 `/root/autodl-tmp/event-gated-adaptive-horizon`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/`\n- 无 wandb（本项目不检查 W&B）\n- 活跃进程（截至 handoff）：\n  - exp_009a_baseline_walker_s2：PID 142508（子进程 142513），cuda:0，~252K/500K，ETA ~9h\n  - exp_008e_v3_walker_s1：PID 898127（子进程 898132），cuda:1，~15K/105K，ETA ~3.5h\n- GPU UUID 映射：cuda:0 = GPU-f7b10021-42fd-...，cuda:1 = GPU-7b497967-3578-...\n\n### 3. 📊 当前状态\n本轮完成 5 个 worker 审查 + 1 个训练进度复查，共提交 6 次 reviewer_post_to_director：\n\n| 审查对象 | 结论 | 关键发现 |\n|---------|------|---------|\n| training_progress_check | PASS | GPU 合规 ✓，两实验正常 |\n| walker-results-aggregation | PASS | 009b label 已修正为 negative |\n| paper-figure-data | PASS | fig1-3 存在，009b 前生成需更新 |\n| lit-seed-dependent-bifurcation | PASS | 3 novelty gaps confirmed |\n| literature-gap-check | PASS+warning | 55 篇 ✓，Zhang 2026 仍缺 |\n| 009b-literature-linkage | WARNING | 16 条中 6 条重复 + ConQUR 作者幻觉 |\n| experimental-setup-draft | **CRITICAL** | 3 critical: seed 数虚构 / Table 1 subsample 错 / 假单变量对比 |\n| 008e_v3_s1 progress monitor | PASS | 早期阶段正常 |\n\nRUNNING 实验：008e_v3_s1（crown jewel C6 二次验证）、009a_baseline_s2（多 seed baseline）\n\n### 4. 📋 待办\n- 008e_v3_s1 完成 → **最高优先审查**：这是 C6 crown jewel (dt=1 imagination mitigation) 的 seed 1 验证。检查 eval_return 是否接近 008e_v3 原始 seed 的 869.9，nve 是否 <1.5x。若 seed 1 也成功 → C6 claim 稳固；若失败 → C6 变 seed-dependent，整体 story 动摇。\n- 009a_baseline_s2 完成 → 验证最终 eval_return 是否接近 s1 的 970.4。用 s2 baseline 更新 nve 分母为双 seed 均值。\n- Agent 追加 009b-literature-linkage 的 YAML → 核实去重是否正确执行（6 条删除 + saxena2020conqur 删除）+ zhang2026instability 是否实际入库\n- experimental_setup.md 修订后 → 复查 seed 数量 / Table 1 subsample / 006 vs 008a 对比是否修正\n- paper_framing.md seed 编号修正 → 确认 \"seed 0\" 全部改为 \"seed 1\"\n- 任何新实验启动 → GPU 边界合规检查（PID→GPU UUID 映射）\n\n### 5. 🎯 战略上下文\n- **项目本质**：诊断分析论文（非方法论文），目标 CoRL 2026（DDL 2026-05-29，剩 15 天）\n- **核心 story（D031 Option A）**：trained dt_embedding 是 delusional critic 的因果根源 → nve>1.5x 是可靠诊断标记（4/4 separating power）→ 但 collapse 是 stochastic（1/2 seeds）→ dt=1 imagination + multi-dt training (008e_v3) 是实用 mitigation（95% baseline）\n- **D032 关键修订**：collapse 从 \"deterministic\" 降级为 \"stochastic\"。C2 claim 强度受限——只能说 nve>1.5x 是 reliable marker，不能说 collapse is inevitable。\n- **最容易判断错的事**：\n  1. 008d 的 seed 编号——registry command 是 --seed 1，但 paper_framing/memory/registry 的 causal_conclusion 全写 \"seed 0\"。**信 command，不信 prose**。\n  2. exp_006 的 subsample 状态——Table 1 说 off，paper_framing 说 on，D016 代码审计确认 on。**信 D016 审计**。\n  3. GPU 利用率 nvidia-smi 瞬时值可能为 0%（采样噪声），不要因此误判实验 stall——用进程 uptime + metrics.jsonl 最新 step 交叉确认。\n  4. 009b registry causal_conclusion 中写 \"seed 0 sustained nve>1.5x\" 指的是 008d（seed 1），不是字面意义的 seed 0 实验。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-copy-3.md"
+}

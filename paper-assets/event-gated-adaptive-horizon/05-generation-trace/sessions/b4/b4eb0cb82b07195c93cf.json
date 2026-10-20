@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "b4eb0cb82b07195c93cf",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "submission checklist westd 51268",
+  "task_key": "worker_submission-checklist-westd-51268_20260527T224823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submission-checklist-westd-51268_20260527T224823_result.json",
+    "occurrence": 1,
+    "bytes": 2108175,
+    "sha256": "63d9efb94e4d7fdc5e8cb66ba90d8f9ca6672bbceca5a400ee230a683fce51b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "b4eb0cb82b07195c93cf-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/submission-checklist-westd-51268.md"
+}

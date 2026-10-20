@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d8088b52b7ed4163f46",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops check exp status 016e 009d",
+  "task_key": "worker_ops_check-exp-status-016e-009d_20260515T221455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-exp-status-016e-009d_20260515T221455_result.json",
+    "occurrence": 1,
+    "bytes": 1188,
+    "sha256": "8c89b6c98b95ce6828a5747af59150f9675530f0c06963c76c90a79379bf9907"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_016e_sgs_walker_s1 (PID 527392)\n- 进程状态: **ALIVE** (运行 9498s ≈ 2.6h)\n- 当前 step: **92000** / 105000 (87.6%)，train_return = 75.1\n- eval_return:\n  - step 5000: 31.0\n  - step 15000: 140.3\n  - step 25000: 141.8\n  - step 35000: 173.0\n  - step 45000: 184.0\n  - step 55000: 153.8\n  - step 65000: 324.3\n  - step 75000: 326.7\n  - step 85000: 256.2\n- GPU 显存: 3259 MiB\n\n## exp_009d_baseline_walker_s0 (PID 149708)\n- 进程状态: **ALIVE** (运行 35417s ≈ 9.8h)\n- 当前 step: **224000** / 500000 (44.8%)，train_return = 658.4\n- eval_return (最近 20):\n  - step 5000: 35.0 → step 38000: 264.0 → step 68000: 402.2 → step 88000: 440.3 → step 118000: 480.6 → step 138000: 495.5 → step 148000: 504.3 → step 178000: 511.6 → step 198000: 558.7 → step 208000: 591.3 → **step 218000: 638.2**\n- GPU 显存: 4156 MiB\n\n## GPU 状态\n- GPU 0: 4165 MiB, utilization 31% (009d)\n- GPU 1: 3278 MiB, utilization 24% (016e)\n\n**结论：两个实验都在正常运行，不是 cron 回调丢失——实验尚未完成。** 016e 预计还需 ~30min 完成剩余 13000 steps；009d 还剩 276000 steps，预计还需 ~10h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-exp-status-016e-009d.md"
+}

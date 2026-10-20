@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d04e599d2a3b860b84fd",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops health check new envs",
+  "task_key": "worker_ops_health-check-new-envs_20260528T223826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_health-check-new-envs_20260528T223826_result.json",
+    "occurrence": 1,
+    "bytes": 953,
+    "sha256": "80600db408522d7eb37b3a2e686b32c0c246b6472985755c3a68e8bfa1d1c955"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **Humanoid Walk (`exp_humanoid_baseline_s0`)** — 启动成功。已完成 prefill（2500 steps）、首次 evaluation（step 5000, eval_return=1.2），正在训练中。Action space Box(-1.0, 1.0, (21,))，观测包含 com_velocity/extremities/head_height/joint_angles/torso_vertical/velocity。仅有 FutureWarning（`torch.cuda.amp` 弃用警告），无实质错误。\n\n- **Quadruped Walk (`exp_quadruped_baseline_s0`)** — 启动失败。错误：`ImportError: Cannot initialize a headless EGL display.`。dm_control 尝试初始化 EGL 渲染时失败，进程已退出（EXIT_CODE=1）。\n\nQuadruped 的 EGL 问题说明该 tmux session 启动时缺少 EGL 环境变量。Humanoid 能正常跑说明 EGL 本身可用，Quadruped 大概率是启动时环境变量未正确设置（`MUJOCO_GL=egl` 和 `PYOPENGL_PLATFORM=egl`）。\n\n需要我重新启动 Quadruped 实验并确保 EGL 环境变量正确吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-health-check-new-envs.md"
+}

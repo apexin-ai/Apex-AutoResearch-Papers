@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8d24718bf1f5368a9d9",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "monitor training progress check",
+  "task_key": "worker_monitor_training-progress-check_20260526T063748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_training-progress-check_20260526T063748_result.json",
+    "occurrence": 1,
+    "bytes": 2003,
+    "sha256": "619c2f5573adb268498c708c31c8047df023e4914718b019529363e786ac2395"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度摘要\n\n### exp_097_cheetah_008d_s3 (cuda:0)\n\n| 指标 | 值 |\n|---|---|\n| 当前 step | **76,000** / 105,000 (72.4%) |\n| 速率 | ~380 steps/min (fps≈10) |\n| 剩余 | ~29,000 steps → **预计 ~1h16m 后完成** |\n\n**Eval return 趋势:**\n```\n 5k:   8.7\n15k: 216.6  ← 初始峰值\n25k: 139.4\n35k: 105.3\n45k:  23.4  ← 谷底\n55k:  68.2\n65k: 182.5  ← 恢复\n75k: 192.5  ← 缓慢上升中\n```\n\n**ve_ratio 趋势（CIVO 检测）:**\n```\n15k: 0.009  (delta=0.0)\n25k: 0.120  (delta=+0.11)\n35k: 0.350  (delta=+0.23)  ← 峰值\n65k: 0.232  (delta=-0.53)\n75k: 0.173  (delta=-0.06)  ← 持续下降\n```\n- **无 CIVO onset** — alert=0, gate_dt 锁定在 2.0 (100% dt_2_frac), empirical entropy=0\n- ve_ratio 从 35k 的 0.35 峰值持续下降到 0.17，value error 在缩小，model 在变好\n\n---\n\n### exp_100_walker_008a_s1 (cuda:1)\n\n| 指标 | 值 |\n|---|---|\n| 当前 step | **68,000** / 105,000 (64.8%) |\n| 速率 | ~378 steps/min (fps≈10.7) |\n| 剩余 | ~37,000 steps → **预计 ~1h38m 后完成** |\n\n**Eval return 趋势:**\n```\n 5k:  31.0\n15k: 168.8\n25k: 158.0\n35k: 202.9\n45k: 306.0\n55k: 457.3\n65k: 628.8  ← 强劲单调上升\n```\n- 每 10k 步 eval return 增幅稳定在 ~100-170，学习曲线健康\n- ve_ratio: 55k=0.248, 65k=0.234, 缓降中，alert=0，**无 CIVO onset**\n- gate_dt 同样锁定在 2.0\n\n---\n\n### GPU 状态\n\n| GPU | 温度 | 功耗 | 显存 | 利用率 |\n|-----|------|------|------|--------|\n| 0 (exp_097) | 40°C | 118W/600W | 52.4/97.9 GB | 22% |\n| 1 (exp_100) | 40°C | 143W/600W | 4.7/97.9 GB | 36% |\n\n两卡温度低、功耗低，运行正常。\n\n---\n\n**总结:** 两个实验都在正常训练，无异常。exp_097 预计 ~15:54、exp_100 预计 ~16:16 (服务器时间) 完成。两个实验的 gate 均锁死在 dt=2，未触发 CIVO onset——exp_097 的 ve_ratio 已从峰值 0.35 回落到 0.17，exp_100 的 eval return 单调递增表现很好。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-training-progress-check-copy-3.md"
+}

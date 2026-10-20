@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4baa7e80cbc0656a87f5",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "status all 4 exp progress",
+  "task_key": "worker_status_all-4-exp-progress_20260522T054357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_all-4-exp-progress_20260522T054357_result.json",
+    "occurrence": 1,
+    "bytes": 1834,
+    "sha256": "dfb04a1b0632e86e957354d77f466f68e3084d8587c47cc02689c1ad8f8ebe3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "### 服务器 1: bjb1-45299\n\n```\n=== PID CHECK ===\n 52397    02:43:18 1167 3315512\nPID_52397_ALIVE\n 51103    03:06:06 1204 3450184\nPID_51103_ALIVE\n=== GPU ===\n0, 29 %, 4067 MiB\n1, 21 %, 3017 MiB\n=== EXP_040 ===\nstep: 95000 (最新训练指标), step: 96000 (train_return: 85.29, 53.58, 86.65, 65.71)\n=== EXP_040 EVAL ===\nstep 75000: eval_return=40.08\nstep 85000: eval_return=68.08\nstep 95000: eval_return=149.89\n=== EXP_040 NVE ===\nstep 75000: ve_ratio=0.468\nstep 85000: ve_ratio=0.107 (输出被截断)\nstep 95000: ve_ratio=0.107\n=== EXP_041 ===\nstep: 95000 (训练指标), step: 105000 (ve_ratio=0.265)\n=== EXP_041 EVAL ===\nstep 85000: eval_return=254.73\nstep 95000: eval_return=266.05\nstep 105000: (被截断)\n=== EXP_041 NVE ===\nstep 95000: ve_ratio=0.564\nstep 105000: ve_ratio=0.265\n```\n\n### 服务器 2: bjb1-40020\n\n```\n=== PID CHECK ===\n251336    03:05:59  608 2944580\nPID_251336_ALIVE\n250627    03:08:06  616 2824508\nPID_250627_ALIVE\n=== GPU ===\n0, 11 %, 3564 MiB\n1, 17 %, 2523 MiB\n=== EXP_042 ===\nstep: 85000 (ve_ratio=0.112), step: 88000 (train_return: 334.33, 438.32, 420.76, 327.28)\n=== EXP_042 EVAL ===\nstep 65000: eval_return=413.47\nstep 75000: eval_return=453.54\nstep 85000: eval_return=378.30\n=== EXP_042 NVE ===\nstep 65000: ve_ratio=0.100\nstep 75000: ve_ratio=0.112 (被截断)\nstep 85000: ve_ratio=0.112\n=== EXP_043 ===\nstep: 85000, step: 88000 (train_return 被截断)\n=== EXP_043 EVAL ===\nstep 65000: eval_return=143.79\nstep 75000: eval_return=175.11 (被截断)\nstep 85000: (被截断)\n=== EXP_043 NVE ===\nstep 65000: ve_ratio=0.258\nstep 75000: ve_ratio=0.235\nstep 85000: ve_ratio=0.308\n```\n\n4 个进程全部存活，GPU 正常使用中。输出因长度被截断了部分内容——如需完整数据可单独查询某个实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-all-4-exp-progress.md"
+}

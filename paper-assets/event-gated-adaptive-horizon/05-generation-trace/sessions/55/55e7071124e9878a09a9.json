@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55e7071124e9878a09a9",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "submit exp 029d walker s3 sigma02",
+  "task_key": "worker_submit_exp_029d_walker_s3_sigma02_20260520T193323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp_029d_walker_s3_sigma02_20260520T193323_result.json",
+    "occurrence": 1,
+    "bytes": 413,
+    "sha256": "83e7178b62b3711f3d12595d8a12a4c30e6d6583ed16ed0891624c1dd90cdc40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已部署完成。\n\n- **PID**: 109831（dreamer.py 主进程），wrapper PID 109826\n- **GPU**: cuda:0 — 进程正在启动加载中（模型初始化阶段，GPU 显存尚未完全分配；cuda:1 上 exp_029b PID 75548 占用 3025 MiB 正常运行）\n- **日志**: `~/runs/event-gated-adaptive-horizon/exp_029d_tcn_walker_s3_sigma02.log`\n- **tmux session**: `exp_029d_tcn_walker_s3_sigma02`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp-029d-walker-s3-sigma02.md"
+}

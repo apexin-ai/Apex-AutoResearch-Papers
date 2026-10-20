@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0",
+  "id": "e46ab9a296bcaf14965f",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "audit citation verify B",
+  "task_key": "worker_audit_citation-verify-B_20260529T070940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_citation-verify-B_20260529T070940.log",
+    "occurrence": 1,
+    "bytes": 732735,
+    "sha256": "8e6ee055085458b683bf111a6a2273d884c88b015ea6e8d8ce677b623904d223"
+  },
+  "statistics": {
+    "messages": 318,
+    "user_turns": 5,
+    "tool_calls": 104,
+    "roles": {
+      "log": 1,
+      "system": 87,
+      "record": 1,
+      "assistant": 15,
+      "tool_call": 104,
+      "tool_result": 104,
+      "user": 5,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 39,
+      "chunks": [
+        {
+          "path": "e46ab9a296bcaf14965f-part-0001.json",
+          "message_count": 39
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "e46ab9a296bcaf14965f-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 53,
+      "chunks": [
+        {
+          "path": "e46ab9a296bcaf14965f-part-0001.json",
+          "message_count": 53
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 65,
+      "chunks": [
+        {
+          "path": "e46ab9a296bcaf14965f-part-0001.json",
+          "message_count": 65
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "e46ab9a296bcaf14965f-part-0001.json",
+          "message_count": 17
+        },
+        {
+          "path": "e46ab9a296bcaf14965f-part-0002.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 122,
+      "chunks": [
+        {
+          "path": "e46ab9a296bcaf14965f-part-0002.json",
+          "message_count": 122
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-citation-verify-b.md"
+}

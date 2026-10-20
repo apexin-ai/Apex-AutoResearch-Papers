@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9401338dd821e59f611c",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "monitor exp 006 check",
+  "task_key": "worker_monitor_exp_006_check_20260514T004155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp_006_check_20260514T004155_result.json",
+    "occurrence": 1,
+    "bytes": 811,
+    "sha256": "9e94f7101478a902a7b95f43eedb422711ec9d2333ac9617c4666f8c1c49b8b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_006_fixed_dt2 状态报告\n\n**进程状态**: Running (PID 85029, elapsed 2h30m)\n\n**当前步数**: 60,000 / 150,000 (40%)\n\n**FPS**: ~6.5\n\n**预计剩余时间**: 90K steps / 6.5 FPS ≈ 3.8 hours（预计 ~12:00 UTC 完成）\n\n**Checkpoint**: `latest.pt` 存在 (231MB, 更新于 May 14 08:19)\n\n### Eval Return 轨迹\n\n| Step | eval_return |\n|------|-------------|\n| 5K | 31.0 |\n| 15K | 256.9 |\n| 25K | 321.4 |\n| 35K | **485.3** (peak) |\n| 45K | 477.0 |\n| 55K | 360.4 ↓ |\n\n**趋势**: 35K-45K 处达到峰值 ~480，55K 回落至 360。当前表现不稳定，出现了性能下滑。相对 baseline (last10 mean = 950.9)，当前峰值仅为 baseline 的 **51%**。\n\ngate 指标确认 dt 固定为 2（gate_dt_2_frac = 1.0, std = 0.0），符合实验设计。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp-006-check.md"
+}

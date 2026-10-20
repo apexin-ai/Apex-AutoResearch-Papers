@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9e618a31fb0ffef8f34",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops restart exp003",
+  "task_key": "worker_ops_restart-exp003_20260513T064314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart-exp003_20260513T064314_result.json",
+    "occurrence": 1,
+    "bytes": 979,
+    "sha256": "845a7e81ce5524a85bee943958361047a2d6dbf0c7e2cb091bbca4e0f4f2714c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程健康运行（1:38 elapsed, CPU 1394%, RSS 2.6GB）。DreamerV3 每个 episode 需要几分钟才会写新 metrics。\n\n汇报如下：\n\n---\n\n**执行结果：**\n\n| 项目 | 状态 |\n|------|------|\n| 旧 PID 18110 | 已 kill（SIGTERM 成功） |\n| 新 PID | **24438**（Python 进程），tmux session: `exp_003_event_gated_v2` |\n| 续训起始 step | **~48K → 当前 52000**（从 `latest.pt` checkpoint 续训成功） |\n| Hotfix | 已确认：`self._step` + 硬编码 50000/150000 阈值在磁盘上 |\n| Phase 2 激活 | **待确认** — step 已过 50K，但 gate metrics 尚未写入新行（上一次 gate_scale log 在 step 45000=0.0）。DreamerV3 gate metrics 写入间隔较长，需再等几分钟看下一个 training metrics dump |\n\nPhase 2 验证需等训练跑到下一个 gate metrics log 周期（预计 step ~55000 左右）。可稍后用 `check-training-status` 或手动 `tail metrics.jsonl` 确认 gate_scale > 0。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-exp003.md"
+}

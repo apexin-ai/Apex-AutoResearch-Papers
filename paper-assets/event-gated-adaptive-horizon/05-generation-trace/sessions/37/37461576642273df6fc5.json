@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "37461576642273df6fc5",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "code exp 005 full fix and audit",
+  "task_key": "worker_code_exp_005_full_fix_and_audit_20260513T155111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_005_full_fix_and_audit_20260513T155111.log",
+    "occurrence": 1,
+    "bytes": 891274,
+    "sha256": "e885455e0ab7c49dd0d9ce4383541b906902104d4a6d0484ac7b8a05ff6edbd5"
+  },
+  "statistics": {
+    "messages": 351,
+    "user_turns": 0,
+    "tool_calls": 120,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 107,
+      "tool_call": 120,
+      "tool_result": 120,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 351,
+      "chunks": [
+        {
+          "path": "37461576642273df6fc5-part-0001.json",
+          "message_count": 166
+        },
+        {
+          "path": "37461576642273df6fc5-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "37461576642273df6fc5-part-0003.json",
+          "message_count": 5
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-005-full-fix-and-audit.md"
+}

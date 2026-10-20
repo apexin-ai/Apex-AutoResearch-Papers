@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0734731203c53632da8",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code exp 051 monitor and exp 055 deploy",
+  "task_key": "worker_code_exp_051_monitor_and_exp_055_deploy_20260523T053821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_051_monitor_and_exp_055_deploy_20260523T053821_result.json",
+    "occurrence": 1,
+    "bytes": 202,
+    "sha256": "82a6758c173956a8713445c5fbded5c6c0e8198e0ab78953507619832201ee79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_051 at **174,600/210,000** (83%), PID 305974 still alive. Will check again in ~4 minutes. Once it finishes, I'll extract final metrics, update registry, then deploy exp_055 on cuda:1."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-051-monitor-and-exp-055-deploy.md"
+}

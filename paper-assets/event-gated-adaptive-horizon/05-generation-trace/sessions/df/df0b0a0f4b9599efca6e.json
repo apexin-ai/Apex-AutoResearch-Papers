@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df0b0a0f4b9599efca6e",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_6_1778784893.md",
+  "task_key": "loop_6_1778784893",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778784893.md",
+    "occurrence": 1,
+    "bytes": 4695,
+    "sha256": "77ae325271aac8101d3822c9188a6bb072c723f7ff6fd9311aee461483759719"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_messages\nupdated: '2026-05-14T18:54:50+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 cuda:0 + cuda:1**（bjb1-45299）。不存在其他可用 GPU，任何超出此范围的提交都违规。\n- cuda:1 排期已锁定（D031 修正）：008e_v3_s1(running) → **008e_v3_s2** → 009e → 009f → 009c(200K) → plan_060。008e_v3 是 C6 crown jewel，优先级最高，不可被其他实验插队。\n- 009c 教训：dt_emb removal 有双重效应（消除 delusional critic ✓ + 退化 reward prediction ✗），单 seed positive 不可 claim stability。008f 的 zigzag recovery 可能是随机事件。\n- 环境变量必须设：`MUJOCO_GL=osmesa PYOPENGL_PLATFORM=osmesa LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6`\n- submit_training_job 的命令必须自带环境激活（`source /root/miniconda3/bin/activate && ...`），不假设 .venv 存在。aml-train 镜像用 conda。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**bjb1-45299**，工作目录 `/root/autodl-tmp/event-gated-adaptive-horizon`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型/数据：DMC 环境内置，无需外部数据集下载\n- W&B：未在 registry 中看到 wandb run ID，指标来源为 logdir 下 JSON/CSV\n- 分析产出：`logdir/analysis_actor_entropy_value_calibration.json`、`logdir/analysis_rssm_prediction_quality.json`\n- 活跃进程：\n  - exp_008e_v3_walker_s1: PID **898127**, cuda:1, cron 监控中\n  - exp_009a_baseline_walker_s2: PID **142508**, cuda:0, cron 监控中\n- PREPARING 状态的旧实验（008d/008c/008a/006/008e_v2）是历史残留，不需要处理\n\n### 3. 📊 当前状态\n- **RUNNING (2)**:\n  - `exp_008e_v3_walker_s1` (cuda:1, PID 898127) — C6 crown jewel，untrained dt_emb + subsample ON + dt=1 imag + H=15 seed 1\n  - `exp_009a_baseline_walker_s2` (cuda:0, PID 142508) — baseline seed 2，建立 v/e 校准参考\n- **ANALYZING (1)**:\n  - `exp_009b_008d_walker_s2` (conclusion=**success**) — trained dt_emb seed 2，复现 008d delusional critic collapse。**需要 spawn worker 分析结果并更新 registry/report**\n- **ALLOCATED (1)**:\n  - `exp_008e_v3_walker_s2` (cuda:1) — 008e_v3 seed 2，等 008e_v3_s1 完成后提交\n- **QUEUED (4)**: 009e_008d_walker_s1, 009d_baseline_walker_s1, 009f_008f_walker_s1, 010a_cheetah_baseline_s1\n- **Worker 池 = 0**（当前无活跃 Worker）\n- 等待中：Dream 审稿结果（ROADMAP 提到 \"等 Dream 完成 → 按反馈调整 framing/plan\"）\n\n### 4. 📋 待办（条件触发式）\n- **立即**：exp_009b_008d_walker_s2 处于 ANALYZING + success → spawn worker 分析 logdir 数据（v/e ratio、return curve），更新 registry metrics，刷新 report.md，向 Director 汇报\n- exp_008e_v3_walker_s1 cron 回调（完成）→ 分析结果 → 提交 exp_008e_v3_walker_s2 到 cuda:1（已 ALLOCATED）\n- exp_009a_baseline_walker_s2 cron 回调（完成）→ 分析 → 从 QUEUED 中选下一个提交到 cuda:0（优先 009d_baseline_walker_s1 或 010a_cheetah_baseline_s1）\n- Dream 审稿完成 → 按反馈调整 paper_framing / experiment_plan → 批准 P0 实验\n- 008e_v3 两个 seed 都完成 → 对比 v/e ratio 确认 C6 稳定性。若 normalized v/e < 1.2x 且 return ≥ 85% baseline → C6 confirmed；否则需重新评估 crown jewel 地位\n\n### 5. 🎯 战略上下文\n- **目标**：CoRL 2026，DDL **2026-05-29**（剩 15 天），P0 预算 ~145 GPU·h（~3 天 wall time），时间充裕\n- **Narrative B+**：\"Diagnostic Analysis of Temporal Abstraction in World-Model RL\"。核心因果链：trained dt_embedding → delusional critic (v/e > 1.5x) → performance collapse\n- **决策链关键节点**：D028(C2 因果确认) → D029(Dream 审稿调整：3 seeds 不扩 5) → D030(C2 降级：009c 显示 dim=0 可能只延迟非消除) → D031(Option A narrative + C6 升为 crown jewel) → D032(C2 再修订：trained dt_emb → pathological v/e)\n- **最易判断错的事**：\n  1. 008f (dt_embed_dim=0) 看起来是\"修复\"，但实际引入 reward prediction 噪声（MAE 75x baseline），seed-dependent。**不是稳定方案**，论文中只能用于因果验证，不能推荐为 mitigation\n  2. 008e_v3 (untrained dt_emb) 才是唯一同时避免 delusional critic + 保持 reward prediction + 达 95% baseline 的方案（C6 crown jewel）\n  3. v/R ratio > 1.5 是 delusional critic 判定阈值，normalized v/e target (~1.0) 无区分力，不要混用\n  4. Cheetah Run / Cartpole Swingup 代码无需修改，`--task dmc_cheetah_run` 直接可用（memory.md 有完整命令模板）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778784893.md"
+}

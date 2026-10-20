@@ -1,0 +1,368 @@
+{
+  "schema_version": "1.0",
+  "id": "a3e327a0fe3e330d41d5",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "conversation",
+  "title": "paper 009c limitation",
+  "task_key": "worker_paper_009c-limitation_20260518T060308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_009c-limitation_20260518T060308.jsonl",
+    "occurrence": 1,
+    "bytes": 10238,
+    "sha256": "4c61b5b7f536ee8e7f725a486c958b968a22098f86a6304215e912b786394070"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T06:04:05.286606+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_009c-limitation_20260518T060308",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/sections/conclusion.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T06:04:05.287163+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_009c-limitation_20260518T060308",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T06:04:05.287428+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_009c-limitation_20260518T060308",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "paper/sections/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T06:04:05.287642+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_009c-limitation_20260518T060308",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T06:04:05.287899+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_009c-limitation_20260518T060308",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T06:04:05.288140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/_corl_template/corl_2026_template_submission/example.tex\ndocs/paper/_corl_template/__MACOSX/corl_2026_template_submission/._example.tex\nartifacts/dream_reports/dream_20260514T062606/best/paper.tex\nartifacts/dream_reports/dream_20260514T062606/median/paper.tex\nartifacts/dream_reports/dream_20260515T004704/best/paper.tex\nartifacts/dream_reports/dream_20260515T004704/median/paper.tex\nartifacts/dream_reports/dream_20260515T004704/worst/paper.tex\nartifacts/figures/archive/tab_rssm_fidelity.tex\nartifacts/_project/paper/nve_sensitivity_table_37b680.tex\nartifacts/dream_reports/dream_20260514T062606/worst/paper.tex\nartifacts/dream_reports/dream_20260516T115400/best/paper.tex\nartifacts/dream_reports/dream_20260516T115400/median/paper.tex\nartifacts/dream_reports/dream_20260516T115400/worst/paper.tex\nartifacts/dream_reports/dream_20260516T133210/best/paper.tex\nartifacts/dream_reports/dream_20260516T133210/median/paper.tex\nartifacts/dream_reports/dream_20260516T133210/worst/paper.tex\nartifacts/dream_reports/dream_20260516T172011/best/paper.tex\nartifacts/dream_reports/dream_20260516T172011/median/paper.tex\nartifacts/dream_reports/dream_20260516T172011/worst/paper.tex\nartifacts/analysis/detector_table.tex\ndocs/paper/sections/abstract_body.tex\npaper/tables/nve_sensitivity_table.tex\nartifacts/_project/paper/nve_sensitivity_table.tex\ndocs/paper/sections/related_work.tex\ndocs/paper/sections/methodology.tex\ndocs/paper/main.tex\ndocs/paper/sections/analysis.tex\ndocs/paper/sections/introduction.tex\ndocs/paper/sections/appendix.tex\ndocs/paper/sections/results.tex\ndocs/paper/sections/conclusion.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_009c-limitation_20260518T060308",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T06:04:05.288380+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_009c-limitation_20260518T060308",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/conclusion.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T06:04:05.288647+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe have presented a systematic factorial diagnostic of temporal abstraction in DreamerV3 across two continuous-control environments. The analysis identifies the combination of trained $\\dt$-embedding and multi-rate data exposure as the causal factor behind conditioning-induced value overestimation (CIVO). The key findings are:\n5\t\n6\t\\begin{enumerate}[nosep,leftmargin=*]\n7\t\\item Every variable-rate imagination configuration degrades relative to the $\\dt{=}1$ baseline, with degradation scaling monotonically with $\\dt$.\n8\t\\item A normalized value-to-eval threshold of $\\nve \\geq 1.5\\times$ (35K+ window) achieves 11/12 CIVO classification ($n{=}12$, 91.7\\%), with the single false positive arising from a mechanistically distinct non-CIVO collapse. The combination of trained $\\dt$-embedding and multi-rate data exposure is the causal factor; unexposed, frozen, or removed embeddings prevent overestimation.\n9\t\\item The RSSM reward head develops a $2.78\\times$ prediction gap between $\\dt{=}1$ and $\\dt{=}2$ under trained conditioning. This systematic bias drives critic overestimation.\n10\t\\item The same CIVO trigger produces stochastic downstream outcomes (full collapse and transient CIVO with self-correction) across seeds of identical configurations.\n11\t\\item Restricting imagination to $\\dt{=}1$ does not fully prevent collapse: one of two seeds fails via a qualitatively distinct non-CIVO pathway (eval-driven with increasing entropy). This shows that the trained $\\dt$-embedding creates vulnerability through multiple mechanisms.\n12\t\\item A lightweight online detector that monitors the dynamics of the value-to-evaluation ratio identifies CIVO onset with 100\\% sensitivity across three positive cases, with predictive detection (alert before performance degradation) in two of three. A timing guideline ($<$70K steps = high confidence) separates genuine CIVO from late-stage false positives.\n13\t\\end{enumerate}\n14\t\n15\tThe contrast with \n…[truncated 2470 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_009c-limitation_20260518T060308",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T06:04:05.289006+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_009c-limitation_20260518T060308",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/conclusion.tex",
+              "old_string": "The detector's thresholds were calibrated on eleven runs across three environments; generalization to different reward scales and architectures requires further validation.",
+              "new_string": "The detector's thresholds were calibrated on eleven runs across three environments; generalization to different reward scales and architectures requires further validation. Whether the protection conferred by removing the temporal embedding persists beyond 105K training steps also remains open: one control seed (009c, seed~2) exhibited NVE rising to $1.14\\times$ at 105K steps on an upward trajectory, suggesting that longer training horizons may eventually erode this safeguard."
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T06:04:05.289288+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_009c-limitation_20260518T060308",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T06:04:05.289532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_009c-limitation_20260518T060308",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "—",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/conclusion.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T06:04:05.289745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_009c-limitation_20260518T060308",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T06:04:05.289976+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_009c-limitation_20260518T060308",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": " – ",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/conclusion.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T06:04:05.290212+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_009c-limitation_20260518T060308",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T06:04:05.290447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_009c-limitation_20260518T060308",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/conclusion.tex",
+              "offset": "17",
+              "limit": "3"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T06:04:05.290682+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "17\t\\paragraph{Limitations.}\n18\tOur primary factorial analysis focuses on Walker Walk; cross-environment evidence (Cheetah Run) is confirmed across two seeds but limited to a single trigger configuration. Both use a single world-model architecture (DreamerV3/RSSM). Generalization to other environments and architectures, particularly transformer-based world models such as DreamerV4, remains an open question. The $\\nve$ threshold ($1.5\\times$, 35K+ window) is sensitive to value overestimation broadly but not perfectly specific to CIVO (11/12, one non-CIVO false positive); generalization to other tasks and architectures is pending validation. The detector's thresholds were calibrated on eleven runs across three environments; generalization to different reward scales and architectures requires further validation. Whether the protection conferred by removing the temporal embedding persists beyond 105K training steps also remains open: one control seed (009c, seed~2) exhibited NVE rising to $1.14\\times$ at 105K steps on an upward trajectory, suggesting that longer training horizons may eventually erode this safeguard.\n19\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_009c-limitation_20260518T060308",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T06:04:05.290984+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。\n\n**文件**: `docs/paper/sections/conclusion.tex`，第 18 行末尾  \n**添加内容**: \"Whether the protection conferred by removing the temporal embedding persists beyond 105K training steps also remains open: one control seed (009c, seed~2) exhibited NVE rising to $1.14\\times$ at 105K steps on an upward trajectory, suggesting that longer training horizons may eventually erode this safeguard.\"\n\n无 em-dash，无 -ing 结尾，语气客观。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_009c-limitation_20260518T060308"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/paper-009c-limitation.md"
+}

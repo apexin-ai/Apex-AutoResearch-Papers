@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56ffd8f60240f55d33b1",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper fill rve detector table",
+  "task_key": "worker_paper_fill-rve-detector-table_20260518T065520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fill-rve-detector-table_20260518T065520_result.json",
+    "occurrence": 1,
+    "bytes": 422,
+    "sha256": "0419abbfda3966bd0af4d3ae4f305be79439431ecbf4d05be96d2f91fbd8f7f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。\n\n**文件**: `docs/paper/sections/results.tex`\n\n**改动**:\n1. **行 200**: `---$^e$` → `3.03` (008d s4)\n2. **行 201**: `---$^e$` → `6.34` (010b s0)\n3. **删除行 216-217**: pending 脚注 `$^e$ $r_\\text{ve}$ at trigger time pending extraction from experiment logs.`\n\n小数精度与表中其他 $r_\\text{ve}$ 值一致（2 位小数）。无其他行引用 `$^e$` 标记。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fill-rve-detector-table.md"
+}

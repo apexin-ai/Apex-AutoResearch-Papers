@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f94dd39da94f539da16a",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "code bernoulli st gate",
+  "task_key": "worker_code_bernoulli_st_gate_20260513T224003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bernoulli_st_gate_20260513T224003.log",
+    "occurrence": 1,
+    "bytes": 940472,
+    "sha256": "ce15ce1e79336ca6b19b84b91d08a63fa441d655fbb671e36f697aaa461d18c5"
+  },
+  "statistics": {
+    "messages": 270,
+    "user_turns": 0,
+    "tool_calls": 100,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 66,
+      "tool_call": 100,
+      "tool_result": 100,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 270,
+      "chunks": [
+        {
+          "path": "f94dd39da94f539da16a-part-0001.json",
+          "message_count": 127
+        },
+        {
+          "path": "f94dd39da94f539da16a-part-0002.json",
+          "message_count": 143
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-bernoulli-st-gate-copy-2.md"
+}

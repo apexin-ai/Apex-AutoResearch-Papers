@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6e53780294faa9d381a",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code maniskill3 dreamer integration",
+  "task_key": "worker_code_maniskill3_dreamer_integration_20260515T142153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_maniskill3_dreamer_integration_20260515T142153_result.json",
+    "occurrence": 1,
+    "bytes": 609,
+    "sha256": "a029bc9771bb69962981159158befa106f6082a9e38a5af825ec6672cf5a1c2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**修改内容：**\n- `dreamer.py` line 198: 在 `make_env` 的 suite 分支中添加了 `maniskill` 分支，调用 `envs.maniskill.ManiSkill` wrapper + `NormalizeActions`\n- `configs.yaml` line 205: 添加了 `maniskill_state` 顶层 preset（state-based, 42 维 obs, 8 维 action, PickCube-v1）\n\n**验证通过：**\n- Config 解析正确，`defaults` 结构未被破坏\n- 完整 make_env 流程（ManiSkill → NormalizeActions → TimeLimit → SelectAction → UUID）全部通过\n- obs_space `Dict(state:Box(42,))`, act_space `Box(-1,1,(8,))`，step/reset 正常工作"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-maniskill3-dreamer-integration.md"
+}

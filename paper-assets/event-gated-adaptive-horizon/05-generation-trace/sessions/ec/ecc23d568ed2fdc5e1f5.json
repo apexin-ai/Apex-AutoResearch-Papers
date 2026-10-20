@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ecc23d568ed2fdc5e1f5",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "analysis exp 066b rssm fidelity s1",
+  "task_key": "worker_analysis_exp_066b_rssm_fidelity_s1_20260525T042159",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_066b_rssm_fidelity_s1_20260525T042159.log",
+    "occurrence": 1,
+    "bytes": 845152,
+    "sha256": "7c9a3b412e3640c41d1afa1bb6745893fa683fd22118565c68a308ac4e8745d9"
+  },
+  "statistics": {
+    "messages": 252,
+    "user_turns": 0,
+    "tool_calls": 100,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 43,
+      "tool_call": 100,
+      "tool_result": 100,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 252,
+      "chunks": [
+        {
+          "path": "ecc23d568ed2fdc5e1f5-part-0001.json",
+          "message_count": 134
+        },
+        {
+          "path": "ecc23d568ed2fdc5e1f5-part-0002.json",
+          "message_count": 118
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-exp-066b-rssm-fidelity-s1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74d39a54177cdade8998",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 071 008f walker s3",
+  "task_key": "worker_analysis_exp_071_008f_walker_s3_20260525T100740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_071_008f_walker_s3_20260525T100740_result.json",
+    "occurrence": 1,
+    "bytes": 985,
+    "sha256": "a6728b6ccb25e1546d94817aec6501d31ffdd14f3c54e3af5529888422ce2fde"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n## 总结\n\n**exp_071_008f_walker_s3: SUCCESS (borderline)**\n\n| 指标 | 值 |\n|------|-----|\n| eval_return (final/peak) | 311.9 / 457.7 |\n| ve_ratio (final/peak) | 0.4 / 0.7 |\n| gate_dt_mean | 2.0 (fixed) |\n| CIVO | **未出现** (符合预期) |\n\n**轨迹特征**: 55-65K 达峰 (~457)，之后显著下滑至 95K 谷底 (187)，105K 部分恢复到 312。勉强过 300 线。\n\n**008f 四 seed 汇总**:\n\n| Seed | 结论 | final eval |\n|------|------|------------|\n| s1 | success | 503 |\n| s2 | **negative** | 148 |\n| s3 | success (borderline) | 312 |\n| s4 | success | TBD |\n\n**008f 整体稳定性判断**: 3/4 success (75%)，但方差极大 (148–503)。作为 no-dt_emb control 组，缺乏 dt embedding 的配置在后期训练稳定性上表现不佳——s2 崩溃、s3 勉强存活。这与 dt_emb 有助于训练稳定性的假设一致（尽管机制不是通过 CIVO，control 组无 CIVO 符合预期）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-071-008f-walker-s3.md"
+}

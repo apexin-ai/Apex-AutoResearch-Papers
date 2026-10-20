@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "728526b45ce88e4e9069",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops maniskill3 install",
+  "task_key": "worker_ops_maniskill3-install_20260516T030213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_maniskill3-install_20260516T030213_result.json",
+    "occurrence": 1,
+    "bytes": 1499,
+    "sha256": "46bd73b47067abbebdc854b56a22e32e8ba70909d4109eecbcf604846bf06cec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n## 结果\n\n### 1. 安装状态\n- **ManiSkill3 v3.0.1 已预装**，无需安装\n- PickCube-v1 / StackCube-v1 / PegInsertionSide-v1 环境验证通过\n\n### 2. 已有代码情况\n- `envs/maniskill.py` — 完整的 DreamerV3 wrapper，处理 state/image obs、CUDA_VISIBLE_DEVICES 兼容\n- `dreamer.py` L198-205 — `make_env` 中 maniskill 分支已就绪\n- `configs.yaml` — 原本只有 `maniskill_state`（PickCube-v1）\n\n### 3. 补充的配置\n在 configs.yaml 中新增两个 preset：\n- `maniskill_stackcube` — StackCube-v1（obs 48维，action 8维）\n- `maniskill_peginsertion` — PegInsertionSide-v1（obs 43维，action 8维）\n\n### 4. 代码修复（2处）\n- **models.py L420**: `obs[\"image\"] / 255.0` → 加 `if \"image\" in obs` 条件，state-only 环境无 image key\n- **tools.py L216**: `cache[...][\"image\"]` → 改为 `.get(\"image\", [])`，同理\n\n### 5. Dry-run 结果\n**成功。** PickCube-v1 + debug config 在 cuda:0 上运行正常：\n- Eval: return=1.2, length=200, 10 episodes\n- Training: model_loss=50.6, reward_loss=5.5, actor_entropy=10.3\n- 未干扰 cuda:0/cuda:1 上的现有实验\n\n### 注意事项\n- ManiSkill/SAPIEN 必须有 CUDA，不支持纯 CPU 运行\n- `torch.compile` 在当前 PyTorch 版本有 bug（duplicate template name），实验需关闭或升级 PyTorch\n- wrapper 会移除 CUDA_VISIBLE_DEVICES，因此不能用 CVD 限制 GPU 可见性；用 `--device cuda:X` 指定训练设备"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-maniskill3-install.md"
+}

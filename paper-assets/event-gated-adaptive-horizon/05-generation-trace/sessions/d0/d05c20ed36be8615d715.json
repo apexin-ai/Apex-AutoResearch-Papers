@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d05c20ed36be8615d715",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "diagnose exp 022 failure",
+  "task_key": "worker_diagnose_exp_022_failure_20260517T074655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_022_failure_20260517T074655_result.json",
+    "occurrence": 1,
+    "bytes": 1562,
+    "sha256": "faf59d2f3ae1187fe0534739f92f19b9481e20cd8520c73e5e5924d9f4db9dec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 确切错误\n\n```\nFile \"/root/miniconda3/lib/python3.12/site-packages/torch/_inductor/select_algorithm.py\", line 1695, in __init__\n    assert name not in self.all_templates, \"duplicate template name\"\nAssertionError: duplicate template name\n```\n\n崩溃发生在 `self._wm = torch.compile(self._wm)`（`dreamer.py:105`）。\n\n### 根因分析\n\n**环境问题（PyTorch 2.10.0+cu128 的已知 bug）。**\n\n`torch.compile` 在初始化 Inductor 后端时，加载 `torch._inductor.kernel.flex_attention` 模块触发了 `TritonTemplate` 名字重复的断言错误。这是 PyTorch 2.10.0 的一个已知 regression——与 Triton 模板注册逻辑冲突，和实验代码本身无关。\n\n`--dt_emb_freeze` 参数在代码中有完整支持（`configs.yaml`、`models.py` 多处引用），不是问题所在。实验还没跑到用这个参数的阶段就崩了。\n\n### 是否可重试 & 修复方案\n\n可重试。两个修复路径：\n\n1. **快速修复**：启动命令中将 `--compile True` 改为 `--compile False`，绕过 `torch.compile`。性能会慢一些但功能不受影响。\n\n2. **根治修复**：降级 PyTorch 到 2.6.x 或升级到修复了此 bug 的版本（如果有 nightly patch）。当前 2.10.0 的 Inductor 后端有这个模板注册 regression。\n\n**建议**：用 `--compile False` 立即重试，同时确认其他正在跑的实验是否也用了 `--compile True`（如果是，它们可能也有风险，但已经跑起来的说明 compile 阶段已通过）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-022-failure.md"
+}

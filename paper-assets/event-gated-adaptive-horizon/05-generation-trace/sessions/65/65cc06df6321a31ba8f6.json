@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65cc06df6321a31ba8f6",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper cleanup todo markers",
+  "task_key": "worker_paper_cleanup_todo_markers_20260524T072557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_cleanup_todo_markers_20260524T072557_result.json",
+    "occurrence": 1,
+    "bytes": 1699,
+    "sha256": "73cbce2804c80a43a38a3adbdc1479b76af59afe94bb9af3398e2e0bbe838a5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Confirmed. Here's the summary:\n\n### 任务 A：删除的 TODO 标记（12 处）\n\n| 文件 | 原行号 | TODO 内容 |\n|------|--------|-----------|\n| abstract_body.tex:1 | `%% TODO: RECALCULATE 26/29 and AUROC after adding exp_059 (n=29→30)` |\n| introduction.tex:6 | `%% TODO: RECALCULATE 26/29, n=29, AUROC after adding exp_059 (n=29→30)` |\n| conclusion.tex:4 | `%% TODO: RECALCULATE 26/29, AUROC after adding exp_059 (n=29→30)` |\n| methodology.tex:38 | `%% TODO: RECALCULATE 26/29, AUROC after adding exp_059 (n=29→30)` |\n| results.tex:72 | `%% TODO: RECALCULATE 26/29, AUROC after adding exp_059 (n=29→30)` |\n| results.tex:103 | `%% TODO: RECALCULATE n=29→30 after adding exp_059` |\n| appendix.tex:123 | `%% TODO: RECALCULATE ten→eleven factorial after adding exp_059` |\n| appendix.tex:177 | `%% TODO: RECALCULATE n_pos, n_neg, n, AUROC after adding exp_059` |\n| appendix.tex:233 | `%% TODO: RECALCULATE n=29→30 after adding exp_059` |\n| appendix.tex:238 | `%% TODO: RECALCULATE n=29→30, AUROC after adding exp_059` |\n| appendix.tex:275 | `%% TODO: RECALCULATE n=10→11, n=29→30, Clopper-Pearson CI, expanded AUROC after adding exp_059` |\n| appendix.tex:281 | `%% TODO: RECALCULATE Walker n=13→14 after adding exp_059` |\n\n### 任务 B：methodology.tex \"2-4×\" 修改\n\nmethodology.tex:57（原58）：`$2$--$4\\times$ on Walker` → `$2$--$5\\times$ on Walker`。s5 peak NVE=4.72× 超过 4×，向上取整到 5× 是合理的。\n\n### 任务 C：最终验证\n\n`docs/paper/sections/*.tex` 中 **零残留 TODO**。仅 `corl_2026.sty` 中有模板自带的 `% TODO: nohyperref is not working`，与本次修改无关，未触动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-cleanup-todo-markers.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7cfca18c121f0bda8a1",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "director / loop_12.md",
+  "task_key": "loop_12",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_12.md",
+    "occurrence": 1,
+    "bytes": 3222,
+    "sha256": "b22b5148ec079b0a6f2839c42f5c071bef0fc6dcbdec5aaed3ada15aeea751b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: max_messages\nupdated: '2026-05-25T14:30:54+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-45299 cuda:0/1, westd-19154 cuda:0/1，共 4 张，严禁用其他卡\n- ICML 2026 DDL 5/29，数据锁定 5/27——剩 2 天锁数据，任何新实验必须能在 5/27 前出结果\n- CIVO scope 已精确化为 \"multi-joint locomotion\"（D149），不要再用 \"DMC locomotion\" 的旧表述\n- D146 已正式撤回 PegInsertion 混合机制 claim，不要重提\n- exp_079 frozen dt_emb walker 被 killed（不是 negative），plan_015 尚未有效完成\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-45299**: connect.bjb1.seetacloud.com, RTX PRO 6000 96GB ×2, 工作目录 /root/autodl-tmp/event-gated-adaptive-horizon\n- **westd-19154**: connect.westd.seetacloud.com, 工作目录同上\n- Python: /root/miniconda3/bin/python（conda base 环境，不用 venv）\n- 磁盘充裕：bjb1 399G/439G, westd 816G/879G\n- W&B 未配置，无 HF cache 依赖\n- 审稿 chat_id: oc_dd4a07a509df7e5f9a31d65f776059bc（Round 5 审稿中）\n\n### 3. 📊 当前状态\n4 GPU 满载运行：\n- exp_080_008e_v3_walker_s1 (bjb1 cuda:1) — Walker mitigation seed=1，plan_014\n- exp_081_008e_v3_walker_s2 (bjb1 cuda:0) — Walker mitigation seed=2，plan_014\n- exp_082_cheetah_no_dt_emb_s0 (westd cuda:0) — Cheetah causal control dt_embed_dim=0，plan_022\n- exp_083_cheetah_baseline_s1 (westd cuda:1) — Cheetah baseline seed=1，plan_020，刚提交\n\n刚收到 Reviewer PASS 报告确认 exp_077/078 Cheetah 对：\n- exp_077 baseline: eval=448.1, 健康基线\n- exp_078 CIVO trigger: peak NVE 3.1×, CIVO 确认跨环境成立。注意 Cheetah 有部分自校正（eval 从 26 恢复到 119.5=baseline 27%），分类时需明确标准\n\nAgent 启动了 LOCO-CV（n=56 leave-one-config-out 阈值验证）和 ROADMAP 刷新 Worker，尚未回调。\n\n### 4. 📋 待办\n- exp_080/081 完成 → 分析 Walker mitigation 3-seed 统计，更新论文 C6 claim\n- exp_082 完成 → 与 exp_078 构成因果对，确认 trained dt_emb 是 Cheetah CIVO 必要条件\n- exp_083 完成 → 与 exp_077 构成 Cheetah baseline 2-seed 校准\n- LOCO-CV Worker 回调 → 结果写入 appendix（阈值稳健性验证）\n- Round 5 审稿报告回来 → 按 review-report-action skill 处理，必须先 Holistic Pass 再逐条 Action Matrix\n- 所有实验完成 + 审稿反馈整合 → 5/27 数据锁定 → 5/29 提交\n\n### 5. 🎯 战略上下文\n- 核心 story：DreamerV3 中 trained dt_embedding 驱动 CIVO，是 multi-joint locomotion 特异性现象，frozen/removed dt_emb 可阻止\n- 159 个实验（80 success），论文 7 页 + appendix，ICML 模板，Round 5 审稿中\n- Cheetah 扩展刚确认 CIVO 跨环境（exp_078 NVE 3.1×），但 Cheetah 有部分自校正特征——论文当前说 \"6/7 sustained collapse, 1/7 self-correcting\"，加入 Cheetah 数据后需更新这个统计\n- exp_079 frozen dt_emb 被 killed（plan_015），2×2 ablation 矩阵（trained/frozen × exposed/unexposed）缺这一格，但时间紧可能无法重跑\n- 15 条 rebuttal Q&A 已完成\n- 易错点：不要混淆 Walker 的 CIVO（持续崩溃）和 Cheetah 的 CIVO（部分自校正）——分类标准需统一\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a42d32577f5cc1b12b10",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops check progress final batch",
+  "task_key": "worker_ops_check-progress-final-batch_20260527T162952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-progress-final-batch_20260527T162952_result.json",
+    "occurrence": 1,
+    "bytes": 810,
+    "sha256": "8f03224b87336c8fb312d7dca06de8a88f8d3e5f5d7b902704141c2638f1fcb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均在运行，预计 25-40 分钟内完成。\n\n**核心结论：**\n\n| | Walker 008f s0 | Cheetah 008a s0 |\n|---|---|---|\n| 当前 step | 80K / 105K | 88K / 105K |\n| Peak eval | 233.8 @ 45K | **483.0 @ 85K ↑** |\n| vs baseline | 25.5% of 916 ❌ | **108.8% of 444 ✓** |\n| vs 同配置 s1 | 远低于 503 | 远超 281 (+72%) |\n| Gate | 锁死 dt=2 | 锁死 dt=2 |\n\n**严重问题：两个实验 gate 全程锁死 dt=2，empirical entropy=0。自适应 horizon 机制完全未工作，实验本质上是固定 dt=2 的 baseline。**\n\nCheetah s0 虽然 eval 数字好看（超 baseline），但这是在 gate 失效条件下取得的，不能归因于自适应机制。Walker s0 表现平庸，45K 后性能退化明显。\n\n报告已保存至 `art_20260527_987f09`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-progress-final-batch.md"
+}

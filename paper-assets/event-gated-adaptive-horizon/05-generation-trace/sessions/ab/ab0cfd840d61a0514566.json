@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab0cfd840d61a0514566",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "diagnose exp 015b",
+  "task_key": "worker_diagnose_exp_015b_20260515T120747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_015b_20260515T120747_result.json",
+    "occurrence": 1,
+    "bytes": 1162,
+    "sha256": "312d5598c42a77a87346a70b26df772b0df7574c324d9a715f20a166e38ddfbd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 根因\n**`CUDA error: invalid device ordinal`** — 脚本指定 `--device cuda:1`，但启动时 cuda:1 不可用。\n\n关键 traceback：\n```\nFile \"/root/autodl-tmp/event-gated-adaptive-horizon/networks.py\", line 111, in __init__\n    torch.zeros((1, self._deter), device=torch.device(self._device)),\ntorch.AcceleratorError: CUDA error: invalid device ordinal\n```\n\n### 状态\n- **训练步数**: 0（仅完成 prefill，模型初始化阶段就崩了）\n- **metrics.jsonl**: 只有 4 行 step=0 的 prefill 数据，无训练 metrics\n- **不是代码 bug**，不是 OOM，不是 `--dt_emb_freeze` 逻辑问题——纯粹是 GPU 设备不可达\n\n### 当前 GPU 状态\n服务器现在有 2 块 GPU：\n- cuda:0: NVIDIA RTX PRO 6000 Blackwell (96GB)\n- cuda:1: NVIDIA RTX PRO 6000 Blackwell (96GB)\n\n当时启动时可能 `CUDA_VISIBLE_DEVICES` 只暴露了 1 块 GPU，或 cuda:1 被其他进程独占。\n\n### 修复\n直接重新运行 `submit_plan015b.sh` 即可。当前两块 GPU 都可用。由于 step=0 没有任何 checkpoint，需要从头开始。建议先清空旧 logdir 或用新目录名。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-015b.md"
+}

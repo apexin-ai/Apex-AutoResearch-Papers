@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3f9614deeaeeb149b06",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check 019ab final status ve",
+  "task_key": "worker_check_019ab-final-status-ve_20260517T072224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_019ab-final-status-ve_20260517T072224_result.json",
+    "occurrence": 1,
+    "bytes": 1252,
+    "sha256": "dfba939d34b1a514bbeda06cb2f2a2f5a216e0859ac83e85507a2de968adbe4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 实验状态\n\n| 实验 | 当前步数 | 目标 | 进度 | 最新 eval_return |\n|------|---------|------|------|-----------------|\n| 019a_v2 (baseline) | 193,648 | 200,000 | ~97% | 69.43 (step 192500) |\n| 019b (CIVO trigger) | 69,600 | 200,000 | ~35% | 5.95 (step 62500) |\n\n两个进程都在正常运行。\n\n### V/E Trajectory 关键发现\n\n**019a_v2 (baseline)**：\n- value_mean 持续上升至 ~143 并饱和，但 eval_return 只到 ~60-70\n- V/E ratio 稳定在 **2.0-2.8** 范围，存在显著的 value overestimation\n- 这是 DreamerV3 在 PickCube 上的典型 optimistic value bias\n\n**019b (CIVO trigger)**：\n- eval_return 在 22.5k 步达到峰值 24.9 后**持续下降**至 3.7-5.9\n- value_mean 同样在下降（27.2 → 15.9），说明 critic 和 policy 同时退化\n- V/E ratio 波动大（最高 5.66），训练不稳定\n\n019b 出现了明显的训练崩溃/退化问题，需要诊断原因（可能是 gate_fixed_dt=2 + imag_horizon=8 的组合导致 imagination 质量下降）。\n\n### 产出\n1. V/E trajectory JSON 已保存到 `artifacts/pickcube_ve_trajectory.json`\n2. 对比图已生成在远程 `/root/autodl-tmp/event-gated-adaptive-horizon/pickcube_ve_comparison.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-019ab-final-status-ve.md"
+}

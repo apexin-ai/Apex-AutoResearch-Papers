@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "796cd5483a1ff0661bd2",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code exp 008e delusional critic test",
+  "task_key": "worker_code_exp_008e_delusional_critic_test_20260514T033809",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_008e_delusional_critic_test_20260514T033809_result.json",
+    "occurrence": 1,
+    "bytes": 1371,
+    "sha256": "dadc98125599c1410b00877307d3fd77c542779adb6f43092ac16de1a6e86e71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## Dry-run 结果\n\nstep=5000 的关键指标：\n\n| 指标 | 值 | 验证 |\n|------|-----|------|\n| **gate_dt_mean** | **1.0** | ✓ imagination 全部使用 dt=1 |\n| gate_dt_1_frac | 1.0 | ✓ 100% dt=1 |\n| gate_dt_2_frac | 0.0 | ✓ imagination 不使用 dt=2 |\n| **value_mean** | 0.00177 | ✓ 正常输出 |\n| model_loss | 20.96 | ✓ RSSM 正常训练（含 dt=2 subsample 数据） |\n| kl | 8.19 | ✓ 与 008d (8.08) 接近，world model 正常 |\n\n## 总结\n\n1. **无需代码改动** — `--gate_subsample_max_dt 2 --gate_fixed_dt 1 --imag_horizon 15` 完美实现：\n   - RSSM 通过 subsample 训练 dt_embedding[2]\n   - actor/critic 仅在 dt=1 imagination 上训练\n\n2. **value_mean 已有** — `tools.tensorstats(value.mode(), \"value\")` 自动输出\n\n3. **008e 完整启动命令**：\n```bash\npython dreamer.py --configs defaults dmc_proprio \\\n  --task dmc_walker_walk \\\n  --logdir logdir/exp_008e_subsample_on_fixed_dt1_h15 \\\n  --steps 105000 --seed 1 --compile False \\\n  --device cuda:1 \\\n  --gate_enabled True \\\n  --gate_fixed_dt 1 \\\n  --gate_subsample_max_dt 2 \\\n  --imag_horizon 15\n```\n\n4. **监控要点**：追踪 `value_mean / eval_return` 比率。如果该比率随训练加速上升（类似 008d，而非保持低位如 008a），则支持 Reviewer 的 delusional critic 假说。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-008e-delusional-critic-test.md"
+}

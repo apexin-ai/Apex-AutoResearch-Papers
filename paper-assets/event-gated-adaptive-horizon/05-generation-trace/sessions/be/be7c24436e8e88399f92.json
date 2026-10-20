@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be7c24436e8e88399f92",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code bjb1 40020 wait deploy exp055",
+  "task_key": "worker_code_bjb1-40020-wait-deploy-exp055_20260523T074703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bjb1-40020-wait-deploy-exp055_20260523T074703_result.json",
+    "occurrence": 1,
+    "bytes": 88,
+    "sha256": "f8d403d97229d5338691a95e88a6d86c70e8da24d5fc89f01429f42b35593d9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验仍在运行，已设置 60 秒后再次检查。轮询中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bjb1-40020-wait-deploy-exp055.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b8f36f30a26a5d755f0b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "writing reviewer corrections",
+  "task_key": "worker_writing_reviewer-corrections_20260516T015425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_reviewer-corrections_20260516T015425.log",
+    "occurrence": 1,
+    "bytes": 789051,
+    "sha256": "305fc20284cd575f931f60d3098631cccc7cf016b19202185aeceae5a226994f"
+  },
+  "statistics": {
+    "messages": 201,
+    "user_turns": 0,
+    "tool_calls": 84,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 29,
+      "tool_call": 84,
+      "tool_result": 84,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 201,
+      "chunks": [
+        {
+          "path": "b8f36f30a26a5d755f0b-part-0001.json",
+          "message_count": 168
+        },
+        {
+          "path": "b8f36f30a26a5d755f0b-part-0002.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/writing-reviewer-corrections.md"
+}

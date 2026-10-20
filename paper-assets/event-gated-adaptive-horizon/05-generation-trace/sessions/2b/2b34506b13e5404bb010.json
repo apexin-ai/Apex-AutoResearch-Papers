@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b34506b13e5404bb010",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "monitor training progress check",
+  "task_key": "worker_monitor_training-progress-check_20260526T061658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_training-progress-check_20260526T061658_result.json",
+    "occurrence": 1,
+    "bytes": 2510,
+    "sha256": "2afe4abb9575a613d44621092bac7502a3c77c4b0c598b35e1b15c0ab63a0069"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the progress report:\n\n---\n\n## 训练进度报告 (2026-05-26)\n\n### 1. exp_097_cheetah_008d_s3 (PID 3794, cuda:0)\n\n| 指标 | 值 |\n|------|-----|\n| **当前 step** | **65000 / 105000** (61.9%) |\n| **运行时间** | ~3h |\n| **最新 fps** | 6.5 (eval 期间会降至 ~2) |\n| **预估剩余** | 40000 steps ÷ ~6 fps ≈ **1.9h**，预计 ~2h 后完成 |\n\n**eval_return 轨迹:**\n| 5K | 15K | 25K | 35K | 45K | 55K | 65K |\n|-----|------|------|------|------|------|------|\n| 8.7 | 216.6 | 139.4 | 105.3 | 23.4 | 68.2 | **182.5** |\n\n**CIVO / ve_ratio 轨迹:**\n| 15K | 25K | 35K | 45K | 55K |\n|-----|-----|-----|------|-----|\n| 0.0 | 0.1 | 0.3 | **2.3** (alert!) | 0.8 |\n\n**关键发现 — CIVO onset 已确认：**\n- step 45K 出现 ve_ratio=2.3, delta_ve=1.9, civo/alert=1.0，CIVO detector 触发警告\n- step 55K 回落至 ve_ratio=0.8（瞬态 spike，非持续升高）\n- 但 onset 已触发 → **s3 = onset**\n- **Cheetah C1 onset rate: 3/4** (s0=onset, s1=no, s2=onset, s3=onset)\n\n**异常信号：** eval_return 波动较大（216→23→68→182），不稳定但仍在学习中。训练正常。\n\n---\n\n### 2. exp_100_walker_008a_s1 (PID 5591, cuda:1)\n\n| 指标 | 值 |\n|------|-----|\n| **当前 step** | **~56000 / 105000** (53.3%) |\n| **运行时间** | ~2h39m |\n| **最新 fps** | 8.2 |\n| **预估剩余** | 49000 steps ÷ ~8 fps ≈ **1.7h**，预计 ~1.7h 后完成 |\n\n**eval_return 轨迹:**\n| 5K | 15K | 25K | 35K | 45K | 55K |\n|-----|------|------|------|------|------|\n| 31.0 | 168.8 | 158.0 | 202.9 | 306.0 | **457.3** |\n\n**ve_ratio 轨迹:**\n| 15K | 25K | 35K | 45K | 55K |\n|-----|-----|-----|-----|-----|\n| 0.0 | 0.2 | 0.3 | 0.3 | **0.2** |\n\n**关键发现 — 符合预期（无 CIVO）：**\n- ve_ratio 稳定在 0.2-0.3，远低于 1.5x 阈值，无 onset 信号\n- eval_return 单调上升，55K 已达 457.3（Walker Walk 接近良好水平）\n- 符合 008a 预期的 \"value suppression\" pattern：gate_fixed_dt=2 限制 horizon 但不引发 CIVO\n\n**无异常信号。** 训练健康，学习曲线平稳上升。\n\n---\n\n### 总结\n\n| 实验 | 进度 | 预估完成 | CIVO onset | 状态 |\n|------|------|---------|------------|------|\n| exp_097 (Cheetah s3) | 65K/105K (62%) | ~2h | **YES** (45K) | 正常，波动大 |\n| exp_100 (Walker s1) | 56K/105K (53%) | ~1.7h | No | 正常，稳步上升 |\n\nexp_097 的 onset 确认将 Cheetah C1 onset rate 推至 **3/4 (75%)**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-training-progress-check-copy-2.md"
+}

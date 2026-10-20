@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b02a91fdf3e09f3fbb40",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops gpu stack experiments",
+  "task_key": "worker_ops_gpu-stack-experiments_20260518T235332",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-stack-experiments_20260518T235332_result.json",
+    "occurrence": 1,
+    "bytes": 598,
+    "sha256": "ed4184581fae6dea0d357b79abf3ccf04eaaa88430967b5aaef5e795b03cdcd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。当前服务器状态：\n\n| 实验 | GPU | PID | Seed | Steps | VRAM |\n|---|---|---|---|---|---|\n| exp_023_cheetah_baseline_s2 | cuda:0 | 753791 | 2 | 200K | ~4.7GB |\n| exp_023_cheetah_baseline_s4 | cuda:0 | 774033 | 4 | 200K | ~1.3GB (还在增长) |\n| exp_023_cheetah_baseline_s3 | cuda:1 | 768897 | 3 | 200K | ~4.2GB |\n| exp_001_baseline_s3 | cuda:1 | 774106 | 3 | 105K | ~1.3GB (还在增长) |\n\nGPU 0 已用 6.5GB/97.9GB，GPU 1 已用 5.5GB/97.9GB，无 OOM 风险。两个新实验 SEED CHECK 均通过，registry 已更新到 RUNNING 并包含完整 spec。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-stack-experiments.md"
+}

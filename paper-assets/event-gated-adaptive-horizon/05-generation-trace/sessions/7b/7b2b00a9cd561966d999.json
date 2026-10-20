@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b2b00a9cd561966d999",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "submit exp 008a unexposed s2",
+  "task_key": "worker_submit_exp_008a_unexposed_s2_20260518T051853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp_008a_unexposed_s2_20260518T051853_result.json",
+    "occurrence": 1,
+    "bytes": 269,
+    "sha256": "68564c34593ab7b0bf83d2c1a9fc8c62f4f9727e9db0083700a51eab31d974e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **exp_008a_unexposed_s2** 在 bjb1-45299 cuda:0 上启动，PID 724965\n- logdir `logdir/exp_008a_unexposed_s2` 已创建，tfevents 正在写入\n- Registry 状态已更新为 RUNNING\n- cuda:1 上的 exp_008a_unexposed_s1 未受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp-008a-unexposed-s2.md"
+}

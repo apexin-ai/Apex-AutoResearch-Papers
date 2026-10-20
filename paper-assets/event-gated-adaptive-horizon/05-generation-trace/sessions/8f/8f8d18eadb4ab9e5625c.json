@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f8d18eadb4ab9e5625c",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops check 016e final",
+  "task_key": "worker_ops_check-016e-final_20260515T221948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-016e-final_20260515T221948_result.json",
+    "occurrence": 1,
+    "bytes": 2964,
+    "sha256": "6ee519dc2bc7be02bc4965ccfe30ae79e1ba60a652fe5f26f778d2f66c803bba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完整。以下是完整分析：\n\n## exp_016e_sgs_walker_s1 结果\n\n- **进程状态**: ALIVE（PID 527392, 运行 9793s ≈ 2.7h, cuda:0）\n- **最终 step**: 96000 / 105000（仍在运行）\n- **退出码**: 无（尚未完成）\n\n### Eval 完整轨迹 + CIVO 诊断\n\n| Step | eval_return | value_mean | ve_ratio | baseline_ve | **NVE** | actor_loss | actor_entropy |\n|------|-------------|------------|----------|-------------|---------|------------|---------------|\n| 5K   | 31.00       | 0.001      | —        | —           | —       | -0.109     | 8.158         |\n| 15K  | 140.30      | 3.098      | —        | —           | —       | -0.312     | 1.049         |\n| 25K  | 141.75      | 22.97      | 0.162    | 0.087       | **1.86** | -0.230    | -1.554        |\n| 35K  | 173.01      | 53.55      | 0.310    | 0.241       | 1.28    | -0.142     | -2.118        |\n| 45K  | 184.03      | 85.32      | 0.464    | 0.331       | 1.40    | -0.093     | -3.455        |\n| 55K  | 153.79      | 115.63     | 0.752    | 0.404       | **1.86** | -0.068    | -3.617        |\n| 65K  | 324.30      | 152.30     | 0.470    | 0.563       | 0.83    | -0.074     | -4.545        |\n| 75K  | 326.67      | 190.04     | 0.582    | 0.719       | 0.81    | -0.051     | -4.063        |\n| 85K  | 256.21      | 215.39     | 0.841    | 0.701       | 1.20    | -0.026     | -3.827        |\n| 95K  | **31.73**   | 208.88     | **6.585**| 0.632       | **10.42** | **+0.014** | -4.652      |\n\n### CIVO 诊断总结\n\n- **value_mean 趋势**: 单调递增 0 → 215 → 209，在 95K collapse 后仍高达 209（应接近 ~30 对应实际 return）\n- **ve_ratio 趋势**: 缓慢上升 → 65K-75K 暂时修正（eval 跳至 324-327）→ 85K 再升 → **95K 爆炸到 6.59**\n- **NVE 趋势**: 早期轻度 CIVO（25K=1.86x, 55K=1.86x）→ 65-75K 暂缓（<1.0）→ **95K 灾难性 10.4x**\n- **actor_loss**: 持续接近 0 → 95K 翻正（0.014），策略优化崩溃\n- **actor_entropy**: 8.16 → -4.65，策略完全坍缩为确定性策略\n\n### gate_dt_mean\n**全程 2.0**（gate_dt_2_frac=1.0, gate_entropy=0.0）—— SGS 配置正确生效，fixed_dt=2 始终执行。\n\n### GPU 状态\n- GPU 0: 4165 MiB, 0% util（016e 在此卡，低 util 可能在 step 间隙）\n- GPU 1: 3278 MiB, 19% util（另有任务）\n\n### 结论\n\n**NEGATIVE: SGS（fixed_dt=2, subsample_max_dt=2）未能阻断 CIVO。**\n\n95K 发生灾难性 collapse：eval_return 从 256→32（接近随机策略），value_mean 仍维持 209，NVE 飙至 10.4x。尽管 gate 机制全程正确工作（dt 恒定为 2），value overestimation 仍持续积累并最终导致策略崩溃。65K-75K 的短暂高 eval（324-327）掩盖了 CIVO 积累，但 85K 开始 eval 下滑时 value 已无法追踪，最终在 95K 全面崩盘。\n\n进程仍在运行（96K→105K），但已处于 collapsed 状态，剩余 9K steps 无法恢复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-016e-final.md"
+}

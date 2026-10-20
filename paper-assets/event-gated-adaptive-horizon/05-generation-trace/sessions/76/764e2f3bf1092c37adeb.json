@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "764e2f3bf1092c37adeb",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check baseline cuda0 status",
+  "task_key": "worker_check_baseline-cuda0-status_20260513T114755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_baseline-cuda0-status_20260513T114755_result.json",
+    "occurrence": 1,
+    "bytes": 622,
+    "sha256": "f9ebdd2e21ac6a3289e9d3a13c306b2557020b940f51c7dc44befa81cfadbd5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n| 项目 | 状态 |\n|------|------|\n| **PID 9409** | 存活，运行约 9h45m，CPU time 6676min |\n| **cuda:0 GPU-Util** | 0%（当前空闲周期，正常波动） |\n| **cuda:0 显存** | 4165 MiB / 97887 MiB |\n| **当前 step** | **268000** / 500000（53.6%） |\n| **最新 train_return** | 967.67（近几个 episode 在 890~977 之间） |\n| **最近 eval_return** | 925.09 @ step 265000 |\n| **FPS** | 7.27 |\n\n另外 cuda:1 上跑着 exp_004 (event_gated_v4_s1, PID 36645)，GPU-Util 28%，4173 MiB 显存。\n\n按 FPS 7.27 估算，剩余 232k steps 约需 ~8.9h 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-baseline-cuda0-status.md"
+}

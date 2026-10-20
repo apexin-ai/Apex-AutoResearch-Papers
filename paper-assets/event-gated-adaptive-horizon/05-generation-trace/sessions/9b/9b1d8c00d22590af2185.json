@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b1d8c00d22590af2185",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 009d baseline walker s0",
+  "task_key": "worker_analysis_exp_009d_baseline_walker_s0_20260516T095003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_009d_baseline_walker_s0_20260516T095003_result.json",
+    "occurrence": 1,
+    "bytes": 1340,
+    "sha256": "09eaee293ca23b7db79c7f618322b0b553b0455f2c014e9068435936cc56f0d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。汇总：\n\n---\n\n## exp_009d_baseline_walker_s0 实验结果\n\n| 指标 | 值 |\n|------|-----|\n| **final_step** | 516,000 (最后 train log); 最后 eval 在 508,000 |\n| **completed** | ✅ 是 — 超过 500K 目标，EXIT_CODE=0 正常结束 |\n| **eval_return_final** | 927.62 (step 508K) |\n| **eval_return_peak** | 950.96 @ step 398K |\n| **eval_return_mean_last5** | 936.25 (steps 468K/478K/488K/498K/508K: 944.3, 944.7, 936.2, 928.4, 927.6) |\n| **v_over_e_ratio** | 无此指标（metrics.jsonl 中未记录） |\n| **wandb_run_id** | 无 — logdir 下无 wandb 目录 |\n| **log_path** | `~/runs/event-gated-adaptive-horizon/exp_009d_baseline_walker_s0.log` |\n| **checkpoint_path** | `/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009d_baseline_walker_s0/latest.pt` (229MB, 2026-05-16 17:47 CST) |\n\n### 异常检测\n- **step 78K 处有一次严重 dip**: eval_return 从 402 (68K) 骤降至 81 (78K)，随后立即恢复至 440 (88K)。单次评估波动，非持续性问题。\n- 300K 之后进入稳定平台期 (910–951)，无 NaN、无崩溃、无持续下降。\n- 注意：背景信息中提到 EXIT_CODE=129 (SIGHUP)，但实际日志末尾为 **EXIT_CODE=0**，说明进程正常完成后退出（可能 registry 记录的是更早一次中断前的状态）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-009d-baseline-walker-s0.md"
+}

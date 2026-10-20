@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cac0b930321f8f7f4163",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops exp086 orphan fix v2",
+  "task_key": "worker_ops_exp086_orphan_fix_v2_20260525T180737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp086_orphan_fix_v2_20260525T180737_result.json",
+    "occurrence": 1,
+    "bytes": 322,
+    "sha256": "7909e598cdd9aeb7f55b840e68830a21046eb01f62d3e0196e1f9f02ce323e0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**情况 B** — PID 37520（正确的新进程）已被之前 Worker 误杀，PID 37174（旧进程）是唯一存活者。\n\n已执行：\n- Kill 37174 + 37173 ✓\n- 清空 logdir ✓\n- Registry 更新为 DONE/killed ✓\n- 报告已注册 ✓\n\n**exp_086 需要重新提交。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp086-orphan-fix-v2.md"
+}

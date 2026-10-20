@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6968c75d184ea8d4a475",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "writing related work draft",
+  "task_key": "worker_writing_related-work-draft_20260515T042021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_related-work-draft_20260515T042021_result.json",
+    "occurrence": 1,
+    "bytes": 1338,
+    "sha256": "a95636c29c437a78053eede0f1ef18c66655f27b8be316ba329818812c39dfeb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Related Work 草稿已生成，保存在 `artifacts/paper_drafts/related_work_draft.md`。\n\n结构与内容概要：\n\n- **2.1 World-Model RL**: DreamerV1/V2/V3/V4 系列 + MBPO/MOPO model exploitation + TD-MPC2 对比，定位我们在 DreamerV3 imagination 范式内诊断特定失败模式\n- **2.2 Temporal Abstraction**: Options → FiGAR/TempoRL（model-free）→ Director/THICK/Hieros/LS-Imagine（hierarchical）→ **TAWM 重点对比**（MPC 下 Δt conditioning 有效 vs 我们发现 imagination-based AC 中有害）→ 时间离散化理论（Tallec, SAR, MTS3）\n- **2.3 Value Overestimation & Delusional Bias**: Thrun/Double-Q/TD3/SUNRISE → **Lu & Schuurmans 精确区分**（他们：policy-class constraints 下 Q-backup inconsistency；我们：temporal conditioning + model imprecision 下的 systematic overestimation）→ 近期 MBRL value dynamics 工作\n- **2.4 Multi-Step Prediction & Compounding Error**: Venkatraman/Asadi/Ke/Lambert 经典 + Frauenknecht rollout quality → 我们的发现：compounding error 不是 root cause，trained dt_embedding 才是\n\n所有引用均来自 `literature_map.yaml`，格式为 `\\citet{}`/`\\citep{}`。末尾 overall positioning 段总结文献 gap 并引出贡献。\n\n`register_artifact` 工具不可用，文件已直接写入产出目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-related-work-draft.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8b443216d2327ebb203",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper sgs analysis tex sync",
+  "task_key": "worker_paper_sgs-analysis-tex-sync_20260516T071252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_sgs-analysis-tex-sync_20260516T071252_result.json",
+    "occurrence": 1,
+    "bytes": 1962,
+    "sha256": "f3af5ecde33b686efb530a8135c4a3a3e5a47a06ffbdb7d30c6c023cc365ec2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All clean. Here's the summary:\n\n---\n\n**修改清单：**\n\n### 1. `analysis.tex` — 插入 SGS 梯度分析（主要修改）\n\n**位置：** §6.1 \"The CIVO Mechanism\" 之后，§6.2 \"Three Post-CIVO Outcomes\" 之前\n\n**新增内容（4 个 subsubsection）：**\n- `\\subsection{Selective Gradient Stopping and Gradient Decomposition}` — SGS 设计、假设\n- `\\subsubsection{Gradient Decomposition Reveals the Reward Pathway is Inactive}` — 梯度分解表（93% obs decoders, 7% KL, 0% reward）+ no-op 结论\n- `\\subsubsection{Implications for the CIVO Mechanism}` — obs reconstruction 主导、reward-only 干预无效、full-pathway SGS (exp_018) 才是真正干预\n- `\\subsubsection{Exp\\_016e Reinterpreted as Stochastic Variation}` — 016e vs 008d 时序差异归因于 cross-seed variation\n\n### 2. `analysis.tex` §6.7 Implications — 修正旧叙事\n\n**旧：** \"Regularization of the $\\dt$-embedding (e.g., gradient stopping or spectral normalization) could preserve the temporal signal while preventing co-adaptation; we leave empirical evaluation to future work.\"\n\n**新：** 引用 §sgs_gradient_analysis 说明 reward-only SGS 是 no-op，full-pathway SGS (exp_018) 才是真正干预，spectral normalization 等仍为 open question。\n\n### 3. 其他 .tex 文件检查结果\n\n| 文件 | 状态 |\n|------|------|\n| `results.tex` | 无 016e/SGS 内容，无旧叙事，无需修改 |\n| `methodology.tex` | 016e/018 已正确列在 factorial table（L55-56），footnote 正确，无需修改 |\n| `conclusion.tex` | 无相关引用，无需修改 |\n| `introduction.tex` | 无相关引用，无需修改 |\n| `appendix.tex` | 无相关引用，无需修改 |\n| `related_work.tex` | 无相关引用，无需修改 |\n\n### 4. 旧叙事残留扫描\n\n`\"partial mitigation\"`, `\"delays collapse\"`, `\"future work.*gradient stop\"` — 全部 .tex 文件中 **零匹配**，无残留。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-sgs-analysis-tex-sync.md"
+}

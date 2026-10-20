@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e279af6f3fc56230daff",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper claim language audit",
+  "task_key": "worker_paper_claim-language-audit_20260516T162609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_claim-language-audit_20260516T162609_result.json",
+    "occurrence": 1,
+    "bytes": 972,
+    "sha256": "8356fdcbc8f74dd5a9831a9255cc63e7e806ed1a7e2779c33e7658f52479feeb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**审计结果：8 处过强 claim，已修复 5 处（CRITICAL + HIGH）。**\n\n已直接修改的文件：\n- **results.md**：(1) \"neither necessary nor sufficient\" → 修正为 subsample 是必要 co-factor 但非独立充分条件；(2) \"definitively rules out\" → 去掉 \"definitively\"\n- **method_framingB_reaudit_v2.md**：(1)(2) 两处 \"not harmful\" 绝对表述 → 改为 \"does not trigger CIVO when imagination restricted to dt=1\"；(3) \"the necessary condition\" → \"a necessary condition... not independently sufficient\"\n\n未修改（仅记录在报告中）：\n- `018_prewrite_two_versions.md`：\"The complete causal mechanism\" — 待结果出来选版本时改\n- `method_90ca4b.md`：旧版本，同样的 \"not harmful\" 问题，优先级低\n- `results.md` line 73 \"reliably induces\"：边界可接受（2/2 seeds），标记为 LOW\n\n审计报告：`artifacts/_project/paper/claim_audit_report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-claim-language-audit.md"
+}

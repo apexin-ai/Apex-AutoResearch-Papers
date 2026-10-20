@@ -1,0 +1,98 @@
+{
+  "verification_date": "2026-05-17",
+  "target_parameter": "dynamics._dt_embedding.weight (dt_emb.weight)",
+  "checkpoint": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008d_subsample_on_h8/latest.pt",
+  "checkpoint_step": 55000,
+  "experiment": "008d",
+
+  "scripts_found": [
+    {
+      "path": "scripts/compute_gradient_decomposition.py",
+      "method": "torch.autograd.grad()",
+      "config": {"gate_fixed_dt": 0, "gate_subsample_max_dt": 8},
+      "config_status": "WRONG for 008d",
+      "no_saved_result": true
+    },
+    {
+      "path": "scripts/grad_decomp_008d.py",
+      "method": ".backward() + .grad attribute",
+      "config": {"gate_fixed_dt": 0, "gate_subsample_max_dt": 8},
+      "config_status": "WRONG for 008d",
+      "n_batches": 50,
+      "result_file": "artifacts/gradient_decomposition_008d.json",
+      "result_008d_55K": {"obs_pct": 39.5, "reward_pct": 24.8, "kl_pct": 34.8, "cont_pct": 0.9},
+      "note": "This script uses data['discount'] as cont target; also has very high std (std > mean)"
+    },
+    {
+      "path": "scripts/grad_decomp_008d_corrected.py",
+      "method": ".backward() + .grad attribute",
+      "config_correct": {"gate_fixed_dt": 2, "gate_subsample_max_dt": 2},
+      "config_wrong": {"gate_fixed_dt": 0, "gate_subsample_max_dt": 8},
+      "config_status": "CORRECT for 008d",
+      "n_batches": 50,
+      "result_file": "artifacts/analysis/gradient_decomposition_008d_corrected.json",
+      "result_correct_008d_55K": {"obs_pct": 16.3, "reward_pct": 49.0, "kl_pct": 34.7, "cont_pct": 0.0},
+      "result_wrong_008d_55K": {"obs_pct": 25.4, "reward_pct": 22.1, "kl_pct": 52.6, "cont_pct": 0.0}
+    }
+  ],
+
+  "independent_verification": {
+    "script": "scripts/verify_grad_decomp_independent.py",
+    "method": "torch.autograd.grad() per loss component",
+    "n_batches": 20,
+    "seed": 42,
+    "device": "cuda:0",
+    "dt_param_shape": [8, 32],
+
+    "correct_config_result": {
+      "config": {"gate_fixed_dt": 2, "gate_subsample_max_dt": 2},
+      "obs_norm": 0.05266177,
+      "reward_norm": 0.17624994,
+      "kl_norm": 0.10358438,
+      "cont_norm": 4.97e-10,
+      "total_norm": 0.33249610,
+      "obs_pct": 15.84,
+      "reward_pct": 53.01,
+      "kl_pct": 31.15,
+      "cont_pct": 0.0,
+      "obs_std": 0.01688796,
+      "reward_std": 0.06775897,
+      "kl_std": 0.02865851
+    },
+
+    "wrong_config_result": {
+      "config": {"gate_fixed_dt": 0, "gate_subsample_max_dt": 8},
+      "obs_norm": 0.57513293,
+      "reward_norm": 0.49097205,
+      "kl_norm": 1.16398943,
+      "cont_norm": 3.43e-10,
+      "total_norm": 2.23009441,
+      "obs_pct": 25.79,
+      "reward_pct": 22.02,
+      "kl_pct": 52.19,
+      "cont_pct": 0.0
+    }
+  },
+
+  "comparison_table": {
+    "header": ["source", "config", "obs%", "reward%", "kl%", "cont%"],
+    "rows": [
+      ["Independent (this run)", "correct (fixed=2,max=2)", 15.84, 53.01, 31.15, 0.0],
+      ["corrected.json (50 batches)", "correct (fixed=2,max=2)", 16.3, 49.0, 34.7, 0.0],
+      ["Paper Table 8 @55K", "claimed", 16.3, 49.0, 34.7, null],
+      ["Independent (this run)", "wrong (fixed=0,max=8)", 25.79, 22.02, 52.19, 0.0],
+      ["corrected.json (50 batches)", "wrong (fixed=0,max=8)", 25.4, 22.1, 52.6, 0.0],
+      ["grad_decomp_008d.json", "wrong (fixed=0,max=8)", 39.5, 24.8, 34.8, 0.9],
+      ["D061 (historical decision)", "unknown", 93.0, 0.0, 7.0, null]
+    ]
+  },
+
+  "conclusions": {
+    "paper_table8_verified": true,
+    "paper_table8_match": "Independent run (correct config): obs=15.84% vs 16.3%, reward=53.01% vs 49.0%, kl=31.15% vs 34.7%. Difference attributable to 20 vs 50 batch averaging.",
+    "D061_verified": false,
+    "D061_assessment": "D061 numbers (reward=0%, obs=93%, KL=7%) are not reproducible with any config or method tested. No script or saved result produces anything close. These numbers are WRONG.",
+    "config_sensitivity": "Config matters enormously: correct config (fixed_dt=2) gives reward-dominated gradient (53%); wrong config (fixed_dt=0) gives KL-dominated gradient (52%). The gradient norms also differ by ~7x (0.33 vs 2.23 total).",
+    "script_discrepancy": "grad_decomp_008d.json (wrong config) gives obs=39.5% which differs from both my wrong-config run (25.8%) and corrected.json wrong-config (25.4%). That script may have a bug (uses data['discount'] for cont instead of data['cont'], and has suspiciously high std)."
+  }
+}

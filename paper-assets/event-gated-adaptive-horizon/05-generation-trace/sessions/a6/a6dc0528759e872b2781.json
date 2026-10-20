@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6dc0528759e872b2781",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_25_1779849288.md",
+  "task_key": "loop_25_1779849288",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_25_1779849288.md",
+    "occurrence": 1,
+    "bytes": 3119,
+    "sha256": "e878f402b54a6bfbb98a22c5c63575a08a4bdba185387f2cb9c00c1fe4aabb65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 25\nreason: idle_timeout\nupdated: '2026-05-27T02:32:22+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 westd-51268 cuda:0/1（bjb1-45299 宕机不可用）\n- ICML 2026 数据锁定 5/27，投稿 DDL 5/29——5/27 后不得新增实验数据到论文\n- CIVO scope 精确为 \"multi-joint locomotion\"（D149），不得说 \"DMC locomotion\"\n- 旧代码 008e_v3 数据因参数路由 bug 无效（D152），论文仅引用当前代码结果\n- NVE 计算用 step-matched single-seed s1 baseline（exp_001 seed=1）\n\n### 2. 🖥️ 基础设施快照\n- **westd-51268**: 2×RTX PRO 6000 Blackwell 96GB, 工作目录 /root/autodl-tmp/event-gated-adaptive-horizon, Python: /root/miniconda3/bin/python, conda base env, 磁盘 816G/879G 可用\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- EGL 变量（DMC 需要）: `MUJOCO_GL=egl PYOPENGL_PLATFORM=egl MUJOCO_EGL_DEVICE_ID=<gpu_index>`\n- 活跃进程：无（全部实验完成）\n- 活跃 cron：0\n- CLI flag 已统一：两台服务器均使用 `--gate_dt_embed_dim`\n\n### 3. 📊 当前状态\n刚完成 session #25 启动初始化。全部 184 个实验完成（94 success / 41 negative），registry 无 RUNNING/ANALYZING/PREPARING（仅 exp_101 PREPARING 但 conclusion=killed）。\n\n已向 Director 汇报启动状态，等待 Director 回复。关键问题：\n- Worker `worker_analysis_rssm_v3_cheetah_20260526T074729` 仍显示 running（07:47 UTC 启动，可能卡住），待 Director 确认是否 cancel\n- ROADMAP 标记 \"Paper Agent 更新论文正文数字 + RSSM 叙事调整\" 进行中，但我这边无对应 worker——Paper Agent 可能是独立 session\n- GPU 全部空闲，无后续训练实验\n\n### 4. 📋 待办\n- Director 回复启动汇报 → 按指令执行（可能是确认数据锁定、安排论文收尾、或其他紧急任务）\n- Worker `worker_analysis_rssm_v3_cheetah` 回调 → 处理分析结果（但大概率已卡死，需 cancel）\n- Paper Agent 完成 → Director 确认 → 数据锁定声明\n- 如 Director 要求追加分析/图表 → 在数据锁定前派 Worker 执行\n\n### 5. 🎯 战略上下文\n- **核心结论**：CIVO 是 trained dt_embedding 驱动的 complexity-dependent 现象（Walker 8/8, Cheetah 2/2, Cartpole 0/3），frozen/removed dt_emb 100% 阻止（Fisher exact p<0.0001）\n- **当前阶段**：论文收尾冲刺，所有实验/分析已完成，等 Paper Agent 更新论文正文 → Director 确认 → 数据锁定\n- **决策链**：D149(scope=multi-joint) → D151(Cheetah 最小披露) → D152(旧 008e_v3 是 bug) → D153(C6 升级 100% mitigation) → D155(NVE 组合诊断) → D158(RSSM gap 降级为 Walker 传导路径)\n- **易错点**：\n  1. RSSM fidelity gap 已降级为 Walker 传导路径（D158），不再是普适机制——论文叙事必须与此一致\n  2. Cheetah CIVO 是 self-correcting（NVE peak 后 eval 恢复），与 Walker permanent collapse 不同——两者 onset 100% 一致但动力学不同\n  3. bjb1-45299 宕机，所有基础设施仅在 westd-51268，别用旧 handoff 里的 bjb1 信息\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-25-1779849288.md"
+}

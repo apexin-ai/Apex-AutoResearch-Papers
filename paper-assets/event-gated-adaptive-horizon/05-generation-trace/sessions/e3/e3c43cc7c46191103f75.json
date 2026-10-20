@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3c43cc7c46191103f75",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper method reaudit",
+  "task_key": "worker_paper_method-reaudit_20260516T051217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_method-reaudit_20260516T051217_result.json",
+    "occurrence": 1,
+    "bytes": 565,
+    "sha256": "f53ed9dfe7e92024cc4cbd7f7ab9010c7bd4de0dcc2f65fcd8a1332418c120c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Framing B re-audit 完成。\n\n**唯一实际修改**：DIFF-M4 梯度分解子节缺少三篇必引文献，已补入：\n- `\\citep{hafner2023dreamerv3}` — DreamerV3 joint loss 结构说明（line 153）\n- `\\citep{shang2024harmonydream}` — obs reconstruction 主导 reward learning 的一致性（line 162）\n- `\\citep{chen2018gradnorm}` — multi-task gradient magnitude imbalance 的形式化（line 162）\n\n其余 DIFF-M2/M3/M5/M6/M7 和全部 9 条红线约束均已在位，无需修改。Artifact 已注册 `art_20260516_a8af6f`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-method-reaudit.md"
+}

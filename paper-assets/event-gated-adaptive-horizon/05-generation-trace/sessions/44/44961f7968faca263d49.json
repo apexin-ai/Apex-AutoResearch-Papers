@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44961f7968faca263d49",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper detector section integrate",
+  "task_key": "worker_paper_detector-section-integrate_20260517T061720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_detector-section-integrate_20260517T061720_result.json",
+    "occurrence": 1,
+    "bytes": 666,
+    "sha256": "1d1baee10dea8e816597355e8e0e94ad8ca3c0009987c97b6c8cbb99a3b66366"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Those `---` occurrences are all in the pre-existing sections (table cells meaning \"not applicable\" and one caption that was already there), not in my additions. My new section is clean.\n\nDone. The CIVO Detector subsection has been added to `sections/results.tex` (after the RSSM fidelity paragraph) with:\n- Motivation (2 paragraphs)\n- Algorithm pseudocode (`algorithmic` environment, Algorithm 1)\n- Condition explanations\n- Validation table (inline, booktabs)\n- Results analysis (TPR/FPR, predictive vs reactive, timing guideline)\n- Limitations paragraph\n\nAlso added `\\usepackage{algorithm}` and `\\usepackage{algorithmic}` to `main.tex`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-detector-section-integrate.md"
+}

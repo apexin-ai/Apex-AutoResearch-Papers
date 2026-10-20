@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36cb5966ae4b4df9619a",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis nve threshold v2 corrected",
+  "task_key": "worker_analysis_nve_threshold_v2_corrected_20260515T150538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_nve_threshold_v2_corrected_20260515T150538_result.json",
+    "occurrence": 1,
+    "bytes": 1886,
+    "sha256": "371bb5c08b8721865ecdec3d33b20abe33cf28367d622be679c127b0b6e4e9c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n### Per-experiment Max NVE\n\n| Experiment | Max NVE | Label |\n|---|---|---|\n| exp_001_baseline | 1.0000 | HEALTHY |\n| exp_008a_no_subsample_dt2 | 1.7191 | HEALTHY |\n| exp_008e_v3_walker_s1 | 1.9285 | HEALTHY |\n| exp_008f_no_dt_embed_subsample_on_h8 | 1.0198 | HEALTHY |\n| exp_006_fixed_dt2 | **4.8362** | COLLAPSED |\n| exp_008d_subsample_on_h8 | **4.1292** | COLLAPSED |\n| exp_007_fixed_dt4 | 1.2236 | COLLAPSED |\n| exp_008c_no_subsample_dt2_h8 | 1.2234 | COLLAPSED |\n| exp_008e_v3_walker_s2 | **3.7801** | COLLAPSED |\n\n### Group A (CIVO-specific): N=6, AUROC=1.0, CI=[1.0, 1.0]\n\n| Threshold | TP | TN | FP | FN | Acc | Prec | Rec | F1 |\n|---|---|---|---|---|---|---|---|---|\n| 1.3 | 2 | 2 | 2 | 0 | 0.667 | 0.500 | 1.000 | 0.667 |\n| 1.5 | 2 | 2 | 2 | 0 | 0.667 | 0.500 | 1.000 | 0.667 |\n| 1.7 | 2 | 2 | 2 | 0 | 0.667 | 0.500 | 1.000 | 0.667 |\n| **2.0** | **2** | **4** | **0** | **0** | **1.000** | **1.000** | **1.000** | **1.000** |\n\n### Group B (all-failure): N=9, AUROC=0.8, CI=[0.4, 1.0]\n\n| Threshold | TP | TN | FP | FN | Acc | Prec | Rec | F1 |\n|---|---|---|---|---|---|---|---|---|\n| 1.3 | 3 | 2 | 2 | 2 | 0.556 | 0.600 | 0.600 | 0.600 |\n| 1.5 | 3 | 2 | 2 | 2 | 0.556 | 0.600 | 0.600 | 0.600 |\n| 1.7 | 3 | 2 | 2 | 2 | 0.556 | 0.600 | 0.600 | 0.600 |\n| **2.0** | **3** | **4** | **0** | **2** | **0.778** | **1.000** | **0.600** | **0.750** |\n\n**Recommended threshold: 2.0x**\n\nReviewer 的判断得到了验证：exp_007（MaxNVE=1.22）和 exp_008c（MaxNVE=1.22）的 v/e 确实没有病态上升，与 healthy 实验在同一量级。NVE 无法检测这两类 non-CIVO failure，导致 Group B 的 AUROC 从 1.0 降到 0.8，CI 宽到 [0.4, 1.0]。threshold=2.0x 在两组上都零 FP，是最佳选择。\n\nJSON 已保存到 `artifacts/nve_threshold_v2.json`，脚本在 `scripts/nve_threshold_analysis_v2.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-nve-threshold-v2-corrected.md"
+}

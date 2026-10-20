@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8db432f53a59bede0c86",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "diagnose tcn rave status",
+  "task_key": "worker_diagnose_tcn_rave_status_20260520T030432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_tcn_rave_status_20260520T030432_result.json",
+    "occurrence": 1,
+    "bytes": 1489,
+    "sha256": "9abb69f5663fa2ce6ad923873170e895e3c1de77bd5ec1b95ec80290e59d5ec3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### 进程状态：两个实验都在正常运行\n\n| 实验 | PID | 状态 | 运行时间 | GPU |\n|------|-----|------|----------|-----|\n| exp_027_tcn_walker_s0 | 879355 | `Ss+` (运行中) | 10m27s | cuda:0 (PID 879360, 3257 MiB) |\n| exp_028_rave_walker_s0 | 879636 | `Ss+` (运行中) | 10m24s | cuda:1 (PID 879641, 2742 MiB) |\n\n### GPU 使用情况\n\n| GPU | 型号 | 显存使用 | 利用率 |\n|-----|------|----------|--------|\n| 0 | RTX PRO 6000 Blackwell | 10871/97887 MiB | 86% |\n| 1 | RTX PRO 6000 Blackwell | 5498/97887 MiB | 95% |\n\n注意：GPU 0 上还有其他进程（PID 877969, 878374），共占用额外 ~6.5GB。\n\n### 训练进度\n\n- **exp_027 (TCN)**: 已完成第一轮 eval（step 5000, eval_return=37.4），正在训练中（step 5000 的训练 metrics 已输出）\n- **exp_028 (RAVE)**: 进度更快，已到 step 8000（train_return ~31.7-39.8），说明训练正常推进\n\n### TCN/RAVE 代码实现：已实现\n\n- **TCN**: `networks.py:241` — `img_step()` 接收 `tcn_sigma` 参数，当 >0 时对 dt embedding 添加高斯噪声（L257-258）。`models.py:691` 调用时传入 config 中的 `tcn_sigma`。\n- **RAVE**: `models.py:746-751` — 当 `rave_ceiling > 0` 时，用 `_rave_anchor * rave_ceiling` 做 ceiling 约束。\n\n### 结论\n\n两个实验都在正常运行，代码已正确实现 TCN/RAVE 功能。Registry 状态仍为 PREPARING 是 registry 更新滞后，不影响实际训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-tcn-rave-status.md"
+}

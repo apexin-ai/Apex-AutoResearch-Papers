@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "829dbf859c8907199c1b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "monitor 016e 009d progress",
+  "task_key": "worker_monitor_016e-009d-progress_20260515T221750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_016e-009d-progress_20260515T221750_result.json",
+    "occurrence": 1,
+    "bytes": 1144,
+    "sha256": "56b4af94b626ab2129641f95260f86048b6efbb745bb69949e5d7846b8fd2aeb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "report.md 是自动生成的，无法直接写入。以下是状态汇总：\n\n---\n\n### exp_016e_sgs_walker_s1 (cuda:1, PID 527392)\n- **运行中** — uptime 2h41m, CPU 1223%\n- **Step: 12,000 / 105,000**\n- GPU 1: 23% util, 3278 MiB / 97887 MiB\n- **5K eval 已通过，无死锁** — eval_return = 35.48（之前所有版本在此处死锁，现在已修复）\n- train_return 在 12K 升至 ~83（8K 时为 ~37）\n- gate_dt 仍固定在 2.0（100% dt=2_frac），尚未分化\n- **尚未到 15K eval**，按当前速度预计 ~1h 内到达\n\n### exp_009d_baseline_walker_s0 (cuda:0, PID 149708)\n- **运行中** — uptime 9h53m, CPU 934%\n- **Step: 228,000 / 500,000**（45.6%）\n- GPU 0: 4165 MiB / 97887 MiB\n- **最新 eval_return @ 218K: 638.19**（新高，稳步上升: 559→591→638）\n- train_return @ 228K: ~654\n- fps: 7.36\n- 228K eval 正在进行中（已写入 eval 起始标记）\n\n### 关键判断\n1. **016e 死锁修复确认成功** — 5K eval 两次通过（Logger.video() no-op patch 有效）\n2. 009d baseline 表现健康，eval_return 持续攀升，预计还需 ~10h 完成 500K steps"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-016e-009d-progress.md"
+}

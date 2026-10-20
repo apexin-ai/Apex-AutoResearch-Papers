@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "id": "5d73c46eaeca2067a404",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "diagnose exp walker no dt emb s1 status",
+  "task_key": "worker_diagnose_exp_walker_no_dt_emb_s1_status_20260528T160009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_walker_no_dt_emb_s1_status_20260528T160009_result.json",
+    "occurrence": 1,
+    "bytes": 2704,
+    "sha256": "2bf445b5cdabccb0c8af4e0fa51b16adefefa1cce224059004d28c184fe013a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "W&B tool is broken. I have enough data from the server. Here's the result:\n\n```json\n{\n  \"actual_status\": \"completed\",\n  \"final_step\": 112000,\n  \"exit_code\": \"unknown (log only captured 39 lines of startup, no nohup.out)\",\n  \"metrics\": {\n    \"eval_return_final\": 468.83,\n    \"eval_length\": 500.0,\n    \"eval_episodes\": 10,\n    \"eval_step\": 105000,\n    \"ve_ratio\": 0.2301,\n    \"delta_ve\": -0.2915,\n    \"civo_alert\": 0.0,\n    \"value_mean\": 107.88,\n    \"gate_dt_mean\": 2.0,\n    \"gate_dt_std\": 0.0,\n    \"gate_dt_2_frac\": 1.0,\n    \"gate_empirical_entropy\": 0.0,\n    \"gate_entropy_ratio\": 0.0,\n    \"actor_entropy\": -5.05,\n    \"model_loss\": 4.333,\n    \"fps\": 10.01,\n    \"last_train_return_avg_at_112k\": 426.82\n  },\n  \"log_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_walker_no_dt_emb_s1.log\",\n  \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_walker_no_dt_emb_s1/latest.pt\"\n}\n```\n\n关键发现：\n- **进程已结束**，无 dreamer/python 训练进程在运行。最后文件修改时间 May 27 22:24（~26 小时前）。\n- **跑到 112K 步**，超过 105K 目标。最后一次 eval 在 105K 步，之后继续训练到 112K 但没有 110K 的 eval 记录，可能被系统终止或训练循环在 episode 边界自然结束。\n- **无 DONE/SENTINEL 文件**，无 nohup.out，log 文件仅 39 行（启动日志）。\n- **gate 完全固定在 dt=2**（gate_dt_2_frac=1.0, entropy=0.0），符合 no_dt_emb 消融预期——没有 dt embedding 时 gate 退化为常量。\n- **eval_return 468.83**，train_return 在 112K 步时均值 ~427。\n- Registry 中未找到匹配记录（exp_name 可能不完全匹配），需要更新 registry 状态为 COMPLETED。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "actual_status": "completed",
+              "final_step": 112000,
+              "exit_code": "unknown (log only captured 39 lines of startup, no nohup.out)",
+              "metrics": {
+                "eval_return_final": 468.83,
+                "eval_length": 500.0,
+                "eval_episodes": 10,
+                "eval_step": 105000,
+                "ve_ratio": 0.2301,
+                "delta_ve": -0.2915,
+                "civo_alert": 0.0,
+                "value_mean": 107.88,
+                "gate_dt_mean": 2.0,
+                "gate_dt_std": 0.0,
+                "gate_dt_2_frac": 1.0,
+                "gate_empirical_entropy": 0.0,
+                "gate_entropy_ratio": 0.0,
+                "actor_entropy": -5.05,
+                "model_loss": 4.333,
+                "fps": 10.01,
+                "last_train_return_avg_at_112k": 426.82
+              },
+              "log_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_walker_no_dt_emb_s1.log",
+              "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_walker_no_dt_emb_s1/latest.pt"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-walker-no-dt-emb-s1-status.md"
+}

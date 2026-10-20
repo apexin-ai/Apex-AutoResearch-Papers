@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6035f27bef49c429f5a6",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 067 frozen dt emb walker plan015",
+  "task_key": "worker_analysis_exp_067_frozen_dt_emb_walker_plan015_20260525T065640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_067_frozen_dt_emb_walker_plan015_20260525T065640_result.json",
+    "occurrence": 1,
+    "bytes": 740,
+    "sha256": "1777b410ddd425138532676e291640b9b62e13c94bbb6c428a79c3e33d3bfeae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n**exp_067_frozen_dt_emb_walker_plan015 → conclusion: success**\n\n| 指标 | exp_042 (parent) | exp_067 |\n|------|------------------|---------|\n| eval_final | 612.45 | 281.5 |\n| eval_peak | 682.38 | 334.1 |\n| nve_peak | 0.194 | 0.4 |\n| CIVO triggered | No | No |\n\nNVE peak=0.4 远低于 1.5x 阈值，civo_alert 全程为 0。Frozen dt_embedding 确实不触发 CIVO，验证了 **dt_emb 的梯度训练是 CIVO 触发的必要条件**，而非 dt_emb 的存在本身。\n\n性能方面 exp_067 仅为 exp_042 的约一半，因为 frozen embedding 使 gate 完全锁死在 dt=2（entropy=0），丧失了自适应能力。\n\nRegistry 已更新为 DONE/success，analysis 已注册为 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-067-frozen-dt-emb-walker-plan015.md"
+}

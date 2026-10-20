@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3d9161fc9e2f7eef83c",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "research negative pattern analysis",
+  "task_key": "worker_research_negative_pattern_analysis_20260514T032102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_negative_pattern_analysis_20260514T032102_result.json",
+    "occurrence": 1,
+    "bytes": 709,
+    "sha256": "9c751c23d843ce2441e412abd42f2e9a775c6aba6aa977cce761cf8c626ced18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文档已写入并注册 (`art_20260514_c907bc`)。核心内容：\n\n- **实现 bug 类** (002/003/004)：3 条教训——跨模块 shape assert、canary metrics 前 1K 步验证、单变量实验\n- **结构性发现类** (005/006/007)：hard Gumbel gate 关闭、dt 与 compounding error 超线性关系、peak-then-collapse 早停信号\n- **008a vs 008c 解读**：打破了 3 条原始预测，新结论是 H（imagination steps 数量）才是关键变量，非 dt 本身；附 65K/105K 决策树\n- **dt_embedding 风险评估**：008d 只能部分覆盖，需要额外实验 (008e: dt_embedding + dt=1 训练数据) 才能完全隔离 embedding 效应；建议等 008d 结果再决定"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-negative-pattern-analysis.md"
+}

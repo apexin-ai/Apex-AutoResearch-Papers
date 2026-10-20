@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b64b4100219560e47b1c",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops 016e finalize and cheetah prep",
+  "task_key": "worker_ops_016e-finalize-and-cheetah-prep_20260515T222419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_016e-finalize-and-cheetah-prep_20260515T222419_result.json",
+    "occurrence": 1,
+    "bytes": 1514,
+    "sha256": "6f77144f20a61f0e9abac602e8d2a0e701aa68327e8e28fa9c06b1c311d08c3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 016e 状态\n- 进程: **ALIVE** (PID 527392, GPU 1, 3259 MiB)\n- 当前 step: **96000** (train_return=100.7)\n- eval_return 轨迹:\n  - 5K: 31.0 → 15K: 140.3 → 25K: 141.8 → 35K: 173.0 → 45K: 184.0\n  - 55K: 153.8 → 65K: **324.3** → 75K: **326.7** (peak)\n  - 85K: 256.2 → 95K: **31.7** (崩溃)\n- exit_code: 未生成（仍在跑）\n- 最后 eval 在 95K，下次 eval 在 105K（即终点）。按指示不 kill，让它跑完。\n\n## 009d 状态\n- 进程: **ALIVE** (PID 149708, GPU 0, 4156 MiB)\n- 当前 step: **228000** (fps=7.3)\n- 最近 eval_return:\n  - 188K: 511.0 → 198K: 558.7 → 208K: 591.3 → 218K: 638.2 → 228K: **692.1**\n- 趋势持续上升，表现很好。\n\n## GPU 状态\n- GPU 0: 4165 MiB, 0% util — 009d 占用（可能在 eval 间隔，瞬时低）\n- GPU 1: 3278 MiB, 36% util — 016e 占用\n- **两张 GPU 都被占用，Cheetah 无空闲 GPU。** 需等 016e 跑完（~105K，距离约 9K steps）释放 GPU 1。\n\n## Cheetah 准备\n- logdir 状态: 已有 `cheetah_dryrun_200step/`（dry run 成功，5K step 有数据）\n- task 名: `dmc_cheetah_run`（configs 中用 `--task dmc_cheetah_run --configs defaults dmc_proprio`）\n- 实验脚本: `scripts/cheetah_run_experiments.sh` 和 `scripts/submit_plan020_cheetah_baseline.sh` 已就绪\n  - 010a: baseline, 512K steps, 3 seeds\n  - 010b: trained_dt2, 105K steps, 3 seeds\n  - 010c: no_embed_dt2, 105K steps, 3 seeds\n- 代码版本: git 命令被 read_only 阻止，无法查看"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-016e-finalize-and-cheetah-prep.md"
+}

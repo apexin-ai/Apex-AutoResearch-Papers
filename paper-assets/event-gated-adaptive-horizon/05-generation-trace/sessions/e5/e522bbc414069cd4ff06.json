@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e522bbc414069cd4ff06",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops fix tier2 device and restart",
+  "task_key": "worker_ops_fix-tier2-device-and-restart_20260527T234313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-tier2-device-and-restart_20260527T234313_result.json",
+    "occurrence": 1,
+    "bytes": 633,
+    "sha256": "b5c4aafbc0eef6a49ffa5f03ff2b9ae49648c8f6b4c46a3cd8799d4714e0eaed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n| 项目 | 状态 |\n|------|------|\n| 残留进程 kill | 全部清除，无 dreamer/tmux 残留 |\n| GPU 0 显存 | **49176 MiB 孤儿显存未释放** — 无进程持有，GPU reset 不支持（硬件限制），需重启实例才能完全清除。剩余 ~48GB 可用 |\n| GPU 1 | 干净，0 MiB 占用 |\n| 旧 logdir | 已删除（s6/s6_r2/s7/s7_r2） |\n| tmux sessions | 无 |\n\n**结论**：GPU 0 有 48GB 可用、GPU 1 完全干净。Dreamer walker 实验内存需求远低于 48GB，可以正常重新提交。如果想完全清除 GPU 0 的 49GB 孤儿显存，需要重启 AutoDL 实例。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-tier2-device-and-restart.md"
+}

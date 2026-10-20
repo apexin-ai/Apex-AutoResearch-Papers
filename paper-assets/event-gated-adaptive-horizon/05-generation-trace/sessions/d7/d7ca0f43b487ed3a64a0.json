@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7ca0f43b487ed3a64a0",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "verify 008e v3 s2 alive",
+  "task_key": "worker_verify_008e_v3_s2_alive_20260515T004931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_008e_v3_s2_alive_20260515T004931_result.json",
+    "occurrence": 1,
+    "bytes": 421,
+    "sha256": "6dd314e3033460a6503820ceb3dc68e7201bad4f540f7286373cc52d2218e3b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **进程 PID 43437**：存活，已运行 **3 分 7 秒**，对应 `dreamer.py` walker_walk seed=2 实验\n- **GPU 占用**：子进程 PID 43442 在 GPU-1（`GPU-7b49...`）上占用 **794 MiB**，`CUDA_VISIBLE_DEVICES=1` 符合预期\n- **训练已开始**：logdir 已创建，`metrics.jsonl` 有 **5 行**数据，tfevents 文件也在写入\n\n一切正常，训练在稳定运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-008e-v3-s2-alive.md"
+}

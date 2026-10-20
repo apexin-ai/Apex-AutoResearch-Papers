@@ -1,0 +1,1676 @@
+{
+  "schema_version": "1.0",
+  "session_id": "e602b26bd93d083fdce0",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-25T19:36:53.170Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Dxwswffz1A1GewEYZHtmkA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[55000] civo/ve_ratio 0.4 / civo/delta_ve 0.2 / civo/alert 0.0 / model_loss 4.6 / model_grad_norm 7.9 / height_loss 0.0 / orientations_loss 0.1 / velocity_loss 0.6 / reward_loss 0.6 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 5.4 / rep_loss 5.4 / kl 5.3 / prior_ent 36.1 / post_ent 30.7 / normed_target_mean 0.7 / normed_target_std 0.4 / normed_target_min -0.3 / normed_target_max 1.2 / EMA_005 64.1 / EMA_095 112.3 / value_mean 94.4 / value_std 16.9 / value_min 47.6 / value_max 114.0 / target_mean 95.3 / target_std 17.5 / target_min 52.3 / target_max 120.4 / imag_reward_mean 0.5 / imag_reward_std 0.6 / imag_reward_min 0.0 / imag_reward_max 3.0 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -4.7 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.0 / actor_grad_norm 0.1 / value_loss 1.1 / value_grad_norm 0.4 / update_count 12599.0 / fps 9.6\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "2f021426-0ec6-40d6-a516-65f97e194462",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[55000] civo/ve_ratio 0.4 / civo/delta_ve 0.2 / civo/alert 0.0 / model_loss 4.6 / model_grad_norm 7.9 / height_loss 0.0 / orientations_loss 0.1 / velocity_loss 0.6 / reward_loss 0.6 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 5.4 / rep_loss 5.4 / kl 5.3 / prior_ent 36.1 / post_ent 30.7 / normed_target_mean 0.7 / normed_target_std 0.4 / normed_target_min -0.3 / normed_target_max 1.2 / EMA_005 64.1 / EMA_095 112.3 / value_mean 94.4 / value_std 16.9 / value_min 47.6 / value_max 114.0 / target_mean 95.3 / target_std 17.5 / target_min 52.3 / target_max 120.4 / imag_reward_mean 0.5 / imag_reward_std 0.6 / imag_reward_min 0.0 / imag_reward_max 3.0 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -4.7 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.0 / actor_grad_norm 0.1 / value_loss 1.1 / value_grad_norm 0.4 / update_count 12599.0 / fps 9.6\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[55000] civo/ve_ratio 0.4 / civo/delta_ve 0.2 / civo/alert 0.0 / model_loss 4.6 / model_grad_norm 7.9 / height_loss 0.0 / orientations_loss 0.1 / velocity_loss 0.6 / reward_loss 0.6 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 5.4 / rep_loss 5.4 / kl 5.3 / prior_ent 36.1 / post_ent 30.7 / normed_target_mean 0.7 / normed_target_std 0.4 / normed_target_min -0.3 / normed_target_max 1.2 / EMA_005 64.1 / EMA_095 112.3 / value_mean 94.4 / value_std 16.9 / value_min 47.6 / value_max 114.0 / target_mean 95.3 / target_std 17.5 / target_min 52.3 / target_max 120.4 / imag_reward_mean 0.5 / imag_reward_std 0.6 / imag_reward_min 0.0 / imag_reward_max 3.0 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -4.7 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.0 / actor_grad_norm 0.1 / value_loss 1.1 / value_grad_norm 0.4 / update_count 12599.0 / fps 9.6\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+              }
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CRhEoUN6sTZvtPVoHSM2CN",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-45299",
+                "command": "grep \"65000\\] civo\" ~/runs/event-gated-adaptive-horizon/exp_084_frozen_dt_emb_walker_s0.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "87704b80-8474-472e-9c46-890884dc8a2c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DAuPqdZmhqFGrWMCxjNvAM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3963,
+                "cache_read_input_tokens": 66298,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3963
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-25T19:36:54.030Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CRhEoUN6sTZvtPVoHSM2CN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[65000] civo/ve_ratio 0.4 / civo/delta_ve -0.0 / civo/alert 0.0 / model_loss 4.6 / model_grad_norm 7.8 / height_loss 0.0 / orientations_loss 0.1 / velocity_loss 0.6 / reward_loss 0.6 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 5.5 / rep_loss 5.5 / kl 5.4 / prior_ent 36.4 / post_ent 30.9 / normed_target_mean 0.5 / normed_target_std 0.3 / normed_target_min -0.1 / normed_target_max 1.1 / EMA_005 57.8 / EMA_095 122.1 / value_mean 90.4 / value_std 22.0 / value_min 53.3 / value_max 128.0 / target_mean 90.2 / target_std 22.4 / target_min 53.8 / target_max 131.4 / imag_reward_mean 0.5 / imag_reward_std 0.6 / imag_reward_min 0.0 / imag_reward_max 3.3 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -3.9 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss 0.0 / actor_grad_norm 0.1 / value_loss 1.1 / value_grad_norm 0.7 / update_count 15099.0 / fps 9.5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "355415bf-058c-4893-81c7-399259e37f44",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[65000] civo/ve_ratio 0.4 / civo/delta_ve -0.0 / civo/alert 0.0 / model_loss 4.6 / model_grad_norm 7.8 / height_loss 0.0 / orientations_loss 0.1 / velocity_loss 0.6 / reward_loss 0.6 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 5.5 / rep_loss 5.5 / kl 5.4 / prior_ent 36.4 / post_ent 30.9 / normed_target_mean 0.5 / normed_target_std 0.3 / normed_target_min -0.1 / normed_target_max 1.1 / EMA_005 57.8 / EMA_095 122.1 / value_mean 90.4 / value_std 22.0 / value_min 53.3 / value_max 128.0 / target_mean 90.2 / target_std 22.4 / target_min 53.8 / target_max 131.4 / imag_reward_mean 0.5 / imag_reward_std 0.6 / imag_reward_min 0.0 / imag_reward_max 3.3 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -3.9 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss 0.0 / actor_grad_norm 0.1 / value_loss 1.1 / value_grad_norm 0.7 / update_count 15099.0 / fps 9.5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[65000] civo/ve_ratio 0.4 / civo/delta_ve -0.0 / civo/alert 0.0 / model_loss 4.6 / model_grad_norm 7.8 / height_loss 0.0 / orientations_loss 0.1 / velocity_loss 0.6 / reward_loss 0.6 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 5.5 / rep_loss 5.5 / kl 5.4 / prior_ent 36.4 / post_ent 30.9 / normed_target_mean 0.5 / normed_target_std 0.3 / normed_target_min -0.1 / normed_target_max 1.1 / EMA_005 57.8 / EMA_095 122.1 / value_mean 90.4 / value_std 22.0 / value_min 53.3 / value_max 128.0 / target_mean 90.2 / target_std 22.4 / target_min 53.8 / target_max 131.4 / imag_reward_mean 0.5 / imag_reward_std 0.6 / imag_reward_min 0.0 / imag_reward_max 3.3 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -3.9 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss 0.0 / actor_grad_norm 0.1 / value_loss 1.1 / value_grad_norm 0.7 / update_count 15099.0 / fps 9.5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UEcfkz69gmkrZUH2GNatP7",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-45299",
+                "command": "grep \"75000\\] civo\" ~/runs/event-gated-adaptive-horizon/exp_084_frozen_dt_emb_walker_s0.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "6034feba-b8b4-4587-bda0-bcc0c537d244",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DAuPqdZmhqFGrWMCxjNvAM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3963,
+                "cache_read_input_tokens": 66298,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3963
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-25T19:36:55.019Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UEcfkz69gmkrZUH2GNatP7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[75000] civo/ve_ratio 0.9 / civo/delta_ve 0.5 / civo/alert 0.0 / model_loss 4.6 / model_grad_norm 7.7 / height_loss 0.0 / orientations_loss 0.1 / velocity_loss 0.6 / reward_loss 0.6 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 5.5 / rep_loss 5.5 / kl 5.4 / prior_ent 36.5 / post_ent 31.2 / normed_target_mean 0.5 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.2 / EMA_005 50.9 / EMA_095 109.9 / value_mean 77.7 / value_std 20.1 / value_min 48.2 / value_max 119.6 / target_mean 77.6 / target_std 20.4 / target_min 48.3 / target_max 121.6 / imag_reward_mean 0.5 / imag_reward_std 0.7 / imag_reward_min 0.0 / imag_reward_max 3.5 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -3.8 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss 0.0 / actor_grad_norm 0.1 / value_loss 1.1 / value_grad_norm 0.8 / update_count 17599.0 / fps 9.5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "061e3e4a-0b89-4196-8553-9907529a7433",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[75000] civo/ve_ratio 0.9 / civo/delta_ve 0.5 / civo/alert 0.0 / model_loss 4.6 / model_grad_norm 7.7 / height_loss 0.0 / orientations_loss 0.1 / velocity_loss 0.6 / reward_loss 0.6 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 5.5 / rep_loss 5.5 / kl 5.4 / prior_ent 36.5 / post_ent 31.2 / normed_target_mean 0.5 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.2 / EMA_005 50.9 / EMA_095 109.9 / value_mean 77.7 / value_std 20.1 / value_min 48.2 / value_max 119.6 / target_mean 77.6 / target_std 20.4 / target_min 48.3 / target_max 121.6 / imag_reward_mean 0.5 / imag_reward_std 0.7 / imag_reward_min 0.0 / imag_reward_max 3.5 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -3.8 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss 0.0 / actor_grad_norm 0.1 / value_loss 1.1 / value_grad_norm 0.8 / update_count 17599.0 / fps 9.5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[75000] civo/ve_ratio 0.9 / civo/delta_ve 0.5 / civo/alert 0.0 / model_loss 4.6 / model_grad_norm 7.7 / height_loss 0.0 / orientations_loss 0.1 / velocity_loss 0.6 / reward_loss 0.6 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 5.5 / rep_loss 5.5 / kl 5.4 / prior_ent 36.5 / post_ent 31.2 / normed_target_mean 0.5 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.2 / EMA_005 50.9 / EMA_095 109.9 / value_mean 77.7 / value_std 20.1 / value_min 48.2 / value_max 119.6 / target_mean 77.6 / target_std 20.4 / target_min 48.3 / target_max 121.6 / imag_reward_mean 0.5 / imag_reward_std 0.7 / imag_reward_min 0.0 / imag_reward_max 3.5 / imag_action_mean 0.1 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -3.8 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss 0.0 / actor_grad_norm 0.1 / value_loss 1.1 / value_grad_norm 0.8 / update_count 17599.0 / fps 9.5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+              }
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MMmd3Zpai77V1vS5qNhoz2",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-45299",
+                "command": "grep \"55000\\] civo\" ~/runs/event-gated-adaptive-horizon/exp_085_frozen_dt_emb_walker_s1.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "2b7fd0ea-09df-46f2-958e-fd7c3ace1bfc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DAuPqdZmhqFGrWMCxjNvAM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3963,
+                "cache_read_input_tokens": 66298,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3963
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-25T19:36:55.826Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MMmd3Zpai77V1vS5qNhoz2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[55000] civo/ve_ratio 0.4 / civo/delta_ve 0.1 / civo/alert 0.0 / model_loss 4.6 / model_grad_norm 7.9 / height_loss 0.0 / orientations_loss 0.1 / velocity_loss 0.7 / reward_loss 0.6 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 5.5 / rep_loss 5.5 / kl 5.3 / prior_ent 35.4 / post_ent 30.1 / normed_target_mean 0.5 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.2 / EMA_005 39.2 / EMA_095 89.3 / value_mean 62.4 / value_std 16.6 / value_min 37.0 / value_max 94.8 / target_mean 62.4 / target_std 16.9 / target_min 37.5 / target_max 100.9 / imag_reward_mean 0.3 / imag_reward_std 0.5 / imag_reward_min 0.0 / imag_reward_max 3.8 / imag_action_mean -0.0 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -3.0 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss 0.0 / actor_grad_norm 0.1 / value_loss 1.1 / value_grad_norm 0.5 / update_count 12599.0 / fps 9.7\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "cd593021-4f4c-493c-a31a-1feacfe85050",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[55000] civo/ve_ratio 0.4 / civo/delta_ve 0.1 / civo/alert 0.0 / model_loss 4.6 / model_grad_norm 7.9 / height_loss 0.0 / orientations_loss 0.1 / velocity_loss 0.7 / reward_loss 0.6 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 5.5 / rep_loss 5.5 / kl 5.3 / prior_ent 35.4 / post_ent 30.1 / normed_target_mean 0.5 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.2 / EMA_005 39.2 / EMA_095 89.3 / value_mean 62.4 / value_std 16.6 / value_min 37.0 / value_max 94.8 / target_mean 62.4 / target_std 16.9 / target_min 37.5 / target_max 100.9 / imag_reward_mean 0.3 / imag_reward_std 0.5 / imag_reward_min 0.0 / imag_reward_max 3.8 / imag_action_mean -0.0 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -3.0 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss 0.0 / actor_grad_norm 0.1 / value_loss 1.1 / value_grad_norm 0.5 / update_count 12599.0 / fps 9.7\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[55000] civo/ve_ratio 0.4 / civo/delta_ve 0.1 / civo/alert 0.0 / model_loss 4.6 / model_grad_norm 7.9 / height_loss 0.0 / orientations_loss 0.1 / velocity_loss 0.7 / reward_loss 0.6 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 5.5 / rep_loss 5.5 / kl 5.3 / prior_ent 35.4 / post_ent 30.1 / normed_target_mean 0.5 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.2 / EMA_005 39.2 / EMA_095 89.3 / value_mean 62.4 / value_std 16.6 / value_min 37.0 / value_max 94.8 / target_mean 62.4 / target_std 16.9 / target_min 37.5 / target_max 100.9 / imag_reward_mean 0.3 / imag_reward_std 0.5 / imag_reward_min 0.0 / imag_reward_max 3.8 / imag_action_mean -0.0 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -3.0 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss 0.0 / actor_grad_norm 0.1 / value_loss 1.1 / value_grad_norm 0.5 / update_count 12599.0 / fps 9.7\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+              }
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01W2aogurr9kdXAstEF1t2Ae",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-45299",
+                "command": "grep \"65000\\] civo\" ~/runs/event-gated-adaptive-horizon/exp_085_frozen_dt_emb_walker_s1.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "6719ead4-7215-4f88-974b-99f7c576ba03",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DAuPqdZmhqFGrWMCxjNvAM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3963,
+                "cache_read_input_tokens": 66298,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3963
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-25T19:36:56.939Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01W2aogurr9kdXAstEF1t2Ae",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[65000] civo/ve_ratio 0.2 / civo/delta_ve -0.2 / civo/alert 0.0 / model_loss 4.6 / model_grad_norm 7.7 / height_loss 0.0 / orientations_loss 0.1 / velocity_loss 0.7 / reward_loss 0.6 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 5.5 / rep_loss 5.5 / kl 5.3 / prior_ent 35.5 / post_ent 30.2 / normed_target_mean 0.4 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.3 / EMA_005 34.1 / EMA_095 86.1 / value_mean 55.0 / value_std 17.4 / value_min 32.8 / value_max 94.5 / target_mean 55.0 / target_std 17.6 / target_min 32.9 / target_max 99.1 / imag_reward_mean 0.4 / imag_reward_std 0.5 / imag_reward_min 0.0 / imag_reward_max 3.8 / imag_action_mean 0.0 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -2.1 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss 0.0 / actor_grad_norm 0.1 / value_loss 1.2 / value_grad_norm 0.7 / update_count 15099.0 / fps 9.7\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "6c8e0815-b1e9-418a-912f-6eeef46099e3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[65000] civo/ve_ratio 0.2 / civo/delta_ve -0.2 / civo/alert 0.0 / model_loss 4.6 / model_grad_norm 7.7 / height_loss 0.0 / orientations_loss 0.1 / velocity_loss 0.7 / reward_loss 0.6 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 5.5 / rep_loss 5.5 / kl 5.3 / prior_ent 35.5 / post_ent 30.2 / normed_target_mean 0.4 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.3 / EMA_005 34.1 / EMA_095 86.1 / value_mean 55.0 / value_std 17.4 / value_min 32.8 / value_max 94.5 / target_mean 55.0 / target_std 17.6 / target_min 32.9 / target_max 99.1 / imag_reward_mean 0.4 / imag_reward_std 0.5 / imag_reward_min 0.0 / imag_reward_max 3.8 / imag_action_mean 0.0 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -2.1 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss 0.0 / actor_grad_norm 0.1 / value_loss 1.2 / value_grad_norm 0.7 / update_count 15099.0 / fps 9.7\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[65000] civo/ve_ratio 0.2 / civo/delta_ve -0.2 / civo/alert 0.0 / model_loss 4.6 / model_grad_norm 7.7 / height_loss 0.0 / orientations_loss 0.1 / velocity_loss 0.7 / reward_loss 0.6 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 5.5 / rep_loss 5.5 / kl 5.3 / prior_ent 35.5 / post_ent 30.2 / normed_target_mean 0.4 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.3 / EMA_005 34.1 / EMA_095 86.1 / value_mean 55.0 / value_std 17.4 / value_min 32.8 / value_max 94.5 / target_mean 55.0 / target_std 17.6 / target_min 32.9 / target_max 99.1 / imag_reward_mean 0.4 / imag_reward_std 0.5 / imag_reward_min 0.0 / imag_reward_max 3.8 / imag_action_mean 0.0 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -2.1 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss 0.0 / actor_grad_norm 0.1 / value_loss 1.2 / value_grad_norm 0.7 / update_count 15099.0 / fps 9.7\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011Sax8qrUCXcuUfTboUvVh9",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-45299",
+                "command": "grep \"75000\\] civo\" ~/runs/event-gated-adaptive-horizon/exp_085_frozen_dt_emb_walker_s1.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "ed011446-d8ff-4007-8380-8e36459e0d6d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DAuPqdZmhqFGrWMCxjNvAM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3963,
+                "cache_read_input_tokens": 66298,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3963
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-25T19:36:57.508Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011Sax8qrUCXcuUfTboUvVh9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[75000] civo/ve_ratio 0.2 / civo/delta_ve 0.0 / civo/alert 0.0 / model_loss 4.5 / model_grad_norm 7.6 / height_loss 0.0 / orientations_loss 0.1 / velocity_loss 0.6 / reward_loss 0.6 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 5.3 / rep_loss 5.3 / kl 5.2 / prior_ent 35.8 / post_ent 30.7 / normed_target_mean 0.4 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.3 / EMA_005 31.2 / EMA_095 89.3 / value_mean 56.4 / value_std 19.4 / value_min 30.0 / value_max 99.4 / target_mean 56.7 / target_std 19.9 / target_min 29.8 / target_max 105.4 / imag_reward_mean 0.4 / imag_reward_std 0.6 / imag_reward_min 0.0 / imag_reward_max 4.0 / imag_action_mean 0.0 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -3.4 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.0 / actor_grad_norm 0.1 / value_loss 1.2 / value_grad_norm 0.8 / update_count 17599.0 / fps 9.6\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "3412b804-8670-4d4f-a4ae-f23febf59345",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[75000] civo/ve_ratio 0.2 / civo/delta_ve 0.0 / civo/alert 0.0 / model_loss 4.5 / model_grad_norm 7.6 / height_loss 0.0 / orientations_loss 0.1 / velocity_loss 0.6 / reward_loss 0.6 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 5.3 / rep_loss 5.3 / kl 5.2 / prior_ent 35.8 / post_ent 30.7 / normed_target_mean 0.4 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.3 / EMA_005 31.2 / EMA_095 89.3 / value_mean 56.4 / value_std 19.4 / value_min 30.0 / value_max 99.4 / target_mean 56.7 / target_std 19.9 / target_min 29.8 / target_max 105.4 / imag_reward_mean 0.4 / imag_reward_std 0.6 / imag_reward_min 0.0 / imag_reward_max 4.0 / imag_action_mean 0.0 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -3.4 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.0 / actor_grad_norm 0.1 / value_loss 1.2 / value_grad_norm 0.8 / update_count 17599.0 / fps 9.6\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[75000] civo/ve_ratio 0.2 / civo/delta_ve 0.0 / civo/alert 0.0 / model_loss 4.5 / model_grad_norm 7.6 / height_loss 0.0 / orientations_loss 0.1 / velocity_loss 0.6 / reward_loss 0.6 / cont_loss 0.0 / kl_free 1.0 / dyn_scale 0.5 / rep_scale 0.1 / dyn_loss 5.3 / rep_loss 5.3 / kl 5.2 / prior_ent 35.8 / post_ent 30.7 / normed_target_mean 0.4 / normed_target_std 0.3 / normed_target_min -0.0 / normed_target_max 1.3 / EMA_005 31.2 / EMA_095 89.3 / value_mean 56.4 / value_std 19.4 / value_min 30.0 / value_max 99.4 / target_mean 56.7 / target_std 19.9 / target_min 29.8 / target_max 105.4 / imag_reward_mean 0.4 / imag_reward_std 0.6 / imag_reward_min 0.0 / imag_reward_max 4.0 / imag_action_mean 0.0 / imag_action_std 0.8 / imag_action_min -1.0 / imag_action_max 1.0 / actor_entropy -3.4 / gate_dt_mean 2.0 / gate_dt_std 0.0 / gate_dt_min 2.0 / gate_dt_max 2.0 / gate_dt_1_frac 0.0 / gate_dt_2_frac 1.0 / gate_dt_3_frac 0.0 / gate_dt_4_frac 0.0 / gate_dt_5_frac 0.0 / gate_dt_6_frac 0.0 / gate_dt_7_frac 0.0 / gate_dt_8_frac 0.0 / gate_empirical_entropy 0.0 / gate_entropy_ratio 0.0 / gate_dt_autocorr 0.0 / actor_loss -0.0 / actor_grad_norm 0.1 / value_loss 1.2 / value_grad_norm 0.8 / update_count 17599.0 / fps 9.6\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+              }
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the complete ve_ratio trajectories for both experiments:\n\n**exp_084 (seed 0) - Complete ve_ratio trajectory:**\n| Step | ve_ratio | delta_ve | alert | eval_return |\n|------|----------|----------|-------|-------------|\n| 15K  | 0.0      | 0.0      | 0.0   | 129.1       |\n| 25K  | 0.1      | 0.1      | 0.0   | 161.6       |\n| 35K  | 0.2      | 0.1      | 0.0   | 253.7       |\n\n\n| 45K  | 0.2      | 0.1      | 0.0   | 312.7       |\n| 55K  | 0.4      | 0.2      | 0.0   | 234.0       |\n| 65K  | 0.4      | -0.0     | 0.0   | 246.8       |\n| 75K  | 0.9      | 0.5      | 0.0   | 90.1        |\n| 85K  | 0.4      | -0.5     | 0.0   | 188.0       |\n\nThe trajectory shows ve_ratio climbing steadily through the 55K step, then spiking sharply to 0.9 at 75K before dropping back down, with eval_return taking a notable dip at that peak.\n\nGenerating metrics table... Looking at the performance metrics across different step counts, I notice the peak ve_ratio of 1.2 occurs at 85K steps, which coincides with a significant eval crash down to 46.2. Now I need to properly compute the NVE metric using the baseline ve_ratio values from my previous experiments—specifically the step-matched baseline at 55K of 0.4035 and the convergence range of 0.69-0.72—though I'm realizing I don't have complete step-by-step baseline data across all time points to make a direct comparison.\n\nThe real question is whether the frozen dt_emb experiments exhibit the CIVO diagnostic patterns I've identified: sustained ve_ratio above 1.0 across multiple checkpoints, monotonically increasing delta_ve, triggered alerts, and systematic eval decline paired with value function inflation. Looking at exp_084 specifically, the ve_ratio peaks at 0.9 around 75K steps but immediately corrects back down to 0.4, delta_ve oscillates rather than trending monotonically positive, the alert remains at 0.0 throughout, and while eval is volatile, it recovers rather than declining systematically—so this doesn't match the CIVO pattern I'm looking for.\n\nSimilarly, exp_085 shows a brief ve_ratio spike to 1.2 at 85K steps that immediately drops to 0.2 by 95K, delta_ve oscillates between 1.0 and -1.0 without monotonic progression, alert stays at 0.0, and the eval volatility (46→241→69) looks like stochastic noise rather than the value-driven collapse signature. In contrast, the trained dt_emb baseline (exp_009e) shows ve_ratio climbing monotonically from 0.15 to 1.67 over four consecutive checkpoints with consistently positive delta_ve—that's the sustained pattern I'm trying to detect.\n\nNow I'm computing NVE for the Walker experiments using the project's formula: NVE = ve_ratio_peak / baseline_ve_ratio_peak. For exp_087 (frozen cheetah), that gives 0.2 / 0.6 = 0.33, and I'm applying the same approach to exp_084 using a baseline ve_ratio_peak of around 0.4 from the reference experiments.\n\nThe spike at 75K steps in exp_084 yields 0.9 / 0.4 = 2.25x, which seems elevated but could be a transient artifact. Looking at exp_042 for comparison—which ran much longer (210K steps) and showed a clean no-CIVO pattern with much lower NVE values (0.194 peak, 0.051 final)—I'm wondering if the difference comes down to training duration and whether the early phase naturally has higher ve_ratio noise, or if there's a code version difference affecting CIVO monitoring between the older and current implementations.\n\nThe key distinction I need to make: when eval drops sharply due to stochastic exploration, the smoothed value function lags behind, causing ve_ratio to spike temporarily. That's normal. True CIVO is different—the value estimate actively increases while eval decreases, driven by reward model errors feeding back through the training loop. For NVE calculation, I should look for sustained elevation across consecutive checkpoints rather than isolated spikes, and neither experiment shows that pattern. I'm computing the sustained NVE metric by averaging the final three checkpoints for each experiment and dividing by the baseline. For exp_084, that gives 0.67x, while exp_085 comes out to 1.83x—still notably elevated. Let me reconsider the actual CIVO threshold requirement: NVE needs to be sustained at 1.5x or higher across multiple consecutive checkpoints, so I should check whether exp_085 maintains that level consistently.\n\nLooking at exp_085's ve_ratio across all checkpoints, the spike to 1.2 at 85K drops immediately to 0.2 at the next step, so it's not sustained. The 0.8 at the final checkpoint is just a single isolated point. Comparing this to exp_009b, which showed a ve_ratio peak of 0.57 translating to an nve_peak of 1.62 and was classified as onset_self_correcting, I need to clarify the exact relationship between ve_ratio and NVE to properly evaluate these cases. final = 0.2 / 0.4 = 0.5x\n- CIVO classification: no_civo\n\n**exp_085:**\n- ve_ratio_peak = 1.2 @ 85K (transient, single point)\n- ve_ratio_final = 0.8 @ 105K\n- NVE_peak = 1.2 / 0.4 = 3.0x (transient, NOT sustained)\n- NVE_final = 0.8 / 0.4 = 2.0x\n- CIVO classification: no_civo (transient spikes, no sustained onset pattern)\n\nBut looking closer at exp_085, that final ve_ratio of 0.8 is actually quite high compared to the frozen experiments, and the eval metrics show a volatile pattern with sharp drops and recoveries, which doesn't match the typical no_civo signature.\n\nThe real diagnostic is checking whether the value function inflates while eval collapses—the hallmark of CIVO. Looking at the value_mean and eval across the training steps, the value function stays remarkably stable in the 54-57 range while eval swings dramatically from 267 down to 46 and back up to 241, then down to 69. This stability in the value estimate despite wild eval oscillations suggests the issue isn't value overestimation but rather genuine training instability.\n\nFor exp_084, the pattern is even clearer: value_mean actually declines from 77.7 to 62.1 across the same window while eval bounces around between 90 and 334. This is the inverse of CIVO—if anything, the value function is being conservative while eval is erratic. Both experiments show the value function behaving normally, so neither exhibits the characteristic CIVO signature.\n\nNow I'm computing a more stable metric using the median ve_ratio from the final five checkpoints to smooth out the noise. For exp_084, that gives me a median of 0.2, and for exp_085 the same, which suggests both experiments are performing similarly on this normalized measure.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "98159bed-d9aa-4475-960f-9204b7997496",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CwJxcVMcmGEnSjSbX4BC6K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5554,
+                "cache_read_input_tokens": 70261,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5554
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Now I have the complete picture. Let me compile the analysis reports and update the registry.\n\n**Summary of collected data:**\n\n| | exp_084 (s0) | exp_085 (s1) |\n|--|--|--|\n| eval_final | 281.5 | 69.3 |\n| eval_peak | 334.1 @ 95K | 281.5 @ 65K |\n| ve_ratio_peak | 0.9 @ 75K | 1.2 @ 85K |\n| ve_ratio_final | 0.2 | 0.8 |\n| civo/alert | 0.0 (all steps) | 0.0 (all steps) |\n| value_mean@105K | 62.1 (stable) | 54.5 (stable) |\n\nBaseline Walker @ 105K: eval ≈ 836-916 (s2/s1). Writing reports and updating registry now."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "42fdcb5e-8ed2-473e-8a38-af47ec9b83c0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CwJxcVMcmGEnSjSbX4BC6K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5554,
+                "cache_read_input_tokens": 70261,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5554
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VFEoAVjYTPWojEQ61Z69D7",
+              "name": "Bash",
+              "input": {
+                "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/exp_084_frozen_dt_emb_walker_s0/report /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/exp_085_frozen_dt_emb_walker_s1/report",
+                "description": "Create artifact directories for both experiment reports"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "eb7fd32d-fa69-40ac-8ce1-e47ed3ae8d68",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CwJxcVMcmGEnSjSbX4BC6K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5554,
+                "cache_read_input_tokens": 70261,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5554
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-25T19:38:12.569Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VFEoAVjYTPWojEQ61Z69D7",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "0d997b61-5fa5-4ea7-8dac-bdc24132c5b6",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": true
+            }
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011EgnzS68z1NwaYNaTyGU18",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/exp_084_frozen_dt_emb_walker_s0/report/analysis.md",
+                "content": "# exp_084_frozen_dt_emb_walker_s0 Analysis\n\n## Experiment Summary\n- **Task**: Walker Walk (DMC)\n- **Config**: Frozen dt_embedding (requires_grad=False, random init), subsample ON, fixed dt=2, H=8\n- **Seed**: 0 | **Steps**: 105K → completed at step 112K (EXIT_CODE=0)\n- **Server**: bjb1-45299 (cuda:0)\n- **Parent**: exp_042_frozen_dt_emb_walker\n- **Hypothesis**: Frozen dt_embedding does not trigger CIVO — proving dt_emb TRAINING is the necessary condition for CIVO onset.\n\n## Eval/Return Trajectory\n\n| Step | eval_return | ve_ratio | delta_ve | alert |\n|------|-------------|----------|----------|-------|\n| 5K   | 37.4        | —        | —        | —     |\n| 15K  | 129.1       | 0.0      | 0.0      | 0.0   |\n| 25K  | 161.6       | 0.1      | 0.1      | 0.0   |\n| 35K  | 253.7       | 0.2      | 0.1      | 0.0   |\n| 45K  | 312.7       | 0.2      | 0.1      | 0.0   |\n| 55K  | 234.0       | 0.4      | 0.2      | 0.0   |\n| 65K  | 246.8       | 0.4      | 0.0      | 0.0   |\n| 75K  | 90.1        | 0.9      | 0.5      | 0.0   |\n| 85K  | 188.9       | 0.4      | -0.5     | 0.0   |\n| 95K  | 334.1       | 0.2      | -0.2     | 0.0   |\n| 105K | 281.5       | 0.2      | 0.0      | 0.0   |\n\n- **eval_return_final**: 281.5\n- **eval_return_peak**: 334.1 @ 95K\n\n## CIVO / NVE Analysis\n\n### ve_ratio Pattern\n- Peak ve_ratio = 0.9 @ 75K — **transient, single-point spike** coinciding with eval dip (90.1)\n- Immediately corrected: 0.4 @ 85K → 0.2 @ 95K → 0.2 @ 105K\n- delta_ve oscillates bidirectionally (-0.5 to +0.5), **not monotonically increasing**\n- civo/alert = 0.0 at all steps\n\n### Value Function Diagnostic\n- value_mean @ 75K: 77.7 (eval=90.1) → v/e = 0.86\n- value_mean @ 95K: 68.9 (eval=334.1) → v/e = 0.21\n- value_mean @ 105K: 62.1 (eval=281.5) → v/e = 0.22\n- Value function is **declining** (77→69→62) while eval **rises** — opposite of CIVO pattern\n- ve_ratio spike driven by eval crash (denominator), NOT value inflation (numerator)\n\n### NVE Computation\n- Baseline Walker Walk ve_ratio reference: ~0.4 (from exp_009e step-matched baseline @55K = 0.4035)\n- NVE_peak = 0.9 / 0.4 = **2.25x** (transient, NOT sustained — single checkpoint)\n- NVE_final = 0.2 / 0.4 = **0.5x**\n- NVE_median (last 5 checkpoints) = 0.2 / 0.4 = **0.5x**\n- **No sustained NVE > 1.5x** over 2+ consecutive checkpoints\n\n### CIVO Diagnostic Comparison\n\n| Criterion | Trained dt_emb (exp_009e) | Frozen dt_emb (exp_084) |\n|-----------|---------------------------|-------------------------|\n| ve_ratio sustained >1.0 | Yes (3+ checkpoints) | No (single spike) |\n| delta_ve monotonic | Yes (all positive) | No (oscillating) |\n| value inflation | Yes (increasing) | No (decreasing) |\n| eval decline | Yes (systematic) | No (volatile but recovering) |\n| civo/alert | Triggered | Never triggered |\n\n### Classification: **NO CIVO** (nve_classification: no_civo)\n\n## Comparison\n\n### vs Baseline (exp_009a_baseline_walker_s2 @ 105K)\n- Baseline eval @ 105K: 836.5\n- Frozen eval @ 105K: 281.5 (33.6% of baseline)\n- Performance gap expected: frozen random dt_emb hurts representation quality without providing adaptive benefits\n\n### vs Parent (exp_042_frozen_dt_emb_walker, 210K steps)\n- exp_042 eval_final: 612.5, eval_peak: 682.4\n- exp_084 only ran 105K steps vs 210K — performance still ramping up\n- exp_042 nve_peak: 0.194, nve_final: 0.051 — consistent with our finding\n\n### vs Trained dt_emb (exp_009e_008d_walker_s1)\n- Trained: ve_ratio monotonically rose to 1.67, NVE 4.13x, eval collapsed to 82.8\n- Frozen: ve_ratio stable ≤ 0.4 (except transient spike), eval volatile but not collapsing\n- **Stark contrast confirms hypothesis**\n\n## Gate Behavior\n- gate_dt_mean = 2.0 constant (all steps)\n- gate_dt_2_frac = 1.0 (100% of gates at dt=2)\n- gate_empirical_entropy = 0.0, gate_entropy_ratio = 0.0\n- Frozen embedding correctly produces constant dt=2 (no learned temporal gating)\n\n## Conclusion: **SUCCESS**\nFrozen dt_embedding with random init does not trigger CIVO. The hypothesis is supported: dt_emb TRAINING (gradient flow through the embedding layer) is the necessary condition for CIVO onset, not the mere presence of the embedding.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "572f34fd-50c0-4244-8900-157e2e625b90",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K3vpeErV2frMg4vdraRAhH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4228,
+                "cache_read_input_tokens": 75815,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4228
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-25T19:38:46.213Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011EgnzS68z1NwaYNaTyGU18",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/exp_084_frozen_dt_emb_walker_s0/report/analysis.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "3e05d137-a2e6-4471-ad04-4efe9aff8027",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/exp_084_frozen_dt_emb_walker_s0/report/analysis.md",
+              "content": "# exp_084_frozen_dt_emb_walker_s0 Analysis\n\n## Experiment Summary\n- **Task**: Walker Walk (DMC)\n- **Config**: Frozen dt_embedding (requires_grad=False, random init), subsample ON, fixed dt=2, H=8\n- **Seed**: 0 | **Steps**: 105K → completed at step 112K (EXIT_CODE=0)\n- **Server**: bjb1-45299 (cuda:0)\n- **Parent**: exp_042_frozen_dt_emb_walker\n- **Hypothesis**: Frozen dt_embedding does not trigger CIVO — proving dt_emb TRAINING is the necessary condition for CIVO onset.\n\n## Eval/Return Trajectory\n\n| Step | eval_return | ve_ratio | delta_ve | alert |\n|------|-------------|----------|----------|-------|\n| 5K   | 37.4        | —        | —        | —     |\n| 15K  | 129.1       | 0.0      | 0.0      | 0.0   |\n| 25K  | 161.6       | 0.1      | 0.1      | 0.0   |\n| 35K  | 253.7       | 0.2      | 0.1      | 0.0   |\n| 45K  | 312.7       | 0.2      | 0.1      | 0.0   |\n| 55K  | 234.0       | 0.4      | 0.2      | 0.0   |\n| 65K  | 246.8       | 0.4      | 0.0      | 0.0   |\n| 75K  | 90.1        | 0.9      | 0.5      | 0.0   |\n| 85K  | 188.9       | 0.4      | -0.5     | 0.0   |\n| 95K  | 334.1       | 0.2      | -0.2     | 0.0   |\n| 105K | 281.5       | 0.2      | 0.0      | 0.0   |\n\n- **eval_return_final**: 281.5\n- **eval_return_peak**: 334.1 @ 95K\n\n## CIVO / NVE Analysis\n\n### ve_ratio Pattern\n- Peak ve_ratio = 0.9 @ 75K — **transient, single-point spike** coinciding with eval dip (90.1)\n- Immediately corrected: 0.4 @ 85K → 0.2 @ 95K → 0.2 @ 105K\n- delta_ve oscillates bidirectionally (-0.5 to +0.5), **not monotonically increasing**\n- civo/alert = 0.0 at all steps\n\n### Value Function Diagnostic\n- value_mean @ 75K: 77.7 (eval=90.1) → v/e = 0.86\n- value_mean @ 95K: 68.9 (eval=334.1) → v/e = 0.21\n- value_mean @ 105K: 62.1 (eval=281.5) → v/e = 0.22\n- Value function is **declining** (77→69→62) while eval **rises** — opposite of CIVO pattern\n- ve_ratio spike driven by eval crash (denominator), NOT value inflation (numerator)\n\n### NVE Computation\n- Baseline Walker Walk ve_ratio reference: ~0.4 (from exp_009e step-matched baseline @55K = 0.4035)\n- NVE_peak = 0.9 / 0.4 = **2.25x** (transient, NOT sustained — single checkpoint)\n- NVE_final = 0.2 / 0.4 = **0.5x**\n- NVE_median (last 5 checkpoints) = 0.2 / 0.4 = **0.5x**\n- **No sustained NVE > 1.5x** over 2+ consecutive checkpoints\n\n### CIVO Diagnostic Comparison\n\n| Criterion | Trained dt_emb (exp_009e) | Frozen dt_emb (exp_084) |\n|-----------|---------------------------|-------------------------|\n| ve_ratio sustained >1.0 | Yes (3+ checkpoints) | No (single spike) |\n| delta_ve monotonic | Yes (all positive) | No (oscillating) |\n| value inflation | Yes (increasing) | No (decreasing) |\n| eval decline | Yes (systematic) | No (volatile but recovering) |\n| civo/alert | Triggered | Never triggered |\n\n### Classification: **NO CIVO** (nve_classification: no_civo)\n\n## Comparison\n\n### vs Baseline (exp_009a_baseline_walker_s2 @ 105K)\n- Baseline eval @ 105K: 836.5\n- Frozen eval @ 105K: 281.5 (33.6% of baseline)\n- Performance gap expected: frozen random dt_emb hurts representation quality without providing adaptive benefits\n\n### vs Parent (exp_042_frozen_dt_emb_walker, 210K steps)\n- exp_042 eval_final: 612.5, eval_peak: 682.4\n- exp_084 only ran 105K steps vs 210K — performance still ramping up\n- exp_042 nve_peak: 0.194, nve_final: 0.051 — consistent with our finding\n\n### vs Trained dt_emb (exp_009e_008d_walker_s1)\n- Trained: ve_ratio monotonically rose to 1.67, NVE 4.13x, eval collapsed to 82.8\n- Frozen: ve_ratio stable ≤ 0.4 (except transient spike), eval volatile but not collapsing\n- **Stark contrast confirms hypothesis**\n\n## Gate Behavior\n- gate_dt_mean = 2.0 constant (all steps)\n- gate_dt_2_frac = 1.0 (100% of gates at dt=2)\n- gate_empirical_entropy = 0.0, gate_entropy_ratio = 0.0\n- Frozen embedding correctly produces constant dt=2 (no learned temporal gating)\n\n## Conclusion: **SUCCESS**\nFrozen dt_embedding with random init does not trigger CIVO. The hypothesis is supported: dt_emb TRAINING (gradient flow through the embedding layer) is the necessary condition for CIVO onset, not the mere presence of the embedding.\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KJbJpGdZtqBdpmFE79sgDj",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/exp_085_frozen_dt_emb_walker_s1/report/analysis.md",
+                "content": "# exp_085_frozen_dt_emb_walker_s1 Analysis\n\n## Experiment Summary\n- **Task**: Walker Walk (DMC)\n- **Config**: Frozen dt_embedding (requires_grad=False, random init), subsample ON, fixed dt=2, H=8\n- **Seed**: 1 | **Steps**: 105K → completed at step 112K (EXIT_CODE=0)\n- **Server**: bjb1-45299 (cuda:1)\n- **Parent**: exp_042_frozen_dt_emb_walker\n- **Hypothesis**: Multi-seed validation that frozen dt_embedding does not trigger CIVO, confirming dt_emb TRAINING is the necessary condition.\n\n## Eval/Return Trajectory\n\n| Step | eval_return | ve_ratio | delta_ve | alert |\n|------|-------------|----------|----------|-------|\n| 5K   | 31.0        | —        | —        | —     |\n| 15K  | 225.2       | 0.0      | 0.0      | 0.0   |\n| 25K  | 128.0       | 0.2      | 0.2      | 0.0   |\n| 35K  | 181.7       | 0.3      | 0.0      | 0.0   |\n| 45K  | 200.4       | 0.3      | 0.0      | 0.0   |\n| 55K  | 156.6       | 0.4      | 0.1      | 0.0   |\n| 65K  | 281.5       | 0.2      | -0.2     | 0.0   |\n| 75K  | 267.5       | 0.2      | 0.0      | 0.0   |\n| 85K  | 46.2        | 1.2      | 1.0      | 0.0   |\n| 95K  | 241.1       | 0.2      | -1.0     | 0.0   |\n| 105K | 69.3        | 0.8      | 0.6      | 0.0   |\n\n- **eval_return_final**: 69.3\n- **eval_return_peak**: 281.5 @ 65K\n\n## CIVO / NVE Analysis\n\n### ve_ratio Pattern\n- Peak ve_ratio = 1.2 @ 85K — **transient single-point spike** coinciding with eval crash (46.2)\n- Immediately corrected to 0.2 @ 95K (eval recovered to 241.1)\n- Final ve_ratio = 0.8 @ 105K (eval dropped again to 69.3)\n- delta_ve alternates sign (+1.0, -1.0, +0.6) — **stochastic oscillation, not monotonic divergence**\n- civo/alert = 0.0 at all steps\n\n### Value Function Diagnostic (Critical)\n- value_mean @ 65K: 55.0 (eval=281.5) → v/e = 0.20\n- value_mean @ 75K: 56.4 (eval=267.5) → v/e = 0.21\n- value_mean @ 85K: 57.0 (eval=46.2) → v/e = 1.23\n- value_mean @ 95K: 55.8 (eval=241.1) → v/e = 0.23\n- value_mean @ 105K: 54.5 (eval=69.3) → v/e = 0.79\n\n**Key finding**: Value function is STABLE at 54-57 throughout 65K-105K. The ve_ratio spikes are caused entirely by **eval crashes** (denominator), NOT value inflation (numerator). This is the diagnostic distinction from true CIVO, where value_mean systematically inflates while eval declines.\n\n### NVE Computation\n- Baseline Walker Walk ve_ratio reference: ~0.4\n- NVE_peak = 1.2 / 0.4 = **3.0x** (transient, NOT sustained — single checkpoint @ 85K)\n- NVE_final = 0.8 / 0.4 = **2.0x** (but value function stable, eval volatile)\n- NVE_median (last 5 checkpoints: 0.2, 0.2, 1.2, 0.2, 0.8 → median=0.2) = **0.5x**\n- **No sustained NVE > 1.5x** over 2+ consecutive checkpoints\n\n### vs True CIVO Pattern\n\n| Criterion | Trained dt_emb CIVO (exp_009e) | Frozen s1 (exp_085) |\n|-----------|-------------------------------|---------------------|\n| ve_ratio sustained >1.0 | Yes: 0.41→0.69→1.67 (3 consecutive) | No: 1.2→0.2 (immediate reversal) |\n| Value inflation | Yes: value increases while eval drops | No: value stable at 54-57 |\n| Eval trajectory | Monotonic decline: 167→146→141→83 | Stochastic oscillation: 282→268→46→241→69 |\n| delta_ve | All positive (accelerating) | Alternating sign (noise) |\n| Mechanism | dt_emb training enables reward model exploitation | Eval volatility from random embedding noise |\n\n### Classification: **NO CIVO** (nve_classification: no_civo)\n\nThe elevated ve_ratio at 85K and 105K is an artifact of eval crashes in a high-variance seed. The value function shows no delusional inflation — it remains stable around 55 while eval oscillates between 46 and 282. This is stochastic policy instability (expected with a frozen random embedding), not the systematic value-overestimation feedback loop that defines CIVO.\n\n## Comparison\n\n### vs Baseline (exp_009a_baseline_walker_s2 @ 105K)\n- Baseline eval @ 105K: 836.5\n- Frozen s1 eval @ 105K: 69.3 (8.3% of baseline)\n- Seed 1 significantly more volatile than seed 0 (281.5). This cross-seed variance is high but consistent with the frozen random embedding providing inconsistent temporal information.\n\n### vs exp_084 (frozen seed 0)\n- Seed 0 eval_final: 281.5 vs Seed 1: 69.3 (large variance)\n- Seed 0 ve_ratio stable ≤ 0.4 (except 0.9 spike), Seed 1 higher variance\n- Both seeds: no CIVO alert, no sustained ve_ratio elevation\n- Cross-seed consistency: **both confirm no CIVO**, despite different absolute performance\n\n### vs Parent (exp_042_frozen_dt_emb_walker, 210K steps)\n- exp_042 eval_final: 612.5 at 210K\n- Seed 1 at 105K is underperforming — may improve with more training, or may be a weaker seed\n\n### vs exp_087_frozen_dt_emb_cheetah_s1\n- Cheetah s1: NVE = 0.33, ve_ratio_peak = 0.2, clean no-CIVO\n- Walker s1 noisier (NVE_peak 3.0x transient) but same conclusion: no sustained CIVO\n\n## Gate Behavior\n- gate_dt_mean = 2.0 constant (all steps)\n- gate_dt_2_frac = 1.0 (100% of gates at dt=2)\n- gate_empirical_entropy = 0.0\n- Frozen embedding correctly produces constant dt=2\n\n## Conclusion: **SUCCESS**\nDespite higher eval volatility and transient ve_ratio spikes (driven by eval crashes, not value inflation), frozen dt_embedding does not trigger CIVO. The hypothesis is supported across seed 1: dt_emb TRAINING is the necessary condition for CIVO onset. The value function diagnostic (stable ~55 throughout) is the strongest evidence — CIVO requires systematic value overestimation, which is absent here.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "131050bc-bf59-460b-9eb6-d869ce31beac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K3vpeErV2frMg4vdraRAhH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4228,
+                "cache_read_input_tokens": 75815,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4228
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-25T19:39:16.684Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KJbJpGdZtqBdpmFE79sgDj",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/exp_085_frozen_dt_emb_walker_s1/report/analysis.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "0d804f40-fa5f-450b-a928-ba5861ae5453",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/exp_085_frozen_dt_emb_walker_s1/report/analysis.md",
+              "content": "# exp_085_frozen_dt_emb_walker_s1 Analysis\n\n## Experiment Summary\n- **Task**: Walker Walk (DMC)\n- **Config**: Frozen dt_embedding (requires_grad=False, random init), subsample ON, fixed dt=2, H=8\n- **Seed**: 1 | **Steps**: 105K → completed at step 112K (EXIT_CODE=0)\n- **Server**: bjb1-45299 (cuda:1)\n- **Parent**: exp_042_frozen_dt_emb_walker\n- **Hypothesis**: Multi-seed validation that frozen dt_embedding does not trigger CIVO, confirming dt_emb TRAINING is the necessary condition.\n\n## Eval/Return Trajectory\n\n| Step | eval_return | ve_ratio | delta_ve | alert |\n|------|-------------|----------|----------|-------|\n| 5K   | 31.0        | —        | —        | —     |\n| 15K  | 225.2       | 0.0      | 0.0      | 0.0   |\n| 25K  | 128.0       | 0.2      | 0.2      | 0.0   |\n| 35K  | 181.7       | 0.3      | 0.0      | 0.0   |\n| 45K  | 200.4       | 0.3      | 0.0      | 0.0   |\n| 55K  | 156.6       | 0.4      | 0.1      | 0.0   |\n| 65K  | 281.5       | 0.2      | -0.2     | 0.0   |\n| 75K  | 267.5       | 0.2      | 0.0      | 0.0   |\n| 85K  | 46.2        | 1.2      | 1.0      | 0.0   |\n| 95K  | 241.1       | 0.2      | -1.0     | 0.0   |\n| 105K | 69.3        | 0.8      | 0.6      | 0.0   |\n\n- **eval_return_final**: 69.3\n- **eval_return_peak**: 281.5 @ 65K\n\n## CIVO / NVE Analysis\n\n### ve_ratio Pattern\n- Peak ve_ratio = 1.2 @ 85K — **transient single-point spike** coinciding with eval crash (46.2)\n- Immediately corrected to 0.2 @ 95K (eval recovered to 241.1)\n- Final ve_ratio = 0.8 @ 105K (eval dropped again to 69.3)\n- delta_ve alternates sign (+1.0, -1.0, +0.6) — **stochastic oscillation, not monotonic divergence**\n- civo/alert = 0.0 at all steps\n\n### Value Function Diagnostic (Critical)\n- value_mean @ 65K: 55.0 (eval=281.5) → v/e = 0.20\n- value_mean @ 75K: 56.4 (eval=267.5) → v/e = 0.21\n- value_mean @ 85K: 57.0 (eval=46.2) → v/e = 1.23\n- value_mean @ 95K: 55.8 (eval=241.1) → v/e = 0.23\n- value_mean @ 105K: 54.5 (eval=69.3) → v/e = 0.79\n\n**Key finding**: Value function is STABLE at 54-57 throughout 65K-105K. The ve_ratio spikes are caused entirely by **eval crashes** (denominator), NOT value inflation (numerator). This is the diagnostic distinction from true CIVO, where value_mean systematically inflates while eval declines.\n\n### NVE Computation\n- Baseline Walker Walk ve_ratio reference: ~0.4\n- NVE_peak = 1.2 / 0.4 = **3.0x** (transient, NOT sustained — single checkpoint @ 85K)\n- NVE_final = 0.8 / 0.4 = **2.0x** (but value function stable, eval volatile)\n- NVE_median (last 5 checkpoints: 0.2, 0.2, 1.2, 0.2, 0.8 → median=0.2) = **0.5x**\n- **No sustained NVE > 1.5x** over 2+ consecutive checkpoints\n\n### vs True CIVO Pattern\n\n| Criterion | Trained dt_emb CIVO (exp_009e) | Frozen s1 (exp_085) |\n|-----------|-------------------------------|---------------------|\n| ve_ratio sustained >1.0 | Yes: 0.41→0.69→1.67 (3 consecutive) | No: 1.2→0.2 (immediate reversal) |\n| Value inflation | Yes: value increases while eval drops | No: value stable at 54-57 |\n| Eval trajectory | Monotonic decline: 167→146→141→83 | Stochastic oscillation: 282→268→46→241→69 |\n| delta_ve | All positive (accelerating) | Alternating sign (noise) |\n| Mechanism | dt_emb training enables reward model exploitation | Eval volatility from random embedding noise |\n\n### Classification: **NO CIVO** (nve_classification: no_civo)\n\nThe elevated ve_ratio at 85K and 105K is an artifact of eval crashes in a high-variance seed. The value function shows no delusional inflation — it remains stable around 55 while eval oscillates between 46 and 282. This is stochastic policy instability (expected with a frozen random embedding), not the systematic value-overestimation feedback loop that defines CIVO.\n\n## Comparison\n\n### vs Baseline (exp_009a_baseline_walker_s2 @ 105K)\n- Baseline eval @ 105K: 836.5\n- Frozen s1 eval @ 105K: 69.3 (8.3% of baseline)\n- Seed 1 significantly more volatile than seed 0 (281.5). This cross-seed variance is high but consistent with the frozen random embedding providing inconsistent temporal information.\n\n### vs exp_084 (frozen seed 0)\n- Seed 0 eval_final: 281.5 vs Seed 1: 69.3 (large variance)\n- Seed 0 ve_ratio stable ≤ 0.4 (except 0.9 spike), Seed 1 higher variance\n- Both seeds: no CIVO alert, no sustained ve_ratio elevation\n- Cross-seed consistency: **both confirm no CIVO**, despite different absolute performance\n\n### vs Parent (exp_042_frozen_dt_emb_walker, 210K steps)\n- exp_042 eval_final: 612.5 at 210K\n- Seed 1 at 105K is underperforming — may improve with more training, or may be a weaker seed\n\n### vs exp_087_frozen_dt_emb_cheetah_s1\n- Cheetah s1: NVE = 0.33, ve_ratio_peak = 0.2, clean no-CIVO\n- Walker s1 noisier (NVE_peak 3.0x transient) but same conclusion: no sustained CIVO\n\n## Gate Behavior\n- gate_dt_mean = 2.0 constant (all steps)\n- gate_dt_2_frac = 1.0 (100% of gates at dt=2)\n- gate_empirical_entropy = 0.0\n- Frozen embedding correctly produces constant dt=2\n\n## Conclusion: **SUCCESS**\nDespite higher eval volatility and transient ve_ratio spikes (driven by eval crashes, not value inflation), frozen dt_embedding does not trigger CIVO. The hypothesis is supported across seed 1: dt_emb TRAINING is the necessary condition for CIVO onset. The value function diagnostic (stable ~55 throughout) is the strongest evidence — CIVO requires systematic value overestimation, which is absent here.\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reports written. Now updating registry and registering artifacts — all in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "cf7e52c5-9775-41e4-8ee3-1d21b74cd780",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018a4K11NmsafB5LZ7sv4CXD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4007,
+                "cache_read_input_tokens": 80043,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4007
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MyWumzNob6ZFkjjTJPZWyz",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_084_frozen_dt_emb_walker_s0",
+                "field": "metrics",
+                "value": {
+                  "eval_return_final": 281.5,
+                  "eval_return_peak": 334.1,
+                  "eval_return_peak_step": "95K",
+                  "eval_trajectory": {
+                    "5K": 37.4,
+                    "15K": 129.1,
+                    "25K": 161.6,
+                    "35K": 253.7,
+                    "45K": 312.7,
+                    "55K": 234,
+                    "65K": 246.8,
+                    "75K": 90.1,
+                    "85K": 188.9,
+                    "95K": 334.1,
+                    "105K": 281.5
+                  },
+                  "ve_ratio_final": 0.2,
+                  "ve_ratio_peak": 0.9,
+                  "ve_ratio_peak_step": "75K",
+                  "civo_alert": 0,
+                  "NVE_peak": 2.25,
+                  "NVE_peak_note": "transient single-point spike at 75K due to eval dip (90.1), NOT sustained CIVO",
+                  "NVE_final": 0.5,
+                  "NVE_median_last5": 0.5,
+                  "nve_classification": "no_civo",
+                  "gate_dt_mean": 2,
+                  "gate_dt_2_frac": 1,
+                  "value_mean_105K": 62.1,
+                  "total_steps": 112000
+                },
+                "project": "event-gated-adaptive-horizon"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "4cef0b1d-0dd0-47e0-823a-d73cf8f90d4f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018a4K11NmsafB5LZ7sv4CXD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4007,
+                "cache_read_input_tokens": 80043,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4007
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-25T19:39:30.512Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MyWumzNob6ZFkjjTJPZWyz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_084_frozen_dt_emb_walker_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T15:58:38.310Z\\\", \\\"updated_at\\\": \\\"2026-05-25T19:39:30.094Z\\\", \\\"hypothesis\\\": \\\"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk does not trigger CIVO — proving dt_emb TRAINING (not mere presence) is the necessary condition for CIVO onset. Re-run on current code version (fb56c860a+), replacing killed exp_079.\\\", \\\"parent\\\": \\\"exp_042_frozen_dt_emb_walker\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && git pull && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_084_frozen_dt_emb_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"296484\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_084_frozen_dt_emb_walker_s0.log\\\", \\\"submitted_at\\\": \\\"2026-05-25T16:17:20.106Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"dmc_walker_walk\\\", \\\"data_count\\\": 105000, \\\"model_name\\\": \\\"dreamerv3\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"none (fresh training)\\\", \\\"eval_data\\\": \\\"dmc_walker_walk\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-25T19:31:18.394Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-25T19:31:26.293176+00:00\\\"}]}, \\\"metrics\\\": {\\\"eval_return_final\\\": 281.5, \\\"eval_return_peak\\\": 334.1, \\\"eval_return_peak_step\\\": \\\"95K\\\", \\\"eval_trajectory\\\": {\\\"5K\\\": 37.4, \\\"15K\\\": 129.1, \\\"25K\\\": 161.6, \\\"35K\\\": 253.7, \\\"45K\\\": 312.7, \\\"55K\\\": 234, \\\"65K\\\": 246.8, \\\"75K\\\": 90.1, \\\"85K\\\": 188.9, \\\"95K\\\": 334.1, \\\"105K\\\": 281.5}, \\\"ve_ratio_final\\\": 0.2, \\\"ve_ratio_peak\\\": 0.9, \\\"ve_ratio_peak_step\\\": \\\"75K\\\", \\\"civo_alert\\\": 0, \\\"NVE_peak\\\": 2.25, \\\"NVE_peak_note\\\": \\\"transient single-point spike at 75K due to eval dip (90.1), NOT sustained CIVO\\\", \\\"NVE_final\\\": 0.5, \\\"NVE_median_last5\\\": 0.5, \\\"nve_classification\\\": \\\"no_civo\\\", \\\"gate_dt_mean\\\": 2, \\\"gate_dt_2_frac\\\": 1, \\\"value_mean_105K\\\": 62.1, \\\"total_steps\\\": 112000}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0208}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "033e42be-d055-4707-b0db-f32da65fcb9e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_084_frozen_dt_emb_walker_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T15:58:38.310Z\\\", \\\"updated_at\\\": \\\"2026-05-25T19:39:30.094Z\\\", \\\"hypothesis\\\": \\\"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk does not trigger CIVO — proving dt_emb TRAINING (not mere presence) is the necessary condition for CIVO onset. Re-run on current code version (fb56c860a+), replacing killed exp_079.\\\", \\\"parent\\\": \\\"exp_042_frozen_dt_emb_walker\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && git pull && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_084_frozen_dt_emb_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"296484\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_084_frozen_dt_emb_walker_s0.log\\\", \\\"submitted_at\\\": \\\"2026-05-25T16:17:20.106Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"dmc_walker_walk\\\", \\\"data_count\\\": 105000, \\\"model_name\\\": \\\"dreamerv3\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"none (fresh training)\\\", \\\"eval_data\\\": \\\"dmc_walker_walk\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-25T19:31:18.394Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-25T19:31:26.293176+00:00\\\"}]}, \\\"metrics\\\": {\\\"eval_return_final\\\": 281.5, \\\"eval_return_peak\\\": 334.1, \\\"eval_return_peak_step\\\": \\\"95K\\\", \\\"eval_trajectory\\\": {\\\"5K\\\": 37.4, \\\"15K\\\": 129.1, \\\"25K\\\": 161.6, \\\"35K\\\": 253.7, \\\"45K\\\": 312.7, \\\"55K\\\": 234, \\\"65K\\\": 246.8, \\\"75K\\\": 90.1, \\\"85K\\\": 188.9, \\\"95K\\\": 334.1, \\\"105K\\\": 281.5}, \\\"ve_ratio_final\\\": 0.2, \\\"ve_ratio_peak\\\": 0.9, \\\"ve_ratio_peak_step\\\": \\\"75K\\\", \\\"civo_alert\\\": 0, \\\"NVE_peak\\\": 2.25, \\\"NVE_peak_note\\\": \\\"transient single-point spike at 75K due to eval dip (90.1), NOT sustained CIVO\\\", \\\"NVE_final\\\": 0.5, \\\"NVE_median_last5\\\": 0.5, \\\"nve_classification\\\": \\\"no_civo\\\", \\\"gate_dt_mean\\\": 2, \\\"gate_dt_2_frac\\\": 1, \\\"value_mean_105K\\\": 62.1, \\\"total_steps\\\": 112000}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0208}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_084_frozen_dt_emb_walker_s0\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T15:58:38.310Z\", \"updated_at\": \"2026-05-25T19:39:30.094Z\", \"hypothesis\": \"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk does not trigger CIVO — proving dt_emb TRAINING (not mere presence) is the necessary condition for CIVO onset. Re-run on current code version (fb56c860a+), replacing killed exp_079.\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && git pull && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_084_frozen_dt_emb_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"296484\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_084_frozen_dt_emb_walker_s0.log\", \"submitted_at\": \"2026-05-25T16:17:20.106Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"model_name\": \"dreamerv3\", \"seed\": 0, \"checkpoint_source\": \"none (fresh training)\", \"eval_data\": \"dmc_walker_walk\"}, \"reproduce\": {\"finished_at\": \"2026-05-25T19:31:18.394Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T19:31:26.293176+00:00\"}]}, \"metrics\": {\"eval_return_final\": 281.5, \"eval_return_peak\": 334.1, \"eval_return_peak_step\": \"95K\", \"eval_trajectory\": {\"5K\": 37.4, \"15K\": 129.1, \"25K\": 161.6, \"35K\": 253.7, \"45K\": 312.7, \"55K\": 234, \"65K\": 246.8, \"75K\": 90.1, \"85K\": 188.9, \"95K\": 334.1, \"105K\": 281.5}, \"ve_ratio_final\": 0.2, \"ve_ratio_peak\": 0.9, \"ve_ratio_peak_step\": \"75K\", \"civo_alert\": 0, \"NVE_peak\": 2.25, \"NVE_peak_note\": \"transient single-point spike at 75K due to eval dip (90.1), NOT sustained CIVO\", \"NVE_final\": 0.5, \"NVE_median_last5\": 0.5, \"nve_classification\": \"no_civo\", \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"value_mean_105K\": 62.1, \"total_steps\": 112000}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0208}}"
+              }
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011GYQhD9sF5PvGYD55qU1nb",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_085_frozen_dt_emb_walker_s1",
+                "field": "metrics",
+                "value": {
+                  "eval_return_final": 69.3,
+                  "eval_return_peak": 281.5,
+                  "eval_return_peak_step": "65K",
+                  "eval_trajectory": {
+                    "5K": 31,
+                    "15K": 225.2,
+                    "25K": 128,
+                    "35K": 181.7,
+                    "45K": 200.4,
+                    "55K": 156.6,
+                    "65K": 281.5,
+                    "75K": 267.5,
+                    "85K": 46.2,
+                    "95K": 241.1,
+                    "105K": 69.3
+                  },
+                  "ve_ratio_final": 0.8,
+                  "ve_ratio_peak": 1.2,
+                  "ve_ratio_peak_step": "85K",
+                  "civo_alert": 0,
+                  "NVE_peak": 3,
+                  "NVE_peak_note": "transient single-point spike at 85K due to eval crash (46.2), value stable at ~55, NOT sustained CIVO",
+                  "NVE_final": 2,
+                  "NVE_median_last5": 0.5,
+                  "nve_classification": "no_civo",
+                  "gate_dt_mean": 2,
+                  "gate_dt_2_frac": 1,
+                  "value_mean_105K": 54.5,
+                  "total_steps": 112000
+                },
+                "project": "event-gated-adaptive-horizon"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "9d38694a-c2df-4426-8d94-4508815be6cc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018a4K11NmsafB5LZ7sv4CXD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4007,
+                "cache_read_input_tokens": 80043,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4007
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-25T19:39:35.190Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011GYQhD9sF5PvGYD55qU1nb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_085_frozen_dt_emb_walker_s1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T16:17:10.446Z\\\", \\\"updated_at\\\": \\\"2026-05-25T19:39:34.788Z\\\", \\\"hypothesis\\\": \\\"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk seed=1 does not trigger CIVO — multi-seed validation that dt_emb TRAINING is the necessary condition for CIVO onset. Current code version (fb56c860a+).\\\", \\\"parent\\\": \\\"exp_042_frozen_dt_emb_walker\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_085_frozen_dt_emb_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"296781\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_085_frozen_dt_emb_walker_s1.log\\\", \\\"submitted_at\\\": \\\"2026-05-25T16:17:29.039Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"dmc_walker_walk\\\", \\\"data_count\\\": 105000, \\\"model_name\\\": \\\"dreamerv3\\\", \\\"seed\\\": 1, \\\"checkpoint_source\\\": \\\"none (fresh training)\\\", \\\"eval_data\\\": \\\"dmc_walker_walk\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-25T19:31:38.872Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-25T19:31:47.198579+00:00\\\"}]}, \\\"metrics\\\": {\\\"eval_return_final\\\": 69.3, \\\"eval_return_peak\\\": 281.5, \\\"eval_return_peak_step\\\": \\\"65K\\\", \\\"eval_trajectory\\\": {\\\"5K\\\": 31, \\\"15K\\\": 225.2, \\\"25K\\\": 128, \\\"35K\\\": 181.7, \\\"45K\\\": 200.4, \\\"55K\\\": 156.6, \\\"65K\\\": 281.5, \\\"75K\\\": 267.5, \\\"85K\\\": 46.2, \\\"95K\\\": 241.1, \\\"105K\\\": 69.3}, \\\"ve_ratio_final\\\": 0.8, \\\"ve_ratio_peak\\\": 1.2, \\\"ve_ratio_peak_step\\\": \\\"85K\\\", \\\"civo_alert\\\": 0, \\\"NVE_peak\\\": 3, \\\"NVE_peak_note\\\": \\\"transient single-point spike at 85K due to eval crash (46.2), value stable at ~55, NOT sustained CIVO\\\", \\\"NVE_final\\\": 2, \\\"NVE_median_last5\\\": 0.5, \\\"nve_classification\\\": \\\"no_civo\\\", \\\"gate_dt_mean\\\": 2, \\\"gate_dt_2_frac\\\": 1, \\\"value_mean_105K\\\": 54.5, \\\"total_steps\\\": 112000}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9948}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "dcba4ec2-87e7-43d1-84d0-c89530968ba9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_085_frozen_dt_emb_walker_s1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T16:17:10.446Z\\\", \\\"updated_at\\\": \\\"2026-05-25T19:39:34.788Z\\\", \\\"hypothesis\\\": \\\"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk seed=1 does not trigger CIVO — multi-seed validation that dt_emb TRAINING is the necessary condition for CIVO onset. Current code version (fb56c860a+).\\\", \\\"parent\\\": \\\"exp_042_frozen_dt_emb_walker\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_085_frozen_dt_emb_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"296781\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_085_frozen_dt_emb_walker_s1.log\\\", \\\"submitted_at\\\": \\\"2026-05-25T16:17:29.039Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"dmc_walker_walk\\\", \\\"data_count\\\": 105000, \\\"model_name\\\": \\\"dreamerv3\\\", \\\"seed\\\": 1, \\\"checkpoint_source\\\": \\\"none (fresh training)\\\", \\\"eval_data\\\": \\\"dmc_walker_walk\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-25T19:31:38.872Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-25T19:31:47.198579+00:00\\\"}]}, \\\"metrics\\\": {\\\"eval_return_final\\\": 69.3, \\\"eval_return_peak\\\": 281.5, \\\"eval_return_peak_step\\\": \\\"65K\\\", \\\"eval_trajectory\\\": {\\\"5K\\\": 31, \\\"15K\\\": 225.2, \\\"25K\\\": 128, \\\"35K\\\": 181.7, \\\"45K\\\": 200.4, \\\"55K\\\": 156.6, \\\"65K\\\": 281.5, \\\"75K\\\": 267.5, \\\"85K\\\": 46.2, \\\"95K\\\": 241.1, \\\"105K\\\": 69.3}, \\\"ve_ratio_final\\\": 0.8, \\\"ve_ratio_peak\\\": 1.2, \\\"ve_ratio_peak_step\\\": \\\"85K\\\", \\\"civo_alert\\\": 0, \\\"NVE_peak\\\": 3, \\\"NVE_peak_note\\\": \\\"transient single-point spike at 85K due to eval crash (46.2), value stable at ~55, NOT sustained CIVO\\\", \\\"NVE_final\\\": 2, \\\"NVE_median_last5\\\": 0.5, \\\"nve_classification\\\": \\\"no_civo\\\", \\\"gate_dt_mean\\\": 2, \\\"gate_dt_2_frac\\\": 1, \\\"value_mean_105K\\\": 54.5, \\\"total_steps\\\": 112000}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9948}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_085_frozen_dt_emb_walker_s1\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T16:17:10.446Z\", \"updated_at\": \"2026-05-25T19:39:34.788Z\", \"hypothesis\": \"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk seed=1 does not trigger CIVO — multi-seed validation that dt_emb TRAINING is the necessary condition for CIVO onset. Current code version (fb56c860a+).\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_085_frozen_dt_emb_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"296781\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_085_frozen_dt_emb_walker_s1.log\", \"submitted_at\": \"2026-05-25T16:17:29.039Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"model_name\": \"dreamerv3\", \"seed\": 1, \"checkpoint_source\": \"none (fresh training)\", \"eval_data\": \"dmc_walker_walk\"}, \"reproduce\": {\"finished_at\": \"2026-05-25T19:31:38.872Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T19:31:47.198579+00:00\"}]}, \"metrics\": {\"eval_return_final\": 69.3, \"eval_return_peak\": 281.5, \"eval_return_peak_step\": \"65K\", \"eval_trajectory\": {\"5K\": 31, \"15K\": 225.2, \"25K\": 128, \"35K\": 181.7, \"45K\": 200.4, \"55K\": 156.6, \"65K\": 281.5, \"75K\": 267.5, \"85K\": 46.2, \"95K\": 241.1, \"105K\": 69.3}, \"ve_ratio_final\": 0.8, \"ve_ratio_peak\": 1.2, \"ve_ratio_peak_step\": \"85K\", \"civo_alert\": 0, \"NVE_peak\": 3, \"NVE_peak_note\": \"transient single-point spike at 85K due to eval crash (46.2), value stable at ~55, NOT sustained CIVO\", \"NVE_final\": 2, \"NVE_median_last5\": 0.5, \"nve_classification\": \"no_civo\", \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"value_mean_105K\": 54.5, \"total_steps\": 112000}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9948}}"
+              }
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Jj9NKhSLTAuxkhvLnux4Pd",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_084_frozen_dt_emb_walker_s0",
+                "field": "conclusion",
+                "value": "success",
+                "project": "event-gated-adaptive-horizon"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "4e7894dc-abc3-4321-ab4e-e1a144647280",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018a4K11NmsafB5LZ7sv4CXD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4007,
+                "cache_read_input_tokens": 80043,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4007
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017K82a3EFduA65BnrGaLeZU",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_085_frozen_dt_emb_walker_s1",
+                "field": "conclusion",
+                "value": "success",
+                "project": "event-gated-adaptive-horizon"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "76ee243f-2fc9-423a-b816-363ae352f08b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018a4K11NmsafB5LZ7sv4CXD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4007,
+                "cache_read_input_tokens": 80043,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4007
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-25T19:39:36.415Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Jj9NKhSLTAuxkhvLnux4Pd",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_084_frozen_dt_emb_walker_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T15:58:38.310Z\\\", \\\"updated_at\\\": \\\"2026-05-25T19:39:36.008Z\\\", \\\"hypothesis\\\": \\\"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk does not trigger CIVO — proving dt_emb TRAINING (not mere presence) is the necessary condition for CIVO onset. Re-run on current code version (fb56c860a+), replacing killed exp_079.\\\", \\\"parent\\\": \\\"exp_042_frozen_dt_emb_walker\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && git pull && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_084_frozen_dt_emb_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"296484\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_084_frozen_dt_emb_walker_s0.log\\\", \\\"submitted_at\\\": \\\"2026-05-25T16:17:20.106Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"dmc_walker_walk\\\", \\\"data_count\\\": 105000, \\\"model_name\\\": \\\"dreamerv3\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"none (fresh training)\\\", \\\"eval_data\\\": \\\"dmc_walker_walk\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-25T19:31:18.394Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-25T19:31:26.293176+00:00\\\"}]}, \\\"metrics\\\": {\\\"eval_return_final\\\": 281.5, \\\"eval_return_peak\\\": 334.1, \\\"eval_return_peak_step\\\": \\\"95K\\\", \\\"eval_trajectory\\\": {\\\"5K\\\": 37.4, \\\"15K\\\": 129.1, \\\"25K\\\": 161.6, \\\"35K\\\": 253.7, \\\"45K\\\": 312.7, \\\"55K\\\": 234, \\\"65K\\\": 246.8, \\\"75K\\\": 90.1, \\\"85K\\\": 188.9, \\\"95K\\\": 334.1, \\\"105K\\\": 281.5}, \\\"ve_ratio_final\\\": 0.2, \\\"ve_ratio_peak\\\": 0.9, \\\"ve_ratio_peak_step\\\": \\\"75K\\\", \\\"civo_alert\\\": 0, \\\"NVE_peak\\\": 2.25, \\\"NVE_peak_note\\\": \\\"transient single-point spike at 75K due to eval dip (90.1), NOT sustained CIVO\\\", \\\"NVE_final\\\": 0.5, \\\"NVE_median_last5\\\": 0.5, \\\"nve_classification\\\": \\\"no_civo\\\", \\\"gate_dt_mean\\\": 2, \\\"gate_dt_2_frac\\\": 1, \\\"value_mean_105K\\\": 62.1, \\\"total_steps\\\": 112000}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9745}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "7cd882bd-627e-4d90-9026-3e12be27f7bc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_084_frozen_dt_emb_walker_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T15:58:38.310Z\\\", \\\"updated_at\\\": \\\"2026-05-25T19:39:36.008Z\\\", \\\"hypothesis\\\": \\\"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk does not trigger CIVO — proving dt_emb TRAINING (not mere presence) is the necessary condition for CIVO onset. Re-run on current code version (fb56c860a+), replacing killed exp_079.\\\", \\\"parent\\\": \\\"exp_042_frozen_dt_emb_walker\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && git pull && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_084_frozen_dt_emb_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"296484\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_084_frozen_dt_emb_walker_s0.log\\\", \\\"submitted_at\\\": \\\"2026-05-25T16:17:20.106Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"dmc_walker_walk\\\", \\\"data_count\\\": 105000, \\\"model_name\\\": \\\"dreamerv3\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"none (fresh training)\\\", \\\"eval_data\\\": \\\"dmc_walker_walk\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-25T19:31:18.394Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-25T19:31:26.293176+00:00\\\"}]}, \\\"metrics\\\": {\\\"eval_return_final\\\": 281.5, \\\"eval_return_peak\\\": 334.1, \\\"eval_return_peak_step\\\": \\\"95K\\\", \\\"eval_trajectory\\\": {\\\"5K\\\": 37.4, \\\"15K\\\": 129.1, \\\"25K\\\": 161.6, \\\"35K\\\": 253.7, \\\"45K\\\": 312.7, \\\"55K\\\": 234, \\\"65K\\\": 246.8, \\\"75K\\\": 90.1, \\\"85K\\\": 188.9, \\\"95K\\\": 334.1, \\\"105K\\\": 281.5}, \\\"ve_ratio_final\\\": 0.2, \\\"ve_ratio_peak\\\": 0.9, \\\"ve_ratio_peak_step\\\": \\\"75K\\\", \\\"civo_alert\\\": 0, \\\"NVE_peak\\\": 2.25, \\\"NVE_peak_note\\\": \\\"transient single-point spike at 75K due to eval dip (90.1), NOT sustained CIVO\\\", \\\"NVE_final\\\": 0.5, \\\"NVE_median_last5\\\": 0.5, \\\"nve_classification\\\": \\\"no_civo\\\", \\\"gate_dt_mean\\\": 2, \\\"gate_dt_2_frac\\\": 1, \\\"value_mean_105K\\\": 62.1, \\\"total_steps\\\": 112000}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9745}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_084_frozen_dt_emb_walker_s0\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T15:58:38.310Z\", \"updated_at\": \"2026-05-25T19:39:36.008Z\", \"hypothesis\": \"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk does not trigger CIVO — proving dt_emb TRAINING (not mere presence) is the necessary condition for CIVO onset. Re-run on current code version (fb56c860a+), replacing killed exp_079.\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && git pull && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_084_frozen_dt_emb_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"296484\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_084_frozen_dt_emb_walker_s0.log\", \"submitted_at\": \"2026-05-25T16:17:20.106Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"model_name\": \"dreamerv3\", \"seed\": 0, \"checkpoint_source\": \"none (fresh training)\", \"eval_data\": \"dmc_walker_walk\"}, \"reproduce\": {\"finished_at\": \"2026-05-25T19:31:18.394Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T19:31:26.293176+00:00\"}]}, \"metrics\": {\"eval_return_final\": 281.5, \"eval_return_peak\": 334.1, \"eval_return_peak_step\": \"95K\", \"eval_trajectory\": {\"5K\": 37.4, \"15K\": 129.1, \"25K\": 161.6, \"35K\": 253.7, \"45K\": 312.7, \"55K\": 234, \"65K\": 246.8, \"75K\": 90.1, \"85K\": 188.9, \"95K\": 334.1, \"105K\": 281.5}, \"ve_ratio_final\": 0.2, \"ve_ratio_peak\": 0.9, \"ve_ratio_peak_step\": \"75K\", \"civo_alert\": 0, \"NVE_peak\": 2.25, \"NVE_peak_note\": \"transient single-point spike at 75K due to eval dip (90.1), NOT sustained CIVO\", \"NVE_final\": 0.5, \"NVE_median_last5\": 0.5, \"nve_classification\": \"no_civo\", \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"value_mean_105K\": 62.1, \"total_steps\": 112000}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9745}}"
+              }
+            }
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-25T19:39:37.419Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017K82a3EFduA65BnrGaLeZU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_085_frozen_dt_emb_walker_s1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T16:17:10.446Z\\\", \\\"updated_at\\\": \\\"2026-05-25T19:39:37.015Z\\\", \\\"hypothesis\\\": \\\"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk seed=1 does not trigger CIVO — multi-seed validation that dt_emb TRAINING is the necessary condition for CIVO onset. Current code version (fb56c860a+).\\\", \\\"parent\\\": \\\"exp_042_frozen_dt_emb_walker\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_085_frozen_dt_emb_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"296781\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_085_frozen_dt_emb_walker_s1.log\\\", \\\"submitted_at\\\": \\\"2026-05-25T16:17:29.039Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"dmc_walker_walk\\\", \\\"data_count\\\": 105000, \\\"model_name\\\": \\\"dreamerv3\\\", \\\"seed\\\": 1, \\\"checkpoint_source\\\": \\\"none (fresh training)\\\", \\\"eval_data\\\": \\\"dmc_walker_walk\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-25T19:31:38.872Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-25T19:31:47.198579+00:00\\\"}]}, \\\"metrics\\\": {\\\"eval_return_final\\\": 69.3, \\\"eval_return_peak\\\": 281.5, \\\"eval_return_peak_step\\\": \\\"65K\\\", \\\"eval_trajectory\\\": {\\\"5K\\\": 31, \\\"15K\\\": 225.2, \\\"25K\\\": 128, \\\"35K\\\": 181.7, \\\"45K\\\": 200.4, \\\"55K\\\": 156.6, \\\"65K\\\": 281.5, \\\"75K\\\": 267.5, \\\"85K\\\": 46.2, \\\"95K\\\": 241.1, \\\"105K\\\": 69.3}, \\\"ve_ratio_final\\\": 0.8, \\\"ve_ratio_peak\\\": 1.2, \\\"ve_ratio_peak_step\\\": \\\"85K\\\", \\\"civo_alert\\\": 0, \\\"NVE_peak\\\": 3, \\\"NVE_peak_note\\\": \\\"transient single-point spike at 85K due to eval crash (46.2), value stable at ~55, NOT sustained CIVO\\\", \\\"NVE_final\\\": 2, \\\"NVE_median_last5\\\": 0.5, \\\"nve_classification\\\": \\\"no_civo\\\", \\\"gate_dt_mean\\\": 2, \\\"gate_dt_2_frac\\\": 1, \\\"value_mean_105K\\\": 54.5, \\\"total_steps\\\": 112000}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9925}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "fde4b940-8e6d-49a7-9d2c-b68c9d7ff083",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_085_frozen_dt_emb_walker_s1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T16:17:10.446Z\\\", \\\"updated_at\\\": \\\"2026-05-25T19:39:37.015Z\\\", \\\"hypothesis\\\": \\\"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk seed=1 does not trigger CIVO — multi-seed validation that dt_emb TRAINING is the necessary condition for CIVO onset. Current code version (fb56c860a+).\\\", \\\"parent\\\": \\\"exp_042_frozen_dt_emb_walker\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_085_frozen_dt_emb_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"296781\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_085_frozen_dt_emb_walker_s1.log\\\", \\\"submitted_at\\\": \\\"2026-05-25T16:17:29.039Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"dmc_walker_walk\\\", \\\"data_count\\\": 105000, \\\"model_name\\\": \\\"dreamerv3\\\", \\\"seed\\\": 1, \\\"checkpoint_source\\\": \\\"none (fresh training)\\\", \\\"eval_data\\\": \\\"dmc_walker_walk\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-25T19:31:38.872Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-25T19:31:47.198579+00:00\\\"}]}, \\\"metrics\\\": {\\\"eval_return_final\\\": 69.3, \\\"eval_return_peak\\\": 281.5, \\\"eval_return_peak_step\\\": \\\"65K\\\", \\\"eval_trajectory\\\": {\\\"5K\\\": 31, \\\"15K\\\": 225.2, \\\"25K\\\": 128, \\\"35K\\\": 181.7, \\\"45K\\\": 200.4, \\\"55K\\\": 156.6, \\\"65K\\\": 281.5, \\\"75K\\\": 267.5, \\\"85K\\\": 46.2, \\\"95K\\\": 241.1, \\\"105K\\\": 69.3}, \\\"ve_ratio_final\\\": 0.8, \\\"ve_ratio_peak\\\": 1.2, \\\"ve_ratio_peak_step\\\": \\\"85K\\\", \\\"civo_alert\\\": 0, \\\"NVE_peak\\\": 3, \\\"NVE_peak_note\\\": \\\"transient single-point spike at 85K due to eval crash (46.2), value stable at ~55, NOT sustained CIVO\\\", \\\"NVE_final\\\": 2, \\\"NVE_median_last5\\\": 0.5, \\\"nve_classification\\\": \\\"no_civo\\\", \\\"gate_dt_mean\\\": 2, \\\"gate_dt_2_frac\\\": 1, \\\"value_mean_105K\\\": 54.5, \\\"total_steps\\\": 112000}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9925}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_085_frozen_dt_emb_walker_s1\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T16:17:10.446Z\", \"updated_at\": \"2026-05-25T19:39:37.015Z\", \"hypothesis\": \"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk seed=1 does not trigger CIVO — multi-seed validation that dt_emb TRAINING is the necessary condition for CIVO onset. Current code version (fb56c860a+).\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_085_frozen_dt_emb_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"296781\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_085_frozen_dt_emb_walker_s1.log\", \"submitted_at\": \"2026-05-25T16:17:29.039Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"model_name\": \"dreamerv3\", \"seed\": 1, \"checkpoint_source\": \"none (fresh training)\", \"eval_data\": \"dmc_walker_walk\"}, \"reproduce\": {\"finished_at\": \"2026-05-25T19:31:38.872Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T19:31:47.198579+00:00\"}]}, \"metrics\": {\"eval_return_final\": 69.3, \"eval_return_peak\": 281.5, \"eval_return_peak_step\": \"65K\", \"eval_trajectory\": {\"5K\": 31, \"15K\": 225.2, \"25K\": 128, \"35K\": 181.7, \"45K\": 200.4, \"55K\": 156.6, \"65K\": 281.5, \"75K\": 267.5, \"85K\": 46.2, \"95K\": 241.1, \"105K\": 69.3}, \"ve_ratio_final\": 0.8, \"ve_ratio_peak\": 1.2, \"ve_ratio_peak_step\": \"85K\", \"civo_alert\": 0, \"NVE_peak\": 3, \"NVE_peak_note\": \"transient single-point spike at 85K due to eval crash (46.2), value stable at ~55, NOT sustained CIVO\", \"NVE_final\": 2, \"NVE_median_last5\": 0.5, \"nve_classification\": \"no_civo\", \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"value_mean_105K\": 54.5, \"total_steps\": 112000}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9925}}"
+              }
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, metrics and conclusions are set. Now I need to:\n1. Set status → DONE\n2. Set checkpoint_path and log_path in spec\n3. Register the artifacts\n\nLet me do all of these in parallel.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "e93c2039-c9b1-4568-8514-4fb6bbcf66b7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VFc7VqACT8uLgy7WKAuuuy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5495,
+                "cache_read_input_tokens": 84050,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5495
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now setting status to DONE and updating spec paths, plus registering artifacts."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "607f3cfd-30c0-4d60-912f-fe2ad0ab5ab6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VFc7VqACT8uLgy7WKAuuuy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5495,
+                "cache_read_input_tokens": 84050,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5495
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LqyrSqMDXV3eKibBa4nk8v",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_084_frozen_dt_emb_walker_s0",
+                "field": "status",
+                "value": "DONE",
+                "project": "event-gated-adaptive-horizon",
+                "spec": {
+                  "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_084_frozen_dt_emb_walker_s0/latest.pt",
+                  "log_path": "~/runs/event-gated-adaptive-horizon/exp_084_frozen_dt_emb_walker_s0.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "a390f4a9-e17a-4508-9c96-18a82a8c120e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VFc7VqACT8uLgy7WKAuuuy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5495,
+                "cache_read_input_tokens": 84050,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5495
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FteeugPhZNixnCWadQiq3n",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp_085_frozen_dt_emb_walker_s1",
+                "field": "status",
+                "value": "DONE",
+                "project": "event-gated-adaptive-horizon",
+                "spec": {
+                  "checkpoint_path": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_085_frozen_dt_emb_walker_s1/latest.pt",
+                  "log_path": "~/runs/event-gated-adaptive-horizon/exp_085_frozen_dt_emb_walker_s1.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "ae452d5f-99e5-4c45-9449-a87cf3161365",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VFc7VqACT8uLgy7WKAuuuy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5495,
+                "cache_read_input_tokens": 84050,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5495
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-25T19:39:47.498Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LqyrSqMDXV3eKibBa4nk8v",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_084_frozen_dt_emb_walker_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T15:58:38.310Z\\\", \\\"updated_at\\\": \\\"2026-05-25T19:39:45.775Z\\\", \\\"hypothesis\\\": \\\"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk does not trigger CIVO — proving dt_emb TRAINING (not mere presence) is the necessary condition for CIVO onset. Re-run on current code version (fb56c860a+), replacing killed exp_079.\\\", \\\"parent\\\": \\\"exp_042_frozen_dt_emb_walker\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && git pull && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_084_frozen_dt_emb_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"296484\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_084_frozen_dt_emb_walker_s0.log\\\", \\\"submitted_at\\\": \\\"2026-05-25T16:17:20.106Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"dmc_walker_walk\\\", \\\"data_count\\\": 105000, \\\"model_name\\\": \\\"dreamerv3\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"none (fresh training)\\\", \\\"eval_data\\\": \\\"dmc_walker_walk\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_084_frozen_dt_emb_walker_s0/latest.pt\\\", \\\"wall_clock_seconds\\\": 12145.7, \\\"gpu_hours\\\": 3.37}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-25T19:31:18.394Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-25T19:31:26.293176+00:00\\\"}]}, \\\"metrics\\\": {\\\"eval_return_final\\\": 281.5, \\\"eval_return_peak\\\": 334.1, \\\"eval_return_peak_step\\\": \\\"95K\\\", \\\"eval_trajectory\\\": {\\\"5K\\\": 37.4, \\\"15K\\\": 129.1, \\\"25K\\\": 161.6, \\\"35K\\\": 253.7, \\\"45K\\\": 312.7, \\\"55K\\\": 234, \\\"65K\\\": 246.8, \\\"75K\\\": 90.1, \\\"85K\\\": 188.9, \\\"95K\\\": 334.1, \\\"105K\\\": 281.5}, \\\"ve_ratio_final\\\": 0.2, \\\"ve_ratio_peak\\\": 0.9, \\\"ve_ratio_peak_step\\\": \\\"75K\\\", \\\"civo_alert\\\": 0, \\\"NVE_peak\\\": 2.25, \\\"NVE_peak_note\\\": \\\"transient single-point spike at 75K due to eval dip (90.1), NOT sustained CIVO\\\", \\\"NVE_final\\\": 0.5, \\\"NVE_median_last5\\\": 0.5, \\\"nve_classification\\\": \\\"no_civo\\\", \\\"gate_dt_mean\\\": 2, \\\"gate_dt_2_frac\\\": 1, \\\"value_mean_105K\\\": 62.1, \\\"total_steps\\\": 112000}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-25T19:39:45.775Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.2818}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "38a22e08-1c28-43b2-b019-d8d640b5acfd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_084_frozen_dt_emb_walker_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T15:58:38.310Z\\\", \\\"updated_at\\\": \\\"2026-05-25T19:39:45.775Z\\\", \\\"hypothesis\\\": \\\"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk does not trigger CIVO — proving dt_emb TRAINING (not mere presence) is the necessary condition for CIVO onset. Re-run on current code version (fb56c860a+), replacing killed exp_079.\\\", \\\"parent\\\": \\\"exp_042_frozen_dt_emb_walker\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && git pull && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_084_frozen_dt_emb_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"296484\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_084_frozen_dt_emb_walker_s0.log\\\", \\\"submitted_at\\\": \\\"2026-05-25T16:17:20.106Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"dmc_walker_walk\\\", \\\"data_count\\\": 105000, \\\"model_name\\\": \\\"dreamerv3\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"none (fresh training)\\\", \\\"eval_data\\\": \\\"dmc_walker_walk\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_084_frozen_dt_emb_walker_s0/latest.pt\\\", \\\"wall_clock_seconds\\\": 12145.7, \\\"gpu_hours\\\": 3.37}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-25T19:31:18.394Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-25T19:31:26.293176+00:00\\\"}]}, \\\"metrics\\\": {\\\"eval_return_final\\\": 281.5, \\\"eval_return_peak\\\": 334.1, \\\"eval_return_peak_step\\\": \\\"95K\\\", \\\"eval_trajectory\\\": {\\\"5K\\\": 37.4, \\\"15K\\\": 129.1, \\\"25K\\\": 161.6, \\\"35K\\\": 253.7, \\\"45K\\\": 312.7, \\\"55K\\\": 234, \\\"65K\\\": 246.8, \\\"75K\\\": 90.1, \\\"85K\\\": 188.9, \\\"95K\\\": 334.1, \\\"105K\\\": 281.5}, \\\"ve_ratio_final\\\": 0.2, \\\"ve_ratio_peak\\\": 0.9, \\\"ve_ratio_peak_step\\\": \\\"75K\\\", \\\"civo_alert\\\": 0, \\\"NVE_peak\\\": 2.25, \\\"NVE_peak_note\\\": \\\"transient single-point spike at 75K due to eval dip (90.1), NOT sustained CIVO\\\", \\\"NVE_final\\\": 0.5, \\\"NVE_median_last5\\\": 0.5, \\\"nve_classification\\\": \\\"no_civo\\\", \\\"gate_dt_mean\\\": 2, \\\"gate_dt_2_frac\\\": 1, \\\"value_mean_105K\\\": 62.1, \\\"total_steps\\\": 112000}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-25T19:39:45.775Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.2818}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_084_frozen_dt_emb_walker_s0\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T15:58:38.310Z\", \"updated_at\": \"2026-05-25T19:39:45.775Z\", \"hypothesis\": \"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk does not trigger CIVO — proving dt_emb TRAINING (not mere presence) is the necessary condition for CIVO onset. Re-run on current code version (fb56c860a+), replacing killed exp_079.\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && git pull && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_084_frozen_dt_emb_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:0\"], \"pid\": \"296484\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_084_frozen_dt_emb_walker_s0.log\", \"submitted_at\": \"2026-05-25T16:17:20.106Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"model_name\": \"dreamerv3\", \"seed\": 0, \"checkpoint_source\": \"none (fresh training)\", \"eval_data\": \"dmc_walker_walk\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_084_frozen_dt_emb_walker_s0/latest.pt\", \"wall_clock_seconds\": 12145.7, \"gpu_hours\": 3.37}, \"reproduce\": {\"finished_at\": \"2026-05-25T19:31:18.394Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T19:31:26.293176+00:00\"}]}, \"metrics\": {\"eval_return_final\": 281.5, \"eval_return_peak\": 334.1, \"eval_return_peak_step\": \"95K\", \"eval_trajectory\": {\"5K\": 37.4, \"15K\": 129.1, \"25K\": 161.6, \"35K\": 253.7, \"45K\": 312.7, \"55K\": 234, \"65K\": 246.8, \"75K\": 90.1, \"85K\": 188.9, \"95K\": 334.1, \"105K\": 281.5}, \"ve_ratio_final\": 0.2, \"ve_ratio_peak\": 0.9, \"ve_ratio_peak_step\": \"75K\", \"civo_alert\": 0, \"NVE_peak\": 2.25, \"NVE_peak_note\": \"transient single-point spike at 75K due to eval dip (90.1), NOT sustained CIVO\", \"NVE_final\": 0.5, \"NVE_median_last5\": 0.5, \"nve_classification\": \"no_civo\", \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"value_mean_105K\": 62.1, \"total_steps\": 112000}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-25T19:39:45.775Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.2818}}"
+              }
+            }
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-25T19:39:49.767Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FteeugPhZNixnCWadQiq3n",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_085_frozen_dt_emb_walker_s1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T16:17:10.446Z\\\", \\\"updated_at\\\": \\\"2026-05-25T19:39:48.059Z\\\", \\\"hypothesis\\\": \\\"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk seed=1 does not trigger CIVO — multi-seed validation that dt_emb TRAINING is the necessary condition for CIVO onset. Current code version (fb56c860a+).\\\", \\\"parent\\\": \\\"exp_042_frozen_dt_emb_walker\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_085_frozen_dt_emb_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"296781\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_085_frozen_dt_emb_walker_s1.log\\\", \\\"submitted_at\\\": \\\"2026-05-25T16:17:29.039Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"dmc_walker_walk\\\", \\\"data_count\\\": 105000, \\\"model_name\\\": \\\"dreamerv3\\\", \\\"seed\\\": 1, \\\"checkpoint_source\\\": \\\"none (fresh training)\\\", \\\"eval_data\\\": \\\"dmc_walker_walk\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_085_frozen_dt_emb_walker_s1/latest.pt\\\", \\\"wall_clock_seconds\\\": 12139.0, \\\"gpu_hours\\\": 3.37}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-25T19:31:38.872Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-25T19:31:47.198579+00:00\\\"}]}, \\\"metrics\\\": {\\\"eval_return_final\\\": 69.3, \\\"eval_return_peak\\\": 281.5, \\\"eval_return_peak_step\\\": \\\"65K\\\", \\\"eval_trajectory\\\": {\\\"5K\\\": 31, \\\"15K\\\": 225.2, \\\"25K\\\": 128, \\\"35K\\\": 181.7, \\\"45K\\\": 200.4, \\\"55K\\\": 156.6, \\\"65K\\\": 281.5, \\\"75K\\\": 267.5, \\\"85K\\\": 46.2, \\\"95K\\\": 241.1, \\\"105K\\\": 69.3}, \\\"ve_ratio_final\\\": 0.8, \\\"ve_ratio_peak\\\": 1.2, \\\"ve_ratio_peak_step\\\": \\\"85K\\\", \\\"civo_alert\\\": 0, \\\"NVE_peak\\\": 3, \\\"NVE_peak_note\\\": \\\"transient single-point spike at 85K due to eval crash (46.2), value stable at ~55, NOT sustained CIVO\\\", \\\"NVE_final\\\": 2, \\\"NVE_median_last5\\\": 0.5, \\\"nve_classification\\\": \\\"no_civo\\\", \\\"gate_dt_mean\\\": 2, \\\"gate_dt_2_frac\\\": 1, \\\"value_mean_105K\\\": 54.5, \\\"total_steps\\\": 112000}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-25T19:39:48.059Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.2601}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "bfc9ff81-9122-469f-b67e-b359b751aa81",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_085_frozen_dt_emb_walker_s1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T16:17:10.446Z\\\", \\\"updated_at\\\": \\\"2026-05-25T19:39:48.059Z\\\", \\\"hypothesis\\\": \\\"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk seed=1 does not trigger CIVO — multi-seed validation that dt_emb TRAINING is the necessary condition for CIVO onset. Current code version (fb56c860a+).\\\", \\\"parent\\\": \\\"exp_042_frozen_dt_emb_walker\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_085_frozen_dt_emb_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"296781\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_085_frozen_dt_emb_walker_s1.log\\\", \\\"submitted_at\\\": \\\"2026-05-25T16:17:29.039Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"dmc_walker_walk\\\", \\\"data_count\\\": 105000, \\\"model_name\\\": \\\"dreamerv3\\\", \\\"seed\\\": 1, \\\"checkpoint_source\\\": \\\"none (fresh training)\\\", \\\"eval_data\\\": \\\"dmc_walker_walk\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_085_frozen_dt_emb_walker_s1/latest.pt\\\", \\\"wall_clock_seconds\\\": 12139.0, \\\"gpu_hours\\\": 3.37}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-25T19:31:38.872Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-25T19:31:47.198579+00:00\\\"}]}, \\\"metrics\\\": {\\\"eval_return_final\\\": 69.3, \\\"eval_return_peak\\\": 281.5, \\\"eval_return_peak_step\\\": \\\"65K\\\", \\\"eval_trajectory\\\": {\\\"5K\\\": 31, \\\"15K\\\": 225.2, \\\"25K\\\": 128, \\\"35K\\\": 181.7, \\\"45K\\\": 200.4, \\\"55K\\\": 156.6, \\\"65K\\\": 281.5, \\\"75K\\\": 267.5, \\\"85K\\\": 46.2, \\\"95K\\\": 241.1, \\\"105K\\\": 69.3}, \\\"ve_ratio_final\\\": 0.8, \\\"ve_ratio_peak\\\": 1.2, \\\"ve_ratio_peak_step\\\": \\\"85K\\\", \\\"civo_alert\\\": 0, \\\"NVE_peak\\\": 3, \\\"NVE_peak_note\\\": \\\"transient single-point spike at 85K due to eval crash (46.2), value stable at ~55, NOT sustained CIVO\\\", \\\"NVE_final\\\": 2, \\\"NVE_median_last5\\\": 0.5, \\\"nve_classification\\\": \\\"no_civo\\\", \\\"gate_dt_mean\\\": 2, \\\"gate_dt_2_frac\\\": 1, \\\"value_mean_105K\\\": 54.5, \\\"total_steps\\\": 112000}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-25T19:39:48.059Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.2601}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_085_frozen_dt_emb_walker_s1\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T16:17:10.446Z\", \"updated_at\": \"2026-05-25T19:39:48.059Z\", \"hypothesis\": \"Frozen dt_embedding (requires_grad=False, random init) with subsample ON + dt=2 + H=8 on Walker Walk seed=1 does not trigger CIVO — multi-seed validation that dt_emb TRAINING is the necessary condition for CIVO onset. Current code version (fb56c860a+).\", \"parent\": \"exp_042_frozen_dt_emb_walker\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_085_frozen_dt_emb_walker_s1 --steps 105000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dt_emb_freeze True\\\"\", \"server\": \"bjb1-45299\", \"gpu\": [\"cuda:1\"], \"pid\": \"296781\", \"log_path\": \"~/runs/event-gated-adaptive-horizon/exp_085_frozen_dt_emb_walker_s1.log\", \"submitted_at\": \"2026-05-25T16:17:29.039Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"dmc_walker_walk\", \"data_count\": 105000, \"model_name\": \"dreamerv3\", \"seed\": 1, \"checkpoint_source\": \"none (fresh training)\", \"eval_data\": \"dmc_walker_walk\", \"checkpoint_path\": \"/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_085_frozen_dt_emb_walker_s1/latest.pt\", \"wall_clock_seconds\": 12139.0, \"gpu_hours\": 3.37}, \"reproduce\": {\"finished_at\": \"2026-05-25T19:31:38.872Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-25T19:31:47.198579+00:00\"}]}, \"metrics\": {\"eval_return_final\": 69.3, \"eval_return_peak\": 281.5, \"eval_return_peak_step\": \"65K\", \"eval_trajectory\": {\"5K\": 31, \"15K\": 225.2, \"25K\": 128, \"35K\": 181.7, \"45K\": 200.4, \"55K\": 156.6, \"65K\": 281.5, \"75K\": 267.5, \"85K\": 46.2, \"95K\": 241.1, \"105K\": 69.3}, \"ve_ratio_final\": 0.8, \"ve_ratio_peak\": 1.2, \"ve_ratio_peak_step\": \"85K\", \"civo_alert\": 0, \"NVE_peak\": 3, \"NVE_peak_note\": \"transient single-point spike at 85K due to eval crash (46.2), value stable at ~55, NOT sustained CIVO\", \"NVE_final\": 2, \"NVE_median_last5\": 0.5, \"nve_classification\": \"no_civo\", \"gate_dt_mean\": 2, \"gate_dt_2_frac\": 1, \"value_mean_105K\": 54.5, \"total_steps\": 112000}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-25T19:39:48.059Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.2601}}"
+              }
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HFS5C8VqQjjWivf61dd851",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "exp_084_frozen_dt_emb_walker_s0_analysis",
+                "type": "report",
+                "description": "Analysis report for frozen dt_emb Walker Walk seed 0: no CIVO triggered, ve_ratio stable, hypothesis confirmed (dt_emb training is necessary condition for CIVO)",
+                "project": "event-gated-adaptive-horizon",
+                "exp_id": "exp_084_frozen_dt_emb_walker_s0",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/exp_084_frozen_dt_emb_walker_s0/report/analysis.md",
+                "tags": [
+                  "frozen_dt_emb",
+                  "walker_walk",
+                  "civo_analysis",
+                  "no_civo"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "f3c1544b-51f5-4902-861f-8940de4701b2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VFc7VqACT8uLgy7WKAuuuy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5495,
+                "cache_read_input_tokens": 84050,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5495
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-25T19:39:52.215Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HFS5C8VqQjjWivf61dd851",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260525_cc3301\\\", \\\"name\\\": \\\"exp_084_frozen_dt_emb_walker_s0_analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Analysis report for frozen dt_emb Walker Walk seed 0: no CIVO triggered, ve_ratio stable, hypothesis confirmed (dt_emb training is necessary condition for CIVO)\\\", \\\"path\\\": \\\"projects/event-gated-adaptive-horizon/artifacts/exp_084_frozen_dt_emb_walker_s0/report/analysis_cc3301.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"exp_id\\\": \\\"exp_084_frozen_dt_emb_walker_s0\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-25T19:39:51.803067+00:00\\\", \\\"tags\\\": [\\\"frozen_dt_emb\\\", \\\"walker_walk\\\", \\\"civo_analysis\\\", \\\"no_civo\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "8231c7a3-16f8-485c-affe-5e3269a10978",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260525_cc3301\\\", \\\"name\\\": \\\"exp_084_frozen_dt_emb_walker_s0_analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Analysis report for frozen dt_emb Walker Walk seed 0: no CIVO triggered, ve_ratio stable, hypothesis confirmed (dt_emb training is necessary condition for CIVO)\\\", \\\"path\\\": \\\"projects/event-gated-adaptive-horizon/artifacts/exp_084_frozen_dt_emb_walker_s0/report/analysis_cc3301.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"exp_id\\\": \\\"exp_084_frozen_dt_emb_walker_s0\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-25T19:39:51.803067+00:00\\\", \\\"tags\\\": [\\\"frozen_dt_emb\\\", \\\"walker_walk\\\", \\\"civo_analysis\\\", \\\"no_civo\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260525_cc3301\", \"name\": \"exp_084_frozen_dt_emb_walker_s0_analysis\", \"type\": \"report\", \"description\": \"Analysis report for frozen dt_emb Walker Walk seed 0: no CIVO triggered, ve_ratio stable, hypothesis confirmed (dt_emb training is necessary condition for CIVO)\", \"path\": \"projects/event-gated-adaptive-horizon/artifacts/exp_084_frozen_dt_emb_walker_s0/report/analysis_cc3301.md\", \"url\": null, \"project\": \"event-gated-adaptive-horizon\", \"exp_id\": \"exp_084_frozen_dt_emb_walker_s0\", \"skill\": \"\", \"created_at\": \"2026-05-25T19:39:51.803067+00:00\", \"tags\": [\"frozen_dt_emb\", \"walker_walk\", \"civo_analysis\", \"no_civo\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016dTAKL76bwg6JDMguEkSsk",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "exp_085_frozen_dt_emb_walker_s1_analysis",
+                "type": "report",
+                "description": "Analysis report for frozen dt_emb Walker Walk seed 1: no CIVO triggered despite transient ve_ratio spike (eval volatility, not value inflation), hypothesis confirmed",
+                "project": "event-gated-adaptive-horizon",
+                "exp_id": "exp_085_frozen_dt_emb_walker_s1",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/exp_085_frozen_dt_emb_walker_s1/report/analysis.md",
+                "tags": [
+                  "frozen_dt_emb",
+                  "walker_walk",
+                  "civo_analysis",
+                  "no_civo"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "fce78c30-4035-4ecc-b6ce-9d3d65bff405",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VFc7VqACT8uLgy7WKAuuuy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5495,
+                "cache_read_input_tokens": 84050,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5495
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-25T19:39:54.460Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016dTAKL76bwg6JDMguEkSsk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260525_cc03c1\\\", \\\"name\\\": \\\"exp_085_frozen_dt_emb_walker_s1_analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Analysis report for frozen dt_emb Walker Walk seed 1: no CIVO triggered despite transient ve_ratio spike (eval volatility, not value inflation), hypothesis confirmed\\\", \\\"path\\\": \\\"projects/event-gated-adaptive-horizon/artifacts/exp_085_frozen_dt_emb_walker_s1/report/analysis_cc03c1.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"exp_id\\\": \\\"exp_085_frozen_dt_emb_walker_s1\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-25T19:39:54.038450+00:00\\\", \\\"tags\\\": [\\\"frozen_dt_emb\\\", \\\"walker_walk\\\", \\\"civo_analysis\\\", \\\"no_civo\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "8b2d4104-d4e4-479d-8b1b-7399befc1fbc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260525_cc03c1\\\", \\\"name\\\": \\\"exp_085_frozen_dt_emb_walker_s1_analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Analysis report for frozen dt_emb Walker Walk seed 1: no CIVO triggered despite transient ve_ratio spike (eval volatility, not value inflation), hypothesis confirmed\\\", \\\"path\\\": \\\"projects/event-gated-adaptive-horizon/artifacts/exp_085_frozen_dt_emb_walker_s1/report/analysis_cc03c1.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"exp_id\\\": \\\"exp_085_frozen_dt_emb_walker_s1\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-25T19:39:54.038450+00:00\\\", \\\"tags\\\": [\\\"frozen_dt_emb\\\", \\\"walker_walk\\\", \\\"civo_analysis\\\", \\\"no_civo\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260525_cc03c1\", \"name\": \"exp_085_frozen_dt_emb_walker_s1_analysis\", \"type\": \"report\", \"description\": \"Analysis report for frozen dt_emb Walker Walk seed 1: no CIVO triggered despite transient ve_ratio spike (eval volatility, not value inflation), hypothesis confirmed\", \"path\": \"projects/event-gated-adaptive-horizon/artifacts/exp_085_frozen_dt_emb_walker_s1/report/analysis_cc03c1.md\", \"url\": null, \"project\": \"event-gated-adaptive-horizon\", \"exp_id\": \"exp_085_frozen_dt_emb_walker_s1\", \"skill\": \"\", \"created_at\": \"2026-05-25T19:39:54.038450+00:00\", \"tags\": [\"frozen_dt_emb\", \"walker_walk\", \"civo_analysis\", \"no_civo\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。两个实验均已更新至 DONE (success)，报告已注册。\n\n## 结果总结\n\n| | exp_084 (s0) | exp_085 (s1) | 对比: 训练dt_emb (009e) |\n|--|--|--|--|\n| eval_final | 281.5 | 69.3 | 82.8 (collapse) |\n| eval_peak | 334.1 @ 95K | 281.5 @ 65K | 167.2 @ 25K |\n| ve_ratio_peak | 0.9 @ 75K (瞬态) | 1.2 @ 85K (瞬态) | 1.67 @ 55K (持续上升) |\n| ve_ratio_final | 0.2 | 0.8 | 1.03 |\n| NVE_median (末5点) | **0.5x** | **0.5x** | **4.13x** |\n| civo/alert | 0.0 (全程) | 0.0 (全程) | 触发 |\n| value_mean趋势 | 下降 (77→62) | 稳定 (~55) | 上升 (膨胀) |\n| nve_classification | **no_civo** | **no_civo** | onset_collapse |\n\n**关键诊断**: 两个 frozen 实验的 ve_ratio 尖峰均由 eval 波动（分母）驱动，而非 value 膨胀（分子）。value_mean 全程稳定/下降，这与 CIVO 的系统性 value 过估机制完全相反。\n\n**结论**: Hypothesis 得到验证 — frozen dt_embedding 不触发 CIVO。dt_emb 的**训练**（梯度流经 embedding 层）是 CIVO 发生的必要条件，而非 embedding 的存在本身。这与 exp_042（210K steps frozen Walker）、exp_087（frozen Cheetah s1）形成 3 实验 × 2 环境 × 多 seed 的一致结论。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "uuid": "abaa422e-a521-4535-b254-3f80caec55fc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VD4G578Uzz4w3bWChy6i4V",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4421,
+                "cache_read_input_tokens": 89545,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4421
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。两个实验均已更新至 DONE (success)，报告已注册。\n\n## 结果总结\n\n| | exp_084 (s0) | exp_085 (s1) | 对比: 训练dt_emb (009e) |\n|--|--|--|--|\n| eval_final | 281.5 | 69.3 | 82.8 (collapse) |\n| eval_peak | 334.1 @ 95K | 281.5 @ 65K | 167.2 @ 25K |\n| ve_ratio_peak | 0.9 @ 75K (瞬态) | 1.2 @ 85K (瞬态) | 1.67 @ 55K (持续上升) |\n| ve_ratio_final | 0.2 | 0.8 | 1.03 |\n| NVE_median (末5点) | **0.5x** | **0.5x** | **4.13x** |\n| civo/alert | 0.0 (全程) | 0.0 (全程) | 触发 |\n| value_mean趋势 | 下降 (77→62) | 稳定 (~55) | 上升 (膨胀) |\n| nve_classification | **no_civo** | **no_civo** | onset_collapse |\n\n**关键诊断**: 两个 frozen 实验的 ve_ratio 尖峰均由 eval 波动（分母）驱动，而非 value 膨胀（分子）。value_mean 全程稳定/下降，这与 CIVO 的系统性 value 过估机制完全相反。\n\n**结论**: Hypothesis 得到验证 — frozen dt_embedding 不触发 CIVO。dt_emb 的**训练**（梯度流经 embedding 层）是 CIVO 发生的必要条件，而非 embedding 的存在本身。这与 exp_042（210K steps frozen Walker）、exp_087（frozen Cheetah s1）形成 3 实验 × 2 环境 × 多 seed 的一致结论。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 393031,
+            "duration_api_ms": 390438,
+            "num_turns": 40,
+            "stop_reason": "end_turn",
+            "session_id": "6fac53f0-5301-48a1-ad4e-cc622cd3de18",
+            "total_cost_usd": 1.42436775,
+            "usage": {
+              "input_tokens": 17,
+              "cache_creation_input_tokens": 82125,
+              "cache_read_input_tokens": 706799,
+              "output_tokens": 22224,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 82125,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 573,
+                  "cache_read_input_tokens": 89545,
+                  "cache_creation_input_tokens": 4421,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 4421
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1922,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0020020000000000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 17,
+                "outputTokens": 22224,
+                "cacheReadInputTokens": 706799,
+                "cacheCreationInputTokens": 82125,
+                "webSearchRequests": 0,
+                "costUSD": 1.42236575,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "8b5f1fc5-c24c-4108-a5fc-26644a20773b"
+          },
+          "id": "event-000101"
+        }
+      ]
+    }
+  ]
+}

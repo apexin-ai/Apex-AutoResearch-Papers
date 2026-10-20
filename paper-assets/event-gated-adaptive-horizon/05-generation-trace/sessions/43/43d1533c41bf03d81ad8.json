@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43d1533c41bf03d81ad8",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 082",
+  "task_key": "worker_analysis_exp_082_20260525T162510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_082_20260525T162510_result.json",
+    "occurrence": 1,
+    "bytes": 645,
+    "sha256": "036bef234621878eece799174d644c2090838aa8512e1820a484173e15120f25"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n**exp_082_cheetah_no_dt_emb_s0 结果：success**\n\n- **无 CIVO**：civo_alert 全程 0，ve_ratio 峰值 0.955（< 1.0，value 从未超过 eval）\n- **eval_return**：峰值 239.3@45K，最终 83.2@105K（baseline 的 18.6%）\n- **与 exp_078 因果对验证**：唯一变量 dt_embed_dim（082=0 vs 078=trained），在 45K-75K 关键窗口 ve_ratio 完全分叉（082: 0.10→0.31 vs 078: 0.30→2.32）\n- **C2 因果链在 Cheetah 跨环境确认**：trained dt_emb → CIVO，与 Walker Walk (008f vs 008d) 结论一致\n\nRegistry 已更新为 DONE/success，报告已注册 (art_20260525_980cba)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-082.md"
+}

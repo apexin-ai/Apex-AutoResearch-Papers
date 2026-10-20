@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab4a9840d4de49eb3814",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops check gpu0 and submit 009a",
+  "task_key": "worker_ops_check_gpu0_and_submit_009a_20260514T072023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_gpu0_and_submit_009a_20260514T072023_result.json",
+    "occurrence": 1,
+    "bytes": 312,
+    "sha256": "e58a36a8e0b34f884cf90b06b46687b6382e6039b63e9b48c26c7a02b4c42fb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态\n- **008f (cuda:0)**: ALIVE, PID 127766, 运行 2h28m, 占用 2742 MiB, GPU利用率 25%\n- **008e_v3 (cuda:1)**: ALIVE, PID 126115, 运行 2h51m, 占用 4158 MiB, GPU利用率 1%\n- **cuda:0 空闲**: NO\n- **cuda:1 空闲**: NO\n\n两块 GPU 都在跑，暂不可提交新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-gpu0-and-submit-009a.md"
+}

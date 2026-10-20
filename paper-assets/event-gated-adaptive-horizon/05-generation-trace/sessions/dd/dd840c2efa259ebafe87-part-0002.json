@@ -1,0 +1,407 @@
+{
+  "schema_version": "1.0",
+  "session_id": "dd840c2efa259ebafe87",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-14T22:45:25.832Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A3SHFENFQrpcEhE2C5FAVw",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/literature_map.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8983bf4d-5003-4f25-9acf-ac4b34cdbcf5",
+            "uuid": "2125cce7-d717-4275-963b-7a63f5838020",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/literature_map.yaml",
+              "oldString": "#    \"trained dt_embedding creates a necessary condition (nve>1.5x) for\n#    delusional critic collapse, but collapse is a stochastic bifurcation\n#    whose outcome depends on seed-dependent plasticity dynamics.\"",
+              "newString": "#    \"trained dt_embedding creates a necessary condition (nve>1.5x) for\n#    delusional critic collapse, but collapse is a stochastic bifurcation\n#    whose outcome depends on seed-dependent plasticity dynamics.\"\n\n# ============================================================\n# INCREMENTAL SCAN (2026-05-14): Δt conditioning & adaptive horizon\n# ============================================================\n# 8 new papers from targeted search on:\n#   - Δt/timestep conditioning in world models\n#   - Variable-rate imagination / adaptive horizon\n#   - Hierarchical planning with latent world models (2025-2026)\n#\n# KEY FINDING: TAWM (Nhu et al. ICML 2025) explicitly conditions\n# world model on Δt — closest methodological overlap. But TAWM\n# uses TD-MPC2 (online MPC) not imagination-based actor-critic,\n# and treats Δt conditioning as beneficial. Our work diagnoses\n# Δt conditioning as pathological in imagination-based training\n# (delusional critic). Complementary, not duplicative.\n\n- paper_id: nhu2025tawm\n  title: \"Time-Aware World Model for Adaptive Prediction and Control\"\n  authors: [Nhu A.N., Son S., Lin M.C.]\n  year: 2025\n  venue: \"ICML 2025 (arXiv:2506.08441)\"\n  category: direct-competitor\n  role: \"TAWM — explicitly conditions world model on time-step size Δt and trains over diverse Δt values for multi-rate dynamics learning. Built on TD-MPC2 (online MPC). KEY DISTINCTION from our work: (1) TAWM treats Δt conditioning as beneficial for performance/data-efficiency; we diagnose it as pathological in imagination-based actor-critic training (delusional critic). (2) TAWM uses MPC (no imagination rollouts for policy training); our failure mode is specific to imagination-based training where the critic exploits dt-conditioned value estimates. (3) TAWM focuses on observation-rate robustness; we focus on value overestimation from temporal conditioning corruption. TAWM actually strengthens our contribution: it shows Δt conditioning works in MPC settings, making our finding that it fails in imagination-based settings a surprising and important diagnostic.\"\n  relevance_score: 5\n  novelty_threat: \"MEDIUM — methodological overlap (Δt conditioning) but fundamentally different paradigm (MPC vs imagination) and opposite conclusion (beneficial vs pathological). Must cite and differentiate in paper.\"\n\n- paper_id: li2025lsimagine\n  title: \"Open-World Reinforcement Learning over Long Short-Term Imagination\"\n  authors: [Li J., Wang Q., Wang Y., Jin X., Li Y., Zeng W., Yang X.]\n  year: 2025\n  venue: \"ICLR 2025 Oral (arXiv:2410.03618)\"\n  category: direct-competitor\n  role: \"LS-Imagine — extends imagination horizon in Dreamer via goal-conditioned jumpy state transitions and affordance maps. Addresses the 'short-sightedness' of standard Dreamer imagination. KEY DISTINCTION: LS-Imagine adds jumpy transitions to reach long-horizon targets (open-world Minecraft), while our work shows that variable-dt imagination itself introduces delusional critic. LS-Imagine's jumpy transitions use goal conditioning (not dt-embedding), potentially avoiding the value overestimation we identify.\"\n  relevance_score: 4\n  novelty_threat: \"LOW — different mechanism (goal-conditioned jumps vs dt-embedding) and different focus (long-horizon exploration vs diagnostic of failure modes). Should cite as concurrent approach to extending imagination horizon.\"\n\n- paper_id: zhang2026hwm\n  title: \"Hierarchical Planning with Latent World Models\"\n  authors: [Zhang W., Terver B., Zholus A., Chitnis S., Sutaria H., Assran M., Balestriero R., Bar A., Bardes A., LeCun Y., Ballas N.]\n  year: 2026\n  venue: \"arXiv:2604.03208\"\n  category: direct-competitor\n  role: \"HWM — learns multi-scale latent world models for hierarchical MPC planning; high-level planner optimizes macro-actions, low-level planner handles primitives. 70% success on real-world non-greedy robotic tasks vs 0% for single-level. Addresses temporal abstraction via hierarchical planning (MPC), not imagination-based actor-critic. Further evidence that temporal abstraction in world models requires hierarchy rather than single-scale variable-dt approaches.\"\n  relevance_score: 4\n  novelty_threat: \"LOW — MPC-based hierarchical planning, not imagination-based training. Supports our thesis that flat dt-embedding approaches are inferior to hierarchical alternatives.\"\n\n- paper_id: kobayashi2025metacontroller\n  title: \"Emergent temporal abstractions in autoregressive models enable hierarchical reinforcement learning\"\n  authors: [Kobayashi S., et al.]\n  year: 2025\n  venue: \"arXiv:2512.20605\"\n  category: method-component\n  role: \"MetaController — discovers temporal abstractions via higher-order non-causal sequence model controlling base autoregressive model's residual stream. Each controller executes behaviorally meaningful action sequences with learned termination conditions. Operates in fundamentally different paradigm (LLM-style autoregressive models, not world-model imagination), but demonstrates that temporal abstraction benefits from hierarchical structure rather than flat dt-conditioning.\"\n  relevance_score: 3\n\n- paper_id: shaj2023mts3\n  title: \"Multi Time Scale World Models\"\n  authors: [Shaj V., Gholam Zadeh S., Demir O., Luettjohann L., Neumann G., Toussaint M.]\n  year: 2023\n  venue: \"NeurIPS 2023 (arXiv:2310.18534)\"\n  category: method-component\n  role: \"MTS3 — probabilistic multi-time-scale state space model with fast and slow latent dynamics for variable-rate prediction. Provides efficient inference across temporal scales. Foundational multi-rate dynamics architecture; our work shows that even with proper multi-rate modeling, the downstream actor-critic training in imagination can exploit temporal conditioning for value overestimation — a failure mode MTS3 does not address (it focuses on prediction quality, not policy training).\"\n  relevance_score: 4\n\n- paper_id: splates2025\n  title: \"Stable Planning with Temporally Extended Skills\"\n  authors: [SPlaTES authors]\n  year: 2025\n  venue: \"Reinforcement Learning Journal (RLC 2025)\"\n  category: method-component\n  role: \"SPlaTES — hierarchical MPC with temporally extended skills + abstract skill world model. Skill learning via mutual-information objective yields diverse, predictable, task-related behavior. Demonstrates that stable long-horizon planning requires modeling skill outcomes (temporal abstraction via hierarchy), not primitive-action outcomes at variable time steps — consistent with our finding that flat dt-embedding fails.\"\n  relevance_score: 3\n\n- paper_id: beckerehmck2023multitimestep\n  title: \"Multi-timestep models for Model-based Reinforcement Learning\"\n  authors: [Becker-Ehmck P., Peters J., van der Smagt P.]\n  year: 2023\n  venue: \"arXiv:2310.05672\"\n  category: background\n  role: \"Proposes multi-timestep training objective (weighted sum of losses at various future horizons) for one-step dynamics models to improve long-horizon R² score. Addresses compounding error at the model training level; our work shows that even with perfect multi-step prediction, the imagination-based actor-critic can still fail due to value overestimation from dt-conditioning — a downstream failure mode distinct from prediction accuracy.\"\n  relevance_score: 3\n\n- paper_id: liu2022dmve\n  title: \"Dynamic-Horizon Model-Based Value Estimation With Latent Imagination\"\n  authors: [Liu Y., et al.]\n  year: 2022\n  venue: \"IEEE TNNLS (arXiv:2009.09593)\"\n  category: background\n  role: \"DMVE — adaptive rollout horizon selection via horizon reliability detection (comparing value expansion errors between raw and reconstructed observations). Addresses the horizon selection problem in imagination-based value estimation. Complementary to our work: DMVE selects among fixed-dt horizons; we show that even optimal horizon selection cannot fix the delusional critic when dt-embedding is trained (the overestimation is in the value function, not the horizon length).\"\n  relevance_score: 3\n\n# --- Incremental scan synthesis (2026-05-14) ---\n#\n# NOVELTY ASSESSMENT:\n# No paper found that diagnoses dt_embedding → delusional critic\n# (value overestimation) → stochastic collapse in imagination-based\n# MBRL. Our core contribution remains novel.\n#\n# TAWM (ICML 2025) is the closest methodological overlap but\n# operates in MPC paradigm and reaches opposite conclusion\n# (Δt conditioning is beneficial). This actually STRENGTHENS\n# our novelty: \"Δt conditioning helps in MPC but hurts in\n# imagination-based training\" is a more nuanced and surprising finding.\n#\n# LANDSCAPE TREND:\n# The field is converging on HIERARCHY (THICK, Hieros, Director,\n# HWM, SPlaTES, MetaController) as the solution to temporal\n# abstraction in world models, avoiding flat variable-dt approaches.\n# Our diagnostic paper explains WHY flat dt approaches fail,\n# providing theoretical grounding for this empirical trend.\n#\n# ACTION ITEMS FOR PAPER:\n# 1. MUST CITE: nhu2025tawm — differentiate MPC vs imagination paradigm\n# 2. SHOULD CITE: li2025lsimagine — concurrent Dreamer horizon extension\n# 3. SHOULD CITE: shaj2023mts3 — multi-rate dynamics foundation\n# 4. CONSIDER: zhang2026hwm — latest hierarchical WM planning",
+              "originalFile": "# Literature Map — event-gated-adaptive-horizon\n# Last updated: 2026-05-14\n# Total: 72 papers (64 existing + 8 incremental scan 2026-05-14)\n\n# ============================================================\n# EXISTING CITATIONS (already in paper.tex)\n# ============================================================\n\n- paper_id: sutton1999options\n  title: \"Between MDPs and Semi-MDPs: A Framework for Temporal Abstraction in Reinforcement Learning\"\n  authors: [Sutton R.S., Precup D., Singh S.]\n  year: 1999\n  venue: \"Artificial Intelligence 112(1-2):181-211\"\n  category: background\n  role: \"Foundational options framework for temporal abstraction in RL; our work investigates why temporal abstraction fails in world-model RL\"\n  relevance_score: 5\n\n- paper_id: hafner2020dreamerv1\n  title: \"Dream to Control: Learning Behaviors by Latent Imagination\"\n  authors: [Hafner D., Lillicrap T., Ba J., Norouzi M.]\n  year: 2020\n  venue: ICLR\n  category: background\n  role: \"DreamerV1 — base architecture family; our experiments build on the RSSM and imagination-based training paradigm\"\n  relevance_score: 5\n\n- paper_id: hafner2023dreamerv3\n  title: \"Mastering Diverse Domains through World Models\"\n  authors: [Hafner D., Pasukonis J., Ba J., Lillicrap T.]\n  year: 2023\n  venue: \"arXiv:2301.04104 (Nature 2025)\"\n  category: background\n  role: \"DreamerV3 — the specific base system we modify; symlog transforms, discrete latents, all default hyperparameters come from here\"\n  relevance_score: 5\n\n- paper_id: sharma2017figar\n  title: \"Fine Grained Action Repetition for Deep Reinforcement Learning\"\n  authors: [Sharma S., Lakshminarayanan A.S., Ravindran B.]\n  year: 2017\n  venue: \"ICLR Workshop\"\n  category: method-component\n  role: \"FiGAR — learns action-repeat durations in model-free RL; we extend the idea to imagination step size in world-model RL\"\n  relevance_score: 4\n\n- paper_id: janner2019mbpo\n  title: \"When to Trust Your Model: Model-Based Policy Optimization\"\n  authors: [Janner M., Fu J., Zhang M., Levine S.]\n  year: 2019\n  venue: NeurIPS\n  category: background\n  role: \"MBPO — formalizes model exploitation in MBRL; our delusional critic is a specific instance of model exploitation tied to temporal embedding\"\n  relevance_score: 5\n\n# ============================================================\n# NEW: Multi-step prediction error compounding\n# ============================================================\n\n- paper_id: ke2019learning\n  title: \"Learning Dynamics Model in Reinforcement Learning by Incorporating the Long Term Future\"\n  authors: [Ke N.R., Singh A., Touati A., Goyal A., Bengio Y., Parikh D., Batra D.]\n  year: 2019\n  venue: ICLR\n  category: background\n  role: \"Addresses long-term dynamics prediction via latent-variable autoregressive model; directly relevant to our finding that multi-step RSSM predictions degrade with dt>1\"\n  relevance_score: 4\n\n- paper_id: asadi2019combating\n  title: \"Combating the Compounding-Error Problem with a Multi-step Model\"\n  authors: [Asadi K., Misra D., Kim S., Littman M.L.]\n  year: 2019\n  venue: \"arXiv:1905.13320\"\n  category: background\n  role: \"Proposes multi-step models to bypass compounding error; our work shows that even with multi-step imagination, the dt-embedding creates a different failure mode (value overestimation) distinct from compounding error\"\n  relevance_score: 4\n\n- paper_id: venkatraman2015improving\n  title: \"Improving Multi-Step Prediction of Learned Time Series Models\"\n  authors: [Venkatraman A., Hebert M., Bagnell J.A.]\n  year: 2015\n  venue: AAAI\n  category: background\n  role: \"Data-as-Demonstrator (DaD) for robust multi-step prediction; establishes theoretical guarantee relating training error to multi-step prediction error\"\n  relevance_score: 3\n\n- paper_id: lambert2022investigating\n  title: \"Investigating Compounding Prediction Errors in Learned Dynamics Models\"\n  authors: [Lambert N., Pister K.S.J., Calandra R.]\n  year: 2022\n  venue: \"arXiv:2203.09637\"\n  category: background\n  role: \"Empirical study of compounding error properties; we rule out compounding error as the primary failure mechanism (008c vs 008a comparison) and identify value overestimation instead\"\n  relevance_score: 3\n\n# ============================================================\n# NEW: Model-predictive control with learned dynamics\n# ============================================================\n\n- paper_id: chua2018pets\n  title: \"Deep Reinforcement Learning in a Handful of Trials using Probabilistic Dynamics Models\"\n  authors: [Chua K., Calandra R., McAllister R., Levine S.]\n  year: 2018\n  venue: NeurIPS\n  category: background\n  role: \"PETS — ensemble-based uncertainty-aware MPC; uses explicit uncertainty quantification to avoid model exploitation, contrasting with DreamerV3's implicit approach\"\n  relevance_score: 3\n\n- paper_id: nagabandi2018neural\n  title: \"Neural Network Dynamics for Model-Based Deep Reinforcement Learning with Model-Free Fine-Tuning\"\n  authors: [Nagabandi A., Kahn G., Fearing R.S., Levine S.]\n  year: 2018\n  venue: ICRA\n  category: background\n  role: \"Demonstrates NN dynamics + MPC for locomotion; model errors accumulate over prediction horizon, motivating our investigation of horizon-dependent failures\"\n  relevance_score: 3\n\n- paper_id: hansen2024tdmpc2\n  title: \"TD-MPC2: Scalable, Robust World Models for Continuous Control\"\n  authors: [Hansen N., Su H., Wang X.]\n  year: 2024\n  venue: \"ICLR (arXiv:2310.16828)\"\n  category: background\n  role: \"TD-MPC2 — SOTA MPC planning route (online planning + learned dynamics); DMC benchmark leader but orthogonal to imagination-based training — reviewer defense: TD-MPC2 does online MPC rollouts at test time, we study actor-critic training via imagined rollouts (DreamerV3 paradigm), not a same-level comparison\"\n  relevance_score: 4\n\n# ============================================================\n# NEW: Pessimistic MBRL / model exploitation mitigation\n# ============================================================\n\n- paper_id: yu2020mopo\n  title: \"MOPO: Model-based Offline Policy Optimization\"\n  authors: [Yu T., Thomas G., Yu L., Ermon S., Zou J., Levine S., Finn C., Ma T.]\n  year: 2020\n  venue: \"NeurIPS (arXiv:2005.13239)\"\n  category: background\n  role: \"MOPO — pessimistic MBRL via uncertainty-penalized reward (reward -= λ * model_uncertainty); generic model exploitation mitigation — reviewer defense: MOPO addresses distribution shift in offline MBRL, our dt=1 imagination restriction targets dt_embedding-induced delusional critic (temporal conditioning corruption), two complementary mechanisms\"\n  relevance_score: 4\n\n# ============================================================\n# NEW: Value overestimation mitigation\n# ============================================================\n\n- paper_id: thrun1993issues\n  title: \"Issues in Using Function Approximation for Reinforcement Learning\"\n  authors: [Thrun S., Schwartz A.]\n  year: 1993\n  venue: \"Connectionist Models Summer School\"\n  category: background\n  role: \"First identification of systematic value overestimation from function approximation; our delusional critic extends this to model-based imagination with temporal conditioning\"\n  relevance_score: 4\n\n- paper_id: vanhasselt2016double\n  title: \"Deep Reinforcement Learning with Double Q-Learning\"\n  authors: [van Hasselt H., Guez A., Silver D.]\n  year: 2016\n  venue: AAAI\n  category: background\n  role: \"Double DQN — mitigates overestimation via double estimator; our finding that trained dt-embedding enables value exploitation is a complementary overestimation mechanism in MBRL\"\n  relevance_score: 4\n\n- paper_id: fujimoto2018td3\n  title: \"Addressing Function Approximation Error in Actor-Critic Methods\"\n  authors: [Fujimoto S., van Hoof H., Meger D.]\n  year: 2018\n  venue: ICML\n  category: method-component\n  role: \"TD3 — clipped double-Q to limit overestimation in actor-critic; DreamerV3 uses a single critic, making it more vulnerable to the overestimation we identify\"\n  relevance_score: 4\n\n- paper_id: haarnoja2018sac\n  title: \"Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor\"\n  authors: [Haarnoja T., Zhou A., Abbeel P., Levine S.]\n  year: 2018\n  venue: ICML\n  category: method-component\n  role: \"SAC — entropy regularization implicitly mitigates overestimation; relevant contrast to DreamerV3's actor which can greedily exploit overestimated values\"\n  relevance_score: 3\n\n- paper_id: lee2021sunrise\n  title: \"SUNRISE: A Simple Unified Framework for Ensemble Learning in Deep Reinforcement Learning\"\n  authors: [Lee K., Laskin M., Srinivas A., Abbeel P.]\n  year: 2021\n  venue: ICML\n  category: method-component\n  role: \"Ensemble-based uncertainty weighting for value estimation; potential mitigation for our identified delusional critic mechanism\"\n  relevance_score: 3\n\n# ============================================================\n# NEW: Delusional bias\n# ============================================================\n\n- paper_id: lu2018nondelusional\n  title: \"Non-delusional Q-learning and Value-Iteration\"\n  authors: [Lu T., Schuurmans D., Boutilier C.]\n  year: 2018\n  venue: NeurIPS\n  category: background\n  role: \"Formalizes delusional bias from policy-class constraints in Q-learning; we identify an analogous phenomenon where temporal conditioning enables the critic to exploit model imprecision\"\n  relevance_score: 5\n\n# ============================================================\n# NEW: Hierarchical RL with learned models\n# ============================================================\n\n- paper_id: hafner2022director\n  title: \"Deep Hierarchical Planning from Pixels\"\n  authors: [Hafner D., Lee K.-H., Fischer I., Abbeel P.]\n  year: 2022\n  venue: NeurIPS\n  category: direct-competitor\n  role: \"Director — hierarchical planning in Dreamer latent space via subgoals; addresses temporal abstraction through goal hierarchy rather than variable dt\"\n  relevance_score: 4\n\n- paper_id: nachum2018hiro\n  title: \"Data-Efficient Hierarchical Reinforcement Learning\"\n  authors: [Nachum O., Gu S., Lee H., Levine S.]\n  year: 2018\n  venue: NeurIPS\n  category: background\n  role: \"HIRO — off-policy HRL with learned subgoals; demonstrates that hierarchical temporal abstraction can improve sample efficiency when properly designed\"\n  relevance_score: 3\n\n# ============================================================\n# NEW: Action repeat / frame skip\n# ============================================================\n\n- paper_id: braylan2015frame\n  title: \"Frame Skip Is a Powerful Parameter for Learning to Play Atari\"\n  authors: [Braylan A., Hollenbeck M., Meyerson E., Miikkulainen R.]\n  year: 2015\n  venue: \"AAAI Workshop on Learning for General Competency in Video Games\"\n  category: background\n  role: \"Empirical study showing frame skip strongly affects Atari performance; motivates investigation of temporal granularity as a critical design choice\"\n  relevance_score: 3\n\n- paper_id: lakshminarayanan2017dynamic\n  title: \"Dynamic Action Repetition for Deep Reinforcement Learning\"\n  authors: [Lakshminarayanan A.S., Sharma S., Ravindran B.]\n  year: 2017\n  venue: AAAI\n  category: method-component\n  role: \"Learns per-step action repetition duration; model-free analog of our variable-dt imagination approach\"\n  relevance_score: 4\n\n- paper_id: biedenkapp2021temporl\n  title: \"TempoRL: Learning When to Act\"\n  authors: [Biedenkapp A., Rajan R., Hutter F., Lindauer M.]\n  year: 2021\n  venue: ICML\n  category: method-component\n  role: \"Learns action persistence via skip-policy; demonstrates up to 10x speedup — but in model-free setting without the model exploitation risk we identify\"\n  relevance_score: 4\n\n# ============================================================\n# NEW: DreamerV2\n# ============================================================\n\n- paper_id: hafner2021dreamerv2\n  title: \"Mastering Atari with Discrete World Models\"\n  authors: [Hafner D., Lillicrap T., Norouzi M., Ba J.]\n  year: 2021\n  venue: ICLR\n  category: background\n  role: \"DreamerV2 — introduces discrete latent representations used in DreamerV3; key architectural predecessor to our base system\"\n  relevance_score: 5\n\n# ============================================================\n# NEW: Alternative world model architectures\n# ============================================================\n\n- paper_id: micheli2023iris\n  title: \"Transformers are Sample-Efficient World Models\"\n  authors: [Micheli V., Alonso E., Fleuret F.]\n  year: 2023\n  venue: ICLR\n  category: background\n  role: \"IRIS — autoregressive transformer world model; alternative to RSSM that may exhibit different compounding error characteristics under temporal abstraction\"\n  relevance_score: 3\n\n- paper_id: robine2023twm\n  title: \"Transformer-based World Models Are Happy With 100k Interactions\"\n  authors: [Robine J., Hoeftmann M., Uelwer T., Harmeling S.]\n  year: 2023\n  venue: ICLR\n  category: background\n  role: \"TWM — Transformer-XL world model with direct state access; circumvents RSSM's recurrent compression that exacerbates our identified prediction gap\"\n  relevance_score: 3\n\n- paper_id: chen2022transdreamer\n  title: \"TransDreamer: Reinforcement Learning with Transformer World Models\"\n  authors: [Chen C., Wu Y.-F., Yoon J., Ahn S.]\n  year: 2022\n  venue: \"arXiv:2202.09481\"\n  category: background\n  role: \"Replaces RSSM with Transformer State-Space Model; directly tests whether RSSM-specific architecture contributes to temporal abstraction failures\"\n  relevance_score: 3\n\n# ============================================================\n# NEW: 2024-2026 concurrent work on temporal abstraction in world models\n# ============================================================\n\n- paper_id: gumbsch2024thick\n  title: \"Learning Hierarchical World Models with Adaptive Temporal Abstractions from Discrete Latent Dynamics\"\n  authors: [Gumbsch C., Sajid N., Martius G., Butz M.V.]\n  year: 2024\n  venue: ICLR\n  category: direct-competitor\n  role: \"THICK — learns adaptive temporal abstractions via context-change detection; closest concurrent work — addresses temporal abstraction in Dreamer but via hierarchy rather than variable-dt imagination\"\n  relevance_score: 5\n\n- paper_id: mattes2024hieros\n  title: \"Hieros: Hierarchical Imagination on Structured State Space Sequence World Models\"\n  authors: [Mattes P., Schlosser R., Herbrich R.]\n  year: 2024\n  venue: ICML\n  category: direct-competitor\n  role: \"Multi-scale hierarchical imagination with S5 world model; demonstrates temporal abstraction via hierarchy avoids the single-scale dt-embedding failure we identify\"\n  relevance_score: 5\n\n# ============================================================\n# NEW: Seed-dependent instability & value overestimation in MBRL\n# ============================================================\n\n- paper_id: henderson2018deep\n  title: \"Deep Reinforcement Learning that Matters\"\n  authors: [Henderson P., Islam R., Bachman P., Pineau J., Precup D., Meger D.]\n  year: 2018\n  venue: AAAI\n  category: background\n  role: \"Foundational study on seed variance in deep RL — shows statistically different performance distributions arise from random seeds alone with identical hyperparameters; directly supports our observation that seed 0 vs seed 2 produce qualitatively different value dynamics under the same dt_embed_dim=0 config\"\n  relevance_score: 4\n\n- paper_id: nikishin2022primacy\n  title: \"The Primacy Bias in Deep Reinforcement Learning\"\n  authors: [Nikishin E., Schwarzer M., D'Oro P., Bacon P.-L., Courville A.]\n  year: 2022\n  venue: ICML\n  category: background\n  role: \"Identifies primacy bias — agents overfit early data and lose ability to learn from new transitions, leading to delayed performance collapse; parallels our finding where value overestimation initially appears benign but becomes pathological later, and the collapse timing is seed-dependent\"\n  relevance_score: 4\n\n- paper_id: qiao2023mind\n  title: \"Mind the Model, Not the Agent: The Primacy Bias in Model-based RL\"\n  authors: [Qiao Z., Lyu J., Li X.]\n  year: 2023\n  venue: \"arXiv:2310.15017 (ECAI 2024)\"\n  category: evaluation\n  role: \"Extends primacy bias to MBRL, testing on DreamerV2 — shows world model primacy bias dominates over agent primacy bias; directly relevant to Dreamer-family training instability and explains why some seeds recover (model escapes early overfitting) while others don't\"\n  relevance_score: 5\n\n- paper_id: hussing2024dissecting\n  title: \"Dissecting Deep RL with High Update Ratios: Combatting Value Divergence\"\n  authors: [Hussing M., Voelcker C.A., Gilitschenski I., Farahmand A.-M., Eaton E.]\n  year: 2024\n  venue: \"Reinforcement Learning Journal (RLC 2024)\"\n  category: evaluation\n  role: \"Shows value overestimation and Q-divergence under high update-to-data ratios, driven by optimizer momentum — overestimation occurs on both in-distribution and OOD data; mechanism maps to our delusional critic where imagination-trained critic inflates values progressively, with divergence onset sensitive to initialization\"\n  relevance_score: 4\n\n- paper_id: barkley2024stealing\n  title: \"Stealing That Free Lunch: Exposing the Limits of Dyna-Style Reinforcement Learning\"\n  authors: [Barkley B., Fridovich-Keil D.]\n  year: 2024\n  venue: \"arXiv:2412.14312 (ICML 2025)\"\n  category: evaluation\n  role: \"Demonstrates that synthetic rollouts (imagination) can degrade performance inconsistently across environments, with overestimation bias as a contributing factor; supports our finding that imagination-based training creates environment- and seed-dependent failure modes that existing mitigation techniques do not reliably fix\"\n  relevance_score: 3\n\n- paper_id: bjorck2022variance\n  title: \"Is High Variance Unavoidable in RL? A Case Study in Continuous Control\"\n  authors: [Bjorck J., Gomes C.P., Weinberger K.Q.]\n  year: 2022\n  venue: ICLR\n  category: background\n  role: \"Shows RL variance mostly arises early in training from poor 'outlier' runs caused by numerical instability; parallels our observation that seed 2 diverges early while seed 0 recovers — the reward prediction degradation from removing dt_embedding may create exactly this early-training instability\"\n  relevance_score: 3\n\n# ============================================================\n# NEW: Reward prediction quality → MBRL performance\n# ============================================================\n# Our key finding: removing dt_embedding causes reward_MAE to spike 75x\n# (0.01 → 0.747), making performance seed-dependent. These papers\n# establish that reward prediction quality is a known MBRL bottleneck.\n\n- paper_id: lee2024dreamsmooth\n  title: \"DreamSmooth: Improving Model-based Reinforcement Learning via Reward Smoothing\"\n  authors: [Lee V., Abbeel P., Lee Y.]\n  year: 2024\n  venue: ICLR\n  category: background\n  role: \"Directly demonstrates reward prediction is a bottleneck in MBRL — sparse/ambiguous rewards cause the reward model to predict zeros, creating gradient-free landscapes during imagination; our dt_embed_dim=0 ablation creates an analogous bottleneck where the reward head loses temporal conditioning and MAE spikes 75x\"\n  relevance_score: 5\n\n- paper_id: ma2024harmonydream\n  title: \"HarmonyDream: Task Harmonization Inside World Models\"\n  authors: [Ma H., Wu J., Feng N., Xiao C., Li D., Hao J., Wang J., Long M.]\n  year: 2024\n  venue: ICML\n  category: background\n  role: \"Shows observation prediction dominates reward prediction in world model training, degrading reward model quality; proposes dynamic loss balancing for 10-69% gains — directly relevant to our finding that dt_embedding removal disrupts the observation-reward prediction balance and causes reward MAE explosion\"\n  relevance_score: 5\n\n- paper_id: lambert2020objective\n  title: \"Objective Mismatch in Model-based Reinforcement Learning\"\n  authors: [Lambert N., Amos B., Yadan O., Calandra R.]\n  year: 2020\n  venue: \"L4DC (Proceedings of Machine Learning Research, vol. 120)\"\n  category: background\n  role: \"Formalizes that one-step prediction likelihood does not correlate with control performance — the 'objective mismatch' problem; our work reveals a specific instance: the reward head's prediction accuracy (measured by MAE) directly gates whether the critic can learn stable value estimates, creating a reward-specific objective mismatch\"\n  relevance_score: 4\n\n# ============================================================\n# NEW: Auxiliary tasks & representation coupling in world models\n# ============================================================\n# Our finding: reward prediction quality is tightly coupled to temporal\n# conditioning (dt_embedding). Removing the embedding degrades the\n# reward head while dynamics remain intact — suggesting the reward head\n# acts as more than a passive predictor; it conditions the shared\n# representation. Literature gap: no prior work studies this coupling\n# specifically in Dreamer-family world models.\n\n- paper_id: jaderberg2017unreal\n  title: \"Reinforcement Learning with Unsupervised Auxiliary Tasks\"\n  authors: [Jaderberg M., Mnih V., Czarnecki W.M., Schaul T., Leibo J.Z., Silver D., Kavukcuoglu K.]\n  year: 2017\n  venue: ICLR\n  category: background\n  role: \"UNREAL — introduces reward prediction as an auxiliary task that shapes shared representations; foundational evidence that reward prediction is not just a passive output but actively conditions what features the network learns — our finding that removing dt_embedding selectively degrades reward prediction (but not dynamics) suggests the temporal conditioning specifically enables reward-relevant feature extraction\"\n  relevance_score: 4\n\n- paper_id: lyle2021auxiliary\n  title: \"On The Effect of Auxiliary Tasks on Representation Dynamics\"\n  authors: [Lyle C., Rowland M., Ostrovski G., Dabney W.]\n  year: 2021\n  venue: AISTATS\n  category: background\n  role: \"Theoretical analysis showing auxiliary tasks shape representations toward top eigenvectors of the transition operator; provides formal grounding for why removing temporal conditioning from the reward head could alter the entire representation — the reward head's gradients contribute to spectral structure of the shared latent space\"\n  relevance_score: 4\n\n# ============================================================\n# NEW: DreamerV3 architecture improvements (2025-2026)\n# ============================================================\n\n- paper_id: bredis2026nedreamer\n  title: \"Next Embedding Prediction Makes World Models Stronger\"\n  authors: [Bredis G., Balagansky N., Gavrilov D., Rakhimov R.]\n  year: 2026\n  venue: \"arXiv:2603.02765\"\n  category: background\n  role: \"NE-Dreamer — decoder-free MBRL replacing pixel reconstruction with next-embedding prediction via temporal transformer + Barlow Twins; improves RSSM prediction quality on DMC and DMLab but does not address temporal abstraction or delusional critic — orthogonal to our dt-embedding diagnosis\"\n  relevance_score: 3\n\n- paper_id: zhang2025dymodreamer\n  title: \"DyMoDreamer: World Modeling with Dynamic Modulation\"\n  authors: [Zhang B., Wang R., Xiao W., Zhang W., Sun J., Huang G., Chen J., Wang G.]\n  year: 2025\n  venue: NeurIPS\n  category: background\n  role: \"Modulates RSSM via inter-frame differencing mask and stochastic categorical dynamic modulation; SOTA on Atari 100k (156.6% HNS) and DMC (832) — improves dynamics extraction but does not address variable-rate imagination or dt_embedding-induced value overestimation\"\n  relevance_score: 3\n\n# ============================================================\n# NEW: Temporal abstraction methods\n# ============================================================\n\n- paper_id: liu2025vanta\n  title: \"Semantic Temporal Abstraction via Vision-Language Model Guidance for Efficient Reinforcement Learning\"\n  authors: [Liu T.-S., Liu X.-H., Chen R., Jin L., Wang P., Zhang Z., Yu Y.]\n  year: 2025\n  venue: ICLR\n  category: method-component\n  role: \"VanTA — VLM-guided trajectory decomposition into semantically meaningful skills via vector quantization + relabeling; operates at high-level skill abstraction (Franka Kitchen, Crafter) — contrasts with our low-level dt-based temporal abstraction within world-model imagination steps\"\n  relevance_score: 3\n\n# ============================================================\n# NEW: Evaluation methodology\n# ============================================================\n\n- paper_id: agarwal2021precipice\n  title: \"Deep Reinforcement Learning at the Edge of the Statistical Precipice\"\n  authors: [Agarwal R., Schwarzer M., Castro P.S., Courville A.C., Bellemare M.]\n  year: 2021\n  venue: NeurIPS\n  category: evaluation\n  role: \"Proposes rliable — interval estimates, performance profiles, IQM for robust multi-seed RL evaluation (NeurIPS Outstanding Paper); our multi-seed experiment design follows this methodology to ensure statistical validity of collapse detection across seeds\"\n  relevance_score: 4\n\n# ============================================================\n# NEW (2026-05-14 gap analysis): Time discretization theory\n# ============================================================\n# Gap: variable timestep / time discretization invariance — foundational\n# theory for why dt matters and how to handle it.\n\n- paper_id: tallec2019making\n  title: \"Making Deep Q-learning methods Robust to Time Discretization\"\n  authors: [Tallec C., Blier L., Ollivier Y.]\n  year: 2019\n  venue: \"ICML (arXiv:1901.09732)\"\n  category: background\n  role: \"Shows Q-learning performance is highly sensitive to time discretization δ; proposes architectural + exploration modifications for δ-invariance. Theoretical foundation for why our variable-dt imagination introduces a fundamental difficulty: RSSM trained at δ=1 cannot produce δ-invariant predictions at dt>1\"\n  relevance_score: 4\n\n- paper_id: park2021sar\n  title: \"Time Discretization-Invariant Safe Action Repetition for Policy Gradient Methods\"\n  authors: [Park S., Kim J., Kim G.]\n  year: 2021\n  venue: \"NeurIPS (arXiv:2111.03941)\"\n  category: method-component\n  role: \"SAR — δ-invariant action repetition for policy gradients; achieves time-discretization robustness in model-free RL via adaptive reaction to state changes during repetition. Contrasts with our finding that world-model RL lacks this robustness when imagination uses dt>1\"\n  relevance_score: 4\n\n- paper_id: wang2024seac\n  title: \"Reinforcement Learning with Elastic Time Steps\"\n  authors: [Wang D., Beltrame G.]\n  year: 2024\n  venue: \"arXiv:2402.14961\"\n  category: method-component\n  role: \"SEAC/MOSEAC — variable-duration time steps where agent selects both action and duration; model-free approach that explicitly treats action duration as part of the action space. Our work reveals why this strategy is problematic in world-model RL: the critic cannot reliably evaluate variable-duration imagined trajectories\"\n  relevance_score: 3\n\n# ============================================================\n# NEW (2026-05-14 gap analysis): Delusional bias mitigation\n# ============================================================\n\n- paper_id: su2020conqur\n  title: \"ConQUR: Mitigating Delusional Bias in Deep Q-learning\"\n  authors: [Su D., Ooi J., Lu T., Schuurmans D., Boutilier C.]\n  year: 2020\n  venue: \"ICML (arXiv:2002.12399)\"\n  category: background\n  role: \"Follow-up to Lu et al. 2018; mitigates delusional bias via consistency-penalized Q-labels. Addresses delusional bias from policy-class constraints in Q-learning; our delusional critic is an analogous phenomenon in MBRL where temporal conditioning (dt_embedding) creates inconsistent value targets across imagination steps\"\n  relevance_score: 4\n\n# ============================================================\n# NEW (2026-05-14 gap analysis): Diagnostic methodology in RL\n# ============================================================\n# Gap: our paper is a diagnostic analysis — need methodological\n# precedents for \"what matters\" / \"implementation matters\" style papers.\n\n- paper_id: engstrom2020implementation\n  title: \"Implementation Matters in Deep Policy Gradients: A Case Study on PPO and TRPO\"\n  authors: [Engstrom L., Ilyas A., Santurkar S., Tsipras D., Janoos F., Rudolph L., Madry A.]\n  year: 2020\n  venue: \"ICLR (arXiv:2005.12729)\"\n  category: evaluation\n  role: \"Demonstrates that code-level implementation details (not algorithmic innovations) drive most of PPO's gains over TRPO; methodological precedent for our diagnostic approach — we similarly show that a specific implementation choice (trained vs. untrained dt_embedding) is the primary factor determining collapse vs. stability\"\n  relevance_score: 4\n\n- paper_id: andrychowicz2021whatmatters\n  title: \"What Matters for On-Policy Deep Actor-Critic Methods? A Large-Scale Study\"\n  authors: [Andrychowicz M., Raichuk A., Stańczyk P., Orsini M., Girgin S., Marinier R., Hussenot L., Geist M., Pietquin O., Michalski M., Gelly S., Bachem O.]\n  year: 2021\n  venue: \"ICLR (arXiv:2006.05990)\"\n  category: evaluation\n  role: \"Large-scale factorial study of 50+ design choices in on-policy RL (250K+ agents); methodological template for our factorial experiment design isolating dt_embedding × subsample × horizon effects. Demonstrates that systematic ablation reveals non-obvious interactions — parallel to our finding that dt_embedding training status interacts with subsample and horizon\"\n  relevance_score: 4\n\n# ============================================================\n# NEW (2026-05-14 gap analysis): MBRL rollout quality & value overestimation\n# ============================================================\n# Gap: recent ICLR 2025 papers directly studying imagination rollout\n# quality and value overestimation in model-based settings.\n\n- paper_id: frauenknecht2025rollouts\n  title: \"On Rollouts in Model-Based Reinforcement Learning\"\n  authors: [Frauenknecht B., Subhasish D., Solowjow F., Trimpe S.]\n  year: 2025\n  venue: \"ICLR (arXiv:2501.16918)\"\n  category: evaluation\n  role: \"Shows trajectory-sampling rollouts diverge from ground truth after few steps and can harm policy learning; proposes Infoprop separating aleatoric/epistemic uncertainty with rollout termination criteria. Directly supports our finding that dt>1 imagination produces corrupted data — our work identifies a specific mechanism (dt_embedding-induced value exploitation) beyond general compounding error\"\n  relevance_score: 5\n\n- paper_id: voelcker2025madtd\n  title: \"MAD-TD: Model-Augmented Data stabilizes High Update Ratio RL\"\n  authors: [Voelcker C., Hussing M., Eaton E., Farahmand A.-M., Gilitschenski I.]\n  year: 2025\n  venue: \"ICLR (arXiv:2410.08896)\"\n  category: evaluation\n  role: \"Shows value function misgeneralization to on-policy actions causes instability at high UTD ratios; uses model-generated data to improve value accuracy. Complementary to our finding: MAD-TD addresses value misgeneralization from replay distribution mismatch, we address value overestimation from temporal conditioning corruption in imagination\"\n  relevance_score: 4\n\n# ============================================================\n# NEW (2026-05-14 gap analysis): Latest action repeat methods\n# ============================================================\n\n- paper_id: nie2025sdar\n  title: \"Select before Act: Spatially Decoupled Action Repetition for Continuous Control\"\n  authors: [Nie B., et al.]\n  year: 2025\n  venue: \"ICLR (arXiv:2502.06919)\"\n  category: method-component\n  role: \"SDAR — per-dimension action repetition decisions for flexible temporal persistence in model-free RL; SOTA on DMC continuous control. Advances action repeat in model-free setting; our work shows the fundamental obstacle to analogous variable-rate approaches in model-based RL (delusional critic from dt_embedding)\"\n  relevance_score: 3\n\n# ============================================================\n# NEW (2026-05-14 gap analysis): DreamerV4 / latest Dreamer evolution\n# ============================================================\n\n- paper_id: hafner2025dreamerv4\n  title: \"Training Agents Inside of Scalable World Models\"\n  authors: [Hafner D., Yan W.]\n  year: 2025\n  venue: \"arXiv:2509.24527\"\n  category: background\n  role: \"DreamerV4 — replaces RSSM with efficient transformer world model + shortcut forcing; scales to video pretraining (Minecraft diamonds from video). Architectural successor to DreamerV3; our dt_embedding diagnosis is specific to RSSM but the broader lesson (temporal conditioning must match model fidelity) applies to transformer world models\"\n  relevance_score: 4\n\n# ============================================================\n# NEW (2026-05-14): Training instability dynamics\n# ============================================================\n\n- paper_id: zhang2026instability\n  title: \"Training instability in deep learning follows low-dimensional dynamical principles\"\n  authors: [Zhang L., et al.]\n  year: 2026\n  venue: \"ICLR 2026 (arXiv:2601.13160)\"\n  category: background\n  role: \"Training instability follows low-dimensional dynamical principles; provides theoretical framework for why seed-dependent collapse vs self-correction occurs in our experiments (008d seed 1 collapses, 009b seed 2 self-corrects under identical config)\"\n  relevance_score: 5\n\n# ============================================================\n# NEW (2026-05-14): Seed-Dependent Stochastic Outcomes in MBRL\n# ============================================================\n# Dedicated literature survey for the stochastic collapse phenomenon:\n# same config (trained dt_embedding + subsample + H=8) produces\n# collapse in seed 0 (008d) but self-correction in seed 2 (009b).\n# nve>1.5x is a 100% reliable marker of trained dt_embedding,\n# but collapse itself is stochastic (1/2 seeds).\n\n- paper_id: sokar2023dormant\n  title: \"The Dormant Neuron Phenomenon in Deep Reinforcement Learning\"\n  authors: [Sokar G., Agarwal R., Castro P.S., Evci U.]\n  year: 2023\n  venue: \"ICML 2023\"\n  category: background\n  role: \"Identifies dormant neurons — inactive units accumulating during RL training that reduce network expressivity. Seed-dependent because different random initializations produce different early dormancy patterns; directly explains why some seeds lose the representational capacity needed to self-correct value overestimation (our seed 0 collapses) while others retain enough active neurons to recover (our seed 2 self-corrects)\"\n  relevance_score: 4\n  survey_tag: seed-dependent-stochastic-outcomes\n\n- paper_id: lyle2022capacity\n  title: \"Understanding and Preventing Capacity Loss in Reinforcement Learning\"\n  authors: [Lyle C., Rowland M., Dabney W.]\n  year: 2022\n  venue: \"ICLR 2023 (arXiv:2204.09560)\"\n  category: background\n  role: \"Shows feature rank collapse from non-stationary TD targets is a necessary condition for learning failure but not sufficient — sparse rewards and other factors must co-occur. Directly parallels our finding: nve>1.5x (value overestimation from trained dt_embedding) is a necessary precondition for collapse but not a sufficient one; additional stochastic factors (initialization, early replay composition) determine whether collapse actually occurs\"\n  relevance_score: 5\n  survey_tag: seed-dependent-stochastic-outcomes\n\n- paper_id: kumar2022dr3\n  title: \"DR3: Value-Based Deep Reinforcement Learning Requires Explicit Regularization\"\n  authors: [Kumar A., Agarwal R., Ma T., Courville A., Tucker G., Levine S.]\n  year: 2022\n  venue: \"ICLR 2022\"\n  category: background\n  role: \"Shows implicit regularization from TD learning favors degenerate feature aliasing (states on both sides of Bellman backup become indistinguishable), creating the substrate for value overestimation. In our setting, trained dt_embedding amplifies this aliasing across different temporal horizons — the critic cannot distinguish between dt=1 and dt>1 value targets, enabling exploitation. Feature aliasing is seed-dependent because it depends on initialization geometry\"\n  relevance_score: 4\n  survey_tag: seed-dependent-stochastic-outcomes\n\n- paper_id: colas2018seeds\n  title: \"How Many Random Seeds? Statistical Power Analysis in Deep Reinforcement Learning Experiments\"\n  authors: [Colas C., Sigaud O., Oudeyer P.-Y.]\n  year: 2018\n  venue: \"arXiv:1806.08295\"\n  category: evaluation\n  role: \"Provides statistical framework for determining seed count needed for significant algorithm comparison; our 2-seed observation (1/2 collapse) has limited statistical power by their analysis — but the qualitative difference (nve 4.12x vs 0.38x) is large enough that even 2 seeds establish the stochastic nature of the phenomenon. Methodological basis for future multi-seed validation\"\n  relevance_score: 3\n  survey_tag: seed-dependent-stochastic-outcomes\n\n- paper_id: nikishin2023plasticity\n  title: \"Deep Reinforcement Learning with Plasticity Injection\"\n  authors: [Nikishin E., Oh J., Ostrovski G., Lyle C., Pascanu R., Dabney W., Barreto A.]\n  year: 2023\n  venue: \"NeurIPS 2023\"\n  category: method-component\n  role: \"Plasticity injection augments network plasticity without changing parameter count; serves as a diagnostic tool — if injection improves performance, plasticity loss was the bottleneck. Directly applicable to diagnosing whether our seed-dependent collapse is plasticity-mediated: if plasticity injection prevents collapse in seed 0 but has no effect on seed 2 (which already self-corrects), it confirms plasticity loss as the bifurcation mechanism\"\n  relevance_score: 4\n  survey_tag: seed-dependent-stochastic-outcomes\n\n- paper_id: schwarzer2023bbf\n  title: \"Bigger, Better, Faster: Human-level Atari with Human-level Efficiency\"\n  authors: [Schwarzer M., Obando-Ceron J.S., Courville A., Bellemare M., Agarwal R., Castro P.S.]\n  year: 2023\n  venue: \"ICML 2023\"\n  category: method-component\n  role: \"BBF achieves SOTA sample efficiency via periodic network resets + scaling + weight decay; periodic resets prevent primacy bias accumulation across seeds. Suggests our delusional critic collapse might be preventable with periodic critic resets — the reset would break the positive feedback loop between overestimated values and actor exploitation before it becomes irreversible\"\n  relevance_score: 3\n  survey_tag: seed-dependent-stochastic-outcomes\n\n- paper_id: farebrother2024stopregressing\n  title: \"Stop Regressing: Training Value Functions via Classification for Scalable Deep RL\"\n  authors: [Farebrother J., Orbay J., Vuong Q., Taiga A.A., Chebotar Y., Xiao T., Irpan A., Levine S., Castro P.S., Faust A., Kumar A., Agarwal R.]\n  year: 2024\n  venue: \"ICML 2024\"\n  category: method-component\n  role: \"Shows categorical cross-entropy for value training provides implicit regularization against overestimation vs MSE regression. DreamerV3 already uses categorical value prediction (twohot + symlog) — yet our trained dt_embedding still induces collapse in some seeds, demonstrating that categorical value training is insufficient to prevent dt_embedding-induced value exploitation\"\n  relevance_score: 3\n  survey_tag: seed-dependent-stochastic-outcomes\n\n- paper_id: lyle2024normalization\n  title: \"Normalization and Effective Learning Rates in Reinforcement Learning\"\n  authors: [Lyle C., Zheng Z., Giunchiglia E., Sherstan C., Hashemizadeh M., Schuurmans D., Dabney W.]\n  year: 2024\n  venue: \"NeurIPS 2024\"\n  category: background\n  role: \"Shows normalization layers combat overestimation but cause effective learning rate decay via parameter norm growth. Provides a potential mechanism for seed 2's self-correction: if parameter norms grow faster in certain initializations, effective LR decays faster, naturally damping value overestimation before it cascades into collapse. Seed 0's slower norm growth → sustained high effective LR → overestimation compounds → collapse\"\n  relevance_score: 4\n  survey_tag: seed-dependent-stochastic-outcomes\n\n# --- Survey synthesis: Seed-Dependent Stochastic Outcomes ---\n# Summary (2026-05-14):\n#\n# 1. STOCHASTIC COLLAPSE HAS PRECEDENT:\n#    Plasticity loss (Lyle 2022, Sokar 2023, Nikishin 2023) is inherently\n#    seed-dependent because it depends on initialization → early gradient\n#    dynamics → neuron activity patterns. Different seeds hit different\n#    plasticity trajectories under identical configs.\n#\n# 2. nve>1.5x AS DIAGNOSTIC MARKER (necessary but not sufficient):\n#    Lyle 2022 shows feature rank collapse is necessary but not sufficient\n#    for learning failure. Kumar 2022 shows feature aliasing from TD\n#    learning creates the overestimation substrate. Our nve>1.5x is\n#    analogous: it indicates the dt_embedding has enabled value exploitation\n#    (100% reliable marker), but collapse requires additional conditions\n#    (plasticity loss, insufficient effective LR decay) that are stochastic.\n#\n# 3. SELF-CORRECTION MECHANISM:\n#    Lyle 2024 provides a candidate mechanism: normalization-induced\n#    effective LR decay can naturally damp overestimation in some seeds.\n#    Farebrother 2024 shows categorical value training provides partial\n#    implicit regularization. Together these explain why seed 2 self-corrects:\n#    the combination of DreamerV3's categorical critic + normalization +\n#    favorable initialization produces enough implicit regularization to\n#    overcome the dt_embedding-induced overestimation.\n#\n# 4. THEORETICAL GROUNDING:\n#    Zhang 2026 (already in map) provides the dynamical systems framework.\n#    Bjorck 2022 (already in map) shows early outlier events dominate\n#    variance. Together with the new papers, the framing is:\n#    \"trained dt_embedding creates a necessary condition (nve>1.5x) for\n#    delusional critic collapse, but collapse is a stochastic bifurcation\n#    whose outcome depends on seed-dependent plasticity dynamics.\"\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 739,
+                  "oldLines": 3,
+                  "newStart": 739,
+                  "newLines": 119,
+                  "lines": [
+                    " #    \"trained dt_embedding creates a necessary condition (nve>1.5x) for",
+                    " #    delusional critic collapse, but collapse is a stochastic bifurcation",
+                    " #    whose outcome depends on seed-dependent plasticity dynamics.\"",
+                    "+",
+                    "+# ============================================================",
+                    "+# INCREMENTAL SCAN (2026-05-14): Δt conditioning & adaptive horizon",
+                    "+# ============================================================",
+                    "+# 8 new papers from targeted search on:",
+                    "+#   - Δt/timestep conditioning in world models",
+                    "+#   - Variable-rate imagination / adaptive horizon",
+                    "+#   - Hierarchical planning with latent world models (2025-2026)",
+                    "+#",
+                    "+# KEY FINDING: TAWM (Nhu et al. ICML 2025) explicitly conditions",
+                    "+# world model on Δt — closest methodological overlap. But TAWM",
+                    "+# uses TD-MPC2 (online MPC) not imagination-based actor-critic,",
+                    "+# and treats Δt conditioning as beneficial. Our work diagnoses",
+                    "+# Δt conditioning as pathological in imagination-based training",
+                    "+# (delusional critic). Complementary, not duplicative.",
+                    "+",
+                    "+- paper_id: nhu2025tawm",
+                    "+  title: \"Time-Aware World Model for Adaptive Prediction and Control\"",
+                    "+  authors: [Nhu A.N., Son S., Lin M.C.]",
+                    "+  year: 2025",
+                    "+  venue: \"ICML 2025 (arXiv:2506.08441)\"",
+                    "+  category: direct-competitor",
+                    "+  role: \"TAWM — explicitly conditions world model on time-step size Δt and trains over diverse Δt values for multi-rate dynamics learning. Built on TD-MPC2 (online MPC). KEY DISTINCTION from our work: (1) TAWM treats Δt conditioning as beneficial for performance/data-efficiency; we diagnose it as pathological in imagination-based actor-critic training (delusional critic). (2) TAWM uses MPC (no imagination rollouts for policy training); our failure mode is specific to imagination-based training where the critic exploits dt-conditioned value estimates. (3) TAWM focuses on observation-rate robustness; we focus on value overestimation from temporal conditioning corruption. TAWM actually strengthens our contribution: it shows Δt conditioning works in MPC settings, making our finding that it fails in imagination-based settings a surprising and important diagnostic.\"",
+                    "+  relevance_score: 5",
+                    "+  novelty_threat: \"MEDIUM — methodological overlap (Δt conditioning) but fundamentally different paradigm (MPC vs imagination) and opposite conclusion (beneficial vs pathological). Must cite and differentiate in paper.\"",
+                    "+",
+                    "+- paper_id: li2025lsimagine",
+                    "+  title: \"Open-World Reinforcement Learning over Long Short-Term Imagination\"",
+                    "+  authors: [Li J., Wang Q., Wang Y., Jin X., Li Y., Zeng W., Yang X.]",
+                    "+  year: 2025",
+                    "+  venue: \"ICLR 2025 Oral (arXiv:2410.03618)\"",
+                    "+  category: direct-competitor",
+                    "+  role: \"LS-Imagine — extends imagination horizon in Dreamer via goal-conditioned jumpy state transitions and affordance maps. Addresses the 'short-sightedness' of standard Dreamer imagination. KEY DISTINCTION: LS-Imagine adds jumpy transitions to reach long-horizon targets (open-world Minecraft), while our work shows that variable-dt imagination itself introduces delusional critic. LS-Imagine's jumpy transitions use goal conditioning (not dt-embedding), potentially avoiding the value overestimation we identify.\"",
+                    "+  relevance_score: 4",
+                    "+  novelty_threat: \"LOW — different mechanism (goal-conditioned jumps vs dt-embedding) and different focus (long-horizon exploration vs diagnostic of failure modes). Should cite as concurrent approach to extending imagination horizon.\"",
+                    "+",
+                    "+- paper_id: zhang2026hwm",
+                    "+  title: \"Hierarchical Planning with Latent World Models\"",
+                    "+  authors: [Zhang W., Terver B., Zholus A., Chitnis S., Sutaria H., Assran M., Balestriero R., Bar A., Bardes A., LeCun Y., Ballas N.]",
+                    "+  year: 2026",
+                    "+  venue: \"arXiv:2604.03208\"",
+                    "+  category: direct-competitor",
+                    "+  role: \"HWM — learns multi-scale latent world models for hierarchical MPC planning; high-level planner optimizes macro-actions, low-level planner handles primitives. 70% success on real-world non-greedy robotic tasks vs 0% for single-level. Addresses temporal abstraction via hierarchical planning (MPC), not imagination-based actor-critic. Further evidence that temporal abstraction in world models requires hierarchy rather than single-scale variable-dt approaches.\"",
+                    "+  relevance_score: 4",
+                    "+  novelty_threat: \"LOW — MPC-based hierarchical planning, not imagination-based training. Supports our thesis that flat dt-embedding approaches are inferior to hierarchical alternatives.\"",
+                    "+",
+                    "+- paper_id: kobayashi2025metacontroller",
+                    "+  title: \"Emergent temporal abstractions in autoregressive models enable hierarchical reinforcement learning\"",
+                    "+  authors: [Kobayashi S., et al.]",
+                    "+  year: 2025",
+                    "+  venue: \"arXiv:2512.20605\"",
+                    "+  category: method-component",
+                    "+  role: \"MetaController — discovers temporal abstractions via higher-order non-causal sequence model controlling base autoregressive model's residual stream. Each controller executes behaviorally meaningful action sequences with learned termination conditions. Operates in fundamentally different paradigm (LLM-style autoregressive models, not world-model imagination), but demonstrates that temporal abstraction benefits from hierarchical structure rather than flat dt-conditioning.\"",
+                    "+  relevance_score: 3",
+                    "+",
+                    "+- paper_id: shaj2023mts3",
+                    "+  title: \"Multi Time Scale World Models\"",
+                    "+  authors: [Shaj V., Gholam Zadeh S., Demir O., Luettjohann L., Neumann G., Toussaint M.]",
+                    "+  year: 2023",
+                    "+  venue: \"NeurIPS 2023 (arXiv:2310.18534)\"",
+                    "+  category: method-component",
+                    "+  role: \"MTS3 — probabilistic multi-time-scale state space model with fast and slow latent dynamics for variable-rate prediction. Provides efficient inference across temporal scales. Foundational multi-rate dynamics architecture; our work shows that even with proper multi-rate modeling, the downstream actor-critic training in imagination can exploit temporal conditioning for value overestimation — a failure mode MTS3 does not address (it focuses on prediction quality, not policy training).\"",
+                    "+  relevance_score: 4",
+                    "+",
+                    "+- paper_id: splates2025",
+                    "+  title: \"Stable Planning with Temporally Extended Skills\"",
+                    "+  authors: [SPlaTES authors]",
+                    "+  year: 2025",
+                    "+  venue: \"Reinforcement Learning Journal (RLC 2025)\"",
+                    "+  category: method-component",
+                    "+  role: \"SPlaTES — hierarchical MPC with temporally extended skills + abstract skill world model. Skill learning via mutual-information objective yields diverse, predictable, task-related behavior. Demonstrates that stable long-horizon planning requires modeling skill outcomes (temporal abstraction via hierarchy), not primitive-action outcomes at variable time steps — consistent with our finding that flat dt-embedding fails.\"",
+                    "+  relevance_score: 3",
+                    "+",
+                    "+- paper_id: beckerehmck2023multitimestep",
+                    "+  title: \"Multi-timestep models for Model-based Reinforcement Learning\"",
+                    "+  authors: [Becker-Ehmck P., Peters J., van der Smagt P.]",
+                    "+  year: 2023",
+                    "+  venue: \"arXiv:2310.05672\"",
+                    "+  category: background",
+                    "+  role: \"Proposes multi-timestep training objective (weighted sum of losses at various future horizons) for one-step dynamics models to improve long-horizon R² score. Addresses compounding error at the model training level; our work shows that even with perfect multi-step prediction, the imagination-based actor-critic can still fail due to value overestimation from dt-conditioning — a downstream failure mode distinct from prediction accuracy.\"",
+                    "+  relevance_score: 3",
+                    "+",
+                    "+- paper_id: liu2022dmve",
+                    "+  title: \"Dynamic-Horizon Model-Based Value Estimation With Latent Imagination\"",
+                    "+  authors: [Liu Y., et al.]",
+                    "+  year: 2022",
+                    "+  venue: \"IEEE TNNLS (arXiv:2009.09593)\"",
+                    "+  category: background",
+                    "+  role: \"DMVE — adaptive rollout horizon selection via horizon reliability detection (comparing value expansion errors between raw and reconstructed observations). Addresses the horizon selection problem in imagination-based value estimation. Complementary to our work: DMVE selects among fixed-dt horizons; we show that even optimal horizon selection cannot fix the delusional critic when dt-embedding is trained (the overestimation is in the value function, not the horizon length).\"",
+                    "+  relevance_score: 3",
+                    "+",
+                    "+# --- Incremental scan synthesis (2026-05-14) ---",
+                    "+#",
+                    "+# NOVELTY ASSESSMENT:",
+                    "+# No paper found that diagnoses dt_embedding → delusional critic",
+                    "+# (value overestimation) → stochastic collapse in imagination-based",
+                    "+# MBRL. Our core contribution remains novel.",
+                    "+#",
+                    "+# TAWM (ICML 2025) is the closest methodological overlap but",
+                    "+# operates in MPC paradigm and reaches opposite conclusion",
+                    "+# (Δt conditioning is beneficial). This actually STRENGTHENS",
+                    "+# our novelty: \"Δt conditioning helps in MPC but hurts in",
+                    "+# imagination-based training\" is a more nuanced and surprising finding.",
+                    "+#",
+                    "+# LANDSCAPE TREND:",
+                    "+# The field is converging on HIERARCHY (THICK, Hieros, Director,",
+                    "+# HWM, SPlaTES, MetaController) as the solution to temporal",
+                    "+# abstraction in world models, avoiding flat variable-dt approaches.",
+                    "+# Our diagnostic paper explains WHY flat dt approaches fail,",
+                    "+# providing theoretical grounding for this empirical trend.",
+                    "+#",
+                    "+# ACTION ITEMS FOR PAPER:",
+                    "+# 1. MUST CITE: nhu2025tawm — differentiate MPC vs imagination paradigm",
+                    "+# 2. SHOULD CITE: li2025lsimagine — concurrent Dreamer horizon extension",
+                    "+# 3. SHOULD CITE: shaj2023mts3 — multi-rate dynamics foundation",
+                    "+# 4. CONSIDER: zhang2026hwm — latest hierarchical WM planning"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已更新。同步到 artifacts 目录。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8983bf4d-5003-4f25-9acf-ac4b34cdbcf5",
+            "uuid": "b2aef12e-f042-4bca-aff3-163331d5e144",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SUbmvaYMci1oodZ23ig4jm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2707,
+                "cache_read_input_tokens": 86938,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2707
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F4AFEYutGn9Y3mD1ycdo2a",
+              "name": "Bash",
+              "input": {
+                "command": "cp /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/literature_map.yaml /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/literature_map.yaml && cp /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/literature_map.yaml /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/data/literature_map.yaml && echo \"synced\"",
+                "description": "Sync literature_map.yaml to artifacts directories"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8983bf4d-5003-4f25-9acf-ac4b34cdbcf5",
+            "uuid": "2968deae-9a33-4b5a-ac3b-5fff05ecdc3d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SUbmvaYMci1oodZ23ig4jm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2707,
+                "cache_read_input_tokens": 86938,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2707
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-14T22:45:32.005Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F4AFEYutGn9Y3mD1ycdo2a",
+              "type": "tool_result",
+              "content": "synced",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8983bf4d-5003-4f25-9acf-ac4b34cdbcf5",
+            "uuid": "9533ac2b-3423-46ea-b139-da32e3d7380b",
+            "tool_use_result": {
+              "stdout": "synced",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。增量扫描结果：\n\n**新增 8 篇论文**（64 → 72），按相关性排序：\n\n### Novelty 威胁评估\n\n| # | 论文 | Venue | 类别 | 威胁 |\n|---|------|-------|------|------|\n| 1 | **TAWM** (Nhu et al.) — 显式 Δt conditioning world model | ICML 2025 | direct-competitor | **中** |\n| 2 | **LS-Imagine** (Li et al.) — jumpy imagination for Dreamer | ICLR 2025 Oral | direct-competitor | 低 |\n| 3 | **HWM** (Zhang, LeCun et al.) — 多尺度 latent WM 层级规划 | arXiv 2026 | direct-competitor | 低 |\n| 4 | **MTS3** (Shaj et al.) — 多时间尺度 SSM | NeurIPS 2023 | method-component | 低 |\n| 5 | MetaController (Kobayashi et al.) — 自回归模型中的时间抽象 | arXiv 2025 | method-component | 低 |\n| 6 | SPlaTES — 技能层级稳定规划 | RLC 2025 | method-component | 低 |\n| 7 | Multi-timestep MBRL (Becker-Ehmck) | arXiv 2023 | background | 低 |\n| 8 | DMVE — 自适应 horizon 值估计 | IEEE TNNLS 2022 | background | 低 |\n\n### 核心结论\n\n**没有发现任何论文诊断 dt_embedding → delusional critic → stochastic collapse 这一机制。项目 novelty 安全。**\n\n**TAWM 是最需要关注的论文**，但实际上**强化了我们的贡献**：TAWM 证明 Δt conditioning 在 MPC 范式下有效，而我们发现它在 imagination-based actor-critic 中导致病态 value overestimation——这个对比本身就是一个 surprising finding。\n\n**领域趋势**：temporal abstraction in world models 正收敛到 **层级方法**（THICK, Hieros, Director, HWM, SPlaTES），回避 flat variable-dt 方案。我们的诊断论文提供了**为什么 flat dt 方案失败**的理论解释，为这个经验性趋势提供了根基。\n\n### 论文必须动作\n1. **必须引用** `nhu2025tawm`，在 Related Work 中区分 MPC vs imagination 范式\n2. **应当引用** `li2025lsimagine`、`shaj2023mts3`\n3. **考虑引用** `zhang2026hwm`"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8983bf4d-5003-4f25-9acf-ac4b34cdbcf5",
+            "uuid": "fc510cfa-9470-4f0e-96eb-36a10a24b62f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AWPJ5hn6XymDuixNSpuvDz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 268,
+                "cache_read_input_tokens": 89645,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 268
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。增量扫描结果：\n\n**新增 8 篇论文**（64 → 72），按相关性排序：\n\n### Novelty 威胁评估\n\n| # | 论文 | Venue | 类别 | 威胁 |\n|---|------|-------|------|------|\n| 1 | **TAWM** (Nhu et al.) — 显式 Δt conditioning world model | ICML 2025 | direct-competitor | **中** |\n| 2 | **LS-Imagine** (Li et al.) — jumpy imagination for Dreamer | ICLR 2025 Oral | direct-competitor | 低 |\n| 3 | **HWM** (Zhang, LeCun et al.) — 多尺度 latent WM 层级规划 | arXiv 2026 | direct-competitor | 低 |\n| 4 | **MTS3** (Shaj et al.) — 多时间尺度 SSM | NeurIPS 2023 | method-component | 低 |\n| 5 | MetaController (Kobayashi et al.) — 自回归模型中的时间抽象 | arXiv 2025 | method-component | 低 |\n| 6 | SPlaTES — 技能层级稳定规划 | RLC 2025 | method-component | 低 |\n| 7 | Multi-timestep MBRL (Becker-Ehmck) | arXiv 2023 | background | 低 |\n| 8 | DMVE — 自适应 horizon 值估计 | IEEE TNNLS 2022 | background | 低 |\n\n### 核心结论\n\n**没有发现任何论文诊断 dt_embedding → delusional critic → stochastic collapse 这一机制。项目 novelty 安全。**\n\n**TAWM 是最需要关注的论文**，但实际上**强化了我们的贡献**：TAWM 证明 Δt conditioning 在 MPC 范式下有效，而我们发现它在 imagination-based actor-critic 中导致病态 value overestimation——这个对比本身就是一个 surprising finding。\n\n**领域趋势**：temporal abstraction in world models 正收敛到 **层级方法**（THICK, Hieros, Director, HWM, SPlaTES），回避 flat variable-dt 方案。我们的诊断论文提供了**为什么 flat dt 方案失败**的理论解释，为这个经验性趋势提供了根基。\n\n### 论文必须动作\n1. **必须引用** `nhu2025tawm`，在 Related Work 中区分 MPC vs imagination 范式\n2. **应当引用** `li2025lsimagine`、`shaj2023mts3`\n3. **考虑引用** `zhang2026hwm`"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 571716,
+            "duration_api_ms": 671316,
+            "num_turns": 30,
+            "stop_reason": "end_turn",
+            "session_id": "8983bf4d-5003-4f25-9acf-ac4b34cdbcf5",
+            "total_cost_usd": 2.1042479999999992,
+            "usage": {
+              "input_tokens": 5664,
+              "cache_creation_input_tokens": 78466,
+              "cache_read_input_tokens": 977991,
+              "output_tokens": 22878,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 78466,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 783,
+                  "cache_read_input_tokens": 89645,
+                  "cache_creation_input_tokens": 268,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 268
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 299535,
+                "outputTokens": 9007,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 18,
+                "costUSD": 0.52457,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 5664,
+                "outputTokens": 22878,
+                "cacheReadInputTokens": 977991,
+                "cacheCreationInputTokens": 78466,
+                "webSearchRequests": 0,
+                "costUSD": 1.5796779999999995,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "8f3089d4-cb5c-46d4-84be-dfaa7aeda28a"
+          },
+          "id": "event-000080"
+        }
+      ]
+    }
+  ]
+}

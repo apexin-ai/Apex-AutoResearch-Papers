@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1f124d040b27d9a1246",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "diagnose exp 016b sgs walker s1",
+  "task_key": "worker_diagnose_exp_016b_sgs_walker_s1_20260515T191317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_016b_sgs_walker_s1_20260515T191317_result.json",
+    "occurrence": 1,
+    "bytes": 764,
+    "sha256": "18448c46a03f93af739bd7fb97279993cf993ecec6b676517e44ee8feabe92f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_016e 成功通过了 step 5000 的 eval 关卡，已进入 training 阶段。`Logger.video()` no-op 修复有效。\n\n**总结：**\n\n| 项目 | 内容 |\n|------|------|\n| **根因** | `SummaryWriter.add_video()` 依赖 `moviepy.editor`，moviepy 2.x 移除了该模块。`add_video()` 启动异步编码但永远无法完成，`flush()` 死锁。每次 eval 结束时 `logger.video(\"eval_policy\", ...)` 无条件触发，导致 step 5000 第一次 eval 后必挂 |\n| **修复** | `Logger.video()` 改为 no-op（`pass`），彻底阻断视频进入 `SummaryWriter` 管线 |\n| **exp_id** | `exp_016e_sgs_walker_s1` |\n| **状态** | RUNNING — PID 527387, cuda:1, 已完成首轮 eval（eval_return=31.0, 10 episodes），正在训练 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-016b-sgs-walker-s1.md"
+}

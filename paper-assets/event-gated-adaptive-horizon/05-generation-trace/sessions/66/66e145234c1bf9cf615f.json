@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66e145234c1bf9cf615f",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "retry exp 024b cheetah no dt emb s0",
+  "task_key": "worker_retry_exp_024b_cheetah_no_dt_emb_s0_20260517T224923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_retry_exp_024b_cheetah_no_dt_emb_s0_20260517T224923_result.json",
+    "occurrence": 1,
+    "bytes": 394,
+    "sha256": "4b77b5b1740283a44c6113e332fa3172bf82ceb6c74733adabf1eb4c03a26751"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常启动，已通过 prefill 阶段进入 step 5000 的 evaluation。\n\n总结：\n- 确认参数名为 `--gate_dt_embed_dim`（configs.yaml 中定义）\n- 旧 exp_024 标记为 DONE(failed)，释放 cuda:0\n- 新 exp_024b_cheetah_no_dt_emb_s0 已提交并成功启动（PID 705737, cuda:0, bjb1-45299）\n- 训练已完成 prefill，正在运行 step 5000 evaluation"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/retry-exp-024b-cheetah-no-dt-emb-s0.md"
+}

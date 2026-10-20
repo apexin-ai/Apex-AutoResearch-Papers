@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3bf14e4e783e680c14f",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper related work update",
+  "task_key": "worker_paper_related-work-update_20260518T142443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_related-work-update_20260518T142443_result.json",
+    "occurrence": 1,
+    "bytes": 964,
+    "sha256": "488314ef8464ef82a5909d66ea5de1e81bd12ccce4ed9ddc7d684d8e63e6c226"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "新增内容无 -ing 短语结尾问题。已有内容（training, conditioning 等）是名词性用法，不是 AI 痕迹。\n\n完成。修改汇总：\n\n**references.bib** — 添加 4 个条目：\n- `nauman2024overestimation` (ICML 2024, arXiv 2403.00514)\n- `lin2025tdmpcsquare` (arXiv 2502.03550)\n- `juliani2024plasticity` (NeurIPS 2024, arXiv 2405.19153)\n- `tang2025churn` (ICML 2025, arXiv 2506.00592)\n\n**related_work.tex** — 3 处插入：\n1. **TAWM 段落**：TD-M(PC)² 引用，指出其将 TD-MPC2 中的 value overestimation 归因于 policy mismatch，与本文对 imagination loop 的诊断互补\n2. **Value Overestimation 段落**：Nauman 引用，将 CIVO 定位为其 overestimation-plasticity 耦合框架下的 model-induced 实例\n3. **Network Capacity 段落**：Juliani、Tang、Nauman 三篇并入，分别补充 on-policy plasticity loss、churn-based plasticity 机制、overestimation-plasticity 耦合证据"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-related-work-update.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37a5903ad3b4568db8d4",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_6.md",
+  "task_key": "loop_6",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6.md",
+    "occurrence": 1,
+    "bytes": 5116,
+    "sha256": "72d56e75a4e432cd588d1be96f2c0549dca36df9efa52a8e65e418ab4514b879"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-14T11:06:04+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 `cuda:0` + `cuda:1`（服务器 bjb1-45299）。config 里 `gpu_ids: [\"cuda:0\", \"cuda:1\"]`，禁止使用其他设备\n- 服务器仅 `bjb1-45299`（AutoDL RTX PRO 6000 × 2）。`autodl-rtx6000` 是旧别名，SSH config 里现为 bjb1-45299\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不能假设 .venv 存在\n- exp_009a 跑 500K 步（~28h），比其他实验长很多，不要误 kill\n- PREPARING 状态的 exp_008a/008c/008d/006 是历史 snapshot 条目，不是活跃实验，不要尝试操作它们\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：bjb1-45299（AutoDL），RTX PRO 6000 × 2\n- **工作目录**：`/root/autodl-tmp/event-gated-adaptive-horizon`\n- **Python**：`/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- **环境变量**：`LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6`、`MUJOCO_GL=osmesa`、`PYOPENGL_PLATFORM=osmesa`\n- **代码 commit**：`09876d7` (最新 seed 2 实验)，`6ef8646` (008 系列)\n- **日志路径**：`/root/autodl-tmp/event-gated-adaptive-horizon/logdir/<exp_name>/`\n- **活跃进程**：\n  - exp_009a_baseline_walker_s2: PID 142508, cuda:0, tmux session, 500K 步, ~已跑 ~5h\n  - exp_009c_008f_walker_s2: PID 140980, cuda:1, tmux session, 105K 步, ~已跑 ~5h\n- **Cron 监控**：2 个 active cron 分别监控上述两个实验\n\n### 3. 📊 当前状态\n**刚完成的关键事件**：\n- exp_008f (success, 105K): C2 因果确认——去掉 dt_embedding 后 value 自修正，normalized v/e=0.30x@105K，eval_return=503。因果链闭合。\n- exp_008e_v3 (success, 105K): B+ confound 确认——subsample ON 本身无害（eval_return=870，95% baseline），保护来自 untrained dt_emb。\n- Dream 审稿完成 (dream_20260514T062606): 3/6 Weak Reject。核心弱点：novelty 定位需精准、缺 mitigation、related work 偏少。Director 已做 D029 战略调整。\n\n**正在运行**：\n| exp_id | GPU | 目标步数 | 预计完成 |\n|--------|-----|---------|---------|\n| exp_009a_baseline_walker_s2 | cuda:0 | 500K | ~24h后（walker baseline s2）|\n| exp_009c_008f_walker_s2 | cuda:1 | 105K | ~6-8h后（C2 replication s2）|\n\n**排队中**：\n- exp_009b_008d_walker_s2 (QUEUED): 等 GPU 释放，复现 delusional critic collapse s2\n- exp_010a_cheetah_baseline_s1 (QUEUED): 等 GPU 释放，Cheetah Run 跨环境基线\n\n**无活跃 Worker**，无待处理的 Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- **exp_009c cron 回调（~6-8h）** → spawn worker 分析 metrics，对比 008f seed 1 的 normalized v/e 曲线，update registry → 009c 完成释放 cuda:1 → 立即提交 exp_009b_008d_walker_s2 到 cuda:1\n- **exp_009a cron 回调（~24h）** → 分析 baseline s2 与 s1 一致性，update registry → 009a 完成释放 cuda:0 → 提交 exp_010a_cheetah_baseline_s1 到 cuda:0\n- **009b + 009c 都完成** → 汇总 Walker Walk 3-seed 统计（mean ± std），向 Director 汇报 C2 multi-seed 结论\n- **Cheetah baseline 完成** → 提交 Cheetah trained-dt + dim=0 实验对\n- **所有 P0 Walker+Cheetah 完成** → 启动 Cartpole Swingup 系列 (plan_050-052) + plan_060 uncertainty-gated truncation pilot\n- **plan_060 完成** → 如果 truncation 有效（return loss <5%），升级为 paper contribution；否则仅作 discussion mention\n\n### 5. 🎯 战略上下文\n**核心结论**（因果链闭合 ✓）：\n- trained dt_embedding → 给 critic 一条利用 RSSM dt=2 预测偏差的通道 → value 单调上升超过 actual return → actor 被 misleading value landscape 引导 → collapse\n- v/R > 1.5 是 100% 准确的崩塌分类器（所有崩塌实验 v/R>1.5，所有健康实验 v/R<1.0）\n- untrained dt_embedding 保留结构但不训练 → value growth suppression → 性能保护（非 obvious corollary）\n\n**关键决策链**：D020(因果机制修正) → D021(delusional critic 链闭合) → D023-D024(Reviewer C2 confound) → D028(MVP pass) → D029(Dream 审稿战略调整)\n\n**易错点**：\n1. **不要把 H=8 实验的绝对 return 与 H=15/baseline 直接对比**——008f=503 vs baseline=916 的差距主要是 horizon 不足，不是方法失败。对比应用 normalized v/e ratio\n2. **exp_009a 是 500K 步（~28h），其他实验多是 105K**——不要因为 009a 跑得久就认为出了问题\n3. **PREPARING 状态的 exp_008a/008c/008d/006 是早期 snapshot 条目**，对应的真实实验已在 `_no_subsample_dt2` / `_no_subsample_dt2_h8` / `_subsample_on_h8` / `_fixed_dt2` 等带后缀的 ID 里完成了\n4. **Dream 审稿的 3 个差异化点**必须体现在 paper framing 中：(a) dt-embedding exploitation channel 作为 specific mechanism（不是泛泛的 model inaccuracy）、(b) v/R>1.5 天然分界线、(c) untrained embedding 的 value suppression\n5. **CoRL DDL 2026-05-29，剩 15 天**——P0 实验约 3 天 wall time 可完成，但论文写作 + 审稿迭代也需要时间，不要拖延实验提交\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-copy-2.md"
+}

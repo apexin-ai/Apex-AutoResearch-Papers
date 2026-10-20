@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38ef0684bea24b46aaa9",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops 016d restart with fix",
+  "task_key": "worker_ops_016d_restart_with_fix_20260515T193516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_016d_restart_with_fix_20260515T193516_result.json",
+    "occurrence": 1,
+    "bytes": 643,
+    "sha256": "4e6c8901aaaeb01d0fc9898886f294c7bd48ebfd7920cb1f95613a84ccc44a28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "016d is up and training — prefill complete, first train steps logged.\n\n**汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| **016d kill** | 原 PID 526153 已自行退出，tmux session 已不存在 |\n| **016d 重启** | 新 PID **526939**，tmux session `exp_016d_sgs_walker_s1`，cuda:1，已进入训练（prefill 完成） |\n| **tools.py 修复** | 已确认 line 254 `logger.video` 已注释，新进程加载的是修复后代码 |\n| **009d baseline** | PID 149708 正常运行，uptime 7h10m，GPU 0 占用 4156 MiB |\n| **GPU 概览** | GPU 0: 009d (4156 MiB / 97887 MiB)；GPU 1: 016d 正在初始化加载 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-016d-restart-with-fix.md"
+}

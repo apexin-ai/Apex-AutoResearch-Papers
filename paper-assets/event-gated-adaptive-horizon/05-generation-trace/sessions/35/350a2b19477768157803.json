@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "350a2b19477768157803",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 069 008f walker repro s1",
+  "task_key": "worker_analysis_exp_069_008f_walker_repro_s1_20260525T071818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_069_008f_walker_repro_s1_20260525T071818_result.json",
+    "occurrence": 1,
+    "bytes": 842,
+    "sha256": "f9f88d8487f03ff7380e91ffeb42c19d9dc6a957a829029e4ef565489985cce0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n**结论：SUCCESS** — C2 因果控制实验验证通过。\n\n核心发现：\n- **训练正常完成**（EXIT_CODE=0），112K env steps\n- **eval_return**：peak 390.1 @ 95K，final 237.8 @ 105K\n- **ve_ratio 始终 < 0.5**（max 0.447），远低于 1.5x CIVO 阈值，civo/alert 从未触发\n- **gate_dt 固定 2.0**（100% dt_2_frac，entropy=0）——确认无 dt_embedding 配置生效\n- **value_mean ≈ target_mean**（106.3 vs 106.4）——无 value overestimation\n- 105K 的 eval 下降是正常 Walker Walk 方差（与 exp_047 模式一致），非 CIVO 驱动\n\n该 seed=1 结果与 parent（seed=0）行为模式一致，进一步强化了 dt_embedding 是 CIVO 触发必要条件的因果证据。\n\n已更新 registry（DONE/success）并注册分析报告 `art_20260525_2cdbf0`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-069-008f-walker-repro-s1.md"
+}

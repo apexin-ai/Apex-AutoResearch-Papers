@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b05cf8a4a30d7b6666ad",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code bjb1 40020 deploy exp055 retry2",
+  "task_key": "worker_code_bjb1-40020-deploy-exp055-retry2_20260523T083042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bjb1-40020-deploy-exp055-retry2_20260523T083042_result.json",
+    "occurrence": 1,
+    "bytes": 345,
+    "sha256": "a5079d4f0d9b65dde3e0de537d749a5d0f6e93e58616490708016136bd8bb783"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both experiments confirmed running on **bjb1-40020** (not bjb1-45299):\n- **exp_051** (PID 305974): step 219,000 — past 210K target, in final phase\n- **exp_050** (PID 304736): step 217,800 — also past target\n\nScheduled to check back in ~3 minutes. Will proceed with metrics extraction and exp_055 deployment once they exit."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bjb1-40020-deploy-exp055-retry2.md"
+}

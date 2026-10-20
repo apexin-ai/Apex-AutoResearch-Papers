@@ -1,0 +1,472 @@
+{
+  "schema_version": "1.0",
+  "id": "aa5e8c95228652439792",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "conversation",
+  "title": "paper analysis conclusion detector sync",
+  "task_key": "worker_paper_analysis-conclusion-detector-sync_20260517T180715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_analysis-conclusion-detector-sync_20260517T180715.jsonl",
+    "occurrence": 1,
+    "bytes": 21818,
+    "sha256": "82c8afb2f18235adbab7c2a7612d8a04f210402fff98a561d18472e5c10de8b0"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T18:08:43.260965+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_analysis-conclusion-detector-sync_20260517T180715",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/analysis.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T18:08:43.261334+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_analysis-conclusion-detector-sync_20260517T180715",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T18:08:43.261511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_analysis-conclusion-detector-sync_20260517T180715",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/conclusion.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T18:08:43.261649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_analysis-conclusion-detector-sync_20260517T180715",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T18:08:43.261770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_analysis-conclusion-detector-sync_20260517T180715",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/abstract.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T18:08:43.261911+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_analysis-conclusion-detector-sync_20260517T180715",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T18:08:43.262054+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_analysis-conclusion-detector-sync_20260517T180715",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper/introduction.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T18:08:43.262178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_analysis-conclusion-detector-sync_20260517T180715",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T18:08:43.262322+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_analysis-conclusion-detector-sync_20260517T180715",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T18:08:43.262450+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/_corl_template/corl_2026_template_submission/example.tex\ndocs/paper/_corl_template/__MACOSX/corl_2026_template_submission/._example.tex\nartifacts/dream_reports/dream_20260514T062606/best/paper.tex\nartifacts/dream_reports/dream_20260514T062606/median/paper.tex\nartifacts/dream_reports/dream_20260515T004704/best/paper.tex\nartifacts/dream_reports/dream_20260515T004704/median/paper.tex\nartifacts/dream_reports/dream_20260515T004704/worst/paper.tex\nartifacts/figures/archive/tab_rssm_fidelity.tex\nartifacts/_project/paper/nve_sensitivity_table_37b680.tex\nartifacts/dream_reports/dream_20260514T062606/worst/paper.tex\nartifacts/dream_reports/dream_20260516T115400/best/paper.tex\nartifacts/dream_reports/dream_20260516T115400/median/paper.tex\nartifacts/dream_reports/dream_20260516T115400/worst/paper.tex\nartifacts/dream_reports/dream_20260516T133210/best/paper.tex\nartifacts/dream_reports/dream_20260516T133210/median/paper.tex\nartifacts/dream_reports/dream_20260516T133210/worst/paper.tex\nartifacts/dream_reports/dream_20260516T172011/best/paper.tex\nartifacts/dream_reports/dream_20260516T172011/median/paper.tex\nartifacts/dream_reports/dream_20260516T172011/worst/paper.tex\nartifacts/analysis/detector_table.tex\ndocs/paper/main.tex\ndocs/paper/sections/abstract_body.tex\ndocs/paper/sections/introduction.tex\npaper/tables/nve_sensitivity_table.tex\nartifacts/_project/paper/nve_sensitivity_table.tex\ndocs/paper/sections/related_work.tex\ndocs/paper/sections/methodology.tex\ndocs/paper/sections/results.tex\ndocs/paper/sections/appendix.tex\ndocs/paper/sections/analysis.tex\ndocs/paper/sections/conclusion.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_analysis-conclusion-detector-sync_20260517T180715",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T18:08:43.262594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_analysis-conclusion-detector-sync_20260517T180715",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/",
+              "description": "List project directory contents"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T18:08:43.262727+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 564\ndrwxr-xr-x 10 ubuntu ubuntu   4096 May 17 17:09 .\ndrwxrwxr-x  5 ubuntu ubuntu   4096 May 13 01:02 ..\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 13 01:02 .claude\n-rw-r--r--  1 ubuntu ubuntu  16440 May 17 18:04 AGENTS.md\n-rw-r--r--  1 ubuntu ubuntu      0 May 13 01:05 ROADMAP.lock\n-rw-------  1 ubuntu ubuntu   4402 May 17 17:09 ROADMAP.md\ndrwxr-xr-x 38 ubuntu ubuntu   4096 May 17 14:54 artifacts\ndrwxr-xr-x  2 ubuntu ubuntu  45056 May 17 15:20 checkpoints\n-rw-r--r--  1 ubuntu ubuntu      0 May 13 01:05 decisions.lock\n-rw-------  1 ubuntu ubuntu  96665 May 17 17:05 decisions.yaml\ndrwxr-xr-x  4 ubuntu ubuntu   4096 May 13 02:35 docs\n-rwxr-xr-x  1 ubuntu ubuntu      0 May 13 02:07 dream_registry.lock\n-rw-------  1 ubuntu ubuntu   5148 May 16 18:04 dream_registry.yaml\n-rw-r--r--  1 ubuntu ubuntu   5153 May 16 18:04 dream_registry.yaml.bak\n-rw-r--r--  1 ubuntu ubuntu      0 May 15 11:55 experiment_plan.lock\n-rw-------  1 ubuntu ubuntu  10057 May 15 14:52 experiment_plan.yaml\n-rw-r--r--  1 ubuntu ubuntu  62316 May 16 20:27 literature_map.yaml\ndrwxr-xr-x  4 ubuntu ubuntu   4096 May 13 01:07 logs\n-rw-r--r--  1 ubuntu ubuntu   3554 May 17 14:02 memory.md\n-rw-r--r--  1 ubuntu ubuntu      0 May 16 22:02 mistakes.lock\n-rw-------  1 ubuntu ubuntu  10544 May 17 16:00 mistakes.yaml\ndrwxr-xr-x  4 ubuntu ubuntu   4096 May 16 05:14 paper\n-rw-r--r--  1 ubuntu ubuntu  36297 May 17 17:04 paper_framing.md\n-rw-r--r--  1 ubuntu ubuntu      0 May 15 11:03 paper_provenance.lock\n-rw-------  1 ubuntu ubuntu  26588 May 15 19:22 paper_provenance.yaml\n-rw-r--r--  1 ubuntu ubuntu      0 May 13 02:09 registry.lock\n-rw-------  1 ubuntu ubuntu 149544 May 17 15:20 registry.yaml\n-rw-r--r--  1 ubuntu ubuntu   4109 May 17 14:55 report.md\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 16 11:08 scripts\n-rwxr-xr-x  1 ubuntu ubuntu      0 May 13 01:02 study_status.lock\ndrwxr-xr-x  3 ubuntu ubuntu   4096 May 17 18:04 task_context\n-rw-r--r--  1 ubuntu ubuntu  26838 May 15 10:17 writing_plan.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_analysis-conclusion-detector-sync_20260517T180715",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T18:08:43.262911+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_analysis-conclusion-detector-sync_20260517T180715",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/analysis.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T18:08:43.263076+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\tThe results establish three insights that frame CIVO as a structural vulnerability of flat temporal conditioning in imagination-based RL. Full mechanistic analysis, gradient decomposition, and seed-divergence discussion are in Appendix~\\ref{sec:appendix_analysis}.\n5\t\n6\t\\paragraph{CIVO mechanism.}\n7\tThe RSSM reward head develops a $2.78\\times$ prediction gap between $\\dt{=}1$ and $\\dt{=}2$ under trained conditioning (Table~\\ref{tab:rssm_fidelity}), providing the systematic bias that the critic internalizes and the actor exploits, creating a four-stage feedback loop analogous to delusional bias \\citep{lu2018nondelusional} but model-induced rather than policy-class-induced.  Full-pathway SGS (exp\\_018) targets the gradient channel that maintains this bias, yet yields mixed results (50\\% collapse prevention), indicating that CIVO involves mechanisms beyond gradient-mediated co-adaptation of the temporal embedding.\n8\t\n9\t\\paragraph{Gradient decomposition and intervention design.}\n10\t\\label{sec:gradient_evolution_main}\n11\tGradient decomposition (Figure~\\ref{fig:gradient_decomp}, Table~\\ref{tab:gradient_decomposition}) reveals a non-obvious structure: the reward head provides the largest gradient contribution to $e_{\\Delta t}$ (49.0\\% at 55K, 38.1\\% at 112K), yet reward-only SGS (exp\\_016e) is functionally insufficient (NVE $10.42\\times$, collapse).  The observation decoder channel contributes the smallest share (16.3\\% at 55K, 21.5\\% at 112K) but encodes the critical $\\dt$-specific spatial predictions that generate the RSSM fidelity gap.  Full-pathway SGS, which removes observation decoder \\emph{and} reward gradients from $e_{\\Delta t}$, \\sgsclaim{} (seed~1: peak NVE $\\sgsnve{}\\times$, eval \\sgseval{}; seed~2: collapsed, eval 40.8).  The 50\\% prevention rate confirms that the observation decoder gradient pathway is causally involved but reveals that CIVO's feedback loop has redundant mechanisms not fully captured by grad\n…[truncated 4233 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_analysis-conclusion-detector-sync_20260517T180715",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T18:08:43.263228+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_analysis-conclusion-detector-sync_20260517T180715",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/conclusion.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T18:08:43.263382+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe have presented a systematic factorial diagnostic of temporal abstraction in DreamerV3 across two continuous-control environments, identifying the combination of trained $\\dt$-embedding and multi-rate data exposure as the causal factor behind conditioning-induced value overestimation (CIVO). The key findings are:\n5\t\n6\t\\begin{enumerate}[nosep,leftmargin=*]\n7\t\\item Every variable-rate imagination configuration degrades relative to the $\\dt{=}1$ baseline, with degradation scaling monotonically with $\\dt$.\n8\t\\item A normalized value-to-eval threshold of $\\nve \\geq 1.5\\times$ (35K+ window) achieves 11/12 CIVO classification ($n{=}12$, 91.7\\%), with the single false positive arising from a mechanistically distinct non-CIVO collapse. The combination of trained $\\dt$-embedding and multi-rate data exposure is the causal factor; unexposed, frozen, or removed embeddings prevent overestimation.\n9\t\\item The RSSM reward head develops a $2.78\\times$ prediction gap between $\\dt{=}1$ and $\\dt{=}2$ under trained conditioning, providing the systematic bias that drives critic overestimation.\n10\t\\item The same CIVO trigger produces stochastic downstream outcomes (full collapse and transient CIVO with self-correction) across seeds of identical configurations.\n11\t\\item Restricting imagination to $\\dt{=}1$ does not fully prevent collapse: one of two seeds fails via a qualitatively distinct non-CIVO pathway (eval-driven with increasing entropy), demonstrating that the trained $\\dt$-embedding creates vulnerability through multiple mechanisms.\n12\t\\item A lightweight online detector that monitors the dynamics of the value-to-evaluation ratio identifies CIVO onset with 100\\% sensitivity across three positive cases, with predictive detection (alert before performance degradation) in two of three. A timing guideline ($<$70K steps = high confidence) separates genuine CIVO from late-stage false positives.\n13\t\\end{enumerate}\n14\t\n15\tThe contrast \n…[truncated 2440 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_analysis-conclusion-detector-sync_20260517T180715",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T18:08:43.263534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_analysis-conclusion-detector-sync_20260517T180715",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/abstract_body.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T18:08:43.263662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tTemporal abstraction via variable-rate imagination is a natural extension of world-model reinforcement learning, yet we find that every variable-rate configuration of DreamerV3 degrades performance, despite the success of identical $\\Delta t$-conditioning in MPC-based methods. Through factorial diagnostics on two continuous-control tasks (Walker Walk, Cheetah Run), we identify the combination of trained temporal embedding and multi-rate data exposure as the causal factor and characterize the resulting failure mode: \\emph{conditioning-induced value overestimation} (CIVO). The trained embedding enables the RSSM reward head to develop a $2.78\\times$ prediction gap between $\\Delta t{=}1$ and $\\Delta t{=}2$, which the critic internalizes as optimistic values. This mechanism universally degrades performance to below 30\\% of baseline across all three tested seeds ($n{=}3$), with two progressing toward full collapse and one self-correcting to a stable but degraded state. Gradient decomposition reveals that despite the reward head providing the largest gradient contribution (38--49\\%), the observation decoder channel (16--22\\%) carries the critical $\\Delta t$-specific spatial information that drives the fidelity gap. Full-pathway gradient stopping partially prevents CIVO but succeeds in only 50\\% of cases; this exposes additional mechanisms beyond gradient-mediated co-adaptation. A lightweight online detector that monitors value-to-evaluation ratio dynamics identifies CIVO onset with 100\\% sensitivity (3/3 cases) and provides predictive warning before performance degradation in 2/3 cases, which supports early intervention without a reference baseline. The contrast with MPC-based methods identifies the feedback architecture (imagination-based bootstrapping versus re-planning) as the structural factor that transforms manageable model imprecision into pathological value dynamics.\n2\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_analysis-conclusion-detector-sync_20260517T180715",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T18:08:43.263793+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_analysis-conclusion-detector-sync_20260517T180715",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/introduction.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T18:08:43.263964+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tTAWM \\citep{nhu2025tawm} shows that conditioning a world model on step size $\\dt$ yields consistent gains within TD-MPC2's MPC framework \\citep{hansen2024tdmpc2}. Can the same $\\dt$-conditioning bring temporal abstraction to imagination-based actor-critic methods like DreamerV3 \\citep{hafner2023dreamerv3}, where policies are trained entirely in imagined rollouts?\n5\t\n6\tWe find that it cannot. Every variable-rate configuration we test degrades performance catastrophically: fixed $\\dt{=}2$ collapses to $14\\%$ of baseline, fixed $\\dt{=}4$ never exceeds $19\\%$ of baseline, and a learned Gumbel-Softmax gate collapses to $11\\%$. Through a factorial analysis on Walker Walk \\citep{tassa2018dmcontrol}, we isolate the combination of a \\emph{trained} $\\dt$-embedding and multi-rate data exposure as the causal factor within the factorial design tested. This trained-and-exposed embedding enables the RSSM reward head to develop a $2.78\\times$ prediction gap between $\\dt{=}1$ and $\\dt{=}2$, which the critic internalizes as optimistic value estimates, a failure mode we term \\emph{conditioning-induced value overestimation} (CIVO). A $\\nve \\geq 1.5\\times$ threshold (35K+ window) achieves 11/12 CIVO classification ($n{=}12$, single environment), with one non-CIVO false positive, a failure mode analogous to delusional bias \\citep{lu2018nondelusional} that arises from model imprecision amplified by learned temporal conditioning. Gradient decomposition reveals a non-obvious mechanism: the reward head contributes the largest gradient share (38--49\\%) but does not encode $\\dt$-specific structural information, while the observation decoder channel (16--22\\%) carries the critical spatial predictions that drive the RSSM fidelity gap. Reward-only gradient stopping fails (NVE $10.42\\times$) despite targeting the largest pathway; full-pathway SGS that removes observation decoder gradients from the temporal embedding \\sgsclaim{} (eval \\sgseva\n…[truncated 1256 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_analysis-conclusion-detector-sync_20260517T180715",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T18:08:43.264137+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_analysis-conclusion-detector-sync_20260517T180715",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T18:08:43.264422+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\tWe organize results around seven findings (F1--F7) that establish a causal chain from trained temporal conditioning to pathological value dynamics. All experiments use Walker Walk (DMC) with DreamerV3; treatments run to 105K steps and the baseline to 505K steps. We report evaluation returns (mean over 10 episodes) and the normalized value-to-eval ratio ($\\nve$, \\S\\ref{sec:metrics}).\n5\t\n6\t%% ============================================================\n7\t%% TABLE 1: Main results summary\n8\t%% ============================================================\n9\t\n10\t\\begin{table*}[t]\n11\t\\centering\n12\t\\caption{Key configurations and outcomes. NVE reports peak $\\nve$ in the 35K+ window (\\S\\ref{sec:metrics}). CIVO-positive seeds are shaded. Complete results for all 17 configurations in Table~\\ref{tab:complete_results}.}\n13\t\\label{tab:main_results}\n14\t\\footnotesize\n15\t\\setlength{\\tabcolsep}{4pt}\n16\t\\begin{tabular}{llcccccl}\n17\t\\toprule\n18\t\\textbf{Exp} & \\textbf{Config} & \\textbf{dt\\_emb} & \\textbf{Sub} & \\textbf{H} & \\textbf{Eval@final} & \\textbf{NVE} & \\textbf{Outcome} \\\\\n19\t\\midrule\n20\t001 & Baseline ($\\dt{=}1$) & --- & --- & 15 & 915.7 @105K & 1.00$\\times$ & Healthy \\\\\n21\t\\midrule\n22\t\\rowcolor{gray!15}\n23\t008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K & 4.12$\\times$ & Full collapse \\\\\n24\t008f & No dt\\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\\times$ & Healthy \\\\\n25\t008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\\times$ & Healthy \\\\\n26\t015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 1.45$\\times$ & Grad.\\ starvation \\\\\n27\t022b & Frozen emb + Gumbel gate & frz$^b$ & ON & 8 & 300.7 @105K & 0.63$\\times$ & No CIVO \\\\\n28\t\\midrule\n29\t\\multicolumn{8}{l}{\\textit{Cross-environment validation}} \\\\\n30\t\\rowcolor{gray!15}\n31\t010b & Cheetah Run & trn & ON & 8 & 51.7 @105K & 14.59$\\times$ & Collapsed \\\\\n32\t019b & PickCube-v1 & trn & ON & 8 & 26.64 @200K & 3.78$\\times$$^c$ & Transient onset \\\\\n33\t\\bottomrule\n34\t\\end{tabula\n…[truncated 20430 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_analysis-conclusion-detector-sync_20260517T180715",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T18:08:43.264678+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有四个文件已读取。现在对比 results.tex 中的最新数据逐一检查。\n\n**最新正确数据（来自 results.tex）：**\n- detector 验证：n=11 runs\n- TPR=3/3 (1.00)，FPR=2/8 (0.25)\n- 三环境：Walker Walk, Cheetah Run, PickCube-v1\n- NVE threshold 分类：11/12, AUROC=0.926, n=12\n\n---\n\n### 检查结果\n\n**analysis.tex** — 无需修改\n- Line 23: \"perfect sensitivity (3/3 true positives) with a false positive rate of 2/8 (25%)\" ✓\n- Line 23: \"calibrated on eleven runs across three environments\" ✓\n- 无 n=10、2/7、\"two environments\" 等旧数据\n\n**conclusion.tex** — 无需修改\n- Line 8: \"11/12 CIVO classification ($n{=}12$, 91.7%)\" — NVE threshold 分类，不是 detector，数据正确 ✓\n- Line 12: \"100\\% sensitivity across three positive cases\" ✓\n- Line 18: \"calibrated on eleven runs across three environments\" ✓\n- Line 4: \"across two continuous-control environments\" — 这指的是 factorial diagnostic（Walker + Cheetah，均为 DMC 连续控制），不是 detector 验证范围，准确 ✓\n\n**abstract_body.tex** — 无需修改\n- \"100\\% sensitivity (3/3 cases)\" ✓\n- \"predictive warning before performance degradation in 2/3 cases\" ✓\n- 无具体 n= 或 FPR 数字\n\n**introduction.tex** — 无需修改\n- Line 8: \"achieves 100\\% sensitivity for CIVO detection (3/3 cases) with predictive warning before performance degradation in 2/3 cases\" ✓\n- 无 n=10、FPR=2/7 等旧数据\n\n---\n\n### 额外发现：results.tex 内部不一致\n\nresults.tex Line 182 仍写着 `$n{=}10$ runs`：\n> \"we retain $0.1$ to avoid overfitting to $n{=}10$ runs\"\n\n但同一文件 Line 185 说 \"eleven runs\"，Line 227 说 \"eleven runs across three environments\"。这是 results.tex 内部的残留不一致，应改为 `$n{=}11$`。需要修复吗？"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_analysis-conclusion-detector-sync_20260517T180715"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/paper-analysis-conclusion-detector-sync.md"
+}

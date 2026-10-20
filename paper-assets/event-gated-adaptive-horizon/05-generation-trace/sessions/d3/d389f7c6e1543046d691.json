@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d389f7c6e1543046d691",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp hopper frozen s0",
+  "task_key": "worker_analysis_exp_hopper_frozen_s0_20260527T085204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_hopper_frozen_s0_20260527T085204_result.json",
+    "occurrence": 1,
+    "bytes": 1157,
+    "sha256": "f7985698cbde86dcfa3c473af4df95ed761431afa65edbbe63dbe62af15f316b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## exp_hopper_frozen_s0 结论：**NEGATIVE（假设被拒绝）**\n\n### 核心发现\n\n| 指标 | baseline (无gate) | trained_s0 | **frozen_s0** |\n|------|-------------------|-----------|---------------|\n| eval_return_final | 96.43 | 3.26 (→81.58@168K) | **0.0** |\n| ve_ratio_peak | 3.48@65K | — | **4,335,664@105K** |\n| CIVO alerts | 0 | 0 | **2** (65K, 105K) |\n\n### 关键机制\n\nFrozen dt_emb 产生了三个配置中**最差**的结果：\n1. **完全学习失败**：eval_return 全程接近 0（peak 仅 3.6@85K，baseline 为 96.43）\n2. **极端 value-reality 脱节**：value_mean 从 0.04 单调增长至 4.34，但实际回报为 0\n3. **value-target 内部一致**：NVE(value vs target) < 0.06 — value 网络精确拟合自己的 bootstrap target，但二者共同虚高\n4. **策略熵坍缩**：actor_entropy 从 5.5 → -1.6，策略变得确定性但完全无效\n\n**\"trained dt_emb 是 CIVO 的必要条件\"** 这一假设被拒绝。Frozen dt_emb 不仅没阻止 CIVO，反而因丧失时间适应能力导致世界模型学到自洽但与现实完全脱节的 imaginary dynamics。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-hopper-frozen-s0.md"
+}

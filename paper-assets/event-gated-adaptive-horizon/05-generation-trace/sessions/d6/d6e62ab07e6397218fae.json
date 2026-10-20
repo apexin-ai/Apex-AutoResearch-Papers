@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6e62ab07e6397218fae",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "submit exp 029a tcn walker s1 sigma02",
+  "task_key": "worker_submit_exp_029a_tcn_walker_s1_sigma02_20260520T083149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp_029a_tcn_walker_s1_sigma02_20260520T083149_result.json",
+    "occurrence": 1,
+    "bytes": 326,
+    "sha256": "9ee6457959ae4dcd275443d13d9f051ef16566a0a9a4551efe90e8a902f8f8f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **RAVE ceil=1.5**: PID 38372 + 38382 已 kill，tmux session `exp_028_rave_walker_s0_ceil15` 已清除\n- **TCN σ=0.2 seed=1**: PID **50924** 在 bjb1-40020 GPU 1 上运行中，tmux session `exp_029a_tcn_walker_s1_sigma02`\n- Registry `exp_029a_tcn_walker_s1_sigma02` 状态已更新为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp-029a-tcn-walker-s1-sigma02.md"
+}

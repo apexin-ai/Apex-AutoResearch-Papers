@@ -1,0 +1,331 @@
+{
+  "schema_version": "1.0",
+  "id": "606e346bdd8cb6411f1a",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "conversation",
+  "title": "paper table1 022b 019b",
+  "task_key": "worker_paper_table1-022b-019b_20260517T155319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_table1-022b-019b_20260517T155319.jsonl",
+    "occurrence": 1,
+    "bytes": 12617,
+    "sha256": "9946a7866f99e3d98879f162e654494f9ac5176ed6dfb1edba037e666770535e"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T15:55:30.751508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table1-022b-019b_20260517T155319",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T15:55:30.752127+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\tWe organize results around seven findings (F1--F7) that establish a causal chain from trained temporal conditioning to pathological value dynamics. All experiments use Walker Walk (DMC) with DreamerV3; treatments run to 105K steps and the baseline to 505K steps. We report evaluation returns (mean over 10 episodes) and the normalized value-to-eval ratio ($\\nve$, \\S\\ref{sec:metrics}).\n5\t\n6\t%% ============================================================\n7\t%% TABLE 1: Main results summary\n8\t%% ============================================================\n9\t\n10\t\\begin{table*}[t]\n11\t\\centering\n12\t\\caption{All configurations and outcomes. NVE reports peak $\\nve$ in the 35K+ window (\\S\\ref{sec:metrics}). CIVO-positive seeds are shaded; $\\dagger$\\,marks a false positive (non-CIVO collapse with elevated NVE).}\n13\t\\label{tab:main_results}\n14\t\\footnotesize\n15\t\\setlength{\\tabcolsep}{4pt}\n16\t\\begin{tabular}{llcccccl}\n17\t\\toprule\n18\t\\textbf{Exp} & \\textbf{Config} & \\textbf{dt\\_emb} & \\textbf{Sub} & \\textbf{H} & \\textbf{Eval@final} & \\textbf{NVE} & \\textbf{Outcome} \\\\\n19\t\\midrule\n20\t001 & Baseline ($\\dt{=}1$) & --- & --- & 15 & 915.7 @105K & 1.00$\\times$ & Healthy \\\\\n21\t\\rowcolor{gray!15}\n22\t006 & Fixed $\\dt{=}2$ & trn & ON & 15 & 132.9 @65K & 4.83$\\times$ & Collapsed \\\\\n23\t007 & Fixed $\\dt{=}4$ & trn & ON & 15 & 152.5 @55K & --- & Collapsed \\\\\n24\t005 & Learned gate & adaptive & OFF & 15 & 98.8 @145K & --- & Collapsed \\\\\n25\t\\midrule\n26\t\\rowcolor{gray!15}\n27\t008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K & 4.12$\\times$ & Full collapse \\\\\n28\t\\rowcolor{gray!15}\n29\t009b & Factorial (s2) & trn & ON & 8 & 267.9 @105K & 1.62$\\times$ & Transient CIVO \\\\\n30\t\\rowcolor{gray!15}\n31\t008d\\_s3 & Factorial (s3) & trn & ON & 8 & 268$^\\diamond$ @105K & 1.53$\\times$ & Late-onset collapse \\\\\n32\t008f & No dt\\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\\times$ & Healthy \\\\\n33\t008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\\times$ & Health\n…[truncated 19922 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table1-022b-019b_20260517T155319",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T15:55:30.752389+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table1-022b-019b_20260517T155319",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/nve_threshold_sensitivity.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T15:55:30.752542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/report/nve_threshold_sensitivity.json\nartifacts/_project/data/nve_threshold_sensitivity.json\nartifacts/analysis/nve_threshold_sensitivity.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table1-022b-019b_20260517T155319",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T15:55:30.752675+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table1-022b-019b_20260517T155319",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/_project/report/nve_threshold_sensitivity.json"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T15:55:30.752933+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"metadata\": {\n3\t    \"min_step\": 35000,\n4\t    \"baseline\": \"baseline_s1\",\n5\t    \"n_experiments\": 11,\n6\t    \"n_positive\": 3,\n7\t    \"n_negative\": 8,\n8\t    \"description\": \"NVE threshold sensitivity analysis for CIVO detection\",\n9\t    \"date\": \"2026-05-17\"\n10\t  },\n11\t  \"experiment_details\": {\n12\t    \"exp_008d_subsample_on_h8\": {\n13\t      \"label\": 1,\n14\t      \"desc\": \"full collapse\",\n15\t      \"peak_nve\": 4.1292,\n16\t      \"peak_step\": 55000,\n17\t      \"n_points\": 3\n18\t    },\n19\t    \"exp_009b_008d_walker_s2\": {\n20\t      \"label\": 1,\n21\t      \"desc\": \"self-correction but NVE>1.5x\",\n22\t      \"peak_nve\": 1.6190,\n23\t      \"peak_step\": 45000,\n24\t      \"n_points\": 8\n25\t    },\n26\t    \"exp_008d_civo_trigger_s3\": {\n27\t      \"label\": 1,\n28\t      \"desc\": \"late-onset collapse\",\n29\t      \"peak_nve\": 1.5279,\n30\t      \"peak_step\": 105000,\n31\t      \"n_points\": 8\n32\t    },\n33\t    \"exp_008f_no_dt_embed_subsample_on_h8\": {\n34\t      \"label\": 0,\n35\t      \"desc\": \"no dt_emb\",\n36\t      \"peak_nve\": 0.9701,\n37\t      \"peak_step\": 55000,\n38\t      \"n_points\": 8\n39\t    },\n40\t    \"exp_009c_008f_walker_s2\": {\n41\t      \"label\": 0,\n42\t      \"desc\": \"no dt_emb walker\",\n43\t      \"peak_nve\": 1.1425,\n44\t      \"peak_step\": 105000,\n45\t      \"n_points\": 8\n46\t    },\n47\t    \"exp_008a_fixed_dt2_no_subsample\": {\n48\t      \"label\": 0,\n49\t      \"desc\": \"unexposed emb\",\n50\t      \"peak_nve\": 0.9322,\n51\t      \"peak_step\": 55000,\n52\t      \"n_points\": 8\n53\t    },\n54\t    \"exp_008e_v3_subsample_on_dt1_h15\": {\n55\t      \"label\": 0,\n56\t      \"desc\": \"dt=1 imagination, healthy\",\n57\t      \"peak_nve\": 0.9411,\n58\t      \"peak_step\": 35000,\n59\t      \"n_points\": 8\n60\t    },\n61\t    \"exp_015b_frozen_dt_emb\": {\n62\t      \"label\": 0,\n63\t      \"desc\": \"frozen emb\",\n64\t      \"peak_nve\": 1.4539,\n65\t      \"peak_step\": 55000,\n66\t      \"n_points\": 8\n67\t    },\n68\t    \"baseline_s1\": {\n69\t      \"label\": 0,\n70\t      \"desc\": \"baseline s1\",\n71\t      \"peak_nve\": 1.0,\n72\t      \"peak_step\": null,\n73\t      \"n_points\": 0,\n74\t      \"note\": \"self-referenti\n…[truncated 3243 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table1-022b-019b_20260517T155319",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T15:55:30.753237+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table1-022b-019b_20260517T155319",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+              "old_string": "015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 1.45$\\times$ & Grad.\\ starvation \\\\",
+              "new_string": "015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 1.45$\\times$ & Grad.\\ starvation \\\\\n022b & Frozen emb + Gumbel gate & frz$^b$ & ON & 8 & 300.7 @105K & 1.22$\\times$ & No CIVO \\\\"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T15:55:30.753478+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table1-022b-019b_20260517T155319",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T15:55:30.753627+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table1-022b-019b_20260517T155319",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+              "old_string": "\\midrule\n\\multicolumn{8}{l}{\\textit{Cross-environment validation (Cheetah Run)}} \\\\\n\\rowcolor{gray!15}\n010b & Cheetah Run & trn & ON & 8 & 51.7 @105K & 14.59$\\times$ & Collapsed \\\\",
+              "new_string": "\\midrule\n\\multicolumn{8}{l}{\\textit{Cross-environment validation}} \\\\\n\\rowcolor{gray!15}\n010b & Cheetah Run & trn & ON & 8 & 51.7 @105K & 14.59$\\times$ & Collapsed \\\\\n019b & PickCube-v1 & trn & ON & 8 & 26.64 @200K & 3.78$\\times$$^c$ & Transient onset \\\\"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T15:55:30.753881+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table1-022b-019b_20260517T155319",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T15:55:30.754103+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table1-022b-019b_20260517T155319",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+              "old_string": "$^\\diamond$ Transitional; train returns still declining (peak 470 to 139 over final 8K steps). Collapse had not reached equilibrium at 105K.\\par}",
+              "new_string": "$^\\diamond$ Transitional; train returns still declining (peak 470 to 139 over final 8K steps). Collapse had not reached equilibrium at 105K.\\\\\n$^c$ Raw V/E ratio (peak 5.66 at 52.5K); no same-environment baseline available for NVE normalization in PickCube.\\par}"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T15:55:30.754363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table1-022b-019b_20260517T155319",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T15:55:30.754517+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table1-022b-019b_20260517T155319",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+              "offset": "9",
+              "limit": "50"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T15:55:30.754685+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "9\t\n10\t\\begin{table*}[t]\n11\t\\centering\n12\t\\caption{All configurations and outcomes. NVE reports peak $\\nve$ in the 35K+ window (\\S\\ref{sec:metrics}). CIVO-positive seeds are shaded; $\\dagger$\\,marks a false positive (non-CIVO collapse with elevated NVE).}\n13\t\\label{tab:main_results}\n14\t\\footnotesize\n15\t\\setlength{\\tabcolsep}{4pt}\n16\t\\begin{tabular}{llcccccl}\n17\t\\toprule\n18\t\\textbf{Exp} & \\textbf{Config} & \\textbf{dt\\_emb} & \\textbf{Sub} & \\textbf{H} & \\textbf{Eval@final} & \\textbf{NVE} & \\textbf{Outcome} \\\\\n19\t\\midrule\n20\t001 & Baseline ($\\dt{=}1$) & --- & --- & 15 & 915.7 @105K & 1.00$\\times$ & Healthy \\\\\n21\t\\rowcolor{gray!15}\n22\t006 & Fixed $\\dt{=}2$ & trn & ON & 15 & 132.9 @65K & 4.83$\\times$ & Collapsed \\\\\n23\t007 & Fixed $\\dt{=}4$ & trn & ON & 15 & 152.5 @55K & --- & Collapsed \\\\\n24\t005 & Learned gate & adaptive & OFF & 15 & 98.8 @145K & --- & Collapsed \\\\\n25\t\\midrule\n26\t\\rowcolor{gray!15}\n27\t008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K & 4.12$\\times$ & Full collapse \\\\\n28\t\\rowcolor{gray!15}\n29\t009b & Factorial (s2) & trn & ON & 8 & 267.9 @105K & 1.62$\\times$ & Transient CIVO \\\\\n30\t\\rowcolor{gray!15}\n31\t008d\\_s3 & Factorial (s3) & trn & ON & 8 & 268$^\\diamond$ @105K & 1.53$\\times$ & Late-onset collapse \\\\\n32\t008f & No dt\\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\\times$ & Healthy \\\\\n33\t008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\\times$ & Healthy \\\\\n34\t015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 1.45$\\times$ & Grad.\\ starvation \\\\\n35\t022b & Frozen emb + Gumbel gate & frz$^b$ & ON & 8 & 300.7 @105K & 1.22$\\times$ & No CIVO \\\\\n36\t\\midrule\n37\t018 s1 & Full-SGS & trn$^\\ddagger$ & ON & 8 & \\sgseval{} @105K & \\sgsnve{}$\\times$$^*$ & No collapse \\\\\n38\t\\rowcolor{gray!15}\n39\t018 s2 & Full-SGS & trn$^\\ddagger$ & ON & 8 & 40.8 @105K & --- & Collapsed \\\\\n40\t008e\\_v3 s1 & Mitigation & trn & ON & 15 & 869.9 @105K & 0.94$\\times$ & Healthy \\\\\n41\t008e\\_v3 s2$^\\dagger$ & Mitigation & trn & ON & 15 & 137.0 @105K & 3.78$\\times$ & Non-CIVO collapse\n…[truncated 1026 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table1-022b-019b_20260517T155319",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T15:55:30.754919+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。Table 1 修改如下：\n\n1. **022b** 添加在 015b 之后（line 35），配置为 \"Frozen emb + Gumbel gate\"，frz$^b$/ON/8，Eval 300.7 @105K，NVE 1.22×，Outcome \"No CIVO\"\n2. **019b** 添加在 cross-environment section（line 46），配置为 \"PickCube-v1\"，trn/ON/8，Eval 26.64 @200K，NVE 3.78×$^c$，Outcome \"Transient onset\"\n3. Cross-environment 标题从 \"(Cheetah Run)\" 改为通用标题\n4. 脚注 $^c$ 说明 019b 的 NVE 是 raw V/E ratio（peak 5.66 @52.5K），无同环境 baseline 做归一化\n\n列数（8列）、`&` 对齐、`\\\\` 行尾均一致，无编译问题。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_table1-022b-019b_20260517T155319"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/paper-table1-022b-019b.md"
+}

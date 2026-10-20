@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb407516b590a9d1aded",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "backfill walker trained nve",
+  "task_key": "worker_backfill_walker_trained_nve_20260524T061820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_backfill_walker_trained_nve_20260524T061820_result.json",
+    "occurrence": 1,
+    "bytes": 1180,
+    "sha256": "36239b994f5e973b3d56cb4b0d4c57f0395d85e75a0040e884e6a31d12ab718b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据结构确认 OK — value_mean 和 eval_return 在同一 step 的不同行，merge 正确。exp_009b 历史 notes 中 \"nve 2.05x@25K\" 可能使用了不同基线或旧算法；当前按 baseline=0.683 标准计算结果已更新。\n\n3 个 registry 已全部更新完成。\n\n---\n\n## 汇总表\n\n| 实验 | seed | ve_ratio peak | NVE peak | NVE≥1.5 窗口 | 分类 |\n|------|------|---------------|----------|-------------|------|\n| exp_009e_008d_walker_s1 | s1 | 1.6663 @55K | 2.44 | 55K-105K (50K steps, non-consecutive) | transient |\n| exp_009b_008d_walker_s2 | s2 | 0.5703 @55K | 0.83 | N/A | no_civo |\n| exp_008d_civo_trigger_s4 | s4 | 3.0294 @105K | 4.44 | 105K-105K (0K steps) | transient |\n\n注：exp_009e 和 exp_009b 原始 metrics.jsonl 未记录 `civo/ve_ratio`（CIVO 检测模块未启用），回溯从 `value_mean/eval_return` 计算得到。exp_009e 的 NVE≥1.5 出现在 55K/75K/95K/105K 四个点但非连续（65K=1.02, 85K=1.18 跌破），判定 transient。\n\n## exp_059_walker_trained_s5\n\n**状态：RUNNING**（PID 186176 仍在运行），已有 checkpoint_25000.pt 和 checkpoint_75000.pt，不更新 registry。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/backfill-walker-trained-nve.md"
+}

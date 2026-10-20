@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0f91710b8806a2000d6",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis metrics consolidation",
+  "task_key": "worker_analysis_metrics-consolidation_20260515T041953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_metrics-consolidation_20260515T041953_result.json",
+    "occurrence": 1,
+    "bytes": 440,
+    "sha256": "c00223b38555eac540edb5d6446df1ac709ba2412e0be534c25335e1e9f6ef86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个文件已生成并注册：\n\n| 文件 | 行数 | 说明 |\n|------|------|------|\n| `learning_curves.csv` | 106 rows | 14个实验的 eval_return vs step |\n| `nve_trajectories.csv` | 74 rows | v/e ratio 轨迹 + baseline 归一化 |\n| `summary_table.csv` | 14 rows | 每个实验的最终指标汇总 |\n\n所有文件在 `artifacts/figures_data/` 目录下，UTF-8 编码，已通过 `register_artifact` 注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-metrics-consolidation.md"
+}

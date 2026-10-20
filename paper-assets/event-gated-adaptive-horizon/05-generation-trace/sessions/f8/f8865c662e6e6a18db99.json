@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8865c662e6e6a18db99",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code exp 049 completion and exp 053 deploy",
+  "task_key": "worker_code_exp_049_completion_and_exp_053_deploy_20260523T034532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_049_completion_and_exp_053_deploy_20260523T034532_result.json",
+    "occurrence": 1,
+    "bytes": 1040,
+    "sha256": "a209af04526e66b5bc2a39b49806c5b8dadd9a21e66ece0fac0ce219f00dc48b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两步任务均完成。汇报如下：\n\n---\n\n## exp_049 最终指标（DONE, success）\n\n| 指标 | 值 | Step |\n|------|-----|------|\n| eval_final | **34.88** | 212,500 |\n| eval_peak | **35.89** | 182,500 |\n| ve_ratio_final | **0.186** | 212,500 |\n| ve_ratio_peak | **3.27** | 32,500 |\n| total_steps | 222,500 (实际运行，因 dreamer loop 多跑 eval_every) | — |\n\n结论：CIVO 在 StackCube manipulation 上触发（32.5K ve_ratio=3.27），随后自修复到 0.186。eval_return 最终 34.88 接近峰值 35.89，训练未崩溃。\n\n备注：dreamer 训练循环实际跑到 `steps + eval_every`（222.5K），不是 210K。后续实验需注意。\n\n---\n\n## exp_053 部署结果\n\n| 项目 | 值 |\n|------|-----|\n| PID | **123495** |\n| GPU | GPU 1（2754 MiB） |\n| 状态 | 正常训练中，已过 prefill（2500 步） |\n| dt_emb_freeze | 确认 True（gate_dt_mean=2.0 固定） |\n| 日志 | `/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_053_peginsertion_frozen_s0.log` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-049-completion-and-exp-053-deploy.md"
+}

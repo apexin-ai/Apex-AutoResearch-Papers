@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e4ae4fa2d0c5d478889d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "review c1 framing stochastic",
+  "task_key": "worker_review_c1_framing_stochastic_20260525T210830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_c1_framing_stochastic_20260525T210830.log",
+    "occurrence": 1,
+    "bytes": 891687,
+    "sha256": "8df94021cc8d351f3a9be2e1bccf818e730a3c7d8895817819ac29f5dc6fd4dd"
+  },
+  "statistics": {
+    "messages": 37,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 12,
+      "tool_result": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 37,
+      "chunks": [
+        {
+          "path": "e4ae4fa2d0c5d478889d-part-0001.json",
+          "message_count": 26
+        },
+        {
+          "path": "e4ae4fa2d0c5d478889d-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/review-c1-framing-stochastic.md"
+}

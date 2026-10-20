@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e051ab6c318aef88dd7",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "prep cheetah naming fix",
+  "task_key": "worker_prep_cheetah-naming-fix_20260514T101933",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_cheetah-naming-fix_20260514T101933_result.json",
+    "occurrence": 1,
+    "bytes": 830,
+    "sha256": "5b546b187372e2132acb0385bad0038b4f5bb8cd9d90f78af73d06650154c298"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "### 产出总结\n\n**任务 1：命名统一** — 完成\n\n| 原命名 | 新命名 | 状态 |\n|--------|--------|------|\n| `exp_baseline_cheetah_s{1,2,3}` | `exp_010a_cheetah_baseline_s{1,2,3}` | ✓ |\n| `exp_008d_cheetah_s{1,2,3}` | `exp_010b_cheetah_trained_dt2_s{1,2,3}` | ✓ |\n| `exp_008f_cheetah_s{1,2,3}` | `exp_010c_cheetah_no_embed_dt2_s{1,2,3}` | ✓ |\n\n注：脚本中实际原命名是 `exp_008d_cheetah` / `exp_008f_cheetah`（非用户表中的 `exp_dt2_trained_cheetah` / `exp_dt2_no_embed_cheetah`），已按语义正确映射到 010b/010c。注释和 logdir 路径均已同步修改。\n\n**任务 2：200-step 快速验证** — 通过\n\n- 进程正常运行，无报错\n- `metrics.jsonl` 生成，含 prefill 指标（step=0）和训练指标（step=5000）\n- dry-run 目录已清理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-cheetah-naming-fix.md"
+}

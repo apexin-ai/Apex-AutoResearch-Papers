@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de5772a20c7b588820c5",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_4_1778784816.md",
+  "task_key": "loop_4_1778784816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778784816.md",
+    "occurrence": 1,
+    "bytes": 4155,
+    "sha256": "c67f641d234f3aba3e66ffb63d6b2f5f0762926b10dd5f5790ae43ac7e714b76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T14:26:22+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：只能用 bjb1-45299 的 cuda:0 和 cuda:1，白名单外 GPU 即使 Director 指令也必须 push back\n- cuda:1 排期已锁定：009b → 009c extension(200K) → 009e → 009f → plan_060，不得自行调序\n- C2 claim 已降级(D030)：措辞必须是 \"significantly delays onset and reduces severity\"，禁止用 \"eliminates\"\n- C2 cleanest pair 是 008f vs 008d（仅 dt_embed_dim 不同），不是 008c vs 008d（两个变量差异）\n- 论文 actor entropy 措辞：用 \"entropy convergence delayed\"，不说 \"entropy rises\"\n- 009c 结论暂挂：registry 标记 negative 但 notes 写了 D030 延长到 200K，恢复训练后改回 RUNNING\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-45299，账号 root\n- 工作目录：/root/autodl-tmp/event-gated-adaptive-horizon\n- Python：/root/miniconda3/bin/python（conda base 环境，不用 venv）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 环境变量：`LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=osmesa PYOPENGL_PLATFORM=osmesa`\n- 镜像：aml-train（跳过基础环境搭建）\n- 活跃进程：\n  - exp_009a_baseline_walker_s2 (PID 142508, cuda:0, 500K步, ~1h40m elapsed at handoff)\n  - exp_009b_008d_walker_s2 (cuda:1, 105K步, 刚提交)\n- Cron 监控：009a + 009b 两个 cron 活跃\n\n### 3. 📊 当前状态\n**刚完成**：\n- 009c (008f seed 2) 分析完成 → **NEGATIVE**（eval 148@105K, nve=1.14x vs seed 1 的 503/0.30x）\n- paper_framing.md C2 已按 D030 降级更新（\"primary amplifier\" 替代 \"root cause\"）\n- 009b (008d seed 2) 已自动提交到 cuda:1\n\n**Registry RUNNING**：\n- exp_009a_baseline_walker_s2（cuda:0, 500K步 baseline seed 2）\n- exp_009b_008d_walker_s2（cuda:1, 105K步 trained dt_emb collapse seed 2 复现）\n\n**QUEUED**：009d(baseline s1), 009e(008d s1), 009f(008f s1), 010a(cheetah baseline)\n\n**等待中**：\n- 009b cron 回调 → 结果决定 008d 是否 consistently collapse\n- Director 未回复是否 kill 009b 优先跑 009c extension\n\n### 4. 📋 待办\n- 009b cron 完成回调 → 分析结果 + 更新 registry → 如果 008d seed 2 也崩塌，因果方向进一步确认（trained=always bad）→ 汇报 Director\n- 009b 完成后 cuda:1 释放 → 恢复 009c 训练到 200K（从 checkpoint `/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009c_008f_walker_s2/latest.pt` 继续，`--steps 200000`）→ 观察 nve 是否越过 1.5x\n- 009c 200K 完成 → 如果 nve<1.5x 改结论为 success（delayed degradation but not collapse），如果 nve≥1.5x 确认 negative → 汇报 Director\n- 009c extension 完成后 cuda:1 → 提交 009e(008d s1) → 009f(008f s1) → plan_060\n- 009a 完成回调 → cuda:0 释放 → 按优先级提交 QUEUED 中的下一个（009d baseline s1 或 010a cheetah baseline，需确认 Director 排期）\n- Cheetah Run / Cartpole 代码已验证无需修改，命令模板在 memory.md\n\n### 5. 🎯 战略上下文\n- **核心 narrative**：Diagnostic Analysis of Temporal Abstraction in World-Model RL（CoRL 2026, DDL 2026-05-29, 剩余 15 天）\n- **因果链**：trained dt_embedding → delusional critic → collapse。D030 降级后不再说 \"eliminates\"，改为 \"delays and reduces severity\"\n- **关键决策链**：D020(因果机制修正) → D028(C2因果确认) → D029(Dream审稿战略) → D030(C2降级，009c negative)\n- **最易判断错的事**：\n  1. 009c 虽然 negative 但 nve=1.14x 仍 <1.5x，不是 delusional critic collapse（008d 那种 2.09x 才是）——这是 \"delayed degradation\"，性质不同\n  2. 008f 的 reward_MAE=0.747（baseline 75x）——008f 是因果控制实验不是推荐方案，推荐方案是 008e_v3（C6, 95% baseline）\n  3. C6 (008e_v3 mitigation) 可能需要升级为论文最强 positive story，因为 008f 不可靠后 008e_v3 是唯一同时避免崩塌+保持 reward 质量+95% baseline 的配置\n  4. Worker 结果 worker_code_cheetah-run-readiness 已确认 Cheetah/Cartpole 代码可直接用，不需要改代码\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778784816.md"
+}

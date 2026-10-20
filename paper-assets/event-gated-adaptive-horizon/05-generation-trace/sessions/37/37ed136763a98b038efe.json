@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37ed136763a98b038efe",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "submit exp 029b walker s2 sigma02",
+  "task_key": "worker_submit_exp_029b_walker_s2_sigma02_20260520T165530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp_029b_walker_s2_sigma02_20260520T165530_result.json",
+    "occurrence": 1,
+    "bytes": 427,
+    "sha256": "686aa7d471be06c1c9073cd7edb4cf136a24be017ab82131c2d440fb1cb5ec73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署成功。\n\n| 项目 | 值 |\n|------|-----|\n| **PID** | 75548 |\n| **GPU** | cuda:1（CUDA_VISIBLE_DEVICES=1，进程内 cuda:0） |\n| **显存占用** | 1079 MiB（启动中，还在增长） |\n| **tmux session** | `exp_029b_tcn_walker_s2_sigma02` |\n\n注意：原始命令的 `--device cuda:1` 与 `CUDA_VISIBLE_DEVICES=1` 冲突（进程只能看到一张卡），已修正为 `--device cuda:0`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp-029b-walker-s2-sigma02.md"
+}

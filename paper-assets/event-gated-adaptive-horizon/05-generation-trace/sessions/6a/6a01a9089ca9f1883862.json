@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a01a9089ca9f1883862",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 066 timeseries rssm fidelity",
+  "task_key": "worker_analysis_exp_066_timeseries_rssm_fidelity_20260525T023004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_066_timeseries_rssm_fidelity_20260525T023004_result.json",
+    "occurrence": 1,
+    "bytes": 1177,
+    "sha256": "a2af99efadb675971d007e6addf8993c8306d600ca1fa5d8f0b30a105458a682"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_066 分析结果\n\n**结论: SUCCESS** — 假设成立。\n\n### 关键发现\n\n| 指标 | 早期 (10K) | 中期 (30K) | 末期 (65K) |\n|------|-----------|-----------|-----------|\n| SS fidelity ratio (dt2/dt1) | 1.05 | 1.25 | **1.68** |\n| OL fidelity ratio | 0.94 | 1.45 | 1.38 |\n| VE ratio | 0.005 | 0.22 | **1.40** |\n\n### 时序因果链\n\n- **Fidelity gap onset**: step 20K（SS ratio > 1.1）\n- **VE onset**: step 30K（VE ratio > 0.2）\n- → Fidelity gap **领先** VE ~10K steps\n\n### 机制\n\ndt=1 MAE 持续改善（0.090→0.050），而 dt=2 MAE 平台化（0.094→0.084）。差距来源于 dt=1 的 RSSM 持续学习进步，但 dt=2 由于 trained dt_embedding 引入的表征偏差无法同步改善。这个 fidelity gap 通过 imagination rollout 累积，导致 value estimate 系统性偏高。\n\n### 统计\n\n- Pearson(SS_ratio, VE_ratio) = **0.807** (p=0.0015)\n- SS_ratio 单调性: 73%（8/11 递增）\n- 交叉相关峰值 lag=0（同步或 SS 略领先）\n\n图表和详细数据已保存到服务器 `logdir/exp_066_timeseries_rssm_fidelity_s0/exp_066_timeseries_fidelity_causal.png` 和 registry artifacts。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-066-timeseries-rssm-fidelity.md"
+}

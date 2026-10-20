@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cfa811a7ea2bcd25f21",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops bjb1 40020 snapshot and deploy 029c",
+  "task_key": "worker_ops_bjb1_40020_snapshot_and_deploy_029c_20260520T111733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1_40020_snapshot_and_deploy_029c_20260520T111733_result.json",
+    "occurrence": 1,
+    "bytes": 1175,
+    "sha256": "22ae08297ab85f11738ab846788788fb63f426524fa4b7a1d0ba8c85a9f722bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。进程仍在运行，不部署 exp_029c。\n\n---\n\n## 汇总报告\n\n### 1. exp_027_tcn_walker_s0_sigma02 (σ=0.2 s0) — 判定完成\n\n| 指标 | 值 |\n|------|-----|\n| PID 37863 | **仍在运行** (7h29m)，但最后 eval step = 205K ≥ 205K 阈值 |\n| eval_return @205K | **558.7** |\n| ve_ratio @205K | **0.0995** |\n| peak eval_return | **821.1** @175K |\n| 后期均值 (175-205K) | **627.1** |\n| NVE 趋势 | 95K 处 spike 到 0.908 后持续下降，155K 后稳定 < 0.11 |\n\nRegistry 已更新为 **DONE/success**。CIVO 抑制有效：后半程 NVE 全程 < 0.22，eval 达到 baseline 水平。\n\n### 2. exp_029c_tcn_walker_s0_sigma01 — 未部署\n\nPID 37863 仍在 cuda:0 上运行（约剩 5K steps ≈ 10 分钟）。按规则等进程退出后再部署。\n\n### 3. exp_029a_tcn_walker_s1_sigma02 (σ=0.2 s1) 最新 metrics\n\n| step | eval_return | ve_ratio |\n|------|------------|----------|\n| 55K | 133.9 | 0.643 |\n| 65K | 169.7 | 0.478 |\n| 75K | **171.2** | **0.398** |\n\ns1 seed 在 75K 步，ve_ratio 仍较高（0.40 vs s0 同期 0.61），eval_return 偏低。需要观察后续是否收敛。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-40020-snapshot-and-deploy-029c.md"
+}

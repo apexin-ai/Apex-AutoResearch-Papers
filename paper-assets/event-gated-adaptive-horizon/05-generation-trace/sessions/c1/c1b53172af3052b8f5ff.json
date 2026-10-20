@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1b53172af3052b8f5ff",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper cheetah nve baseline update",
+  "task_key": "worker_paper_cheetah_nve_baseline_update_20260525T163049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_cheetah_nve_baseline_update_20260525T163049_result.json",
+    "occurrence": 1,
+    "bytes": 1262,
+    "sha256": "c4c7b5627d9d23520eb15a7b9219cd04e8b39dbe02fe67cd50c77fd397c39460"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All changes verified. Here's the summary:\n\n### Before/After\n\n**1. appendix.tex — experiment table (line 70-71)**\n- Before: only exp_077 row\n- After: added `083 & Cheetah baseline (s1) & --- & --- & 15 & 444.0 @105K & 1.00$\\times$ & Healthy` row after exp_077\n\n**2. appendix.tex — post-CIVO footnote (line 752)**\n- Before: `(26.7\\% of baseline exp\\_077, 448.1)`\n- After: `(26.8\\% of 2-seed baseline mean, 446.1)`\n\n**3. appendix.tex — normalization conventions (line 301)**\n- Before: `Cheetah NVE is normalized against a 5-seed mean baseline (seeds~0--4, each run to ~210K steps). The differing seed counts reflect available baseline data;`\n- After: `Cheetah NVE is normalized against a 2-seed mean baseline (exp\\_077 seed~0, eval 448.1; exp\\_083 seed~1, eval 444.0; mean 446.1 at 105K).`\n\n**4. results.tex — Table 1 footnote (line 49)**\n- Before: `Cheetah ${\\sim}409$ (5-seed mean at 105K)`\n- After: `Cheetah 446.1 (2-seed mean at 105K)`\n\nRemaining 448.1 in paper: only in exp_077's individual result row (correct — that's its actual eval) and inside the normalization conventions paragraph (listing the two seed evals). Cheetah NVE normalization is now consistently described as 2-seed mean = 446.1 throughout."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-cheetah-nve-baseline-update.md"
+}

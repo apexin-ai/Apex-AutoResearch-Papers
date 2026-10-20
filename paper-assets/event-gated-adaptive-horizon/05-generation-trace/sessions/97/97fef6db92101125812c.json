@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97fef6db92101125812c",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "writing related work",
+  "task_key": "worker_writing_related-work_20260516T015413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_related-work_20260516T015413_result.json",
+    "occurrence": 1,
+    "bytes": 1098,
+    "sha256": "a2d5c9c186ef5dee4bbf07377c3b32cbd8ddf01f2b4f8cb23916ded47001a5fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。Related Work 写入 `paper/sections/related_work.md`，~1200 words，覆盖全部 6 个要求主题：\n\n- **TAWM 定位**（第 3 段）：MPC vs imagination-based AC 的核心区别，明确 \"dt-conditioning is not inherently broken; the vulnerability is specific to imagination-based actor-critic training\"\n- **Model-free temporal abstraction**：Options, FiGAR, TempoRL, action repetition, frame skip, time discretization sensitivity\n- **World-model RL**：DreamerV1/V2/V3, TD-MPC2, Director, THICK, Hieros\n- **Value overestimation**：Thrun, TD3, SAC, MBPO, MOPO + CIVO 与 Lu et al. delusional bias 的显式区分 + 梯度分解（HarmonyDream, GradNorm）\n- **Multi-step prediction error**：Ke, Asadi, Lambert；排除 compounding error 作为主因\n- **Diagnostic methodology**：Engstrom, Andrychowicz；定位 non-method contribution 的价值\n\n35 篇引用，全部使用 `\\cite{paper_id}` 格式。D061 必引文献（hafner2023dreamerv3, ma2024harmonydream, chen2018gradnorm）均已覆盖。未使用 \"delusional critic\" 指代本文机制。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-related-work.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38209033a2fc38b17621",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops launch 025 s3 bjb45299",
+  "task_key": "worker_ops_launch-025-s3-bjb45299_20260519T163953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_launch-025-s3-bjb45299_20260519T163953_result.json",
+    "occurrence": 1,
+    "bytes": 539,
+    "sha256": "6df64f3f6c11e05b7f92ebc9116b90de1bc334915d8ba886dba1dfca7205aaa9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动，确认信息：\n\n- **tmux session**: `exp_025_s3` ✓\n- **PID**: 847597 (python 进程) / 847591 (shell)\n- **GPU 占用**: cuda:0 上 PID 847597，当前 ~1309MiB（初始化阶段，后续会增至 ~5GB）\n- **训练输出**: 已完成模型初始化，到达 `[5000]` 步并开始首次 evaluation\n- **logdir**: `logdir/exp_025_obs_sgs_walker_s3/` 已有 metrics.jsonl、tfevents、train.log\n\ncuda:0 上现有 3 个 python 进程共存（含原有的 exp_s3_ext baseline），96GB 显存充裕。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-launch-025-s3-bjb45299.md"
+}

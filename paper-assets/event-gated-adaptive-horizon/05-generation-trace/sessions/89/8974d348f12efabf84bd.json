@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8974d348f12efabf84bd",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 010a final",
+  "task_key": "worker_analysis_exp_010a_final_20260516T120029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_010a_final_20260516T120029_result.json",
+    "occurrence": 1,
+    "bytes": 601,
+    "sha256": "e86b010ed827d85e31a5c8c6b9e54756426180fab2472473450fd9b15ea8240d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n**exp_010a_cheetah_baseline_s1 — 完成**\n\n| 指标 | 值 |\n|------|-----|\n| 最终 step | 524,000 |\n| 最终 eval_return | **849.8** (step 515K) |\n| 峰值 eval_return | **849.8** (step 515K) |\n| 训练时长 | 13.18 小时 |\n| 退出状态 | 正常 (EXIT_CODE=0) |\n| Checkpoint | `latest.pt` (219MB) |\n| W&B | 无 |\n\n结果优秀——849.8 完全在 DreamerV3 参考水平（800-900@500K）内，作为 Cheetah Run 的 dt=1 baseline 非常扎实。学习曲线稳定上升，300K 后进入 700+ 区间，500K 附近稳定在 830-850。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-010a-final.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c85be56a1c125025e2c",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "research literature scan temporal abstraction",
+  "task_key": "worker_research_literature-scan-temporal-abstraction_20260515T041851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-scan-temporal-abstraction_20260515T041851_result.json",
+    "occurrence": 1,
+    "bytes": 1764,
+    "sha256": "d9af63646b5c2a077ee22c8968c4a1f32e0e7b0734e95a9dcb1ad9eccf05a7be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "literature_map.yaml 已更新（72 → 76 篇）。\n\n## 扫描总结\n\n**核心结论：没有找到直接竞争者。** 无论文诊断 dt_embedding → delusional critic → stochastic collapse 这一因果链。CoRL 2025/2026 亦无相关投稿。\n\n### 最相关的 5 篇新发现/确认论文：\n\n1. **Palenicek 2025** \"Diminishing Return of Value Expansion Methods\" (RLC 2025) — 即使使用 oracle dynamics，更长 rollout horizon 的收益也递减。直接支持我们 \"dt=1 imagination 足够\" 的结论，因为瓶颈在 value estimation 而非 model accuracy。**强烈建议引用。**\n\n2. **Nhu 2025 TAWM** (ICML 2025, 已在 map) — 最近的方法学重叠：显式 Δt conditioning，但用于 MPC 而非 imagination-based actor-critic，且结论相反（Δt conditioning 有益）。强化了我们贡献的独特性。\n\n3. **Kim 2025 DEAS** (arXiv 2510.07730) — 独立证据：action sequences（temporal extension）在 actor-critic 中导致 value overestimation，通过 detached value learning 缓解。不同场景但相同因果模式。\n\n4. **Li 2025 LS-Imagine** (ICLR 2025 Oral, 已在 map) — 扩展 Dreamer imagination horizon 的并发工作，但用 goal-conditioned jumps 而非 dt-embedding，可能避开了我们发现的 value overestimation。\n\n5. **Luo 2025 VPL** (IJCAI 2025) — 自适应 pessimism 调节 overestimation，可作为我们 dt=1 方案的互补缓解手段。\n\n### 领域趋势确认\n学界正在收敛到**层级化**方案（THICK, Hieros, HWM, SPlaTES, MetaController）解决世界模型中的 temporal abstraction，回避 flat variable-dt 方法。我们的诊断论文解释了 **为什么** flat dt 方法失败，为这一经验趋势提供理论基础。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-scan-temporal-abstraction.md"
+}

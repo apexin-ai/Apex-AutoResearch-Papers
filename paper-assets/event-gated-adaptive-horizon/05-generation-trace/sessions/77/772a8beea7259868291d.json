@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "772a8beea7259868291d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis rssm prediction quality",
+  "task_key": "worker_analysis_rssm_prediction_quality_20260514T095505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rssm_prediction_quality_20260514T095505_result.json",
+    "occurrence": 1,
+    "bytes": 1250,
+    "sha256": "28efee0be456dcec8d509e56bf8a4cdf1d63e1773d87ea5463b9901658d3ad65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n### model_loss 对比（@105K）\n\n| 实验 | model_loss | KL | velocity_loss |\n|------|-----------|-----|--------------|\n| baseline (dt=1 only) | **3.654** | 4.332 | 0.472 |\n| 008a (sub OFF, dt=2 imag) | 3.766 | 4.377 | 0.488 |\n| 008e_v3 (sub ON, dt=1 imag) | 4.634 | 5.477 | 0.606 |\n| 008f (sub ON, no dt_embed) | 4.559 | 5.292 | 0.607 |\n| 008d (sub ON, dt_embed=32) | ~5.01 @55K | 5.882 @55K | 0.704 @55K |\n\n### C2 claim 的关键证据\n\n1. **Subsample ON → model_loss +24%**：dt=2 transitions 训练数据使 RSSM 预测难度显著增加，主要来自 KL (+24%) 和 velocity_loss (+27%)\n\n2. **dt_embedding 反而让 model_loss 更高 (+15%)**：008d (dt_embed=32) 的 KL=5.88 远高于 008f (no embed) 的 5.06。embedding 没有帮助预测——反而创造了可被 critic 利用的结构性缺口\n\n3. **机制链条**：dt=2 → 更大的状态跳跃 → 更高的 KL → prior-posterior 不对齐 → dt_embedding 放大了这个分离 → critic 利用 embedding 信号做出 delusional value estimates\n\n**限制**：metrics.jsonl 无法按 dt 类型拆分 loss，只能看到总体平均值。\n\n报告已保存到 `artifacts/rssm_prediction_quality_analysis.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-rssm-prediction-quality-copy-2.md"
+}

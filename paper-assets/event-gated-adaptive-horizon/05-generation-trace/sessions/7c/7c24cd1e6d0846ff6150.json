@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c24cd1e6d0846ff6150",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "monitoring progress check 20260525",
+  "task_key": "worker_monitoring_progress_check_20260525_20260525T143419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitoring_progress_check_20260525_20260525T143419_result.json",
+    "occurrence": 1,
+    "bytes": 692,
+    "sha256": "0e7e2551d7b469451f789d5867d0cdadeaf288b373f24e5b4831457bfaacf277"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部正常运行，进度报告已保存到 `artifacts/progress_check_20260525.md`。\n\n**bjb1-45299 (Walker Walk):**\n- **exp_080 s1**: 84K/105K (80%), eval 846.5, ~46 min 完成\n- **exp_081 s2**: 80K/105K (76%), eval 404.5, ~45 min 完成\n- 两者 gate 均锁定 dt=1。exp_081 收敛显著慢于 exp_080（不同 seed 差异大）\n\n**westd-19154 (Cheetah Run):**\n- **exp_082 no_dt_emb s0**: 25K/105K (24%), eval 108.4, ~77 min 完成\n- **exp_083 baseline s1**: 8K/105K (8%), eval 11.6, ~95 min 完成\n- exp_082 gate 锁定 dt=2；exp_083 是 baseline 无 gate\n\nGPU 利用率：bjb1 GPU1 98% 接近满载，westd 两块 GPU 利用率偏低 (28%/54%)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitoring-progress-check-20260525.md"
+}

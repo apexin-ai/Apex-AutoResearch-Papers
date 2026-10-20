@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7c0567452b1ce29993f",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_24_1779795004.md",
+  "task_key": "loop_24_1779795004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_24_1779795004.md",
+    "occurrence": 1,
+    "bytes": 4983,
+    "sha256": "92e8eb556864c5a19b56c945e7a3177a38cce305f7819ce57de708ee4cfb97f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 24\nreason: idle_timeout\nupdated: '2026-05-26T08:27:37+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-45299 cuda:0/1, westd-19154 cuda:0/1（共 4 张，其他 GPU 禁用）\n- ICML 2026 数据锁定 5/27，投稿 DDL 5/29——5/27 后不得新增实验数据到论文\n- CIVO scope 已精确为 \"multi-joint locomotion\"（D149），不得说 \"DMC locomotion\" 或更宽泛\n- 旧代码 008e_v3 数据（2/5 collapse）因参数路由 bug 无效（D152），论文仅引用当前代码结果（0/4 CIVO）\n- NVE 计算用 step-matched single-seed s1 baseline（exp_001 seed=1），不是 4-seed mean\n- exp_084/085 的 submit_training_job 命令中用的是 `--dt_emb_freeze True` 参数（不是 detach），这是 D041 redesign 后的正确方式\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-45299**: 2×RTX PRO 6000 96GB, 工作目录 /root/autodl-tmp/event-gated-adaptive-horizon, Python: /root/miniconda3/bin/python, conda base env, 磁盘 399G/439G 可用\n- **westd-19154**: 2 GPU, 工作目录 /root/autodl-tmp/event-gated-adaptive-horizon, Python: /root/miniconda3/bin/python, conda base env, 磁盘 816G/879G 可用\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（不是 venv）\n- **EGL 变量**（Cheetah/Walker DMC 需要）: `MUJOCO_GL=egl PYOPENGL_PLATFORM=egl MUJOCO_EGL_DEVICE_ID=<gpu_index>`\n- **活跃进程**: exp_083_cheetah_baseline_s1 PID=30581 on westd-19154 cuda:1; exp_084 PID=296484 bjb1 cuda:0; exp_085 PID=296781 bjb1 cuda:1（后两个状态待确认）\n- **W&B**: entity/project 从 load_project_config 获取\n\n### 3. 📊 当前状态\n**刚做完**：收到 exp_082_cheetah_no_dt_emb_s0 的 CRON 完成回调（ANALYZING），已派 Worker（worker_analysis_exp_082_20260525T162510）分析结果。同时派了 Worker（worker_ops_check_084_085_status_20260525T162524）检查 exp_084/085 的进程状态（registry 卡在 PREPARING 但已有 PID）。\n\n**Registry 当前**：\n| exp_id | status | server | gpu | 摘要 |\n|--------|--------|--------|-----|------|\n| exp_082_cheetah_no_dt_emb_s0 | ANALYZING | westd-19154 | cuda:0 | Cheetah causal control (dt_embed_dim=0), plan_022, 等分析 Worker 回调 |\n| exp_083_cheetah_baseline_s1 | RUNNING | westd-19154 | cuda:1 | Cheetah baseline seed=1, plan_020 |\n| exp_084_frozen_dt_emb_walker_s0 | PREPARING | bjb1-45299 | cuda:0 | Frozen dt_emb Walker s0, 进程状态待确认 |\n| exp_085_frozen_dt_emb_walker_s1 | PREPARING | bjb1-45299 | cuda:1 | Frozen dt_emb Walker s1, 进程状态待确认 |\n\n**等待中**：\n- Worker worker_analysis_exp_082 回调 → 处理分析结果、更新 registry、汇报 Director\n- Worker worker_ops_check_084_085_status 回调 → 修复 registry 状态\n- Worker worker_paper_results_tex_f6_fix（上一轮遗留，仍 running）\n- exp_083 cron 回调（训练完成时）\n\n### 4. 📋 待办（条件触发式）\n- **exp_082 分析 Worker 回调** → 读分析结果，update_registry(status=DONE)，更新 report.md，汇报 Director（因果对 082 vs 078 的结论）。如果 success（无 CIVO）→ C2 因果链 Cheetah 确认，更新 memory.md\n- **exp_084/085 状态确认 Worker 回调** → 如果进程在跑则 update_registry(RUNNING) + register_cron；如果进程挂了则诊断原因，用 submit_training_job 重提交\n- **exp_083 完成回调** → 分析 Cheetah baseline s1，与 exp_077 (s0, eval=448.1) 构成 multi-seed baseline。更新 plan_020\n- **westd cuda:0 空闲**（exp_082 完成后）→ 需要安排下一个实验。候选：plan_022 第二个 seed（Cheetah no-dt-emb s1），或 plan_021 第二个 seed（Cheetah CIVO trigger s1）\n- **所有 Cheetah 实验完成** → 更新论文 Cheetah 跨环境验证部分，在 5/27 数据锁定前完成\n- **5/27 数据锁定** → 所有实验数据冻结，不再新增\n\n### 5. 🎯 战略上下文\n- **核心结论**：CIVO 是 trained dt_embedding 驱动的 complexity-dependent 现象（Walker 8/8, Cheetah 2/2, Cartpole 0/3），frozen/removed dt_emb 可 100% 阻止（Fisher exact p<0.0001）\n- **当前阶段**：论文收尾（Round 5 审稿中）+ Cheetah 跨环境验证 + frozen dt_emb 多 seed 验证\n- **决策链**：D149(scope=multi-joint) → D151(Cheetah 维持 scope+最小披露) → D152(旧 008e_v3 是 bug) → D153(C6 升级为 deterministic 100% mitigation)\n- **易错点**：\n  1. exp_077 是 Cheetah 唯一完成的 baseline（s0 only, eval=448.1），exp_083（s1）还在跑。Cheetah NVE 归一化目前只能用 s0 单 seed\n  2. exp_078（Cheetah CIVO trigger）结论是 onset_self_correcting（NVE peak 4.10x 但 eval 恢复），这与 Walker 的 permanent collapse 不同——Cheetah CIVO 更强但可逆\n  3. Cheetah 与 Walker 的因果对比要注意：两个环境的 CIVO 动力学不同（collapse vs self-correction），但 onset 100% 一致\n  4. bjb1-45299 上 exp_084/085 的 registry 状态可能需要手动修复（PREPARING→RUNNING），先等检查 Worker 回调\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-24-1779795004.md"
+}

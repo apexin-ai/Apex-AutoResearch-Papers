@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e023b30cccf058a56799",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops fix data path bjb1 40020",
+  "task_key": "worker_ops_fix_data_path_bjb1_40020_20260520T082801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_data_path_bjb1_40020_20260520T082801_result.json",
+    "occurrence": 1,
+    "bytes": 2245,
+    "sha256": "6f8ef8f4c6583220b81d66ee82d4acb803d52a6faa902a683fc54f9245de5c65"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整数据拿到了。\n\n## Metrics 文件正确路径\n\n| 实验 | 路径 |\n|------|------|\n| exp_027 (TCN σ=0.2) | `/root/runs/event-gated-adaptive-horizon/exp_027_tcn_walker_s0_sigma02/metrics.jsonl` |\n| exp_028 (RAVE ceil15) | `/root/runs/event-gated-adaptive-horizon/exp_028_rave_walker_s0_ceil15/metrics.jsonl` |\n\n之前找不到是因为实际 logdir 在 `/root/runs/event-gated-adaptive-horizon/`，不是 `/root/autodl-tmp/event-gated-adaptive-horizon/logdir/`。\n\n## exp_027 — TCN σ=0.2 Walker（当前 135K 步）\n\n| Step | eval_return | ve_ratio (NVE) |\n|------|-------------|----------------|\n| 5K   | 35.6        | —              |\n| 15K  | 150.6       | 0.0192         |\n| 25K  | 199.4       | 0.0961         |\n| 35K  | 278.2       | 0.1875         |\n| 45K  | 315.6       | 0.3009         |\n| 55K  | 278.6       | 0.5231         |\n| 65K  | 331.0       | 0.5654         |\n| 75K  | 293.1       | 0.6110         |\n| 85K  | 363.9       | 0.4665         |\n| 95K  | 171.4       | 0.9081         |\n| 105K | 236.4       | 0.5625         |\n| 115K | **543.8**   | 0.2105         |\n| 125K | 458.4       | 0.2182         |\n| 135K | 496.7       | 0.1764         |\n\n## exp_028 — RAVE ceil15 Walker（当前 135K 步）\n\n| Step | eval_return | ve_ratio (NVE) |\n|------|-------------|----------------|\n| 5K   | 31.6        | —              |\n| 15K  | 99.4        | 0.0300         |\n| 25K  | 155.3       | 0.1278         |\n| 35K  | **180.1**   | 0.2465         |\n| 45K  | 166.9       | 0.4280         |\n| 55K  | 131.0       | 0.7369         |\n| 65K  | 91.5        | 1.2943         |\n| 75K  | 120.9       | 0.9371         |\n| 85K  | 137.3       | 0.7267         |\n| 95K  | 70.2        | 1.2799         |\n| 105K | 76.2        | 0.9841         |\n| 115K | 41.2        | 1.5129         |\n| 125K | 36.6        | 1.4624         |\n| 135K | 39.1        | 1.1708         |\n\n**关键观察：**\n- **TCN σ=0.2** 表现良好：eval_return 在 115K 后突破 ~500，ve_ratio 从高点 0.91 回落到 0.18，gate 完全锁在 dt=2（无自适应）\n- **RAVE ceil15** 严重崩溃：eval_return 从 35K 峰值 180 持续下降到 135K 的 39，ve_ratio 飙升到 1.5+，训练已发散"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-data-path-bjb1-40020.md"
+}

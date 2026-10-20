@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c41e70dcc1635d9c3a02",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "analysis nve threshold",
+  "task_key": "worker_analysis_nve_threshold_20260525T195512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_nve_threshold_20260525T195512.log",
+    "occurrence": 1,
+    "bytes": 706991,
+    "sha256": "90b404703c240d1d6765cec8420cc4bb34fa27206e1a6d115ae351fda52a2e4c"
+  },
+  "statistics": {
+    "messages": 56,
+    "user_turns": 0,
+    "tool_calls": 19,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 14,
+      "tool_call": 19,
+      "tool_result": 19,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 56,
+      "chunks": [
+        {
+          "path": "c41e70dcc1635d9c3a02-part-0001.json",
+          "message_count": 47
+        },
+        {
+          "path": "c41e70dcc1635d9c3a02-part-0002.json",
+          "message_count": 9
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-nve-threshold.md"
+}

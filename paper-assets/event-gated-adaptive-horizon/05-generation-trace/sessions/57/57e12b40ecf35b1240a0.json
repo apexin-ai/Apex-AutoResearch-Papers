@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57e12b40ecf35b1240a0",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 091 cheetah 008d s2",
+  "task_key": "worker_analysis_exp_091_cheetah_008d_s2_20260525T225618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_091_cheetah_008d_s2_20260525T225618_result.json",
+    "occurrence": 1,
+    "bytes": 1685,
+    "sha256": "dd0a724c57226360fc37028b6ba3902b3a338315736c0070cded67a4ec6f7723"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n---\n\n## exp_091_cheetah_008d_s2 分析报告\n\n**结论: CIVO confirmed → success**\n\n### Metrics 总表\n\n| Step | eval_return | ve_ratio | value_mean | NVE |\n|------|------------|----------|-----------|------|\n| 15K | 97.2 | 0.017 | 1.69 | 0.44× |\n| 25K | 126.4 | 0.091 | 11.49 | 1.32× |\n| 35K | 182.6 | 0.144 | 26.28 | 1.09× |\n| **45K** | **213.8** (peak) | 0.212 | 45.35 | **2.06×** (onset) |\n| 55K | 98.9 | 0.692 | 68.40 | 2.92× |\n| 65K | 2.2 | 34.80 | 77.52 | 129.8× |\n| 75K | 1.9 | 43.14 | **81.16** (val peak) | **138.7×** (NVE peak) |\n| 85K | 2.1 | 35.86 | 75.86 | 54.2× |\n| 95K | 0.6 | **127.62** (VE peak) | 70.36 | 133.6× |\n| 105K | 2.5 | 27.89 | 69.59 | 45.9× |\n\n- **NVE peak: 138.7× @ 75K** — 远超 1.5× 阈值\n- **NVE onset: 45K** — 与 exp_078 (s0) 完全一致\n- **Classification: onset_collapse** — eval 从 213.8 崩塌至 ~2，无恢复\n- gate_dt_mean=2.0, gate_dt_2_frac=1.0（固定 dt=2）\n\n### 跨 Seed 对比\n\n| Experiment | Seed | CIVO | NVE peak | Onset | Pattern |\n|-----------|------|------|----------|-------|---------|\n| exp_078 | s0 | **YES** | 4.1× | 45K | onset_collapse |\n| exp_088 | s1 | NO | 0.517× | — | no_onset |\n| **exp_091** | **s2** | **YES** | **138.7×** | **45K** | **onset_collapse** |\n\n**Cheetah CIVO onset rate: 2/3 (67%)**\n\nexp_091 的 CIVO 比 exp_078 严重得多（NVE 138.7× vs 4.1×），eval 在 55K-65K 之间发生灾难性崩溃（213→2），但 value 继续攀升至 81（典型的 value overestimation 脱轨）。两个 CIVO seed 的 onset 都在 45K，表明 Cheetah 环境中 CIVO 的触发时间点具有一致性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-091-cheetah-008d-s2.md"
+}

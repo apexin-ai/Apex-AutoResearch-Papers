@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50a1a8c7257c85caf343",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis gradient decomposition verify",
+  "task_key": "worker_analysis_gradient-decomposition-verify_20260517T165831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gradient-decomposition-verify_20260517T165831_result.json",
+    "occurrence": 1,
+    "bytes": 1561,
+    "sha256": "4063bdd0753943bea887d6d13c75ff167bcd04ffda9e8f92b30f9d3eda20270e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 独立验证结果\n\n### dt_emb.weight 梯度分解 (008d checkpoint @55K)\n\n**正确配置** (gate_fixed_dt=2, gate_subsample_max_dt=2)：\n\n| Component | L2 norm | % | std |\n|-----------|---------|---|-----|\n| obs | 0.0527 | **15.84%** | 0.0169 |\n| reward | 0.1762 | **53.01%** | 0.0678 |\n| kl | 0.1036 | **31.15%** | 0.0287 |\n| cont | ~0 | 0% | ~0 |\n\n**错误配置** (gate_fixed_dt=0, gate_subsample_max_dt=8)：\n\n| Component | L2 norm | % |\n|-----------|---------|---|\n| obs | 0.5751 | 25.79% |\n| reward | 0.4910 | 22.02% |\n| kl | 1.1640 | 52.19% |\n\n### 对比判定\n\n| 数据源 | obs% | reward% | kl% | 状态 |\n|--------|------|---------|-----|------|\n| **Paper Table 8** | 16.3 | 49.0 | 34.7 | **正确** |\n| **独立验证 (本次)** | 15.84 | 53.01 | 31.15 | 一致（20 vs 50 batch 差异） |\n| **D061** | 93 | 0 | 7 | **错误，不可复现** |\n\n### 关键发现\n\n1. **Paper Table 8 数据正确** — 独立验证高度一致，reward 梯度主导 (~50-53%)，其次 KL (~31-35%)，obs 最小 (~16%)\n2. **D061 数据 (reward=0%, obs=93%, KL=7%) 完全错误** — 没有任何配置或方法能复现，与所有实际测量相差 >10 倍\n3. **配置极度敏感** — 正确配置 (fixed_dt=2) 得到 reward 主导；错误配置 (fixed_dt=0) 得到 KL 主导；总梯度范数差 ~7 倍\n4. 服务器上找到 3 个脚本版本：`compute_gradient_decomposition.py`、`grad_decomp_008d.py`（均用错误配置）、`grad_decomp_008d_corrected.py`（正确配置，其结果即 Table 8 来源）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gradient-decomposition-verify.md"
+}

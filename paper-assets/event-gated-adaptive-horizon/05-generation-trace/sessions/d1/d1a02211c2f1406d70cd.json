@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1a02211c2f1406d70cd",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check 019ab training status",
+  "task_key": "worker_check_019ab-training-status_20260517T070410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_019ab-training-status_20260517T070410_result.json",
+    "occurrence": 1,
+    "bytes": 1084,
+    "sha256": "06dcfcd40ad568d64bcc71a3158a951a611f6f251a020dde596a0463efdf794d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态汇总\n\n### exp_019a_v2_pickcube_baseline\n| 指标 | 值 |\n|---|---|\n| 当前步数 | **186,848 / 200,000** (93.4%) |\n| 最新 eval_return | **60.39** (step 182,500) |\n| 历史最高 eval_return | **69.70** (step 162,500) |\n| 最近 train_return | 61.97 ~ 93.17 |\n| 已用时间 | ~8h10m |\n| 预估剩余 | **~35 min** (13,152 steps remaining, 按 ~375 steps/min) |\n\neval_return 趋势：稳步上升后在 60~70 区间波动，peak 在 step 162,500。\n\n### exp_019b_pickcube_civo_trigger\n| 指标 | 值 |\n|---|---|\n| 当前步数 | **63,000 / 200,000** (31.5%) |\n| 最新 eval_return | **5.95** (step 62,500) |\n| 历史最高 eval_return | **24.90** (step 22,500) |\n| 最近 train_return | 8.05 ~ 9.27 |\n| 已用时间 | ~2h48m |\n| 预估剩余 | **~6h05m** (137,000 steps remaining, 按 ~375 steps/min) |\n\n019b 的 eval_return 在 step 22,500 达到 24.9 后持续下降到 5.95，表现明显恶化。train_return 也很低（8~9），和 019a 同期（train_return 60+）差距巨大。CIVO trigger 机制目前效果不佳。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-019ab-training-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "812f0e57f827284f4e26",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "deploy exp 038 redeploy",
+  "task_key": "worker_deploy_exp_038_redeploy_20260521T122034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_deploy_exp_038_redeploy_20260521T122034_result.json",
+    "occurrence": 1,
+    "bytes": 699,
+    "sha256": "615a59d0d7a01f04d79c60625beaecaf8f98f60404a17c7362f99c4b76532459"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验正在运行，无需重新部署。**\n\n诊断结果：\n\n| 项目 | 状态 |\n|------|------|\n| PID 175633 | **存活**，已运行 2分18秒 |\n| cuda:0 | 12% 利用率，3305 MiB / 24564 MiB 已占用 |\n| 日志 | 已到 step 5000，eval_return=35.2，正在训练中 |\n| dual_critic | 已启用（value_opt + value2_opt 均已初始化） |\n\n日志最新指标（step 5000）：\n- `eval_return`: 35.2\n- `model_loss`: 20.7\n- `gate_dt_mean`: 2.0（固定 dt=2，符合预期）\n- `value1_mean` / `value2_mean`: 均为 0.0（刚开始训练，正常）\n- `fps`: 0.0（首次记录，尚未计算）\n\n实验刚启动约 2 分钟，运行正常。无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-exp-038-redeploy.md"
+}

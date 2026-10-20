@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e06846894396df4c3a6",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "diagnose gpu allocation check",
+  "task_key": "worker_diagnose_gpu_allocation_check_20260515T011923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gpu_allocation_check_20260515T011923_result.json",
+    "occurrence": 1,
+    "bytes": 1050,
+    "sha256": "3eb3b3147b82850892a7c687f7489515db4b651ea0f201ea8afdbea673b5fcd7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果：GPU 隔离正确，无冲突\n\n### 进程-GPU 映射\n\n| 实验 | 父 PID | 实际 GPU PID | CUDA_VISIBLE_DEVICES | 物理 GPU | GPU UUID |\n|------|--------|-------------|---------------------|---------|----------|\n| exp_009a | 142508 | 142513 | **0** | GPU 0 | `GPU-f7b1...` |\n| exp_008e_v3_s2 | 43437 | 43442 | **1** | GPU 1 | `GPU-7b49...` |\n\n### GPU 利用率\n\n| GPU | 利用率 | 显存使用 | 显存总量 |\n|-----|--------|---------|---------|\n| GPU 0 | 0% | 4722 MiB | 97887 MiB |\n| GPU 1 | 5% | 4165 MiB | 97887 MiB |\n\n- 另有一个 PID 908751 在 GPU 0 上占用 552 MiB（非实验进程，影响不大）\n\n### 008e_v3_s2 训练进度\n\n- metrics.jsonl 已有 **11 行**，最新 step = **8000**，train_return = 53.35\n- 训练正常推进\n\n### 结论\n\n**不存在设备冲突。** 两个实验的 CUDA_VISIBLE_DEVICES 分别设为 0 和 1，nvidia-smi 确认它们分别运行在不同物理 GPU 上（不同 UUID），显存占用独立。监控 Worker 的冲突报告为误报。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gpu-allocation-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bcc3a4f02fef2ae502fc",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper latex compile check",
+  "task_key": "worker_paper_latex-compile-check_20260518T184142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_latex-compile-check_20260518T184142_result.json",
+    "occurrence": 1,
+    "bytes": 491,
+    "sha256": "98fc80df03a25d3b2fd6449d81b975e68b85869cbda5b2d1703f9dc048f53c7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译结果：\n\n- **0 个 Error**，PDF 成功生成（27 页，496KB）\n- **Overfull hbox**：仅 1 处，在 `appendix.tex` 第 14-69 行（complete_results 表），溢出 2.66pt。这个溢出量很小（<1mm），不影响排版质量，且是已有的而非新增的。\n- **其他注意项**：`tab:sensitivity_b2_full` 引用未定义（与本次修改无关），再跑一次 pdflatex 可能解决交叉引用 warning。\n\n编译通过，本次修改无问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-latex-compile-check.md"
+}

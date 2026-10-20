@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c4a671bdb1ac87a6afd",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check exp 050 172k metrics",
+  "task_key": "worker_check_exp_050_172k_metrics_20260523T053608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp_050_172k_metrics_20260523T053608_result.json",
+    "occurrence": 1,
+    "bytes": 1374,
+    "sha256": "10f61160ecdb0622e9715ee4969d371cd2967e08ca701c3269448a39291e1a4c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_050 PegInsertion 指标趋势\n\n**当前步数：172,500（update_count=85,100）**\n\n### ve_ratio 完整趋势\n\n| Step | ve_ratio | eval_return |\n|-----:|--------:|------------:|\n| 12.5K | 0.21 | 9.56 |\n| 22.5K | 0.74 | 14.21 |\n| 32.5K | 1.90 | 10.00 |\n| 42.5K | 2.67 | 10.70 |\n| 52.5K | 7.10 | 5.40 |\n| 62.5K | 3.14 | 14.13 |\n| 72.5K | 6.17 | 7.90 |\n| **82.5K** | **10.05** | 4.53 |\n| 92.5K | 9.55 | 3.65 |\n| 102.5K | 4.55 | 6.23 |\n| 112.5K | 4.02 | 6.67 |\n| 122.5K | 2.63 | 10.43 |\n| 132.5K | 3.75 | 7.20 |\n| 142.5K | 3.20 | 7.72 |\n| **152.5K** | **8.46** | 2.40 |\n| 162.5K | 1.94 | 9.01 |\n| **172.5K** | **3.13** | 4.77 |\n\n### 分析\n\nve_ratio 从 152.5K 的 8.46 峰值 → 162.5K 的 1.94 → 172.5K 的 3.13，**下降趋势没有持续，出现了反弹**。整体呈锯齿形波动模式，有两个明显高峰区间：82.5K-92.5K（~10）和 152.5K（8.46），之间会回落到 2-4 区间。\n\neval_return 同样波动剧烈（2.40~14.21），无明显上升趋势。ve_ratio 与 eval_return 呈**负相关**：ve_ratio 高点（82.5K=10.05, 152.5K=8.46）对应 eval_return 低谷（4.53, 2.40）。\n\ngate_dt 始终锁死在 dt=2（gate_dt_2_frac=1.0），门控没有学到自适应行为。\n\n### exp_051 StackCube 状态\n\nStep 174,000，train_return 在 24.8-27.0 之间，870 episodes。运行正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp-050-172k-metrics.md"
+}

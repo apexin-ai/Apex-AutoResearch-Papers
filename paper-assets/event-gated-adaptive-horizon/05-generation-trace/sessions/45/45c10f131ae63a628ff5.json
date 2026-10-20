@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45c10f131ae63a628ff5",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 087 frozen dt emb cheetah s1",
+  "task_key": "worker_analysis_exp_087_frozen_dt_emb_cheetah_s1_20260525T184359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_087_frozen_dt_emb_cheetah_s1_20260525T184359_result.json",
+    "occurrence": 1,
+    "bytes": 677,
+    "sha256": "4cb791696b3ee346f474b8a510091e1eede92c3cba929eb7a5c401f8c5443d1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。总结：\n\n**exp_087 结果：NVE = 0.33×，no_civo，hypothesis confirmed (success)**\n\n关键发现：\n- ve_ratio 全程趋近零（peak 仅 0.2 at 95K），远低于 baseline（0.6）\n- civo/alert 从未触发\n- gate_dt 恒定为 2（frozen embedding 无法适应）\n- eval_return peak=310.1，远低于 baseline 444.0（符合预期：无自适应 gating 收益）\n\n这与 exp_078（trained dt_emb, NVE=4.1×, CIVO 触发）形成鲜明对照，确认 **dt_embedding 的梯度训练是 CIVO 的必要条件**。C2 claim 现已有 Cheetah seed=1 的交叉验证支撑。等 exp_086（frozen s0）完成后将有完整 2-seed 证据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-087-frozen-dt-emb-cheetah-s1.md"
+}

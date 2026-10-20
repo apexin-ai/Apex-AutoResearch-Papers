@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca6dce750b3d0e2808bf",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "diagnose exp 024 failed",
+  "task_key": "worker_diagnose_exp_024_failed_20260517T203610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_024_failed_20260517T203610_result.json",
+    "occurrence": 1,
+    "bytes": 598,
+    "sha256": "b5b7dfaf4eb67b2e4be433857827455a75a206bd37e32a6e576be2d6eac45e10"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认完毕，结论如下：\n\n**错误信息**：`dreamer.py: error: unrecognized arguments: --dt_embed_dim 0`\n\n**原因**：参数名写错了。用了 `--dt_embed_dim`，但 argparse 中不存在这个参数。\n\n**正确参数名**：`--gate_dt_embed_dim`（日志中 `--help` 输出已确认该参数存在：`--gate_dt_embed_dim GATE_DT_EMBED_DIM`）\n\n另外注意还有一个相关但不同的参数 `--dt_emb_freeze`，不要混淆。\n\n**修复**：将启动命令中的 `--dt_embed_dim 0` 改为 `--gate_dt_embed_dim 0`，重新提交即可。无需其他修复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-024-failed.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4366b3f919ffb8be37a",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops cleanup and 009d monitor",
+  "task_key": "worker_ops_cleanup_and_009d_monitor_20260515T165903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup_and_009d_monitor_20260515T165903_result.json",
+    "occurrence": 1,
+    "bytes": 466,
+    "sha256": "ecb09cf89615fee0bea1a9f6d8e25b24d516734c2ef9116f03df9b69c77acd5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务完成：\n\n**任务1 — cheetah dryrun 清理**\n- 进程 389546 已不存在（already dead）\n- `/tmp/cheetah_dryrun` 和 `logdir/dryrun_cheetah_baseline` 已删除\n\n**任务2 — 009d 88K eval**\n- 88K eval_return = **440.3**，创新高\n- 78K 的暴跌（402→81）是一次性抖动，不是持续崩溃\n- 趋势：126→184→264→293→326→402→**81**→**440**\n\n009d 完全恢复，78K 那次跌落是偶发异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-and-009d-monitor.md"
+}

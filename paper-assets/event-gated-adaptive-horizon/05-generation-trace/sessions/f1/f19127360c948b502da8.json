@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f19127360c948b502da8",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_26_1779983887.md",
+  "task_key": "loop_26_1779983887",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_26_1779983887.md",
+    "occurrence": 1,
+    "bytes": 3388,
+    "sha256": "24c6b4a9baf7ceb713847ea817080566de355d2a32e437cfc01d92b202351521"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 26\nreason: idle_timeout\nupdated: '2026-05-28T15:57:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 数据锁定 (D171) 生效：所有实验数据、论文数值、统计、表格、图表**冻结**，仅允许 prose polish\n- CoRL 2026 DDL: UTC 2026-05-28 12:00，不到 12 小时\n- GPU 白名单: westd-51268:cuda:0, westd-51268:cuda:1（但数据锁定期间不应启动新实验）\n- 禁止修改任何 paper 数值——即使 rebuttal reserve 实验产出了新数据，也不能回写到论文\n- NVE CIVO 检测阈值 τ=2.0（D165 决策，不是 1.5）\n\n### 2. 🖥️ 基础设施快照\n- 服务器: westd-51268，2× RTX PRO 6000 Blackwell，当前空闲\n- 工作目录: ~/runs/event-gated-adaptive-horizon/\n- 日志路径: ~/runs/event-gated-adaptive-horizon/exp_{id}.log\n- 磁盘: 96% 可用（充裕）\n- Python/conda 路径: 未在本 session 探查（上一轮 Worker 已验证 aml-train 镜像，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 活跃进程: 无（所有实验已完成或被 kill）\n- Cron: reconcile 返回 0 条活跃\n\n### 3. 📊 当前状态\n**刚做完**: Session 初始化 + 收到 exp_walker_008d_s7 失败 CRON 回调。已派 Worker (`worker_diagnose_exp_walker_008d_s7_s6_20260527T232328`) 去 westd-51268 查 s6/s7 日志。已向 Director 汇报初步情况。\n\n**Registry 概况**: 206 个实验全部 DONE（success 103 / negative 43 / failed 19 / killed 40）。无 RUNNING/PREPARING/ALLOCATED。\n\n**等待中**:\n- Worker 回调: `worker_diagnose_exp_walker_008d_s7_s6_20260527T232328` — 诊断 s6/s7 失败原因，确认 105K eval 数据是否可用\n- 待处理: exp_walker_no_dt_emb_s0 状态 ALLOCATED 但未提交（report.md 显示等待提交，但数据锁定下无意义）\n\n**最近 3 个 SIGTERM 失败**:\n- exp_cheetah_008a_s3: 已诊断——105K eval 完整 (NVE=0.3, 无 CIVO)，数据可用于 rebuttal\n- exp_walker_008d_s6/s7: Worker 正在诊断\n\n### 4. 📋 待办\n- Worker 诊断回调到达 → 更新 s6/s7 registry notes（参照 s3 格式：失败原因 + 已有成果 + 建议）→ 向 Director 汇报诊断结果\n- 如 s6/s7 的 105K eval 已完成 → 记录可用数据到 registry notes，标记 rebuttal reserve 可用\n- 如 s6/s7 的 105K eval 未完成 → 记录无可用数据，数据锁定下不重跑\n- Director 指示提交论文 → 走 submit_paper_to_review 流程\n- Director 指示 prose polish → 派 Worker 做文字润色（不改数值）\n\n### 5. 🎯 战略上下文\n- **核心结论**: Trained dt_embedding 驱动 CIVO（Conditioning-Induced Value Overestimation），frozen/removed dt_emb 阻止。8 个 Claims 全部 Strong/Moderate 证据\n- **决策链关键节点**: D165 阈值调至 τ=2.0 → D167 C2 onset rate 调为 2/3 → D169 C3 framing 重构 → D170 最终数据确认 → D171 数据锁定 → D172 启动 rebuttal reserve（就是这批被 kill 的实验）\n- **易错点 1**: s6/s7 是 rebuttal reserve (D172 Tier 2)，即使数据好也不能改论文数值（D171 锁定）\n- **易错点 2**: exp_walker_no_dt_emb_s0 显示 ALLOCATED 但数据锁定下不应提交——不要因为\"GPU 空闲\"就提交\n- **易错点 3**: C2 Walker CIVO onset rate 是 2/3（不是更高），exp_009b 归类为 sub-threshold (D167)\n- **论文状态**: 31 页，编译通过，Reviewer 最终审查 PASS，等 prose polish + 投稿材料准备\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-26-1779983887.md"
+}

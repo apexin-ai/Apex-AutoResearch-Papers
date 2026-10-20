@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ff5359fe436633b48a9",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper fig6 data fix critical",
+  "task_key": "worker_paper_fig6_data_fix_critical_20260525T165049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig6_data_fix_critical_20260525T165049_result.json",
+    "occurrence": 1,
+    "bytes": 957,
+    "sha256": "9f9cf2675280105487032aee11a365b82e92a9ff679103309ca0c9f4c67d11fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改总结：\n\n**脚本 `fig6_multiple_pathways.py`：**\n- 右列数据从 008e_v3 s2（eval 崩溃到 136.96，NVE 3.78）替换为 exp_080 s1（eval 876.7，NVE ≤ 0.6×）\n- 右列颜色从红色（C_MAIN）改为绿色（C_HEALTHY = #27AE60），视觉上与左列 CIVO 崩溃形成对比\n- 移除右列所有红色崩溃区域（axvspan）和崩溃标注（\"eval crash -81%\"、\"policy destabilizing\"）\n- 新标注：eval 终点 \"876.7 (94% baseline)\"、\"NVE ≤ 0.6× (calibrated)\"、\"entropy ↓ (normal convergence)\"\n- 底部注释更新为 \"CIVO onset requires dt > 1 imagination (F6)\"\n\n**`results.tex` L117 caption：**\n- `008e_v3 s2` → `008e_v3 s1`\n- `NVE 0.5×` → `NVE ≤ 0.6×`\n- `eval 64% baseline` → `eval 94% baseline`\n\n图和 caption 现在一致：右列显示平稳上升的 eval 曲线 + 校准的 value + 正常收敛的 entropy，与 caption \"no CIVO onset\" 完全匹配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig6-data-fix-critical.md"
+}

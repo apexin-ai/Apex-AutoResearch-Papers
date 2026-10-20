@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f02783155e7708e95e3",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis 010b peak nve recalc",
+  "task_key": "worker_analysis_010b-peak-nve-recalc_20260517T203809",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_010b-peak-nve-recalc_20260517T203809_result.json",
+    "occurrence": 1,
+    "bytes": 580,
+    "sha256": "9870dbfc1eee4b9814baab87f9cadfe611ff6b124fafbca4da032e6b934179ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：**\n\n- **peak_step** = 65000\n- **peak NVE** = **8.27×**（010b V/E = 3.183，baseline avg V/E = 0.385）\n- **与论文 14.59× 不一致**\n\n010b 在 step 65000 出现 V/E 尖峰，原因是 eval_return 极低（22.67）而 value_mean 维持高位（72.15）——这是 value 严重高估的信号。baseline 在同步的 V/E 约 0.36–0.41，平均 0.385。比值 3.183/0.385 ≈ 8.27×。\n\n14.59× 的差异可能来自原始计算使用了不同口径（例如单 baseline seed、不同的 value/eval 字段、或不同的 normalization）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-010b-peak-nve-recalc.md"
+}

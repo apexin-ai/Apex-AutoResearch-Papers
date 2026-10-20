@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa7ae946b8f4bb133b3b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper page fix and 505k correction",
+  "task_key": "worker_paper_page_fix_and_505k_correction_20260524T081741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_page_fix_and_505k_correction_20260524T081741_result.json",
+    "occurrence": 1,
+    "bytes": 1426,
+    "sha256": "50997885266cf0a75908e9f9bd0ca9cb3c6a699e0416c57bc8e6f2ad6151b473"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有残留的 505K 都正确指向 baseline exp_001（确实是 505K 步），不需要修改。编译无错误、无 undefined references。\n\n---\n\n**汇报：**\n\n1. **505K 修正位置**：`analysis.tex` 第 12 行 — \"505K steps\" → \"approximately 302K steps\"，\"170K additional steps\" → \"190K additional steps\"。其他 505K（methodology.tex, results.tex, appendix.tex）均指 baseline exp_001，正确无需改。\n\n2. **编译后正文页数（修正前）**：9 页（超限 1 页）\n\n3. **执行的压缩策略**：\n   - **A**: analysis.tex 的 exp_045 段落从 5 句压缩为 2 句，详细内容移入 appendix 新增 `\\subsection{Extended Training Dynamics}` (label: `sec:extended_training`)\n   - **B**: results.tex dual-critic 冗长句压缩，引向 appendix\n   - **C-1**: results.tex ManiSkill 段落从 5 句压缩为 3 句\n   - **C-2**: results.tex F2 第二段 seed-by-seed 描述大幅压缩\n   - **C-3**: Table 1 脚注 d/e 和 baselines 行压缩\n   - **C-4**: analysis.tex \"Implications for robot learning\" 段落压缩\n\n4. **压缩后正文页数**：**8 页**（conclusion 在第 8 页末尾，references 从第 9 页开始）\n\n5. **移入 appendix 的内容**：exp_045 extended training 详细数据（NVE peak、self-recovery 过程、190K additional steps），位于 appendix section D 的 `sec:seed_divergence` 之后、`sec:mpc_immune` 之前"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-page-fix-and-505k-correction.md"
+}

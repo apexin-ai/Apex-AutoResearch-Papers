@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6fb3f452eedb24f0392",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "research verify framing data",
+  "task_key": "worker_research_verify_framing_data_20260514T043015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_verify_framing_data_20260514T043015_result.json",
+    "occurrence": 1,
+    "bytes": 1537,
+    "sha256": "973449c49fc977f9cb7ec3ebdfcd07f57e20c4bb505f0fdc74049c9ff8bcf2b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐全。以下是验证结果。\n\n---\n\n## 数据点 1：exp_008c @35K value/eval ratio\n\n**来源文件**: `logdir/exp_008c_fixed_dt2_no_subsample_h8/metrics.jsonl`, step=35000\n\n| 字段 | 值 |\n|---|---|\n| value_mean | 40.430 |\n| eval_return | 185.096 |\n| **v/e ratio** | **40.43 / 185.10 = 0.2184 = 21.8%** |\n\n- **paper_framing.md 声称**: `v/e: @35K=19%`\n- **实际值**: **21.8%**\n- **差异**: +2.8 个百分点，paper 数据不准确\n- **建议修正**: 改为 `@35K=22%`（或精确值 21.8%）\n\nRegistry 交叉验证：55K=0.291 和 65K=0.328 与日志一致（70.32/241.87=0.291, 78.96/240.86=0.328 ✓），但 35K 数据点不在 registry 中。\n\n---\n\n## 数据点 2：exp_006 (fixed_dt2_v1_s1) @55K value/eval ratio\n\n**来源文件**: `logdir/fixed_dt2_v1_s1/metrics.jsonl`\n\n| Step | value_mean | eval_return | v/e ratio |\n|---|---|---|---|\n| **45000** | 254.287 | 477.000 | **53.3%** |\n| **55000** | 336.444 | 360.441 | **93.3%** |\n\n- **ROADMAP 声称**: `exp_006 v/e=53.3%@55K`\n- **实际 @55K**: **93.3%**（不是 53.3%）\n- **53.3% 的真实来源**: **step 45K**（254.29/477.00=0.5331）\n- **差异**: ROADMAP 标错了 step 号，53.3% 属于 45K 而非 55K\n- **建议修正**: 改为 `v/e=53.3%@45K` 或 `v/e=93.3%@55K`\n\n---\n\n### 总结\n\n| 数据点 | 声称值 | 实际值 | 问题 |\n|---|---|---|---|\n| exp_008c v/e @35K | 19% | **21.8%** | 数值偏差 -2.8pp |\n| exp_006 v/e @55K | 53.3% | **93.3%** | step 标错（53.3% 实际来自 @45K） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-verify-framing-data.md"
+}

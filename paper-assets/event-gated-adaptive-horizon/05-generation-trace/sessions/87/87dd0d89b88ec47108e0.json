@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87dd0d89b88ec47108e0",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "diagnose quadruped progress check",
+  "task_key": "worker_diagnose_quadruped-progress-check_20260529T080234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_quadruped-progress-check_20260529T080234_result.json",
+    "occurrence": 1,
+    "bytes": 778,
+    "sha256": "d7f58b7a0334218eeff850fc0130574c6aeb0b22651108e5ae43f1ba13df0a24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp_quadruped_baseline_s0_r2 状态：**\n\n| 指标 | 值 |\n|------|-----|\n| 当前 step | **128,000 / 200,000** (64%) |\n| 最新 eval_return | **61.3** (step 125K，较 step 115K 的 173.5 大幅下降) |\n| 进程状态 | **存活** (PID 42268, tmux session `exp_quadruped_baseline_s0_r2`) |\n| GPU 利用率 | CPU 占用 1209%（多线程），进程正常运行 |\n| FPS | ~10.1 |\n| CIVO 警报 | **已触发** (step 125K: ve_ratio=6.6, delta_ve=4.3, eval_decline=2/3) |\n\n注意：step 125K 处 CIVO detector 报告了 value expansion 模式，eval_return 从 173.5 (115K) 跌到 61.3 (125K)。这是 baseline 实验（无干预），CIVO alert 仅记录不触发动作。\n\n预计剩余时间：按 10 fps 计算，还剩 ~72K steps ≈ 2 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-quadruped-progress-check.md"
+}

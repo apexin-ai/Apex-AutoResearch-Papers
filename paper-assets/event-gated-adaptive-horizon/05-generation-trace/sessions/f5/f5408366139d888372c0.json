@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5408366139d888372c0",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis 4seed nve robustness",
+  "task_key": "worker_analysis_4seed-nve-robustness_20260519T230559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_4seed-nve-robustness_20260519T230559_result.json",
+    "occurrence": 1,
+    "bytes": 3363,
+    "sha256": "de4b2771710d14ca7377aa85765375c326a5956d47139b1ff92a2a53a264a25c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 4-Seed NVE Robustness Analysis\n\n### Baseline ve_ratio Statistics\n\n| Seed | Mean ve_ratio (35K+) |\n|------|---------------------|\n| s1 | 0.6754 |\n| s2 | 0.6912 |\n| s3 | 0.6906 |\n| s4 | 0.6803 |\n| **4-seed mean** | **0.6844 ± 0.0815** |\n\n跨 seed 差异不大（CV=11.9%），但在早期 steps 方差更高：\n\n| Step | s1 | s2 | s3 | s4 | mean | s1/mean |\n|------|------|------|------|------|------|---------|\n| 35K | 0.2412 | 0.3096 | 0.2559 | 0.3750 | 0.2954 | 0.817 |\n| 45K | 0.3310 | 0.4872 | 0.5448 | 0.3808 | 0.4359 | **0.759** |\n| 55K | 0.4035 | 0.5681 | 0.4940 | 0.4147 | 0.4701 | 0.858 |\n| 65K | 0.5629 | 0.8983 | 0.4896 | 0.4573 | 0.6020 | 0.935 |\n| 75K | 0.7194 | 0.5788 | 0.5872 | 0.4950 | 0.5951 | **1.209** |\n| 85K | 0.7007 | 0.6805 | 0.6114 | 0.5305 | 0.6307 | 1.111 |\n| 95K | 0.6320 | 0.7641 | 0.6354 | 0.6505 | 0.6705 | 0.943 |\n| 105K | 0.6564 | 0.7423 | 0.6727 | 0.6243 | 0.6739 | 0.974 |\n\ns1/mean 比值在 0.76–1.21 之间波动，说明 s1 baseline 并非代表性最好的 seed。\n\n### NVE Comparison Table\n\n| exp_id | GT | NVE_s1 | NVE_4seed | cls_s1 | cls_4s | flip? |\n|--------|-----|--------|-----------|--------|--------|-------|\n| exp_006_fixed_dt2 | CIVO | 4.836 | 4.522 | CIVO | CIVO | |\n| exp_008d_subsample_on_h8 | CIVO | 4.129 | 3.545 | CIVO | CIVO | |\n| exp_008e_v3_walker_s2 | no-CIVO | 3.780 | 3.682 | CIVO | CIVO | |\n| **exp_009b_008d_walker_s2** | **CIVO** | **1.619** | **1.229** | **CIVO** | **no-CIVO** | **YES** |\n| exp_001_baseline | no-CIVO | 1.000 | 1.209 | no-CIVO | no-CIVO | |\n| exp_008f_no_dt_embed_sub | no-CIVO | 0.970 | 0.833 | no-CIVO | no-CIVO | |\n| exp_008e_v3_walker_s1 | no-CIVO | 0.941 | 0.880 | no-CIVO | no-CIVO | |\n| exp_008a_no_subsample_dt2 | no-CIVO | 0.932 | 0.900 | no-CIVO | no-CIVO | |\n\n### Classification Results\n\n| Metric | s1-only | 4-seed mean |\n|--------|---------|-------------|\n| **AUROC** | 0.933 | 0.867 |\n| Accuracy @1.5× | 7/8 (87.5%) | 6/8 (75.0%) |\n\n**Flips (1 case)**:\n- `exp_009b_008d_walker_s2`: NVE 1.619→1.229, 从 CIVO 翻转为 no-CIVO。原因：该实验 peak step=45K，此时 s1 baseline ve_ratio (0.331) 远低于 4-seed mean (0.436)，s1/mean=0.759，NVE 缩水 24%。\n\n**Marginal cases**:\n- `exp_009b`: NVE_4seed=1.229，GT=CIVO，现在低于 1.5× threshold\n- `exp_001_baseline`: NVE_4seed=1.209，GT=no-CIVO，baseline 自身因 seed 方差浮动到 >1.0\n\n### Conclusion\n\n4-seed mean normalization使 NVE metric 的分类鲁棒性略有下降（AUROC 0.933→0.867），核心原因是 **exp_009b 本身就处于边际区间**（s1 NVE=1.62×，仅刚过 1.5× threshold），而其 peak step (45K) 恰好是 s1 baseline 偏低最严重的时点（s1/mean=0.76）。切换 normalization 后分子不变但分母上升 32%，导致翻转。\n\n对论文的影响：\n1. 高 NVE 实验（006: 4.84→4.52, 008d: 4.13→3.54）**分类不变**，信号强健\n2. 008e_v3_s2（FP case）同样不变（3.78→3.68），确认其高 NVE 不受 baseline 选择影响\n3. 建议 appendix 报告两种 normalization 的结果，并注明 exp_009b 为 boundary case\n\n产出文件已保存在服务器 `artifacts/` 目录：\n- `nve_4seed_robustness_analysis.csv`\n- `baseline_4seed_mean_ve_ratio.csv`\n- `nve_4seed_robustness_summary.json`\n- `exp_001_baseline_{s2,s3,s4}_ve_profile_full.csv`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-4seed-nve-robustness.md"
+}

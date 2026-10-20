@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "d5df406346b781b9504d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "review data consistency",
+  "task_key": "worker_review_data-consistency_20260524T021301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_data-consistency_20260524T021301.log",
+    "occurrence": 1,
+    "bytes": 957153,
+    "sha256": "e3b0a8fc1288d06b3288e983430d0fffe635ab233a2356f14af3aad818550cdb"
+  },
+  "statistics": {
+    "messages": 178,
+    "user_turns": 2,
+    "tool_calls": 59,
+    "roles": {
+      "log": 1,
+      "system": 35,
+      "record": 1,
+      "assistant": 20,
+      "tool_call": 59,
+      "tool_result": 59,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 36,
+      "chunks": [
+        {
+          "path": "d5df406346b781b9504d-part-0001.json",
+          "message_count": 36
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 23,
+      "chunks": [
+        {
+          "path": "d5df406346b781b9504d-part-0001.json",
+          "message_count": 23
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 119,
+      "chunks": [
+        {
+          "path": "d5df406346b781b9504d-part-0001.json",
+          "message_count": 52
+        },
+        {
+          "path": "d5df406346b781b9504d-part-0002.json",
+          "message_count": 67
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/review-data-consistency.md"
+}

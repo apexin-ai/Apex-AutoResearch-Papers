@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f5e312d687990d0b74b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check exp 005 health",
+  "task_key": "worker_check_exp_005_health_20260513T164322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp_005_health_20260513T164322_result.json",
+    "occurrence": 1,
+    "bytes": 1470,
+    "sha256": "52295e0fcd9e1e65bb1501e2ae213dd6fa75266576fd93a18a5870aa654c65ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_005 健康状态报告\n\n### 进程状态\n| 实验 | PID | 状态 | 运行时间 | CPU% |\n|------|-----|------|---------|------|\n| exp_005 (event_gated_v4) | 51721 | **ALIVE** | 35m32s | 0.0% (瞬时值，正常) |\n| exp_001 (baseline) | 9409 | **ALIVE** | 14h40m | 1128% (多线程env采集) |\n\n### GPU 状态\n| GPU | 型号 | 利用率 | 显存占用 |\n|-----|------|--------|---------|\n| cuda:0 (baseline) | RTX PRO 6000 | 2% | 4165/97887 MiB |\n| cuda:1 (exp_005) | RTX PRO 6000 | 28% | 4173/97887 MiB |\n\nGPU 利用率 2%-28% + 显存 ~4GB：DreamerV3 是 CPU-bound（env step + replay buffer），GPU 只在 world model 更新时短暂使用，这是正常行为，不是问题。\n\n### 训练进度 (exp_005)\n- **当前 step: ~16000**，dataset_size=8000，16 episodes 已收集\n- **eval_return@5K: 31.0** → **eval_return@15K: 153.9**（5x 提升，学习曲线健康）\n- **train_return@16K: 115~169**（持续上升）\n- model_loss: 23.5→7.6（下降正常），value_loss: 9.5→3.3（下降正常）\n- **gate_dt_mean=1.0, gate_dt_1_frac=1.0**：gate 尚未激活（全部选 dt=1），gate_loss=0, gate_scale=0 — warmup 阶段 gate 被冻结，符合预期\n- FPS: ~7.3（DreamerV3 on single GPU 正常范围）\n\n### 结论\n**exp_005 健康。** 进程存活，reward 稳步上升（eval 31→154），losses 正常下降，gate 处于 warmup 冻结期（全 dt=1）符合设计。两个实验均正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp-005-health.md"
+}

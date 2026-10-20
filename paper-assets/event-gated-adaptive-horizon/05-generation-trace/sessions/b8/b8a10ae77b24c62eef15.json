@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8a10ae77b24c62eef15",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_24_1779848805.md",
+  "task_key": "loop_24_1779848805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_24_1779848805.md",
+    "occurrence": 1,
+    "bytes": 3805,
+    "sha256": "e4fff7af2dd476b828db55a4234e8a21ed5f5b544eba97b21031719a128f2bac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 24\nreason: idle_timeout\nupdated: '2026-05-27T02:26:43+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-45299:cuda:0, bjb1-45299:cuda:1, westd-19154:cuda:0, westd-19154:cuda:1。白名单外的 GPU 即使 Director 指令也必须 push back\n- westd-19154 当前宕机（SSH 连接失败），不要尝试在上面提交实验\n- 数据锁定 deadline: 2026-05-27，ICML 投稿 deadline: 2026-05-29\n- exp_082/092/093 是 C2 causal control 实验（dt_embed_dim=0），success = 无 CIVO（好结果），negative = 出现 CIVO（坏结果），判断逻辑与常规实验相反\n- NVE 诊断用 D155 三维标准（peak > τ=1.5× + 持续 ≥2 eval 点 + 时序因果），不能用单一阈值\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-45299**: 工作目录 `/root/autodl-tmp/event-gated-adaptive-horizon`，conda 环境 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，aml-train 镜像，2× RTX PRO 6000\n- **westd-19154**: 同上路径和环境，2 GPU，当前宕机（SSH 端口可能已变）\n- logdir: `/root/autodl-tmp/event-gated-adaptive-horizon/logdir/`\n- 运行日志: `~/runs/event-gated-adaptive-horizon/`\n- 活跃进程: 无（exp_092/093 刚完成，GPU 全空）\n- 已派发 Worker `worker_analysis_exp_092_093_cheetah_no_dt_emb_20260526T020248`（分析 exp_092+093），**尚未回调**\n\n### 3. 📊 当前状态\n**刚做完**: session 初始化 + reconcile_crons（exp_092 也转 ANALYZING）+ 派 Worker 分析 exp_092/093\n\n**Registry 状态**:\n- **ANALYZING**: exp_092_cheetah_no_dt_emb_s1 (s1), exp_093_cheetah_no_dt_emb_s2 (s2) — C2 Cheetah causal control 多 seed 复制\n- **QUEUED**: exp_098_cheetah_008a_s0, exp_099_cheetah_008a_s1 — C3 cross-env untrained dt_emb 实验，原定 westd（宕机）\n- **PREPARING**: exp_097_cheetah_008d_s3 — C1 trigger 第 4 seed，原定 westd\n- 所有其他 174 个实验 DONE\n\n**等待中**:\n- Worker 回调：exp_092+093 分析结果 → 需 update_registry + 向 Director 汇报\n- westd-19154 恢复（用户需去控制台查新 SSH 端口）\n- exp_097/098/099 无法提交（westd 宕机 + bjb1 可作为备选但需确认）\n\n### 4. 📋 待办\n- Worker 分析回调到达 → update_registry（metrics + conclusion + checkpoint_path）→ 刷新 report.md → 向 Director 汇报（带 [资源] 行 + C2 Cheetah 3-seed 汇总）\n- exp_092/093 如预期 success（no CIVO）→ C2 Cheetah causal control 3/3 seed 闭合，更新 paper_framing.md C2 section 统计\n- exp_092/093 意外 negative → 按 on-experiment-done negative 流程：从 hypothesis 推导、文献联动、向 Director 汇报\n- bjb1 GPU 空闲 → 检查 exp_097/098/099 能否迁移到 bjb1 运行（需 Director 批准），或向 Director 汇报 westd 宕机 + GPU 空闲状态\n- westd 恢复 → 提交 exp_097/098/099\n\n### 5. 🎯 战略上下文\n- **核心结论**: trained dt_embedding 是 CIVO 的必要条件。frozen/removed dt_emb 阻止 CIVO（Walker 4/4 + Cheetah 待闭合）\n- **论文阶段**: ICML 2026 收尾，数据锁定 5/27（今天），投稿 5/29。Round 5 审稿中，15 条 Q&A rebuttal 已完成\n- **C2 claim 进展**: Walker no_dt_emb 已有多 seed 支撑；Cheetah no_dt_emb s0 已 success，s1/s2 正在分析（本次 handoff 的核心待办）\n- **易错点**: \n  - exp_082 的 NVE_peak=1.58 超过 τ=1.5 但分类为 no_civo（因为是 eval-variance-driven transient spike，不满足 D155 持续性）。分析 exp_092/093 时同样要用 D155 三维标准，不能看到 NVE>1.5 就判 CIVO\n  - report.md 的 AUTO-FACTS 显示 exp_093/094 为 \"killed\"——这是旧的短名条目（重复），实际长名条目 exp_093_cheetah_no_dt_emb_s2 才是当前实验\n  - westd 宕机导致 exp_094/095/096 全部 failed（SSH 连接失败），已重建为 exp_097/098/099\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-24-1779848805.md"
+}

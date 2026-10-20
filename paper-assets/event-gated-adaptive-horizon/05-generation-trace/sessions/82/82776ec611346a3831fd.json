@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82776ec611346a3831fd",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "research verify 006 35k",
+  "task_key": "worker_research_verify_006_35k_20260514T043939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_verify_006_35k_20260514T043939_result.json",
+    "occurrence": 1,
+    "bytes": 245,
+    "sha256": "814e726a5914e21efb342a426adcde711a8de04d32c57249f8ef61873af7ed53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "step=35000 数据已提取：\n\n- **value_mean@35K** = 151.10\n- **eval_return@35K** = 485.33\n- **v/e ratio** = 151.10 / 485.33 = **0.311 = 31.1%**\n- 与 paper_framing 声称的 **~43% 不一致**，实际低约 12 个百分点"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-verify-006-35k.md"
+}

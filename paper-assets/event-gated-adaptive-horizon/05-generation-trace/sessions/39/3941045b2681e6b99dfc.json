@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "3941045b2681e6b99dfc",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "paper rebuttal qa update",
+  "task_key": "worker_paper_rebuttal_qa_update_20260525T153338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_rebuttal_qa_update_20260525T153338.log",
+    "occurrence": 1,
+    "bytes": 1053010,
+    "sha256": "446d265e32d8828a7e744b266df63dd29f55d198815f17766719ebcc9357b72b"
+  },
+  "statistics": {
+    "messages": 147,
+    "user_turns": 0,
+    "tool_calls": 54,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 35,
+      "tool_call": 54,
+      "tool_result": 54,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 147,
+      "chunks": [
+        {
+          "path": "3941045b2681e6b99dfc-part-0001.json",
+          "message_count": 80
+        },
+        {
+          "path": "3941045b2681e6b99dfc-part-0002.json",
+          "message_count": 67
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-rebuttal-qa-update.md"
+}

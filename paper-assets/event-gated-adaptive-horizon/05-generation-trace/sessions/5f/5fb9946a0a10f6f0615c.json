@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "5fb9946a0a10f6f0615c",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper submission checklist v2 retry",
+  "task_key": "worker_paper_submission-checklist-v2-retry_20260527T224151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_submission-checklist-v2-retry_20260527T224151_result.json",
+    "occurrence": 1,
+    "bytes": 2105260,
+    "sha256": "5ea0e32afcb3793d7e6ffc41449bca01f05b92f5f218d9680d3472c24e5a59c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "5fb9946a0a10f6f0615c-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/paper-submission-checklist-v2-retry.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c004ced95d36f2ccc3b2",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops 008f 35k monitor",
+  "task_key": "worker_ops_008f_35k_monitor_20260514T061802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_008f_35k_monitor_20260514T061802_result.json",
+    "occurrence": 1,
+    "bytes": 1320,
+    "sha256": "c8130a6e589bad66df62b5f5c571154bbba0e4381a574bbefa5791d58bb67a86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n008f:\n- current_step: 35000 (eval marker written, eval 正在执行中)\n- eval@5K:  return=30.49,  value=0.0012,  v/e≈0%\n- eval@15K: return=182.03, value=2.99,    v/e=1.64%\n- eval@25K: return=196.78, value=17.51,   v/e=8.90%, normalized=1.02x (baseline 8.7%)\n- eval@35K: 未产出——step marker 已写但 eval episodes 仍在运行，预估 5-10 分钟内完成\n- process_alive: yes (PID 127766, 859% CPU)\n- 注意: gate_dt_mean=2.0 恒定, gate_dt_2_frac=1.0 (固定 dt=2, 无变化)\n\n008e_v3:\n- current_step: ≥45000 (训练继续至 105K)\n- eval@5K:  return=31.00,  value=0.0017\n- eval@15K: return=131.17, value=4.00\n- eval@25K: return=155.69, value=26.19,   v/e=16.83%, normalized=1.93x (baseline 8.7%)\n- eval@35K: return=276.47, value=62.76,   v/e=22.70%, normalized=0.94x (baseline 24.1%)\n- eval@45K: return=382.22, value=110.67,  v/e=28.96%, normalized=0.87x (baseline 33.1%)\n- process_alive: yes (PID 126115, 907% CPU)\n- 注意: gate_dt_mean=1.0 恒定, gate_dt_1_frac=1.0 (固定 dt=1, 无变化)\n```\n\n关键发现：008e_v3 的 normalized v/e 随训练推进从 1.93x 降到 0.87x——early steps value 高估严重，但后期趋于正常甚至低于 baseline。008f 的 @25K normalized v/e 几乎与 baseline 持平 (1.02x)，@35K 数据再等几分钟即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-008f-35k-monitor.md"
+}

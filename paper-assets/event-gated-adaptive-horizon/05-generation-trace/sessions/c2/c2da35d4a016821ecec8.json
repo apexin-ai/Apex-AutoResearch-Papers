@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c2da35d4a016821ecec8",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code prep cheetah baseline",
+  "task_key": "worker_code_prep_cheetah_baseline_20260515T145154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep_cheetah_baseline_20260515T145154_result.json",
+    "occurrence": 1,
+    "bytes": 1329,
+    "sha256": "361b5044b351e06dd1bdefc27dbdeecb88043932041a0a606d7a95ef7492b324"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出\n\n### 1. Cheetah Run 环境验证：✅ 通过\n\n已有 `dryrun_cheetah_baseline` 完整验证：\n- 环境创建正常，Action Space `Box(-1.0, 1.0, (6,), float32)`\n- 训练 12K 步 train_return 从 ~5 涨到 ~65，loss 正常下降\n- `dmc_proprio` 通用配置 + `--task dmc_cheetah_run` 方式可用\n\n### 2. 完整启动命令\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --logdir logdir/exp_010a_cheetah_baseline_s1 --steps 500000 --seed 1 --compile False --device cuda:0\"\n```\n\n### 3. 预估训练时间\n\nWalker Walk baseline 在同款 RTX PRO 6000 上稳定 FPS ≈ **7.5**（warmup 后）。Cheetah Run 同为 DMC proprio 任务，obs/act 维度相近，FPS 应相当。\n\n- **500K steps / 7.5 FPS ≈ 18.5 小时**\n\n### GPU 状态\n\n| GPU | 占用 | 利用率 | 当前任务 |\n|-----|------|--------|---------|\n| cuda:0 | 4.2GB / 98GB | 0% | 009d（可能已结束） |\n| cuda:1 | 2.8GB / 98GB | 18% | 015b |\n\ncuda:0 利用率 0% 且显存很低，009d 可能已完成。如果确认 009d 结束，可立即在 cuda:0 启动 010a。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-cheetah-baseline.md"
+}

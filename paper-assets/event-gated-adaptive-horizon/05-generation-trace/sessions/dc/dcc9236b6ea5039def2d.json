@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dcc9236b6ea5039def2d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "monitor quick status check",
+  "task_key": "worker_monitor_quick_status_check_20260514T223656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_quick_status_check_20260514T223656_result.json",
+    "occurrence": 1,
+    "bytes": 784,
+    "sha256": "1558bfe3b1dfb46e9cdf2def9a1ed07a3a36df2f3ac7c0fbaac5df02f503bddd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n008e_v3_s1:\n  process: alive (running 3h48m, CUDA:1)\n  latest_step: 92000 / 105000 (87.6%)\n  latest_eval_return: 657.31 (at step 85000)\n  status: RUNNING — 估计还需 ~30-45 min\n\n009a_baseline_s2:\n  process: alive (running 13h04m, CUDA:0)\n  latest_step: 336000 / 500000 (67.2%)\n  latest_eval_return: 919.23 (at step 335000)\n  status: RUNNING — eval_return 在 215K 之后已收敛在 900-960 区间\n\nGPU utilization:\n  cuda:0: 25%, 4165/97887 MiB  (009a_baseline)\n  cuda:1: 42%, 4167/97887 MiB  (008e_v3)\n```\n\n009a baseline s2 eval_return 趋势（关键节点）：\n\n| step | eval_return |\n|------|-------------|\n| 65K | 688.9 |\n| 105K | 836.5 |\n| 135K | 876.1 |\n| 215K | **956.0** (peak) |\n| 285K | 960.2 (peak) |\n| 335K | 919.2 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-quick-status-check.md"
+}

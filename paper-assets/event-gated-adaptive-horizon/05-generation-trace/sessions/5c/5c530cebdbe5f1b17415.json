@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c530cebdbe5f1b17415",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "writing framing b reaudit diff",
+  "task_key": "worker_writing_framing-b-reaudit-diff_20260516T014028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_framing-b-reaudit-diff_20260516T014028_result.json",
+    "occurrence": 1,
+    "bytes": 1403,
+    "sha256": "1b226f6ad358abf3850106e6b69670e30c8371aa0a69b1d5608a574c6bd4c70d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Diff checklist written to `artifacts/_project/report/framing_b_reaudit_diff.md` (D061-corrected, supersedes the May 15 pre-D061 version).\n\n**Summary of the checklist** — 30 action items across 8 paper sections + figures:\n\n| Section | Change Type | Key Action |\n|---------|------------|------------|\n| Abstract | ADD 1 sentence | Gradient decomposition: 93% obs decoders, 0% reward |\n| Introduction | ADD finding (4) | SGS no-op + gradient decomposition as new contribution |\n| Methodology §3 | ADD rows + subsection | 016e/018 in factorial table; SGS mechanism description; gradient decomposition methodology |\n| Results §4 | ADD F7 + table | \"Reward-Pathway Gradient Stopping Is an Architectural No-Op\" with gradient decomposition table |\n| Analysis §5.1 | ADD paragraph | \"Free-rider effect\": reward head exploits obs-decoder-learned dt_emb features |\n| Analysis §5.5–5.6 | REPLACE | ~~\"gradient stopping\"~~ → Full-SGS (obs decoder detach); reward stopping ruled out |\n| Conclusion §6 | ADD finding 6 + update future directions | Gradient decomposition finding; Full-SGS as next critical test |\n| Figures | ADD 2 figures | 016e overlay on 008d seeds; gradient decomposition bar chart |\n\n**Critical constraint flagged**: 016e NVE discrepancy — diagnosis report says 6.59×@95K, paper_framing.md says 10.42×@95K. Must reconcile before writing tex edits."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-framing-b-reaudit-diff.md"
+}

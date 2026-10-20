@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f901fd692830f1e2d23",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_8_1778818619.md",
+  "task_key": "loop_8_1778818619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778818619.md",
+    "occurrence": 1,
+    "bytes": 4405,
+    "sha256": "559374896cc27a8f82e3aa2349c393beb0506d053160a5fdfbd93bd5e666fc23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_messages\nupdated: '2026-05-15T04:16:06+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单只有 `cuda:0` 和 `cuda:1`（bjb1-45299），绝不能用其他设备号\n- D035 教训：提交多 seed 实验前**必须核验 `--seed` 参数**与已有 runs 不同。008e_v3 的 \"s0\" 和 \"s1\" 实际都是 `--seed 1`，导致 C6 只有 1 个独立 seed\n- 009a_baseline_walker_s2 的 registry 缺 spec（server/gpu/pid），但 cron 显示 pid=142508 在 bjb1-45299 上运行。下一个\"我\"处理回调时需补全 spec\n- nve>1.5x 诊断阈值**仅适用于 35K+ steps**，25K 处 baseline v/e 太小会产生 false positive（论文和分析中必须标注）\n- submit_training_job 的命令必须自带环境激活（如 `source /root/miniconda3/bin/activate && python train.py`），不要假设 .venv 存在\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**bjb1-45299**，工作目录 `/root/autodl-tmp/event-gated-adaptive-horizon`\n- Python/Conda：检测镜像 `aml-train`，conda 环境 `/root/miniconda3/bin/python`\n- GPU：RTX PRO 6000 × 2（cuda:0 + cuda:1）\n- W&B：项目配置中未显示具体 wandb project name，需从实验 spec 或 memory 中确认\n- 活跃进程：\n  - exp_008e_v3_walker_s2：PID 43437，cuda:1，cron 监控中\n  - exp_009a_baseline_walker_s2：PID 142508，cron 监控中（registry 缺 gpu 信息，推测 cuda:0）\n- 活跃 Worker：worker_monitor_progress_check_critical_20260515T041433（running）\n\n### 3. 📊 当前状态\n两个实验 RUNNING：\n- **exp_008e_v3_walker_s2**（cuda:1）：crown jewel C6 seed 2 验证——这是第一个真正独立的 seed（D035 确认之前的 s0/s1 都是 seed=1）。结果决定 C6 multi-seed claim 是否成立\n- **exp_009a_baseline_walker_s2**（cuda:0）：baseline seed 2，为所有 seed 2 实验提供 normalized v/e 基准\n\n4 个实验 QUEUED 等 GPU：009d（baseline s1）、009e（008d s1）、010a（Cheetah baseline s1）、009f（008f s1）\n\n等待中：\n- 两个 RUNNING 实验的 cron 完成回调\n- worker_monitor_progress_check_critical 仍在运行\n- Dream 审稿结果（ROADMAP 提到\"等 Dream 完成 → 按反馈调整 framing/plan\"）\n\n### 4. 📋 待办（条件触发式）\n- **008e_v3_s2 cron 回调 ANALYZING** → spawn worker 提取 metrics + 计算 nve@35K+；nve<1.5x 且 eval≥850 → C6 multi-seed confirmed，汇报 Director 开放 Cheetah Run 验证；eval<800 或 nve>1.5x → C6 framing 需调整，走 red-section\n- **009a_baseline_s2 cron 回调 ANALYZING** → spawn worker 提取 metrics，更新 baseline seed 2 v/e 参考值；完成后 009d/009e/009f 可以排队用释放的 GPU\n- **两个实验都完成 → cuda:0 和 cuda:1 空出** → 立即从 QUEUED 中提交下两个（优先 009d baseline_s1 + 009e 008d_s1，或按 Director 最新指令排序）\n- **Dream 审稿完成** → 按反馈调整 paper_framing.md 和 experiment_plan.yaml，可能改变 QUEUED 实验优先级\n- **monitor worker 完成** → 读取产出，处理任何异常发现\n\n### 5. 🎯 战略上下文\n- **CoRL 2026 DDL = 2026-05-29，剩余 14 天**。P0 实验预算 ~145 GPU·h（~3 天 wall time），时间充裕但需持续推进\n- **核心结论**：trained dt_embedding → pathological value overestimation（nve>1.5x）→ stochastic collapse。Untrained dt_emb 通过 value growth suppression 保护性能。dt=1 imagination + trained dt_emb（C6/008e_v3）是唯一同时避免崩塌 + 保持 reward prediction + 达 95% baseline 的方案\n- **D033 关键修正**：008e_v3 的 dt_embedding 实际是 trained（nn.Embedding 默认 trainable）。C6 的关键变量是 **imagination dt=1**，不是 embedding 训练状态。这让 C6 从\"改模型\"升级为\"改策略\"——实践者零成本采用\n- **最容易判断错的事**：(1) 不要把 008e_v3 的 s0 和 s1 当两个独立 seed——它们都是 seed=1（D035）；(2) dt_emb removal（008f）有双重效应——消除 delusional critic 但 reward MAE 75x baseline，不是纯 positive；(3) collapse 是 stochastic（1/2 seeds），nve>1.5x 才是 reliable marker（4/4）\n- **决策链**：D028（C2 因果确认）→ D029（Dream 战略调整：3 seeds 不扩 5）→ D030（C2 降级：009c 显示 dim=0 可能只延迟）→ D031（Option A narrative）→ D032（collapse stochastic, nve>1.5x reliable）→ D033（008e_v3 dt_emb 是 trained）→ D035（C6 seed 计数修正）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778818619.md"
+}

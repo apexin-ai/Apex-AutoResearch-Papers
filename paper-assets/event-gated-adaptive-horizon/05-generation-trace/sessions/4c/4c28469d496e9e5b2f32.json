@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c28469d496e9e5b2f32",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check exp060 status urgent",
+  "task_key": "worker_check_exp060-status-urgent_20260525T012253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp060-status-urgent_20260525T012253_result.json",
+    "occurrence": 1,
+    "bytes": 1678,
+    "sha256": "5cd6f5a8f01606779597cf8c34f50497019f054b6e19951c021ed7b5cf1e4f5e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### exp_060 (Cartpole baseline) — **已完成** ✓\n- bjb1-45299 cuda:0 已空闲（0% util, 526 MiB, 无进程）\n- 日志以 `=== seed 2 done === EXIT_CODE=0` 结束\n- 3 seeds 全部跑完 112K steps：\n\n| seed | step | train_return | 最后 eval_return (105K) |\n|------|------|-------------|----------------------|\n| 0 | 112000 | 809.4 | — |\n| 1 | 112000 | 684.4 | — |\n| 2 | 112000 | 526.1 | 557.0 (log) |\n\n### exp_061 (Cartpole CIVO trigger) — **运行中, seed 2**\n- bjb1-45299 cuda:1, 31% util, 2751 MiB, PID 243208\n- seed 0/1 已完成 (112K)，seed 2 在跑\n\n| seed | step | train_return | 状态 |\n|------|------|-------------|------|\n| 0 | 112000 | 199.2 | done |\n| 1 | 112000 | 188.7 | done |\n| 2 | 88000 | 222.7 | **running (78%)** |\n\n- 最后 eval (85K): eval_return=216.5\n- fps≈11, 剩余 24K steps → **预计 ~36 分钟完成**\n\n### exp_062 (Cartpole control) — **运行中, seed 2**\n- bjb1-40020 cuda:0, PID 491125, 3023 MiB\n\n| seed | step | train_return | 状态 |\n|------|------|-------------|------|\n| 0 | 112000 | 224.0 | done |\n| 1 | 112000 | 251.8 | done |\n| 2 | 55000 | (55K metrics) | **running (49%)** |\n\n- 最后 eval (55K): eval_return=217.4\n- fps≈8, 剩余 57K steps → **预计 ~2 小时完成**\n\n### exp_066 (timeseries RSSM fidelity) — **运行中**\n- bjb1-40020 cuda:1, PID 490622, 2514 MiB\n- 当前 step 55K, 正在执行 evaluation\n- 日志末尾 train_return: 143~246 (52K)\n\n**关键发现**: exp_060 已正常完成，cuda:0 on bjb1-45299 可用于新任务。exp_061/062 的 gate 全锁在 dt=2（gate_dt_2_frac=1.0），gate 没有学到变化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp060-status-urgent.md"
+}

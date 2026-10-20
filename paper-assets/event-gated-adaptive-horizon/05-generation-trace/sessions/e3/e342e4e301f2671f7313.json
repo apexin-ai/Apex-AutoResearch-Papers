@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "id": "e342e4e301f2671f7313",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "diagnose exp 029a tcn walker s1 sigma02",
+  "task_key": "worker_diagnose_exp_029a_tcn_walker_s1_sigma02_20260520T165108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_029a_tcn_walker_s1_sigma02_20260520T165108_result.json",
+    "occurrence": 1,
+    "bytes": 1502,
+    "sha256": "7e03b6b0282d29de710946768636516586a3e9ba768e2d3cd8cab48dbcc29c0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。\n\n```json\n{\"normal_exit\": true, \"last_step\": \"224000\", \"sentinel_found\": false, \"wandb_status\": \"服务器上无 wandb 目录，该实验未启用 W&B 日志\", \"root_cause\": \"exp_029a 启动时未使用标准 agent-ml job wrapper（无 .log 文件、无 .exit 文件、无 tmux session），且未配置 W&B。训练实际正常完成（metrics.jsonl 最终 step=224000 > 目标 210K），但 cron 无法检测到 W&B metrics 和 exit sentinel，因此误报。Registry 的 215K metrics 可能来自 metrics.jsonl 的独立采集。\"}\n```\n\n补充细节：\n- `latest.pt`（231MB）最后修改 May 21 00:38，`metrics.jsonl` 00:36，均为正常结束时间\n- `~/runs/.../exp_029a.log` 不存在，`/tmp/agent-ml-exit/exp_029a*.exit` 不存在\n- 同服务器上 exp_027 和 exp_029c 有标准的 .log/.exit 文件，唯独 029a 没有——说明 029a 是手动或用不同方式启动的"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "normal_exit": true,
+              "last_step": "224000",
+              "sentinel_found": false,
+              "wandb_status": "服务器上无 wandb 目录，该实验未启用 W&B 日志",
+              "root_cause": "exp_029a 启动时未使用标准 agent-ml job wrapper（无 .log 文件、无 .exit 文件、无 tmux session），且未配置 W&B。训练实际正常完成（metrics.jsonl 最终 step=224000 > 目标 210K），但 cron 无法检测到 W&B metrics 和 exit sentinel，因此误报。Registry 的 215K metrics 可能来自 metrics.jsonl 的独立采集。"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-029a-tcn-walker-s1-sigma02.md"
+}

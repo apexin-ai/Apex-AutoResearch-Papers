@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96172479a73b145deb70",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops health check quadruped retry",
+  "task_key": "worker_ops_health-check-quadruped-retry_20260528T225706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_health-check-quadruped-retry_20260528T225706_result.json",
+    "occurrence": 1,
+    "bytes": 851,
+    "sha256": "dd29b325a9e600b667d2f2f2cb431356cbf2fe48b36d7c55cdf212b09d735aa5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Quadruped Walk 再次失败，同样的 EGL 错误。**\n\n结果汇总：\n\n| 实验 | 状态 | 详情 |\n|------|------|------|\n| Quadruped (PID 27003) | **已崩溃** | `ImportError: Cannot initialize a headless EGL display.` — 与上次完全相同的错误 |\n| Humanoid (PID 25955) | **正常运行** | step 16000，train_return 0.8~1.7，fps 10.3 |\n\n**GPU 负载：**\n- GPU 0: 21% 利用率, 4692 MiB 显存（Humanoid）\n- nvidia-smi 只返回了一行，**可能只有一张卡**\n\n**关键问题：** nvidia-smi 只显示 1 张 GPU。Quadruped 被提交到 `cuda:1`，但如果机器只有一张卡，EGL device 1 不存在，初始化必然失败。需要确认这台机器的 GPU 数量——如果确实只有一张卡，Quadruped 需要排队等 Humanoid 跑完后在 `cuda:0` 上跑，或者改为共享 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-health-check-quadruped-retry.md"
+}

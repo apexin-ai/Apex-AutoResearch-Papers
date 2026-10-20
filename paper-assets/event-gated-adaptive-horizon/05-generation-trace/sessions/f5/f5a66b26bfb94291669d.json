@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5a66b26bfb94291669d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "submit exp 029c walker sigma01 after s0",
+  "task_key": "worker_submit_exp_029c_walker_sigma01_after_s0_20260520T111035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp_029c_walker_sigma01_after_s0_20260520T111035_result.json",
+    "occurrence": 1,
+    "bytes": 106,
+    "sha256": "9d5898b696bd85cada5bb5b40e4585ca495f1d3e19995bd36420a03432259093"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "等待中。exp_027 σ=0.2 s0 当前在 208K，距 210K 目标很近，2 分钟后再查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp-029c-walker-sigma01-after-s0.md"
+}

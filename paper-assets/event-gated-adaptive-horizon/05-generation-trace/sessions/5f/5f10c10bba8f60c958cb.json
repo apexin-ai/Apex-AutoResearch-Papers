@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f10c10bba8f60c958cb",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code d1 seed scripts",
+  "task_key": "worker_code_d1-seed-scripts_20260516T133257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d1-seed-scripts_20260516T133257_result.json",
+    "occurrence": 1,
+    "bytes": 595,
+    "sha256": "bf5da09a78dc757936e1f6fbdaef49a955c0cf37f309b7b47f84345da6ba48ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个脚本已创建并通过语法检查：\n\n```\n/root/autodl-tmp/event-gated-adaptive-horizon/scripts/\n├── exp_001_baseline_s2.sh      # baseline, H=15, 500K steps, seed=2\n├── exp_008d_civo_trigger_s2.sh # gate+subsample+dt=2, H=8, 105K steps, seed=2\n└── exp_018_full_sgs_s2.sh      # 同 008d + full_sgs=True, 105K steps, seed=2\n```\n\n所有 flag 名已与 `configs.yaml` 核对一致（`gate_enabled`, `gate_fixed_dt`, `gate_subsample_max_dt`, `imag_horizon`, `full_sgs`）。提交时按实际 GPU 分配调整 `cuda:N` 和 `MUJOCO_EGL_DEVICE_ID`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d1-seed-scripts.md"
+}

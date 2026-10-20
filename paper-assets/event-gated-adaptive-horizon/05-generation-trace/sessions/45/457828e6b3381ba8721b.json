@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "457828e6b3381ba8721b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check step 50k",
+  "task_key": "worker_check_step-50k_20260513T042653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_step-50k_20260513T042653_result.json",
+    "occurrence": 1,
+    "bytes": 2150,
+    "sha256": "8879afd516e0e7d6724be51391f82a76a19c4843ac83b242aa60ab3d063ca6d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态报告\n\n### 进程 & GPU\n- **进程存活**: 5 个 dreamer 相关进程运行中\n- **GPU 利用率**: GPU 0: 0%, 4722 MiB | GPU 1: 27%, 4345 MiB\n\n### 训练进度\n\n| 指标 | Baseline | Event-Gated |\n|------|----------|-------------|\n| **当前 step** | **65,000** | **60,000** |\n| 最新 eval_return | 615.86 (step 65K) | 188.46 (step 55K) |\n| 最新 train_return | ~808–841 (step 64K) | ~38–208 (step 60K) |\n| model_loss | 3.94 | 3.92 |\n| fps | 7.58 | 6.66 |\n\n### Gate 指标 (event-gated, step 55K 最新详细记录)\n\n| 指标 | 值 | 说明 |\n|------|-----|------|\n| **gate_scale** | **0.0** | ⚠️ Phase 2 尚未启动 |\n| **gate_loss** | **0.0** | gate 梯度未开放 |\n| gate_dt_mean | 1.0 | 完全固定在 dt=1 |\n| gate_dt_std | 0.0 | 无变异 |\n| gate_dt_1_frac | 1.0 | 100% 选择 dt=1 |\n| gate_empirical_entropy | 0.0 | 无多样性 |\n| gate_entropy_ratio | 0.0 | — |\n| gate_entropy_bonus | 0.095 | 熵奖励在累积但 scale=0 未生效 |\n\n### Eval Return 趋势对比\n\n| Step | Baseline | Event-Gated | 比值 (EG/BL) |\n|------|----------|-------------|-------------|\n| 5K | 31.8 | 31.0 | 0.98 |\n| 15K | 206.6 | 161.5 | 0.78 |\n| 25K | 395.3 | 186.6 | 0.47 |\n| 35K | 388.5 | 211.9 | 0.55 |\n| 45K | 513.8 | 127.9 | 0.25 |\n| 55K | 625.7 | 188.5 | 0.30 |\n\n### 关键发现\n\n1. **Phase 2 未启动** — event-gated 已过 50K 步但 `gate_scale` 仍为 0.0，gate 完全锁定在 dt=1。需要确认 Phase 2 的触发条件是否正确配置（可能 gate_scale 的 warmup schedule 设置有问题，或 50K 阈值检查逻辑未触发）。\n\n2. **event-gated 严重落后** — eval return 仅为 baseline 的 30%（188 vs 626）。gate 模块虽然 scale=0，但其存在可能仍在影响梯度流或计算图，增加了学习负担。\n\n3. **GPU 0 利用率 0%** — 可能 baseline 在 GPU 1 上活跃训练，GPU 0 的进程处于空闲或数据收集阶段。\n\n**建议检查**: event-gated 的配置文件中 Phase 2 启动阈值（gate_scale warmup 的起始 step 是否确实设为 50K），以及为什么 55K 步时 gate_scale 仍为 0。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-step-50k.md"
+}

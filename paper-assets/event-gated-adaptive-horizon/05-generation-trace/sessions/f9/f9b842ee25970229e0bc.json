@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9b842ee25970229e0bc",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "snapshot bjb1 40020 sigma02 65 75K v2",
+  "task_key": "worker_snapshot_bjb1_40020_sigma02_65_75K_v2_20260520T082644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_snapshot_bjb1_40020_sigma02_65_75K_v2_20260520T082644_result.json",
+    "occurrence": 1,
+    "bytes": 2021,
+    "sha256": "0eec813b66fc047d1b1d0eaa292af149fe52898ebecbe9b0b2e63084e72f62da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完整。两块 4090 均在跑（GPU 0: 19%, 3.6GB; GPU 1: 16%, 2.5GB），进程存活。\n\n---\n\n## exp_027_tcn_walker_s0_sigma02\n\n当前步数：**135K**（仍在训练，fps=7.6）\n\n| Step | eval_return | ve_ratio (NVE) |\n|-----:|------------:|---------------:|\n| 5K   | 35.6        | —              |\n| 15K  | 150.6       | 0.0            |\n| 25K  | 199.4       | 0.1            |\n| 35K  | 278.2       | 0.2            |\n| 45K  | 315.6       | 0.3            |\n| 55K  | 278.6       | 0.5            |\n| 65K  | 331.0       | 0.6            |\n| 75K  | 293.1       | 0.6            |\n| 85K  | 363.9       | 0.5            |\n| 95K  | 171.4       | 0.9            |\n| 105K | 236.4       | 0.6            |\n| 115K | **543.8**   | 0.2            |\n| 125K | 458.4       | 0.2            |\n| 135K | 496.7       | 0.2            |\n\n---\n\n## exp_028_rave_walker_s0_ceil15\n\n当前步数：**~132K**（仍在训练，fps=7.8，最新 eval 在 125K）\n\n| Step | eval_return | ve_ratio (NVE) |\n|-----:|------------:|---------------:|\n| 5K   | 31.6        | —              |\n| 15K  | 99.4        | 0.0            |\n| 25K  | 155.3       | 0.1            |\n| 35K  | **180.1**   | 0.2            |\n| 45K  | 166.9       | 0.4            |\n| 55K  | 131.0       | 0.7            |\n| 65K  | 91.5        | 1.3            |\n| 75K  | 120.9       | 0.9            |\n| 85K  | 137.3       | 0.7            |\n| 95K  | 70.2        | 1.3            |\n| 105K | 76.2        | 1.0            |\n| 115K | 41.2        | 1.5            |\n| 125K | 36.6        | 1.5            |\n\n---\n\n**关键发现：**\n- **exp_027 (TCN)** 表现良好，115K 处 eval_return 达峰 543.8，之后稳定在 ~460-500 区间。ve_ratio 从 0.9 降回 0.2 并稳定。\n- **exp_028 (RAVE)** 明显发散——eval_return 从 35K 峰值 180.1 持续下滑到 125K 的 36.6，ve_ratio 持续攀升到 1.5。\n- 两个实验的 **gate_dt 完全锁死在 2.0**（dt_2_frac=100%），gate 机制未生效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/snapshot-bjb1-40020-sigma02-65-75k-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c165849eb28ace52f7a",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_7_1778798049.md",
+  "task_key": "loop_7_1778798049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778798049.md",
+    "occurrence": 1,
+    "bytes": 5742,
+    "sha256": "7e91ccae70a063f9147b7e78abef7e9e7ecf12f0d8a3e4932f4ac6bd974756b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T22:34:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**只能用 bjb1-45299 的 cuda:0 和 cuda:1**（config gpu_ids=[\"cuda:0\",\"cuda:1\"]）。绝对不能用其他 GPU。\n- **Framing 处于等待 Director 决策状态**——C2 \"collapse is stochastic\" 调整提案（三个 Option，推荐 Option A）已提交，**决策前不动 paper 任何文件**。\n- **nve>1.5x 诊断阈值仅适用于 35K+ steps**（25K 处 baseline v/e 仅 0.087，比率不稳定）。论文中必须标注此时间限定。\n- 008e_v3 的 dt_embedding 是 **trained**（D033 代码审计确认），关键变量是 imagination dt=1 而非 embedding 训练状态。不要再称其为 \"untrained dt_emb\"。\n- submit_training_job 提交命令必须自带环境激活（`source /root/miniconda3/bin/activate && ...`），且环境变量 `MUJOCO_GL=osmesa PYOPENGL_PLATFORM=osmesa LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6` 必须设置。\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: bjb1-45299（AutoDL RTX PRO 6000 × 2）\n- **工作目录**: `/root/autodl-tmp/event-gated-adaptive-horizon`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型/数据**: DMC proprio 环境，数据由 dm_control suite 在线生成，无外部数据集\n- **logdir**: `/root/autodl-tmp/event-gated-adaptive-horizon/logdir/`（每个实验子目录含 metrics.jsonl）\n- **W&B**: 未配置（指标从 logdir/metrics.jsonl 读取）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`（本项目未用 HF 模型）\n- **活跃进程**:\n  - exp_009a_baseline_walker_s2: PID 142508, cuda:0, cron 监控中\n  - exp_008e_v3_walker_s1: PID 898127, cuda:1, cron 监控中\n- **Cron**: 2 个 active（分别监控上述两个实验），reconcile 确认都在正常运行\n- **Worker 池**: 0（当前无 running worker）\n\n### 3. 📊 当前状态\n**刚完成**: session-start 初始化（reconcile crons + 读 registry/report/roadmap/memory）。本 session 是 WRITE HANDOFF 触发，未做其他操作。\n\n**RUNNING 实验**:\n| exp_id | GPU | 进度 | 摘要 |\n|--------|-----|------|------|\n| exp_009a_baseline_walker_s2 | cuda:0 | ~23.2%, ETA ~13.7h | Walker baseline seed 2, eval=805@115K, v/e=71.4% |\n| exp_008e_v3_walker_s1 | cuda:1 | 进行中 | **Crown jewel C6** — trained dt_emb + subsample ON + dt=1 imag + H=15 seed 1 (plan_014) |\n\n**ALLOCATED**: exp_008e_v3_walker_s2（cuda:1，等 s1 完成后自动排队）\n\n**QUEUED（无 GPU）**: 009d (baseline s1), 009e (008d s1), 010a (cheetah baseline s1), 009f (008f s1)\n\n**cuda:1 排期**: 008e_v3_s1 (RUNNING) → 008e_v3_s2 → 009e → 009f → 009c(200K) → plan_060\n\n**等待中**:\n- Director 对 Framing 调整提案的决策（C2 stochastic collapse，三个 Option）\n- 两个 cron 回调（009a 和 008e_v3_s1 完成时）\n\n**Worker 池 = 0**——这违反 \"池<2=失职\" 红线，下一个 session 应立即派非 GPU worker（文献/论文准备/分析等）。\n\n### 4. 📋 待办（条件触发式）\n- **exp_008e_v3_s1 cron 回调到达** → spawn worker 分析结果（重点：nve trajectory、eval vs baseline）→ 更新 registry → 立即启动 008e_v3_s2（已 ALLOCATED cuda:1）→ 汇报 Director\n- **exp_009a_baseline_s2 cron 回调到达** → 分析 baseline 多 seed 一致性 → 更新 registry → 从 QUEUED 中选下一个实验上 cuda:0（优先 009d baseline s1 或 010a cheetah baseline）→ 汇报 Director\n- **Director 回复 Framing 决策** → 按选定 Option 更新 paper_framing.md → 如果批准则 Read framing-reaudit skill 做全文 re-audit → 派 Worker 执行\n- **Worker 池 < 2 时**（现在就是）→ 立即派 CPU worker 做：(1) 论文 outline/figure 准备, (2) literature scan 更新, (3) Cheetah/Cartpole 实验代码 dry-run 验证\n- **两个 GPU 都空出来时** → 优先启动 Cheetah Run 跨环境验证（plan_020），这是 P0 且论文泛化性论证的关键\n\n### 5. 🎯 战略上下文\n**项目核心结论**:\n- **因果链已闭合**: trained dt_embedding → delusional critic (nve>1.5x) → collapse risk (stochastic)\n- **C6 crown jewel**: 008e_v3 (trained dt_emb + dt=1 imagination) = 唯一同时保持 reward prediction + 避免 delusional critic + 达 95% baseline 的方案。关键洞察：不需要改模型架构，只需改 imagination 策略（dt=1）→ 实践者零成本采用\n- **Narrative B+**: 诊断论文，不是方法论文。Mechanism identification + practical mitigation guideline\n\n**决策链**: D024(confound fix) → D025/D026(008d collapse confirmed) → D027(C3 wording) → D028(MVP pass) → D029(Dream reviewer feedback) → D030(C2 降级) → D031(Option A narrative + C6 crown jewel) → D032(stochastic collapse, nve>1.5x reliable) → D033(008e_v3 dt_emb is trained, critical var = imag dt)\n\n**易错点**:\n1. **不要把 008e_v3 称为 \"untrained dt_emb\"** — D033 已确认是 trained，保护来自 dt=1 imagination 而非 untrained embedding\n2. **不要混淆 nve@25K 和 nve@35K+** — 25K 处的 nve 值不可靠（baseline v/e 太小），论文只能引用 35K+ 的数据\n3. **成功率**: 成功 4 / 负向 9 / 失败 1 / 共 16。负向结果多但每个都有 diagnostic value，这是诊断论文的正常比例\n4. **CoRL DDL 2026-05-29，剩 15 天**。P0 实验约 145 GPU·h（~3 天 wall time），时间充裕但不能拖延。跨环境验证（Cheetah + Cartpole）是论文 generalizability 的关键缺口\n5. **009c 教训**: dt_emb removal 有双重效应（消除 delusional critic ✓ + 退化 reward prediction ✗），008f 不是 clean solution，C6 (008e_v3) 才是\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778798049.md"
+}

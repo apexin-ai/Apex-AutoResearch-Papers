@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f8232be4e9cde8b06b8d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "paper results tex fix cheetah",
+  "task_key": "worker_paper_results_tex_fix_cheetah_20260525T155535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_results_tex_fix_cheetah_20260525T155535.log",
+    "occurrence": 1,
+    "bytes": 1044072,
+    "sha256": "918a77ec07a625616ddd1b71293f17207d824c4974367e2a6901a37cd8090fcd"
+  },
+  "statistics": {
+    "messages": 126,
+    "user_turns": 0,
+    "tool_calls": 46,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 30,
+      "tool_call": 46,
+      "tool_result": 46,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 126,
+      "chunks": [
+        {
+          "path": "f8232be4e9cde8b06b8d-part-0001.json",
+          "message_count": 76
+        },
+        {
+          "path": "f8232be4e9cde8b06b8d-part-0002.json",
+          "message_count": 50
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-results-tex-fix-cheetah.md"
+}

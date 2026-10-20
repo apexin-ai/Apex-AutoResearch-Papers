@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f103578024050c4eaf97",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "research check 008d 45k",
+  "task_key": "worker_research_check_008d_45k_20260514T044622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_check_008d_45k_20260514T044622_result.json",
+    "occurrence": 1,
+    "bytes": 790,
+    "sha256": "ecbf3cd34366466587c4be33193042b2b79f0700fbbae84035837ee3b6b1b330"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据拿到了。55000 只有一个空 step 标记，eval 还没产出。\n\n## exp_008d@45K 指标\n\n| 指标 | @35K | @45K | 变化 |\n|------|------|------|------|\n| eval_return | 146.3 | **140.8** | -5.5 (-3.8%) |\n| value_mean | 60.3* | **97.5** | +37.2 |\n| v/e ratio | 41.2% | **69.3%** | +28.1pp |\n\n*（@35K value_mean 由 146.3×0.412 ≈ 60.3 反推）\n\n### 关键发现\n\n- **eval_return 小幅下降**：140.8 vs 146.3，回落约 3.8%，基本持平。\n- **v/e ratio = 69.3%，已超过 50%**：value_mean (97.5) / eval_return (140.8) = 0.693。相比 @35K 的 41.2% 大幅上升。\n- **gate 完全锁死在 dt=2**：gate_dt_2_frac=1.0，gate_empirical_entropy=0.0，gate 没有自适应行为。\n- **55K eval 尚未产出**，只有 step 标记行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-check-008d-45k.md"
+}

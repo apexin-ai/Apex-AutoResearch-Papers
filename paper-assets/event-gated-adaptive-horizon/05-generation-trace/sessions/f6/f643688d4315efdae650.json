@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f643688d4315efdae650",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "analysis zero gpu nve threshold entropy",
+  "task_key": "worker_analysis_zero_gpu_nve_threshold_entropy_20260524T114932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_zero_gpu_nve_threshold_entropy_20260524T114932.log",
+    "occurrence": 1,
+    "bytes": 643439,
+    "sha256": "d1152570a13c364253c33de94f75e015cd7efd234a6ba9f5423e0a6a7287b672"
+  },
+  "statistics": {
+    "messages": 144,
+    "user_turns": 0,
+    "tool_calls": 49,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 42,
+      "tool_call": 49,
+      "tool_result": 49,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 144,
+      "chunks": [
+        {
+          "path": "f643688d4315efdae650-part-0001.json",
+          "message_count": 134
+        },
+        {
+          "path": "f643688d4315efdae650-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-zero-gpu-nve-threshold-entropy.md"
+}

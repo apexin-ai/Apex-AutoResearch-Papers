@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "603c3de6557903c1f6d5",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "research sgs failure literature",
+  "task_key": "worker_research_sgs-failure-literature_20260515T222534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_sgs-failure-literature_20260515T222534_result.json",
+    "occurrence": 1,
+    "bytes": 842,
+    "sha256": "78eed546507e67790b0c791b9d87adb8753c1d70ec6ed90cd6079c42c9344a07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存到 `memory.md` 末尾，标题 \"## 2026-05-15: SGS Failure Literature Survey\"。\n\n核心结论：\n\n1. **无 full-pathway stop-gradient 先例**——没有论文在 MBRL world model 的多个 head 上同时 detach conditioning variable 梯度来控制 value overestimation。\n2. **无 partial-vs-full 对比**——文献中不存在 \"partial stop-gradient 失败但 full stop-gradient 成功\" 的案例。\n3. **无 novelty concern**——CIVO 诊断 + Full-SGS 方法 + partial 失败的实证，三个层面均无先例。\n4. **最相关的 5 篇必引论文**：Lu & Schuurmans 2018（delusional bias）、PCGrad 2020（gradient surgery 范式）、VaGraM 2022（gradient-level 干预）、Gradient Routing 2024（selective gradient masking）、TAWM 2025（temporal conditioning，需区分）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-sgs-failure-literature.md"
+}

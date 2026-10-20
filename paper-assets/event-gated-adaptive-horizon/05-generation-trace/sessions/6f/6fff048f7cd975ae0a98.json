@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "6fff048f7cd975ae0a98",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "audit 6of6 trained civo source",
+  "task_key": "worker_audit_6of6_trained_civo_source_20260524T062526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_6of6_trained_civo_source_20260524T062526.log",
+    "occurrence": 1,
+    "bytes": 567749,
+    "sha256": "050f2882109ae33ae4e5d1715e294ab55effdb5e4cc63067632a263f6148f21e"
+  },
+  "statistics": {
+    "messages": 238,
+    "user_turns": 2,
+    "tool_calls": 79,
+    "roles": {
+      "log": 1,
+      "system": 58,
+      "record": 1,
+      "assistant": 17,
+      "tool_call": 79,
+      "user": 2,
+      "tool_result": 79,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "6fff048f7cd975ae0a98-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 159,
+      "chunks": [
+        {
+          "path": "6fff048f7cd975ae0a98-part-0001.json",
+          "message_count": 159
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 73,
+      "chunks": [
+        {
+          "path": "6fff048f7cd975ae0a98-part-0001.json",
+          "message_count": 15
+        },
+        {
+          "path": "6fff048f7cd975ae0a98-part-0002.json",
+          "message_count": 58
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-6of6-trained-civo-source.md"
+}

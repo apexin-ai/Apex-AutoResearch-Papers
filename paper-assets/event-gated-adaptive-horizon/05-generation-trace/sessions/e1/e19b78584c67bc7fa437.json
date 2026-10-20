@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e19b78584c67bc7fa437",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "done exp 026 s0",
+  "task_key": "worker_done_exp_026_s0_20260520T013129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_done_exp_026_s0_20260520T013129_result.json",
+    "occurrence": 1,
+    "bytes": 906,
+    "sha256": "182cbe1d51100a4baa1e1a0c9b89b869742d63444b93d52cea1a05c54e7b8a46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n## exp_026_obs_sgs_cheetah_s0 最终结果\n\n**状态**: DONE (negative) — 训练正常完成至 105K steps，CIVO collapse 确认。\n\n### ve_ratio trajectory\n\n| Step | value_mean | eval_return | ve_ratio |\n|------|-----------|-------------|----------|\n| 5K | 0.00 | 8.26 | 0.0001 |\n| 15K | 1.56 | 64.05 | 0.0244 |\n| 25K | 11.68 | 124.23 | 0.094 |\n| 35K | 28.53 | 161.22 | 0.177 |\n| 45K | 48.25 | 155.77 | 0.310 |\n| 55K | 57.94 | 58.30 | 0.994 |\n| **65K** | **51.10** | **5.97** | **8.561** |\n| 75K | 51.91 | 42.59 | 1.219 |\n| 85K | 53.29 | 54.96 | 0.970 |\n| 95K | 51.14 | 34.42 | 1.486 |\n| 105K | 51.16 | 38.76 | 1.320 |\n\n**Peak ve_ratio**: 8.5607 @ 65K (full CIVO collapse, NVE=21.85×)\n**Final**: ve_ratio=1.32, eval_return=38.8 (partial recovery but performance permanently degraded vs baseline ~160)\n\n### Registry 更新 + cron 删除均已完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/done-exp-026-s0.md"
+}

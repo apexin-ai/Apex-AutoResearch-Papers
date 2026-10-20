@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d376554e953f442f39b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code ablation latex table",
+  "task_key": "worker_code_ablation-latex-table_20260524T232728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ablation-latex-table_20260524T232728_result.json",
+    "occurrence": 1,
+    "bytes": 817,
+    "sha256": "3a26d56bfd1328b48bf60243d906a3fa06c6da57c2022d143e6ed7e9abea0347"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 LaTeX 表格已生成并注册：\n\n**Table A** (`ablation_mechanism_table.tex`) — CIVO 机制证据汇总，7 行数据：\n- dt_emb cosine: trained $-0.94{\\sim}-0.70$ vs frozen $-0.15{\\sim}+0.07$ (exp_065)\n- RSSM fidelity: reward MAE gap $2.695\\times$ vs baseline $1.483\\times$ (exp_063)\n- Value calibration: V/MC median $3.40$ vs control $1.05$ (exp_064)\n- NVE: AUROC $0.961$, F1@1.5x $= 0.880$\n\n**Table B** (`temporal_causality_table.tex`) — 时序因果关系：\n- Return crash 60-80K → entropy rise 95K+，lag 15-35K steps\n- Entropy drift rate $1.14{-}2.11$ nats/10K (collapsed) vs $0.07{-}0.22$ (healthy)，$10{-}20\\times$ 差异\n\n每个数字均在 footnote 中标注了来源实验 ID。Paper Agent 可直接 `\\input{tables/ablation_mechanism_table.tex}` 引用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ablation-latex-table.md"
+}

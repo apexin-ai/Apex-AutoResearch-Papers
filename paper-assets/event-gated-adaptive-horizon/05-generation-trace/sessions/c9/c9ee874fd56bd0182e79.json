@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9ee874fd56bd0182e79",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check exp 053 054 055 progress",
+  "task_key": "worker_check_exp_053_054_055_progress_20260523T085705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp_053_054_055_progress_20260523T085705_result.json",
+    "occurrence": 1,
+    "bytes": 1444,
+    "sha256": "2847795412f42ea50115d2b68da44674082c311ca93a8e5561ae418d10b38b8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集，汇总如下：\n\n---\n\n## exp_053_peginsertion_frozen_s0 (bjb1-45299)\n```\nstatus:      running (uptime 4h36m, PID 123495)\ntrain_step:  96.2K / 210K\neval_return: 8.68 @92.5K\ngate_dt:     fixed=2 (frozen, 100% dt=2)\n```\n\n**ve_ratio 完整趋势（civo/ve_ratio）：**\n| step | ve_ratio | 备注 |\n|------|----------|------|\n| 12.5K | 0.16 | 初始低位 |\n| 22.5K | 1.61 | |\n| 32.5K | 1.26 | |\n| 42.5K | 1.90 | |\n| 52.5K | **8.10** | spike |\n| 62.5K | 2.21 | 回落 |\n| 72.5K | 3.93 | 二次上升 |\n| 82.5K | 1.82 | 回落 |\n| 92.5K | **1.31** | 继续下降 ✓ |\n\n**结论：92.5K 的 ve_ratio=1.31，从 72.5K 的 3.93 持续下降（82.5K=1.82→92.5K=1.31）。PegInsertion 的 ve_ratio spike（52.5K 峰值 8.10）确认是 transient，已回归正常范围。**\n\n---\n\n## exp_054_pickcube_frozen_s0 (bjb1-45299)\n```\nstatus:      running (uptime 1h11m, PID 133956)\ntrain_step:  28.4K / 210K\neval_return: 11.59 @22.5K (下一次 eval 在 32.5K)\nve_ratio:    0.15 @12.5K → 1.52 @22.5K\ngate_dt:     fixed=2 (frozen, 100% dt=2)\n```\n\n---\n\n## exp_055_peginsertion_civo_trigger_s1 (bjb1-40020)\n```\nstatus:      running (uptime 10m38s, PID 345223)\ntrain_step:  4.8K / 210K (刚启动，仍在 prefill 后的早期训练)\neval_return: 2.01 @2.5K\nve_ratio:    尚无（首次 CIVO eval 在 12.5K）\ngate_dt:     fixed=2 (非 frozen，dt_emb_freeze 未设置)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp-053-054-055-progress.md"
+}

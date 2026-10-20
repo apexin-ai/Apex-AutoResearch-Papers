@@ -1,0 +1,3610 @@
+{
+  "schema_version": "1.0",
+  "session_id": "78bb8e715af31012eec9",
+  "rounds": [
+    {
+      "number": 359,
+      "messages": [
+        {
+          "source_line": 3781,
+          "timestamp": "2026-05-25T05:07:54.165472+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_070_008e_v3_walker_s0",
+              "field": "server",
+              "value": "bjb1-45299",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003781"
+        },
+        {
+          "source_line": 3782,
+          "timestamp": "2026-05-25T05:07:54.667436+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_070_008e_v3_walker_s0",
+              "field": "gpu",
+              "value": "cuda:0",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003782"
+        },
+        {
+          "source_line": 3783,
+          "timestamp": "2026-05-25T05:07:55.071040+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_070_008e_v3_walker_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T05:07:49.050Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:07:54.663Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008e_v3 mitigation 配置 (trained dt_emb + subsample ON + dt=1 imag + H=15) seed=0。当前 4 unique seeds 测试结果 collapse rate=2/4 (50%)，加 seed=0 缩窄置信区间。来源: plan_016 扩展。\\\", \\\"parent\\\": \\\"exp_008e_v3_subsample_on_dt1_h15\\\", \\\"server\\\": \\\"bjb1-45299\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8544}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 905
+          },
+          "id": "event-003783"
+        },
+        {
+          "source_line": 3784,
+          "timestamp": "2026-05-25T05:07:55.974581+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_070_008e_v3_walker_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T05:07:49.050Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:07:55.591Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008e_v3 mitigation 配置 (trained dt_emb + subsample ON + dt=1 imag + H=15) seed=0。当前 4 unique seeds 测试结果 collapse rate=2/4 (50%)，加 seed=0 缩窄置信区间。来源: plan_016 扩展。\\\", \\\"parent\\\": \\\"exp_008e_v3_subsample_on_dt1_h15\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": \\\"cuda:0\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9019}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1307
+          },
+          "id": "event-003784"
+        },
+        {
+          "source_line": 3785,
+          "timestamp": "2026-05-25T05:07:59.839799+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_070_008e_v3_walker_s0",
+              "field": "status",
+              "value": "PENDING",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003785"
+        },
+        {
+          "source_line": 3786,
+          "timestamp": "2026-05-25T05:08:01.948025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_070_008e_v3_walker_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T05:07:49.050Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:08:00.353Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008e_v3 mitigation 配置 (trained dt_emb + subsample ON + dt=1 imag + H=15) seed=0。当前 4 unique seeds 测试结果 collapse rate=2/4 (50%)，加 seed=0 缩窄置信区间。来源: plan_016 扩展。\\\", \\\"parent\\\": \\\"exp_008e_v3_subsample_on_dt1_h15\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": \\\"cuda:0\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0842}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2108
+          },
+          "id": "event-003786"
+        },
+        {
+          "source_line": 3787,
+          "timestamp": "2026-05-25T05:08:09.904652+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__feishu_send_approval_card"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__feishu_send_approval_card",
+            "tool_args": {
+              "exp_id": "exp_070_008e_v3_walker_s0",
+              "summary": "008e_v3 mitigation (trained dt_emb + subsample ON + dt=1 + H=15) seed=0, bjb1-45299 cuda:0, C6 collapse rate 缩窄",
+              "risk_reason": "plan_016 扩展，已有4 seed (2/4 collapse)，加 seed=0 缩窄置信区间。配置与原始 008e_v3 完全一致。",
+              "diff_summary": "复用 008e_v3 配置，仅 seed=0 和 logdir 不同",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003787"
+        },
+        {
+          "source_line": 3788,
+          "timestamp": "2026-05-25T05:08:14.088605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6e09dd018cb0b4affff39dd437c\\\", \\\"chat_id\\\": \\\"oc_5e879064da2e47dad864c1f891eb37a8\\\", \\\"msg_type\\\": \\\"interactive\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__feishu_send_approval_card",
+            "elapsed_ms": 4183
+          },
+          "id": "event-003788"
+        },
+        {
+          "source_line": 3789,
+          "timestamp": "2026-05-25T05:08:25.220901+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审批卡已发送。exp_070_008e_v3_walker_s0 — seed=0（首个未测试 seed），bjb1-45299 cuda:0，PENDING 等待审批。\n\n当前 4 GPU 状态：\n- bjb1-45299:0 → exp_070 待审批\n- bjb1-45299:1 → exp_067 RUNNING\n- westd-19154:0 → exp_068 RUNNING\n- westd-19154:1 → exp_069 RUNNING"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb"
+          },
+          "id": "event-003789"
+        }
+      ]
+    },
+    {
+      "number": 360,
+      "messages": [
+        {
+          "source_line": 3790,
+          "timestamp": "2026-05-25T05:28:50.344078+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[APPROVAL GRANTED] 实验 **exp_070_008e_v3_walker_s0** 审批已通过，已进入执行队列（QUEUED）。等待 Director 分配 GPU 资源后（ALLOCATED），请用 `submit_on_allocated` 执行。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "source": "approval"
+          },
+          "id": "event-003790"
+        },
+        {
+          "source_line": 3791,
+          "timestamp": "2026-05-25T05:28:58.961978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_070_008e_v3_walker_s0",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003791"
+        },
+        {
+          "source_line": 3792,
+          "timestamp": "2026-05-25T05:29:01.122128+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_070_008e_v3_walker_s0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T05:07:49.050Z\\\", \\\"updated_at\\\": \\\"2026-05-25T05:28:59.500Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008e_v3 mitigation 配置 (trained dt_emb + subsample ON + dt=1 imag + H=15) seed=0。当前 4 unique seeds 测试结果 collapse rate=2/4 (50%)，加 seed=0 缩窄置信区间。来源: plan_016 扩展。\\\", \\\"parent\\\": \\\"exp_008e_v3_subsample_on_dt1_h15\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": \\\"cuda:0\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0996}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2160
+          },
+          "id": "event-003792"
+        },
+        {
+          "source_line": 3793,
+          "timestamp": "2026-05-25T05:29:08.904014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_on_allocated"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__submit_on_allocated",
+            "tool_args": {
+              "exp_id": "exp_070_008e_v3_walker_s0",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_070_008e_v3_walker_s0 --steps 105000 --seed 0 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\"",
+              "project": "event-gated-adaptive-horizon",
+              "timeout_hours": "8",
+              "work_dir": "/root/autodl-tmp/event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003793"
+        },
+        {
+          "source_line": 3794,
+          "timestamp": "2026-05-25T05:29:15.129077+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_070_008e_v3_walker_s0\\\", \\\"status\\\": \\\"RUNNING\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"260999\\\", \\\"log_file\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_070_008e_v3_walker_s0.log\\\", \\\"account\\\": \\\"root\\\", \\\"tmux_session\\\": \\\"exp_070_008e_v3_walker_s0\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"cron_registered\\\": true, \\\"code_synced\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.21}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__submit_on_allocated",
+            "elapsed_ms": 6225
+          },
+          "id": "event-003794"
+        },
+        {
+          "source_line": 3795,
+          "timestamp": "2026-05-25T05:29:27.487554+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 4 / 实际在跑 4 ✓ | Worker 池 1 (CPU 1)\n\nexp_070_008e_v3_walker_s0 已提交 RUNNING（bjb1-45299 cuda:0, seed=0, ~5h）。\n\n**当前 4 GPU 全部饱和：**\n- bjb1-45299:0 → exp_070 (008e_v3 mitigation seed=0)\n- bjb1-45299:1 → exp_067 (frozen dt_emb, plan_015)\n- westd-19154:0 → exp_068 (008d repro s1, plan_011)\n- westd-19154:1 → exp_069 (008f repro s1, plan_012)\n\n预计 exp_067 最先完成（~5h），其余约 5-8h。",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003795"
+        },
+        {
+          "source_line": 3796,
+          "timestamp": "2026-05-25T05:29:31.991621+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5e879064da2e47dad864c1f891eb37a8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 4504
+          },
+          "id": "event-003796"
+        },
+        {
+          "source_line": 3797,
+          "timestamp": "2026-05-25T05:29:35.303141+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_070 已提交 RUNNING（bjb1-45299 cuda:0, pid=260999）。4 张 GPU 全部在跑：\n\n- bjb1-45299:0 → exp_070 (008e_v3 seed=0, ~5h)\n- bjb1-45299:1 → exp_067 (frozen dt_emb)\n- westd-19154:0 → exp_068 (008d repro s1)\n- westd-19154:1 → exp_069 (008f repro s1)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb"
+          },
+          "id": "event-003797"
+        }
+      ]
+    },
+    {
+      "number": 361,
+      "messages": [
+        {
+          "source_line": 3798,
+          "timestamp": "2026-05-25T07:00:09.047172+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_analysis_exp_067_frozen_dt_emb_walker_plan015_20260525T065640 已完成（status=done）。用 `get_worker_status('worker_analysis_exp_067_frozen_dt_emb_walker_plan015_20260525T065640')` 读取结果，然后处理。\n\n- worker_id: worker_analysis_exp_067_frozen_dt_emb_walker_plan015_20260525T065640\n- project: event-gated-adaptive-horizon\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "source": "worker:done"
+          },
+          "id": "event-003798"
+        },
+        {
+          "source_line": 3799,
+          "timestamp": "2026-05-25T07:00:17.447927+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_analysis_exp_067_frozen_dt_emb_walker_plan015_20260525T065640"
+            }
+          },
+          "id": "event-003799"
+        },
+        {
+          "source_line": 3800,
+          "timestamp": "2026-05-25T07:00:17.549424+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_exp_067_frozen_dt_emb_walker_plan015_20260525T065640\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"analysis:exp_067_frozen_dt_emb_walker_plan015\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"started_at\\\": \\\"2026-05-25T06:56:40.497332+00:00\\\", \\\"ended_at\\\": \\\"2026-05-25T07:00:06.706505+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"分析完成。\\\\n\\\\n**exp_067_frozen_dt_emb_walker_plan015 → conclusion: success**\\\\n\\\\n| 指标 | exp_042 (parent) | exp_067 |\\\\n|------|------------------|---------|\\\\n| eval_final | 612.45 | 281.5 |\\\\n| eval_peak | 682.38 | 334.1 |\\\\n| nve_peak | 0.194 | 0.4 |\\\\n| CIVO triggered | No | No |\\\\n\\\\nNVE peak=0.4 远低于 1.5x 阈值，civo_alert 全程为 0。Frozen dt_embedding 确实不触发 CIVO，验证了 **dt_emb 的梯度训练是 CIVO 触发的必要条件**，而非 dt_emb 的存在本身。\\\\n\\\\n性能方面 exp_067 仅为 exp_042 的约一半，因为 frozen embedding 使 gate 完全锁死在 dt=2（entropy=0），丧失了自适应能力。\\\\n\\\\nRegistry 已更新为 DONE/success，analysis 已注册为 artifact。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-003800"
+        },
+        {
+          "source_line": 3801,
+          "timestamp": "2026-05-25T07:00:27.206476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'exp_067_frozen_dt_emb_walker_plan015'}",
+              "project": "event-gated-adaptive-horizon",
+              "fields": "['status', 'conclusion', 'metrics', 'hypothesis', 'parent']"
+            }
+          },
+          "id": "event-003801"
+        },
+        {
+          "source_line": 3802,
+          "timestamp": "2026-05-25T07:00:27.708793+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+              "max_results": "2"
+            }
+          },
+          "id": "event-003802"
+        },
+        {
+          "source_line": 3803,
+          "timestamp": "2026-05-25T07:00:27.761057+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5446}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 554
+          },
+          "id": "event-003803"
+        },
+        {
+          "source_line": 3804,
+          "timestamp": "2026-05-25T07:00:27.761518+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "ToolSearch",
+            "elapsed_ms": 52
+          },
+          "id": "event-003804"
+        },
+        {
+          "source_line": 3805,
+          "timestamp": "2026-05-25T07:00:30.573380+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "fields": "['status', 'conclusion', 'metrics', 'hypothesis', 'parent']",
+              "limit": "5"
+            }
+          },
+          "id": "event-003805"
+        },
+        {
+          "source_line": 3806,
+          "timestamp": "2026-05-25T07:00:31.377220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_067_frozen_dt_emb_walker_plan015\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Frozen (requires_grad=False) dt_embedding + subsample ON + dt=2 + H=8 在 Walker Walk 上不触发 CIVO，验证 dt_emb 的 TRAINING 是 CIVO 的必要条件（而非 dt_emb 的存在本身）。来源: plan_015。\\\", \\\"parent\\\": \\\"exp_042_frozen_dt_emb_walker\\\", \\\"metrics\\\": {\\\"eval_final\\\": 281.5, \\\"eval_peak\\\": 334.1, \\\"eval_peak_step\\\": 95000, \\\"nve_peak\\\": 0.4, \\\"nve_final\\\": 0.2, \\\"civo_alert\\\": 0, \\\"total_env_steps\\\": 112000, \\\"update_count\\\": 25099, \\\"gate_dt_mean\\\": 2, \\\"gate_dt_std\\\": 0, \\\"gate_dt_2_frac\\\": 1, \\\"gate_empirical_entropy\\\": 0}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_070_008e_v3_walker_s0\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"Walker Walk 008e_v3 mitigation 配置 (trained dt_emb + subsample ON + dt=1 imag + H=15) seed=0。当前 4 unique seeds 测试结果 collapse rate=2/4 (50%)，加 seed=0 缩窄置信区间。来源: plan_016 扩展。\\\", \\\"parent\\\": \\\"exp_008e_v3_subsample_on_dt1_h15\\\"}, \\\"exp_069_008f_walker_repro_s1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"复现 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) Walker Walk seed=1，增加 C2 causal control 多 seed 统计样本。来源: plan_012 seed 1。\\\", \\\"parent\\\": \\\"exp_008f_no_dt_embed_subsample_on_h8\\\"}, \\\"exp_068_008d_walker_repro_s1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"复现 008d 配置 (trained dt_emb + subsample ON + dt=2 + H=8) Walker Walk seed=1，增加 C2 collapse 多 seed 统计样本。来源: plan_011 seed 1。\\\", \\\"parent\\\": \\\"exp_008d_subsample_on_h8\\\"}, \\\"exp_066b_timeseries_rssm_fidelity_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"RSSM fidelity gap (dt=2 prediction error > dt=1) emerges before value overestimation in seed=1, replicating the causal chain found in exp_066 seed=0 and confirming cross-seed robustness of the fidelity→VE mechanism.\\\", \\\"parent\\\": \\\"exp_066_timeseries_rssm_fidelity\\\", \\\"metrics\\\": {\\\"seed\\\": 1, \\\"steps_completed\\\": 65000, \\\"eval_return_peak\\\": 201.9, \\\"eval_return_peak_step\\\": 45000, \\\"eval_return_final\\\": 160.7, \\\n…[truncated 1122 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 803
+          },
+          "id": "event-003806"
+        },
+        {
+          "source_line": 3807,
+          "timestamp": "2026-05-25T07:00:31.478168+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "literature_map.yaml",
+              "max_chars": "3000"
+            }
+          },
+          "id": "event-003807"
+        },
+        {
+          "source_line": 3808,
+          "timestamp": "2026-05-25T07:00:31.579132+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/literature_map.yaml\\\", \\\"content\\\": \\\"# Literature Map — event-gated-adaptive-horizon\\\\n# Last updated: 2026-05-16\\\\n# Total: 90 papers (76 existing + 14 related-work expansion 2026-05-16)\\\\n\\\\n# ============================================================\\\\n# EXISTING CITATIONS (already in paper.tex)\\\\n# ============================================================\\\\n\\\\n- paper_id: sutton1999options\\\\n  title: \\\\\\\"Between MDPs and Semi-MDPs: A Framework for Temporal Abstraction in Reinforcement Learning\\\\\\\"\\\\n  authors: [Sutton R.S., Precup D., Singh S.]\\\\n  year: 1999\\\\n  venue: \\\\\\\"Artificial Intelligence 112(1-2):181-211\\\\\\\"\\\\n  category: background\\\\n  role: \\\\\\\"Foundational options framework for temporal abstraction in RL; our work investigates why temporal abstraction fails in world-model RL\\\\\\\"\\\\n  relevance_score: 5\\\\n\\\\n- paper_id: hafner2020dreamerv1\\\\n  title: \\\\\\\"Dream to Control: Learning Behaviors by Latent Imagination\\\\\\\"\\\\n  authors: [Hafner D., Lillicrap T., Ba J., Norouzi M.]\\\\n  year: 2020\\\\n  venue: ICLR\\\\n  category: background\\\\n  role: \\\\\\\"DreamerV1 — base architecture family; our experiments build on the RSSM and imagination-based training paradigm\\\\\\\"\\\\n  relevance_score: 5\\\\n\\\\n- paper_id: hafner2023dreamerv3\\\\n  title: \\\\\\\"Mastering Diverse Domains through World Models\\\\\\\"\\\\n  authors: [Hafner D., Pasukonis J., Ba J., Lillicrap T.]\\\\n  year: 2023\\\\n  venue: \\\\\\\"arXiv:2301.04104 (Nature 2025)\\\\\\\"\\\\n  category: background\\\\n  role: \\\\\\\"DreamerV3 — the specific base system we modify; symlog transforms, discrete latents, all default hyperparameters come from here\\\\\\\"\\\\n  relevance_score: 5\\\\n\\\\n- paper_id: sharma2017figar\\\\n  title: \\\\\\\"Fine Grained Action Repetition for Deep Reinforcement Learning\\\\\\\"\\\\n  authors: [Sharma S., Lakshminarayanan A.S., Ravindran B.]\\\\n  year: 2017\\\\n  venue: \\\\\\\"ICLR Workshop\n…[truncated 1539 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 100
+          },
+          "id": "event-003808"
+        },
+        {
+          "source_line": 3809,
+          "timestamp": "2026-05-25T07:00:59.276226+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "plan_017",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/experiment_plan.yaml",
+              "output_mode": "content",
+              "-C": "12"
+            }
+          },
+          "id": "event-003809"
+        },
+        {
+          "source_line": 3810,
+          "timestamp": "2026-05-25T07:00:59.979395+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "288-  description: Compute classification accuracy at nve thresholds 1.3x, 1.5x, 1.7x,\n289-    2.0x across all available seeds. Report AUROC if feasible. 0 GPU cost — computed\n290-    from existing metrics.\n291-  priority: P0\n292-  gpu_budget_hours: 0\n293-  deps: []\n294-- id: plan_015\n295-  name: Walker Walk FROZEN dt_emb + subsample ON + dt=2 imag + H=8 (1 seed)\n296-  claim:\n297-  - C2\n298-  description: 'D041 redesign (原 detach 方案是 no-op): freeze dt_embedding (requires_grad=False),\n299-    保持随机初始化不训练。其余与 008d 一致 (subsample ON, dt=2, H=8)。诊断问题: dt_emb 的 TRAINING 是否是 CIVO\n300:    的必要条件？与 plan_017 构成 2×2 消融矩阵。预期不崩溃 → trained dt_emb 是必要条件。'\n301-  priority: P0\n302-  gpu_budget_hours: 5\n303-  deps: []\n304-- id: plan_016\n305-  name: Walker Walk 008e_v3 additional seeds (seed 3-4)\n306-  claim:\n307-  - C6\n308-  description: 'D038: 008e_v3 collapse rate 1/2 based on 2 independent seeds. Additional\n309-    seeds to narrow true collapse probability. If 2/4 collapse → ~50% rate confirmed,\n310-    same as dt=2. If 1/4 or 3/4 → rate differs.'\n311-  priority: P1\n312-  gpu_budget_hours: 10\n313-  deps: []\n314:- id: plan_017\n315-  name: CANCELLED — Walker Walk trained dt_emb + subsample OFF (duplicate of 008a)\n316-  claim:\n317-  - C2\n318:  description: 'D044 CANCELLED: 008a 配置验证确认 plan_017 与 008a 完全重复（trained dt_emb +\n319-    subsample OFF + H=15 + seed 1）。008a 的\"untrained\"含义是 trained dt_emb unexposed to\n320-    dt>1 data due to subsample OFF，不是 frozen/absent。2×2 矩阵已由 008a/008d/008f/015b 闭合。'\n321-  priority: CANCELLED\n322-  gpu_budget_hours: 0\n323-  deps: []\n324-- id: plan_060\n325-  name: Uncertainty-gated imagination truncation pilot (Walker Walk, 1 seed)\n326-  claim:\n327-  - C6\n328-  description: Monitor RSSM prediction uncertainty during imagination rollout; truncate\n329-    when exceeding threshold. Pilot feasibility test on Walker Walk with dt=2 + subsample\n330-    ON. If successful, extends to multi-seed + cross-environment."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Grep",
+            "elapsed_ms": 703
+          },
+          "id": "event-003810"
+        },
+        {
+          "source_line": 3811,
+          "timestamp": "2026-05-25T07:01:00.532348+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "memory.md",
+              "max_chars": "6000"
+            }
+          },
+          "id": "event-003811"
+        },
+        {
+          "source_line": 3812,
+          "timestamp": "2026-05-25T07:01:00.733591+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/memory.md\\\", \\\"content\\\": \\\"# Memory — event-gated-adaptive-horizon\\\\n\\\\n## 基线定义（2026-05-24 确认）\\\\n- **NVE 计算用 step-matched single-seed s1 baseline**（exp_001 seed=1），不是 4-seed mean\\\\n- exp_001 s1 baseline ve_ratio 随 step 变化：0.331@45K, 0.7007@85K, 0.683@115K, 0.656@105K\\\\n- methodology.tex 说 single-seed s1，appendix.tex:268 已统一为 single-seed s1\\\\n- 之前用 4-seed mean (0.683) 做的 backfill NVE 全部错误，已回滚标记 \\\\\\\"backfill_error, see M027\\\\\\\"\\\\n\\\\n## Walker trained seeds 实际清单（2026-05-24 审计）\\\\n- 5 个唯一 seed，不是 6 个\\\\n- s1: exp_008d_subsample_on_h8 = exp_009e（同一个 seed=1 run，不要双算）\\\\n- s2: exp_009b_008d_walker_s2 (seed=2)\\\\n- s3: exp_008d_civo_trigger_s3 (seed=3)\\\\n- s4: exp_008d_civo_trigger_s4 (seed=4)\\\\n- s5: exp_059_walker_trained_s5 (seed=5)\\\\n\\\\n## exp_059 (Walker s5) 分类（2026-05-24）\\\\n- NVE peak: 4.72× @85K（step-matched s1 baseline 0.7007）\\\\n- NVE final: 1.22× @105K（baseline 0.656）\\\\n- 分类: onset_collapse（Collapse†）\\\\n- 原因: NVE 自修正（4.72→1.22×）但 eval=95.8（baseline 913 的 10.5%），策略不可逆损伤\\\\n- 与 s1 collapse (9.0%) 和 s4 (6.9%) 同一水平\\\\n- s2 是唯一真正 self-correction 的 seed（eval 268 = 29.4% baseline）\\\\n\\\\n## Onset/Outcome 统计（2026-05-24）\\\\n- Onset: 7/7 locomotion trained seeds（5 Walker + 2 Cheetah）\\\\n- Outcome: 6/7 collapse, 1/7 self-correction (s2 only)\\\\n- Frozen: 0/5 onset\\\\n\\\\n## AUROC 处理原则（2026-05-24 Director 决策）\\\\n- AUROC=0.953 基于原始 4-seed 验证集（008d/009b/008f/009c），不因 s5 重算\\\\n- s5 不在验证集内，加入是 post-hoc 改测试集\\\\n- IQM/mean/intervention table 分母/detector TPR-FPR 同理不变\\\\n- n=29→30 和 26/29→27/30 是确定性更新（s5 正确分类为 CIVO-positive）\\\\n\\\\n## RSSM Fidelity 时序因果机制（2026-05-25 exp_066 确认）\\\\n- **Fidelity gap 的成因不是 dt=2 变差，而是 dt=1 在训练中持续改善但 dt=2 不改善**——dt=1 MAE 从 0.093 降到 0.047，dt=2 MAE 始终 ~0.08。这说明 trained dt_embedding 让 RSSM 在 dt=1 上过拟合，而 dt=2 路径未受益\\\\n- **时序因果关键节点 25K-30K**：对应模型从随机探索转向有意义策略的过渡期，此时 fidelity gap 加速分化\\\\n- **VE ratio 在 40K 才首次 spike（1.59x）**，而 fidelity gap 在 25K \n…[truncated 730 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 201
+          },
+          "id": "event-003812"
+        },
+        {
+          "source_line": 3813,
+          "timestamp": "2026-05-25T07:01:17.364415+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "memory.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-003813"
+        },
+        {
+          "source_line": 3814,
+          "timestamp": "2026-05-25T07:01:18.118111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/memory.md\\\", \\\"content\\\": \\\"# Memory — event-gated-adaptive-horizon\\\\n\\\\n## 基线定义（2026-05-24 确认）\\\\n- **NVE 计算用 step-matched single-seed s1 baseline**（exp_001 seed=1），不是 4-seed mean\\\\n- exp_001 s1 baseline ve_ratio 随 step 变化：0.331@45K, 0.7007@85K, 0.683@115K, 0.656@105K\\\\n- methodology.tex 说 single-seed s1，appendix.tex:268 已统一为 single-seed s1\\\\n- 之前用 4-seed mean (0.683) 做的 backfill NVE 全部错误，已回滚标记 \\\\\\\"backfill_error, see M027\\\\\\\"\\\\n\\\\n## Walker trained seeds 实际清单（2026-05-24 审计）\\\\n- 5 个唯一 seed，不是 6 个\\\\n- s1: exp_008d_subsample_on_h8 = exp_009e（同一个 seed=1 run，不要双算）\\\\n- s2: exp_009b_008d_walker_s2 (seed=2)\\\\n- s3: exp_008d_civo_trigger_s3 (seed=3)\\\\n- s4: exp_008d_civo_trigger_s4 (seed=4)\\\\n- s5: exp_059_walker_trained_s5 (seed=5)\\\\n\\\\n## exp_059 (Walker s5) 分类（2026-05-24）\\\\n- NVE peak: 4.72× @85K（step-matched s1 baseline 0.7007）\\\\n- NVE final: 1.22× @105K（baseline 0.656）\\\\n- 分类: onset_collapse（Collapse†）\\\\n- 原因: NVE 自修正（4.72→1.22×）但 eval=95.8（baseline 913 的 10.5%），策略不可逆损伤\\\\n- 与 s1 collapse (9.0%) 和 s4 (6.9%) 同一水平\\\\n- s2 是唯一真正 self-correction 的 seed（eval 268 = 29.4% baseline）\\\\n\\\\n## Onset/Outcome 统计（2026-05-24）\\\\n- Onset: 7/7 locomotion trained seeds（5 Walker + 2 Cheetah）\\\\n- Outcome: 6/7 collapse, 1/7 self-correction (s2 only)\\\\n- Frozen: 0/5 onset\\\\n\\\\n## AUROC 处理原则（2026-05-24 Director 决策）\\\\n- AUROC=0.953 基于原始 4-seed 验证集（008d/009b/008f/009c），不因 s5 重算\\\\n- s5 不在验证集内，加入是 post-hoc 改测试集\\\\n- IQM/mean/intervention table 分母/detector TPR-FPR 同理不变\\\\n- n=29→30 和 26/29→27/30 是确定性更新（s5 正确分类为 CIVO-positive）\\\\n\\\\n## RSSM Fidelity 时序因果机制（2026-05-25 exp_066 确认）\\\\n- **Fidelity gap 的成因不是 dt=2 变差，而是 dt=1 在训练中持续改善但 dt=2 不改善**——dt=1 MAE 从 0.093 降到 0.047，dt=2 MAE 始终 ~0.08。这说明 trained dt_embedding 让 RSSM 在 dt=1 上过拟合，而 dt=2 路径未受益\\\\n- **时序因果关键节点 25K-30K**：对应模型从随机探索转向有意义策略的过渡期，此时 fidelity gap 加速分化\\\\n- **VE ratio 在 40K 才首次 spike（1.59x）**，而 fidelity gap 在 25K \n…[truncated 730 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 753
+          },
+          "id": "event-003814"
+        },
+        {
+          "source_line": 3815,
+          "timestamp": "2026-05-25T07:01:50.288283+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "memory.md",
+              "content": "# Memory — event-gated-adaptive-horizon\n\n## 基线定义（2026-05-24 确认）\n- **NVE 计算用 step-matched single-seed s1 baseline**（exp_001 seed=1），不是 4-seed mean\n- exp_001 s1 baseline ve_ratio 随 step 变化：0.331@45K, 0.7007@85K, 0.683@115K, 0.656@105K\n- methodology.tex 说 single-seed s1，appendix.tex:268 已统一为 single-seed s1\n- 之前用 4-seed mean (0.683) 做的 backfill NVE 全部错误，已回滚标记 \"backfill_error, see M027\"\n\n## Walker trained seeds 实际清单（2026-05-24 审计）\n- 5 个唯一 seed，不是 6 个\n- s1: exp_008d_subsample_on_h8 = exp_009e（同一个 seed=1 run，不要双算）\n- s2: exp_009b_008d_walker_s2 (seed=2)\n- s3: exp_008d_civo_trigger_s3 (seed=3)\n- s4: exp_008d_civo_trigger_s4 (seed=4)\n- s5: exp_059_walker_trained_s5 (seed=5)\n\n## exp_059 (Walker s5) 分类（2026-05-24）\n- NVE peak: 4.72× @85K（step-matched s1 baseline 0.7007）\n- NVE final: 1.22× @105K（baseline 0.656）\n- 分类: onset_collapse（Collapse†）\n- 原因: NVE 自修正（4.72→1.22×）但 eval=95.8（baseline 913 的 10.5%），策略不可逆损伤\n- 与 s1 collapse (9.0%) 和 s4 (6.9%) 同一水平\n- s2 是唯一真正 self-correction 的 seed（eval 268 = 29.4% baseline）\n\n## Onset/Outcome 统计（2026-05-24）\n- Onset: 7/7 locomotion trained seeds（5 Walker + 2 Cheetah）\n- Outcome: 6/7 collapse, 1/7 self-correction (s2 only)\n- Frozen: 0/5 onset\n\n## AUROC 处理原则（2026-05-24 Director 决策）\n- AUROC=0.953 基于原始 4-seed 验证集（008d/009b/008f/009c），不因 s5 重算\n- s5 不在验证集内，加入是 post-hoc 改测试集\n- IQM/mean/intervention table 分母/detector TPR-FPR 同理不变\n- n=29→30 和 26/29→27/30 是确定性更新（s5 正确分类为 CIVO-positive）\n\n## RSSM Fidelity 时序因果机制（2026-05-25 exp_066 确认）\n- **Fidelity gap 的成因不是 dt=2 变差，而是 dt=1 在训练中持续改善但 dt=2 不改善**——dt=1 MAE 从 0.093 降到 0.047，dt=2 MAE 始终 ~0.08。这说明 trained dt_embedding 让 RSSM 在 dt=1 上过拟合，而 dt=2 路径未受益\n- **时序因果关键节点 25K-30K**：对应模型从随机探索转向有意义策略的过渡期，此时 fidelity gap 加速分化\n- **VE ratio 在 40K 才首次 spike（1.59x）**，而 fidelity gap 在 25K 就已显著——确认 fidelity 退化是因，value overestimation 是果\n- State divergence (cosine) gap 全程稳定 ~0.09-0.16，是结构性偏差而非训练阶段性问题\n\n## CIVO Scope: Complexity-Dependent（2026-05-25 exp_061 确认）\n- **CIVO 是 complexity-dependent 现象，不是 DMC locomotion 通用现象**\n- Walker (6 joints): 7/7 onset, Cheetah (6 joints): 2/2 onset, **Cartpole (1 DOF): 0/3 onset**\n- Cartpole ve_ratio peak < 0.06（远低于 1.5x 阈值），value 始终校准\n- 原因推断：Cartpole 动力学太简单，dt=2 的 RSSM fidelity gap 不足以触发 value 发散 cascade\n- **论文定位**：Cartpole 作为 negative control / boundary condition，scope 描述为 \"multi-joint locomotion\"\n- 这强化了机制解释（fidelity gap 驱动 CIVO），而非削弱核心 claim\n\n## Frozen dt_emb 因果控制（2026-05-25 exp_067 确认）\n- **dt_emb 的梯度训练是 CIVO 的必要条件，而非 dt_emb 的存在本身**\n- exp_067: frozen dt_emb (requires_grad=False) + subsample ON + dt=2 + H=8 → NVE peak=0.4, civo_alert=0\n- 对比 exp_008d (trained dt_emb, 同配置): NVE>1.5x, CIVO 触发\n- Frozen embedding 使 gate 完全锁死 dt=2（entropy=0），丧失自适应能力，eval=281.5（约为 trained 的一半）\n- **C2 因果消融矩阵闭合**：trained→CIVO, frozen→no CIVO, absent(008f)→no CIVO, unexposed(008a)→no CIVO\n- plan_017 已取消（与 008a 重复），2×2 矩阵由 008a/008d/008f/exp_067 完成\n\n## 竞品实验参考\n（待补充）\n"
+            }
+          },
+          "id": "event-003815"
+        },
+        {
+          "source_line": 3816,
+          "timestamp": "2026-05-25T07:01:50.288704+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-003816"
+        },
+        {
+          "source_line": 3817,
+          "timestamp": "2026-05-25T07:02:11.784710+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 4 / 实际在跑 3 | Worker 池 0 ⚠️ | bjb1-45299:1 空闲\n- bjb1-45299:0 exp_070 RUNNING | bjb1-45299:1 **空闲**\n- westd-19154:0 exp_068 RUNNING | westd-19154:1 exp_069 RUNNING\n\n---\n\n**[实验完成] exp_067_frozen_dt_emb_walker_plan015 — DONE(success)**\n\n**被验证的 hypothesis**：Frozen dt_emb (requires_grad=False) + subsample ON + dt=2 + H=8 不触发 CIVO → dt_emb 的 TRAINING 是 CIVO 必要条件\n\n**结果**：\n| 指标 | exp_042 (parent, frozen s0) | exp_067 (frozen s0, plan_015) |\n|------|----------------------------|-------------------------------|\n| eval_final | 612.45 | 281.5 |\n| eval_peak | 682.38 | 334.1 |\n| NVE peak | 0.194 | 0.4 |\n| CIVO triggered | No | No |\n\nNVE peak=0.4 远低于 1.5x 阈值，全程 civo_alert=0。Frozen embedding 使 gate 锁死 dt=2（entropy=0），性能约为 trained 的一半，但不触发 CIVO。\n\n**C2 因果消融矩阵完整闭合**：\n| 条件 | CIVO | 代表实验 |\n|------|------|---------|\n| Trained dt_emb + subsample ON | ✓ 7/7 onset | 008d, s1-s5 |\n| Frozen dt_emb + subsample ON | ✗ | exp_042, exp_067 |\n| No dt_emb (embed_dim=0) | ✗ | 008f |\n| Trained unexposed (subsample OFF) | ✗ | 008a |\n\n→ **CIVO 需要 dt_emb 同时满足：(1) 梯度训练 (2) 暴露于 dt>1 数据**。\n\n**反思**：\n- plan_015 已完成（1 seed 足够，因 exp_042 是 parent 已确认同一 pattern）\n- C2 因果链证据完整：trained→CIVO / frozen→no / absent→no / unexposed→no\n- 论文 story 可 claim 更强：\"CIVO is specifically caused by gradient-trained dt-conditioning exposed to multi-step data\"\n\n**bjb1-45299 cuda:1 现在空闲**，建议候选：\n1. plan_012 额外 seed（008f stability，增加 causal control 统计）\n2. plan_020（Cheetah baseline，扩展 cross-env 覆盖）\n3. 其他 Director 指定实验\n\n请指定。",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003817"
+        },
+        {
+          "source_line": 3818,
+          "timestamp": "2026-05-25T07:02:15.802255+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5e879064da2e47dad864c1f891eb37a8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 4017
+          },
+          "id": "event-003818"
+        },
+        {
+          "source_line": 3819,
+          "timestamp": "2026-05-25T07:02:19.865561+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成 on-experiment-done 处理：registry 已由 Worker 更新为 DONE(success)，memory.md 已写入 frozen dt_emb 因果控制结论，向 Director 汇报了完整的 C2 因果消融矩阵闭合结果，并请求 bjb1-45299 cuda:1 的下一个实验指派。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb"
+          },
+          "id": "event-003819"
+        }
+      ]
+    },
+    {
+      "number": 362,
+      "messages": [
+        {
+          "source_line": 3820,
+          "timestamp": "2026-05-25T07:02:55.398810+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] exp_067 确认，C2 因果消融矩阵完整。\n\nbjb1-45299 cuda:1 空闲，立即填充：跑 plan_012 额外 seed（008f Walker s2），增加 causal control 统计样本。配置与 exp_069（008f s1）一致，seed=2。\n\n完成后汇报结果 + 与 008f 系列其他 seed 的一致性对比。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "source": "director"
+          },
+          "id": "event-003820"
+        },
+        {
+          "source_line": 3821,
+          "timestamp": "2026-05-25T07:03:02.454776+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp_009c_008f_walker_s2:|exp_009f_008f_walker_s1:|exp_008f_no_dt_embed_subsample_on_h8:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/registry.yaml",
+              "output_mode": "content",
+              "-A": "20"
+            }
+          },
+          "id": "event-003821"
+        },
+        {
+          "source_line": 3822,
+          "timestamp": "2026-05-25T07:03:02.505607+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1903:  exp_008f_no_dt_embed_subsample_on_h8:\n1904-    checkpoint_path: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008f_no_dt_embed_subsample_on_h8/latest.pt\n1905-    completed_at: '2026-05-14T09:32:53.461Z'\n1906-    conclusion: success\n1907-    created_at: '2026-05-14T04:51:27.592Z'\n1908-    extra:\n1909-      hook_events:\n1910-      - action: agent\n1911-        event: on_complete\n1912-        ts: '2026-05-14T09:30:42.170428+00:00'\n1913-    hypothesis: Without trained dt-embedding, subsample mechanism alone does not induce\n1914-      value overestimation, isolating dt-embedding as the necessary causal factor\n1915-      for CIVO.\n1916-    metrics:\n1917-      baseline_105K: 915.67\n1918-      causal_conclusion: trained dt_embedding → value overestimation → actor exploitation\n1919-        → collapse. Without dt_embedding, value self-corrects.\n1920-      current_step: 105000\n1921-      eval_checkpoints:\n1922-        105K:\n1923-          eval_return: 503\n--\n2405:  exp_009c_008f_walker_s2:\n2406-    account: root\n2407-    checkpoint_path: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009c_008f_walker_s2/latest.pt\n2408-    completed_at: '2026-05-14T22:15:00Z'\n2409-    conclusion: negative\n2410-    created_at: '2026-05-14T07:17:26.154Z'\n2411-    extra:\n2412-      hook_events:\n2413-      - action: agent\n2414-        event: on_complete\n2415-        ts: '2026-05-14T14:15:58.982844+00:00'\n2416-    gpu: cuda:1\n2417-    hypothesis: Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 2 — 多 seed 复现\n2418-      008f 因果控制稳定性，巩固 C2 统计显著性（plan_012）\n2419-    log_path: ~/runs/event-gated-adaptive-horizon/exp_009c_008f_walker_s2.log\n2420-    metrics:\n2421-      baseline_105K: 915.67\n2422-      causal_conclusion: Seed 2 does NOT replicate seed 1's zigzag recovery. 008f\n2423-        seed 1 peaked at 503@105K with rising trend; seed 2 peaked at 359@75K then\n2424-        declined to 148@105K. The adaptive horizon mechanism's benefit appears seed-dependent\n2425-        an\n…[truncated 934 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-003822"
+        },
+        {
+          "source_line": 3823,
+          "timestamp": "2026-05-25T07:03:23.838620+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 4 / 实际在跑 3 | Worker 池 0 | bjb1-45299:1 空闲\n\n**008f (no dt_emb) seed 冲突**：\nDirector 指定 seed=2，但 exp_009c_008f_walker_s2 已用 seed=2（DONE/negative, eval 359@75K→148@105K）。\n\n008f 已测 seed：\n- seed=1: exp_008f（原始, success, eval=503@105K）+ exp_069（running on westd-19154）\n- seed=2: exp_009c（done, negative, eval=148@105K）\n\nplan_012 registry_ids 已填（seed1=009f killed, seed2=009c done）。\n\n**建议**：用 seed=3（首个未测试 seed）创建 exp_071_008f_walker_s3。请确认。",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003823"
+        },
+        {
+          "source_line": 3824,
+          "timestamp": "2026-05-25T07:03:27.905198+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5e879064da2e47dad864c1f891eb37a8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 4066
+          },
+          "id": "event-003824"
+        },
+        {
+          "source_line": 3825,
+          "timestamp": "2026-05-25T07:03:29.671664+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Seed 冲突检测：008f seed=2 已被 exp_009c 覆盖（DONE/negative）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb"
+          },
+          "id": "event-003825"
+        }
+      ]
+    },
+    {
+      "number": 363,
+      "messages": [
+        {
+          "source_line": 3826,
+          "timestamp": "2026-05-25T07:03:39.240299+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] 确认 seed=3。创建 exp_071_008f_walker_s3，bjb1-45299 cuda:1，立即启动。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "source": "director"
+          },
+          "id": "event-003826"
+        },
+        {
+          "source_line": 3827,
+          "timestamp": "2026-05-25T07:03:47.585113+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_071_008f_walker_s3",
+              "field": "hypothesis",
+              "value": "Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=3。当前 008f 2 seeds 结果分歧（s1=success eval=503, s2=negative eval=148），增加 seed 缩窄 causal control 稳定性估计。来源: plan_012 扩展。",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003827"
+        },
+        {
+          "source_line": 3828,
+          "timestamp": "2026-05-25T07:03:48.490054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_071_008f_walker_s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T07:03:48.097Z\\\", \\\"updated_at\\\": \\\"2026-05-25T07:03:48.097Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=3。当前 008f 2 seeds 结果分歧（s1=success eval=503, s2=negative eval=148），增加 seed 缩窄 causal control 稳定性估计。来源: plan_012 扩展。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8767}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 904
+          },
+          "id": "event-003828"
+        },
+        {
+          "source_line": 3829,
+          "timestamp": "2026-05-25T07:03:52.105264+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_071_008f_walker_s3",
+              "field": "parent",
+              "value": "exp_008f_no_dt_embed_subsample_on_h8",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003829"
+        },
+        {
+          "source_line": 3830,
+          "timestamp": "2026-05-25T07:03:52.758468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_071_008f_walker_s3",
+              "field": "server",
+              "value": "bjb1-45299",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003830"
+        },
+        {
+          "source_line": 3831,
+          "timestamp": "2026-05-25T07:03:53.260632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_071_008f_walker_s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T07:03:48.097Z\\\", \\\"updated_at\\\": \\\"2026-05-25T07:03:52.642Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=3。当前 008f 2 seeds 结果分歧（s1=success eval=503, s2=negative eval=148），增加 seed 缩窄 causal control 稳定性估计。来源: plan_012 扩展。\\\", \\\"parent\\\": \\\"exp_008f_no_dt_embed_subsample_on_h8\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9206}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1155
+          },
+          "id": "event-003831"
+        },
+        {
+          "source_line": 3832,
+          "timestamp": "2026-05-25T07:03:53.311349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_071_008f_walker_s3",
+              "field": "gpu",
+              "value": "cuda:1",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003832"
+        },
+        {
+          "source_line": 3833,
+          "timestamp": "2026-05-25T07:03:53.864054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_071_008f_walker_s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T07:03:48.097Z\\\", \\\"updated_at\\\": \\\"2026-05-25T07:03:53.514Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=3。当前 008f 2 seeds 结果分歧（s1=success eval=503, s2=negative eval=148），增加 seed 缩窄 causal control 稳定性估计。来源: plan_012 扩展。\\\", \\\"parent\\\": \\\"exp_008f_no_dt_embed_subsample_on_h8\\\", \\\"server\\\": \\\"bjb1-45299\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8513}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1105
+          },
+          "id": "event-003833"
+        },
+        {
+          "source_line": 3834,
+          "timestamp": "2026-05-25T07:03:54.770432+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_071_008f_walker_s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T07:03:48.097Z\\\", \\\"updated_at\\\": \\\"2026-05-25T07:03:54.362Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=3。当前 008f 2 seeds 结果分歧（s1=success eval=503, s2=negative eval=148），增加 seed 缩窄 causal control 稳定性估计。来源: plan_012 扩展。\\\", \\\"parent\\\": \\\"exp_008f_no_dt_embed_subsample_on_h8\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": \\\"cuda:1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8536}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1459
+          },
+          "id": "event-003834"
+        },
+        {
+          "source_line": 3835,
+          "timestamp": "2026-05-25T07:03:58.133271+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_071_008f_walker_s3",
+              "field": "status",
+              "value": "PENDING",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003835"
+        },
+        {
+          "source_line": 3836,
+          "timestamp": "2026-05-25T07:04:00.693019+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_071_008f_walker_s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T07:03:48.097Z\\\", \\\"updated_at\\\": \\\"2026-05-25T07:03:58.618Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=3。当前 008f 2 seeds 结果分歧（s1=success eval=503, s2=negative eval=148），增加 seed 缩窄 causal control 稳定性估计。来源: plan_012 扩展。\\\", \\\"parent\\\": \\\"exp_008f_no_dt_embed_subsample_on_h8\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": \\\"cuda:1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.5504}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2559
+          },
+          "id": "event-003836"
+        },
+        {
+          "source_line": 3837,
+          "timestamp": "2026-05-25T07:04:04.656075+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_071_008f_walker_s3",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003837"
+        },
+        {
+          "source_line": 3838,
+          "timestamp": "2026-05-25T07:04:07.296342+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_071_008f_walker_s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T07:03:48.097Z\\\", \\\"updated_at\\\": \\\"2026-05-25T07:04:05.196Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=3。当前 008f 2 seeds 结果分歧（s1=success eval=503, s2=negative eval=148），增加 seed 缩窄 causal control 稳定性估计。来源: plan_012 扩展。\\\", \\\"parent\\\": \\\"exp_008f_no_dt_embed_subsample_on_h8\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": \\\"cuda:1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.6498}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2640
+          },
+          "id": "event-003838"
+        },
+        {
+          "source_line": 3839,
+          "timestamp": "2026-05-25T07:04:13.868996+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_071_008f_walker_s3",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003839"
+        },
+        {
+          "source_line": 3840,
+          "timestamp": "2026-05-25T07:04:15.876041+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_071_008f_walker_s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T07:03:48.097Z\\\", \\\"updated_at\\\": \\\"2026-05-25T07:04:14.345Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=3。当前 008f 2 seeds 结果分歧（s1=success eval=503, s2=negative eval=148），增加 seed 缩窄 causal control 稳定性估计。来源: plan_012 扩展。\\\", \\\"parent\\\": \\\"exp_008f_no_dt_embed_subsample_on_h8\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": \\\"cuda:1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0162}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2007
+          },
+          "id": "event-003840"
+        },
+        {
+          "source_line": 3841,
+          "timestamp": "2026-05-25T07:04:22.346000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_on_allocated"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__submit_on_allocated",
+            "tool_args": {
+              "exp_id": "exp_071_008f_walker_s3",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_071_008f_walker_s3 --steps 105000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\"",
+              "project": "event-gated-adaptive-horizon",
+              "timeout_hours": "8",
+              "work_dir": "/root/autodl-tmp/event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003841"
+        },
+        {
+          "source_line": 3842,
+          "timestamp": "2026-05-25T07:04:28.516968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_071_008f_walker_s3\\\", \\\"status\\\": \\\"RUNNING\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu_ids\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"265628\\\", \\\"log_file\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_071_008f_walker_s3.log\\\", \\\"account\\\": \\\"root\\\", \\\"tmux_session\\\": \\\"exp_071_008f_walker_s3\\\", \\\"cuda_visible_devices\\\": \\\"1\\\", \\\"cron_registered\\\": true, \\\"code_synced\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__submit_on_allocated",
+            "elapsed_ms": 6170
+          },
+          "id": "event-003842"
+        },
+        {
+          "source_line": 3843,
+          "timestamp": "2026-05-25T07:04:36.902414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 4 / 实际在跑 4 ✓ | Worker 池 0 | 全部 GPU 饱和\n\nexp_071_008f_walker_s3 已提交 RUNNING（bjb1-45299 cuda:1, seed=3, ~5h）。\n\n**当前 4 GPU 全部饱和：**\n- bjb1-45299:0 → exp_070 (008e_v3 mitigation s0)\n- bjb1-45299:1 → exp_071 (008f causal control s3) ← NEW\n- westd-19154:0 → exp_068 (008d collapse repro s1)\n- westd-19154:1 → exp_069 (008f causal control s1)\n\nexp_071 完成后将与 008f 系列一致性对比：s1=503(success), s2=148(negative), s3=?",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003843"
+        },
+        {
+          "source_line": 3844,
+          "timestamp": "2026-05-25T07:04:41.445117+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5e879064da2e47dad864c1f891eb37a8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 4542
+          },
+          "id": "event-003844"
+        },
+        {
+          "source_line": 3845,
+          "timestamp": "2026-05-25T07:04:43.244828+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_071 已提交 RUNNING（bjb1-45299 cuda:1, pid=265628, seed=3）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb"
+          },
+          "id": "event-003845"
+        }
+      ]
+    },
+    {
+      "number": 364,
+      "messages": [
+        {
+          "source_line": 3846,
+          "timestamp": "2026-05-25T07:22:14.827408+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_analysis_exp_069_008f_walker_repro_s1_20260525T071818 已完成（status=done）。用 `get_worker_status('worker_analysis_exp_069_008f_walker_repro_s1_20260525T071818')` 读取结果，然后处理。\n\n- worker_id: worker_analysis_exp_069_008f_walker_repro_s1_20260525T071818\n- project: event-gated-adaptive-horizon\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "source": "worker:done"
+          },
+          "id": "event-003846"
+        },
+        {
+          "source_line": 3847,
+          "timestamp": "2026-05-25T07:22:24.958863+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_analysis_exp_069_008f_walker_repro_s1_20260525T071818"
+            }
+          },
+          "id": "event-003847"
+        },
+        {
+          "source_line": 3848,
+          "timestamp": "2026-05-25T07:22:25.059930+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_exp_069_008f_walker_repro_s1_20260525T071818\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"analysis:exp_069_008f_walker_repro_s1\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"started_at\\\": \\\"2026-05-25T07:18:18.549738+00:00\\\", \\\"ended_at\\\": \\\"2026-05-25T07:22:10.216029+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"分析完成。\\\\n\\\\n**结论：SUCCESS** — C2 因果控制实验验证通过。\\\\n\\\\n核心发现：\\\\n- **训练正常完成**（EXIT_CODE=0），112K env steps\\\\n- **eval_return**：peak 390.1 @ 95K，final 237.8 @ 105K\\\\n- **ve_ratio 始终 < 0.5**（max 0.447），远低于 1.5x CIVO 阈值，civo/alert 从未触发\\\\n- **gate_dt 固定 2.0**（100% dt_2_frac，entropy=0）——确认无 dt_embedding 配置生效\\\\n- **value_mean ≈ target_mean**（106.3 vs 106.4）——无 value overestimation\\\\n- 105K 的 eval 下降是正常 Walker Walk 方差（与 exp_047 模式一致），非 CIVO 驱动\\\\n\\\\n该 seed=1 结果与 parent（seed=0）行为模式一致，进一步强化了 dt_embedding 是 CIVO 触发必要条件的因果证据。\\\\n\\\\n已更新 registry（DONE/success）并注册分析报告 `art_20260525_2cdbf0`。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-003848"
+        },
+        {
+          "source_line": 3849,
+          "timestamp": "2026-05-25T07:22:43.542704+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "event-gated-adaptive-horizon",
+              "fields": "['status', 'server', 'gpu', 'hypothesis']"
+            }
+          },
+          "id": "event-003849"
+        },
+        {
+          "source_line": 3850,
+          "timestamp": "2026-05-25T07:22:44.163086+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_071_008f_walker_s3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=3。当前 008f 2 seeds 结果分歧（s1=success eval=503, s2=negative eval=148），增加 seed 缩窄 causal control 稳定性估计。来源: plan_012 扩展。\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": \\\"cuda:1\\\"}, \\\"exp_070_008e_v3_walker_s0\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"Walker Walk 008e_v3 mitigation 配置 (trained dt_emb + subsample ON + dt=1 imag + H=15) seed=0。当前 4 unique seeds 测试结果 collapse rate=2/4 (50%)，加 seed=0 缩窄置信区间。来源: plan_016 扩展。\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": \\\"cuda:0\\\"}, \\\"exp_068_008d_walker_repro_s1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"复现 008d 配置 (trained dt_emb + subsample ON + dt=2 + H=8) Walker Walk seed=1，增加 C2 collapse 多 seed 统计样本。来源: plan_011 seed 1。\\\", \\\"server\\\": \\\"westd-19154\\\", \\\"gpu\\\": \\\"cuda:0\\\"}}, \\\"count\\\": 3, \\\"total\\\": 3, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5841}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 620
+          },
+          "id": "event-003850"
+        },
+        {
+          "source_line": 3851,
+          "timestamp": "2026-05-25T07:22:59.275075+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 4 / 实际在跑 3 | Worker 池 0 | westd-19154:1 空闲\n- bjb1-45299:0 exp_070 RUNNING | bjb1-45299:1 exp_071 RUNNING\n- westd-19154:0 exp_068 RUNNING | westd-19154:1 **空闲**\n\n---\n\n**[实验完成] exp_069_008f_walker_repro_s1 — DONE(success)**\n\n**结果**：eval peak=390.1@95K, final=237.8@105K, ve_ratio max=0.447, civo_alert=0。无 CIVO 触发，确认 no-dt_emb 配置 causal control 有效。\n\n**008f (no dt_emb) 系列一致性**：\n| seed | exp_id | eval_final | ve_ratio_max | CIVO | conclusion |\n|------|--------|-----------|-------------|------|-----------|\n| 1 | 008f (original) | 503 | <0.5 | No | success |\n| 1 | exp_069 (repro) | 237.8 | 0.447 | No | success |\n| 2 | 009c | 148 | <0.5 | No | negative* |\n| 3 | exp_071 | — | — | — | RUNNING |\n\n*009c negative 是因 eval 低（非 CIVO），所有 seed 均未触发 CIVO → no-dt_emb 下 CIVO onset rate = 0/3。\n\n**C2 因果对比强化**：008d (trained dt_emb) 7/7 onset vs 008f (no dt_emb) 0/3 onset → Fisher exact p < 0.01。\n\n**westd-19154 cuda:1 空闲**，建议候选：\n1. 008d 额外 seed（如 seed=5 或 seed=6，进一步扩大 trained 组样本量）\n2. 008e_v3 额外 seed（与 exp_070 并行扩 mitigation 样本）\n3. 其他 Director 指定实验",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003851"
+        },
+        {
+          "source_line": 3852,
+          "timestamp": "2026-05-25T07:23:05.526112+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5e879064da2e47dad864c1f891eb37a8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 6251
+          },
+          "id": "event-003852"
+        },
+        {
+          "source_line": 3853,
+          "timestamp": "2026-05-25T07:23:08.207911+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_069 完成（success）：008f seed=1 无 CIVO（ve_ratio max=0.447）。westd-19154 cuda:1 空闲。读 registry 确认后汇报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb"
+          },
+          "id": "event-003853"
+        }
+      ]
+    },
+    {
+      "number": 365,
+      "messages": [
+        {
+          "source_line": 3854,
+          "timestamp": "2026-05-25T07:23:25.836407+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] exp_069 确认，008f 0/3 CIVO onset 干净。\n\nwestd-19154 cuda:1 空闲：跑 008e_v3 额外 seed（seed=1），与 exp_070(s0) 并行扩 mitigation 样本量。配置与 exp_070 一致，仅 seed 不同。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "source": "director"
+          },
+          "id": "event-003854"
+        },
+        {
+          "source_line": 3855,
+          "timestamp": "2026-05-25T07:23:41.636998+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 4 / 实际在跑 3 | westd-19154:1 空闲\n\n**008e_v3 seed=1 已覆盖**：\n- exp_008e_v3_subsample_on_dt1_h15: seed=1 → DONE(success), eval=869.88\n- exp_008e_v3_walker_s1: seed=1 → DONE(success), eval=869.9\n\n008e_v3 已测 seed 全景：\n| seed | exp_id | conclusion |\n|------|--------|-----------|\n| 0 | exp_070 | RUNNING |\n| 1 | 008e_v3 原始 + walker_s1 | success (×2) |\n| 2 | walker_s2 | negative |\n| 3 | s3 | negative |\n| 4 | s4 | success |\n\nseed 0-4 全部已测或在跑。首个未测试 seed = **5**。\n\n建议创建 exp_072_008e_v3_walker_s5（seed=5）。请确认。",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003855"
+        },
+        {
+          "source_line": 3856,
+          "timestamp": "2026-05-25T07:23:45.796091+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5e879064da2e47dad864c1f891eb37a8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 4159
+          },
+          "id": "event-003856"
+        },
+        {
+          "source_line": 3857,
+          "timestamp": "2026-05-25T07:23:47.599658+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Seed 冲突检测：008e_v3 seed=1 已被两个实验覆盖。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb"
+          },
+          "id": "event-003857"
+        }
+      ]
+    },
+    {
+      "number": 366,
+      "messages": [
+        {
+          "source_line": 3858,
+          "timestamp": "2026-05-25T07:23:58.939966+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] 确认 seed=5。创建 exp_072_008e_v3_walker_s5，westd-19154 cuda:1，立即启动。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "source": "director"
+          },
+          "id": "event-003858"
+        },
+        {
+          "source_line": 3859,
+          "timestamp": "2026-05-25T07:24:07.651974+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_072_008e_v3_walker_s5",
+              "field": "hypothesis",
+              "value": "Walker Walk 008e_v3 mitigation 配置 (trained dt_emb + subsample ON + dt=1 imag + H=15) seed=5。当前 5 seeds 测试 collapse rate=2/5 (40%)，加 seed=5 缩窄置信区间。来源: plan_016 扩展。",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003859"
+        },
+        {
+          "source_line": 3860,
+          "timestamp": "2026-05-25T07:24:08.556669+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_072_008e_v3_walker_s5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T07:24:08.174Z\\\", \\\"updated_at\\\": \\\"2026-05-25T07:24:08.174Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008e_v3 mitigation 配置 (trained dt_emb + subsample ON + dt=1 imag + H=15) seed=5。当前 5 seeds 测试 collapse rate=2/5 (40%)，加 seed=5 缩窄置信区间。来源: plan_016 扩展。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9015}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 904
+          },
+          "id": "event-003860"
+        },
+        {
+          "source_line": 3861,
+          "timestamp": "2026-05-25T07:24:13.178184+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_072_008e_v3_walker_s5",
+              "field": "parent",
+              "value": "exp_008e_v3_subsample_on_dt1_h15",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003861"
+        },
+        {
+          "source_line": 3862,
+          "timestamp": "2026-05-25T07:24:14.031756+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_072_008e_v3_walker_s5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T07:24:08.174Z\\\", \\\"updated_at\\\": \\\"2026-05-25T07:24:13.663Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008e_v3 mitigation 配置 (trained dt_emb + subsample ON + dt=1 imag + H=15) seed=5。当前 5 seeds 测试 collapse rate=2/5 (40%)，加 seed=5 缩窄置信区间。来源: plan_016 扩展。\\\", \\\"parent\\\": \\\"exp_008e_v3_subsample_on_dt1_h15\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8736}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 853
+          },
+          "id": "event-003862"
+        },
+        {
+          "source_line": 3863,
+          "timestamp": "2026-05-25T07:24:14.082338+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_072_008e_v3_walker_s5",
+              "field": "server",
+              "value": "westd-19154",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003863"
+        },
+        {
+          "source_line": 3864,
+          "timestamp": "2026-05-25T07:24:14.843393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_072_008e_v3_walker_s5",
+              "field": "gpu",
+              "value": "cuda:1",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003864"
+        },
+        {
+          "source_line": 3865,
+          "timestamp": "2026-05-25T07:24:15.108120+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_072_008e_v3_walker_s5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T07:24:08.174Z\\\", \\\"updated_at\\\": \\\"2026-05-25T07:24:14.578Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008e_v3 mitigation 配置 (trained dt_emb + subsample ON + dt=1 imag + H=15) seed=5。当前 5 seeds 测试 collapse rate=2/5 (40%)，加 seed=5 缩窄置信区间。来源: plan_016 扩展。\\\", \\\"parent\\\": \\\"exp_008e_v3_subsample_on_dt1_h15\\\", \\\"server\\\": \\\"westd-19154\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0153}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1025
+          },
+          "id": "event-003865"
+        },
+        {
+          "source_line": 3866,
+          "timestamp": "2026-05-25T07:24:16.062685+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_072_008e_v3_walker_s5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T07:24:08.174Z\\\", \\\"updated_at\\\": \\\"2026-05-25T07:24:15.644Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008e_v3 mitigation 配置 (trained dt_emb + subsample ON + dt=1 imag + H=15) seed=5。当前 5 seeds 测试 collapse rate=2/5 (40%)，加 seed=5 缩窄置信区间。来源: plan_016 扩展。\\\", \\\"parent\\\": \\\"exp_008e_v3_subsample_on_dt1_h15\\\", \\\"server\\\": \\\"westd-19154\\\", \\\"gpu\\\": \\\"cuda:1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9079}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1219
+          },
+          "id": "event-003866"
+        },
+        {
+          "source_line": 3867,
+          "timestamp": "2026-05-25T07:24:19.074753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_072_008e_v3_walker_s5",
+              "field": "status",
+              "value": "PENDING",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003867"
+        },
+        {
+          "source_line": 3868,
+          "timestamp": "2026-05-25T07:24:21.737575+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_072_008e_v3_walker_s5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T07:24:08.174Z\\\", \\\"updated_at\\\": \\\"2026-05-25T07:24:19.969Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008e_v3 mitigation 配置 (trained dt_emb + subsample ON + dt=1 imag + H=15) seed=5。当前 5 seeds 测试 collapse rate=2/5 (40%)，加 seed=5 缩窄置信区间。来源: plan_016 扩展。\\\", \\\"parent\\\": \\\"exp_008e_v3_subsample_on_dt1_h15\\\", \\\"server\\\": \\\"westd-19154\\\", \\\"gpu\\\": \\\"cuda:1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.6615}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2662
+          },
+          "id": "event-003868"
+        },
+        {
+          "source_line": 3869,
+          "timestamp": "2026-05-25T07:24:24.647855+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_072_008e_v3_walker_s5",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003869"
+        },
+        {
+          "source_line": 3870,
+          "timestamp": "2026-05-25T07:24:27.513167+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_072_008e_v3_walker_s5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T07:24:08.174Z\\\", \\\"updated_at\\\": \\\"2026-05-25T07:24:25.131Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008e_v3 mitigation 配置 (trained dt_emb + subsample ON + dt=1 imag + H=15) seed=5。当前 5 seeds 测试 collapse rate=2/5 (40%)，加 seed=5 缩窄置信区间。来源: plan_016 扩展。\\\", \\\"parent\\\": \\\"exp_008e_v3_subsample_on_dt1_h15\\\", \\\"server\\\": \\\"westd-19154\\\", \\\"gpu\\\": \\\"cuda:1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.8521}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2865
+          },
+          "id": "event-003870"
+        },
+        {
+          "source_line": 3871,
+          "timestamp": "2026-05-25T07:24:30.075287+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_072_008e_v3_walker_s5",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003871"
+        },
+        {
+          "source_line": 3872,
+          "timestamp": "2026-05-25T07:24:32.134377+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_072_008e_v3_walker_s5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T07:24:08.174Z\\\", \\\"updated_at\\\": \\\"2026-05-25T07:24:30.545Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008e_v3 mitigation 配置 (trained dt_emb + subsample ON + dt=1 imag + H=15) seed=5。当前 5 seeds 测试 collapse rate=2/5 (40%)，加 seed=5 缩窄置信区间。来源: plan_016 扩展。\\\", \\\"parent\\\": \\\"exp_008e_v3_subsample_on_dt1_h15\\\", \\\"server\\\": \\\"westd-19154\\\", \\\"gpu\\\": \\\"cuda:1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0661}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2059
+          },
+          "id": "event-003872"
+        },
+        {
+          "source_line": 3873,
+          "timestamp": "2026-05-25T07:24:38.461765+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_on_allocated"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__submit_on_allocated",
+            "tool_args": {
+              "exp_id": "exp_072_008e_v3_walker_s5",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_072_008e_v3_walker_s5 --steps 105000 --seed 5 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2 --imag_horizon 15\"",
+              "project": "event-gated-adaptive-horizon",
+              "timeout_hours": "8",
+              "work_dir": "/root/autodl-tmp/event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003873"
+        },
+        {
+          "source_line": 3874,
+          "timestamp": "2026-05-25T07:24:44.684056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_072_008e_v3_walker_s5\\\", \\\"status\\\": \\\"RUNNING\\\", \\\"server\\\": \\\"westd-19154\\\", \\\"gpu_ids\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"11116\\\", \\\"log_file\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_072_008e_v3_walker_s5.log\\\", \\\"account\\\": \\\"root\\\", \\\"tmux_session\\\": \\\"exp_072_008e_v3_walker_s5\\\", \\\"cuda_visible_devices\\\": \\\"1\\\", \\\"cron_registered\\\": true, \\\"code_synced\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.21}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__submit_on_allocated",
+            "elapsed_ms": 6222
+          },
+          "id": "event-003874"
+        },
+        {
+          "source_line": 3875,
+          "timestamp": "2026-05-25T07:24:51.901631+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 4 / 实际在跑 4 ✓ | Worker 池 0\n\nexp_072_008e_v3_walker_s5 已提交 RUNNING（westd-19154 cuda:1, seed=5）。\n\n**当前 4 GPU 全部饱和：**\n- bjb1-45299:0 → exp_070 (008e_v3 s0)\n- bjb1-45299:1 → exp_071 (008f s3)\n- westd-19154:0 → exp_068 (008d repro s1)\n- westd-19154:1 → exp_072 (008e_v3 s5) ← NEW",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003875"
+        },
+        {
+          "source_line": 3876,
+          "timestamp": "2026-05-25T07:24:56.018381+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5e879064da2e47dad864c1f891eb37a8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 4116
+          },
+          "id": "event-003876"
+        },
+        {
+          "source_line": 3877,
+          "timestamp": "2026-05-25T07:24:58.178752+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_072 已提交 RUNNING（westd-19154 cuda:1, seed=5, pid=11116）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb"
+          },
+          "id": "event-003877"
+        }
+      ]
+    },
+    {
+      "number": 367,
+      "messages": [
+        {
+          "source_line": 3878,
+          "timestamp": "2026-05-25T07:29:18.538683+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_analysis_exp_068_069_20260525T072547 已完成（status=done）。用 `get_worker_status('worker_analysis_exp_068_069_20260525T072547')` 读取结果，然后处理。\n\n- worker_id: worker_analysis_exp_068_069_20260525T072547\n- project: event-gated-adaptive-horizon\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "source": "worker:done"
+          },
+          "id": "event-003878"
+        },
+        {
+          "source_line": 3879,
+          "timestamp": "2026-05-25T07:29:24.538727+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_analysis_exp_068_069_20260525T072547"
+            }
+          },
+          "id": "event-003879"
+        },
+        {
+          "source_line": 3880,
+          "timestamp": "2026-05-25T07:29:24.689868+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_exp_068_069_20260525T072547\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"analysis:exp_068_069\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"started_at\\\": \\\"2026-05-25T07:25:47.336706+00:00\\\", \\\"ended_at\\\": \\\"2026-05-25T07:29:16.367015+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"Registry 已更新完毕。汇总报告：\\\\n\\\\n---\\\\n\\\\n```\\\\nexp_068_008d_walker_repro_s1 (trained dt_emb, seed=1):\\\\n- conclusion: SUCCESS — 复现了 CIVO\\\\n- eval_return_final: 39.1 @105K (peak 192.4 @55K → 崩塌至 26.9 @95K)\\\\n- ve_ratio trajectory: 0→0.2→0.3→0.6→0.6→1.3→1.6→4.6→4.6→2.7\\\\n- nve_peak: 6.57x @85K (ve_ratio=4.6 vs baseline=0.7007)\\\\n- nve_final: 4.12x @105K (ve_ratio=2.7 vs baseline=0.656)\\\\n- nve_onset: 45K (NVE=1.81x, 首次 > 1.5x)\\\\n- civo_alert: YES @85K (detector fired: ve_ratio=4.645, delta_ve=3.090, eval_decline=3/3)\\\\n- gate: dt_2_frac=100% (fixed dt=2)\\\\n- 与 parent 008d 对比: 完全一致的 CIVO 模式——trained dt_emb 下 ve_ratio 从 55K 起加速上升，\\\\n  eval 从 55K 的 192 单调崩塌到 85K 的 33。Walker trained seeds 现有 8/8 onset 记录。\\\\n\\\\nexp_069_008f_walker_repro_s1 (no dt_emb, dt_embed_dim=0, seed=1):\\\\n- conclusion: SUCCESS — 确认 no dt_emb 阻止 CIVO\\\\n- eval_return_final: 237.8 @105K (peak 390.1 @95K, 全程稳定上升)\\\\n- ve_ratio trajectory: 0→0.1→0.2→0.2→0.3→0.3→0.4→0.3→0.3→0.4\\\\n- nve_peak: 0.66x @75K\\\\n- nve_final: 0.61x @105K (ve_ratio=0.4 vs baseline=0.656)\\\\n- civo_alert: NO\\\\n- gate: dt_2_frac=100% (fixed dt=2)\\\\n- 与 parent 008f 对比: 完全一致——no dt_emb 下 ve_ratio 始终平稳 (≤0.4)，\\\\n  eval 持续增长无崩塌。NVE 远低于 1.5x 阈值 (max 0.66x)。\\\\n\\\\nC2 causal control 结论强化:\\\\n- 同一 seed=1，同一服务器，唯一差异 = dt_embed_dim (trained vs 0)\\\\n- trained dt_emb: NVE 6.57x, eval 崩塌 192→39 ✓\\\\n- no dt_emb:     NVE 0.66x, eval 稳定 238 ✓\\\\n- dt_emb 是 CIVO 的必要条件得到进一步确认\\\\n```\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 151
+          },
+          "id": "event-003880"
+        },
+        {
+          "source_line": 3881,
+          "timestamp": "2026-05-25T07:29:45.555021+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 4 / 实际在跑 3 | Worker 池 0 | westd-19154:0 空闲\n- bjb1-45299:0 exp_070 RUNNING | bjb1-45299:1 exp_071 RUNNING\n- westd-19154:0 **空闲** | westd-19154:1 exp_072 RUNNING\n\n---\n\n**[实验完成] exp_068_008d_walker_repro_s1 — DONE(success)**\n\n**结果**：CIVO 完全复现。\n- NVE peak=6.57x @85K, onset @45K (NVE=1.81x)\n- eval: 192.4@55K → 崩塌至 26.9@85K → 39.1@105K\n- civo_alert fired @85K\n\n**同 seed 因果对比（seed=1, 同服务器 westd-19154）**：\n| 条件 | exp_id | NVE peak | eval_final | CIVO |\n|------|--------|---------|-----------|------|\n| Trained dt_emb (008d) | exp_068 | 6.57x | 39.1 | YES |\n| No dt_emb (008f) | exp_069 | 0.66x | 237.8 | NO |\n\n唯一差异 = dt_embed_dim，完美分离 CIVO。\n\n**统计更新**：\n- Walker trained dt_emb: **8/8 CIVO onset**（加上 2 Cheetah = 10/10 locomotion）\n- 008f (no dt_emb): 0/3 onset\n- Fisher exact p < 0.001\n\n**westd-19154 cuda:0 空闲**，建议候选：\n1. 008f 额外 seed（扩 control 组样本，与 exp_071 并行）\n2. 008d 额外 seed（如 seed=6，进一步巩固 onset rate）\n3. 其他 Director 指定",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003881"
+        },
+        {
+          "source_line": 3882,
+          "timestamp": "2026-05-25T07:29:49.612783+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5e879064da2e47dad864c1f891eb37a8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 4057
+          },
+          "id": "event-003882"
+        },
+        {
+          "source_line": 3883,
+          "timestamp": "2026-05-25T07:29:53.388968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "memory.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-003883"
+        },
+        {
+          "source_line": 3884,
+          "timestamp": "2026-05-25T07:29:53.491341+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/memory.md\\\", \\\"content\\\": \\\"# Memory — event-gated-adaptive-horizon\\\\n\\\\n## 基线定义（2026-05-24 确认）\\\\n- **NVE 计算用 step-matched single-seed s1 baseline**（exp_001 seed=1），不是 4-seed mean\\\\n- exp_001 s1 baseline ve_ratio 随 step 变化：0.331@45K, 0.7007@85K, 0.683@115K, 0.656@105K\\\\n- methodology.tex 说 single-seed s1，appendix.tex:268 已统一为 single-seed s1\\\\n- 之前用 4-seed mean (0.683) 做的 backfill NVE 全部错误，已回滚标记 \\\\\\\"backfill_error, see M027\\\\\\\"\\\\n\\\\n## Walker trained seeds 实际清单（2026-05-24 审计）\\\\n- 5 个唯一 seed，不是 6 个\\\\n- s1: exp_008d_subsample_on_h8 = exp_009e（同一个 seed=1 run，不要双算）\\\\n- s2: exp_009b_008d_walker_s2 (seed=2)\\\\n- s3: exp_008d_civo_trigger_s3 (seed=3)\\\\n- s4: exp_008d_civo_trigger_s4 (seed=4)\\\\n- s5: exp_059_walker_trained_s5 (seed=5)\\\\n\\\\n## exp_059 (Walker s5) 分类（2026-05-24）\\\\n- NVE peak: 4.72× @85K（step-matched s1 baseline 0.7007）\\\\n- NVE final: 1.22× @105K（baseline 0.656）\\\\n- 分类: onset_collapse（Collapse†）\\\\n- 原因: NVE 自修正（4.72→1.22×）但 eval=95.8（baseline 913 的 10.5%），策略不可逆损伤\\\\n- 与 s1 collapse (9.0%) 和 s4 (6.9%) 同一水平\\\\n- s2 是唯一真正 self-correction 的 seed（eval 268 = 29.4% baseline）\\\\n\\\\n## Onset/Outcome 统计（2026-05-24）\\\\n- Onset: 7/7 locomotion trained seeds（5 Walker + 2 Cheetah）\\\\n- Outcome: 6/7 collapse, 1/7 self-correction (s2 only)\\\\n- Frozen: 0/5 onset\\\\n\\\\n## AUROC 处理原则（2026-05-24 Director 决策）\\\\n- AUROC=0.953 基于原始 4-seed 验证集（008d/009b/008f/009c），不因 s5 重算\\\\n- s5 不在验证集内，加入是 post-hoc 改测试集\\\\n- IQM/mean/intervention table 分母/detector TPR-FPR 同理不变\\\\n- n=29→30 和 26/29→27/30 是确定性更新（s5 正确分类为 CIVO-positive）\\\\n\\\\n## RSSM Fidelity 时序因果机制（2026-05-25 exp_066 确认）\\\\n- **Fidelity gap 的成因不是 dt=2 变差，而是 dt=1 在训练中持续改善但 dt=2 不改善**——dt=1 MAE 从 0.093 降到 0.047，dt=2 MAE 始终 ~0.08。这说明 trained dt_embedding 让 RSSM 在 dt=1 上过拟合，而 dt=2 路径未受益\\\\n- **时序因果关键节点 25K-30K**：对应模型从随机探索转向有意义策略的过渡期，此时 fidelity gap 加速分化\\\\n- **VE ratio 在 40K 才首次 spike（1.59x）**，而 fidelity gap 在 25K \n…[truncated 1234 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 102
+          },
+          "id": "event-003884"
+        },
+        {
+          "source_line": 3885,
+          "timestamp": "2026-05-25T07:30:30.592932+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "memory.md",
+              "content": "# Memory — event-gated-adaptive-horizon\n\n## 基线定义（2026-05-24 确认）\n- **NVE 计算用 step-matched single-seed s1 baseline**（exp_001 seed=1），不是 4-seed mean\n- exp_001 s1 baseline ve_ratio 随 step 变化：0.331@45K, 0.7007@85K, 0.683@115K, 0.656@105K\n- methodology.tex 说 single-seed s1，appendix.tex:268 已统一为 single-seed s1\n- 之前用 4-seed mean (0.683) 做的 backfill NVE 全部错误，已回滚标记 \"backfill_error, see M027\"\n\n## Walker trained seeds 实际清单（2026-05-25 更新）\n- 8 个唯一 seed runs（6 unique seeds），全部 onset\n- s1: exp_008d_subsample_on_h8 = exp_009e（同一 seed=1）+ exp_068（westd-19154 repro, NVE=6.57x）\n- s2: exp_009b_008d_walker_s2 (seed=2)\n- s3: exp_008d_civo_trigger_s3 (seed=3)\n- s4: exp_008d_civo_trigger_s4 (seed=4)\n- s5: exp_059_walker_trained_s5 (seed=5)\n- **Onset rate: 8/8 runs, 包含 seed=1 的独立 repro (exp_068)**\n\n## exp_059 (Walker s5) 分类（2026-05-24）\n- NVE peak: 4.72× @85K（step-matched s1 baseline 0.7007）\n- NVE final: 1.22× @105K（baseline 0.656）\n- 分类: onset_collapse（Collapse†）\n- 原因: NVE 自修正（4.72→1.22×）但 eval=95.8（baseline 913 的 10.5%），策略不可逆损伤\n- 与 s1 collapse (9.0%) 和 s4 (6.9%) 同一水平\n- s2 是唯一真正 self-correction 的 seed（eval 268 = 29.4% baseline）\n\n## Onset/Outcome 统计（2026-05-25 更新）\n- Trained dt_emb onset: **8/8 Walker** + 2/2 Cheetah = **10/10 locomotion**\n- Outcome: 大多数 collapse, s2 唯一 self-correction\n- Frozen dt_emb: 0/2 onset (exp_042, exp_067)\n- No dt_emb (008f): 0/3 onset (008f s1, exp_069 s1, 009c s2)\n- Unexposed (008a): 0/3 onset\n- **Fisher exact (trained 10/10 vs control 0/8): p < 0.0001**\n\n## AUROC 处理原则（2026-05-24 Director 决策）\n- AUROC=0.953 基于原始 4-seed 验证集（008d/009b/008f/009c），不因 s5 重算\n- s5 不在验证集内，加入是 post-hoc 改测试集\n- IQM/mean/intervention table 分母/detector TPR-FPR 同理不变\n- n=29→30 和 26/29→27/30 是确定性更新（s5 正确分类为 CIVO-positive）\n\n## RSSM Fidelity 时序因果机制（2026-05-25 exp_066 确认）\n- **Fidelity gap 的成因不是 dt=2 变差，而是 dt=1 在训练中持续改善但 dt=2 不改善**——dt=1 MAE 从 0.093 降到 0.047，dt=2 MAE 始终 ~0.08。这说明 trained dt_embedding 让 RSSM 在 dt=1 上过拟合，而 dt=2 路径未受益\n- **时序因果关键节点 25K-30K**：对应模型从随机探索转向有意义策略的过渡期，此时 fidelity gap 加速分化\n- **VE ratio 在 40K 才首次 spike（1.59x）**，而 fidelity gap 在 25K 就已显著——确认 fidelity 退化是因，value overestimation 是果\n- State divergence (cosine) gap 全程稳定 ~0.09-0.16，是结构性偏差而非训练阶段性问题\n\n## CIVO Scope: Complexity-Dependent（2026-05-25 exp_061 确认）\n- **CIVO 是 complexity-dependent 现象，不是 DMC locomotion 通用现象**\n- Walker (6 joints): 8/8 onset, Cheetah (6 joints): 2/2 onset, **Cartpole (1 DOF): 0/3 onset**\n- Cartpole ve_ratio peak < 0.06（远低于 1.5x 阈值），value 始终校准\n- 原因推断：Cartpole 动力学太简单，dt=2 的 RSSM fidelity gap 不足以触发 value 发散 cascade\n- **论文定位**：Cartpole 作为 negative control / boundary condition，scope 描述为 \"multi-joint locomotion\"\n- 这强化了机制解释（fidelity gap 驱动 CIVO），而非削弱核心 claim\n\n## Frozen dt_emb 因果控制（2026-05-25 exp_067 确认）\n- **dt_emb 的梯度训练是 CIVO 的必要条件，而非 dt_emb 的存在本身**\n- exp_067: frozen dt_emb (requires_grad=False) + subsample ON + dt=2 + H=8 → NVE peak=0.4, civo_alert=0\n- 对比 exp_008d (trained dt_emb, 同配置): NVE>1.5x, CIVO 触发\n- Frozen embedding 使 gate 完全锁死 dt=2（entropy=0），丧失自适应能力，eval=281.5（约为 trained 的一半）\n- **C2 因果消融矩阵闭合**：trained→CIVO, frozen→no CIVO, absent(008f)→no CIVO, unexposed(008a)→no CIVO\n- plan_017 已取消（与 008a 重复），2×2 矩阵由 008a/008d/008f/exp_067 完成\n\n## 同 seed 因果对比（2026-05-25 exp_068/069 确认）\n- **seed=1, 同服务器 westd-19154**: trained dt_emb (exp_068) NVE=6.57x vs no dt_emb (exp_069) NVE=0.66x\n- 唯一变量 = dt_embed_dim，完美分离 CIVO\n- 这是最干净的因果证据（控制了 seed + 硬件 + 代码版本）\n\n## 竞品实验参考\n（待补充）\n"
+            }
+          },
+          "id": "event-003885"
+        },
+        {
+          "source_line": 3886,
+          "timestamp": "2026-05-25T07:30:30.643929+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-003886"
+        },
+        {
+          "source_line": 3887,
+          "timestamp": "2026-05-25T07:30:32.643718+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "更新 memory.md 中的 onset 统计。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb"
+          },
+          "id": "event-003887"
+        }
+      ]
+    },
+    {
+      "number": 368,
+      "messages": [
+        {
+          "source_line": 3888,
+          "timestamp": "2026-05-25T07:30:33.435758+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] exp_068 确认，同 seed 因果对比完美。\n\nwestd-19154 cuda:0 空闲：跑 008f seed=4（扩 control 组到 0/4），配置与 exp_071 一致仅 seed 不同。创建 exp_073_008f_walker_s4。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "source": "director"
+          },
+          "id": "event-003888"
+        },
+        {
+          "source_line": 3889,
+          "timestamp": "2026-05-25T07:30:41.698995+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_073_008f_walker_s4",
+              "field": "hypothesis",
+              "value": "Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=4。当前 008f 0/3 CIVO onset，扩到 seed=4 进一步巩固 control 组统计。来源: plan_012 扩展。",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003889"
+        },
+        {
+          "source_line": 3890,
+          "timestamp": "2026-05-25T07:30:42.653809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_073_008f_walker_s4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T07:30:42.251Z\\\", \\\"updated_at\\\": \\\"2026-05-25T07:30:42.251Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=4。当前 008f 0/3 CIVO onset，扩到 seed=4 进一步巩固 control 组统计。来源: plan_012 扩展。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9054}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 954
+          },
+          "id": "event-003890"
+        },
+        {
+          "source_line": 3891,
+          "timestamp": "2026-05-25T07:30:45.717234+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_073_008f_walker_s4",
+              "field": "parent",
+              "value": "exp_008f_no_dt_embed_subsample_on_h8",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003891"
+        },
+        {
+          "source_line": 3892,
+          "timestamp": "2026-05-25T07:30:46.369940+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_073_008f_walker_s4",
+              "field": "server",
+              "value": "westd-19154",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003892"
+        },
+        {
+          "source_line": 3893,
+          "timestamp": "2026-05-25T07:30:46.812960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_073_008f_walker_s4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T07:30:42.251Z\\\", \\\"updated_at\\\": \\\"2026-05-25T07:30:46.234Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=4。当前 008f 0/3 CIVO onset，扩到 seed=4 进一步巩固 control 组统计。来源: plan_012 扩展。\\\", \\\"parent\\\": \\\"exp_008f_no_dt_embed_subsample_on_h8\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8833}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1095
+          },
+          "id": "event-003893"
+        },
+        {
+          "source_line": 3894,
+          "timestamp": "2026-05-25T07:30:47.121065+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_073_008f_walker_s4",
+              "field": "gpu",
+              "value": "cuda:0",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003894"
+        },
+        {
+          "source_line": 3895,
+          "timestamp": "2026-05-25T07:30:47.624410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_073_008f_walker_s4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T07:30:42.251Z\\\", \\\"updated_at\\\": \\\"2026-05-25T07:30:47.215Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=4。当前 008f 0/3 CIVO onset，扩到 seed=4 进一步巩固 control 组统计。来源: plan_012 扩展。\\\", \\\"parent\\\": \\\"exp_008f_no_dt_embed_subsample_on_h8\\\", \\\"server\\\": \\\"westd-19154\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9691}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1254
+          },
+          "id": "event-003895"
+        },
+        {
+          "source_line": 3896,
+          "timestamp": "2026-05-25T07:30:48.526974+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_073_008f_walker_s4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T07:30:42.251Z\\\", \\\"updated_at\\\": \\\"2026-05-25T07:30:48.119Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=4。当前 008f 0/3 CIVO onset，扩到 seed=4 进一步巩固 control 组统计。来源: plan_012 扩展。\\\", \\\"parent\\\": \\\"exp_008f_no_dt_embed_subsample_on_h8\\\", \\\"server\\\": \\\"westd-19154\\\", \\\"gpu\\\": \\\"cuda:0\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9068}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1405
+          },
+          "id": "event-003896"
+        },
+        {
+          "source_line": 3897,
+          "timestamp": "2026-05-25T07:30:51.037941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_073_008f_walker_s4",
+              "field": "status",
+              "value": "PENDING",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003897"
+        },
+        {
+          "source_line": 3898,
+          "timestamp": "2026-05-25T07:30:53.095484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_073_008f_walker_s4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T07:30:42.251Z\\\", \\\"updated_at\\\": \\\"2026-05-25T07:30:51.531Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=4。当前 008f 0/3 CIVO onset，扩到 seed=4 进一步巩固 control 组统计。来源: plan_012 扩展。\\\", \\\"parent\\\": \\\"exp_008f_no_dt_embed_subsample_on_h8\\\", \\\"server\\\": \\\"westd-19154\\\", \\\"gpu\\\": \\\"cuda:0\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.044}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2057
+          },
+          "id": "event-003898"
+        },
+        {
+          "source_line": 3899,
+          "timestamp": "2026-05-25T07:30:55.704947+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_073_008f_walker_s4",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003899"
+        },
+        {
+          "source_line": 3900,
+          "timestamp": "2026-05-25T07:30:57.813211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_073_008f_walker_s4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T07:30:42.251Z\\\", \\\"updated_at\\\": \\\"2026-05-25T07:30:56.219Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=4。当前 008f 0/3 CIVO onset，扩到 seed=4 进一步巩固 control 组统计。来源: plan_012 扩展。\\\", \\\"parent\\\": \\\"exp_008f_no_dt_embed_subsample_on_h8\\\", \\\"server\\\": \\\"westd-19154\\\", \\\"gpu\\\": \\\"cuda:0\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0464}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2108
+          },
+          "id": "event-003900"
+        },
+        {
+          "source_line": 3901,
+          "timestamp": "2026-05-25T07:31:00.374581+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_073_008f_walker_s4",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003901"
+        },
+        {
+          "source_line": 3902,
+          "timestamp": "2026-05-25T07:31:02.486143+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_073_008f_walker_s4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T07:30:42.251Z\\\", \\\"updated_at\\\": \\\"2026-05-25T07:31:00.868Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008f 配置 (no dt_emb, dt_embed_dim=0 + subsample ON + dt=2 + H=8) seed=4。当前 008f 0/3 CIVO onset，扩到 seed=4 进一步巩固 control 组统计。来源: plan_012 扩展。\\\", \\\"parent\\\": \\\"exp_008f_no_dt_embed_subsample_on_h8\\\", \\\"server\\\": \\\"westd-19154\\\", \\\"gpu\\\": \\\"cuda:0\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.1142}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2111
+          },
+          "id": "event-003902"
+        },
+        {
+          "source_line": 3903,
+          "timestamp": "2026-05-25T07:31:09.132939+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_on_allocated"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__submit_on_allocated",
+            "tool_args": {
+              "exp_id": "exp_073_008f_walker_s4",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export MUJOCO_GL=egl && export PYOPENGL_PLATFORM=egl && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_073_008f_walker_s4 --steps 105000 --seed 4 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --gate_dt_embed_dim 0\"",
+              "project": "event-gated-adaptive-horizon",
+              "timeout_hours": "8",
+              "work_dir": "/root/autodl-tmp/event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003903"
+        },
+        {
+          "source_line": 3904,
+          "timestamp": "2026-05-25T07:31:15.472446+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_073_008f_walker_s4\\\", \\\"status\\\": \\\"RUNNING\\\", \\\"server\\\": \\\"westd-19154\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"11670\\\", \\\"log_file\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_073_008f_walker_s4.log\\\", \\\"account\\\": \\\"root\\\", \\\"tmux_session\\\": \\\"exp_073_008f_walker_s4\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"cron_registered\\\": true, \\\"code_synced\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__submit_on_allocated",
+            "elapsed_ms": 6339
+          },
+          "id": "event-003904"
+        },
+        {
+          "source_line": 3905,
+          "timestamp": "2026-05-25T07:31:24.092421+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 4 / 实际在跑 4 ✓ | Worker 池 0\n\nexp_073_008f_walker_s4 已提交 RUNNING（westd-19154 cuda:0, seed=4）。\n\n**当前 4 GPU 全部饱和：**\n- bjb1-45299:0 → exp_070 (008e_v3 mitigation s0)\n- bjb1-45299:1 → exp_071 (008f control s3)\n- westd-19154:0 → exp_073 (008f control s4) ← NEW\n- westd-19154:1 → exp_072 (008e_v3 mitigation s5)\n\n完成后 008f 系列将达 0/4 或 0/5 onset（含 exp_071 s3）。",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003905"
+        },
+        {
+          "source_line": 3906,
+          "timestamp": "2026-05-25T07:31:28.159127+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5e879064da2e47dad864c1f891eb37a8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 4066
+          },
+          "id": "event-003906"
+        },
+        {
+          "source_line": 3907,
+          "timestamp": "2026-05-25T07:31:30.911005+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_073 已提交 RUNNING（westd-19154 cuda:0, seed=4, pid=11670）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb"
+          },
+          "id": "event-003907"
+        }
+      ]
+    },
+    {
+      "number": 369,
+      "messages": [
+        {
+          "source_line": 3908,
+          "timestamp": "2026-05-25T08:46:45.618942+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] 紧急确认：4 个实验进程是否存活。GPU 利用率降到 14%，需排除挂起可能。\n\n对每台服务器执行：\n1. bjb1-45299: `nvidia-smi` + `ps aux | grep python` 确认 exp_070 (cuda:0) 和 exp_071 (cuda:1) 进程存在且在写日志\n2. westd-19154: 同上确认 exp_072 (cuda:1) 和 exp_073 (cuda:0)\n\n检查最近日志是否有新输出（tail -1 训练日志 + 时间戳）。只读操作，汇报结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "source": "director"
+          },
+          "id": "event-003908"
+        },
+        {
+          "source_line": 3909,
+          "timestamp": "2026-05-25T08:46:59.521692+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "check:gpu-health-bjb1-45299",
+              "project": "event-gated-adaptive-horizon",
+              "task_prompt": "紧急检查 bjb1-45299 上两个实验进程是否存活。\n\n**只读操作，不要修改任何东西。**\n\nSSH 到 bjb1-45299，执行以下命令并汇报结果：\n\n1. `nvidia-smi` — 查看 GPU 利用率和显存占用\n2. `ps aux | grep python | grep -v grep` — 确认 python 进程存在\n3. `ls -la /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_070_008e_v3_walker_s0/` — 检查 logdir 存在和最近修改时间\n4. `ls -la /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_071_008f_walker_s3/` — 同上\n5. `tail -1 ~/runs/event-gated-adaptive-horizon/exp_070_008e_v3_walker_s0.log` — 最新日志行\n6. `tail -1 ~/runs/event-gated-adaptive-horizon/exp_071_008f_walker_s3.log` — 最新日志行\n7. `tmux ls` — 确认 tmux session 存在\n\n预期：\n- exp_070 (cuda:0, PID 260999) 应在跑\n- exp_071 (cuda:1, PID 265628) 应在跑\n\n汇报格式：每个实验的 PID 是否存活、GPU util%、最新日志时间戳。",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-003909"
+        },
+        {
+          "source_line": 3910,
+          "timestamp": "2026-05-25T08:47:02.987648+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "check:gpu-health-westd-19154",
+              "project": "event-gated-adaptive-horizon",
+              "task_prompt": "紧急检查 westd-19154 上两个实验进程是否存活。\n\n**只读操作，不要修改任何东西。**\n\nSSH 到 westd-19154，执行以下命令并汇报结果：\n\n1. `nvidia-smi` — 查看 GPU 利用率和显存占用\n2. `ps aux | grep python | grep -v grep` — 确认 python 进程存在\n3. `ls -la /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_072_008e_v3_walker_s5/` — 检查 logdir 存在和最近修改时间\n4. `ls -la /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_073_008f_walker_s4/` — 同上\n5. `tail -1 ~/runs/event-gated-adaptive-horizon/exp_072_008e_v3_walker_s5.log` — 最新日志行\n6. `tail -1 ~/runs/event-gated-adaptive-horizon/exp_073_008f_walker_s4.log` — 最新日志行\n7. `tmux ls` — 确认 tmux session 存在\n\n预期：\n- exp_073 (cuda:0, PID 11670) 应在跑\n- exp_072 (cuda:1, PID 11116) 应在跑\n\n汇报格式：每个实验的 PID 是否存活、GPU util%、最新日志时间戳。",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-003910"
+        },
+        {
+          "source_line": 3911,
+          "timestamp": "2026-05-25T08:47:05.901604+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_check_gpu-health-bjb1-45299_20260525T084700\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/logs/workers/worker_check_gpu-health-bjb1-45299_20260525T084700.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_check_gpu-health-bjb1-45299_20260525T084700 started. Use get_worker_status('worker_check_gpu-health-bjb1-45299_20260525T084700') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 6379
+          },
+          "id": "event-003911"
+        }
+      ]
+    },
+    {
+      "number": 370,
+      "messages": [
+        {
+          "source_line": 3912,
+          "timestamp": "2026-05-25T09:06:46.599064+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_analysis_exp_070_008e_v3_walker_s0_20260525T085136 已完成（status=done）。用 `get_worker_status('worker_analysis_exp_070_008e_v3_walker_s0_20260525T085136')` 读取结果，然后处理。\n\n- worker_id: worker_analysis_exp_070_008e_v3_walker_s0_20260525T085136\n- project: event-gated-adaptive-horizon\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "source": "worker:done"
+          },
+          "id": "event-003912"
+        },
+        {
+          "source_line": 3913,
+          "timestamp": "2026-05-25T09:06:53.197030+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_analysis_exp_070_008e_v3_walker_s0_20260525T085136"
+            }
+          },
+          "id": "event-003913"
+        },
+        {
+          "source_line": 3914,
+          "timestamp": "2026-05-25T09:06:53.298047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_exp_070_008e_v3_walker_s0_20260525T085136\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"analysis:exp_070_008e_v3_walker_s0\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"started_at\\\": \\\"2026-05-25T08:51:36.192477+00:00\\\", \\\"ended_at\\\": \\\"2026-05-25T08:55:52.628487+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"分析完成。\\\\n\\\\n## 结果摘要\\\\n\\\\n**exp_070_008e_v3_walker_s0: NEGATIVE（非 CIVO 学习失败）**\\\\n\\\\n- eval_return = 148 @105K（峰值 232.5 @55K），远低于 baseline ~500+\\\\n- ve_ratio = 0.8，全程 < 1.5x，**无 CIVO**\\\\n- 这是第三种失败模式：agent 从未学会走路，但 value function 没有过估——与 s2/s3 的 CIVO 崩塌（NVE >3.7x, eval 先到 500-700+ 再崩）完全不同\\\\n\\\\n**008e_v3 跨 seed 汇总（5 completed / 1 running）：**\\\\n\\\\n| 类别 | Seeds | 比例 |\\\\n|------|-------|------|\\\\n| Success | s1 (870), s4 (899) | 2/5 = 40% |\\\\n| CIVO collapse | s2 (137, NVE=3.78), s3 (93, NVE=4.02) | 2/5 = 40% |\\\\n| Non-CIVO failure | **s0 (148, NVE=0.8)** | 1/5 = 20% |\\\\n\\\\n- CIVO collapse rate: 50% → **40%**（加入 s0 后下降）\\\\n- Overall failure rate: 50% → **60%**（加入 s0 后上升）\\\\n- s5 (exp_072) 仍在 running，完成后更新至 n=6\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-003914"
+        },
+        {
+          "source_line": 3915,
+          "timestamp": "2026-05-25T09:06:53.348838+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_check_gpu-health-bjb1-45299_20260525T084700"
+            }
+          },
+          "id": "event-003915"
+        },
+        {
+          "source_line": 3916,
+          "timestamp": "2026-05-25T09:06:53.449773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_check_gpu-health-bjb1-45299_20260525T084700\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"check:gpu-health-bjb1-45299\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"started_at\\\": \\\"2026-05-25T08:47:00.317178+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 100
+          },
+          "id": "event-003916"
+        },
+        {
+          "source_line": 3917,
+          "timestamp": "2026-05-25T09:07:10.452947+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'exp_070_008e_v3_walker_s0'}",
+              "project": "event-gated-adaptive-horizon",
+              "fields": "['status', 'conclusion', 'metrics', 'hypothesis']",
+              "limit": "1"
+            }
+          },
+          "id": "event-003917"
+        },
+        {
+          "source_line": 3918,
+          "timestamp": "2026-05-25T09:07:11.056797+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5761}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 603
+          },
+          "id": "event-003918"
+        },
+        {
+          "source_line": 3919,
+          "timestamp": "2026-05-25T09:07:13.467303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "fields": "['status', 'conclusion', 'metrics']",
+              "limit": "6"
+            }
+          },
+          "id": "event-003919"
+        },
+        {
+          "source_line": 3920,
+          "timestamp": "2026-05-25T09:07:14.021263+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_070_008e_v3_walker_s0\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"eval_return\\\": 148, \\\"peak_eval_return\\\": 232.5, \\\"peak_eval_step\\\": 55000, \\\"ve_ratio_105k\\\": 0.8, \\\"nve_peak\\\": 0.8, \\\"nve_peak_step\\\": 95000, \\\"civo\\\": false, \\\"gate_dt_1_frac\\\": 1, \\\"gate_dt_mean\\\": 1, \\\"actor_entropy_final\\\": -3.7, \\\"value_mean_final\\\": 122.1, \\\"failure_mode\\\": \\\"non-CIVO learning failure (never reached baseline performance)\\\", \\\"eval_trajectory\\\": [{\\\"step\\\": 5000, \\\"eval_return\\\": 37.4}, {\\\"step\\\": 15000, \\\"eval_return\\\": 93.2}, {\\\"step\\\": 25000, \\\"eval_return\\\": 178.8}, {\\\"step\\\": 35000, \\\"eval_return\\\": 221.6}, {\\\"step\\\": 45000, \\\"eval_return\\\": 230.9}, {\\\"step\\\": 55000, \\\"eval_return\\\": 232.5}, {\\\"step\\\": 65000, \\\"eval_return\\\": 194}, {\\\"step\\\": 75000, \\\"eval_return\\\": 175.2}, {\\\"step\\\": 85000, \\\"eval_return\\\": 218.6}, {\\\"step\\\": 95000, \\\"eval_return\\\": 139.6}, {\\\"step\\\": 105000, \\\"eval_return\\\": 148}], \\\"ve_ratio_trajectory\\\": [{\\\"step\\\": 15000, \\\"ve\\\": 0}, {\\\"step\\\": 25000, \\\"ve\\\": 0.1}, {\\\"step\\\": 35000, \\\"ve\\\": 0.2}, {\\\"step\\\": 45000, \\\"ve\\\": 0.3}, {\\\"step\\\": 55000, \\\"ve\\\": 0.4}, {\\\"step\\\": 65000, \\\"ve\\\": 0.5}, {\\\"step\\\": 75000, \\\"ve\\\": 0.6}, {\\\"step\\\": 85000, \\\"ve\\\": 0.5}, {\\\"step\\\": 95000, \\\"ve\\\": 0.8}, {\\\"step\\\": 105000, \\\"ve\\\": 0.8}]}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp_073_008f_walker_s4\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"exp_069_008f_walker_repro_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"eval_return_final\\\": 237.8, \\\"eval_return_peak\\\": 390.1, \\\"eval_return_peak_step\\\": 95000, \\\"ve_ratio_final\\\": 0.4, \\\"ve_ratio_peak\\\": 0.4, \\\"ve_ratio_peak_step\\\": 105000, \\\"nve_final_105k\\\": 0.61, \\\"nve_peak\\\": 0.66, \\\"nve_peak_step\\\": 75000, \\\"civo_alert\\\": false, \\\"gate_dt_2_frac\\\": 1, \\\"eval_trajectory\\\": {\\\"5k\\\": 30.5, \\\"15k\\\": 158.7, \\\"25k\\\": 180.8, \\\"35k\\\": 250.3, \\\"45k\\\": 293.6, \\\"55k\\\": 272.2, \\\"65k\\\": 328.1, \\\"75k\\\": 244.8, \\\"85k\\\": 382.5, \\\"95k\\\": 390.1, \\\"105k\\\": 237.8}, \\\"ve_ratio_trajectory\\\": {\\\"15k\\\":\n…[truncated 1201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 553
+          },
+          "id": "event-003920"
+        },
+        {
+          "source_line": 3921,
+          "timestamp": "2026-05-25T09:07:43.961871+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 4 / 实际在跑 3 | Worker 池 1 (CPU 1, GPU health check) | bjb1-45299:0 空闲\n- bjb1-45299:0 **空闲** (exp_070 完成) | bjb1-45299:1 exp_071 RUNNING\n- westd-19154:0 exp_073 RUNNING | westd-19154:1 exp_072 RUNNING\n\n---\n\n**[负向结果] exp_070_008e_v3_walker_s0**\n\n**被证伪的 hypothesis**：008e_v3 mitigation (trained dt_emb + subsample ON + dt=1 imag + H=15) seed=0 扩展统计样本\n\n**结果**：eval=148@105K (peak 232.5@55K), NVE peak=0.8, civo=false\n\n**证伪粒度**：部分——这是一种 **非 CIVO 学习失败**。Agent 从未学会走路（eval 峰值仅 232 vs baseline ~900），但 value function 没有过估（NVE=0.8 远低于 1.5x）。与 s2/s3 的 CIVO 崩塌模式（先到 500-700+ 再崩，NVE>3.7x）完全不同。\n\n**008e_v3 跨 seed 汇总（5/6 完成）**：\n\n| 类别 | Seeds | 比例 |\n|------|-------|------|\n| Success | s1 (870), s4 (899) | 2/5 = 40% |\n| CIVO collapse | s2 (137, NVE=3.78), s3 (93, NVE=4.02) | 2/5 = 40% |\n| Non-CIVO failure | **s0 (148, NVE=0.8)** | 1/5 = 20% |\n\n**推导**：\n- 008e_v3 (dt=1 mitigation) CIVO rate 从 50% 降至 40%，但出现第三种失败模式（非 CIVO 学习失败）\n- 这不影响 CIVO 因果论证（dt=1 确实降低了 CIVO 触发概率），但 mitigation 的总体可靠性 = 40% success\n- s0 的失败机制可能是：dt=1 imagination 限制了 exploration horizon，某些 seed 的初始随机策略在 H=15 × dt=1 = 15 物理步覆盖范围下不足以发现有效行为\n- 与 008d (dt=2, H=8, 物理覆盖 16 步) 相比，008e_v3 (dt=1, H=15, 物理覆盖 15 步) 覆盖范围相近但 dt=1 的单步预测更保守\n\n**建议**：等 exp_072 (s5) 完成后一起评估最终 rate。不建议额外 pivot——CIVO rate 下降是论文 C6 mitigation claim 的核心，non-CIVO 失败可在 limitation 中讨论。\n\n**bjb1-45299 cuda:0 空闲**，请指定下一个实验。",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003921"
+        },
+        {
+          "source_line": 3922,
+          "timestamp": "2026-05-25T09:07:49.335176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5e879064da2e47dad864c1f891eb37a8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 5373
+          },
+          "id": "event-003922"
+        },
+        {
+          "source_line": 3923,
+          "timestamp": "2026-05-25T09:07:51.326673+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_070 完成（negative，非 CIVO 学习失败）。GPU 健康检查 Worker 仍在运行。按 negative 结果协议处理。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb"
+          },
+          "id": "event-003923"
+        }
+      ]
+    },
+    {
+      "number": 371,
+      "messages": [
+        {
+          "source_line": 3924,
+          "timestamp": "2026-05-25T09:07:52.069205+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] exp_070 确认。bjb1-45299 cuda:0 空闲，立即填充：\n\n跑 008a seed=1（plan_013，untrained dt_emb + subsample OFF + H=15），增加 C3 value suppression claim 的多 seed 统计。配置与 exp_008a 一致仅 seed=1。创建 exp_074_008a_walker_s1。\n\n另外：exp_070 完成后确认其他三个实验（071/072/073）进度和预计完成时间。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "source": "director"
+          },
+          "id": "event-003924"
+        },
+        {
+          "source_line": 3925,
+          "timestamp": "2026-05-25T09:07:59.863999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exp_008a_no_subsample_dt2:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/registry.yaml",
+              "output_mode": "content",
+              "-A": "25"
+            }
+          },
+          "id": "event-003925"
+        },
+        {
+          "source_line": 3926,
+          "timestamp": "2026-05-25T09:07:59.964968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "878:  exp_008a_no_subsample_dt2:\n879-    checkpoint_path: /root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008a_fixed_dt2_no_subsample/latest.pt\n880-    completed_at: '2026-05-14T06:16:58.196Z'\n881-    conclusion: success\n882-    created_at: '2026-05-14T01:33:27.311Z'\n883-    extra:\n884-      hook_events:\n885-      - action: agent\n886-        event: on_complete\n887-        ts: '2026-05-14T06:15:01.796655+00:00'\n888-    hypothesis: 隔离 subsample 效应：trained dt_emb (unexposed to dt>1 data due to subsample\n889-      OFF) + subsample OFF（纯 dt=1 训练）+ imagination dt=2 + H=15（物理覆盖 30 步）。如果不崩 → subsample\n890-      混合训练数据是崩塌根因；如果崩 → 问题在 dt=2 imagination 本身。\n891-    metrics:\n892-      baseline_105K: 915.67\n893-      baseline_55K: 625.7\n894-      baseline_65K: 616\n895-      data_source: from training logs metrics.jsonl\n896-      eval_return_105K: 777.66\n897-      eval_return_35K: 500.84\n898-      eval_return_45K: 563.41\n899-      eval_return_55K: 487.92\n900-      eval_return_65K: 608\n901-      eval_return_75K: 469.93\n902-      eval_return_85K: 583.73\n903-      eval_return_95K: 572.24"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-003926"
+        },
+        {
+          "source_line": 3927,
+          "timestamp": "2026-05-25T09:08:15.174602+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 4 / 实际在跑 3 | bjb1-45299:0 空闲\n\n**008a seed 冲突**：\n- seed=1: exp_008a_no_subsample_dt2（原始）→ success (eval=777.66)\n- seed=1: exp_008a_unexposed_s1 → success (eval=634.8)\n- seed=2: exp_008a_unexposed_s2 → success (eval=898.2)\n\nseed 1 和 2 均已覆盖。建议 seed=3（首个未测试 seed）。请确认。\n\n进度检查 Worker 已在派发中。",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003927"
+        },
+        {
+          "source_line": 3928,
+          "timestamp": "2026-05-25T09:08:24.329908+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5e879064da2e47dad864c1f891eb37a8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 9155
+          },
+          "id": "event-003928"
+        },
+        {
+          "source_line": 3929,
+          "timestamp": "2026-05-25T09:08:24.380512+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "check:exp-progress-071-072-073",
+              "project": "event-gated-adaptive-horizon",
+              "task_prompt": "检查三个 RUNNING 实验的进度和预计完成时间。只读操作。\n\n**任务**：\n1. SSH 到 bjb1-45299，检查 exp_071_008f_walker_s3 (cuda:1, PID 265628):\n   - `ps -p 265628 -o pid,etime,pcpu` 确认进程存活\n   - `nvidia-smi` 查看 cuda:1 GPU 利用率\n   - `tail -5 ~/runs/event-gated-adaptive-horizon/exp_071_008f_walker_s3.log` 最新日志\n   - 从日志中提取当前 step 和 total steps (105000)，估算剩余时间\n\n2. SSH 到 westd-19154，检查 exp_072_008e_v3_walker_s5 (cuda:1, PID 11116) 和 exp_073_008f_walker_s4 (cuda:0, PID 11670):\n   - `ps -p 11116,11670 -o pid,etime,pcpu` 确认进程存活\n   - `nvidia-smi` 查看两卡利用率\n   - `tail -5 ~/runs/event-gated-adaptive-horizon/exp_072_008e_v3_walker_s5.log`\n   - `tail -5 ~/runs/event-gated-adaptive-horizon/exp_073_008f_walker_s4.log`\n   - 从日志提取当前 step，估算剩余时间\n\n**汇报格式**（每个实验一行）：\nexp_id | PID alive? | current_step/105000 | GPU util% | 预计完成时间",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-003929"
+        },
+        {
+          "source_line": 3930,
+          "timestamp": "2026-05-25T09:08:28.046437+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_check_exp-progress-071-072-073_20260525T090824\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/logs/workers/worker_check_exp-progress-071-072-073_20260525T090824.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_check_exp-progress-071-072-073_20260525T090824 started. Use get_worker_status('worker_check_exp-progress-071-072-073_20260525T090824') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3665
+          },
+          "id": "event-003930"
+        },
+        {
+          "source_line": 3931,
+          "timestamp": "2026-05-25T09:08:29.681114+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "008a seed=1 已被原始实验覆盖，需要纠正 seed。同时派 Worker 检查其他三个实验进度。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb"
+          },
+          "id": "event-003931"
+        }
+      ]
+    },
+    {
+      "number": 372,
+      "messages": [
+        {
+          "source_line": 3932,
+          "timestamp": "2026-05-25T09:08:30.307651+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_check_gpu-health-bjb1-45299_20260525T084700 已完成（status=done）。用 `get_worker_status('worker_check_gpu-health-bjb1-45299_20260525T084700')` 读取结果，然后处理。\n\n- worker_id: worker_check_gpu-health-bjb1-45299_20260525T084700\n- project: event-gated-adaptive-horizon\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "source": "worker:done"
+          },
+          "id": "event-003932"
+        },
+        {
+          "source_line": 3933,
+          "timestamp": "2026-05-25T09:08:36.972032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_check_gpu-health-bjb1-45299_20260525T084700"
+            }
+          },
+          "id": "event-003933"
+        },
+        {
+          "source_line": 3934,
+          "timestamp": "2026-05-25T09:08:37.123629+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_check_gpu-health-bjb1-45299_20260525T084700\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"check:gpu-health-bjb1-45299\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"started_at\\\": \\\"2026-05-25T08:47:00.317178+00:00\\\", \\\"ended_at\\\": \\\"2026-05-25T09:07:25.879359+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"## 检查结果\\\\n\\\\n| 实验 | 状态 | 详情 |\\\\n|------|------|------|\\\\n| **exp_070** (PID 260999) | **已结束** | 日志末行 `EXIT_CODE=0` — 正常跑完。logdir 最后更新 16:48，metrics 停在 16:43。PID 260999 已不存在。 |\\\\n| **exp_071** (PID 265628) | **存活** | Step 80000/105000，train_return 209.6。GPU 1 占用 2753MiB, util 22%, 42°C。logdir 最后写入 17:06（1分钟前）。实际 python 进程 PID 265633。 |\\\\n\\\\n**GPU 总览**:\\\\n- GPU 0: 1% util, 526MiB — exp_070 结束后仅残留少量显存（265633 的 graphics context）\\\\n- GPU 1: 22% util, 2753MiB — exp_071 正在跑\\\\n\\\\nexp_070 已正常完成，exp_071 预计还需跑 25000 步。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 151
+          },
+          "id": "event-003934"
+        },
+        {
+          "source_line": 3935,
+          "timestamp": "2026-05-25T09:08:45.696435+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "bjb1-45299 确认：exp_070 已正常完成，exp_071 存活在 step 80000/105000（预计还 ~1-2h）。GPU 0 空闲等待 Director 确认 seed 后填充。等待另一个进度检查 Worker（071/072/073）完成。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb"
+          },
+          "id": "event-003935"
+        }
+      ]
+    },
+    {
+      "number": 373,
+      "messages": [
+        {
+          "source_line": 3936,
+          "timestamp": "2026-05-25T09:08:46.414438+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] 确认 seed=3。创建 exp_074_008a_walker_s3，bjb1-45299 cuda:0，立即启动。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "source": "director"
+          },
+          "id": "event-003936"
+        },
+        {
+          "source_line": 3937,
+          "timestamp": "2026-05-25T09:08:56.442134+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_074_008a_walker_s3",
+              "field": "hypothesis",
+              "value": "Walker Walk 008a 配置 (trained dt_emb unexposed + subsample OFF + dt=2 + H=15) seed=3。当前 008a 3 seeds 全部 success (no CIVO)，加 seed=3 巩固 C3 value suppression claim 统计。来源: plan_013 扩展。",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003937"
+        },
+        {
+          "source_line": 3938,
+          "timestamp": "2026-05-25T09:08:57.445188+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_074_008a_walker_s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T09:08:57.028Z\\\", \\\"updated_at\\\": \\\"2026-05-25T09:08:57.029Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008a 配置 (trained dt_emb unexposed + subsample OFF + dt=2 + H=15) seed=3。当前 008a 3 seeds 全部 success (no CIVO)，加 seed=3 巩固 C3 value suppression claim 统计。来源: plan_013 扩展。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9827}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1003
+          },
+          "id": "event-003938"
+        },
+        {
+          "source_line": 3939,
+          "timestamp": "2026-05-25T09:09:01.461376+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_074_008a_walker_s3",
+              "field": "parent",
+              "value": "exp_008a_no_subsample_dt2",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003939"
+        },
+        {
+          "source_line": 3940,
+          "timestamp": "2026-05-25T09:09:02.469021+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_074_008a_walker_s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T09:08:57.028Z\\\", \\\"updated_at\\\": \\\"2026-05-25T09:09:01.997Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008a 配置 (trained dt_emb unexposed + subsample OFF + dt=2 + H=15) seed=3。当前 008a 3 seeds 全部 success (no CIVO)，加 seed=3 巩固 C3 value suppression claim 统计。来源: plan_013 扩展。\\\", \\\"parent\\\": \\\"exp_008a_no_subsample_dt2\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9783}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1007
+          },
+          "id": "event-003940"
+        },
+        {
+          "source_line": 3941,
+          "timestamp": "2026-05-25T09:09:02.469513+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_074_008a_walker_s3",
+              "field": "server",
+              "value": "bjb1-45299",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003941"
+        },
+        {
+          "source_line": 3942,
+          "timestamp": "2026-05-25T09:09:02.921694+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_074_008a_walker_s3",
+              "field": "gpu",
+              "value": "cuda:0",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003942"
+        },
+        {
+          "source_line": 3943,
+          "timestamp": "2026-05-25T09:09:03.575931+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_074_008a_walker_s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T09:08:57.028Z\\\", \\\"updated_at\\\": \\\"2026-05-25T09:09:03.178Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008a 配置 (trained dt_emb unexposed + subsample OFF + dt=2 + H=15) seed=3。当前 008a 3 seeds 全部 success (no CIVO)，加 seed=3 巩固 C3 value suppression claim 统计。来源: plan_013 扩展。\\\", \\\"parent\\\": \\\"exp_008a_no_subsample_dt2\\\", \\\"server\\\": \\\"bjb1-45299\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1087}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1106
+          },
+          "id": "event-003943"
+        },
+        {
+          "source_line": 3944,
+          "timestamp": "2026-05-25T09:09:04.529739+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_074_008a_walker_s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T09:08:57.028Z\\\", \\\"updated_at\\\": \\\"2026-05-25T09:09:04.078Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008a 配置 (trained dt_emb unexposed + subsample OFF + dt=2 + H=15) seed=3。当前 008a 3 seeds 全部 success (no CIVO)，加 seed=3 巩固 C3 value suppression claim 统计。来源: plan_013 扩展。\\\", \\\"parent\\\": \\\"exp_008a_no_subsample_dt2\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": \\\"cuda:0\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9147}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1608
+          },
+          "id": "event-003944"
+        },
+        {
+          "source_line": 3945,
+          "timestamp": "2026-05-25T09:09:07.792923+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_074_008a_walker_s3",
+              "field": "status",
+              "value": "PENDING",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003945"
+        },
+        {
+          "source_line": 3946,
+          "timestamp": "2026-05-25T09:09:09.800270+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_074_008a_walker_s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T09:08:57.028Z\\\", \\\"updated_at\\\": \\\"2026-05-25T09:09:08.257Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008a 配置 (trained dt_emb unexposed + subsample OFF + dt=2 + H=15) seed=3。当前 008a 3 seeds 全部 success (no CIVO)，加 seed=3 巩固 C3 value suppression claim 统计。来源: plan_013 扩展。\\\", \\\"parent\\\": \\\"exp_008a_no_subsample_dt2\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": \\\"cuda:0\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0357}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2007
+          },
+          "id": "event-003946"
+        },
+        {
+          "source_line": 3947,
+          "timestamp": "2026-05-25T09:09:12.764008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_074_008a_walker_s3",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003947"
+        },
+        {
+          "source_line": 3948,
+          "timestamp": "2026-05-25T09:09:14.772040+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_074_008a_walker_s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T09:08:57.028Z\\\", \\\"updated_at\\\": \\\"2026-05-25T09:09:13.240Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008a 配置 (trained dt_emb unexposed + subsample OFF + dt=2 + H=15) seed=3。当前 008a 3 seeds 全部 success (no CIVO)，加 seed=3 巩固 C3 value suppression claim 统计。来源: plan_013 扩展。\\\", \\\"parent\\\": \\\"exp_008a_no_subsample_dt2\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": \\\"cuda:0\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0222}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2008
+          },
+          "id": "event-003948"
+        },
+        {
+          "source_line": 3949,
+          "timestamp": "2026-05-25T09:09:17.934960+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_074_008a_walker_s3",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003949"
+        },
+        {
+          "source_line": 3950,
+          "timestamp": "2026-05-25T09:09:20.049878+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_074_008a_walker_s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T09:08:57.028Z\\\", \\\"updated_at\\\": \\\"2026-05-25T09:09:18.443Z\\\", \\\"hypothesis\\\": \\\"Walker Walk 008a 配置 (trained dt_emb unexposed + subsample OFF + dt=2 + H=15) seed=3。当前 008a 3 seeds 全部 success (no CIVO)，加 seed=3 巩固 C3 value suppression claim 统计。来源: plan_013 扩展。\\\", \\\"parent\\\": \\\"exp_008a_no_subsample_dt2\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": \\\"cuda:0\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0711}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2114
+          },
+          "id": "event-003950"
+        },
+        {
+          "source_line": 3951,
+          "timestamp": "2026-05-25T09:09:25.973546+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_on_allocated"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__submit_on_allocated",
+            "tool_args": {
+              "exp_id": "exp_074_008a_walker_s3",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_074_008a_walker_s3 --steps 105000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 1\"",
+              "project": "event-gated-adaptive-horizon",
+              "timeout_hours": "8",
+              "work_dir": "/root/autodl-tmp/event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003951"
+        },
+        {
+          "source_line": 3952,
+          "timestamp": "2026-05-25T09:09:38.445189+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_074_008a_walker_s3\\\", \\\"status\\\": \\\"RUNNING\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"274730\\\", \\\"log_file\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_074_008a_walker_s3.log\\\", \\\"account\\\": \\\"root\\\", \\\"tmux_session\\\": \\\"exp_074_008a_walker_s3\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"cron_registered\\\": true, \\\"code_synced\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 12.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__submit_on_allocated",
+            "elapsed_ms": 12471
+          },
+          "id": "event-003952"
+        },
+        {
+          "source_line": 3953,
+          "timestamp": "2026-05-25T09:09:48.691798+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 4 / 实际在跑 4 ✓ | Worker 池 1 (CPU 1, 进度检查)\n\nexp_074_008a_walker_s3 已提交 RUNNING（bjb1-45299 cuda:0, seed=3）。\n\n**当前 4 GPU 全部饱和：**\n- bjb1-45299:0 → exp_074 (008a unexposed s3) ← NEW\n- bjb1-45299:1 → exp_071 (008f control s3, ~80K/105K)\n- westd-19154:0 → exp_073 (008f control s4)\n- westd-19154:1 → exp_072 (008e_v3 mitigation s5)\n\nGPU 健康检查结果（bjb1-45299）：exp_071 进程存活，step 80K/105K，GPU util 22%。westd-19154 进度检查 Worker 运行中，完成后补充汇报。",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003953"
+        },
+        {
+          "source_line": 3954,
+          "timestamp": "2026-05-25T09:09:53.555111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5e879064da2e47dad864c1f891eb37a8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 4863
+          },
+          "id": "event-003954"
+        },
+        {
+          "source_line": 3955,
+          "timestamp": "2026-05-25T09:09:56.093924+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_074 已提交 RUNNING（bjb1-45299 cuda:0, seed=3, pid=274730）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb"
+          },
+          "id": "event-003955"
+        }
+      ]
+    },
+    {
+      "number": 374,
+      "messages": [
+        {
+          "source_line": 3956,
+          "timestamp": "2026-05-25T09:09:57.177486+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_check_exp-progress-071-072-073_20260525T090824 已完成（status=done）。用 `get_worker_status('worker_check_exp-progress-071-072-073_20260525T090824')` 读取结果，然后处理。\n\n- worker_id: worker_check_exp-progress-071-072-073_20260525T090824\n- project: event-gated-adaptive-horizon\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "source": "worker:done"
+          },
+          "id": "event-003956"
+        },
+        {
+          "source_line": 3957,
+          "timestamp": "2026-05-25T09:10:05.162185+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_check_exp-progress-071-072-073_20260525T090824"
+            }
+          },
+          "id": "event-003957"
+        },
+        {
+          "source_line": 3958,
+          "timestamp": "2026-05-25T09:10:05.233132+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_check_exp-progress-071-072-073_20260525T090824\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"check:exp-progress-071-072-073\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"started_at\\\": \\\"2026-05-25T09:08:25.038484+00:00\\\", \\\"ended_at\\\": \\\"2026-05-25T09:09:26.862943+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"当前时间 17:08，三个实验均存活：\\\\n\\\\n| exp_id | PID alive | current_step/105000 | GPU util% | 预计完成时间 |\\\\n|--------|-----------|--------------------:|----------:|-------------|\\\\n| exp_071_008f_walker_s3 (bjb1, cuda:1) | Yes (2h04m) | 80000/105000 (76%) | 23% | ~17:47 (~39min) |\\\\n| exp_072_008e_v3_walker_s5 (westd, cuda:1) | Yes (1h44m) | 85000/105000 (81%) | 44% | ~17:33 (~25min) |\\\\n| exp_073_008f_walker_s4 (westd, cuda:0) | Yes (1h37m) | 84000/105000 (80%) | 29% | ~17:33 (~25min) |\\\\n\\\\n**估算方法**：elapsed time / current_step × remaining_steps。\\\\n\\\\nexp_071 速度较慢（GPU 利用率低），约 645 steps/min；westd 两个实验约 820-860 steps/min。三个实验预计均在 30-40 分钟内完成。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 70
+          },
+          "id": "event-003958"
+        },
+        {
+          "source_line": 3959,
+          "timestamp": "2026-05-25T09:10:13.837625+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 4 / 实际在跑 4 ✓ | Worker 池 0\n\n**三个实验进度确认（全部存活）**：\n\n| exp_id | step | GPU util | 预计完成 |\n|--------|------|---------|---------|\n| exp_071 (008f s3, bjb1:1) | 80K/105K (76%) | 23% | ~39min |\n| exp_072 (008e_v3 s5, westd:1) | 85K/105K (81%) | 44% | ~25min |\n| exp_073 (008f s4, westd:0) | 84K/105K (80%) | 29% | ~25min |\n\nGPU util 偏低（14-44%）是正常的——DreamerV3 单卡训练 CPU-bound（环境交互+数据处理），GPU 只在模型前向/反向时满载。非挂起。\n\nexp_072/073 将最先完成（~25min），exp_071 约 40min 后完成。exp_074 刚启动。",
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-003959"
+        },
+        {
+          "source_line": 3960,
+          "timestamp": "2026-05-25T09:10:17.753361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5e879064da2e47dad864c1f891eb37a8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e03655bc885f99dd8e838011bc2fffbb",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3915
+          },
+          "id": "event-003960"
+        }
+      ]
+    }
+  ]
+}

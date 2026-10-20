@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a67639823928526e8528",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper sensitivity n16 extension",
+  "task_key": "worker_paper_sensitivity-n16-extension_20260518T144521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_sensitivity-n16-extension_20260518T144521_result.json",
+    "occurrence": 1,
+    "bytes": 430,
+    "sha256": "69441f9431b4f59aecba20a30a8f406c609c0c2c77f44ef4e9c50741181b755e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三处修改完成：\n\n1. **appendix.tex L153-172**: 新增 `tab:sensitivity_b2_full` 表格（n=16 全评估集，≥1.5× 行高亮），位于现有 B2 表之后、Threshold Recommendation 之前。\n2. **appendix.tex L186**: Limitations 段末尾追加引导句，指向 n=16 表。\n3. **results.tex L67**: F2 段 AUROC 括号内追加 `per-threshold breakdown in Appendix~\\ref{sec:appendix_sensitivity}`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-sensitivity-n16-extension.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b647374e9f65ac9e4ef7",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code verify 022b curriculum",
+  "task_key": "worker_code_verify-022b-curriculum_20260517T103738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verify-022b-curriculum_20260517T103738_result.json",
+    "occurrence": 1,
+    "bytes": 2072,
+    "sha256": "c8b1722d8764c930cebe32d711736a7f747c0dc884a1d13c223f6db00aa05cf0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### Curriculum 代码逻辑 (`models.py:184-195`)\n\n```python\ndef _update_gate_schedule(self):\n    step = self._step\n    phase1 = getattr(self._config, 'gate_curriculum_phase1', 25000)\n    phase2 = getattr(self._config, 'gate_curriculum_phase2', 75000)\n    if step < phase1:\n        self._gate_scale = 0.0\n    elif step < phase2:\n        self._gate_scale = (step - phase1) / (phase2 - phase1)  # ← 潜在除零\n    else:\n        self._gate_scale = 1.0\n    self._effective_max_dt = 1 + self._gate_scale * (max_dt_eff - 1)\n```\n\n### phase1=0, phase2=0 是否安全？\n\n**安全。不会除零。**\n\n当 phase1=0, phase2=0 时：\n- `step < phase1` → `step < 0` → **永远 False**\n- `step < phase2` → `step < 0` → **永远 False**\n- 直接进入 `else` 分支：`gate_scale = 1.0`\n\n从 **step=0 开始**：\n- `gate_scale = 1.0`\n- `effective_max_dt = 1 + 1.0 * (8 - 1) = 8`（假设 gate_max_dt=8）\n- Gate 从第一步就完全解锁，Gumbel-softmax 可以自由选择任何 dt\n\n**除零分支 `(step - phase1) / (phase2 - phase1)` 永远不会被执行**，因为它需要 `step >= phase1` 且 `step < phase2`，而 phase1=phase2=0 时这个区间为空。\n\n### configs.yaml 默认值\n\n```yaml\ngate_curriculum_phase1: 50000   # 前 50k 步 gate 完全锁定 (gate_scale=0)\ngate_curriculum_phase2: 150000  # 50k-150k 步线性解锁\n```\n\n这解释了 exp_022 gate 被锁住的原因：默认需要 50k 步 gate 才开始解锁，150k 步才完全解锁。\n\n### 命令行参数是否有效？\n\n`dreamer.py:446` 通过遍历 configs.yaml 的所有 key 动态注册 argparse 参数：\n```python\nparser.add_argument(f\"--{key}\", type=arg_type, default=arg_type(value))\n```\n\n`--gate_curriculum_phase1 0 --gate_curriculum_phase2 0` 是有效参数，会被正确解析为 int 0，不会被忽略或覆盖。\n\n### 结论\n\n`--gate_curriculum_phase1 0 --gate_curriculum_phase2 0` 完全安全，效果是从训练第一步就完全解锁 gate（gate_scale=1.0, effective_max_dt=gate_max_dt）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-verify-022b-curriculum.md"
+}

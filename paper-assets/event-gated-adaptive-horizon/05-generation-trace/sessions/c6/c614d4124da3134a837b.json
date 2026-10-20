@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c614d4124da3134a837b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis negative taxonomy",
+  "task_key": "worker_analysis_negative-taxonomy_20260524T141759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_negative-taxonomy_20260524T141759_result.json",
+    "occurrence": 1,
+    "bytes": 1003,
+    "sha256": "c54ef4a8467d50fc155ffd5dba12ca0e43e2acc782debc9986d0c77b178977db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。产出文件：`artifacts/negative_results_taxonomy.md`\n\n35 个 negative 实验分为 8 类：\n- **TCN 跨环境/剂量失败**（10）— 仅 Walker σ=0.2 部分 seeds 有效，Cheetah/PickCube 全失败\n- **SGS 干预失败**（5）— 梯度阻断路线全面否定（Full-SGS 0/3 可靠）\n- **Dual-critic 跨环境失败**（5）— Cheetah 双 critic 无差异化，Walker 暴露 non-CIVO collapse\n- **dt>1 本身退化**（5）— temporal subsampling 自身带来 40-70% 性能损失\n- **CIVO 复现/表征**（4）— 确认 CIVO 随机性（30-50% seeds 发生）\n- **Event-gate 机制失败**（3）— 核心提案 v2-v4 持续失败，催生 CIVO 研究转向\n- **RAVE 失败**（2）— 值裁剪未触及根因\n- **Frozen dt_emb 失败**（1）— gradient starvation\n\n跨类别关键 pattern：干预层级递进失败链（梯度→表征→值→架构），环境依赖性是系统性障碍，且 exp_038 暴露了 CIVO 以外的退化机制。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-negative-taxonomy.md"
+}

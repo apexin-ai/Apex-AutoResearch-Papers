@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5cef082371477f5f00b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code exp 006 fixed dt2 prep",
+  "task_key": "worker_code_exp_006_fixed_dt2_prep_20260513T205612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_006_fixed_dt2_prep_20260513T205612_result.json",
+    "occurrence": 1,
+    "bytes": 1846,
+    "sha256": "bb62c52cbc3d99a843d45061724fbcd538c28679d00fc1ce28e8b125aab2e4ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_005 正常运行（PID 51726，1071% CPU，已运行 5h）。\n\n---\n\n## 汇报\n\n### 改动文件\n\n**configs.yaml** (1 行)\n- L114: 新增 `gate_fixed_dt: 0`\n\n**models.py** (8 处, ~18 行净增)\n- L188-196: `WorldModel._train` — `gate_fixed_dt > 0` 时跳过 gate curriculum，直接用固定 `effective_max_dt` 和 `gate_scale=0.0`\n- L245: gate loss 条件追加 `and self._config.gate_fixed_dt == 0`，跳过 gate loss 计算\n- L314: gate metrics 条件追加 `and self._config.gate_fixed_dt == 0`，跳过 gate_loss/gate_scale/entropy_bonus 日志\n- L547: `_imagine` 中 `gate_active` 条件追加 `and config.gate_fixed_dt == 0`\n- L562: fallback dt 改用 `torch.full((batch,), fixed, ...)` 支持任意固定值\n- L572-573: `init_dt` 乘以 `gate_fixed_dt`，确保第一步也用固定 dt\n\n### dry-run 结果\n- 训练正常启动，无报错\n- `gate_dt_mean=2.0`, `gate_dt_std=0.0`, `gate_dt_2_frac=1.0` — dt 恒定为 2\n- gate_loss、gate_scale、gate_entropy_bonus 未输出（符合预期）\n- exp_005 不受影响（仍在运行）\n\n### exp_006_fixed_dt2 启动命令\n\n```bash\ncd /root/autodl-tmp/event-gated-adaptive-horizon && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nexport LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && \\\nexport MUJOCO_GL=osmesa && \\\nexport PYOPENGL_PLATFORM=osmesa && \\\nCUDA_VISIBLE_DEVICES=0 python dreamer.py \\\n  --configs defaults dmc_proprio \\\n  --task dmc_walker_walk \\\n  --logdir logdir/fixed_dt2_v1_s1 \\\n  --steps 150000 \\\n  --seed 1 \\\n  --compile False \\\n  --device cuda:0 \\\n  --gate_enabled True \\\n  --gate_fixed_dt 2\n```\n\n### 预估训练时长\nexp_005 的 fps ~6.69 步/秒。Fixed dt 省去 gate forward pass（~200K 参数），预估 fps ~7-8。150K 步约 **5-6 小时**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-006-fixed-dt2-prep.md"
+}

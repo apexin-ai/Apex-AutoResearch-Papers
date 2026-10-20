@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d274237a62f36330daab",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "monitor 008e v3 s1 progress",
+  "task_key": "worker_monitor_008e_v3_s1_progress_20260514T221248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_008e_v3_s1_progress_20260514T221248_result.json",
+    "occurrence": 1,
+    "bytes": 1506,
+    "sha256": "4349f3344cd1184a5058b99f79b3a59907416da890c58db49a043db32bc90a80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_008e_v3_walker_s1\n\n```\nSTATUS: RUNNING\nCURRENT_STEP: ~88000\nPROGRESS: 83.8% (88K / 105K)\nFPS: 6.5\nETA: ~44 min\n\nEVAL_TRAJECTORY:\n  step  | eval_return | value_mean | ve_ratio\n  5000  |   31.00     |    0.00    |  0.00\n  15000 |  131.17     |    4.00    |  0.03\n  25000 |  155.69     |    (*)     |   -\n  35000 |  276.47     |    (*)     |   -\n  45000 |  382.22     |    (*)     |   -\n  55000 |  486.84     |    (*)     |   -\n  65000 |  580.67     |    (*)     |   -\n  75000 |  574.09     |  300.51    |  0.52\n  85000 |  657.31     |  351.33    |  0.53\n\n(*) value_mean truncated in output — middle checkpoints available if needed.\n\nNOTES:\n- gate_dt_mean=1.0 throughout (gate_fixed_dt=1, gate_subsample_max_dt=2 config)\n- No checkpoint.ckpt file yet (written at end)\n- Steady improvement: eval_return 31→657 over 85K steps\n- v/e ratio stabilizing around 0.52-0.53 at recent checkpoints\n```\n\n## exp_009a_baseline_walker_s2\n\n```\nSTATUS: RUNNING\nCURRENT_STEP: ~335000\nPROGRESS: 67% (335K / 500K)\nFPS: 7.4\nETA: ~6.2 hours\n\nLATEST_EVAL_RETURN: 930.61 (at 325K)\n\nEVAL_TRAJECTORY (last 10 checkpoints):\n  step   | eval_return\n  245000 |  950.32\n  255000 |  936.90\n  265000 |  937.27\n  275000 |  934.78\n  285000 |  960.20\n  295000 |  947.46\n  305000 |  937.80\n  315000 |  948.66\n  325000 |  930.61\n\nNOTES:\n- Baseline (no gate) run, seed 2\n- Performance plateaued around 930-960 since ~245K\n- Peak eval_return: 960.20 at step 285K\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-008e-v3-s1-progress.md"
+}

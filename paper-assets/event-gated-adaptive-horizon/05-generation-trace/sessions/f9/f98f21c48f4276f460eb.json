@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f98f21c48f4276f460eb",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "snapshot all experiments final 20260520",
+  "task_key": "worker_snapshot_all_experiments_final_20260520_20260520T110322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_snapshot_all_experiments_final_20260520_20260520T110322_result.json",
+    "occurrence": 1,
+    "bytes": 2238,
+    "sha256": "3865d209dfbed3e6f734ef6d7ff6bc60a5e888d5d313be498ca9050bc32becec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总表\n\n| exp_id | 服务器 | 步数 | eval_latest | NVE_latest | 状态 |\n|--------|--------|------|-------------|------------|------|\n| **exp_027_s0_sigma02** (σ=0.2 s0) | bjb1-40020 | **205K** | **558.7** | **0.100** | 运行中，距210K约5K步 |\n| exp_029a_s1_sigma02 (σ=0.2 s1) | bjb1-40020 | 75K | 171.2 | 0.398 | 运行中 |\n| exp_030a_cheetah_s0_sigma02 (Cheetah σ=0.2) | bjb1-45299 | ~64K (eval@55K) | 31.9 | 1.903 | **运行中⚠️ 疑似崩溃** |\n| exp_027_s1 (σ=0.5 s1) | bjb1-45299 | 168K (eval@165K) | 209.5 | 0.539 | 运行中 |\n\n---\n\n### exp_027_s0_sigma02 (σ=0.2 s0) — 详细报告\n\n**尚未完成 210K，当前 205K。**\n\n**Eval 轨迹 (每 10K):**\n\n| Step | eval_return |\n|------|-------------|\n| 5K | 35.6 |\n| 15K | 150.6 |\n| 25K | 199.4 |\n| 35K | 278.2 |\n| 45K | 315.6 |\n| 55K | 278.6 |\n| 65K | 331.0 |\n| 75K | 293.1 |\n| 85K | 363.9 |\n| 95K | 171.4 |\n| 105K | 236.4 |\n| 115K | 543.8 |\n| 125K | 458.4 |\n| 135K | 496.7 |\n| 145K | 542.7 |\n| 155K | 660.5 |\n| 165K | 653.3 |\n| **175K** | **821.1** ← 峰值 |\n| 185K | 560.5 |\n| 195K | 567.9 |\n| 205K | 558.7 |\n\n**NVE 轨迹 (每 10K):**\n\n| Step | ve_ratio | value_mean |\n|------|----------|------------|\n| 15K | 0.019 | 2.9 |\n| 25K | 0.096 | 19.2 |\n| 35K | 0.188 | 52.2 |\n| 45K | 0.301 | 95.0 |\n| 55K | 0.523 | 145.8 |\n| 65K | 0.565 | 187.1 |\n| 75K | 0.611 | 179.1 |\n| 85K | 0.467 | 169.8 |\n| **95K** | **0.908** ← 最大 | 155.7 |\n| 105K | 0.563 | 133.0 |\n| 115K | 0.211 | 114.5 |\n| 125K | 0.218 | 100.0 |\n| 135K | 0.176 | 87.6 |\n| 145K | 0.143 | 77.6 |\n| 155K | 0.106 | 70.0 |\n| 165K | 0.098 | 64.0 |\n| 175K | 0.073 | 59.9 |\n| 185K | 0.105 | 58.7 |\n| 195K | 0.103 | 58.3 |\n| 205K | 0.100 | 55.6 |\n\n**关键统计:**\n- **Eval 峰值:** 821.1 @ Step 175K\n- **末期均值 (175K-205K):** 627.1 (n=4)\n- **NVE 全程最大值:** 0.908 @ Step 95K\n- **NVE 范围:** [0.019, 0.908]\n- **NVE 后半程趋势:** 95K 后持续下降并稳定在 ~0.10，value estimation 收敛良好\n\n---\n\n### 警告: exp_030a Cheetah\n\nEval 在 35K 达峰 299.5 后急剧崩溃到 55K 的 31.9，同时 VE ratio 飙升到 1.903（value explosion）。该实验可能已不可恢复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/snapshot-all-experiments-final-20260520.md"
+}

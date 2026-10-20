@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a765678b4d5df6d34951",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code exp 052 stackcube civo trigger s1",
+  "task_key": "worker_code_exp_052_stackcube_civo_trigger_s1_20260522T212717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_052_stackcube_civo_trigger_s1_20260522T212717_result.json",
+    "occurrence": 1,
+    "bytes": 439,
+    "sha256": "4862c3957c5bb88fe0e5baeae1f27bab7bf0c2ed748b5c092ff89cf0c8005508"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n**exp_052_stackcube_civo_trigger_s1 已启动：**\n\n- **PID**: 103781\n- **GPU**: cuda:0（PID 103781 占用 91MiB，初始化阶段）\n- **tmux session**: `exp_052_stackcube_civo_trigger_s1`\n- **状态**: 已完成 2500 步 prefill，模型已构建（model_opt 17M params, actor_opt 1M, value_opt 1.2M），正在执行首次 evaluation\n- **exp_049 (cuda:1)**: 未受影响，PID 91395 正常运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-052-stackcube-civo-trigger-s1.md"
+}

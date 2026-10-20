@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6235f085f7f85a3ee40",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code audit curriculum fixed dt",
+  "task_key": "worker_code_audit_curriculum_fixed_dt_20260514T005602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_audit_curriculum_fixed_dt_20260514T005602_result.json",
+    "occurrence": 1,
+    "bytes": 2427,
+    "sha256": "d4cb149004727420be907165befefac6c68f2430c5d8a77f2d5aee3612f20238"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 产出报告\n\n### 1. Curriculum 在 fixed_dt 模式下的确切行为\n\n**结论：Curriculum 在 fixed_dt 模式下完全不生效。原始假设是错误的。**\n\n代码路径 (`models.py:200-205`)：\n```python\nif self._config.gate_fixed_dt > 0:\n    effective_max_dt = float(self._config.gate_fixed_dt)  # 直接取 config 值 = 2.0\n    gate_scale = 0.0                                       # gate loss 置零\nelse:\n    self._update_gate_schedule()  # ← curriculum 只在这个分支执行\n```\n\n- **Training**: `subsample_variable_dt` 从 step 0 就收到 `effective_max_dt=2.0`，采样 dt∈{1,2}（log-uniform，约 58.5% dt=1, 41.5% dt=2）。**不存在 0-25K 纯 dt=1 阶段。**\n- **Imagination** (`models.py:581-598`): `gate_active=False`（因 `gate_fixed_dt != 0`），直接用 `dt=2` hardcode。**也不受 curriculum 控制。**\n\n### 2. 发现的实际 bug 及修复\n\n| Bug | 位置 | 修复 |\n|-----|------|------|\n| `_effective_max_dt` 在 fixed_dt 模式下永远为 1.0，导致 `gate_entropy_ratio` 指标错误 | models.py:156 (init) vs :202 | 在 fixed_dt 分支加 `self._effective_max_dt = effective_max_dt` |\n| `_update_gate_schedule` 硬编码 25K/75K，忽略 config 中的 `gate_curriculum_phase1: 50000` / `phase2: 150000` | models.py:182-185 | 改用 `getattr(self._config, 'gate_curriculum_phase1', 25000)` |\n\n### 3. Commit\n\n`6159e46` — `fix: sync _effective_max_dt in fixed_dt mode + use config curriculum phases`\n\n改动 `models.py`，+6 行 -3 行，不影响 exp_006（已在内存中运行）。\n\n### 4. Dry-run\n\n通过。`--gate_fixed_dt 2` 正常启动，prefill + 训练均无报错。\n\n### 5. 关于 exp_009\n\n由于 curriculum 假设不成立，**exp_009 与 exp_006 配置完全相同**——重跑不会产生新信息。\n\n真正的 train/imagine 分布差异是：训练用 58.5% dt=1 + 41.5% dt=2 混合数据，但 imagination 纯 dt=2。如果要排查这个方向，可能的 exp_009 设计：\n- **纯 dt=2 训练**：修改 `subsample_variable_dt` 支持 `min_dt=2`，消除 dt=1 数据\n- **纯 dt=1 baseline**：`--gate_fixed_dt 1`（等价于原版 DreamerV3），确认 dt=1 不崩\n\n但 return 崩塌可能有其他原因（reward scaling 在大 dt 下的数值问题、value function 对 dt-conditioned 特征的泛化等），建议先回顾 exp_006 的 tensorboard 看崩塌时其他指标的变化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-audit-curriculum-fixed-dt.md"
+}

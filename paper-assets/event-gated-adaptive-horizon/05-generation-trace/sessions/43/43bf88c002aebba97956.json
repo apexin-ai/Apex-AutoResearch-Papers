@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43bf88c002aebba97956",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "research pivot analysis",
+  "task_key": "worker_research_pivot_analysis_20260513T203415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_pivot_analysis_20260513T203415_result.json",
+    "occurrence": 1,
+    "bytes": 692,
+    "sha256": "51a064e494e3b2c7b863791680217a46b316e79414d3e67d4fc4a932dfb5447d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文档已写入 `/root/autodl-tmp/event-gated-adaptive-horizon/docs/pivot_analysis.md`（148 行）。\n\n核心结论：\n\n| 方案 | 改动量 | 推荐优先级 |\n|------|--------|-----------|\n| **C: Fixed dt=2** | ~20 行 | **1（先做）** — 诊断价值最高，验证 dt>1 是否有害 |\n| **B: Binary Skip** | ~25-30 行 | 2 — 验证 skip 概念本身是否可行 |\n| **A: Soft Mixture** | ~60-80 行 | 3 — 计算量 ×8，模糊状态风险，最后考虑 |\n\n执行策略：C → 如果 dt=2 也掉 return，说明跳步本身有害，回退 vanilla；如果 C 不掉，再做 B 定位是 Gumbel-Softmax 多类分类的问题还是 skip 概念的问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-pivot-analysis.md"
+}

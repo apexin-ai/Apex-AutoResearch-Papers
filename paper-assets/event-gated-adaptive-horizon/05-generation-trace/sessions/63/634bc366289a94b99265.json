@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "634bc366289a94b99265",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 008e v3 final",
+  "task_key": "worker_analysis_exp_008e_v3_final_20260514T090706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_008e_v3_final_20260514T090706_result.json",
+    "occurrence": 1,
+    "bytes": 3431,
+    "sha256": "1aec45ac77fc8367743b219dff38276d4551a3a31a015328fcde33ba40b8efb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已全部提取。以下是完整分析报告。\n\n---\n\n## exp_008e_v3_subsample_on_dt1_h15 最终结果分析\n\n### 1. 进程状态\n- **正常完成 105K eval**，训练继续到 112K 后停止\n- Checkpoint: `/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_subsample_on_dt1_h15/latest.pt` (231MB)\n\n### 2. eval_return trajectory\n\n| Step | 008e_v3 | baseline | 008a |\n|------|---------|----------|------|\n| 25K | 155.69 | — | — |\n| 35K | 276.47 | — | — |\n| 45K | 382.22 | — | — |\n| 55K | 486.84 | — | — |\n| 65K | 580.67 | — | — |\n| 75K | 574.09 | — | — |\n| 85K | **657.31** | — | — |\n| 95K | **851.86** | — | — |\n| 105K | **869.88** | **915.67** | **777.66** |\n\n75K→105K 持续上升，无崩塌。105K 达到 baseline 的 **95.0%**。\n\n### 3. value/eval ratio trajectory\n\n| Step | value_mean | eval_return | v/e | baseline v/e | normalized_ve |\n|------|-----------|------------|-----|-------------|---------------|\n| 25K | 26.19 | 155.69 | 0.168 | 0.087 | 1.93x |\n| 35K | 62.76 | 276.47 | 0.227 | 0.241 | 0.94x |\n| 45K | 110.67 | 382.22 | 0.290 | 0.331 | 0.88x |\n| 55K | 170.09 | 486.84 | 0.350 | 0.404 | 0.87x |\n| 65K | 235.05 | 580.67 | 0.405 | 0.563 | 0.72x |\n| 75K | 300.51 | 574.09 | 0.523 | 0.719 | 0.73x |\n| 85K | 351.33 | 657.31 | 0.534 | 0.701 | 0.76x |\n| 95K | 405.25 | 851.86 | 0.476 | 0.632 | 0.75x |\n| **105K** | **457.93** | **869.88** | **0.527** | **0.656** | **0.80x** |\n\nnormalized_ve 在 35K 后稳定在 0.72x–0.80x 范围，始终 **<1.0x**（value 保守但健康）。\n\n### 4. 与其他实验对比 @105K\n\n| 实验 | 配置 | eval_return | v/e | normalized_ve | 状态 |\n|------|------|-----------|-----|---------------|------|\n| **baseline** | 标准 DreamerV3 | 915.67 | 0.656 | 1.00x | 参照 |\n| **008e_v3** | subsample ON + untrained dt_emb + dt=1 imag + H=15 | **869.88** | 0.527 | **0.80x** | ✅ 健康 |\n| **008a** | subsample OFF + dt=2 imag + H=15 | 777.66 | 0.386 | 0.59x | ⚠️ 性能下降 |\n| **008d** | subsample ON + trained dt_emb + H=8 | 崩塌 | — | 69.3%@45K | ❌ 崩塌 |\n\n### 5. Gate 行为\n全程 `gate_dt_mean=1.0`, `gate_dt_1_frac=1.0` — 符合预期（dt=1 only 配置）。\n\n### 6. Trend 判断\n- **eval_return**: 单调上升趋势，75K 短暂回调后强势反弹（574→657→852→870）\n- **v/e ratio**: 稳定在 0.47–0.53 区间，normalized_ve 从 0.73x 缓慢回升到 0.80x\n- **无崩塌信号**，训练数据 @112K 仍在 743–946 范围\n\n### 7. Conclusion: **SUCCESS** ✅\n\n**判据满足**:\n- eval_return 869.88 >> 600 阈值 ✓\n- normalized_ve 0.80x << 1.2x 阈值 ✓\n\n**因果推断**:\n- 008e_v3（subsample ON + dt=1 imag）= 869.88 ≈ baseline 的 95%\n- 008a（subsample OFF + dt=2 imag）= 777.66 = baseline 的 85%\n- **subsample ON 数据本身不造成性能下降**。008e_v3 证明即使训练数据包含 dt=2 transitions，只要 imagination 限制在 dt=1，性能接近 baseline。\n- **性能下降的因果根源是 dt=2 imagination**，不是数据组成。008a 的退化来自 dt=2 imagination step 本身（world model 在 dt=2 处 rollout 不准确），而非 subsample ON 改变了 RSSM dynamics。\n- 008d 的崩塌则叠加了 trained dt_emb 引入的额外干扰。\n\n**Checkpoint path**: `/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008e_v3_subsample_on_dt1_h15/latest.pt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-008e-v3-final.md"
+}

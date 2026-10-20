@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e359363c93a6578928d8",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "monitor exp 005 exp 001 metrics check",
+  "task_key": "worker_monitor_exp_005_exp_001_metrics_check_20260513T183904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp_005_exp_001_metrics_check_20260513T183904_result.json",
+    "occurrence": 1,
+    "bytes": 1176,
+    "sha256": "042d61d932a5cd991a0bdd4d488ce9b1f368423df27d338fca7c9f0ac6fdd373"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总：\n\n## exp_001_baseline\n| 指标 | 值 |\n|------|-----|\n| 进程 | 运行中 (PID 9409, 已运行 16h35m) |\n| 最新 step | 452K (train) / 445K (eval) |\n| eval_return | **953.4** @ 445K |\n| train_return | 917~986 (均值 ~958) |\n| fps | 7.29 |\n| 预计完成 | ~1.8h 后 |\n\n## exp_005_event_gated_v4\n| 指标 | 值 |\n|------|-----|\n| 进程 | 运行中 (PID 51721, 已运行 2h31m) |\n| 最新 step | 65K |\n| eval_return | **465.7** @ 65K (↓14% from 541.2 @ 55K) |\n| train_return | 535~602 |\n| gate_scale | 0.100 (刚进入 phase 2) |\n| gate_dt_1_frac | 96.5% (gate 几乎未激活) |\n| gate_empirical_entropy | 0.050 |\n| fps | 6.69 |\n| vs baseline@65K | 465.7 vs 615.9 (**落后 150 点, 75%**) |\n\n### ⚠ Alert: return_declining_at_phase2_onset\n\neval_return 在 55K→65K 下降 14% (541→466)，与 gate_scale 从 0.01→0.10 的 phase 2 启动精确同步。这与 exp_003 的崩塌模式相似。但两个缓和因素：\n1. baseline 同期也小幅回调 (626→616, -1.6%)\n2. gate 实际上几乎没激活 (96.5% 仍为 dt=1)\n\n需要在 75K checkpoint 确认是正常波动还是持续下滑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp-005-exp-001-metrics-check.md"
+}

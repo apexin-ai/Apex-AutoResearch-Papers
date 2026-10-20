@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "928cad421baabdc84c3e",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code sync 021 script",
+  "task_key": "worker_code_sync-021-script_20260517T105559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sync-021-script_20260517T105559_result.json",
+    "occurrence": 1,
+    "bytes": 493,
+    "sha256": "7fa80a33be8b568ad4450a549afc1c2620e8932b7a5387f81c8e7fbdf803e16f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证完成。结果汇总：\n\n**脚本同步** — 已写入 `/root/autodl-tmp/event-gated-adaptive-horizon/scripts/exp_021_full_sgs_cheetah_s1.sh` 并 chmod +x，内容与本地一致。\n\n**验证结果**:\n- `full_sgs` 参数在 configs.yaml 中存在（找到 key `['full_sgs']`）\n- logdir 下无 `021` 相关目录，路径无冲突\n- `MUJOCO_EGL_DEVICE_ID=0` 已在脚本中确认\n\n**exp_019b 进度**: step **141000** / train_return 14.6 / 705 episodes。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sync-021-script.md"
+}

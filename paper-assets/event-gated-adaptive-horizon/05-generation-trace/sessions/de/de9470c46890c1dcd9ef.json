@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de9470c46890c1dcd9ef",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops kill dryrun pid",
+  "task_key": "worker_ops_kill-dryrun-pid_20260519T164406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-dryrun-pid_20260519T164406_result.json",
+    "occurrence": 1,
+    "bytes": 133,
+    "sha256": "cfaa3172c6ed296b531a8cd9565de85dad8f2ca4f894903c38d20b899224f39a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程 845863 已清除（nvidia-smi 中无残留）。当前显存：GPU 0 占用 8047 MiB，GPU 1 占用 9548 MiB。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-dryrun-pid.md"
+}

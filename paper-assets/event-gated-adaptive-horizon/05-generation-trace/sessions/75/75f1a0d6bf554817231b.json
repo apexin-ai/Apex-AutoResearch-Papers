@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75f1a0d6bf554817231b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops monitor tier2 restart",
+  "task_key": "worker_ops_monitor-tier2-restart_20260527T232544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_monitor-tier2-restart_20260527T232544_result.json",
+    "occurrence": 1,
+    "bytes": 62,
+    "sha256": "f712a4ecab893a3cfc8aadcbb085f1d9a005b85567727e86f8d9819df648135d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已设置 270 秒后唤醒检查。等待中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-monitor-tier2-restart.md"
+}

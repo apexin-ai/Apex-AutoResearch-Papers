@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "570b6fe19797032c3783",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "infra kill cuda1 019a",
+  "task_key": "worker_infra_kill-cuda1-019a_20260516T220015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-cuda1-019a_20260516T220015_result.json",
+    "occurrence": 1,
+    "bytes": 905,
+    "sha256": "55ad5415a3a82a0d98f72411ce5cc8e5bf776dcce5912e0717a0445f0cf545f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**Kill**: 成功。`kill 614980` 后 5 秒内进程退出。\n\n**cuda:1 状态**: 干净。nvidia-smi 显示 cuda:1 仅 1MiB 占用，0% 利用率，无 python 进程。GPU 0 上 PID 612881 不受影响。\n\n**019a_v2 分析 — 进程并未失败，是被正常 kill 的活跃训练**:\n- 最后日志写入时间：`06:00:14`（kill 前 40 秒），进程一直在正常训练\n- 进度：step **41,600** / 200,000（20.8%），episode 208，FPS ~6.18\n- train_return 波动在 4~72 之间，多数 18~30；最后一次 eval（step 32,500）eval_return = 33.19\n- checkpoint：仅 `latest.pt`（05:35 写入），`checkpoint_every=50000` 所以第一个正式 checkpoint 尚未触发\n- 无 tmux session 关联\n- 无 error log，stderr 为空\n\n结论：019a_v2 没有 hang 或 crash，是正常运行中的 baseline 训练被手动 kill。cuda:1 已完全释放可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-cuda1-019a.md"
+}

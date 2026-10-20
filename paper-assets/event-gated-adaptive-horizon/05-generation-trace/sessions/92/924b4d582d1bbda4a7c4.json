@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "924b4d582d1bbda4a7c4",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check westd gpu urgent",
+  "task_key": "worker_check_westd_gpu_urgent_20260525T222842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd_gpu_urgent_20260525T222842_result.json",
+    "occurrence": 1,
+    "bytes": 974,
+    "sha256": "42afe9377baa212e5e7f832ac67cd928a09ba440f92ea3cf6e6adeca812be0ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-19154 GPU 状态报告\n\n### exp_091_cheetah_008d_s2 (cuda:0)\n- **状态**: 🟢 存活\n- **PID**: 47303 (parent) / 47308 (GPU 进程)，运行时间 ~2h\n- **当前 step**: 105,000（最新 train step 104,000，正在跑 eval @ 105k）\n- **FPS**: ~14\n- **GPU 显存**: 3,223 MiB / 97,887 MiB，利用率 5%\n- **目标总 steps**: 假设标准 500k → 当前 ~21% 完成\n- **ETA**: 按 14 fps 算，剩余 ~395k steps × 500 env_steps/1k_train_steps... 约需 ~7.8h\n\n### plan_030 RSSM 分析\n- **状态**: ❌ 无结果\n- `artifacts/plan_030_rssm_quality/` 目录不存在，全 artifacts 下也无相关目录\n- 之前在 cuda:1 上跑的进程已结束，未留下产出文件\n\n### GPU 空闲状况\n\n| GPU | 状态 |\n|-----|------|\n| cuda:0 (RTX PRO 6000 Black) | 占用中 (exp_091, 3.2GB/98GB, 5% util) |\n| cuda:1 (RTX PRO 6000 Black) | **空闲** (0 进程, 1MiB, 0% util) |\n\n**cuda:1 完全空闲**，可安排新实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd-gpu-urgent.md"
+}

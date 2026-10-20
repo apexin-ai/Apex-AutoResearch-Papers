@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "596caf3af6a4f3c0c6b1",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis nve threshold v3 reviewer fix",
+  "task_key": "worker_analysis_nve_threshold_v3_reviewer_fix_20260515T170034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_nve_threshold_v3_reviewer_fix_20260515T170034_result.json",
+    "occurrence": 1,
+    "bytes": 1239,
+    "sha256": "1ab1cd45f05c6baf6a865ec1d5807bab3cce4079caa39471c43d1876688e4220"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已生成。关键发现：\n\n### Per-Experiment max_nve (35K+)\n| Experiment | max_nve | 分类 |\n|---|---|---|\n| exp_006_fixed_dt2 | **4.8362** | CIVO collapse |\n| exp_008d_subsample_on_h8 | **4.1292** | CIVO collapse |\n| exp_008e_v3_walker_s2 | **3.7801** | late collapse |\n| exp_009b_008d_walker_s2 | **1.6190** | self-corrected |\n| exp_001_baseline | 1.0000 | healthy |\n| exp_008f | 0.9701 | healthy |\n| exp_008e_v3_walker_s1 | 0.9411 | healthy (stable) |\n| exp_008a | 0.9322 | healthy |\n\n### Task A (检测 trained dt_emb)\n- **AUROC = 0.867**，CI [0.5, 1.0]\n- threshold 1.3 和 1.5 最优：Acc=87.5%, P=100%, R=80%, F1=88.9%\n- FN 是 exp_008e_v3_walker_s1（有 trained dt_emb 但 NVE=0.94，行为完全 healthy）\n\n### Task B1 (预测 CIVO 崩溃，009b=negative)\n- **AUROC = 1.0**，完美分离\n- threshold ≥ 1.7 时完美分类：Acc=100%, F1=1.0\n- 009b 的 max_nve=1.62 刚好落在 collapse 和 stable 之间\n\n### Task B2 (预测 CIVO 崩溃，009b=positive)\n- **AUROC = 1.0**\n- threshold 1.5 完美：Acc=100%, F1=1.0\n- threshold ≥ 1.7 时 009b 被漏掉（FN=1）\n\nJSON 已保存到 `artifacts/nve_threshold_v3.json`，脚本在 `scripts/nve_threshold_analysis_v3.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-nve-threshold-v3-reviewer-fix.md"
+}

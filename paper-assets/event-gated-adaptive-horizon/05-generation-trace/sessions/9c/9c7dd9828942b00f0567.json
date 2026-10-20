@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c7dd9828942b00f0567",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops kill rave residual bjb1 45299",
+  "task_key": "worker_ops_kill_rave_residual_bjb1_45299_20260520T062132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_rave_residual_bjb1_45299_20260520T062132_result.json",
+    "occurrence": 1,
+    "bytes": 368,
+    "sha256": "3f17d636dad8ce3b30dc106f4c37e5a55274ce82cfb17662807fc8dc55f17ef1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "RAVE 残留进程 879641 已不存在，无需手动清理。\n\n当前 GPU 状态：\n\n| GPU | PID | 进程 | 显存 |\n|-----|-----|------|------|\n| 0 | 888720 | python (C+G) | 3359 MiB |\n| 0 | 888926 | python (G) | 515 MiB |\n| 1 | **888926** | python (C) | 2742 MiB |\n\nGPU 1 上只有 TCN s1 进程 (PID 888926)，已干净，无资源竞争。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-rave-residual-bjb1-45299.md"
+}

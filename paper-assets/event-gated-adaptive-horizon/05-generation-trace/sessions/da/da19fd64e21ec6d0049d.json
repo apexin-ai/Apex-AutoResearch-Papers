@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da19fd64e21ec6d0049d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp humanoid baseline s0",
+  "task_key": "worker_analysis_exp_humanoid_baseline_s0_20260529T043240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_humanoid_baseline_s0_20260529T043240_result.json",
+    "occurrence": 1,
+    "bytes": 855,
+    "sha256": "66248867b0663f284db899210216e73faa18137f1b679579597892fc23d62cfe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。Registry 已更新为 DONE/negative。\n\n## 结果摘要\n\n**Conclusion: NEGATIVE** — 假设被证伪。\n\n| 指标 | 值 |\n|------|-----|\n| eval_return (final) | 1.2 |\n| NVE_105K | **13.0×** (阈值 2.0×) |\n| NVE_peak | **13.0×** (at 105K) |\n| NVE_final (205K) | **12.2×** |\n| NVE_mean (≥35K) | **7.7×** |\n| CIVO alerts | 3 次 (55K, 105K, 195K) |\n| value_mean | 5.5 → 15.2 (持续膨胀) |\n\n**关键发现**: Humanoid Walk 对 DreamerV3-S baseline 本身就是 CIVO-prone 环境，与 Walker/Cheetah baseline（NVE < 2.0×, 0 alerts）形成鲜明对比。21-DoF 高维动作空间在 eval_return 几乎无学习（~1.2）的情况下，value function 持续无界膨胀。这意味着 Humanoid 环境中即使 dt=1 也需要 CIVO 干预，使其成为验证 gating 机制的强压力测试环境。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-humanoid-baseline-s0-copy-2.md"
+}

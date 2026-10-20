@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70a5b0b329a42228c829",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis rssm v3 cheetah corrected",
+  "task_key": "worker_analysis_rssm_v3_cheetah_corrected_20260526T055335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rssm_v3_cheetah_corrected_20260526T055335_result.json",
+    "occurrence": 1,
+    "bytes": 1185,
+    "sha256": "c5a0a26d364a80fc9ce30d01d6c6d0f4525ae206d9727b24c476b0ad5404b16d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "问题比预期的更复杂：\n\n**exp_091** (trained_dt_emb, 105K) — **不存在**于 westd-51268，整台机器搜不到。可能在已宕机的 bjb1 上。\n\n**exp_097** (cheetah_008d_s3) — 当前 52K/105K 步训练中，但它是 **fixed_dt=2** 模型（`--gate_fixed_dt 2`），不是 trained_dt_emb。从 metrics 看 `gate_dt_mean=2.0, gate_dt_std=0.0`——dt 固定为 2，无自适应。\n\n**可用的 Cheetah checkpoint**：\n| 实验 | 类型 | 状态 |\n|------|------|------|\n| exp_092 | no_dt_emb | 完成 ✓ |\n| exp_093 | no_dt_emb | 完成 ✓ |\n| exp_097 | fixed_dt=2 (非 trained_dt_emb) | 训练中 52K/105K |\n\n**结论**：westd-51268 上没有 Cheetah trained_dt_emb 的完整 checkpoint。exp_091 可能在 bjb1 上（已宕机）。exp_097 是 fixed_dt=2 变体，不等同于 trained_dt_emb。\n\n**可选方案**：\n1. 等 exp_097 训练完成（~50K steps 剩余，按当前速度约 2-3 小时），用它做 fixed_dt=2 vs no_dt_emb 对比\n2. 如果能从 bjb1 恢复或有备份，获取 exp_091\n3. 在 westd-51268 上重新启动一个 trained_dt_emb Cheetah 实验（需要等 GPU 空出）\n\n需要你决定怎么处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-rssm-v3-cheetah-corrected.md"
+}

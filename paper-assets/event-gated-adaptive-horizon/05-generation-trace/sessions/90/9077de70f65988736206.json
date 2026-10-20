@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9077de70f65988736206",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops kill overrun and close registry",
+  "task_key": "worker_ops_kill-overrun-and-close-registry_20260527T172152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-overrun-and-close-registry_20260527T172152_result.json",
+    "occurrence": 1,
+    "bytes": 1194,
+    "sha256": "fbbb1ce65f41358aacfbdcaf28c195636cbd2cd2d7d1dadfd01a84d2a9f4ea85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n---\n\n### 1. 进程终止确认\n\n| 实验 | PID | 状态 |\n|------|-----|------|\n| exp_walker_008f_s0 | 637987 (主) + 637992 (GPU子) | 已 force kill，GPU 已释放，tmux session 已清理 |\n| exp_cheetah_008a_s0 | 637656 | 进程早已自然退出 |\n\n### 2. 105K eval 数据完整性\n\n**exp_walker_008f_s0** — 数据完整，与 Director 预期一致：\n\n| 指标 | 值 |\n|------|-----|\n| eval_return_105K | **139.54** (预期 139.5 ✓) |\n| civo/ve_ratio_105K | **0.996** (预期 0.996 ✓) |\n| value_mean_105K | 138.94 |\n| civo_alert | 0 |\n| eval_return_peak | 342.92 @ 95K |\n\n实验超跑到 step 112K，但 105K eval 数据完整记录。NVE < 2.0 符合假设（dt_embed_dim=0 不触发 CIVO）。\n\n### 3. Registry 关闭确认\n\n| 实验 | status | conclusion |\n|------|--------|------------|\n| exp_walker_008f_s0 | **DONE** | **success** |\n| exp_cheetah_008a_s0 | DONE | success（已提前关闭） |\n\n### 4. Cheetah 情况\n\nexp_cheetah_008a_s0 **无问题**——进程已自然结束，registry 在之前已被 hook 自动关闭（status=DONE, conclusion=success, eval_return_105K=366.19, NVE=0.449）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-overrun-and-close-registry.md"
+}

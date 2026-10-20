@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96ee943cbf720a067fb5",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis seed3 detector retrospective",
+  "task_key": "worker_analysis_seed3-detector-retrospective_20260517T032411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_seed3-detector-retrospective_20260517T032411_result.json",
+    "occurrence": 1,
+    "bytes": 1150,
+    "sha256": "d5be75b465b3c4261b079c1cba6f347bc298af5b15f83970993e60c024567248"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已写入 `artifacts/analysis/seed3_detector_retrospective.json`。\n\n## 关键发现\n\n**CIVO detector 未触发。** 4 个条件从未同时满足。核心原因：\n\n1. **时序错位** — 45K 步满足 3/4 条件（delta_ve 加速 + 3点下降 + delta_ve>0.1），但 ve_ratio=0.497，差 0.003 未过 0.5 阈值。这与预估一致：NVE=1.50× 对应 ve_ratio≈0.497。\n\n2. **终端下降不是渐进的** — 452→268 是 95K→105K 的单步崩溃，不满足\"连续3点下降\"（条件4）。在 85K 时 eval 已经有一次下跌（356→314），但 95K 又反弹到 452，所以 105K 时不构成 3 点连续下降。\n\n3. **条件最接近同时触发的位置**：\n   - **45K**: 3/4 条件满足，仅 ve_ratio 差 0.003 未达标\n   - **85K**: ve_ratio=0.97 + delta_ve=0.21（2/4），但无加速且无 3 点下降\n\n## 对 detector 设计的启示\n\n- 0.5 阈值对该 seed 来说过于严格（45K 时 0.497 恰好错过）\n- 3 点连续下降条件对\"突发崩溃\"模式无效\n- 如果将 ve_ratio 阈值降至 0.49 或取消条件 4 的严格性，45K 即可触发，lead time 约 60K 步"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-seed3-detector-retrospective.md"
+}

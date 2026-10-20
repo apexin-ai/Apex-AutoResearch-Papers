@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cad8c190e4ccad9c4a83",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "writing 016e noop section",
+  "task_key": "worker_writing_016e-noop-section_20260516T014532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_016e-noop-section_20260516T014532_result.json",
+    "occurrence": 1,
+    "bytes": 934,
+    "sha256": "433f6702bb70d966a65e0ef98ec7a86c401ef735c48b834317afa085fe0335f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Section 已保存到 `paper/sections/sgs_gradient_analysis.md` 并注册为 artifact `art_20260516_fcc460`。\n\n结构：\n1. **Design and Hypothesis** — SGS 动机（reward→dt_emb 是 CIVO 放大器假说）+ 016e 配置\n2. **Gradient Decomposition** — 016e 崩溃结果 + D061 梯度表（obs decoders 93%, KL 7%, reward 0%）+ 零梯度的架构原因（24D obs vs 1D reward + symlog 压缩）\n3. **Implications for CIVO Mechanism** — obs reconstruction 驱动 dt_emb 学习 → CIVO 根源在 latent dynamics 而非 reward pathway；Full-SGS (018) 是真正的干预；与 RSSM fidelity 分析的一致性\n4. **016e Reinterpreted** — no-op 确认后，016e/008d/009b 三条轨迹的差异归因于随机变异，NVE>1.5x 不变量在三者中均成立\n\n与已有的 `sgs_informative_negative.md` 相比：更紧凑、去掉了冗余描述、加强了 016e→009b 随机变异对比的量化论证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-016e-noop-section.md"
+}

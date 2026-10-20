@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88b54050b1a15205f6db",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis cheetah nve consistency",
+  "task_key": "worker_analysis_cheetah-nve-consistency_20260520T004048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cheetah-nve-consistency_20260520T004048_result.json",
+    "occurrence": 1,
+    "bytes": 2180,
+    "sha256": "48e706f673670838a1c8c1abe01bd37739e8e53f54ef802b4e15a2b27f4c9742"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "关键发现：decisions.yaml 记录 `baseline avg V/E@65K=0.385`，用的是 023a/023b 2-seed baseline，不是 5-seed mean。验证: 3.1829 / 0.385 = 8.27×。\n\n现在汇总结果。\n\n## #1 Cheetah NVE Consistency\n\n**exp_010b (seed1)** peak ve_ratio = **3.1829** @ step 65K (value_mean=72.15, eval_return=22.67)\n\n| baseline source | baseline_ve@65K | NVE | match? |\n|---|---|---|---|\n| 023a/023b 2-seed (decisions.yaml 记录) | 0.385 | **8.27×** | 论文值 |\n| 5-seed mean CSV (interpolated) | 0.378 | 8.42× | +1.8% 偏差 |\n\n**结论**: 8.27× 是 **normalized**（非 raw）。公式 = raw_ve_ratio / baseline_ve_ratio = 3.1829 / 0.385 = 8.27×。使用的 baseline 是 023a/023b 两个 Cheetah baseline seed 在 step 65K 的平均 VE ratio。\n\n**exp_010b_s0** 数据有问题：peak ve_ratio = 70.64 @ step 105K，eval_return 已崩溃到 0.83，NVE 因分母极小而爆炸，不具参考意义。\n\n对比表：\n\n```\nexperiment   | peak_step | raw_ve | bl_ve@step | NVE      | 论文值  | 备注\n-------------|-----------|--------|------------|----------|---------|---\n010b seed1   | 65K       | 3.18   | 0.385      | 8.27×    | 8.27×   | ✓ 023a/023b baseline\n010b seed0   | 105K      | 70.64  | ~0.584     | ~120.9×  | N/A     | eval崩溃致分母极小\n026_s0       | 65K       | 8.56   | 0.3918     | 21.85×   | N/A     | 进行中\n026_s1       | 65K       | 10.84  | 0.3918     | 27.67×   | N/A     | 进行中\n```\n\n**注意**: 如果后续统一用 5-seed mean baseline 重算 NVE，010b 的值会从 8.27× 变为 8.42×（+1.8%）。需要确认论文最终用哪套 baseline。\n\n---\n\n## #2 Progress Snapshot\n\n| 实验 | 当前 step | 目标 | 进度 |\n|---|---|---|---|\n| exp_025_s1 (Walker) | 176K | 210K | 83.8% |\n| exp_025_s2 (Walker) | 175K | 210K | 83.3% |\n| exp_025_s3 (Walker) | 216K | 210K | **完成** |\n| exp_025_s4 (Walker) | 180K | 210K | 85.7% |\n| exp_026_s0 (Cheetah) | 96K | 105K | 91.4% |\n| exp_026_s1 (Cheetah) | 96K | 105K | 91.4% |\n\nexp_025_s3 已超过目标步数。exp_026 两个 seed 还差 ~9K steps，预计很快完成。exp_025 剩余三个 seed 还需 30-35K steps。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cheetah-nve-consistency.md"
+}

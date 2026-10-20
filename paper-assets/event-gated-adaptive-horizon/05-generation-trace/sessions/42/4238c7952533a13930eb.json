@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4238c7952533a13930eb",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis plan 031 actor entropy",
+  "task_key": "worker_analysis_plan_031_actor_entropy_20260525T100450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan_031_actor_entropy_20260525T100450_result.json",
+    "occurrence": 1,
+    "bytes": 883,
+    "sha256": "b82bc65029d4b7ccb435225efb5d5b81205eb159e4ecc8b62d806852f743bf60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n**Actor entropy 不是 CIVO collapse 的区分指标。** 在可比时间点（55K step），collapsed 组均值 -5.02 vs healthy 组均值 -5.05，差异仅 0.03 nats。\n\n关键结论：\n1. **Actor 在 collapse 期间保持高置信度。** fixed_dt2 的 entropy 稳定在 -5.1，但 return 从 580 崩溃到 29——actor 没有\"困惑\"，而是自信地执行错误策略\n2. **Collapse 机制是 critic 侧的。** 非正常的 value estimates 驱动崩溃，不是 actor 的 policy 结构退化\n3. **Baseline 的 entropy 回升（-5.2→-1.5）伴随最佳性能（950 return）**，说明 entropy 上升本身不是病理信号\n4. **论文意义**：强化了\"delusional critic\"叙事——应关注 value calibration 指标而非 actor entropy 作为诊断信号\n\n报告已注册为 artifact `art_20260525_02b121`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-031-actor-entropy.md"
+}

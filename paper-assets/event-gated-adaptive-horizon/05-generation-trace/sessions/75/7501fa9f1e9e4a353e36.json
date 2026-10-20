@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7501fa9f1e9e4a353e36",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code civo detector verify",
+  "task_key": "worker_code_civo-detector-verify_20260517T023851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_civo-detector-verify_20260517T023851_result.json",
+    "occurrence": 1,
+    "bytes": 1060,
+    "sha256": "871c726aa5a47adaabe3898dbd37e22165db5c78f5caa0b8e6a1f8252fd28e49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。汇总结果：\n\n---\n\n**验证结果**\n\n1. **Python 环境**: `/root/miniconda3/bin/python` (Python 3.12.3)\n\n2. **import 验证**: `from dreamer import CIVODetector` 和 `import dreamer` 均成功\n\n3. **触发测试**: Step 4 正确触发 `[CIVO ALERT] level=2`，返回值为 2\n\n4. **CIVODetector 类位置**: `dreamer.py` line 29–61\n\n5. **update() 调用位置**: line 377，上下文：\n```python\n# line 373: CIVO detection\n# line 374: mean_eval_ret = getattr(logger, '_last_eval_return', None)\n# line 375: value_vals = agent._metrics.get('value_mean', [])\n# line 376: if mean_eval_ret is not None and len(value_vals) > 0:\n# line 377:     mean_val = float(np.mean(value_vals))\n# line 378:     civo_detector.update(mean_val, mean_eval_ret, logger.step)\n```\n\n6. **数据来源**:\n   - `value_mean`: 从 `agent._metrics.get('value_mean', [])` 取均值，是 critic 网络的 value prediction\n   - `eval_return`: 从 `getattr(logger, '_last_eval_return', None)`，是 eval episode 的平均回报"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-civo-detector-verify.md"
+}

@@ -1,0 +1,1985 @@
+{
+  "schema_version": "1.0",
+  "id": "bf2a0dd197b39df7c12f",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "paper detector section integrate",
+  "task_key": "worker_paper_detector-section-integrate_20260517T061720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_detector-section-integrate_20260517T061720.log",
+    "occurrence": 1,
+    "bytes": 146861,
+    "sha256": "71bebaf6e3ebf8dc0a80622df3412b0618b5c98328b1d9f939d9b0c4bae81107"
+  },
+  "statistics": {
+    "messages": 45,
+    "user_turns": 0,
+    "tool_calls": 15,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 11,
+      "tool_call": 15,
+      "tool_result": 15,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon",
+                "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "e6db80b5-2678-4d3c-b182-db4dcc9fe20e",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779016200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "99f6da13-9426-49a5-aaac-fc2422e2b388",
+                "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the draft and the existing results.tex to understand the current state, then integrate the content.",
+              "signature": "ErcCClkIDRgCKkDyXiAqc45+lC5Xxq9WDfO51y6iGCWQEp91/9RC1/f3Ut3DkWJkszFnvtsoonO3O8BJEK20PAhm6qLiGNPR3u5rMg9jbGF1ZGUtb3B1cy00LTY4ABIMP67cHmMiYtT5aEykGgwB0EFrI/M3gEzYvpsiMFx/s1YkWPalZ6S0YOAJoPdd9gX0M4/0sbhsGCuHy+dAXkltrEbGoi0G9LzQUwM3fyqLAb8HEKP+7YfsUDAJ7vJ+sxv2CUhrn+Wk+eZB6P9CkfMJVF46D5US7eQ/WdcsYm4vSPrSg98NHO91kUqnPKZcV7huUeP0vXmL5Cifr8RHicffD+g/xx0gJVw+RBDfoHPewQohnz6WFs+cWFjVZKYI4bbW8aSyNFX+nLw6aALrFA7rT1jf2TlOQJMXkMkYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "fd1d700a-ea50-4046-adb1-25ce72a7e97a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JSNmNjoP1e2pmpryR75V3R",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13748,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13748
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the draft, the existing results.tex, and the detector table to understand what needs to be integrated."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "cca5da11-652a-484b-b1ad-9217cf65fbaa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JSNmNjoP1e2pmpryR75V3R",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13748,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13748
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R9vc8LwgnhLSoen9Z327SS",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/drafts/detector_section_draft.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "7d4b9c72-da47-483d-a7ae-6a462b026731",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JSNmNjoP1e2pmpryR75V3R",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13748,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13748
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T06:17:35.493Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R9vc8LwgnhLSoen9Z327SS",
+              "type": "tool_result",
+              "content": "1\t# Section 5.3: Online CIVO Detection\n2\t\n3\t## Motivation\n4\t\n5\tThe Normalized Value Excess (NVE) metric introduced in Section 4 quantifies CIVO severity by comparing the value-to-evaluation ratio against a reference baseline that does not employ temporal abstraction. This comparison is informative for post-hoc diagnosis but unusable during deployment: no practitioner has access to a converged baseline run while training a new agent. A metric that requires a completed control experiment to interpret cannot serve as an early warning. We therefore ask whether the *dynamics* of value overestimation, rather than its absolute magnitude relative to an external reference, contain sufficient signal to detect CIVO onset in real time. The answer, as we show below, is affirmative. By tracking the trajectory of the value-to-evaluation ratio across checkpoints, a lightweight rule-based detector can flag dangerous overestimation using only quantities available within a single run. In our validation, the detector identifies all CIVO cases (3/3) with predictive detection in two of three cases and reactive confirmation in the third.\n6\t\n7\t## Detection Algorithm\n8\t\n9\tThe detector monitors a scalar signal $r_t = \\bar{V}_t / \\bar{E}_t$, the ratio of mean predicted value to mean episodic evaluation at checkpoint $t$. Rather than thresholding this ratio at a single point (which would be sensitive to environment-specific reward scales), the algorithm requires convergence of four conditions that together distinguish genuine CIVO onset from transient fluctuations:\n10\t\n11\t1. **Magnitude**: $r_t \\geq 0.49$. The value estimate exceeds roughly half the evaluation return, entering the empirical danger zone observed across our diagnostic experiments.\n12\t\n13\t2. **Velocity**: $\\Delta r_t = r_t - r_{t-1} > 0.1$. The ratio is actively increasing at a rate above the noise floor, ruling out slow drift or plateau behavior.\n14\t\n15\t3. **Acceleration**: $\\Delta r_t > 0.1$ AND $\\Delta r_{t-1} > 0.1$ AND $\\Delta r_t > \\Delta r_{t-1}$. The rate of increase is itself increasing across two consecutive intervals. This condition filters oscillatory paths where the ratio rises and falls without sustained divergence.\n16\t\n17\t4. **Evaluation decline**: Among the three most recent checkpoints, at least two show lower evaluation than their respective predecessors. This confirms that overestimation coincides with actual performance degradation, not a benign phase where both value and returns rise together.\n18\t\n19\tAn alert fires only when all four conditions hold simultaneously. The conjunction makes the detector conservative: any single noisy checkpoint is unlikely to satisfy magnitude, velocity, acceleration, and decline together.\n20\t\n21\t```\n22\tAlgorithm: Online CIVO Detector\n23\t────────────────────────────────────────────────────\n24\tInput: stream of (V_t, E_t) at each checkpoint t\n25\tParameters: τ_mag = 0.49, τ_vel = 0.1\n26\tState: r_prev, Δr_prev, E_history[]\n27\t\n28\tAt each checkpoint t:\n29\t  r_t ← mean(V_t) / mean(E_t)\n30\t  Δr_t ← r_t − r_prev\n31\t\n32\t  cond_magnitude ← (r_t ≥ τ_mag)\n33\t  cond_velocity  ← (Δr_t > τ_vel)\n34\t  cond_accel     ← (Δr_prev > τ_vel) AND (Δr_t > Δr_prev)\n35\t  cond_decline   ← count(E_history[i] < E_history[i−1]\n36\t                         for i in last 3) ≥ 2\n37\t\n38\t  if cond_magnitude AND cond_velocity\n39\t     AND cond_accel AND cond_decline:\n40\t      ALERT(\"CIVO onset detected at step t\")\n41\t\n42\t  r_prev ← r_t\n43\t  Δr_prev ← Δr_t\n44\t  append E_t to E_history\n45\t────────────────────────────────────────────────────\n46\t```\n47\t\n48\tThe computational cost is negligible: four scalar comparisons per checkpoint, with no model inference beyond the standard evaluation already performed during training.\n49\t\n50\t## Retrospective Validation\n51\t\n52\tWe apply the detector retrospectively to ten experimental runs spanning three conditions: trained duration embedding (CIVO-positive, $n=3$), untrained or absent duration embedding (CIVO-negative, $n=3$), and vanilla baselines without temporal abstraction ($n=4$). Ground truth labels are assigned by manual inspection: a run is CIVO-positive if it exhibits sustained NVE $\\geq$ 1.5$\\times$ with subsequent evaluation collapse. Detection type classifies trigger timing relative to the first checkpoint where evaluation drops 20% below peak.\n53\t\n54\t| Experiment | Config | Verdict | Trigger | Det. Type | Peak Eval | $r_{ve}$@trig |\n55\t|:-----------|:-------|:--------|:--------|:----------|:----------|:--------------|\n56\t| 008d (seed 0) | trained dt\\_emb | TP | 45K | predictive | 167 | 0.69 |\n57\t| 010b (cheetah) | trained dt\\_emb | TP | 65K | reactive | 322 | 3.18 |\n58\t| 008d (seed 3) | trained dt\\_emb | TP | 45K | predictive | 452 | 0.50 |\n59\t| 008f (seed 3) | no dt\\_emb | TN | -- | -- | 594 | -- |\n60\t| 009c (seed 2) | no dt\\_emb | FP | 105K | reactive | 359 | 0.75 |\n61\t| 009b (seed 2) | trained dt\\_emb (self-correcting) | TN | -- | -- | 279 | -- |\n62\t| 009a (seed 2) | vanilla baseline | FP | 85K | predictive | 967 | 0.73 |\n63\t| baseline (seed 1) | vanilla baseline | TN | -- | -- | 970 | -- |\n64\t| 009d (seed 0) | vanilla baseline | TN | -- | -- | 951 | -- |\n65\t| 009d (seed 1) | vanilla baseline | TN | -- | -- | 920 | -- |\n66\t\n67\t**Table 3.** Retrospective CIVO detector validation ($n=10$). Detection type: \"predictive\" = alert precedes 20% eval decline; \"reactive\" = alert follows decline onset. All values derived from `artifacts/analysis/detector_formal_validation_v3.json`. TPR = 3/3 (1.00), FPR = 2/7 (0.29).\n68\t\n69\tThe detector identifies all three CIVO-positive runs (TPR = 3/3). Two of three are detected predictively: 008d seed 0 triggers at 45K, one checkpoint before evaluation crosses the 20% decline threshold; seed 3 triggers at 45K, a full 50K steps before decline begins. The third (010b) involves single-step collapse (eval drops 80% in one interval), making advance detection impossible for any checkpoint-based monitor; the detector fires reactively at the next available checkpoint.\n70\t\n71\tTwo false positives occur among seven negative cases (FPR = 2/7). Their characteristics differ. Run 009c (no duration embedding) develops genuine late-stage value overestimation (eval declines from 359 to 148) unrelated to CIVO; the detector correctly identifies value-performance dissociation, and the alert is arguably useful despite the misattribution. Run 009a (vanilla baseline) triggers during a transient three-checkpoint eval dip (688 to 618) at 85K; the model subsequently recovers to 966, making this a pure false alarm. The detector cannot distinguish transient dips from sustained collapse within its three-checkpoint observation window.\n72\t\n73\tA consistent timing pattern yields a practical deployment guideline. All CIVO-positive triggers occur before 65K steps (range 45-65K, mean 52K), while both false positives trigger after 85K steps (range 85-105K, mean 95K). No false positives occur in the early training window ($< 70$K steps), and no true positives occur after it. This 83% timing gap reflects CIVO's acceleration of value divergence: trained duration embeddings amplify the overestimation feedback loop, producing detectable signatures earlier than non-CIVO pathologies. In practice, alerts before 70K steps can be treated as high-confidence CIVO indicators warranting immediate intervention, while alerts after 70K steps require manual inspection to distinguish genuine collapse from transient fluctuation.\n74\t\n75\t## Limitations\n76\t\n77\tFour constraints bound the current detector's applicability.\n78\t\n79\tFirst, the three-checkpoint observation window cannot distinguish transient eval dips from sustained collapse. Run 009a (vanilla baseline) triggers at 85K during a brief performance fluctuation that resolves by 105K; the detector has no mechanism to \"wait and see\" whether the dip is temporary. Increasing the window to five checkpoints would eliminate this FP at the cost of delayed detection for genuine cases.\n80\t\n81\tSecond, the acceleration condition assumes monotonically increasing overestimation during CIVO onset. In runs where value excess oscillates before stabilizing (as in the self-correcting trajectory of 009b), the detector remains silent. This silence is appropriate when self-correction occurs, but a variant that oscillates longer before collapsing could evade detection until the acceleration condition is finally satisfied.\n82\t\n83\tThird, the detector identifies a *pattern* (rising value-evaluation ratio with declining performance) rather than a *mechanism*. Run 009c demonstrates that non-CIVO pathologies produce the same signature. The detector is best understood as a \"value health monitor\" whose alerts warrant investigation, not as a definitive CIVO diagnosis. Disambiguating CIVO from other value pathologies requires checking whether temporal conditioning is active, a trivial additional filter in practice but one the core algorithm does not enforce.\n84\t\n85\tFourth, our validation set comprises ten runs across two environments (Walker Walk, HalfCheetah) with one architecture (DreamerV3/RSSM). The threshold values ($\\tau_\\text{mag} = 0.49$, $\\tau_\\text{vel} = 0.1$) were calibrated on this suite. Generalization to different reward scales or training dynamics requires further validation, ongoing with a manipulation task (PickCube, exp 019b).\n86\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "a63b2c17-5afc-40e9-9328-bec6e4cf1e5f",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/drafts/detector_section_draft.md",
+                "content": "# Section 5.3: Online CIVO Detection\n\n## Motivation\n\nThe Normalized Value Excess (NVE) metric introduced in Section 4 quantifies CIVO severity by comparing the value-to-evaluation ratio against a reference baseline that does not employ temporal abstraction. This comparison is informative for post-hoc diagnosis but unusable during deployment: no practitioner has access to a converged baseline run while training a new agent. A metric that requires a completed control experiment to interpret cannot serve as an early warning. We therefore ask whether the *dynamics* of value overestimation, rather than its absolute magnitude relative to an external reference, contain sufficient signal to detect CIVO onset in real time. The answer, as we show below, is affirmative. By tracking the trajectory of the value-to-evaluation ratio across checkpoints, a lightweight rule-based detector can flag dangerous overestimation using only quantities available within a single run. In our validation, the detector identifies all CIVO cases (3/3) with predictive detection in two of three cases and reactive confirmation in the third.\n\n## Detection Algorithm\n\nThe detector monitors a scalar signal $r_t = \\bar{V}_t / \\bar{E}_t$, the ratio of mean predicted value to mean episodic evaluation at checkpoint $t$. Rather than thresholding this ratio at a single point (which would be sensitive to environment-specific reward scales), the algorithm requires convergence of four conditions that together distinguish genuine CIVO onset from transient fluctuations:\n\n1. **Magnitude**: $r_t \\geq 0.49$. The value estimate exceeds roughly half the evaluation return, entering the empirical danger zone observed across our diagnostic experiments.\n\n2. **Velocity**: $\\Delta r_t = r_t - r_{t-1} > 0.1$. The ratio is actively increasing at a rate above the noise floor, ruling out slow drift or plateau behavior.\n\n3. **Acceleration**: $\\Delta r_t > 0.1$ AND $\\Delta r_{t-1} > 0.1$ AND $\\Delta r_t > \\Delta r_{t-1}$. The rate of increase is itself increasing across two consecutive intervals. This condition filters oscillatory paths where the ratio rises and falls without sustained divergence.\n\n4. **Evaluation decline**: Among the three most recent checkpoints, at least two show lower evaluation than their respective predecessors. This confirms that overestimation coincides with actual performance degradation, not a benign phase where both value and returns rise together.\n\nAn alert fires only when all four conditions hold simultaneously. The conjunction makes the detector conservative: any single noisy checkpoint is unlikely to satisfy magnitude, velocity, acceleration, and decline together.\n\n```\nAlgorithm: Online CIVO Detector\n────────────────────────────────────────────────────\nInput: stream of (V_t, E_t) at each checkpoint t\nParameters: τ_mag = 0.49, τ_vel = 0.1\nState: r_prev, Δr_prev, E_history[]\n\nAt each checkpoint t:\n  r_t ← mean(V_t) / mean(E_t)\n  Δr_t ← r_t − r_prev\n\n  cond_magnitude ← (r_t ≥ τ_mag)\n  cond_velocity  ← (Δr_t > τ_vel)\n  cond_accel     ← (Δr_prev > τ_vel) AND (Δr_t > Δr_prev)\n  cond_decline   ← count(E_history[i] < E_history[i−1]\n                         for i in last 3) ≥ 2\n\n  if cond_magnitude AND cond_velocity\n     AND cond_accel AND cond_decline:\n      ALERT(\"CIVO onset detected at step t\")\n\n  r_prev ← r_t\n  Δr_prev ← Δr_t\n  append E_t to E_history\n────────────────────────────────────────────────────\n```\n\nThe computational cost is negligible: four scalar comparisons per checkpoint, with no model inference beyond the standard evaluation already performed during training.\n\n## Retrospective Validation\n\nWe apply the detector retrospectively to ten experimental runs spanning three conditions: trained duration embedding (CIVO-positive, $n=3$), untrained or absent duration embedding (CIVO-negative, $n=3$), and vanilla baselines without temporal abstraction ($n=4$). Ground truth labels are assigned by manual inspection: a run is CIVO-positive if it exhibits sustained NVE $\\geq$ 1.5$\\times$ with subsequent evaluation collapse. Detection type classifies trigger timing relative to the first checkpoint where evaluation drops 20% below peak.\n\n| Experiment | Config | Verdict | Trigger | Det. Type | Peak Eval | $r_{ve}$@trig |\n|:-----------|:-------|:--------|:--------|:----------|:----------|:--------------|\n| 008d (seed 0) | trained dt\\_emb | TP | 45K | predictive | 167 | 0.69 |\n| 010b (cheetah) | trained dt\\_emb | TP | 65K | reactive | 322 | 3.18 |\n| 008d (seed 3) | trained dt\\_emb | TP | 45K | predictive | 452 | 0.50 |\n| 008f (seed 3) | no dt\\_emb | TN | -- | -- | 594 | -- |\n| 009c (seed 2) | no dt\\_emb | FP | 105K | reactive | 359 | 0.75 |\n| 009b (seed 2) | trained dt\\_emb (self-correcting) | TN | -- | -- | 279 | -- |\n| 009a (seed 2) | vanilla baseline | FP | 85K | predictive | 967 | 0.73 |\n| baseline (seed 1) | vanilla baseline | TN | -- | -- | 970 | -- |\n| 009d (seed 0) | vanilla baseline | TN | -- | -- | 951 | -- |\n| 009d (seed 1) | vanilla baseline | TN | -- | -- | 920 | -- |\n\n**Table 3.** Retrospective CIVO detector validation ($n=10$). Detection type: \"predictive\" = alert precedes 20% eval decline; \"reactive\" = alert follows decline onset. All values derived from `artifacts/analysis/detector_formal_validation_v3.json`. TPR = 3/3 (1.00), FPR = 2/7 (0.29).\n\nThe detector identifies all three CIVO-positive runs (TPR = 3/3). Two of three are detected predictively: 008d seed 0 triggers at 45K, one checkpoint before evaluation crosses the 20% decline threshold; seed 3 triggers at 45K, a full 50K steps before decline begins. The third (010b) involves single-step collapse (eval drops 80% in one interval), making advance detection impossible for any checkpoint-based monitor; the detector fires reactively at the next available checkpoint.\n\nTwo false positives occur among seven negative cases (FPR = 2/7). Their characteristics differ. Run 009c (no duration embedding) develops genuine late-stage value overestimation (eval declines from 359 to 148) unrelated to CIVO; the detector correctly identifies value-performance dissociation, and the alert is arguably useful despite the misattribution. Run 009a (vanilla baseline) triggers during a transient three-checkpoint eval dip (688 to 618) at 85K; the model subsequently recovers to 966, making this a pure false alarm. The detector cannot distinguish transient dips from sustained collapse within its three-checkpoint observation window.\n\nA consistent timing pattern yields a practical deployment guideline. All CIVO-positive triggers occur before 65K steps (range 45-65K, mean 52K), while both false positives trigger after 85K steps (range 85-105K, mean 95K). No false positives occur in the early training window ($< 70$K steps), and no true positives occur after it. This 83% timing gap reflects CIVO's acceleration of value divergence: trained duration embeddings amplify the overestimation feedback loop, producing detectable signatures earlier than non-CIVO pathologies. In practice, alerts before 70K steps can be treated as high-confidence CIVO indicators warranting immediate intervention, while alerts after 70K steps require manual inspection to distinguish genuine collapse from transient fluctuation.\n\n## Limitations\n\nFour constraints bound the current detector's applicability.\n\nFirst, the three-checkpoint observation window cannot distinguish transient eval dips from sustained collapse. Run 009a (vanilla baseline) triggers at 85K during a brief performance fluctuation that resolves by 105K; the detector has no mechanism to \"wait and see\" whether the dip is temporary. Increasing the window to five checkpoints would eliminate this FP at the cost of delayed detection for genuine cases.\n\nSecond, the acceleration condition assumes monotonically increasing overestimation during CIVO onset. In runs where value excess oscillates before stabilizing (as in the self-correcting trajectory of 009b), the detector remains silent. This silence is appropriate when self-correction occurs, but a variant that oscillates longer before collapsing could evade detection until the acceleration condition is finally satisfied.\n\nThird, the detector identifies a *pattern* (rising value-evaluation ratio with declining performance) rather than a *mechanism*. Run 009c demonstrates that non-CIVO pathologies produce the same signature. The detector is best understood as a \"value health monitor\" whose alerts warrant investigation, not as a definitive CIVO diagnosis. Disambiguating CIVO from other value pathologies requires checking whether temporal conditioning is active, a trivial additional filter in practice but one the core algorithm does not enforce.\n\nFourth, our validation set comprises ten runs across two environments (Walker Walk, HalfCheetah) with one architecture (DreamerV3/RSSM). The threshold values ($\\tau_\\text{mag} = 0.49$, $\\tau_\\text{vel} = 0.1$) were calibrated on this suite. Generalization to different reward scales or training dynamics requires further validation, ongoing with a manipulation task (PickCube, exp 019b).\n",
+                "numLines": 86,
+                "startLine": 1,
+                "totalLines": 86
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GXzZpbeQzkWpXM4rAxy1Gk",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "3aed9489-edab-42a4-b56d-462a660be003",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JSNmNjoP1e2pmpryR75V3R",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13748,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13748
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T06:17:35.877Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GXzZpbeQzkWpXM4rAxy1Gk",
+              "type": "tool_result",
+              "content": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\tWe organize results around seven findings (F1--F7) that establish a causal chain from trained temporal conditioning to pathological value dynamics. All experiments use Walker Walk (DMC) with DreamerV3; treatments run to 105K steps and the baseline to 505K steps. We report evaluation returns (mean over 10 episodes) and the normalized value-to-eval ratio ($\\nve$, \\S\\ref{sec:metrics}).\n5\t\n6\t%% ============================================================\n7\t%% TABLE 1: Main results summary\n8\t%% ============================================================\n9\t\n10\t\\begin{table*}[t]\n11\t\\centering\n12\t\\caption{All configurations and outcomes. NVE reports peak $\\nve$ in the 35K+ window (\\S\\ref{sec:metrics}). CIVO-positive seeds are shaded; $\\dagger$\\,marks a false positive (non-CIVO collapse with elevated NVE).}\n13\t\\label{tab:main_results}\n14\t\\footnotesize\n15\t\\setlength{\\tabcolsep}{4pt}\n16\t\\begin{tabular}{llcccccl}\n17\t\\toprule\n18\t\\textbf{Exp} & \\textbf{Config} & \\textbf{dt\\_emb} & \\textbf{Sub} & \\textbf{H} & \\textbf{Eval@final} & \\textbf{NVE} & \\textbf{Outcome} \\\\\n19\t\\midrule\n20\t001 & Baseline ($\\dt{=}1$) & --- & --- & 15 & 915.7 @105K & 1.00$\\times$ & Healthy \\\\\n21\t\\rowcolor{gray!15}\n22\t006 & Fixed $\\dt{=}2$ & trn & ON & 15 & 132.9 @65K & 4.83$\\times$ & Collapsed \\\\\n23\t007 & Fixed $\\dt{=}4$ & trn & ON & 15 & 152.5 @55K & --- & Collapsed \\\\\n24\t005 & Learned gate & adaptive & OFF & 15 & 98.8 @145K & --- & Collapsed \\\\\n25\t\\midrule\n26\t\\rowcolor{gray!15}\n27\t008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K & 4.12$\\times$ & Full collapse \\\\\n28\t\\rowcolor{gray!15}\n29\t009b & Factorial (s2) & trn & ON & 8 & 267.9 @105K & 1.62$\\times$ & Transient CIVO \\\\\n30\t008f & No dt\\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\\times$ & Healthy \\\\\n31\t008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\\times$ & Healthy \\\\\n32\t015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 0.47$\\times$ & Grad.\\ starvation \\\\\n33\t\\midrule\n34\t018 s1 & Full-SGS & trn$^\\ddagger$ & ON & 8 & \\sgseval{} @105K & \\sgsnve{}$\\times$$^*$ & No collapse \\\\\n35\t\\rowcolor{gray!15}\n36\t018 s2 & Full-SGS & trn$^\\ddagger$ & ON & 8 & 40.8 @105K & --- & Collapsed \\\\\n37\t008e\\_v3 s1 & Mitigation & trn & ON & 15 & 869.9 @105K & 0.80$\\times$ & Healthy \\\\\n38\t008e\\_v3 s2$^\\dagger$ & Mitigation & trn & ON & 15 & 137.0 @105K & 3.78$\\times$ & Non-CIVO collapse \\\\\n39\t\\midrule\n40\t\\multicolumn{8}{l}{\\textit{Cross-environment validation (Cheetah Run)}} \\\\\n41\t\\rowcolor{gray!15}\n42\t010b & Cheetah Run & trn & ON & 8 & 51.7 @105K & 14.59$\\times$ & Collapsed \\\\\n43\t\\bottomrule\n44\t\\end{tabular}\n45\t\\vspace{1pt}\n46\t{\\raggedright\\footnotesize\n47\ttrn = trained ($d{=}32$, subsample ON);\n48\ttrn$^\\ddagger$ = full-pathway SGS (all non-KL gradients detached);\n49\texp$^a$ = trained, subsample OFF;\n50\tfrz$^b$ = frozen ($d{=}32$, \\texttt{requires\\_grad=False});\n51\t--- = removed ($d{=}0$).\\\\\n52\t$^*$ Seed 1 only: peak NVE with transient exceedances (1.61$\\times$ at 35K, 1.66$\\times$ at 95K); self-correcting, no sustained escalation. Seed 2 collapsed.\\par}\n53\t\\end{table*}\n54\t\n55\t%% ============================================================\n56\t%% F1: All dt>1 degrade\n57\t%% ============================================================\n58\t\n59\t\\subsection{F1: All Variable-Rate Configurations Degrade}\n60\t\\label{sec:f1}\n61\t\n62\tEvery configuration that introduces $\\dt > 1$ imagination degrades relative to the $\\dt{=}1$ baseline (Figure~\\ref{fig:learning_curves}). The baseline reaches 915.7 at 105K; fixed $\\dt{=}2$ (006) peaks at 485.3 before collapsing to 132.9 ($14\\%$ of baseline); fixed $\\dt{=}4$ (007) never exceeds 176.9 ($19\\%$); the learned gate (005) collapses to 98.8 ($11\\%$).\n63\t\n64\t\\begin{figure}[t]\n65\t\\centering\n66\t\\includegraphics[width=0.65\\columnwidth]{figures/paper/fig1_learning_curves.pdf}\n67\t\\caption{Learning curves. The baseline (black) reaches 915.7; all variable-rate configurations degrade.}\n68\t\\label{fig:learning_curves}\n69\t\\end{figure}\n70\t\n71\t%% ============================================================\n72\t%% F2: Trained dt_embedding → nve > 1.5x\n73\t%% ============================================================\n74\t\n75\t\\subsection{F2: Trained Temporal Embedding Triggers Value Overestimation}\n76\t\\label{sec:f2}\n77\t\n78\tThe factorial design isolates trained $\\dt$-embedding as the causal trigger. Comparing exp\\_008d (trained, subsample ON) against exp\\_008f (no embedding, subsample ON): 008d reaches $\\nve = 4.12\\times$ and collapses (eval 82.8), while 008f maintains $\\nve \\leq 0.97\\times$ (eval 503.0). The $\\nve \\geq 1.5\\times$ threshold (35K+ window) correctly classifies 7/8 seeds (AUROC${=}0.933$; Figure~\\ref{fig:nve_trajectory}).\n79\t\n80\t\\begin{figure}[t]\n81\t\\centering\n82\t\\includegraphics[width=0.65\\columnwidth]{figures/fig1_nve_trajectory.pdf}\n83\t\\caption{NVE trajectories (mean $\\pm$ seed range). Trained $\\dt$-embedding (red, $n{=}2$) exceeds the $1.5\\times$ threshold (dashed); no-embedding control (blue) remains near $1.0\\times$. Dotted line marks the 35K diagnostic window onset.}\n84\t\\label{fig:nve_trajectory}\n85\t\\end{figure}\n86\t\n87\tThe same CIVO trigger produces stochastic downstream outcomes: seed~1 (008d) undergoes full collapse ($\\nve = 4.12\\times$, eval 82.8), while seed~2 (009b) self-corrects after transient $\\nve = 1.62\\times$ (eval 267.9). Both exceed $\\nve \\geq 1.5\\times$, confirming deterministic triggering with seed-dependent outcomes (Appendix~\\ref{sec:seed_divergence}).\n88\t\n89\t%% ============================================================\n90\t%% F3--F5: Summary (details in Appendix B)\n91\t%% ============================================================\n92\t\n93\t\\subsection{F3--F5: Factorial Ablation (Appendix~\\ref{sec:appendix_factorial})}\n94\t\\label{sec:f3f5_summary}\n95\t\n96\tTrained $\\dt$-embedding and multi-rate data exposure are \\emph{jointly necessary} for CIVO. Neither factor alone is sufficient: unexposed trained embedding (008a) maintains NVE $\\leq 0.93\\times$, frozen embedding (015b) never exceeds $0.47\\times$, and removed embedding (008f) shows NVE $\\leq 0.97\\times$. Degradation scales monotonically with $\\dt$ ($-47\\%$ at $\\dt{=}2$, $-81\\%$ at $\\dt{=}4$).\n97\t\n98\t%% ============================================================\n99\t%% F6--F7: Interventions and cross-environment\n100\t%% ============================================================\n101\t\n102\t\\subsection{F6--F7: Interventions and Multiple Pathways}\n103\t\\label{sec:f6}\n104\t\n105\t\\paragraph{F6: $\\dt{=}1$ imagination does not prevent all collapse.}\n106\tExp\\_008e\\_v3 restricts imagination to $\\dt{=}1$ while retaining the trained embedding. Seed~1 is healthy (eval 869.9, $\\nve = 0.80\\times$); seed~2 collapses (eval $715 \\rightarrow 137$, $\\nve = 3.78\\times$)---but via a qualitatively distinct mechanism (Figure~\\ref{fig:multiple_pathways}). Classic CIVO (008d, Pathway~A) shows value explosion followed by evaluation decline with decreasing entropy; 008e\\_v3\\_s2 (Pathway~B) shows evaluation crash with \\emph{increasing} entropy ($-5.21 \\rightarrow -3.83$) while values remain stable. This produces the sole false positive in the NVE classification.\n107\t\n108\t\\begin{figure}[t]\n109\t\\centering\n110\t\\includegraphics[width=0.65\\columnwidth]{figures/paper/fig6_multiple_pathways.pdf}\n111\t\\caption{Contrasting collapse dynamics. \\textbf{Left:} 008d (CIVO)---value explosion, entropy decreases. \\textbf{Right:} 008e\\_v3 s2 (non-CIVO)---evaluation crashes, entropy increases.}\n112\t\\label{fig:multiple_pathways}\n113\t\\end{figure}\n114\t\n115\t\\paragraph{F7: Full-pathway gradient stopping shows mixed results.}\n116\tExp\\_018 applies Selective Gradient Stopping (SGS) by detaching all non-KL gradients from $e_{\\dt}$, blocking the observation decoder pathway identified in F2 as the primary CIVO conduit. Figure~\\ref{fig:civo_decomposition} decomposes evaluation returns across conditions. Trained $\\dt$-embedding alone produces $-73\\%$ peak and $-86\\%$ final eval degradation relative to the baseline. Full-SGS seed~1 avoids collapse (eval \\sgseval{}, $-51\\%$ final relative to baseline) while seed~2 collapses (eval 40.8, $-96\\%$), yielding a 50\\% prevention rate. SGS reduces but does not eliminate CIVO risk: the gradient pathway it blocks is necessary but not sufficient for reliable prevention. Reward-only SGS (016e) fails entirely (NVE $10.42\\times$). Cross-environment validation on Cheetah Run (010b) confirms CIVO generalization: evaluation peaks at 321.9 before collapsing to 22.7 ($-93\\%$); peak NVE $14.59\\times$.\n117\t\n118\t\\begin{figure}[t]\n119\t\\centering\n120\t\\includegraphics[width=0.75\\columnwidth]{figures/fig2_civo_decomposition.pdf}\n121\t\\caption{CIVO decomposition: peak and final (105K step) evaluation returns on Walker Walk (DMC) across four conditions. \\textbf{Baseline} (001): vanilla DreamerV3, no temporal embedding. \\textbf{Trained dt-emb} (008d, 009b): DreamerV3 with a learned $d{=}32$ temporal embedding exposed to multi-rate data, two seeds. \\textbf{Full-SGS} (s1, s2): trained embedding with Selective Gradient Stopping that detaches all non-KL gradients from $e_{\\dt}$, two seeds. Trained $\\dt$-embedding degrades peak eval by $73\\%$ and final eval by $86\\%$ relative to the baseline. Full-SGS seed~1 partially recovers ($-51\\%$ final, no collapse) but seed~2 collapses ($-96\\%$ final, marked ``collapsed''), indicating that SGS reduces but does not reliably prevent CIVO (prevention rate $= 50\\%$). All percentages relative to Baseline 001.}\n122\t\\label{fig:civo_decomposition}\n123\t\\end{figure}\n124\t\n125\t%% ============================================================\n126\t%% TABLE 2: RSSM Fidelity\n127\t%% ============================================================\n128\t\n129\t\\begin{table}[t]\n130\t\\centering\n131\t\\caption{RSSM fidelity at $\\dt{=}1$ vs.\\ $\\dt{=}2$. Trained embedding (008d) produces $2.78\\times$ reward gap; removing it (008f) eliminates the gap but degrades absolute prediction.}\n132\t\\label{tab:rssm_fidelity}\n133\t\\footnotesize\n134\t\\setlength{\\tabcolsep}{4pt}\n135\t\\begin{tabular}{lcccccc}\n136\t\\toprule\n137\t& \\multicolumn{3}{c}{\\textbf{obs\\_MSE}} & \\multicolumn{3}{c}{\\textbf{reward\\_MAE}} \\\\\n138\t\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n139\t\\textbf{Config} & $\\dt{=}1$ & $\\dt{=}2$ & Gap & $\\dt{=}1$ & $\\dt{=}2$ & Gap \\\\\n140\t\\midrule\n141\tBaseline & 13.49 & 27.50 & 2.04$\\times$ & 0.0102 & 0.0159 & 1.56$\\times$ \\\\\n142\t008d (trained) & 41.31 & 53.67 & 1.30$\\times$ & 0.0568 & 0.1579 & 2.78$\\times$ \\\\\n143\t008f (no emb) & 8.01 & 22.04 & 2.75$\\times$ & 0.7469 & 0.7526 & 1.01$\\times$ \\\\\n144\t\\bottomrule\n145\t\\end{tabular}\n146\t\\end{table}\n147\t\n148\tThe trained embedding in 008d produces a $2.78\\times$ reward prediction gap between $\\dt{=}1$ and $\\dt{=}2$ (Table~\\ref{tab:rssm_fidelity}), providing the systematic bias that the critic internalizes as optimistic value estimates.\n149\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "20346a80-d49e-47eb-9f50-9f17b6129bfb",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+                "content": "\\section{Results}\n\\label{sec:results}\n\nWe organize results around seven findings (F1--F7) that establish a causal chain from trained temporal conditioning to pathological value dynamics. All experiments use Walker Walk (DMC) with DreamerV3; treatments run to 105K steps and the baseline to 505K steps. We report evaluation returns (mean over 10 episodes) and the normalized value-to-eval ratio ($\\nve$, \\S\\ref{sec:metrics}).\n\n%% ============================================================\n%% TABLE 1: Main results summary\n%% ============================================================\n\n\\begin{table*}[t]\n\\centering\n\\caption{All configurations and outcomes. NVE reports peak $\\nve$ in the 35K+ window (\\S\\ref{sec:metrics}). CIVO-positive seeds are shaded; $\\dagger$\\,marks a false positive (non-CIVO collapse with elevated NVE).}\n\\label{tab:main_results}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{llcccccl}\n\\toprule\n\\textbf{Exp} & \\textbf{Config} & \\textbf{dt\\_emb} & \\textbf{Sub} & \\textbf{H} & \\textbf{Eval@final} & \\textbf{NVE} & \\textbf{Outcome} \\\\\n\\midrule\n001 & Baseline ($\\dt{=}1$) & --- & --- & 15 & 915.7 @105K & 1.00$\\times$ & Healthy \\\\\n\\rowcolor{gray!15}\n006 & Fixed $\\dt{=}2$ & trn & ON & 15 & 132.9 @65K & 4.83$\\times$ & Collapsed \\\\\n007 & Fixed $\\dt{=}4$ & trn & ON & 15 & 152.5 @55K & --- & Collapsed \\\\\n005 & Learned gate & adaptive & OFF & 15 & 98.8 @145K & --- & Collapsed \\\\\n\\midrule\n\\rowcolor{gray!15}\n008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K & 4.12$\\times$ & Full collapse \\\\\n\\rowcolor{gray!15}\n009b & Factorial (s2) & trn & ON & 8 & 267.9 @105K & 1.62$\\times$ & Transient CIVO \\\\\n008f & No dt\\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\\times$ & Healthy \\\\\n008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\\times$ & Healthy \\\\\n015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 0.47$\\times$ & Grad.\\ starvation \\\\\n\\midrule\n018 s1 & Full-SGS & trn$^\\ddagger$ & ON & 8 & \\sgseval{} @105K & \\sgsnve{}$\\times$$^*$ & No collapse \\\\\n\\rowcolor{gray!15}\n018 s2 & Full-SGS & trn$^\\ddagger$ & ON & 8 & 40.8 @105K & --- & Collapsed \\\\\n008e\\_v3 s1 & Mitigation & trn & ON & 15 & 869.9 @105K & 0.80$\\times$ & Healthy \\\\\n008e\\_v3 s2$^\\dagger$ & Mitigation & trn & ON & 15 & 137.0 @105K & 3.78$\\times$ & Non-CIVO collapse \\\\\n\\midrule\n\\multicolumn{8}{l}{\\textit{Cross-environment validation (Cheetah Run)}} \\\\\n\\rowcolor{gray!15}\n010b & Cheetah Run & trn & ON & 8 & 51.7 @105K & 14.59$\\times$ & Collapsed \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\raggedright\\footnotesize\ntrn = trained ($d{=}32$, subsample ON);\ntrn$^\\ddagger$ = full-pathway SGS (all non-KL gradients detached);\nexp$^a$ = trained, subsample OFF;\nfrz$^b$ = frozen ($d{=}32$, \\texttt{requires\\_grad=False});\n--- = removed ($d{=}0$).\\\\\n$^*$ Seed 1 only: peak NVE with transient exceedances (1.61$\\times$ at 35K, 1.66$\\times$ at 95K); self-correcting, no sustained escalation. Seed 2 collapsed.\\par}\n\\end{table*}\n\n%% ============================================================\n%% F1: All dt>1 degrade\n%% ============================================================\n\n\\subsection{F1: All Variable-Rate Configurations Degrade}\n\\label{sec:f1}\n\nEvery configuration that introduces $\\dt > 1$ imagination degrades relative to the $\\dt{=}1$ baseline (Figure~\\ref{fig:learning_curves}). The baseline reaches 915.7 at 105K; fixed $\\dt{=}2$ (006) peaks at 485.3 before collapsing to 132.9 ($14\\%$ of baseline); fixed $\\dt{=}4$ (007) never exceeds 176.9 ($19\\%$); the learned gate (005) collapses to 98.8 ($11\\%$).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.65\\columnwidth]{figures/paper/fig1_learning_curves.pdf}\n\\caption{Learning curves. The baseline (black) reaches 915.7; all variable-rate configurations degrade.}\n\\label{fig:learning_curves}\n\\end{figure}\n\n%% ============================================================\n%% F2: Trained dt_embedding → nve > 1.5x\n%% ============================================================\n\n\\subsection{F2: Trained Temporal Embedding Triggers Value Overestimation}\n\\label{sec:f2}\n\nThe factorial design isolates trained $\\dt$-embedding as the causal trigger. Comparing exp\\_008d (trained, subsample ON) against exp\\_008f (no embedding, subsample ON): 008d reaches $\\nve = 4.12\\times$ and collapses (eval 82.8), while 008f maintains $\\nve \\leq 0.97\\times$ (eval 503.0). The $\\nve \\geq 1.5\\times$ threshold (35K+ window) correctly classifies 7/8 seeds (AUROC${=}0.933$; Figure~\\ref{fig:nve_trajectory}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.65\\columnwidth]{figures/fig1_nve_trajectory.pdf}\n\\caption{NVE trajectories (mean $\\pm$ seed range). Trained $\\dt$-embedding (red, $n{=}2$) exceeds the $1.5\\times$ threshold (dashed); no-embedding control (blue) remains near $1.0\\times$. Dotted line marks the 35K diagnostic window onset.}\n\\label{fig:nve_trajectory}\n\\end{figure}\n\nThe same CIVO trigger produces stochastic downstream outcomes: seed~1 (008d) undergoes full collapse ($\\nve = 4.12\\times$, eval 82.8), while seed~2 (009b) self-corrects after transient $\\nve = 1.62\\times$ (eval 267.9). Both exceed $\\nve \\geq 1.5\\times$, confirming deterministic triggering with seed-dependent outcomes (Appendix~\\ref{sec:seed_divergence}).\n\n%% ============================================================\n%% F3--F5: Summary (details in Appendix B)\n%% ============================================================\n\n\\subsection{F3--F5: Factorial Ablation (Appendix~\\ref{sec:appendix_factorial})}\n\\label{sec:f3f5_summary}\n\nTrained $\\dt$-embedding and multi-rate data exposure are \\emph{jointly necessary} for CIVO. Neither factor alone is sufficient: unexposed trained embedding (008a) maintains NVE $\\leq 0.93\\times$, frozen embedding (015b) never exceeds $0.47\\times$, and removed embedding (008f) shows NVE $\\leq 0.97\\times$. Degradation scales monotonically with $\\dt$ ($-47\\%$ at $\\dt{=}2$, $-81\\%$ at $\\dt{=}4$).\n\n%% ============================================================\n%% F6--F7: Interventions and cross-environment\n%% ============================================================\n\n\\subsection{F6--F7: Interventions and Multiple Pathways}\n\\label{sec:f6}\n\n\\paragraph{F6: $\\dt{=}1$ imagination does not prevent all collapse.}\nExp\\_008e\\_v3 restricts imagination to $\\dt{=}1$ while retaining the trained embedding. Seed~1 is healthy (eval 869.9, $\\nve = 0.80\\times$); seed~2 collapses (eval $715 \\rightarrow 137$, $\\nve = 3.78\\times$)---but via a qualitatively distinct mechanism (Figure~\\ref{fig:multiple_pathways}). Classic CIVO (008d, Pathway~A) shows value explosion followed by evaluation decline with decreasing entropy; 008e\\_v3\\_s2 (Pathway~B) shows evaluation crash with \\emph{increasing} entropy ($-5.21 \\rightarrow -3.83$) while values remain stable. This produces the sole false positive in the NVE classification.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.65\\columnwidth]{figures/paper/fig6_multiple_pathways.pdf}\n\\caption{Contrasting collapse dynamics. \\textbf{Left:} 008d (CIVO)---value explosion, entropy decreases. \\textbf{Right:} 008e\\_v3 s2 (non-CIVO)---evaluation crashes, entropy increases.}\n\\label{fig:multiple_pathways}\n\\end{figure}\n\n\\paragraph{F7: Full-pathway gradient stopping shows mixed results.}\nExp\\_018 applies Selective Gradient Stopping (SGS) by detaching all non-KL gradients from $e_{\\dt}$, blocking the observation decoder pathway identified in F2 as the primary CIVO conduit. Figure~\\ref{fig:civo_decomposition} decomposes evaluation returns across conditions. Trained $\\dt$-embedding alone produces $-73\\%$ peak and $-86\\%$ final eval degradation relative to the baseline. Full-SGS seed~1 avoids collapse (eval \\sgseval{}, $-51\\%$ final relative to baseline) while seed~2 collapses (eval 40.8, $-96\\%$), yielding a 50\\% prevention rate. SGS reduces but does not eliminate CIVO risk: the gradient pathway it blocks is necessary but not sufficient for reliable prevention. Reward-only SGS (016e) fails entirely (NVE $10.42\\times$). Cross-environment validation on Cheetah Run (010b) confirms CIVO generalization: evaluation peaks at 321.9 before collapsing to 22.7 ($-93\\%$); peak NVE $14.59\\times$.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.75\\columnwidth]{figures/fig2_civo_decomposition.pdf}\n\\caption{CIVO decomposition: peak and final (105K step) evaluation returns on Walker Walk (DMC) across four conditions. \\textbf{Baseline} (001): vanilla DreamerV3, no temporal embedding. \\textbf{Trained dt-emb} (008d, 009b): DreamerV3 with a learned $d{=}32$ temporal embedding exposed to multi-rate data, two seeds. \\textbf{Full-SGS} (s1, s2): trained embedding with Selective Gradient Stopping that detaches all non-KL gradients from $e_{\\dt}$, two seeds. Trained $\\dt$-embedding degrades peak eval by $73\\%$ and final eval by $86\\%$ relative to the baseline. Full-SGS seed~1 partially recovers ($-51\\%$ final, no collapse) but seed~2 collapses ($-96\\%$ final, marked ``collapsed''), indicating that SGS reduces but does not reliably prevent CIVO (prevention rate $= 50\\%$). All percentages relative to Baseline 001.}\n\\label{fig:civo_decomposition}\n\\end{figure}\n\n%% ============================================================\n%% TABLE 2: RSSM Fidelity\n%% ============================================================\n\n\\begin{table}[t]\n\\centering\n\\caption{RSSM fidelity at $\\dt{=}1$ vs.\\ $\\dt{=}2$. Trained embedding (008d) produces $2.78\\times$ reward gap; removing it (008f) eliminates the gap but degrades absolute prediction.}\n\\label{tab:rssm_fidelity}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{lcccccc}\n\\toprule\n& \\multicolumn{3}{c}{\\textbf{obs\\_MSE}} & \\multicolumn{3}{c}{\\textbf{reward\\_MAE}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n\\textbf{Config} & $\\dt{=}1$ & $\\dt{=}2$ & Gap & $\\dt{=}1$ & $\\dt{=}2$ & Gap \\\\\n\\midrule\nBaseline & 13.49 & 27.50 & 2.04$\\times$ & 0.0102 & 0.0159 & 1.56$\\times$ \\\\\n008d (trained) & 41.31 & 53.67 & 1.30$\\times$ & 0.0568 & 0.1579 & 2.78$\\times$ \\\\\n008f (no emb) & 8.01 & 22.04 & 2.75$\\times$ & 0.7469 & 0.7526 & 1.01$\\times$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe trained embedding in 008d produces a $2.78\\times$ reward prediction gap between $\\dt{=}1$ and $\\dt{=}2$ (Table~\\ref{tab:rssm_fidelity}), providing the systematic bias that the critic internalizes as optimistic value estimates.\n",
+                "numLines": 149,
+                "startLine": 1,
+                "totalLines": 149
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T4LjXxvr4nSx9Tdj8PpBuG",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/analysis/detector_table.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "466edc58-53c0-4d06-a392-433dd85a2e26",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JSNmNjoP1e2pmpryR75V3R",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13748,
+                "cache_read_input_tokens": 11447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13748
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T06:17:36.614Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T4LjXxvr4nSx9Tdj8PpBuG",
+              "type": "tool_result",
+              "content": "1\t\\begin{table}[t]\n2\t\\centering\n3\t\\caption{CIVO Detector Validation Results. Trigger Step indicates when the detector first fires. Detection Type classifies timing relative to 20\\% eval decline from peak.}\n4\t\\label{tab:detector-validation}\n5\t\\resizebox{\\columnwidth}{!}{%\n6\t\\begin{tabular}{llcccccc}\n7\t\\toprule\n8\tExperiment & Config & Verdict & Trigger & Det. Type & Peak Eval & $r_\\text{ve}$@trig \\\\\n9\t\\midrule\n10\t  exp\\_008d\\_s0 & dt_embed, subsample_on, h=8,.. & TP & 45K & predictive & 167 & 0.69 \\\\\n11\t  exp\\_010b\\_cheetah & dt_embed, cheetah, seed=1 & TP & 65K & reactive & 322 & 3.18 \\\\\n12\t  exp\\_008d\\_s3 & dt_embed, subsample_on, seed=3 & TP & 45K & predictive & 452 & 0.50 \\\\\n13\t  exp\\_008f\\_s3 & no_dt_embed, subsample_on, s.. & TN & -- & -- & 594 & -- \\\\\n14\t  exp\\_009c\\_008f\\_s2 & no_dt_embed, walker, seed=2 & FP & 105K & reactive & 359 & 0.75 \\\\\n15\t  exp\\_009b\\_008d\\_walker\\_s2 & dt_embed, walker, seed=2 (se.. & TN & -- & -- & 279 & -- \\\\\n16\t  exp\\_009a\\_baseline\\_walker\\_s2 & vanilla DreamerV3 baseline, .. & FP & 85K & predictive & 967 & 0.73 \\\\\n17\t  baseline\\_s1 & vanilla DreamerV3 baseline, .. & TN & -- & -- & 970 & -- \\\\\n18\t  exp\\_009d\\_baseline\\_walker\\_s0 & vanilla DreamerV3 baseline, .. & TN & -- & -- & 951 & -- \\\\\n19\t  exp\\_009d\\_baseline\\_walker\\_s1 & vanilla DreamerV3 baseline, .. & TN & -- & -- & 920 & -- \\\\\n20\t\\midrule\n21\t  \\multicolumn{7}{l}{TPR = 3/3 (1.00), FPR = 2/7 (0.286)} \\\\\n22\t\\bottomrule\n23\t\\end{tabular}}\n24\t\\end{table}\n25\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "98f13a38-1962-4f4c-bdfe-76221df3cacc",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/analysis/detector_table.tex",
+                "content": "\\begin{table}[t]\n\\centering\n\\caption{CIVO Detector Validation Results. Trigger Step indicates when the detector first fires. Detection Type classifies timing relative to 20\\% eval decline from peak.}\n\\label{tab:detector-validation}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccccc}\n\\toprule\nExperiment & Config & Verdict & Trigger & Det. Type & Peak Eval & $r_\\text{ve}$@trig \\\\\n\\midrule\n  exp\\_008d\\_s0 & dt_embed, subsample_on, h=8,.. & TP & 45K & predictive & 167 & 0.69 \\\\\n  exp\\_010b\\_cheetah & dt_embed, cheetah, seed=1 & TP & 65K & reactive & 322 & 3.18 \\\\\n  exp\\_008d\\_s3 & dt_embed, subsample_on, seed=3 & TP & 45K & predictive & 452 & 0.50 \\\\\n  exp\\_008f\\_s3 & no_dt_embed, subsample_on, s.. & TN & -- & -- & 594 & -- \\\\\n  exp\\_009c\\_008f\\_s2 & no_dt_embed, walker, seed=2 & FP & 105K & reactive & 359 & 0.75 \\\\\n  exp\\_009b\\_008d\\_walker\\_s2 & dt_embed, walker, seed=2 (se.. & TN & -- & -- & 279 & -- \\\\\n  exp\\_009a\\_baseline\\_walker\\_s2 & vanilla DreamerV3 baseline, .. & FP & 85K & predictive & 967 & 0.73 \\\\\n  baseline\\_s1 & vanilla DreamerV3 baseline, .. & TN & -- & -- & 970 & -- \\\\\n  exp\\_009d\\_baseline\\_walker\\_s0 & vanilla DreamerV3 baseline, .. & TN & -- & -- & 951 & -- \\\\\n  exp\\_009d\\_baseline\\_walker\\_s1 & vanilla DreamerV3 baseline, .. & TN & -- & -- & 920 & -- \\\\\n\\midrule\n  \\multicolumn{7}{l}{TPR = 3/3 (1.00), FPR = 2/7 (0.286)} \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n",
+                "numLines": 25,
+                "startLine": 1,
+                "totalLines": 25
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the information needed. Let me also check what packages are already used in the paper (for algorithm environment, etc.) by looking at main.tex or the preamble.",
+              "signature": "EuoCClkIDRgCKkAFgZDZa/Xc6cjVv0yv2mDh0j+jWHsQGi1gWw0I54pVd5+O9iFvrmY7DwmYG0+u2DFKnskNoyMsjfhkcN+mpXjAMg9jbGF1ZGUtb3B1cy00LTY4ABIMn1idPutWTLGkpYOiGgwYSJvf/YqwF8aEVXMiMBZDncwB+PFTrmF1BNxNTGQUGlV/WlFlGzrb/dUIqdOZFhtQMMdFAgTgBI7gavQ5TSq+AY8I5JX6uYqF5VHrOO+zGcjbXkNXmFfAzLK07CJQIxKXhWg+32NEm4Se2kqs9YZwduVOYjY7iz59WV5HsKwYe9zfsXaVPfTIb05e1BwavLPqZfVjHuSElntXhxs9p/mDP0ShIVRCz0iQHH1uJfUwkeeyVemgrxrinjdeu4rotjlBA/gR5LXx4OnB3NFcM6WW2CuUSt77Pyvf1cB+BJu2/+aoRo+O3Ronjmuz37Y6J6OKrpR8pnlJ2aI2hPi1DlcYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "8aa25bbb-51a8-4285-9239-ab0eb6189891",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H2dsyiUufv1bAHrno2ga1x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7779,
+                "cache_read_input_tokens": 25195,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7779
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the paper's preamble for available packages (algorithm environments, etc.)."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "f176ecd7-5abc-4d4b-bd1d-016b2b77c6b0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H2dsyiUufv1bAHrno2ga1x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7779,
+                "cache_read_input_tokens": 25195,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7779
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N6p5LrbekKcAcmGv8Nbwso",
+              "name": "Bash",
+              "input": {
+                "command": "head -80 /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/main.tex",
+                "description": "Check paper preamble for packages"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "30492ae0-5029-47b8-a14a-8c19638f7e38",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H2dsyiUufv1bAHrno2ga1x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7779,
+                "cache_read_input_tokens": 25195,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7779
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T06:17:43.204Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N6p5LrbekKcAcmGv8Nbwso",
+              "type": "tool_result",
+              "content": "\\documentclass{article}\n\n% Load xcolor before corl_2026 (which loads color internally)\n\\usepackage[table]{xcolor}\n\\usepackage{corl_2026}\n\n\\usepackage[utf8]{inputenc}\n\\usepackage[T1]{fontenc}\n\\usepackage{amsmath,amssymb}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{graphicx}\n\\graphicspath{{../../artifacts/}}\n\\usepackage{colortbl}\n\\usepackage{caption}\n\\usepackage{subcaption}\n\\usepackage{array}\n\\usepackage{enumitem}\n\\usepackage{wrapfig}\n\n% Custom commands\n\\newcommand{\\dt}{\\mathrm{dt}}\n\\newcommand{\\nve}{\\mathrm{nve}}\n% SGS result values (018 seed 1 only; seed 2 collapsed — 50% prevention rate)\n\\newcommand{\\sgseval}{448.3}\n\\newcommand{\\sgsnve}{1.66}\n\\newcommand{\\sgsclaim}{prevented collapse in one of two seeds}\n\\newcommand{\\ie}{\\textit{i.e.}}\n\\newcommand{\\eg}{\\textit{e.g.}}\n\\newcommand{\\cf}{\\textit{cf.}}\n\\newcommand{\\etal}{\\textit{et al.}}\n\n\\title{Why Temporal Abstraction Fails in Imagination-Based RL:\\\\\nA Diagnostic Analysis of Variable-Rate DreamerV3}\n\n\\author{\n  Anonymous Authors\n}\n\n\\begin{document}\n\\maketitle\n\n\\begin{abstract}\n\\input{sections/abstract_body}\n\\end{abstract}\n\n\\keywords{World Models, Temporal Abstraction, Value Overestimation, DreamerV3}\n\n% --- INTRODUCTION ---\n\\input{sections/introduction}\n\n% --- RELATED WORK ---\n\\input{sections/related_work}\n\n% --- METHODOLOGY ---\n\\input{sections/methodology}\n\n% --- RESULTS ---\n\\input{sections/results}\n\n% --- ANALYSIS ---\n\\input{sections/analysis}\n\n% --- CONCLUSION ---\n\\input{sections/conclusion}\n\n% no \\bibliographystyle needed — corl_2026.sty sets it automatically\n\\bibliography{references}\n\n% --- APPENDIX ---\n\\appendix\n\\input{sections/appendix}\n\n\\end{document}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "1bd0b5e3-a539-46ad-b111-13076206b7e4",
+            "tool_use_result": {
+              "stdout": "\\documentclass{article}\n\n% Load xcolor before corl_2026 (which loads color internally)\n\\usepackage[table]{xcolor}\n\\usepackage{corl_2026}\n\n\\usepackage[utf8]{inputenc}\n\\usepackage[T1]{fontenc}\n\\usepackage{amsmath,amssymb}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{graphicx}\n\\graphicspath{{../../artifacts/}}\n\\usepackage{colortbl}\n\\usepackage{caption}\n\\usepackage{subcaption}\n\\usepackage{array}\n\\usepackage{enumitem}\n\\usepackage{wrapfig}\n\n% Custom commands\n\\newcommand{\\dt}{\\mathrm{dt}}\n\\newcommand{\\nve}{\\mathrm{nve}}\n% SGS result values (018 seed 1 only; seed 2 collapsed — 50% prevention rate)\n\\newcommand{\\sgseval}{448.3}\n\\newcommand{\\sgsnve}{1.66}\n\\newcommand{\\sgsclaim}{prevented collapse in one of two seeds}\n\\newcommand{\\ie}{\\textit{i.e.}}\n\\newcommand{\\eg}{\\textit{e.g.}}\n\\newcommand{\\cf}{\\textit{cf.}}\n\\newcommand{\\etal}{\\textit{et al.}}\n\n\\title{Why Temporal Abstraction Fails in Imagination-Based RL:\\\\\nA Diagnostic Analysis of Variable-Rate DreamerV3}\n\n\\author{\n  Anonymous Authors\n}\n\n\\begin{document}\n\\maketitle\n\n\\begin{abstract}\n\\input{sections/abstract_body}\n\\end{abstract}\n\n\\keywords{World Models, Temporal Abstraction, Value Overestimation, DreamerV3}\n\n% --- INTRODUCTION ---\n\\input{sections/introduction}\n\n% --- RELATED WORK ---\n\\input{sections/related_work}\n\n% --- METHODOLOGY ---\n\\input{sections/methodology}\n\n% --- RESULTS ---\n\\input{sections/results}\n\n% --- ANALYSIS ---\n\\input{sections/analysis}\n\n% --- CONCLUSION ---\n\\input{sections/conclusion}\n\n% no \\bibliographystyle needed — corl_2026.sty sets it automatically\n\\bibliography{references}\n\n% --- APPENDIX ---\n\\appendix\n\\input{sections/appendix}\n\n\\end{document}",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "No algorithm package is included. I need to either add one to main.tex or use a simpler formatting approach. Let me check if there's an algorithm package already available. Since the task says to use `algorithmic` or `algorithm2e`, and neither is loaded, I have two options:\n\n1. Add the package to main.tex\n2. Use a different approach (like a figure with verbatim/lstlisting, or just a formatted description)\n\nActually, let me use `algorithm` and `algorithmic` packages. I'll add them to main.tex preamble and write the algorithm in results.tex. Let me also note:\n\n\n- `graphicspath` is set to `../../artifacts/`, but that only affects `\\includegraphics`, not `\\input` commands\n- For the detector table in `artifacts/analysis/detector_table.tex`, I need to figure out the correct relative path from `docs/paper/sections/results.tex`, which would be `../../../artifacts/analysis/detector_table.tex`\n- Actually, `\\input` paths are relative to where the compilation happens, so I need to think about the root directory being `docs/paper/`\n- The path from there would be `../../artifacts/analysis/detector_table.tex`\n\nI'm realizing the auto-generated table has truncated config names that won't work for publication, so I'll just write a cleaner version directly in the tex file instead of trying to reference the external one. I need to add the algorithm packages to main.tex and then write out the section with a properly formatted table.\n\nWriting the results subsection...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "d44ee766-de48-48b3-94be-6bb8d2299469",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GAhEL7xMHdJKTtrFiJdqFh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 800,
+                "cache_read_input_tokens": 32974,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 800
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the context. I need to add algorithm packages to main.tex and append the new subsection to results.tex."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "7ba9e7b5-5121-4aab-bfb4-441837e2c95a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GAhEL7xMHdJKTtrFiJdqFh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 800,
+                "cache_read_input_tokens": 32974,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 800
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K533Sf8FFMVUoB3rbqg824",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/main.tex",
+                "old_string": "\\usepackage{wrapfig}",
+                "new_string": "\\usepackage{wrapfig}\n\\usepackage{algorithm}\n\\usepackage{algorithmic}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "9d485d2d-1607-462a-b927-d1b4417b27da",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GAhEL7xMHdJKTtrFiJdqFh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 800,
+                "cache_read_input_tokens": 32974,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 800
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T06:18:01.557Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>",
+              "is_error": true,
+              "tool_use_id": "toolu_01K533Sf8FFMVUoB3rbqg824"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "b3a21ea8-2351-41b8-9e2f-2019709ddd9c",
+            "tool_use_result": "Error: File has not been read yet. Read it first before writing to it."
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01X8e1tZEvqVDrG5UQrTb9qU",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/main.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "b690c88e-3286-4665-bc6e-21f59587b20c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DqbGxx2MBLvYk16YQQ8Yew",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 810,
+                "cache_read_input_tokens": 33774,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 810
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T06:18:07.060Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01X8e1tZEvqVDrG5UQrTb9qU",
+              "type": "tool_result",
+              "content": "1\t\\documentclass{article}\n2\t\n3\t% Load xcolor before corl_2026 (which loads color internally)\n4\t\\usepackage[table]{xcolor}\n5\t\\usepackage{corl_2026}\n6\t\n7\t\\usepackage[utf8]{inputenc}\n8\t\\usepackage[T1]{fontenc}\n9\t\\usepackage{amsmath,amssymb}\n10\t\\usepackage{booktabs}\n11\t\\usepackage{multirow}\n12\t\\usepackage{graphicx}\n13\t\\graphicspath{{../../artifacts/}}\n14\t\\usepackage{colortbl}\n15\t\\usepackage{caption}\n16\t\\usepackage{subcaption}\n17\t\\usepackage{array}\n18\t\\usepackage{enumitem}\n19\t\\usepackage{wrapfig}\n20\t\n21\t% Custom commands\n22\t\\newcommand{\\dt}{\\mathrm{dt}}\n23\t\\newcommand{\\nve}{\\mathrm{nve}}\n24\t% SGS result values (018 seed 1 only; seed 2 collapsed — 50% prevention rate)\n25\t\\newcommand{\\sgseval}{448.3}\n26\t\\newcommand{\\sgsnve}{1.66}\n27\t\\newcommand{\\sgsclaim}{prevented collapse in one of two seeds}\n28\t\\newcommand{\\ie}{\\textit{i.e.}}\n29\t\\newcommand{\\eg}{\\textit{e.g.}}\n30\t\\newcommand{\\cf}{\\textit{cf.}}\n31\t\\newcommand{\\etal}{\\textit{et al.}}\n32\t\n33\t\\title{Why Temporal Abstraction Fails in Imagination-Based RL:\\\\\n34\tA Diagnostic Analysis of Variable-Rate DreamerV3}\n35\t\n36\t\\author{\n37\t  Anonymous Authors\n38\t}\n39\t\n40\t\\begin{document}\n41\t\\maketitle\n42\t\n43\t\\begin{abstract}\n44\t\\input{sections/abstract_body}\n45\t\\end{abstract}\n46\t\n47\t\\keywords{World Models, Temporal Abstraction, Value Overestimation, DreamerV3}\n48\t\n49\t% --- INTRODUCTION ---\n50\t\\input{sections/introduction}\n51\t\n52\t% --- RELATED WORK ---\n53\t\\input{sections/related_work}\n54\t\n55\t% --- METHODOLOGY ---\n56\t\\input{sections/methodology}\n57\t\n58\t% --- RESULTS ---\n59\t\\input{sections/results}\n60\t\n61\t% --- ANALYSIS ---\n62\t\\input{sections/analysis}\n63\t\n64\t% --- CONCLUSION ---\n65\t\\input{sections/conclusion}\n66\t\n67\t% no \\bibliographystyle needed — corl_2026.sty sets it automatically\n68\t\\bibliography{references}\n69\t\n70\t% --- APPENDIX ---\n71\t\\appendix\n72\t\\input{sections/appendix}\n73\t\n74\t\\end{document}\n75\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "c82c8973-24d1-41a8-83fc-28fe0a508b9a",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/main.tex",
+                "content": "\\documentclass{article}\n\n% Load xcolor before corl_2026 (which loads color internally)\n\\usepackage[table]{xcolor}\n\\usepackage{corl_2026}\n\n\\usepackage[utf8]{inputenc}\n\\usepackage[T1]{fontenc}\n\\usepackage{amsmath,amssymb}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{graphicx}\n\\graphicspath{{../../artifacts/}}\n\\usepackage{colortbl}\n\\usepackage{caption}\n\\usepackage{subcaption}\n\\usepackage{array}\n\\usepackage{enumitem}\n\\usepackage{wrapfig}\n\n% Custom commands\n\\newcommand{\\dt}{\\mathrm{dt}}\n\\newcommand{\\nve}{\\mathrm{nve}}\n% SGS result values (018 seed 1 only; seed 2 collapsed — 50% prevention rate)\n\\newcommand{\\sgseval}{448.3}\n\\newcommand{\\sgsnve}{1.66}\n\\newcommand{\\sgsclaim}{prevented collapse in one of two seeds}\n\\newcommand{\\ie}{\\textit{i.e.}}\n\\newcommand{\\eg}{\\textit{e.g.}}\n\\newcommand{\\cf}{\\textit{cf.}}\n\\newcommand{\\etal}{\\textit{et al.}}\n\n\\title{Why Temporal Abstraction Fails in Imagination-Based RL:\\\\\nA Diagnostic Analysis of Variable-Rate DreamerV3}\n\n\\author{\n  Anonymous Authors\n}\n\n\\begin{document}\n\\maketitle\n\n\\begin{abstract}\n\\input{sections/abstract_body}\n\\end{abstract}\n\n\\keywords{World Models, Temporal Abstraction, Value Overestimation, DreamerV3}\n\n% --- INTRODUCTION ---\n\\input{sections/introduction}\n\n% --- RELATED WORK ---\n\\input{sections/related_work}\n\n% --- METHODOLOGY ---\n\\input{sections/methodology}\n\n% --- RESULTS ---\n\\input{sections/results}\n\n% --- ANALYSIS ---\n\\input{sections/analysis}\n\n% --- CONCLUSION ---\n\\input{sections/conclusion}\n\n% no \\bibliographystyle needed — corl_2026.sty sets it automatically\n\\bibliography{references}\n\n% --- APPENDIX ---\n\\appendix\n\\input{sections/appendix}\n\n\\end{document}\n",
+                "numLines": 75,
+                "startLine": 1,
+                "totalLines": 75
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017YHy285MjN63LxDwRppxHb",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/main.tex",
+                "old_string": "\\usepackage{wrapfig}",
+                "new_string": "\\usepackage{wrapfig}\n\\usepackage{algorithm}\n\\usepackage{algorithmic}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "c234629f-5727-4110-b4be-a8291c21a689",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NA5zmkGZcjgdDL4Ca33PR8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 871,
+                "cache_read_input_tokens": 34584,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 871
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T06:18:10.622Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017YHy285MjN63LxDwRppxHb",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "c1ca99e6-7216-4f14-b83f-7878efdcb810",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/main.tex",
+              "oldString": "\\usepackage{wrapfig}",
+              "newString": "\\usepackage{wrapfig}\n\\usepackage{algorithm}\n\\usepackage{algorithmic}",
+              "originalFile": "\\documentclass{article}\n\n% Load xcolor before corl_2026 (which loads color internally)\n\\usepackage[table]{xcolor}\n\\usepackage{corl_2026}\n\n\\usepackage[utf8]{inputenc}\n\\usepackage[T1]{fontenc}\n\\usepackage{amsmath,amssymb}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{graphicx}\n\\graphicspath{{../../artifacts/}}\n\\usepackage{colortbl}\n\\usepackage{caption}\n\\usepackage{subcaption}\n\\usepackage{array}\n\\usepackage{enumitem}\n\\usepackage{wrapfig}\n\n% Custom commands\n\\newcommand{\\dt}{\\mathrm{dt}}\n\\newcommand{\\nve}{\\mathrm{nve}}\n% SGS result values (018 seed 1 only; seed 2 collapsed — 50% prevention rate)\n\\newcommand{\\sgseval}{448.3}\n\\newcommand{\\sgsnve}{1.66}\n\\newcommand{\\sgsclaim}{prevented collapse in one of two seeds}\n\\newcommand{\\ie}{\\textit{i.e.}}\n\\newcommand{\\eg}{\\textit{e.g.}}\n\\newcommand{\\cf}{\\textit{cf.}}\n\\newcommand{\\etal}{\\textit{et al.}}\n\n\\title{Why Temporal Abstraction Fails in Imagination-Based RL:\\\\\nA Diagnostic Analysis of Variable-Rate DreamerV3}\n\n\\author{\n  Anonymous Authors\n}\n\n\\begin{document}\n\\maketitle\n\n\\begin{abstract}\n\\input{sections/abstract_body}\n\\end{abstract}\n\n\\keywords{World Models, Temporal Abstraction, Value Overestimation, DreamerV3}\n\n% --- INTRODUCTION ---\n\\input{sections/introduction}\n\n% --- RELATED WORK ---\n\\input{sections/related_work}\n\n% --- METHODOLOGY ---\n\\input{sections/methodology}\n\n% --- RESULTS ---\n\\input{sections/results}\n\n% --- ANALYSIS ---\n\\input{sections/analysis}\n\n% --- CONCLUSION ---\n\\input{sections/conclusion}\n\n% no \\bibliographystyle needed — corl_2026.sty sets it automatically\n\\bibliography{references}\n\n% --- APPENDIX ---\n\\appendix\n\\input{sections/appendix}\n\n\\end{document}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 17,
+                  "oldLines": 6,
+                  "newStart": 17,
+                  "newLines": 8,
+                  "lines": [
+                    " \\usepackage{array}",
+                    " \\usepackage{enumitem}",
+                    " \\usepackage{wrapfig}",
+                    "+\\usepackage{algorithm}",
+                    "+\\usepackage{algorithmic}",
+                    " ",
+                    " % Custom commands",
+                    " \\newcommand{\\dt}{\\mathrm{dt}}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll append the detector subsection to results.tex."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "4a7c4997-ca1d-459c-a882-7f119294b6b8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013GVyEaHYfFrjowLPamigTs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 340,
+                "cache_read_input_tokens": 35455,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 340
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RG9s9ZFjCYnNyYAGxDy4dp",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+                "old_string": "The trained embedding in 008d produces a $2.78\\times$ reward prediction gap between $\\dt{=}1$ and $\\dt{=}2$ (Table~\\ref{tab:rssm_fidelity}), providing the systematic bias that the critic internalizes as optimistic value estimates.",
+                "new_string": "The trained embedding in 008d produces a $2.78\\times$ reward prediction gap between $\\dt{=}1$ and $\\dt{=}2$ (Table~\\ref{tab:rssm_fidelity}), providing the systematic bias that the critic internalizes as optimistic value estimates.\n\n%% ============================================================\n%% F8: Online CIVO Detection\n%% ============================================================\n\n\\subsection{Online CIVO Detection}\n\\label{sec:detector}\n\n\\paragraph{Motivation.}\nThe Normalized Value Excess ($\\nve$) quantifies CIVO severity by comparing the value-to-evaluation ratio against a reference baseline that does not employ temporal abstraction. This comparison is informative for post-hoc diagnosis but unusable during deployment: no practitioner has access to a converged baseline run while training a new agent. A metric that requires a completed control experiment cannot serve as an early warning.\n\nWe therefore ask whether the \\emph{dynamics} of value overestimation, rather than its absolute magnitude relative to an external reference, contain sufficient signal to detect CIVO onset in real time. By tracking the trajectory of the value-to-evaluation ratio $r_t = \\bar{V}_t / \\bar{E}_t$ across checkpoints, a lightweight rule-based detector can flag dangerous overestimation using only quantities available within a single run.\n\n\\paragraph{Algorithm.}\nThe detector monitors $r_t$ and fires an alert only when four conditions hold simultaneously at checkpoint $t$ (Algorithm~\\ref{alg:civo_detector}). The conjunction makes the detector conservative: any single noisy checkpoint is unlikely to satisfy magnitude, velocity, acceleration, and decline together. The computational cost is negligible (four scalar comparisons per checkpoint, no additional model inference).\n\n\\begin{algorithm}[t]\n\\caption{Online CIVO Detector}\n\\label{alg:civo_detector}\n\\begin{algorithmic}[1]\n\\REQUIRE Stream of $(\\bar{V}_t, \\bar{E}_t)$ at each checkpoint $t$\n\\STATE $\\tau_\\text{mag} \\leftarrow 0.49$, \\quad $\\tau_\\text{vel} \\leftarrow 0.1$\n\\STATE Initialize $r_\\text{prev} \\leftarrow 0$, $\\Delta r_\\text{prev} \\leftarrow 0$, $\\mathcal{H} \\leftarrow []$\n\\FOR{each checkpoint $t$}\n  \\STATE $r_t \\leftarrow \\bar{V}_t \\,/\\, \\bar{E}_t$\n  \\STATE $\\Delta r_t \\leftarrow r_t - r_\\text{prev}$\n  \\STATE $c_\\text{mag} \\leftarrow (r_t \\geq \\tau_\\text{mag})$\n  \\STATE $c_\\text{vel} \\leftarrow (\\Delta r_t > \\tau_\\text{vel})$\n  \\STATE $c_\\text{acc} \\leftarrow (\\Delta r_\\text{prev} > \\tau_\\text{vel}) \\wedge (\\Delta r_t > \\Delta r_\\text{prev})$\n  \\STATE $c_\\text{dec} \\leftarrow \\bigl|\\{i : \\mathcal{H}[i] < \\mathcal{H}[i{-}1],\\; i \\in \\text{last 3}\\}\\bigr| \\geq 2$\n  \\IF{$c_\\text{mag} \\wedge c_\\text{vel} \\wedge c_\\text{acc} \\wedge c_\\text{dec}$}\n    \\STATE \\textbf{Alert:} CIVO onset at step $t$\n  \\ENDIF\n  \\STATE $r_\\text{prev} \\leftarrow r_t$, \\quad $\\Delta r_\\text{prev} \\leftarrow \\Delta r_t$\n  \\STATE Append $\\bar{E}_t$ to $\\mathcal{H}$\n\\ENDFOR\n\\end{algorithmic}\n\\end{algorithm}\n\nThe four conditions capture complementary signals: (1)~\\emph{Magnitude} ($r_t \\geq 0.49$) confirms the ratio has entered the empirical danger zone; (2)~\\emph{Velocity} ($\\Delta r_t > 0.1$) rules out slow drift or plateau behavior; (3)~\\emph{Acceleration} ($\\Delta r_t > \\Delta r_{t-1}$, both $> 0.1$) filters oscillatory paths where the ratio rises and falls without sustained divergence; (4)~\\emph{Evaluation decline} ($\\geq 2$ of 3 recent checkpoints decline) confirms that overestimation coincides with actual performance degradation.\n\n\\paragraph{Validation.}\nWe apply the detector retrospectively to ten runs spanning three conditions: trained duration embedding (CIVO-positive, $n{=}3$), untrained or absent embedding (CIVO-negative, $n{=}3$), and vanilla baselines ($n{=}4$). Ground truth labels derive from manual inspection: a run is CIVO-positive if it exhibits sustained $\\nve \\geq 1.5\\times$ with subsequent evaluation collapse. Table~\\ref{tab:detector-validation} reports all results.\n\n\\begin{table}[t]\n\\centering\n\\caption{Retrospective CIVO detector validation ($n{=}10$). Detection type: ``predictive'' = alert precedes 20\\% eval decline; ``reactive'' = alert follows decline onset.}\n\\label{tab:detector-validation}\n\\footnotesize\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{llccccc}\n\\toprule\n\\textbf{Exp} & \\textbf{Config} & \\textbf{Verdict} & \\textbf{Trigger} & \\textbf{Type} & \\textbf{Peak Eval} & $r_\\text{ve}$ \\\\\n\\midrule\n008d s0 & trained $\\dt$-emb & TP & 45K & predict. & 167 & 0.69 \\\\\n010b & trained $\\dt$-emb (Cheetah) & TP & 65K & reactive & 322 & 3.18 \\\\\n008d s3 & trained $\\dt$-emb & TP & 45K & predict. & 452 & 0.50 \\\\\n\\midrule\n008f s3 & no $\\dt$-emb & TN & -- & -- & 594 & -- \\\\\n009b s2 & trained $\\dt$-emb (self-corr.) & TN & -- & -- & 279 & -- \\\\\nbaseline s1 & vanilla & TN & -- & -- & 970 & -- \\\\\n009d s0 & vanilla & TN & -- & -- & 951 & -- \\\\\n009d s1 & vanilla & TN & -- & -- & 920 & -- \\\\\n\\midrule\n009c s2 & no $\\dt$-emb & FP & 105K & reactive & 359 & 0.75 \\\\\n009a s2 & vanilla & FP & 85K & predict. & 967 & 0.73 \\\\\n\\midrule\n\\multicolumn{7}{l}{TPR = 3/3 (1.00), \\quad FPR = 2/7 (0.29)} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Results.}\nThe detector identifies all three CIVO-positive runs (TPR = 3/3). Two of three are detected \\emph{predictively}: 008d seed~0 triggers at 45K, one checkpoint before evaluation crosses the 20\\% decline threshold; seed~3 triggers at 45K, a full 50K steps before decline begins. The third case (010b, Cheetah Run) involves single-step collapse (evaluation drops 80\\% in one interval), and the detector fires reactively at the next available checkpoint. No checkpoint-based monitor can provide advance warning for instantaneous collapse.\n\nTwo false positives occur among seven negative cases (FPR = 2/7). Run 009c (no duration embedding) develops genuine late-stage value overestimation unrelated to CIVO; the detector correctly identifies value-performance dissociation, and the alert is arguably useful despite the label mismatch. Run 009a (vanilla baseline) triggers during a transient three-checkpoint eval dip at 85K; the model subsequently recovers to 966, constituting a pure false alarm.\n\nA consistent timing pattern yields a practical deployment guideline: all true positives trigger before 65K steps (range 45--65K, mean 52K), while both false positives trigger after 85K steps (range 85--105K, mean 95K). No false positives occur below 70K steps, and no true positives occur above it. In practice, alerts before 70K steps can be treated as high-confidence CIVO indicators warranting immediate intervention; alerts after 70K steps require manual inspection to distinguish genuine collapse from transient fluctuation.\n\n\\paragraph{Limitations.}\nFour constraints bound the current detector. First, the three-checkpoint window cannot distinguish transient dips from sustained collapse (the source of the 009a false alarm). Second, the acceleration condition assumes monotonically increasing overestimation during onset; oscillatory trajectories that eventually collapse could evade detection until acceleration stabilizes. Third, the detector identifies a \\emph{pattern} (rising value-evaluation ratio with declining performance) rather than a \\emph{mechanism}: run 009c shows that non-CIVO pathologies produce the same signature. Fourth, threshold values ($\\tau_\\text{mag} = 0.49$, $\\tau_\\text{vel} = 0.1$) were calibrated on ten runs across two environments; generalization to different reward scales requires further validation."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "016d42b3-74db-4a42-bcef-df195fa5cd1a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013GVyEaHYfFrjowLPamigTs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 340,
+                "cache_read_input_tokens": 35455,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 340
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T06:19:07.357Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>",
+              "is_error": true,
+              "tool_use_id": "toolu_01RG9s9ZFjCYnNyYAGxDy4dp"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "c7ef536f-e08c-49b2-b59c-29141d2f6bdb",
+            "tool_use_result": "Error: File has been modified since read, either by the user or by a linter. Read it again before attempting to write it."
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R1tb2EdSWP5sxzWeJotRdo",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+                "offset": 140
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "97211fe3-ee42-4e72-b132-dfb936087342",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Qre5fimBsY9ejjk2gofKyK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2676,
+                "cache_read_input_tokens": 35795,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2676
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-17T06:19:10.212Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R1tb2EdSWP5sxzWeJotRdo",
+              "type": "tool_result",
+              "content": "140\t& \\multicolumn{3}{c}{\\textbf{obs\\_MSE}} & \\multicolumn{3}{c}{\\textbf{reward\\_MAE}} \\\\\n141\t\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n142\t\\textbf{Config} & $\\dt{=}1$ & $\\dt{=}2$ & Gap & $\\dt{=}1$ & $\\dt{=}2$ & Gap \\\\\n143\t\\midrule\n144\tBaseline & 13.49 & 27.50 & 2.04$\\times$ & 0.0102 & 0.0159 & 1.56$\\times$ \\\\\n145\t008d (trained) & 41.31 & 53.67 & 1.30$\\times$ & 0.0568 & 0.1579 & 2.78$\\times$ \\\\\n146\t008f (no emb) & 8.01 & 22.04 & 2.75$\\times$ & 0.7469 & 0.7526 & 1.01$\\times$ \\\\\n147\t\\bottomrule\n148\t\\end{tabular}\n149\t\\end{table}\n150\t\n151\tThe trained embedding in 008d produces a $2.78\\times$ reward prediction gap between $\\dt{=}1$ and $\\dt{=}2$ (Table~\\ref{tab:rssm_fidelity}), providing the systematic bias that the critic internalizes as optimistic value estimates.\n152\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "ea46cb3b-778a-4aef-b720-d7df8bc4fef9",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+                "content": "& \\multicolumn{3}{c}{\\textbf{obs\\_MSE}} & \\multicolumn{3}{c}{\\textbf{reward\\_MAE}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n\\textbf{Config} & $\\dt{=}1$ & $\\dt{=}2$ & Gap & $\\dt{=}1$ & $\\dt{=}2$ & Gap \\\\\n\\midrule\nBaseline & 13.49 & 27.50 & 2.04$\\times$ & 0.0102 & 0.0159 & 1.56$\\times$ \\\\\n008d (trained) & 41.31 & 53.67 & 1.30$\\times$ & 0.0568 & 0.1579 & 2.78$\\times$ \\\\\n008f (no emb) & 8.01 & 22.04 & 2.75$\\times$ & 0.7469 & 0.7526 & 1.01$\\times$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe trained embedding in 008d produces a $2.78\\times$ reward prediction gap between $\\dt{=}1$ and $\\dt{=}2$ (Table~\\ref{tab:rssm_fidelity}), providing the systematic bias that the critic internalizes as optimistic value estimates.\n",
+                "numLines": 13,
+                "startLine": 140,
+                "totalLines": 152
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Dv69AL9bwdB435YeeojzBs",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+                "old_string": "The trained embedding in 008d produces a $2.78\\times$ reward prediction gap between $\\dt{=}1$ and $\\dt{=}2$ (Table~\\ref{tab:rssm_fidelity}), providing the systematic bias that the critic internalizes as optimistic value estimates.",
+                "new_string": "The trained embedding in 008d produces a $2.78\\times$ reward prediction gap between $\\dt{=}1$ and $\\dt{=}2$ (Table~\\ref{tab:rssm_fidelity}), providing the systematic bias that the critic internalizes as optimistic value estimates.\n\n%% ============================================================\n%% F8: Online CIVO Detection\n%% ============================================================\n\n\\subsection{Online CIVO Detection}\n\\label{sec:detector}\n\n\\paragraph{Motivation.}\nThe Normalized Value Excess ($\\nve$) quantifies CIVO severity by comparing the value-to-evaluation ratio against a reference baseline that does not employ temporal abstraction. This comparison is informative for post-hoc diagnosis but unusable during deployment: no practitioner has access to a converged baseline run while training a new agent. A metric that requires a completed control experiment cannot serve as an early warning.\n\nWe therefore ask whether the \\emph{dynamics} of value overestimation, rather than its absolute magnitude relative to an external reference, contain sufficient signal to detect CIVO onset in real time. By tracking the trajectory of the value-to-evaluation ratio $r_t = \\bar{V}_t / \\bar{E}_t$ across checkpoints, a lightweight rule-based detector can flag dangerous overestimation using only quantities available within a single run.\n\n\\paragraph{Algorithm.}\nThe detector monitors $r_t$ and fires an alert only when four conditions hold simultaneously at checkpoint $t$ (Algorithm~\\ref{alg:civo_detector}). The conjunction makes the detector conservative: any single noisy checkpoint is unlikely to satisfy magnitude, velocity, acceleration, and decline together. The computational cost is negligible (four scalar comparisons per checkpoint, no additional model inference).\n\n\\begin{algorithm}[t]\n\\caption{Online CIVO Detector}\n\\label{alg:civo_detector}\n\\begin{algorithmic}[1]\n\\REQUIRE Stream of $(\\bar{V}_t, \\bar{E}_t)$ at each checkpoint $t$\n\\STATE $\\tau_\\text{mag} \\leftarrow 0.49$, \\quad $\\tau_\\text{vel} \\leftarrow 0.1$\n\\STATE Initialize $r_\\text{prev} \\leftarrow 0$, $\\Delta r_\\text{prev} \\leftarrow 0$, $\\mathcal{H} \\leftarrow []$\n\\FOR{each checkpoint $t$}\n  \\STATE $r_t \\leftarrow \\bar{V}_t \\,/\\, \\bar{E}_t$\n  \\STATE $\\Delta r_t \\leftarrow r_t - r_\\text{prev}$\n  \\STATE $c_\\text{mag} \\leftarrow (r_t \\geq \\tau_\\text{mag})$\n  \\STATE $c_\\text{vel} \\leftarrow (\\Delta r_t > \\tau_\\text{vel})$\n  \\STATE $c_\\text{acc} \\leftarrow (\\Delta r_\\text{prev} > \\tau_\\text{vel}) \\wedge (\\Delta r_t > \\Delta r_\\text{prev})$\n  \\STATE $c_\\text{dec} \\leftarrow \\bigl|\\{i : \\mathcal{H}[i] < \\mathcal{H}[i{-}1],\\; i \\in \\text{last 3}\\}\\bigr| \\geq 2$\n  \\IF{$c_\\text{mag} \\wedge c_\\text{vel} \\wedge c_\\text{acc} \\wedge c_\\text{dec}$}\n    \\STATE \\textbf{Alert:} CIVO onset at step $t$\n  \\ENDIF\n  \\STATE $r_\\text{prev} \\leftarrow r_t$, \\quad $\\Delta r_\\text{prev} \\leftarrow \\Delta r_t$\n  \\STATE Append $\\bar{E}_t$ to $\\mathcal{H}$\n\\ENDFOR\n\\end{algorithmic}\n\\end{algorithm}\n\nThe four conditions capture complementary signals: (1)~\\emph{Magnitude} ($r_t \\geq 0.49$) confirms the ratio has entered the empirical danger zone; (2)~\\emph{Velocity} ($\\Delta r_t > 0.1$) rules out slow drift or plateau behavior; (3)~\\emph{Acceleration} ($\\Delta r_t > \\Delta r_{t-1}$, both $> 0.1$) filters oscillatory paths where the ratio rises and falls without sustained divergence; (4)~\\emph{Evaluation decline} ($\\geq 2$ of 3 recent checkpoints decline) confirms that overestimation coincides with actual performance degradation.\n\n\\paragraph{Validation.}\nWe apply the detector retrospectively to ten runs spanning three conditions: trained duration embedding (CIVO-positive, $n{=}3$), untrained or absent embedding (CIVO-negative, $n{=}3$), and vanilla baselines ($n{=}4$). Ground truth labels derive from manual inspection: a run is CIVO-positive if it exhibits sustained $\\nve \\geq 1.5\\times$ with subsequent evaluation collapse. Table~\\ref{tab:detector-validation} reports all results.\n\n\\begin{table}[t]\n\\centering\n\\caption{Retrospective CIVO detector validation ($n{=}10$). Detection type: ``predictive'' = alert precedes 20\\% eval decline; ``reactive'' = alert follows decline onset.}\n\\label{tab:detector-validation}\n\\footnotesize\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{llccccc}\n\\toprule\n\\textbf{Exp} & \\textbf{Config} & \\textbf{Verdict} & \\textbf{Trigger} & \\textbf{Type} & \\textbf{Peak Eval} & $r_\\text{ve}$ \\\\\n\\midrule\n008d s0 & trained $\\dt$-emb & TP & 45K & predict. & 167 & 0.69 \\\\\n010b & trained $\\dt$-emb (Cheetah) & TP & 65K & reactive & 322 & 3.18 \\\\\n008d s3 & trained $\\dt$-emb & TP & 45K & predict. & 452 & 0.50 \\\\\n\\midrule\n008f s3 & no $\\dt$-emb & TN & -- & -- & 594 & -- \\\\\n009b s2 & trained $\\dt$-emb (self-corr.) & TN & -- & -- & 279 & -- \\\\\nbaseline s1 & vanilla & TN & -- & -- & 970 & -- \\\\\n009d s0 & vanilla & TN & -- & -- & 951 & -- \\\\\n009d s1 & vanilla & TN & -- & -- & 920 & -- \\\\\n\\midrule\n009c s2 & no $\\dt$-emb & FP & 105K & reactive & 359 & 0.75 \\\\\n009a s2 & vanilla & FP & 85K & predict. & 967 & 0.73 \\\\\n\\midrule\n\\multicolumn{7}{l}{TPR = 3/3 (1.00), \\quad FPR = 2/7 (0.29)} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Results.}\nThe detector identifies all three CIVO-positive runs (TPR = 3/3). Two of three are detected \\emph{predictively}: 008d seed~0 triggers at 45K, one checkpoint before evaluation crosses the 20\\% decline threshold; seed~3 triggers at 45K, a full 50K steps before decline begins. The third case (010b, Cheetah Run) involves single-step collapse (evaluation drops 80\\% in one interval), and the detector fires reactively at the next available checkpoint. No checkpoint-based monitor can provide advance warning for instantaneous collapse.\n\nTwo false positives occur among seven negative cases (FPR = 2/7). Run 009c (no duration embedding) develops genuine late-stage value overestimation unrelated to CIVO; the detector correctly identifies value-performance dissociation, and the alert is arguably useful despite the label mismatch. Run 009a (vanilla baseline) triggers during a transient three-checkpoint eval dip at 85K; the model subsequently recovers to 966, constituting a pure false alarm.\n\nA consistent timing pattern yields a practical deployment guideline: all true positives trigger before 65K steps (range 45--65K, mean 52K), while both false positives trigger after 85K steps (range 85--105K, mean 95K). No false positives occur below 70K steps, and no true positives occur above it. In practice, alerts before 70K steps can be treated as high-confidence CIVO indicators warranting immediate intervention; alerts after 70K steps require manual inspection to distinguish genuine collapse from transient fluctuation.\n\n\\paragraph{Limitations.}\nFour constraints bound the current detector. First, the three-checkpoint window cannot distinguish transient dips from sustained collapse (the source of the 009a false alarm). Second, the acceleration condition assumes monotonically increasing overestimation during onset; oscillatory trajectories that eventually collapse could evade detection until acceleration stabilizes. Third, the detector identifies a \\emph{pattern} (rising value-evaluation ratio with declining performance) rather than a \\emph{mechanism}: run 009c shows that non-CIVO pathologies produce the same signature. Fourth, threshold values ($\\tau_\\text{mag} = 0.49$, $\\tau_\\text{vel} = 0.1$) were calibrated on ten runs across two environments; generalization to different reward scales requires further validation."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "db9b04b2-c356-4968-ad1f-54974d1d3453",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NibESCo1f4qM6EchRDoHrr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 515,
+                "cache_read_input_tokens": 38471,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 515
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-17T06:19:35.592Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>",
+              "is_error": true,
+              "tool_use_id": "toolu_01Dv69AL9bwdB435YeeojzBs"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "b6cf97e7-dcd0-4adb-82ec-0d4e98eea23f",
+            "tool_use_result": "Error: File has been modified since read, either by the user or by a linter. Read it again before attempting to write it."
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MoTi2CN796hRZBNKpWDgsb",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+                "offset": 148
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "ae3ff76c-718c-472d-b043-fbf9a5b209ad",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019RgRxucpVeA4UGKBWopLba",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2662,
+                "cache_read_input_tokens": 38986,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2662
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-17T06:19:39.989Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MoTi2CN796hRZBNKpWDgsb",
+              "type": "tool_result",
+              "content": "148\t\\end{tabular}\n149\t\\end{table}\n150\t\n151\tThe trained embedding in 008d produces a $2.78\\times$ reward prediction gap between $\\dt{=}1$ and $\\dt{=}2$ (Table~\\ref{tab:rssm_fidelity}), providing the systematic bias that the critic internalizes as optimistic value estimates.\n152\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "b9a18056-12a0-407d-be8f-7dd21068d762",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+                "content": "\\end{tabular}\n\\end{table}\n\nThe trained embedding in 008d produces a $2.78\\times$ reward prediction gap between $\\dt{=}1$ and $\\dt{=}2$ (Table~\\ref{tab:rssm_fidelity}), providing the systematic bias that the critic internalizes as optimistic value estimates.\n",
+                "numLines": 5,
+                "startLine": 148,
+                "totalLines": 152
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017JwouNgyRsZjV8sLMNeVXa",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+                "old_string": "The trained embedding in 008d produces a $2.78\\times$ reward prediction gap between $\\dt{=}1$ and $\\dt{=}2$ (Table~\\ref{tab:rssm_fidelity}), providing the systematic bias that the critic internalizes as optimistic value estimates.",
+                "new_string": "The trained embedding in 008d produces a $2.78\\times$ reward prediction gap between $\\dt{=}1$ and $\\dt{=}2$ (Table~\\ref{tab:rssm_fidelity}), providing the systematic bias that the critic internalizes as optimistic value estimates.\n\n%% ============================================================\n%% F8: Online CIVO Detection\n%% ============================================================\n\n\\subsection{Online CIVO Detection}\n\\label{sec:detector}\n\n\\paragraph{Motivation.}\nThe Normalized Value Excess ($\\nve$) quantifies CIVO severity by comparing the value-to-evaluation ratio against a reference baseline that does not employ temporal abstraction. This comparison is informative for post-hoc diagnosis but unusable during deployment: no practitioner has access to a converged baseline run while training a new agent. A metric that requires a completed control experiment cannot serve as an early warning.\n\nWe therefore ask whether the \\emph{dynamics} of value overestimation, rather than its absolute magnitude relative to an external reference, contain sufficient signal to detect CIVO onset in real time. By tracking the trajectory of the value-to-evaluation ratio $r_t = \\bar{V}_t / \\bar{E}_t$ across checkpoints, a lightweight rule-based detector can flag dangerous overestimation using only quantities available within a single run.\n\n\\paragraph{Algorithm.}\nThe detector monitors $r_t$ and fires an alert only when four conditions hold simultaneously at checkpoint $t$ (Algorithm~\\ref{alg:civo_detector}). The conjunction makes the detector conservative: any single noisy checkpoint is unlikely to satisfy magnitude, velocity, acceleration, and decline together. The computational cost is negligible (four scalar comparisons per checkpoint, no additional model inference).\n\n\\begin{algorithm}[t]\n\\caption{Online CIVO Detector}\n\\label{alg:civo_detector}\n\\begin{algorithmic}[1]\n\\REQUIRE Stream of $(\\bar{V}_t, \\bar{E}_t)$ at each checkpoint $t$\n\\STATE $\\tau_\\text{mag} \\leftarrow 0.49$, \\quad $\\tau_\\text{vel} \\leftarrow 0.1$\n\\STATE Initialize $r_\\text{prev} \\leftarrow 0$, $\\Delta r_\\text{prev} \\leftarrow 0$, $\\mathcal{H} \\leftarrow []$\n\\FOR{each checkpoint $t$}\n  \\STATE $r_t \\leftarrow \\bar{V}_t \\,/\\, \\bar{E}_t$\n  \\STATE $\\Delta r_t \\leftarrow r_t - r_\\text{prev}$\n  \\STATE $c_\\text{mag} \\leftarrow (r_t \\geq \\tau_\\text{mag})$\n  \\STATE $c_\\text{vel} \\leftarrow (\\Delta r_t > \\tau_\\text{vel})$\n  \\STATE $c_\\text{acc} \\leftarrow (\\Delta r_\\text{prev} > \\tau_\\text{vel}) \\wedge (\\Delta r_t > \\Delta r_\\text{prev})$\n  \\STATE $c_\\text{dec} \\leftarrow \\bigl|\\{i : \\mathcal{H}[i] < \\mathcal{H}[i{-}1],\\; i \\in \\text{last 3}\\}\\bigr| \\geq 2$\n  \\IF{$c_\\text{mag} \\wedge c_\\text{vel} \\wedge c_\\text{acc} \\wedge c_\\text{dec}$}\n    \\STATE \\textbf{Alert:} CIVO onset at step $t$\n  \\ENDIF\n  \\STATE $r_\\text{prev} \\leftarrow r_t$, \\quad $\\Delta r_\\text{prev} \\leftarrow \\Delta r_t$\n  \\STATE Append $\\bar{E}_t$ to $\\mathcal{H}$\n\\ENDFOR\n\\end{algorithmic}\n\\end{algorithm}\n\nThe four conditions capture complementary signals: (1)~\\emph{Magnitude} ($r_t \\geq 0.49$) confirms the ratio has entered the empirical danger zone; (2)~\\emph{Velocity} ($\\Delta r_t > 0.1$) rules out slow drift or plateau behavior; (3)~\\emph{Acceleration} ($\\Delta r_t > \\Delta r_{t-1}$, both $> 0.1$) filters oscillatory paths where the ratio rises and falls without sustained divergence; (4)~\\emph{Evaluation decline} ($\\geq 2$ of 3 recent checkpoints decline) confirms that overestimation coincides with actual performance degradation.\n\n\\paragraph{Validation.}\nWe apply the detector retrospectively to ten runs spanning three conditions: trained duration embedding (CIVO-positive, $n{=}3$), untrained or absent embedding (CIVO-negative, $n{=}3$), and vanilla baselines ($n{=}4$). Ground truth labels derive from manual inspection: a run is CIVO-positive if it exhibits sustained $\\nve \\geq 1.5\\times$ with subsequent evaluation collapse. Table~\\ref{tab:detector-validation} reports all results.\n\n\\begin{table}[t]\n\\centering\n\\caption{Retrospective CIVO detector validation ($n{=}10$). Detection type: ``predictive'' = alert precedes 20\\% eval decline; ``reactive'' = alert follows decline onset.}\n\\label{tab:detector-validation}\n\\footnotesize\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{llccccc}\n\\toprule\n\\textbf{Exp} & \\textbf{Config} & \\textbf{Verdict} & \\textbf{Trigger} & \\textbf{Type} & \\textbf{Peak Eval} & $r_\\text{ve}$ \\\\\n\\midrule\n008d s0 & trained $\\dt$-emb & TP & 45K & predict. & 167 & 0.69 \\\\\n010b & trained $\\dt$-emb (Cheetah) & TP & 65K & reactive & 322 & 3.18 \\\\\n008d s3 & trained $\\dt$-emb & TP & 45K & predict. & 452 & 0.50 \\\\\n\\midrule\n008f s3 & no $\\dt$-emb & TN & -- & -- & 594 & -- \\\\\n009b s2 & trained $\\dt$-emb (self-corr.) & TN & -- & -- & 279 & -- \\\\\nbaseline s1 & vanilla & TN & -- & -- & 970 & -- \\\\\n009d s0 & vanilla & TN & -- & -- & 951 & -- \\\\\n009d s1 & vanilla & TN & -- & -- & 920 & -- \\\\\n\\midrule\n009c s2 & no $\\dt$-emb & FP & 105K & reactive & 359 & 0.75 \\\\\n009a s2 & vanilla & FP & 85K & predict. & 967 & 0.73 \\\\\n\\midrule\n\\multicolumn{7}{l}{TPR = 3/3 (1.00), \\quad FPR = 2/7 (0.29)} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Results.}\nThe detector identifies all three CIVO-positive runs (TPR = 3/3). Two of three are detected \\emph{predictively}: 008d seed~0 triggers at 45K, one checkpoint before evaluation crosses the 20\\% decline threshold; seed~3 triggers at 45K, a full 50K steps before decline begins. The third case (010b, Cheetah Run) involves single-step collapse (evaluation drops 80\\% in one interval), and the detector fires reactively at the next available checkpoint. No checkpoint-based monitor can provide advance warning for instantaneous collapse.\n\nTwo false positives occur among seven negative cases (FPR = 2/7). Run 009c (no duration embedding) develops genuine late-stage value overestimation unrelated to CIVO; the detector correctly identifies value-performance dissociation, and the alert is arguably useful despite the label mismatch. Run 009a (vanilla baseline) triggers during a transient three-checkpoint eval dip at 85K; the model subsequently recovers to 966, constituting a pure false alarm.\n\nA consistent timing pattern yields a practical deployment guideline: all true positives trigger before 65K steps (range 45--65K, mean 52K), while both false positives trigger after 85K steps (range 85--105K, mean 95K). No false positives occur below 70K steps, and no true positives occur above it. In practice, alerts before 70K steps can be treated as high-confidence CIVO indicators warranting immediate intervention; alerts after 70K steps require manual inspection to distinguish genuine collapse from transient fluctuation.\n\n\\paragraph{Limitations.}\nFour constraints bound the current detector. First, the three-checkpoint window cannot distinguish transient dips from sustained collapse (the source of the 009a false alarm). Second, the acceleration condition assumes monotonically increasing overestimation during onset; oscillatory trajectories that eventually collapse could evade detection until acceleration stabilizes. Third, the detector identifies a \\emph{pattern} (rising value-evaluation ratio with declining performance) rather than a \\emph{mechanism}: run 009c shows that non-CIVO pathologies produce the same signature. Fourth, threshold values ($\\tau_\\text{mag} = 0.49$, $\\tau_\\text{vel} = 0.1$) were calibrated on ten runs across two environments; generalization to different reward scales requires further validation."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "a9a3a46c-d2de-4924-955c-0d4d2364f70c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MiFZAWsqB4dRSfdKJpzfX8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 216,
+                "cache_read_input_tokens": 41648,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 216
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-17T06:20:06.563Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017JwouNgyRsZjV8sLMNeVXa",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "47f6be46-2c5c-488c-97e5-55268c0186e6",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+              "oldString": "The trained embedding in 008d produces a $2.78\\times$ reward prediction gap between $\\dt{=}1$ and $\\dt{=}2$ (Table~\\ref{tab:rssm_fidelity}), providing the systematic bias that the critic internalizes as optimistic value estimates.",
+              "newString": "The trained embedding in 008d produces a $2.78\\times$ reward prediction gap between $\\dt{=}1$ and $\\dt{=}2$ (Table~\\ref{tab:rssm_fidelity}), providing the systematic bias that the critic internalizes as optimistic value estimates.\n\n%% ============================================================\n%% F8: Online CIVO Detection\n%% ============================================================\n\n\\subsection{Online CIVO Detection}\n\\label{sec:detector}\n\n\\paragraph{Motivation.}\nThe Normalized Value Excess ($\\nve$) quantifies CIVO severity by comparing the value-to-evaluation ratio against a reference baseline that does not employ temporal abstraction. This comparison is informative for post-hoc diagnosis but unusable during deployment: no practitioner has access to a converged baseline run while training a new agent. A metric that requires a completed control experiment cannot serve as an early warning.\n\nWe therefore ask whether the \\emph{dynamics} of value overestimation, rather than its absolute magnitude relative to an external reference, contain sufficient signal to detect CIVO onset in real time. By tracking the trajectory of the value-to-evaluation ratio $r_t = \\bar{V}_t / \\bar{E}_t$ across checkpoints, a lightweight rule-based detector can flag dangerous overestimation using only quantities available within a single run.\n\n\\paragraph{Algorithm.}\nThe detector monitors $r_t$ and fires an alert only when four conditions hold simultaneously at checkpoint $t$ (Algorithm~\\ref{alg:civo_detector}). The conjunction makes the detector conservative: any single noisy checkpoint is unlikely to satisfy magnitude, velocity, acceleration, and decline together. The computational cost is negligible (four scalar comparisons per checkpoint, no additional model inference).\n\n\\begin{algorithm}[t]\n\\caption{Online CIVO Detector}\n\\label{alg:civo_detector}\n\\begin{algorithmic}[1]\n\\REQUIRE Stream of $(\\bar{V}_t, \\bar{E}_t)$ at each checkpoint $t$\n\\STATE $\\tau_\\text{mag} \\leftarrow 0.49$, \\quad $\\tau_\\text{vel} \\leftarrow 0.1$\n\\STATE Initialize $r_\\text{prev} \\leftarrow 0$, $\\Delta r_\\text{prev} \\leftarrow 0$, $\\mathcal{H} \\leftarrow []$\n\\FOR{each checkpoint $t$}\n  \\STATE $r_t \\leftarrow \\bar{V}_t \\,/\\, \\bar{E}_t$\n  \\STATE $\\Delta r_t \\leftarrow r_t - r_\\text{prev}$\n  \\STATE $c_\\text{mag} \\leftarrow (r_t \\geq \\tau_\\text{mag})$\n  \\STATE $c_\\text{vel} \\leftarrow (\\Delta r_t > \\tau_\\text{vel})$\n  \\STATE $c_\\text{acc} \\leftarrow (\\Delta r_\\text{prev} > \\tau_\\text{vel}) \\wedge (\\Delta r_t > \\Delta r_\\text{prev})$\n  \\STATE $c_\\text{dec} \\leftarrow \\bigl|\\{i : \\mathcal{H}[i] < \\mathcal{H}[i{-}1],\\; i \\in \\text{last 3}\\}\\bigr| \\geq 2$\n  \\IF{$c_\\text{mag} \\wedge c_\\text{vel} \\wedge c_\\text{acc} \\wedge c_\\text{dec}$}\n    \\STATE \\textbf{Alert:} CIVO onset at step $t$\n  \\ENDIF\n  \\STATE $r_\\text{prev} \\leftarrow r_t$, \\quad $\\Delta r_\\text{prev} \\leftarrow \\Delta r_t$\n  \\STATE Append $\\bar{E}_t$ to $\\mathcal{H}$\n\\ENDFOR\n\\end{algorithmic}\n\\end{algorithm}\n\nThe four conditions capture complementary signals: (1)~\\emph{Magnitude} ($r_t \\geq 0.49$) confirms the ratio has entered the empirical danger zone; (2)~\\emph{Velocity} ($\\Delta r_t > 0.1$) rules out slow drift or plateau behavior; (3)~\\emph{Acceleration} ($\\Delta r_t > \\Delta r_{t-1}$, both $> 0.1$) filters oscillatory paths where the ratio rises and falls without sustained divergence; (4)~\\emph{Evaluation decline} ($\\geq 2$ of 3 recent checkpoints decline) confirms that overestimation coincides with actual performance degradation.\n\n\\paragraph{Validation.}\nWe apply the detector retrospectively to ten runs spanning three conditions: trained duration embedding (CIVO-positive, $n{=}3$), untrained or absent embedding (CIVO-negative, $n{=}3$), and vanilla baselines ($n{=}4$). Ground truth labels derive from manual inspection: a run is CIVO-positive if it exhibits sustained $\\nve \\geq 1.5\\times$ with subsequent evaluation collapse. Table~\\ref{tab:detector-validation} reports all results.\n\n\\begin{table}[t]\n\\centering\n\\caption{Retrospective CIVO detector validation ($n{=}10$). Detection type: ``predictive'' = alert precedes 20\\% eval decline; ``reactive'' = alert follows decline onset.}\n\\label{tab:detector-validation}\n\\footnotesize\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{llccccc}\n\\toprule\n\\textbf{Exp} & \\textbf{Config} & \\textbf{Verdict} & \\textbf{Trigger} & \\textbf{Type} & \\textbf{Peak Eval} & $r_\\text{ve}$ \\\\\n\\midrule\n008d s0 & trained $\\dt$-emb & TP & 45K & predict. & 167 & 0.69 \\\\\n010b & trained $\\dt$-emb (Cheetah) & TP & 65K & reactive & 322 & 3.18 \\\\\n008d s3 & trained $\\dt$-emb & TP & 45K & predict. & 452 & 0.50 \\\\\n\\midrule\n008f s3 & no $\\dt$-emb & TN & -- & -- & 594 & -- \\\\\n009b s2 & trained $\\dt$-emb (self-corr.) & TN & -- & -- & 279 & -- \\\\\nbaseline s1 & vanilla & TN & -- & -- & 970 & -- \\\\\n009d s0 & vanilla & TN & -- & -- & 951 & -- \\\\\n009d s1 & vanilla & TN & -- & -- & 920 & -- \\\\\n\\midrule\n009c s2 & no $\\dt$-emb & FP & 105K & reactive & 359 & 0.75 \\\\\n009a s2 & vanilla & FP & 85K & predict. & 967 & 0.73 \\\\\n\\midrule\n\\multicolumn{7}{l}{TPR = 3/3 (1.00), \\quad FPR = 2/7 (0.29)} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Results.}\nThe detector identifies all three CIVO-positive runs (TPR = 3/3). Two of three are detected \\emph{predictively}: 008d seed~0 triggers at 45K, one checkpoint before evaluation crosses the 20\\% decline threshold; seed~3 triggers at 45K, a full 50K steps before decline begins. The third case (010b, Cheetah Run) involves single-step collapse (evaluation drops 80\\% in one interval), and the detector fires reactively at the next available checkpoint. No checkpoint-based monitor can provide advance warning for instantaneous collapse.\n\nTwo false positives occur among seven negative cases (FPR = 2/7). Run 009c (no duration embedding) develops genuine late-stage value overestimation unrelated to CIVO; the detector correctly identifies value-performance dissociation, and the alert is arguably useful despite the label mismatch. Run 009a (vanilla baseline) triggers during a transient three-checkpoint eval dip at 85K; the model subsequently recovers to 966, constituting a pure false alarm.\n\nA consistent timing pattern yields a practical deployment guideline: all true positives trigger before 65K steps (range 45--65K, mean 52K), while both false positives trigger after 85K steps (range 85--105K, mean 95K). No false positives occur below 70K steps, and no true positives occur above it. In practice, alerts before 70K steps can be treated as high-confidence CIVO indicators warranting immediate intervention; alerts after 70K steps require manual inspection to distinguish genuine collapse from transient fluctuation.\n\n\\paragraph{Limitations.}\nFour constraints bound the current detector. First, the three-checkpoint window cannot distinguish transient dips from sustained collapse (the source of the 009a false alarm). Second, the acceleration condition assumes monotonically increasing overestimation during onset; oscillatory trajectories that eventually collapse could evade detection until acceleration stabilizes. Third, the detector identifies a \\emph{pattern} (rising value-evaluation ratio with declining performance) rather than a \\emph{mechanism}: run 009c shows that non-CIVO pathologies produce the same signature. Fourth, threshold values ($\\tau_\\text{mag} = 0.49$, $\\tau_\\text{vel} = 0.1$) were calibrated on ten runs across two environments; generalization to different reward scales requires further validation.",
+              "originalFile": "\\section{Results}\n\\label{sec:results}\n\nWe organize results around seven findings (F1--F7) that establish a causal chain from trained temporal conditioning to pathological value dynamics. All experiments use Walker Walk (DMC) with DreamerV3; treatments run to 105K steps and the baseline to 505K steps. We report evaluation returns (mean over 10 episodes) and the normalized value-to-eval ratio ($\\nve$, \\S\\ref{sec:metrics}).\n\n%% ============================================================\n%% TABLE 1: Main results summary\n%% ============================================================\n\n\\begin{table*}[t]\n\\centering\n\\caption{All configurations and outcomes. NVE reports peak $\\nve$ in the 35K+ window (\\S\\ref{sec:metrics}). CIVO-positive seeds are shaded; $\\dagger$\\,marks a false positive (non-CIVO collapse with elevated NVE).}\n\\label{tab:main_results}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{llcccccl}\n\\toprule\n\\textbf{Exp} & \\textbf{Config} & \\textbf{dt\\_emb} & \\textbf{Sub} & \\textbf{H} & \\textbf{Eval@final} & \\textbf{NVE} & \\textbf{Outcome} \\\\\n\\midrule\n001 & Baseline ($\\dt{=}1$) & --- & --- & 15 & 915.7 @105K & 1.00$\\times$ & Healthy \\\\\n\\rowcolor{gray!15}\n006 & Fixed $\\dt{=}2$ & trn & ON & 15 & 132.9 @65K & 4.83$\\times$ & Collapsed \\\\\n007 & Fixed $\\dt{=}4$ & trn & ON & 15 & 152.5 @55K & --- & Collapsed \\\\\n005 & Learned gate & adaptive & OFF & 15 & 98.8 @145K & --- & Collapsed \\\\\n\\midrule\n\\rowcolor{gray!15}\n008d & Factorial (s1) & trn & ON & 8 & 82.8 @55K & 4.12$\\times$ & Full collapse \\\\\n\\rowcolor{gray!15}\n009b & Factorial (s2) & trn & ON & 8 & 267.9 @105K & 1.62$\\times$ & Transient CIVO \\\\\n\\rowcolor{gray!15}\n008d\\_s3 & Factorial (s3) & trn & ON & 8 & 268$^\\diamond$ @105K & 1.53$\\times$ & Late-onset collapse \\\\\n008f & No dt\\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\\times$ & Healthy \\\\\n008a & Unexposed emb & exp$^a$ & OFF & 15 & 777.7 @105K & 0.93$\\times$ & Healthy \\\\\n015b & Frozen emb & frz$^b$ & ON & 8 & 204.2 @105K & 0.47$\\times$ & Grad.\\ starvation \\\\\n\\midrule\n018 s1 & Full-SGS & trn$^\\ddagger$ & ON & 8 & \\sgseval{} @105K & \\sgsnve{}$\\times$$^*$ & No collapse \\\\\n\\rowcolor{gray!15}\n018 s2 & Full-SGS & trn$^\\ddagger$ & ON & 8 & 40.8 @105K & --- & Collapsed \\\\\n008e\\_v3 s1 & Mitigation & trn & ON & 15 & 869.9 @105K & 0.80$\\times$ & Healthy \\\\\n008e\\_v3 s2$^\\dagger$ & Mitigation & trn & ON & 15 & 137.0 @105K & 3.78$\\times$ & Non-CIVO collapse \\\\\n\\midrule\n\\multicolumn{8}{l}{\\textit{Cross-environment validation (Cheetah Run)}} \\\\\n\\rowcolor{gray!15}\n010b & Cheetah Run & trn & ON & 8 & 51.7 @105K & 14.59$\\times$ & Collapsed \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{1pt}\n{\\raggedright\\footnotesize\ntrn = trained ($d{=}32$, subsample ON);\ntrn$^\\ddagger$ = full-pathway SGS (all non-KL gradients detached);\nexp$^a$ = trained, subsample OFF;\nfrz$^b$ = frozen ($d{=}32$, \\texttt{requires\\_grad=False});\n--- = removed ($d{=}0$).\\\\\n$^*$ Seed 1 only: peak NVE with transient exceedances (1.61$\\times$ at 35K, 1.66$\\times$ at 95K); self-correcting, no sustained escalation. Seed 2 collapsed.\\\\\n$^\\diamond$ Transitional; train returns still declining (peak 470 to 139 over final 8K steps). Collapse had not reached equilibrium at 105K.\\par}\n\\end{table*}\n\n%% ============================================================\n%% F1: All dt>1 degrade\n%% ============================================================\n\n\\subsection{F1: All Variable-Rate Configurations Degrade}\n\\label{sec:f1}\n\nEvery configuration that introduces $\\dt > 1$ imagination degrades relative to the $\\dt{=}1$ baseline (Figure~\\ref{fig:learning_curves}). The baseline reaches 915.7 at 105K; fixed $\\dt{=}2$ (006) peaks at 485.3 before collapsing to 132.9 ($14\\%$ of baseline); fixed $\\dt{=}4$ (007) never exceeds 176.9 ($19\\%$); the learned gate (005) collapses to 98.8 ($11\\%$).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.65\\columnwidth]{figures/paper/fig1_learning_curves.pdf}\n\\caption{Learning curves. The baseline (black) reaches 915.7; all variable-rate configurations degrade.}\n\\label{fig:learning_curves}\n\\end{figure}\n\n%% ============================================================\n%% F2: Trained dt_embedding → nve > 1.5x\n%% ============================================================\n\n\\subsection{F2: Trained Temporal Embedding Triggers Value Overestimation}\n\\label{sec:f2}\n\nThe factorial design isolates trained $\\dt$-embedding as the causal trigger. Comparing exp\\_008d (trained, subsample ON) against exp\\_008f (no embedding, subsample ON): 008d reaches $\\nve = 4.12\\times$ and collapses (eval 82.8), while 008f maintains $\\nve \\leq 0.97\\times$ (eval 503.0). The $\\nve \\geq 1.5\\times$ threshold (35K+ window) correctly classifies 7/8 seeds (AUROC${=}0.933$; Figure~\\ref{fig:nve_trajectory}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.65\\columnwidth]{figures/fig1_nve_trajectory.pdf}\n\\caption{NVE trajectories (mean $\\pm$ seed range). Trained $\\dt$-embedding (red, $n{=}3$) exceeds the $1.5\\times$ threshold (dashed) in all seeds; no-embedding control (blue) remains near $1.0\\times$. Three trajectory types emerge: early collapse (seed~0), late-onset collapse (seed~3), and self-correction (seed~2). Dotted line marks the 35K diagnostic window onset.}\n\\label{fig:nve_trajectory}\n\\end{figure}\n\nThe trained $\\dt$-embedding triggers CIVO in all three tested seeds (peak NVE: $4.12\\times$, $1.62\\times$, $1.53\\times$; all $\\geq 1.5\\times$ threshold), universally degrading performance to below 30\\% of baseline (mean eval 206.3, 21.3\\% of baseline 970.41). Downstream trajectories diverge: seed~1 (008d) undergoes immediate full collapse (eval 82.8, 8.6\\% of baseline), seed~3 (008d\\_s3) exhibits late-onset collapse still in progress at 105K (eval 268, train returns declining 70\\% over final 8K steps), while seed~2 (009b) self-corrects after transient overestimation (eval 267.9, 27.6\\% of baseline). This pattern establishes universal CIVO onset with stochastic downstream resolution: collapse is the majority outcome (2/3 seeds) but exhibits variable onset timing (35K vs 70K steps). The 1/3 self-correction case remains severely degraded, confirming that CIVO universally damages performance regardless of whether full collapse follows (Appendix~\\ref{sec:seed_divergence}).\n\n%% ============================================================\n%% F3--F5: Summary (details in Appendix B)\n%% ============================================================\n\n\\subsection{F3--F5: Factorial Ablation (Appendix~\\ref{sec:appendix_factorial})}\n\\label{sec:f3f5_summary}\n\nTrained $\\dt$-embedding and multi-rate data exposure are \\emph{jointly necessary} for CIVO. Neither factor alone is sufficient: unexposed trained embedding (008a) maintains NVE $\\leq 0.93\\times$, frozen embedding (015b) never exceeds $0.47\\times$, and removed embedding (008f) shows NVE $\\leq 0.97\\times$. Degradation scales monotonically with $\\dt$ ($-47\\%$ at $\\dt{=}2$, $-81\\%$ at $\\dt{=}4$).\n\n%% ============================================================\n%% F6--F7: Interventions and cross-environment\n%% ============================================================\n\n\\subsection{F6--F7: Interventions and Multiple Pathways}\n\\label{sec:f6}\n\n\\paragraph{F6: $\\dt{=}1$ imagination does not prevent all collapse.}\nExp\\_008e\\_v3 restricts imagination to $\\dt{=}1$ while retaining the trained embedding. Seed~1 is healthy (eval 869.9, $\\nve = 0.80\\times$); seed~2 collapses (eval $715 \\rightarrow 137$, $\\nve = 3.78\\times$)---but via a qualitatively distinct mechanism (Figure~\\ref{fig:multiple_pathways}). Classic CIVO (008d, Pathway~A) shows value explosion followed by evaluation decline with decreasing entropy; 008e\\_v3\\_s2 (Pathway~B) shows evaluation crash with \\emph{increasing} entropy ($-5.21 \\rightarrow -3.83$) while values remain stable. This produces the sole false positive in the NVE classification.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.65\\columnwidth]{figures/paper/fig6_multiple_pathways.pdf}\n\\caption{Contrasting collapse dynamics. \\textbf{Left:} 008d (CIVO)---value explosion, entropy decreases. \\textbf{Right:} 008e\\_v3 s2 (non-CIVO)---evaluation crashes, entropy increases.}\n\\label{fig:multiple_pathways}\n\\end{figure}\n\n\\paragraph{F7: Full-pathway gradient stopping shows mixed results.}\nExp\\_018 applies Selective Gradient Stopping (SGS) by detaching all non-KL gradients from $e_{\\dt}$, blocking the observation decoder pathway identified in F2 as the primary CIVO conduit. Figure~\\ref{fig:civo_decomposition} decomposes evaluation returns across conditions. Trained $\\dt$-embedding alone produces $-73\\%$ peak and $-86\\%$ final eval degradation relative to the baseline. Full-SGS seed~1 avoids collapse (eval \\sgseval{}, $-51\\%$ final relative to baseline) while seed~2 collapses (eval 40.8, $-96\\%$), yielding a 50\\% prevention rate. SGS reduces but does not eliminate CIVO risk: the gradient pathway it blocks is necessary but not sufficient for reliable prevention. Reward-only SGS (016e) fails entirely (NVE $10.42\\times$). Cross-environment validation on Cheetah Run (010b) confirms CIVO generalization: evaluation peaks at 321.9 before collapsing to 22.7 ($-93\\%$); peak NVE $14.59\\times$.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.75\\columnwidth]{figures/fig2_civo_decomposition.pdf}\n\\caption{CIVO decomposition: peak and final (105K step) evaluation returns on Walker Walk (DMC) across four conditions. \\textbf{Baseline} (001): vanilla DreamerV3, no temporal embedding. \\textbf{Trained dt-emb} (008d, 009b): DreamerV3 with a learned $d{=}32$ temporal embedding exposed to multi-rate data, two seeds. \\textbf{Full-SGS} (s1, s2): trained embedding with Selective Gradient Stopping that detaches all non-KL gradients from $e_{\\dt}$, two seeds. Trained $\\dt$-embedding degrades peak eval by $73\\%$ and final eval by $86\\%$ relative to the baseline. Full-SGS seed~1 partially recovers ($-51\\%$ final, no collapse) but seed~2 collapses ($-96\\%$ final, marked ``collapsed''), indicating that SGS reduces but does not reliably prevent CIVO (prevention rate $= 50\\%$). All percentages relative to Baseline 001.}\n\\label{fig:civo_decomposition}\n\\end{figure}\n\n%% ============================================================\n%% TABLE 2: RSSM Fidelity\n%% ============================================================\n\n\\begin{table}[t]\n\\centering\n\\caption{RSSM fidelity at $\\dt{=}1$ vs.\\ $\\dt{=}2$. Trained embedding (008d) produces $2.78\\times$ reward gap; removing it (008f) eliminates the gap but degrades absolute prediction.}\n\\label{tab:rssm_fidelity}\n\\footnotesize\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{lcccccc}\n\\toprule\n& \\multicolumn{3}{c}{\\textbf{obs\\_MSE}} & \\multicolumn{3}{c}{\\textbf{reward\\_MAE}} \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n\\textbf{Config} & $\\dt{=}1$ & $\\dt{=}2$ & Gap & $\\dt{=}1$ & $\\dt{=}2$ & Gap \\\\\n\\midrule\nBaseline & 13.49 & 27.50 & 2.04$\\times$ & 0.0102 & 0.0159 & 1.56$\\times$ \\\\\n008d (trained) & 41.31 & 53.67 & 1.30$\\times$ & 0.0568 & 0.1579 & 2.78$\\times$ \\\\\n008f (no emb) & 8.01 & 22.04 & 2.75$\\times$ & 0.7469 & 0.7526 & 1.01$\\times$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe trained embedding in 008d produces a $2.78\\times$ reward prediction gap between $\\dt{=}1$ and $\\dt{=}2$ (Table~\\ref{tab:rssm_fidelity}), providing the systematic bias that the critic internalizes as optimistic value estimates.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 149,
+                  "oldLines": 3,
+                  "newStart": 149,
+                  "newLines": 84,
+                  "lines": [
+                    " \\end{table}",
+                    " ",
+                    " The trained embedding in 008d produces a $2.78\\times$ reward prediction gap between $\\dt{=}1$ and $\\dt{=}2$ (Table~\\ref{tab:rssm_fidelity}), providing the systematic bias that the critic internalizes as optimistic value estimates.",
+                    "+",
+                    "+%% ============================================================",
+                    "+%% F8: Online CIVO Detection",
+                    "+%% ============================================================",
+                    "+",
+                    "+\\subsection{Online CIVO Detection}",
+                    "+\\label{sec:detector}",
+                    "+",
+                    "+\\paragraph{Motivation.}",
+                    "+The Normalized Value Excess ($\\nve$) quantifies CIVO severity by comparing the value-to-evaluation ratio against a reference baseline that does not employ temporal abstraction. This comparison is informative for post-hoc diagnosis but unusable during deployment: no practitioner has access to a converged baseline run while training a new agent. A metric that requires a completed control experiment cannot serve as an early warning.",
+                    "+",
+                    "+We therefore ask whether the \\emph{dynamics} of value overestimation, rather than its absolute magnitude relative to an external reference, contain sufficient signal to detect CIVO onset in real time. By tracking the trajectory of the value-to-evaluation ratio $r_t = \\bar{V}_t / \\bar{E}_t$ across checkpoints, a lightweight rule-based detector can flag dangerous overestimation using only quantities available within a single run.",
+                    "+",
+                    "+\\paragraph{Algorithm.}",
+                    "+The detector monitors $r_t$ and fires an alert only when four conditions hold simultaneously at checkpoint $t$ (Algorithm~\\ref{alg:civo_detector}). The conjunction makes the detector conservative: any single noisy checkpoint is unlikely to satisfy magnitude, velocity, acceleration, and decline together. The computational cost is negligible (four scalar comparisons per checkpoint, no additional model inference).",
+                    "+",
+                    "+\\begin{algorithm}[t]",
+                    "+\\caption{Online CIVO Detector}",
+                    "+\\label{alg:civo_detector}",
+                    "+\\begin{algorithmic}[1]",
+                    "+\\REQUIRE Stream of $(\\bar{V}_t, \\bar{E}_t)$ at each checkpoint $t$",
+                    "+\\STATE $\\tau_\\text{mag} \\leftarrow 0.49$, \\quad $\\tau_\\text{vel} \\leftarrow 0.1$",
+                    "+\\STATE Initialize $r_\\text{prev} \\leftarrow 0$, $\\Delta r_\\text{prev} \\leftarrow 0$, $\\mathcal{H} \\leftarrow []$",
+                    "+\\FOR{each checkpoint $t$}",
+                    "+  \\STATE $r_t \\leftarrow \\bar{V}_t \\,/\\, \\bar{E}_t$",
+                    "+  \\STATE $\\Delta r_t \\leftarrow r_t - r_\\text{prev}$",
+                    "+  \\STATE $c_\\text{mag} \\leftarrow (r_t \\geq \\tau_\\text{mag})$",
+                    "+  \\STATE $c_\\text{vel} \\leftarrow (\\Delta r_t > \\tau_\\text{vel})$",
+                    "+  \\STATE $c_\\text{acc} \\leftarrow (\\Delta r_\\text{prev} > \\tau_\\text{vel}) \\wedge (\\Delta r_t > \\Delta r_\\text{prev})$",
+                    "+  \\STATE $c_\\text{dec} \\leftarrow \\bigl|\\{i : \\mathcal{H}[i] < \\mathcal{H}[i{-}1],\\; i \\in \\text{last 3}\\}\\bigr| \\geq 2$",
+                    "+  \\IF{$c_\\text{mag} \\wedge c_\\text{vel} \\wedge c_\\text{acc} \\wedge c_\\text{dec}$}",
+                    "+    \\STATE \\textbf{Alert:} CIVO onset at step $t$",
+                    "+  \\ENDIF",
+                    "+  \\STATE $r_\\text{prev} \\leftarrow r_t$, \\quad $\\Delta r_\\text{prev} \\leftarrow \\Delta r_t$",
+                    "+  \\STATE Append $\\bar{E}_t$ to $\\mathcal{H}$",
+                    "+\\ENDFOR",
+                    "+\\end{algorithmic}",
+                    "+\\end{algorithm}",
+                    "+",
+                    "+The four conditions capture complementary signals: (1)~\\emph{Magnitude} ($r_t \\geq 0.49$) confirms the ratio has entered the empirical danger zone; (2)~\\emph{Velocity} ($\\Delta r_t > 0.1$) rules out slow drift or plateau behavior; (3)~\\emph{Acceleration} ($\\Delta r_t > \\Delta r_{t-1}$, both $> 0.1$) filters oscillatory paths where the ratio rises and falls without sustained divergence; (4)~\\emph{Evaluation decline} ($\\geq 2$ of 3 recent checkpoints decline) confirms that overestimation coincides with actual performance degradation.",
+                    "+",
+                    "+\\paragraph{Validation.}",
+                    "+We apply the detector retrospectively to ten runs spanning three conditions: trained duration embedding (CIVO-positive, $n{=}3$), untrained or absent embedding (CIVO-negative, $n{=}3$), and vanilla baselines ($n{=}4$). Ground truth labels derive from manual inspection: a run is CIVO-positive if it exhibits sustained $\\nve \\geq 1.5\\times$ with subsequent evaluation collapse. Table~\\ref{tab:detector-validation} reports all results.",
+                    "+",
+                    "+\\begin{table}[t]",
+                    "+\\centering",
+                    "+\\caption{Retrospective CIVO detector validation ($n{=}10$). Detection type: ``predictive'' = alert precedes 20\\% eval decline; ``reactive'' = alert follows decline onset.}",
+                    "+\\label{tab:detector-validation}",
+                    "+\\footnotesize",
+                    "+\\setlength{\\tabcolsep}{3pt}",
+                    "+\\begin{tabular}{llccccc}",
+                    "+\\toprule",
+                    "+\\textbf{Exp} & \\textbf{Config} & \\textbf{Verdict} & \\textbf{Trigger} & \\textbf{Type} & \\textbf{Peak Eval} & $r_\\text{ve}$ \\\\",
+                    "+\\midrule",
+                    "+008d s0 & trained $\\dt$-emb & TP & 45K & predict. & 167 & 0.69 \\\\",
+                    "+010b & trained $\\dt$-emb (Cheetah) & TP & 65K & reactive & 322 & 3.18 \\\\",
+                    "+008d s3 & trained $\\dt$-emb & TP & 45K & predict. & 452 & 0.50 \\\\",
+                    "+\\midrule",
+                    "+008f s3 & no $\\dt$-emb & TN & -- & -- & 594 & -- \\\\",
+                    "+009b s2 & trained $\\dt$-emb (self-corr.) & TN & -- & -- & 279 & -- \\\\",
+                    "+baseline s1 & vanilla & TN & -- & -- & 970 & -- \\\\",
+                    "+009d s0 & vanilla & TN & -- & -- & 951 & -- \\\\",
+                    "+009d s1 & vanilla & TN & -- & -- & 920 & -- \\\\",
+                    "+\\midrule",
+                    "+009c s2 & no $\\dt$-emb & FP & 105K & reactive & 359 & 0.75 \\\\",
+                    "+009a s2 & vanilla & FP & 85K & predict. & 967 & 0.73 \\\\",
+                    "+\\midrule",
+                    "+\\multicolumn{7}{l}{TPR = 3/3 (1.00), \\quad FPR = 2/7 (0.29)} \\\\",
+                    "+\\bottomrule",
+                    "+\\end{tabular}",
+                    "+\\end{table}",
+                    "+",
+                    "+\\paragraph{Results.}",
+                    "+The detector identifies all three CIVO-positive runs (TPR = 3/3). Two of three are detected \\emph{predictively}: 008d seed~0 triggers at 45K, one checkpoint before evaluation crosses the 20\\% decline threshold; seed~3 triggers at 45K, a full 50K steps before decline begins. The third case (010b, Cheetah Run) involves single-step collapse (evaluation drops 80\\% in one interval), and the detector fires reactively at the next available checkpoint. No checkpoint-based monitor can provide advance warning for instantaneous collapse.",
+                    "+",
+                    "+Two false positives occur among seven negative cases (FPR = 2/7). Run 009c (no duration embedding) develops genuine late-stage value overestimation unrelated to CIVO; the detector correctly identifies value-performance dissociation, and the alert is arguably useful despite the label mismatch. Run 009a (vanilla baseline) triggers during a transient three-checkpoint eval dip at 85K; the model subsequently recovers to 966, constituting a pure false alarm.",
+                    "+",
+                    "+A consistent timing pattern yields a practical deployment guideline: all true positives trigger before 65K steps (range 45--65K, mean 52K), while both false positives trigger after 85K steps (range 85--105K, mean 95K). No false positives occur below 70K steps, and no true positives occur above it. In practice, alerts before 70K steps can be treated as high-confidence CIVO indicators warranting immediate intervention; alerts after 70K steps require manual inspection to distinguish genuine collapse from transient fluctuation.",
+                    "+",
+                    "+\\paragraph{Limitations.}",
+                    "+Four constraints bound the current detector. First, the three-checkpoint window cannot distinguish transient dips from sustained collapse (the source of the 009a false alarm). Second, the acceleration condition assumes monotonically increasing overestimation during onset; oscillatory trajectories that eventually collapse could evade detection until acceleration stabilizes. Third, the detector identifies a \\emph{pattern} (rising value-evaluation ratio with declining performance) rather than a \\emph{mechanism}: run 009c shows that non-CIVO pathologies produce the same signature. Fourth, threshold values ($\\tau_\\text{mag} = 0.49$, $\\tau_\\text{vel} = 0.1$) were calibrated on ten runs across two environments; generalization to different reward scales requires further validation."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me verify the result, checking for any existing em-dashes that I should have avoided and confirming bracket/environment matching."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "a3c186bc-cd71-4f06-a8e6-6dd82c8e3b73",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UnDuxEuHsihTR2Q1M2tyyx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2663,
+                "cache_read_input_tokens": 41864,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2663
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AXzoRhX2YqmYWYakLuWus6",
+              "name": "Grep",
+              "input": {
+                "pattern": "—|–",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "bb28667c-401e-4bf1-8b60-ae962d782d68",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UnDuxEuHsihTR2Q1M2tyyx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2663,
+                "cache_read_input_tokens": 41864,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2663
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-17T06:20:19.509Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AXzoRhX2YqmYWYakLuWus6",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "248644a9-a479-4151-b325-6209be1ea382",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "",
+              "numLines": 0
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013MkvWy4okTypi8kYq5y3VY",
+              "name": "Bash",
+              "input": {
+                "command": "grep -c '\\\\begin{' /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex && grep -c '\\\\end{' /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+                "description": "Count begin/end environment pairs for balance check"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "da0ed998-d8e5-42e6-8a06-ac93024e2144",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UnDuxEuHsihTR2Q1M2tyyx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2663,
+                "cache_read_input_tokens": 41864,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2663
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-17T06:20:23.697Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013MkvWy4okTypi8kYq5y3VY",
+              "type": "tool_result",
+              "content": "12\n12",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "c4a0314a-15a5-4215-826b-b27133250d5b",
+            "tool_use_result": {
+              "stdout": "12\n12",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good: no em-dashes or en-dashes found, and begin/end environments are balanced (12 each). Let me also check for -ing phrase endings which are prohibited.",
+              "signature": "EtUCClkIDRgCKkAO1iygwBbfRbiDMJgPbuYoTn1/GzTe9D4Os8lzXhI6KTDd7wwy3FX12JFMm/n6xVqCJ/nhWUZ3SUNN7JOT2r/LMg9jbGF1ZGUtb3B1cy00LTY4ABIMGOl1FoAExnoj+Y95GgwBGFF+Lqz1QXVNns8iMFd3xnbABxYQvI86p0CZjI0q6MjzC5KrkM5nl+2XYswswu0KJHwu4LYOIQA+Db2ORSqpAaxNLZC5hNP9OY7UnHM+WCLjBswqD6IuoI+3bDkMtex89pjQKQjzH1GwEuLv3dqPQMKZFX/qFgBINF0SKmat+01Jdb83irTWFTjijoUlkljAvheSCHWxGbLco9Z10XDTxBpI5bS5AOEe35ppl2ZIsxDWBzKOqVVbYUzScNqB0Edek4k06Pmvq7PS45pbh8DACwTWDSIA51MMnt6fsqFOg3HFBIg2dGVVq7gYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "85c9052b-4656-4d1f-8413-b492b39474b6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KW7T9JXhbr1mydenk4m4Px",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 381,
+                "cache_read_input_tokens": 44527,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 381
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No em-dashes/en-dashes, and all 12 `\\begin{}`/`\\end{}` pairs are balanced. Let me also check the pre-existing F6 section which had a `---` that was already there (that's the original file, not my addition)."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "d42c823f-b337-435d-9f1e-3de6d297ca1f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KW7T9JXhbr1mydenk4m4Px",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 381,
+                "cache_read_input_tokens": 44527,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 381
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NzUeJzoe8QiP3E5YRzFtdw",
+              "name": "Grep",
+              "input": {
+                "pattern": "---",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/results.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "3491856f-bd75-4365-b44d-a769b3da6b70",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KW7T9JXhbr1mydenk4m4Px",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 381,
+                "cache_read_input_tokens": 44527,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 381
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-17T06:20:29.480Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NzUeJzoe8QiP3E5YRzFtdw",
+              "type": "tool_result",
+              "content": "20:001 & Baseline ($\\dt{=}1$) & --- & --- & 15 & 915.7 @105K & 1.00$\\times$ & Healthy \\\\\n23:007 & Fixed $\\dt{=}4$ & trn & ON & 15 & 152.5 @55K & --- & Collapsed \\\\\n24:005 & Learned gate & adaptive & OFF & 15 & 98.8 @145K & --- & Collapsed \\\\\n32:008f & No dt\\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\\times$ & Healthy \\\\\n38:018 s2 & Full-SGS & trn$^\\ddagger$ & ON & 8 & 40.8 @105K & --- & Collapsed \\\\\n53:--- = removed ($d{=}0$).\\\\\n109:[Omitted long matching line]\n114:\\caption{Contrasting collapse dynamics. \\textbf{Left:} 008d (CIVO)---value explosion, entropy decreases. \\textbf{Right:} 008e\\_v3 s2 (non-CIVO)---evaluation crashes, entropy increases.}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "cc30b87f-0449-455f-b180-feaa204c086d",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "20:001 & Baseline ($\\dt{=}1$) & --- & --- & 15 & 915.7 @105K & 1.00$\\times$ & Healthy \\\\\n23:007 & Fixed $\\dt{=}4$ & trn & ON & 15 & 152.5 @55K & --- & Collapsed \\\\\n24:005 & Learned gate & adaptive & OFF & 15 & 98.8 @145K & --- & Collapsed \\\\\n32:008f & No dt\\_emb (s1) & --- & ON & 8 & 503.0 @105K & 0.97$\\times$ & Healthy \\\\\n38:018 s2 & Full-SGS & trn$^\\ddagger$ & ON & 8 & 40.8 @105K & --- & Collapsed \\\\\n53:--- = removed ($d{=}0$).\\\\\n109:[Omitted long matching line]\n114:\\caption{Contrasting collapse dynamics. \\textbf{Left:} 008d (CIVO)---value explosion, entropy decreases. \\textbf{Right:} 008e\\_v3 s2 (non-CIVO)---evaluation crashes, entropy increases.}",
+              "numLines": 8
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Those `---` occurrences are all in the pre-existing sections (table cells meaning \"not applicable\" and one caption that was already there), not in my additions. My new section is clean.\n\nDone. The CIVO Detector subsection has been added to `sections/results.tex` (after the RSSM fidelity paragraph) with:\n- Motivation (2 paragraphs)\n- Algorithm pseudocode (`algorithmic` environment, Algorithm 1)\n- Condition explanations\n- Validation table (inline, booktabs)\n- Results analysis (TPR/FPR, predictive vs reactive, timing guideline)\n- Limitations paragraph\n\nAlso added `\\usepackage{algorithm}` and `\\usepackage{algorithmic}` to `main.tex`."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "uuid": "e40c871b-783d-4115-8e70-d67db407a547",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018XRMoZh19Vne7MngZKmmaC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 663,
+                "cache_read_input_tokens": 44908,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 663
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Those `---` occurrences are all in the pre-existing sections (table cells meaning \"not applicable\" and one caption that was already there), not in my additions. My new section is clean.\n\nDone. The CIVO Detector subsection has been added to `sections/results.tex` (after the RSSM fidelity paragraph) with:\n- Motivation (2 paragraphs)\n- Algorithm pseudocode (`algorithmic` environment, Algorithm 1)\n- Condition explanations\n- Validation table (inline, booktabs)\n- Results analysis (TPR/FPR, predictive vs reactive, timing guideline)\n- Limitations paragraph\n\nAlso added `\\usepackage{algorithm}` and `\\usepackage{algorithmic}` to `main.tex`."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 186205,
+            "duration_api_ms": 186991,
+            "num_turns": 16,
+            "stop_reason": "end_turn",
+            "session_id": "0a5b99e2-561e-4d24-b510-88425df6b358",
+            "total_cost_usd": 0.702273,
+            "usage": {
+              "input_tokens": 15,
+              "cache_creation_input_tokens": 34124,
+              "cache_read_input_tokens": 459628,
+              "output_tokens": 10283,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 34124,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 181,
+                  "cache_read_input_tokens": 44908,
+                  "cache_creation_input_tokens": 663,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 663
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1934,
+                "outputTokens": 20,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002034,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 15,
+                "outputTokens": 10283,
+                "cacheReadInputTokens": 459628,
+                "cacheCreationInputTokens": 34124,
+                "webSearchRequests": 0,
+                "costUSD": 0.7002390000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "8cd2b477-b0f1-49c1-b43f-59688b31e3ed"
+          },
+          "id": "event-000045"
+        }
+      ],
+      "message_count": 45
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-detector-section-integrate.md"
+}

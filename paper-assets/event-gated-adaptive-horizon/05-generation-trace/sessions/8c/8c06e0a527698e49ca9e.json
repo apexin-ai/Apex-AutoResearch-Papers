@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c06e0a527698e49ca9e",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "research sgs partial effectiveness literature",
+  "task_key": "worker_research_sgs-partial-effectiveness-literature_20260517T225544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_sgs-partial-effectiveness-literature_20260517T225544_result.json",
+    "occurrence": 1,
+    "bytes": 1253,
+    "sha256": "10f74b044d37fb1601637d172fc650a5fbeadc229ce190e2a046f8a6541def44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**文献搜索结果** — Full-SGS 环境依赖效果有充分文献支持：\n\n| 论文 | 核心发现 |\n|------|----------|\n| Ma et al. (ICML 2024) | World model 的 policy gradient 随 horizon 指数衰减；gradient path 质量是环境依赖的 |\n| Heess et al. (NeurIPS 2015, SVG) | SVG(0)（无 model gradient）仅简单任务有效；复杂任务需 SVG(1+) |\n| Amos et al. (L4DC 2021) | 完全无 dynamics gradient 比有噪声的 dynamics gradient 更差 |\n| Nauman et al. (ICML 2024) | 60+ agents / 14 tasks：regularization effectiveness fundamentally task-dependent |\n\n**机制解释**：DreamerV3 连续控制 actor 依赖 dynamics backprop 作为主要梯度来源。Full-SGS 完全阻断此通路。Walker（2关节/浅层 credit assignment）能靠残余信号存活；Cheetah（6关节/深层协调）被梯度饥饿（actor_grad_norm=0.0-0.1），但因 DreamerV3 的 categorical value + normalization 隐式正则化最终自恢复。\n\n**论文 framing**：这不是 SGS 的失败，而是论证 event-gated selective intervention 优于 blanket SGS 的证据。\n\n已更新：literature_map.yaml（+4 papers, survey_tag: sgs-partial-effectiveness）、memory.md（新增段落）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-sgs-partial-effectiveness-literature.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d43bd5876d1c6ec59b3",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops check tier2 progress",
+  "task_key": "worker_ops_check-tier2-progress_20260527T231456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-tier2-progress_20260527T231456_result.json",
+    "occurrence": 1,
+    "bytes": 962,
+    "sha256": "6e581fad1910f86642f065601e82790327c01d1429e707ab74e949b2a093432a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Tier 2 实验状态\n\n| 实验 | 子PID | 当前 step | 目标 | 运行时长 | GPU 显存 | 状态 |\n|---|---|---|---|---|---|---|\n| exp_walker_008d_s6 | 660537 | **8000** | 105K | ~7h | 3255 MiB | **HUNG** |\n| exp_walker_008d_s7 | 660817 | **8000** | 105K | ~6h50m | 3255 MiB | **HUNG** |\n\n**两个实验都卡死了。** 具体证据：\n\n- stdout 日志最后输出在 step 8000（4 个 train_return episode 行），之后再无任何输出\n- 日志文件 mtime 分别停在 07:15:48 和 07:16:02，距今约 **7 小时无新写入**\n- metrics.jsonl 仅记录到 step 5000（eval_return ≈ 31）\n- 子进程状态 `Rl`，CPU 占用 1300%+，GPU 利用率仅 20% — 在空转\n- fps = 0\n\n**结论**: 进程在 step 8000 后进入训练循环时挂起（可能是 gradient update 内部死循环或数据处理阻塞）。进度 8K/105K = 7.6%，ETA 无法估算（速度为 0）。需要 kill 后排查代码问题再重启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-tier2-progress.md"
+}

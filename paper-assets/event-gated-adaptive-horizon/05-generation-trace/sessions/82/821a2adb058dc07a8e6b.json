@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "id": "821a2adb058dc07a8e6b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "conversation",
+  "title": "research verify 006 35k",
+  "task_key": "worker_research_verify_006_35k_20260514T043939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_verify_006_35k_20260514T043939.jsonl",
+    "occurrence": 1,
+    "bytes": 6885,
+    "sha256": "af8eb34ee2615d61061966ebb27c7fedebab58b1d751ee648f9fc8104073291a"
+  },
+  "statistics": {
+    "messages": 7,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "tool_call": 3,
+      "tool_result": 3,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T04:40:24.382941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_verify_006_35k_20260514T043939",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T04:40:24.383312+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_verify_006_35k_20260514T043939",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T04:40:24.383489+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_verify_006_35k_20260514T043939",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-45299",
+              "command": "tail -100 /root/autodl-tmp/event-gated-adaptive-horizon/logdir/fixed_dt2_v1_s1/metrics.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T04:40:24.383893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"step\\\\\\\": 0, \\\\\\\"dataset_size\\\\\\\": 2000.0, \\\\\\\"train_return\\\\\\\": 33.15589141845703, \\\\\\\"train_length\\\\\\\": 500.0, \\\\\\\"train_episodes\\\\\\\": 4.0}\\\\n{\\\\\\\"step\\\\\\\": 0, \\\\\\\"dataset_size\\\\\\\": 2000.0, \\\\\\\"train_return\\\\\\\": 52.859649658203125, \\\\\\\"train_length\\\\\\\": 500.0, \\\\\\\"train_episodes\\\\\\\": 4.0}\\\\n{\\\\\\\"step\\\\\\\": 0, \\\\\\\"dataset_size\\\\\\\": 2000.0, \\\\\\\"train_return\\\\\\\": 30.6280517578125, \\\\\\\"train_length\\\\\\\": 500.0, \\\\\\\"train_episodes\\\\\\\": 4.0}\\\\n{\\\\\\\"step\\\\\\\": 0, \\\\\\\"dataset_size\\\\\\\": 2000.0, \\\\\\\"train_return\\\\\\\": 54.71767807006836, \\\\\\\"train_length\\\\\\\": 500.0, \\\\\\\"train_episodes\\\\\\\": 4.0}\\\\n{\\\\\\\"step\\\\\\\": 5000}\\\\n{\\\\\\\"step\\\\\\\": 5000, \\\\\\\"eval_return\\\\\\\": 31.0005241394043, \\\\\\\"eval_length\\\\\\\": 500.0, \\\\\\\"eval_episodes\\\\\\\": 10.0}\\\\n{\\\\\\\"step\\\\\\\": 5000, \\\\\\\"model_loss\\\\\\\": 20.737831115722656, \\\\\\\"model_grad_norm\\\\\\\": 136.29571533203125, \\\\\\\"height_loss\\\\\\\": 0.05729769170284271, \\\\\\\"orientations_loss\\\\\\\": 2.5639874935150146, \\\\\\\"velocity_loss\\\\\\\": 9.932924270629883, \\\\\\\"reward_loss\\\\\\\": 3.345003366470337, \\\\\\\"cont_loss\\\\\\\": 0.012704691849648952, \\\\\\\"kl_free\\\\\\\": 1.0, \\\\\\\"dyn_scale\\\\\\\": 0.5, \\\\\\\"rep_scale\\\\\\\": 0.09999999999999998, \\\\\\\"dyn_loss\\\\\\\": 8.043194770812988, \\\\\\\"rep_loss\\\\\\\": 8.043194770812988, \\\\\\\"kl\\\\\\\": 8.043194770812988, \\\\\\\"prior_ent\\\\\\\": 105.33303833007812, \\\\\\\"post_ent\\\\\\\": 97.95535278320312, \\\\\\\"normed_target_mean\\\\\\\": 0.1735849380493164, \\\\\\\"normed_target_std\\\\\\\": 0.08302494138479233, \\\\\\\"normed_target_min\\\\\\\": 0.024053746834397316, \\\\\\\"normed_target_max\\\\\\\": 0.29376021027565, \\\\\\\"EMA_005\\\\\\\": 0.0076368022710084915, \\\\\\\"EMA_095\\\\\\\": 0.07288578152656555, \\\\\\\"value_mean\\\\\\\": 0.0017302134074270725, \\\\\\\"value_std\\\\\\\": 2.1687439584638923e-05, \\\\\\\"value_min\\\\\\\": 0.0013640070101246238, \\\\\\\"value_max\\\\\\\": 0.001766691217198968, \\\\\\\"target_mean\\\\\\\": 0.18122173845767975, \\\\\\\"target_std\\\\\\\": 0.08302494138479233, \\\\\\\"target_min\\\\\\\": 0.031690552830696106, \\\\\\\"target_max\\\\\\\": 0.3013969957828522, \\\\\\\"imag_reward_mea\n…[truncated 8039 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_verify_006_35k_20260514T043939",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T04:40:24.384148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_verify_006_35k_20260514T043939",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-45299",
+              "command": "grep \"35000\" /root/autodl-tmp/event-gated-adaptive-horizon/logdir/fixed_dt2_v1_s1/metrics.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T04:40:24.384360+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"step\\\\\\\": 25000, \\\\\\\"model_loss\\\\\\\": 5.633464813232422, \\\\\\\"model_grad_norm\\\\\\\": 8.599126815795898, \\\\\\\"height_loss\\\\\\\": 0.0034236926585435867, \\\\\\\"orientations_loss\\\\\\\": 0.18186572194099426, \\\\\\\"velocity_loss\\\\\\\": 0.8856398463249207, \\\\\\\"reward_loss\\\\\\\": 0.6207044720649719, \\\\\\\"cont_loss\\\\\\\": 5.070475026514032e-07, \\\\\\\"kl_free\\\\\\\": 1.0, \\\\\\\"dyn_scale\\\\\\\": 0.5, \\\\\\\"rep_scale\\\\\\\": 0.09999999999999999, \\\\\\\"dyn_loss\\\\\\\": 6.5697174072265625, \\\\\\\"rep_loss\\\\\\\": 6.5697174072265625, \\\\\\\"kl\\\\\\\": 6.484434127807617, \\\\\\\"prior_ent\\\\\\\": 40.175880432128906, \\\\\\\"post_ent\\\\\\\": 33.08966064453125, \\\\\\\"normed_target_mean\\\\\\\": 0.6694842576980591, \\\\\\\"normed_target_std\\\\\\\": 0.3250977396965027, \\\\\\\"normed_target_min\\\\\\\": -0.7712209820747375, \\\\\\\"normed_target_max\\\\\\\": 1.690443754196167, \\\\\\\"EMA_005\\\\\\\": 58.675323486328125, \\\\\\\"EMA_095\\\\\\\": 74.6119384765625, \\\\\\\"value_mean\\\\\\\": 62.81245040893555, \\\\\\\"value_std\\\\\\\": 2.4752004146575928, \\\\\\\"value_min\\\\\\\": 28.635000228881836, \\\\\\\"value_max\\\\\\\": 65.28632354736328, \\\\\\\"target_mean\\\\\\\": 69.3504409790039, \\\\\\\"target_std\\\\\\\": 5.172872543334961, \\\\\\\"target_min\\\\\\\": 45.81748962402344, \\\\\\\"target_max\\\\\\\": 85.5745849609375, \\\\\\\"imag_reward_mean\\\\\\\": 1.16574227809906, \\\\\\\"imag_reward_std\\\\\\\": 1.0330370664596558, \\\\\\\"imag_reward_min\\\\\\\": 5.3328512876760215e-05, \\\\\\\"imag_reward_max\\\\\\\": 3.394364833831787, \\\\\\\"imag_action_mean\\\\\\\": 0.19845247268676758, \\\\\\\"imag_action_std\\\\\\\": 0.8053122162818909, \\\\\\\"imag_action_min\\\\\\\": -1.0, \\\\\\\"imag_action_max\\\\\\\": 1.0, \\\\\\\"actor_entropy\\\\\\\": -3.0233418941497803, \\\\\\\"gate_dt_mean\\\\\\\": 2.0, \\\\\\\"gate_dt_std\\\\\\\": 0.0, \\\\\\\"gate_dt_min\\\\\\\": 2.0, \\\\\\\"gate_dt_max\\\\\\\": 2.0, \\\\\\\"gate_dt_1_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_2_frac\\\\\\\": 1.0, \\\\\\\"gate_dt_3_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_4_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_5_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_6_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_7_frac\\\\\\\": 0.0, \\\\\\\"gate_dt_8_frac\\\\\\\": 0.0, \\\\\\\"gate_empirical_entropy\\\\\\\": 0.0, \\\\\\\"gate_entropy_ratio\\\\\\\": \n…[truncated 2733 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_verify_006_35k_20260514T043939",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T04:40:24.384586+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "step=35000 数据已提取：\n\n- **value_mean@35K** = 151.10\n- **eval_return@35K** = 485.33\n- **v/e ratio** = 151.10 / 485.33 = **0.311 = 31.1%**\n- 与 paper_framing 声称的 **~43% 不一致**，实际低约 12 个百分点"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_verify_006_35k_20260514T043939"
+          },
+          "id": "event-000007"
+        }
+      ],
+      "message_count": 7
+    }
+  ],
+  "readable_path": "readable/conversations/research-verify-006-35k.md"
+}

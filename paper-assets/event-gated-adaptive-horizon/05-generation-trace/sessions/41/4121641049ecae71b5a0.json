@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4121641049ecae71b5a0",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "diagnose exp 055 failure",
+  "task_key": "worker_diagnose_exp_055_failure_20260523T234020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_055_failure_20260523T234020_result.json",
+    "occurrence": 1,
+    "bytes": 1233,
+    "sha256": "beea3ad4325a420d77c224fae6a4afce04d8e4996a978cf9baf24097e4ff367a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**exp_055 没有失败，是正常完成。** 监控系统误报。\n\n### 证据\n\n| 项目 | 详情 |\n|------|------|\n| **失败原因** | 无失败。训练正常跑完后进程退出。监控因\"无 sentinel 文件 + 无 W&B\"判定为 failed，属误报 |\n| **实际到达步数** | **222,400 步**（metrics.jsonl 最后一行），超过 `--steps 210000` 目标。DreamerV3 按 episode 边界结束，每 episode 200 步，会少量 overshoot |\n| **最后 checkpoint** | `checkpoint_202500.pt`（May 24 06:08）+ `latest.pt`（May 24 07:30，对应 ~222K 步） |\n| **进程状态** | PID 345223 已退出。GPU 当前被 PID 346430（exp_056）占用 |\n| **崩溃证据** | 无。没有 traceback、没有 OOM、没有 train.log 错误。metrics.jsonl 连续记录到 222400 步无中断 |\n| **sentinel 文件** | 不存在。训练脚本没有写完成标记，导致监控误判 |\n\n### 是否可恢复\n\n不需要恢复——训练已完成。`latest.pt` 包含最终模型状态（222K+ 步）。\n\n### 建议\n\n1. **标记 exp_055 为 completed**，而非 failed\n2. 训练脚本应在正常完成时写 sentinel 文件（如 `touch logdir/.../done`），避免监控误报"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-055-failure.md"
+}

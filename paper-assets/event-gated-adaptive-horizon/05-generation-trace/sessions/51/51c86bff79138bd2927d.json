@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51c86bff79138bd2927d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code exp 054 kill exp 058 deploy",
+  "task_key": "worker_code_exp_054_kill_exp_058_deploy_20260523T180808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_054_kill_exp_058_deploy_20260523T180808_result.json",
+    "occurrence": 1,
+    "bytes": 191,
+    "sha256": "ed052550d72397eb0a06f87a8f0c8d0b2714a6379cf81f1d910569c0d30ab11b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **exp_054** (PID 133956): 已 kill，GPU 0 释放\n- **exp_058_frozen_dt_emb_cheetah_s1**: PID=164830，cuda:0，GPU 占用 3274 MiB，registry 已注册 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-054-kill-exp-058-deploy.md"
+}

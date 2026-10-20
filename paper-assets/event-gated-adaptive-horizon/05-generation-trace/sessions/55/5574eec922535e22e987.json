@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5574eec922535e22e987",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops gpu1 cleanup and restart 008e",
+  "task_key": "worker_ops_gpu1_cleanup_and_restart_008e_20260514T042546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu1_cleanup_and_restart_008e_20260514T042546_result.json",
+    "occurrence": 1,
+    "bytes": 817,
+    "sha256": "171813f3bf9076ddd96c615086fbb7920e787e8a8c0da44517290d82e405bd85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### 1. 进程清理\n- PID 123820、123422（008f_dryrun）**已自行退出**，无需 kill\n- 无其他重复进程\n\n### 2. logdir 清理\n- `exp_008e_subsample_on_fixed_dt1_h15` 为空目录，已 `rmdir` 删除\n\n### 3. 008e 重启\n- **exp_id**: `exp_008e_v2_subsample_on_dt1_h15`\n- **tmux session PID**: 124955\n- **python 进程 PID**: 124960\n- **GPU**: cuda:1（CUDA_VISIBLE_DEVICES=1）\n- **logdir**: `logdir/exp_008e_v2_subsample_on_dt1_h15`\n\n### 4. GPU 状态确认\n| GPU | 进程 | 实验 |\n|-----|------|------|\n| 0 | PID 106947 (4158MiB) | exp_008a_fixed_dt2_no_subsample |\n| 0 | PID 109524 (2744MiB) | exp_008d_subsample_on_h8 |\n| 1 | PID 124960 (刚启动，加载中) | exp_008e_v2_subsample_on_dt1_h15 |\n\nGPU 1 上仅有 1 个新进程，无重复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu1-cleanup-and-restart-008e.md"
+}

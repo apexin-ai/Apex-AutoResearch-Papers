@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ed9f60dd62f2b007f84e",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "analysis paper data audit pre lockdown",
+  "task_key": "worker_analysis_paper_data_audit_pre_lockdown_20260526T043156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_paper_data_audit_pre_lockdown_20260526T043156.log",
+    "occurrence": 1,
+    "bytes": 814740,
+    "sha256": "f0a4495e4bbfa5aef7f866accea73d931795888bf46d84f0108c68d8dbf2594d"
+  },
+  "statistics": {
+    "messages": 53,
+    "user_turns": 0,
+    "tool_calls": 17,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 15,
+      "tool_call": 17,
+      "tool_result": 17,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 53,
+      "chunks": [
+        {
+          "path": "ed9f60dd62f2b007f84e-part-0001.json",
+          "message_count": 26
+        },
+        {
+          "path": "ed9f60dd62f2b007f84e-part-0002.json",
+          "message_count": 27
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-paper-data-audit-pre-lockdown.md"
+}

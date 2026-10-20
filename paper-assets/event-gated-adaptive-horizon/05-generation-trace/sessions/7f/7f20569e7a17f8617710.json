@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f20569e7a17f8617710",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 027 tcn walker s0",
+  "task_key": "worker_analysis_exp_027_tcn_walker_s0_20260520T060817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_027_tcn_walker_s0_20260520T060817_result.json",
+    "occurrence": 1,
+    "bytes": 862,
+    "sha256": "a3e864f5bb36ba71cc8b796f74ddaa69770cb5d198ba7c78c1d05d715745b479"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**NEGATIVE。** TCN σ=0.5×std 双重失败：\n\n1. **NVE 未被有效抑制**：出现两次 CIVO episodes，NVE 飙升到 1.7 (55K) 和 **4.0** (85K)。85K 的 4.0 比之前 registry 记录的 80K 数据更严重——之前只观察到恢复趋势，实际在 85K 发生了第二次更猛烈的爆发。\n2. **eval 远低于目标**：峰值仅 239.9 (35K)，最终 95.5，仅为 baseline (~900) 的 10.6%。\n\n训练正常跑完 105K 目标步数（EXIT_CODE=0），不是提前退出。\n\nTCN 有一个有趣的\"自修正\"现象（NVE 飙升后能自发回落），但这是**事后修复**而非**事前预防**——修复发生时 eval 已经崩塌。σ=0.5×std 的噪声强度不足以阻止 critic 学到 dt-specific value bias。\n\n报告已写入 artifacts 并注册 (`art_20260520_ec6135`)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-027-tcn-walker-s0.md"
+}

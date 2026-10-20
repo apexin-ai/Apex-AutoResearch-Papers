@@ -1,0 +1,354 @@
+{
+  "schema_version": "1.0",
+  "session_id": "acbc98a1004f526f207e",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 179,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Eftk1c3NFm1nMShgxUunRu",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/scripts/compute_gradient_decomposition.py",
+                "old_string": "    cfg[\"device\"] = \"cpu\"\n    cfg[\"precision\"] = 32",
+                "new_string": "    cfg[\"device\"] = device\n    cfg[\"precision\"] = 32"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8d6e73e4-1561-4aa5-96fd-617b12672eb9",
+            "uuid": "951f865f-4a48-4254-af87-6bf4312e3320",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RvRUGetdsvMBqU6RQGW1QW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 288,
+                "cache_read_input_tokens": 90327,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 288
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": "2026-05-16T17:21:40.842Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Eftk1c3NFm1nMShgxUunRu",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/scripts/compute_gradient_decomposition.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8d6e73e4-1561-4aa5-96fd-617b12672eb9",
+            "uuid": "628a3e97-7962-49e0-8d87-8158b1348d32",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/scripts/compute_gradient_decomposition.py",
+              "oldString": "    cfg[\"device\"] = \"cpu\"\n    cfg[\"precision\"] = 32",
+              "newString": "    cfg[\"device\"] = device\n    cfg[\"precision\"] = 32",
+              "originalFile": "#!/usr/bin/env python3\n\"\"\"Gradient decomposition of world model loss w.r.t. dt_embedding.\n\nDecomposes ∇_{θ_dt} L_wm into per-loss-term contributions:\n  - L_obs: observation decoder (height + orientations + velocity)\n  - L_reward: reward prediction head\n  - L_KL: KL divergence (dyn_scale * dyn_loss + rep_scale * rep_loss)\n  - L_cont: continuation head (reported separately)\n\nReports L2 norms and percentage contributions.\n\"\"\"\n\nimport sys\nimport os\nimport math\nimport copy\nimport numpy as np\nimport torch\nfrom types import SimpleNamespace\nfrom pathlib import Path\n\nPROJECT_DIR = \"/root/autodl-tmp/event-gated-adaptive-horizon\"\nsys.path.insert(0, PROJECT_DIR)\n\nimport models\nimport networks\nimport tools\nimport yaml\n\n\ndef deep_merge(base, override):\n    result = copy.deepcopy(base)\n    for k, v in override.items():\n        if k in result and isinstance(result[k], dict) and isinstance(v, dict):\n            result[k] = deep_merge(result[k], v)\n        else:\n            result[k] = copy.deepcopy(v)\n    return result\n\n\ndef convert_str_numbers(cfg):\n    if isinstance(cfg, dict):\n        return {k: convert_str_numbers(v) for k, v in cfg.items()}\n    if isinstance(cfg, list):\n        return [convert_str_numbers(v) for v in cfg]\n    if isinstance(cfg, str):\n        try:\n            val = float(cfg)\n            if val == int(val) and 'e' not in cfg.lower() and '.' not in cfg:\n                return int(val)\n            return val\n        except ValueError:\n            return cfg\n    return cfg\n\n\ndef build_config(device=\"cpu\"):\n    with open(os.path.join(PROJECT_DIR, \"configs.yaml\")) as f:\n        cfgs = yaml.safe_load(f)\n\n    cfg = copy.deepcopy(cfgs[\"defaults\"])\n    cfg = deep_merge(cfg, cfgs[\"dmc_proprio\"])\n    cfg = convert_str_numbers(cfg)\n\n    cfg[\"gate_enabled\"] = True\n    cfg[\"gate_max_dt\"] = 8\n    cfg[\"gate_subsample_max_dt\"] = 8\n    cfg[\"gate_subsample_min_dt\"] = 1\n    cfg[\"gate_fixed_dt\"] = 0\n    cfg[\"gate_type\"] = \"gumbel\"\n    cfg[\"dt_emb_freeze\"] = False\n    cfg[\"reward_dt_emb_detach\"] = False\n    cfg[\"full_sgs\"] = False\n    cfg[\"device\"] = \"cpu\"\n    cfg[\"precision\"] = 32\n    cfg[\"compile\"] = False\n    cfg[\"num_actions\"] = 6\n\n    return SimpleNamespace(**cfg)\n\n\ndef build_spaces():\n    class Space:\n        def __init__(self, shape):\n            self.shape = shape\n\n    obs_space = SimpleNamespace(spaces={\n        \"height\": Space((1,)),\n        \"orientations\": Space((14,)),\n        \"velocity\": Space((9,)),\n    })\n    act_space = SimpleNamespace(shape=(6,))\n    return obs_space, act_space\n\n\ndef load_batch(episode_dir, batch_size=16, batch_length=64, rng=None):\n    eps_files = sorted(Path(episode_dir).glob(\"*.npz\"))\n    if rng is None:\n        rng = np.random.RandomState(42)\n\n    keys = [\"height\", \"orientations\", \"velocity\", \"action\", \"reward\",\n            \"is_first\", \"is_terminal\", \"discount\"]\n    batch = {k: [] for k in keys}\n\n    indices = rng.choice(len(eps_files), size=batch_size, replace=True)\n    for i in indices:\n        ep = np.load(str(eps_files[i]))\n        T = ep[\"action\"].shape[0]\n        start = rng.randint(0, max(1, T - batch_length))\n        end = start + batch_length\n\n        for key in keys:\n            batch[key].append(ep[key][start:end])\n\n    for key in keys:\n        batch[key] = np.stack(batch[key], axis=0)\n\n    batch[\"is_first\"][:, 0] = True\n    return batch\n\n\ndef run_decomposition(checkpoint_path, episode_dir, device=\"cpu\", n_batches=10):\n    config = build_config()\n    config.device = device\n    obs_space, act_space = build_spaces()\n\n    wm = models.WorldModel(obs_space, act_space, step=0, config=config)\n\n    ckpt = torch.load(checkpoint_path, map_location=device)\n    wm_state = {k[4:]: v for k, v in ckpt[\"agent_state_dict\"].items()\n                if k.startswith(\"_wm.\")}\n    wm.load_state_dict(wm_state, strict=True)\n    wm.to(device)\n    wm.eval()\n\n    dt_param = wm.dynamics._dt_embedding.weight\n    if dt_param is None:\n        print(\"ERROR: No dt_embedding in this checkpoint\")\n        return\n\n    rng = np.random.RandomState(42)\n    results = {\"obs\": [], \"reward\": [], \"kl\": [], \"cont\": []}\n\n    for bi in range(n_batches):\n        batch = load_batch(episode_dir, batch_size=16, batch_length=64, rng=rng)\n        data = wm.preprocess(batch)\n\n        data, dt_labels = tools.subsample_variable_dt(\n            data, config.gate_max_dt, config.discount,\n            effective_max_dt=float(config.gate_subsample_max_dt),\n            min_dt=config.gate_subsample_min_dt,\n        )\n\n        for p in wm.parameters():\n            p.requires_grad_(True)\n\n        embed = wm.encoder(data)\n        post, prior = wm.dynamics.observe(\n            embed, data[\"action\"], data[\"is_first\"], dt_labels=dt_labels\n        )\n\n        kl_loss, kl_value, dyn_loss, rep_loss = wm.dynamics.kl_loss(\n            post, prior, config.kl_free, config.dyn_scale, config.rep_scale\n        )\n        mean_kl = torch.mean(kl_loss)\n\n        feat = wm.dynamics.get_feat(post)\n\n        decoder_preds = wm.heads[\"decoder\"](feat)\n        obs_loss_sum = torch.zeros(1, device=device)\n        for name, pred in decoder_preds.items():\n            obs_loss_sum = obs_loss_sum + torch.mean(-pred.log_prob(data[name]))\n\n        reward_pred = wm.heads[\"reward\"](feat)\n        mean_reward = torch.mean(-reward_pred.log_prob(data[\"reward\"]))\n\n        cont_pred = wm.heads[\"cont\"](feat)\n        mean_cont = torch.mean(-cont_pred.log_prob(data[\"cont\"]))\n\n        grad_obs = torch.autograd.grad(\n            obs_loss_sum, dt_param, retain_graph=True, allow_unused=True)[0]\n        grad_reward = torch.autograd.grad(\n            mean_reward, dt_param, retain_graph=True, allow_unused=True)[0]\n        grad_kl = torch.autograd.grad(\n            mean_kl, dt_param, retain_graph=True, allow_unused=True)[0]\n        grad_cont = torch.autograd.grad(\n            mean_cont, dt_param, retain_graph=True, allow_unused=True)[0]\n\n        norms = {}\n        for name, g in [(\"obs\", grad_obs), (\"reward\", grad_reward),\n                        (\"kl\", grad_kl), (\"cont\", grad_cont)]:\n            norms[name] = g.norm().item() if g is not None else 0.0\n            results[name].append(norms[name])\n\n        total = sum(norms.values())\n        print(f\"  batch {bi}: obs={norms['obs']:.6f} ({norms['obs']/total*100:.1f}%), \"\n              f\"reward={norms['reward']:.6f} ({norms['reward']/total*100:.1f}%), \"\n              f\"kl={norms['kl']:.6f} ({norms['kl']/total*100:.1f}%), \"\n              f\"cont={norms['cont']:.6f} ({norms['cont']/total*100:.1f}%)\")\n\n        for p in wm.parameters():\n            p.requires_grad_(False)\n\n    avg = {k: np.mean(v) for k, v in results.items()}\n    std = {k: np.std(v) for k, v in results.items()}\n    total = sum(avg.values())\n\n    print(f\"\\n{'='*60}\")\n    print(f\"Checkpoint: {checkpoint_path}\")\n    print(f\"Batches: {n_batches}, batch_size=16, batch_length=64\")\n    print(f\"{'='*60}\")\n    print(f\"{'Component':<12} {'‖∇‖₂ (mean±std)':<24} {'%':>8}\")\n    print(f\"{'-'*44}\")\n    for name in [\"obs\", \"reward\", \"kl\", \"cont\"]:\n        pct = avg[name] / total * 100\n        print(f\"{name:<12} {avg[name]:.6f} ± {std[name]:.6f}   {pct:>6.1f}%\")\n    print(f\"{'total':<12} {total:.6f}\")\n\n    obs_combined = avg[\"obs\"] + avg[\"cont\"]\n    total_3 = obs_combined + avg[\"reward\"] + avg[\"kl\"]\n    print(f\"\\n3-way (obs+cont grouped as 'obs decoder'):\")\n    print(f\"  obs+cont: {obs_combined:.6f} ({obs_combined/total_3*100:.1f}%)\")\n    print(f\"  reward:   {avg['reward']:.6f} ({avg['reward']/total_3*100:.1f}%)\")\n    print(f\"  KL:       {avg['kl']:.6f} ({avg['kl']/total_3*100:.1f}%)\")\n\n    return avg, std\n\n\nif __name__ == \"__main__\":\n    import argparse\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--checkpoint\", required=True)\n    parser.add_argument(\"--episode_dir\", required=True)\n    parser.add_argument(\"--device\", default=\"cpu\")\n    parser.add_argument(\"--n_batches\", type=int, default=10)\n    args = parser.parse_args()\n\n    run_decomposition(args.checkpoint, args.episode_dir,\n                      device=args.device, n_batches=args.n_batches)\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 71,
+                  "oldLines": 7,
+                  "newStart": 71,
+                  "newLines": 7,
+                  "lines": [
+                    "     cfg[\"dt_emb_freeze\"] = False",
+                    "     cfg[\"reward_dt_emb_detach\"] = False",
+                    "     cfg[\"full_sgs\"] = False",
+                    "-    cfg[\"device\"] = \"cpu\"",
+                    "+    cfg[\"device\"] = device",
+                    "     cfg[\"precision\"] = 32",
+                    "     cfg[\"compile\"] = False",
+                    "     cfg[\"num_actions\"] = 6"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now register the artifacts."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8d6e73e4-1561-4aa5-96fd-617b12672eb9",
+            "uuid": "38a943dd-4f8e-4b57-bf14-efcf61563c28",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MtmyuKwzUKqbCzpoF1GF8U",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 245,
+                "cache_read_input_tokens": 90615,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 245
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XPFpmfTHCucTKCBkfz35Wm",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "compute_gradient_decomposition",
+                "type": "intermediate",
+                "description": "Script to decompose world model gradients w.r.t. dt_embedding into per-loss-term contributions (obs/reward/KL/cont). Verified on exp_008d step 55K: obs=25.8%, reward=23.5%, KL=50.7%, cont=0%.",
+                "project": "event-gated-adaptive-horizon",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/scripts/compute_gradient_decomposition.py",
+                "tags": [
+                  "gradient-decomposition",
+                  "dt-embedding",
+                  "analysis",
+                  "exp_008d"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8d6e73e4-1561-4aa5-96fd-617b12672eb9",
+            "uuid": "1809cfa8-92d6-46fe-8081-6cd1999f2e05",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MtmyuKwzUKqbCzpoF1GF8U",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 245,
+                "cache_read_input_tokens": 90615,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 245
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-16T17:21:47.236Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XPFpmfTHCucTKCBkfz35Wm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_0fa2d3\\\", \\\"name\\\": \\\"compute_gradient_decomposition\\\", \\\"type\\\": \\\"intermediate\\\", \\\"description\\\": \\\"Script to decompose world model gradients w.r.t. dt_embedding into per-loss-term contributions (obs/reward/KL/cont). Verified on exp_008d step 55K: obs=25.8%, reward=23.5%, KL=50.7%, cont=0%.\\\", \\\"path\\\": \\\"projects/event-gated-adaptive-horizon/artifacts/_project/intermediate/compute_gradient_decomposition.py\\\", \\\"url\\\": null, \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T17:21:46.792571+00:00\\\", \\\"tags\\\": [\\\"gradient-decomposition\\\", \\\"dt-embedding\\\", \\\"analysis\\\", \\\"exp_008d\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8d6e73e4-1561-4aa5-96fd-617b12672eb9",
+            "uuid": "a14c31cc-ab96-4ec2-87bd-23b73eb1190e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_0fa2d3\\\", \\\"name\\\": \\\"compute_gradient_decomposition\\\", \\\"type\\\": \\\"intermediate\\\", \\\"description\\\": \\\"Script to decompose world model gradients w.r.t. dt_embedding into per-loss-term contributions (obs/reward/KL/cont). Verified on exp_008d step 55K: obs=25.8%, reward=23.5%, KL=50.7%, cont=0%.\\\", \\\"path\\\": \\\"projects/event-gated-adaptive-horizon/artifacts/_project/intermediate/compute_gradient_decomposition.py\\\", \\\"url\\\": null, \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T17:21:46.792571+00:00\\\", \\\"tags\\\": [\\\"gradient-decomposition\\\", \\\"dt-embedding\\\", \\\"analysis\\\", \\\"exp_008d\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_0fa2d3\", \"name\": \"compute_gradient_decomposition\", \"type\": \"intermediate\", \"description\": \"Script to decompose world model gradients w.r.t. dt_embedding into per-loss-term contributions (obs/reward/KL/cont). Verified on exp_008d step 55K: obs=25.8%, reward=23.5%, KL=50.7%, cont=0%.\", \"path\": \"projects/event-gated-adaptive-horizon/artifacts/_project/intermediate/compute_gradient_decomposition.py\", \"url\": null, \"project\": \"event-gated-adaptive-horizon\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T17:21:46.792571+00:00\", \"tags\": [\"gradient-decomposition\", \"dt-embedding\", \"analysis\", \"exp_008d\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**结果：**\n\n| 项目 | 状态 |\n|------|------|\n| 25K/50K/75K checkpoint | **不存在** — exp_008d 只保存了 `latest.pt`，无中间 checkpoint |\n| latest.pt (step 55K) | 已提取梯度分解数据 |\n| 脚本 | 已上传到服务器 `scripts/compute_gradient_decomposition.py`，已注册 artifact |\n| methodology 文档 | 已更新表格，添加 55K 数据行 |\n\n**Step 55K 梯度分解（10 batch 均值 ± std）：**\n\n| 分量 | ‖∇‖₂ | 占比 |\n|------|-------|------|\n| obs (decoder) | 0.601 ± 0.199 | 25.8% |\n| reward | 0.546 ± 0.227 | 23.5% |\n| KL | 1.180 ± 0.251 | 50.7% |\n| cont | 0.000 ± 0.000 | 0.0% |\n\n**关键发现：** 55K 的分解与 105K 报告的 93%/≈0%/7% 形成鲜明对比。mid-training 时 KL 主导（51%），obs 和 reward 大致相当（~25%）。随着训练推进 KL 收敛到 free-bits 阈值，obs 逐渐成为主导。这实际上强化了 CIVO 的 narrative：obs 主导是训练后期的稳态现象，不是整个训练过程的恒定特征。\n\n**要获取 25K/50K/75K 数据，需要重新运行 exp_008d 并启用 checkpoint 保存。**"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8d6e73e4-1561-4aa5-96fd-617b12672eb9",
+            "uuid": "55bd94f1-c2f4-44d2-acc5-c4aa15c1b07a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BPPiXMxJDVGAGDR4iM7uFY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 624,
+                "cache_read_input_tokens": 90860,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 624
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**结果：**\n\n| 项目 | 状态 |\n|------|------|\n| 25K/50K/75K checkpoint | **不存在** — exp_008d 只保存了 `latest.pt`，无中间 checkpoint |\n| latest.pt (step 55K) | 已提取梯度分解数据 |\n| 脚本 | 已上传到服务器 `scripts/compute_gradient_decomposition.py`，已注册 artifact |\n| methodology 文档 | 已更新表格，添加 55K 数据行 |\n\n**Step 55K 梯度分解（10 batch 均值 ± std）：**\n\n| 分量 | ‖∇‖₂ | 占比 |\n|------|-------|------|\n| obs (decoder) | 0.601 ± 0.199 | 25.8% |\n| reward | 0.546 ± 0.227 | 23.5% |\n| KL | 1.180 ± 0.251 | 50.7% |\n| cont | 0.000 ± 0.000 | 0.0% |\n\n**关键发现：** 55K 的分解与 105K 报告的 93%/≈0%/7% 形成鲜明对比。mid-training 时 KL 主导（51%），obs 和 reward 大致相当（~25%）。随着训练推进 KL 收敛到 free-bits 阈值，obs 逐渐成为主导。这实际上强化了 CIVO 的 narrative：obs 主导是训练后期的稳态现象，不是整个训练过程的恒定特征。\n\n**要获取 25K/50K/75K 数据，需要重新运行 exp_008d 并启用 checkpoint 保存。**"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 712177,
+            "duration_api_ms": 657220,
+            "num_turns": 47,
+            "stop_reason": "end_turn",
+            "session_id": "8d6e73e4-1561-4aa5-96fd-617b12672eb9",
+            "total_cost_usd": 2.7266837,
+            "usage": {
+              "input_tokens": 41,
+              "cache_creation_input_tokens": 80037,
+              "cache_read_input_tokens": 2220468,
+              "output_tokens": 36972,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 80037,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 510,
+                  "cache_read_input_tokens": 90860,
+                  "cache_creation_input_tokens": 624,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 624
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1611,
+                "outputTokens": 5111,
+                "cacheReadInputTokens": 717712,
+                "cacheCreationInputTokens": 74221,
+                "webSearchRequests": 0,
+                "costUSD": 0.19171345,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 41,
+                "outputTokens": 36972,
+                "cacheReadInputTokens": 2220468,
+                "cacheCreationInputTokens": 80037,
+                "webSearchRequests": 0,
+                "costUSD": 2.53497025,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "397d8f09-baf2-4c8a-b530-effb98e9c2af"
+          },
+          "id": "event-000185"
+        }
+      ]
+    }
+  ]
+}

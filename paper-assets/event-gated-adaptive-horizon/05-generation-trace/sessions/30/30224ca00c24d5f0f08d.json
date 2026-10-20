@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30224ca00c24d5f0f08d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check bjb1 exp089 090",
+  "task_key": "worker_check_bjb1_exp089_090_20260525T220822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_bjb1_exp089_090_20260525T220822_result.json",
+    "occurrence": 1,
+    "bytes": 591,
+    "sha256": "df1a496a6c609e03ab54bb02df74ba21d14d5309e8eb15a1e6885380682e9dac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**exp_089 和 exp_090 均启动失败**，没有进行任何训练。\n\n**失败原因**：启动命令使用了 `--dt_embed_dim 0`（不存在的参数），正确参数名是 `--gate_dt_embed_dim 0`。两个实验都在 argparse 阶段 EXIT_CODE=2 退出。\n\n**服务器状态**：bjb1-45299 两块 GPU 当前空闲（无计算进程）。\n\n**需要操作**：\n1. 用修正后的命令（`--gate_dt_embed_dim 0` 替代 `--dt_embed_dim 0`）重新启动两个实验\n2. exp_089 → cuda:0, seed=1；exp_090 → cuda:1, seed=2\n\n是否现在重新启动？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bjb1-exp089-090.md"
+}

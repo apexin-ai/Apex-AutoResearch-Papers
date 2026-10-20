@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c5c840821043b0f7b5a",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "sync exp065 figures to local",
+  "task_key": "worker_sync_exp065-figures-to-local_20260524T210655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_exp065-figures-to-local_20260524T210655_result.json",
+    "occurrence": 1,
+    "bytes": 162,
+    "sha256": "04fb8881ec49f6b4cf264e54c37d8dcc1b1946ab79f4152bbbc295d592b1c674"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已下载到本地，文件大小与远程一致：\n- `cosine_sim_evolution.png`: 95,959 bytes\n- `pairwise_heatmap.png`: 87,657 bytes"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-exp065-figures-to-local.md"
+}

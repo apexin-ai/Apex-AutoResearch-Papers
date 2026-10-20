@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fcba4c49a92f79763b53",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "fix nve v2 baseline bug",
+  "task_key": "worker_fix_nve_v2_baseline_bug_20260525T212054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_nve_v2_baseline_bug_20260525T212054_result.json",
+    "occurrence": 1,
+    "bytes": 743,
+    "sha256": "b7f790704f833f42c93059a15e4fa18dff22725c8c07069d51091e76f25a612d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。汇总：\n\n**Bug**: exp_088 NVE 计算使用了错误的 Cheetah baseline ve_ratio（≈0.105 vs 正确值≈0.6），导致 NVE_peak 虚高 6 倍。\n\n**影响范围**: 仅 exp_088。其他 Cheetah 实验（exp_078, exp_082, exp_086, exp_087）baseline 正确，已验证。\n\n**修正后指标变化** (θ=1.5×):\n\n| 指标 | V2 (bug) | V2.1 (修正) |\n|------|----------|-------------|\n| NVE_peak (exp_088) | 1.82@35K | 0.517@45K |\n| AUROC | 0.9863 | 0.9895 |\n| F1 | 0.909 | 0.926 |\n| FP | 5 | 4 |\n| Precision | 83.3% | 86.2% |\n\n修正后 N=63 各指标均优于 V1 (N=61)，符合预期——新增的 exp_086/088 都是 clear TN。Section 8 (step-filtered NVE) 因基于错误前提已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-nve-v2-baseline-bug.md"
+}

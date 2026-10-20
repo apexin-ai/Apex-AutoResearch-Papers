@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b72fd4140f2bfbc3b4f3",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_24_1779798196.md",
+  "task_key": "loop_24_1779798196",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_24_1779798196.md",
+    "occurrence": 1,
+    "bytes": 4179,
+    "sha256": "9134c2108f600634dba5fe3f6e3b30d61d3c06d01e988c1014b08763fa7c867b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 24\nreason: idle_timeout\nupdated: '2026-05-26T11:38:59+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-45299 cuda:0/1, westd-19154 cuda:0/1（共 4 张，不可用其他卡）\n- ICML 2026 DDL 5/29，数据锁定 5/27——剩余 ~72h，frozen dt_emb 批次是最后一批因果验证实验\n- C2 claim 限定为 multi-joint locomotion domain（D149），不可扩展到 Cartpole 等非 locomotion 环境\n- NVE 报告标准：peak + final（D154），不是只报 peak\n- 008e_v3 CIVO 不可复现问题已归因为参数路由 bug（gate_max_dt=8），当前代码已修复（D153）——不要再调查这个问题\n- Frozen dt_emb 实验结论标准：NVE < 1.5× = success（no CIVO），NVE ≥ 1.5× = negative\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-45299**：工作目录 `/root/autodl-tmp/event-gated-adaptive-horizon`，conda `/root/miniconda3/bin/python`，磁盘 399G/439G 可用\n- **westd-19154**：工作目录 `/root/autodl-tmp/event-gated-adaptive-horizon`，conda `/root/miniconda3/bin/python`，磁盘 816G/879G 可用\n- W&B entity 从 project config 自动获取，project=event-gated-adaptive-horizon\n- 代码版本 fb56c860a+（frozen dt_emb 批次统一版本）\n- 活跃进程：\n  - exp_086 (frozen Cheetah s0): westd-19154 cuda:0, PID 40743\n  - exp_088 (trained Cheetah s1): westd-19154 cuda:1, PID 42804\n- bjb1-45299 两张卡已空闲（exp_084/085 已完成）\n\n### 3. 📊 当前状态\n**刚发生**：exp_084 (frozen Walker s0) 和 exp_085 (frozen Walker s1) 均已完成，状态 ANALYZING。\n\n**正在进行**：Worker `worker_analysis_exp_084_085_frozen_walker_20260525T193328` 正在分析这两个实验（turn 10，正在读 log + registry），等待其 [WORKER DONE] 回调。\n\n**RUNNING 实验**：\n- exp_086_frozen_dt_emb_cheetah_s0 — frozen dt_emb Cheetah s0，C2 跨环境因果验证\n- exp_088_cheetah_008d_s1 — trained dt_emb Cheetah s1，复制 exp_078 (NVE=4.1×) 的跨 seed 可复现性\n\n**空闲 GPU**：bjb1-45299 cuda:0/1（exp_084/085 完成后释放）。48h 内到 deadline，需评估是否有实验值得铺。\n\n### 4. 📋 待办\n- Worker analysis 回调到达 → 读产出，update_registry(status=DONE) 两个实验，刷新 report.md，向 Director 汇报 frozen Walker 结果（含 NVE 对比 trained 008d）\n- exp_086 cron 回调 → spawn worker 分析 frozen Cheetah s0，与 exp_078 (trained, NVE=4.1×) 配对对比\n- exp_088 cron 回调 → spawn worker 分析 trained Cheetah s1，验证跨 seed CIVO 可复现性\n- 全部 4 个 frozen/trained 实验完成 → 向 Director 汇报完整的 C2 因果验证矩阵（Walker 2 seed × frozen/trained + Cheetah 2 seed × frozen/trained），触发论文更新\n- bjb1 空闲 GPU → 评估是否有 plan 中 planned 状态的实验可铺（plan_034 NVE threshold 分析 0 GPU cost 可以直接做；plan_030 RSSM prediction quality 1h GPU）\n\n### 5. 🎯 战略上下文\n- **核心论点**：DreamerV3 中 trained dt_embedding 驱动 CIVO（Compounded Imagination-driven Value Overestimation），是 multi-joint locomotion 特异性现象。frozen/removed dt_emb 可阻止。\n- **当前批次意义**：exp_084-087 是 C2 claim 的因果验证最后一环——用当前代码（fb56c860a+）重跑 frozen dt_emb，证明 dt_emb TRAINING（而非 mere presence）是 CIVO 必要条件。Walker 已有旧代码结果（exp_042 NVE=0.19, exp_047 NVE=1.71, exp_057 NVE=1.88），新代码需要一致。\n- **易错判断**：\n  - exp_047/057 旧代码 frozen Walker 的 NVE 偏高（1.71/1.88，接近 1.5 阈值但被判 transient）——如果 exp_084/085 新代码也出现类似 borderline NVE，需要仔细区分 transient vs sustained CIVO\n  - Cheetah frozen（exp_086/087）是首次跨环境验证 frozen dt_emb，没有旧数据参考——需要与 exp_078 (trained, NVE=4.1×) 形成强对比才有说服力\n  - 论文已完成 7 页 + appendix + 8 项数值修正 + Reviewer Round 5，此时任何结果变更都需要极谨慎的论文更新（不是大改，是精确补数据）\n- **决策链关键节点**：D149 scope 精确化 → D151 Cheetah CIVO 最小披露 → D153 008e_v3 bug 归因 → D154 NVE 报告标准\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-24-1779798196.md"
+}

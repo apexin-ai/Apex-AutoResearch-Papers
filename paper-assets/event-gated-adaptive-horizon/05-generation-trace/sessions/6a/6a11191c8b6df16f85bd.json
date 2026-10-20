@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a11191c8b6df16f85bd",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_14_1778895756.md",
+  "task_key": "loop_14_1778895756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1778895756.md",
+    "occurrence": 1,
+    "bytes": 5351,
+    "sha256": "2ad805f2e918d7d918c1a2233290264eb4f348e4ddd1e19e3457d9cc0656c289"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T01:42:21+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **仅 cuda:0 和 cuda:1**（bjb1-45299）。gpu_constraint: `autodl-rtx6000:cuda:0`, `autodl-rtx6000:cuda:1`。任何其他 GPU 编号必须 push back Director\n- submit_training_job 命令必须包含 `LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl`，否则 dm_control 渲染 segfault\n- submit_training_job 内脚本用 `--device cuda:0`（框架注入 CUDA_VISIBLE_DEVICES 映射物理卡）。**不要**在脚本内写 cuda:1\n- ManiSkill3 与 CUDA_VISIBLE_DEVICES 不兼容（SAPIEN segfault），需特殊处理\n- 016e reward-only SGS 已被证明是 **architectural no-op**（reward gradient=0 by design），不要再用它做任何 claim。D061 已撤回之前\"SGS 延迟 collapse\"解读\n- exp_017 已被 D044 取消（与 008a 重复），不要重新提交\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: bjb1-45299（2×RTX PRO 6000）\n- **工作目录**: `/root/autodl-tmp/event-gated-adaptive-horizon/`\n- **Python**: `/root/miniconda3/bin/python`（conda base，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **logdir**: `/root/autodl-tmp/event-gated-adaptive-horizon/logdir/`\n- **运行日志**: `~/runs/event-gated-adaptive-horizon/`\n- **代码 commit**: `dccb867` (baseline), `06ab285` (Full-SGS bugfix), `5fc8e49` (Full-SGS config flag)\n- **活跃进程**:\n  - exp_009d: PID 149703 (149708 cron 确认), cuda:0, tmux, 308K/500K (~7h 剩余 @7.2fps)\n  - exp_010a: PID 536890, cuda:1, tmux, 112K/512K (~52h 总, 启动于 5/15 22:48 UTC)\n- **活跃 cron**: 2 个（分别监控 009d 和 010a）\n- **活跃 Worker**: `worker_writing_framing-b-reaudit-diff_20260516T014028`（Framing B re-audit diff）, `worker_monitor_check_training_progress_20260516T014042`（训练进度检查）\n\n### 3. 📊 当前状态\n**刚完成**: 016e SGS 深度分析 → D061 发现 reward gradient=0 → Framing B 批准 (D059) → 启动 Framing B re-audit Worker + 010a Cheetah baseline。\n\n**RUNNING**:\n- `exp_009d_baseline_walker_s0` (cuda:0): Walker baseline seed 0, 308K/500K, eval=925.9, 健康上升。预计 ~5/16 08:00-09:00 UTC 完成\n- `exp_010a_cheetah_baseline_s1` (cuda:1): Cheetah Run baseline seed 1, 112K/512K, eval=420.7, 健康增长。预计 ~5/18 完成\n\n**QUEUED**:\n- `exp_018_full_sgs_walker_s1`: Full-SGS（detach ALL non-KL heads），代码就绪（dry-run 通过），排在 cuda:0（009d 完成后立即提交）\n\n**等待中**:\n- 2 个 Worker 回调（framing-b-reaudit-diff + training progress check）\n- 009d cron 完成回调 → 触发 018 提交\n\n### 4. 📋 待办（条件触发式）\n- **009d cron 回调到达** → 确认 metrics（eval~930+ 预期）→ update_registry(DONE) → 立即 submit_on_allocated 提交 exp_018 到 cuda:0。提交命令: `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_018_full_sgs_walker_s1 --steps 105000 --seed 1 --compile False --full_sgs True --device cuda:0\"`\n- **018 完成** → 核心分叉: 若不崩 → decoder heads 是 CIVO 梯度根因，narrative 升级为\"gradient pathway 可解\"; 若仍崩 → CIVO 是 representation-level（KL training 即足够触发），narrative 定位为 pure diagnostic\n- **010a 完成** → cuda:1 空出 → 提交 Cheetah collapse config（trained dt_emb + subsample ON），验证 CIVO 跨环境泛化性 (C1 claim)\n- **Framing B re-audit Worker 回调** → 审查 diff 清单，确保全文一致性，准备送 Reviewer\n- **018 + Cheetah 结果齐全** → 进入论文定稿阶段（目标 5/24-27）\n\n### 5. 🎯 战略上下文\n**项目核心**: 诊断 DreamerV3 中 temporal abstraction (dt_embedding) 导致的 Critic-Induced Value Overestimation (CIVO)。\n\n**因果链 (D049)**: Trained dt_emb → dt=2 imagination 生成乐观 latent trajectories → value inflation → actor exploitation → collapse。Frozen dt_emb 仅 transient，dim=0 完全阻断。\n\n**论文 Framing B (D059)**: 诊断论文 + SGS 作为 informative negative。016e 是 architectural no-op（不是\"SGS 失败\"），Full-SGS (018) 才是真正干预。\n\n**关键决策链**: D044(017取消) → D049(2×2闭合) → D053(008e_v3_s2重标non-CIVO) → D054(NVE AUROC=0.933) → D057-D058(016e分析) → D059(Framing B) → D060(GPU排期) → D061(梯度分解,016e是no-op)\n\n**易错点**:\n- 不要把 016e 说成\"SGS 失败\"——它是 **no-op**，reward head 对 dt_emb 梯度贡献=0，SGS detach 了一个不存在的梯度\n- 009d 曾失败 2 次（retry_count=2），当前第三次运行稳定。如果再失败不要盲目重试，查 exit code\n- NVE 诊断 AUROC=0.933（不是 1.0），1 FP (008e_v3_s2)，论文需 limitation 讨论\n- Collapse rate 是 stochastic: trained dt_emb + subsample ON → 1/2 seeds collapse (50%)，不是 2/3（008d 和 009e 是同 seed）\n- **CoRL DDL: 2026-05-29，剩 13 天**。018 (~14h) 和 010a (~52h) 是 critical path，两者并行不冲突\n- 成功率偏低（7 success / 13 negative / 6 failed / 37 total），正常——这是诊断项目，negative 本身就是数据\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778895756.md"
+}

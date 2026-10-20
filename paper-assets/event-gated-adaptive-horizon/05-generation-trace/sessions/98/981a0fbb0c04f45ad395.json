@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "981a0fbb0c04f45ad395",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper results tex fix cheetah",
+  "task_key": "worker_paper_results_tex_fix_cheetah_20260525T155535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_results_tex_fix_cheetah_20260525T155535_result.json",
+    "occurrence": 1,
+    "bytes": 2176,
+    "sha256": "efc72356d729458f0d302ebfea9dcb506d4d9570e2442ee09c53f9a6bf4898f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`results.md` already has correct numbers (10/10, 8 Walker, 2 Cheetah, 0/8 controls, p<0.0001). Consistent with the LaTeX edits.\n\nHere's a summary of all changes made:\n\n### Diffs by file\n\n**`docs/paper/sections/results.tex`** — 4 edits:\n| Location | Before | After | Registry source |\n|---|---|---|---|\n| Line 84 | `all seven tested seeds ($n{=}7$)...6/7 sustained...1/7 self-correcting` | `all ten tested runs ($n{=}10$)...6/10 sustained...three self-correct...one onset without sustained collapse` | 8 Walker + 2 Cheetah (010b, 078) |\n| Line 31 | Only 010b row | Added exp\\_078 row: eval 119.5@105K, NVE 4.10×, Self-correcting | exp\\_078 registry: nve\\_peak=4.10, eval\\_return\\_final=119.5 |\n| Line 99 | `0/5 controls`, `p < 0.001` | `0/8 controls`, `p < 0.0001` | Agent context |\n| Line 134 | `Untreated & 7 & 0/7 & 0\\%` | `Untreated & 10 & 0/10 & 0\\%` | 10 total trigger runs |\n\n**`docs/paper/sections/introduction.tex`** — 1 edit:\n| Location | Before | After |\n|---|---|---|\n| Line 11 | `7/7 multi-joint locomotion seeds` | `10/10 multi-joint locomotion runs` |\n\n**`docs/paper/sections/analysis.tex`** — 4 edits:\n| Location | Before | After |\n|---|---|---|\n| Line 14 | `7/7 trained locomotion` | `10/10 trained multi-joint locomotion runs` |\n| Line 32 | Walker `\\cmark~(5/5)` | `\\cmark~(8/8)` |\n| Line 37 | Cheetah `$26.3 \\pm 36.0$`, `$70.64\\times$` | `$85.6 \\pm 33.9$`, `$8.27\\times$` |\n| Line 48 | `7/7 seeds`, `0/6 seeds` | `10/10 runs`, `0/8 runs` |\n\n**`docs/paper/sections/appendix.tex`** — 4 edits:\n| Location | Before | After |\n|---|---|---|\n| Line 732 caption | `all seven CIVO-positive seeds` | `all ten CIVO-positive runs` |\n| Line 747 | (table ended at 010b\\_s0) | Added exp\\_078 row with footnote |\n| Line 754 | `All seven...6/7 seeds...one self-correction...NVE $8.27$--$108.52\\times$` | `All ten...6/10 runs...Three self-correct...Cheetah seed~1 NVE $8.27\\times$` |\n| Line 372 | `0/5 controls...p < 0.001` | `0/8 controls...p < 0.0001` |\n\nD151 compliance: self-correcting is mentioned in exactly 2 sentences across the main results text (results.tex line 84), with no claim upgrade."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-results-tex-fix-cheetah.md"
+}

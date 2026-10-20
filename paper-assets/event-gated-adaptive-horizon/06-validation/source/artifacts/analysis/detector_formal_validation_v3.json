@@ -1,0 +1,314 @@
+{
+  "version": 3,
+  "date": "2026-05-17",
+  "updated": "2026-05-17T14:00:00Z",
+  "code_status": {
+    "ve_threshold": 0.49,
+    "eval_decline_rule": "2/3 (>=2 out of last 3 evals lower than predecessor)",
+    "commit": "3328f53 (HEAD, code confirmed unchanged)",
+    "confirmed_at": "2026-05-17T00:00:00Z"
+  },
+  "detection_type_definition": {
+    "predictive": "trigger_step < first_20pct_decline_step (or no decline exists)",
+    "concurrent": "trigger_step == first_20pct_decline_step",
+    "reactive": "trigger_step > first_20pct_decline_step",
+    "null": "no trigger"
+  },
+  "results": {
+    "exp_008d_s0": {
+      "logdir": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008d_subsample_on_h8",
+      "config": "dt_embed, subsample_on, h=8, seed=0",
+      "trigger_step": 45000,
+      "expected": "TP",
+      "verdict": "TP",
+      "peak_eval_step": 25000,
+      "peak_eval_return": 167.22,
+      "first_20pct_decline_step": 55000,
+      "detection_type": "predictive",
+      "ve_ratio_at_trigger": 0.6929,
+      "checkpoints": [
+        {"step": 5000, "eval_return": 31.00, "value_mean": 0.0012, "ve_ratio": 0.0000, "delta_ve": null, "prev_delta_ve": null, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 15000, "eval_return": 153.67, "value_mean": 3.3738, "ve_ratio": 0.0220, "delta_ve": 0.0219, "prev_delta_ve": null, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 25000, "eval_return": 167.22, "value_mean": 25.8615, "ve_ratio": 0.1547, "delta_ve": 0.1327, "prev_delta_ve": 0.0219, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 35000, "eval_return": 146.34, "value_mean": 60.1984, "ve_ratio": 0.4113, "delta_ve": 0.2567, "prev_delta_ve": 0.1327, "acceleration": true, "eval_decline_count": 1, "all_met": false},
+        {"step": 45000, "eval_return": 140.76, "value_mean": 97.5346, "ve_ratio": 0.6929, "delta_ve": 0.2816, "prev_delta_ve": 0.2567, "acceleration": true, "eval_decline_count": 2, "all_met": true},
+        {"step": 55000, "eval_return": 82.75, "value_mean": 137.8776, "ve_ratio": 1.6663, "delta_ve": 0.9734, "prev_delta_ve": 0.2816, "acceleration": true, "eval_decline_count": 2, "all_met": true}
+      ]
+    },
+    "exp_010b_cheetah": {
+      "logdir": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_010b_cheetah_civo_trigger",
+      "config": "dt_embed, cheetah, seed=1",
+      "trigger_step": 65000,
+      "expected": "TP",
+      "verdict": "TP",
+      "peak_eval_step": 45000,
+      "peak_eval_return": 321.89,
+      "first_20pct_decline_step": 55000,
+      "detection_type": "reactive",
+      "ve_ratio_at_trigger": 3.1829,
+      "checkpoints": [
+        {"step": 5000, "eval_return": 13.48, "value_mean": 0.0008, "ve_ratio": 0.0001, "delta_ve": null, "prev_delta_ve": null, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 15000, "eval_return": 66.55, "value_mean": 1.5028, "ve_ratio": 0.0226, "delta_ve": 0.0225, "prev_delta_ve": null, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 25000, "eval_return": 51.13, "value_mean": 10.4953, "ve_ratio": 0.2053, "delta_ve": 0.1827, "prev_delta_ve": 0.0225, "acceleration": false, "eval_decline_count": 1, "all_met": false},
+        {"step": 35000, "eval_return": 285.85, "value_mean": 24.4829, "ve_ratio": 0.0857, "delta_ve": -0.1196, "prev_delta_ve": 0.1827, "acceleration": false, "eval_decline_count": 1, "all_met": false},
+        {"step": 45000, "eval_return": 321.89, "value_mean": 41.9154, "ve_ratio": 0.1302, "delta_ve": 0.0446, "prev_delta_ve": -0.1196, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 55000, "eval_return": 63.86, "value_mean": 65.3946, "ve_ratio": 1.0240, "delta_ve": 0.8938, "prev_delta_ve": 0.0446, "acceleration": false, "eval_decline_count": 1, "all_met": false},
+        {"step": 65000, "eval_return": 22.67, "value_mean": 72.1481, "ve_ratio": 3.1829, "delta_ve": 2.1589, "prev_delta_ve": 0.8938, "acceleration": true, "eval_decline_count": 2, "all_met": true},
+        {"step": 75000, "eval_return": 146.66, "value_mean": 60.9781, "ve_ratio": 0.4158, "delta_ve": -2.7671, "prev_delta_ve": 2.1589, "acceleration": false, "eval_decline_count": 1, "all_met": false},
+        {"step": 85000, "eval_return": 109.66, "value_mean": 51.3219, "ve_ratio": 0.4680, "delta_ve": 0.0522, "prev_delta_ve": -2.7671, "acceleration": false, "eval_decline_count": 1, "all_met": false},
+        {"step": 95000, "eval_return": 47.95, "value_mean": 42.9276, "ve_ratio": 0.8953, "delta_ve": 0.4273, "prev_delta_ve": 0.0522, "acceleration": false, "eval_decline_count": 2, "all_met": false},
+        {"step": 105000, "eval_return": 51.72, "value_mean": 35.5144, "ve_ratio": 0.6867, "delta_ve": -0.2086, "prev_delta_ve": 0.4273, "acceleration": false, "eval_decline_count": 1, "all_met": false}
+      ]
+    },
+    "exp_008d_s3": {
+      "logdir": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008d_civo_trigger_s3",
+      "config": "dt_embed, subsample_on, seed=3",
+      "trigger_step": 45000,
+      "expected": "TP",
+      "verdict": "TP",
+      "peak_eval_step": 95000,
+      "peak_eval_return": 451.71,
+      "first_20pct_decline_step": 105000,
+      "detection_type": "predictive",
+      "ve_ratio_at_trigger": 0.4969,
+      "checkpoints": [
+        {"step": 5000, "eval_return": 36.13, "value_mean": 0.0011, "ve_ratio": 0.0000, "delta_ve": null, "prev_delta_ve": null, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 15000, "eval_return": 134.86, "value_mean": 3.4594, "ve_ratio": 0.0257, "delta_ve": 0.0256, "prev_delta_ve": null, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 25000, "eval_return": 266.95, "value_mean": 26.5290, "ve_ratio": 0.0994, "delta_ve": 0.0737, "prev_delta_ve": 0.0256, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 35000, "eval_return": 250.91, "value_mean": 71.3672, "ve_ratio": 0.2844, "delta_ve": 0.1851, "prev_delta_ve": 0.0737, "acceleration": false, "eval_decline_count": 1, "all_met": false},
+        {"step": 45000, "eval_return": 247.77, "value_mean": 123.1154, "ve_ratio": 0.4969, "delta_ve": 0.2125, "prev_delta_ve": 0.1851, "acceleration": true, "eval_decline_count": 2, "all_met": true},
+        {"step": 55000, "eval_return": 291.65, "value_mean": 176.6778, "ve_ratio": 0.6058, "delta_ve": 0.1089, "prev_delta_ve": 0.2125, "acceleration": false, "eval_decline_count": 1, "all_met": false},
+        {"step": 65000, "eval_return": 326.13, "value_mean": 226.6319, "ve_ratio": 0.6949, "delta_ve": 0.0891, "prev_delta_ve": 0.1089, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 75000, "eval_return": 356.43, "value_mean": 270.4430, "ve_ratio": 0.7588, "delta_ve": 0.0638, "prev_delta_ve": 0.0891, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 85000, "eval_return": 313.83, "value_mean": 304.7474, "ve_ratio": 0.9711, "delta_ve": 0.2123, "prev_delta_ve": 0.0638, "acceleration": false, "eval_decline_count": 1, "all_met": false},
+        {"step": 95000, "eval_return": 451.71, "value_mean": 315.3871, "ve_ratio": 0.6982, "delta_ve": -0.2729, "prev_delta_ve": 0.2123, "acceleration": false, "eval_decline_count": 1, "all_met": false},
+        {"step": 105000, "eval_return": 267.59, "value_mean": 268.3675, "ve_ratio": 1.0029, "delta_ve": 0.3047, "prev_delta_ve": -0.2729, "acceleration": false, "eval_decline_count": 1, "all_met": false}
+      ]
+    },
+    "exp_008f_s3": {
+      "logdir": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_008f_s3_no_dt_embed_walker",
+      "config": "no_dt_embed, subsample_on, seed=3",
+      "trigger_step": null,
+      "expected": "TN",
+      "verdict": "TN",
+      "peak_eval_step": 85000,
+      "peak_eval_return": 594.18,
+      "first_20pct_decline_step": 95000,
+      "detection_type": null,
+      "ve_ratio_at_trigger": null,
+      "checkpoints": [
+        {"step": 5000, "eval_return": 33.83, "value_mean": 0.0010, "ve_ratio": 0.0000, "delta_ve": null, "prev_delta_ve": null, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 15000, "eval_return": 108.50, "value_mean": 2.3255, "ve_ratio": 0.0214, "delta_ve": 0.0214, "prev_delta_ve": null, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 25000, "eval_return": 184.61, "value_mean": 13.9580, "ve_ratio": 0.0756, "delta_ve": 0.0542, "prev_delta_ve": 0.0214, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 35000, "eval_return": 199.24, "value_mean": 29.6952, "ve_ratio": 0.1490, "delta_ve": 0.0734, "prev_delta_ve": 0.0542, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 45000, "eval_return": 219.08, "value_mean": 48.7584, "ve_ratio": 0.2226, "delta_ve": 0.0735, "prev_delta_ve": 0.0734, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 55000, "eval_return": 253.74, "value_mean": 65.1673, "ve_ratio": 0.2568, "delta_ve": 0.0343, "prev_delta_ve": 0.0735, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 65000, "eval_return": 281.43, "value_mean": 78.8481, "ve_ratio": 0.2802, "delta_ve": 0.0233, "prev_delta_ve": 0.0343, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 75000, "eval_return": 502.17, "value_mean": 99.3662, "ve_ratio": 0.1979, "delta_ve": -0.0823, "prev_delta_ve": 0.0233, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 85000, "eval_return": 594.18, "value_mean": 132.0142, "ve_ratio": 0.2222, "delta_ve": 0.0243, "prev_delta_ve": -0.0823, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 95000, "eval_return": 304.21, "value_mean": 163.5886, "ve_ratio": 0.5378, "delta_ve": 0.3156, "prev_delta_ve": 0.0243, "acceleration": false, "eval_decline_count": 1, "all_met": false},
+        {"step": 105000, "eval_return": 363.76, "value_mean": 171.3620, "ve_ratio": 0.4711, "delta_ve": -0.0667, "prev_delta_ve": 0.3156, "acceleration": false, "eval_decline_count": 1, "all_met": false}
+      ]
+    },
+    "exp_009c_008f_s2": {
+      "logdir": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009c_008f_walker_s2",
+      "config": "no_dt_embed, walker, seed=2",
+      "trigger_step": 105000,
+      "expected": "TN",
+      "verdict": "FP",
+      "peak_eval_step": 75000,
+      "peak_eval_return": 359.14,
+      "first_20pct_decline_step": 85000,
+      "detection_type": "reactive",
+      "ve_ratio_at_trigger": 0.7499,
+      "note": "Late-stage CIVO pattern: eval declines 359->227->191->148 while value grows 84->96->108->111. Genuine value overestimation in no-dt-embed config, but occurs much later (105K vs 45K in positive cases).",
+      "checkpoints": [
+        {"step": 5000, "eval_return": 30.37, "value_mean": 0.0013, "ve_ratio": 0.0000, "delta_ve": null, "prev_delta_ve": null, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 15000, "eval_return": 157.15, "value_mean": 3.0567, "ve_ratio": 0.0195, "delta_ve": 0.0194, "prev_delta_ve": null, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 25000, "eval_return": 168.75, "value_mean": 18.5361, "ve_ratio": 0.1098, "delta_ve": 0.0904, "prev_delta_ve": 0.0194, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 35000, "eval_return": 178.94, "value_mean": 34.2632, "ve_ratio": 0.1915, "delta_ve": 0.0816, "prev_delta_ve": 0.0904, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 45000, "eval_return": 211.08, "value_mean": 50.0993, "ve_ratio": 0.2373, "delta_ve": 0.0459, "prev_delta_ve": 0.0816, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 55000, "eval_return": 238.91, "value_mean": 63.2668, "ve_ratio": 0.2648, "delta_ve": 0.0275, "prev_delta_ve": 0.0459, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 65000, "eval_return": 244.15, "value_mean": 72.7172, "ve_ratio": 0.2978, "delta_ve": 0.0330, "prev_delta_ve": 0.0275, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 75000, "eval_return": 359.14, "value_mean": 83.9100, "ve_ratio": 0.2336, "delta_ve": -0.0642, "prev_delta_ve": 0.0330, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 85000, "eval_return": 227.43, "value_mean": 96.0705, "ve_ratio": 0.4224, "delta_ve": 0.1888, "prev_delta_ve": -0.0642, "acceleration": false, "eval_decline_count": 1, "all_met": false},
+        {"step": 95000, "eval_return": 190.94, "value_mean": 108.2901, "ve_ratio": 0.5672, "delta_ve": 0.1447, "prev_delta_ve": 0.1888, "acceleration": false, "eval_decline_count": 2, "all_met": false},
+        {"step": 105000, "eval_return": 148.34, "value_mean": 111.2468, "ve_ratio": 0.7499, "delta_ve": 0.1828, "prev_delta_ve": 0.1447, "acceleration": true, "eval_decline_count": 2, "all_met": true}
+      ]
+    },
+    "exp_009h_008f_s0": {
+      "logdir": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009h_008f_walker_s0",
+      "config": "no_dt_embed, walker, seed=0",
+      "trigger_step": null,
+      "expected": "TN",
+      "verdict": "data_unavailable",
+      "peak_eval_step": null,
+      "peak_eval_return": null,
+      "first_20pct_decline_step": null,
+      "detection_type": null,
+      "ve_ratio_at_trigger": null,
+      "note": "Only 5 lines in metrics.jsonl, no eval data. Experiment barely started.",
+      "checkpoints": []
+    },
+    "exp_009b_008d_walker_s2": {
+      "logdir": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009b_008d_walker_s2",
+      "config": "dt_embed, walker, seed=2 (self-correcting)",
+      "trigger_step": null,
+      "expected": "TN",
+      "verdict": "TN",
+      "peak_eval_step": 95000,
+      "peak_eval_return": 278.54,
+      "first_20pct_decline_step": null,
+      "detection_type": null,
+      "ve_ratio_at_trigger": null,
+      "note": "Boundary case: has trained dt_emb but self-corrects. ve_ratio peaks at 0.57 then declines as eval improves. Detector correctly stays silent.",
+      "checkpoints": [
+        {"step": 5000, "eval_return": 39.27, "value_mean": 0.0013, "ve_ratio": 0.0000, "delta_ve": null, "prev_delta_ve": null, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 15000, "eval_return": 144.31, "value_mean": 4.4683, "ve_ratio": 0.0310, "delta_ve": 0.0309, "prev_delta_ve": null, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 25000, "eval_return": 141.12, "value_mean": 25.1406, "ve_ratio": 0.1781, "delta_ve": 0.1472, "prev_delta_ve": 0.0309, "acceleration": true, "eval_decline_count": 1, "all_met": false},
+        {"step": 35000, "eval_return": 164.14, "value_mean": 49.0176, "ve_ratio": 0.2986, "delta_ve": 0.1205, "prev_delta_ve": 0.1472, "acceleration": false, "eval_decline_count": 1, "all_met": false},
+        {"step": 45000, "eval_return": 141.04, "value_mean": 75.5871, "ve_ratio": 0.5359, "delta_ve": 0.2373, "prev_delta_ve": 0.1205, "acceleration": true, "eval_decline_count": 1, "all_met": false},
+        {"step": 55000, "eval_return": 172.33, "value_mean": 98.2809, "ve_ratio": 0.5703, "delta_ve": 0.0344, "prev_delta_ve": 0.2373, "acceleration": false, "eval_decline_count": 1, "all_met": false},
+        {"step": 65000, "eval_return": 209.16, "value_mean": 110.9091, "ve_ratio": 0.5303, "delta_ve": -0.0400, "prev_delta_ve": 0.0344, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 75000, "eval_return": 197.46, "value_mean": 93.4936, "ve_ratio": 0.4735, "delta_ve": -0.0568, "prev_delta_ve": -0.0400, "acceleration": false, "eval_decline_count": 1, "all_met": false},
+        {"step": 85000, "eval_return": 236.49, "value_mean": 83.8578, "ve_ratio": 0.3546, "delta_ve": -0.1189, "prev_delta_ve": -0.0568, "acceleration": false, "eval_decline_count": 1, "all_met": false},
+        {"step": 95000, "eval_return": 278.54, "value_mean": 75.7201, "ve_ratio": 0.2718, "delta_ve": -0.0827, "prev_delta_ve": -0.1189, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 105000, "eval_return": 267.93, "value_mean": 67.2671, "ve_ratio": 0.2511, "delta_ve": -0.0208, "prev_delta_ve": -0.0827, "acceleration": false, "eval_decline_count": 1, "all_met": false}
+      ]
+    },
+    "exp_009a_baseline_walker_s2": {
+      "logdir": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009a_baseline_walker_s2",
+      "config": "vanilla DreamerV3 baseline, walker, seed=2",
+      "trigger_step": 85000,
+      "expected": "TN",
+      "verdict": "FP",
+      "peak_eval_step": 395000,
+      "peak_eval_return": 966.94,
+      "first_20pct_decline_step": null,
+      "detection_type": "predictive",
+      "ve_ratio_at_trigger": 0.7281,
+      "note": "Temporary eval dip (688->656->618) at 65-85K triggers detector, but model fully recovers to 966 by 395K. exp_020_vanilla_dreamerv3_s2 is a truncated duplicate of this run (identical first 105K steps).",
+      "checkpoints": [
+        {"step": 5000, "eval_return": 41.21, "value_mean": 0.0017, "ve_ratio": 0.0000, "delta_ve": null, "prev_delta_ve": null, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 15000, "eval_return": 106.01, "value_mean": 7.3444, "ve_ratio": 0.0693, "delta_ve": 0.0692, "prev_delta_ve": null, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 25000, "eval_return": 325.33, "value_mean": 45.7768, "ve_ratio": 0.1407, "delta_ve": 0.0714, "prev_delta_ve": 0.0692, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 35000, "eval_return": 354.49, "value_mean": 108.3166, "ve_ratio": 0.3056, "delta_ve": 0.1649, "prev_delta_ve": 0.0714, "acceleration": true, "eval_decline_count": 0, "all_met": false},
+        {"step": 45000, "eval_return": 498.01, "value_mean": 180.7388, "ve_ratio": 0.3629, "delta_ve": 0.0574, "prev_delta_ve": 0.1649, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 55000, "eval_return": 534.13, "value_mean": 253.4921, "ve_ratio": 0.4746, "delta_ve": 0.1117, "prev_delta_ve": 0.0574, "acceleration": true, "eval_decline_count": 0, "all_met": false},
+        {"step": 65000, "eval_return": 688.87, "value_mean": 326.3389, "ve_ratio": 0.4737, "delta_ve": -0.0009, "prev_delta_ve": 0.1117, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 75000, "eval_return": 656.85, "value_mean": 392.4296, "ve_ratio": 0.5974, "delta_ve": 0.1237, "prev_delta_ve": -0.0009, "acceleration": true, "eval_decline_count": 1, "all_met": false},
+        {"step": 85000, "eval_return": 618.73, "value_mean": 450.5048, "ve_ratio": 0.7281, "delta_ve": 0.1307, "prev_delta_ve": 0.1237, "acceleration": true, "eval_decline_count": 2, "all_met": true},
+        {"step": 95000, "eval_return": 596.24, "value_mean": 503.7415, "ve_ratio": 0.8449, "delta_ve": 0.1167, "prev_delta_ve": 0.1307, "acceleration": false, "eval_decline_count": 2, "all_met": false},
+        {"step": 105000, "eval_return": 836.51, "value_mean": 539.3400, "ve_ratio": 0.6447, "delta_ve": -0.2001, "prev_delta_ve": 0.1167, "acceleration": false, "eval_decline_count": 1, "all_met": false}
+      ]
+    },
+    "baseline_s1": {
+      "logdir": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/baseline_s1",
+      "config": "vanilla DreamerV3 baseline, walker, seed=1",
+      "trigger_step": null,
+      "expected": "TN",
+      "verdict": "TN",
+      "peak_eval_step": 505000,
+      "peak_eval_return": 970.41,
+      "first_20pct_decline_step": null,
+      "detection_type": null,
+      "ve_ratio_at_trigger": null,
+      "note": "Long healthy baseline run (505K steps). Max ve_ratio=0.728. Acceleration condition never met simultaneously with eval decline.",
+      "checkpoints_summary": {
+        "num_checkpoints": 51,
+        "max_ve_ratio": 0.728,
+        "max_eval": 970.41,
+        "final_eval": 927.62,
+        "training_stable": true
+      }
+    },
+    "exp_009d_baseline_walker_s0": {
+      "logdir": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009d_baseline_walker_s0",
+      "config": "vanilla DreamerV3 baseline, walker, seed=0",
+      "trigger_step": null,
+      "expected": "TN",
+      "verdict": "TN",
+      "peak_eval_step": 398000,
+      "peak_eval_return": 950.96,
+      "first_20pct_decline_step": null,
+      "detection_type": null,
+      "ve_ratio_at_trigger": null,
+      "note": "Long baseline run (508K steps). Had single-episode eval spike at 78K (eval=80.98, ve_ratio=2.73) but recovered immediately. Detector correctly handles transient spikes because acceleration condition fails on next step.",
+      "checkpoints_summary": {
+        "num_checkpoints": 52,
+        "max_ve_ratio": 2.7291,
+        "max_ve_ratio_note": "Transient spike from single bad eval episode at step 78K, not sustained",
+        "max_eval": 950.96,
+        "final_eval": 927.62,
+        "training_stable": true
+      }
+    },
+    "exp_009d_baseline_walker_s1": {
+      "logdir": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_009d_baseline_walker_s1",
+      "config": "vanilla DreamerV3 baseline, walker, seed=1",
+      "trigger_step": null,
+      "expected": "TN",
+      "verdict": "TN",
+      "peak_eval_step": 115000,
+      "peak_eval_return": 919.81,
+      "first_20pct_decline_step": null,
+      "detection_type": null,
+      "ve_ratio_at_trigger": null,
+      "note": "Shorter baseline run (115K steps). Steady improvement throughout. Max ve_ratio=0.72 but no sustained acceleration.",
+      "checkpoints": [
+        {"step": 5000, "eval_return": 31.77, "value_mean": 0.0016, "ve_ratio": 0.0000, "delta_ve": null, "prev_delta_ve": null, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 15000, "eval_return": 206.61, "value_mean": 5.3593, "ve_ratio": 0.0259, "delta_ve": 0.0259, "prev_delta_ve": null, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 25000, "eval_return": 395.27, "value_mean": 34.4836, "ve_ratio": 0.0872, "delta_ve": 0.0613, "prev_delta_ve": 0.0259, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 35000, "eval_return": 388.47, "value_mean": 93.7075, "ve_ratio": 0.2412, "delta_ve": 0.1540, "prev_delta_ve": 0.0613, "acceleration": true, "eval_decline_count": 1, "all_met": false},
+        {"step": 45000, "eval_return": 513.77, "value_mean": 170.0661, "ve_ratio": 0.3310, "delta_ve": 0.0898, "prev_delta_ve": 0.1540, "acceleration": false, "eval_decline_count": 1, "all_met": false},
+        {"step": 55000, "eval_return": 625.73, "value_mean": 252.4964, "ve_ratio": 0.4035, "delta_ve": 0.0725, "prev_delta_ve": 0.0898, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 65000, "eval_return": 615.86, "value_mean": 346.6859, "ve_ratio": 0.5629, "delta_ve": 0.1594, "prev_delta_ve": 0.0725, "acceleration": true, "eval_decline_count": 1, "all_met": false},
+        {"step": 75000, "eval_return": 596.28, "value_mean": 428.9781, "ve_ratio": 0.7194, "delta_ve": 0.1565, "prev_delta_ve": 0.1594, "acceleration": false, "eval_decline_count": 2, "all_met": false},
+        {"step": 85000, "eval_return": 713.93, "value_mean": 500.2181, "ve_ratio": 0.7007, "delta_ve": -0.0188, "prev_delta_ve": 0.1565, "acceleration": false, "eval_decline_count": 1, "all_met": false},
+        {"step": 95000, "eval_return": 871.06, "value_mean": 550.5239, "ve_ratio": 0.6320, "delta_ve": -0.0686, "prev_delta_ve": -0.0188, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 105000, "eval_return": 915.67, "value_mean": 601.0585, "ve_ratio": 0.6564, "delta_ve": 0.0244, "prev_delta_ve": -0.0686, "acceleration": false, "eval_decline_count": 0, "all_met": false},
+        {"step": 115000, "eval_return": 919.81, "value_mean": 627.8841, "ve_ratio": 0.6826, "delta_ve": 0.0262, "prev_delta_ve": 0.0244, "acceleration": false, "eval_decline_count": 0, "all_met": false}
+      ]
+    }
+  },
+  "excluded": {
+    "exp_020_vanilla_dreamerv3_s2": {
+      "reason": "Duplicate of exp_009a_baseline_walker_s2 (identical first 105K steps, same seed=2 baseline config). Shorter run (105K only).",
+      "logdir": "/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_020_vanilla_dreamerv3_s2"
+    }
+  },
+  "summary": {
+    "total_experiments": 12,
+    "excluded_duplicates": 1,
+    "data_unavailable": 1,
+    "evaluated": 10,
+    "positive_cases": 3,
+    "negative_cases": 7,
+    "TP": 3,
+    "FN": 0,
+    "TN": 5,
+    "FP": 2,
+    "TPR": "3/3 (1.00)",
+    "FPR": "2/7 (0.286)",
+    "TNR": "5/7 (0.714)",
+    "detection_types": {
+      "predictive": 3,
+      "reactive": 2,
+      "concurrent": 0
+    },
+    "mean_trigger_step_TP": 51667,
+    "mean_trigger_step_FP": 95000,
+    "key_observations": [
+      "All 3 TP cases trigger at 45-65K steps with dt_embed configs (consistent early CIVO onset)",
+      "2 FP cases: exp_009c (genuine late-stage CIVO at 105K in control config), exp_009a (temporary eval dip at 85K, full recovery to 966)",
+      "4 TN cases include 3 long baselines (505K+) and 1 self-correcting dt_embed run",
+      "exp_009b (dt_embed + self-correcting) is a key boundary case: ve_ratio peaks at 0.57 then declines, detector correctly stays silent",
+      "exp_009d_s0 demonstrates robustness to transient eval spikes (single episode ve_ratio=2.73, no false alarm)",
+      "FP timing gap: TP triggers average 52K, FP triggers average 95K (83% later)"
+    ],
+    "fp_analysis": {
+      "exp_009c": "Genuine value overestimation in control config (eval collapses 359->148). Arguably not a false positive but a true detection of a real phenomenon in an unexpected config.",
+      "exp_009a": "Temporary 3-checkpoint eval dip during normal training. Model fully recovers. This is the primary weakness: the detector cannot distinguish temporary dips from sustained collapse within its observation window."
+    }
+  }
+}

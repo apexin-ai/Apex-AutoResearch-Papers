@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ecb0e2a7a80aeca6dbb4",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check hopper phase1 status urgent",
+  "task_key": "worker_check_hopper-phase1-status-urgent_20260527T042737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_hopper-phase1-status-urgent_20260527T042737_result.json",
+    "occurrence": 1,
+    "bytes": 2578,
+    "sha256": "fdd74010807039292e4bf81b3a1281354a29d87ecf51fb3e1d57c17b675cc9d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 1. 进程状态：两个实验都**仍在运行**\n\n| 实验 | PID | etime | 当前 step | 目标 step | FPS |\n|------|-----|-------|-----------|-----------|-----|\n| baseline | 604350 | 01:29:02 | 60000 | 105000 | ~11 |\n| trained_s0 | 604513 | 01:28:55 | 56000 | 105000 | ~10 |\n\n进程 etime 仅 ~1.5 小时，说明**这是新启动的 run**，不是原预期 08:00-11:00 UTC 完成的那批。无 `/tmp/agent-ml-exit/` 退出文件，说明这两个 PID 从未退出过。原来的 run 可能被 `timeout 36000`（10h）杀掉或自行崩溃，之后被重新提交。\n\n### 2. 预计完成时间\n\n- **baseline**: (105000 - 60000) / 11 fps ≈ **68 分钟** → ~13:33 UTC\n- **trained_s0**: (105000 - 56000) / 10 fps ≈ **82 分钟** → ~13:48 UTC\n\n### 3. 关键指标（最新 eval @ step 55000）\n\n| 指标 | baseline | trained_s0 |\n|------|----------|------------|\n| **eval_return** | **22.5** | **0.2** |\n| ve_ratio | 0.3 | 0.7 |\n| train_return (近期) | 0~50 (有学习) | 几乎全 0.0 |\n| gate_dt_mean | N/A | 2.0 (fixed, std=0) |\n\n### 4. 严重问题：trained_s0 完全没学到东西\n\ntrained_s0 的 eval_return 从 step 25K→55K 一直在 0.0~0.5 徘徊，train_return 也几乎全为 0。baseline 同期 eval_return 已升到 22.5。**gated 变体在 Hopper 上彻底失败。**\n\n按 Reviewer 约束：eval_return 接近 0 时 ve_ratio（0.7）无意义——分母接近零导致比值不反映真实 value expansion。\n\n### 5. GPU 状态\n\n| GPU | 型号 | 显存占用 | 利用率 |\n|-----|------|---------|--------|\n| GPU 0 (baseline) | RTX PRO 6000 Blackwell | 53.8GB / 97.9GB | 22% |\n| GPU 1 (trained_s0) | RTX PRO 6000 Blackwell | 3.3GB / 97.9GB | 23% |\n\nGPU 1 显存仅 3.3GB，异常偏低（可能 trained_s0 模型更小或某些组件未在 GPU 上）。\n\n### 6. 无 cron 回调的原因\n\n这些是新启动的进程（etime ~1.5h），尚未结束，所以 EXIT trap 没有触发回调。原始 run 可能因 `timeout 36000` 被杀或崩溃，退出文件可能已被清理或被新 run 的 `rm -f` 删除。\n\n### 下一步建议\n\n1. **等 ~80 分钟完成后运行 NVE 分析**——但鉴于 trained_s0 的 eval_return ≈ 0，NVE 分析结果预计无意义\n2. **需要排查 trained_s0 学习失败的根因**：`gate_fixed_dt=2` + `gate_subsample_max_dt=2` + `imag_horizon=8` 的配置可能导致 effective horizon 过短或梯度信号太弱\n3. **排查原始 run 崩溃/超时原因**——检查旧日志（如果存在）确认是 timeout 还是 OOM/错误"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-hopper-phase1-status-urgent.md"
+}

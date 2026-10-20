@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "821811b9536b9499c37e",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis paper figure data",
+  "task_key": "worker_analysis_paper-figure-data_20260514T185842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_paper-figure-data_20260514T185842_result.json",
+    "occurrence": 1,
+    "bytes": 1119,
+    "sha256": "033a25d2fef184b4610db584d8255c4f106ee18d0d93624c77b6578cb4c6673e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "提取完成。汇总：\n\n| 实验 | Checkpoints | 最终 step | eval_return | ve_ratio | 状态 |\n|------|------------|-----------|-------------|----------|------|\n| **exp_001_baseline** | 51 | 505K | 970.41 | 0.69 | Healthy |\n| **exp_008d** (trained dt_emb, s0) | 6 | 55K | 82.75 | **1.67** | Collapsed |\n| **exp_009b** (trained dt_emb, s2) | 11 | 105K | 267.93 | 0.25 | Partial collapse |\n| **exp_008f** (no dt_emb, s0) | 11 | 105K | 503.21 | 0.20 | Healthy |\n| **exp_009c** (no dt_emb, s2) | 11 | 105K | 148.34 | 0.75 | Healthy |\n| **exp_008e_v3** (untrained dt_emb) | 11 | 105K | 869.88 | 0.53 | Healthy (mitigation) |\n| **exp_008a** (B+ control) | 11 | 105K | 777.66 | 0.39 | Healthy |\n| **exp_006** (fixed dt=2) | 7 | 65K | 132.86 | **2.72** | Collapsed |\n\n数据已保存到服务器 `/root/autodl-tmp/event-gated-adaptive-horizon/logdir/paper_figure_data.json`，产出已注册 (`art_20260514_a00b68`)。\n\n关键发现与论文因果链吻合：collapsed 实验 (exp_008d, exp_006) 的 ve_ratio 远 >1（delusional critic），而 healthy 实验的 ve_ratio 稳定在 0.2-0.75。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-paper-figure-data.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d48285bc8640e2d43b18",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis civo detector retrospective",
+  "task_key": "worker_analysis_civo-detector-retrospective_20260517T020739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_civo-detector-retrospective_20260517T020739_result.json",
+    "occurrence": 1,
+    "bytes": 1376,
+    "sha256": "6bd5b5de3d931f93aa41d0c25b383ad4eabaaa0e1c92adf51422c3e2c0d8dedc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已写入 `artifacts/civo_detector_retrospective.json`。\n\n**关键发现：**\n\n| 指标 | 结果 |\n|------|------|\n| CIVO 检测率 | 2/2 (100%) |\n| 平均提前步数 | 10K (008d: 15K, 010b: 5K) |\n| 健康组误报率 | 2/3 (67%) |\n\n**CIVO 组（真阳性）：**\n- **008d**: Level 2 在 45K 触发，collapse 在 60K，提前 15K 步预警。VE ratio 从 0.15→0.41→0.69→1.67 持续加速上升。\n- **010b**: Level 2 在 65K 触发，collapse 在 70K，提前 5K 步。VE 在 55K-65K 从 1.02 飙到 3.18。\n\n**健康组（假阳性问题）：**\n- **008f**: 早期训练波动（eval 206→194→173）触发了 Level 2，但实验后来恢复到 503。\n- **baseline**: 收敛后微小波动（eval ~930±20，VE ~0.70±0.02）触发了 Level 2。\n- **008a**: 无误报（正确）。\n\n**边界组：**\n- **009b** (自纠正): 无 Level 2 触发，检测器正确忽略。\n- **008e_v3_s2** (非 CIVO collapse): Level 2 仅在 collapse 后才触发（105K > 95K collapse）。VE ratio 在 collapse 前一直健康（<0.51），因为这不是 value overestimation 导致的崩溃。\n\n**规则弱点**：当前规则对正常 eval 方差过于敏感。改进方向：加入 delta_ve 最小幅度门槛（如 >0.1）、要求 ve_ratio 已超过 0.5 后才启用检测、或用 eval_return 下降百分比替代绝对下降。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-civo-detector-retrospective.md"
+}

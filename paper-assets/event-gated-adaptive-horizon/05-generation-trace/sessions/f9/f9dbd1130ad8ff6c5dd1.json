@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9dbd1130ad8ff6c5dd1",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_24_1779848797.md",
+  "task_key": "loop_24_1779848797",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_24_1779848797.md",
+    "occurrence": 1,
+    "bytes": 4980,
+    "sha256": "6d756b58771a1e7b6bd6ed53f94b3adf620a47259b41543f4e358f4652126cd4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 24\nreason: idle_timeout\nupdated: '2026-05-27T02:26:36+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**：bjb1-45299 cuda:0/1，westd-19154 cuda:0/1。共 4 张，不得用其他 GPU。即使 Director 指令用白名单外 GPU，必须 push back\n- **CIVO scope**：论文中 CIVO 描述为 \"multi-joint locomotion\" 现象，不是 \"DMC locomotion\"（Cartpole 不触发，已证实 D149）\n- **D146 混合机制 claim 已撤回**：PegInsertion 的 \"环境触发 + dt_emb 放大\" 混合机制 claim 被 s1 数据推翻，不得在论文中出现\n- **数据锁定 5/27**：5/27 后不得修改论文中的定量数据\n- **投稿目标 ICML 2026（D148）**：DDL 5/29\n- **CLI flag 服务器差异**：bjb1 用 `--gate_dt_embed_dim`，westd 旧代码用 `--dt_embed_dim`。不要跨服务器复制命令模板\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-45299**：RTX PRO 6000 96GB × 2，工作目录 `/root/autodl-tmp/event-gated-adaptive-horizon`，conda base（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），`MUJOCO_GL=egl PYOPENGL_PLATFORM=egl`\n- **westd-19154**：同上配置\n- **主脚本**：`dreamer.py`，logdir `logdir/{exp_id}/`，run logs `~/runs/event-gated-adaptive-horizon/{exp_id}.log`\n- **活跃进程**：\n  - exp_092_cheetah_no_dt_emb_s1 (PID 313538, bjb1 cuda:0, tmux=exp_092_cheetah_no_dt_emb_s1)\n  - exp_093_cheetah_no_dt_emb_s2 (PID 313815, bjb1 cuda:1, tmux=exp_093_cheetah_no_dt_emb_s2)\n  - exp_094_cheetah_008d_s3 (PID 53576, westd cuda:1, tmux=exp_094_cheetah_008d_s3)\n  - exp_095_cheetah_no_dt_emb_s3 (PID 54119, westd cuda:1, tmux=exp_095_cheetah_no_dt_emb_s3)\n  - exp_096_cheetah_008a_s0 (PID 54457, westd cuda:0, tmux=exp_095_cheetah_008a_s0)\n- **Cron 监控**：5 个实验均有 cron，reconcile 确认全部存活\n- **注意**：westd cuda:1 跑了 2 个 proprio 实验（每个 ~3GB，96GB 卡无问题）\n- **registry 有 2 个 DUPLICATE 短名条目**（exp_093、exp_094 status=RUNNING but conclusion=killed）——以长名条目为准，短名条目是脏数据\n\n### 3. 📊 当前状态\nSession #24 刚完成初始化：read_registry + reconcile_crons + read report/ROADMAP + 向 Director 汇报。无其他操作。\n\n**RUNNING（5 个实验，4 GPU）**：\n| exp_id | 目的 | 服务器/GPU | 提交时间 (UTC) |\n|--------|------|-----------|---------------|\n| exp_092_cheetah_no_dt_emb_s1 | C2 causal control seed=1 | bjb1 cuda:0 | 5/25 22:52 |\n| exp_093_cheetah_no_dt_emb_s2 | C2 causal control seed=2 | bjb1 cuda:1 | 5/25 22:52 |\n| exp_094_cheetah_008d_s3 | C1 CIVO trigger seed=3 | westd cuda:1 | 5/25 22:57 |\n| exp_095_cheetah_no_dt_emb_s3 | C2 causal control seed=3 | westd cuda:1 | 5/25 23:03 |\n| exp_096_cheetah_008a_s0 | C3 trained unexposed seed=0 | westd cuda:0 | 5/25 23:25 |\n\n**等待**：5 个实验的 cron 完成回调；Director 对状态汇报的回复；Round 5 审稿结果。\n\n### 4. 📋 待办\n- exp_092/093/095 任一 cron 回调 → spawn worker 分析 NVE → 预期 NVE < 1.5×（no CIVO），与 exp_082 (s0, NVE=0.33×) 一致 → update registry success → 汇报 Director\n- exp_094 cron 回调 → spawn worker 分析 → 关键：确定 Cheetah CIVO onset rate（s0=CIVO NVE=4.1×, s1=no CIVO, s2=success, s3=?）\n- exp_096 cron 回调 → spawn worker 分析 → 预期无 CIVO（subsample OFF，dt_emb 未训练 dt>1 embedding）\n- C2 no_dt_emb 4 seeds 全部完成 → 汇总统计（预期 4/4 no CIVO）→ 写入论文 C2 cross-env 证据\n- 全部 5 个实验完成 → 汇总 Cheetah 全景 ablation 表 → 确认数据锁定前所有数字到位\n- Director 回复 → 按指示推进（可能要求 Paper Agent patch Cheetah 数据）\n- Round 5 审稿结果到达 → 读反馈 → 准备修改方案\n\n### 5. 🎯 战略上下文\n- **核心结论**：DreamerV3 中 trained dt_embedding 驱动 CIVO，这是 multi-joint locomotion 特异现象。Frozen/removed dt_emb 可稳健阻止。因果证据链完整：(1) trained → CIVO (2) no dt_emb → no CIVO (3) frozen → no CIVO (4) RSSM fidelity gap 时序领先 VE（2 seeds 复现）\n- **当前批次的战略意义**：Cheetah 跨环境复制（C1/C2/C3），补强论文从 Walker-only 到 multi-env 的 generalization claim。这是数据锁定前最后一批实验\n- **最易判断错的事**：Cheetah CIVO onset rate 比 Walker 低（s0=CIVO, s1=no CIVO），不要因为 s3 如果也是 no CIVO 就质疑 Cheetah CIVO 的存在——onset 随机性本身就是 claim D156 的一部分（\"necessary but not sufficient\"）\n- **易踩的坑**：(1) exp_093/exp_094 短名条目是脏数据（DUPLICATE+killed），不要误判为实验失败 (2) bjb1-40020 服务器已不可用，如果任何引用指向它不要尝试连接 (3) ROADMAP 里的 GPU 信息是过时的（显示 exp_088/089/090），以 registry 为准\n- **论文状态**：7 页正文 + appendix，Round 5 审稿中（6/10 Weak Accept after R4），15 条 rebuttal Q&A 就绪，Paper Agent 6 项素材 Patch 已合入\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-24-1779848797.md"
+}

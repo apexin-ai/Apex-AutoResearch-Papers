@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe1cbfb9afb5a0d27dcf",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp humanoid baseline s0",
+  "task_key": "worker_analysis_exp_humanoid_baseline_s0_20260529T043619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_humanoid_baseline_s0_20260529T043619_result.json",
+    "occurrence": 1,
+    "bytes": 957,
+    "sha256": "65de30d679690a8b2ceb9c0736943f2a5e665da1b2e3cced7c6065b9a37596c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## exp_humanoid_baseline_s0 结果摘要\n\n| 指标 | 值 |\n|------|-----|\n| 训练完成 | 212K steps, EXIT_CODE=0 |\n| eval_return (last 5 mean±std) | **1.48 ± 0.36** |\n| NVE_max (≥35K) | **12.97×** @ 105K step |\n| NVE_final (205K) | **12.22×** |\n| NVE_mean (≥35K) | **7.64×** |\n| value_mean_final | 15.18 (实际 return 仅 ~1.2) |\n| actor_entropy | -17.8 (坍塌) |\n| CIVO alerts | 3次 (55K, 105K, 195K) |\n\n**结论: NEGATIVE** — 假设被证伪。DreamerV3-S baseline 在 Humanoid Walk (21-DoF) 上即使 dt=1 也存在严重 value overestimation (NVE 12.97×, 远超 τ=2.0)，且几乎没有学到有效行为。与 Walker (~950) / Cheetah (~430) 的 baseline (NVE < 2.0) 形成鲜明对比——说明高维动作空间本身就是 value overestimation 的温床，Humanoid 是 CIVO gating 的天然压力测试环境。\n\nRegistry 已更新为 DONE/negative，报告已注册为 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-humanoid-baseline-s0.md"
+}

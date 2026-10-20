@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b66c7e8873c4a4df8a1",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper figure fig intervention heatmap",
+  "task_key": "worker_paper_figure_fig_intervention_heatmap_20260529T190330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_intervention_heatmap_20260529T190330_result.json",
+    "occurrence": 1,
+    "bytes": 549,
+    "sha256": "e281cd6c2ef027d5983e634d366506306959bb6f9e213e461244e43e5226fd8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Outputs:\n\n1. **PDF**: `figures/paper/fig_intervention_heatmap.pdf` (31 KB, vector)\n2. **PNG**: `figures/paper/fig_intervention_heatmap.png` (116 KB, 300 DPI)\n3. **Script**: `figures/paper/fig_intervention_heatmap.py`\n\n3 iterations completed. Rounded-corner cells with Wong/Okabe-Ito palette, group brackets (Gradient / Output / Repr. / Architecture), white bold text with drop shadow, borderline footnote for TCN σ=0.2 Cheetah. The single blue cell (Wide Dual Walker 3/3) reads as an isolated island in a sea of orange failure."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-intervention-heatmap.md"
+}

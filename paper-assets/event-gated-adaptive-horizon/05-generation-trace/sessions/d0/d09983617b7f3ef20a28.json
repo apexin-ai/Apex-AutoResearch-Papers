@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d09983617b7f3ef20a28",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_4_1778742650.md",
+  "task_key": "loop_4_1778742650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778742650.md",
+    "occurrence": 1,
+    "bytes": 4055,
+    "sha256": "e5bcc594156009ac3a3368c7a0802e765a86ce1e422fcb2d659677be2d07ba98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T04:42:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 cuda:0 + cuda:1 on bjb1-45299，绝不用其他设备\n- exp_008e 重复进程坑：之前因 submit 产生双进程写同一 logdir（metrics.jsonl 污染），提交 008e 类实验前必须确认 logdir 干净 + 无残留进程\n- 008d 完成前不要在 cuda:0 上提交 008f（008a 和 008d 共享 cuda:0，008d 用的也是 cuda:0 PID 109519）\n- paper_framing.md 已存在，修改 paper 文件前必须读 red-section skill\n- Negative 结果（目前 6 个）不得默默跑下一个实验——必须 Framing 提案走 Director 审批\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-45299（AutoDL RTX PRO 6000 ×2）\n- 工作目录：/root/autodl-tmp/event-gated-adaptive-horizon\n- Python：/root/miniconda3/bin/python（conda base 环境，不是 venv）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 环境变量必带：`LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=osmesa PYOPENGL_PLATFORM=osmesa`\n- 代码 commit：6ef8646d（exp_006 起用），后续审计修复 commit 6159e46\n- 活跃进程：\n  - exp_008a_no_subsample_dt2: PID 106942, tmux, cuda:0, ~68K steps（目标 105K）\n  - exp_008d_subsample_on_h8: PID 109519, tmux, cuda:0, ~40K steps（目标 105K）\n  - exp_008e_v2/v3: PID 125392 / 126110 on cuda:1（PREPARING 状态，可能需要确认是否实际在跑）\n- Cron 监控：2 个活跃（008a + 008d）\n\n### 3. 📊 当前状态\n**刚完成：** 008c@65K DONE(negative, plateau@241), exp_008e 双进程 kill + 清理, 008a@65K=608 确认 B+ narrative\n\n**RUNNING：**\n- exp_008a_no_subsample_dt2 (cuda:0): @65K=608，V-shaped recovery，v/e=37.2%稳定，跑到105K验证长期稳定性\n- exp_008d_subsample_on_h8 (cuda:0): @35K=146, v/e=41.2%开始下降，等@45K确认崩塌复现\n\n**PREPARING (需确认)：**\n- exp_008e_v2/v3 (cuda:1): 有 PID 但状态 PREPARING，上一轮 session 尝试清理重启 008e，需要 SSH 确认进程是否存活 + logdir 是否干净\n\n**等待中：**\n- 无活跃 Worker\n- 008d cron 回调（预计 ~2-4h 到达 45K eval）\n- 008a cron 回调（预计 ~4-6h 到达 105K）\n\n### 4. 📋 待办（条件触发式）\n- 008d cron 回调到达（@45K eval） → 确认 v/e >50% 复现崩塌 → update_registry + 汇报 Director\n- 008d 完成/kill 后 → cuda:0 释放 → 提交 exp_008f (dt_embed_dim=0, confound control)\n- 008a@105K 完成 → 确认长期稳定性 → 如果 v/e 仍 <40% → B+ 升级为 A（\"no degradation at scale\"）\n- 008e (GPU 1) 状态确认 → 如果进程不存活，干净 logdir 后重新 submit（subsample ON, dt=1, H=15）\n- 008d@45K + 008f 完成 → complete_mvp → 进入通用性验证（2 个额外 DMC 环境）\n- 通用性验证完成 → experiment_plan.yaml + 论文初稿\n\n### 5. 🎯 战略上下文\n**核心结论：** Variable-rate imagination 失败的根因是 trained dt_embedding → delusional critic → value 过估 → collapse。Untrained dt_embedding 的悲观偏置实质性保护性能（008a@65K=608 ≈ baseline 616）。\n\n**决策链：** D015→D017→D019→D020→D021→D022→D023→D024。从\"所有 dt>1 失败\"逐步收敛到\"trained dt_emb 是唯一罪犯\"。\n\n**CoRL DDL 2026-05-29，剩 15 天。** 析因实验预计 Day 1 完成，通用性 Day 2，论文 Day 3-5，buffer 10 天。时间充裕。\n\n**易错点：**\n- exp_008a 和 exp_008d 都挂在 cuda:0 上（两个 tmux session 共享一张卡），不要以为它们在不同 GPU\n- exp_008e 在 GPU 1 上的状态混乱（v1 killed, v2/v3 PREPARING），接手后第一件事 SSH 确认 GPU 1 上实际在跑什么\n- PREPARING 状态的 exp_008d / exp_008c / exp_008a / exp_006 是旧 registry 副本（metrics snapshot），不是真正待提交的实验——真正的跑着的是带后缀的完整 ID\n- 008c 的 eval@65K=240.9（report.md 写了 308 是错的，以 registry 为准）\n- paper_framing.md 已创建但可能需要 C3 B+ 升级内容更新\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778742650.md"
+}

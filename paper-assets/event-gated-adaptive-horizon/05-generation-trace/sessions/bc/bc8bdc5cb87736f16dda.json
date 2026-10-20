@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc8bdc5cb87736f16dda",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops check extended experiments",
+  "task_key": "worker_ops_check-extended-experiments_20260519T131054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-extended-experiments_20260519T131054_result.json",
+    "occurrence": 1,
+    "bytes": 1120,
+    "sha256": "5e49c4b918a07390b4980d9cd718e4c27ee0a7454fcff12dad2b0efc4939f693"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 checkpoint 都在近期更新，实验都在跑。汇总：\n\n## 实验状态汇报\n\n### GPU 状态\n| GPU | 型号 | 显存占用 | 利用率 | 温度 |\n|-----|------|---------|--------|------|\n| cuda:0 | RTX PRO 6000 Black (98GB) | 4.7GB | 32% | 42°C |\n| cuda:1 | RTX PRO 6000 Black (98GB) | 9.5GB (2个进程) | 68% | 47°C |\n\n3个 python 进程运行中：cuda:0 × 1, cuda:1 × 2。\n\n### 实验进度\n\n| 实验 | tmux session | 当前步数 | 进度 | 最新 train_return | 状态 |\n|------|-------------|---------|------|-------------------|------|\n| Walker baseline s2 | exp_s2_ext | **388K**/505K | 76.8% | 933~985 | 运行中 |\n| Walker baseline s3 | exp_s3_ext | **264K**/505K | 52.3% | 888~936 | 运行中 |\n| Walker baseline s4 | exp_s4_ext | **236K**/505K | 46.7% | 873~935 | 运行中 |\n\n### 要点\n- 三个实验全部正常运行，无异常\n- s2 启动最早（12:10），进度领先；s3/s4 同时启动（17:03）\n- FPS：s2=8.2, s3=9.6, s4=8.3\n- train_return 均在 870~985 区间，表现正常\n- 预计完成时间：s2 约 4h 后，s3/s4 约 8-9h 后"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-extended-experiments.md"
+}

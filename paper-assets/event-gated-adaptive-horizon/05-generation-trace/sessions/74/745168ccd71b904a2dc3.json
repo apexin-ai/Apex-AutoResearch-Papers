@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "745168ccd71b904a2dc3",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check exp008d fps estimate",
+  "task_key": "worker_check_exp008d-fps-estimate_20260524T205825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp008d-fps-estimate_20260524T205825_result.json",
+    "occurrence": 1,
+    "bytes": 2616,
+    "sha256": "6caae12845748cf50044a80932069349e15300745f6d37e7523283fdc777ff36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕，汇总结果：\n\n---\n\n## FPS 与时间估算\n\n### 直接数据来源\n\n**exp_008d Walker config FPS（training-only, from metrics.jsonl）：**\n\n| 实验 | 服务器/GPU | FPS (steps/sec) | 备注 |\n|------|-----------|-----------------|------|\n| exp_009b_008d_walker_s2 | bjb1-45299 / RTX PRO 6000 Blackwell | 6.8-7.2 | trained dt_emb + subsample ON + H=8 |\n| exp_009e_008d_walker_s1 | bjb1-45299 / RTX PRO 6000 Blackwell | 6.5-7.0 | 同配置 |\n| exp_042 frozen_dt_emb_walker | bjb1-40020 / RTX 4090 | 7.9-8.0 | frozen（非 trained），作参考 |\n| exp_047 frozen_dt_emb_walker_s1 | bjb1-40020 / RTX 4090 | 7.8-8.2 | 同上 |\n\n### 估算逻辑\n\n1. **bjb1-45299 RTX PRO 6000 Blackwell 上 exp_008d Walker**：logged FPS ~6.9 steps/sec\n2. **RTX 4090 vs RTX PRO 6000 缩放比**：frozen_dt_emb Walker 在两台机器上分别是 ~8.0 vs ~10.0 fps → 比例 0.80x\n3. **估算 exp_008d Walker 在 RTX 4090**：6.9 × 0.80 ≈ **5.5 steps/sec**（training-only）\n4. **Wall-clock 开销**：exp_009b 实际跑了 112K steps in 11.57 hours（registry 时间），含 eval/logging/checkpoint → wall-clock rate ~9,700 steps/hr\n\n```\nexp_008d Walker FPS:\n  - bjb1-45299 (RTX PRO 6000): ~6.9 steps/sec = ~24,800 steps/hr (training-only)\n  - bjb1-40020 (RTX 4090) 估算: ~5.5 steps/sec = ~19,800 steps/hr (training-only)\n  来源: exp_009b/009e metrics.jsonl fps 字段 + exp_042/047 跨GPU缩放\n\n60K steps 预估时间 (bjb1-40020 RTX 4090 cuda:1):\n  - 基于 exp_009b wall-clock 缩放: (60/112) × 11.57h × 1.25 ≈ 7.7 hours\n  - 考虑 cuda:1 潜在 CPU 争用: ~8-10 hours\n  - 最佳估计: ~8 hours\n\nexp_063 RSSM fidelity 分析:\n  - 总运行时间: 28 minutes (18:53:48 → 19:21:37, 实际脚本执行时间)\n  - 分析了 2 个 checkpoint (exp_001 baseline + exp_008d collapsed)\n  - 单个 checkpoint 分析: ~14 minutes\n  来源: exp_063 registry started_at/completed_at\n\n12 个 checkpoint 分析总时间: 12 × 14 min ≈ 168 min ≈ 2.8 hours\n\n总时间（训练 + 分析）: 8 + 2.8 ≈ 11 hours (range: 10-13 hours)\n```\n\n### 注意事项\n- **GPU 差异大**：bjb1-45299 是 RTX PRO 6000 Blackwell (98GB)，bjb1-40020 是 RTX 4090 (24GB)，没有 exp_008d 在 RTX 4090 上的直接数据，上述是间接估算\n- **cuda:1 争用**：如果 cuda:0 同时跑其他实验，MuJoCo（CPU-bound）会有 CPU 争用，可能额外慢 10-20%\n- **RSSM 分析脚本**需要改写来支持 Walker 的 obs_keys（当前硬编码为 Cheetah 的 height/orientations/velocity），但 Walker Walk 也是 proprioceptive，改动小"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp008d-fps-estimate.md"
+}

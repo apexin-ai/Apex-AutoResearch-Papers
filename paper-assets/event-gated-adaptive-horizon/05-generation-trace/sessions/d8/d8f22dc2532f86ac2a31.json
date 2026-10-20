@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8f22dc2532f86ac2a31",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "done exp 025 s4",
+  "task_key": "worker_done_exp_025_s4_20260520T015904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_done_exp_025_s4_20260520T015904_result.json",
+    "occurrence": 1,
+    "bytes": 499,
+    "sha256": "38054c541582adfe2f788823c3b18daf7e3cb52b4bfdd2a121135559a8e774a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Registry 已更新为 DONE/negative，cron 已删除。\n\n**结果摘要**：\n- **Final step**: 215K（超过 210K 目标）\n- **CIVO 比预期更严重**：peak ve_ratio=**6.06@75K**（eval 从 179@25K 暴跌到 34@75K），远超之前已知的 2.15@65K\n- **后半程自然恢复**：ve_ratio 从 6.06 逐步衰减到 0.14@215K，eval 恢复到 241.5\n- **结论 negative**：SGS 未能阻止 CIVO onset，后期恢复是 value 自然衰减驱动，非 SGS 机制生效"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/done-exp-025-s4.md"
+}

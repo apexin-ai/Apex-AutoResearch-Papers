@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c2906a1379a21391713f",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check exp004 detailed metrics",
+  "task_key": "worker_check_exp004-detailed-metrics_20260513T153014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp004-detailed-metrics_20260513T153014_result.json",
+    "occurrence": 1,
+    "bytes": 432,
+    "sha256": "b364bca2f97ab930e492751cc3aa3ec21472db6209be54ca32e016bd088cbaa0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Related work 验证完成：\n\n- **NE-Dreamer** — 确认准确，无修改\n- **R2-Dreamer** — 确认准确，无修改\n- **HWM** — 确认准确，无修改\n- **I-TAP** — 修正了一处错误：VQ-VAE → **RQ-VAE**（Residual Quantization VAE）\n- **FiGAR / TempoRL** — 确认准确，无修改\n\n已从 `artifacts/_project/paper/related_work_draft.md` 中清除所有 3 个 `[NEED VERIFY]` 标记。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp004-detailed-metrics.md"
+}

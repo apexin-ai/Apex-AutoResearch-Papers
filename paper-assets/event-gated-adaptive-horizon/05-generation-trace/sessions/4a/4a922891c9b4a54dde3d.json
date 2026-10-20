@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a922891c9b4a54dde3d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper seed label diff summary",
+  "task_key": "worker_paper_seed-label-diff-summary_20260516T071304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_seed-label-diff-summary_20260516T071304_result.json",
+    "occurrence": 1,
+    "bytes": 377,
+    "sha256": "3d22390ce04e91717d7e901e31cdebfe807a3f262c57829a4e3856498856c21e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 5 项修改已确认正确应用（展开为 8 处具体改动），残留 \"s0\"/\"seed 0\" 检查为 0 匹配。\n\n**产出：**\n- 文件：`artifacts/_project/report/seed_label_diff_summary.md`（`art_20260516_bd940b`）\n- 内容：8 处改动的行号级 before→after 对照表 + 残留检查结果 + 修改原因（registry 确认 008d seed=1）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-seed-label-diff-summary.md"
+}

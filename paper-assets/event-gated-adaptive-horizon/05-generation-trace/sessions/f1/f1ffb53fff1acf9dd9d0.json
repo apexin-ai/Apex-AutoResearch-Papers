@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1ffb53fff1acf9dd9d0",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops extend cheetah s4 300k",
+  "task_key": "worker_ops_extend-cheetah-s4-300k_20260519T062721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_extend-cheetah-s4-300k_20260519T062721_result.json",
+    "occurrence": 1,
+    "bytes": 429,
+    "sha256": "1bfa974eabb8ae60bf22bd4fc3d1989c2123069250eae8875100676e7daa0193"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n- **Checkpoint 确认**: `latest.pt` 对应 212K 步（非 214K，logger 报告 212000）\n- **Registry**: `exp_023_cheetah_baseline_s4_extended` 已创建，状态 RUNNING，parent 链接到原实验\n- **训练已启动**: tmux session `exp_023_s4_ext`，bjb1-45299 cuda:0，从 212K resume，目标 300K 步\n- **日志确认**: `Logger: (212000 steps)` 表明成功 resume from checkpoint"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-extend-cheetah-s4-300k.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d931b31c0e69603e4767",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "submit exp 008d civo trigger s4",
+  "task_key": "worker_submit_exp_008d_civo_trigger_s4_20260518T020217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp_008d_civo_trigger_s4_20260518T020217_result.json",
+    "occurrence": 1,
+    "bytes": 147,
+    "sha256": "2a01643101821032427f1476b8375cd7af776f866af626f94af69547df705bdd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`exp_008d_civo_trigger_s4` 已提交到 bjb1-45299 cuda:0，状态 RUNNING，tmux session 名 `exp_008d_civo_trigger_s4`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp-008d-civo-trigger-s4.md"
+}

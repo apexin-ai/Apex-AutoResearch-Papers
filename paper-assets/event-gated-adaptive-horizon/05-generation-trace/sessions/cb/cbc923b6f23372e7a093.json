@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cbc923b6f23372e7a093",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "write method section",
+  "task_key": "worker_write_method-section_20260513T063657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_method-section_20260513T063657_result.json",
+    "occurrence": 1,
+    "bytes": 159,
+    "sha256": "0413f8db8424901580ea10f9289f72272d40f3632d12a0d6bbcfb800126ba2b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method section 初稿已写入 `artifacts/method_section_draft.md`。包含 5 个小节，所有公式基于实际代码实现，符号统一。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-method-section.md"
+}

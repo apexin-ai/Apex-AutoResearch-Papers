@@ -1,0 +1,676 @@
+{
+  "schema_version": "1.0",
+  "id": "62b42bdd0c3e0d0bffd1",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "conversation",
+  "title": "paper related work update",
+  "task_key": "worker_paper_related-work-update_20260518T142443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_related-work-update_20260518T142443.jsonl",
+    "occurrence": 1,
+    "bytes": 33255,
+    "sha256": "5be652b491c4b2eabe7f8a4c04c2648036ca660c840f0e47625f49658bc9bf13"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 0,
+    "tool_calls": 16,
+    "roles": {
+      "tool_call": 16,
+      "tool_result": 16,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T14:27:42.166364+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/related_work.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T14:27:42.166777+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Temporal Abstraction.}\n5\tThe options framework \\citep{sutton1999options} and model-free action-repetition methods \\citep{sharma2017figar, biedenkapp2021temporl, lakshminarayanan2017dynamic} achieve temporal abstraction by training values on real transitions, insulating them from model-induced bias. In world-model RL, the Dreamer family \\citep{hafner2020dreamerv1, hafner2021dreamerv2, hafner2023dreamerv3} and transformer-based variants \\citep{micheli2023iris, robine2023twm, hafner2025dreamerv4} train policies in imagination at fixed $\\dt{=}1$. Several works introduce temporal abstraction via hierarchical representations \\citep{gumbsch2024thick, mattes2024hieros}, goal-conditioned jumps \\citep{li2025lsimagine}, or multi-scale state-space models \\citep{shaj2023mts3}, but none conditions a flat dynamics model on $\\dt$ for imagination-based policy training.\n6\t\n7\t\\paragraph{TAWM and the MPC--Imagination Contrast.}\n8\tTAWM \\citep{nhu2025tawm} conditions a world model on $\\dt$ within TD-MPC2 \\citep{hansen2024tdmpc2} and achieves consistent gains. The critical distinction is architectural: TAWM re-plans from real states at every step, so model errors do not accumulate into the critic. We show that identical $\\dt$-conditioning fails in DreamerV3's imagination loop, where errors compound through bootstrapping and transform manageable imprecision into pathological value overestimation.\n9\t\n10\t\\paragraph{Value Overestimation.}\n11\t\\citet{thrun1993issues} first identified maximization bias in Q-learning with function approximation. Double Q-learning \\citep{vanhasselt2016double} decouples action selection from evaluation; TD3 \\citep{fujimoto2018td3} extends this to actor-critic methods via clipped double-Q critics; SAC \\citep{haarnoja2018sac} uses entropy regularization to implicitly reduce overestimation; REDQ \\citep{chen2021redq} further mitigates overestimation through randomized Q-function ensembles. These model-\n…[truncated 2516 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T14:27:42.167014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T14:27:42.167343+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Auto-generated from literature_map.yaml\n2\t% 76 entries\n3\t\n4\t@article{sutton1999options,\n5\t  title = {Between MDPs and Semi-MDPs: A Framework for Temporal Abstraction in Reinforcement Learning},\n6\t  author = {Sutton, R.S and Precup, D and Singh, S},\n7\t  year = {1999},\n8\t  journal = {Artificial Intelligence 112},\n9\t}\n10\t\n11\t@inproceedings{hafner2020dreamerv1,\n12\t  title = {Dream to Control: Learning Behaviors by Latent Imagination},\n13\t  author = {Hafner, D and Lillicrap, T and Ba, J and Norouzi, M},\n14\t  year = {2020},\n15\t  booktitle = {International Conference on Learning Representations},\n16\t}\n17\t\n18\t@article{hafner2023dreamerv3,\n19\t  title = {Mastering Diverse Domains through World Models},\n20\t  author = {Hafner, Danijar and Pasukonis, Jurgis and Ba, Jimmy and Lillicrap, Timothy},\n21\t  year = {2025},\n22\t  journal = {Nature},\n23\t  eprint = {2301.04104},\n24\t  archivePrefix = {arXiv},\n25\t}\n26\t\n27\t@inproceedings{sharma2017figar,\n28\t  title = {Fine Grained Action Repetition for Deep Reinforcement Learning},\n29\t  author = {Sharma, S and Lakshminarayanan, A.S and Ravindran, B},\n30\t  year = {2017},\n31\t  booktitle = {International Conference on Learning Representations},\n32\t}\n33\t\n34\t@inproceedings{janner2019mbpo,\n35\t  title = {When to Trust Your Model: Model-Based Policy Optimization},\n36\t  author = {Janner, M and Fu, J and Zhang, M and Levine, S},\n37\t  year = {2019},\n38\t  booktitle = {Advances in Neural Information Processing Systems},\n39\t}\n40\t\n41\t@inproceedings{ke2019learning,\n42\t  title = {Learning Dynamics Model in Reinforcement Learning by Incorporating the Long Term Future},\n43\t  author = {Ke, N.R and Singh, A and Touati, A and Goyal, A and Bengio, Y and Parikh, D and Batra, D},\n44\t  year = {2019},\n45\t  booktitle = {International Conference on Learning Representations},\n46\t}\n47\t\n48\t@article{asadi2019combating,\n49\t  title = {Combating the Compounding-Error Problem with a Multi-step Model},\n50\t  author = {Asadi, K and Misra, D and Kim, S and Littman, M.L},\n51\t  yea\n…[truncated 22973 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T14:27:42.167556+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T14:27:42.167692+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T14:27:42.167836+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Nauman \"Overestimation, Overfitting, and Plasticity in Actor-Critic\" ICML 2024 arXiv"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T14:27:42.168018+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arXiv 2502.03550 TD-MPC2 value overestimation"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T14:27:42.168146+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"A Study of Plasticity Loss in On-Policy Deep Reinforcement Learning\" NeurIPS 2024 arXiv"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T14:27:42.168264+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Mitigating Plasticity Loss in Continual Reinforcement Learning by Reducing Churn\" ICML 2025"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T14:27:42.168422+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Nauman \"Overestimation, Overfitting, and Plasticity in Actor-Critic\" ICML 2024 arXiv\"\n\nLinks: [{\"title\":\"[2403.00514] Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2403.00514\"},{\"title\":\"Overestimation, overfitting, and plasticity in actor-critic | Proceedings of the 41st International Conference on Machine Learning\",\"url\":\"https://dl.acm.org/doi/10.5555/3692070.3693586\"},{\"title\":\"[2403.00514v2] Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2403.00514v2\"},{\"title\":\"[PDF] Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Overestimation,-Overfitting,-and-Plasticity-in-the-Nauman-Bortkiewicz/dcf39ce4ea7c1d073dcd0dbb131a0b90a4bd2977\"},{\"title\":\"Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2403.00514v1\"},{\"title\":\"Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/overestimation-overfitting-plasticity-actor-critic-bitter-lesson\"},{\"title\":\"Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning | OpenReview\",\"url\":\"https://openreview.net/forum?id=5vZzmCeTYu\"},{\"title\":\"Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning\",\"url\":\"https://proceedings.mlr.press/v235/nauman24a.html\"},{\"title\":\"Machine Learning Mar 2024\",\"url\":\"https://web3.arxiv.org/list/cs.LG/2024-03?skip=10&show=10\"},{\"title\":\"ICML Poster Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning\",\"url\":\"https://icml.cc/vir\n…[truncated 1741 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T14:27:42.168607+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"A Study of Plasticity Loss in On-Policy Deep Reinforcement Learning\" NeurIPS 2024 arXiv\"\n\nLinks: [{\"title\":\"A Study of Plasticity Loss in On-Policy Deep Reinforcement Learning\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/hash/ce7984e36d58659211a8dc7d5457cd6f-Abstract-Conference.html\"},{\"title\":\"NeurIPS Poster A Study of Plasticity Loss in On-Policy Deep Reinforcement Learning\",\"url\":\"https://neurips.cc/virtual/2024/poster/95486\"},{\"title\":\"A Study of Plasticity Loss in On-Policy Deep Reinforcement Learning | OpenReview\",\"url\":\"https://openreview.net/forum?id=MsUf8kpKTF\"},{\"title\":\"A Study of Plasticity Loss in On-Policy Deep Reinforcement Learning\",\"url\":\"https://papers.nips.cc/paper_files/paper/2024/hash/ce7984e36d58659211a8dc7d5457cd6f-Abstract-Conference.html\"},{\"title\":\"[2405.19153] A Study of Plasticity Loss in On-Policy Deep Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2405.19153\"},{\"title\":\"A Study of Plasticity Loss in On-Policy Deep Reinforcement Learning - Microsoft Research\",\"url\":\"https://www.microsoft.com/en-us/research/publication/a-study-of-plasticity-loss-in-on-policy-deep-reinforcement-learning/\"},{\"title\":\"[Quick Review] A Study of Plasticity Loss in On-Policy Deep Reinforcement Learning\",\"url\":\"https://liner.com/review/a-study-of-plasticity-loss-in-onpolicy-deep-reinforcement-learning\"},{\"title\":\"A Study of Plasticity Loss in On-Policy Deep Reinforcement Learning - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2024arXiv240519153J/abstract\"},{\"title\":\"A Study of Plasticity Loss in On-Policy Deep Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2405.19153v1\"},{\"title\":\"A Study of Plasticity Loss in On-Policy Deep Reinforcement Learning | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/study-plasticity-loss-policy-deep-reinforcement-learning\"}]\n\nI found the paper! Here's what I found about \"A Study of Plasticity Loss in On-Policy Deep Reinforcement Learning\":\n\n## Pa\n…[truncated 1173 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T14:27:42.168786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arXiv 2502.03550 TD-MPC2 value overestimation\"\n\nLinks: [{\"title\":\"[2502.03550] TD-M(PC)$^2$: Improving Temporal Difference MPC Through Policy Constraint\",\"url\":\"https://arxiv.org/abs/2502.03550\"},{\"title\":\"TD-M(PC)2: Improving Temporal Difference MPC Through Policy Constraint\",\"url\":\"https://arxiv.org/html/2502.03550\"},{\"title\":\"arXiv:2502.03550v1 [cs.LG] 5 Feb 2025\",\"url\":\"https://arxiv.org/pdf/2502.03550\"},{\"title\":\"Improving Temporal Difference MPC Through Policy Constraint\",\"url\":\"https://darthutopian.github.io/tdmpc_square/\"},{\"title\":\"[2502.03550v1] TD-M(PC)$^2$: Improving Temporal Difference MPC Through Policy Constraint\",\"url\":\"http://arxiv.org/abs/2502.03550v1\"},{\"title\":\"TD-M(PC)2: Improving Temporal Difference MPC Through Policy Constraint\",\"url\":\"https://darthutopian.github.io/tdmpc_square/static/pdfs/paper.pdf\"},{\"title\":\"Bigger, Regularized, Optimistic: scaling for compute and sample-efficient continuous control\",\"url\":\"https://arxiv.org/html/2405.16158v3\"},{\"title\":\"TD-MPC2: Scalable Model-Based Control\",\"url\":\"https://www.emergentmind.com/topics/td-mpc2\"},{\"title\":\"TD-MPC2: Scalable, Robust World Models for Continuous Control | OpenReview\",\"url\":\"https://openreview.net/forum?id=Oxh5CstDJU\"},{\"title\":\"[2310.16828] TD-MPC2: Scalable, Robust World Models for Continuous Control\",\"url\":\"https://arxiv.org/abs/2310.16828\"}]\n\nBased on the search results, here's what arXiv paper 2502.03550 is about:\n\n## Overview\n\nThe paper is titled \"TD-M(PC)²: Improving Temporal Difference MPC Through Policy Constraint\" and was published on February 5, 2025.\n\n## The Value Overestimation Problem\n\nThe paper discovers that existing methods that rely on standard SAC-style policy iteration for value learning, directly using data generated by the planner, often result in persistent value overestimation. While overestimation bias is within an acceptable range in low-dimensional tasks, it is incredibly large in high-dimensional tasks and does not tend \n…[truncated 1204 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T14:27:42.168994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Mitigating Plasticity Loss in Continual Reinforcement Learning by Reducing Churn\" ICML 2025\"\n\nLinks: [{\"title\":\"ICML Poster Mitigating Plasticity Loss in Continual Reinforcement Learning by Reducing Churn\",\"url\":\"https://icml.cc/virtual/2025/poster/45929\"},{\"title\":\"Mitigating Plasticity Loss in Continual Reinforcement Learning by Reducing Churn | OpenReview\",\"url\":\"https://openreview.net/forum?id=EkoFXfSauv\"},{\"title\":\"[2506.00592] Mitigating Plasticity Loss in Continual Reinforcement Learning by Reducing Churn\",\"url\":\"https://arxiv.org/abs/2506.00592\"},{\"title\":\"Mitigating Plasticity Loss in Continual Reinforcement Learning by Reducing Churn\",\"url\":\"https://arxiv.org/html/2506.00592v1\"},{\"title\":\"Mitigating Plasticity Loss in Continual Reinforcement Learning by Reducing Churn\",\"url\":\"https://proceedings.mlr.press/v267/tang25g.html\"},{\"title\":\"GitHub - bluecontra/C-CHAIN: The code implementation of Continual Churn Approximation Reduction (C-CHAIN) for ICML 2025 paper \\\"Mitigating Plasticity Loss in Continual RL by Reducing Churn\\\"\",\"url\":\"https://github.com/bluecontra/C-CHAIN\"},{\"title\":\"[2506.00592v1] Mitigating Plasticity Loss in Continual Reinforcement Learning by Reducing Churn\",\"url\":\"https://arxiv.org/abs/2506.00592v1\"},{\"title\":\"Mitigating Plasticity Loss in Continual Reinforcement Learning by Reducing Churn | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/mitigating-plasticity-loss-continual-reinforcement-learning-by\"},{\"title\":\"GitHub - datake/Papers-Of-Continual-RL: Related papers for Continual Reinforcement Learning. · GitHub\",\"url\":\"https://github.com/datake/Papers-Of-Continual-RL\"},{\"title\":\"GitHub - xialeiliu/Awesome-Incremental-Learning: Awesome Incremental Learning · GitHub\",\"url\":\"https://github.com/xialeiliu/Awesome-Incremental-Learning\"}]\n\nBased on the search results, here's information about the paper \"Mitigating Plasticity Loss in Continual Reinforcement Learning by Reducing Churn\" from I\n…[truncated 1378 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T14:27:42.169178+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arXiv 2405.19153 authors \"plasticity loss\" on-policy"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T14:27:42.169306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arXiv 2502.03550 \"TD-M(PC)2\" authors full list"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T14:27:42.169452+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arXiv 2502.03550 \"TD-M(PC)2\" authors full list\"\n\nLinks: [{\"title\":\"[2502.03550] TD-M(PC)$^2$: Improving Temporal Difference MPC Through Policy Constraint\",\"url\":\"https://arxiv.org/abs/2502.03550\"},{\"title\":\"TD-M(PC)2: Improving Temporal Difference MPC Through Policy Constraint\",\"url\":\"https://arxiv.org/html/2502.03550\"},{\"title\":\"Computer Science\",\"url\":\"https://www.arxiv.org/list/cs/recent?skip=356&show=2000\"},{\"title\":\"TD-M(PC)2: Improving Temporal Difference MPC Through Policy Constraint\",\"url\":\"https://darthutopian.github.io/tdmpc_square/static/pdfs/paper.pdf\"},{\"title\":\"TD-MPC2: Scalable, Robust World Models for Continuous Control | OpenReview\",\"url\":\"https://openreview.net/forum?id=Oxh5CstDJU\"},{\"title\":\"[2310.16828] TD-MPC2: Scalable, Robust World Models for Continuous Control\",\"url\":\"https://arxiv.org/abs/2310.16828\"},{\"title\":\"TD-GRPC: Temporal Difference Learning with Group ...\",\"url\":\"https://arxiv.org/pdf/2505.13549\"},{\"title\":\"[PDF] TD-MPC2: Scalable, Robust World Models for Continuous Control | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/TD-MPC2:-Scalable,-Robust-World-Models-for-Control-Hansen-Su/8eeccf1033fd759c868b29ccb6aa70f5ffd1887c\"},{\"title\":\"TD-MPC2: Scalable, Robust World Models for Continuous Control\",\"url\":\"https://arxiv.org/html/2310.16828v2\"},{\"title\":\"GitHub - iszhanjiawei/flow_matching_arxiv_daily · GitHub\",\"url\":\"https://github.com/iszhanjiawei/flow_matching_arxiv_daily\"}]\n\nThe authors of arXiv paper 2502.03550 \"TD-M(PC)²: Improving Temporal Difference MPC Through Policy Constraint\" are: Haotian Lin, Pengcheng Wang, Jeff Schneider, and Guanya Shi.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T14:27:42.169611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arXiv 2405.19153 authors \"plasticity loss\" on-policy\"\n\nLinks: [{\"title\":\"[2405.19153] A Study of Plasticity Loss in On-Policy Deep Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2405.19153\"},{\"title\":\"A Study of Plasticity Loss in On-Policy Deep Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2405.19153\"},{\"title\":\"LLMs as verification oracles for Solidity\",\"url\":\"https://arxiv.org/html/2509.19153\"},{\"title\":\"Spatiotemporal Variations of Temperature in Jupiter’s Upper Atmosphere\",\"url\":\"https://arxiv.org/html/2503.19153\"},{\"title\":\"A tweezer array with 6100 highly coherent atomic qubits\",\"url\":\"https://inspirehep.net/literature/2770085\"},{\"title\":\"Rearrangement of individual atoms in a 2000-site optical- ...\",\"url\":\"https://inspirehep.net/literature/2791714\"},{\"title\":\"Arxiv\",\"url\":\"https://arxiv.org/pdf/2405.13356\"},{\"title\":\"Desiree Lim (0009-0008-1256-3499)\",\"url\":\"https://orcid.org/0009-0008-1256-3499\"},{\"title\":\"[2305.19153] FERN: Leveraging Graph Attention Networks for Failure Evaluation and Robust Network Design\",\"url\":\"https://arxiv.org/abs/2305.19153\"},{\"title\":\"Untitled Document\",\"url\":\"https://arxiv.org/html/2604.19153\"}]\n\nBased on the search results, the authors of arXiv paper 2405.19153 are Arthur Juliani and Jordan T. Ash. \n\nThe paper is titled \"A Study of Plasticity Loss in On-Policy Deep Reinforcement Learning\". Plasticity loss is a problem wherein a neural network trained in an online fashion displays a degraded ability to fit new tasks. While plasticity loss has received less attention in the on-policy deep RL setting, the paper performs an extensive set of experiments examining plasticity loss and a variety of mitigation methods in on-policy deep RL.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T14:27:42.169868+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/related_work.tex",
+              "old_string": "and achieves consistent gains. The critical distinction is architectural:",
+              "new_string": "and achieves consistent gains. \\citet{lin2025tdmpcsquare} trace persistent value overestimation in TD-MPC2 to structural policy mismatch, a complementary diagnosis to our identification of the imagination-based feedback loop as the critical factor. The critical distinction is architectural:"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T14:27:42.170077+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T14:27:42.170221+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/related_work.tex",
+              "old_string": "from policy-class constraints. Our CIVO is mechanistically distinct:",
+              "new_string": "from policy-class constraints. \\citet{nauman2024overestimation} show that overestimation, overfitting, and plasticity loss are coupled phenomena in actor-critic methods; CIVO can be understood as a model-induced instance within this broader framework. Our CIVO is mechanistically distinct:"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T14:27:42.170378+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T14:27:42.170502+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/related_work.tex",
+              "old_string": "(\\S\\ref{sec:seed_divergence}). Our factorial diagnostic approach",
+              "new_string": "(\\S\\ref{sec:seed_divergence}). \\citet{juliani2024plasticity} extend this analysis to on-policy settings and find that regenerative interventions are the most reliable mitigation, while \\citet{tang2025churn} link plasticity loss to value churn through NTK rank collapse. \\citet{nauman2024overestimation} further demonstrate that overestimation and plasticity loss are coupled, consistent with our observation that seed-dependent CIVO outcomes correlate with critic capacity. Our factorial diagnostic approach"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T14:27:42.170651+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T14:27:42.170791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/references.bib",
+              "old_string": "@article{lenz2025macura,\n  title = {Trust the Model Where It Trusts Itself -- Model-Based Actor-Critic with Uncertainty-Aware Rollout Adaption},\n  author = {Lenz, S and et, al},\n  year = {2025},\n  journal = {arXiv preprint arXiv:2405.19014},\n  eprint = {2405.19014},\n  archivePrefix = {arXiv},\n}",
+              "new_string": "@article{lenz2025macura,\n  title = {Trust the Model Where It Trusts Itself -- Model-Based Actor-Critic with Uncertainty-Aware Rollout Adaption},\n  author = {Lenz, S and et, al},\n  year = {2025},\n  journal = {arXiv preprint arXiv:2405.19014},\n  eprint = {2405.19014},\n  archivePrefix = {arXiv},\n}\n\n@inproceedings{nauman2024overestimation,\n  title = {Overestimation, Overfitting, and Plasticity in Actor-Critic: the Bitter Lesson of Reinforcement Learning},\n  author = {Nauman, Michal and Bortkiewicz, Micha{\\l} and Mi{\\l}o{\\'s}, Piotr and Trzcinski, Tomasz and Ostaszewski, Mateusz and Cygan, Marek},\n  year = {2024},\n  booktitle = {International Conference on Machine Learning},\n  eprint = {2403.00514},\n  archivePrefix = {arXiv},\n}\n\n@article{lin2025tdmpcsquare,\n  title = {{TD-M(PC)$^2$}: Improving Temporal Difference MPC Through Policy Constraint},\n  author = {Lin, Haotian and Wang, Pengcheng and Schneider, Jeff and Shi, Guanya},\n  year = {2025},\n  journal = {arXiv preprint arXiv:2502.03550},\n  eprint = {2502.03550},\n  archivePrefix = {arXiv},\n}\n\n@inproceedings{juliani2024plasticity,\n  title = {A Study of Plasticity Loss in On-Policy Deep Reinforcement Learning},\n  author = {Juliani, Arthur and Ash, Jordan T.},\n  year = {2024},\n  booktitle = {Advances in Neural Information Processing Systems},\n  eprint = {2405.19153},\n  archivePrefix = {arXiv},\n}\n\n@inproceedings{tang2025churn,\n  title = {Mitigating Plasticity Loss in Continual Reinforcement Learning by Reducing Churn},\n  author = {Tang, Hongyao and Obando-Ceron, Johan and Castro, Pablo Samuel and Courville, Aaron and Berseth, Glen},\n  year = {2025},\n  booktitle = {International Conference on Machine Learning},\n  eprint = {2506.00592},\n  archivePrefix = {arXiv},\n}"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T14:27:42.171060+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-18T14:27:42.171217+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/related_work.tex"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-18T14:27:42.171372+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Temporal Abstraction.}\n5\tThe options framework \\citep{sutton1999options} and model-free action-repetition methods \\citep{sharma2017figar, biedenkapp2021temporl, lakshminarayanan2017dynamic} achieve temporal abstraction by training values on real transitions, insulating them from model-induced bias. In world-model RL, the Dreamer family \\citep{hafner2020dreamerv1, hafner2021dreamerv2, hafner2023dreamerv3} and transformer-based variants \\citep{micheli2023iris, robine2023twm, hafner2025dreamerv4} train policies in imagination at fixed $\\dt{=}1$. Several works introduce temporal abstraction via hierarchical representations \\citep{gumbsch2024thick, mattes2024hieros}, goal-conditioned jumps \\citep{li2025lsimagine}, or multi-scale state-space models \\citep{shaj2023mts3}, but none conditions a flat dynamics model on $\\dt$ for imagination-based policy training.\n6\t\n7\t\\paragraph{TAWM and the MPC--Imagination Contrast.}\n8\tTAWM \\citep{nhu2025tawm} conditions a world model on $\\dt$ within TD-MPC2 \\citep{hansen2024tdmpc2} and achieves consistent gains. \\citet{lin2025tdmpcsquare} trace persistent value overestimation in TD-MPC2 to structural policy mismatch, a complementary diagnosis to our identification of the imagination-based feedback loop as the critical factor. The critical distinction is architectural: TAWM re-plans from real states at every step, so model errors do not accumulate into the critic. We show that identical $\\dt$-conditioning fails in DreamerV3's imagination loop, where errors compound through bootstrapping and transform manageable imprecision into pathological value overestimation.\n9\t\n10\t\\paragraph{Value Overestimation.}\n11\t\\citet{thrun1993issues} first identified maximization bias in Q-learning with function approximation. Double Q-learning \\citep{vanhasselt2016double} decouples action selection from evaluation; TD3 \\citep{fujimoto2018td3} extends this to actor-critic methods via clipped doubl\n…[truncated 3398 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-18T14:27:42.171526+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"—\\| – \" /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/related_work.tex",
+              "description": "Check for em-dash and en-dash AI writing markers"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-18T14:27:42.171652+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-18T14:27:42.171787+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"ing\\.\" /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/related_work.tex | grep -v \"learning\\.\\|bootstrapping\\.\\|conditioning\\.\"",
+              "description": "Check for -ing phrase endings"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-18T14:27:42.171945+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5:The options framework \\citep{sutton1999options} and model-free action-repetition methods \\citep{sharma2017figar, biedenkapp2021temporl, lakshminarayanan2017dynamic} achieve temporal abstraction by training values on real transitions, insulating them from model-induced bias. In world-model RL, the Dreamer family \\citep{hafner2020dreamerv1, hafner2021dreamerv2, hafner2023dreamerv3} and transformer-based variants \\citep{micheli2023iris, robine2023twm, hafner2025dreamerv4} train policies in imagination at fixed $\\dt{=}1$. Several works introduce temporal abstraction via hierarchical representations \\citep{gumbsch2024thick, mattes2024hieros}, goal-conditioned jumps \\citep{li2025lsimagine}, or multi-scale state-space models \\citep{shaj2023mts3}, but none conditions a flat dynamics model on $\\dt$ for imagination-based policy training.\n11:\\citet{thrun1993issues} first identified maximization bias in Q-learning with function approximation. Double Q-learning \\citep{vanhasselt2016double} decouples action selection from evaluation; TD3 \\citep{fujimoto2018td3} extends this to actor-critic methods via clipped double-Q critics; SAC \\citep{haarnoja2018sac} uses entropy regularization to implicitly reduce overestimation; REDQ \\citep{chen2021redq} further mitigates overestimation through randomized Q-function ensembles. These model-free solutions target the max operator as the amplifier. In model-based settings, MBPO \\citep{janner2019mbpo} bounds model use via short rollouts and MOPO \\citep{yu2020mopo} penalizes rewards by model uncertainty. \\citet{lu2018nondelusional} identify delusional bias from policy-class constraints. \\citet{nauman2024overestimation} show that overestimation, overfitting, and plasticity loss are coupled phenomena in actor-critic methods; CIVO can be understood as a model-induced instance within this broader framework. Our CIVO is mechanistically distinct: the amplifier is the world model's co-adaptation with a learned temporal embedding. This produces systema\n…[truncated 638 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-18T14:27:42.172119+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "新增内容无 -ing 短语结尾问题。已有内容（training, conditioning 等）是名词性用法，不是 AI 痕迹。\n\n完成。修改汇总：\n\n**references.bib** — 添加 4 个条目：\n- `nauman2024overestimation` (ICML 2024, arXiv 2403.00514)\n- `lin2025tdmpcsquare` (arXiv 2502.03550)\n- `juliani2024plasticity` (NeurIPS 2024, arXiv 2405.19153)\n- `tang2025churn` (ICML 2025, arXiv 2506.00592)\n\n**related_work.tex** — 3 处插入：\n1. **TAWM 段落**：TD-M(PC)² 引用，指出其将 TD-MPC2 中的 value overestimation 归因于 policy mismatch，与本文对 imagination loop 的诊断互补\n2. **Value Overestimation 段落**：Nauman 引用，将 CIVO 定位为其 overestimation-plasticity 耦合框架下的 model-induced 实例\n3. **Network Capacity 段落**：Juliani、Tang、Nauman 三篇并入，分别补充 on-policy plasticity loss、churn-based plasticity 机制、overestimation-plasticity 耦合证据"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-update_20260518T142443"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ],
+  "readable_path": "readable/conversations/paper-related-work-update.md"
+}

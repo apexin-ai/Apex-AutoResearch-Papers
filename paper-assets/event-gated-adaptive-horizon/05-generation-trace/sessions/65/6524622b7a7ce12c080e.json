@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6524622b7a7ce12c080e",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper fig2 integration",
+  "task_key": "worker_paper_fig2-integration_20260517T010117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig2-integration_20260517T010117_result.json",
+    "occurrence": 1,
+    "bytes": 794,
+    "sha256": "0042e74e301e5d14494cb6ee45c8344266ebe86fabfc97ff8d0be6c2ab8b7474"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Integration complete. The figure is placed in the F7 section (`\\label{fig:civo_decomposition}`) with:\n\n- **Updated F7 paragraph**: references `Figure~\\ref{fig:civo_decomposition}`, reports the key percentages (-73% peak, -86% final for trained dt-emb; -51% and -96% for Full-SGS s1/s2), and frames SGS as \"reduces but does not eliminate CIVO risk.\"\n- **Self-contained caption**: defines all four conditions (Baseline, Trained dt-emb, Full-SGS s1/s2), reports quantitative findings, and explicitly notes the 50% prevention rate without overclaiming.\n- **Figure path**: `figures/fig2_civo_decomposition.pdf` resolves correctly via the existing `\\graphicspath{{../../artifacts/}}`.\n- **Style compliance**: no em-dashes, no -ing phrase endings, no transition-word stacking."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig2-integration.md"
+}

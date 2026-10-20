@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "d76d8c5e50a9f8590735",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "code bjb1 40020 blocking wait deploy",
+  "task_key": "worker_code_bjb1-40020-blocking-wait-deploy_20260523T083451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bjb1-40020-blocking-wait-deploy_20260523T083451.log",
+    "occurrence": 1,
+    "bytes": 825453,
+    "sha256": "4cc004b53f3644a9afb3bdab078d9e6c31904194c7a446fd98143c5f35f966ce"
+  },
+  "statistics": {
+    "messages": 469,
+    "user_turns": 0,
+    "tool_calls": 184,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 97,
+      "tool_call": 184,
+      "tool_result": 184,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 469,
+      "chunks": [
+        {
+          "path": "d76d8c5e50a9f8590735-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d76d8c5e50a9f8590735-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d76d8c5e50a9f8590735-part-0003.json",
+          "message_count": 109
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-bjb1-40020-blocking-wait-deploy.md"
+}

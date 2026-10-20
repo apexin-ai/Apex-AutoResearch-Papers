@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63965f1c23b64586ced6",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 006 full metrics",
+  "task_key": "worker_analysis_exp_006_full_metrics_20260514T004608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_006_full_metrics_20260514T004608_result.json",
+    "occurrence": 1,
+    "bytes": 1184,
+    "sha256": "e8d47ca82e2a11c6766d2b2fb212952a3cfd759682df19854c4dc2b3352b097d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已保存。以下是 summary：\n\n---\n\n## exp_006 (fixed_dt2) 状态\n\n**进程**: 仍在运行 (PID 85029)，当前 ~65K / 150K 步\n**gate_dt_mean**: 始终 2.0（符合预期）\n\n## eval_return 轨迹\n\n| Step | fixed_dt2 | Baseline | 差距 |\n|------|-----------|----------|------|\n| 5K   | 31.0      | 31.8     | -0.8 |\n| 15K  | 256.9     | 206.6    | +50.3 |\n| 25K  | 321.4     | 395.3    | -73.9 |\n| 35K  | **485.3** (peak) | 388.5 | +96.9 |\n| 45K  | 477.0     | 513.8    | -36.8 |\n| 55K  | 360.4     | 625.7    | **-265.3 (-42.4%)** |\n\nBaseline 后续持续攀升至 932.2 @ 145K。\n\n## 趋势判断\n\n1. **存在明显崩塌**：35K peak 后连续两个 eval 点下降，55K 时较 peak 跌 25.7%，且下降加速（-8 → -117）\n2. **世界模型正常，策略端出问题**：model_loss 持续下降（20.7→4.9），但 eval_return 反向走低，说明 fixed dt=2 的 imagination horizon 导致策略优化不稳定\n3. **与 baseline 差距急剧扩大**：前 35K 交替领先，55K 后已落后 42%，且 baseline 后续还会升至 900+\n4. **趋势不乐观**：虽然实验还在跑，但倒V形曲线没有回升迹象"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-006-full-metrics.md"
+}

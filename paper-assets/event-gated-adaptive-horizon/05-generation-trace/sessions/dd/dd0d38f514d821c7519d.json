@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "dd0d38f514d821c7519d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "paper icml template switch",
+  "task_key": "worker_paper_icml_template_switch_20260524T095808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_icml_template_switch_20260524T095808.log",
+    "occurrence": 1,
+    "bytes": 818283,
+    "sha256": "94914647c2d4683a76c99e99a1f6d5e082cc44b90fcaefd993732c481bbacf68"
+  },
+  "statistics": {
+    "messages": 401,
+    "user_turns": 0,
+    "tool_calls": 121,
+    "roles": {
+      "log": 1,
+      "system": 75,
+      "record": 1,
+      "assistant": 81,
+      "tool_call": 121,
+      "tool_result": 121,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 401,
+      "chunks": [
+        {
+          "path": "dd0d38f514d821c7519d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "dd0d38f514d821c7519d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "dd0d38f514d821c7519d-part-0003.json",
+          "message_count": 41
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-icml-template-switch.md"
+}

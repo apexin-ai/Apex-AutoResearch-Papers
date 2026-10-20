@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a5b087bc833eeeac08e",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "writing experimental setup draft",
+  "task_key": "worker_writing_experimental-setup-draft_20260514T185802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_experimental-setup-draft_20260514T185802_result.json",
+    "occurrence": 1,
+    "bytes": 1100,
+    "sha256": "e858b2d18a469d0c9300c5326bbd8587a005269b4590cc2fcc76af33c2d688cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。文件在 `paper/sections/experimental_setup.md`，约 1.8 页 CoRL 格式。\n\n覆盖内容：\n- **3.1 Base Architecture**: RSSM + 三类 dt_embedding 配置 + subsample + imagination dt/horizon\n- **3.2 Environment**: Walker Walk (primary) + Cheetah Run / Cartpole Swingup (cross-env, 标注 in progress)\n- **3.3 Factorial Design**: 实验表（Table 1）列出 001/005/006/007/008a-f 全部条件，标注 4 组 key controlled comparisons（008d vs 008f, 008c vs 008a, 006 vs 008a, 008e_v3），多 seed 复制说明\n- **3.4 Diagnostic Framework**: normalized v/e ratio 定义（公式 1-2）、三档阈值（>1.5 pathological, 0.8-1.2 normal, <0.7 suppression）、late-training v/R 补充信号\n- **3.5 Training Details**: 超参数、训练时长、评估协议、可复现性\n\n设计决策：\n- 008d vs 008f 作为 cleanest causal pair（仅 dt_embed_dim 不同），与 memory.md 中 Director 修正一致\n- cross-environment 实验标注 footnote 说明 in progress，未 claim 结果\n- 表格用 F-A/F-C/F-D/F-E/F-F 短名，方便后续 Results 引用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-experimental-setup-draft.md"
+}

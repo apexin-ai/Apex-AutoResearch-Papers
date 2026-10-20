@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c15b175e09f6746fb408",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis metrics aggregation",
+  "task_key": "worker_analysis_metrics-aggregation_20260515T043938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_metrics-aggregation_20260515T043938_result.json",
+    "occurrence": 1,
+    "bytes": 886,
+    "sha256": "26e59d074402420f28ee56f229a471c58f466d2ee7463a4e4b12ef36ee3cb741"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已保存并注册: `artifacts/metrics_summary_table.md` (art_20260515_0414dc)\n\n内容包含:\n- **Table 1a**: 8个实验的逐实验对比（eval_return + nve @ 35K/55K/65K/85K/105K + collapse判定）\n- **Table 1b**: Config级别 mean±std（008d 2 seeds, 008f 2 seeds）\n- **Table 1c**: Config描述与关键问题\n- **Table 2**: RSSM fidelity analysis（baseline/008d/008f 的 obs_MSE 和 reward_MAE）\n- **Table 3**: 补充实验（008c, 007, 005, 003）\n- **Causal claims summary**: C2/C6/B+ 证据状态\n\n注意事项:\n- baseline 早期 eval_return（35K-65K）来自其他实验的交叉引用，非 exp_001 registry 直接记录，已标注 †\n- 008d config 的 mean±std 在 65K+ 仅有 seed 2 数据（seed 1 在 55K 因 collapse 停止），已标注 ‡\n- exp_008e_v3 seed 2 和 exp_009a baseline seed 2 仍在 RUNNING，表格完成后可补充"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-metrics-aggregation.md"
+}

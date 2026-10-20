@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b4b2f0e1a57b5ca5888",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code maniskill3 cuda workaround",
+  "task_key": "worker_code_maniskill3_cuda_workaround_20260515T142722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_maniskill3_cuda_workaround_20260515T142722_result.json",
+    "occurrence": 1,
+    "bytes": 1092,
+    "sha256": "da775505a0bbaa30870279643702a7d30e7c969144aedfa5e2a7bc3edd9fb5ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**修改内容** (`envs/maniskill.py`):\n\n1. **`__init__` 中移除 CUDA_VISIBLE_DEVICES** — 在 `gymnasium.make()` 前 `os.environ.pop(\"CUDA_VISIBLE_DEVICES\")`，原始值存入 `_cvd_stash`。SAPIEN 看到所有物理 GPU，避免 segfault。\n2. **State-based env 使用 CPU render backend** — `render_backend=\"cpu\"` 跳过 CUDA 渲染设备分配。\n3. **`maniskill_target_device()` 函数** — 将原始 CVD 值转换为物理 GPU device string（如 `\"cuda:2\"`），供训练代码使用。\n4. **补充 `act_space` / `obs_space` 属性** — 验证测试需要。\n\n**验证结果**:\n- `CUDA_VISIBLE_DEVICES=2`（不存在的 GPU）：通过（原来 segfault）\n- 无 CVD / CVD=0：通过（无回归）\n- GPU 显存：仅 GPU 0 增加 ~118 MiB（SAPIEN CUDA context），GPU 1 不受影响\n\n**注意事项**: CVD 移除后 PyTorch 看到所有物理 GPU，训练代码需用物理 GPU index（`maniskill_target_device()` 或 `--device cuda:N`），不能假设 `cuda:0`。\n\n报告已写入 `artifacts/maniskill3_cuda_workaround.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-maniskill3-cuda-workaround.md"
+}

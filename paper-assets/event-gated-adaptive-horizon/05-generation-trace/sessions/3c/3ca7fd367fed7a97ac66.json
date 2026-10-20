@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ca7fd367fed7a97ac66",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check exp 053 blocking wait",
+  "task_key": "worker_check_exp_053_blocking_wait_20260523T144940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp_053_blocking_wait_20260523T144940_result.json",
+    "occurrence": 1,
+    "bytes": 228,
+    "sha256": "8211873cd89d6b093f164d71c391100debb4e1d5942bf53bd5d589dd7abf709b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 123495 已运行约 10.5 小时，仍在执行。后台等待脚本（PID 154875）已部署，进程退出后会自动提取 exp_053 指标到 `/tmp/exp053_result.txt`。\n\n4.5 分钟后自动轮询结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp-053-blocking-wait.md"
+}

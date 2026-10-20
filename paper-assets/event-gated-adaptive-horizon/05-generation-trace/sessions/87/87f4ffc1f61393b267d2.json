@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "87f4ffc1f61393b267d2",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "code exp 049 completion and exp 053 deploy",
+  "task_key": "worker_code_exp_049_completion_and_exp_053_deploy_20260523T034532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_049_completion_and_exp_053_deploy_20260523T034532.log",
+    "occurrence": 1,
+    "bytes": 520941,
+    "sha256": "b7039ec0b99b43282cc15e05c4292aa2eb333b06c4cfa973ee1d0ad733cc1fbe"
+  },
+  "statistics": {
+    "messages": 328,
+    "user_turns": 0,
+    "tool_calls": 127,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 70,
+      "tool_call": 127,
+      "tool_result": 127,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 328,
+      "chunks": [
+        {
+          "path": "87f4ffc1f61393b267d2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "87f4ffc1f61393b267d2-part-0002.json",
+          "message_count": 148
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-049-completion-and-exp-053-deploy.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "497198040f804b44aee4",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "diagnose exp 040 wide dual critic cheetah",
+  "task_key": "worker_diagnose_exp_040_wide_dual_critic_cheetah_20260522T093626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_040_wide_dual_critic_cheetah_20260522T093626_result.json",
+    "occurrence": 1,
+    "bytes": 599,
+    "sha256": "017de7b8ff5ab276f802a7d31580c8f93d2b94f2abb3525cd219ecdb857e05c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断报告已写入 memory.md。\n\n## 总结\n\n**exp_040 没有程序崩溃**（EXIT_CODE=1 信息可能有误）。进程仍在 GPU 上正常运行。\n\n真正的问题是**训练质量崩溃**：\n- Eval: 256.4 (peak at 25k) → 41.0 (215k)，持续单调下降\n- Gate 锁死 dt=2，entropy=0，从未探索其他 horizon\n- 与之前 exp_034 Cheetah dual-critic 结论一致：dual-critic 在 Cheetah 上无效\n\n**建议**：可以让它跑完收集完整数据，但结论已明确 — wide dual-critic 在 Cheetah 上是 negative result。不需要 resume 或修代码。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-040-wide-dual-critic-cheetah-copy-2.md"
+}

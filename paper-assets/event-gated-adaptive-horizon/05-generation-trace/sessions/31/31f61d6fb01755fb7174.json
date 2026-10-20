@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31f61d6fb01755fb7174",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops gpu1 cleanup and 016 launch",
+  "task_key": "worker_ops_gpu1_cleanup_and_016_launch_20260515T190730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu1_cleanup_and_016_launch_20260515T190730_result.json",
+    "occurrence": 1,
+    "bytes": 288,
+    "sha256": "f3a08710cfe7998834ec43ab1c2f33a8221b76726214b4268e28b944e596aa1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 1 显存已完全释放：\n\n- **显存占用**: 0 MiB / 97887 MiB，GPU 利用率 0%\n- **残留进程**: 无（GPU 1 上没有任何计算进程）\n- **被 kill 的进程**: PID 522009, 522455, 522450 全部已死（ps 返回空）\n\nGPU 1 干净，可以使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu1-cleanup-and-016-launch.md"
+}

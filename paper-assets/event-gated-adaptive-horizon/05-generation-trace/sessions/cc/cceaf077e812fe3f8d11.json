@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cceaf077e812fe3f8d11",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_9_1778807495.md",
+  "task_key": "loop_9_1778807495",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778807495.md",
+    "occurrence": 1,
+    "bytes": 3940,
+    "sha256": "d21c7786568846b9902dcca21a183985f41da25830ba0902b8a107bbd5211a28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T01:11:31+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 bjb1-45299 只有 cuda:0 和 cuda:1，必须通过 `get_project_status` 确认 gpu_ids 白名单后才能提交\n- submit_training_job 命令必须包含完整环境激活链：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa`\n- GPU 编号在脚本内始终用 `cuda:0`（框架自动映射物理 GPU）\n- 009b seed 2 未复现 collapse，C2 claim 已从\"必然 collapse\"调整为\"创造 collapse vulnerability\"——不可退回旧 framing\n- CoRL 2026 deadline 2026-05-29（剩 14 天），不做 fallback 思维\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-45299，工作目录 `/root/autodl-tmp/event-gated-adaptive-horizon`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 代码 commit：`09876d7080affdb0fb329e24753a46d998da9d8e`\n- 模型：DreamerV3 modified（logdir 下各实验子目录）\n- 数据：DMC Walker Walk / Cheetah Run（dm_control 内置）\n- logdir 结构：`/root/autodl-tmp/event-gated-adaptive-horizon/logdir/{exp_name}/`\n- 活跃进程：\n  - exp_009a_baseline_walker_s2: PID 142508, cuda:0, ~336K/500K steps, tmux session\n  - exp_008e_v3_walker_s2: PID 43437, cuda:1, 刚启动 105K steps, tmux session\n\n### 3. 📊 当前状态\n**刚完成**: exp_008e_v3_walker_s1 (crown jewel C6 seed 1) SUCCESS — eval=869.9@105K, v/e=0.527, 与 seed 0 完全一致。D032 framing 调整已提交（collapse is stochastic, nve>1.5x is reliable marker）。\n\n**RUNNING**:\n- exp_009a_baseline_walker_s2: 67% complete (336K/500K), eval converged ~920-960, v/e=0.699 stable。预计 ~6h 完成\n- exp_008e_v3_walker_s2: C6 seed 2 验证，刚由 cron 自动提交，~5h 完成\n\n**QUEUED** (等 GPU 空出):\n- cuda:0 排期: 009a → 009d (baseline s1 复现) → 010a (Cheetah baseline)\n- cuda:1 排期: 008e_v3_s2 → 009e (008d s1 复现) → 009f (008f s1 复现) → 009c(200K) → plan_060\n\n**等待中**: 无 pending Worker 回调。两个 cron 监控 009a 和 008e_v3_s2。\n\n### 4. 📋 待办（条件触发式）\n- 008e_v3_s2 完成 → 检查 eval@105K 是否 ≈869（与 seed 0/1 一致）→ 一致则 C6 三 seed 全 pass，汇报 Director\n- 009a 完成(500K) → 记录 final metrics → 自动提交 009d (baseline s1, seed 1 复现)\n- 009d 完成 → 自动提交 010a (Cheetah Run baseline)\n- 008e_v3_s2 完成后 cuda:1 空出 → 自动提交 009e (008d s1 复现 delusional critic)\n- 所有 multi-seed 完成 → 汇总统计表（mean±std），决定是否有足够 evidence 启动论文写作\n- 需向 Director 汇报 D032 framing 调整后的实验矩阵覆盖进展\n\n### 5. 🎯 战略上下文\n**核心发现**: trained dt_embedding → delusional critic (nve>1.5x) → stochastic collapse in imagination-based actor-critic。Mitigation: dt=1 imagination with trained dt_emb achieves 95% baseline (869/916)。\n\n**决策链关键点**:\n- D032: collapse is stochastic (1/2 seeds), nve>1.5x threshold is 100% reliable diagnostic marker (4/4 separation)\n- C6 (008e_v3) 跨 seed 一致性极强（<0.01% variance），这本身是 robustness 论据\n- 008f (no dt_emb) 性能 seed-dependent（s1=503 vs s2=148），说明去掉 embedding 不是好 mitigation\n- 论文 narrative: \"Diagnostic Analysis of Temporal Abstraction in World-Model RL\"\n\n**易错点**:\n- 不要把 normalized v/e (相对 baseline 校准的) 和 raw v/e ratio 混淆——论文用 normalized v/e\n- 009b 的 nve 峰值 2.05x@25K 是 transient 的（后续自我修正），和 008d 的 sustained nve>1.5x (4 consecutive checkpoints @35K+) 有本质区别\n- TAWM (ICML 2025) 是竞品但反而强化我们的 contribution（MPC vs imagination 的范式差异）\n- 文献扫描已确认 novelty 安全，72 篇 in literature_map.yaml\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778807495.md"
+}

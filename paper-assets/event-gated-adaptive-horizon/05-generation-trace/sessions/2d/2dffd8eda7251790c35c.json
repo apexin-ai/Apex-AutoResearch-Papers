@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2dffd8eda7251790c35c",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "diagnose exp 018v2 status",
+  "task_key": "worker_diagnose_exp_018v2_status_20260516T135355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_018v2_status_20260516T135355_result.json",
+    "occurrence": 1,
+    "bytes": 904,
+    "sha256": "eac030cc2e325ddbc1b27aed71934bc4035d89f762bcf4d169a380246adf90ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结果：\n\n**PID 588656 已死。** 进程在启动阶段就崩溃了，从未进入训练循环。\n\n**死因：`torch.compile()` 的 PyTorch Inductor bug**\n\n```\ndreamer.py:50  →  self._wm = torch.compile(self._wm)\n  → torch._inductor/kernel/flex_attention.py:786\n  → AssertionError: duplicate template name\n```\n\n这是 PyTorch Inductor 的已知 bug（常见于 2.6.x 某些版本），在编译 world model 时 Triton 模板名冲突导致 crash。\n\n**训练进度：step 0**。metrics.jsonl 只有 4 条 seed episode 记录（随机策略收集的初始数据），之后 agent 初始化时调用 `torch.compile` 就挂了。logdir 也只有初始化阶段的文件。\n\n**修复方案**：在 `dreamer.py:50` 禁用 `torch.compile`，改为直接使用 `self._wm`（不编译），或者加条件判断跳过 compile。这样可以立即重新提交实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-018v2-status.md"
+}

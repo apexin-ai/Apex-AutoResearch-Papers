@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f538879c4358584ac7a",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code exp 031 pickcube tcn deploy",
+  "task_key": "worker_code_exp_031_pickcube_tcn_deploy_20260520T123953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_031_pickcube_tcn_deploy_20260520T123953_result.json",
+    "occurrence": 1,
+    "bytes": 285,
+    "sha256": "f11a06ffe8521187ef418d841bb8f4fecc20039596b34f5fe1c661fb99c2aec4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n**exp_031_tcn_pickcube_s0_sigma02** 已在 bjb1-45299 cuda:1 上启动：\n- PID: 908459\n- tmux session: `exp_031_tcn_pickcube_s0_sigma02`\n- 配置: PickCube-v1, gate_fixed_dt=2, imag_horizon=8, tcn_sigma=0.2, seed=0, 200k steps\n- Registry: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-031-pickcube-tcn-deploy.md"
+}

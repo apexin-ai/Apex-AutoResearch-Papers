@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e402fcf234487a1cd7b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper reference audit",
+  "task_key": "worker_paper_reference-audit_20260530T012837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_reference-audit_20260530T012837_result.json",
+    "occurrence": 1,
+    "bytes": 686,
+    "sha256": "7b0e6e21ccc36092628ef3884abc21b431f5c85ebd55afe19ba8b4af95542708"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/reference_audit_report.md`。\n\n结果：\n- **41 条 bib 条目，41 条 tex 引用，完全匹配** — 无孤立条目、无缺失引用\n- **2 个问题**：\n  1. `sutton1999options` — journal 字段把卷号混入期刊名（`Artificial Intelligence 112`），应拆分为 `journal + volume + pages`\n  2. `bacon2017optioncritc` — key 拼写缺字母 'i'（应为 `optioncritic`），内容无误但 key 名不规范\n- **1 个风格建议**：17 条条目使用缩写作者名（如 `Sutton, R.S`），其余用全名，建议统一\n- **16+ 条核心引用已通过 WebSearch 验证**，作者/年份/venue 均正确"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-reference-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6f880b92348a5cd165f",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis actor entropy collapse",
+  "task_key": "worker_analysis_actor_entropy_collapse_20260515T144837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_actor_entropy_collapse_20260515T144837_result.json",
+    "occurrence": 1,
+    "bytes": 1022,
+    "sha256": "4b3d45b4d729542136f5130cdf829f3e96ae48cff7a4eafb2917c993b52d7e7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report updated at `artifacts/analysis_actor_entropy_plan031.md`.\n\n**Summary of findings:**\n\n| Signal | Collapse diagnostic? |\n|---|---|\n| Actor entropy absolute value | No — distributions overlap completely |\n| Entropy convergence speed | No — exp_008c (collapsed) converges fastest of all |\n| Entropy uptick at collapse | Weak — only fixed_dt2 shows +0.05 at 65K |\n| **V/E ratio > 1.0** | **Yes — cleanly separates groups** |\n\n**Conclusions:**\n- Actor entropy **cannot** serve as an early warning signal. Both groups follow the same 8.1→-5.x descent; within-group variance exceeds between-group difference.\n- The strongest collapse predictor remains the **value/eval ratio** crossing 1.0 (critic overestimation). exp_008d hits V/E=1.67 at 55K, fixed_dt2 hits 2.72 at 65K; all healthy configs stay below 0.6.\n- Refined claim for the paper: delusional critic **delays** entropy convergence in some cases (008d vs 008c: 3-nat gap at 25K) but this is a secondary effect, not diagnostic."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-actor-entropy-collapse.md"
+}

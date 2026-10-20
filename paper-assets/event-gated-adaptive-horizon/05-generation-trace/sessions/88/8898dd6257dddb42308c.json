@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8898dd6257dddb42308c",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops full status check 008f",
+  "task_key": "worker_ops_full-status-check-008f_20260514T061900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_full-status-check-008f_20260514T061900_result.json",
+    "occurrence": 1,
+    "bytes": 2247,
+    "sha256": "6ce81727c3b7450c6c42795ac363a6e8c60cf521c4a896bfb4486cfadf5ca2f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### GPU\n| GPU | Util | VRAM | 占用实验 |\n|-----|------|------|----------|\n| 0 | 0% | 2751/97887 MiB | 008f (eval中，瞬时低) |\n| 1 | 20% | 4167/97887 MiB | 008e_v3 |\n\n### Tmux Sessions\n- `exp_008e_v3_subsample_on_dt1_h15`\n- `exp_008f_no_dt_embed_subsample_on_h8`\n\n---\n\n### 008f (no_dt_embed, subsample_on, h=8) — **最高优先级**\n- **PID**: 127766, **ALIVE**: YES\n- **Config**: fixed_dt=2, subsample_max_dt=2, h=8, **dt_embed_dim=0**\n- **Latest step**: **35000** (eval 刚完成)\n\n| Step | eval_return | value_mean | v/e ratio | baseline v/e | normalized |\n|------|-------------|------------|-----------|-------------|------------|\n| 15K | 182.03 | 2.99 | 1.6% | — | — |\n| 25K | 196.78 | 17.51 | 8.9% | 8.7% | **1.02x** |\n| **35K** | **206.67** | **36.28** | **17.6%** | **24.1%** | **0.73x** |\n\n**C2 对比 (008f vs 008d @35K)**:\n- 008d (有 dt_embed): v/e = 41.2% → **1.71x** baseline\n- 008f (无 dt_embed): v/e = 17.6% → **0.73x** baseline\n- **结论**: 去掉 dt_embed 后 v/e 从 1.71x 暴跌到 0.73x（低于 baseline），同时 eval_return 也大幅落后（206.67 vs 008a@35K 的 500.84）。**dt_embed 是 v/e 膨胀的主要驱动因素。**\n\n---\n\n### 008a (fixed_dt=2, no_subsample)\n- **PID**: 无 python 进程, **ALIVE**: NO — **已完成**\n- **Final step**: 105K, eval_return = **777.66**, value_mean = **300.27**, v/e = **38.6%**\n- 完整 eval 曲线: 31→167→231→501→563→488→608→470→584→572→**778**\n\n---\n\n### 008e_v3 (subsample_on, dt=1, h=15)\n- **PID**: 126115, **ALIVE**: YES\n- **Config**: fixed_dt=1, subsample_max_dt=2, h=15\n- **Latest step**: 45000\n\n| Step | eval_return | value_mean | v/e ratio | baseline v/e | normalized |\n|------|-------------|------------|-----------|-------------|------------|\n| 15K | 131.17 | 4.00 | 3.1% | — | — |\n| 25K | 155.69 | — (truncated) | — | 8.7% | — |\n| 35K | 276.47 | 62.76 | 22.7% | 24.1% | **0.94x** |\n| **45K** | **382.22** | **110.67** | **28.96%** | **33.1%** | **0.87x** |\n\n008e_v3 的 v/e 持续略低于 baseline（0.87-0.94x），gate_dt 锁定在 dt=1（100% dt_1_frac），说明 fixed_dt=1 + subsample 配置没有产生 v/e 膨胀。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-full-status-check-008f.md"
+}

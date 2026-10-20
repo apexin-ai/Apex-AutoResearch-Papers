@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ccb2e072787ad7107124",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "diagnose exp 086 failed",
+  "task_key": "worker_diagnose_exp_086_failed_20260525T180955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_086_failed_20260525T180955_result.json",
+    "occurrence": 1,
+    "bytes": 1634,
+    "sha256": "e9f55741e471f259a35361ef00181242462bcb6651b6cba4ebd41256c23bf8da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。关键发现：\n\n## exp_086 诊断报告\n\n### 失败进度\n- **最后记录 step**: 48000 / 105000（~46%）\n- **最后 eval (step 45000)**: eval_return = 133.2\n\n### 失败原因：SIGHUP（终端断连）\n- EXIT_CODE=129 = 128+1 = **SIGHUP 信号**\n- 日志中**无任何** OOM、CUDA error、RuntimeError 或 Traceback\n- dmesg 无权限读取，但 grep 日志确认无错误\n- 日志末尾有两次 \"Terminated\" 字样，是进程收到 HUP 信号后被终止的表现\n- **结论**：原 tmux session 断开或被杀，导致 SIGHUP 传播到训练进程\n\n### 当前状态：已被重启\n- tmux session `exp_086_frozen_dt_emb_cheetah_s0` **已重建**（02:10:27 创建）\n- Python 进程 PID 40748 **正在运行**（415% CPU）\n- GPU 0 当前 1 MiB（新进程仍在初始化阶段）\n- GPU 1 使用 3242 MiB（exp_087 正常运行，40% utilization）\n\n### 原始启动命令\n```bash\npython -u dreamer.py --configs defaults dmc_proprio \\\n  --task dmc_cheetah_run \\\n  --logdir logdir/exp_086_frozen_dt_emb_cheetah_s0 \\\n  --steps 105000 --seed 0 --compile False --device cuda:0 \\\n  --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 \\\n  --imag_horizon 8 --dt_emb_freeze True\n```\n\n### 注意事项\n新启动的运行使用 `>` 重定向（非 `>>`），旧日志会被覆盖。如果需要保留上一次运行到 step 48000 的日志/checkpoint 数据，当前 logdir 中的 checkpoint 可能已被新运行覆盖或继续使用（取决于代码是否支持 resume）。建议确认新运行是从 step 0 重新开始还是从 checkpoint 恢复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-086-failed.md"
+}

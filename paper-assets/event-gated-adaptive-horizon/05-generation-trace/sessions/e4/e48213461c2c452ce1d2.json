@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e48213461c2c452ce1d2",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops check 3 experiments status",
+  "task_key": "worker_ops_check-3-experiments-status_20260519T021343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-3-experiments-status_20260519T021343_result.json",
+    "occurrence": 1,
+    "bytes": 1424,
+    "sha256": "95081a4ec57639182b911b7f08952c2e017f60594f4395aaeac019d910c9ff7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n| 实验 | 状态 | 当前 step | 目标 | 进度 | train_return | 预估剩余 |\n|------|------|-----------|------|------|-------------|----------|\n| exp_001_baseline_s3 | **running** (PID 774106) | 72K | 105K | 68.6% | 606.84 | ~1.1h |\n| exp_023_cheetah_baseline_s3 | **running** (PID 768897) | 152K | 200K | 76.0% | 628.69 | ~1.4h |\n| exp_023_cheetah_baseline_s4 | **running** (PID 774033) | 85K | 200K | 42.5% | — | ~3.2h |\n\n**预估依据**：根据进程启动时间和当前 step 推算平均速率：\n- exp_001: ~514 steps/min (启动于 07:54, 2h20m 跑到 72K)\n- exp_023_s3: ~576 steps/min (启动于 05:50, 4h24m 跑到 152K)\n- exp_023_s4: ~607 steps/min (启动于 07:54, fps=9.84, 与墙钟估计吻合)\n\nexp_023_cheetah_baseline_s4 metrics 中 value_mean=196.92, imag_reward_mean=0.48。\n\n---\n\n### nvidia-smi 摘要 (RTX PRO 6000 Blackwell ×2, 97.9GB each)\n\n| GPU | VRAM 使用 | 利用率 | 进程数 | 主要负载 |\n|-----|----------|--------|--------|---------|\n| cuda:0 | 5,213 MiB / 97,887 MiB (5.3%) | 21% | 2 | exp_023_s4 (4669MB) + exp_023_s3 溢出 (515MB) |\n| cuda:1 | 8,851 MiB / 97,887 MiB (9.0%) | 75% | 2 | exp_023_s3 (4156MB) + exp_001_s3 (4671MB) |\n\n另外注意：有一个 `exp_008a_cheetah_unexposed_s0` 的 tmux session 存在 (PID 748622, May18 启动)，但其 python 进程未出现在 nvidia-smi 中，可能已结束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-3-experiments-status.md"
+}

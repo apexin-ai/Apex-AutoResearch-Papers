@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df62f2d4f63da9bfbe31",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper appendix update",
+  "task_key": "worker_paper_appendix_update_20260525T135051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix_update_20260525T135051_result.json",
+    "occurrence": 1,
+    "bytes": 1168,
+    "sha256": "89d86cedbf430dc51683b5cf6d713c97775db219d54cfe717cf1b803a2ba416e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All changes verified. Summary of modifications to `docs/paper/sections/appendix.tex`:\n\n**Complete results table — 7 new rows + 1 update:**\n- Line 35: **068** (Factorial repro s1) — eval 39.1, NVE 4.12×, Full collapse (shaded)\n- Line 37: **008f s4** updated — eval 306.5→289.3, NVE 1.41→0.76 (per exp_073)\n- Line 42: **008a_s3** — eval 855.9, Healthy\n- Line 48: **067** (Frozen emb s0) — eval 281.5, NVE 0.19×, Healthy\n- Line 58: **008e_v3 s5** — eval 853.1, NVE 0.61×, Healthy\n- Lines 84-87: **060/061/062** (Cartpole Swingup baseline/trigger/control, 3 seeds each)\n\nexp_071 (008f s3, eval 311.9) skipped — already present as \"009c s3\" with identical eval.\n\n**Cross-domain table:** Added Cartpole Swingup row (0/3 trained, 0/3 control, No CIVO — single-joint).\n\n**Cartpole paragraph:** Added after cross-domain table, confirming CIVO requires multi-joint dynamics.\n\n**ROC caption:** n=30→56, AUROC=0.957→0.990, FPR=0.18→0.09, added accuracy=53/56 and F1=0.941, updated false positive descriptions to match n=56 analysis.\n\n**Supporting text:** Updated n=30 references at lines 249 and 293 for consistency."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-appendix-update.md"
+}

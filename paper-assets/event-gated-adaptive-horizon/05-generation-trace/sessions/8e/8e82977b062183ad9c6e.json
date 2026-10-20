@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8e82977b062183ad9c6e",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "paper new seed data integration",
+  "task_key": "worker_paper_new-seed-data-integration_20260518T055920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_new-seed-data-integration_20260518T055920.log",
+    "occurrence": 1,
+    "bytes": 895745,
+    "sha256": "5fcf73b1c6e18ab9a517bbe3ab39ca2cafe0ab9de6ad4a3dd2d64737b0d92c66"
+  },
+  "statistics": {
+    "messages": 148,
+    "user_turns": 0,
+    "tool_calls": 57,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 30,
+      "tool_call": 57,
+      "tool_result": 57,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 148,
+      "chunks": [
+        {
+          "path": "8e82977b062183ad9c6e-part-0001.json",
+          "message_count": 89
+        },
+        {
+          "path": "8e82977b062183ad9c6e-part-0002.json",
+          "message_count": 59
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-new-seed-data-integration.md"
+}

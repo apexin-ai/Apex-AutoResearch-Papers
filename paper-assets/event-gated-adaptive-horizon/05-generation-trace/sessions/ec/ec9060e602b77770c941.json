@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec9060e602b77770c941",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_10_1778819790.md",
+  "task_key": "loop_10_1778819790",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778819790.md",
+    "occurrence": 1,
+    "bytes": 4590,
+    "sha256": "fe18eca9c8d56d3ec26d0592591b25e9626742ad09eabb751e6513a90b382d54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T04:36:18+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**cuda:0 + cuda:1**（bjb1-45299），绝对不能用其他 GPU\n- C6 seed 计数：exp_008e_v3 的 \"s0\" 和 \"s1\" 实际都是 `--seed 1`（确定性复现），只有 008e_v3_s2（RUNNING）是真正独立 seed。**禁止声称 C6 已有 2 个独立 seed**\n- nve>1.5x 诊断阈值**仅适用于 35K+ steps**（25K 处 baseline v/e 太小，比率 false positive），论文中报告必须标注此限定\n- 008e_v3 的 dt_embedding 是 **trained**（D033 代码审计确认），关键变量是 imagination dt=1 而非 embedding 训练状态\n- submit_training_job 的命令必须自带环境激活（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python ...`），不要假设 .venv\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：bjb1-45299（AutoDL RTX PRO 6000 × 2）\n- **工作目录**：`/root/autodl-tmp/event-gated-adaptive-horizon`\n- **Python**：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **HF cache**：`/root/autodl-tmp/.hf_cache`\n- **W&B**：项目内已配置\n- **活跃进程**：\n  - exp_009a_baseline_walker_s2: PID=142508, cuda:0, 448K/500K (89.6%), ETA ~2h\n  - exp_008e_v3_walker_s2: PID=43437, cuda:1, 72K/105K (68.6%), ETA ~5.5h\n- **Cron 监控**：2 个 active cron 分别监控上述两个实验（reconcile 已确认 still running）\n- **Worker 池**：0 running（全部已完成退出）\n\n### 3. 📊 当前状态\n**刚完成**：session-start 初始化（registry 同步 + cron reconcile）。上一个 session 完成了 D035（C6 seed 计数修正）和 D036（nve 归一化统一用 exp_001 基线）。\n\n**RUNNING（2 个）**：\n- **exp_009a_baseline_walker_s2**（cuda:0）：Walker baseline seed 2，448K/500K，eval 稳定 930-967，与 seed 1 (950.9) 一致。**约 2h 完成**\n- **exp_008e_v3_walker_s2**（cuda:1）：Crown jewel C6 seed 2 验证，72K/105K，eval 435@65K（25% below seed 1@65K 但无 delusional critic）。**约 5.5h 完成**\n\n**QUEUED（4 个，等 GPU 释放）**：\n- exp_009d_baseline_walker_s1 → cuda:0（排在 009a 后）\n- exp_010a_cheetah_baseline_s1 → cuda:0（排在 009d 后）\n- exp_009e_008d_walker_s1 → cuda:1（排在 008e_v3_s2 后）\n- exp_009f_008f_walker_s1 → cuda:1（排在 009e 后）\n\n**Registry 总览**：23 实验，成功 6 / 负向 9 / 失败 1\n\n### 4. 📋 待办（条件触发式）\n- **009a cron 回调到达（~2h）** → spawn worker 分析 final metrics + nve 校准 → update_registry(DONE) → 立即 submit exp_009d（cuda:0, baseline walker s1）→ 汇报 Director\n- **008e_v3_s2 cron 回调到达（~5.5h）** → spawn worker 分析 C6 seed 2 结果 → 与 seed 1 对比（eval + nve） → 判定 C6 multi-seed claim 是否成立 → update_registry → 立即 submit exp_009e（cuda:1, 008d seed 1 复现）→ 汇报 Director（这是最关键的数据点）\n- **008e_v3_s2 eval < 800 或 nve > 1.5x@65K+** → C6 claim 受威胁，产出 Framing 调整提案（C6 从 \"mitigation works\" 降级为 \"mitigation partially works\"），**禁止默跑下一个**\n- **009d 完成** → 与 exp_001(s1) + 009a(s2) 三 seed 对比，建立完整 baseline 校准 → submit 010a（Cheetah baseline）\n- **Worker 池 = 0 时** → 至少派 1 个 CPU worker 做论文准备（文献扫描 / figure 代码 / LaTeX 骨架），保持池 ≥ 2\n\n### 5. 🎯 战略上下文\n**核心结论链**：trained dt_embedding → pathological nve>1.5x（100% 可靠标记）→ stochastic collapse（1/2 seed 崩）。去掉 dt_emb（008f）消除 delusional critic 但 reward prediction 退化 75x。C6（008e_v3, imagination dt=1）是唯一\"避崩 + 保 reward + 达 95% baseline\"方案。\n\n**决策链核心**：D028(C2 因果确认) → D030(collapse stochastic 降级) → D031(Option A narrative) → D032(nve>1.5x 完美分离) → D033(008e_v3 是 trained dt_emb) → D035(C6 只有 1 个独立 seed)\n\n**最易判断错的事**：\n1. 008e_v3_s2 目前 eval 435@65K 明显低于 seed 1 同期（~580）——**不要恐慌**，train_return 678 在追赶，75K eval 可能跳升。但如果 105K eval < 750，C6 claim 需要软化\n2. 不要把 009b（008d seed 2, 未崩）解释为\"C2 不成立\"——C2 claim 是 nve>1.5x 可靠标记，不是 100% 崩塌率。D032 已处理\n3. CoRL DDL 5/29 还剩 14 天，P0 实验 ~145 GPU·h / ~3 天 wall time，时间充裕但不能浪费——GPU 完成一个立即接下一个\n4. `source /etc/network_turbo` 在 pip install 前必须执行（AutoDL 网络加速）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778819790.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62eb72b0baf22b19cd88",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper tawm discussion",
+  "task_key": "worker_paper_tawm-discussion_20260517T165132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_tawm-discussion_20260517T165132_result.json",
+    "occurrence": 1,
+    "bytes": 664,
+    "sha256": "5534ebf6588a5772739f4230dc3a339786f9ade25210f23c08d39e0608ae8485"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. The expanded TAWM comparison subsection replaces the former brief \"Architectural contrast with MPC\" paragraph (lines 13-20). Four paragraphs covering:\n\n1. TAWM's success with dt-conditioning in TD-MPC2\n2. Why MPC is safe (open-loop optimization, re-planning, no critic on imagined trajectories)\n3. Why DreamerV3's closed imagination-critic-actor loop is vulnerable (fidelity gap, value inflation, CIVO feedback)\n4. Conclusion: vulnerability is architecture-specific, with Pathway A/B content preserved\n\nBoth citations (`nhu2025tawm`, `hansen2024tdmpc2`) already exist in the bib. No em-dashes, no -ing phrase endings, no banned words."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-tawm-discussion.md"
+}

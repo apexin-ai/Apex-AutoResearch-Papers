@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "a8671601f766e2d61a15",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "ops bjb1 40020 env setup",
+  "task_key": "worker_ops_bjb1-40020-env-setup_20260519T163359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_bjb1-40020-env-setup_20260519T163359.log",
+    "occurrence": 1,
+    "bytes": 843348,
+    "sha256": "bd1efe05d8463a01a2ac8bf6c23214f473db9eb0c4b2a893af3d2e88f14ecde2"
+  },
+  "statistics": {
+    "messages": 453,
+    "user_turns": 1,
+    "tool_calls": 144,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 157,
+      "tool_call": 144,
+      "tool_result": 144,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 436,
+      "chunks": [
+        {
+          "path": "a8671601f766e2d61a15-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a8671601f766e2d61a15-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a8671601f766e2d61a15-part-0003.json",
+          "message_count": 76
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "a8671601f766e2d61a15-part-0003.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-bjb1-40020-env-setup.md"
+}

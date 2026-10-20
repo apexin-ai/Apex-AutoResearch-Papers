@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb3cf576b1e12a97fa9f",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis 019b final results",
+  "task_key": "worker_analysis_019b-final-results_20260517T145038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_019b-final-results_20260517T145038_result.json",
+    "occurrence": 1,
+    "bytes": 842,
+    "sha256": "d502ac21ea14fc94f2c37800c8192c012502783efb620629f307a07b5b6b8475"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**Verdict: Negative (informative)**\n\n关键发现：\n- **Transient CIVO 确认**：NVE 峰值 3.78x @52.5K，与中间分析吻合，但随后快速塌缩至 0.065x\n- **Eval 严重退化**：最终 26.64 vs baseline 58.56，仅为 baseline 的 21.4%\n- **Gate 全程锁死**：gate_dt_2_frac=1.0, entropy=0.0，从第一个 checkpoint 到最后一个，gate 从未学会调节\n- **Value function 永久塌缩**：019b value_mean 最终 4.26 vs baseline 144.57（仅 3%），value 规模再未恢复\n\n与 Walker Walk 的关键区别：Walker 是持续 CIVO（NVE 维持 >1.5x），PickCube 是瞬态 CIVO（剧烈 spike 后 value collapse）。推测 PickCube 稀疏奖励结构导致更快修正但也更灾难性的塌缩。\n\n报告已写入 `artifacts/exp_019b_final_analysis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-019b-final-results.md"
+}

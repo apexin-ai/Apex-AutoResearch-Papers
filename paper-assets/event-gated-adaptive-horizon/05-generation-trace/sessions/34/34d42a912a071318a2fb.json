@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34d42a912a071318a2fb",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis threshold sensitivity",
+  "task_key": "worker_analysis_threshold-sensitivity_20260517T091255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_threshold-sensitivity_20260517T091255_result.json",
+    "occurrence": 1,
+    "bytes": 749,
+    "sha256": "86922db2d5416bbcf83f8d09009e3016b5b7973736d8be5bc5bbf124971a3f0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果：\n\n**τ_mag 敏感度呈阶梯形，非平滑曲线：**\n\n| τ 范围 | TPR | FPR | J |\n|--------|-----|-----|-------|\n| 0.30–0.45 | 1.000 | 0.286 | 0.714 |\n| 0.50–0.70 | 0.667 | 0.286 | 0.381 |\n\n关键发现：\n- **FPR 在整个 [0.30, 0.70] 范围内恒定为 0.286**（两个 FP 的 ve_ratio 分别为 0.7281 和 0.7499，均 > 0.70）\n- **唯一断点在 τ≈0.497**：exp_008d_s3 的触发 ve_ratio=0.4969，τ≥0.50 即丢失该 TP\n- **τ=0.49 是最优**：恰好卡在 0.4969 下方，是能达到 J=0.714 的最紧阈值\n- 降低 τ 无收益（不会增加 TP 或减少 FP），magnitude threshold 无法单独消除 FP（需改进其他条件如时间持续性或加速度阈值）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-threshold-sensitivity.md"
+}

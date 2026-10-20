@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "600276779d614bb6971d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_24_1779848801.md",
+  "task_key": "loop_24_1779848801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_24_1779848801.md",
+    "occurrence": 1,
+    "bytes": 3777,
+    "sha256": "14bbf082f7ce5ef3b997f2ed9fc2c5a2920e9331e02a755a2a52406ca93bdd5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 24\nreason: idle_timeout\nupdated: '2026-05-27T02:26:37+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-45299:cuda:0, bjb1-45299:cuda:1, westd-19154:cuda:0, westd-19154:cuda:1。其他 GPU 即使 Director 指令也必须 push back\n- 数据锁定 5/27，ICML DDL 5/29。5/27 后禁止修改论文中的定量数据\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n- GPU 编号始终从 0 开始（框架自动映射物理 GPU）\n- CLI flag 服务器差异：bjb1 用 `--gate_dt_embed_dim`，westd 用 `--dt_embed_dim`（旧代码）。不要跨服务器复制命令模板\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-45299**: 2×RTX PRO 6000 96GB，工作目录 /root/autodl-tmp/event-gated-adaptive-horizon，Python /root/miniconda3/bin/python，conda base env。磁盘 ~5% used\n- **westd-19154**: 2 GPU，工作目录 /root/autodl-tmp/event-gated-adaptive-horizon，同 conda base env。磁盘 ~3% used\n- W&B 项目名: event-gated-adaptive-horizon\n- HF cache: /root/autodl-tmp/.hf_cache（两台服务器同）\n- 活跃进程：exp_098 (PID 322486, bjb1 cuda:0, tmux 管理) + exp_099 (PID 322767, bjb1 cuda:1, tmux 管理)\n- 活跃 cron：exp_098_cheetah_008a_s0 + exp_099_cheetah_008a_s1（本 session 刚注册）\n\n### 3. 📊 当前状态\n- **刚完成**：Session 启动初始化——read_registry, reconcile_crons, 向 Director 汇报当前状态 + 2 张 westd GPU 空闲。等待 Director 回复\n- **RUNNING**: exp_098_cheetah_008a_s0 (bjb1 cuda:0, Cheetah 008a s0, plan_023 C3) + exp_099_cheetah_008a_s1 (bjb1 cuda:1, Cheetah 008a s1, plan_023 C3)。提交于 01:20 UTC 5/26，105K steps\n- **PREPARING**: exp_097_cheetah_008d_s3 — Cheetah trained dt_emb + subsample ON + dt=2 + H=8, seed=3 (plan_021 C1 trigger)。待 Director 批准提交至 westd\n- **等待中**: Director 对 westd GPU 分配的决策回复；exp_098/099 cron 完成回调\n- **report.md 未更新**：MCP 断连前未来得及更新 report.md，内容仍准确但格式需刷新\n\n### 4. 📋 待办\n- Director 回复批准 exp_097 → submit_on_allocated 到 westd cuda:0，注册 cron\n- Director 指定 westd cuda:1 任务 → 按指示准备并提交\n- exp_098 或 exp_099 cron 回调到达 → spawn 分析 Worker，读 metrics，update_registry(conclusion=success/negative)，刷新 report.md，汇报 Director（含 Cheetah 008a 多 seed 汇总统计）\n- exp_097 完成 → 确定 Cheetah CIVO onset rate 最终值（当前 2/3: s0✓ s1✗ s2✓），汇报 Director\n- 所有 seed 扩展完成 → 汇总跨 seed 统计，更新论文表格数据，在 5/27 数据锁定前完成\n\n### 5. 🎯 战略上下文\n- **核心结论**: DreamerV3 中 trained dt_embedding 驱动 CIVO 是 multi-joint locomotion 特异性现象。frozen/removed dt_emb 可稳健阻止。Cartpole 无 CIVO（D149 scope 精确化）\n- **当前阶段**: ICML 2026 投稿收尾。Round 5 审稿中。数据锁定 ~22h 后\n- **实验统计**: 179 总计，91 success / 41 negative / 16 failed\n- **关键里程碑已完成**: Frozen dt_emb 因果验证 4/4 闭合，NVE 阈值分析 AUROC=0.989，Cheetah no_dt_emb 3-seed 基础 (exp_082/092/093 全 success)\n- **Cheetah 008d onset rate 待定**: 当前 2/3 (s0 CIVO, s1 no CIVO, s2 CIVO)。exp_097 (s3) 将确定最终 rate。论文 C1 措辞已修正为\"必要条件但非充分条件，onset 具有随机性\"(D156)\n- **易错点**: (1) 不要混淆 008e_v3（mitigation，trained dt_emb + subsample）和 008f（control，no dt_emb）(2) westd CLI flag 是 --dt_embed_dim 不是 --gate_dt_embed_dim (3) 2 张 westd GPU 空闲是失职状态，必须尽快填充 (4) handoff 中的 exp_074/071 已不在 registry 中，属于更早期实验，忽略\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-24-1779848801.md"
+}

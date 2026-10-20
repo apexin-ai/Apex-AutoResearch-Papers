@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53fa7a0484f3e59ef01e",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code exp 008e dt embedding isolation",
+  "task_key": "worker_code_exp_008e_dt_embedding_isolation_20260514T032449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_008e_dt_embedding_isolation_20260514T032449_result.json",
+    "occurrence": 1,
+    "bytes": 2414,
+    "sha256": "29f02c95dee3e28d6b1a9b4ad2902a5ae0d788fb4df4bb8decace3231f9bde66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 清理完成。现在记录完整产出。\n\n---\n\n## 产出汇总\n\n### 1. 代码差异分析\n\n| 差异点 | 详情 | 影响 |\n|--------|------|------|\n| **RSSM dt_embedding** | `gate_enabled=True` → RSSM `max_dt=8` → `Embedding(8,32)` 注入 GRU 输入，+32维 | **结构性差异**。dt=1 时是常量向量，但改变了 GRU 输入维度 |\n| event_gate 模块 | 存在但 `gate_fixed_dt>0` 时不训练（无梯度） | 死参数，不影响训练动态 |\n| lambda_return 路径 | 使用 `lambda_return_variable_dt(dt=1)` → `pcont^1 = pcont` | **数学等价**，无影响 |\n| subsample_variable_dt | `effective_max_dt=1` 早返回，data 不变 | **无影响**，dt_labels 全 1 |\n\n**结论**：`gate_enabled=True, gate_fixed_dt=1, gate_subsample_max_dt=1` **不完全等价于** baseline（`gate_enabled=False`），唯一实质差异是 RSSM 的 dt_embedding(0) 常量向量。但这个差异对训练效果的影响正是 008e 要验证的。\n\n### 2. 008e 完整启动命令\n\n与 008a/c/d 保持一致的参数模板（`--configs defaults dmc_proprio`, `--steps 105000`, `--seed 1`, `--compile False`）：\n\n```bash\ncd /root/autodl-tmp/event-gated-adaptive-horizon && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nexport LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && \\\nexport MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && \\\nCUDA_VISIBLE_DEVICES=<GPU> python dreamer.py \\\n  --configs defaults dmc_proprio \\\n  --task dmc_walker_walk \\\n  --logdir logdir/exp_008e_dt1_no_subsample_h15 \\\n  --steps 105000 --seed 1 --compile False --device cuda:0 \\\n  --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 1 \\\n  --imag_horizon 15\n```\n\n对比 008a 命令的唯一差异：`--gate_fixed_dt 2` → `--gate_fixed_dt 1`\n\n### 3. Dry-run 验证结果\n\n- 配置解析正确，模型初始化成功\n- 训练循环正常运行，metrics 正常写入\n- gate metrics 正确：`gate_dt_mean=1.0`, `gate_dt_1_frac=1.0`\n- 无 crash、无 error\n\n### 实验解读预期\n\n- 008e ≈ baseline（~400）→ gate 基础设施 + dt_embedding(0) 常量对训练无影响，008a 的提升来自 dt=2 imagination\n- 008e ≫ baseline → dt_embedding 本身有正面效果（额外 32 维表示容量），需要进一步隔离\n- 008e ≪ baseline → gate 代码路径引入了意外负面影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-008e-dt-embedding-isolation.md"
+}

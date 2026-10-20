@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75887efa4b9e907a14c9",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_24_1779850303.md",
+  "task_key": "loop_24_1779850303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_24_1779850303.md",
+    "occurrence": 1,
+    "bytes": 3447,
+    "sha256": "0bdd2197f0184697cd56ca159c48fb709bc7e18f845c34bcbff0ceac6380af6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 24\nreason: idle_timeout\nupdated: '2026-05-27T02:51:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-45299 cuda:0/1，westd-19154 cuda:0/1。其他设备号禁止使用\n- westd-19154 当前失联（AutoDL 端口变更），恢复前禁止向该服务器提交新实验\n- 数据锁定 deadline 2026-05-27，ICML DDL 2026-05-29。锁定后禁止新增实验数据点\n- exp_094/exp_093（短名）是 DUPLICATE 条目，已标记 DONE/killed，不要当作真实实验处理\n- DreamerV3 训练 `--device cuda:0` 固定（框架通过 CUDA_VISIBLE_DEVICES 映射物理 GPU）\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-45299**：工作目录 `/root/autodl-tmp/event-gated-adaptive-horizon`，Python `/root/miniconda3/bin/python`，conda base 环境，磁盘 5% used（399GB 可用）\n- **westd-19154**：同上结构，但当前 SSH 不可达（port 19154 on 36.103.198.204 连接失败）。需用户登录 AutoDL 控制台查新端口后更新 `~/.ssh/config`\n- 模型/数据：MuJoCo DMC environments（online RL，无离线数据集），checkpoint 在各 `logdir/exp_*` 下\n- 活跃进程（bjb1）：exp_092 PID 313538 tmux cuda:0，exp_093 PID 313815 tmux cuda:1\n- Cron 活跃：exp_092_cheetah_no_dt_emb_s1，exp_093_cheetah_no_dt_emb_s2\n\n### 3. 📊 当前状态\n刚处理 westd-19154 失联导致的 3 个实验失败回调。已更新 registry、清理 duplicate 条目、向 Director 汇报并请求用户检查 AutoDL 控制台。\n\n**RUNNING**（2 个，均在 bjb1-45299）：\n- exp_092_cheetah_no_dt_emb_s1：C2 Cheetah no_dt_emb s1（plan_022）— cuda:0\n- exp_093_cheetah_no_dt_emb_s2：C2 Cheetah no_dt_emb s2（plan_022）— cuda:1\n\n**刚失败**（3 个，均因 westd SSH 失联，非代码问题）：\n- exp_094_cheetah_008d_s3：C1 CIVO onset rate s3（plan_021）\n- exp_095_cheetah_no_dt_emb_s3：C2 no_dt_emb control s3（plan_022）\n- exp_096_cheetah_008a_s0：C3 008a untrained dt_emb s0（plan_023）\n\n**等待中**：Director 对服务器故障汇报的回复；用户检查 AutoDL 控制台恢复 westd 访问\n\n### 4. 📋 待办\n- westd-19154 恢复连接 → SSH 检查 tmux session 是否存活 → 存活则重注册 cron，死亡则重提交 exp_094/095/096\n- exp_092 cron 回调（完成）→ on-experiment-done 分析 NVE，更新 registry，汇报 Director\n- exp_093 cron 回调（完成）→ 同上\n- bjb1 两个实验完成后 + westd 恢复后 → 评估是否赶上 5/27 数据锁定，不够则向 Director 汇报风险\n- 所有 Cheetah 补强实验完成 → 更新 paper_framing.md C2 section frozen 实验统计（从 2 → 7+）\n\n### 5. 🎯 战略上下文\n- 核心发现：DreamerV3 中 trained dt_embedding 是 CIVO 的必要条件（frozen/removed 可阻止），局限于 multi-joint locomotion\n- 当前处于论文收尾阶段，正在做 Cheetah 跨环境多 seed 补强（C1 onset rate / C2 causal control / C3 cross-env）\n- D155：NVE 诊断升级为三维组合标准（peak + 持续性 + 时序因果），消除 frozen transient spike 假阳性\n- D156：CIVO onset 具有随机性（trained dt_emb 是必要非充分条件），措辞需谨慎\n- 易错点：exp_088_cheetah_008d_s1 的真实 NVE_peak=0.517（negative），bare \"exp_088\" 条目的 NVE_peak=1.82 是 bug artifact，已标记 killed 忽略\n- 易错点：westd 实验可能只是监控断了而非真死——恢复后先查 tmux 再决定是否重跑，不要盲目重提交浪费 GPU 时间\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-24-1779850303.md"
+}

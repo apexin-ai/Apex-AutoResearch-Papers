@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35bf39b85da972bde518",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code deploy 019b fix resubmit",
+  "task_key": "worker_code_deploy-019b-fix-resubmit_20260517T041540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_deploy-019b-fix-resubmit_20260517T041540_result.json",
+    "occurrence": 1,
+    "bytes": 339,
+    "sha256": "1aa5b2b564db51b50c5005b3b011ee302e72ff5ae6c195a116aa7d454285333c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成，验证通过：\n\n- **PID 649577** — `python -u dreamer.py --configs maniskill_state ...` 正在运行，GPU cuda:0\n- **logdir 已有输出**：`metrics.jsonl`、`events.out.tfevents.*`、`train_eps/`、`eval_eps/` 均已创建\n\n019b 已用正确 config (`maniskill_state`) 在 cuda:0 上重新启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-deploy-019b-fix-resubmit.md"
+}

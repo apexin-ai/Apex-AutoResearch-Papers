@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b02a9fb0a33f3bb95d69",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp walker no dt emb s1",
+  "task_key": "worker_analysis_exp_walker_no_dt_emb_s1_20260527T142336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_walker_no_dt_emb_s1_20260527T142336_result.json",
+    "occurrence": 1,
+    "bytes": 559,
+    "sha256": "84a496197136ad6f06ee9a68e514d5d05d49d717c212da5a9e11f6579e99c9f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结果：\n\n**eval_return_105K = 468.83**（baseline 的 51.2%），**NVE_peak = 0.88**（35K），**CIVO 未触发**。\n\n与 seed 0 (exp_008f) 完全一致：\n- seed 0: eval=503, NVE=0.30x, 无 CIVO\n- seed 1: eval=469, NVE=0.35x (105K), NVE_peak=0.88x (35K), 无 CIVO\n\n两个 seed 均呈现 zigzag 震荡 + 无值膨胀的模式。Gate 始终锁定 dt=2（entropy=0）。\n\n**结论：SUCCESS** — 假设成立。移除 dt_embedding 后 CIVO 不出现，确认 dt_embedding 是 CIVO 发生的因果必要条件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-walker-no-dt-emb-s1.md"
+}

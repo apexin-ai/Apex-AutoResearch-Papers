@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5614a65d60843758fa82",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_10.md",
+  "task_key": "loop_10",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10.md",
+    "occurrence": 1,
+    "bytes": 4390,
+    "sha256": "9330feccd8d7bb226fb7e2e62136c15f5ea5699c38a69fca4194ec72fe53c7aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T04:15:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**只能用 cuda:0 和 cuda:1**（bjb1-45299）。即使 Director 指令用其他 GPU 也必须 push back\n- 服务器只有 **bjb1-45299** 一台，account=root\n- C6 seed 计数陷阱：exp_008e_v3_subsample_on_dt1_h15（\"s0\"）和 exp_008e_v3_walker_s1（\"s1\"）命令行均为 `--seed 1`，是确定性复现不是两个独立 seed。**C6 真正只有 1 个独立 seed**，008e_v3_s2（seed=2, RUNNING）是第一个真正独立验证\n- Negative 结果不能默默跑下一个实验——必须先产 Framing 提案给 Director 审批\n- CoRL 2026 DDL: **2026-05-29**，剩余 14 天\n- nve>1.5x 诊断阈值仅适用于 **35K+ steps**（25K 处 baseline v/e 太小，比率不稳定）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**bjb1-45299**，工作目录 `/root/autodl-tmp/event-gated-adaptive-horizon`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- W&B / HF cache：未在 config 中显式指定，需 Worker 首次连接时确认\n- GPU：RTX PRO 6000 × 2（cuda:0 + cuda:1）\n- 活跃进程：\n  - **exp_008e_v3_walker_s2**: PID 43437, cuda:1, cron 监控中（crown jewel C6 seed 2）\n  - **exp_009a_baseline_walker_s2**: PID 142508, cron 监控中（baseline seed 2）\n- Worker 池：0 running（全部已完成）\n\n### 3. 📊 当前状态\n**刚完成**：session-start 初始化，reconcile_crons 确认两个 RUNNING 实验进程存活。\n\n**Registry 总览**：29 实验，success 6 / negative 9 / killed 6 / failed 1 / running 2 / queued 4 / done(other) 1\n\n**RUNNING（2）**：\n- `exp_008e_v3_walker_s2`：Walker Walk trained dt_emb + subsample ON + dt=1 imag + H=15 **seed 2** — C6 crown jewel 唯一真正的第二 seed，结果决定 C6 multi-seed claim 强度\n- `exp_009a_baseline_walker_s2`：Walker Walk baseline seed 2 — 多 seed baseline 参考\n\n**QUEUED（4，等 GPU）**：\n- `exp_009d_baseline_walker_s1`：baseline seed 1\n- `exp_009e_008d_walker_s1`：008d config seed 1（巩固 C2 collapse 统计）\n- `exp_010a_cheetah_baseline_s1`：Cheetah Run baseline seed 1（跨环境验证）\n- `exp_009f_008f_walker_s1`：008f config seed 1（巩固 C2 因果控制）\n\n**等待中**：\n- 两个 RUNNING 实验的 cron 完成回调\n- 无 pending Worker\n- ROADMAP 提到\"等 Dream 完成 → 按反馈调整 framing/plan\"，但未见 Dream 相关实验在 registry\n\n### 4. 📋 待办（条件触发式）\n- `exp_008e_v3_walker_s2` cron 回调 → 分析 nve 是否 <1.5x@35K+（若是 → C6 两 seed 确认，汇报 Director；若 nve>1.5x → C6 claim 需降级，产 Framing 提案）\n- `exp_009a_baseline_walker_s2` cron 回调 → 更新 baseline v/e 参考值，用于 normalize 后续实验\n- 两个 RUNNING 都完成后 → cuda:0 和 cuda:1 释放 → 立即从 QUEUED 中按优先级提交下一批（P0: 009d + 009e 或 010a + 009f，需 Director 审批）\n- Director 审批 P0 多 seed / Cheetah Run 实验 → submit_on_allocated 提交\n- Dream 审稿反馈到达 → 按反馈调整 paper_framing.md 和 experiment_plan.yaml\n\n### 5. 🎯 战略上下文\n**核心 narrative**：Narrative B+ — \"Diagnostic Analysis of Temporal Abstraction in World-Model RL\"。因果链已闭合：trained dt_embedding → delusional critic (nve>1.5x) → stochastic collapse。Untrained dt_emb 通过 value growth suppression 保护性能。C6（008e_v3: trained dt_emb + dt=1 imagination）是唯一同时保持性能 + 避免崩塌的方案。\n\n**决策链要点**：\n- D028: C2 因果归因确认（dt_embedding 是 delusional critic 的原因）\n- D032: collapse 是 stochastic（1/2 seeds），但 nve>1.5x 作为 marker 4/4 perfect\n- D033: 008e_v3 的 dt_embedding 实际是 trained（不是 untrained），C6 从\"改模型\"升级为\"改策略\"\n\n**最易判断错的事**：\n- 不要把 008e_v3_subsample_on_dt1_h15 和 008e_v3_walker_s1 当成两个独立 seed——它们都是 seed=1\n- 008f 是因果控制实验不是推荐方案（reward MAE 75x baseline）——推荐方案是 C6 (008e_v3)\n- nve 在 25K 处不可靠（baseline v/e 太小），只看 35K+ 的数据\n- 009c (008f seed 2) 在 105K 处 nve=1.14x（borderline），C2 措辞已从 \"eliminates\" 改为 \"significantly delays and reduces\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-copy-2.md"
+}

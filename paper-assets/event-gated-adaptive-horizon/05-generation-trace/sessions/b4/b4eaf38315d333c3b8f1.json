@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4eaf38315d333c3b8f1",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp cheetah 008a s0",
+  "task_key": "worker_analysis_exp_cheetah_008a_s0_20260527T171059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_cheetah_008a_s0_20260527T171059_result.json",
+    "occurrence": 1,
+    "bytes": 555,
+    "sha256": "8931a0c53e1015b6ddb4c112941a3a14039f0e927ab4037bd60a265e5fd2b131"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n**exp_cheetah_008a_s0 → SUCCESS**\n\n| 指标 | s0 | s1 |\n|------|-----|-----|\n| eval_return_105K | 366.2 | 281.2 |\n| value_mean_105K | 164.6 | 164.3 |\n| **NVE_105K** | **0.449** | **0.584** |\n| eval_return_peak | 483.0 (85K) | 519.6 (75K) |\n| civo_alert | 0 | 0 |\n\n两个 seed 均 NVE << 2.0，civo_alert 始终为 0。Untrained dt=2 embedding 在 Cheetah Run 上同样产生 value suppression，C3 cross-env 泛化验证通过。Registry 已更新为 DONE，报告已注册 (`art_20260527_a60e39`)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-cheetah-008a-s0.md"
+}

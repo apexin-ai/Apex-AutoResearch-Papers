@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9204970395d379cc8517",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_1_1778719165.md",
+  "task_key": "loop_1_1778719165",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1778719165.md",
+    "occurrence": 1,
+    "bytes": 4517,
+    "sha256": "0d8fb74497bb902aeded493ee091451c44caaf6ab2c2ad002583ffb4f8fc60bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_messages\nupdated: '2026-05-13T22:13:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0 和 cuda:1（bjb1-45299），不得用白名单外 GPU\n- `submit_on_allocated` / `allocate_and_submit` 的 command 必须用 `bash -c \"...\"` 包装（tmux 用 /bin/sh，source/conda activate 在裸命令中会 EXIT_CODE=127）\n- exp_005 metrics 数据有误：registry 中 85K=319.3、105K=337.8 是错误值（Director+Reviewer 已核实 metrics.jsonl 实际为 85K=212.3、105K=276.1），Worker 正在修正。**不要引用旧 metrics**\n- `--compile False` 必须传（服务器 PyTorch 2.10 编译有问题）\n- 环境变量三件套必须设：`LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6`, `MUJOCO_GL=osmesa`, `PYOPENGL_PLATFORM=osmesa`\n- GPU 编号始终从 0 开始（CUDA_VISIBLE_DEVICES 映射物理 GPU，脚本内 `--device cuda:0`）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-45299，2× RTX PRO 6000 Blackwell 96GB，208-core Xeon\n- 工作目录：`/root/autodl-tmp/event-gated-adaptive-horizon/`\n- Python：`/root/miniconda3/bin/python`，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 代码 commit：`6ef8646d807cd10ce0c88e10a7e943211e7fc44c`\n- 活跃进程：exp_006_fixed_dt2 (PID 85029, tmux=exp_006_fixed_dt2, cuda:0, cron 已注册)\n- logdir 结构：`logdir/baseline_s1/`(完成), `logdir/event_gated_v5_s1/`(exp_005,被kill), `logdir/fixed_dt2_v1_s1/`(exp_006,运行中)\n- Baseline checkpoint：`logdir/baseline_s1/latest.pt` (229MB, 512K步, eval_return 970.4)\n- MVP eval 脚本：`scripts/mvp_eval.py`（支持 --mode interim/final）\n- pivot 文档：`docs/pivot_analysis.md`（三方案对比）\n- gate_fixed_dt 配置项已加入 configs.yaml + models.py（支持 0=learned gate, 2/4/etc=fixed dt）\n\n### 3. 📊 当前状态\n刚完成：exp_006_fixed_dt2 提交到 cuda:0（PID 85029, 150K步, ~5-6h）。\n\nRegistry 状态：\n- exp_006_fixed_dt2: **RUNNING** — fixed dt=2 诊断实验，cuda:0\n- exp_005_event_gated_v4: RUNNING→待更新为 DONE(negative) — Worker 正在 kill + 修正 metrics\n- exp_001_baseline: RUNNING→待更新为 DONE(positive) — Worker 正在修正 registry（cron on_failed 是误报）\n- exp_002/003/004: DONE\n\n等待中的 Worker 回调（2个）：\n1. `worker_ops_kill_exp005_fix_registry_20260513T215230` — kill exp_005 + 核实 metrics.jsonl 差异 + 更新 exp_001/exp_005 registry + 删 cron\n2. `worker_code_exp_007_fixed_dt4_prep_20260513T215242` — dry-run gate_fixed_dt=4 验证\n\n另有一个已过时的 Worker（`worker_check_exp_005_progress_120K_20260513T213159`），结果可忽略。\n\n### 4. 📋 待办\n- Worker kill_exp005 回调 → 确认 registry 修正完成（exp_001=DONE/positive, exp_005=DONE/negative + metrics 修正），cuda:1 空闲\n- Worker dt4_prep 回调 → 创建 exp_007_fixed_dt4 registry 条目 → 提交审批（cuda:1, 150K步）→ Director 审批后立即 `allocate_and_submit`\n- exp_006 cron 回调（~5-6h后）→ 跑 `mvp_eval.py --mode final --baseline-return 950.9` → 按 150K go/no-go 标准判定 → 汇报 Director\n- exp_007 cron 回调 → 同上，与 exp_006 对照分析\n- exp_006/007 都完成后 → 汇报 Director 对照结论，决定 pivot 方向（soft mixture vs binary skip vs 回退 vanilla）\n\n### 5. 🎯 战略上下文\n- **核心事实**：exp_005 (learned gate) 结构性失败，return 最终仅 baseline 5%。三轮 bug 修复（exp_002→003→004→005）排除了实现错误，问题定位到 Gumbel-Softmax hard gate 机制本身\n- **当前策略**：诊断实验矩阵——exp_006(dt=2) vs exp_007(dt=4) 判断\"跳步本身有害\"还是\"learned gate 有害\"\n  - 两者都掉 return → 跳步本身在 Walker Walk (dense reward, 60Hz) 上有害，回退 vanilla\n  - dt=2 不掉但 dt=4 掉 → 存在可行跳步边界\n  - 两者都不掉 → 问题在 Gumbel gate 学习，转 binary skip 或 soft mixture\n- **150K go/no-go**：≥0.4+正趋势→300K; 0.3-0.4+正→+50K; <0.3或负趋势→pivot\n- **论文 framing 待定**：取决于诊断结果。三条叙事线已备好（narrative_frameworks.md）：success=bugs-as-ablation, gray=overhead-analysis, failure=systematic-elimination。exp_005 negative 后 paper 不能动，等 Director 决策\n- **易错点**：(1) 不要引用 exp_005 旧 metrics（85K=319.3 是错误值）(2) submit 命令必须 `bash -c` 包装 (3) baseline eval_return 基准线是 950.9（last 10 mean），不是 970.4（单点）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1778719165.md"
+}

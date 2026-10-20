@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eabf73fd448f44bc1d0d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper 008e v3 s1 nve fix",
+  "task_key": "worker_paper_008e-v3-s1-nve-fix_20260517T131402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_008e-v3-s1-nve-fix_20260517T131402_result.json",
+    "occurrence": 1,
+    "bytes": 476,
+    "sha256": "8427aac8dffa0da66edf23fb236549bb4920723456cd2ea9d10e1fb9165c4d73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No residual `0.80` anywhere in `docs/paper/`.\n\n**Summary of changes in `docs/paper/sections/results.tex`:**\n\n1. **Line 39** (Table 1, 008e\\_v3 s1 row): `0.80$\\times$` → `0.94$\\times$`\n2. **Line 109** (F6 paragraph, inline text): `$\\nve = 0.80\\times$` → `$\\nve = 0.94\\times$`\n\n**Verification:**\n- No `0.80` remains in any `.tex` file under `docs/paper/`\n- Appendix Table 4 already had `0.94` for 008e\\_v3\\_s1 — now consistent with Table 1"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-008e-v3-s1-nve-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75938e8b7c247317d754",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check exp008d checkpoints",
+  "task_key": "worker_check_exp008d-checkpoints_20260524T205048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp008d-checkpoints_20260524T205048_result.json",
+    "occurrence": 1,
+    "bytes": 1023,
+    "sha256": "c2f3f449408a4468e94469c5f8f61b662d980dd34d84c9c588bb665f378aac69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n```\nexp_008d_subsample_on_h8:  无中间 checkpoint，仅 latest.pt (221MB)\nexp_008d_civo_trigger_s1:  有 1 个中间 checkpoint: checkpoint_25000.pt + latest.pt\nexp_008d_civo_trigger_s3:  有 2 个中间 checkpoint: checkpoint_25000.pt, checkpoint_75000.pt + latest.pt\nexp_008d_civo_trigger_s4:  有 2 个中间 checkpoint: checkpoint_25000.pt, checkpoint_75000.pt + latest.pt\nexp_006:                   不存在（bjb1-45299 无此目录）\n\nbjb1-40020:                无任何 exp_008d 或 exp_006 目录\n\n覆盖范围: 15K-55K 区间 — 只有 checkpoint_25000.pt 落在此范围\n           checkpoint 间距太大（25K → 75K → latest），≥5 个 checkpoint: 不满足\n```\n\n**总结**: collapse 过程的中间 checkpoint 极度稀疏。整个 008d 系列只保存了 step 25000 和 75000 两个 checkpoint，15K-55K 区间仅有 25K 一个点，远达不到 ≥5 个 checkpoint 的要求。原始 exp_008d_subsample_on_h8 甚至没有任何中间 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp008d-checkpoints.md"
+}

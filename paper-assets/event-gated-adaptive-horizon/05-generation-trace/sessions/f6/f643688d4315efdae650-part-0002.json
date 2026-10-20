@@ -1,0 +1,444 @@
+{
+  "schema_version": "1.0",
+  "session_id": "f643688d4315efdae650",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 135,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个分析都完成了。现在将结果下载到本地。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "925391f5-f5cf-401f-9749-140c46cf1b1f",
+            "uuid": "4e9cf872-64bb-4cd3-a014-d7f99f7fd884",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KHhBGn3mk5gfLGuT6WVzsU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4254,
+                "cache_read_input_tokens": 153262,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4254
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RWPZc4dLHr91i29MrqYjs9",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-45299",
+                "command": "cat /root/autodl-tmp/event-gated-adaptive-horizon/artifacts/nve_threshold_sensitivity.md",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "925391f5-f5cf-401f-9749-140c46cf1b1f",
+            "uuid": "50ea1939-c18d-46da-8b22-758632a41346",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KHhBGn3mk5gfLGuT6WVzsU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4254,
+                "cache_read_input_tokens": 153262,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4254
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": "2026-05-24T12:08:28.730Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RWPZc4dLHr91i29MrqYjs9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# NVE Threshold Sensitivity Analysis (B2: Any CIVO Detection)\\\\n\\\\nGenerated: 2026-05-24\\\\n\\\\nData source: Appendix Table complete_results (all Walker + Cheetah seeds with NVE values)\\\\n\\\\n## All Environments (Walker + Cheetah, n=32, AUROC=0.961)\\\\n\\\\nn = 32 (n_pos = 11, n_neg = 21)\\\\n\\\\n| Threshold | TP | FP | FN | TN | Accuracy [95% CI] | TPR | FPR | Precision | F1 |\\\\n|-----------|----|----|----|----|-------------------|-----|-----|-----------|-----|\\\\n| 1.3x | 11 | 6 | 0 | 15 | 81.2% [65.0%, 94.8%] | 1.000 | 0.286 | 0.647 | 0.786 |\\\\n| 1.5x | 11 | 3 | 0 | 18 | 90.6% [76.9%, 100.0%] | 1.000 | 0.143 | 0.786 | 0.880 |\\\\n| 1.7x | 8 | 3 | 3 | 18 | 81.2% [65.0%, 94.8%] | 0.727 | 0.143 | 0.727 | 0.727 |\\\\n| 2.0x | 8 | 1 | 3 | 20 | 87.5% [72.8%, 98.9%] | 0.727 | 0.048 | 0.889 | 0.800 |\\\\n\\\\n**False positives at 1.5x:**\\\\n- 047: NVE=1.71x (frozen s1, transient self-corr (not CIVO))\\\\n- 057: NVE=1.88x (frozen s2, transient self-corr (not CIVO))\\\\n- 008e_v3_s2: NVE=3.78x (IRD, non-CIVO)\\\\n\\\\n## Walker Walk (n=23, AUROC=0.925)\\\\n\\\\nn = 23 (n_pos = 8, n_neg = 15)\\\\n\\\\n| Threshold | TP | FP | FN | TN | Accuracy [95% CI] | TPR | FPR | Precision | F1 |\\\\n|-----------|----|----|----|----|-------------------|-----|-----|-----------|-----|\\\\n| 1.3x | 8 | 5 | 0 | 10 | 78.3% [58.0%, 95.1%] | 1.000 | 0.333 | 0.615 | 0.762 |\\\\n| 1.5x | 8 | 3 | 0 | 12 | 87.0% [68.7%, 100.0%] | 1.000 | 0.200 | 0.727 | 0.842 |\\\\n| 1.7x | 5 | 3 | 3 | 12 | 73.9% [53.0%, 92.0%] | 0.625 | 0.200 | 0.625 | 0.625 |\\\\n| 2.0x | 5 | 1 | 3 | 14 | 82.6% [63.2%, 97.9%] | 0.625 | 0.067 | 0.833 | 0.714 |\\\\n\\\\n**False positives at 1.5x:**\\\\n- 047: NVE=1.71x (frozen s1, transient self-corr (not CIVO))\\\\n- 057: NVE=1.88x (frozen s2, transient self-corr (not CIVO))\\\\n- 008e_v3_s2: NVE=3.78x (IRD, non-CIVO)\\\\n\\\\n## Cheetah Run (n=9, AUROC=1.000)\\\\n\\\\nn = 9 (n_pos = 3, n_neg = 6)\\\\n\\\\n| Threshold | TP | FP | FN | TN | Accuracy [95% CI] | TPR | FPR | Precision | F1 |\\\\n|-----------|----|----|----|----|-------------------|-----|-----|-----------|-----|\\\\n| 1.3x | 3 | 1 | 0 | 5 | 88.9% [56.4%, 100.0%] | 1.000 | 0.167 | 0.750 | 0.857 |\\\\n| 1.5x | 3 | 0 | 0 | 6 | 100.0% [72.3%, 100.0%] | 1.000 | 0.000 | 1.000 | 1.000 |\\\\n| 1.7x | 3 | 0 | 0 | 6 | 100.0% [72.3%, 100.0%] | 1.000 | 0.000 | 1.000 | 1.000 |\\\\n| 2.0x | 3 | 0 | 0 | 6 | 100.0% [72.3%, 100.0%] | 1.000 | 0.000 | 1.000 | 1.000 |\\\\n\\\\n\\\\n## Per-Experiment Data\\\\n\\\\n| Experiment | Env | NVE Peak | CIVO (B2) | Mechanism |\\\\n|-----------|-----|----------|-----------|-----------|\\\\n| 010b_s0 | cheetah | 108.52x | **+** | trained dt_emb, full collapse |\\\\n| 021 | cheetah | 9.94x | **+** | SGS cheetah, transient CIVO |\\\\n| 010b | cheetah | 8.27x | **+** | trained dt_emb, collapsed |\\\\n| 006 | walker | 4.83x | **+** | trained dt_emb, sustained CIVO |\\\\n| 059_s5 | walker | 4.72x | **+** | trained dt_emb, self-correcting CIVO |\\\\n| 008d_s4 | walker | 4.62x | **+** | trained dt_emb, full collapse |\\\\n| 008d_s1 | walker | 4.12x | **+** | trained dt_emb, full collapse |\\\\n| 008e_v3_s3 | walker | 4.02x | **+** | CIVO collapse |\\\\n| 008e_v3_s2 | walker | 3.78x | - | IRD, non-CIVO |\\\\n| 057 | walker | 1.88x | - | frozen s2, transient self-corr (not CIVO) |\\\\n| 047 | walker | 1.71x | - | frozen s1, transient self-corr (not CIVO) |\\\\n| 018_s1 | walker | 1.66x | **+** | Full-SGS, partial mitig (CIVO+) |\\\\n| 009b_s2 | walker | 1.62x | **+** | trained dt_emb, transient CIVO |\\\\n| 008d_s3 | walker | 1.53x | **+** | trained dt_emb, late-onset |\\\\n| 015b | walker | 1.45x | - | frozen emb, grad starvation |\\\\n| 008f_s4 | walker | 1.41x | - | no dt_emb |\\\\n| 046 | cheetah | 1.35x | - | frozen, no CIVO |\\\\n| 008a_ch_s1 | cheetah | 1.29x | - | unexposed emb |\\\\n| 008a_ch_s0 | cheetah | 1.08x | - | unexposed emb |\\\\n| 009c_s3 | walker | 1.04x | - | no dt_emb |\\\\n| 001_s1 | walker | 1.00x | - | baseline |\\\\n| 008e_v3_s4 | walker | 0.99x | - | mitigation s4 |\\\\n| 008f_s1 | walker | 0.97x | - | no dt_emb |\\\\n| 008e_v3_s1 | walker | 0.94x | - | mitigation s1 |\\\\n| 008a_s0 | walker | 0.93x | - | unexposed emb |\\\\n| 008a_s2 | walker | 0.89x | - | unexposed emb |\\\\n| 008a_s1 | walker | 0.83x | - | unexposed emb |\\\\n| 058 | cheetah | 0.78x | - | frozen, no CIVO |\\\\n| 022b | walker | 0.63x | - | frozen+Gumbel |\\\\n| 024b_s0 | cheetah | 0.20x | - | no dt_emb |\\\\n| 042 | walker | 0.19x | - | frozen dedicated |\\\\n| 024b_s1 | cheetah | 0.10x | - | no dt_emb |\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "925391f5-f5cf-401f-9749-140c46cf1b1f",
+            "uuid": "a505a9cb-d373-40e2-b6a1-4ed4be2f5caf",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# NVE Threshold Sensitivity Analysis (B2: Any CIVO Detection)\\\\n\\\\nGenerated: 2026-05-24\\\\n\\\\nData source: Appendix Table complete_results (all Walker + Cheetah seeds with NVE values)\\\\n\\\\n## All Environments (Walker + Cheetah, n=32, AUROC=0.961)\\\\n\\\\nn = 32 (n_pos = 11, n_neg = 21)\\\\n\\\\n| Threshold | TP | FP | FN | TN | Accuracy [95% CI] | TPR | FPR | Precision | F1 |\\\\n|-----------|----|----|----|----|-------------------|-----|-----|-----------|-----|\\\\n| 1.3x | 11 | 6 | 0 | 15 | 81.2% [65.0%, 94.8%] | 1.000 | 0.286 | 0.647 | 0.786 |\\\\n| 1.5x | 11 | 3 | 0 | 18 | 90.6% [76.9%, 100.0%] | 1.000 | 0.143 | 0.786 | 0.880 |\\\\n| 1.7x | 8 | 3 | 3 | 18 | 81.2% [65.0%, 94.8%] | 0.727 | 0.143 | 0.727 | 0.727 |\\\\n| 2.0x | 8 | 1 | 3 | 20 | 87.5% [72.8%, 98.9%] | 0.727 | 0.048 | 0.889 | 0.800 |\\\\n\\\\n**False positives at 1.5x:**\\\\n- 047: NVE=1.71x (frozen s1, transient self-corr (not CIVO))\\\\n- 057: NVE=1.88x (frozen s2, transient self-corr (not CIVO))\\\\n- 008e_v3_s2: NVE=3.78x (IRD, non-CIVO)\\\\n\\\\n## Walker Walk (n=23, AUROC=0.925)\\\\n\\\\nn = 23 (n_pos = 8, n_neg = 15)\\\\n\\\\n| Threshold | TP | FP | FN | TN | Accuracy [95% CI] | TPR | FPR | Precision | F1 |\\\\n|-----------|----|----|----|----|-------------------|-----|-----|-----------|-----|\\\\n| 1.3x | 8 | 5 | 0 | 10 | 78.3% [58.0%, 95.1%] | 1.000 | 0.333 | 0.615 | 0.762 |\\\\n| 1.5x | 8 | 3 | 0 | 12 | 87.0% [68.7%, 100.0%] | 1.000 | 0.200 | 0.727 | 0.842 |\\\\n| 1.7x | 5 | 3 | 3 | 12 | 73.9% [53.0%, 92.0%] | 0.625 | 0.200 | 0.625 | 0.625 |\\\\n| 2.0x | 5 | 1 | 3 | 14 | 82.6% [63.2%, 97.9%] | 0.625 | 0.067 | 0.833 | 0.714 |\\\\n\\\\n**False positives at 1.5x:**\\\\n- 047: NVE=1.71x (frozen s1, transient self-corr (not CIVO))\\\\n- 057: NVE=1.88x (frozen s2, transient self-corr (not CIVO))\\\\n- 008e_v3_s2: NVE=3.78x (IRD, non-CIVO)\\\\n\\\\n## Cheetah Run (n=9, AUROC=1.000)\\\\n\\\\nn = 9 (n_pos = 3, n_neg = 6)\\\\n\\\\n| Threshold | TP | FP | FN | TN | Accuracy [95% CI] | TPR | FPR | Precision | F1 |\\\\n|-----------|----|----|----|----|-------------------|-----|-----|-----------|-----|\\\\n| 1.3x | 3 | 1 | 0 | 5 | 88.9% [56.4%, 100.0%] | 1.000 | 0.167 | 0.750 | 0.857 |\\\\n| 1.5x | 3 | 0 | 0 | 6 | 100.0% [72.3%, 100.0%] | 1.000 | 0.000 | 1.000 | 1.000 |\\\\n| 1.7x | 3 | 0 | 0 | 6 | 100.0% [72.3%, 100.0%] | 1.000 | 0.000 | 1.000 | 1.000 |\\\\n| 2.0x | 3 | 0 | 0 | 6 | 100.0% [72.3%, 100.0%] | 1.000 | 0.000 | 1.000 | 1.000 |\\\\n\\\\n\\\\n## Per-Experiment Data\\\\n\\\\n| Experiment | Env | NVE Peak | CIVO (B2) | Mechanism |\\\\n|-----------|-----|----------|-----------|-----------|\\\\n| 010b_s0 | cheetah | 108.52x | **+** | trained dt_emb, full collapse |\\\\n| 021 | cheetah | 9.94x | **+** | SGS cheetah, transient CIVO |\\\\n| 010b | cheetah | 8.27x | **+** | trained dt_emb, collapsed |\\\\n| 006 | walker | 4.83x | **+** | trained dt_emb, sustained CIVO |\\\\n| 059_s5 | walker | 4.72x | **+** | trained dt_emb, self-correcting CIVO |\\\\n| 008d_s4 | walker | 4.62x | **+** | trained dt_emb, full collapse |\\\\n| 008d_s1 | walker | 4.12x | **+** | trained dt_emb, full collapse |\\\\n| 008e_v3_s3 | walker | 4.02x | **+** | CIVO collapse |\\\\n| 008e_v3_s2 | walker | 3.78x | - | IRD, non-CIVO |\\\\n| 057 | walker | 1.88x | - | frozen s2, transient self-corr (not CIVO) |\\\\n| 047 | walker | 1.71x | - | frozen s1, transient self-corr (not CIVO) |\\\\n| 018_s1 | walker | 1.66x | **+** | Full-SGS, partial mitig (CIVO+) |\\\\n| 009b_s2 | walker | 1.62x | **+** | trained dt_emb, transient CIVO |\\\\n| 008d_s3 | walker | 1.53x | **+** | trained dt_emb, late-onset |\\\\n| 015b | walker | 1.45x | - | frozen emb, grad starvation |\\\\n| 008f_s4 | walker | 1.41x | - | no dt_emb |\\\\n| 046 | cheetah | 1.35x | - | frozen, no CIVO |\\\\n| 008a_ch_s1 | cheetah | 1.29x | - | unexposed emb |\\\\n| 008a_ch_s0 | cheetah | 1.08x | - | unexposed emb |\\\\n| 009c_s3 | walker | 1.04x | - | no dt_emb |\\\\n| 001_s1 | walker | 1.00x | - | baseline |\\\\n| 008e_v3_s4 | walker | 0.99x | - | mitigation s4 |\\\\n| 008f_s1 | walker | 0.97x | - | no dt_emb |\\\\n| 008e_v3_s1 | walker | 0.94x | - | mitigation s1 |\\\\n| 008a_s0 | walker | 0.93x | - | unexposed emb |\\\\n| 008a_s2 | walker | 0.89x | - | unexposed emb |\\\\n| 008a_s1 | walker | 0.83x | - | unexposed emb |\\\\n| 058 | cheetah | 0.78x | - | frozen, no CIVO |\\\\n| 022b | walker | 0.63x | - | frozen+Gumbel |\\\\n| 024b_s0 | cheetah | 0.20x | - | no dt_emb |\\\\n| 042 | walker | 0.19x | - | frozen dedicated |\\\\n| 024b_s1 | cheetah | 0.10x | - | no dt_emb |\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"# NVE Threshold Sensitivity Analysis (B2: Any CIVO Detection)\\n\\nGenerated: 2026-05-24\\n\\nData source: Appendix Table complete_results (all Walker + Cheetah seeds with NVE values)\\n\\n## All Environments (Walker + Cheetah, n=32, AUROC=0.961)\\n\\nn = 32 (n_pos = 11, n_neg = 21)\\n\\n| Threshold | TP | FP | FN | TN | Accuracy [95% CI] | TPR | FPR | Precision | F1 |\\n|-----------|----|----|----|----|-------------------|-----|-----|-----------|-----|\\n| 1.3x | 11 | 6 | 0 | 15 | 81.2% [65.0%, 94.8%] | 1.000 | 0.286 | 0.647 | 0.786 |\\n| 1.5x | 11 | 3 | 0 | 18 | 90.6% [76.9%, 100.0%] | 1.000 | 0.143 | 0.786 | 0.880 |\\n| 1.7x | 8 | 3 | 3 | 18 | 81.2% [65.0%, 94.8%] | 0.727 | 0.143 | 0.727 | 0.727 |\\n| 2.0x | 8 | 1 | 3 | 20 | 87.5% [72.8%, 98.9%] | 0.727 | 0.048 | 0.889 | 0.800 |\\n\\n**False positives at 1.5x:**\\n- 047: NVE=1.71x (frozen s1, transient self-corr (not CIVO))\\n- 057: NVE=1.88x (frozen s2, transient self-corr (not CIVO))\\n- 008e_v3_s2: NVE=3.78x (IRD, non-CIVO)\\n\\n## Walker Walk (n=23, AUROC=0.925)\\n\\nn = 23 (n_pos = 8, n_neg = 15)\\n\\n| Threshold | TP | FP | FN | TN | Accuracy [95% CI] | TPR | FPR | Precision | F1 |\\n|-----------|----|----|----|----|-------------------|-----|-----|-----------|-----|\\n| 1.3x | 8 | 5 | 0 | 10 | 78.3% [58.0%, 95.1%] | 1.000 | 0.333 | 0.615 | 0.762 |\\n| 1.5x | 8 | 3 | 0 | 12 | 87.0% [68.7%, 100.0%] | 1.000 | 0.200 | 0.727 | 0.842 |\\n| 1.7x | 5 | 3 | 3 | 12 | 73.9% [53.0%, 92.0%] | 0.625 | 0.200 | 0.625 | 0.625 |\\n| 2.0x | 5 | 1 | 3 | 14 | 82.6% [63.2%, 97.9%] | 0.625 | 0.067 | 0.833 | 0.714 |\\n\\n**False positives at 1.5x:**\\n- 047: NVE=1.71x (frozen s1, transient self-corr (not CIVO))\\n- 057: NVE=1.88x (frozen s2, transient self-corr (not CIVO))\\n- 008e_v3_s2: NVE=3.78x (IRD, non-CIVO)\\n\\n## Cheetah Run (n=9, AUROC=1.000)\\n\\nn = 9 (n_pos = 3, n_neg = 6)\\n\\n| Threshold | TP | FP | FN | TN | Accuracy [95% CI] | TPR | FPR | Precision | F1 |\\n|-----------|----|----|----|----|-------------------|-----|-----|-----------|-----|\\n| 1.3x | 3 | 1 | 0 | 5 | 88.9% [56.4%, 100.0%] | 1.000 | 0.167 | 0.750 | 0.857 |\\n| 1.5x | 3 | 0 | 0 | 6 | 100.0% [72.3%, 100.0%] | 1.000 | 0.000 | 1.000 | 1.000 |\\n| 1.7x | 3 | 0 | 0 | 6 | 100.0% [72.3%, 100.0%] | 1.000 | 0.000 | 1.000 | 1.000 |\\n| 2.0x | 3 | 0 | 0 | 6 | 100.0% [72.3%, 100.0%] | 1.000 | 0.000 | 1.000 | 1.000 |\\n\\n\\n## Per-Experiment Data\\n\\n| Experiment | Env | NVE Peak | CIVO (B2) | Mechanism |\\n|-----------|-----|----------|-----------|-----------|\\n| 010b_s0 | cheetah | 108.52x | **+** | trained dt_emb, full collapse |\\n| 021 | cheetah | 9.94x | **+** | SGS cheetah, transient CIVO |\\n| 010b | cheetah | 8.27x | **+** | trained dt_emb, collapsed |\\n| 006 | walker | 4.83x | **+** | trained dt_emb, sustained CIVO |\\n| 059_s5 | walker | 4.72x | **+** | trained dt_emb, self-correcting CIVO |\\n| 008d_s4 | walker | 4.62x | **+** | trained dt_emb, full collapse |\\n| 008d_s1 | walker | 4.12x | **+** | trained dt_emb, full collapse |\\n| 008e_v3_s3 | walker | 4.02x | **+** | CIVO collapse |\\n| 008e_v3_s2 | walker | 3.78x | - | IRD, non-CIVO |\\n| 057 | walker | 1.88x | - | frozen s2, transient self-corr (not CIVO) |\\n| 047 | walker | 1.71x | - | frozen s1, transient self-corr (not CIVO) |\\n| 018_s1 | walker | 1.66x | **+** | Full-SGS, partial mitig (CIVO+) |\\n| 009b_s2 | walker | 1.62x | **+** | trained dt_emb, transient CIVO |\\n| 008d_s3 | walker | 1.53x | **+** | trained dt_emb, late-onset |\\n| 015b | walker | 1.45x | - | frozen emb, grad starvation |\\n| 008f_s4 | walker | 1.41x | - | no dt_emb |\\n| 046 | cheetah | 1.35x | - | frozen, no CIVO |\\n| 008a_ch_s1 | cheetah | 1.29x | - | unexposed emb |\\n| 008a_ch_s0 | cheetah | 1.08x | - | unexposed emb |\\n| 009c_s3 | walker | 1.04x | - | no dt_emb |\\n| 001_s1 | walker | 1.00x | - | baseline |\\n| 008e_v3_s4 | walker | 0.99x | - | mitigation s4 |\\n| 008f_s1 | walker | 0.97x | - | no dt_emb |\\n| 008e_v3_s1 | walker | 0.94x | - | mitigation s1 |\\n| 008a_s0 | walker | 0.93x | - | unexposed emb |\\n| 008a_s2 | walker | 0.89x | - | unexposed emb |\\n| 008a_s1 | walker | 0.83x | - | unexposed emb |\\n| 058 | cheetah | 0.78x | - | frozen, no CIVO |\\n| 022b | walker | 0.63x | - | frozen+Gumbel |\\n| 024b_s0 | cheetah | 0.20x | - | no dt_emb |\\n| 042 | walker | 0.19x | - | frozen dedicated |\\n| 024b_s1 | cheetah | 0.10x | - | no dt_emb |\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "保存到本地 artifacts 目录。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "925391f5-f5cf-401f-9749-140c46cf1b1f",
+            "uuid": "6416c8d4-a2ae-4817-98c8-ff9d668c6eeb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MC9kXqA2yUujksM8PGzTfi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2619,
+                "cache_read_input_tokens": 157516,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2619
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MHLbuii4yUNBpvRzrkyr8G",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/",
+                "description": "Check local artifacts directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "925391f5-f5cf-401f-9749-140c46cf1b1f",
+            "uuid": "15612a0e-3de5-41c8-8660-f9463aeb1d18",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MC9kXqA2yUujksM8PGzTfi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2619,
+                "cache_read_input_tokens": 157516,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2619
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": "2026-05-24T12:08:33.751Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MHLbuii4yUNBpvRzrkyr8G",
+              "type": "tool_result",
+              "content": "008e_dryrun_check.md\n009b_literature_search.md\n016e\n018\n018_prewrite_two_versions.md\n018v2_server_check.md\n019a\n019a_dryrun_report.md\n019b\n_project\nactor_loss_timeseries.json\nanalysis\nanalysis_actor_entropy_plan031.md\nanalysis_civo_detector_pickcube_backtest.md\nanalysis_rssm_prediction_quality.json\nauroc_label_fix_recompute.py\nauroc_label_fix_report.md\nauroc_label_fix_result.json\nbernoulli_st_pessimism_designs.md\nbootstrap_ci_n3.json\nbootstrap_ci_results.json\nbootstrap_cis\nbootstrap_cis.json\ncheck_037_038_status.md\ncheckpoint_monitor.py\ncivo_detector_retrospective.json\nclaim_strength_audit.md\ncode\ncode_survey_dreamerv3.md\ncontingency_framing_B_C.md\nd061_literature_linkage.md\ndata\ndrafts\ndream_reports\neval_mvp.py\nexp_001_baseline\nexp_001_baseline_s1_ve_profile_full.csv\nexp_001_baseline_s2_ext_ve_ratio_profile.csv\nexp_001_baseline_s2_ve_profile_full.csv\nexp_001_baseline_s3_ve_profile_full.csv\nexp_001_baseline_s4_ve_profile_full.csv\nexp_002_event_gated\nexp_005_event_gated_v4\nexp_006\nexp_006_fixed_dt2\nexp_008d_civo_trigger_s3\nexp_008e_v3_subsample_on_dt1_h15_s2\nexp_008e_v3_walker_s2\nexp_008f_s3\nexp_009b_008d_walker_s2\nexp_010a_cheetah_baseline_s1\nexp_015\nexp_018_full_sgs_walker_s1\nexp_018v2_full_sgs_walker_s1\nexp_019b_final_analysis.md\nexp_019b_pickcube_civo_trigger\nexp_021_full_sgs_cheetah_s1\nexp_022_untrained_dt_emb_learned_gate\nexp_022b\nexp_023a_cheetah_baseline_s0\nexp_023b_cheetah_baseline_s1\nexp_024b_cheetah_no_dt_emb_s0\nexp_027_tcn_walker_s0\nexp_027_tcn_walker_s0_analysis.md\nexp_031b_tcn_pickcube_s0_sigma05\nexp_032_dual_critic_walker\nexp_032b_dual_critic_walker_s1\nexp_033_wide_critic_walker\nexp_034\nexp_034_dual_critic_cheetah\nexp_035\nexp_035_narrow_dual_critic_walker\nexp_036_dual_critic_pickcube\nexp_047_diagnosis.md\nfigures\nfigures_data\nframing_b_reaudit_diff.md\ngen_bib.py\ngpu_deployment_plan_20260521.md\ngradient_stopping_code_audit.md\nimagination_reward_analysis.md\nimplementation_design.md\nliterature\nliterature_gap_analysis_20260514.md\nliterature_map.yaml\nliterature_scan_20260515.md\nliterature_sgs_survey.md\nliterature_survey_summary.md\nmanifest.yaml\nmaniskill3_cuda_workaround.md\nmaniskill3_dreamer_integration.md\nmaniskill3_integration_report.md\nmethod_framingB_reaudit_v2.md\nmethod_section_draft.md\nmetrics_summary_table.md\nnarrative_audit.md\nnegative_pattern_analysis.md\nnve_loeo_crossval_report.md\nnve_sensitivity_analysis.md\nnve_threshold_analysis.json\nnve_threshold_analysis_v3.py\nnve_threshold_v3_ci_supplement_d054.json\npaper_drafts\npaper_figures\npaper_section_audit.md\npaper_sections\npessimism_mechanism_design.md\npickcube_ve_trajectory.json\npivot_gate_survey.md\nplot_figures.py\npreflight_008e_v3_s2.md\nprogress_check_20260515.md\nrebuttal_draft.md\nrebuttal_prep.md\nrelated_work_draft.md\nrelated_work_expansion.md\nrelated_work_expansion.yaml\nrelated_work_refs.yaml\nreport_server_status.md\nreview_issues.yaml\nreview_reports\nreview_round_3\nreview_round_4\nrssm_prediction_quality_analysis.json\nscripts\nseed_label_diff_summary.md\nsgs_implementation_report.md\nsigned_reward_error.md\nsupplementary\nthree_way_dt_emb_comparison.md\ntraining_progress_check_20260514.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "925391f5-f5cf-401f-9749-140c46cf1b1f",
+            "uuid": "246a4c3d-69b9-43da-8d03-99acd365701b",
+            "tool_use_result": {
+              "stdout": "008e_dryrun_check.md\n009b_literature_search.md\n016e\n018\n018_prewrite_two_versions.md\n018v2_server_check.md\n019a\n019a_dryrun_report.md\n019b\n_project\nactor_loss_timeseries.json\nanalysis\nanalysis_actor_entropy_plan031.md\nanalysis_civo_detector_pickcube_backtest.md\nanalysis_rssm_prediction_quality.json\nauroc_label_fix_recompute.py\nauroc_label_fix_report.md\nauroc_label_fix_result.json\nbernoulli_st_pessimism_designs.md\nbootstrap_ci_n3.json\nbootstrap_ci_results.json\nbootstrap_cis\nbootstrap_cis.json\ncheck_037_038_status.md\ncheckpoint_monitor.py\ncivo_detector_retrospective.json\nclaim_strength_audit.md\ncode\ncode_survey_dreamerv3.md\ncontingency_framing_B_C.md\nd061_literature_linkage.md\ndata\ndrafts\ndream_reports\neval_mvp.py\nexp_001_baseline\nexp_001_baseline_s1_ve_profile_full.csv\nexp_001_baseline_s2_ext_ve_ratio_profile.csv\nexp_001_baseline_s2_ve_profile_full.csv\nexp_001_baseline_s3_ve_profile_full.csv\nexp_001_baseline_s4_ve_profile_full.csv\nexp_002_event_gated\nexp_005_event_gated_v4\nexp_006\nexp_006_fixed_dt2\nexp_008d_civo_trigger_s3\nexp_008e_v3_subsample_on_dt1_h15_s2\nexp_008e_v3_walker_s2\nexp_008f_s3\nexp_009b_008d_walker_s2\nexp_010a_cheetah_baseline_s1\nexp_015\nexp_018_full_sgs_walker_s1\nexp_018v2_full_sgs_walker_s1\nexp_019b_final_analysis.md\nexp_019b_pickcube_civo_trigger\nexp_021_full_sgs_cheetah_s1\nexp_022_untrained_dt_emb_learned_gate\nexp_022b\nexp_023a_cheetah_baseline_s0\nexp_023b_cheetah_baseline_s1\nexp_024b_cheetah_no_dt_emb_s0\nexp_027_tcn_walker_s0\nexp_027_tcn_walker_s0_analysis.md\nexp_031b_tcn_pickcube_s0_sigma05\nexp_032_dual_critic_walker\nexp_032b_dual_critic_walker_s1\nexp_033_wide_critic_walker\nexp_034\nexp_034_dual_critic_cheetah\nexp_035\nexp_035_narrow_dual_critic_walker\nexp_036_dual_critic_pickcube\nexp_047_diagnosis.md\nfigures\nfigures_data\nframing_b_reaudit_diff.md\ngen_bib.py\ngpu_deployment_plan_20260521.md\ngradient_stopping_code_audit.md\nimagination_reward_analysis.md\nimplementation_design.md\nliterature\nliterature_gap_analysis_20260514.md\nliterature_map.yaml\nliterature_scan_20260515.md\nliterature_sgs_survey.md\nliterature_survey_summary.md\nmanifest.yaml\nmaniskill3_cuda_workaround.md\nmaniskill3_dreamer_integration.md\nmaniskill3_integration_report.md\nmethod_framingB_reaudit_v2.md\nmethod_section_draft.md\nmetrics_summary_table.md\nnarrative_audit.md\nnegative_pattern_analysis.md\nnve_loeo_crossval_report.md\nnve_sensitivity_analysis.md\nnve_threshold_analysis.json\nnve_threshold_analysis_v3.py\nnve_threshold_v3_ci_supplement_d054.json\npaper_drafts\npaper_figures\npaper_section_audit.md\npaper_sections\npessimism_mechanism_design.md\npickcube_ve_trajectory.json\npivot_gate_survey.md\nplot_figures.py\npreflight_008e_v3_s2.md\nprogress_check_20260515.md\nrebuttal_draft.md\nrebuttal_prep.md\nrelated_work_draft.md\nrelated_work_expansion.md\nrelated_work_expansion.yaml\nrelated_work_refs.yaml\nreport_server_status.md\nreview_issues.yaml\nreview_reports\nreview_round_3\nreview_round_4\nrssm_prediction_quality_analysis.json\nscripts\nseed_label_diff_summary.md\nsgs_implementation_report.md\nsigned_reward_error.md\nsupplementary\nthree_way_dt_emb_comparison.md\ntraining_progress_check_20260514.md",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012616wzBGCSNsh9U64P6bYu",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/nve_threshold_sensitivity.md",
+                "content": "# NVE Threshold Sensitivity Analysis (B2: Any CIVO Detection)\n\nGenerated: 2026-05-24\n\nData source: Appendix Table complete_results (all Walker + Cheetah seeds with NVE values)\n\n## All Environments (Walker + Cheetah, n=32, AUROC=0.961)\n\nn = 32 (n_pos = 11, n_neg = 21)\n\n| Threshold | TP | FP | FN | TN | Accuracy [95% CI] | TPR | FPR | Precision | F1 |\n|-----------|----|----|----|----|-------------------|-----|-----|-----------|-----|\n| 1.3x | 11 | 6 | 0 | 15 | 81.2% [65.0%, 94.8%] | 1.000 | 0.286 | 0.647 | 0.786 |\n| 1.5x | 11 | 3 | 0 | 18 | 90.6% [76.9%, 100.0%] | 1.000 | 0.143 | 0.786 | 0.880 |\n| 1.7x | 8 | 3 | 3 | 18 | 81.2% [65.0%, 94.8%] | 0.727 | 0.143 | 0.727 | 0.727 |\n| 2.0x | 8 | 1 | 3 | 20 | 87.5% [72.8%, 98.9%] | 0.727 | 0.048 | 0.889 | 0.800 |\n\n**False positives at 1.5x:**\n- 047: NVE=1.71x (frozen s1, transient self-corr (not CIVO))\n- 057: NVE=1.88x (frozen s2, transient self-corr (not CIVO))\n- 008e_v3_s2: NVE=3.78x (IRD, non-CIVO)\n\n## Walker Walk (n=23, AUROC=0.925)\n\nn = 23 (n_pos = 8, n_neg = 15)\n\n| Threshold | TP | FP | FN | TN | Accuracy [95% CI] | TPR | FPR | Precision | F1 |\n|-----------|----|----|----|----|-------------------|-----|-----|-----------|-----|\n| 1.3x | 8 | 5 | 0 | 10 | 78.3% [58.0%, 95.1%] | 1.000 | 0.333 | 0.615 | 0.762 |\n| 1.5x | 8 | 3 | 0 | 12 | 87.0% [68.7%, 100.0%] | 1.000 | 0.200 | 0.727 | 0.842 |\n| 1.7x | 5 | 3 | 3 | 12 | 73.9% [53.0%, 92.0%] | 0.625 | 0.200 | 0.625 | 0.625 |\n| 2.0x | 5 | 1 | 3 | 14 | 82.6% [63.2%, 97.9%] | 0.625 | 0.067 | 0.833 | 0.714 |\n\n**False positives at 1.5x:**\n- 047: NVE=1.71x (frozen s1, transient self-corr (not CIVO))\n- 057: NVE=1.88x (frozen s2, transient self-corr (not CIVO))\n- 008e_v3_s2: NVE=3.78x (IRD, non-CIVO)\n\n## Cheetah Run (n=9, AUROC=1.000)\n\nn = 9 (n_pos = 3, n_neg = 6)\n\n| Threshold | TP | FP | FN | TN | Accuracy [95% CI] | TPR | FPR | Precision | F1 |\n|-----------|----|----|----|----|-------------------|-----|-----|-----------|-----|\n| 1.3x | 3 | 1 | 0 | 5 | 88.9% [56.4%, 100.0%] | 1.000 | 0.167 | 0.750 | 0.857 |\n| 1.5x | 3 | 0 | 0 | 6 | 100.0% [72.3%, 100.0%] | 1.000 | 0.000 | 1.000 | 1.000 |\n| 1.7x | 3 | 0 | 0 | 6 | 100.0% [72.3%, 100.0%] | 1.000 | 0.000 | 1.000 | 1.000 |\n| 2.0x | 3 | 0 | 0 | 6 | 100.0% [72.3%, 100.0%] | 1.000 | 0.000 | 1.000 | 1.000 |\n\n\n## Per-Experiment Data\n\n| Experiment | Env | NVE Peak | CIVO (B2) | Mechanism |\n|-----------|-----|----------|-----------|-----------|\n| 010b_s0 | cheetah | 108.52x | **+** | trained dt_emb, full collapse |\n| 021 | cheetah | 9.94x | **+** | SGS cheetah, transient CIVO |\n| 010b | cheetah | 8.27x | **+** | trained dt_emb, collapsed |\n| 006 | walker | 4.83x | **+** | trained dt_emb, sustained CIVO |\n| 059_s5 | walker | 4.72x | **+** | trained dt_emb, self-correcting CIVO |\n| 008d_s4 | walker | 4.62x | **+** | trained dt_emb, full collapse |\n| 008d_s1 | walker | 4.12x | **+** | trained dt_emb, full collapse |\n| 008e_v3_s3 | walker | 4.02x | **+** | CIVO collapse |\n| 008e_v3_s2 | walker | 3.78x | - | IRD, non-CIVO |\n| 057 | walker | 1.88x | - | frozen s2, transient self-corr (not CIVO) |\n| 047 | walker | 1.71x | - | frozen s1, transient self-corr (not CIVO) |\n| 018_s1 | walker | 1.66x | **+** | Full-SGS, partial mitig (CIVO+) |\n| 009b_s2 | walker | 1.62x | **+** | trained dt_emb, transient CIVO |\n| 008d_s3 | walker | 1.53x | **+** | trained dt_emb, late-onset |\n| 015b | walker | 1.45x | - | frozen emb, grad starvation |\n| 008f_s4 | walker | 1.41x | - | no dt_emb |\n| 046 | cheetah | 1.35x | - | frozen, no CIVO |\n| 008a_ch_s1 | cheetah | 1.29x | - | unexposed emb |\n| 008a_ch_s0 | cheetah | 1.08x | - | unexposed emb |\n| 009c_s3 | walker | 1.04x | - | no dt_emb |\n| 001_s1 | walker | 1.00x | - | baseline |\n| 008e_v3_s4 | walker | 0.99x | - | mitigation s4 |\n| 008f_s1 | walker | 0.97x | - | no dt_emb |\n| 008e_v3_s1 | walker | 0.94x | - | mitigation s1 |\n| 008a_s0 | walker | 0.93x | - | unexposed emb |\n| 008a_s2 | walker | 0.89x | - | unexposed emb |\n| 008a_s1 | walker | 0.83x | - | unexposed emb |\n| 058 | cheetah | 0.78x | - | frozen, no CIVO |\n| 022b | walker | 0.63x | - | frozen+Gumbel |\n| 024b_s0 | cheetah | 0.20x | - | no dt_emb |\n| 042 | walker | 0.19x | - | frozen dedicated |\n| 024b_s1 | cheetah | 0.10x | - | no dt_emb |\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "925391f5-f5cf-401f-9749-140c46cf1b1f",
+            "uuid": "5c8aa871-e9e0-4ee6-82de-da17127fb466",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FhkYHE193s2NRR2iA5poqy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1373,
+                "cache_read_input_tokens": 160135,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1373
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": "2026-05-24T12:09:09.543Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012616wzBGCSNsh9U64P6bYu",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/nve_threshold_sensitivity.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "925391f5-f5cf-401f-9749-140c46cf1b1f",
+            "uuid": "f1d7cad0-240c-4c08-b486-91841ae333ce",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/nve_threshold_sensitivity.md",
+              "content": "# NVE Threshold Sensitivity Analysis (B2: Any CIVO Detection)\n\nGenerated: 2026-05-24\n\nData source: Appendix Table complete_results (all Walker + Cheetah seeds with NVE values)\n\n## All Environments (Walker + Cheetah, n=32, AUROC=0.961)\n\nn = 32 (n_pos = 11, n_neg = 21)\n\n| Threshold | TP | FP | FN | TN | Accuracy [95% CI] | TPR | FPR | Precision | F1 |\n|-----------|----|----|----|----|-------------------|-----|-----|-----------|-----|\n| 1.3x | 11 | 6 | 0 | 15 | 81.2% [65.0%, 94.8%] | 1.000 | 0.286 | 0.647 | 0.786 |\n| 1.5x | 11 | 3 | 0 | 18 | 90.6% [76.9%, 100.0%] | 1.000 | 0.143 | 0.786 | 0.880 |\n| 1.7x | 8 | 3 | 3 | 18 | 81.2% [65.0%, 94.8%] | 0.727 | 0.143 | 0.727 | 0.727 |\n| 2.0x | 8 | 1 | 3 | 20 | 87.5% [72.8%, 98.9%] | 0.727 | 0.048 | 0.889 | 0.800 |\n\n**False positives at 1.5x:**\n- 047: NVE=1.71x (frozen s1, transient self-corr (not CIVO))\n- 057: NVE=1.88x (frozen s2, transient self-corr (not CIVO))\n- 008e_v3_s2: NVE=3.78x (IRD, non-CIVO)\n\n## Walker Walk (n=23, AUROC=0.925)\n\nn = 23 (n_pos = 8, n_neg = 15)\n\n| Threshold | TP | FP | FN | TN | Accuracy [95% CI] | TPR | FPR | Precision | F1 |\n|-----------|----|----|----|----|-------------------|-----|-----|-----------|-----|\n| 1.3x | 8 | 5 | 0 | 10 | 78.3% [58.0%, 95.1%] | 1.000 | 0.333 | 0.615 | 0.762 |\n| 1.5x | 8 | 3 | 0 | 12 | 87.0% [68.7%, 100.0%] | 1.000 | 0.200 | 0.727 | 0.842 |\n| 1.7x | 5 | 3 | 3 | 12 | 73.9% [53.0%, 92.0%] | 0.625 | 0.200 | 0.625 | 0.625 |\n| 2.0x | 5 | 1 | 3 | 14 | 82.6% [63.2%, 97.9%] | 0.625 | 0.067 | 0.833 | 0.714 |\n\n**False positives at 1.5x:**\n- 047: NVE=1.71x (frozen s1, transient self-corr (not CIVO))\n- 057: NVE=1.88x (frozen s2, transient self-corr (not CIVO))\n- 008e_v3_s2: NVE=3.78x (IRD, non-CIVO)\n\n## Cheetah Run (n=9, AUROC=1.000)\n\nn = 9 (n_pos = 3, n_neg = 6)\n\n| Threshold | TP | FP | FN | TN | Accuracy [95% CI] | TPR | FPR | Precision | F1 |\n|-----------|----|----|----|----|-------------------|-----|-----|-----------|-----|\n| 1.3x | 3 | 1 | 0 | 5 | 88.9% [56.4%, 100.0%] | 1.000 | 0.167 | 0.750 | 0.857 |\n| 1.5x | 3 | 0 | 0 | 6 | 100.0% [72.3%, 100.0%] | 1.000 | 0.000 | 1.000 | 1.000 |\n| 1.7x | 3 | 0 | 0 | 6 | 100.0% [72.3%, 100.0%] | 1.000 | 0.000 | 1.000 | 1.000 |\n| 2.0x | 3 | 0 | 0 | 6 | 100.0% [72.3%, 100.0%] | 1.000 | 0.000 | 1.000 | 1.000 |\n\n\n## Per-Experiment Data\n\n| Experiment | Env | NVE Peak | CIVO (B2) | Mechanism |\n|-----------|-----|----------|-----------|-----------|\n| 010b_s0 | cheetah | 108.52x | **+** | trained dt_emb, full collapse |\n| 021 | cheetah | 9.94x | **+** | SGS cheetah, transient CIVO |\n| 010b | cheetah | 8.27x | **+** | trained dt_emb, collapsed |\n| 006 | walker | 4.83x | **+** | trained dt_emb, sustained CIVO |\n| 059_s5 | walker | 4.72x | **+** | trained dt_emb, self-correcting CIVO |\n| 008d_s4 | walker | 4.62x | **+** | trained dt_emb, full collapse |\n| 008d_s1 | walker | 4.12x | **+** | trained dt_emb, full collapse |\n| 008e_v3_s3 | walker | 4.02x | **+** | CIVO collapse |\n| 008e_v3_s2 | walker | 3.78x | - | IRD, non-CIVO |\n| 057 | walker | 1.88x | - | frozen s2, transient self-corr (not CIVO) |\n| 047 | walker | 1.71x | - | frozen s1, transient self-corr (not CIVO) |\n| 018_s1 | walker | 1.66x | **+** | Full-SGS, partial mitig (CIVO+) |\n| 009b_s2 | walker | 1.62x | **+** | trained dt_emb, transient CIVO |\n| 008d_s3 | walker | 1.53x | **+** | trained dt_emb, late-onset |\n| 015b | walker | 1.45x | - | frozen emb, grad starvation |\n| 008f_s4 | walker | 1.41x | - | no dt_emb |\n| 046 | cheetah | 1.35x | - | frozen, no CIVO |\n| 008a_ch_s1 | cheetah | 1.29x | - | unexposed emb |\n| 008a_ch_s0 | cheetah | 1.08x | - | unexposed emb |\n| 009c_s3 | walker | 1.04x | - | no dt_emb |\n| 001_s1 | walker | 1.00x | - | baseline |\n| 008e_v3_s4 | walker | 0.99x | - | mitigation s4 |\n| 008f_s1 | walker | 0.97x | - | no dt_emb |\n| 008e_v3_s1 | walker | 0.94x | - | mitigation s1 |\n| 008a_s0 | walker | 0.93x | - | unexposed emb |\n| 008a_s2 | walker | 0.89x | - | unexposed emb |\n| 008a_s1 | walker | 0.83x | - | unexposed emb |\n| 058 | cheetah | 0.78x | - | frozen, no CIVO |\n| 022b | walker | 0.63x | - | frozen+Gumbel |\n| 024b_s0 | cheetah | 0.20x | - | no dt_emb |\n| 042 | walker | 0.19x | - | frozen dedicated |\n| 024b_s1 | cheetah | 0.10x | - | no dt_emb |\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 分析 1: NVE Threshold Sensitivity\n\nn=32 (Walker 23 + Cheetah 9), n_pos=11, n_neg=21, AUROC=0.961\n\n| Threshold | Accuracy | TPR | FPR | F1 |\n|-----------|----------|-----|-----|-----|\n| **1.3x** | 81.2% | 1.000 | 0.286 | 0.786 |\n| **1.5x** | **90.6%** | **1.000** | 0.143 | **0.880** |\n| **1.7x** | 81.2% | 0.727 | 0.143 | 0.727 |\n| **2.0x** | 87.5% | 0.727 | 0.048 | 0.800 |\n\n**1.5x 是最优 F1 阈值**（90.6% accuracy, perfect recall）。FP 来自 3 个非 CIVO 机制：frozen emb self-correction (047, 057) 和 IRD (008e_v3_s2)。1.7x 起丢失 3 个 FN（009b, 008d_s3, 018_s1），均为边界 CIVO 案例。Cheetah 在所有 ≥1.5x 阈值下 100% 准确。\n\n### 分析 2: Actor Entropy 图\n\n成功生成。5 个实验均有 actor_entropy 数据，已画对比图。\n\n关键发现：\n- 所有实验起始 ~8.1（最大熵），然后收敛\n- Collapsed 实验（008d, 006）在 15K 时 entropy 仍为正值（0.48, 0.96），而 healthy 实验已下降到负值（-1.15, -1.18）—— collapsed 反而收敛更慢\n- Baseline 在 105K 后出现独特的 entropy recovery（-5.2 → -0.78），伴随 return 从 ~400 提升到 ~950\n\n### 文件路径\n\n| 产出 | 服务器路径 | 本地路径 |\n|------|-----------|---------|\n| NVE sensitivity 表格 | `/root/autodl-tmp/.../artifacts/nve_threshold_sensitivity.md` | `artifacts/nve_threshold_sensitivity.md` |\n| Actor entropy PDF | `/root/autodl-tmp/.../artifacts/figures/actor_entropy_comparison.pdf` | (服务器端) |\n| Actor entropy PNG | `/root/autodl-tmp/.../artifacts/figures/actor_entropy_comparison.png` | (服务器端) |\n\nActor entropy 图因 SCP 不可用未能下载到本地。如需要可手动从服务器获取。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "925391f5-f5cf-401f-9749-140c46cf1b1f",
+            "uuid": "3ec5ccdf-670b-4384-8d1b-e2dfad6cf72a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EMKPRn2k8ZyXo5CsxCkyJv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2464,
+                "cache_read_input_tokens": 161508,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2464
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 分析 1: NVE Threshold Sensitivity\n\nn=32 (Walker 23 + Cheetah 9), n_pos=11, n_neg=21, AUROC=0.961\n\n| Threshold | Accuracy | TPR | FPR | F1 |\n|-----------|----------|-----|-----|-----|\n| **1.3x** | 81.2% | 1.000 | 0.286 | 0.786 |\n| **1.5x** | **90.6%** | **1.000** | 0.143 | **0.880** |\n| **1.7x** | 81.2% | 0.727 | 0.143 | 0.727 |\n| **2.0x** | 87.5% | 0.727 | 0.048 | 0.800 |\n\n**1.5x 是最优 F1 阈值**（90.6% accuracy, perfect recall）。FP 来自 3 个非 CIVO 机制：frozen emb self-correction (047, 057) 和 IRD (008e_v3_s2)。1.7x 起丢失 3 个 FN（009b, 008d_s3, 018_s1），均为边界 CIVO 案例。Cheetah 在所有 ≥1.5x 阈值下 100% 准确。\n\n### 分析 2: Actor Entropy 图\n\n成功生成。5 个实验均有 actor_entropy 数据，已画对比图。\n\n关键发现：\n- 所有实验起始 ~8.1（最大熵），然后收敛\n- Collapsed 实验（008d, 006）在 15K 时 entropy 仍为正值（0.48, 0.96），而 healthy 实验已下降到负值（-1.15, -1.18）—— collapsed 反而收敛更慢\n- Baseline 在 105K 后出现独特的 entropy recovery（-5.2 → -0.78），伴随 return 从 ~400 提升到 ~950\n\n### 文件路径\n\n| 产出 | 服务器路径 | 本地路径 |\n|------|-----------|---------|\n| NVE sensitivity 表格 | `/root/autodl-tmp/.../artifacts/nve_threshold_sensitivity.md` | `artifacts/nve_threshold_sensitivity.md` |\n| Actor entropy PDF | `/root/autodl-tmp/.../artifacts/figures/actor_entropy_comparison.pdf` | (服务器端) |\n| Actor entropy PNG | `/root/autodl-tmp/.../artifacts/figures/actor_entropy_comparison.png` | (服务器端) |\n\nActor entropy 图因 SCP 不可用未能下载到本地。如需要可手动从服务器获取。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1190775,
+            "duration_api_ms": 1153634,
+            "num_turns": 50,
+            "stop_reason": "end_turn",
+            "session_id": "925391f5-f5cf-401f-9749-140c46cf1b1f",
+            "total_cost_usd": 3.89776825,
+            "usage": {
+              "input_tokens": 38,
+              "cache_creation_input_tokens": 152131,
+              "cache_read_input_tokens": 3003577,
+              "output_tokens": 57691,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 152131,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 750,
+                  "cache_read_input_tokens": 161508,
+                  "cache_creation_input_tokens": 2464,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2464
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2606,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0026959999999999996,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 38,
+                "outputTokens": 57691,
+                "cacheReadInputTokens": 3003577,
+                "cacheCreationInputTokens": 152131,
+                "webSearchRequests": 0,
+                "costUSD": 3.8950722499999997,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "c00ad255-8018-42ec-9fd0-fe13a5e652aa"
+          },
+          "id": "event-000144"
+        }
+      ]
+    }
+  ]
+}

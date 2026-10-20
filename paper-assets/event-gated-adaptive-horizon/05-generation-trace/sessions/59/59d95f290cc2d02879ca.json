@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59d95f290cc2d02879ca",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "diagnose gpu collision westd 20260526",
+  "task_key": "worker_diagnose_gpu_collision_westd_20260526_20260525T233120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gpu_collision_westd_20260526_20260525T233120_result.json",
+    "occurrence": 1,
+    "bytes": 1817,
+    "sha256": "3b452438e446cb9e49055f0f5bb0e78ca3d627b3081bbb0845f48274918b9a8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### bjb1-45299 (2x 98GB GPU)\n\n| 实验 | PID | 状态 | Step | Eval Return | GPU | 显存 | FPS |\n|------|-----|------|------|-------------|-----|------|-----|\n| exp_092_cheetah_no_dt_emb_s1 | 313538 | **alive** (Rl) | 25000/105K | 99.0 | cuda:0 | 3257 MiB | 9.9 |\n| exp_093_cheetah_no_dt_emb_s2 | 313815 | **alive** (Rl) | 25000/105K | 64.6 | cuda:1 | 2742 MiB | 9.9 |\n\nGPU 总占用: GPU0 = 3801/97887 MiB (4%), GPU1 = 2751/97887 MiB (3%)。运行 ~39 分钟。\n\n### westd-19154 (2x 98GB GPU)\n\n| 实验 | PID | 状态 | Step | Eval Return | GPU | 显存 | FPS |\n|------|-----|------|------|-------------|-----|------|-----|\n| exp_094_cheetah_008d_s3 | 53576→53581 | **alive** | 25000/105K | 139.4 | cuda:1 | 3223 MiB | 9.8 |\n| exp_095_cheetah_no_dt_emb_s3 | 54119→54124 | **alive** | 20000/105K | — | cuda:1 | 3223 MiB | 9.9 |\n| exp_096_cheetah_008a_s0 | 54457→54462 | **alive** | 25000/105K | 119.8 | cuda:0 | 4637 MiB | 13.0 |\n\nGPU 总占用: GPU0 = 4656/97887 MiB (5%), GPU1 = 6480/97887 MiB (7%)。\n\n### cuda:1 冲突分析 (westd)\n\n**结论：没有实际冲突，不需要 kill 任何进程。**\n\n- exp_094 和 exp_095 确实都在 cuda:1 上运行，但 98GB 显存下两个进程合计仅 6.4GB (6.6%)\n- GPU 利用率 66%，FPS 均正常 (~9.9)，无 OOM 风险\n- exp_095 比 exp_094 晚启动约 6 分钟，step 落后 5000（20K vs 25K），训练正常推进中\n\n### 要点\n\n- 5 个实验全部存活，正常训练\n- 进度都在 20K-25K / 105K 之间（约 20-24% 完成）\n- 显存占用极低（均 <5GB/进程），98GB GPU 完全充裕\n- exp_096 的 FPS 最高（13.0），因为 cuda:0 上只有它一个进程\n- 性能最好的是 exp_094（eval 139.4），其次 exp_096（119.8），exp_093 目前最弱（64.6）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gpu-collision-westd-20260526.md"
+}

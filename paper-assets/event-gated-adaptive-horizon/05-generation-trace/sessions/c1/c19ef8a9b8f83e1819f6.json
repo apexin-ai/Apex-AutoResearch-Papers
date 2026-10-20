@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c19ef8a9b8f83e1819f6",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code subsample patch",
+  "task_key": "worker_code_subsample-patch_20260513T040708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_subsample-patch_20260513T040708_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "19e0a21c5d3fcbb3dcba9c44aaaa3ac8e79e8b598837a2976d08800abdb3c978"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "补丁已写入 `artifacts/code/subsample_curriculum_patch.py`。\n\n核心变更：\n\n1. **`subsample_variable_dt`** — 新增 `effective_max_dt` 参数（默认 `None`，向后兼容）。当 `effective_max_dt <= 1` 时直接返回原始数据 + 全 1 的 `dt_labels`，等价于不子采样；否则用 `effective_max_dt` 替代 `max_dt` 作为 log-uniform 采样上界。\n\n2. **`WorldModel._train`** — 在调用 `subsample_variable_dt` 前先计算 `gate_scale`（复用已有的 phase1/phase2 curriculum 逻辑），然后传入 `effective_max_dt = 1 + gate_scale * (K - 1)`。Phase 1 时 `effective_max_dt=1`，RSSM 训练数据与 imagination 的 dt=1 完全一致。\n\n部署位置：\n- `tools.py` 第 763 行起，整个 `subsample_variable_dt` 函数替换\n- `models.py` 第 169-173 行，子采样调用块替换"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-subsample-patch.md"
+}

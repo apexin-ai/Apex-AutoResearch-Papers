@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da92497caae13ffff2b4",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code fix 019b maniskill config",
+  "task_key": "worker_code_fix-019b-maniskill-config_20260517T035609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-019b-maniskill-config_20260517T035609_result.json",
+    "occurrence": 1,
+    "bytes": 1078,
+    "sha256": "197c5a45a1daeb5d6e18e094cd25f35498765498ba4d41bb29688be0abfe0c7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。结论如下：\n\n## 诊断结果\n\n**问题已自行解决 — 019b 当前正在正常运行。**\n\n### 时间线重建\n1. 第一次提交 019b 在 `2026-05-17T03:38:33Z` 失败（exit code 143 = SIGTERM，被 kill 了，不是 KeyError）\n2. 当前第二次提交（PID 646809，启动于 11:39）使用 `--configs defaults maniskill` 正在正常训练，已到 step 8400+\n\n### 关于 KeyError 的原因\n`configs.yaml` 中 `maniskill` key 一直存在（第207行），当前代码解析完全正常。最可能的解释是：\n- 第一次失败时工作目录状态有问题（也许代码还未 pull 到 commit 3328f53），或者\n- 第一次失败实际上不是 KeyError 而是被 SIGTERM (143) 杀掉了——错误信息可能来自一个更早的测试性手动运行\n\n### 当前状态\n- **019b** (PID 646809): `--configs defaults maniskill`, cuda:0, 正常训练中 (step 8400+)\n- **019a_v2** (PID 629444): `--configs defaults maniskill_state`, cuda:1, 正常训练中\n\n**无需修复，两个实验都在正常运行。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-019b-maniskill-config-copy-2.md"
+}

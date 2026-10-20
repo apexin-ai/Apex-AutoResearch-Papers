@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bd6452acff7a68bb84f",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "status server check 008a done",
+  "task_key": "worker_status_server_check_008a_done_20260514T061744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_server_check_008a_done_20260514T061744_result.json",
+    "occurrence": 1,
+    "bytes": 650,
+    "sha256": "8276375578ad85573e0aabc14de2b902d06c8f420ea3bd07bcb63034db7804c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存到 `artifacts/report_server_status.md`。\n\n**汇总:**\n\n| 实验 | GPU | Step | 状态 | 关键指标 |\n|------|-----|------|------|---------|\n| exp_008f (no_dt_embed, subsample, h8) | GPU 0 | 35K/105K | 运行中 | train_return ~197 |\n| exp_008e_v3 (subsample, dt1, h15) | GPU 1 | 45K/105K | 运行中 | eval_return 382.2, **gate 100% dt=1** |\n| exp_008a (fixed_dt2, no_subsample) | — | 112K (完成) | 已结束 | train_return 628-842 |\n\n**需注意**: exp_008e_v3 的 gate 完全退化——dt=1 占 100%、entropy=0，subsample 机制形同虚设。exp_008a 无 `checkpoint.ckpt`，仅有 `latest.pt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-server-check-008a-done.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb8e6633ef181b3fe450",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis 016e midrun nve",
+  "task_key": "worker_analysis_016e_midrun_nve_20260515T221945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_016e_midrun_nve_20260515T221945_result.json",
+    "occurrence": 1,
+    "bytes": 503,
+    "sha256": "75cce5dcd4d6db16cc6a78451a7ea54318107e840ef2e50e71fcef941643b1bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论：016e CIVO 已确认，NVE = 6.59x。**\n\n关键数据：\n- eval_return：326.67 (75K peak) → 256.21 (85K) → **31.73 (95K)**，并非回落而是崩溃\n- Critic 估计 value_mean ≈ 209，几乎未动，与实际 return 31.73 严重脱节\n- Actor entropy -3.83 → -4.65，策略已坍缩到过确定化\n- 比 008d (NVE 4.12x) 更严重，不可能在剩余 ~10K steps 内恢复\n\nRegistry notes 和诊断报告 (`art_20260515_27c8c8`) 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-016e-midrun-nve.md"
+}

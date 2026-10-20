@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fe18814905da5aba741",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp hopper frozen s0 ext",
+  "task_key": "worker_analysis_exp_hopper_frozen_s0_ext_20260527T104437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_hopper_frozen_s0_ext_20260527T104437_result.json",
+    "occurrence": 1,
+    "bytes": 1069,
+    "sha256": "38c4e292dd89a8254cb61687b2cedd61aa72bff612de8df2e60a222842072ea4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## 结论：NEGATIVE（hypothesis 被证伪）\n\n**exp_hopper_frozen_s0_ext** 延长训练至 160K 步，eval_return 始终未恢复：\n\n| 对比 | eval_return_final | ve_ratio_final | 恢复? |\n|------|-------------------|----------------|-------|\n| **frozen_s0_ext** (this) | **0.56** | **15.08** | **否** |\n| trained_s0_ext | 81.58 | — | 是 |\n| baseline | 96.43 | 0.559 | — |\n\n**核心发现**：\n- Frozen dt_embedding 导致 gate 永久锁死在 dt=2（entropy=0），无任何自适应 horizon 行为\n- value_mean 从 0.001 膨胀至 8.5，而实际 eval_return ≈ 0 — 典型的 value overestimation 无纠正\n- ve_ratio 经历两次灾难性爆发（65K: 820K, 105K: 4.3M），延长后降至 ~15 但不回归正常值 0.5\n- 与 trained_s0_ext 形成鲜明对比：可学习的 dt_embedding 是 CIVO 自纠正机制运转的必要条件\n\n**诊断**：frozen_s0 的\"degenerate CIVO\"不是 transient instability，而是因 frozen embedding 锁死 gate 导致的**结构性不可恢复故障**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-hopper-frozen-s0-ext-copy-2.md"
+}

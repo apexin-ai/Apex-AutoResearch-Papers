@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "356abd0d0f045daec25c",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis rssm v3 cheetah no dt emb",
+  "task_key": "worker_analysis_rssm_v3_cheetah_no_dt_emb_20260526T055747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rssm_v3_cheetah_no_dt_emb_20260526T055747_result.json",
+    "occurrence": 1,
+    "bytes": 998,
+    "sha256": "136d154a74c607629096bc73006bd9d0e0e0b0e047f7069422d4833250c4ac73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Cheetah no_dt_emb RSSM v3 标准化分析结果\n\n| 指标 | dt=1 | dt=2 | Ratio (dt2/dt1) |\n|------|------|------|-----------------|\n| **obs_mse** | 3.8129 ± 3.9308 | 3.8983 ± 3.6096 | **1.02x** |\n| **reward_mae** | 0.1282 ± 0.1688 | 0.1288 ± 0.1684 | **1.01x** |\n\n**Per-key obs_mse:**\n\n| Key | dt=1 | dt=2 | Ratio |\n|-----|------|------|-------|\n| position | 0.00627 | 0.00921 | 1.47x |\n| velocity | 7.6196 | 7.7873 | 1.02x |\n\n**元信息：**\n- Checkpoint: `exp_092_cheetah_no_dt_emb_s1` (220MB)\n- Episodes: 112, Samples: 1000, Seed: 42\n- Method: sequential_rollout, Device: cpu\n- has_dt_embedding: false\n- 输出文件: `logdir/rssm_v3_cheetah_no_dt_emb.json`\n\n**关键发现：** no_dt_emb 在 Cheetah 上 dt2/dt1 ratio 非常接近 1（obs 1.02x, reward 1.01x），说明跳步对预测质量几乎没有影响。position 的 ratio 偏高（1.47x），但绝对误差极小（0.006→0.009），主要误差来源是 velocity（占 obs_mse 99%+）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-rssm-v3-cheetah-no-dt-emb.md"
+}

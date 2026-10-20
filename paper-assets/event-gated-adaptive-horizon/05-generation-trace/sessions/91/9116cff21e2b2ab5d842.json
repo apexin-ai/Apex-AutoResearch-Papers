@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9116cff21e2b2ab5d842",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "research storm feasibility",
+  "task_key": "worker_research_storm-feasibility_20260529T204813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_storm-feasibility_20260529T204813_result.json",
+    "occurrence": 1,
+    "bytes": 1035,
+    "sha256": "350a4df4952762acf735851809334bf891b62cb8527d33d80426f9740ed98724"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。核心发现：\n\n**B1 ✅ — STORM 的 actor-critic 完全基于 imagination 训练**，与 DreamerV3 paradigm 一致。代码证据：`world_models.py` 的 `imagine_data()` 生成 imagined rollouts → `agents.py` 的 `update()` 纯粹用 imagined data 训练 AC。\n\n**B2 ⚠️ — Walker Walk baseline 存在但有限制**：\n- GIT-STORM 论文报告 STORM 在 visual DMC Walker Walk = 758.0（vs DreamerV3 = 955.8）\n- 但这是 visual DMC 结果，且 DMC 代码未开源\n- 原始 STORM 论文和开源代码仅支持 Atari\n\n**关键纠正**：之前将 STORM 标注为 \"continuous latent + ✅ DMC\" 是**错误的**。STORM 使用 discrete categorical latent（32×32），开源代码 Atari-only。\n\n**可行性判断**：STORM 仍是最优 transformer WM 候选（imagination AC ✅、代码结构清晰），但需要 ~550 行的 DMC 适配 + dt-conditioning 工作（10-16 AI worker hours）。如果工程预算紧张，建议在 Discussion 中以文字讨论替代实际实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-storm-feasibility.md"
+}

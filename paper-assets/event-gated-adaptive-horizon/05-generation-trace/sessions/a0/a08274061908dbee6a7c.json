@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a08274061908dbee6a7c",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "diagnose exp098 099 fps check",
+  "task_key": "worker_diagnose_exp098_099_fps_check_20260526T022057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp098_099_fps_check_20260526T022057_result.json",
+    "occurrence": 1,
+    "bytes": 1128,
+    "sha256": "07b9a4bd03807cd47eef0f7222d476729eeb0008a7b12926432d7bd71d7ca448"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已足够，以下是分析结果。\n\n## 实际 FPS\n- **exp_098: ~9.7 fps**（step 5000→12000 用了 ~12 min，即 35000 steps/h）\n- **exp_099: ~9.7 fps**（同上）\n- 日志中 `fps 0.0` 是首次训练 log entry，fps 尚未计算，不代表实际速度\n- 当前 step：两个实验均在 12000，进程活跃（CPU ~1180%），正在向下一个 log point 推进\n\n## GPU 争用\n**无。** 每个实验独占一块 RTX PRO 6000 (98GB)：\n- GPU 0: exp_098 (PID 322491), 4671MiB, util 18%\n- GPU 1: exp_099 (PID 322772), 4156MiB, util 22%\n- 无其他 compute 进程争用\n\n## Checkpoint 状态\n**新训练。** 两个 logdir 中均无旧 checkpoint 文件，只有 eval_eps/ train_eps/ events/ metrics.jsonl，全部创建于 10:04-10:06。\n\n## 异常\n**无。** 只有 `torch.cuda.amp` FutureWarning 和 Gym 维护警告，不影响训练。无报错无异常。\n\n---\n\n**结论：worker 报告的 \"889 steps/h (0.25 fps)\" 是错误的。** 实际速度 ~9.7 fps，与该机器历史水平 (9.8 fps) 一致。可能是 worker 误读了日志中尚未计算的 `fps 0.0` 字段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp098-099-fps-check.md"
+}

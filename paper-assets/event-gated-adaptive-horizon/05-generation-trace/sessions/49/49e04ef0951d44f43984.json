@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49e04ef0951d44f43984",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 078 cheetah 008d s0",
+  "task_key": "worker_analysis_exp_078_cheetah_008d_s0_20260525T143708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_078_cheetah_008d_s0_20260525T143708_result.json",
+    "occurrence": 1,
+    "bytes": 1572,
+    "sha256": "181088f422e5a2ec81f41b2309ceb77f953d1ac833b07313e806f9b674027d66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析完成：exp_078_cheetah_008d_s0\n\n### 核心结论：**SUCCESS** — CIVO 在 Cheetah 上成功触发\n\n初始描述 \"NVE=0.3\" 具有误导性——那只是 105K 终点值。完整时间序列：\n\n| Step | eval_return | ve_ratio | NVE |\n|------|-------------|----------|-----|\n| 35K | **213.7** (peak) | 0.11 | 1.24 |\n| 45K | 148.9 | 0.30 | **1.70** ← onset |\n| 55K | 64.5 | 0.91 | **3.66** |\n| 65K | 36.8 | 1.72 | **3.55** |\n| 75K | 26.1 | 2.32 | **4.10** ← peak |\n| 85K | 26.7 | 2.02 | **2.74** |\n| 95K | 32.5 | 1.37 | **2.26** |\n| 105K | 119.5 | 0.29 | 0.48 ← self-corrected |\n\n- **NVE>1.5 持续 5 个检查点**（45K-95K，50K steps），峰值 4.10x@75K\n- CIVO alert 在 55K 和 65K 触发\n- 自我修正至 105K（NVE=0.48），eval 从 26.7 恢复至 119.5\n- 最终 eval 仅为 baseline 的 **26.7%**（119.5 vs 448.1）\n- 分类：**onset_self_correcting**（与 Walker 009b 模式一致）\n\n### 对论文 claims 的影响\n\n**C2 强化**：Cheetah CIVO onset 与 Walker 在相同 step（45K）发生，跨环境一致性显著。CIVO onset 现在是 **9/9 deterministic**（8 Walker + 1 Cheetah）given trained dt_emb。\n\n**关键差异**：Cheetah CIVO 更强（NVE 4.10 vs Walker 009b 的 1.62）但仍自我修正，而 Walker 在类似 NVE 水平（s4: 4.62, s5: 4.72）会 collapse。环境动力学影响 collapse/self-correction outcome。\n\n### Registry & Artifact\n\n- Registry: DONE (success), 含完整 NVE trajectory\n- 报告: `artifacts/exp_078_cheetah_008d_s0/report/analysis_exp_078.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-078-cheetah-008d-s0-copy-2.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b6e64ed6b11b01ccbd6d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "research literature scan",
+  "task_key": "worker_research_literature-scan_20260515T043905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-scan_20260515T043905.log",
+    "occurrence": 1,
+    "bytes": 645278,
+    "sha256": "c9e40cd2fb12e3d6f8d558ca20d740ecf238680f5db24d5457c445f42aa05a82"
+  },
+  "statistics": {
+    "messages": 90,
+    "user_turns": 0,
+    "tool_calls": 32,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 22,
+      "tool_call": 32,
+      "tool_result": 32,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 90,
+      "chunks": [
+        {
+          "path": "b6e64ed6b11b01ccbd6d-part-0001.json",
+          "message_count": 84
+        },
+        {
+          "path": "b6e64ed6b11b01ccbd6d-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-literature-scan-copy-2.md"
+}

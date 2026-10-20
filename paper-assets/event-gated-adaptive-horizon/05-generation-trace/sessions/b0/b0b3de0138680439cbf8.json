@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0b3de0138680439cbf8",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_15_1778908139.md",
+  "task_key": "loop_15_1778908139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_15_1778908139.md",
+    "occurrence": 1,
+    "bytes": 3961,
+    "sha256": "7fde5efb9fa2bac8e220628cf2fc240913bba6fdd0209774685f87878f22feb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-16T05:08:31+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 cuda:0 和 cuda:1**（bjb1-45299），物理 RTX PRO 6000×2\n- 训练命令必须带 `LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl`，否则 dm_control 渲染崩溃\n- `MUJOCO_EGL_DEVICE_ID` 必须与物理 GPU 对应（cuda:0→DEVICE_ID=0, cuda:1→DEVICE_ID=1）\n- submit_training_job 命令用 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd ... && python ...\"`\n- 016e reward-only SGS 结论已修正为 **architectural no-op**（reward gradient=0）——论文不能 claim SGS \"延迟了 collapse\"\n- 008a 的 \"untrained dt_emb\" 实际是 \"trained but unexposed to dt>1 data\"——术语不能混淆\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**bjb1-45299**，工作目录 `/root/autodl-tmp/event-gated-adaptive-horizon`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 代码 commit：`dccb867841046bf6dc7dcc654ea71f99e1181828`\n- Logdir：`/root/autodl-tmp/event-gated-adaptive-horizon/logdir/`\n- 日志：`~/runs/event-gated-adaptive-horizon/<exp_id>.log`\n- 活跃进程：\n  - exp_009d_baseline_walker_s0: PID 149708, tmux session, cuda:0, cron 监控中\n  - exp_010a_cheetah_baseline_s1: PID 536890, tmux session, cuda:1, cron 监控中\n- ManiSkill3 已集成到代码中（019a/b 可直接用）\n\n### 3. 📊 当前状态\n两个 baseline 实验在跑，无活跃 Worker：\n- **exp_009d** (Walker baseline s0): cuda:0, 344K/500K (68.8%), peak 949.46@328K, ~6h 剩余（预计 5/16 午完成）\n- **exp_010a** (Cheetah baseline s1): cuda:1, 165K/512K (32.2%), peak 592.59@155K, ~8.8h 剩余（预计 5/16 午后完成）\n\n等待中：\n- 009d 完成 → cron 回调触发 → 提交 018 Full-SGS (cuda:0)\n- 010a 完成 → cron 回调触发 → 提交 019a PickCube baseline (cuda:1)\n- 无待处理的 Director 决策/Worker 回调\n\n### 4. 📋 待办（条件触发式）\n- 009d cron 回调到达 → spawn worker 提交 **exp_018_full_sgs_walker_s1**（cuda:0, ~14h）：detach ALL non-KL head gradients from dt_emb + subsample ON + H=8\n- 010a cron 回调到达 → spawn worker 提交 **exp_019a_pickcube_baseline**（cuda:1, ~1-2h）：dt=1, dim=0, subsample OFF\n- 019a 完成 → 提交 **exp_019b_pickcube_civo_trigger**（cuda:1, ~1-2h）：trained dt_emb + subsample ON + dt=2 + H=8\n- 019b CIVO 确认 → 提交 019c-f（StackCube, PegInsertion 扩展）\n- 018 完成 → 关键分岔：仍崩 = CIVO is representation-level (KL training sufficient)；不崩 = decoder heads 是梯度根因\n- 论文侧：limitations.md CI 错配修复、Framing B re-audit 完成、016e section 更新为 no-op 解读（均可并行派 Writer Worker）\n\n### 5. 🎯 战略上下文\n- **目标**：CoRL 2026，DDL 2026-05-29（剩 13 天）\n- **核心因果链 (D049)**：Trained dt_emb 是 sustained CIVO (NVE>1.5x) 的必要条件\n- **梯度分解 (D061)**：dt_emb 梯度 93% obs decoders / 7% KL / 0% reward → reward SGS 是 no-op\n- **Framing B (D059)**：诊断论文 + SGS 作为 informative negative result\n- **018 是论文的最后一块拼图**：如果 Full-SGS（移除 93% 梯度）仍然崩溃 → 证明 CIVO 是 representation-level 问题（仅 KL dynamics training 即足以导致）；如果不崩 → decoder gradient 是根因，且论文可 claim Full-SGS 作为 mitigation\n- **ManiSkill3 是 CoRL relevance 加分项**：manipulation 环境验证 CIVO 跨 domain 成立，非 DMC-specific\n- **易错点**：(1) 016e 和 008d 的 timing 差异曾被误归因于 SGS 效果，实际是 cross-seed variation——不要重蹈覆辙；(2) NVE>1.5x 有 1 FP (008e_v3_s2 是 Imagination-Reality Divergence 非 CIVO)；(3) 成功/负向比 7:13——多数实验是 negative，但 Framing B 将 negatives 作为诊断证据使用\n- **GPU 预算充裕**：13天 × 2卡 × 24h = 624 GPU·h，当前排期约用 50-100h\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-1778908139.md"
+}

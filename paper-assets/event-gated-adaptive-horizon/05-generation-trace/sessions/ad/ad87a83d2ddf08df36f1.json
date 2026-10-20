@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad87a83d2ddf08df36f1",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper gradient decomposition method",
+  "task_key": "worker_paper_gradient-decomposition-method_20260516T164919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_gradient-decomposition-method_20260516T164919_result.json",
+    "occurrence": 1,
+    "bytes": 767,
+    "sha256": "b422d5f8e2b9cccd39c50d312ad65b82101238ba69262731d20a0091ed95aa5e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。产出写入 `artifacts/paper_sections/gradient_decomposition_methodology.md`，已注册为 `art_20260516_3de1c8`。\n\n内容覆盖：\n- 形式化定义（三路梯度分解 + L2 norm ratio 公式 + 选择 L2 的理由，引 Chen 2018 GradNorm）\n- Multi-checkpoint table（25K/50K/75K/105K 四行，标注数据来源为 exp\\_008d，105K 已填实测值，其余待提取）\n- SGS 因果连接：016e reward-only 为 no-op 因 reward gradient≈0（用 \"numerically negligible\" 措辞），018 Full-SGS 靶向 93% obs pathway\n- 三篇必引论文均已纳入（Hafner 2023, Chen 2018, Shang 2024）\n- 所有定量 claim 标注 exp\\_id\n\n待办：从 008d 的 25K/50K/75K checkpoint 实际提取梯度数据填充表格空行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-gradient-decomposition-method.md"
+}

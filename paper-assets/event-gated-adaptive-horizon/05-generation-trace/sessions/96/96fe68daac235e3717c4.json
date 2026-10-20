@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96fe68daac235e3717c4",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper limitations dof boundary",
+  "task_key": "worker_paper_limitations-dof-boundary_20260529T091446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_limitations-dof-boundary_20260529T091446_result.json",
+    "occurrence": 1,
+    "bytes": 510,
+    "sha256": "3705a2638086ad69d6ed542a09146a17ebc567eb8daf917cbceab3a54aeeee97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "段落已插入 `conclusion.tex` 第13行，紧接在原有 Limitations 段落之后。~197词，覆盖：\n\n- 6-DoF 为 CIVO 唯一确认发生区间（Walker 60%, Cheetah 75%）\n- 低 DoF 不触发（Cartpole: non-value-driven degradation; Hopper: transient delay + recovery，标注 $n{=}1$）\n- 高 DoF baseline 自身不稳定（Quadruped NVE=6.6×, Humanoid NVE=12.97×），无法隔离 gate-induced CIVO\n- Future direction: 改善 base algorithm stability 可能上移 onset boundary"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-limitations-dof-boundary.md"
+}

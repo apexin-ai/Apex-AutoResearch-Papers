@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "4fe26a259460e942d369",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "debug cuda1 eval hang diagnosis",
+  "task_key": "worker_debug_cuda1_eval_hang_diagnosis_20260515T185430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_cuda1_eval_hang_diagnosis_20260515T185430.log",
+    "occurrence": 1,
+    "bytes": 575369,
+    "sha256": "3c1b7a648747595e66d8c49e8c0dd671bb96dd98bbb33477f4a424a954d180c3"
+  },
+  "statistics": {
+    "messages": 412,
+    "user_turns": 0,
+    "tool_calls": 158,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 93,
+      "tool_call": 158,
+      "tool_result": 158
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 412,
+      "chunks": [
+        {
+          "path": "4fe26a259460e942d369-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4fe26a259460e942d369-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4fe26a259460e942d369-part-0003.json",
+          "message_count": 52
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/debug-cuda1-eval-hang-diagnosis.md"
+}

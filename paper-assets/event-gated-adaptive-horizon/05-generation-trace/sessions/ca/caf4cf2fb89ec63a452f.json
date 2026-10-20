@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "caf4cf2fb89ec63a452f",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "submit exp 010b cheetah civo s0",
+  "task_key": "worker_submit_exp_010b_cheetah_civo_s0_20260518T020223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp_010b_cheetah_civo_s0_20260518T020223_result.json",
+    "occurrence": 1,
+    "bytes": 320,
+    "sha256": "02eb853dfe38531511c12febf50cca2da609dfc4e3ed39ac10f33b8c13534029"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **实验注册**: `exp_010b_cheetah_civo_trigger_s0` → RUNNING\n- **训练进程**: PID 715411，cuda:1 占用 1309 MiB，已到 5000 步\n- **配置**: seed=0, gate_fixed_dt=2, subsample_max_dt=2, imag_horizon=8, 105k steps\n- **日志**: `logdir/exp_010b_cheetah_civo_trigger_s0.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp-010b-cheetah-civo-s0.md"
+}

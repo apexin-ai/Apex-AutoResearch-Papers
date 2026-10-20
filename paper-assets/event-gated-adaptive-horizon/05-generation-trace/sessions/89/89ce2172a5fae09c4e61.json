@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89ce2172a5fae09c4e61",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis 018v2 civo decomposition",
+  "task_key": "worker_analysis_018v2-civo-decomposition_20260516T172145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_018v2-civo-decomposition_20260516T172145_result.json",
+    "occurrence": 1,
+    "bytes": 933,
+    "sha256": "12fcb73b738acf3d7cd53899ba2648700cb89c7bfdf73b144bf97384c66e06b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**exp_018v2_full_sgs_walker_s1 — SUCCESS (C5 confirmed)**\n\n| Metric | 008d (collapsed) | 018v2 (Full-SGS) | Baseline |\n|--------|-----------------|-------------------|----------|\n| eval@105K | 131.08 | **448.34** | 915.67 |\n| NVE final | 1.57 | **1.34** | ~0.66 |\n| NVE peak | 4.12@55K | 4.01@25K | N/A |\n| vs baseline | -85.7% | -51.0% | — |\n\n**CIVO Decomposition:**\n- 008d 总退化: 85.7% (vs baseline)\n- CIVO 贡献: **40.4%** 的退化归因于 CIVO（被 Full-SGS 恢复）\n- 固有成本: **59.6%** 为 gate 机制本身的开销\n\n**结论:** Full-SGS 成功消除了 sustained CIVO collapse（final NVE 1.34 < 1.5 阈值），eval 从 131→448（+242%）。但 gate 机制本身仍有 ~51% 的 inherent performance cost vs baseline。C5 假设确认：stop-gradient on reward head eliminates value-critic-induced collapse。\n\nArtifact 已注册: `art_20260516_32da8b`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-018v2-civo-decomposition.md"
+}

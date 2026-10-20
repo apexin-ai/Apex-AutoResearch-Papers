@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "876d7b2cec41827d5f57",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 068 069",
+  "task_key": "worker_analysis_exp_068_069_20260525T072547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_068_069_20260525T072547_result.json",
+    "occurrence": 1,
+    "bytes": 1691,
+    "sha256": "328231520c695b0ab8a07d32927d940d5957e259cdc5e98c62c1e1e47826ff7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。汇总报告：\n\n---\n\n```\nexp_068_008d_walker_repro_s1 (trained dt_emb, seed=1):\n- conclusion: SUCCESS — 复现了 CIVO\n- eval_return_final: 39.1 @105K (peak 192.4 @55K → 崩塌至 26.9 @95K)\n- ve_ratio trajectory: 0→0.2→0.3→0.6→0.6→1.3→1.6→4.6→4.6→2.7\n- nve_peak: 6.57x @85K (ve_ratio=4.6 vs baseline=0.7007)\n- nve_final: 4.12x @105K (ve_ratio=2.7 vs baseline=0.656)\n- nve_onset: 45K (NVE=1.81x, 首次 > 1.5x)\n- civo_alert: YES @85K (detector fired: ve_ratio=4.645, delta_ve=3.090, eval_decline=3/3)\n- gate: dt_2_frac=100% (fixed dt=2)\n- 与 parent 008d 对比: 完全一致的 CIVO 模式——trained dt_emb 下 ve_ratio 从 55K 起加速上升，\n  eval 从 55K 的 192 单调崩塌到 85K 的 33。Walker trained seeds 现有 8/8 onset 记录。\n\nexp_069_008f_walker_repro_s1 (no dt_emb, dt_embed_dim=0, seed=1):\n- conclusion: SUCCESS — 确认 no dt_emb 阻止 CIVO\n- eval_return_final: 237.8 @105K (peak 390.1 @95K, 全程稳定上升)\n- ve_ratio trajectory: 0→0.1→0.2→0.2→0.3→0.3→0.4→0.3→0.3→0.4\n- nve_peak: 0.66x @75K\n- nve_final: 0.61x @105K (ve_ratio=0.4 vs baseline=0.656)\n- civo_alert: NO\n- gate: dt_2_frac=100% (fixed dt=2)\n- 与 parent 008f 对比: 完全一致——no dt_emb 下 ve_ratio 始终平稳 (≤0.4)，\n  eval 持续增长无崩塌。NVE 远低于 1.5x 阈值 (max 0.66x)。\n\nC2 causal control 结论强化:\n- 同一 seed=1，同一服务器，唯一差异 = dt_embed_dim (trained vs 0)\n- trained dt_emb: NVE 6.57x, eval 崩塌 192→39 ✓\n- no dt_emb:     NVE 0.66x, eval 稳定 238 ✓\n- dt_emb 是 CIVO 的必要条件得到进一步确认\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-068-069.md"
+}

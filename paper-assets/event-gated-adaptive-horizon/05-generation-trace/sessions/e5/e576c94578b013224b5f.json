@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e576c94578b013224b5f",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops exp 029a completion",
+  "task_key": "worker_ops_exp_029a_completion_20260520T164804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp_029a_completion_20260520T164804_result.json",
+    "occurrence": 1,
+    "bytes": 478,
+    "sha256": "5d47551c447e5bb20180da1617a086fbed7b2b2b7fb5675acd10a23e7ef2c4e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已被自动清除或未在当前 session 注册）。\n\n**总结：**\n\n| 项目 | 结果 |\n|------|------|\n| PID 50924 | EXITED |\n| 退出状态 | 正常完成，224K/210K 步 |\n| Checkpoint | `/root/runs/event-gated-adaptive-horizon/exp_029a_tcn_walker_s1_sigma02/latest.pt` |\n| Registry | 已是 DONE/success，checkpoint_path + log_path 已设 |\n| Cron | 不存在，无需删除 |\n\nexp_029a 已完结，无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp-029a-completion.md"
+}

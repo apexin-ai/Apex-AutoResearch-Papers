@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "495bf38c86f1f36daed0",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper fig6 collapse pathway d054 update",
+  "task_key": "worker_paper_fig6_collapse_pathway_d054_update_20260515T183656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig6_collapse_pathway_d054_update_20260515T183656_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "5643218b1f177df7366f96cd603d650c188d8fbb7278b33776c027d354490e0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Could not process image\"},\"request_id\":\"req_011Cb4rx4gFQ3VUYxJHtAVZ1\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "type": "invalid_request_error",
+                "message": "Could not process image"
+              },
+              "request_id": "req_011Cb4rx4gFQ3VUYxJHtAVZ1"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig6-collapse-pathway-d054-update.md"
+}

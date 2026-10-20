@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d31751256c5e6dfab05",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper detector section integration",
+  "task_key": "worker_paper_detector-section-integration_20260517T165150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_detector-section-integration_20260517T165150_result.json",
+    "occurrence": 1,
+    "bytes": 1254,
+    "sha256": "38e844849328ff7d30324dd008f4370bb94f3130ad4a7a8c7226eb094fc82ef5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Clean. Here's the final completeness assessment:\n\n## Detector Content Final Location & Completeness\n\n| Component | File | Lines | Status |\n|---|---|---|---|\n| **A) Algorithm 1 pseudocode** | results.tex | 174-195 | Complete (V/E ratio, 4 conditions, alert logic) |\n| **B) Threshold rationale** | results.tex | 197-199 | Complete (τ_mag=0.49, J=0.714, sensitivity analysis) |\n| **C) Retrospective validation (NVE)** | results.tex | 84 (F2), 112 (F6) | Complete (AUROC=0.926, 11/12, FP=008e_v3_s2, 8-exp AUROC=0.867 in footnote) |\n| **C') Detector validation table** | results.tex | 204-231 | Complete (n=11, TPR=3/3, FPR=2/8=0.25) |\n| **D) 019b TN case** | results.tex | 223 (table row), 240-241 (paragraph) | **NEW** - cross-simulator specificity, V/E oscillation filtering, detector silence explained |\n\nChanges made:\n- Added 019b row to Table 3 (line 223)\n- Updated n=10→11, FPR=2/7→2/8 across table caption, summary line, and results paragraph\n- Added `\\paragraph{Cross-simulator specificity (PickCube).}` with detailed explanation of why the acceleration filter correctly filters the oscillatory V/E pattern\n- Updated Limitations: \"ten runs across two environments\" → \"eleven runs across three environments\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-detector-section-integration.md"
+}

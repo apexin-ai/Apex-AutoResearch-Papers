@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83c79ac408770153f512",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper cross env results draft",
+  "task_key": "worker_paper_cross-env-results-draft_20260516T170904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_cross-env-results-draft_20260516T170904_result.json",
+    "occurrence": 1,
+    "bytes": 413,
+    "sha256": "533500f823bb27e301a7f55c528e1ed4afa63ec0475caef28e2319b7935967f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入并注册。文件位于 `artifacts/paper_sections/cross_env_results.md`。\n\n要点：\n- Table 对比 010b vs 010a，标注 step number\n- Walker CI 报告为 \"statistically significant\"（有 bootstrap 支撑），Cheetah 措辞限于 \"directional consistency\"\n- Limitation 段明确标注 single seed + replication planned + locomotion-only caveat\n- 所有数字均标注 exp_id"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-cross-env-results-draft.md"
+}

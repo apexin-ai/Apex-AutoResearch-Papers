@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0",
+  "id": "87a8844ad53371826cae",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "diagnose exp 004 and exp 001",
+  "task_key": "worker_diagnose_exp_004_and_exp_001_20260513T152538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_004_and_exp_001_20260513T152538_result.json",
+    "occurrence": 1,
+    "bytes": 3277,
+    "sha256": "51d10b910770c90b8c37ee5963dd3a59fe611a97427f6921f0690d4810a38dcf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both experiments are **running** on the server. Here's the diagnosis:\n\n```json\n{\n  \"exp_004_status\": \"running\",\n  \"exp_004_pid\": 36645,\n  \"exp_004_last_step\": 135000,\n  \"exp_004_target_steps\": 500000,\n  \"exp_004_progress\": \"27%\",\n  \"exp_004_last_metrics\": {\n    \"eval_return\": 342.27,\n    \"train_return_range\": \"284-481\",\n    \"gate_dt_mean\": 2.72,\n    \"gate_entropy_ratio\": 0.77,\n    \"fps\": 6.81,\n    \"update_count\": 32599\n  },\n  \"exp_004_error\": null,\n\n  \"exp_001_status\": \"running\",\n  \"exp_001_pid\": 9409,\n  \"exp_001_last_step\": 365000,\n  \"exp_001_target_steps\": 500000,\n  \"exp_001_progress\": \"73%\",\n  \"exp_001_last_metrics\": {\n    \"eval_return\": 935.76,\n    \"train_return_range\": \"911-963\",\n    \"value_mean\": 664.72,\n    \"fps\": 7.66,\n    \"update_count\": 90099\n  },\n  \"exp_001_error\": null,\n\n  \"gpu_status\": \"2x NVIDIA RTX PRO 6000 Blackwell (98GB each). GPU0: 4.2GB/98GB (18% util, baseline). GPU1: 4.3GB/98GB (0% util, exp_004)\",\n  \"disk_status\": \"250GB total, 2.8GB used (2%), 248GB free\",\n  \"tmux_sessions\": \"exp_004_event_gated_v3 (active)\",\n  \"root_cause\": \"AutoDL 实例名 autodl-rtx6000 → bjb1-45299 变更导致 cron 监控 SSH 失联，但训练进程不受影响，两个实验持续运行中\",\n  \"fix_steps\": [\n    \"更新 cron 监控中的服务器名为 bjb1-45299\",\n    \"验证 SSH 连接配置指向新实例名\",\n    \"恢复 cron 定期状态检查\"\n  ]\n}\n```\n\n**关键发现：**\n- **exp_001_baseline** 进展顺利，step 365k/500k (73%)，eval_return 稳定在 ~935-948，已收敛\n- **exp_004_event_gated_v3** step 135k/500k (27%)，eval_return 从早期 99 回升到 342，gate_dt 分布趋于多样化（dt_1~18%, dt_2~33%, dt_3~23%），gate 机制在学习中\n- 两个进程均正常运行，仅监控失联，无需干预"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "exp_004_status": "running",
+              "exp_004_pid": 36645,
+              "exp_004_last_step": 135000,
+              "exp_004_target_steps": 500000,
+              "exp_004_progress": "27%",
+              "exp_004_last_metrics": {
+                "eval_return": 342.27,
+                "train_return_range": "284-481",
+                "gate_dt_mean": 2.72,
+                "gate_entropy_ratio": 0.77,
+                "fps": 6.81,
+                "update_count": 32599
+              },
+              "exp_004_error": null,
+              "exp_001_status": "running",
+              "exp_001_pid": 9409,
+              "exp_001_last_step": 365000,
+              "exp_001_target_steps": 500000,
+              "exp_001_progress": "73%",
+              "exp_001_last_metrics": {
+                "eval_return": 935.76,
+                "train_return_range": "911-963",
+                "value_mean": 664.72,
+                "fps": 7.66,
+                "update_count": 90099
+              },
+              "exp_001_error": null,
+              "gpu_status": "2x NVIDIA RTX PRO 6000 Blackwell (98GB each). GPU0: 4.2GB/98GB (18% util, baseline). GPU1: 4.3GB/98GB (0% util, exp_004)",
+              "disk_status": "250GB total, 2.8GB used (2%), 248GB free",
+              "tmux_sessions": "exp_004_event_gated_v3 (active)",
+              "root_cause": "AutoDL 实例名 autodl-rtx6000 → bjb1-45299 变更导致 cron 监控 SSH 失联，但训练进程不受影响，两个实验持续运行中",
+              "fix_steps": [
+                "更新 cron 监控中的服务器名为 bjb1-45299",
+                "验证 SSH 连接配置指向新实例名",
+                "恢复 cron 定期状态检查"
+              ]
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-004-and-exp-001.md"
+}

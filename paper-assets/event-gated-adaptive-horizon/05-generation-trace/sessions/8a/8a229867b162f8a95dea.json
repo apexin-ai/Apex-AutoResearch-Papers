@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "8a229867b162f8a95dea",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "analysis 008f s3 nve ci update",
+  "task_key": "worker_analysis_008f_s3-nve-ci-update_20260516T201039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_008f_s3-nve-ci-update_20260516T201039.log",
+    "occurrence": 1,
+    "bytes": 724698,
+    "sha256": "b73b1872cf9d7c5a251900334c7e9435100043c93e233bcb528d3d1f73ff49e9"
+  },
+  "statistics": {
+    "messages": 229,
+    "user_turns": 1,
+    "tool_calls": 81,
+    "roles": {
+      "log": 1,
+      "system": 24,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 81,
+      "tool_result": 81,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 44,
+      "chunks": [
+        {
+          "path": "8a229867b162f8a95dea-part-0001.json",
+          "message_count": 44
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 185,
+      "chunks": [
+        {
+          "path": "8a229867b162f8a95dea-part-0001.json",
+          "message_count": 136
+        },
+        {
+          "path": "8a229867b162f8a95dea-part-0002.json",
+          "message_count": 49
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-008f-s3-nve-ci-update.md"
+}

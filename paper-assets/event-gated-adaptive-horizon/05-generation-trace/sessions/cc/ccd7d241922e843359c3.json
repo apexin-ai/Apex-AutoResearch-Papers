@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ccd7d241922e843359c3",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "analysis imagination reward",
+  "task_key": "worker_analysis_imagination_reward_20260515T132929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_imagination_reward_20260515T132929.log",
+    "occurrence": 1,
+    "bytes": 613152,
+    "sha256": "36630da6eb7c8b9c27fd7868543f642fa1b7e2e5046f25498d891eca6cdcab67"
+  },
+  "statistics": {
+    "messages": 230,
+    "user_turns": 0,
+    "tool_calls": 86,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 86,
+      "tool_result": 86,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 230,
+      "chunks": [
+        {
+          "path": "ccd7d241922e843359c3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ccd7d241922e843359c3-part-0002.json",
+          "message_count": 50
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-imagination-reward.md"
+}

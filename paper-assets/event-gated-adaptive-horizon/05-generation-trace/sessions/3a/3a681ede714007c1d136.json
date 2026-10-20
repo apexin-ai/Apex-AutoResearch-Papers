@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a681ede714007c1d136",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_25_1779850301.md",
+  "task_key": "loop_25_1779850301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_25_1779850301.md",
+    "occurrence": 1,
+    "bytes": 3020,
+    "sha256": "02de3032ccd58732444733f8d526fc6c53768d3f40ea27b3a670f4e200fa841d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 25\nreason: idle_timeout\nupdated: '2026-05-27T02:51:34+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-51268 的 cuda:0 和 cuda:1（gpu_ids 白名单）\n- exp_102/103 已被 D157 取消，不要重新提交\n- RSSM 分析只用 v3 standardized 方法论（v1/v2/dry-run 数据废弃，不引用）\n- 论文数字替换必须等 Cheetah RSSM v3 结果出来后统一做，不能用旧 2.78× 数字\n- 数据锁定 deadline 5/27（今天），锁定后不再接受新实验数据\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-51268，工作目录 /root/autodl-tmp/event-gated-adaptive-horizon\n- Python：/root/miniconda3/bin/python（conda base 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- GPU：2× RTX PRO 6000 Blackwell 96GB，CUDA 13.2\n- RSSM 分析脚本：analyze_rssm_standardized.py（项目根目录）\n- 活跃进程：exp_100_walker_008a_s1 (PID 5591, cuda:1, tmux)\n- Worker：worker_analysis_rssm_v3_cheetah_20260526T074729（CPU 分析任务）\n- Worker：worker_monitor_exp100-status-check_20260526T074527（exp_100 监控）\n\n### 3. 📊 当前状态\n刚完成 exp_097_cheetah_008d_s3 分析并推进到 DONE/success。已向 Director 汇报 Cheetah onset 3/4 confirmed。已派 Worker 做 Cheetah RSSM v3 分析。\n\n- **RUNNING**: exp_100_walker_008a_s1 (C3 Walker 008a 第 2 seed, ~76%)\n- **等待 Worker 回调**: worker_analysis_rssm_v3_cheetah — 完成后需将结果写入 memory.md Cheetah v3 表格，然后通知 Paper Agent 更新论文数字\n- **等待 cron 回调**: exp_100 完成后需做 NVE 分析 → C3 Walker 008a 2-seed 闭合\n\n### 4. 📋 待办\n- RSSM Worker 完成回调 → 读结果 → 更新 memory.md Cheetah v3 表格 → 合并 Walker+Cheetah RSSM 数字 → 通知 Director \"RSSM 数据就绪，可通知 Paper Agent 更新论文\"\n- exp_100 cron 回调 → NVE 分析 → 确认 C3 Walker 008a 2-seed 闭合 → 更新 registry → 汇报 Director\n- exp_100 + RSSM 都完成 → 向 Director 汇报\"全部关键路径完成，可数据锁定\"\n- Director 批准数据锁定 → 通知 Paper Agent 统一更新论文数字（RSSM v3 替换旧 2.78×、C6 叙事、onset rate 6/7）\n\n### 5. 🎯 战略上下文\n- 核心结论：trained dt_emb 驱动 CIVO，是 multi-joint locomotion 特异性现象。frozen/removed dt_emb 稳健阻止（4/4 当前代码验证，D153）\n- Cheetah 008d 3/4 onset (75%)，跨环境 6/7 (86%)。三种后果模式：self_correcting / collapse / transient_then_degraded\n- exp_097 新发现：ve_ratio 恢复 ≠ policy 恢复（不可逆损伤），强化 \"预防优于自修复\" narrative\n- D156 措辞：trained dt_emb 是 CIVO 必要条件但非充分条件，onset 具有随机性\n- 易错点：不要把 exp_088 (killed，旧版本) 和 exp_088_cheetah_008d_s1 (negative，正式版) 混淆——两者 registry 中都存在，前者是旧 ID 回收\n- 易错点：Cheetah baseline eval return ~430（用 exp_077/083 mean），不要用 Walker baseline 数字\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-25-1779850301.md"
+}

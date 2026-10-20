@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f150a01b4a46c4ac706",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "diagnose exp walker 008d s7 s6",
+  "task_key": "worker_diagnose_exp_walker_008d_s7_s6_20260527T232328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_walker_008d_s7_s6_20260527T232328_result.json",
+    "occurrence": 1,
+    "bytes": 1894,
+    "sha256": "6fc5f2af273b7d681324437d50b1f486fa93a04dda95c3c37000fdc6b8321791"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。汇总如下：\n\n---\n\n## 诊断结果\n\n### exp_walker_008d_s7\n\n| 项目 | 结果 |\n|------|------|\n| **失败原因** | SIGTERM (EXIT_CODE=143)，外部 kill。非 OOM（日志无 CUDA OOM 错误，日志仅 45 行/4.3KB）。两个实验在完全相同时间（May 28 07:20）被终止，指向**批量 kill**（手动或调度系统） |\n| **训练进度** | 仅到 **step 8000**（约 10 分钟运行时间） |\n| **105K 评估数据** | **无**。唯一 eval 在 step 5000：eval_return=31.2 |\n| **W&B** | **无** W&B run（日志中无 wandb URL，说明未初始化 W&B 或被 kill 前未来得及连接） |\n| **数据可用性** | **不可用于 rebuttal reserve**，训练未达到有意义进度 |\n\n### exp_walker_008d_s6\n\n| 项目 | 结果 |\n|------|------|\n| **失败原因** | 同上，SIGTERM 批量 kill |\n| **训练进度** | 仅到 **step 8000** |\n| **105K 评估数据** | **无**。唯一 eval 在 step 5000：eval_return=31.1 |\n| **W&B** | **无** |\n| **数据可用性** | **不可用于 rebuttal reserve** |\n\n### Kill 原因分析\n\n时间线：\n- `exp_cheetah_008a_s3.log` 正常完成于 07:09（27KB，完整训练）\n- `exp_walker_008d_s6/s7` 启动约 07:10，被 kill 于 07:20\n- 两个进程**同时被杀**，排除 OOM（OOM 通常只杀一个）\n\n最可能原因：**调度系统或手动批量 kill**——可能是启动新一批实验时清理了旧进程，或 AutoDL 实例到期/重启。`dmesg` 受限无法直接确认，但日志特征高度一致。\n\n### 建议\n\n**需要重跑。** 这两个实验完全没有可用数据（step 8000 远未收敛）。如果 Walker 008d seed 6/7 是 D172 Tier 2 rebuttal reserve 所需，需重新提交。考虑到 CoRL DDL 是 UTC 5/28 12:00，距现在不足 5 小时，需立即决定是否值得重跑（Walker 完整训练约需 4-6 小时）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-walker-008d-s7-s6.md"
+}

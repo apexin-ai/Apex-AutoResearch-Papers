@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa1097967d30a9ea282a",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "deploy exp 045 treatment extension",
+  "task_key": "worker_deploy_exp_045_treatment_extension_20260522T094126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_deploy_exp_045_treatment_extension_20260522T094126_result.json",
+    "occurrence": 1,
+    "bytes": 824,
+    "sha256": "6aff63df17a01da18a79a3fe15e1d402f62e76583447c36747cc2314967306e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。汇报：\n\n**exp_045_treatment_extension_008d_s3**\n- **PID**: 70945（GPU 0，3359 MiB）\n- **tmux 会话**: `exp045`\n- **恢复确认**: 从 step 112,000 恢复，目标 300,000 steps\n- **启动命令**: `python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 300000 --seed 3 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --checkpoint_every 25000 --logdir logdir/exp_045_treatment_extension_008d_s3`\n- **日志**: `logdir/exp_045_treatment_extension_008d_s3/train.log`\n\n注意：任务指定的 `--dt_emb trained` 和 `--subsample_imagination True` 并非实际参数名。实际使用 `--gate_fixed_dt 2 --gate_subsample_max_dt 2`（与源实验 008d_civo_trigger_s2.sh 脚本一致）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-exp-045-treatment-extension.md"
+}

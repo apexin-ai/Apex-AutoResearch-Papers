@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b814fcdc844c2db45ce4",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "writing narrative revision",
+  "task_key": "worker_writing_narrative_revision_20260513T175817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_narrative_revision_20260513T175817_result.json",
+    "occurrence": 1,
+    "bytes": 526,
+    "sha256": "6bd797127e105019a8dd2c88dcc0c619ae2449420700fa34a7e0f43b09eea65d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三处修改完成：\n\n1. **Rationalization 修正**：去掉了\"不是工程事故\"的包装，改为承认是 bug，但强调修复过程提供了 ablation 级证据。\n2. **单任务 caveat**：将 \"a recipe for variable-rate model-based RL\" 收窄为 \"a recipe validated on locomotion tasks\"，明确所有证据仅来自 Walker Walk。\n3. **Gray zone 线**：新增 70–79% 场景的第三条叙事，覆盖三种解读（gate overhead / 训练不足 / 超参未优化）及对应论文写法。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-narrative-revision.md"
+}

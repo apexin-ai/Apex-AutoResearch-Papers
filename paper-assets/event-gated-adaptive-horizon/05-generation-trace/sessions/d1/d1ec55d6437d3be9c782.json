@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1ec55d6437d3be9c782",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_26_1780002106.md",
+  "task_key": "loop_26_1780002106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_26_1780002106.md",
+    "occurrence": 1,
+    "bytes": 2822,
+    "sha256": "0d509e2906ae1ee9d9867d3ff96aaa5b5bd6dddc25334e84f789174b2361a9f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 26\nreason: idle_timeout\nupdated: '2026-05-28T15:58:07+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 项目处于 **数据锁定** (D171, 2026-05-27)：禁止修改任何数值/统计/表格/图表数据，仅允许 prose polish\n- CoRL 2026 DDL: **UTC 2026-05-28 12:00**（距今 <12h）\n- GPU 白名单：westd-51268 cuda:0, cuda:1（仅此两张）\n- 不得启动新实验改变论文数据——rebuttal 储备实验失败后不再重试（数据锁定优先）\n- exp_walker_no_dt_emb_s0 已 ALLOCATED 但未提交——数据锁定后此实验**不应提交**（除非 Director 明确解锁）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-51268，2× RTX PRO 6000 Blackwell (96GB each), CUDA 13.2\n- 工作目录：/root/autodl-tmp/event-gated-adaptive-horizon\n- Python：/root/miniconda3/bin/python (conda base env)，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 数据盘：/root/autodl-tmp/ (400GB/439GB 可用, 4%)\n- W&B project: event-gated-adaptive-horizon\n- 活跃进程：无（两张 GPU 空闲）\n- Cron：reconcile 刚完成，无活跃 cron\n\n### 3. 📊 当前状态\n刚处理 CRON 失败回调：exp_walker_008d_s6_r2 和 exp_walker_008d_s7_r2 均在 step 15000 \"Start evaluation.\" 处静默死亡（无 Traceback），已更新 registry notes。\n\n**等待中**：\n- Worker `worker_diagnose_exp_walker_008d_s6s7_r2_20260527T235538` 正在 SSH 诊断 root cause（检查 OOM/dmesg/磁盘）\n- 尚未向 Director 汇报此失败（等 Worker 返回后带 root cause 一并汇报）\n\n**Registry 状态**：208 实验，全部 DONE（103 success / 43 negative / 21 failed / 40 killed / 1 ALLOCATED 未提交）。无 RUNNING。\n\n### 4. 📋 待办\n- Worker 诊断回调到达 → 更新 registry notes（替换\"Worker 深查中\"为 root cause）→ 向 Director 汇报失败原因 + 确认不影响投稿\n- Director 发送投稿指令 → 配合 prose polish / 投稿材料准备\n- 如 Director 解除数据锁定要求重跑 s6/s7 → 需先修复 step 15K eval 阶段的 OOM/crash 问题再提交\n\n### 5. 🎯 战略上下文\n- 论文核心：DreamerV3 trained dt_embedding 驱动 CIVO（multi-joint locomotion 特异），frozen/removed dt_emb 可阻止。8 个 Claims 全部有 Strong/Moderate 证据支撑。\n- s6_r2/s7_r2 是 D172 Tier 2 rebuttal 储备（增加 C2 onset rate CI），**失败不影响投稿**——当前 C2 evidence 已有 Fisher p<0.001。\n- 易错判断：这两个实验连续失败 4 次（s6→s6_r2, s7→s7_r2），前两次是 SIGTERM（被新实验提交挤掉），后两次是 eval 阶段 silent kill（不同 root cause）。不要混淆这两种失败模式。\n- D171 数据锁定后唯一允许的操作是 prose polish 和投稿准备，不要被 ALLOCATED 状态的 exp_walker_no_dt_emb_s0 诱导去提交。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-26-1780002106.md"
+}

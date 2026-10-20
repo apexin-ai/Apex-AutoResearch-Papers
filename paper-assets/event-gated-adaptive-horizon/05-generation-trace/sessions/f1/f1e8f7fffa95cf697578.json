@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1e8f7fffa95cf697578",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "fix delete duplicate nve script",
+  "task_key": "worker_fix_delete-duplicate-nve-script_20260527T031348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_delete-duplicate-nve-script_20260527T031348_result.json",
+    "occurrence": 1,
+    "bytes": 124,
+    "sha256": "ba0be25af2080611b480c1dfd9f929a211e300d4f8fc1482a3c02ad0bae5b033"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`scripts/analyze_hopper_nve.py` 已删除。根目录版本确认存在（14264 bytes, 2026-05-27 11:05）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-delete-duplicate-nve-script.md"
+}

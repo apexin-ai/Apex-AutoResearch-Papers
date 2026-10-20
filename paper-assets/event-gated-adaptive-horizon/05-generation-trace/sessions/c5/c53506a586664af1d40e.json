@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c53506a586664af1d40e",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops 008f smoke test",
+  "task_key": "worker_ops_008f_smoke_test_20260514T045256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_008f_smoke_test_20260514T045256_result.json",
+    "occurrence": 1,
+    "bytes": 991,
+    "sha256": "cc45084d60c050c842942746263ec7afd21c86381d27ecd4adec633b8b9232c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "再确认 PID 127766 对应 GPU 进程。GPU 0 上的 106947 是另一个实验。exp_008f 刚启动约 1.5 分钟，还在 prefill 阶段（step=0 的 4 条 seed episodes），尚未开始 model training，所以 GPU 显存占用还没上来。\n\n验证结果：\n\n- **进程状态**: alive\n- **PID 链**: 127761 (bash wrapper) → 127765 (timeout) → 127766 (python dreamer.py)\n- **运行时间**: ~1.5 分钟\n- **参数确认**: `--gate_dt_embed_dim 0` 已正确传入，无 argparse 报错\n- **logdir**: 已创建，包含 `metrics.jsonl`、`tfevents`、`train_eps/`、`eval_eps/`\n- **metrics.jsonl**: 4 条 seed episode 记录（step=0, dataset_size=2000, return 30~55），prefill 正常\n- **GPU**: 尚未在 nvidia-smi 中显示（仍在 prefill 收集数据阶段，训练循环未开始），GPU 0 当前被 PID 106947 占用 4158MiB（另一个实验）\n\nexp_008f 一切正常，正在完成 prefill，预计很快进入训练循环并占用 GPU 显存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-008f-smoke-test.md"
+}

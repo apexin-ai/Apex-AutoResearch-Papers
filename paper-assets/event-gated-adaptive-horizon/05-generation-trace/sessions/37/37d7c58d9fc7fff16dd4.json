@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37d7c58d9fc7fff16dd4",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper conclusion seed fix",
+  "task_key": "worker_paper_conclusion-seed-fix_20260518T051445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_conclusion-seed-fix_20260518T051445_result.json",
+    "occurrence": 1,
+    "bytes": 291,
+    "sha256": "9770e45f96a44ce7cc7fe13331768c529fe41441817462a7651d1f16316ace62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。\n\n**行 18**：`\"cross-environment evidence (Cheetah Run) is limited to a single seed\"` → `\"cross-environment evidence (Cheetah Run) is confirmed across two seeds but limited to a single trigger configuration\"`\n\n无 em-dash 引入，上下文通顺。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-conclusion-seed-fix.md"
+}

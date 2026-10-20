@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa2107b9bc4ae05d11b8",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 008d civo trigger s3",
+  "task_key": "worker_analysis_exp_008d_civo_trigger_s3_20260517T031958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_008d_civo_trigger_s3_20260517T031958_result.json",
+    "occurrence": 1,
+    "bytes": 1068,
+    "sha256": "c31b4dddfb83fcb9c0600e7246f317b345ff3cd9f71bce02d496c90162647432"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## 结论：SUCCESS (Late-Onset CIVO Collapse)\n\n**关键发现**：\n\n| 指标 | 值 |\n|------|-----|\n| NVE onset | 1.50× @ 45K (sustained @ 55K) |\n| NVE final | 1.53× @ 105K |\n| Eval peak | 451.7 @ 95K |\n| Eval final | 267.6 @ 105K (**-41% from peak**) |\n| Train returns @ end | 82-214 (severe collapse, still declining) |\n| vs baseline | **-70.8%** |\n\n**Collapse pattern**：与 seed=0 的即时单调下降不同，seed=3 呈现\"延迟崩溃\"模式：先升（eval 36→452@95K），NVE 在中间暂时回落（65-95K），然后 eval 逆转崩溃，NVE 重回 1.53×。训练结束时 train returns 仍在急剧下降（547→82），表明崩溃尚未触底。\n\n**Cross-seed 总结（trained dt_emb + subsample）**：\n- NVE ≥ 1.5× onset：**3/3 seeds**（系统性诊断标记）\n- 持续崩溃：**2/3 seeds**（seed=0 即时，seed=3 延迟）\n- 自修正：**1/3 seeds**（seed=2）\n\nCIVO 机制在所有 seed 上可靠触发 NVE>1.5×，崩溃是多数结果（2/3）。报告已写入 artifacts。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-008d-civo-trigger-s3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "439d09e8b200074f8734",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check all running metrics",
+  "task_key": "worker_check_all_running_metrics_20260514T040636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_all_running_metrics_20260514T040636_result.json",
+    "occurrence": 1,
+    "bytes": 594,
+    "sha256": "7e2a02a1d85084771eaefc0f44210926896327af6965025ade402ce565e5189e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。三个实验全部存活，汇总：\n\n| 实验 | step | eval_return | 状态 |\n|------|------|-------------|------|\n| **008a** | 65K (eval 中) | @55K=487.9 | 65K eval 正在执行，结果未出。train@64K=557 暗示可能回升 |\n| **008c** | 68K | @65K=240.9 | plateau 确认，10K 步零增长 |\n| **008d** | 40K | @35K=146.3 | train@40K=119 持续下滑，崩塌预警；45K eval 未到达 |\n\n**关键待定**：008a 的 65K eval 是核心决策点，预计 30-40 分钟后出结果。008d 的 45K eval 预计 ~50 分钟后到达，将确认是否崩塌。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-all-running-metrics.md"
+}

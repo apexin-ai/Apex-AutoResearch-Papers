@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37032ac83ddcf713fa39",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "writing method p0 rewrites",
+  "task_key": "worker_writing_method-p0-rewrites_20260516T030109",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_method-p0-rewrites_20260516T030109_result.json",
+    "occurrence": 1,
+    "bytes": 624,
+    "sha256": "09f2efed11515c8a0b417b7505ebaabe3a230839eb60fa01d9cc59e0a44d737e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件验证完毕，所有修改正确。\n\n修改总结：\n- **DIFF-M2**：已在当前文件中（heading 已为 CIVO，body 正确区分 Lu et al. analogy）\n- **DIFF-M3**：已在当前文件中（§3.3 \"Imagination Step Size as Causal Variable\" 含 s2 collapse + dual-pathway + 009a baseline）\n- **DIFF-M6**：新增 2×2 ablation matrix（lines 113-124），含 008d/008a/015b/008f 四个条件及 trained dt\\_emb 必要条件结论\n- **DIFF-M7**：新增 aggregate diagnostic power 段落（line 78），含 AUROC=0.933、7/8 accuracy、1 FP (008e\\_v3\\_s2)、task B1 supplementary reference"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-method-p0-rewrites.md"
+}

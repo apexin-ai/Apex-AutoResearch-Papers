@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fdf6bcf613ac59f2de0",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check step snapshot 0523b",
+  "task_key": "worker_check_step-snapshot-0523b_20260523T050630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_step-snapshot-0523b_20260523T050630_result.json",
+    "occurrence": 1,
+    "bytes": 1108,
+    "sha256": "65121c4c7a6b2951d9cc204beecab40de77d4895501694c5346f13b8c779e207"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 4 个实验 target 均为 **210,000 steps**。\n\n| exp_id | server | current_step | target | eval_return | ve_ratio | 进度% |\n|--------|--------|-------------|--------|-------------|----------|-------|\n| exp_050 (PegInsertion CIVO s0) | bjb1-40020 | 165,000 | 210,000 | 9.01 (@162.5K) | 1.94 (@162.5K) | **78.6%** |\n| exp_051 (StackCube frozen s0) | bjb1-40020 | 166,600 | 210,000 | 27.87 (@162.5K) | 0.186 (@162.5K) | **79.3%** |\n| exp_052 (StackCube CIVO s1) | bjb1-45299 | 166,400 | 210,000 | 39.87 (@162.5K) | 0.095 (@162.5K) | **79.2%** |\n| exp_053 (PegInsertion frozen s0) | bjb1-45299 | 18,200 | 210,000 | — (太早) | — | **8.7%** |\n\n要点：\n- exp_050/051/052 进度一致 ~79%，最近一次 eval 均在 162.5K 步\n- exp_050 PegInsertion CIVO ve_ratio 仍高企 (1.94)，eval_return 仅 9.01，与 StackCube 形成鲜明对比\n- exp_052 StackCube s1 ve_ratio 已收敛至 0.095，eval_return 39.87，与 exp_049 s0 一致\n- exp_051 frozen StackCube ve_ratio 0.186，eval 27.87，低于 trained 的 39.87\n- exp_053 刚启动约 4 小时，尚无 eval 数据"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-step-snapshot-0523b.md"
+}

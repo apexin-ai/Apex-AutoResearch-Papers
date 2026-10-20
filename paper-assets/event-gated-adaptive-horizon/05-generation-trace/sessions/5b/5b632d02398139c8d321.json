@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b632d02398139c8d321",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops check extended status v2",
+  "task_key": "worker_ops_check-extended-status-v2_20260519T142226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-extended-status-v2_20260519T142226_result.json",
+    "occurrence": 1,
+    "bytes": 1405,
+    "sha256": "4345371e23179b5aac5f9310737c3ecaf7ed984330878ae7a7581130663b2e2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n---\n\n## GPU 状态\n| GPU | 型号 | 利用率 | 显存 |\n|-----|------|--------|------|\n| 0 | RTX PRO 6000 Blackwell | 31% | 4.8/97.9 GB |\n| 1 | RTX PRO 6000 Blackwell | 79% | 9.5/97.9 GB |\n\n## 实验状态\n\n| 实验 | tmux | 当前步数/目标 | 进度 | 最新 eval_return | 最新 train_return |\n|------|------|--------------|------|-----------------|------------------|\n| **s2_ext** | 存活 | **424K/505K** | **84%** | 933.3 (422K) | 949.7 (424K) |\n| **s3_ext** | 存活 | **308K/505K** | **61%** | 853.3 (300K) | 951.4 (308K) |\n| **s4_ext** | 存活 | **268K/505K** | **53%** | 942.4 (262K) | 893.0 (268K) |\n\n## s2_ext 详细数据\n\n**s2 尚未完成**，当前 424K 步，预计还需 ~81K 步。\n\n**Eval return 趋势（延长阶段，从 112K 恢复）：**\n- 112K: 659.5 → 202K: 932.1 → 292K: **957.0** → 302K: **960.8** (peak) → 422K: 933.3\n- **Peak eval return: 960.8**（302K 步）\n- 300K 以后 eval 在 887~948 区间波动，最新 422K 为 933.3\n\n**ve_ratio profile（value_mean / eval_return 近似）：**\n- 整个延长阶段 ve_ratio 稳定在 **0.6 → 0.7 → 0.8**，缓慢上升\n- 122K: 0.6 → 162K: 0.7 → 402K: 0.8 → 412K: 0.7 → 422K: 0.7\n- value_mean 在后期稳定在 ~664，eval_return ~930 附近，ve_ratio ≈ 0.71\n\n**s2_ext 按当前 fps (~8.3)，剩余 81K 步约需 ~2.7 小时完成。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-extended-status-v2.md"
+}

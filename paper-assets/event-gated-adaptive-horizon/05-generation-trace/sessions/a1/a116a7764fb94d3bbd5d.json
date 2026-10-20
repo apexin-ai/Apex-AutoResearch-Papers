@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a116a7764fb94d3bbd5d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper figure fig6 multiple pathways",
+  "task_key": "worker_paper_figure_fig6_multiple_pathways_20260515T064149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig6_multiple_pathways_20260515T064149_result.json",
+    "occurrence": 1,
+    "bytes": 578,
+    "sha256": "e1a01bd6a9fe546646cc3bb369c19182e6f79fec1c23a1243582ca6494ef6f58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册。\n\n**输出文件**:\n- PDF: `artifacts/figures/paper/fig6_multiple_pathways.pdf` (49KB)\n- PNG: `artifacts/figures/paper/fig6_multiple_pathways.png` (512KB)\n- 生成脚本: `artifacts/figures/paper/fig6_multiple_pathways.py`\n\n**图表内容**: 2×3 面板，左列 Pathway A (CIVO, 008d s1) 展示 value explosion → eval decline → entropy 下降，右列 Pathway B (Non-CIVO, 008e_v3 s2) 展示 eval crash → value 稳定 → entropy 上升。009a baseline 灰色虚线作为参考，崩溃阶段用浅红色 axvspan 标记。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig6-multiple-pathways.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0aabf98bac2a037b008",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "deploy exp 043 008f s1",
+  "task_key": "worker_deploy_exp_043_008f_s1_20260522T023558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_deploy_exp_043_008f_s1_20260522T023558_result.json",
+    "occurrence": 1,
+    "bytes": 358,
+    "sha256": "89ea25225e0a6dd98252f24ca1d7a973d162643309bd2ed2dafd78cf2dd70b66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已正常启动并开始训练。\n\n**汇报：**\n- **PID**: 250622（父进程）\n- **GPU**: cuda:1，已占用 577 MiB，正在运行\n- **状态**: 已完成 prefill，进入 step 5000 evaluation 阶段\n- **日志**: `logdir/exp_043_008f_walker_s1.log`\n- **配置**: dt_embed_dim=0, subsample ON (gate_subsample_max_dt=2), seed=1"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-exp-043-008f-s1.md"
+}

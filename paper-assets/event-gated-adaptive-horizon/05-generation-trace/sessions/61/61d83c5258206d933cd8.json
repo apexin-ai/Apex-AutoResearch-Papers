@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61d83c5258206d933cd8",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis dof dependency table",
+  "task_key": "worker_analysis_dof-dependency-table_20260529T083118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dof-dependency-table_20260529T083118_result.json",
+    "occurrence": 1,
+    "bytes": 720,
+    "sha256": "321718ad196b688bc2ae663cfe8b3849a174e6ab903e6a6a75034ba779d97623"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/dof_dependency_analysis.md` 并注册 (`art_20260529_1ba48e`)。\n\n核心发现：\n\n| DoF | 环境 | CIVO Rate | 模式 |\n|-----|------|-----------|------|\n| 1 | Cartpole | 0/3 | 非 value-driven 退化 |\n| 4 | Hopper | 0/1 | learning delay→自恢复 |\n| 6 | Walker | 3/5 (60%) | **CIVO** |\n| 6 | Cheetah | 3/4 (75%) | **CIVO** |\n| 12 | Quadruped | — | baseline 自身不稳定 (NVE=6.6×) |\n| 21 | Humanoid | — | baseline 自身不稳定 (NVE=12.97×) |\n\nCIVO 存在 \"Goldilocks zone\"：仅在 6-DoF 多关节运动中稳定出现。低 DoF 不触发，高 DoF baseline 本身已有 value overestimation 无法隔离。Discussion 段落已包含在文件末尾。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-dof-dependency-table.md"
+}

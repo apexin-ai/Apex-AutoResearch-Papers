@@ -1,0 +1,634 @@
+{
+  "schema_version": "1.0",
+  "id": "a0f01cf1846b3e02296a",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "conversation",
+  "title": "paper limitations dof boundary",
+  "task_key": "worker_paper_limitations-dof-boundary_20260529T091446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_limitations-dof-boundary_20260529T091446.jsonl",
+    "occurrence": 1,
+    "bytes": 26092,
+    "sha256": "d165260fcd556f121c00c78e675a0bd649f3dd059666ca1a413cf486bb8474a9"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 15,
+    "roles": {
+      "tool_call": 15,
+      "tool_result": 15,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-29T09:17:15.363793+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/skills/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-29T09:17:15.364381+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-29T09:17:15.364541+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/dof_dependency_analysis.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-29T09:17:15.364744+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# DoF Dependency Analysis: CIVO Onset Across Environments\n2\t\n3\tGenerated: 2026-05-29\n4\t\n5\t## Summary Table\n6\t\n7\t| Environment | DoF | Baseline Eval | Baseline ve_ratio | Gate NVE Peak | Gate Eval | CIVO Rate | Failure Mode | Baseline Health |\n8\t|---|---|---|---|---|---|---|---|---|\n9\t| Cartpole Swingup | 1 | 673.3±142.0 (n=3) | — | 0.047±0.010 | 236.3±29.7 (n=3) | 0/3 (0%) | non-CIVO degradation | healthy |\n10\t| Hopper Hop | 4 | 96.43 (n=1) | 0.559 | 1.6× | 3.26→81.58† (n=1) | 0/1 (0%) | learning delay→recovery | healthy |\n11\t| Walker Walk | 6 | 787.7±230.8 (n=4) | 0.651±0.008 | 3.32±1.61 (n=5) | 190.6±90.2 (n=4) | 3/5 (60%) | CIVO | healthy |\n12\t| Cheetah Run | 6 | 446.1±2.9 (n=2) | 0.606±0.008 | med 2.3× [0.31,127.6] (n=4) | 123.2±132.9 (n=4) | 3/4 (75%) | CIVO | healthy |\n13\t| Quadruped Walk | 12 | — (failed/running) | 6.6×‡ | — (cancelled) | — | — | N/A | **unhealthy** |\n14\t| Humanoid Walk | 21 | 1.48±0.36 (n=1) | 12.22 | — (cancelled) | — | — | N/A | **unhealthy** |\n15\t\n16\t† Hopper trained_s0: 3.26 at 105K, recovered to 81.58 by 158K (85% baseline). Pattern: transient_instability_recovered.\n17\t‡ Quadruped baseline s0: NVE=6.6× at 125K, far above τ=2.0×. Retry (s0_r2) still RUNNING.\n18\t\n19\t## Detailed Environment Notes\n20\t\n21\t### Cartpole Swingup (1 DoF)\n22\t- All 3 gate seeds show NVE < 0.1×, far below CIVO threshold (τ=2.0×)\n23\t- Eval degrades to 35% of baseline, but degradation is NOT value-driven\n24\t- Interpretation: 1-DoF dynamics too simple for value overestimation cascade\n25\t- **Exp IDs**: baseline=exp_060, gate=exp_061\n26\t\n27\t### Hopper Hop (4 DoF)\n28\t- Single seed (trained_s0): severe learning delay at 105K (eval=3.26, 3.4% baseline), NVE=1.6×\n29\t- Extended to 168K: eval recovered to 81.58 (85% baseline), ve_ratio normalized (0.44)\n30\t- Pattern: gate mechanism causes learning delay, not CIVO; agent eventually learns through the gate\n31\t- No_dt_emb control (exp_hopper_no_dt_emb_s0): NVE_peak=4.37 but not sustained, eval=10.8 (11% baseline)\n32\t- Frozen_s\n…[truncated 6100 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-29T09:17:15.364951+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/limitations.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-29T09:17:15.365090+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-29T09:17:15.365243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/paper-writing-norms*"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-29T09:17:15.365411+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-29T09:17:15.365540+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/limitations.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-29T09:17:15.365660+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/sections/*.tex"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-29T09:17:15.365774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-29T09:17:15.365939+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/sections/methodology.tex\ndocs/paper/sections/results.tex\ndocs/paper/sections/introduction.tex\ndocs/paper/sections/abstract_body.tex\ndocs/paper/sections/related_work.tex\ndocs/paper/sections/appendix.tex\ndocs/paper/sections/analysis.tex\ndocs/paper/sections/conclusion.tex\ndocs/paper/sections/experiments_results.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-29T09:17:15.366093+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-29T09:17:15.366432+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 5709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-29T09:17:15.366598+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/paper/*.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-29T09:17:15.366726+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/nve_sensitivity_table_37b680.tex\nartifacts/_project/paper/nve_sensitivity_table.tex\nartifacts/_project/paper/ablation_mechanism_table.tex\nartifacts/_project/paper/temporal_causality_table.tex\nartifacts/_project/paper/nve_threshold_sensitivity.tex\ndocs/paper/main.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-29T09:17:15.366879+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "limitation|Limitation",
+              "glob": "**/*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-29T09:17:15.367075+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/dream_reports/dream_20260516T133210/worst/paper.tex:41:    \\item The NVE diagnostic methodology---a normalized overestimation metric achieving perfect classification in Walker Walk (proposed for broader adoption with documented limitations).\nartifacts/dream_reports/dream_20260516T133210/worst/paper.tex:391:\\subsection{Limitations}\nartifacts/dream_reports/dream_20260516T133210/median/paper.tex:529:\\subsection{Scope and Limitations}\nartifacts/dream_reports/dream_20260514T062606/median/paper.tex:495:\\paragraph{Two-environment limitation.}\nartifacts/dream_reports/dream_20260520T210241/best/paper.tex:586:This operates at the forward-pass level, avoiding the backward-pass limitations of SGS.\nartifacts/dream_reports/dream_20260520T210241/best/paper.tex:627:\\section{Limitations}\nartifacts/dream_reports/dream_20260520T210241/median/paper.tex:314:\\paragraph{Limitations of NVE.}\nartifacts/dream_reports/dream_20260520T210241/median/paper.tex:612:\\subsection{Limitations}\nartifacts/dream_reports/dream_20260520T155150/best/paper.tex:541:\\paragraph{Limitations.}\nartifacts/dream_reports/dream_20260520T155150/worst/paper.tex:60:[Omitted long matching line]\nartifacts/dream_reports/dream_20260520T155150/median/paper.tex:97:Our CIVO mechanism is distinct: it arises from \\emph{learned temporal conditioning} amplifying prediction errors, not from policy-class limitations.\nartifacts/dream_reports/dream_20260520T155150/median/paper.tex:672:\\subsection{Limitations of TCN}\nartifacts/dream_reports/dream_20260520T155150/median/paper.tex:674:The TCN results on Walker Walk represent the first complete CIVO prevention in this project, but three limitations constrain the claim:\nartifacts/dream_reports/dream_20260516T172011/best/paper.tex:72:Our CIVO mechanism is distinct: it arises from learned conditioning amplifying model imprecision, not from policy-class limitations.\nartifacts/dream_reports/dream_20260516T172011/worst/paper.tex:570:\\subsection{Limitations}\nartifacts/dream_reports/drea\n…[truncated 1422 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-29T09:17:15.367266+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/conclusion.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-29T09:17:15.367412+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\vspace{-6pt}\n2\t\\section{Conclusion}\n3\t\\label{sec:conclusion}\n4\t\n5\t\\looseness=-1 We identify conditioning-induced value overestimation (CIVO) as a systematic failure mode of temporal conditioning in imagination-based actor-critic training. Trained $\\dt$-embeddings with multi-rate data exposure reliably induce value overestimation while frozen embeddings never do, revealing co-adaptation between the temporal embedding and the world model as the causal factor. A four-level intervention hierarchy yields two key insights: gradient magnitude does not predict causal importance, and dual critics converge in pure imagination, rendering Double Q pessimism structurally ineffective in any system with shared imagined rollouts. For practitioners, we recommend: (1)~validate with frozen-embedding controls before deploying learned embeddings; (2)~monitor NVE as an early warning; (3)~prefer MPC-style re-planning for variable-rate execution. Future work should examine CIVO in transformer-based world models and diffusion-based planners. Code and configurations will be released upon acceptance.\n6\t\n7\t\\vspace{-6pt}\n8\t\\section{Limitations}\n9\t\\label{sec:limitations}\n10\t\n11\t\\looseness=-1 All experiments use proprioceptive observations; pixel and multi-modal inputs remain untested. The evaluation is limited to simulated environments and does not include real robot transfer. Our compute budget (${\\sim}80$ GPU hours on a single GPU) restricts the scale of the factorial design; larger sweeps may reveal additional interaction effects. Seed counts of four to five per condition provide sufficient power for binary CIVO classification but may not capture fine-grained effect sizes across all environmental conditions.\n12\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-29T09:17:15.367657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__edit_paper_section",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-29T09:17:15.367795+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-29T09:17:15.368004+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__edit_paper_section"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "mcp__agent-ml-research__edit_paper_section",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "section": "conclusion",
+              "old_text": "Seed counts of four to five per condition provide sufficient power for binary CIVO classification but may not capture fine-grained effect sizes across all environmental conditions.",
+              "new_text": "Seed counts of four to five per condition provide sufficient power for binary CIVO classification but may not capture fine-grained effect sizes across all environmental conditions.\n\n\\paragraph{Environment Complexity Dependence.} CIVO onset exhibits a non-monotonic relationship with environment complexity. Across six DeepMind Control Suite tasks spanning 1 to 21 degrees of freedom (DoF), CIVO occurs exclusively in 6-DoF environments: Walker Walk (3/5 seeds, 60\\%) and Cheetah Run (3/4 seeds, 75\\%). Lower-DoF environments do not trigger the phenomenon. In Cartpole Swingup (1 DoF), the gate degrades performance through non-value-driven mechanisms (NVE $< 0.1\\times$); the single-joint dynamics appear too simple for value overestimation to cascade through learned temporal embeddings. In Hopper Hop (4 DoF), the gate causes transient learning delay followed by recovery to 85\\% of baseline performance, though this observation rests on a single seed ($n{=}1$) and warrants replication. At higher DoF, a different obstacle emerges. Both Quadruped Walk (12 DoF) and Humanoid Walk (21 DoF) baselines exhibit intrinsic value overestimation (NVE $= 6.6\\times$ and $12.97\\times$, respectively) without any gate mechanism. These failures stem from known scaling challenges of DreamerV3 in high-dimensional action spaces and preclude clean isolation of gate-induced CIVO from pre-existing overestimation. Our empirical characterization of CIVO is therefore grounded in 6-DoF multi-joint locomotion, and generalization to more complex domains remains contingent on improving base algorithm stability, which may shift the onset boundary to higher DoF."
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-29T09:17:15.368163+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Section conclusion.tex not found\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "mcp__agent-ml-research__edit_paper_section",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-29T09:17:15.368324+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Edit",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/conclusion.tex",
+              "old_text": "Seed counts of four to five per condition provide sufficient power for binary CIVO classification but may not capture fine-grained effect sizes across all environmental conditions.",
+              "new_text": "Seed counts of four to five per condition provide sufficient power for binary CIVO classification but may not capture fine-grained effect sizes across all environmental conditions.\n\n\\paragraph{Environment Complexity Dependence.} CIVO onset exhibits a non-monotonic relationship with environment complexity. Across six DeepMind Control Suite tasks spanning 1 to 21 degrees of freedom (DoF), CIVO occurs exclusively in 6-DoF environments: Walker Walk (3/5 seeds, 60\\%) and Cheetah Run (3/4 seeds, 75\\%). Lower-DoF environments do not trigger the phenomenon. In Cartpole Swingup (1 DoF), the gate degrades performance through non-value-driven mechanisms (NVE $< 0.1\\times$); the single-joint dynamics appear too simple for value overestimation to cascade through learned temporal embeddings. In Hopper Hop (4 DoF), the gate causes transient learning delay followed by recovery to 85\\% of baseline performance, though this observation rests on a single seed ($n{=}1$) and warrants replication. At higher DoF, a different obstacle emerges. Both Quadruped Walk (12 DoF) and Humanoid Walk (21 DoF) baselines exhibit intrinsic value overestimation (NVE $= 6.6\\times$ and $12.97\\times$, respectively) without any gate mechanism. These failures stem from known scaling challenges of DreamerV3 in high-dimensional action spaces and preclude clean isolation of gate-induced CIVO from pre-existing overestimation. Our empirical characterization of CIVO is therefore grounded in 6-DoF multi-joint locomotion, and generalization to more complex domains remains contingent on improving base algorithm stability, which may shift the onset boundary to higher DoF."
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-29T09:17:15.368468+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>InputValidationError: Edit failed due to the following issues:\nThe required parameter `old_string` is missing\nThe required parameter `new_string` is missing\nAn unexpected parameter `old_text` was provided\nAn unexpected parameter `new_text` was provided</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-29T09:17:15.368601+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/conclusion.tex",
+              "old_string": "Seed counts of four to five per condition provide sufficient power for binary CIVO classification but may not capture fine-grained effect sizes across all environmental conditions.",
+              "new_string": "Seed counts of four to five per condition provide sufficient power for binary CIVO classification but may not capture fine-grained effect sizes across all environmental conditions.\n\n\\paragraph{Environment Complexity Dependence.} CIVO onset exhibits a non-monotonic relationship with environment complexity. Across six DeepMind Control Suite tasks spanning 1 to 21 degrees of freedom (DoF), CIVO occurs exclusively in 6-DoF environments: Walker Walk (3/5 seeds, 60\\%) and Cheetah Run (3/4 seeds, 75\\%). Lower-DoF environments do not trigger the phenomenon. In Cartpole Swingup (1 DoF), the gate degrades performance through non-value-driven mechanisms (NVE $< 0.1\\times$); the single-joint dynamics appear too simple for value overestimation to cascade through learned temporal embeddings. In Hopper Hop (4 DoF), the gate causes transient learning delay followed by recovery to 85\\% of baseline performance, though this observation rests on a single seed ($n{=}1$) and warrants replication. At higher DoF, a different obstacle emerges. Both Quadruped Walk (12 DoF) and Humanoid Walk (21 DoF) baselines exhibit intrinsic value overestimation (NVE $= 6.6\\times$ and $12.97\\times$, respectively) without any gate mechanism. These failures stem from known scaling challenges of DreamerV3 in high-dimensional action spaces and preclude clean isolation of gate-induced CIVO from pre-existing overestimation. Our empirical characterization of CIVO is therefore grounded in 6-DoF multi-joint locomotion, and generalization to more complex domains remains contingent on improving base algorithm stability, which may shift the onset boundary to higher DoF."
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-29T09:17:15.368760+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-29T09:17:15.368916+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/docs/paper/sections/conclusion.tex"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-29T09:17:15.369059+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\vspace{-6pt}\n2\t\\section{Conclusion}\n3\t\\label{sec:conclusion}\n4\t\n5\t\\looseness=-1 We identify conditioning-induced value overestimation (CIVO) as a systematic failure mode of temporal conditioning in imagination-based actor-critic training. Trained $\\dt$-embeddings with multi-rate data exposure reliably induce value overestimation while frozen embeddings never do, revealing co-adaptation between the temporal embedding and the world model as the causal factor. A four-level intervention hierarchy yields two key insights: gradient magnitude does not predict causal importance, and dual critics converge in pure imagination, rendering Double Q pessimism structurally ineffective in any system with shared imagined rollouts. For practitioners, we recommend: (1)~validate with frozen-embedding controls before deploying learned embeddings; (2)~monitor NVE as an early warning; (3)~prefer MPC-style re-planning for variable-rate execution. Future work should examine CIVO in transformer-based world models and diffusion-based planners. Code and configurations will be released upon acceptance.\n6\t\n7\t\\vspace{-6pt}\n8\t\\section{Limitations}\n9\t\\label{sec:limitations}\n10\t\n11\t\\looseness=-1 All experiments use proprioceptive observations; pixel and multi-modal inputs remain untested. The evaluation is limited to simulated environments and does not include real robot transfer. Our compute budget (${\\sim}80$ GPU hours on a single GPU) restricts the scale of the factorial design; larger sweeps may reveal additional interaction effects. Seed counts of four to five per condition provide sufficient power for binary CIVO classification but may not capture fine-grained effect sizes across all environmental conditions.\n12\t\n13\t\\paragraph{Environment Complexity Dependence.} CIVO onset exhibits a non-monotonic relationship with environment complexity. Across six DeepMind Control Suite tasks spanning 1 to 21 degrees of freedom (DoF), CIVO occurs exclusively in 6-DoF environments: Walker Walk (3/5 seeds, \n…[truncated 1188 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-29T09:17:15.369245+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "段落已插入 `conclusion.tex` 第13行，紧接在原有 Limitations 段落之后。~197词，覆盖：\n\n- 6-DoF 为 CIVO 唯一确认发生区间（Walker 60%, Cheetah 75%）\n- 低 DoF 不触发（Cartpole: non-value-driven degradation; Hopper: transient delay + recovery，标注 $n{=}1$）\n- 高 DoF baseline 自身不稳定（Quadruped NVE=6.6×, Humanoid NVE=12.97×），无法隔离 gate-induced CIVO\n- Future direction: 改善 base algorithm stability 可能上移 onset boundary"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_limitations-dof-boundary_20260529T091446"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/conversations/paper-limitations-dof-boundary.md"
+}

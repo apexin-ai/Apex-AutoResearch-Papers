@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "920c780f09439a66dd5a",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper conclusion number fixes",
+  "task_key": "worker_paper_conclusion-number-fixes_20260518T062512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_conclusion-number-fixes_20260518T062512_result.json",
+    "occurrence": 1,
+    "bytes": 201,
+    "sha256": "5157333ef7cd13766a61d37e3e7a56afd0e394ec22ff8ce6eda8fb3f5fd3018f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处修改完成，无 em-dash 引入。\n\n- **L12**: `three positive cases` → `five positive cases`，`two of three` → `two of five`\n- **L18**: `eleven runs` → `thirteen runs`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-conclusion-number-fixes.md"
+}

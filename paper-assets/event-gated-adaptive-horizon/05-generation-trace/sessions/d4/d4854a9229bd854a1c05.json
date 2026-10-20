@@ -1,0 +1,892 @@
+{
+  "schema_version": "1.0",
+  "id": "d4854a9229bd854a1c05",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "conversation",
+  "title": "cron hook exp 031 tcn pickcube s0 sigma02",
+  "task_key": "cron_hook_exp_031_tcn_pickcube_s0_sigma02",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/cron_hook_exp_031_tcn_pickcube_s0_sigma02.jsonl",
+    "occurrence": 1,
+    "bytes": 37738,
+    "sha256": "384cbcced3ba930e7282473143535d9c54439bf093840fe0405936c0e41a5a24"
+  },
+  "statistics": {
+    "messages": 44,
+    "user_turns": 1,
+    "tool_calls": 22,
+    "roles": {
+      "user": 1,
+      "tool_call": 22,
+      "tool_result": 20,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T16:12:07.533946+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #23。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-45299:cuda:0, bjb1-45299:cuda:1, bjb1-40020:cuda:0, bjb1-40020:cuda:1。其他 GPU 即使 Director 指定也必须 push back\n- bjb1-45299 的 ManiSkill 实验需要 `LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6`，DMC 实验不需要\n- MUJOCO_EGL_DEVICE_ID 必须设为 0（因为 submit_on_allocated 注入 CUDA_VISIBLE_DEVICES 后只可见一张卡）\n- PickCube 实验 steps=200000，Walker/Cheetah 实验 steps=210000\n- 禁止在 105K 以内对实验做成功/失败定性判断（多次踩坑）\n- CoRL 2026 DDL 2026-05-29，数据锁定 5/25\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-45299**: 2×RTX PRO 6000, `/root/autodl-tmp/event-gated-adaptive-horizon/`, conda base (`/root/miniconda3/bin/python`), 磁盘 95% 可用\n- **bjb1-40020**: 2×RTX 4090, 同路径同 conda, 磁盘 93% 可用\n- 日志路径: `~/runs/event-gated-adaptive-horizon/<exp_id>.log`\n- checkpoint 路径: `/root/autodl-tmp/event-gated-adaptive-horizon/logdir/<exp_id>/`\n- 活跃进程:\n  - exp_029d_tcn_walker_s3_sigma02: bjb1-40020:cuda:0, PID 109826, ~100K/210K\n  - exp_032_dual_critic_walker: bjb1-40020:cuda:1, PID 124556, 刚启动 (~0-10K)\n  - exp_031b_tcn_pickcube_s0_sigma05: bjb1-45299:cuda:0, PID 968495, ~10K/200K\n  - exp_032b_dual_critic_walker_s1: bjb1-45299:cuda:1, PID 973387, 刚提交\n\n### 3. 📊 当前状态\n刚处理完 exp_031_tcn_pickcube_s0_sigma02 的完成回调：conclusion=negative（NVE peak 3.71×, eval 28.6→11.6 崩塌），已更新 registry→DONE，已汇报 Director。利用释放的 GPU 提交了 exp_032b（dual-critic walker s1，代码已同步）。4/4 GPU 满载。\n\nexp_031 的 cron 重复触发了一次（第二条消息），已忽略（registry 已是 DONE）。\n\nRegistry 统计: 106 实验, DONE 101 (success 41, negative 28, failed 11, killed 21), RUNNING 4。\n\n### 4. 📋 待办（条件触发式）\n- exp_029d cron 回调（预计数小时内）→ s3@95K NVE 0.666↓ 大概率 success → 更新 registry → TCN Walker 3/4 seeds 成功 → 更新论文措辞 \"2-3/4 → 3/4\"\n- exp_032 cron 回调（预计 5/21 上午）→ **关键实验**。CIVO persists → 论文 +1-1.5 分（dual-critic 无法阻止 CIVO = CIVO 是 imagination-intrinsic）；CIVO prevented → 需调整 narrative\n- exp_031b cron 回调 → σ=0.5 PickCube dose-response 数据。与 exp_031(σ=0.2, negative) 对比建立曲线\n- exp_032b cron 回调 → dual-critic seed=1 复现。两个 seed 一致才能下结论\n\n### 5. 🎯 战略上下文\n- **论文方向**: D113 确认 Scenario B — Intervention Hierarchy 论文。核心贡献：三层干预框架 + CIVO 因果诊断 + MPC vs imagination 架构边界\n- **评分**: Round 1 实际 4/10 → Dream 2 post-fix 5-5.5/10 → 目标 6.5+。dual-critic 实验是涨分关键\n- **TCN dose-response 关键数据**: Walker σ=0.2 有效（3/4 seeds）但窗口极窄（σ=0.1 性能差, σ=0.5 振荡崩塌）。PickCube σ=0.2 完全无效 → 跨 domain 需要 calibration，支持 \"no universal dose\" narrative\n- **易错点**: \n  1. exp_029d s3 @95K 看着好但必须等 210K 完成才能定性（s2 就是后期崩的）\n  2. dual-critic 结果无论正负都是有价值数据——正向证明 architecture-level intervention 有效，负向证明 CIVO 是 imagination-intrinsic（更强的 claim）\n  3. 不要把 PickCube 的 \"transient CIVO\"（baseline 自然消退）和 Walker 的 \"persistent CIVO\" 混为一谈\n\n## 可查的历史\n前 100 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T16:12:18.581991+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T16:12:18.632634+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T16:12:22.648417+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "event-gated-adaptive-horizon",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T16:12:22.650913+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T16:12:23.153349+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_036_dual_critic_pickcube\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:43:18.481296+00:00\\\", \\\"updated_at\\\": \\\"2026-05-21T08:43:44.544309+00:00\\\", \\\"hypothesis\\\": \\\"Dual-critic on PickCube: TCN failed at σ=0.2 and σ=0.5 on PickCube. If dual-critic suppresses CIVO on PickCube → architecture-level intervention generalizes across all 3 environments (Walker+Cheetah+PickCube), while representation-level (TCN) only partially works on Walker. Strongest evidence for intervention hierarchy.\\\", \\\"parent\\\": \\\"exp_032_dual_critic_walker\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u dreamer.py --configs defaults maniskill --task maniskill_PickCube-v1 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dual_critic True --seed 0 --steps 200000 --compile False --device cuda:0 --logdir ./logdir/exp_036_dual_critic_pickcube\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"gpu_id\\\": 0, \\\"pid\\\": \\\"2476\\\", \\\"data_path\\\": \\\"ManiSkill PickCube-v1\\\", \\\"data_count\\\": 200000, \\\"model_name\\\": \\\"DreamerV3 + Dual Critic\\\", \\\"seed\\\": 0, \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_036_dual_critic_pickcube.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T08:43:44.544357+00:00\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"hyperparams\\\": {\\\"gate_enabled\\\": true, \\\"gate_fixed_dt\\\": 2, \\\"gate_subsample_max_dt\\\": 2, \\\"imag_horizon\\\": 8, \\\"dual_critic\\\": true, \\\"tcn_sigma\\\": 0.0}}, \\\"metrics\\\": {}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.445}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 504
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T16:12:23.204087+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T16:12:23.355674+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T16:12:25.717723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"exp_036_dual_critic_pickcube\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=2476)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 3066
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T16:12:25.718493+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-21T16:08:02Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 112 个实验 — ALLOCATED 1, ANALYZING 1, DONE 108, QUEUED 1, RUNNING 1\\\\n**DONE 分布**: failed 11, killed 21, negative 32, success 44\\\\n\\\\n### GPU 占用\\\\n- **分配**: 4 张 — bjb1-45299:cuda:0, bjb1-45299:cuda:1, bjb1-40020:cuda:0, bjb1-40020:cuda:1\\\\n- **实际运行**: 1 张 — bjb1-45299:cuda:0(exp_036_dual_critic_pickcube)\\\\n- **空闲（分配了没跑）**: bjb1-40020:cuda:1\\\\n\\\\n### 💾 磁盘余量\\\\n- **bjb1-45299**:\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 399G/439G 可用（已用 5%）\\\\n- **bjb1-40020**:\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/root/autodl-pub`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 389G/438G 可用（已用 7%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `exp_036_dual_critic_pickcube` | bjb1-45299 | cuda:0 | 2476 | `…ent-gated-adaptive-horizon/exp_036_dual_critic_pickcube.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `exp_034` [negative] — 2026-05-21T12:18:09\\\\n- `exp_034_dual_critic_cheetah` [negative] — 2026-05-21T12:15:03\\\\n- `exp_033_wide_critic_walker` [success] — 2026-05-21T12:08:15\\\\n- `exp_031b_tcn_pickcube_s0_sigma05` [negative] — 2026-05-21T08:50:22 — NVE late-stage decline is floor effect (value signal collapse), not CIVO recover\\\\n- `exp_032_dual_critic_walker` [success] — 2026-05-21T07:52:13\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-21\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp_036_dual_critic_pickcube | Dual-critic on PickCube: TCN failed at σ=0.2 and σ=0.5 on PickCube. If dual-critic suppresses CIVO on PickCube → architectu\n…[truncated 4649 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 2514
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T16:12:25.769222+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/ROADMAP.md\\\", \\\"content\\\": \\\"# event-gated-adaptive-horizon — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-21 16:10 UTC | 更新原因: D127 exp_035 完成(697.8) — 双维度narrative: Prevention(协同) + Recovery(min主导)\\\\n\\\\n> **Target**: CoRL 2026 (DDL 2026-05-29, 剩余 7 天) | 5/25 数据锁定\\\\n\\\\n## 核心方向\\\\n**Intervention Hierarchy + Dual-critic 双维度分析**\\\\n核心贡献：(1) CIVO 因果诊断 (2) 三层干预框架 (3) **2×2 factorial: Prevention(min+cap协同) + Recovery(min主导)** (4) v1≈v2 pessimism breakdown (5) 环境依赖性\\\\n\\\\n## 2×2 Mechanism Factorial — Walker（D127 完成）\\\\n| | Single Critic | Dual Critic (min) |\\\\n|---|---|---|\\\\n| ~1.05-1.2M | Baseline: CIVO → 崩溃 | **exp_035: CIVO(2.75) → 完全恢复(697.8)** |\\\\n| ~2.4-2.9M | **exp_033: CIVO(4.75) → 部分恢复(408)** | **exp_032: CIVO 预防(NVE≤1.1, 670-788)** |\\\\n\\\\n**双维度 insight**:\\\\n- **Prevention**: 仅 min+capacity 协同可预防（训练效率优势）\\\\n- **Recovery**: min 主导（697.8 vs 408），min >> capacity for recovery\\\\n- **Final perf**: Prevention ≈ Recovery-with-min（Walker 上）\\\\n- **跨环境**: Cheetah recovery 仅 31% → 难环境中 prevention 更关键\\\\n\\\\n## 跨环境验证\\\\n| 环境 | CIVO 强度 | Dual-critic 效果 | eval |\\\\n|------|----------|-----------------|------|\\\\n| Walker | 中等 | ✅ 预防/完全恢复 | 670-788/697.8 |\\\\n| Cheetah | 高 | ⚠️ 部分恢复 | 97.5↓ |\\\\n| PickCube | 高 | 🔄 exp_036 (NVE 2.3, wave CIVO) | — |\\\\n\\\\n## 运行中实验 (3/4 GPU)\\\\n| 实验 | Server:GPU | 进度 | 信号 |\\\\n|------|-----------|------|------|\\\\n| exp_036 PickCube dual | 45299:0 | ~38%+ | NVE 2.3 ⚠️ |\\\\n| exp_037 Cheetah wide | 45299:1 | 早期 | — |\\\\n| exp_038 Walker dual s2 | 40020:0 | 早期 | — |\\\\n\\\\n## 已完成关键实验\\\\n| 实验 | 结果 | eval | 意义 |\\\\n|------|------|------|------|\\\\n| exp_032 Walker dual wide | ✅ Prevention | 670-788 | min+cap 协同 |\\\\n| exp_033 Walker wide single | ⚠️ Partial recovery | 408 | Capacity only |\\\\n| exp_034 Cheetah dual | ⚠️ Poor recovery | 97.5↓ | 环境依赖 |\\\\n| **exp_035 Walker dual narrow** | **✅ Full recovery** | **697.8** | **Min 主导 recovery** |\\\n…[truncated 2110 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 2413
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T16:12:41.628900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'ALLOCATED'}",
+              "project": "event-gated-adaptive-horizon",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T16:12:42.234407+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_038_dual_critic_walker_s2\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T12:18:35.293Z\\\", \\\"updated_at\\\": \\\"2026-05-21T12:24:17.819Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && python -u dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --steps 210000 --seed 2 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --dual_critic True --logdir logdir/exp_038_dual_critic_walker_s2\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-40020\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"175633\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_038_dual_critic_walker_s2.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T12:18:34.859Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Third seed (s2) for Walker dual-critic CIVO prevention. s0 (eval 787.7) and s1 (eval 551.8) both showed CIVO prevention (NVE≤1.1). Third datapoint enables IQM statistical reporting. If 3/3 CIVO prevented → robust evidence for Prevention mechanism in medium-severity CIVO environments.\\\", \\\"parent\\\": \\\"exp_032_dual_critic_walker\\\"}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4991}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 605
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T16:12:42.288545+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'ANALYZING'}",
+              "project": "event-gated-adaptive-horizon",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T16:12:42.594269+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'QUEUED'}",
+              "project": "event-gated-adaptive-horizon",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T16:12:43.248659+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9001}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 960
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T16:12:44.205213+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_037_wide_critic_cheetah\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T12:18:33.040Z\\\", \\\"updated_at\\\": \\\"2026-05-21T14:04:50.893Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/event-gated-adaptive-horizon && LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 python -u dreamer.py --configs defaults dmc_proprio --task dmc_cheetah_run --steps 210000 --seed 0 --device cuda:0 --compile False --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 --imag_horizon 8 --wide_critic True --logdir logdir/exp_037_wide_critic_cheetah\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"14487\\\", \\\"log_path\\\": \\\"~/runs/event-gated-adaptive-horizon/exp_037_wide_critic_cheetah.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T12:18:32.619Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"Wide single critic on Cheetah: if capacity=recovery generalizes from Walker (exp_033, NVE 4.75→self-repair, eval 408) to Cheetah (high CIVO, baseline NVE ~70.64), then Recovery mechanism works across CIVO severity levels. Combined with exp_034 (dual-critic Cheetah, NVE 1.75, eval 97.5), establishes that both Prevention and Recovery are environment-dependent.\\\", \\\"parent\\\": \\\"exp_033_wide_critic_walker\\\"}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9454}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1610
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T16:13:00.837090+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T16:13:00.887745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T16:13:22.664082+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "check:exp_037_038_status",
+              "project": "event-gated-adaptive-horizon",
+              "task_prompt": "检查两个实验的进程存活状态：\n\n**实验 1: exp_037_wide_critic_cheetah**\n- 服务器: bjb1-45299\n- PID: 14487\n- 日志: ~/runs/event-gated-adaptive-horizon/exp_037_wide_critic_cheetah.log\n- 检查: `ps -p 14487 -o pid,etime,cmd` 看进程是否存活\n- 如果存活，读日志尾部 50 行，报告当前 step 和关键指标（step, return_mean, NVE 等）\n- 如果不存活，检查 tmux session: `tmux ls`，读日志尾部 100 行看退出原因\n\n**实验 2: exp_038_dual_critic_walker_s2**\n- 服务器: bjb1-40020\n- PID: 175633\n- 日志: ~/runs/event-gated-adaptive-horizon/exp_038_dual_critic_walker_s2.log\n- 检查: `ps -p 175633 -o pid,etime,cmd` 看进程是否存活\n- 如果存活，读日志尾部 50 行，报告当前 step 和关键指标\n- 如果不存活，检查 tmux session: `tmux ls`，读日志尾部 100 行看退出原因\n\n**产出要求**: \n对每个实验报告：\n1. 进程是否存活 (alive/dead)\n2. 如果存活：当前 step / 总 step、最新 return_mean、NVE（如果有）\n3. 如果死亡：退出原因、日志最后的错误信息\n4. tmux session 列表\n\n把结果写到 /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/check_037_038_status.md\n",
+              "tool_groups": "['ssh']",
+              "tools": "['register_artifact']"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T16:13:25.533021+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_check_exp_037_038_status_20260521T161323\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/logs/workers/worker_check_exp_037_038_status_20260521T161323.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_check_exp_037_038_status_20260521T161323 started. Use get_worker_status('worker_check_exp_037_038_status_20260521T161323') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2868
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T16:13:30.807506+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T16:13:30.807885+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T16:13:31.359830+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T16:13:31.410606+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/memory.md\\\", \\\"content\\\": \\\"# Memory — event-gated-adaptive-horizon\\\\n\\\\n> 不可从 registry/代码派生的决策原因、约束、经验教训。\\\\n\\\\n## 竞品实验参考\\\\n（待补充）\\\\n\\\\n## 经验教训\\\\n\\\\n### Dual-Critic 机制发现 (2026-05-21)\\\\n- exp_032/032b Walker dual-critic: v1≈v2 (gap <0.5), min 无 pessimism 效果，但 CIVO 仍被抑制 → 机制是 implicit regularization，不是传统 Double-Q pessimism\\\\n- exp_033 wide-critic (2.89M params, 2.44× normal): CIVO 仍触发 (NVE 4.7) → 参数量本身不能防 CIVO\\\\n- exp_034 Cheetah dual-critic: NVE 1.8 (vs baseline 70.64, 降 40×) 但仍超 1.5 阈值 → 部分抑制但不完全。Dual-wave CIVO pattern\\\\n\\\\n### Cross-Environment Dual-Critic 泛化 (2026-05-21)\\\\n- Walker: 2/2 success (exp_032, 032b)\\\\n- Cheetah: negative — NVE 1.8 > 1.5 阈值，虽然比 baseline 70.64 降 40×，但仍触发 dual-wave CIVO\\\\n- PickCube: exp_036 running\\\\n\\\\n### TCN 全景 (2026-05-21)\\\\n- Walker: σ=0.2 部分有效 (2/4 seeds), σ=0.1 和 σ=0.5 失败\\\\n- Cheetah: 全部失败 (σ=0.2/0.5/1.0)\\\\n- PickCube: 全部失败 (σ=0.2/0.5)\\\\n- 结论：TCN 窗口极窄，仅 Walker σ=0.2 部分 work\\\\n\\\\n### NVE 诊断经验 (2026-05-21)\\\\n- Late-stage NVE 下降需区分 genuine CIVO recovery vs floor effect\\\\n- 关键判据：eval 是否同步恢复。Eval 恢复 → genuine；eval 平坦 → floor effect（value signal 适应了 collapsed policy）\\\\n- exp_031b 教训：NVE 3.3→0.2 看似恢复，但 eval 25-29 平坦 → Reviewer 仲裁为 floor effect / negative\\\\n\\\\n### 2×2 Factorial Design (2026-05-21)\\\\n- 设计：{single, dual} × {normal ~1.2M, scaled ~2.4-2.9M params}\\\\n- 已完成 3/4 格：\\\\n  - single + normal = baseline (CIVO triggered)\\\\n  - single + scaled = exp_033 wide-critic (CIVO triggered, NVE 4.7)\\\\n  - dual + normal = exp_035 narrow dual-critic (RUNNING)\\\\n  - dual + scaled = exp_032 dual-critic (CIVO suppressed)\\\\n- 等 exp_035 结果完成表格\\\\n\\\\n### Registry 工具问题 (2026-05-21)\\\\n- read_registry 工具有时只返回部分实验（11/101），直接读 YAML 更可靠\\\\n- update_registry 工具有时会创建新条目覆盖直接 YAML 编辑，需要验证\\\\n- 建议：关键更新后用 python3 读 YAML 验证\\\\n\\\", \\\"total_chars\\\": 1637, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T16:13:34.121955+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T16:13:34.678526+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"name\\\": \\\"Walker Walk baseline (seed 0)\\\", \\\"claim\\\": [\\\"C1\\\", \\\"C2\\\", \\\"C3\\\"], \\\"description\\\": \\\"dt=1 baseline establishing reference performance and v/e calibration\\\", \\\"priority\\\": \\\"P0\\\", \\\"registry_id\\\": \\\"exp_001_baseline\\\", \\\"status\\\": \\\"DONE\\\", \\\"gpu_budget_hours\\\": 5, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"step\\\": 512000, \\\"eval_trajectory\\\": {\\\"5K\\\": 31.77, \\\"15K\\\": 206.61, \\\"25K\\\": 395.27, \\\"35K\\\": 388.47, \\\"45K\\\": 513.77, \\\"55K\\\": 625.73, \\\"65K\\\": 615.86, \\\"75K\\\": 596.28, \\\"85K\\\": 713.93, \\\"95K\\\": 871.06, \\\"105K\\\": 915.67, \\\"115K\\\": 919.81, \\\"125K\\\": 921.37, \\\"135K\\\": 900, \\\"145K\\\": 932.16, \\\"155K\\\": 933.34, \\\"165K\\\": 907.98, \\\"175K\\\": 918.87, \\\"185K\\\": 954.69, \\\"195K\\\": 936.09, \\\"205K\\\": 949.24, \\\"215K\\\": 913.4, \\\"225K\\\": 962.44, \\\"235K\\\": 937.24, \\\"245K\\\": 934.42, \\\"255K\\\": 948.45, \\\"265K\\\": 925.09, \\\"275K\\\": 931.51, \\\"285K\\\": 925.75, \\\"295K\\\": 936.3, \\\"305K\\\": 939.33, \\\"315K\\\": 948.42, \\\"325K\\\": 967.75, \\\"335K\\\": 942.41, \\\"345K\\\": 969.83, \\\"355K\\\": 941.11, \\\"365K\\\": 935.76, \\\"375K\\\": 918.24, \\\"385K\\\": 937.98, \\\"395K\\\": 955.38, \\\"405K\\\": 937.83, \\\"415K\\\": 948.99, \\\"425K\\\": 954.64, \\\"435K\\\": 964.96, \\\"445K\\\": 953.37, \\\"455K\\\": 945.84, \\\"465K\\\": 947.81, \\\"475K\\\": 947.66, \\\"485K\\\": 930.6, \\\"495K\\\": 944.73, \\\"505K\\\": 970.41}, \\\"eval_return_peak\\\": 970.41, \\\"eval_return_peak_step\\\": 505000, \\\"eval_return_last10_mean\\\": 950.9, \\\"final\\\": true, \\\"value_eval_ratio_25K\\\": 0.087, \\\"value_eval_ratio_35K\\\": 0.241, \\\"value_eval_ratio_45K\\\": 0.331, \\\"value_eval_ratio_55K\\\": 0.404, \\\"value_eval_ratio_65K\\\": 0.563, \\\"value_eval_ratio_75K\\\": 0.719, \\\"value_eval_ratio_85K\\\": 0.701, \\\"value_eval_ratio_95K\\\": 0.632, \\\"value_eval_ratio_105K\\\": 0.656, \\\"value_eval_ratio_stable\\\": \\\"~69-72% from 135K+\\\", \\\"data_source_ve\\\": \\\"from training logs metrics.jsonl\\\"}}, {\\\"id\\\": \\\"plan_002\\\", \\\"name\\\": \\\"Walker Walk trained dt_emb collapse (seed 0)\\\", \\\"claim\\\": [\\\"C1\\\", \\\"C2\\\"], \\\"descripti\n…[truncated 19246 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 556
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T16:13:57.497910+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T16:13:57.548953+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_87c2e72e."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T16:14:00.261927+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T16:14:00.312554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T16:14:03.125045+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation*",
+              "path": "/home/ubuntu/agent-ml-research"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T16:14:03.277541+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "Glob",
+            "elapsed_ms": 152
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T16:14:06.342918+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T16:14:06.393836+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T16:14:10.260683+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T16:14:10.311313+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T16:14:13.575241+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-21T16:14:13.827931+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "status": "running"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-21T16:14:14.082970+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [{\\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}, {\\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu_id\\\": \\\"cuda:1\\\"}, {\\\"server\\\": \\\"bjb1-40020\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}, {\\\"server\\\": \\\"bjb1-40020\\\", \\\"gpu_id\\\": \\\"cuda:1\\\"}], \\\"actually_running_gpus\\\": [{\\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"exp_036_dual_critic_pickcube\\\"}], \\\"allocated_but_idle\\\": [{\\\"server\\\": \\\"bjb1-45299\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}, {\\\"server\\\": \\\"bjb1-40020\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}, {\\\"server\\\": \\\"bjb1-40020\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}], \\\"registered_but_hw_idle\\\": [], \\\"unregistered_but_hw_active\\\": [], \\\"running_experiments\\\": [{\\\"exp_id\\\": \\\"exp_036_dual_critic_pickcube\\\", \\\"gpus\\\": [\\\"cuda:0\\\"], \\\"util_avg\\\": null}], \\\"worker_pool\\\": {\\\"total\\\": 2, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 2, \\\"details\\\": [{\\\"worker_id\\\": \\\"worker_analysis_exp_035_narrow_dual_critic_walker_20260521T161055\\\", \\\"task\\\": \\\"analysis:exp_035_narrow_dual_critic_walker\\\"}, {\\\"worker_id\\\": \\\"worker_check_exp_037_038_status_20260521T161323\\\", \\\"task\\\": \\\"check:exp_037_038_status\\\"}]}, \\\"summary\\\": \\\"分配 4 张, 实际跑 1 张 ⚠️ | Worker 2 (GPU 0 / CPU 2)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 507
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-21T16:14:14.133720+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_analysis_exp_035_narrow_dual_critic_walker_20260521T161055\\\", \\\"task_type\\\": \\\"analysis:exp_035_narrow_dual_critic_walker\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-21T16:10:55.805499+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_check_exp_037_038_status_20260521T161323\\\", \\\"task_type\\\": \\\"check:exp_037_038_status\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-21T16:13:23.317672+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 2}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 305
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-21T16:14:37.992051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_check_exp_037_038_status_20260521T161323",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-21T16:14:38.105142+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_analysis_exp_035_narrow_dual_critic_walker_20260521T161055",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-21T16:32:07.744233+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "严重问题：**4 GPU 分配，仅 1 实际在跑**。3 GPU 空闲 = 失职。Worker 正在检查 exp_037/exp_038 是否存活。让我查下检查 Worker 的进度。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_031_tcn_pickcube_s0_sigma02"
+          },
+          "id": "event-000044"
+        }
+      ],
+      "message_count": 44
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-exp-031-tcn-pickcube-s0-sigma02.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f94bfa41e880118ea8f",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code fix 019b maniskill config",
+  "task_key": "worker_code_fix-019b-maniskill-config_20260517T033639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-019b-maniskill-config_20260517T033639_result.json",
+    "occurrence": 1,
+    "bytes": 739,
+    "sha256": "6193e85da0b4dbd4a01dbf8a7aadc0f6603006c7dbc2d61078b0e6292a64b026"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n**结果：**\n- 在 `configs.yaml` 中添加了通用 `maniskill` config section（与 `maniskill_state` 内容一致）\n- exp_019b_pickcube_civo_trigger 已成功启动（PID 646809，tmux session `exp019b`），无 KeyError\n- 训练已开始：完成首次 eval（return=1.1），正在进行训练迭代，gate_dt 指标正常输出（gate_dt_mean=2.0，gate_dt_2_frac=1.0，符合 `--gate_fixed_dt 2` 设定）\n\n**根因：** configs.yaml 中只有 `maniskill_state`/`maniskill_stackcube`/`maniskill_peginsertion`，没有通用 `maniskill` 名称。019a_v2 实际使用的是 `--configs defaults maniskill_state`。019b 的命令写成了 `--configs defaults maniskill`，但该 key 不存在。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-019b-maniskill-config.md"
+}

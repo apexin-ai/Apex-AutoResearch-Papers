@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8ae7505e1465b4a4a85",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "infra kill 018s2 residual",
+  "task_key": "worker_infra_kill-018s2-residual_20260516T225113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-018s2-residual_20260516T225113_result.json",
+    "occurrence": 1,
+    "bytes": 702,
+    "sha256": "271d5b732b98322ac35d48c826b1fd06c352f5db5e3644e0c03945cc2345809e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 018_s2 残留进程\n- PID 612881 已成功 kill（原来占 cuda:0 约 3257MiB）\n\n### 008d 状态 (cuda:0)\n- PID 628482，运行 ~2 分钟，正常\n- 显存 3257MiB，GPU-Util 23%，cuda:0 现在只有它一个进程\n\n### 019a 状态 (cuda:1)\n- **PID 628871 不存在**，cuda:1 上显存 1MiB，无任何进程\n- 019a 似乎已经退出或未成功启动\n\n### 最终 nvidia-smi\n\n| GPU | 显存占用 | GPU-Util | 进程 |\n|-----|---------|----------|------|\n| cuda:0 | 3276MiB / 97887MiB | 23% | 628482 (008d) |\n| cuda:1 | 1MiB / 97887MiB | 0% | 无 |\n\n**需要关注**：019a (PID 628871) 已不在运行，cuda:1 空闲。是否需要重启 019a？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-018s2-residual.md"
+}

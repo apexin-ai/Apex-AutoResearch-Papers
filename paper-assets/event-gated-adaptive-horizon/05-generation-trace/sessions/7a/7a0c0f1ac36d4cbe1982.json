@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a0c0f1ac36d4cbe1982",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "submit exp 008a unexposed s1",
+  "task_key": "worker_submit_exp_008a_unexposed_s1_20260518T051439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp_008a_unexposed_s1_20260518T051439_result.json",
+    "occurrence": 1,
+    "bytes": 380,
+    "sha256": "870fb7743c16edad2c6a4688a06337c64dd6139aa9838dfe27b911b15cd4e78a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并注册完成：\n\n- **exp_id**: exp_008a_unexposed_s1\n- **PID**: 724312，cuda:1\n- **Registry**: RUNNING，spec 已补充（data_path, model_name, seed=1, checkpoint_source=train_from_scratch）\n- **日志**: `~/runs/event-gated-adaptive-horizon/exp_008a_unexposed_s1.log`\n\ncuda:0 上的 exp_008d_civo_trigger_s4 (PID 715124) 未受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp-008a-unexposed-s1.md"
+}

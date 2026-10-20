@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "c9b85a611daf6d6884e8",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "debug exp 016 sgs hung diagnosis",
+  "task_key": "worker_debug_exp_016_sgs_hung_diagnosis_20260515T184329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_exp_016_sgs_hung_diagnosis_20260515T184329.log",
+    "occurrence": 1,
+    "bytes": 677891,
+    "sha256": "60cece6030c5fdfa0025a4ede98248476c94b492f3df576291ee0f92b84a0232"
+  },
+  "statistics": {
+    "messages": 320,
+    "user_turns": 0,
+    "tool_calls": 112,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 93,
+      "tool_call": 112,
+      "tool_result": 112
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 320,
+      "chunks": [
+        {
+          "path": "c9b85a611daf6d6884e8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c9b85a611daf6d6884e8-part-0002.json",
+          "message_count": 140
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/debug-exp-016-sgs-hung-diagnosis.md"
+}

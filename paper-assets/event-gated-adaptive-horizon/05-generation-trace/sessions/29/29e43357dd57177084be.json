@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "29e43357dd57177084be",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "worker",
+  "title": "code exp 101 rssm prediction quality",
+  "task_key": "worker_code_exp_101_rssm_prediction_quality_20260526T041155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_101_rssm_prediction_quality_20260526T041155.log",
+    "occurrence": 1,
+    "bytes": 713805,
+    "sha256": "b74f2c4c1653f56a6f31da126e71d8c9affc83cb00df540d2195b6880e2ced88"
+  },
+  "statistics": {
+    "messages": 249,
+    "user_turns": 0,
+    "tool_calls": 95,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 55,
+      "tool_call": 95,
+      "tool_result": 95,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 249,
+      "chunks": [
+        {
+          "path": "29e43357dd57177084be-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "29e43357dd57177084be-part-0002.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-101-rssm-prediction-quality.md"
+}

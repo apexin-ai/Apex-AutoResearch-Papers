@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e60d40b48c04042d5dc",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper roadmap update d059",
+  "task_key": "worker_paper_roadmap-update-d059_20260515T231011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_roadmap-update-d059_20260515T231011_result.json",
+    "occurrence": 1,
+    "bytes": 516,
+    "sha256": "013e76beba5e7b6edf1b3634d69c8b2ad37f6cbd65e5adaca152ec32595fa62d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ROADMAP.md 已更新，6 处修改全部落地：\n\n1. **核心方向** → Framing B 描述（diagnostic + SGS informative negative）\n2. **阶段** → Research + Writing，含 D059/Cheetah 启动\n3. **当前实验** → 010a Cheetah baseline + 009d ~228K\n4. **近期任务** → 旧项标完成，新增 Full-SGS/Framing B re-audit/negative section 写作\n5. **关键管线** → 细化到 5/15-27 双 GPU 排期\n6. **SGS 干预实验表** → 加在 2×2 矩阵下方（016e + 018 planned）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-roadmap-update-d059.md"
+}

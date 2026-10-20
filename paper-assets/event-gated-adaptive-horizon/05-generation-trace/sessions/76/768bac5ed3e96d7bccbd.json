@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "768bac5ed3e96d7bccbd",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code gradient extraction",
+  "task_key": "worker_code_gradient-extraction_20260516T170956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gradient-extraction_20260516T170956_result.json",
+    "occurrence": 1,
+    "bytes": 1157,
+    "sha256": "91af60ce3f8c10e7fb5eb626814910f6a5b7ad5557d4bf9cc226b4ae21c58b52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**结果：**\n\n| 项目 | 状态 |\n|------|------|\n| 25K/50K/75K checkpoint | **不存在** — exp_008d 只保存了 `latest.pt`，无中间 checkpoint |\n| latest.pt (step 55K) | 已提取梯度分解数据 |\n| 脚本 | 已上传到服务器 `scripts/compute_gradient_decomposition.py`，已注册 artifact |\n| methodology 文档 | 已更新表格，添加 55K 数据行 |\n\n**Step 55K 梯度分解（10 batch 均值 ± std）：**\n\n| 分量 | ‖∇‖₂ | 占比 |\n|------|-------|------|\n| obs (decoder) | 0.601 ± 0.199 | 25.8% |\n| reward | 0.546 ± 0.227 | 23.5% |\n| KL | 1.180 ± 0.251 | 50.7% |\n| cont | 0.000 ± 0.000 | 0.0% |\n\n**关键发现：** 55K 的分解与 105K 报告的 93%/≈0%/7% 形成鲜明对比。mid-training 时 KL 主导（51%），obs 和 reward 大致相当（~25%）。随着训练推进 KL 收敛到 free-bits 阈值，obs 逐渐成为主导。这实际上强化了 CIVO 的 narrative：obs 主导是训练后期的稳态现象，不是整个训练过程的恒定特征。\n\n**要获取 25K/50K/75K 数据，需要重新运行 exp_008d 并启用 checkpoint 保存。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gradient-extraction.md"
+}

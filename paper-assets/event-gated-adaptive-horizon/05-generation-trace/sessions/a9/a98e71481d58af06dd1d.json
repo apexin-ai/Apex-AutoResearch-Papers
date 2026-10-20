@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a98e71481d58af06dd1d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "audit paper patch locations",
+  "task_key": "worker_audit_paper_patch_locations_20260524T065923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_paper_patch_locations_20260524T065923_result.json",
+    "occurrence": 1,
+    "bytes": 8669,
+    "sha256": "e1368d5a43417b45f16add7d190fc8fc769da0329d59afeec6a8c69afb0549fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "读取完毕，所有数据充分。以下是完整扫描结果。\n\n---\n\n## === 需要更新的位置 ===\n\n| # | 文件:行 | 当前文本 | 需要改什么 | 优先级 |\n|---|--------|---------|-----------|-------|\n| 1 | `introduction.tex:11` | `6/6 seeds, two locomotion environments, AUROC${=}0.953$` | 6/6 → 7/7（加入 s5 后 Walker 5 + Cheetah 2 = 7） | **P0** |\n| 2 | `analysis.tex:8` | `sustained CIVO (6/6 trained locomotion, NVE $1.53$--$108\\times$)` | 6/6 → 7/7；NVE 下界可能需更新（取决于 s5 NVE） | **P0** |\n| 3 | `results.tex:81` | `all four Walker Walk seeds (peak NVE: $4.62\\times$, $4.12\\times$, $1.62\\times$, $1.53\\times$), universally degrading performance to below 30\\% of baseline (IQM $175.2$, mean $170.6$, $n{=}4$` | four→five；NVE 列表加 s5 值；IQM/mean 用 n=5 重算；$n{=}4$ → $n{=}5$ | **P0** |\n| 4 | `results.tex:81` | `two seeds undergo full collapse, one exhibits late-onset collapse still declining at 105K, and one self-corrects` | 加 s5 的 trajectory 描述（取决于 s5 结果是 collapse/self-correct/其他） | **P0** |\n| 5 | `results.tex:81` | `5/6 progressing toward collapse` | 更新分数（取决于 s5 是否 collapse），可能 6/7 或 5/7 | **P0** |\n| 6 | `results.tex:77` | `$n{=}3$ seeds plotted; seed~4 data in Table~\\ref{tab:complete_results}` | 图表 caption 需提及 seed~5（\"seed~4 and seed~5 data in Table...\"） | **P1** |\n| 7 | `results.tex:90` | `Trained $\\dt$-embedding and multi-rate data exposure are...peak NVE $0.83$--$0.93\\times$...NVE $0.19$--$1.88\\times$ vs.\\ trained $1.53$--$4.62\\times$; 2/4 seeds below threshold, 2/4 transient self-correcting spikes` | Walker NVE 范围 $1.53$--$4.62\\times$ 需加入 s5 值；frozen 对比 \"vs.\\ trained $1.53$--$4.62$\" 更新 | **P0** |\n| 8 | `results.tex:121` | `--- & Untreated & 6 & 0/6 & 0\\%` | 6 → 7, 0/6 → 0/7 | **P0** |\n| 9 | `results.tex:109` | `1/6 CIVO prevention (1/4 Walker, 0/2 Cheetah)` | 1/4 Walker → 1/5 Walker（若 s5 无 obs-decoder SGS 实验则不改；但 \"1/4 Walker\" 中的分母 4 指 Walker 训练种子数，需确认是否指实验数） | **P1** |\n| 10 | `results.tex:125` | `Gradient & Obs-decoder SGS & 6 & 1/6 & 17\\%` | 同 #9，确认分母是否随 untreated seed 数变化 | **P1** |\n| 11 | `abstract_body.tex:1` | `26/29, AUROC${=}0.953$` | n=29 → n=30（加入 exp_059）；26/29 → 重算分类数；AUROC 可能微变 | **P0** |\n| 12 | `introduction.tex:5` | `26/29 classification ($n{=}29$, two environments, AUROC${=}0.953$` | 同 #11 | **P0** |\n| 13 | `conclusion.tex:4` | `26/29, AUROC${=}0.953$` | 同 #11 | **P0** |\n| 14 | `conclusion.tex:10` | `4 seeds per configuration is limited` | 4 → 4–5 或 \"up to 5\" | **P1** |\n| 15 | `methodology.tex:32` | `Key configurations use 4 seeds` | 4 → \"up to 5 seeds\" 或 \"4–5 seeds\" | **P1** |\n| 16 | `appendix.tex:6` | `all 42 experimental configurations` | 42 → 43 | **P0** |\n| 17 | `appendix.tex:25-32` | Complete results 表（s1–s4 行） | 在 s4 行后**新增** exp_059 / 008d_s5 行 | **P0** |\n| 18 | `appendix.tex:105` | `Walker Walk & 4/4 & 0/3 & Yes (NVE $1.53$--$4.62\\times$)` | 4/4 → 5/5；NVE 范围加入 s5 值 | **P0** |\n| 19 | `appendix.tex:121` | `all ten factorial experiments (including four 008e\\_v3 seeds)` | ten → eleven（加入 s5 factorial） | **P0** |\n| 20 | `appendix.tex:174` | `$n_{\\text{pos}}=4$, $n_{\\text{neg}}=6$, $n=10$, $\\text{AUROC}=0.958$` | n_pos=4→5（若 s5 CIVO+）, n=10→11, AUROC 重算 | **P0** |\n| 21 | `appendix.tex:229` | `$n{=}29$ configurations` | 29 → 30 | **P0** |\n| 22 | `appendix.tex:234` | ROC 图 caption `$n{=}29$ configurations, AUROC${=}0.953$` | 29 → 30, AUROC 重算 | **P0** |\n| 23 | `appendix.tex:268` | `Walker NVE is normalized against the 4-seed mean baseline (seeds~1--4)` | **不改** baseline 种子定义（这是 normalization baseline, 不是 experimental seeds），但需确认 s5 是否也需加入 baseline | **P1** |\n| 24 | `appendix.tex:270` | `With $n = 10$ experiments, Clopper-Pearson confidence intervals remain wide (e.g., 90.0\\% accuracy has 95\\% CI [55.5\\%, 99.7\\%])` | n=10 → n=11；CI 值重算 | **P1** |\n| 25 | `appendix.tex:318` | `Trained & all & 008d & $1.53$--$4.62\\times$ & 64--268 & 4/4` | NVE 范围加入 s5；eval 范围更新；4/4 → 5/5 | **P0** |\n| 26 | `appendix.tex:587` | `Post-CIVO outcomes for all six CIVO-positive seeds across two environments` | six → seven（若 s5 CIVO+） | **P0** |\n| 27 | `appendix.tex:595-598` | Post-CIVO 表内容（Walker s1–s4 行） | **新增** s5 行 | **P0** |\n| 28 | `appendix.tex:608` | `All six CIVO-positive seeds cross the $\\nve > 1.5\\times$ threshold...Full collapse is the majority outcome (5/6 seeds), with one self-correction case` | six→seven；5/6 → 根据 s5 更新；可能补充 s5 描述 | **P0** |\n| 29 | `appendix.tex:627` | `008d, 008d\\_s4, 010b\\_s0` (Monotonic CIVO 行) | 若 s5 是 monotonic CIVO，加入 exp_059 | **P1** |\n| 30 | `appendix.tex:152` | `$n_{\\text{pos}}=3$, $n_{\\text{neg}}=7$, $n=10$` (Task B1) | 若 s5 是 sustained CIVO: n_pos=3→4, n=10→11 | **P1** |\n| 31 | `appendix.tex:224` | `only $n_{\\text{pos}} = 3$ the statistical power remains limited` | 同 #30 | **P1** |\n| 32 | `appendix.tex:266` | `Single-seed normalization (s1) yields AUROC $= 0.933$ and accuracy 7/8 (87.5\\%) on the Walker subset. Four-seed mean normalization yields AUROC $= 0.867$ and accuracy 6/8 (75.0\\%)` | Walker subset 从 8 实验变 9；accuracy 比率重算 | **P1** |\n| 33 | `appendix.tex:275` | `Walker ($n{=}13$), Cheetah ($n{=}5$), and PickCube ($n{=}2$)` | Walker n=13 → n=14 | **P1** |\n| 34 | `appendix.tex:270` (末尾) | `The original $n{=}16$ core analysis yields AUROC${=}0.969$; the expanded $n{=}29$` | n=29 → n=30 | **P1** |\n\n---\n\n## === 不需要更新的位置（但需确认） ===\n\n| # | 文件:行 | 当前文本 | 为什么不需要改 |\n|---|--------|---------|--------------|\n| A | `introduction.tex:15` | `100\\% sensitivity (5/5) with predictive warning in 2/5 cases` | 5/5 指 CIVO detector 的 TPR，测试集是独立的 14 runs，不含 exp_059 |\n| B | `results.tex:139` | `Embedding removed & 5 & 5/5 & 100\\%` | \"Embedding removed\" 行独立于 untreated seeds |\n| C | `results.tex:179` | `TPR${=}5/5$, FPR${=}2/9$` | Detector 验证集独立；**除非**将 s5 加入 detector 验证 |\n| D | `appendix.tex:806` | `TPR remains $5/5$` | 同 C |\n| E | `appendix.tex:838/843` | `TPR = 5/5 (1.00), FPR = 2/9 (0.22)` | 同 C，但若 s5 加入验证集需更新 |\n| F | `appendix.tex:289` | `Cheetah & 15 & 5 & 5/5 (1.000)` | LOEO Cheetah fold，不涉及 Walker 训练种子数 |\n| G | `appendix.tex:268` | `4-seed mean baseline (seeds~1--4)` | baseline normalization 定义，不受 experimental s5 影响；**除非** s5 也有 baseline 对照需加入 |\n| H | `appendix.tex:90` | `Seed~1 (eval 915.7) is the NVE reference baseline` | baseline 种子定义不变 |\n| I | `appendix.tex:902` | `CIVO onset at step $t$` (算法伪代码) | 算法本身不涉及种子计数 |\n| J | `results.tex:103` | `Two of four seeds collapse (50%)` | 这是 008e_v3 的 4 seeds（dt=1 imagination），不是 untreated seeds |\n| K | `results.tex:147` | `Walker 5 + Cheetah 2` | 这是 **frozen embedding** 行注脚（7 frozen seeds），不受 untreated s5 影响；**除非**也跑了 frozen s5 |\n| L | `results.tex:138` | `Embedding frozen & 7 & 5/7 & 71%` | 同 K |\n| M | `methodology.tex:58` | `CIVO manifests at $8$--$70\\times$ NVE on Cheetah versus $2$--$4\\times$ on Walker` | 这里 Walker \"$2$--$4\\times$\" 是粗略表述，可能仍然合理；但若 s5 NVE 超出此范围需更新 |\n| N | `paper/sections/limitations.md:14` | `4/4 threshold separation` | 这是旧版 draft .md，非最终 .tex；若仍维护则需 4/4 → 5/5 |\n| O | `paper/sections/limitations.md:20` | `9/10 classification accuracy...10 experiments` | 旧版 draft；若维护则需更新 |\n| P | `paper/sections/results.md:54` | `4/4 classification accuracy across seeds` | 旧版 draft；若维护则需更新 |\n\n---\n\n### 关键依赖项\n\n以上所有数值更新依赖 **exp_059 (Walker s5) 的实际数据**：\n1. **Peak NVE** — 决定 NVE 范围是否变化（当前 Walker $1.53$--$4.62\\times$）\n2. **Final eval** — 影响 IQM/mean 重算\n3. **Outcome 分类** — full collapse / late-onset / transient / self-correct → 决定 5/6→?/7\n4. **Sustained vs transient** — 影响 Task B1 的 n_pos\n5. **AUROC 重算** — 加入一个新数据点后三处 AUROC 值可能微变"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-paper-patch-locations.md"
+}

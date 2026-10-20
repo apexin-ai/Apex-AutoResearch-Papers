@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2845ba1ee7b58f3132d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code analyze 010b script",
+  "task_key": "worker_code_analyze-010b-script_20260516T133658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_analyze-010b-script_20260516T133658_result.json",
+    "occurrence": 1,
+    "bytes": 359,
+    "sha256": "dd327de53a1db1c07fbe227acc4bd6d4b9bc873e121c0916ee3e09b7bbeaf61f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过。脚本已就绪：\n\n- **位置**: `/root/autodl-tmp/event-gated-adaptive-horizon/analysis/analyze_010b.py`\n- **Baseline**: 52 个 eval checkpoint，step 5K-515K，ve_ratio 均值 0.61\n- **运行方式**: `python analysis/analyze_010b.py`（010b 完成后）\n- **输出**: `analysis/010b_civo_analysis.json` + stdout 摘要"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-analyze-010b-script.md"
+}

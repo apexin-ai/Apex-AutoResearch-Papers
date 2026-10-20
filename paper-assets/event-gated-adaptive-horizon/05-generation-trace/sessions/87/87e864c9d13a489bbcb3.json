@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87e864c9d13a489bbcb3",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "compute exp 059 step matched nve",
+  "task_key": "worker_compute_exp_059_step_matched_nve_20260524T065728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_compute_exp_059_step_matched_nve_20260524T065728_result.json",
+    "occurrence": 1,
+    "bytes": 817,
+    "sha256": "d4b0352e7f16e29a4e197b3f852dc57324753ef8c03cf6e12d25cb84a6ea6bb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Let me compile the results.\n\n**Baseline ve_ratio @step 85K (4 seeds):**\n\n| Seed | Step | value_mean | eval_return | ve_ratio |\n|------|------|-----------|-------------|----------|\n| s1 (baseline_s1) | 85000 | 500.218 | 713.932 | 0.7007 |\n| s2 (exp_001_baseline_s2) | 85000 | 264.905 | 389.307 | 0.6804 |\n| s3 (exp_001_baseline_s3) | 82000/92000 interp | — | — | 0.6113 |\n| s4 (exp_001_baseline_s4) | 85000 | 468.168 | 882.527 | 0.5305 |\n\ns3 interpolated: 0.6063 + 3/10 × (0.6230 − 0.6063) = 0.6113\n\n**Mean baseline ve_ratio @85K** = (0.7007 + 0.6804 + 0.6113 + 0.5305) / 4 = **0.6307**\n\n---\n\n```\nexp_001 baseline ve_ratio @85K: 0.6307 (mean of 4 seeds)\nexp_059 ve_ratio @85K:          3.3075\nstep-matched NVE @85K:          5.2444 (= 3.3075 / 0.6307)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/compute-exp-059-step-matched-nve.md"
+}

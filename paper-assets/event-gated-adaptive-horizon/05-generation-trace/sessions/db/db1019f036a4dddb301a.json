@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db1019f036a4dddb301a",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "research submission checklist",
+  "task_key": "worker_research_submission-checklist_20260527T215755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_submission-checklist_20260527T215755_result.json",
+    "occurrence": 1,
+    "bytes": 1251,
+    "sha256": "81db25af6a143664537ddd871c947171f235ac72b300f8ceeea2b18c86fe86db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清单已写入 `artifacts/submission_checklist.md`。核心发现：\n\n**最大风险：Abstract deadline (May 25) 已过 2 天。** 若未在 May 25 提交 abstract，可能已无法投 CoRL 2026。需立即确认。\n\n**现状总结：**\n\n| 类别 | 状态 |\n|------|------|\n| 论文正文 | 各 section 草稿均存在（MD 格式），但 **无主 paper.tex、无 CoRL 模板、无 Abstract、无编译 PDF** |\n| 图表 | 4 张主图 + 4 张表格 LaTeX 均已就绪 |\n| Limitations | ✅ 已完成（LaTeX 格式） |\n| 匿名化 | 未做 |\n| 代码 | 核心文件干净；scripts/ 有大量硬编码路径；有残留 .bak 文件 |\n| Supplementary | 素材存在，未打包 |\n\n**距 paper deadline (May 28 EOD) 不到 24 小时**，且 `paper_framing.md` 中 venue 仍写着 \"ICML 2026\"——如果确定投 CoRL，需要立即行动。\n\nSources:\n- [CoRL 2026 Call for Papers](https://www.corl.org/contributions/call-for-papers)\n- [CoRL 2026 Instruction for Authors](https://www.corl.org/contributions/instruction-for-authors)\n- [CoRL 2026 OpenReview](https://openreview.net/group?id=robot-learning.org%2FCoRL%2F2026%2FConference)\n- [CoRL LaTeX Template (Underleaf)](https://www.underleaf.ai/templates/corl)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-submission-checklist.md"
+}

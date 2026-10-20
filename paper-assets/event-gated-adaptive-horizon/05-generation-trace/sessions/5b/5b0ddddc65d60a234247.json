@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b0ddddc65d60a234247",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "research verify related work",
+  "task_key": "worker_research_verify_related_work_20260513T164334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_verify_related_work_20260513T164334_result.json",
+    "occurrence": 1,
+    "bytes": 1688,
+    "sha256": "d2c8209880d0f3e1740509579177a3eab8f822bc30e638019ec3f8597540b9c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All verifications complete. Here's the summary:\n\n## 验证结果\n\n| 论文 | Citation Key | 状态 | 说明 |\n|------|-------------|------|------|\n| **NE-Dreamer** | `nedreamer2026` | ✓ 准确 | Bredis et al., arXiv 2603.02765。描述正确 |\n| **R2-Dreamer** | `r2dreamer2026` | ✓ 准确 | Morihira et al., ICLR 2026。描述正确 |\n| **TAWM** | ~~`freed2024tawm`~~ → `nhu2025tawm` | **已修正** | 描述匹配的是 Nhu, Son & Lin (ICML 2025) 的 \"Time-Aware World Model\"，不是 Freed et al. (ICML 2023) 的 skill-conditioned temporal abstraction。已修正 citation key |\n| **THICK** | `romac2024thick` | ✓ 准确 | Gumbsch et al., ICLR 2024。描述正确 |\n| **HWM** | `zhang2026hwm` | ✓ 准确 | 第一作者 Wancong Zhang，arXiv 2604.03208。描述正确 |\n| **LS-Imagine** | `li2025lsimagine` | ✓ 准确 | 第一作者 Jiajian Li，ICLR 2025 Oral。kurtosis 机制描述已确认 |\n| **I-TAP** | `itap2026` | ✓ 准确 | RQ-VAE 描述正确（之前 Worker 已修正 VQ-VAE→RQ-VAE） |\n| **DMWM** | `wang2025dmwm` | ✓ 准确 | Lingyi Wang et al., NeurIPS 2025。描述正确 |\n| **DyMoDreamer** | `dymodreamer2025` | ✓ 准确 | NeurIPS 2025。描述正确 |\n| **ELVIS** | `du2026elvis` | ✓ 准确 | Yurui Du et al., arXiv 2605.04709。描述正确 |\n| **EA-WM** | `eawm2026` | ✓ 准确 | arXiv 2605.06192。描述正确 |\n| **FiGAR / TempoRL** | — | 未出现在草稿中 | 无需处理 |\n\n**唯一修正**：TAWM 的 citation key 从 `freed2024tawm` 改为 `nhu2025tawm`。对应 bib 文件也需更新（作者: Anh N. Nhu, Sanghyun Son, Ming Lin; venue: ICML 2025）。\n\n无 `[NEED VERIFY]` 标记残留。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-verify-related-work-copy-2.md"
+}

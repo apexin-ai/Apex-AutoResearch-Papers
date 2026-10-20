@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e11713c8225b6a57a08e",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper table1 022b 019b",
+  "task_key": "worker_paper_table1-022b-019b_20260517T155319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_table1-022b-019b_20260517T155319_result.json",
+    "occurrence": 1,
+    "bytes": 641,
+    "sha256": "c06aa315da5e150a5600d327c98f5f314329d49a4da91986779317ce068d27d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。Table 1 修改如下：\n\n1. **022b** 添加在 015b 之后（line 35），配置为 \"Frozen emb + Gumbel gate\"，frz$^b$/ON/8，Eval 300.7 @105K，NVE 1.22×，Outcome \"No CIVO\"\n2. **019b** 添加在 cross-environment section（line 46），配置为 \"PickCube-v1\"，trn/ON/8，Eval 26.64 @200K，NVE 3.78×$^c$，Outcome \"Transient onset\"\n3. Cross-environment 标题从 \"(Cheetah Run)\" 改为通用标题\n4. 脚注 $^c$ 说明 019b 的 NVE 是 raw V/E ratio（peak 5.66 @52.5K），无同环境 baseline 做归一化\n\n列数（8列）、`&` 对齐、`\\\\` 行尾均一致，无编译问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-table1-022b-019b.md"
+}

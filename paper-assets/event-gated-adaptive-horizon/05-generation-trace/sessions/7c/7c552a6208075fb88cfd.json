@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c552a6208075fb88cfd",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops gpu1 emergency cleanup restart",
+  "task_key": "worker_ops_gpu1_emergency_cleanup_restart_20260514T042547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu1_emergency_cleanup_restart_20260514T042547_result.json",
+    "occurrence": 1,
+    "bytes": 334,
+    "sha256": "844833a098fc2df0d79c52cd1bbd81cbb46d22e627f056e5d593193490e55691"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 1 已加载模型，确认一切正常：\n\n- **GPU 1**: PID 126115，794MiB 显存，模型已加载，正在初始化 GradScaler（即将开始训练）\n- **GPU 0**: 008a（106947, 4158MiB）+ 008d（109524, 2744MiB）不受影响\n- GPU 1 上仅 1 个 python 进程，无污染\n\n008e v3 干净重启成功。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu1-emergency-cleanup-restart.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "807eb08c57addd464704",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "fix egl environment",
+  "task_key": "worker_fix_egl_environment_20260515T121313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_egl_environment_20260515T121313_result.json",
+    "occurrence": 1,
+    "bytes": 527,
+    "sha256": "aeffb2b4b6751d3247aa9bd6b1d94e511b54291a4f4a7ad1f1fc7f501084ec8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n| 项目 | 结果 |\n|------|------|\n| EGL 状态 | `libEGL_nvidia.so` 已存在，但 **`libEGL.so` dispatcher 缺失**。已通过 `apt install libegl1-mesa-dev` 安装 |\n| 根因 | `MUJOCO_GL` / `PYOPENGL_PLATFORM` 未设置 + EGL dispatcher 缺失，dm_control 回退 OSMesa 并失败 |\n| 验证 | EGL 渲染通过，2x RTX PRO 6000 Blackwell CUDA 正常 |\n| 持久化 | 已写入 `/root/miniconda3/etc/conda/activate.d/mujoco_env.sh`，conda activate 自动加载 |\n\n**READY TO RESUBMIT**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-egl-environment.md"
+}

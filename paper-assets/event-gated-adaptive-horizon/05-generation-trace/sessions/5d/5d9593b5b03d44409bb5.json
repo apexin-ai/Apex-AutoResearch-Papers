@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d9593b5b03d44409bb5",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "review camera ready format",
+  "task_key": "worker_review_camera-ready-format_20260524T013018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_camera-ready-format_20260524T013018_result.json",
+    "occurrence": 1,
+    "bytes": 2991,
+    "sha256": "3ee844b7e334b388e89769df992266bc6167723a3238fa942aae326b11b7d185"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译完成，信息收集完毕。以下是格式预检报告：\n\n---\n\n## 格式状态\n\n| 项目 | 状态 | 当前值 | 要求 |\n|------|------|--------|------|\n| documentclass | **需修正** | `\\usepackage{corl_2026}` (submission) | `\\usepackage[final]{corl_2026}` |\n| 页数 | OK | ~8 页正文 (submission mode) | ≤ 9 页 (camera-ready) |\n| 字体 | OK | Times (ptm) + Helvetica (phv)，sty 自动设置 | 符合 |\n| Margin | OK | letterpaper, 5.5in × 9in, top=1in，sty 自动设置 | 符合 |\n| 匿名 | **需修正** | `Anonymous Authors` | Camera-ready 需真实作者信息 |\n| 参考文献格式 | OK | natbib [square, numbers] + corlabbrvnat.bst | 符合 |\n| 引用完整性 | OK | 0 undefined citations, 0 undefined references | — |\n| 图片文件 | OK | 10/10 引用的图片全部存在 | — |\n| Footer | 自动 | 切换 `[final]` 后自动变为 \"10th Conference on Robot Learning (CoRL 2026), Austin TX, USA.\" | — |\n| 行号 | 自动 | 切换 `[final]` 后自动移除 | — |\n\n## 需要修正的问题\n\n### P1 — 必须修 (Camera-ready 核心)\n\n1. **`main.tex:5`** — `\\usepackage{corl_2026}` → `\\usepackage[final]{corl_2026}`\n   - 当前是 submission 模式：有行号、匿名作者、\"Do not distribute\" 页脚\n   - 改为 `[final]` 后自动移除行号、显示真实作者、显示正式会议页脚\n\n2. **`main.tex:38-40`** — 替换 `Anonymous Authors` 为真实作者信息：\n   ```latex\n   \\author{\n     Author One\\\\\n     Affiliation\\\\\n     \\texttt{email@example.com}\n     \\And\n     Author Two\\\\\n     Affiliation\\\\\n     \\texttt{email@example.com}\n   }\n   ```\n\n3. **添加 `\\acknowledgments{}`** — 在 `\\bibliography` 之前插入：\n   ```latex\n   \\acknowledgments{We thank ... This work was supported by ...}\n   ```\n   此命令仅在 `[final]` 模式下渲染。\n\n### P2 — 建议修正\n\n4. **`references.bib`** — 部分条目信息不完整：\n   - `hafner2023dreamerv3`: key 写 2023 但 `year = {2025}`，建议统一\n   - 多个 conference paper 缺少 `pages` 字段\n   - 部分 `journal` 字段应为 `booktitle`（如 `sutton1999options` 的 `Artificial Intelligence 112` 缺少 volume/pages）\n   - 建议检查所有 `arXiv preprint` 条目是否已正式发表并更新\n\n5. **Float specifier** — 7 处 `[h]` 被 LaTeX 自动改为 `[ht]`，建议在 tex 源码中直接写 `[t]`，避免 warning\n\n### P3 — 无需修改\n\n- **`corl_2026.sty`** — 正确的 2026 版本\n- **`corlabbrvnat.bst`** — 存在且正常工作\n- **页数** — 8 页正文 + 引用 + 附录，完全符合 9 页 camera-ready 限制\n- **Keywords** — 已设置，格式正确\n- **Limitations section** — 在 Conclusion 中包含，符合 CoRL 要求\n\nSources:\n- [CoRL 2026 - Instruction for Authors](https://www.corl.org/contributions/instruction-for-authors)\n- [CoRL 2026 - Call for Papers](https://www.corl.org/contributions/call-for-papers)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-camera-ready-format.md"
+}

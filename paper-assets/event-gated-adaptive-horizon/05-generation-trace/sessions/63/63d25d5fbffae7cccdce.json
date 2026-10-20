@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63d25d5fbffae7cccdce",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis threshold sensitivity plan034",
+  "task_key": "worker_analysis_threshold-sensitivity-plan034_20260515T061933",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_threshold-sensitivity-plan034_20260515T061933_result.json",
+    "occurrence": 1,
+    "bytes": 767,
+    "sha256": "3103186bbc50e33e93b7684b85f37d9749863896e8c4c36824d9925b8dfcad07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已完成并注册 (`art_20260515_15a10d`)。\n\n核心结论：\n\n1. **1.5x 可用，但不是唯一最优。** 完美分离范围是 **[1.2x, 1.6x]**，任何阈值都给 9/9 正确分类。\n2. **分离间隙 = (1.14, 1.62]**，宽度 0.48。1.5x 偏向 trained 一侧（距最近 FN 仅 0.12，距最近 FP 0.36）。~1.4x 更居中。\n3. **时间窗口：35K-55K 早期检测 TPR 仅 75%**，因为 008e_v3_s2 到 105K 才突破 1.5x。全窗口 (35K-105K) 才能 100% TPR。\n4. **008e_v3_s2 的特殊性**：dt=1 imagination 下病理潜伏到 95K，nve 从 0.68 突变到 3.78。建议论文引入两级制：1.2x warning + 1.5x confirmed。\n5. **TNR 在所有窗口、所有阈值 ≥1.2x 下均为 100%** — 假阳性不是问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-threshold-sensitivity-plan034.md"
+}

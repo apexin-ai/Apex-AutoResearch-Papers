@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82dceb3d0a6c6059d600",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 029c tcn walker s0 sigma01",
+  "task_key": "worker_analysis_exp_029c_tcn_walker_s0_sigma01_20260520T193233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_029c_tcn_walker_s0_sigma01_20260520T193233_result.json",
+    "occurrence": 1,
+    "bytes": 2862,
+    "sha256": "22b26da573261b9927a1ab725e6cc93d3c867b55c274f43fa0579af9b72cbbd6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data needed for the complete analysis.\n\n## 分析结果\n\n- **训练完成情况**: 跑完，实际到 224K（超过目标 210K），EXIT_CODE=0\n- **退出原因**: 正常完成\n- **最终 step**: 215000（最后一次 eval），224000（最后一次 train log）\n- **eval_return 最终值**: 328.3 @ 215K (peak: 490.7 @ 165K)\n- **NVE max**: ~1.02 @ 85K-95K（registry 精确值 1.0218 @ 95K）\n- **NVE 是否全程 < 1.5×**: 是，max 仅 1.02\n- **NVE 曲线趋势**: 0→0.5(45K)→1.0(85-95K peak)→逐步下降→0.1(215K)。单峰，温和上升后平稳回落，全程远低于 CIVO 阈值\n- **与 σ=0.2 对比**: eval 差距巨大（490.7 peak vs ~891 baseline），σ=0.2 达到 baseline 而 σ=0.1 仅达 55%。NVE 表现类似（两者都抑制了 CIVO）\n- **建议 conclusion**: **negative**\n- **理由**: σ=0.1 成功抑制 CIVO（NVE<1.5×），但 eval_return 远低于 baseline（peak 490 vs 891 = 55%），且后期出现策略不稳定（188K-224K train_return 在 15-665 之间剧烈振荡，双峰分布）。这说明 σ=0.1 低于最小有效剂量——能防 CIVO 但不足以稳定学习。三点剂量响应曲线：σ=0.1（防CIVO但性能差）< σ=0.2（防CIVO且达baseline）< σ=0.5（振荡性CIVO）。最优窗口在 σ≈0.2 附近。\n- **checkpoint_path**: `/root/autodl-tmp/event-gated-adaptive-horizon/logdir/exp_029c_tcn_walker_s0_sigma01/latest.pt`\n- **W&B run_id**: 无（此实验未启用 W&B）\n\n### 完整 NVE 曲线\n\n| Step | ve_ratio | eval_return |\n|------|----------|-------------|\n| 5K   | —        | 35.6        |\n| 15K  | 0.0      | 99.1        |\n| 25K  | 0.2      | 140.7       |\n| 35K  | 0.3      | 155.7       |\n| 45K  | 0.5      | 160.9       |\n| 55K  | 0.4      | 254.8       |\n| 65K  | 0.5      | 268.7       |\n| 75K  | 0.6      | 295.5       |\n| 85K  | 1.0      | 220.8       |\n| 95K  | 1.0      | 188.6       |\n| 105K | 0.8      | 204.7       |\n| 115K | 0.5      | 296.4       |\n| 125K | 0.5      | 232.3       |\n| 135K | 0.4      | 247.4       |\n| 145K | 0.3      | 323.1       |\n| 155K | 0.2      | 359.7       |\n| 165K | 0.1      | **490.7**   |\n| 175K | 0.3      | 246.2       |\n| 185K | 0.3      | 220.6       |\n| 195K | 0.3      | 212.8       |\n| 205K | 0.2      | 256.9       |\n| 215K | 0.1      | 328.3       |\n\n### 关键发现\n\n1. **CIVO 完全被抑制**：NVE 全程 ≤1.02，与 σ=0.2 表现一致\n2. **性能严重不足**：eval peak 仅 490（baseline 的 55%），而 σ=0.2 达到 baseline\n3. **后期策略崩溃**：188K+ train_return 出现双峰（~20 vs ~500），说明策略不稳定与 CIVO 无关\n4. **dose-response 非单调**：σ=0.1 和 σ=0.2 都抑制 CIVO，但只有 σ=0.2 能同时维持性能，说明 TCN 在 σ=0.2 水平还提供了 CIVO 之外的额外正则化效果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-029c-tcn-walker-s0-sigma01.md"
+}

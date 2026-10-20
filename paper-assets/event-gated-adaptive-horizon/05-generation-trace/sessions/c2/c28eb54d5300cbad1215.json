@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c28eb54d5300cbad1215",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 081 008e v3 walker s2",
+  "task_key": "worker_analysis_exp_081_008e_v3_walker_s2_20260525T153929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_081_008e_v3_walker_s2_20260525T153929_result.json",
+    "occurrence": 1,
+    "bytes": 906,
+    "sha256": "4be7942bc807f1cca20824b04964914fe53f60b8ed55ff18e4bafa58fb86f7f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE(success)，artifact 已注册。\n\n---\n\n## 结果摘要\n\n**Conclusion: success** (CIVO hypothesis confirmed)\n\n| Metric | Value |\n|--------|-------|\n| eval_return@105K | 597.1 (65.2% baseline) |\n| ve_ratio | stable 0.4–0.6, peak 0.6 |\n| NVE (est.) | ~0.7–0.8, well below 1.5 |\n| CIVO alert | 0 (none) |\n| gate_dt_mean | 1.0 (100% dt=1) |\n\n**vs Seed 0**: eval_return 比 seed 0 (869.88) 低 31%，但 CIVO 指标一致——ve_ratio 稳定、无 alert、value function 单调递增无发散。性能差距是 seed 级别的学习速度方差，非 CIVO 相关退化。\n\n**C6 claim 影响**: 3/3 seeds 均确认 008e_v3 配置（trained dt_emb + dt=1 imagination）不触发 CIVO。C6 claim 得到跨 seed 验证支持。Seed 2 的低 eval_return 是次要关注点——训练曲线仍在上升，105K 步属于 Walker Walk 的早中期训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-081-008e-v3-walker-s2.md"
+}

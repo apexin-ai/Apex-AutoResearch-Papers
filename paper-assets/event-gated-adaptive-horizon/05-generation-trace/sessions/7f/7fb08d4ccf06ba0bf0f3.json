@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fb08d4ccf06ba0bf0f3",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper tawm contribution",
+  "task_key": "worker_paper_tawm-contribution_20260518T060258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_tawm-contribution_20260518T060258_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "7d140b7ee9a7ecf9c8b3280d2116b004603c4012b50ac84d3fd66843c81d14e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "em-dash 检查通过。\n\n修改结果：\n\n- **文件**: `docs/paper/sections/introduction.tex`\n- **位置**: 第 9 行之后（introduction 末尾）\n- **内容**: 新增 `\\paragraph{Contributions.}` + `\\begin{itemize}` 包含一条 analytical contribution\n\n注意：当前 introduction 原本没有正式的 contribution list。新增的是一个独立的 Contributions 段落，目前只有这一条 analytical item。如需将其他 findings（如 CIVO 发现、SGS 干预、监控器等）也提炼为正式 contribution 项，可以后续补充到同一列表中。另外，最后一段 inline 第 (3) 点的内容与新增条目高度重叠，后续可考虑精简以避免重复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-tawm-contribution.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b53919ec5ed2965778df",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops 009e completion analysis",
+  "task_key": "worker_ops_009e-completion-analysis_20260515T112448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_009e-completion-analysis_20260515T112448_result.json",
+    "occurrence": 1,
+    "bytes": 1532,
+    "sha256": "fa86185e65d10abbcd5ff58699e0ed634fa83fc82576e76242618615c42370be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n## Part 1: 009e 最终分析\n\n**exp_009e_008d_walker_s1 — DONE / negative (collapse confirmed)**\n\n| Step | eval_return | value_mean | NVE | actor_loss | actor_entropy |\n|------|------------|------------|-----|------------|--------------|\n| 5K | 31.00 | 0.00 | 0.000 | -0.1091 | 8.158 |\n| 15K | 153.67 | 3.37 | 0.022 | -0.3367 | 0.481 |\n| 25K | 167.22 | 25.86 | 0.155 | -0.1951 | -1.862 |\n| 35K | 146.34 | 60.20 | 0.411 | -0.1697 | -3.465 |\n| 45K | 140.76 | 97.53 | 0.693 | -0.1057 | -4.575 |\n| **55K** | **82.75** | **137.88** | **1.666** | -0.0726 | -4.879 |\n| 65K | 250.00 | 173.81 | 0.695 | -0.0567 | -4.492 |\n| 75K | 178.06 | 189.87 | 1.066 | -0.0087 | -4.983 |\n| 85K | 201.93 | 163.08 | 0.808 | 0.0109 | -4.937 |\n| 95K | 132.79 | 144.82 | 1.091 | 0.0037 | -4.275 |\n| **105K** | **131.08** | **135.37** | **1.033** | 0.0024 | -4.255 |\n\n**结论**: 经典 CIVO collapse 复现。NVE@55K=1.666x 触发后，actor_loss 翻正、entropy 坍缩，性能无法恢复。最终 eval=131 vs baseline~700+。C2 collapse rate = **2/3 seeds** (008d s0 ✗, 009e s1 ✗, 009b s2 ✓自修复)，强力支持 trainable dt_emb 是 CIVO 根因。\n\n## Part 2: plan_015B 已提交\n\n- **exp_id**: exp_015b_frozen_dt_emb\n- **PID**: 142033\n- **tmux session**: exp_015b_frozen_dt_emb\n- **GPU**: cuda:1 @ bjb1-45299\n- **关键参数**: `--dt_emb_freeze True`（其余同 008d config）\n- **预期**: 如果 freeze 后不崩 → 确认 CIVO 根因是 dt_emb 训练而非结构存在"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-009e-completion-analysis.md"
+}

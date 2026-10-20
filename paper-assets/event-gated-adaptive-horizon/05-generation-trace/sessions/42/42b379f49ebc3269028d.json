@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42b379f49ebc3269028d",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check exp 077 078 progress",
+  "task_key": "worker_check_exp_077_078_progress_20260525T124934",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp_077_078_progress_20260525T124934_result.json",
+    "occurrence": 1,
+    "bytes": 487,
+    "sha256": "114879b26ce7f6256d96ed82f96585c0555217c9082ef95746a44d70fcc0b0d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nexp_077_cheetah_baseline_s0: step 60000/105000 (57.1%)\n  latest eval: eval_return 441.0 @ step 55000\n  train_return ~310 (recent avg @ 60k)\n\nexp_078_cheetah_008d_s0: step 52000/105000 (49.5%)\n  latest eval: eval_return 148.9 @ step 45000\n  train_return ~69 (recent avg @ 52k)\n  gate_dt_mean 2.0, gate_dt_2_frac 1.0 (gate 锁在 dt=2, 未分化)\n```\n\nexp_078 的 return 明显低于 baseline，且 gate 完全退化到固定 dt=2（entropy=0, 无分化）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp-077-078-progress.md"
+}

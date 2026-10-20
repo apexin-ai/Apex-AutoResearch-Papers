@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2609a7a877990d28157",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "infra 019a crash diagnosis",
+  "task_key": "worker_infra_019a-crash-diagnosis_20260516T225253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_019a-crash-diagnosis_20260516T225253_result.json",
+    "occurrence": 1,
+    "bytes": 1237,
+    "sha256": "7d1fbe6defae44d7e18174cc72f0fff695121a40998723c51b58f68b20d5c2ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "原因已定位。\n\n**Crash 原因：`CUDA_VISIBLE_DEVICES` 与 `--device` 参数不匹配**\n\n`envs/maniskill.py:46` 的 `resolve_physical_device` 逻辑：\n1. 读取 `CUDA_VISIBLE_DEVICES`（假设是 `\"1\"`）→ `physical_gpus = [\"1\"]`（长度 1）\n2. 从 `--device cuda:1` 解析 `logical_idx = 1`\n3. `physical_gpus[1]` → **IndexError**，因为列表只有 index 0\n\n对比成功运行的实验（010b, 008d）都用 `CUDA_VISIBLE_DEVICES=0 --device cuda:0`，匹配正确。\n\n**修复方式（二选一）：**\n\n**方案 A**（推荐）：不设 CVD，直接指定物理 GPU：\n```bash\n# 不设 CUDA_VISIBLE_DEVICES，--device cuda:1 会被 resolve_physical_device 直接透传\npython -u dreamer.py --configs defaults maniskill_state --task maniskill_PickCube-v1 \\\n  --logdir logdir/exp_019a_v2_pickcube_baseline --device cuda:1 ...\n```\n\n**方案 B**：设 CVD 但 device 用逻辑 0：\n```bash\nCUDA_VISIBLE_DEVICES=1 python -u dreamer.py --configs defaults maniskill_state \\\n  --task maniskill_PickCube-v1 --logdir logdir/exp_019a_v2_pickcube_baseline \\\n  --device cuda:0 ...\n```\n\n两种方案最终都会解析到物理 GPU 1。是否需要我用修正后的命令重新提交？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-019a-crash-diagnosis.md"
+}

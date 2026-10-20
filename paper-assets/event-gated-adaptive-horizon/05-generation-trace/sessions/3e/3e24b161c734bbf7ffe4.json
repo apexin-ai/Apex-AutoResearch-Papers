@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e24b161c734bbf7ffe4",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops snapshot bjb1 45299 director check",
+  "task_key": "worker_ops_snapshot_bjb1_45299_director_check_20260520T210421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_snapshot_bjb1_45299_director_check_20260520T210421_result.json",
+    "occurrence": 1,
+    "bytes": 623,
+    "sha256": "8103003500ef6404d4581d5ac8cf2b6b35dd940eae5c60a4c0cb36d9ba7e53f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nexp_030c: step=172K (train), eval=130.9@165K (peak 372@35K), NVE=0.115, 进程=alive\nexp_031:  step=158K (train), eval=23.1@152.5K (peak 23.5@132.5K), NVE=N/A(上次0.18), 进程=alive, 完成状态=running (距200K还~42K)\nGPU: cuda:0=22% cuda:1=31%\n```\n\n**vs 上次快照 (60min前)**:\n- exp_030c: 116K→172K (+56K steps), eval 162→131 (下降), NVE 0.14→0.115\n- exp_031: 132.5K→158K (+25.5K steps), eval 23.5→23.1 (持平)\n\n两个实验都在跑。exp_030c 推进很快但 eval 持续低于峰值；exp_031 稳定但 eval 在 ~23 附近停滞，预计还需约1.5-2小时到 200K。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-snapshot-bjb1-45299-director-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "321157121db7eb93118b",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis nve threshold sensitivity plan034",
+  "task_key": "worker_analysis_nve_threshold_sensitivity_plan034_20260515T164353",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_nve_threshold_sensitivity_plan034_20260515T164353_result.json",
+    "occurrence": 1,
+    "bytes": 1015,
+    "sha256": "99cbf9ba13b80780a64e32732c982090359335c7889cc3fb9bf24f0c87b3bc3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**NVE 时间序列**\n\n| 实验 | 类型 | 25K | 35K | 45K | 55K | 65K | Peak |\n|------|------|-----|-----|-----|-----|-----|------|\n| exp_006 | collapse | — | 1.29 | 1.61 | 2.31 | **4.84** | 4.84 |\n| exp_008d | collapse | 1.78 | 1.71 | 2.09 | **4.12** | — | 4.12 |\n| exp_008a | stable | — | — | — | 0.93 | 0.66 | 0.93 |\n| exp_008e | stable | 1.93* | 0.94 | 0.88 | 0.87 | 0.72 | 0.80 |\n| exp_008f | stable | 1.02 | 0.73 | 0.83 | 0.97 | 0.37 | 0.30 |\n| exp_009a | stable | 1.62* | — | — | 1.18 | — | 0.98 |\n\n*\\* = 早期 transient，后续衰减*\n\n**AUROC = 1.0**（从 55K 步开始，collapse 与 stable 完全可分）\n\n**推荐监控规则（二选一）**\n1. **NVE > 2.0 单步即报警** — 零 false positive，55K 检测到\n2. **NVE > 1.5 连续 2 个 checkpoint** — 同样零 FP，更早检测（35K-45K）\n\n**实际部署**：两个条件取 OR，从 25K 步开始监控。\n\nArtifact 已注册：`art_20260515_cce925`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-nve-threshold-sensitivity-plan034.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bf52d0038ce4e10b0ec",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_8_1778807491.md",
+  "task_key": "loop_8_1778807491",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778807491.md",
+    "occurrence": 1,
+    "bytes": 4976,
+    "sha256": "a5266736b1c0d12f7c85a23c65a9e966b7c5f0d8b08b8a74c8701e2b6ea2150c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-15T01:11:20+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `cuda:0` 和 `cuda:1`（bjb1-45299）。禁止使用其他 GPU，即使 Director 指示也要 push back\n- 008e_v3 是 C6 crown jewel，两个 seed 都必须跑完 105K。seed 2 正在跑（PID 43437），不能 kill\n- 009a baseline 跑 500K（PID 142508, 已到 336K/67%），是所有 normalized v/e 计算的锚点，不能 kill\n- nve>1.5x 诊断阈值仅适用于 35K+ steps，25K 处 baseline v/e 太低会产生 false positive——论文中必须标注\n- 008f 定位是因果控制实验，不是推荐方案（reward MAE 75x baseline）。推荐方案是 008e_v3（C6）\n- cuda:1 排期已锁定（D031）：008e_v3_s2（running）→ 009e → 009f → 009c(200K) → plan_060\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：bjb1-45299（AutoDL RTX PRO 6000 × 2）\n- **工作目录**：`/root/autodl-tmp/event-gated-adaptive-horizon`\n- **Python**：`/root/miniconda3/bin/python`（conda base，不是 venv）\n- **环境激活**：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **环境变量**：`MUJOCO_GL=osmesa PYOPENGL_PLATFORM=osmesa LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6`\n- **代码 commit**：`09876d7080affdb0fb329e24753a46d998da9d8e`\n- **活跃进程**：\n  - cuda:0: exp_009a_baseline_walker_s2, PID=142508, 336K/500K (67%)\n  - cuda:1: exp_008e_v3_walker_s2, PID=43437, 目标 105K（进度未知，需 SSH 读 metrics.jsonl 确认）\n- **Cron 监控**：reconcile_crons 确认两个进程均存活。本 session 无 CronList 条目（cron 由 submit_training_job 自动管理）\n- **监控注意**：tail_training_logs 有 stdout buffering 延迟，应直接读 `logdir/<exp>/metrics.jsonl` 获取真实进度\n\n### 3. 📊 当前状态\n两个实验在跑，两块 GPU 均被占用。Worker 池为 0（无活跃 Worker）。\n\n**RUNNING**：\n- `exp_009a_baseline_walker_s2` (cuda:0)：baseline seed 2，336K/500K，eval 919@336K，已收敛（900-960 稳定），v/e=0.699。预计还需 ~6h\n- `exp_008e_v3_walker_s2` (cuda:1)：C6 seed 2，105K target，进度待查。seed 1 已完成（eval=869.9@105K, v/e=0.527, success）\n\n**QUEUED**（等 GPU 释放）：\n- exp_009d_baseline_walker_s1（baseline seed 1, cuda:0 释放后）\n- exp_009e_008d_walker_s1（008d seed 1, cuda:1 释放后）\n- exp_009f_008f_walker_s1（008f seed 1）\n- exp_010a_cheetah_baseline_s1（Cheetah Run baseline，跨环境验证 P0）\n\n**无待处理的 Worker 回调、Director 决策、或 Dream 审稿反馈**。上一轮 Dream 审稿 (dream_20260514T062606) 结果已整合进 D029-D033。\n\n### 4. 📋 待办（条件触发式）\n- `exp_008e_v3_walker_s2` cron 回调（完成/失败）→ 分析 metrics，与 seed 1 对比一致性（期望 eval≈870, v/e≈0.53），update registry → 若 success：立即提交 009e（008d seed 1, cuda:1）；若 negative/failed：紧急汇报 Director（C6 crown jewel 失败）\n- `exp_009a_baseline_walker_s2` cron 回调 → 记录 500K 最终 metrics，与 exp_001 baseline（seed 0, ~950）对比，update registry → 立即提交 009d（baseline seed 1, cuda:0）\n- 两块 GPU 同时释放 → 并行提交 009d (cuda:0) + 009e (cuda:1)，最大化 GPU 利用率\n- Cheetah Run 实验（plan_020）在 Walker seeds 完成后启动，但如果 GPU 空窗 >1h 应提前插入\n- **CoRL DDL 2026-05-29（14天）**：P0 实验 ~145 GPU·h ≈ 3 天 wall time，时间充裕但不能拖\n\n### 5. 🎯 战略上下文\n**核心结论**：Narrative B+ \"Diagnostic Analysis of Temporal Abstraction in World-Model RL\"。因果链已闭合：trained dt_embedding → pathological nve>1.5x（4/4 完美分离）→ delusional critic → stochastic collapse。C6 (008e_v3: trained dt_emb + dt=1 imagination + H=15) 是唯一同时避免 delusional critic + 保持 reward prediction + 达 95% baseline 的方案。\n\n**易错点**：\n1. 不要把 008f（因果控制）当推荐方案——它 reward MAE 是 baseline 的 75x，seed-dependent 不稳定\n2. Collapse 是 stochastic（1/2 trained seeds collapse），论文措辞用 \"creates collapse vulnerability\" 而非 \"causes collapse\"\n3. 008e_v3 的 dt_embedding 是 **trained** 的（D033 代码审计确认），关键变量是 imagination dt=1 而非 embedding 训练状态\n4. nve>1.5x 阈值有时间限定（35K+ steps），25K 处 false positive 率高\n5. 监控进度不要用 tail_training_logs（有 buffering 延迟），直接 SSH 读 `logdir/<exp>/metrics.jsonl`\n6. 009c (008f seed 2) 在 105K 时 nve=1.14x（borderline），计划延长到 200K 观察是否突破 1.5x——但优先级低于 C6 seeds\n\n**决策链关键节点**：D028（C2 因果确认）→ D029（Dream 审稿战略调整：3 seeds 不扩 5）→ D031（Option A narrative, C6 升为 crown jewel）→ D032（collapse is stochastic, nve>1.5x is reliable）→ D033（008e_v3 dt_emb 是 trained，critical variable 是 imagination dt）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778807491.md"
+}

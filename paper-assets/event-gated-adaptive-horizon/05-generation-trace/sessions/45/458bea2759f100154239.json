@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "458bea2759f100154239",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 008a unexposed s2",
+  "task_key": "worker_analysis_exp_008a_unexposed_s2_20260518T080858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_008a_unexposed_s2_20260518T080858_result.json",
+    "occurrence": 1,
+    "bytes": 1192,
+    "sha256": "a9f7c2023d965ac03ea3949b0201decf465624cfd013543fe1321d7e2937efd5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n## exp_008a_unexposed_s2 分析结论：**SUCCESS**\n\n### Eval Return 曲线\n| Step | eval_return |\n|------|------------|\n| 5k | 39.3 |\n| 15k | 159.8 |\n| 25k | 374.7 |\n| 35k | 431.6 |\n| 45k | 430.8 |\n| 55k | 607.5 |\n| 65k | 653.8 |\n| 75k | 534.4 (临时 dip) |\n| 85k | 605.4 |\n| 95k | 819.4 |\n| **105k** | **899.4** |\n\n### CIVO 检查\n- `ve_ratio` 全程 0.03→0.33，稳定在 ~0.33，**远低于 1.5× 阈值**\n- `civo/alert = 0` 全程无触发\n- `delta_ve` 后半段为负值（-0.003），value estimation 趋于保守\n\n### V-recovery\n- `value_mean = 299.4`, `target_mean = 300.3`，差异 <0.3%，**完美对齐**\n\n### 与父实验和 baseline 对比\n| 实验 | eval_return | CIVO |\n|------|------------|------|\n| baseline (无 gate) | ~850 | N/A |\n| 父实验 008a_no_subsample_dt2 (seed=0) | 778 | 无 |\n| **本实验 (seed=2)** | **899.4** | **无** |\n\n### C3 claim 支撑\nseed=2 不仅复现了父实验的 CIVO protection，eval return 还超过 baseline 50 分。unexposed dt_emb + fixed dt=2 + no subsample 配置的 CIVO 保护性跨 seed 稳定可复现，可作为 C3 rebuttal 的有力证据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-008a-unexposed-s2.md"
+}

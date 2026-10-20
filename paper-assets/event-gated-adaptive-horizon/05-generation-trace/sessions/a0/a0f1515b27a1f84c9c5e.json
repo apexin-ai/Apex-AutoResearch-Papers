@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0f1515b27a1f84c9c5e",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "research narrative frameworks",
+  "task_key": "worker_research_narrative_frameworks_20260513T170344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_narrative_frameworks_20260513T170344_result.json",
+    "occurrence": 1,
+    "bytes": 460,
+    "sha256": "b859a49a33afd34792839e51bef29a6d97c1b40eab7359b7f328e9c376a0b32a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `artifacts/_project/paper/narrative_frameworks.md`。\n\n两条线的核心区分：\n\n- **成功线**：bugs-as-ablation 叙事，三次修复 = 三个必要条件，contribution 从 \"new module\" 升级为 \"a recipe for variable-rate model-based RL\"\n- **失败线**：systematic elimination 叙事，实现因素排除干净后 failure 归因到 hard gate 机制本身，转为有价值的负向结果 + 后续方向指引"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-narrative-frameworks.md"
+}

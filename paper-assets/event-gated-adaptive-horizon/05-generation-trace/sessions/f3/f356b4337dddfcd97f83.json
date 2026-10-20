@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f356b4337dddfcd97f83",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "analysis exp 023a cheetah baseline s0",
+  "task_key": "worker_analysis_exp_023a_cheetah_baseline_s0_20260517T203313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_023a_cheetah_baseline_s0_20260517T203313_result.json",
+    "occurrence": 1,
+    "bytes": 882,
+    "sha256": "784401efbb88c4bd06e9fc5e0d3f6ebbcb77f77ac49e08315e3b476460a40ec8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## 结果摘要\n\n**结论：SUCCESS** — 健康的 baseline。\n\n| 指标 | 值 |\n|------|-----|\n| eval_return_final | **624.7** (205K) |\n| eval_return_peak | **624.7** @ 205K |\n| Last-5 eval mean | **554.4** |\n| ve_ratio 范围 | 0.0–0.9 |\n| CIVO | 185K有一次瞬态警报，随后恢复 |\n| 训练总步数 | ~212K env steps |\n\n**与 023b 对比：** 023a 略优于 023b（final 624.7 vs 520.3, last-5 mean 554.4 vs 542.2）。两个seed表现一致，无持续性collapse。\n\n**CIVO 分析：** 185K步 ve_ratio 短暂飙升至0.906触发警报，eval从591.5降至425.0，但20K步内完全恢复（195K: 596.4, 205K: 624.7）。属于RL训练中正常的seed variance，非真实CIVO collapse。\n\n**NVE 归一化基准（两seed平均）：** Last-5 mean = 548.3, Peak = 598.8。\n\n报告已注册：`art_20260517_741a5e`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-023a-cheetah-baseline-s0.md"
+}

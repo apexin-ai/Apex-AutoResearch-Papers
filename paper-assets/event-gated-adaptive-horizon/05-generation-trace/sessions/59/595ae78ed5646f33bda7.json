@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "595ae78ed5646f33bda7",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code factorial exp 008ab",
+  "task_key": "worker_code_factorial_exp_008ab_20260514T011354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_factorial_exp_008ab_20260514T011354_result.json",
+    "occurrence": 1,
+    "bytes": 3038,
+    "sha256": "60b8ef68a3b3d3ce934b7dc066bda5d714552569f2464b2ed548951198a515d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 产出汇总\n\n### 1. GPU 清理\n两张 GPU 均已清空（0 MiB / 0%），所有 python/dreamer 进程已终止。\n\n### 2. subsample_variable_dt 工作机制\n\n`tools.py:763` 定义的函数，按 batch 维度对 replay 轨迹做 variable-dt 子采样：\n- 每个 batch element 从 log-uniform `[min_dt, effective_max_dt]` 采样一个 dt\n- dt>1 时跳帧：累计折扣奖励、取 continuation 最小值\n- `effective_max_dt <= 1` 时直接返回原始数据（无子采样）\n\n在 `models.py:202-205`，`gate_fixed_dt > 0` 时 `effective_max_dt = gate_fixed_dt`，**同一个值同时控制 imagination dt 范围和 subsample dt 范围**，导致无法独立做析因实验。\n\n### 3. 代码改动\n\n**Commit**: `576ab86` — `feat: add gate_subsample_max_dt to decouple subsample range from imagination dt`\n\n**configs.yaml** (line 116):\n```yaml\ngate_subsample_max_dt: 0    # 0=follow effective_max_dt (backward compatible), >0=override subsample range\n```\n\n**models.py** (lines 213-217，在 subsample_variable_dt 调用前):\n```python\nsubsample_max_dt_override = getattr(self._config, 'gate_subsample_max_dt', 0)\nif subsample_max_dt_override > 0:\n    subsample_eff_dt = float(subsample_max_dt_override)\nelse:\n    subsample_eff_dt = effective_max_dt\n```\n然后传 `effective_max_dt=subsample_eff_dt` 给 `subsample_variable_dt`。\n\n`self._effective_max_dt`（imagination 用）不受影响，保持由 `gate_fixed_dt` 控制。\n\n### 4. Dry-run 结果\n两个实验均成功完成 200 steps dry-run，产出 metrics.jsonl、tfevents、train_eps，无报错。\n\n### 5. 完整启动命令\n\n**exp_008a** — 隔离 subsample 效应（imagination dt=2，subsample 禁用）：\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008a_fixed_dt2_no_subsample --steps 150000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 1\"\n```\n\n**exp_008b** — 隔离 imagination 效应（imagination dt=1，subsample dt∈{1,2}）：\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 && export MUJOCO_GL=osmesa && export PYOPENGL_PLATFORM=osmesa && python dreamer.py --configs defaults dmc_proprio --task dmc_walker_walk --logdir logdir/exp_008b_fixed_dt1_subsample2 --steps 150000 --seed 1 --compile False --device cuda:0 --gate_enabled True --gate_fixed_dt 1 --gate_subsample_max_dt 2\"\n```\n\n| 实验 | gate_fixed_dt | gate_subsample_max_dt | imagination dt | 训练数据 |\n|------|--------------|----------------------|----------------|---------|\n| 008a | 2 | 1 | dt=2 | 纯 dt=1（无子采样） |\n| 008b | 1 | 2 | dt=1（标准 DreamerV3） | dt∈{1,2} 混合 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-factorial-exp-008ab.md"
+}

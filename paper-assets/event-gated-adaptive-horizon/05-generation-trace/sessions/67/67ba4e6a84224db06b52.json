@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67ba4e6a84224db06b52",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper fig6 regen local",
+  "task_key": "worker_paper_fig6_regen_local_20260515T190102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig6_regen_local_20260515T190102_result.json",
+    "occurrence": 1,
+    "bytes": 220,
+    "sha256": "f33ec95c011f000b18a9472e38169cf9aec439d61d50043017abe16b2bcbb0b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成：\n- 服务器上运行 `fig6_collapse_pathways_d054.py` 成功生成 PDF (48KB) 和 PNG (292KB)\n- 两个文件已拉回本地 `artifacts/figures/paper/` 目录，大小与服务器端一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig6-regen-local.md"
+}

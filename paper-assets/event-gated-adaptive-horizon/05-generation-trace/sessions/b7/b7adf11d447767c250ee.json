@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7adf11d447767c250ee",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "check 010b 018v2 progress",
+  "task_key": "worker_check_010b-018v2-progress_20260516T145940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_010b-018v2-progress_20260516T145940_result.json",
+    "occurrence": 1,
+    "bytes": 900,
+    "sha256": "0b199421ffd45eb8ba5b1b0de9f4a567e6c7248866cd8dd4c988851217dc8fef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n## 实验进度\n\n| 实验 | PID | 运行时间 | 当前 step | 进度 | FPS | 最近 eval_return | ETA |\n|------|-----|---------|-----------|------|-----|-----------------|-----|\n| **010b** (cheetah_civo_trigger, cuda:0) | 585826 | 1h55m | 72,000 | 68.6% | 9.67 | 22.67 @65K | **~0.9h** |\n| **018v2** (full_sgs_walker_s1, cuda:1) | 589564 | 1h05m | 36,000 | 34.3% | 9.40 | 208.34 @35K | **~2.0h** |\n\n## 018v2 Gate 配置\n\n`gate_dt_mean=2.0`, `gate_dt_2_frac=1.0`, `gate_empirical_entropy=0.0` — **gate_enabled 确认生效**，当前所有 step 均选择 dt=2。\n\n## 010b 分析管线\n\n- `analyze_010b.py` 存在（8017 bytes, 今天 21:38 更新）\n- 在 conda base 环境下 **import 成功**，就绪可用\n- 注意：必须在 conda 环境下运行（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），系统 python 缺 numpy"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-010b-018v2-progress.md"
+}

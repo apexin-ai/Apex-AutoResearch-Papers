@@ -1,0 +1,1203 @@
+{
+  "schema_version": "1.0",
+  "id": "adc6aea42b989ef9b466",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "conversation",
+  "title": "research sgs failure literature",
+  "task_key": "worker_research_sgs-failure-literature_20260515T222534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_sgs-failure-literature_20260515T222534.jsonl",
+    "occurrence": 1,
+    "bytes": 90371,
+    "sha256": "b18bf2909bc7b265b58c990dc4a60b5bd7cf2a0f7b6a957fa1523669e6283745"
+  },
+  "statistics": {
+    "messages": 61,
+    "user_turns": 0,
+    "tool_calls": 30,
+    "roles": {
+      "tool_call": 30,
+      "tool_result": 30,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T22:29:35.387577+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch,WebFetch,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T22:29:35.388035+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T22:29:35.388240+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T22:29:35.388460+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/memory.md\\\", \\\"content\\\": \\\"# Memory\\\\n\\\\n## 2026-05-15: 015b Frozen dt_emb → Gradient Starvation (D049 最终定论)\\\\n\\\\n**D049 修正 D047**：015b 是 gradient starvation，不是延迟 CIVO。NVE 曾短暂升到 1.45x@55K 但随后自修正到 0.65x@65K — transient overestimation，非 sustained CIVO。真正的崩溃机制：frozen dt_emb → world model representations drift → 但 frozen embedding 无法 follow → actor_loss→0（梯度饥饿）→ eval degradation (201→122→106→160→80)。\\\\n\\\\n**2×2 矩阵结论**：trained dt_emb 是 sustained CIVO (NVE>1.5x) 的必要条件。Frozen dt_emb 仅产生 sub-threshold transient overestimation 并自修正。dim=0 完全阻断。\\\\n\\\\n**SGS 预期回升**：gradient starvation 是 freeze 特有问题（非 CIVO），SGS 只切 reward→dt_emb 梯度保留 dynamics 学习能力，应能避免 gradient starvation。\\\\n\\\\n## 2026-05-15: 008e_v3_s2 = Imagination-Reality Divergence (非 CIVO)\\\\n\\\\n**机制**：world model accuracy ceiling → value_std explosion (7.4→18.3) → noisy actor gradients → policy de-specialization → eval collapse。与 CIVO 的关键区别：value 紧跟 target（无 overestimation），actor_entropy 上升（去特化 vs CIVO 的策略锁死），actor_loss 转正。NVE 上升是被动的（eval 先降 → ratio 被动抬高）。\\\\n\\\\n**对 NVE 诊断的影响**：NVE>1.5x 是 value overestimation 预警，非 CIVO 专属指标。8/8 → 7/8 accuracy (1 FP)。论文需 limitation 讨论。\\\\n\\\\n## 2026-05-15: AUROC CI — 论文报告方法\\\\n\\\\nPerfect separation (n=8) 下所有 CI 方法（DeLong, bootstrap, BCa）退化到 [1,1]。论文应报告：\\\\n- n + pos/neg 构成 + separation margin (B1: 2.161, B2: 0.619)\\\\n- Clopper-Pearson exact binomial 95% CI on accuracy: [0.688, 1.0]\\\\n\\\\n## 2026-05-15: D044 — plan_017 取消，008a 标注修正\\\\n\\\\n008a 的 \\\\\\\"untrained dt_emb\\\\\\\" 实际含义是 \\\\\\\"trained dt_emb unexposed to dt>1 data due to subsample OFF\\\\\\\"，不是 frozen/absent。008a 配置与 plan_017 完全相同，017 是冗余实验。2×2 矩阵已由 008a/008d/008f/015b 闭合。\\\\n\\\\n## 2026-05-15: CIVO Two-Stage Amplification 量化\\\\n\\\\n**dynamics bias 1.68x (36%) + actor exploitation (64%)**：随机 policy 下 dt=2 imagination reward = 1.68x dt=1（纯 dynamics bias），trained policy 下 = 2.90x（actor 进一步放大）。N=100 bootstrap CI 确认统计显著。\n…[truncated 5104 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T22:29:35.388633+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "stop gradient value overestimation model-based reinforcement learning"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T22:29:35.388882+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "value overestimation mitigation DreamerV3 world model latent dynamics"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T22:29:35.389105+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "gradient detach conditioning variable world model reinforcement learning"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T22:29:35.389294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "pessimistic value estimation model-based RL imagination rollout"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T22:29:35.389529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"stop gradient value overestimation model-based reinforcement learning\"\n\nLinks: [{\"title\":\"Policy Gradient Algorithms | Lil'Log\",\"url\":\"https://lilianweng.github.io/posts/2018-04-08-policy-gradient/\"},{\"title\":\"TD3: Overcoming Overestimation in Deep Reinforcement Learning | by Dong-Keon Kim | Medium\",\"url\":\"https://medium.com/@kdk199604/td3-overcoming-overestimation-in-deep-reinforcement-learning-c52d1cc9d69a\"},{\"title\":\"Reducing the estimation bias and variance in reinforcement learning via Maxmean and Aitken value iteration - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0952197625025333\"},{\"title\":\"Deep deterministic policy gradient algorithm: A systematic review - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/pii/S2405844024067288\"},{\"title\":\"A Policy Gradient Algorithm to Alleviate the Multi-Agent Value Overestimation Problem in Complex Environments - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC10708657/\"},{\"title\":\"Parameter-Free Reduction of the Estimation Bias in Deep Reinforcement Learning for Deterministic Policy Gradients | Neural Processing Letters | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s11063-024-11461-y\"},{\"title\":\"On the Reduction of Variance and Overestimation of Deep Q-Learning\",\"url\":\"https://arxiv.org/pdf/1910.05983\"},{\"title\":\"[2204.01464] Value Gradient weighted Model-Based Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2204.01464\"},{\"title\":\"The Definitive Guide to Policy Gradients in Deep Reinforcement Learning:\",\"url\":\"https://arxiv.org/pdf/2401.13662\"},{\"title\":\"Value Gradient weighted Model-Based Reinforcement Learning | OpenReview\",\"url\":\"https://openreview.net/forum?id=4-D6CZkRXxI\"}]\n\nI've completed the web search for \"stop gradient value overestimation model-based reinforcement learning\". Here are the key findings:\n\n## Summary of Results\n\nThe search returned information about several important topics in rein\n…[truncated 1658 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T22:29:35.389790+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"gradient detach conditioning variable world model reinforcement learning\"\n\nLinks: [{\"title\":\"1 Gradient Monitored Reinforcement Learning\",\"url\":\"https://arxiv.org/pdf/2005.12108\"},{\"title\":\"The Definitive Guide to Policy Gradients in Deep Reinforcement Learning:\",\"url\":\"https://arxiv.org/pdf/2401.13662\"},{\"title\":\"Gradient Free Deep Reinforcement Learning With TabPFN\",\"url\":\"https://arxiv.org/html/2509.11259v1\"},{\"title\":\"Policy Gradient Algorithms | Lil'Log\",\"url\":\"https://lilianweng.github.io/posts/2018-04-08-policy-gradient/\"},{\"title\":\"Gradient-based Regularization for Action Smoothness in Robotic Control with Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2407.04315v1\"},{\"title\":\"Approximating Gradients for Differentiable Quality Diversity in Reinforcement Learning\",\"url\":\"https://dqd-rl.github.io/\"},{\"title\":\"Model gradient: unified model and policy learning in model-based reinforcement learning | Frontiers of Computer Science\",\"url\":\"https://link.springer.com/article/10.1007/s11704-023-3150-5\"},{\"title\":\"Gradient-based Planning with World Models\",\"url\":\"https://arxiv.org/html/2312.17227v1\"},{\"title\":\"[2407.04315] Gradient-based Regularization for Action Smoothness in Robotic Control with Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2407.04315\"},{\"title\":\"Deriving Policy Gradients and Implementing REINFORCE | by Chris Yoon | Medium\",\"url\":\"https://medium.com/@thechrisyoon/deriving-policy-gradients-and-implementing-reinforce-f887949bd63\"}]\n\nI've performed the web search on your query about \"gradient detach conditioning variable world model reinforcement learning.\" The search returned several relevant results related to reinforcement learning, world models, and gradient-based methods.\n\nHere's a summary of what was found:\n\n**Key Results:**\n\n1. **Gradient-Based Planning with World Models** - While previous research in planning using Model Predictive Control (MPC) has primarily focused on gradient-free methods like cros\n…[truncated 1350 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T22:29:35.390110+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"pessimistic value estimation model-based RL imagination rollout\"\n\nLinks: [{\"title\":\"Improving model-based RL with Adaptive Rollout using Uncertainty Estimation\",\"url\":\"http://webdocs.cs.ualberta.ca/~vis/asingh1/docs/adaptive_rollout_cmput659.pdf\"},{\"title\":\"Optimistic Model Rollouts for Pessimistic Offline Policy Optimization\",\"url\":\"https://arxiv.org/html/2401.05899v1\"},{\"title\":\"Model-Based Reinforcement Learning — DI-engine 0.1.0 documentation\",\"url\":\"https://opendilab.github.io/DI-engine/02_algo/model_based_rl.html\"},{\"title\":\"MODEL-BASED REINFORCEMENT LEARNING WITH MULTI-STEP PLAN VALUE ESTIMATION\",\"url\":\"https://arxiv.org/pdf/2209.05530\"},{\"title\":\"CONSERVATIVE BAYESIAN MODEL-BASED VALUE ...\",\"url\":\"https://ssanner.github.io/papers/iclr23_cbop.pdf\"},{\"title\":\"Chapter 22. Beyond Model Free Imagination | RL Study ON\",\"url\":\"https://rl-study-on.github.io/contrast/Chapter-22.-Beyond-Model-Free-Imagination/\"},{\"title\":\"GitHub - opendilab/awesome-model-based-RL: A curated list of awesome model based RL resources (continually updated) · GitHub\",\"url\":\"https://github.com/opendilab/awesome-model-based-RL\"},{\"title\":\"Model-Based Value Expansion for Efficient Model-Free RL\",\"url\":\"https://mugoh.github.io/log/paper-summaries/mve/\"},{\"title\":\"Model-Based Reinforcement Learning with Multi-Step Plan Value Estimation\",\"url\":\"https://www.researchgate.net/publication/374309348_Model-Based_Reinforcement_Learning_with_Multi-Step_Plan_Value_Estimation/fulltext/651818913ab6cb4ec6ae3b5e/Model-Based-Reinforcement-Learning-with-Multi-Step-Plan-Value-Estimation.pdf\"},{\"title\":\"[2401.05899] Optimistic Model Rollouts for Pessimistic Offline Policy Optimization\",\"url\":\"https://arxiv.org/abs/2401.05899\"}]\n\nBased on the search results, here's what I found about pessimistic value estimation in model-based RL with imagination rollouts:\n\n## Key Concepts\n\nIn offline RL, uncertainty is typically utilized for pessimism, with certain model-based offline RL methods es\n…[truncated 1371 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T22:29:35.390375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"value overestimation mitigation DreamerV3 world model latent dynamics\"\n\nLinks: [{\"title\":\"DREAMer-VXS: A Latent World Model for Sample-Efficient AGV Exploration in Stochastic, Unobserved Environments\",\"url\":\"https://arxiv.org/html/2512.00005v1\"},{\"title\":\"DreamerV3-XP: Optimizing exploration through uncertainty estimation\",\"url\":\"https://arxiv.org/html/2510.21418v1\"},{\"title\":\"DreamerNav: learning-based autonomous navigation in dynamic indoor environments using world models - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC12510832/\"},{\"title\":\"DreamerV3: Mastering Diverse Domains through World Models\",\"url\":\"https://vitalab.github.io/article/2023/01/19/DreamerV3.html\"},{\"title\":\"DreamerV3: Model-Based RL Algorithm\",\"url\":\"https://www.emergentmind.com/topics/dreamerv3-algorithm\"},{\"title\":\"Mastering diverse control tasks through world models | Nature\",\"url\":\"https://www.nature.com/articles/s41586-025-08744-2\"},{\"title\":\"Dreamer V3 - EclecticSheep\",\"url\":\"https://eclecticsheep.ai/2023/08/10/dreamer_v3.html\"},{\"title\":\"Adapting World Models with Latent-State Dynamics Residuals\",\"url\":\"https://jblanier.net/redraw_lanier_et_al.pdf\"},{\"title\":\"[2510.21418] DreamerV3-XP: Optimizing exploration through uncertainty estimation\",\"url\":\"https://arxiv.org/abs/2510.21418\"},{\"title\":\"DreamerV3-style MBRL Agent\",\"url\":\"https://www.emergentmind.com/topics/dreamerv3-style-mbrl-agent\"}]\n\nBased on the search results, I found relevant information about value overestimation mitigation in DreamerV3 and related world model approaches:\n\n## Value Overestimation Mitigation in DreamerV3\n\nDreamerV3 employs robustness techniques including percentile return normalization and symexp two-hot loss for the reward head and critic, which help address value estimation challenges. In environments with widespread distribution of returns, rewards are transformed into two-hot encoding to provide more descriptive training signals for the actor when predicting expected ret\n…[truncated 1052 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T22:29:35.390638+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "stop gradient representation learning reinforcement learning BYOL SimSiam target network"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T22:29:35.390839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"partial stop gradient\" failure \"full stop gradient\" neural network deep learning"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T22:29:35.391020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "CBOP MOREL pessimistic model-based reinforcement learning value penalty uncertainty"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T22:29:35.391187+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "gradient surgery multi-task reinforcement learning conflicting gradients PCGrad"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T22:29:35.391388+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"stop gradient representation learning reinforcement learning BYOL SimSiam target network\"\n\nLinks: [{\"title\":\"SimSiam: Streamlining SSL with Stop-Gradient Mechanism\",\"url\":\"https://learnopencv.com/simsiam/\"},{\"title\":\"Implicit Contrastive Representation Learning with Guided Stop-gradient\",\"url\":\"https://arxiv.org/html/2503.09058v1\"},{\"title\":\"[2503.09058] Implicit Contrastive Representation Learning with Guided Stop-gradient\",\"url\":\"https://arxiv.org/abs/2503.09058\"},{\"title\":\"Implicit Contrastive Representation Learning with Guided Stop-gradient | OpenReview\",\"url\":\"https://openreview.net/forum?id=XUu2GloTXb\"},{\"title\":\"Implicit Contrastive Representation Learning with Guided Stop-gradient [Quick Review]\",\"url\":\"https://liner.com/review/implicit-contrastive-representation-learning-with-guided-stopgradient\"},{\"title\":\"Exploring Simple Siamese Representation Learning Xinlei Chen Kaiming He\",\"url\":\"https://arxiv.org/pdf/2011.10566\"},{\"title\":\"[Representation Learning] SimSiam: BYOL without the momentum encoder\",\"url\":\"https://leeyngdo.github.io/blog/representation-learning/2023-01-18-simple-siamese-representation-learning/\"},{\"title\":\"how does simsiam avoid collapse without negative ...\",\"url\":\"https://openreview.net/pdf?id=bwq6O4Cwdl\"},{\"title\":\"SimSiam Explained - Casual GAN Papers\",\"url\":\"https://www.casualganpapers.com/self-supervised-contrastive-learning-siamese-networks/SimSiam-explained.html\"},{\"title\":\"Understanding Collapse in Non-Contrastive Siamese Representation Learning\",\"url\":\"https://www.cs.cmu.edu/~dpathak/papers/eccv22.pdf\"}]\n\nBased on the search results, here's what I found about stop-gradient in representation learning, particularly regarding BYOL and SimSiam:\n\n## Key Findings\n\n**Stop-Gradient Mechanism:**\n\nIn SimSiam, a stop-gradient mechanism is used in the target branch to mimic stability instead of relying on an explicit teacher network. In SimSiam and BYOL, an additional module called predictor is stacked on one en\n…[truncated 1157 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T22:29:35.391645+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"partial stop gradient\" failure \"full stop gradient\" neural network deep learning\"\n\nLinks: [{\"title\":\"Vanishing Gradient Problem: The Deep Learning Bug That Broke AI Training for Decades\",\"url\":\"https://www.articsledge.com/post/vanishing-gradient-problem\"},{\"title\":\"Vanishing and Exploding Gradients Problems in Deep Learning - GeeksforGeeks\",\"url\":\"https://www.geeksforgeeks.org/deep-learning/vanishing-and-exploding-gradients-problems-in-deep-learning/\"},{\"title\":\"Exploding & Vanishing Gradient Problem in Deep Learning | Towards Data Science\",\"url\":\"https://towardsdatascience.com/vanishing-exploding-gradient-problem-neural-networks-101-c8f48ec6a80b/\"},{\"title\":\"Vanishing gradient problem - Wikipedia\",\"url\":\"https://en.wikipedia.org/wiki/Vanishing_gradient_problem\"},{\"title\":\"When Neural Networks Stop Learning: Understanding Vanishing Gradients - DEV Community\",\"url\":\"https://dev.to/rijultp/when-neural-networks-stop-learning-understanding-vanishing-gradients-4fnn\"},{\"title\":\"Vanishing Gradient Problem: Causes, Consequences, and Solutions - KDnuggets\",\"url\":\"https://www.kdnuggets.com/2022/02/vanishing-gradient-problem.html\"},{\"title\":\"The Vanishing/Exploding Gradient Problem in Deep Neural Networks | Towards Data Science\",\"url\":\"https://towardsdatascience.com/the-vanishing-exploding-gradient-problem-in-deep-neural-networks-191358470c11/\"},{\"title\":\"Vanishing Gradient Problem in Deep Learning: Explained | DigitalOcean\",\"url\":\"https://www.digitalocean.com/community/tutorials/vanishing-gradient-problem\"},{\"title\":\"Understanding the Vanishing Gradient Problem in Deep Learning | by Piyush Kashyap | Medium\",\"url\":\"https://medium.com/@piyushkashyap045/understanding-the-vanishing-gradient-problem-in-deep-learning-840a9da6567f\"},{\"title\":\"How to Avoid Exploding Gradients With Gradient Clipping - MachineLearningMastery.com\",\"url\":\"https://machinelearningmastery.com/how-to-avoid-exploding-gradients-in-neural-networks-with-gradient-clipping/\"}]\n\nBase\n…[truncated 1844 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T22:29:35.391930+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"CBOP MOREL pessimistic model-based reinforcement learning value penalty uncertainty\"\n\nLinks: [{\"title\":\"Multi-agent Uncertainty-Aware Pessimistic Model-Based Reinforcement Learning for Connected Autonomous Vehicles\",\"url\":\"https://arxiv.org/html/2503.20462\"},{\"title\":\"Review for NeurIPS paper: MOReL: Model-Based Offline Reinforcement Learning\",\"url\":\"https://papers.nips.cc/paper/2020/file/f7efa4f864ae9b88d43527f4b14f750f-Review.html\"},{\"title\":\"MOReL: Model-Based Ofﬂine Reinforcement Learning Rahul Kidambi∗\",\"url\":\"https://papers.neurips.cc/paper_files/paper/2020/file/f7efa4f864ae9b88d43527f4b14f750f-Paper.pdf\"},{\"title\":\"[2005.05951] MOReL : Model-Based Offline Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2005.05951\"},{\"title\":\"[PDF] MOReL : Model-Based Offline Reinforcement Learning | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/MOReL-:-Model-Based-Offline-Reinforcement-Learning-Kidambi-Rajeswaran/309c2c5ee60e725244da09180f913cd8d4b8d4e9\"},{\"title\":\"MOReL: Model-Based Ofﬂine Reinforcement Learning Rahul Kidambi∗\",\"url\":\"https://par.nsf.gov/servlets/purl/10196971\"},{\"title\":\"MOReL : Model-Based Offline Reinforcement Learning\",\"url\":\"https://arxiv.org/pdf/2005.05951\"},{\"title\":\"Pessimistic policy iteration with bounded uncertainty - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0957417425012734\"},{\"title\":\"PESSIMISTIC BOOTSTRAPPING FOR UNCERTAINTY\",\"url\":\"https://openreview.net/pdf?id=Y4cs1Z3HnqL\"},{\"title\":\"[2503.20462] Multi-agent Uncertainty-Aware Pessimistic Model-Based Reinforcement Learning for Connected Autonomous Vehicles\",\"url\":\"https://arxiv.org/abs/2503.20462\"}]\n\nBased on the search results, I can provide you with information about MOReL and related pessimistic model-based reinforcement learning approaches:\n\n## MOReL: Model-Based Offline Reinforcement Learning\n\nMOReL is an algorithmic framework for model-based offline RL that consists of two steps: learning a pessimist\n…[truncated 1471 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T22:29:35.392186+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"gradient surgery multi-task reinforcement learning conflicting gradients PCGrad\"\n\nLinks: [{\"title\":\"GitHub - tianheyu927/PCGrad: Code for \\\"Gradient Surgery for Multi-Task Learning\\\" · GitHub\",\"url\":\"https://github.com/tianheyu927/PCGrad\"},{\"title\":\"PCGrad: Gradient Surgery for Multi-Task Learning\",\"url\":\"https://www.emergentmind.com/topics/pcgrad-optimization-technique\"},{\"title\":\"Gradient Surgery for Multi-Task Learning\",\"url\":\"https://proceedings.neurips.cc/paper/2020/file/3fe78a8acf5fda99de95303940a2420c-Paper.pdf\"},{\"title\":\"[2001.06782] Gradient Surgery for Multi-Task Learning\",\"url\":\"https://arxiv.org/abs/2001.06782\"},{\"title\":\"Gradient Descent in Multi-Task Learning Stanford CS224N Default Project\",\"url\":\"https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1244/final-projects/DavidSaykinKfirShmuelDolev.pdf\"},{\"title\":\"PCGrad: Gradient Surgery for Multi-Task Learning | PDF | Mathematical Optimization | Computer Vision\",\"url\":\"https://www.scribd.com/document/558287008/Yu-Et-Al-2020-Gradient-Surgery-for-Multi-Task-Learning\"},{\"title\":\"GRADIENT SURGERY FOR MULTI-TASK LEARNING\",\"url\":\"https://openreview.net/pdf/78aa2ffcfff2647e283ab11388b26ea883f44bd5.pdf\"},{\"title\":\"GradAttention: Attention-Based Gradient Surgery for Multitask Fine-Tuning\",\"url\":\"https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1244/final-projects/AnilYildiz.pdf\"},{\"title\":\"Review for NeurIPS paper: Gradient Surgery for Multi-Task Learning\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2020/file/3fe78a8acf5fda99de95303940a2420c-Review.html\"},{\"title\":\"[Quick Review] Gradient Surgery for Multi-Task Learning\",\"url\":\"https://liner.com/review/gradient-surgery-for-multitask-learning\"}]\n\nHere are the search results for gradient surgery, multi-task reinforcement learning, conflicting gradients, and PCGrad:\n\n## Overview\n\nPCGrad is a form of gradient surgery that projects a task's gradient onto the normal plane of the gradient of any other task that has\n…[truncated 1795 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T22:29:35.392419+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "DreamerV3 critic symlog two-hot value overestimation imagination policy optimization"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T22:29:35.392560+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"stop gradient\" world model training representation learning reinforcement learning SPR SGD"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T22:29:35.392682+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "delusional bias model-based reinforcement learning Lu Schuurmans value function"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T22:29:35.392799+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "temporal abstraction conditioning embedding reinforcement learning options framework value estimation bias"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T22:29:35.392998+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"stop gradient\" world model training representation learning reinforcement learning SPR SGD\"\n\nLinks: [{\"title\":\"Self-Predictive Representations (SPR)\",\"url\":\"https://www.emergentmind.com/topics/self-predictive-representations-spr\"},{\"title\":\"What is stochastic gradient descent? | IBM\",\"url\":\"https://www.ibm.com/think/topics/stochastic-gradient-descent\"},{\"title\":\"ML - Stochastic Gradient Descent (SGD) - GeeksforGeeks\",\"url\":\"https://www.geeksforgeeks.org/machine-learning/ml-stochastic-gradient-descent-sgd/\"},{\"title\":\"[1705.11159] Reinforcement Learning for Learning Rate Control\",\"url\":\"https://ar5iv.labs.arxiv.org/html/1705.11159\"},{\"title\":\"Mastering Stochastic Gradient Descent: The Backbone of Deep Learning Optimization - LUNARTECH\",\"url\":\"https://www.lunartech.ai/blog/mastering-stochastic-gradient-descent-the-backbone-of-deep-learning-optimization\"},{\"title\":\"GitHub - yingchengyang/Reinforcement-Learning-Papers: Related papers for reinforcement learning, including classic papers and latest papers in top conferences · GitHub\",\"url\":\"https://github.com/yingchengyang/Reinforcement-Learning-Papers\"},{\"title\":\"Stochastic Gradient Descent (SGD) Explained With Implementation in R | Codecademy\",\"url\":\"https://www.codecademy.com/article/stochastic-gradient-descent-sgd-explained-with-implementation-in-r\"},{\"title\":\"[1608.03983] SGDR: Stochastic Gradient Descent with Warm Restarts\",\"url\":\"https://arxiv.org/abs/1608.03983\"},{\"title\":\"Spawning Gradient Descent (SpGD): A Novel Optimization Framework for Machine Learning and Deep Learning | SN Computer Science\",\"url\":\"https://dl.acm.org/doi/10.1007/s42979-025-03750-7\"},{\"title\":\"Stochastic Gradient Descent (SGD) In Machine Learning Explained & How To Implement\",\"url\":\"https://spotintelligence.com/2024/03/05/stochastic-gradient-descent-sgd-machine-learning/\"}]\n\nBased on the web search results, here's what I found on your query about stop gradient in world model training, representation learning, r\n…[truncated 1670 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T22:29:35.393181+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"DreamerV3 critic symlog two-hot value overestimation imagination policy optimization\"\n\nLinks: [{\"title\":\"DreamerV3: Mastering Diverse Domains through World Models\",\"url\":\"https://vitalab.github.io/article/2023/01/19/DreamerV3.html\"},{\"title\":\"Dreamer V3 - EclecticSheep\",\"url\":\"https://eclecticsheep.ai/2023/08/10/dreamer_v3.html\"},{\"title\":\"Reward Scale Robustness for Proximal Policy Optimization via DreamerV3 Tricks\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2023/file/04f61ec02d1b3a025a59d978269ce437-Paper-Conference.pdf\"},{\"title\":\"DreamerV3: Robust Latent Model-Based RL\",\"url\":\"https://www.emergentmind.com/topics/dreamerv3\"},{\"title\":\"[2310.17805] Reward Scale Robustness for Proximal Policy Optimization via DreamerV3 Tricks\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2310.17805\"},{\"title\":\"Finding Theta - The Evolution of Imagination: A Deep Dive into DreamerV3 and its Conquest of Minecraft\",\"url\":\"https://www.findingtheta.com/blog/the-evolution-of-imagination-a-deep-dive-into-dreamerv3-and-its-conquest-of-minecraft\"},{\"title\":\"DreamerV3 and Muzero. Both DreamerV3 and Muzero are… | by Kaige | Medium\",\"url\":\"https://medium.com/@kaige.yang0110/dreamerv3-and-muzero-0bcce4ec998b\"},{\"title\":\"Mastering diverse control tasks through world models - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC12003158/\"},{\"title\":\"Heuristic:Danijar Dreamerv3 Symlog TwoHot Prediction - Leeroopedia\",\"url\":\"https://leeroopedia.com/index.php/Heuristic:Danijar_Dreamerv3_Symlog_TwoHot_Prediction\"},{\"title\":\"Mastering Diverse Domains through World Models\",\"url\":\"https://arxiv.org/pdf/2301.04104v1\"}]\n\nBased on the search results, here's what I found about DreamerV3 and the technical concepts you inquired about:\n\n## Core Techniques\n\nDreamerV3's critic learns two-hot-encoded symlog-transformed returns, discretizing them into K = 255 equally spaced buckets with the critic outputting a softmax distribution over the buckets.\n\n## Symlog Function\n\nThe s\n…[truncated 1268 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T22:29:35.393367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"delusional bias model-based reinforcement learning Lu Schuurmans value function\"\n\nLinks: [{\"title\":\"[PDF] Non-delusional Q-learning and value-iteration | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Non-delusional-Q-learning-and-value-iteration-Lu-Schuurmans/59c0931562668b1ebb7c5cc8e9c236d43308722d\"},{\"title\":\"Non-delusional Q-learning and value-iteration\",\"url\":\"https://papers.nips.cc/paper/8200-non-delusional-q-learning-and-value-iteration\"},{\"title\":\"ConQUR: Mitigating Delusional Bias in Deep Q-learning\",\"url\":\"https://arxiv.org/pdf/2002.12399\"},{\"title\":\"(PDF) ConQUR: Mitigating Delusional Bias in Deep Q-learning\",\"url\":\"https://www.researchgate.net/publication/339616417_ConQUR_Mitigating_Delusional_Bias_in_Deep_Q-learning\"},{\"title\":\"Non-delusional Q-learning and Value Iteration Tyler Lu Google AI\",\"url\":\"https://papers.nips.cc/paper/8200-non-delusional-q-learning-and-value-iteration.pdf\"},{\"title\":\"ConQUR: Mitigating Delusional Bias in Deep Q-Learning\",\"url\":\"http://proceedings.mlr.press/v119/su20c.html\"},{\"title\":\"[PDF] ConQUR: Mitigating Delusional Bias in Deep Q-learning | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/ConQUR:-Mitigating-Delusional-Bias-in-Deep-Su-Ooi/1a736c856a5871bc67d0b91c59da1e5b9c181f67\"},{\"title\":\"(PDF) Non-delusional Q-learning and value-iteration\",\"url\":\"https://www.researchgate.net/publication/328772100_Non-delusional_Q-learning_and_value-iteration\"},{\"title\":\"DiJia Su, Jayden Ooi, Tyler Lu, Dale Schuurmans, Craig Boutilier · ConQUR: Mitigating Delusional Bias in Deep Q-Learning\",\"url\":\"https://slideslive.com/38927710/conqur-mitigating-delusional-bias-in-deep-qlearning\"},{\"title\":\"Under review as a conference paper at ICLR 2020\",\"url\":\"https://openreview.net/pdf?id=ryg8WJSKPr\"}]\n\nBased on the search results, I found comprehensive information about delusional bias in model-based and model-free reinforcement learning by Lu and Schuurmans:\n\n## Key Findings\n\n**What is Del\n…[truncated 1521 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T22:29:35.393546+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"temporal abstraction conditioning embedding reinforcement learning options framework value estimation bias\"\n\nLinks: [{\"title\":\"Temporal Abstraction in Reinforcement Learning with the ...\",\"url\":\"https://www.jmlr.org/papers/volume24/21-1213/21-1213.pdf\"},{\"title\":\"Spectral Alignment in Forward–Backward Representations via Temporal Abstraction\",\"url\":\"https://arxiv.org/html/2603.20103\"},{\"title\":\"Emergent temporal abstractions in autoregressive models enable hierarchical reinforcement learning\",\"url\":\"https://arxiv.org/html/2512.20605v1\"},{\"title\":\"A framework for temporal abstraction in reinforcement ...\",\"url\":\"https://people.cs.umass.edu/~barto/courses/cs687/Sutton-Precup-Singh-AIJ99.pdf\"},{\"title\":\"[2110.05740] Temporal Abstraction in Reinforcement Learning with the Successor Representation\",\"url\":\"https://arxiv.org/abs/2110.05740\"},{\"title\":\"Temporal Abstraction in Reinforcement Learning with Offline Data\",\"url\":\"https://arxiv.org/html/2407.15241v1\"},{\"title\":\"The utility of temporal abstraction in reinforcement learning | Request PDF\",\"url\":\"https://www.researchgate.net/publication/200744628_The_utility_of_temporal_abstraction_in_reinforcement_learning\"},{\"title\":\"Emergent Temporal Abstractions in Autoregressive Models\",\"url\":\"https://www.emergentmind.com/papers/2512.20605\"},{\"title\":\"Salience Interest Option: Temporal abstraction with salience interest functions - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0893608024002661\"},{\"title\":\"Hierarchical Deep Reinforcement Learning: Integrating Temporal Abstraction and\",\"url\":\"https://arxiv.org/pdf/1604.06057\"}]\n\nI've performed the web search on your query about temporal abstraction, conditioning, embedding, reinforcement learning, options framework, value estimation, and bias. Here's what the search results reveal:\n\n## Key Research Areas Found\n\n**Temporal Abstraction and Options Framework:**\nOptions enable temporally abstract knowledge and action to be \n…[truncated 1785 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T22:29:35.393725+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "MOPO COMBO conservative model-based reinforcement learning value overestimation penalty 2024 2025"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T22:29:35.393913+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "time-aware world model decision transformer temporal conditioning horizon reinforcement learning"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T22:29:35.394134+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "gradient intervention selective gradient blocking multi-head neural network shared representation"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T22:29:35.394331+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "value overestimation compounding error model-based reinforcement learning imagination rollout 2024 2025"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T22:29:35.394563+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"MOPO COMBO conservative model-based reinforcement learning value overestimation penalty 2024 2025\"\n\nLinks: [{\"title\":\"COMBO: Conservative Ofﬂine Model-Based Policy Optimization\",\"url\":\"https://arxiv.org/pdf/2102.08363\"},{\"title\":\"COMBO: Conservative Offline Model RL\",\"url\":\"https://www.emergentmind.com/papers/2102.08363\"},{\"title\":\"COMBO: Conservative Offline Model-Based Policy Optimization\",\"url\":\"https://proceedings.neurips.cc/paper/2021/file/f29a179746902e331572c483c45e5086-Paper.pdf\"},{\"title\":\"MOPO: Model-based Ofﬂine Policy Optimization\",\"url\":\"https://arxiv.org/pdf/2005.13239\"},{\"title\":\"COMBO: Conservative Offline Model-Based Policy Optimization | OpenReview\",\"url\":\"https://openreview.net/forum?id=dUEpGV2mhf\"},{\"title\":\"Constrained Latent Action Policies for Model-Based Offline Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2411.04562v1\"},{\"title\":\"MOPO: Model-based Ofﬂine Policy Optimization\",\"url\":\"https://proceedings.nips.cc/paper/2020/file/a322852ce0df73e204b7e67cbbef0d0a-Paper.pdf\"},{\"title\":\"Mitigating Distribution Shift in Model-based Offline RL via Shifts-aware Reward Learning\",\"url\":\"https://arxiv.org/html/2408.12830v3\"},{\"title\":\"MOPO: Model-based Ofﬂine Policy Optimization\",\"url\":\"https://biases-invariances-generalization.github.io/pdf/big_12.pdf\"},{\"title\":\"MICRO: Model-Based Offline Reinforcement Learning with a Conservative Bellman Operator\",\"url\":\"https://arxiv.org/html/2312.03991v2\"}]\n\nBased on the web search results, I found relevant information about MOPO, COMBO, and conservative model-based reinforcement learning. Here's what the research shows:\n\n## COMBO: Conservative Offline Model-Based Policy Optimization\n\nCOMBO is a conservative model-based offline RL algorithm that overcomes overestimation bias by regulating Q-value estimates on out-of-support data. COMBO leverages a penalty mechanism on state-action pairs and bypasses explicit uncertainty quantification, offering theoretical guarantees and safe p\n…[truncated 1292 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T22:29:35.394858+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"time-aware world model decision transformer temporal conditioning horizon reinforcement learning\"\n\nLinks: [{\"title\":\"Time-Aware World Model for Adaptive Prediction and Control\",\"url\":\"https://arxiv.org/html/2506.08441v1\"},{\"title\":\"Decision Transformer: Reinforcement Learning via Sequence Modeling\",\"url\":\"https://openreview.net/pdf?id=a7APmM4B9d\"},{\"title\":\"Steering Decision Transformers via Temporal Difference Learning\",\"url\":\"https://cpsl.pratt.duke.edu/files/docs/d2t2.pdf\"},{\"title\":\"Enhancing Memory and Imagination Consistency in Diffusion-based World Models via Linear-Time Sequence Modeling\",\"url\":\"https://arxiv.org/html/2502.00466v1\"},{\"title\":\"[2402.17217] Temporal Logic Specification-Conditioned Decision Transformer for Offline Safe Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2402.17217\"},{\"title\":\"Decision Transformer Model: Architecture, Use Cases, Applications and Advancements\",\"url\":\"https://www.leewayhertz.com/decision-transformer/\"},{\"title\":\"TransDreamer: Reinforcement Learning with Transformer World Models\",\"url\":\"https://arxiv.org/html/2202.09481v2\"},{\"title\":\"Time-aware deep reinforcement learning with multi-temporal abstraction | Applied Intelligence | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s10489-022-04392-5\"},{\"title\":\"Exploring Mental Models, World Models, and Reinforcement Learning: A Deep Dive into Predictive Intelligence. | by Bhakta Vaschal Samal | Medium\",\"url\":\"https://bhakta-works.medium.com/exploring-mental-models-world-models-and-reinforcement-learning-a-deep-dive-into-predictive-efb8cf6db98f\"},{\"title\":\"Temporal Logic Specification-Conditioned Decision Transformer for Offline Safe Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2402.17217v2\"}]\n\nBased on the search results, here's what I found regarding your query about time-aware world models, decision transformers, temporal conditioning, and horizon in reinforcement learning:\n\n## Key Findings\n\n### Time-Awar\n…[truncated 1601 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T22:29:35.395131+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"gradient intervention selective gradient blocking multi-head neural network shared representation\"\n\nLinks: [{\"title\":\"Gradient Surgery for Multi-Task Learning\",\"url\":\"https://proceedings.neurips.cc/paper/2020/file/3fe78a8acf5fda99de95303940a2420c-Paper.pdf\"},{\"title\":\"Nonlinear multi-head cross-attention network and programmable gradient information for gaze estimation - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC12297614/\"},{\"title\":\"A multimodal neural network with gradient blending improves predictions of survival and metastasis in sarcoma | npj Precision Oncology\",\"url\":\"https://www.nature.com/articles/s41698-024-00695-7\"},{\"title\":\"Gradient Descent Algorithm in Machine Learning - GeeksforGeeks\",\"url\":\"https://www.geeksforgeeks.org/machine-learning/gradient-descent-algorithm-and-its-variants/\"},{\"title\":\"Gradient Routing: Masking Gradients to Localize Computation in Neural Networks\",\"url\":\"https://arxiv.org/html/2410.04332v1\"},{\"title\":\"Mitigating gradient conflicts via expert squads in multi-task learning - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0925231224016035\"},{\"title\":\"(PDF) An Efficient Gradient-based Learning Algorithm Applied to Neural Networks with Selective Actuation Neurons.\",\"url\":\"https://www.researchgate.net/publication/220345946_An_Efficient_Gradient-based_Learning_Algorithm_Applied_to_Neural_Networks_with_Selective_Actuation_Neurons\"},{\"title\":\"Gradient surgery based on convolutional filters grouping for multi-task models in panoptic driving perception - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S092523122501464X\"},{\"title\":\"EfficientNet and multi-path convolution with multi-head attention network for brain tumor grade classification - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0045790623001246\"},{\"title\":\"Frontiers | Gradient-free training of recurrent neural networks using random perturbations\",\"url\n…[truncated 2053 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T22:29:35.395406+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"value overestimation compounding error model-based reinforcement learning imagination rollout 2024 2025\"\n\nLinks: [{\"title\":\"Reinforcement Learning Journal 2025 Cover Page\",\"url\":\"https://rlj.cs.umass.edu/2025/papers/RLJ_RLC_2025_136.pdf\"},{\"title\":\"Model-Based Reinforcement Learning\",\"url\":\"https://www.emergentmind.com/topics/model-based-reinforcement-learning\"},{\"title\":\"ON ROLLOUTS IN MODEL-BASED REINFORCEMENT ...\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/be7a642a92de108a57e4d50866144d73-Paper-Conference.pdf\"},{\"title\":\"Learning to Combat Compounding-Error in Model-Based Reinforcement Learning\",\"url\":\"https://webdocs.cs.ualberta.ca/~chenjun/files/drlw_adambrl_full.pdf\"},{\"title\":\"GitHub - yingchengyang/Reinforcement-Learning-Papers: Related papers for reinforcement learning, including classic papers and latest papers in top conferences · GitHub\",\"url\":\"https://github.com/yingchengyang/Reinforcement-Learning-Papers\"},{\"title\":\"A survey on model-based reinforcement learning\",\"url\":\"http://scis.scichina.com/en/2024/121101.pdf\"},{\"title\":\"ZERO-SHOT MODEL-BASED REINFORCEMENT LEARN\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/5fc1e662bd63c4a70b95088ba5d08cb8-Paper-Conference.pdf\"},{\"title\":\"OFFLINE REINFORCEMENT LEARNING VIA ADAPTIVE ...\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/c06f788963f0ce069f5b2dbf83fe7822-Paper-Conference.pdf\"},{\"title\":\"Model-Based RL Agent\",\"url\":\"https://www.emergentmind.com/topics/model-based-reinforcement-learning-agent\"},{\"title\":\"A Note on Loss Functions and Error Compounding in Model-based Reinforcement Learning | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/note-loss-functions-error-compounding-model-based\"}]\n\nI found several relevant research papers and resources addressing value overestimation, compounding error, model-based reinforcement learning, imagination rollouts from 2024-2025. Here are the key findings:\n\n## Re\n…[truncated 1655 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T22:29:35.395674+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2506.08441",
+              "prompt": "Extract the full title, authors, year, venue, and main method of this paper. Does it discuss gradient stopping or detaching for temporal/horizon conditioning? Does it mention value overestimation?"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T22:29:35.395887+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/html/2410.04332v1",
+              "prompt": "Extract the full title, authors, year, venue, and main contribution. Does this paper discuss selectively blocking gradients through specific pathways in a multi-head network? Does it relate to reinforcement learning?"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T22:29:35.396073+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "TD-MPC2 model-based RL stop gradient latent representation learning value function"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T22:29:35.396247+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"value gradient\" \"model-based\" reinforcement learning detach gradient through dynamics model VaGraM"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T22:29:35.396427+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Analysis\n\n**Full Title:** Time-Aware World Model for Adaptive Prediction and Control\n\n**Authors:** Anh N. Nhu, Sanghyun Son, Ming Lin\n\n**Year:** 2025 (submitted June 10, 2025)\n\n**Venue:** ICML 2025\n\n**Main Method:** The approach introduces a model-based framework that \"explicitly incorporates temporal dynamics\" by conditioning predictions on timestep size (Δt) and training across diverse timestep values rather than fixed sampling rates.\n\n---\n\n## Regarding Your Specific Questions\n\n**Gradient stopping/detaching for temporal conditioning:** The provided abstract and paper metadata do not discuss gradient stopping or detaching mechanisms for horizon or temporal conditioning.\n\n**Value overestimation:** There is no mention of value overestimation in the available content.\n\nThe abstract focuses on learning \"both high- and low-frequency task dynamics\" and emphasizes that \"the optimal sampling rate depends on a system's underlying dynamics,\" but the excerpt provided does not contain technical details about optimization strategies or value function issues."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T22:29:35.396624+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Summary\n\n**Title:** Gradient Routing: Masking Gradients to Localize Computation in Neural Networks\n\n**Authors:** Alex Cloud, Jacob Goldman-Wetzler, Evžen Wybitul, Joseph Miller, Alexander Matt Turner\n\n**Year:** 2024\n\n**Venue:** arXiv (arxiv.org/html/2410.04332v1)\n\n## Main Contribution\n\nThe paper introduces gradient routing, a training method that \"applies data-dependent, weighted masks to gradients during backpropagation\" to isolate specific capabilities within particular network regions. This enables three key applications: partitioned representations, robust unlearning via ablation, and scalable oversight.\n\n## Selective Gradient Blocking\n\nYes, the paper directly addresses selectively blocking gradients. The method \"uses data-dependent, weighted masks to control which network subregions are updated by which data points.\" The approach modifies backpropagation to zero-out or re-weight gradients along specific computational pathways.\n\n## Reinforcement Learning Connection\n\nYes, gradient routing relates to reinforcement learning. Section 4.3 applies the method to \"scalable oversight in reinforcement learning,\" where researchers trained a policy network using PPO to navigate a gridworld environment. They localized behavioral modules responsible for different actions and demonstrated steering capabilities through selective module ablation."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T22:29:35.396990+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"TD-MPC2 model-based RL stop gradient latent representation learning value function\"\n\nLinks: [{\"title\":\"TD-MPC2: Robust Model-Based RL\",\"url\":\"https://www.emergentmind.com/topics/td-mpc2-algorithm\"},{\"title\":\"TD-MPC\",\"url\":\"https://td-mpc.github.io/\"},{\"title\":\"TD-M(PC)2: Improving Temporal Difference MPC Through Policy Constraint\",\"url\":\"https://arxiv.org/html/2502.03550v1\"},{\"title\":\"TD-M(PC)2: Improving Temporal Difference MPC Through Policy Constraint\",\"url\":\"https://darthutopian.github.io/tdmpc_square/static/pdfs/paper.pdf\"},{\"title\":\"TD-MPC2: Scalable, Robust World Models for Continuous Control [Quick Review]\",\"url\":\"https://liner.com/review/tdmpc2-scalable-robust-world-models-for-continuous-control\"},{\"title\":\"TD-MPC2\",\"url\":\"https://www.tdmpc2.com/\"},{\"title\":\"[2310.16828] TD-MPC2: Scalable, Robust World Models for Continuous Control\",\"url\":\"https://arxiv.org/abs/2310.16828\"},{\"title\":\"TD-MPC2: Scalable, Robust World Models for Continuous Control\",\"url\":\"https://arxiv.org/html/2310.16828v2\"},{\"title\":\"TD-MPC2: Scalable Model-Based Control\",\"url\":\"https://www.emergentmind.com/topics/td-mpc2\"},{\"title\":\"Temporal Difference MPC\",\"url\":\"https://www.emergentmind.com/topics/temporal-difference-model-predictive-control-td-mpc\"}]\n\nBased on the web search results, here's comprehensive information about TD-MPC2 and the specific aspects you queried:\n\n## TD-MPC2 Overview\n\nTD-MPC is a model-based reinforcement learning (MBRL) algorithm that performs local trajectory optimization in the latent space of a learned implicit (decoder-free) world model, and TD-MPC2 presents a series of improvements upon the TD-MPC algorithm.\n\n## Stop Gradient and Latent Representation Learning\n\nCentral to the stability of its deep latent world model is SimNorm—a normalization that partitions the latent state into multiple groups and projects each into a fixed-dimensional simplex via softmax, enforcing a sparse, low ℓ2-norm representation that mitigates gradient in\n…[truncated 1225 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T22:29:35.397267+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"value gradient\" \"model-based\" reinforcement learning detach gradient through dynamics model VaGraM\"\n\nLinks: [{\"title\":\"GitHub - pairlab/vagram: [ICLR 22] Value Gradient weighted Model-Based Reinforcement Learning.\",\"url\":\"https://github.com/pairlab/vagram\"},{\"title\":\"Value Gradient weighted Model-Based Reinforcement Learning | PAIR\",\"url\":\"http://www.pair.toronto.edu/blog/2022/vagram-voelcker/\"},{\"title\":\"[Quick Review] Value Gradient weighted Model-Based Reinforcement Learning\",\"url\":\"https://liner.com/review/value-gradient-weighted-modelbased-reinforcement-learning\"},{\"title\":\"value gradient weighted model-based reinforcement learning\",\"url\":\"https://arxiv.org/pdf/2204.01464\"},{\"title\":\"Value Gradient weighted Model-Based Reinforcement Learning | OpenReview\",\"url\":\"https://openreview.net/forum?id=4-D6CZkRXxI\"},{\"title\":\"[2204.01464] Value Gradient weighted Model-Based Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2204.01464\"},{\"title\":\"VALUE GRADIENT WEIGHTED MODEL-BASED ...\",\"url\":\"https://cvoelcker.de/assets/pdf/paper_vagram.pdf\"},{\"title\":\"vagram/README.md at main · pairlab/vagram\",\"url\":\"https://github.com/pairlab/vagram/blob/main/README.md\"},{\"title\":\"Vector research blog: Value Gradient weighted Model-Based Reinforcement Learning - Vector Institute for Artificial Intelligence\",\"url\":\"https://vectorinstitute.ai/vector-research-blog-value-gradient-weighted-model-based-reinforcement-learning/\"},{\"title\":\"VALUE GRADIENT WEIGHTED MODEL-BASED REINFORCEMENT LEARNING - HackMD\",\"url\":\"https://hackmd.io/W-J3KvitSWKZBMVsKFHAJA?both=\"}]\n\nBased on the search results, here's what I found about VaGraM and value gradient-weighted model-based reinforcement learning:\n\n## Overview\n\nVaGraM (Value-Gradient weighted Model loss) is a novel value-aware model learning method that rescales the mean squared error loss with gradient information from the current value function estimate. This is the official code published at ICLR 2022.\n\n## The Prob\n…[truncated 1455 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T22:29:35.397473+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "DreamerV3 value function overestimation fix clipping ensemble regularization 2024 2025 2026"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T22:29:35.397616+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"stop gradient\" critic value head shared encoder multi-task reinforcement learning auxiliary task"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T22:29:35.397737+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "conditioning-induced bias auxiliary variable reinforcement learning world model gradient pathway"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T22:29:35.397942+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"DreamerV3 value function overestimation fix clipping ensemble regularization 2024 2025 2026\"\n\nLinks: [{\"title\":\"DreamerV3-XP: Optimizing exploration through uncertainty estimation\",\"url\":\"https://arxiv.org/html/2510.21418v1\"},{\"title\":\"[2006.13823] Preventing Value Function Collapse in Ensemble Q-Learning by Maximizing Representation Diversity\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2006.13823\"},{\"title\":\"Dreamer V3 - EclecticSheep\",\"url\":\"https://eclecticsheep.ai/2023/08/10/dreamer_v3.html\"},{\"title\":\"DreamerV3: Robust Latent Model-Based RL\",\"url\":\"https://www.emergentmind.com/topics/dreamerv3\"},{\"title\":\"Reward Scale Robustness for Proximal Policy Optimization via DreamerV3 Tricks\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2023/file/04f61ec02d1b3a025a59d978269ce437-Paper-Conference.pdf\"},{\"title\":\"DreamerV3: Mastering Diverse Domains through World Models\",\"url\":\"https://vitalab.github.io/article/2023/01/19/DreamerV3.html\"},{\"title\":\"[2510.21418] DreamerV3-XP: Optimizing exploration through uncertainty estimation\",\"url\":\"https://arxiv.org/abs/2510.21418\"},{\"title\":\"MuDreamer: Learning Predictive World Models without Reconstruction\",\"url\":\"https://www.google.com/goto?url=CAESXwE7q4ylA2_pDa97RWtNmYpTQQSWrvOiJ3thWpVtwbtXZJf0bY7zLkpYkRZbKYb3HORTkSVBciVcIx-kTn1fx64Y2pQxhxdetGU-QZNdbLYtyiBMIktRJqfAE9dL9VZl\"},{\"title\":\"DreamerV3: Model-Based RL Algorithm\",\"url\":\"https://www.emergentmind.com/topics/dreamerv3-algorithm\"},{\"title\":\"Preventing over fitting in reconstruction and dynamics loss · Issue #150 · danijar/dreamerv3\",\"url\":\"https://github.com/danijar/dreamerv3/issues/150\"}]\n\nBased on the web search results, here's what I found regarding DreamerV3 and value function handling:\n\n## Key Findings\n\n**Value Function Stabilization in DreamerV3:**\n\nDreamerV3 regularizes the critic towards an Exponential Moving Average (EMA) of its own outputs, and uses symlog predictions to compress the magnitudes of target values, with symlog app\n…[truncated 1340 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T22:29:35.398165+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"stop gradient\" critic value head shared encoder multi-task reinforcement learning auxiliary task\"\n\nLinks: [{\"title\":\"Hierarchical Lead Critic based Multi-Agent Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2602.21680v1\"},{\"title\":\"Multi-Task Reinforcement Learning Enables Parameter Scaling\",\"url\":\"https://arxiv.org/html/2503.05126v1\"},{\"title\":\"Bigger, Regularized, Categorical: High-Capacity Value Functions are Efficient Multi-Task Learners\",\"url\":\"https://arxiv.org/html/2505.23150v1\"},{\"title\":\"Integrated Actor-Critic for Deep Reinforcement Learning\",\"url\":\"https://par.nsf.gov/servlets/purl/10333252\"},{\"title\":\"Gradient Surgery for Multi-Task Learning\",\"url\":\"https://arxiv.org/pdf/2001.06782\"},{\"title\":\"[2001.06782] Gradient Surgery for Multi-Task Learning\",\"url\":\"https://arxiv.org/abs/2001.06782\"},{\"title\":\"Proactive Gradient Conflict Mitigation in Multi-Task Learning: A Sparse Training Perspective\",\"url\":\"https://arxiv.org/html/2411.18615v1\"},{\"title\":\"Conflict-Averse Gradient Descent for Multi-task Learning\",\"url\":\"https://arxiv.org/html/2110.14048\"},{\"title\":\"Stop Regressing: Training Value Functions via Classification for Scalable Deep RL\",\"url\":\"https://arxiv.org/html/2403.03950v1\"},{\"title\":\"Transformer in Reinforcement Learning for Decision-Making\",\"url\":\"https://www.techrxiv.org/users/689560/articles/681247/master/file/data/TAI_template/TAI_template.pdf\"}]\n\nI've performed a web search for your query about \"stop gradient\" with critic value head, shared encoder, and multi-task reinforcement learning. Here are the key findings:\n\n## Main Research Areas\n\nThe Soft-Modularization (SM) architecture posed the question of whether gradients from all tasks should affect all parameters and which parameters should be shared.\n\nKey design choices for multi-task value learning include significantly increasing critic capacity using normalized residual architectures, stabilizing temporal difference gradients through cross-entropy loss,\n…[truncated 1123 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T22:29:35.398340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"conditioning-induced bias auxiliary variable reinforcement learning world model gradient pathway\"\n\nLinks: [{\"title\":\"Neural and computational underpinnings of biased confidence in human reinforcement learning | Nature Communications\",\"url\":\"https://www.nature.com/articles/s41467-023-42589-5\"},{\"title\":\"Understanding world models through multi-step pruning policy via reinforcement learning - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0020025524012751\"},{\"title\":\"Generating Auxiliary Tasks with Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2510.22940\"},{\"title\":\"Human reinforcement learning processes and biases: computational characterization and possible applications to behavioral public policy - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC12713303/\"},{\"title\":\"(PDF) Reducing Model Bias in Reinforcement Learning\",\"url\":\"https://www.researchgate.net/publication/277877982_Reducing_Model_Bias_in_Reinforcement_Learning\"},{\"title\":\"GANs Conditioning Methods: A Survey\",\"url\":\"https://arxiv.org/html/2408.15640v3\"},{\"title\":\"Human reinforcement learning processes and biases: computational characterization and possible applications to behavioral public policy | Mind & Society | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s11299-025-00329-w\"},{\"title\":\"Prefrontal solution to the bias-variance tradeoff during reinforcement learning - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/pii/S2211124721016855\"},{\"title\":\"[2402.07875] Implicit Bias of Policy Gradient in Linear Quadratic Control: Extrapolation to Unseen Initial States\",\"url\":\"https://arxiv.org/abs/2402.07875\"},{\"title\":\"Confirmation bias in human reinforcement learning: Evidence from counterfactual feedback processing | PLOS Computational Biology\",\"url\":\"https://journals.plos.org/ploscompbiol/article?id=10.1371%2Fjournal.pcbi.1005684\"}]\n\nBased on the search results, I found several relevant to\n…[truncated 1818 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T22:29:35.398517+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2204.01464",
+              "prompt": "Extract the full title, authors, year, venue. Does VaGraM use stop-gradient or gradient detach anywhere? Does it discuss value overestimation? What is the core method for preventing model exploitation?"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T22:29:35.398645+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "dreamer world model auxiliary conditioning variable gradient flow critic reward head shared backbone"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T22:29:35.398764+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"gradient masking\" \"gradient blocking\" specific pathway neural network prevent bias propagation"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T22:29:35.398934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information\n\n**Full Title:** Value Gradient weighted Model-Based Reinforcement Learning\n\n**Authors:** Claas Voelcker, Victor Liao, Animesh Garg, Amir-massoud Farahmand\n\n**Year:** 2022 (submitted April 4, 2022; revised June 20, 2023)\n\n**Venue:** arXiv (cs.LG - Computer Science, Machine Learning)\n\n---\n\n# Technical Details\n\n**Stop-Gradient/Gradient Detach:** The provided abstract and webpage content does not mention the use of stop-gradient or gradient detach operations in VaGraM.\n\n**Value Overestimation:** The abstract does not discuss value overestimation as a concern.\n\n**Core Prevention Method:** The paper addresses model exploitation by proposing \"value-aware model learning\" rather than sole focus on state prediction. The method weights model learning using value gradients. As stated: \"The model in MBRL is often solely fitted to reconstruct dynamics...while the impact of model error on the policy is not captured.\" VaGraM's innovation aligns model training with policy performance goals rather than maximum likelihood objectives alone."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T22:29:35.399106+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"dreamer world model auxiliary conditioning variable gradient flow critic reward head shared backbone\"\n\nLinks: [{\"title\":\"Mastering diverse control tasks through world models | Nature\",\"url\":\"https://www.nature.com/articles/s41586-025-08744-2\"},{\"title\":\"Introducing Dreamer: Scalable Reinforcement Learning Using World Models\",\"url\":\"https://research.google/blog/introducing-dreamer-scalable-reinforcement-learning-using-world-models/\"},{\"title\":\"Mastering Diverse Control Tasks through World Models\",\"url\":\"https://danijar.com/project/dreamerv3/\"},{\"title\":\"[2301.04104] Mastering Diverse Domains through World Models\",\"url\":\"https://arxiv.org/abs/2301.04104\"},{\"title\":\"Published as a conference paper at ICLR 2020\",\"url\":\"https://arxiv.org/pdf/1912.01603\"},{\"title\":\"DreamingV2: Reinforcement Learning with Discrete World ...\",\"url\":\"https://arxiv.org/pdf/2203.00494\"},{\"title\":\"Mastering diverse control tasks through world models - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC12003158/\"},{\"title\":\"DreamerV3: Mastering Diverse Domains through World Models\",\"url\":\"https://vitalab.github.io/article/2023/01/19/DreamerV3.html\"},{\"title\":\"Dreamer: Learning Long-Horizon Behaviors through Latent Imagination | by Dong-Keon Kim | Medium\",\"url\":\"https://medium.com/@kdk199604/dreamer-learning-long-horizon-behaviors-through-latent-imagination-fa60327c2843\"},{\"title\":\"GitHub - danijar/dreamerv3: Mastering Diverse Domains through World Models · GitHub\",\"url\":\"https://github.com/danijar/dreamerv3\"}]\n\nThe search results provide comprehensive information about the Dreamer world model architecture and its technical components. Here's what I found:\n\n## Overview\n\nDreamer is a general reinforcement-learning algorithm that outperforms specialized expert algorithms across diverse tasks by learning a model of the environment and improving its behaviour by imagining future scenarios.\n\n## Architecture and Key Components\n\nDreamerV3 introduced robustness techniques\n…[truncated 1433 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T22:29:35.399283+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"gradient masking\" \"gradient blocking\" specific pathway neural network prevent bias propagation\"\n\nLinks: [{\"title\":\"Gradient Routing: Masking Gradients to Localize ...\",\"url\":\"https://www.lesswrong.com/posts/nLRKKCTtwQgvozLTN/gradient-routing-masking-gradients-to-localize-computation\"},{\"title\":\"Gradient Routing: Masking Gradients to Localize Computation in Neural Networks\",\"url\":\"https://arxiv.org/html/2410.04332v1\"},{\"title\":\"Masking Gradients to Localize Computation in Neural ...\",\"url\":\"https://www.alignmentforum.org/posts/nLRKKCTtwQgvozLTN/gradient-routing-masking-gradients-to-localize-computation\"},{\"title\":\"[2410.04332] Gradient Routing: Masking Gradients to Localize Computation in Neural Networks\",\"url\":\"https://arxiv.org/abs/2410.04332\"},{\"title\":\"Gradient Routing: Masking Gradients to Localize Computation in Neural Networks\",\"url\":\"https://turntrout.com/gradient-routing\"},{\"title\":\"Gradient Routing: Masking Gradients to Localize Computation in Neural Networks | OpenReview\",\"url\":\"https://openreview.net/forum?id=z1mLNhWFyY\"},{\"title\":\"[Literature Review] Gradient Routing: Masking Gradients to Localize Computation in Neural Networks\",\"url\":\"https://www.themoonlight.io/en/review/gradient-routing-masking-gradients-to-localize-computation-in-neural-networks\"},{\"title\":\"Selective Gradient Masking (SGTM) Techniques\",\"url\":\"https://www.emergentmind.com/topics/selective-gradient-masking-sgtm\"},{\"title\":\"Gradient Routing: Masking Gradients to Localize Computation in Neural Networks - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2024arXiv241004332C/abstract\"},{\"title\":\"Gradient semi-masking for improving adversarial robustness - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0031320325010945\"}]\n\nBased on the web search results, I found comprehensive information about gradient masking and gradient blocking techniques in neural networks:\n\n## Gradient Masking and Gradient Routing\n\nGradient routing is a traini\n…[truncated 1705 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T22:29:35.399465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "memory.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T22:29:35.399658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/memory.md\\\", \\\"content\\\": \\\"# Memory\\\\n\\\\n## 2026-05-15: 015b Frozen dt_emb → Gradient Starvation (D049 最终定论)\\\\n\\\\n**D049 修正 D047**：015b 是 gradient starvation，不是延迟 CIVO。NVE 曾短暂升到 1.45x@55K 但随后自修正到 0.65x@65K — transient overestimation，非 sustained CIVO。真正的崩溃机制：frozen dt_emb → world model representations drift → 但 frozen embedding 无法 follow → actor_loss→0（梯度饥饿）→ eval degradation (201→122→106→160→80)。\\\\n\\\\n**2×2 矩阵结论**：trained dt_emb 是 sustained CIVO (NVE>1.5x) 的必要条件。Frozen dt_emb 仅产生 sub-threshold transient overestimation 并自修正。dim=0 完全阻断。\\\\n\\\\n**SGS 预期回升**：gradient starvation 是 freeze 特有问题（非 CIVO），SGS 只切 reward→dt_emb 梯度保留 dynamics 学习能力，应能避免 gradient starvation。\\\\n\\\\n## 2026-05-15: 008e_v3_s2 = Imagination-Reality Divergence (非 CIVO)\\\\n\\\\n**机制**：world model accuracy ceiling → value_std explosion (7.4→18.3) → noisy actor gradients → policy de-specialization → eval collapse。与 CIVO 的关键区别：value 紧跟 target（无 overestimation），actor_entropy 上升（去特化 vs CIVO 的策略锁死），actor_loss 转正。NVE 上升是被动的（eval 先降 → ratio 被动抬高）。\\\\n\\\\n**对 NVE 诊断的影响**：NVE>1.5x 是 value overestimation 预警，非 CIVO 专属指标。8/8 → 7/8 accuracy (1 FP)。论文需 limitation 讨论。\\\\n\\\\n## 2026-05-15: AUROC CI — 论文报告方法\\\\n\\\\nPerfect separation (n=8) 下所有 CI 方法（DeLong, bootstrap, BCa）退化到 [1,1]。论文应报告：\\\\n- n + pos/neg 构成 + separation margin (B1: 2.161, B2: 0.619)\\\\n- Clopper-Pearson exact binomial 95% CI on accuracy: [0.688, 1.0]\\\\n\\\\n## 2026-05-15: D044 — plan_017 取消，008a 标注修正\\\\n\\\\n008a 的 \\\\\\\"untrained dt_emb\\\\\\\" 实际含义是 \\\\\\\"trained dt_emb unexposed to dt>1 data due to subsample OFF\\\\\\\"，不是 frozen/absent。008a 配置与 plan_017 完全相同，017 是冗余实验。2×2 矩阵已由 008a/008d/008f/015b 闭合。\\\\n\\\\n## 2026-05-15: CIVO Two-Stage Amplification 量化\\\\n\\\\n**dynamics bias 1.68x (36%) + actor exploitation (64%)**：随机 policy 下 dt=2 imagination reward = 1.68x dt=1（纯 dynamics bias），trained policy 下 = 2.90x（actor 进一步放大）。N=100 bootstrap CI 确认统计显著。\n…[truncated 5104 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T22:29:35.399933+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "memory.md",
+              "content": "# Memory\n\n## 2026-05-15: 015b Frozen dt_emb → Gradient Starvation (D049 最终定论)\n\n**D049 修正 D047**：015b 是 gradient starvation，不是延迟 CIVO。NVE 曾短暂升到 1.45x@55K 但随后自修正到 0.65x@65K — transient overestimation，非 sustained CIVO。真正的崩溃机制：frozen dt_emb → world model representations drift → 但 frozen embedding 无法 follow → actor_loss→0（梯度饥饿）→ eval degradation (201→122→106→160→80)。\n\n**2×2 矩阵结论**：trained dt_emb 是 sustained CIVO (NVE>1.5x) 的必要条件。Frozen dt_emb 仅产生 sub-threshold transient overestimation 并自修正。dim=0 完全阻断。\n\n**SGS 预期回升**：gradient starvation 是 freeze 特有问题（非 CIVO），SGS 只切 reward→dt_emb 梯度保留 dynamics 学习能力，应能避免 gradient starvation。\n\n## 2026-05-15: 008e_v3_s2 = Imagination-Reality Divergence (非 CIVO)\n\n**机制**：world model accuracy ceiling → value_std explosion (7.4→18.3) → noisy actor gradients → policy de-specialization → eval collapse。与 CIVO 的关键区别：value 紧跟 target（无 overestimation），actor_entropy 上升（去特化 vs CIVO 的策略锁死），actor_loss 转正。NVE 上升是被动的（eval 先降 → ratio 被动抬高）。\n\n**对 NVE 诊断的影响**：NVE>1.5x 是 value overestimation 预警，非 CIVO 专属指标。8/8 → 7/8 accuracy (1 FP)。论文需 limitation 讨论。\n\n## 2026-05-15: AUROC CI — 论文报告方法\n\nPerfect separation (n=8) 下所有 CI 方法（DeLong, bootstrap, BCa）退化到 [1,1]。论文应报告：\n- n + pos/neg 构成 + separation margin (B1: 2.161, B2: 0.619)\n- Clopper-Pearson exact binomial 95% CI on accuracy: [0.688, 1.0]\n\n## 2026-05-15: D044 — plan_017 取消，008a 标注修正\n\n008a 的 \"untrained dt_emb\" 实际含义是 \"trained dt_emb unexposed to dt>1 data due to subsample OFF\"，不是 frozen/absent。008a 配置与 plan_017 完全相同，017 是冗余实验。2×2 矩阵已由 008a/008d/008f/015b 闭合。\n\n## 2026-05-15: CIVO Two-Stage Amplification 量化\n\n**dynamics bias 1.68x (36%) + actor exploitation (64%)**：随机 policy 下 dt=2 imagination reward = 1.68x dt=1（纯 dynamics bias），trained policy 下 = 2.90x（actor 进一步放大）。N=100 bootstrap CI 确认统计显著。\n\n## 2026-05-15: Selective Gradient Stopping (SGS) 代码审查结论\n\n**只需修复一条梯度路径**：`reward_loss → reward_head(feat) → feat → deter → GRU → dt_emb.weight`。Imagination 路径（RequiresGrad 隔离）和 Value training（target.detach）天然安全。\n\n**关键难点**：dt_emb 在 GRU 中与 prev_stoch/prev_action 不可逆融合到 deter，无法在 get_feat 层面 detach → 需要 hook-based gradient subtraction（~15 行）。\n\n**SGS vs dt_emb_freeze**：freeze 切断所有梯度（decoder+reward+kl）→ gradient starvation (015b)。SGS 只切断 reward→dt_emb，保留 dynamics 学习能力 → 应能同时避免 CIVO 和 gradient starvation。\n\n## 2026-05-15: 三种崩溃机制\n\n1. **CIVO** (008d, 006): trained dt_emb → dt=2 imagination 生成乐观 latent trajectory → value inflation → actor exploitation → collapse。NVE>1.5x sustained。\n2. **Gradient Starvation** (015b): frozen dt_emb → representation drift → actor_loss→0 → eval degradation。NVE transient <1.5x。\n3. **Imagination-Reality Divergence** (008e_v3_s2): world model accuracy ceiling → value_std explosion → noisy gradients → de-specialization。NVE 被动上升。\n\n## 2026-05-15: ManiSkill3 CUDA_VISIBLE_DEVICES 不兼容\n\n**SAPIEN 引擎在 CUDA_VISIBLE_DEVICES 限制下会 segfault**。submit_training_job 的 GPU 隔离机制与 ManiSkill3 不兼容。ManiSkill3 实验需要特殊处理（让 SAPIEN 看到所有 GPU，用 --device 指定训练卡）。\n\n## 2026-05-15: CIVO 机制精确定位 — Imagination-level 现象\n\n**三层分析完整拼图**：\n1. **Posterior reward prediction** (signed_reward_error): 008d dt=2 **低估** (−0.599)。Reward head 在 real transitions 上并不 overprediction。\n2. **Imagination reward prediction** (imagination_reward_analysis): 008d dt=2 imagination reward = **3x dt=1** (1.386 vs 0.462)。Prior dynamics + trained dt=2 embedding 生成 reward-favorable latent trajectories。\n3. **dt 毒性非单调**: dt=2 (3.00x) > dt=3 (1.73x) > dt=4 (1.65x)。dt=2 在训练中最常见，embedding 过拟合到乐观 latent space。\n\n**008f 对照**: 无 dt_emb 时 dt=1 vs dt=2 差异 ≈ 0，膨胀完全由 trained dt embedding 引起。\n\n## 2026-05-15: NVE Sensitivity — 修正后框架 (D053)\n\n- CIVO 检测 7/8 (87.5%), 1 FP (008e_v3_s2 non-CIVO late collapse)\n- Task B1 AUROC=1.0, margin=2.161; Task B2 AUROC=1.0, margin=0.619\n- Clopper-Pearson 95% CI on accuracy: [0.688, 1.0]\n- NVE 是 value overestimation 预警，非 CIVO 专属；联合机制分析可区分\n\n## 2026-05-15: dm_control 渲染崩溃修复 — LD_PRELOAD + MUJOCO_GL\n\n**问题**：conda base 环境的 `libstdc++.so.6` 仅支持 GLIBCXX_3.4.26，系统 `libOSMesa.so` → `libLLVM-15.so.1` 需要 3.4.30。另需 `libegl1-mesa-dev` 安装 EGL 运行时库。\n\n**修复**：所有训练命令必须包含：\n```\nLD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6 MUJOCO_GL=egl python dreamer.py ...\n```\n\n**submit_training_job vs ssh_execute 的 device 陷阱**：submit_training_job 设置 CUDA_VISIBLE_DEVICES 隔离，脚本内只能用 `--device cuda:0`。直接 ssh_execute 不隔离，两张卡都可见。混用会导致 \"invalid device ordinal\" 或跨 GPU 内存泄漏。\n\n## 2026-05-15: 服务器代码目录确认\n\n源码在 `/root/autodl-tmp/event-gated-adaptive-horizon/`，不在 `/root/runs/event-gated-adaptive-horizon/`（后者只有日志）。启动命令的 cd 必须指向 autodl-tmp。\n\n## 2026-05-15: 009e Collapse 确认 — 独立 Collapse Rate = 1/2\n\n**009e 是 008d 的延续运行（same seed=1）**，eval 5K-55K 完全一致（确定性复现）。009e 延长到 105K：eval 131.08，nve@55K=4.12x (normalized)。\n\n**正确崩溃率**：trained dt_emb + subsample ON → **1/2 independent seeds collapse (50%)**。不是 2/3——008d 和 009e 是同一 seed，只计一次。\n\n## 2026-05-15: D038 — C6 Falsified: dt=1 Imagination 不阻止 CIVO Collapse\n\n**008e_v3_s2 (seed=2) 在 dt=1 imagination 下崩溃**：eval 715@85K → 137@105K, nve=3.78x@105K。\n\n**根因重新定位**：dt=1 imagination 仅延迟 CIVO onset ~70K steps，不降低崩溃概率。根因是 trained dt_embedding + training data 中的 dt>1 transitions（通过 replay buffer）。\n\n## 2026-05-15: D035 — C6 Seed 计数修正\n\nexp_008e_v3_subsample_on_dt1_h15 和 exp_008e_v3_walker_s1 命令行均为 `--seed 1`——确定性复现，不是跨 seed 一致性。提交多 seed 实验前必须核验 `--seed` 参数。\n\n## 2026-05-15: Worker 修改服务器文件但不同步本地的问题\n\n对于 artifacts 目录下的图表脚本和产出，直接编辑本地文件 + 本地渲染。只有需要 GPU/训练数据的操作才在服务器上做。\n\n## 2026-05-14: 文献增量扫描 — Novelty 安全，TAWM 强化贡献\n\n无论文诊断过 dt_embedding → delusional critic → stochastic collapse 机制。TAWM (Nhu et al., ICML 2025) 在 MPC 范式下，反而强化我们贡献。\"Delusional\" 术语追溯 Lu & Schuurmans (NeurIPS 2018)，需在论文中引用和区分。\n\n## 2026-05-14: D032 — Collapse is Stochastic, nve>1.5x is Reliable\n\nnve>1.5x 作为 trained dt_emb marker 100% reliable（4/4）；collapse 是 stochastic（1/2）。\n\n## 2026-05-14: 009c 教训 — dt_emb removal 的双重效应\n\n去掉 dt_embedding：(1) 消除 delusional critic ✓，(2) 严重退化 reward prediction ✗（MAE 75x baseline）。C6 (008e_v3) 是唯一同时避免崩塌 + 保持 reward prediction + 达 95% baseline 的方案。\n\n## 2026-05-14: Value Calibration — 最强诊断信号\n\nv/R ratio 完美分离 collapsed vs healthy。判定阈值 v/R > 1.5 在 late training 100% 区分。\n\n## 2026-05-14: D033 — 008e_v3 dt_embedding 实际是 trained\n\nnn.Embedding 默认 trainable 且代码无 freeze/detach。Critical variable 是 imagination dt，不是 embedding 训练状态。\n\n## 2026-05-14: 监控教训\n\n监控训练进度应直接读 logdir/metrics.jsonl（SSH read_only），不依赖 tmux log。\n\n## 2026-05-14: Cheetah Run / Cartpole Swingup 环境验证\n\n`--task dmc_cheetah_run` / `--task dmc_cartpole_swingup` 直接可用。Dry-run 4 配置全 PASS。\n\n## 2026-05-14: GPU 隔离确认\n\nCUDA_VISIBLE_DEVICES 隔离正确。`--device cuda:0` + `CUDA_VISIBLE_DEVICES=1` = 物理 GPU 1。混用会导致 \"invalid device ordinal\" 或跨 GPU 内存泄漏。\n\n## 2026-05-15: SGS Failure Literature Survey\n\n### 调研目标\n搜索 stop-gradient / gradient intervention 用于控制 MBRL value overestimation 的文献，评估 Full-SGS 方案的文献支撑和新颖性。\n\n### 1. 相关论文列表\n\n**A. Value Overestimation in RL (经典方法)**\n\n| 论文 | 作者 | 年份/会议 | 相关性 |\n|------|------|-----------|--------|\n| Double Q-Learning | van Hasselt | 2010/NIPS | 双估计器减少 max 算子引起的 overestimation；model-free，不涉及 gradient intervention |\n| TD3: Addressing Function Approximation Error in Actor-Critic | Fujimoto et al. | 2018/ICML | Clipped double Q + delayed update；model-free overestimation 标准方案 |\n| Non-delusional Q-learning and Value-iteration | Lu & Schuurmans | 2018/NeurIPS | **定义 \"delusional bias\"**——function approximation 导致 backed-up values 对应不可实现的 policy。我们的 CIVO 是其 MBRL 变体 |\n| ConQUR: Mitigating Delusional Bias in Deep Q-Learning | Su et al. | 2020/ICML | 通过 consistency penalty 约束 Q-labels 与 policy class 一致；不使用 stop-gradient |\n\n**B. Pessimistic / Conservative Model-Based RL**\n\n| 论文 | 作者 | 年份/会议 | 相关性 |\n|------|------|-----------|--------|\n| MOReL: Model-Based Offline RL | Kidambi et al. | 2020/NeurIPS | 构建 Pessimistic MDP，OOD 区域大负奖惩。通过 reward penalty 而非 gradient intervention |\n| MOPO: Model-based Offline Policy Optimization | Yu et al. | 2020/NeurIPS | Uncertainty-based reward penalty 控制 model exploitation。不涉及 stop-gradient |\n| COMBO: Conservative Offline Model-Based Policy Optimization | Yu et al. | 2021/NeurIPS | 对 OOD state-action 正则化 Q-value 估计，无需显式不确定性量化。仍是 loss-level 方法 |\n| CBOP: Conservative Bayesian Model-Based Value Expansion | — | 2023/ICLR | Bayesian posterior 控制 model-based vs model-free value 权重。loss-level |\n\n**C. Value-Aware Model Learning**\n\n| 论文 | 作者 | 年份/会议 | 相关性 |\n|------|------|-----------|--------|\n| VaGraM: Value Gradient weighted Model-Based RL | Voelcker et al. | 2022/ICLR | 用 value gradient 重新加权 model loss，使 model 学习对 value-relevant 区域更精确。**最接近 gradient-level 干预**，但方向相反——调整 model gradient 权重而非阻断特定 pathway |\n\n**D. Gradient Surgery / Gradient Routing (多任务学习)**\n\n| 论文 | 作者 | 年份/会议 | 相关性 |\n|------|------|-----------|--------|\n| PCGrad: Gradient Surgery for Multi-Task Learning | Yu et al. | 2020/NeurIPS | 投影冲突梯度到法平面。**概念上最相关**——在共享网络中处理 conflicting gradients。但目标是多任务平衡，不是阻断特定 conditioning variable |\n| Gradient Routing: Masking Gradients to Localize Computation | Cloud et al. | 2024/arXiv | 对 backprop 应用 data-dependent mask 隔离网络子区域。**技术上最相关**——在 RL (PPO gridworld) 中用于 localize 行为模块。但用于 interpretability/safety，未用于 value overestimation |\n\n**E. Stop-Gradient in Representation Learning**\n\n| 论文 | 作者 | 年份/会议 | 相关性 |\n|------|------|-----------|--------|\n| SimSiam: Exploring Simple Siamese Representation Learning | Chen & He | 2021/CVPR | Stop-gradient 防止表征坍塌。**核心教训：stop-gradient 放置位置决定系统行为**——移除导致 divergence |\n| BYOL: Bootstrap Your Own Latent | Grill et al. | 2020/NeurIPS | Momentum encoder + stop-gradient。与 SimSiam 共同建立 \"stop-gradient as structural constraint\" 范式 |\n| SPR: Self-Predictive Representations | Schwarzer et al. | 2021/ICML | RL 中用 stop-gradient + EMA target 学习 predictive representation。Stop-gradient 用于 target stability，非 overestimation 控制 |\n| Guided Stop-Gradient | — | 2025/arXiv | 改进 SimSiam/BYOL 的 stop-gradient 策略。纯 SSL，不涉及 RL value estimation |\n\n**F. DreamerV3 系列 & Time-Aware World Models**\n\n| 论文 | 作者 | 年份/会议 | 相关性 |\n|------|------|-----------|--------|\n| DreamerV3: Mastering Diverse Domains through World Models | Hafner et al. | 2023/Nature 2025 | Symlog two-hot + EMA critic regularization + return normalization。**不使用 stop-gradient 控制 conditioning variable 梯度** |\n| DreamerV3-XP | — | 2025/arXiv | 加入 ensemble disagreement 探索。无 gradient intervention |\n| TAWM: Time-Aware World Model | Nhu et al. | 2025/ICML | 条件化 Δt 的 world model。**最相关的 conditioning 设计**——但不讨论 conditioning 梯度引起的 value bias，也不使用 stop-gradient |\n| TD-MPC2: Scalable World Models | Hansen et al. | 2023 | SimNorm + Q-ensemble。用 normalization 而非 stop-gradient 控制 latent 稳定性 |\n\n**G. Compounding Error & Imagination Rollout**\n\n| 论文 | 作者 | 年份/会议 | 相关性 |\n|------|------|-----------|--------|\n| Infoprop | — | 2025/ICLR | 信息论方法检测 imagination data corruption 并终止 rollout。不涉及 gradient intervention |\n| On Rollouts in Model-Based RL | — | 2025/ICLR | 分析 rollout 长度与 error compounding 的关系。控制 rollout horizon 而非 gradient |\n\n### 2. Full-Pathway Stop-Gradient 的先例\n\n**未找到直接先例。**\n\n- **SimSiam/BYOL** 在 SSL 中证明 stop-gradient 放置位置至关重要（移除即崩溃），但这是 \"on vs off\" 的二值选择，不是 \"partial vs full pathway\" 的比较。\n- **PCGrad** 在共享网络中处理 conflicting gradients，但通过投影而非 detach，且作用于 task-level gradient 而非 specific conditioning variable。\n- **Gradient Routing** (Cloud et al. 2024) 最接近——对特定子网络 mask 梯度——但应用场景是 interpretability/safety，从未用于 MBRL 中的 value overestimation 控制。\n- **无任何论文报告过**在 world model 的多个 head（reward + critic + dynamics）上同时 detach 某个 conditioning variable 的梯度来控制 overestimation。\n\n### 3. 对 Full-SGS 方案的文献支撑评估\n\n**支撑论文（间接）**：\n- **Lu & Schuurmans (2018)**: \"Delusional bias\" 概念为 CIVO 提供理论根基。CIVO 可解释为 MBRL 中 conditioning-induced delusional bias。\n- **SimSiam (2021)**: 证明 stop-gradient 放置位置对系统动态有决定性影响。Partial SGS 失败 → Full SGS 这一研究路径符合 \"stop-gradient 需要覆盖完整 pathway\" 的已有认知。\n- **PCGrad (2020)**: 建立了 \"gradient intervention 解决共享网络中 conflicting objectives\" 的范式。Full-SGS 是其在 conditioning variable 维度的特化。\n- **VaGraM (2022)**: 证明 gradient-level model learning 干预（而非仅 loss-level）对 MBRL 性能有显著影响。\n\n**文献缺口**：\n- 无论文将 stop-gradient 应用于 **MBRL conditioning variable** 的 gradient pathway\n- 无论文研究过 **partial stop-gradient 失败** 的原因和 full pathway 的必要性\n- 无论文将 gradient intervention 与 **value overestimation / delusional bias** 直接关联\n\n### 4. Novelty 评估\n\n**无 novelty concern。** Full-SGS 的核心贡献在三个层面都是新的：\n\n1. **诊断层面**：CIVO (Conditioning-Induced Value Overestimation) 作为 trained conditioning variable → imagination bias → value overestimation 的完整机制，无先例报告。\n2. **方法层面**：对 conditioning variable 在多个 head 上同时 detach 梯度（Full-SGS），无论文做过。最近的是 Gradient Routing (2024)，但应用场景完全不同。\n3. **发现层面**：Partial stop-gradient (reward-only) 失败而 full pathway (reward + critic) 成功的实证，是独特的贡献。文献中无 partial-vs-full 的对比案例。\n\n**需引用并区分的关键论文**：\n- Lu & Schuurmans (2018) — \"delusional bias\" 术语源头\n- PCGrad (2020) — gradient surgery 范式\n- VaGraM (2022) — gradient-level model learning 干预\n- Gradient Routing (2024) — selective gradient masking 技术\n- TAWM (2025) — temporal conditioning in world models（最需要区分——同样条件化时间变量，但不讨论 gradient pathway bias）"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T22:29:35.400263+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T22:29:35.400448+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存到 `memory.md` 末尾，标题 \"## 2026-05-15: SGS Failure Literature Survey\"。\n\n核心结论：\n\n1. **无 full-pathway stop-gradient 先例**——没有论文在 MBRL world model 的多个 head 上同时 detach conditioning variable 梯度来控制 value overestimation。\n2. **无 partial-vs-full 对比**——文献中不存在 \"partial stop-gradient 失败但 full stop-gradient 成功\" 的案例。\n3. **无 novelty concern**——CIVO 诊断 + Full-SGS 方法 + partial 失败的实证，三个层面均无先例。\n4. **最相关的 5 篇必引论文**：Lu & Schuurmans 2018（delusional bias）、PCGrad 2020（gradient surgery 范式）、VaGraM 2022（gradient-level 干预）、Gradient Routing 2024（selective gradient masking）、TAWM 2025（temporal conditioning，需区分）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_sgs-failure-literature_20260515T222534"
+          },
+          "id": "event-000061"
+        }
+      ],
+      "message_count": 61
+    }
+  ],
+  "readable_path": "readable/conversations/research-sgs-failure-literature.md"
+}

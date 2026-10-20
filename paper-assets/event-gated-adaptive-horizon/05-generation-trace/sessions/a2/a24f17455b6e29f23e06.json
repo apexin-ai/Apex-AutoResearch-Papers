@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a24f17455b6e29f23e06",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "paper figure fig2 force fix",
+  "task_key": "worker_paper_figure_fig2_force_fix_20260515T111647",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig2_force_fix_20260515T111647_result.json",
+    "occurrence": 1,
+    "bytes": 1200,
+    "sha256": "d2f036ecd8f2c8b01cb57b633755ed552c0e109708a6954ceedfade429d76749"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总结果：\n\n### 文件时间戳\n| 文件 | 时间戳 | 大小 |\n|------|--------|------|\n| `fig2_nve_trajectory.py` | May 15 19:13 | 7,644 B |\n| `fig2_nve_trajectory.pdf` | May 15 19:17 | 30,627 B |\n| `fig2_nve_trajectory.png` | May 15 19:17 | 336,838 B (329KB) |\n\nPDF/PNG 均在脚本运行后生成（19:17 > 19:13）。PNG 329KB > 200KB 阈值。\n\n### Step 6 验证结果\n- **PASS**: non-CIVO removed（0 matches）\n- **PASS**: new label `late-onset collapse` present\n- **PASS**: merged label `008d/009e` present\n- **PASS**: actor_loss panel code exists\n\n### 脚本已有的三项修改确认\n脚本在 19:13 已包含全部修改：\n1. **双面板布局**: `gridspec.GridSpec(2, 1, height_ratios=[2, 1])` — 上面板 NVE，下面板 actor_loss（从 `actor_loss_data.json` 读取，含 baseline/009b/008d+009e 合并曲线、y=0 虚线）\n2. **标签改名**: `'008e_v3 s2 (dt=1, late-onset collapse)'` — 无任何 non-CIVO 残留\n3. **008d+009e 合并**: 上面板用 009e 完整 6 点数据 `[25K→75K]`，标签 `008d/009e (seed 1, extended)`；下面板合并 008d(5K-55K) + 009e(65K+) 为连续曲线，标签 `008d/009e (seed 1)`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig2-force-fix.md"
+}

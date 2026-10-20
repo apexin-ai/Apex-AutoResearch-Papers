@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3b26d6391f5e61289e5",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code update civo detector thresholds",
+  "task_key": "worker_code_update-civo-detector-thresholds_20260517T040202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_update-civo-detector-thresholds_20260517T040202_result.json",
+    "occurrence": 1,
+    "bytes": 238,
+    "sha256": "3e043e634afbf1f1b43e5188f367e6543821fd9f1e0fcf9f8b8bbf971fdc6fff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。\n\n- `ve_threshold` = 0.49 ✓\n- 放宽的 eval_decline 逻辑正常触发 alert level=2 ✓\n- PID 646809 的运行进程不受影响（已在内存中的旧代码）\n\n备份文件在 `dreamer.py.bak`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-update-civo-detector-thresholds.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a0f0aa6f9ad916f1db9",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "verify westd exp094",
+  "task_key": "worker_verify_westd_exp094_20260525T225754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_westd_exp094_20260525T225754_result.json",
+    "occurrence": 1,
+    "bytes": 685,
+    "sha256": "da3b171b361a462903c6e1307a91cb1ad911e1452947e8b343092488cb9e1ce1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp_094_cheetah_008d_s3 状态：正常运行中**\n\n| 项目 | 状态 |\n|------|------|\n| **GPU 1 (cuda:1)** | 3221MiB / 97887MiB，29% util，35°C P0 — 符合预期 |\n| **GPU 0 (cuda:0)** | 1MiB / 97887MiB，0% util，30°C P8 — 空闲 |\n| **进程** | PID 53576 (bash wrapper) 存活，子进程 PID 53581 (`python -u dreamer.py ...`) 运行中 |\n| **tmux** | ssh_read_only 不允许 `tmux ls`，但从进程树可见 PID 53575 tmux session `exp_094_cheetah_008d_s3` 存在 |\n| **日志** | 无报错。已完成首次 eval `[5000] eval_return 8.7 / eval_length 500.0`，正在训练中。仅有 `torch.cuda.amp` 的 FutureWarning（不影响运行） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-westd-exp094.md"
+}

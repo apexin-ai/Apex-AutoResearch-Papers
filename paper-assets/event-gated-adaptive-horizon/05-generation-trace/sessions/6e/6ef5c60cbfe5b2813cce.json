@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ef5c60cbfe5b2813cce",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "history",
+  "title": "agent / loop_24_1779848920.md",
+  "task_key": "loop_24_1779848920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_24_1779848920.md",
+    "occurrence": 1,
+    "bytes": 4354,
+    "sha256": "269cee7b54c18671bf8d5e46d6f9890dc688c795d023b13b6504509b9b05101e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 24\nreason: idle_timeout\nupdated: '2026-05-27T02:27:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：westd-51268 的 cuda:0 + cuda:1（`get_project_status` 确认）。bjb1-45299 宕机不可用\n- **数据锁定**：184 个实验全部完成（94 success / 41 negative / 16 failed / 33 killed），0 RUNNING。不要启动新训练实验——项目处于论文提交阶段\n- RSSM fidelity 数据只认 v3 standardized（seed=42, n=1000）。v1/v2/dry-run 数据**已废弃**，论文中不可引用\n- D158 叙事：RSSM fidelity gap 已从\"普适机制\"降级为\"Walker-specific 传导路径\"，trained dt_emb 维持统一根因。不要在论文中恢复旧\"普适机制\"说法\n- C1 措辞（D156）：trained dt_emb 是 CIVO **必要但非充分**条件，onset 具有随机性（3/4 Cheetah onset rate）\n- 旧数字 2.78× 已全部清理，不要在任何地方复活\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-51268, 2× RTX PRO 6000 Blackwell (96GB), CUDA 13.2\n- **工作目录**: `/root/autodl-tmp/event-gated-adaptive-horizon/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **代码同步**: bjb1 → westd rsync 完成（2026-05-26），两端 CLI flag 统一为 `--gate_dt_embed_dim`\n- **关键产出路径**:\n  - artifacts/actor_entropy_comparison.pdf (art_20260526_efebc4)\n  - artifacts/dt_embedding_cosine_similarity.png (art_20260526_07e8c8)\n  - artifacts/value_vs_returns.pdf (art_20260526_8d21ad)\n  - RSSM 分析脚本: westd-51268 上的 analyze_rssm_standardized.py\n- **活跃进程**: 无（GPU 空闲，无 tmux session / cron 监控）\n- **bjb1-45299**: 宕机，数据已迁移，旧 westd-19154 checkpoint 全部丢失（metrics 在 registry）\n\n### 3. 📊 当前状态\n全部实验和分析已完成，项目处于**论文提交倒计时**阶段：\n- **投稿目标**: ICML 2026，DDL 2026-05-29 23:59 UTC\n- **数据锁定**: 等用户确认后声明（ROADMAP 中唯一未勾选项）\n- **Paper Agent**: 已完成 D158 叙事同步到 6 个 tex 文件，0 critical warnings，Reviewer 审查通过（3 处残留已修复）\n- **Registry**: 0 RUNNING / 0 PREPARING / 0 PENDING / 0 QUEUED / 0 ALLOCATED\n- **Worker / Cron**: 无等待中的回调\n\n最后完成的关键工作（2026-05-26）：\n- Frozen dt_emb 因果验证 4/4 闭合\n- RSSM v3 Cheetah standardized 完成（reward ratio 1.00×——无 fidelity gap 但仍有 3/4 CIVO onset）\n- Cheetah 008d 4-seed CIVO 图谱完整（三种后果模式：sustained→self_correcting / collapse / transient→degraded）\n- dt_embedding cosine similarity 分析：trained cos(dt1,dt2) ≈ -0.7~-0.9，frozen ≈ 0\n- Value distribution 分析：CIVO 核心病理是 V(s)-G_t correlation 崩塌（-0.20 vs 健康 0.54）\n\n### 4. 📋 待办（条件触发式）\n- 用户确认数据锁定 → 在 ROADMAP.md 勾选最后一项 → 向 Director 汇报\"数据锁定完成\"\n- Director 要求论文最终修改 → spawn Worker (tool_groups=[\"knowledge\"]) 编辑 tex 文件\n- 如果 Reviewer 发现新问题 → 评估是否需要 re-run 分析（此时不应再跑新训练）\n- 投稿日（5/29）前 → 确认 tex 编译通过 + supplementary 打包\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- **C1**: trained dt_emb 是 CIVO 必要非充分条件（onset rate 86%，具有随机性）\n- **C2**: CIVO 在 multi-joint locomotion 跨环境存在（Walker 3/3 + Cheetah 3/4），限定 locomotion domain\n- **C3**: 未暴露 dt>1 的 trained dt_emb → value suppression（而非 overestimation）\n- **C6**: frozen/removed dt_emb 确定性地阻止 CIVO（4/4 验证）\n- **D158**: RSSM fidelity gap 是 Walker 的传导路径（1.63×），但 Cheetah 无 gap（1.00×）仍 onset → gap 不是唯一/主要驱动因素。trained dt_emb 将 dt=1/dt=2 编码为对立方向（cosine -0.7~-0.9）才是统一根因\n\n**易错点**：\n- 不要把 Cheetah RSSM 1.00× 和 Walker 1.63× 混为一谈——它们的机制路径不同，但根因（trained dt_emb anti-correlated encoding）统一\n- GC4-par (Cheetah) 和 GC4-seq (Walker) 不可直接对比\n- ve_ratio 恢复 ≠ policy 恢复——exp_097 (s3) 是关键证据（NVE 恢复但 eval 持续下滑）\n- 008e_v3 CIVO 再现性问题已由 D153 定性为参数路由 bug（gate_max_dt=8 vs 实际 2），不要用旧 008e_v3 数据\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-24-1779848920.md"
+}

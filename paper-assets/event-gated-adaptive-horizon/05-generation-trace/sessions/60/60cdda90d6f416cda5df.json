@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60cdda90d6f416cda5df",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "code exp 021 prep",
+  "task_key": "worker_code_exp_021_prep_20260517T140031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_021_prep_20260517T140031_result.json",
+    "occurrence": 1,
+    "bytes": 1315,
+    "sha256": "87abefee3a92d9ea5d17102492a31307fc3d896456383e6cbe3b2e80302082e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 验证完成。总结如下：\n\n## exp_021_full_sgs_cheetah_s1 准备状态：Ready\n\n**启动脚本**：`/root/autodl-tmp/event-gated-adaptive-horizon/scripts/exp_021_full_sgs_cheetah_s1.sh`\n\n**完整命令**：\n```bash\nCUDA_ID=0 bash scripts/exp_021_full_sgs_cheetah_s1.sh\n```\n\n**关键参数**（已验证）：\n| 参数 | 值 | 来源 |\n|------|------|------|\n| task | dmc_cheetah_run | 与 010b 一致 |\n| configs | defaults dmc_proprio | 与 010b 一致 |\n| gate_enabled | True | 与 010b 一致 |\n| gate_fixed_dt | 2 | 与 010b 一致 |\n| gate_subsample_max_dt | 2 | 与 010b 一致 |\n| imag_horizon | 8 | 与 010b 一致 |\n| **full_sgs** | **True** | 与 018v2 一致（010b 没有此参数） |\n| seed | 1 | — |\n| steps | 105000 | 与 010b/018v2 一致 |\n| checkpoint_every | 10000 | — |\n\n**Dry-run 结果**：\n- Config 解析正确\n- Cheetah Run 环境创建成功（Action Space 6D, proprio mode）\n- Model 构建完成（16.9M world model params）\n- Prefill + Eval + Training loop 全部正常进入\n- SGS 实现通过 `models.py:346` 检查 `full_sgs` flag，在 actor/value 训练时冻结 `dt_embedding.weight`\n- 无报错（仅有 deprecated warnings，不影响功能）\n\n**无问题发现**，脚本可直接用于 GPU 分配后提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-021-prep.md"
+}

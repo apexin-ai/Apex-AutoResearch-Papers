@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3e8912d3dcaad064093",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "result",
+  "title": "ops kill trained s0 pid",
+  "task_key": "worker_ops_kill-trained-s0-pid_20260527T060056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-trained-s0-pid_20260527T060056_result.json",
+    "occurrence": 1,
+    "bytes": 354,
+    "sha256": "3d2ab603958323229072728e3671c5f95c36ac62ebad399bd24421e36a8db595"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n| 项目 | 结果 |\n|------|------|\n| PID 604513 (bash wrapper) | 已杀掉 (SIGTERM) |\n| PID 604518 (python dreamer.py) | 已杀掉 (SIGTERM) |\n| tmux session exp_hopper_trained_s0 | 已清理 |\n| **GPU 0** | 52446 MiB used, 23% util（其他任务在跑） |\n| **GPU 1** | **1 MiB used, 0% util — 已完全释放** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-trained-s0-pid.md"
+}

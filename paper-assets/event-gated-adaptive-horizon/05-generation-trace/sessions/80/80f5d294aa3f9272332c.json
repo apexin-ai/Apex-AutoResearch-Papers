@@ -1,0 +1,1418 @@
+{
+  "schema_version": "1.0",
+  "id": "80f5d294aa3f9272332c",
+  "project": "event-gated-adaptive-horizon",
+  "kind": "conversation",
+  "title": "cron hook exp 004 event gated v3 20260514T223409 152193",
+  "task_key": "cron_hook_exp_004_event_gated_v3_20260514T223409_152193",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_exp_004_event_gated_v3_20260514T223409_152193.jsonl",
+    "occurrence": 1,
+    "bytes": 93905,
+    "sha256": "d90b58505e6a615f19b38bc217f1b839afc4b32d17e8ac625747efe6073be0a3"
+  },
+  "statistics": {
+    "messages": 71,
+    "user_turns": 2,
+    "tool_calls": 34,
+    "roles": {
+      "user": 2,
+      "tool_call": 34,
+      "tool_result": 33,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T18:56:30.633137+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #8。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 cuda:0 和 cuda:1**（bjb1-45299 上的 RTX PRO 6000）。禁止使用其他 GPU，即使 Director 指令也必须 push back\n- cuda:1 排期已锁定（D031）：008e_v3_s1 → 008e_v3_s2 → 009e → 009f → 009c(200K) → plan_060。008e_v3 是 crown jewel C6 验证，最高优先级，不可插队\n- 环境变量三件套必须加：`MUJOCO_GL=osmesa PYOPENGL_PLATFORM=osmesa LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6`\n- 008f 定位是**因果控制实验**，不是推荐方案——论文中不可将 008f 描述为 mitigation，推荐方案只有 008e_v3 (C6)\n- C2 措辞已降级（D030）：trained dt_emb \"significantly delays and reduces\" delusional critic，不能说 \"eliminates\"\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: bjb1-45299，工作目录 `/root/autodl-tmp/event-gated-adaptive-horizon`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，无 venv）\n- **激活命令**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **W&B / HF cache**: 未在 config 中明确，需要时让 Worker SSH 探查\n- **活跃进程**:\n  - exp_009a_baseline_walker_s2: PID 142508, cuda:0, step 116K/500K (~23%), ETA ~13.7h, eval_return 804.79@115K\n  - exp_008e_v3_walker_s1: PID 898127, cuda:1, 刚提交（metrics 为空）\n- **Cron 监控**: 2 个活跃 cron 分别监控上述两个实验\n- **ALLOCATED 待提交**: exp_008e_v3_walker_s2（cuda:1，排在 008e_v3_s1 之后）\n\n### 3. 📊 当前状态\n**刚发生的事**：exp_009b_008d_walker_s2 完成（conclusion=success，ANALYZING 状态），on_complete hook 已触发但**未被处理**。这是你接手后的第一优先事项——按 on-experiment-done skill 处理：分析 009b 结果（008d seed 2 是否也崩塌？确认 C2 多 seed 一致性）、更新 registry、刷新 report.md、汇报 Director。\n\n**Registry 状态概览**:\n- RUNNING: 2（009a cuda:0, 008e_v3_s1 cuda:1）\n- ANALYZING: 1（009b — 待处理）\n- ALLOCATED: 1（008e_v3_s2 — 等 008e_v3_s1 完成后提交）\n- QUEUED: 4（009d, 009e, 009f, 010a）\n- DONE: 15（success 4, negative 8, failed 1, killed 2）\n- PREPARING: 6（多为历史残留 shadow entries）\n- **Worker 池 = 0**（违反 L1 #4，需立即派 Worker）\n\n**等待中**:\n- 009b on_complete 回调等待处理\n- 008e_v3_s1 cron 监控中（刚开始跑）\n- 009a 约 13.7h 后完成\n\n### 4. 📋 待办（条件触发式）\n- **立即** → 处理 exp_009b_008d_walker_s2 ANALYZING：spawn Worker 分析 009b metrics（008d seed 2 v/e 走势，是否也到 nve>1.5x 崩塌），update_registry，刷 report.md，汇报 Director（009b 确认/否认 C2 多 seed 一致性）\n- 008e_v3_s1 cron 回调到达 → 分析结果（C6 crown jewel seed 1 是否维持 95% baseline），submit 008e_v3_s2 到 cuda:1\n- 008e_v3_s2 完成 → 分析 C6 两 seed 一致性，更新 paper_framing C6 strength\n- 009a (500K baseline s2) 完成 → 分析 baseline 多 seed 一致性，submit 009d (baseline s1) 到 cuda:0\n- 009d 完成 → submit 010a (Cheetah Run baseline) 到 cuda:0 — 这是第二环境验证（R1 reviewer concern）\n- cuda:1 queue 清空到 009e 时 → 009e 是 008d seed 1 复现，与 009b (seed 2) 形成 C2 三 seed 证据\n- **非 GPU 任务（应立即并行铺）**: 论文 figure 生成（0 GPU cost）、literature_map 更新、paper section 草稿\n\n### 5. 🎯 战略上下文\n**核心 narrative**: Narrative B+ — \"Diagnostic Analysis of Temporal Abstraction in World-Model RL\"。闭合因果链：trained dt_embedding → delusional critic (v/e >1.5x) → collapse。008e_v3 (untrained dt_emb + dt=1 imagination) 是唯一同时避免崩塌 + 保持 reward prediction + 达 95% baseline 的方案。\n\n**关键决策链**: D028(MVP通过) → D029(Dream审稿调整:3seeds不扩5) → D030(C2降级:seed-dependent) → D031(Option A narrative, C6升格crown jewel) → D032(C2再修订:trained dt_emb是primary amplifier)\n\n**CoRL DDL**: 2026-05-29，剩余 **15 天**。P0 实验 ~145 GPU·h (~3天 wall time)，时间充裕但不能浪费。\n\n**最容易判断错的事**:\n1. 不要把 009b (008d seed 2) 的 \"conclusion=success\" 误解为实验表现好——这里 success 指训练正常完成，008d 的预期是崩塌（delusional critic），成功复现崩塌 = success\n2. 008f 两个 seed 行为差异巨大（seed 0 recovery 到 503, seed 2 decline 到 148），不要用单一 seed 做 claim\n3. normalized v/e ratio 的阈值：>1.5x = pathological，0.8-1.2x = normal，<0.7x = value suppression。这是论文核心诊断指标\n4. PREPARING 状态的 exp_006/008a/008c/008d 等是历史 shadow entries，不要试图推进它们\n\n## 项目硬约束 (memory.md 节选)\n\n## 2026-05-14: Cheetah Run / Cartpole Swingup 环境验证\n\n### 结论：代码无需修改，直接可用\n\n代码通过 `--task` 参数自动解析环境名，流程：\n- `--task dmc_cheetah_run` → `suite.load(\"cheetah\", \"run\")`\n- `--task dmc_cartpole_swingup` → `suite.load(\"cartpole\", \"swingup\")`\n\n`dmc_proprio` 配置（action_repeat=2, envs=4, train_ratio=512, MLP encoder/decoder）对所有 DMC proprio 环境通用。\n\n### 环境 Observation/Action Space 对比\n\n| 环境 | Obs dims | Action dims | Action range |\n|------|----------|-------------|--------------|\n| walker_walk | orientations(14), height(1), velocity(9) = 24D | 6 | [-1, 1] |\n| cheetah_run | position(8), velocity(9) = 17D | 6 | [-1, 1] |\n| cartpole_swingup | position(3), velocity(2) = 5D | 1 | [-1, 1] |\n\n**注意：Cartpole Swingup obs/act 维度远小于 Walker/Cheetah。** MLP encoder/decoder 自动适配（从 obs_space 推断），无需手动调整。但模型容量可能过大——默认 512 units 对 5D obs + 1D act 可能 overkill。如果训练不稳定可考虑减小网络。\n\n### 启动命令模板\n\n**Cheetah Run Baseline:**\n```bash\npython dreamer.py --configs defaults dmc_proprio \\\n  --task dmc_cheetah_run \\\n  --logdir logdir/exp_XXX_baseline_cheetah_sY \\\n  --steps 500000 --seed Y --compile False --device cuda:Z\n```\n\n**Cheetah Run Treatment (以 008f config 为例):**\n```bash\npython dreamer.py --configs defaults dmc_proprio \\\n  --task dmc_cheetah_run \\\n  --logdir logdir/exp_XXX_008f_cheetah_sY \\\n  --steps 105000 --seed Y --compile False --device cuda:Z \\\n  --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 \\\n  --imag_horizon 8 --gate_dt_embed_dim 0\n```\n\n**Cartpole Swingup Baseline:**\n```bash\npython dreamer.py --configs defaults dmc_proprio \\\n  --task dmc_cartpole_swingup \\\n  --logdir logdir/exp_XXX_baseline_cartpole_sY \\\n  --steps 500000 --seed Y --compile False --device cuda:Z\n```\n\n**Cartpole Swingup Treatment (以 008f config 为例):**\n```bash\npython dreamer.py --configs defaults dmc_proprio \\\n  --task dmc_cartpole_swingup \\\n  --logdir logdir/exp_XXX_008f_cartpole_sY \\\n  --steps 105000 --seed Y --compile False --device cuda:Z \\\n  --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 \\\n  --imag_horizon 8 --gate_dt_embed_dim 0\n```\n\n### 环境特定注意事项\n\n1. **action_repeat=2** 对三个环境都适用（DMC 标准设置）\n2. **time_limit=1000**（默认）对三个环境都适用\n3. **Cartpole 维度差异**：obs 5D vs Walker 24D，act 1D vs Walker 6D。模型自动适配，但训练动态可能不同（更快收敛或更不稳定）\n4. **Cheetah 与 Walker 类似**：都是 locomotion 任务，obs/act 维度接近，预期行为最相似\n5. **环境变量**：`MUJOCO_GL=osmesa PYOPENGL_PLATFORM=osmesa LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6` 仍然需要\n6. **无需代码修改**\n\n## 可查的历史\n前 29 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T18:56:41.978797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T18:56:42.029559+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T18:56:45.596594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "limit": "0"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T18:56:46.150026+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T18:56:46.151519+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_009b_008d_walker_s2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T07:17:25.186Z\\\", \\\"updated_at\\\": \\\"2026-05-14T18:53:33.367Z\\\", \\\"hypothesis\\\": \\\"Walker Walk trained dt_emb + subsample ON + H=8 seed 2 — 多 seed 复现 008d delusional critic collapse，巩固 C2 统计显著性（plan_011）\\\", \\\"parent\\\": \\\"exp_008d_subsample_on_h8\\\", \\\"metrics\\\": {\\\"current_step\\\": 105000, \\\"target_steps\\\": 105000, \\\"eval_checkpoints\\\": [{\\\"step\\\": 5000, \\\"eval_return\\\": 39.27, \\\"value_mean\\\": 0, \\\"ve_ratio\\\": 0, \\\"baseline_ve\\\": null, \\\"normalized_ve\\\": null}, {\\\"step\\\": 15000, \\\"eval_return\\\": 144.31, \\\"value_mean\\\": 4.47, \\\"ve_ratio\\\": 0.031, \\\"baseline_ve\\\": null, \\\"normalized_ve\\\": null}, {\\\"step\\\": 25000, \\\"eval_return\\\": 141.12, \\\"value_mean\\\": 25.14, \\\"ve_ratio\\\": 0.178, \\\"baseline_ve\\\": 0.087, \\\"normalized_ve\\\": 2.05}, {\\\"step\\\": 35000, \\\"eval_return\\\": 164.14, \\\"value_mean\\\": 49.02, \\\"ve_ratio\\\": 0.299, \\\"baseline_ve\\\": 0.241, \\\"normalized_ve\\\": 1.24}, {\\\"step\\\": 45000, \\\"eval_return\\\": 141.04, \\\"value_mean\\\": 75.59, \\\"ve_ratio\\\": 0.536, \\\"baseline_ve\\\": 0.331, \\\"normalized_ve\\\": 1.62}, {\\\"step\\\": 55000, \\\"eval_return\\\": 172.33, \\\"value_mean\\\": 98.28, \\\"ve_ratio\\\": 0.57, \\\"baseline_ve\\\": 0.404, \\\"normalized_ve\\\": 1.41}, {\\\"step\\\": 65000, \\\"eval_return\\\": 209.16, \\\"value_mean\\\": 110.91, \\\"ve_ratio\\\": 0.53, \\\"baseline_ve\\\": 0.563, \\\"normalized_ve\\\": 0.94}, {\\\"step\\\": 75000, \\\"eval_return\\\": 197.46, \\\"value_mean\\\": 93.49, \\\"ve_ratio\\\": 0.474, \\\"baseline_ve\\\": 0.719, \\\"normalized_ve\\\": 0.66}, {\\\"step\\\": 85000, \\\"eval_return\\\": 236.49, \\\"value_mean\\\": 83.86, \\\"ve_ratio\\\": 0.355, \\\"baseline_ve\\\": 0.701, \\\"normalized_ve\\\": 0.51}, {\\\"step\\\": 95000, \\\"eval_return\\\": 278.54, \\\"value_mean\\\": 75.72, \\\"ve_ratio\\\": 0.272, \\\"baseline_ve\\\": 0.632, \\\"normalized_ve\\\": 0.43}, {\\\"step\\\": 105000, \\\"eval_return\\\": 267.93, \\\"value_mean\\\": 67.27, \\\"ve_ratio\\\": 0.251, \\\"baseline_ve\\\": 0.656, \\\"normalized_ve\\\": 0.38}], \\\"trend\\\": \\\"Eval rising thr\n…[truncated 24866 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 554
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T18:56:46.606723+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T18:56:46.757803+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T18:56:49.776383+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 2, \\\"results\\\": [{\\\"exp_id\\\": \\\"exp_009a_baseline_walker_s2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=142508)\\\"]}, {\\\"exp_id\\\": \\\"exp_008e_v3_walker_s1\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=898127)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 3626
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T18:56:49.776936+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp_008e_v3_walker_s1 | Walker Walk untrained dt_emb + subsample ON + dt=1 imag + H=15 seed 1 — 多 seed 验证 008e_v3 mitigation 稳定性，crown jewel C6 evidence（plan_014） | — | — | — |\\\\n| exp_009a_baseline_walker_s2 | Walker Walk baseline seed 2 — 多 seed 复现 exp_001 baseline，建立 v/e 校准参考（plan_010） | — | — | — |\\\\n\\\\n## 待处理\\\\n- exp_009e_008d_walker_s1: Walker Walk trained dt_emb + subsample ON + H=8 seed 1 — 多 seed 复现 008d delusional critic collapse，巩固 C2 统计显著性（plan_011）（排队等待 GPU）\\\\n- exp_010a_cheetah_baseline_s1: Cheetah Run baseline seed 1 — 建立第二环境 dt=1 参考基线，为跨环境验证 C1/C2 做准备（plan_020）（排队等待 GPU）\\\\n- exp_009d_baseline_walker_s1: Walker Walk baseline seed 1 — 多 seed 复现 exp_001 baseline，建立 v/e 校准参考（plan_010）（排队等待 GPU）\\\\n- exp_009f_008f_walker_s1: Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 1 — 多 seed 复现 008f 因果控制稳定性，巩固 C2 统计显著性（plan_012）（排队等待 GPU）\\\\n- exp_008e_v3_walker_s2: Walker Walk untrained dt_emb + subsample ON + dt=1 imag + H=15 seed 2 — 多 seed 验证 008e_v3 mitigation 稳定性，crown jewel C6 evidence（plan_014）（已分配 ? GPU:cuda:1，等待提交）\\\\n- exp_rssm_fidelity_analysis: RSSM prediction quality analysis: 比较 baseline/008d/008f 在 dt=1 vs dt=2 transitions 上的 obs_MSE 和 reward_MAE，量化 RSSM fidelity gap (plan_030)（准备中）\\\\n- exp_008e_v2_subsample_on_dt1_h15（准备中）\\\\n- exp_008d（准备中）\\\\n- exp_008c（准备中）\\\\n- exp_008a（准备中）\\\\n- …另有 1 项\\\\n\\\\n## 近期结论\\\\n- **exp_009b_008d_walker_s2** (negative): Walker Walk trained dt_emb + subsample ON + H=8 seed 2 — 多 seed 复现 008d delusional critic collapse，巩固 C2 统计显著性（plan_011） ← 基于 exp_008d_subsample_on_h8\\\\n- **exp_009c_008f_walker_s2** (negative): Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 2 — 多 seed 复现 008f 因果控制稳定性，巩固 C2 统计显著性\n…[truncated 653 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 3170
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T18:56:49.827747+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/ROADMAP.md\\\", \\\"content\\\": \\\"# event-gated-adaptive-horizon — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 06:26 UTC | 更新原因: MVP complete → research phase. experiment_plan.yaml created, dream_simulate launched\\\\n\\\\n## 核心方向\\\\n**Narrative B+: Diagnostic Analysis of Temporal Abstraction in World-Model RL**\\\\n核心因果链：trained dt_embedding → delusional critic → collapse。Untrained dt_embedding 通过 value growth suppression 实质性保护性能。详见 paper_framing.md。\\\\n\\\\n**Target**: CoRL 2026 (DDL 2026-05-29, 剩余 15 天)\\\\n\\\\n## 阶段\\\\n**Research** — MVP 于 2026-05-14 通过（D028: C2 因果确认 + C3 B+ 105K 确认）。experiment_plan.yaml 已创建，Dream 模拟已启动。\\\\n\\\\n## 核心发现（因果链闭合 ✓）\\\\n\\\\n1. **C2 因果确认**：008f（dt_embed_dim=0）normalized v/e=0.73x@35K vs 008d（dim=32）=1.71x。唯一差异是 dt_embedding → delusional critic 消失。\\\\n2. **C3 B+ 确认**：008a 105K=778（85% baseline），normalized v/e=0.59x，两次 V-recovery。结构性 value growth suppression。\\\\n3. **008e_v3 B+ confound 解答中**：untrained dt_emb + subsample ON → normalized v/e=0.88x@45K（正常），保护来自 untrained dt_emb 而非 subsample OFF。\\\\n\\\\n## 诊断框架\\\\n**Normalized v/e ratio** = 实验 v/e / baseline v/e @同 step。>1.5x = pathological; 0.8-1.2x = normal; <0.7x = value suppression。\\\\n\\\\n## 实验计划概览（详见 experiment_plan.yaml）\\\\n\\\\n| 优先级 | 内容 | GPU 预算 | 状态 |\\\\n|--------|------|---------|------|\\\\n| P0 | Walker Walk MVP 实验（8 个） | ~38h done + 10h running | ✅ 6 done, 2 running |\\\\n| P0 | Walker Walk 多 seed（baseline + 008d + 008f × 2 seeds） | ~30h | planned |\\\\n| P0 | Cheetah Run 验证（baseline + trained + dim=0 × 3 seeds） | ~45h | planned |\\\\n| P0 | Cartpole Swingup 验证（baseline + trained + dim=0 × 3 seeds） | ~45h | planned |\\\\n| P0 | Uncertainty-gated truncation pilot（plan_060, actionability） | 5h | planned |\\\\n| P1 | Walker Walk 008a seeds + Cheetah Run C3 + 分析实验 | ~26h | planned |\\\\n| P2 | Hopper Hop + 补充分析 | ~46h | stretch |\\\\n\\\\n**Total P0**: ~145 GPU·h → ~3 days wall time。**Total P0+\n…[truncated 2457 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 3069
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T18:57:28.996935+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__send_progress",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T18:57:29.098408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "ToolSearch",
+            "elapsed_ms": 101
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T18:57:45.855794+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "paper_framing.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T18:57:45.856332+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "literature_map.yaml",
+              "max_chars": "8000"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T18:57:46.865929+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing: Diagnostic Analysis of Temporal Abstraction in World-Model RL\\\\n\\\\n## Title Candidates\\\\n\\\\n1. **\\\\\\\"Why Temporal Abstraction Fails in DreamerV3: A Diagnostic Analysis of Variable-Rate Imagination\\\\\\\"**\\\\n2. **\\\\\\\"The Delusional Critic Problem in DreamerV3's Variable-Rate Imagination\\\\\\\"**\\\\n3. **\\\\\\\"Diagnosing Value Overestimation from Temporal Abstraction in DreamerV3\\\\\\\"**\\\\n\\\\n## Venue\\\\n\\\\n**CoRL 2026** — Deadline: 2026-05-29\\\\n\\\\n## Narrative Positioning\\\\n\\\\nThis is a **diagnostic analysis paper**, not a method paper. We do not propose a new algorithm. Instead, we provide a systematic, controlled investigation answering: *Why does temporal abstraction fail in world-model RL?*\\\\n\\\\nThe contribution is a **closed causal chain** from mechanism to failure mode, backed by a factorial experiment design that isolates each factor, plus a **practical mitigation guideline** (restrict imagination to dt=1 during multi-dt training → 95% baseline recovery). Diagnostic papers are valued when they (a) address a widely-attempted but poorly-understood failure, (b) provide actionable insight for future method design, and (c) are methodologically rigorous.\\\\n\\\\nWe scope all claims to **DreamerV3 and its RSSM world model**. Generalizability to other latent-dynamics architectures is discussed but not claimed.\\\\n\\\\n---\\\\n\\\\n## Core Claims\\\\n\\\\n### C1: Variable-rate imagination in DreamerV3 consistently degrades performance\\\\n\\\\nTemporal abstraction via variable dt—whether learned or fixed—degrades asymptotic performance relative to the dt=1 baseline across all tested configurations.\\\\n\\\\n| Evidence | Experiment | Key Metric |\\\\n|----------|-----------|------------|\\\\n| Baseline stability | exp_001_baseline (dt=1) | Stable convergence ~950 eval return |\\\\n| Fixed dt=2 collapse | exp_006_fixed_d\n…[truncated 10555 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 1010
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T18:57:46.866650+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/literature_map.yaml\\\", \\\"content\\\": \\\"# Literature Map — event-gated-adaptive-horizon\\\\n# Last updated: 2026-05-14\\\\n# Total: 45 papers (5 existing + 40 new)\\\\n\\\\n# ============================================================\\\\n# EXISTING CITATIONS (already in paper.tex)\\\\n# ============================================================\\\\n\\\\n- paper_id: sutton1999options\\\\n  title: \\\\\\\"Between MDPs and Semi-MDPs: A Framework for Temporal Abstraction in Reinforcement Learning\\\\\\\"\\\\n  authors: [Sutton R.S., Precup D., Singh S.]\\\\n  year: 1999\\\\n  venue: \\\\\\\"Artificial Intelligence 112(1-2):181-211\\\\\\\"\\\\n  category: background\\\\n  role: \\\\\\\"Foundational options framework for temporal abstraction in RL; our work investigates why temporal abstraction fails in world-model RL\\\\\\\"\\\\n  relevance_score: 5\\\\n\\\\n- paper_id: hafner2020dreamerv1\\\\n  title: \\\\\\\"Dream to Control: Learning Behaviors by Latent Imagination\\\\\\\"\\\\n  authors: [Hafner D., Lillicrap T., Ba J., Norouzi M.]\\\\n  year: 2020\\\\n  venue: ICLR\\\\n  category: background\\\\n  role: \\\\\\\"DreamerV1 — base architecture family; our experiments build on the RSSM and imagination-based training paradigm\\\\\\\"\\\\n  relevance_score: 5\\\\n\\\\n- paper_id: hafner2023dreamerv3\\\\n  title: \\\\\\\"Mastering Diverse Domains through World Models\\\\\\\"\\\\n  authors: [Hafner D., Pasukonis J., Ba J., Lillicrap T.]\\\\n  year: 2023\\\\n  venue: \\\\\\\"arXiv:2301.04104 (Nature 2025)\\\\\\\"\\\\n  category: background\\\\n  role: \\\\\\\"DreamerV3 — the specific base system we modify; symlog transforms, discrete latents, all default hyperparameters come from here\\\\\\\"\\\\n  relevance_score: 5\\\\n\\\\n- paper_id: sharma2017figar\\\\n  title: \\\\\\\"Fine Grained Action Repetition for Deep Reinforcement Learning\\\\\\\"\\\\n  authors: [Sharma S., Lakshminarayanan A.S., Ravindran B.]\\\\n  year: 2017\\\\n  venue: \\\\\\\"ICLR Workshop\\\\\\\"\\\\n  category: method-compo\n…[truncated 6893 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 1010
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T18:57:47.369014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T18:57:47.470253+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_d916d761."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T18:57:55.624122+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T18:57:55.676997+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/.claude/sessions/agent_d916d761."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "Read",
+            "elapsed_ms": 52
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T18:57:58.551405+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T18:57:58.652701+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T18:59:03.506000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__compute_coverage_matrix",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T18:59:03.557484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T18:59:07.048018+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T18:59:07.300723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"name\\\": \\\"Walker Walk baseline (seed 0)\\\", \\\"claim\\\": [\\\"C1\\\", \\\"C2\\\", \\\"C3\\\"], \\\"description\\\": \\\"dt=1 baseline establishing reference performance and v/e calibration\\\", \\\"priority\\\": \\\"P0\\\", \\\"registry_id\\\": \\\"exp_001_baseline\\\", \\\"status\\\": \\\"DONE\\\", \\\"gpu_budget_hours\\\": 5, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"step\\\": 512000, \\\"eval_return_205K\\\": 907.1, \\\"eval_return_215K\\\": 919.8, \\\"eval_return_265K\\\": 925.09, \\\"eval_return_365K\\\": 935.8, \\\"eval_return_375K\\\": 918.2, \\\"eval_return_445K\\\": 964.96, \\\"eval_return_455K\\\": 953.37, \\\"eval_return_last10_mean\\\": 950.9, \\\"train_return_latest\\\": 958.07, \\\"fps\\\": 7.29, \\\"final\\\": true, \\\"value_eval_ratio_25K\\\": 0.087, \\\"value_eval_ratio_35K\\\": 0.241, \\\"value_eval_ratio_45K\\\": 0.331, \\\"value_eval_ratio_55K\\\": 0.404, \\\"value_eval_ratio_65K\\\": 0.563, \\\"value_eval_ratio_75K\\\": 0.719, \\\"value_eval_ratio_85K\\\": 0.701, \\\"value_eval_ratio_95K\\\": 0.632, \\\"value_eval_ratio_105K\\\": 0.656, \\\"value_eval_ratio_stable\\\": \\\"~69-72% from 135K+\\\", \\\"data_source_ve\\\": \\\"from training logs metrics.jsonl\\\"}}, {\\\"id\\\": \\\"plan_002\\\", \\\"name\\\": \\\"Walker Walk trained dt_emb collapse (seed 0)\\\", \\\"claim\\\": [\\\"C1\\\", \\\"C2\\\"], \\\"description\\\": \\\"dt=2 + subsample ON + trained dt_emb → delusional critic collapse\\\", \\\"priority\\\": \\\"P0\\\", \\\"registry_id\\\": \\\"exp_006_fixed_dt2\\\", \\\"status\\\": \\\"DONE\\\", \\\"gpu_budget_hours\\\": 5, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"step\\\": 65000, \\\"eval_return_5K\\\": 31, \\\"eval_return_15K\\\": 256.9, \\\"eval_return_25K\\\": 321.4, \\\"eval_return_35K\\\": 485.3, \\\"eval_return_45K\\\": 477, \\\"eval_return_55K\\\": 360.4, \\\"eval_return_65K\\\": 132.86, \\\"peak_return\\\": 485.3, \\\"peak_step\\\": \\\"35K\\\", \\\"model_loss_5K\\\": 20.738, \\\"model_loss_15K\\\": 7.593, \\\"model_loss_25K\\\": 5.633, \\\"model_loss_35K\\\": 5.229, \\\"model_loss_45K\\\": 5.023, \\\"model_loss_55K\\\": 4.9, \\\"gate_dt_mean\\\": 2, \\\"gate_dt_std\\\": 0, \\\"fps\\\": 6.5, \\\"value_mean_35K\\\": 151.1, \\\"valu\n…[truncated 15759 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 252
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T19:00:39.295995+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "text": "[资源] GPU 分配 2 / 实际跑 2 | Worker 池 0→2 (GPU 0 / CPU 2 正在派遣)\n\n## exp_009b_008d_walker_s2 完成 — conclusion: NEGATIVE ⚠️\n\n### 事实\n\n009b（008d config seed 2, trained dt_emb + subsample ON + H=8）训练正常完成 105K steps，但**未复现 seed 0 的 delusional critic collapse**。\n\n| 指标 | 008d seed 0 | 009b seed 2 |\n|------|------------|------------|\n| nve@25K | 1.78x (pathological) | 2.05x (pathological) |\n| nve@45K | 2.09x (accelerating) | 1.62x (declining) |\n| nve@105K | — (已崩塌@55K) | 0.38x (self-corrected) |\n| eval@105K | 83 (崩塌) | 268 (上升中) |\n| v/e 轨迹 | 持续加速 → 崩塌 | 早期峰值 → 自修正 |\n\n**矛盾发现**: 009b (with dt_emb, eval=268) **反超** 009c (without dt_emb, eval=148) in seed 2。在 seed 2 中，去掉 dt_embedding 反而更差。\n\n### 对比（C2 全部 evidence）\n\n| 实验 | dt_emb | seed | nve 轨迹 | 结果 |\n|------|--------|------|---------|------|\n| 008d | trained | 0 | 1.78→1.71→2.09 (持续>1.5x) | **COLLAPSE** |\n| 009b | trained | 2 | 2.05→1.24→1.62→0.94→0.38 (transient>1.5x) | **SELF-CORRECT** |\n| 008f | dim=0 | 0 | 1.02→0.73→0.83→0.97→0.30 (always<1.5x) | RECOVERY (503) |\n| 009c | dim=0 | 2 | 1.26→0.79→0.72→0.33→1.14 (rising@105K) | DECLINE (148) |\n\nC2 当前得分：trained dt_emb collapse 1/2 seeds, dim=0 stability 1/2 seeds。**causal direction 仍成立**（trained dt_emb 两个 seed 都在 25K 触发 nve>1.5x），但 **collapse 不是确定性的**。\n\n### Framing 调整提案（Red Section）\n\n**1. 原 claim:** Trained dt_embedding is the primary amplifier of delusional critic → collapse\n\n**2. 实验结果:** Collapse 是 seed-dependent。Trained dt_emb 创造 early pathological nve（两个 seed 都>1.5x@25K），但只有 *sustained* pathological nve（连续 3+ checkpoints >1.5x）才导致 collapse。\n\n**3. 重新审视:**\n- 挑战的 hypothesis：trained dt_emb → deterministic collapse\n- 暴露的被忽略变量：training trajectory stochasticity（初始化/mini-batch 顺序）决定 nve 是持续还是自修正\n- 新的 framing 下，008d(s0)、008f(s0)、008e_v3(s0) 仍有效；009b/009c 提供了 variance 信息\n\n**4. 三种 narrative 备选:**\n\n**Option A — Vulnerability Window（推荐）:**\nC2 改为：\"Trained dt_embedding creates a vulnerability window in early training (nve>1.5x within 25K steps) that can resolve into collapse or self-correction depending on training trajectory. The *persistence* of pathological nve across consecutive checkpoints is the diagnostic signature of impending collapse.\"\n- 优点：诚实、精确、可验证。\"Vulnerability window\" 比 \"primary amplifier\" 更准确\n- 对论文影响：加 seed variance 讨论，C2 strength 从 moderate-strong 降到 moderate\n- 审稿防御：variance 是实验科学常态，我们提供了诊断标准而非二元 claim\n\n**Option B — Sustained Pathology Threshold:**\nC2 改为：\"Sustained nve>1.5x across 3+ consecutive evaluation checkpoints predicts collapse; transient spikes are recoverable.\"\n- 优点：提出可操作的诊断阈值\n- 缺点：回顾性（仅 2 个 seed），需要 009e 验证\n- 风险：如果 009e(seed 1) 不符合 3-checkpoint 规则则崩溃\n\n**Option C — Amplifier with Stochastic Threshold:**\n保留 \"primary amplifier\" 但加 \"stochastic threshold\" 限定词\n- 优点：最小改动\n- 缺点：最弱的诚实度\n\n**5. 对论文各章节影响:**\n- Abstract: \"can lead to\" 替代 \"leads to\"\n- Intro: 确定性→概率性措辞\n- Method: 无需改动\n- Experiments: 新增 seed variance table + 009b vs 008d 对比图\n- Discussion: 新增\"为什么某些 seed 自修正\"讨论（可能是最有趣的 section）\n- Conclusion: scope to \"elevated risk\" not \"guaranteed collapse\"\n\n**6. 建议下一步:**\n- 009e (008d seed 1): **最关键** — 如果也 collapse，2/3 collapse rate 支持 \"elevated risk\" framing\n- 009f (008f seed 1): 对照\n- plan_031 (actor entropy analysis, 0 GPU): 可能解释为什么某些 seed 自修正（entropy 下降=actor 集中 vs entropy 上升=actor 混乱）\n- 008e_v3 s1/s2: crown jewel C6 不受 C2 降级影响（C6 是 mitigation guideline，独立于 collapse 是否确定性）\n\n**7. 实验计划反思:**\n- 009e/009f 优先级不变（第三 seed 数据决定最终 C2 strength）\n- 008e_v3 s1/s2 优先级不变（C6 独立于 C2 降级）\n- **新增建议**: plan_031 (actor entropy) 提升到 P0——0 GPU cost，可能提供 mechanistic explanation 解释 seed variance\n- Cheetah Run (plan_020-022) 重要性提升——如果 Walker 3 seeds 只有 1/3 collapse，需要第二环境数据支撑 C2\n\n**8. 文献联动:**\n- literature_map 中无 \"seed-dependent collapse\" 或 \"stochastic value overestimation\" 相关论文\n- 已派 Worker 搜索相关文献（seed sensitivity in MBRL, conditions for value overestimation self-correction）\n- 如果文献中已有类似 observation，可在 Discussion 中引用作为 prior evidence\n\n**请 Director 决策: Option A / B / C，以及是否调整 009e/009f 优先级。**"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T19:00:48.771391+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5e879064da2e47dad864c1f891eb37a8:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 9475
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T19:00:49.680009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "research:009b-literature-linkage",
+              "project": "event-gated-adaptive-horizon",
+              "task_prompt": "## 任务：文献搜索 — seed-dependent value overestimation in MBRL\n\n### 背景\n我们在 DreamerV3 上做 temporal abstraction 实验。核心发现：trained dt_embedding 在 seed 0 导致 delusional critic collapse（value/eval ratio 持续 >1.5x baseline 后崩塌），但 seed 2 出现 early pathological v/e 后自修正（transient >1.5x 然后降到 0.38x）。Collapse 不是确定性的，是 seed-dependent。\n\n### 搜索关键词\n1. \"seed sensitivity\" OR \"seed dependence\" + \"model-based reinforcement learning\" + \"value overestimation\"\n2. \"stochastic collapse\" OR \"training instability\" + \"world model\" OR \"learned dynamics\"\n3. \"value overestimation\" + \"self-correction\" OR \"recovery\" + RL\n4. \"delusional\" + \"critic\" OR \"value function\" + \"model-based\"\n5. \"DreamerV3\" OR \"DreamerV2\" + \"training variance\" OR \"seed\"\n6. \"imagination\" + \"compounding error\" + \"seed\" OR \"variance\"\n\n### 产出要求\n1. 找到的每篇相关论文：paper_id, title, authors, year, venue, 一句话 relevance\n2. 特别关注：\n   - 是否有论文报告过 MBRL 中 seed-dependent collapse/recovery 现象\n   - 是否有 value overestimation 自修正的理论解释\n   - DreamerV3 社区是否讨论过训练 variance 问题\n3. 产出格式：YAML list，可直接追加到 literature_map.yaml\n\n写结果到项目文件 `artifacts/009b_literature_search.md`。",
+              "tool_groups": "['knowledge']",
+              "tools": "['WebSearch', 'WebFetch']"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T19:01:02.819200+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_research_009b-literature-linkage_20260514T190050\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/logs/workers/worker_research_009b-literature-linkage_20260514T190050.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_research_009b-literature-linkage_20260514T190050 started. Use get_worker_status('worker_research_009b-literature-linkage_20260514T190050') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 13139
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T19:01:03.172318+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:c2-evidence-table",
+              "project": "event-gated-adaptive-horizon",
+              "task_prompt": "## 任务：C2 evidence 汇总表 + 图表数据准备\n\n### 背景\n我们的论文 Claim C2: \"Trained dt_embedding is the primary amplifier of delusional critic\"。现在有 4 个相关实验的完整数据，需要汇总成论文级对比表和图表数据。\n\n### 实验数据（从 registry 读取）\n\n需要读取以下实验的完整 metrics:\n1. `exp_008d_subsample_on_h8` — trained dt_emb seed 0 (COLLAPSE)\n2. `exp_009b_008d_walker_s2` — trained dt_emb seed 2 (SELF-CORRECT)\n3. `exp_008f_no_dt_embed_subsample_on_h8` — dt_embed_dim=0 seed 0 (RECOVERY)\n4. `exp_009c_008f_walker_s2` — dt_embed_dim=0 seed 2 (DECLINE)\n5. `exp_001_baseline` — baseline v/e calibration\n\n### 产出要求\n\n1. **C2 Evidence Summary Table** (Markdown)：\n   - 列: exp_id, config, seed, nve@25K, nve@45K, nve@65K, nve@85K, nve@105K, eval@105K, outcome\n   - 包含 baseline 作为 reference row\n\n2. **时间序列 CSV 数据**（用于 matplotlib 画图）：\n   - File 1: `c2_nve_timeseries.csv` — columns: step, 008d_s0, 009b_s2, 008f_s0, 009c_s2, baseline\n   - File 2: `c2_eval_timeseries.csv` — columns: step, 008d_s0, 009b_s2, 008f_s0, 009c_s2, baseline\n\n3. **Key statistics**:\n   - 每个配置的 nve 到达 1.5x 的最早 step（如果有）\n   - nve 持续 >1.5x 的 checkpoint 数\n   - Peak nve 和对应 step\n\n所有产出写到 `artifacts/c2_evidence_analysis/` 目录下。\n\n### 工具\n用 `read_registry` 读取实验 metrics。产出文件用 Write 工具写到 artifacts 目录：\n`/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/artifacts/c2_evidence_analysis/`",
+              "tool_groups": "['registry', 'knowledge']"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T19:01:03.225608+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Worker pool exhausted: 6/6 workers running. Wait for a worker to finish or cancel one.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 53
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T19:01:07.245152+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T19:01:07.310480+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "ToolSearch",
+            "elapsed_ms": 65
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T19:01:10.667651+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "status": "running"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T19:01:10.718498+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_analysis_walker-results-aggregation_20260514T185728\\\", \\\"task_type\\\": \\\"analysis:walker-results-aggregation\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-14T18:57:29.183629+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_writing_experimental-setup-draft_20260514T185802\\\", \\\"task_type\\\": \\\"writing:experimental-setup-draft\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-14T18:58:02.616076+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_research_literature-gap-check_20260514T185805\\\", \\\"task_type\\\": \\\"research:literature-gap-check\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-14T18:58:05.516452+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_research_lit-seed-dependent-bifurcation_20260514T185837\\\", \\\"task_type\\\": \\\"research:lit-seed-dependent-bifurcation\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-14T18:58:37.891528+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_analysis_paper-figure-data_20260514T185842\\\", \\\"task_type\\\": \\\"analysis:paper-figure-data\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-14T18:58:43.097553+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_research_009b-literature-linkage_20260514T190050\\\", \\\"task_type\\\": \\\"research:009b-literature-linkage\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-14T19:00:50.698294+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 6}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 50
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-14T19:01:25.403692+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-14T19:01:25.456327+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/memory.md\\\", \\\"content\\\": \\\"# Memory\\\\n\\\\n## 2026-05-14: 文献调研 — Reward Prediction & MBRL Novelty Gaps\\\\n\\\\n**6 篇新增至 literature_map.yaml**（worker_research_lit-reward-prediction-mbrl）。\\\\n\\\\n### 关键 novelty gaps（论文可用）\\\\n\\\\n1. **无论文研究 Dreamer 家族中 reward prediction 退化导致 seed-dependent instability** — 我们发现去掉 dt_embedding 选择性破坏 reward prediction（MAE 75x baseline）导致 seed-dependent recovery，这是未覆盖的现象。\\\\n2. **无论文研究 Dreamer world model 中 reward head 与 temporal conditioning 的耦合关系** — dt_embedding 同时影响 dynamics + reward prediction，去掉它消除 delusional critic 但破坏 reward prediction，这种 trade-off 未被文献讨论。\\\\n\\\\n### 相关文献支撑\\\\n\\\\n- DreamSmooth (ICLR 2024): reward prediction 是 MBRL 瓶颈（支撑我们的 reward degradation 发现）\\\\n- HarmonyDream (ICML 2024): obs vs reward 预测在 world model 中存在主导效应（支撑 dt_emb 的 dual effect）\\\\n- Bjorck 2022 (ICLR): RL 方差主要来自训练早期 outlier runs（与 009c seed 2 早期分叉一致）\\\\n- UNREAL (ICLR 2017) + Lyle 2021: reward prediction 作为 auxiliary task 塑造表征\\\\n\\\\n## 2026-05-14: Actor Entropy & Value Calibration 分析结果 (plan_031/032)\\\\n\\\\n**数据来源**: `logdir/analysis_actor_entropy_value_calibration.json`（2026-05-14 生成，v/R 已修正为 eval_return 基准）\\\\n\\\\n### Actor Entropy — 非显而易见的发现\\\\n\\\\n1. **Collapsed configs 的 entropy 下降反而更慢**（反直觉）：15K 步时 collapsed 的 008d=0.48, 006=0.96 仍为正值，而 healthy 的 008a=-1.15, 008c=-1.18 已为负。解释：actor 在 misleading value landscape 下挣扎，表现为收敛延迟而非加速。\\\\n2. **Baseline 独有的 entropy recovery**：entropy 从 -5.2 (65K) 回升至 -0.78 (315K)，与 return 从 ~400→~950 的提升同期。所有 event-gated 变体在其较短的训练长度内（55K-112K）均停留在 -5.2 附近，无法确认是否也会回升。\\\\n3. **Actor entropy 不是主要诊断信号**：collapsed vs healthy 的差异方向正确但幅度小，且受 run length 限制无法做后期对比。\\\\n\\\\n### Value Calibration — 最强诊断信号\\\\n\\\\n1. **v/R ratio（eval_return 基准）完美分离 collapsed vs healthy**：\\\\n   - Collapsed: 008d peak v/R=1.67@55K（value=137.88, return=82.75），006 peak v/R=2.72@65K（value=361.69, return=132.86）\\\\n   - Healthy: baseline ~0.69，event-gat\n…[truncated 5284 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 52
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-14T19:02:15.446534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "memory.md",
+              "content": "# Memory\n\n## 2026-05-14: 009b 关键洞察 — Collapse 是随机的，不是确定性的\n\n**发现**: 008d seed 0 崩塌（nve 持续 >1.5x: 1.78→1.71→2.09），但 009b seed 2 自修正（nve transient 2.05@25K→1.24@35K→0.38@105K）。两个 seed 都在 25K 触发 pathological nve>1.5x，但 **只有 nve 在连续 3+ checkpoints 保持 >1.5x 时才导致 collapse**。\n\n**矛盾发现**: seed 2 中 009b (with dt_emb, eval=268) 反超 009c (without dt_emb, eval=148)。去掉 dt_embedding 在这个 seed 反而更差。\n\n**因果推断更新**:\n- Trained dt_emb **创造 vulnerability window**（early nve>1.5x），但 collapse 不是必然结果\n- 移除 dt_emb 既非充分条件也非必要条件 for stability\n- C2 causal direction 仍成立（trained dt_emb 加速 nve 上升），但 magnitude/outcome 是 stochastic\n\n**对论文的影响**: C2 从 \"primary amplifier → collapse\" 降级为 \"creates stochastic vulnerability\"。Framing 调整提案已提交 Director（Option A: vulnerability window / Option B: sustained pathology threshold / Option C: stochastic threshold）。等待 Director 决策。\n\n**对实验计划的影响**: 009e (seed 1) 成为最关键实验——如果也 collapse，2/3 rate 支撑 \"elevated risk\" framing；如果不 collapse，0.33 rate 进一步削弱 C2。\n\n## 2026-05-14: 文献调研 — Reward Prediction & MBRL Novelty Gaps\n\n**6 篇新增至 literature_map.yaml**（worker_research_lit-reward-prediction-mbrl）。\n\n### 关键 novelty gaps（论文可用）\n\n1. **无论文研究 Dreamer 家族中 reward prediction 退化导致 seed-dependent instability** — 我们发现去掉 dt_embedding 选择性破坏 reward prediction（MAE 75x baseline）导致 seed-dependent recovery，这是未覆盖的现象。\n2. **无论文研究 Dreamer world model 中 reward head 与 temporal conditioning 的耦合关系** — dt_embedding 同时影响 dynamics + reward prediction，去掉它消除 delusional critic 但破坏 reward prediction，这种 trade-off 未被文献讨论。\n\n### 相关文献支撑\n\n- DreamSmooth (ICLR 2024): reward prediction 是 MBRL 瓶颈（支撑我们的 reward degradation 发现）\n- HarmonyDream (ICML 2024): obs vs reward 预测在 world model 中存在主导效应（支撑 dt_emb 的 dual effect）\n- Bjorck 2022 (ICLR): RL 方差主要来自训练早期 outlier runs（与 009c seed 2 早期分叉一致）\n- UNREAL (ICLR 2017) + Lyle 2021: reward prediction 作为 auxiliary task 塑造表征\n\n## 2026-05-14: Actor Entropy & Value Calibration 分析结果 (plan_031/032)\n\n**数据来源**: `logdir/analysis_actor_entropy_value_calibration.json`（2026-05-14 生成，v/R 已修正为 eval_return 基准）\n\n### Actor Entropy — 非显而易见的发现\n\n1. **Collapsed configs 的 entropy 下降反而更慢**（反直觉）：15K 步时 collapsed 的 008d=0.48, 006=0.96 仍为正值，而 healthy 的 008a=-1.15, 008c=-1.18 已为负。解释：actor 在 misleading value landscape 下挣扎，表现为收敛延迟而非加速。\n2. **Baseline 独有的 entropy recovery**：entropy 从 -5.2 (65K) 回升至 -0.78 (315K)，与 return 从 ~400→~950 的提升同期。所有 event-gated 变体在其较短的训练长度内（55K-112K）均停留在 -5.2 附近，无法确认是否也会回升。\n3. **Actor entropy 不是主要诊断信号**：collapsed vs healthy 的差异方向正确但幅度小，且受 run length 限制无法做后期对比。\n\n### Value Calibration — 最强诊断信号\n\n1. **v/R ratio（eval_return 基准）完美分离 collapsed vs healthy**：\n   - Collapsed: 008d peak v/R=1.67@55K（value=137.88, return=82.75），006 peak v/R=2.72@65K（value=361.69, return=132.86）\n   - Healthy: baseline ~0.69，event-gated healthy 0.20-0.53，**从未超过 1.0**\n   - 判定阈值 v/R > 1.5 在 late training 可 100% 区分两类\n\n2. **008f 极端保守**：v/R=0.20@105K，eval_return=503.21 但 value 仅约 100。value function 严重低估实际回报。这与 009c 教训一致——去掉 dt_embedding 消除了 delusional critic 但引入 reward prediction 噪声，value function 因此保守。\n\n3. **Normalized v/e target 不具区分力**：所有实验 late-stage normalized_vt 均收敛至 ~1.0（collapsed 008d=1.0034, 006=1.0069; healthy 008a=1.0001, 008c=1.0084），无法用于诊断。\n\n### 组合机制（论文可用）\n\n**Delusional critic signature = 慢 entropy 收敛 + value 过高估计**。Actor 探索更多是因为 value landscape 误导，但这种探索被 delusional critic 引向错误方向。这构成一个可论证的因果链：trained dt_embedding → corrupted world model → value overestimation → misdirected exploration → performance collapse。\n\n### 论文使用建议\n\n- **可直接用**：v/R ratio 作为 delusional critic 诊断指标（Figure 材料），collapsed vs healthy 的 clean separation\n- **可用但需 caveat**：actor entropy 趋势差异（方向正确但需注明 run length 不等）\n- **不可用**：normalized v/e target（无区分力）；baseline entropy recovery（与 event-gating 机制无直接关系，属 baseline 自身行为）\n\n### 附注\n\n服务器上还有 `logdir/analysis_rssm_prediction_quality.json`（RSSM dt=1 vs dt=2 prediction quality），属于不同 plan 的分析产物。\n\n## 2026-05-14: 009c 教训 — dt_emb removal 的双重效应\n\n**发现**：去掉 dt_embedding 有两个独立效应：(1) 消除 delusional critic ✓，(2) 严重退化 reward prediction ✗。\n\n两个 seed 的 v/e 都正常（normalized v/e 均 < 1.5x），确认 delusional critic 被消除。但性能差异巨大：\n- seed 0 (008f): zigzag recovery → 503@105K\n- seed 2 (009c): peak 359@75K → monotonic decline → 148@105K\n\n**根因**：008f 的 reward_MAE=0.747（baseline 的 75x），reward gap 仅 1.01x（无法区分 dt=1/dt=2）。reward 信号噪声使优化 landscape 高度 seed-dependent。\n\n**对论文的影响**：\n- C2 机制识别（trained dt_emb → delusional critic）：不受影响，两个 seed 都确认\n- 008f 实用含义：从\"消除 collapse\"降为\"消除 delusional critic 但引入 reward 噪声\"\n- C6 (008e_v3) 升格为核心推荐——唯一同时避免 delusional critic + 保持 reward prediction + 达 95% baseline 的方案\n- Framing 提案（Option A: \"机制 + 陷阱 + 正确修复\"）已提交 Director 审批\n\n**教训**：单一 seed 的 positive result 不能用于 claim stability。008f seed 0 的 zigzag recovery 可能是随机事件，不是系统性保护。\n\n## 2026-05-14: Actor Entropy 分析决策（Director 修正）\n\n- **C2 cleanest comparison pair**: 008f vs 008d（仅 dt_embed_dim 不同）。不用 008c vs 008d（两个变量差异：subsample + dt_emb）。\n- **论文措辞**: 用 \"entropy convergence delayed\"，不说 \"entropy rises\"。\n- **原因**: 008c（subsample OFF）vs 008d（subsample ON）有两个变量差异，不是 clean single-variable control。008f 和 008d 唯一差异是 dt_embed_dim（0 vs 32），是最干净的因果对照。\n\n## 2026-05-14: cuda:1 排期（D031 修正）\n\n009b（running）→ **008e_v3_s1** → **008e_v3_s2** → 009e → 009f → 009c(200K) → plan_060\n\n008e_v3 是论文 crown jewel (C6)，多 seed 验证最高优先。\n\n## 2026-05-14: Cheetah Run / Cartpole Swingup 环境验证\n\n### 结论：代码无需修改，直接可用\n\n代码通过 `--task` 参数自动解析环境名，流程：\n- `--task dmc_cheetah_run` → `suite.load(\"cheetah\", \"run\")`\n- `--task dmc_cartpole_swingup` → `suite.load(\"cartpole\", \"swingup\")`\n\n`dmc_proprio` 配置（action_repeat=2, envs=4, train_ratio=512, MLP encoder/decoder）对所有 DMC proprio 环境通用。\n\n### 环境 Observation/Action Space 对比\n\n| 环境 | Obs dims | Action dims | Action range |\n|------|----------|-------------|--------------|\n| walker_walk | orientations(14), height(1), velocity(9) = 24D | 6 | [-1, 1] |\n| cheetah_run | position(8), velocity(9) = 17D | 6 | [-1, 1] |\n| cartpole_swingup | position(3), velocity(2) = 5D | 1 | [-1, 1] |\n\n**注意：Cartpole Swingup obs/act 维度远小于 Walker/Cheetah。** MLP encoder/decoder 自动适配（从 obs_space 推断），无需手动调整。但模型容量可能过大——默认 512 units 对 5D obs + 1D act 可能 overkill。如果训练不稳定可考虑减小网络。\n\n### 启动命令模板\n\n**Cheetah Run Baseline:**\n```bash\npython dreamer.py --configs defaults dmc_proprio \\\n  --task dmc_cheetah_run \\\n  --logdir logdir/exp_XXX_baseline_cheetah_sY \\\n  --steps 500000 --seed Y --compile False --device cuda:Z\n```\n\n**Cheetah Run Treatment (以 008f config 为例):**\n```bash\npython dreamer.py --configs defaults dmc_proprio \\\n  --task dmc_cheetah_run \\\n  --logdir logdir/exp_XXX_008f_cheetah_sY \\\n  --steps 105000 --seed Y --compile False --device cuda:Z \\\n  --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 \\\n  --imag_horizon 8 --gate_dt_embed_dim 0\n```\n\n**Cartpole Swingup Baseline:**\n```bash\npython dreamer.py --configs defaults dmc_proprio \\\n  --task dmc_cartpole_swingup \\\n  --logdir logdir/exp_XXX_baseline_cartpole_sY \\\n  --steps 500000 --seed Y --compile False --device cuda:Z\n```\n\n**Cartpole Swingup Treatment (以 008f config 为例):**\n```bash\npython dreamer.py --configs defaults dmc_proprio \\\n  --task dmc_cartpole_swingup \\\n  --logdir logdir/exp_XXX_008f_cartpole_sY \\\n  --steps 105000 --seed Y --compile False --device cuda:Z \\\n  --gate_enabled True --gate_fixed_dt 2 --gate_subsample_max_dt 2 \\\n  --imag_horizon 8 --gate_dt_embed_dim 0\n```\n\n### 环境特定注意事项\n\n1. **action_repeat=2** 对三个环境都适用（DMC 标准设置）\n2. **time_limit=1000**（默认）对三个环境都适用\n3. **Cartpole 维度差异**：obs 5D vs Walker 24D，act 1D vs Walker 6D。模型自动适配，但训练动态可能不同（更快收敛或更不稳定）\n4. **Cheetah 与 Walker 类似**：都是 locomotion 任务，obs/act 维度接近，预期行为最相似\n5. **环境变量**：`MUJOCO_GL=osmesa PYOPENGL_PLATFORM=osmesa LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libstdc++.so.6` 仍然需要\n6. **无需代码修改**\n"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-14T19:16:31.008859+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 池实际有 6 个在跑（5 个来自前轮 + 1 个刚派遣），远超 L1 最低要求。c2-evidence-table 任务与已有的 `walker-results-aggregation` 和 `paper-figure-data` Workers 重合，不需要额外启动。\n\n现在更新 memory.md 记录 009b 的非 metrics 性质洞察。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3"
+          },
+          "id": "event-000041"
+        }
+      ],
+      "message_count": 41
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-14T22:32:10.713265+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-14T22:32:21.742443+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__load_project_config",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-14T22:32:21.794242+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-14T22:32:24.652954+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-14T22:32:25.058766+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-14T22:32:25.571268+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (60,605 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon--claude-sessions-agent-d916d761/fc094fda-7be8-4aed-b799-bb3e3b912383/tool-results/mcp-agent-ml-research-read_registry-1778797945330.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon--claude-sessions-agent-d916d761/fc094fda-7be8-4aed-b799-bb3e3b912383/tool-results/mcp-agent-ml-research-read_registry-1778797945330.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon--claude-sessions-agent-d916d761/fc094fda-7be8-4aed-b799-bb3e3b912383/tool-results/mcp-agent-ml-research-read_registry-1778797945330.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 918
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-14T22:32:25.571797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-14T22:32:26.084373+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-14T22:32:26.235226+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "event-gated-adaptive-horizon",
+              "section": "execution"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-14T22:32:29.255075+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 2, \\\"results\\\": [{\\\"exp_id\\\": \\\"exp_009a_baseline_walker_s2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=142508)\\\"]}, {\\\"exp_id\\\": \\\"exp_008e_v3_walker_s1\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=898127)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 4196
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-14T22:32:29.255653+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp_008e_v3_walker_s1 | Walker Walk untrained dt_emb + subsample ON + dt=1 imag + H=15 seed 1 — crown jewel C6 验证（plan_014） | RUNNING cuda:1 | — | — |\\\\n| exp_009a_baseline_walker_s2 | Walker Walk baseline seed 2 — 多 seed v/e 校准参考（plan_010） | RUNNING cuda:0 (23.2%, ETA ~13.7h) | eval=805@115K, v/e=71.4% | — |\\\\n\\\\n## cuda:1 排期\\\\n008e_v3_s1 (RUNNING) → 008e_v3_s2 → 009e → 009f → 009c(200K) → plan_060\\\\n\\\\n## 待处理\\\\n- exp_008e_v3_walker_s2: crown jewel C6 seed 2（ALLOCATED cuda:1，等 s1 完成）\\\\n- exp_009e_008d_walker_s1: 008d seed 1（QUEUED）— 009b negative 后价值增加，确定 collapse 概率\\\\n- exp_009f_008f_walker_s1: 008f seed 1（QUEUED）\\\\n- exp_009c_008f_walker_s2 延长 200K（QUEUED）\\\\n- exp_010a_cheetah_baseline_s1: Cheetah Run baseline（排队等 GPU）\\\\n- exp_009d_baseline_walker_s1: Walker Walk baseline seed 1（排队等 GPU）\\\\n\\\\n## 近期结论\\\\n- **exp_009b_008d_walker_s2** (negative, D032): **Collapse 未复现**。nve 瞬时达 2.05x@25K 后自我修正至 0.38x@105K，eval 升至 268。Seed 0 持续 nve>1.5x→collapse；seed 2 transient nve>1.5x→self-correction。**关键发现：nve>1.5x 是 reliable trained dt_emb marker (4/4 separating power)，但 collapse 是 stochastic (1/2)**。Framing 调整提案已提交 Director，等待决策。\\\\n- **exp_009c_008f_walker_s2** (negative): 008f seed 2 eval=148@105K, nve=1.14x（borderline，未过 1.5x）。延长 200K 排队中。\\\\n- **exp_007_fixed_dt4** (negative): dt=4 严重退化，peak 177@25K（33% baseline）\\\\n\\\\n## ⚠️ Framing 状态\\\\nC2 需要调整：collapse 从 \\\\\\\"deterministic\\\\\\\" 改为 \\\\\\\"stochastic\\\\\\\"，nve>1.5x threshold 定位为 reliable diagnostic marker。三种备选方案已提交 Director（推荐 Option A: Reliable Pathological Overestimation）。**等待 Director 决策，不动 paper。**\\\\n\\\\n## 趋势\\\\n成功 4 / 负向 9 / 失败 1 / 共 16\\\\nbaseline_105K: 915.67\\\\n\\\\n## 资源状态\\\\nbjb1-45299: cuda:0 (009a RUNNING) +\n…[truncated 336 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 3683
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-14T22:32:29.306396+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/ROADMAP.md\\\", \\\"content\\\": \\\"# event-gated-adaptive-horizon — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 06:26 UTC | 更新原因: MVP complete → research phase. experiment_plan.yaml created, dream_simulate launched\\\\n\\\\n## 核心方向\\\\n**Narrative B+: Diagnostic Analysis of Temporal Abstraction in World-Model RL**\\\\n核心因果链：trained dt_embedding → delusional critic → collapse。Untrained dt_embedding 通过 value growth suppression 实质性保护性能。详见 paper_framing.md。\\\\n\\\\n**Target**: CoRL 2026 (DDL 2026-05-29, 剩余 15 天)\\\\n\\\\n## 阶段\\\\n**Research** — MVP 于 2026-05-14 通过（D028: C2 因果确认 + C3 B+ 105K 确认）。experiment_plan.yaml 已创建，Dream 模拟已启动。\\\\n\\\\n## 核心发现（因果链闭合 ✓）\\\\n\\\\n1. **C2 因果确认**：008f（dt_embed_dim=0）normalized v/e=0.73x@35K vs 008d（dim=32）=1.71x。唯一差异是 dt_embedding → delusional critic 消失。\\\\n2. **C3 B+ 确认**：008a 105K=778（85% baseline），normalized v/e=0.59x，两次 V-recovery。结构性 value growth suppression。\\\\n3. **008e_v3 B+ confound 解答中**：untrained dt_emb + subsample ON → normalized v/e=0.88x@45K（正常），保护来自 untrained dt_emb 而非 subsample OFF。\\\\n\\\\n## 诊断框架\\\\n**Normalized v/e ratio** = 实验 v/e / baseline v/e @同 step。>1.5x = pathological; 0.8-1.2x = normal; <0.7x = value suppression。\\\\n\\\\n## 实验计划概览（详见 experiment_plan.yaml）\\\\n\\\\n| 优先级 | 内容 | GPU 预算 | 状态 |\\\\n|--------|------|---------|------|\\\\n| P0 | Walker Walk MVP 实验（8 个） | ~38h done + 10h running | ✅ 6 done, 2 running |\\\\n| P0 | Walker Walk 多 seed（baseline + 008d + 008f × 2 seeds） | ~30h | planned |\\\\n| P0 | Cheetah Run 验证（baseline + trained + dim=0 × 3 seeds） | ~45h | planned |\\\\n| P0 | Cartpole Swingup 验证（baseline + trained + dim=0 × 3 seeds） | ~45h | planned |\\\\n| P0 | Uncertainty-gated truncation pilot（plan_060, actionability） | 5h | planned |\\\\n| P1 | Walker Walk 008a seeds + Cheetah Run C3 + 分析实验 | ~26h | planned |\\\\n| P2 | Hopper Hop + 补充分析 | ~46h | stretch |\\\\n\\\\n**Total P0**: ~145 GPU·h → ~3 days wall time。**Total P0+\n…[truncated 2451 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 3222
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-14T22:32:29.306952+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"account\\\": \\\"root\\\", \\\"gpu_constraint\\\": [\\\"autodl-rtx6000:cuda:0\\\", \\\"autodl-rtx6000:cuda:1\\\"], \\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"project_path\\\": \\\"/root/autodl-tmp/event-gated-adaptive-horizon\\\", \\\"servers\\\": [\\\"bjb1-45299\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 3071
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-14T22:32:42.116042+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon--claude-sessions-agent-d916d761/fc094fda-7be8-4aed-b799-bb3e3b912383/tool-results/mcp-agent-ml-research-read_registry-1778797945330.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nexps = json.loads(data['result'])['data']\nfor e in exps:\n    eid = e.get('exp_id','?')\n    status = e.get('status','?')\n    conclusion = e.get('conclusion','')\n    gpu = e.get('gpu','')\n    server = e.get('server','')\n    pid = e.get('pid','')\n    hyp = (e.get('hypothesis','') or '')[:80]\n    plan_id = e.get('plan_id','')\n    metrics = e.get('metrics',{})\n    spec = e.get('spec',{})\n    print(f'{eid} | {status} | {conclusion} | gpu={gpu} pid={pid} | plan={plan_id} | {hyp}')\n    if metrics:\n        print(f'  metrics: {json.dumps(metrics)[:120]}')\n    if status in ('RUNNING','ALLOCATED','QUEUED','PREPARING'):\n        print(f'  server={server} spec_keys={list(spec.keys()) if spec else \\\"none\\\"}')\n\"\n",
+              "description": "Extract experiment summary from registry JSON"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-14T22:32:42.570330+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n    eid = e.get('exp_id','?')\n          ^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "Bash",
+            "elapsed_ms": 454
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-14T22:32:48.696840+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon--claude-sessions-agent-d916d761/fc094fda-7be8-4aed-b799-bb3e3b912383/tool-results/mcp-agent-ml-research-read_registry-1778797945330.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = data['result']\n# result might be a JSON string\nparsed = json.loads(result) if isinstance(result, str) else result\nprint(type(parsed))\nif isinstance(parsed, dict):\n    print(list(parsed.keys())[:5])\n    d = parsed.get('data', parsed)\n    if isinstance(d, dict):\n        print(list(d.keys())[:10])\n        # maybe it's {exp_id: exp_data}\n        for k in list(d.keys())[:2]:\n            print(f'--- {k} ---')\n            print(json.dumps(d[k], indent=2)[:500])\n    elif isinstance(d, list):\n        print(f'list len={len(d)}')\n        print(json.dumps(d[0], indent=2)[:500])\n\"\n",
+              "description": "Probe registry JSON structure"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-14T22:32:48.805021+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<class 'dict'>\n['success', 'data', 'error', 'metadata']\n['experiments', 'count', 'total', 'baseline']\n--- experiments ---\n{\n  \"exp_006\": {\n    \"status\": \"DONE\",\n    \"retry_count\": 0,\n    \"created_at\": \"2026-05-14T00:49:02.944Z\",\n    \"updated_at\": \"2026-05-14T22:31:54.922Z\",\n    \"metrics\": {\n      \"eval_return\": {\n        \"5000\": 31,\n        \"15000\": 256.9,\n        \"25000\": 321.4,\n        \"35000\": 485.3,\n        \"45000\": 477,\n        \"55000\": 360.4\n      },\n      \"peak_return\": 485.3,\n      \"peak_step\": 35000,\n      \"latest_step\": 55000,\n      \"latest_return\": 360.4,\n      \"model_loss_at_55k\": 4.853,\n      \"gate_dt_\n--- count ---\n29"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "Bash",
+            "elapsed_ms": 108
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-14T22:32:56.604279+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-9-projects-event-gated-adaptive-horizon--claude-sessions-agent-d916d761/fc094fda-7be8-4aed-b799-bb3e3b912383/tool-results/mcp-agent-ml-research-read_registry-1778797945330.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nparsed = json.loads(data['result'])\nexps = parsed['data']['experiments']\nbaseline = parsed['data'].get('baseline',{})\nprint(f'Total experiments: {parsed[\\\"data\\\"][\\\"count\\\"]}')\nprint(f'Baseline: {json.dumps(baseline)[:200]}')\nprint()\nfor eid, e in exps.items():\n    status = e.get('status','?')\n    conclusion = e.get('conclusion','')\n    gpu = e.get('gpu','')\n    pid = e.get('pid','')\n    hyp = (e.get('hypothesis','') or '')[:90]\n    plan_id = e.get('plan_id','')\n    server = e.get('server','')\n    if status in ('RUNNING','ALLOCATED','QUEUED','PREPARING','PENDING'):\n        print(f'{eid} | {status} | gpu={gpu} pid={pid} server={server} plan={plan_id}')\n        print(f'  hyp: {hyp}')\n        m = e.get('metrics',{})\n        if m:\n            print(f'  metrics: {json.dumps(m)[:150]}')\nprint()\nprint('=== DONE/KILLED experiments ===')\nfor eid, e in exps.items():\n    status = e.get('status','?')\n    conclusion = e.get('conclusion','')\n    if status in ('DONE','KILLED'):\n        m = e.get('metrics',{})\n        peak = m.get('peak_return','?')\n        print(f'{eid} | {status} | {conclusion} | peak={peak}')\n\"\n",
+              "description": "Extract active and completed experiments from registry"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-14T22:32:56.705265+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total experiments: 29\nBaseline: null\n\nexp_009a_baseline_walker_s2 | RUNNING | gpu=cuda:0 pid=142508 server=bjb1-45299 plan=\n  hyp: Walker Walk baseline seed 2 — 多 seed 复现 exp_001 baseline，建立 v/e 校准参考（plan_010）\n  metrics: {\"current_step\": 315000, \"target_steps\": 500000, \"progress_pct\": 63, \"eval_return_latest\": 948.7, \"eval_return_peak\": 960.2, \"value_mean\": 663.27, \"ve\nexp_008e_v3_walker_s1 | RUNNING | gpu=cuda:1 pid=898127 server=bjb1-45299 plan=\n  hyp: Walker Walk trained dt_emb + subsample ON + dt=1 imag + H=15 seed 1 — crown jewel C6 验证：tr\n  metrics: {\"current_step\": 75000, \"target_steps\": 105000, \"progress_pct\": 71.4, \"eval_checkpoints\": [{\"step\": 5000, \"eval_return\": 31, \"value_mean\": 0, \"ve_rati\nexp_008e_v3_walker_s2 | ALLOCATED | gpu=cuda:1 pid= server= plan=\n  hyp: Walker Walk trained dt_emb + subsample ON + dt=1 imag + H=15 seed 2 — crown jewel C6 seed \nexp_009d_baseline_walker_s1 | QUEUED | gpu= pid= server= plan=\n  hyp: Walker Walk baseline seed 1 — 多 seed 复现 exp_001 baseline，建立 v/e 校准参考（plan_010）\nexp_009e_008d_walker_s1 | QUEUED | gpu= pid= server= plan=\n  hyp: Walker Walk trained dt_emb + subsample ON + H=8 seed 1 — 多 seed 复现 008d delusional critic \nexp_010a_cheetah_baseline_s1 | QUEUED | gpu= pid= server= plan=\n  hyp: Cheetah Run baseline seed 1 — 建立第二环境 dt=1 参考基线，为跨环境验证 C1/C2 做准备（plan_020）\nexp_009f_008f_walker_s1 | QUEUED | gpu= pid= server= plan=\n  hyp: Walker Walk dt_embed_dim=0 + subsample ON + H=8 seed 1 — 多 seed 复现 008f 因果控制稳定性，巩固 C2 统计显著\n\n=== DONE/KILLED experiments ===\nexp_006 | DONE | killed | peak=485.3\nexp_008a | DONE | killed | peak=?\nexp_008c | DONE | killed | peak=?\nexp_008d | DONE | killed | peak=?\nexp_008e_v2_subsample_on_dt1_h15 | DONE | killed | peak=?\nexp_rssm_fidelity_analysis | DONE | success | peak=?\nexp_008e_v3_subsample_on_dt1_h15 | DONE | success | peak=?\nexp_009b_008d_walker_s2 | DONE | negative | peak=?\nexp_009c_008f_walker_s2 | DONE | negative | peak=?\nexp_007_fixed_dt4 | DONE | negative | peak=176.9\nexp_006_fixed_dt2 | DON\n…[truncated 603 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-14T22:33:00.423958+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "memory.md",
+              "max_chars": "8000"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-14T22:33:00.877482+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/memory.md\\\", \\\"content\\\": \\\"# Memory\\\\n\\\\n## 2026-05-14: D032 — Collapse is Stochastic, nve>1.5x is Reliable\\\\n\\\\n**发现**：009b (008d seed 2) 未复现 delusional critic collapse。\\\\n\\\\n数据对比：\\\\n- 008d seed 1: nve **持续** >1.5x（1.78x→1.71x→2.09x→4.12x, 4 个连续 checkpoint） → collapse (eval 167→83)\\\\n- 009b seed 2: nve **瞬时** >1.5x（2.05x@25K 单点），随后振荡回落至 0.38x@105K → no collapse (eval 升至 268)\\\\n\\\\n**关键结论**：\\\\n1. nve>1.5x 作为 trained dt_emb marker 是 100% reliable（4/4: trained 2/2 exceed, untrained 0/2 exceed）\\\\n2. Collapse 本身是 stochastic（1/2 seeds with trained dt_emb）\\\\n3. Sustained vs transient nve>1.5x 可能区分 collapse vs self-correction，但 N=2 不足以 claim\\\\n\\\\n**对论文的影响**：\\\\n- C2 因果方向不变（trained dt_emb → pathological nve>1.5x），但 \\\\\\\"必然 collapse\\\\\\\" 改为 \\\\\\\"创造 collapse vulnerability\\\\\\\"\\\\n- 定位从 \\\\\\\"failure predictor\\\\\\\" 调整为 \\\\\\\"reliable diagnostic marker\\\\\\\"（更 honest，更 robust to multi-seed challenge）\\\\n- C6 (008e_v3 mitigation) 完全不受影响\\\\n\\\\n**教训**：单 seed 的 collapse 不能 claim determinism。即使同一配置的两个 seed 走出完全不同的 trajectory——这与 Henderson 2018, Bjorck 2022, Qiao 2023 的文献一致。\\\\n\\\\n## 2026-05-14: 文献调研 — Reward Prediction & MBRL Novelty Gaps\\\\n\\\\n**6 篇新增至 literature_map.yaml**（worker_research_lit-reward-prediction-mbrl）。\\\\n\\\\n### 关键 novelty gaps（论文可用）\\\\n\\\\n1. **无论文研究 Dreamer 家族中 reward prediction 退化导致 seed-dependent instability** — 我们发现去掉 dt_embedding 选择性破坏 reward prediction（MAE 75x baseline）导致 seed-dependent recovery，这是未覆盖的现象。\\\\n2. **无论文研究 Dreamer world model 中 reward head 与 temporal conditioning 的耦合关系** — dt_embedding 同时影响 dynamics + reward prediction，去掉它消除 delusional critic 但破坏 reward prediction，这种 trade-off 未被文献讨论。\\\\n\\\\n### 相关文献支撑\\\\n\\\\n- DreamSmooth (ICLR 2024): reward prediction 是 MBRL 瓶颈（支撑我们的 reward degradation 发现）\\\\n- HarmonyDream (ICML 2024): obs vs reward 预测在 world model 中存在主导效应（支撑 dt_emb 的 dual effect）\\\\n- Bjorck 2022 (ICLR): RL 方差主要来自训练早期 outlier runs（\n…[truncated 6793 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 453
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-14T22:33:01.036092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "file": "paper_framing.md",
+              "max_chars": "6000"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-14T22:33:01.087093+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_9/projects/event-gated-adaptive-horizon/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing: Diagnostic Analysis of Temporal Abstraction in World-Model RL\\\\n\\\\n## Title Candidates\\\\n\\\\n1. **\\\\\\\"Why Temporal Abstraction Fails in DreamerV3: A Diagnostic Analysis of Variable-Rate Imagination\\\\\\\"**\\\\n2. **\\\\\\\"The Delusional Critic Problem in DreamerV3's Variable-Rate Imagination\\\\\\\"**\\\\n3. **\\\\\\\"Diagnosing Value Overestimation from Temporal Abstraction in DreamerV3\\\\\\\"**\\\\n\\\\n## Venue\\\\n\\\\n**CoRL 2026** — Deadline: 2026-05-29\\\\n\\\\n## Narrative Positioning\\\\n\\\\nThis is a **diagnostic analysis paper**, not a method paper. We do not propose a new algorithm. Instead, we provide a systematic, controlled investigation answering: *Why does temporal abstraction fail in world-model RL?*\\\\n\\\\nThe contribution is a **closed causal chain** from mechanism to failure mode, backed by a factorial experiment design that isolates each factor, plus a **practical mitigation guideline** (restrict imagination to dt=1 during multi-dt training → 95% baseline recovery). Diagnostic papers are valued when they (a) address a widely-attempted but poorly-understood failure, (b) provide actionable insight for future method design, and (c) are methodologically rigorous.\\\\n\\\\nWe scope all claims to **DreamerV3 and its RSSM world model**. Generalizability to other latent-dynamics architectures is discussed but not claimed.\\\\n\\\\n---\\\\n\\\\n## Core Claims\\\\n\\\\n### C1: Variable-rate imagination in DreamerV3 consistently degrades performance\\\\n\\\\nTemporal abstraction via variable dt—whether learned or fixed—degrades asymptotic performance relative to the dt=1 baseline across all tested configurations.\\\\n\\\\n| Evidence | Experiment | Key Metric |\\\\n|----------|-----------|------------|\\\\n| Baseline stability | exp_001_baseline (dt=1) | Stable convergence ~950 eval return |\\\\n| Fixed dt=2 collapse | exp_006_fixed_d\n…[truncated 4455 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-14T22:33:06.009579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-14T22:33:06.060365+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-14T22:33:08.472624+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "event-gated-adaptive-horizon",
+              "status": "running",
+              "limit": "10"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-14T22:33:08.576355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_extract_008e_v3_s1_final_20260514T223306\\\", \\\"task_type\\\": \\\"extract:008e_v3_s1_final\\\", \\\"project\\\": \\\"event-gated-adaptive-horizon\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-14T22:33:06.764055+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 1}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 103
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-14T22:33:11.592727+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__poll_cron",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-14T22:33:11.643478+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-14T22:34:09.149184+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the context needed. Let me write the handoff.\n\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 `cuda:0` 和 `cuda:1`（服务器 bjb1-45299）。绝不在其他 GPU 上启动实验\n- 008e_v3 是 crown jewel C6——任何排期冲突优先保 008e_v3 多 seed\n- **Framing 处于等待 Director 决策状态**：009b negative 后提交了 C2 collapse stochastic 调整提案（三选一，推荐 Option A），Director 未批准前禁止动 paper 任何文件\n- nve>1.5x 诊断阈值仅适用于 **35K+ steps**，25K 处有 false positive（baseline v/e 过低导致比率放大），论文中必须标注此限定\n- `tail_training_logs` 有 stdout buffering 延迟，监控训练进度应直接 SSH 读 `logdir/metrics.jsonl`\n- submit_training_job 的命令必须自带环境激活（如 `source /root/miniconda3/bin/activate && python ...`），不要假设 .venv 存在\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：bjb1-45299（AutoDL RTX PRO 6000 × 2）\n- **工作目录**：`/root/autodl-tmp/event-gated-adaptive-horizon`\n- **Python**：`/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- **环境激活**：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型/数据**：DMC proprio 环境内置，无需额外下载；logdir 在工作目录下 `logdir/`\n- **W&B**：未配置（实验指标通过 `logdir/metrics.jsonl` 读取）\n- **活跃进程**：\n  - exp_009a_baseline_walker_s2: PID 142508, cuda:0, ~63% (315K/500K), ETA ~13.7h\n  - exp_008e_v3_walker_s1: PID 898127, cuda:1, ~71% (75K/105K), ETA ~几小时\n- **活跃 Cron**：两个实验各有 cron 监控（reconcile 确认均 still running）\n- **活跃 Worker**：`worker_extract_008e_v3_s1_final_20260514T223306`（extract 任务，running）\n\n### 3. 📊 当前状态\n**刚完成**：009b negative 分析 + Framing 调整提案提交 + D032/D033 决策记录 + memory.md 更新 + actor entropy / value calibration 分析 + 文献调研（6 篇新增 literature_map）+ Cheetah/Cartpole 环境验证（代码无需修改）。\n\n**Registry 摘要**（29 个实验）：\n- RUNNING: exp_009a_baseline_walker_s2 (cuda:0, 315K/500K), exp_008e_v3_walker_s1 (cuda:1, 75K/105K)\n- ALLOCATED: exp_008e_v3_walker_s2 (等 s1 完成后上 cuda:1)\n- QUEUED: 009d(baseline s1), 009e(008d s1), 010a(cheetah baseline s1), 009f(008f s1)\n- DONE: 成功 4 / 负向 9 / 失败 1 / killed 若干\n\n**等待中**：\n- Worker `worker_extract_008e_v3_s1_final` 运行中（提取 008e_v3 s1 最终指标）\n- 008e_v3_s1 cron 回调（完成后自动触发 → 需提交 008e_v3_s2 到 cuda:1）\n- 009a cron 回调（~13h 后完成）\n- **Director 对 Framing 调整提案的决策**（C2 collapse stochastic 三选一）\n\n### 4. 📋 待办（条件触发式）\n- **008e_v3_s1 cron 回调到达** → 分析最终指标 + 更新 registry → 立即 submit 008e_v3_s2 到 cuda:1（ALLOCATED，命令模板已就绪）→ 汇报 Director\n- **008e_v3_s2 完成** → C6 多 seed 验证完成 → 按排期推 009e → 009f → 009c(200K) → plan_060\n- **009a_baseline_s2 cron 回调到达**（~13h）→ 提取 500K 完整 baseline 数据 → 更新 baseline 指标 → cuda:0 释放 → 上 009d(baseline s1) 或 010a(cheetah baseline)\n- **Director 批准 Framing 调整** → Read `framing-reaudit.skill.md` → 派 Worker 做全文 re-audit → 不得分章节滚动调整\n- **Director 批准 P0 实验** → 按 experiment_plan.yaml 批量提交 Walker seeds + Cheetah Run（命令模板在 memory.md 中）\n- **worker_extract_008e_v3_s1_final 完成** → 读产出 → 更新 registry metrics\n\n### 5. 🎯 战略上下文\n**核心结论链**：trained dt_embedding → RSSM dt>1 预测质量不足 → delusional critic (nve>1.5x) → stochastic collapse。去 dt_embedding (008f) 消除 delusional critic 但破坏 reward prediction（seed-dependent）。**008e_v3 (trained dt_emb + dt=1 imagination)** 是唯一同时保护性能 + 消除 delusional critic 的方案——论文 crown jewel。\n\n**目标**：CoRL 2026，DDL 2026-05-29（剩 15 天）。P0 实验预算 ~145 GPU·h（~3 天 wall time），时间充裕但不能浪费。\n\n**最容易判断错的事**：\n1. **008e_v3 的 dt_embedding 是 trained 的**（D033）。之前误以为 untrained，代码审计确认 nn.Embedding 默认 trainable 且无 freeze。关键变量是 **imagination dt=1**，不是 embedding 训练状态\n2. **collapse 是 stochastic 不是 deterministic**（D032）。nve>1.5x 是 reliable marker（4/4），但 collapse 只有 1/2 seeds 发生。论文不能 claim \"必然 collapse\"\n3. **008f 不是好的 fix**——去 dt_embedding 消除 delusional critic 但引入 reward prediction 噪声（MAE 75x baseline），性能 seed-dependent（503 vs 148）。C6 (008e_v3) 才是推荐方案\n4. **cuda:1 排期很紧**：008e_v3_s1 → s2 → 009e → 009f → 009c(200K) → plan_060，不要打乱顺序\n5. **Framing 提案未批准前不动 paper**——这是 L1 红线\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_004_event_gated_v3"
+          },
+          "id": "event-000071"
+        }
+      ],
+      "message_count": 30
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-exp-004-event-gated-v3-20260514t223409-152193.md"
+}
